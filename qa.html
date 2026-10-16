@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="he">
+<head>
+<meta charset="utf-8">
+<title>QA · Kaplan Surgical Hub</title>
+<meta name="robots" content="noindex">
+<style>body{margin:0;background:#1d1d1f;font-family:Arial,sans-serif;color:#fff;padding:12px}#bar{margin-bottom:8px;font-size:13px}iframe{display:block;border:0;background:#fff;border-radius:16px;box-shadow:0 0 0 6px #000}</style>
+</head>
+<body>
+<div id="bar"></div>
+<iframe id="f"></iframe>
+<script>
+var p = new URLSearchParams(location.search), w = +(p.get("w") || 390), h = +(p.get("h") || 844), t = p.get("t");
+var f = document.getElementById("f"); f.width = w; f.height = h;
+f.src = "https://script.google.com/macros/s/AKfycbzPCrw8mxFvs87Sph-W5FKSRxgulOtZWeV66a2bxFay2Ul2-tu8R2htsnIADUNoOEus/exec" + (t ? "?t=" + encodeURIComponent(t) : "");
+document.getElementById("bar").textContent = w + " x " + h + (t ? " · intern app" : " · dashboard");
+</script>
+</body>
+</html>
