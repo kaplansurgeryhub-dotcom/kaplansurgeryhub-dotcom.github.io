@@ -34,6 +34,22 @@
   if (j.slice(-1) === 't') u += '&entry.545380743=' + encodeURIComponent('רק תורנויות · מגיע/ה לתורנויות בלבד');
   window.__go = u; location.replace(u);
 })();
+// storage bridge: Safari wipes storage inside the Google frames whenever the home-screen app closes, so the app keeps
+// its device sign-in and its last snapshot here, on this page, which Safari keeps. Only the Apps Script frame may ask, and only for these keys
+(function () {
+  var OK = { ksh_dev: 1, ksh_snap: 1, ip_snap: 1 };
+  addEventListener('message', function (e) {
+    if (!/^https:\/\/[a-z0-9-]+-script\.googleusercontent\.com$/.test(e.origin)) return;
+    var m = e.data; if (!m || m.ksh !== 1 || !OK[m.k]) return;
+    var v = null;
+    try {
+      if (m.op === 'get') v = localStorage.getItem('b_' + m.k);
+      else if (m.op === 'set') localStorage.setItem('b_' + m.k, String(m.v));
+      else if (m.op === 'del') localStorage.removeItem('b_' + m.k);
+    } catch (err) { if (m.op === 'set') try { localStorage.removeItem('b_' + m.k); } catch (e2) {} }
+    if (e.source) e.source.postMessage({ ksh: 1, id: m.id, v: v }, e.origin);
+  });
+})();
 if (!window.__go) document.getElementById('app').src = 'https://script.google.com/macros/s/AKfycbzPCrw8mxFvs87Sph-W5FKSRxgulOtZWeV66a2bxFay2Ul2-tu8R2htsnIADUNoOEus/exec' + location.search;
 </script>
 </body>
