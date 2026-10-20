@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>עבודה נכונה במערך</title>
+<meta name="theme-color" content="#0C2A35">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&family=Frank+Ruhl+Libre:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0C2A35;--navy2:#123848;--gold:#B8863B;--gold2:#E2B66A;--green:#187A5C;--red:#A3402E;--sand:#F5F2EA;--ink:#1E2B30;--muted:#5C6F73;--line:#E4DCCB}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--navy);color:var(--ink);font-family:Assistant,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.deck{position:fixed;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.deck::-webkit-scrollbar{display:none}
+.s{flex:0 0 100%;height:100%;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;padding:18px 16px 84px;overflow-y:auto}
+.card{width:min(860px,100%);background:#fff;border-radius:22px;box-shadow:0 18px 50px rgba(0,0,0,.35);padding:30px 30px 26px;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;inset:0 0 auto 0;height:6px;background:linear-gradient(90deg,var(--gold),var(--gold2),var(--gold))}
+.kick{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--gold);letter-spacing:.3px;margin-bottom:6px}
+.kick b{background:var(--navy);color:#fff;border-radius:999px;min-width:26px;height:26px;display:grid;place-items:center;font-size:13px}
+h1,h2{font-family:'Frank Ruhl Libre',serif;color:var(--navy);margin:0 0 10px;line-height:1.15}
+h1{font-size:clamp(34px,7vw,58px)}h2{font-size:clamp(26px,5vw,38px)}
+.lead{font-size:clamp(16px,2.6vw,19px);color:var(--muted);margin:0 0 18px;line-height:1.5}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:640px){.grid{grid-template-columns:1fr}.grid.m2{grid-template-columns:1fr 1fr;gap:8px}.grid.m2 .tip{padding:9px 10px;font-size:14.5px}.ill svg{width:min(270px,100%)}.s{padding-top:12px}.card{padding:24px 18px 20px;border-radius:18px}}
+.tip{background:var(--sand);border-radius:14px;padding:12px 14px;border-right:4px solid var(--gold);font-size:16px;line-height:1.45}
+.tip b{display:block;color:var(--navy);font-size:16.5px;margin-bottom:2px}
+.tip.g{border-color:var(--green)}.tip.r{border-color:var(--red);background:#FBEDEA}.tip.n{border-color:var(--navy)}
+.big{font-size:clamp(40px,8vw,64px);font-weight:800;color:var(--gold);line-height:1}
+.row{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.pill{display:inline-flex;gap:6px;align-items:center;background:var(--sand);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px;color:var(--navy);margin:4px}
+.steps{counter-reset:s;list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.steps li{counter-increment:s;display:flex;gap:12px;align-items:flex-start;font-size:16.5px;line-height:1.45}
+.steps li::before{content:counter(s);flex:0 0 32px;height:32px;border-radius:50%;background:var(--navy);color:#fff;font-weight:800;display:grid;place-items:center}
+.steps.red li::before{background:var(--red)}
+.note{font-size:13px;color:var(--muted);margin-top:14px}
+.note a{color:var(--green);font-weight:700}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.vs div{border-radius:14px;padding:12px 14px;font-size:16px;line-height:1.4}
+.vs .no{background:#FBEDEA;color:#7A2E21}.vs .yes{background:#E7F5EC;color:#11573F}
+.vs b{display:block;font-size:13px;letter-spacing:.3px;margin-bottom:4px}
+.cover{background:radial-gradient(120% 90% at 85% 0%,#1C4E62 0%,var(--navy) 55%);color:#fff}
+.cover h1{color:#fff}.cover .lead{color:#C9D6D9}.cover .card{background:transparent;box-shadow:none;padding-top:10px}.cover .card::before{display:none}
+.cover .pill{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:#fff}
+.ill{display:flex;justify-content:center;margin:6px 0 14px}
+.ill svg{width:min(360px,100%);height:auto}
+.sbar{background:var(--sand);border-radius:14px;padding:12px 14px;display:grid;gap:6px;font-size:15.5px}
+.sbar div{display:flex;gap:10px}.sbar span{flex:0 0 22px;height:22px;border-radius:6px;background:var(--navy);color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center}
+/* navigation */
+.nav{position:fixed;inset:auto 0 0 0;display:flex;align-items:center;justify-content:center;gap:14px;padding:12px 16px calc(14px + env(safe-area-inset-bottom));background:linear-gradient(transparent,rgba(6,20,26,.85) 40%)}
+.nav button{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;font-size:22px;cursor:pointer}
+.nav button:disabled{opacity:.3}
+.dots{display:flex;gap:6px}.dots i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer}.dots i.on{background:var(--gold2);width:22px;border-radius:5px}
+.count{color:#C9D6D9;font-size:13px;font-weight:700;min-width:44px;text-align:center}
+@media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+</style>
+</head>
+<body>
+<main class="deck" id="deck">
+
+<!-- 1 cover -->
+<section class="s cover"><div class="card">
+  <div class="kick" style="color:var(--gold2)">המערך הכירורגי · המרכז הרפואי קפלן</div>
+  <h1>עבודה נכונה<br>במערך</h1>
+  <p class="lead">הדברים הקטנים שמונעים טעויות גדולות. חמש דקות קריאה לפני היום הראשון.</p>
+  <div><span class="pill">🧼 היגיינת ידיים</span><span class="pill">🪪 זיהוי מטופל</span><span class="pill">🛏️ בטיחות</span><span class="pill">💉 חדים</span><span class="pill">👋 הצגה עצמית</span><span class="pill">🤝 הצוות הסיעודי</span></div>
+  <p class="note" style="color:#9FB4B9">החליקו הצידה או השתמשו בחצים ←</p>
+</div></section>
+
+<!-- 2 five moments -->
+<section class="s"><div class="card">
+  <div class="kick"><b>1</b> היגיינת ידיים</div>
+  <h2>חמשת הרגעים</h2>
+  <div class="ill"><svg viewBox="0 0 360 230" aria-label="חמשת הרגעים להיגיינת ידיים">
+    <circle cx="180" cy="118" r="74" fill="#F5F2EA" stroke="#E4DCCB" stroke-width="2"/>
+    <rect x="132" y="96" width="96" height="44" rx="12" fill="#fff" stroke="#0C2A35" stroke-width="2"/>
+    <circle cx="150" cy="118" r="10" fill="#0C2A35"/><rect x="164" y="111" width="54" height="14" rx="7" fill="#C9D6D9"/>
+    <text x="180" y="166" text-anchor="middle" font-family="Assistant" font-size="13" fill="#5C6F73">המטופל וסביבתו</text>
+    <g font-family="Assistant" font-weight="800" font-size="15" fill="#fff" text-anchor="middle">
+      <circle cx="58" cy="60" r="20" fill="#187A5C"/><text x="58" y="65">1</text>
+      <circle cx="180" cy="22" r="20" fill="#187A5C"/><text x="180" y="27">2</text>
+      <circle cx="302" cy="60" r="20" fill="#A3402E"/><text x="302" y="65">3</text>
+      <circle cx="302" cy="178" r="20" fill="#A3402E"/><text x="302" y="183">4</text>
+      <circle cx="58" cy="178" r="20" fill="#A3402E"/><text x="58" y="183">5</text>
+    </g>
+  </svg></div>
+  <div class="grid m2">
+    <div class="tip g"><b>לפני ①</b>מגע במטופל</div>
+    <div class="tip g"><b>לפני ②</b>פעולה נקייה או אספטית</div>
+    <div class="tip r"><b>אחרי ③</b>חשיפה אפשרית לנוזלי גוף</div>
+    <div class="tip r"><b>אחרי ④</b>מגע במטופל</div>
+    <div class="tip r" style="grid-column:1/-1"><b>אחרי ⑤</b>מגע בסביבת המטופל: מיטה, מגש, מוניטור, גם בלי לגעת בו</div>
+  </div>
+  <p class="note">ירוק: מגינים על המטופל · אדום: מגינים עלינו ועל הסביבה. מבוסס על <a href="https://www.who.int/campaigns/world-hand-hygiene-day" target="_blank" rel="noopener">ארגון הבריאות העולמי (WHO)</a>.</p>
+</div></section>
+
+<!-- 3 how -->
+<section class="s"><div class="card">
+  <div class="kick"><b>1</b> היגיינת ידיים</div>
+  <h2>איך עושים את זה נכון</h2>
+  <div class="row" style="margin-bottom:14px">
+    <div style="flex:1;min-width:200px" class="tip g"><div class="big">20–30</div><b>שניות · תכשיר אלכוהולי</b>ברירת המחדל לפני ואחרי כל מגע</div>
+    <div style="flex:1;min-width:200px" class="tip n"><div class="big" style="color:var(--navy)">40–60</div><b>שניות · מים וסבון</b>כשהידיים מלוכלכות לעין ואחרי חולה עם שלשול</div>
+  </div>
+  <div class="grid">
+    <div class="tip"><b>כפפות אינן תחליף</b>מחטאים לפני שלובשים ואחרי שמסירים</div>
+    <div class="tip"><b>ידיים חשופות</b>בלי טבעות, שעון וציפורניים ארוכות בזמן טיפול</div>
+    <div class="tip" style="grid-column:1/-1"><b>חדר בבידוד</b>קוראים את השלט (מגע, טיפתי, אוויר) ולובשים מיגון מתאים. ביציאה מסירים ומחטאים</div>
+  </div>
+</div></section>
+
+<!-- 4 patient id -->
+<section class="s"><div class="card">
+  <div class="kick"><b>2</b> זיהוי מטופל</div>
+  <h2>שני מזהים. כל פעם.</h2>
+  <p class="lead">שם מלא ומספר תעודת זהות, מול הצמיד ומול המדבקה. לפני בדיקה, לקיחת דם, מתן טיפול והעברה.</p>
+  <div class="ill"><svg viewBox="0 0 360 96" aria-label="צמיד זיהוי"><rect x="10" y="26" width="340" height="44" rx="22" fill="#F5F2EA" stroke="#0C2A35" stroke-width="2"/><rect x="110" y="32" width="140" height="32" rx="6" fill="#fff" stroke="#E4DCCB"/><text x="242" y="46" text-anchor="end" font-family="Assistant" font-weight="800" font-size="12" fill="#0C2A35">ישראל ישראלי</text><text x="242" y="60" text-anchor="end" font-family="Assistant" font-size="11" fill="#5C6F73">ת״ז 0•••••••4</text><g fill="#0C2A35"><rect x="120" y="38" width="2" height="20"/><rect x="124" y="38" width="1" height="20"/><rect x="127" y="38" width="3" height="20"/><rect x="132" y="38" width="1" height="20"/><rect x="135" y="38" width="2" height="20"/><rect x="139" y="38" width="1" height="20"/><rect x="142" y="38" width="3" height="20"/></g></svg></div>
+  <div class="vs" style="margin-bottom:12px">
+    <div class="no"><b>✕ לא כך</b>״אתה משה כהן?״</div>
+    <div class="yes"><b>✓ כך</b>״מה שמך ומה מספר תעודת הזהות שלך?״</div>
+  </div>
+  <div class="grid">
+    <div class="tip"><b>מבחנות</b>מדביקים ליד המטופל מיד אחרי הלקיחה. אף פעם לא מראש</div>
+    <div class="tip"><b>אין צמיד?</b>לא מבצעים פעולה עד שהצמיד מוסדר</div>
+    <div class="tip r" style="grid-column:1/-1"><b>לא מזהים לפי חדר או מיטה</b>שמות דומים באותו אגף: בודקים פעמיים ומעדכנים את הצוות</div>
+  </div>
+</div></section>
+
+<!-- 5 patient safety -->
+<section class="s"><div class="card">
+  <div class="kick"><b>3</b> בטיחות המטופל</div>
+  <h2>משאירים את המטופל בטוח</h2>
+  <div class="grid">
+    <div class="tip"><b>🛏️ מניעת נפילות</b>דפנות סגורות לפי ההנחיה, מיטה נמוכה, בלמים נעולים, פעמון קריאה בהישג יד</div>
+    <div class="tip"><b>🔁 בסוף כל פעולה</b>מחזירים את הדפנות, הפעמון והסביבה למצב בטוח</div>
+    <div class="tip"><b>🧺 עגלת הדמים</b>חוזרת מסודרת, מלאה ונקייה. בלי חדים ובלי מבחנות פתוחות</div>
+    <div class="tip"><b>📣 שינוי במצב</b>מדווחים מיד לרופא האחראי ולאחות</div>
+    <div class="tip g" style="grid-column:1/-1"><b>✋ אין שאלה מיותרת</b>כשלא בטוחים, עוצרים ושואלים. זו לא חולשה, זו בטיחות</div>
+  </div>
+</div></section>
+
+<!-- 6 handoff -->
+<section class="s"><div class="card">
+  <div class="kick"><b>3</b> בטיחות המטופל</div>
+  <h2>מעבירים מידע בצורה מסודרת</h2>
+  <p class="lead">כשמדווחים לבכיר או מעבירים מטופל לתורן, מסדרים את המידע בארבעה חלקים (SBAR):</p>
+  <div class="sbar">
+    <div><span>S</span><div><b>מצב:</b> מה קורה עכשיו ולמה אני מתקשר/ת</div></div>
+    <div><span>B</span><div><b>רקע:</b> אבחנה, ניתוח, תרופות ואלרגיות רלוונטיות</div></div>
+    <div><span>A</span><div><b>הערכה:</b> סימנים חיוניים, בדיקה ומה אני חושב/ת</div></div>
+    <div><span>R</span><div><b>בקשה:</b> מה אני צריך/ה ממך ועד מתי</div></div>
+  </div>
+  <div class="tip n" style="margin-top:12px"><b>דוגמה</b>״מטופל בן 68, יום שני אחרי כריתת מעי, חום 38.6 ודופק 112. לקחתי דמים ותרביות. אני חושש/ת לדליפה. אשמח שתבוא/י לראות אותו עכשיו.״</div>
+</div></section>
+
+<!-- 7 sharps -->
+<section class="s"><div class="card">
+  <div class="kick"><b>4</b> חדים וחשיפה לדם</div>
+  <h2>מחט אחת, פעם אחת</h2>
+  <div class="grid">
+    <div class="tip r"><b>✕ לא מחזירים מכסה</b>משליכים מיד למכל חדים שנמצא ליד המטופל</div>
+    <div class="tip"><b>מכל החדים</b>לא ממלאים מעבר לקו המילוי</div>
+    <div class="tip g" style="grid-column:1/-1"><b>עד שתי דקירות</b>אחרי שני ניסיונות שלא הצליחו קוראים לעזרה. זה טוב למטופל ולך</div>
+  </div>
+  <h2 style="font-size:24px;margin-top:20px">נדקרת או הותזת?</h2>
+  <ol class="steps red">
+    <li>שוטפים מיד במים וסבון. ריריות ועיניים במים זורמים</li>
+    <li>מדווחים מיד לאחראי המשמרת</li>
+    <li>פונים מיד לטיפול לפי נוהל בית החולים לחשיפה לדם. הזמן קריטי: טיפול מונע יעיל בעיקר בשעות הראשונות</li>
+  </ol>
+</div></section>
+
+<!-- 8 introduction -->
+<section class="s"><div class="card">
+  <div class="kick"><b>5</b> הצגה עצמית ותקשורת</div>
+  <h2>״שלום, אני ___, סטאז׳ר/ית בכירורגיה״</h2>
+  <ol class="steps">
+    <li>דופקים, נכנסים ומציגים את עצמכם בשם ובתפקיד. תג השם גלוי</li>
+    <li>מסבירים מה עומדים לעשות ומבקשים הסכמה לפני כל בדיקה ופעולה</li>
+    <li>פרטיות: וילון סגור בבדיקה. לא מדברים על מטופלים במסדרון ובמעלית</li>
+    <li>מידע רפואי ותוצאות נמסרים למטופל ולמשפחה רק על ידי רופא</li>
+  </ol>
+</div></section>
+
+<!-- 9 nursing -->
+<section class="s"><div class="card">
+  <div class="kick"><b>6</b> עבודה עם הצוות הסיעודי</div>
+  <h2>עובדים יחד</h2>
+  <div class="grid">
+    <div class="tip"><b>👋 היכרות</b>מכירים את האחיות האחראיות בכל אגף ביום הראשון</div>
+    <div class="tip"><b>🔔 עדכון</b>מעדכנים את האחות על כל פעולה שעשיתם במטופל שלה</div>
+    <div class="tip r"><b>💊 הוראות ותרופות</b>ניתנות רק על ידי רופא</div>
+    <div class="tip"><b>☀️ העברה בבוקר</b>משימות שלא הושלמו (דמים, ונפלונים, אק״ג) עוברות מסודר</div>
+    <div class="tip"><b>🧹 סדר</b>חדר הטיפולים, העגלות והמכשירים חוזרים למקומם</div>
+    <div class="tip g"><b>🤝 הדדיות</b>שיתוף פעולה, כבוד ותזכורות הדדיות</div>
+  </div>
+</div></section>
+
+<!-- 10 golden rules -->
+<section class="s"><div class="card">
+  <div class="kick">✨ לסיכום</div>
+  <h2>כללי הזהב של המערך</h2>
+  <ol class="steps">
+    <li>ישיבת הבוקר מתחילה בזמן</li>
+    <li>זיהוי מטופל, תמיד: שם מלא ותעודת זהות לפני כל בדיקה</li>
+    <li>עד שתי דקירות</li>
+    <li>תוכנית הטיפול נקבעת על ידי רופא</li>
+    <li>בקבלה: מחלה נוכחית קודם</li>
+    <li>אין שאלה מיותרת</li>
+  </ol>
+  <p class="note">זהו מסמך הכוונה של המערך ולא נוהל רשמי. הנהלים המחייבים של בית החולים זמינים אצל האחות האחראית.<br>מקורות להרחבה: <a href="https://www.who.int/campaigns/world-hand-hygiene-day" target="_blank" rel="noopener">WHO · היגיינת ידיים</a> · <a href="https://www.who.int/health-topics/patient-safety" target="_blank" rel="noopener">WHO · בטיחות המטופל</a></p>
+</div></section>
+
+</main>
+<nav class="nav"><button id="next" aria-label="הבא">←</button><span class="count" id="count">1/10</span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">→</button></nav>
+<script>
+(function () {
+  var deck = document.getElementById('deck'), S = [].slice.call(deck.children), dots = document.getElementById('dots'), n = S.length;
+  S.forEach(function (_, k) { var i = document.createElement('i'); i.onclick = function () { go(k); }; dots.appendChild(i); });
+  function idx() { return Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }
+  function go(k) { k = Math.max(0, Math.min(n - 1, k)); S[k].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' }); }
+  function sync() { var k = idx(); [].forEach.call(dots.children, function (d, j) { d.className = j === k ? 'on' : ''; }); document.getElementById('count').textContent = (k + 1) + '/' + n; document.getElementById('prev').disabled = k === 0; document.getElementById('next').disabled = k === n - 1; }
+  deck.addEventListener('scroll', function () { clearTimeout(sync.t); sync.t = setTimeout(sync, 60); }, { passive: true });
+  document.getElementById('next').onclick = function () { go(idx() + 1); };
+  document.getElementById('prev').onclick = function () { go(idx() - 1); };
+  addEventListener('keydown', function (e) { if (e.key === 'ArrowLeft' || e.key === ' ') go(idx() + 1); if (e.key === 'ArrowRight') go(idx() - 1); });
+  sync();
+})();
+</script>
+</body>
+</html>
