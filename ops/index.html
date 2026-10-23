@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kaplan Surgical Hub</title>
+<meta name="description" content="המערך הכירורגי · המרכז הרפואי קפלן">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="KSH">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="application-name" content="KSH">
+<meta name="theme-color" content="#0C2A35">
+<meta property="og:title" content="Kaplan Surgical Hub">
+<meta property="og:description" content="המערך הכירורגי · המרכז הרפואי קפלן">
+<meta property="og:image" content="https://kaplansurgeryhub-dotcom.github.io/ops/icon-512.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<style>
+:root{--navy:#0C2A35;--navy2:#133F4E;--green:#00907A;--green2:#00A87A;--lime:#A8D84A;--ink:#0C2A35;--muted:#5B6F77}
+html,body{margin:0;height:100%;background:var(--navy);font-family:'Heebo','Assistant',-apple-system,'Segoe UI',Arial,sans-serif}
+/* a frame does not get the phone's safe areas (notch, home bar), so the frame sits inside them on the navy background */
+iframe{position:fixed;top:env(safe-area-inset-top,0);bottom:env(safe-area-inset-bottom,0);left:env(safe-area-inset-left,0);right:env(safe-area-inset-right,0);width:calc(100% - env(safe-area-inset-left,0px) - env(safe-area-inset-right,0px));height:calc(100% - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));border:0;background:#fff}
+[hidden]{display:none!important}
+.lock{position:fixed;inset:0;z-index:20;display:grid;place-items:center;background:radial-gradient(120% 90% at 50% 0%,#174a5a 0%,var(--navy) 60%);color:#fff;text-align:center;padding:24px}
+.lock img{width:112px;height:112px;border-radius:26px;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+.lock h1{font-size:22px;margin:18px 0 4px;font-weight:800;letter-spacing:.2px}
+.lock p{margin:0 0 22px;color:#B9D3D9;font-size:15px}
+.btn{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:0 22px;border-radius:14px;font-size:17px;font-weight:700;background:linear-gradient(135deg,var(--green2),var(--green));color:#fff;box-shadow:0 6px 18px rgba(0,144,122,.35);width:100%;max-width:320px;margin:0 auto}
+.btn:active{transform:scale(.98)}
+.btn.ghost{background:transparent;box-shadow:none;color:#B9D3D9;font-weight:600;font-size:15px;min-height:40px;margin-top:10px}
+.btn.line{background:#fff;color:var(--ink);box-shadow:none;border:1.5px solid #D5E3E1}
+.bg{position:fixed;inset:0;z-index:30;background:rgba(6,22,28,.55);display:flex;align-items:flex-end;justify-content:center}
+.sh{background:#fff;color:var(--ink);width:100%;max-width:460px;border-radius:22px 22px 0 0;padding:22px 20px calc(18px + env(safe-area-inset-bottom));box-sizing:border-box;max-height:92vh;overflow:auto}
+@media (min-width:700px){.bg{align-items:center}.sh{border-radius:22px}}
+.sh h2{margin:0 0 4px;font-size:20px}
+.sh .sub{margin:0 0 16px;color:var(--muted);font-size:14px}
+.row{display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-top:1px solid #E7EFEE}
+.row .ic{flex:none;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:21px;background:#E6F4F1}
+.row b{display:block;font-size:16px}
+.row small{display:block;color:var(--muted);font-size:13.5px;line-height:1.45;margin:2px 0 10px}
+.row .btn{max-width:none;min-height:44px;font-size:15.5px}
+.ok{color:var(--green);font-weight:700;font-size:14.5px}
+.warn{color:#A3402E;font-size:13.5px}
+.steps{margin:6px 0 0;padding:0 18px 0 0;font-size:14px;line-height:1.7}
+.close{margin-top:8px}
+</style>
+</head>
+<body>
+<iframe id="app" title="Kaplan Surgical Hub" allow="clipboard-write"></iframe>
+
+<div class="lock" id="lock" hidden>
+  <div>
+    <img src="icon-192.png" alt="">
+    <h1>Kaplan Surgical Hub</h1>
+    <p id="lkMsg">כניסה מאובטחת</p>
+    <button class="btn" id="lkGo"></button>
+    <button class="btn ghost" id="lkCode">כניסה עם הקוד</button>
+  </div>
+</div>
+
+<script>
+// Kaplan Surgical Hub · the home-screen wrapper for the department app (Kaplan Ops).
+// The app itself runs in Google Apps Script, in a frame. This page, on our own address, adds what a frame cannot:
+//  1. an icon and a real home-screen app (manifest), 2. sign-in with Face ID / fingerprint (WebAuthn, on this device),
+//  3. push notifications (a service worker + Firebase Cloud Messaging), 4. storage that Safari keeps for the device sign-in.
+// The frame talks to this page with postMessage, only from the Apps Script origin, only for the keys below.
+(function () {
+  var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec';
+  var FB = { apiKey: 'AIzaSyDgxuGVjnxJXU4QUYMW8Re8PYLdtRJXR3g', authDomain: 'kaplan-surgical-hub.firebaseapp.com', projectId: 'kaplan-surgical-hub', storageBucket: 'kaplan-surgical-hub.firebasestorage.app', messagingSenderId: '538271511290', appId: '1:538271511290:web:af6678624fa31873818f43' };
+  var VAPID = 'BFfAAO23QxF8ETU3IyJuW6_2lOL_uiP5qhkKSrIm6ReOEtrLfmrlDHb3cFpndp4VE_Nce7m56BgnV9cARVIZ3BE';
+  var FBV = '10.12.2';
+  var KEYS = { ops_dev: 1, ops_seen: 1, me_seen: 1 };
+  var ORIGIN = /^https:\/\/[a-z0-9-]+-script\.googleusercontent\.com$/;
+  var Q = new URLSearchParams(location.search), PERSONAL = !!Q.get('p');
+  var ua = navigator.userAgent, IOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var ANDROID = /Android/.test(ua), MAC = /Macintosh/.test(ua) && !IOS, WIN = /Windows/.test(ua);
+  var STANDALONE = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
+  var BIO = IOS ? 'Face ID' : ANDROID ? 'טביעת אצבע' : MAC ? 'Touch ID' : WIN ? 'Windows Hello' : 'זיהוי ביומטרי';
+  var $ = function (id) { return document.getElementById(id); };
+  var ls = { get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: function (k, v) { try { if (v == null) localStorage.removeItem(k); else localStorage.setItem(k, String(v)); } catch (e) {} } };
+  var frame = null, frameOrigin = '', unlocked = true, waiting = [];
+
+  // keep the address this app was opened with, so a tapped notification opens the same app (personal or managers')
+  try { if ('caches' in window) caches.open('ksh').then(function (c) { return c.put('start', new Response(location.search)); }); } catch (e) {}
+
+  var b64 = function (buf) { var s = '', a = new Uint8Array(buf); for (var i = 0; i < a.length; i++) s += String.fromCharCode(a[i]); return btoa(s).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); };
+  var unb64 = function (s) { s = s.replace(/-/g, '+').replace(/_/g, '/'); while (s.length % 4) s += '='; var b = atob(s), a = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) a[i] = b.charCodeAt(i); return a.buffer; };
+  var rnd = function (n) { var a = new Uint8Array(n); crypto.getRandomValues(a); return a; };
+
+  /* ---------- Face ID / fingerprint: a passkey on this device that unlocks the saved sign-in ---------- */
+  var bioAvail = function () { return window.PublicKeyCredential && PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable ? PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable().catch(function () { return false; }) : Promise.resolve(false); };
+  var bioOn = function () { return !!ls.get('fid_cred'); };
+  function bioCreate() {
+    return navigator.credentials.create({ publicKey: {
+      challenge: rnd(32), rp: { name: 'Kaplan Surgical Hub', id: location.hostname },
+      user: { id: rnd(16), name: 'KSH', displayName: 'Kaplan Surgical Hub' },
+      pubKeyCredParams: [{ type: 'public-key', alg: -7 }, { type: 'public-key', alg: -257 }],
+      authenticatorSelection: { authenticatorAttachment: 'platform', userVerification: 'required', residentKey: 'discouraged' },
+      timeout: 60000, attestation: 'none' } }).then(function (c) { ls.set('fid_cred', b64(c.rawId)); return true; });
+  }
+  function bioCheck() {
+    return navigator.credentials.get({ publicKey: { challenge: rnd(32), rpId: location.hostname, allowCredentials: [{ type: 'public-key', id: unb64(ls.get('fid_cred')) }], userVerification: 'required', timeout: 60000 } });
+  }
+  function unlock() { unlocked = true; $('lock').hidden = true; waiting.splice(0).forEach(function (f) { f(); }); }
+  function lockScreen() {
+    unlocked = false; $('lock').hidden = false;
+    $('lkGo').textContent = 'כניסה עם ' + BIO; $('lkMsg').textContent = 'כניסה מאובטחת';
+    var go = function (auto) { bioCheck().then(unlock, function () { $('lkMsg').textContent = auto === true ? 'לחצו על הכפתור לכניסה' : 'הזיהוי לא הצליח. אפשר לנסות שוב או להיכנס עם הקוד'; }); };
+    $('lkGo').onclick = go;
+    // the code button: the app opens on its sign-in screen, and the saved sign-in stays put for next time
+    $('lkCode').onclick = function () { $('lock').hidden = true; unlocked = true; var w = waiting.splice(0); answerDevNull = true; w.forEach(function (f) { f(); }); answerDevNull = false; };
+    // some browsers allow the prompt right away, others only after a tap (then the button is there)
+    setTimeout(function () { go(true); }, 350);
+  }
+  var answerDevNull = false;
+
+  /* ---------- push notifications ---------- */
+  var pushState = function () {
+    if (!('serviceWorker' in navigator) || !('PushManager' in window) || !('Notification' in window)) return IOS && !STANDALONE ? 'install' : 'unsupported';
+    return Notification.permission === 'granted' ? (ls.get('ptok') ? 'on' : 'granted') : Notification.permission;
+  };
+  function pushEnable() {
+    return Notification.requestPermission().then(function (p) {
+      if (p !== 'granted') throw new Error('denied');
+      return navigator.serviceWorker.register('sw.js', { scope: './' });
+    }).then(function (reg) {
+      return navigator.serviceWorker.ready.then(function () { return reg; });
+    }).then(function (reg) {
+      return Promise.all([import('https://www.gstatic.com/firebasejs/' + FBV + '/firebase-app.js'), import('https://www.gstatic.com/firebasejs/' + FBV + '/firebase-messaging.js')]).then(function (m) {
+        var app = m[0].initializeApp(FB), msg = m[1].getMessaging(app);
+        return m[1].getToken(msg, { vapidKey: VAPID, serviceWorkerRegistration: reg });
+      });
+    }).then(function (t) {
+      if (!t) throw new Error('no token');
+      ls.set('ptok', t); toFrame({ kop: 1, ev: 'ptok', t: t }); return t;
+    });
+  }
+  // a granted permission keeps its token fresh (Firebase rotates tokens now and then)
+  function pushRefresh() { if (pushState() === 'on' || pushState() === 'granted') pushEnable().catch(function () {}); }
+
+  /* ---------- the settings sheet (opened from the app: the bell, the settings screen or the banner) ---------- */
+  function sheet() {
+    if (document.querySelector('.bg')) return;
+    var bg = document.createElement('div'); bg.className = 'bg';
+    bg.innerHTML = '<div class="sh"><h2>התראות וכניסה מהירה</h2><p class="sub">ההגדרות נשמרות במכשיר הזה בלבד</p><div id="shPush"></div><div id="shBio"></div><button class="btn line close" id="shClose">סגירה</button></div>';
+    document.body.appendChild(bg);
+    bg.onclick = function (e) { if (e.target === bg) bg.remove(); };
+    $('shClose').onclick = function () { bg.remove(); };
+    paintPush(); paintBio();
+  }
+  function paintPush() {
+    var el = $('shPush'); if (!el) return; var s = pushState(), h = '';
+    h += '<div class="row"><div class="ic">🔔</div><div style="flex:1"><b>התראות לטלפון ולמחשב</b><small>כשמתפרסמת תוכנית שבועית או לוח, כשיש שינוי בשיבוץ וכשמנהל שולח הודעה</small>';
+    if (s === 'on') h += '<span class="ok">✓ פעיל במכשיר הזה</span> <button class="btn ghost" id="pTest" style="display:inline-flex;width:auto;margin:0 6px;min-height:0;color:#00907A">התראת בדיקה</button>';
+    else if (s === 'install') h += '<span class="warn">באייפון ההתראות עובדות רק מהאפליקציה במסך הבית:</span><ol class="steps"><li>פותחים את הכתובת הזו בספארי</li><li>לוחצים על כפתור השיתוף <b style="display:inline">⬆︎</b></li><li>בוחרים "הוספה למסך הבית"</li><li>פותחים את KSH ממסך הבית וחוזרים לכאן</li></ol>';
+    else if (s === 'denied') h += '<span class="warn">ההתראות חסומות במכשיר. פותחים את ההגדרות של הטלפון או הדפדפן, מאפשרים התראות ל-KSH וחוזרים לכאן</span>';
+    else if (s === 'unsupported') h += '<span class="warn">הדפדפן הזה לא תומך בהתראות. אפשר לנסות בכרום או בספארי מעודכן</span>';
+    else h += '<button class="btn" id="pOn">הפעלת התראות</button>';
+    el.innerHTML = h + '</div></div>';
+    if ($('pOn')) $('pOn').onclick = function () { this.textContent = 'מפעיל…'; pushEnable().then(paintPush, function (e) { paintPush(); if (String(e && e.message) !== 'denied') alert('ההפעלה לא הצליחה. נסו שוב בעוד רגע'); }); };
+    if ($('pTest')) $('pTest').onclick = function () { navigator.serviceWorker.ready.then(function (r) { r.showNotification('Kaplan Surgical Hub', { body: 'ההתראות פועלות ✓', icon: 'icon-192.png', lang: 'he', dir: 'rtl' }); }); };
+  }
+  function paintBio() {
+    var el = $('shBio'); if (!el) return;
+    if (PERSONAL) { el.innerHTML = ''; return; }
+    bioAvail().then(function (ok) {
+      var h = '<div class="row"><div class="ic">🔐</div><div style="flex:1"><b>כניסה עם ' + BIO + '</b><small>במקום הקוד: האפליקציה נפתחת רק אחרי זיהוי שלך במכשיר</small>';
+      if (!ok) h += '<span class="warn">אין במכשיר הזה ' + BIO + ' זמין</span>';
+      else if (!ls.get('b_ops_dev')) h += '<span class="warn">קודם נכנסים עם הקוד ומסמנים "להישאר מחובר/ת במכשיר הזה"</span>';
+      else if (bioOn()) h += '<span class="ok">✓ פעיל</span> <button class="btn ghost" id="bOff" style="display:inline-flex;width:auto;margin:0 6px;min-height:0">ביטול</button>';
+      else h += '<button class="btn" id="bOn">הפעלת ' + BIO + '</button>';
+      el.innerHTML = h + '</div></div>';
+      if ($('bOn')) $('bOn').onclick = function () { bioCreate().then(paintBio, function () { alert('ההפעלה בוטלה או לא הצליחה'); }); };
+      if ($('bOff')) $('bOff').onclick = function () { ls.set('fid_cred', null); paintBio(); };
+    });
+  }
+
+  /* ---------- the bridge to the app frame ---------- */
+  function toFrame(m) { if (frame && frameOrigin) try { frame.postMessage(m, frameOrigin); } catch (e) {} }
+  addEventListener('message', function (e) {
+    if (!ORIGIN.test(e.origin)) return;
+    var m = e.data; if (!m || m.kop !== 1) return;
+    frame = e.source; frameOrigin = e.origin;
+    var reply = function (o) { o.kop = 1; o.id = m.id; try { e.source.postMessage(o, e.origin); } catch (x) {} };
+    if (m.op === 'env') return bioAvail().then(function (b) { reply({ v: { standalone: STANDALONE, ios: IOS, push: pushState(), ptok: ls.get('ptok') || '', bio: BIO, bioAvail: !!b, bioOn: bioOn(), personal: PERSONAL } }); });
+    if (m.op === 'sheet') { sheet(); return reply({ v: 1 }); }
+    if (!KEYS[m.k]) return;
+    var k = 'b_' + m.k;
+    if (m.op === 'get') {
+      var answer = function () { reply({ v: (m.k === 'ops_dev' && answerDevNull) ? null : ls.get(k) }); };
+      if (m.k === 'ops_dev' && !unlocked) return waiting.push(answer);
+      return answer();
+    }
+    if (m.op === 'set') { ls.set(k, m.v); if (m.k === 'ops_dev' && !m.v) ls.set('fid_cred', null); return reply({ v: 1 }); }
+    if (m.op === 'del') { ls.set(k, null); if (m.k === 'ops_dev') ls.set('fid_cred', null); return reply({ v: 1 }); }
+  });
+  // a tapped notification while the app is open: fresh data in place
+  if ('serviceWorker' in navigator) navigator.serviceWorker.addEventListener('message', function (e) { if (e.data && e.data.ksh === 'refresh') toFrame({ kop: 1, ev: 'refresh' }); });
+
+  if (!PERSONAL && bioOn() && ls.get('b_ops_dev')) lockScreen();
+  $('app').src = EXEC + location.search;
+  setTimeout(pushRefresh, 4000);
+})();
+</script>
+</body>
+</html>
