@@ -22,7 +22,7 @@
 html,body{margin:0;height:100%;background:#071C24;font-family:'Heebo','Assistant',-apple-system,'Segoe UI',Arial,sans-serif}
 /* full screen: the app inside handles the notch and the home bar itself (iOS passes the safe areas into the frame) */
 iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border:0;display:block}
-.sap{position:fixed;left:0;bottom:0;width:1px;height:env(safe-area-inset-bottom);visibility:hidden;pointer-events:none}
+.sap{position:fixed;left:0;bottom:0;width:1px;height:env(safe-area-inset-bottom);visibility:hidden;pointer-events:none}.sat{position:fixed;left:0;top:0;width:1px;height:env(safe-area-inset-top);visibility:hidden;pointer-events:none}
 [hidden]{display:none!important}
 .lock{position:fixed;inset:0;z-index:20;display:grid;place-items:center;background:radial-gradient(120% 90% at 50% 0%,#174a5a 0%,var(--navy) 60%);color:#fff;text-align:center;padding:24px}
 .lock img{width:112px;height:112px;border-radius:26px;box-shadow:0 10px 40px rgba(0,0,0,.35)}
@@ -49,7 +49,7 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
 </style>
 </head>
 <body>
-<iframe id="app" title="Kaplan Surgical Hub" allow="clipboard-write"></iframe><i class="sap" id="sap"></i>
+<iframe id="app" title="Kaplan Surgical Hub" allow="clipboard-write"></iframe><i class="sap" id="sap"></i><i class="sat" id="sat"></i>
 
 <div class="lock" id="lock" hidden>
   <div>
@@ -200,7 +200,7 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
     var m = e.data; if (!m || m.kop !== 1) return;
     frame = e.source; frameOrigin = e.origin;
     var reply = function (o) { o.kop = 1; o.id = m.id; try { e.source.postMessage(o, e.origin); } catch (x) {} };
-    if (m.op === 'env') return bioAvail().then(function (b) { reply({ v: { sab: ($('sap') || {}).offsetHeight || 0, standalone: STANDALONE, ios: IOS, push: pushState(), ptok: ls.get('ptok') || '', bio: BIO, bioAvail: !!b, bioOn: bioOn(), personal: PERSONAL } }); });
+    if (m.op === 'env') return bioAvail().then(function (b) { reply({ v: { sab: ($('sap') || {}).offsetHeight || 0, sat: ($('sat') || {}).offsetHeight || (IOS && STANDALONE && screen && matchMedia('(orientation: portrait)').matches ? Math.max(0, Math.min(60, Math.max(screen.width, screen.height) - innerHeight)) : 0), standalone: STANDALONE, ios: IOS, push: pushState(), ptok: ls.get('ptok') || '', bio: BIO, bioAvail: !!b, bioOn: bioOn(), personal: PERSONAL } }); });
     if (m.op === 'sheet') { sheet(); return reply({ v: 1 }); }
     if (!KEYS[m.k]) return;
     var k = 'b_' + m.k;
