@@ -46,6 +46,9 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
 .warn{color:#A3402E;font-size:13.5px}
 .steps{margin:6px 0 0;padding:0 18px 0 0;font-size:14px;line-height:1.7}
 .close{margin-top:8px}
+.unk{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:20px;background:radial-gradient(ellipse at 80% 0%,#1B5A68,#0C2A35 50%,#06161D);font-family:Heebo,Arial,sans-serif;direction:rtl;z-index:50}
+.unkc{width:min(440px,100%);background:rgba(255,255,255,.06);border:1px solid rgba(169,230,201,.25);border-radius:22px;padding:26px 22px;color:#F2F7F5;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.unkc img{width:72px;height:72px;border-radius:18px}.unkc b{font-size:21px}.unkc p{margin:0;color:#C9DCD6;line-height:1.6;font-size:15px}.unkc .unkt{background:rgba(61,192,140,.14);border-radius:12px;padding:10px 12px;color:#E6F4EE}.unkc .unks{font-size:13.5px;color:#A9C7C2}.unkc small{color:#6E9690;font-size:11.5px;margin-top:6px}
 </style>
 </head>
 <body>
@@ -75,6 +78,10 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
   var KEYS = { ops_dev: 1, ops_snap: 1, ops_seen: 1, me_seen: 1 }, GUARD = { ops_dev: 1, ops_snap: 1 };
   var ORIGIN = /^https:\/\/[a-z0-9-]+-script\.googleusercontent\.com$/;
   var Q = new URLSearchParams(location.search), PERSONAL = !!Q.get('p');
+  // the general link (?go=req): the app of whoever opened a personal link on this device; an unknown device gets a short explanation
+  var GO = Q.get('go'), SRC = location.search, UNKNOWN = false;
+  if (PERSONAL) { try { localStorage.setItem('me_tok', Q.get('p')); } catch (e) {} }
+  else if (GO) { var mt = null; try { mt = localStorage.getItem('me_tok'); } catch (e) {} if (mt) { SRC = '?p=' + encodeURIComponent(mt) + '&tab=' + encodeURIComponent(GO.replace(/[^a-z]/g, '')) + '&via=gen'; PERSONAL = true; } else UNKNOWN = true; }
   var ua = navigator.userAgent, IOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
   var ANDROID = /Android/.test(ua), MAC = /Macintosh/.test(ua) && !IOS, WIN = /Windows/.test(ua);
   var STANDALONE = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
@@ -84,7 +91,7 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
   var frame = null, frameOrigin = '', unlocked = true, waiting = [];
 
   // keep the address this app was opened with, so a tapped notification opens the same app (personal or managers')
-  try { if ('caches' in window) caches.open('ksh').then(function (c) { return c.put('start', new Response(location.search)); }); } catch (e) {}
+  try { if ('caches' in window) caches.open('ksh').then(function (c) { return c.put('start', new Response(SRC)); }); } catch (e) {}
 
   var b64 = function (buf) { var s = '', a = new Uint8Array(buf); for (var i = 0; i < a.length; i++) s += String.fromCharCode(a[i]); return btoa(s).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); };
   var unb64 = function (s) { s = s.replace(/-/g, '+').replace(/_/g, '/'); while (s.length % 4) s += '='; var b = atob(s), a = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) a[i] = b.charCodeAt(i); return a.buffer; };
@@ -224,7 +231,12 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
     f.style.height = h + 'px'; document.documentElement.style.height = document.body.style.height = h + 'px';
   }
   fit(); addEventListener('resize', fit); addEventListener('orientationchange', function () { setTimeout(fit, 250); });
-  $('app').src = EXEC + location.search;
+  if (UNKNOWN) {
+    document.body.insertAdjacentHTML('beforeend', '<div class="unk"><div class="unkc"><img src="icon-192.png" alt=""><b>הקישור הזה מזהה אותך לפי הטלפון</b>' +
+      '<p>במכשיר הזה עוד לא נפתח הקישור האישי שלך. פותחים פעם אחת את הקישור האישי שקיבלת בפרטי בוואטסאפ, ומאז הקישור הכללי יזהה אותך לבד.</p>' +
+      '<p class="unkt">📱 פתחת מתוך וואטסאפ? לוחצים על ⋯ ואז "פתיחה בדפדפן" (ספארי או כרום), ומנסים שוב.</p>' +
+      '<p class="unks">אין לך את הקישור האישי? אפשר לבקש אותו מד״ר גיא גוזני.</p><small>Kaplan Surgical Hub · מערך כירורגיה כללית</small></div></div>');
+  } else $('app').src = EXEC + SRC;
   setTimeout(pushRefresh, 4000);
 })();
 </script>
