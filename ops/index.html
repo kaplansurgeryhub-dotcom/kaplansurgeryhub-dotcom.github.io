@@ -104,7 +104,9 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
   function bioCheck() {
     return navigator.credentials.get({ publicKey: { challenge: rnd(32), rpId: location.hostname, allowCredentials: [{ type: 'public-key', id: unb64(ls.get('fid_cred')) }], userVerification: 'required', timeout: 60000 } });
   }
-  function unlock() { unlocked = true; $('lock').hidden = true; waiting.splice(0).forEach(function (f) { f(); }); }
+  // after a successful Face ID the app opens straight away for the next 12 hours on this device
+  var GRACE = 12 * 3600e3, fresh = function () { return Date.now() - (+(ls.get('fid_at') || 0)) < GRACE; };
+  function unlock() { ls.set('fid_at', Date.now()); unlocked = true; $('lock').hidden = true; waiting.splice(0).forEach(function (f) { f(); }); }
   function lockScreen() {
     unlocked = false; $('lock').hidden = false;
     $('lkGo').textContent = 'כניסה עם ' + BIO; $('lkMsg').textContent = 'כניסה מאובטחת';
@@ -188,7 +190,7 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
       bg.innerHTML = '<div class="sh" style="text-align:center"><div style="font-size:46px;line-height:1">🔐</div><h2 style="margin-top:8px">כניסה מהירה עם ' + BIO + '</h2><p class="sub">מעכשיו האפליקציה נפתחת אחרי זיהוי שלך, בלי הקוד. נשמר רק במכשיר הזה</p><button class="btn" id="obOn">הפעלת ' + BIO + '</button><button class="btn ghost" id="obNo" style="color:#5B6F77">לא עכשיו</button></div>';
       document.body.appendChild(bg);
       $('obNo').onclick = function () { ls.set('bio_no', Date.now()); bg.remove(); };
-      $('obOn').onclick = function () { var b = this; b.textContent = 'רגע…'; bioCreate().then(function () { bg.querySelector('.sh').innerHTML = '<div style="font-size:46px;line-height:1">✅</div><h2 style="margin-top:8px">' + BIO + ' פעיל</h2><p class="sub">בפתיחה הבאה נכנסים בזיהוי אחד</p>'; setTimeout(function () { bg.remove(); }, 1800); }, function () { b.textContent = 'הפעלת ' + BIO; alert('ההפעלה בוטלה או לא הצליחה. אפשר לנסות שוב מההגדרות'); }); };
+      $('obOn').onclick = function () { var b = this; b.textContent = 'רגע…'; bioCreate().then(function () { ls.set('fid_at', Date.now()); bg.querySelector('.sh').innerHTML = '<div style="font-size:46px;line-height:1">✅</div><h2 style="margin-top:8px">' + BIO + ' פעיל</h2><p class="sub">מעכשיו נכנסים בזיהוי אחד, ואחריו 12 שעות בלי לבקש שוב</p>'; setTimeout(function () { bg.remove(); }, 1800); }, function () { b.textContent = 'הפעלת ' + BIO; alert('ההפעלה בוטלה או לא הצליחה. אפשר לנסות שוב מההגדרות'); }); };
     });
   }
   /* ---------- the bridge to the app frame ---------- */
@@ -213,7 +215,7 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
   // a tapped notification while the app is open: fresh data in place
   if ('serviceWorker' in navigator) navigator.serviceWorker.addEventListener('message', function (e) { if (e.data && e.data.ksh === 'refresh') toFrame({ kop: 1, ev: 'refresh' }); });
 
-  if (!PERSONAL && bioOn() && ls.get('b_ops_dev')) lockScreen();
+  if (!PERSONAL && bioOn() && ls.get('b_ops_dev') && !fresh()) lockScreen();
   $('app').src = EXEC + location.search;
   setTimeout(pushRefresh, 4000);
 })();
