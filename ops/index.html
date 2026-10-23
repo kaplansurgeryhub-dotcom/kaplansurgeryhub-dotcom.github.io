@@ -216,6 +216,14 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
   if ('serviceWorker' in navigator) navigator.serviceWorker.addEventListener('message', function (e) { if (e.data && e.data.ksh === 'refresh') toFrame({ kop: 1, ev: 'refresh' }); });
 
   if (!PERSONAL && bioOn() && ls.get('b_ops_dev') && !fresh()) lockScreen();
+  // iPhone home-screen app: the window reports a height without the status bar area, so the app stopped short of the bottom.
+  // The frame takes the full screen height instead (and follows rotation)
+  function fit() {
+    var f = $('app'); if (!f) return; var h = innerHeight;
+    if (IOS && STANDALONE && screen && screen.height) { var land = window.matchMedia && matchMedia('(orientation: landscape)').matches; h = Math.max(h, land ? Math.min(screen.width, screen.height) : Math.max(screen.width, screen.height)); }
+    f.style.height = h + 'px'; document.documentElement.style.height = document.body.style.height = h + 'px';
+  }
+  fit(); addEventListener('resize', fit); addEventListener('orientationchange', function () { setTimeout(fit, 250); });
   $('app').src = EXEC + location.search;
   setTimeout(pushRefresh, 4000);
 })();
