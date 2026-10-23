@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>התקנת KSH</title>
+<meta name="description" content="איך מתקינים את Kaplan Surgical Hub ונכנסים בלחיצה אחת">
+<meta name="theme-color" content="#0C2A35">
+<meta property="og:title" content="Kaplan Surgical Hub · התקנה וכניסה מהירה">
+<meta property="og:image" content="https://kaplansurgeryhub-dotcom.github.io/ops/icon-512.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&family=Frank+Ruhl+Libre:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0C2A35;--green:#00907A;--green2:#00A87A;--lime:#A8D84A;--ink:#0C2A35;--muted:#5B6F77;--rule:#DCE7E4;--sand:#EEF3F1}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--sand);color:var(--ink);font-family:Heebo,Assistant,-apple-system,'Segoe UI',Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.hero{position:relative;overflow:hidden;background:radial-gradient(120% 140% at 85% 0%,#1B4F5E 0%,var(--navy) 55%,#071C24 100%);color:#F2F7F5;padding:calc(28px + env(safe-area-inset-top)) 20px 46px;text-align:center;clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - 26px))}
+.hero .art{position:absolute;inset:0;background:url("https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Leonardo_da_Vinci_-_RCIN_919028%2C_Verso_The_vessels_of_liver%2C_spleen_and_kidneys_c.1508.jpg/960px-Leonardo_da_Vinci_-_RCIN_919028%2C_Verso_The_vessels_of_liver%2C_spleen_and_kidneys_c.1508.jpg") left center/auto 130% no-repeat;opacity:.22;filter:grayscale(1) invert(1) sepia(.5) hue-rotate(115deg) saturate(1.4);mix-blend-mode:screen;pointer-events:none}
+.hero>*{position:relative}
+.hero img{width:96px;height:96px;border-radius:24px;box-shadow:0 12px 34px rgba(0,0,0,.4)}
+.kick{display:block;margin-top:14px;font-size:12px;font-weight:800;letter-spacing:.16em;background:linear-gradient(120deg,#3DC08C,#A8D84A);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero h1{font-family:'Frank Ruhl Libre',Georgia,serif;font-weight:900;font-size:30px;margin:4px 0 6px;line-height:1.1}
+.hero p{margin:0 auto;max-width:460px;color:#C2D6DA;font-size:15.5px;line-height:1.55}
+.wrap{max-width:620px;margin:-22px auto 40px;padding:0 14px;position:relative}
+.tabs{display:flex;gap:6px;background:#fff;border:1px solid var(--rule);border-radius:16px;padding:5px;box-shadow:0 10px 26px -16px rgba(12,42,53,.4)}
+.tabs button{all:unset;cursor:pointer;flex:1;text-align:center;padding:10px 4px;border-radius:12px;font-weight:700;font-size:15px;color:var(--muted)}
+.tabs button.on{background:linear-gradient(125deg,#071C24,#0C2A35 45%,#1B5160);color:#fff}
+.card{background:#fff;border:1px solid var(--rule);border-radius:18px;padding:16px;margin-top:12px;box-shadow:0 12px 28px -18px rgba(10,37,48,.35)}
+.card h2{margin:0 0 4px;font-family:'Frank Ruhl Libre',Georgia,serif;font-weight:900;font-size:20px}
+.card .sub{margin:0 0 6px;color:var(--muted);font-size:14px}
+ol.st{list-style:none;margin:8px 0 0;padding:0;counter-reset:s}
+ol.st li{counter-increment:s;display:grid;grid-template-columns:34px 1fr;gap:10px;padding:10px 0;border-top:1px solid #EEF3F1;font-size:15.5px;line-height:1.5}
+ol.st li:first-child{border-top:0}
+ol.st li:before{content:counter(s);width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-weight:800;color:#052B22;background:linear-gradient(120deg,#0A6B5A,#00967D 35%,#3DC08C 60%,#A8D84A)}
+ol.st b{font-weight:800}
+.k{display:inline-flex;align-items:center;gap:4px;background:#EEF3F1;border:1px solid var(--rule);border-radius:8px;padding:1px 8px;font-weight:700;font-size:14px;white-space:nowrap}
+.k svg{width:16px;height:16px}
+.note{background:#FFF8E6;border:1px solid #F1DFB0;color:#7A5A12;border-radius:12px;padding:9px 12px;font-size:14px;margin-top:8px;line-height:1.5}
+.go{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:54px;margin-top:14px;border-radius:16px;font-size:18px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--green2),var(--green));box-shadow:0 10px 24px -8px rgba(0,144,122,.6)}
+.copy{all:unset;cursor:pointer;display:block;text-align:center;margin-top:10px;color:var(--green);font-weight:700;font-size:14.5px}
+.faq details{border-top:1px solid #EEF3F1;padding:10px 0}.faq details:first-of-type{border-top:0}
+.faq summary{cursor:pointer;font-weight:700;font-size:15px}.faq p{margin:6px 0 0;color:#3E5960;font-size:14.5px;line-height:1.55}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+.three div{background:#F4FAF7;border:1px solid #D6EEE3;border-radius:14px;padding:10px 8px;text-align:center;font-size:13px;color:#3E5960}
+.three b{display:block;font-size:22px;margin-bottom:2px}
+[hidden]{display:none!important}
+.foot{text-align:center;color:var(--muted);font-size:12.5px;margin-top:18px}
+</style>
+</head>
+<body>
+<header class="hero"><div class="art"></div>
+  <img src="icon-192.png" alt="">
+  <span class="kick">KAPLAN SURGICAL HUB</span>
+  <h1>התקנה וכניסה בלחיצה</h1>
+  <p>דקה אחת, פעם אחת. אחר כך פותחים את KSH מהאייקון ונכנסים עם Face ID או טביעת אצבע, בלי קוד.</p>
+</header>
+<main class="wrap">
+  <div class="tabs" id="tabs"><button data-d="ios">אייפון</button><button data-d="and">אנדרואיד</button><button data-d="pc">מחשב</button></div>
+
+  <section class="card">
+    <div class="three"><div><b>📲</b>מוסיפים למסך הבית</div><div><b>🔑</b>נכנסים פעם אחת עם הקוד</div><div><b>🔐</b>מפעילים Face ID ומשם בלחיצה</div></div>
+  </section>
+
+  <section class="card" data-dev="ios">
+    <h2>אייפון ואייפד</h2><p class="sub">בספארי. מתוך וואטסאפ או מייל קודם פותחים בספארי</p>
+    <ol class="st">
+      <li><span>אם הקישור נפתח בתוך וואטסאפ: לוחצים על <span class="k">⋯</span> או על <span class="k">🧭</span> ובוחרים <b>"פתיחה בספארי"</b>.</span></li>
+      <li><span>בספארי לוחצים על כפתור השיתוף <span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="#0A84FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 12v8h14v-8"/></svg>שיתוף</span>. לא רואים? קודם על <span class="k">⋯</span> בשורת הכתובת.</span></li>
+      <li><span>גוללים ובוחרים <b>"הוספה למסך הבית"</b> <span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="#0A84FF" stroke-width="2" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M12 8v8M8 12h8"/></svg></span>, ואז <b>"הוספה"</b>.</span></li>
+      <li><span>פותחים את <b>KSH</b> ממסך הבית, לא מהדפדפן.</span></li>
+    </ol>
+  </section>
+
+  <section class="card" data-dev="and" hidden>
+    <h2>אנדרואיד</h2><p class="sub">בכרום</p>
+    <ol class="st">
+      <li><span>פותחים את הקישור בכרום. מתוך וואטסאפ: <span class="k">⋮</span> ← <b>"פתיחה בכרום"</b>.</span></li>
+      <li><span>לוחצים על <span class="k">⋮</span> למעלה ובוחרים <b>"התקנת אפליקציה"</b> או <b>"הוספה למסך הבית"</b>.</span></li>
+      <li><span>מאשרים <b>"התקנה"</b>. האייקון KSH מופיע במסך הבית.</span></li>
+      <li><span>פותחים את <b>KSH</b> מהאייקון.</span></li>
+    </ol>
+  </section>
+
+  <section class="card" data-dev="pc" hidden>
+    <h2>מחשב: מק או ווינדוס</h2><p class="sub">בכרום או ב-Edge</p>
+    <ol class="st">
+      <li><span>פותחים את הכתובת <span class="k" dir="ltr">kaplansurgeryhub-dotcom.github.io/ops</span> בכרום.</span></li>
+      <li><span>בשורת הכתובת, מימין, לוחצים על סמל ההתקנה <span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M12 8v6M9 11l3 3 3-3M8 21h8"/></svg></span>. אין סמל? <span class="k">⋮</span> ← <b>"העברה, שמירה ושיתוף"</b> ← <b>"התקנת הדף כאפליקציה"</b>.</span></li>
+      <li><span>KSH נפתח בחלון משלו, ומופיע ב-Dock או בתפריט התחל. אפשר לגרור אותו לשולחן העבודה.</span></li>
+    </ol>
+  </section>
+
+  <section class="card">
+    <h2>הכניסה הראשונה</h2><p class="sub">רק פעם אחת בכל מכשיר</p>
+    <ol class="st">
+      <li><span>מקלידים את <b>הקוד האישי</b> שקיבלתם, ומשאירים מסומן <b>"להישאר מחובר/ת במכשיר הזה"</b>.</span></li>
+      <li><span>מיד אחר כך מופיע <b>"כניסה מהירה עם <span class="bio">Face ID</span>"</b>. לוחצים <b>"הפעלה"</b> ומאשרים.</span></li>
+      <li><span>מעכשיו KSH נפתח בזיהוי אחד, בלי הקוד. אם הזיהוי לא עובד, תמיד יש גם <b>"כניסה עם הקוד"</b>.</span></li>
+      <li><span>רוצים התראות על תוכנית שבועית, לוחות ושינויים? בפעמון 🔔 ← <b>"התראות"</b> ← <b>"הפעלה"</b>.</span></li>
+    </ol>
+    <div class="note">רופאים וסטאז׳רים שקיבלו <b>קישור אישי</b>: פותחים אותו ומוסיפים למסך הבית באותה דרך. אין צורך בקוד, הקישור הוא הכניסה.</div>
+    <a class="go" id="open" href="./">פתיחת KSH</a>
+    <button class="copy" id="copy">📋 העתקת הקישור לשליחה</button>
+  </section>
+
+  <section class="card faq">
+    <h2>שאלות</h2>
+    <details><summary>הכניסה המהירה לא הופיעה</summary><p>פותחים את KSH מהאייקון, לא מהדפדפן. נכנסים עם הקוד כשהסימון "להישאר מחובר/ת" דלוק. אפשר להפעיל גם בפעמון 🔔 ← "התראות וכניסה מהירה". במחשב בלי טביעת אצבע, המכשיר נשאר מחובר והאפליקציה נפתחת ישר, בלי קוד.</p></details>
+    <details><summary>שוב ביקשו ממני קוד</summary><p>זה קורה אחרי לחיצה על "יציאה", אחרי ניקוי נתוני הדפדפן, או כשהאפליקציה נפתחה מכתובת אחרת. נכנסים פעם אחת עם הקוד, והכניסה המהירה חוזרת.</p></details>
+    <details><summary>הדפדפן מציע קוד שמור ישן</summary><p>אם הקוד השתנה, מוחקים את הקוד הישן בניהול הסיסמאות של הדפדפן ומקלידים את החדש.</p></details>
+    <details><summary>שכחתי את הקוד</summary><p>פונים לד״ר גיא גוזני ומקבלים קוד חדש. הקוד הוא סיסמה: לא שולחים אותו לאחרים.</p></details>
+  </section>
+  <p class="foot">המערך הכירורגי · המרכז הרפואי קפלן</p>
+</main>
+<script>
+(function () {
+  var ua = navigator.userAgent, ios = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1), and = /Android/.test(ua);
+  var dev = ios ? 'ios' : and ? 'and' : 'pc', bio = ios ? 'Face ID' : and ? 'טביעת אצבע' : /Macintosh/.test(ua) ? 'Touch ID' : /Windows/.test(ua) ? 'Windows Hello' : 'זיהוי ביומטרי';
+  var show = function (d) { document.querySelectorAll('[data-dev]').forEach(function (s) { s.hidden = s.getAttribute('data-dev') !== d; }); document.querySelectorAll('#tabs button').forEach(function (b) { b.classList.toggle('on', b.getAttribute('data-d') === d); }); };
+  document.querySelectorAll('#tabs button').forEach(function (b) { b.onclick = function () { show(b.getAttribute('data-d')); }; });
+  document.querySelectorAll('.bio').forEach(function (e) { e.textContent = bio; });
+  show(dev);
+  var q = location.search, url = location.origin + location.pathname.replace(/install\.html$/, '') + q;
+  document.getElementById('open').href = './' + q;
+  document.getElementById('copy').onclick = function () { var b = this; try { navigator.clipboard.writeText(location.origin + location.pathname + q).then(function () { b.textContent = '✓ הקישור הועתק'; }); } catch (e) {} };
+})();
+</script>
+</body>
+</html>

@@ -19,9 +19,10 @@
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <style>
 :root{--navy:#0C2A35;--navy2:#133F4E;--green:#00907A;--green2:#00A87A;--lime:#A8D84A;--ink:#0C2A35;--muted:#5B6F77}
-html,body{margin:0;height:100%;background:var(--navy);font-family:'Heebo','Assistant',-apple-system,'Segoe UI',Arial,sans-serif}
+html,body{margin:0;height:100%;background:#071C24;font-family:'Heebo','Assistant',-apple-system,'Segoe UI',Arial,sans-serif}
 /* full screen: the app inside handles the notch and the home bar itself (iOS passes the safe areas into the frame) */
-iframe{position:fixed;inset:0;width:100%;height:100%;border:0}
+iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border:0;display:block}
+.sap{position:fixed;left:0;bottom:0;width:1px;height:env(safe-area-inset-bottom);visibility:hidden;pointer-events:none}
 [hidden]{display:none!important}
 .lock{position:fixed;inset:0;z-index:20;display:grid;place-items:center;background:radial-gradient(120% 90% at 50% 0%,#174a5a 0%,var(--navy) 60%);color:#fff;text-align:center;padding:24px}
 .lock img{width:112px;height:112px;border-radius:26px;box-shadow:0 10px 40px rgba(0,0,0,.35)}
@@ -48,7 +49,7 @@ iframe{position:fixed;inset:0;width:100%;height:100%;border:0}
 </style>
 </head>
 <body>
-<iframe id="app" title="Kaplan Surgical Hub" allow="clipboard-write"></iframe>
+<iframe id="app" title="Kaplan Surgical Hub" allow="clipboard-write"></iframe><i class="sap" id="sap"></i>
 
 <div class="lock" id="lock" hidden>
   <div>
@@ -71,7 +72,7 @@ iframe{position:fixed;inset:0;width:100%;height:100%;border:0}
   var FB = { apiKey: 'AIzaSyDgxuGVjnxJXU4QUYMW8Re8PYLdtRJXR3g', authDomain: 'kaplan-surgical-hub.firebaseapp.com', projectId: 'kaplan-surgical-hub', storageBucket: 'kaplan-surgical-hub.firebasestorage.app', messagingSenderId: '538271511290', appId: '1:538271511290:web:af6678624fa31873818f43' };
   var VAPID = 'BFfAAO23QxF8ETU3IyJuW6_2lOL_uiP5qhkKSrIm6ReOEtrLfmrlDHb3cFpndp4VE_Nce7m56BgnV9cARVIZ3BE';
   var FBV = '10.12.2';
-  var KEYS = { ops_dev: 1, ops_seen: 1, me_seen: 1 };
+  var KEYS = { ops_dev: 1, ops_snap: 1, ops_seen: 1, me_seen: 1 }, GUARD = { ops_dev: 1, ops_snap: 1 };
   var ORIGIN = /^https:\/\/[a-z0-9-]+-script\.googleusercontent\.com$/;
   var Q = new URLSearchParams(location.search), PERSONAL = !!Q.get('p');
   var ua = navigator.userAgent, IOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
@@ -107,7 +108,7 @@ iframe{position:fixed;inset:0;width:100%;height:100%;border:0}
   function lockScreen() {
     unlocked = false; $('lock').hidden = false;
     $('lkGo').textContent = 'כניסה עם ' + BIO; $('lkMsg').textContent = 'כניסה מאובטחת';
-    var go = function (auto) { bioCheck().then(unlock, function () { $('lkMsg').textContent = auto === true ? 'לחצו על הכפתור לכניסה' : 'הזיהוי לא הצליח. אפשר לנסות שוב או להיכנס עם הקוד'; }); };
+    var busy = false, go = function (auto) { if (busy) return; busy = true; bioCheck().then(function () { busy = false; unlock(); }, function () { busy = false; $('lkMsg').textContent = auto === true ? 'לחצו על הכפתור לכניסה' : 'הזיהוי לא הצליח. אפשר לנסות שוב או להיכנס עם הקוד'; }); };
     $('lkGo').onclick = go;
     // the code button: the app opens on its sign-in screen, and the saved sign-in stays put for next time
     $('lkCode').onclick = function () { $('lock').hidden = true; unlocked = true; var w = waiting.splice(0); answerDevNull = true; w.forEach(function (f) { f(); }); answerDevNull = false; };
@@ -144,7 +145,7 @@ iframe{position:fixed;inset:0;width:100%;height:100%;border:0}
   function sheet() {
     if (document.querySelector('.bg')) return;
     var bg = document.createElement('div'); bg.className = 'bg';
-    bg.innerHTML = '<div class="sh"><h2>התראות וכניסה מהירה</h2><p class="sub">ההגדרות נשמרות במכשיר הזה בלבד</p><div id="shPush"></div><div id="shBio"></div><button class="btn line close" id="shClose">סגירה</button></div>';
+    bg.innerHTML = '<div class="sh"><h2>התראות וכניסה מהירה</h2><p class="sub">ההגדרות נשמרות במכשיר הזה בלבד</p><div id="shPush"></div><div id="shBio"></div><a class="btn line" href="install.html" target="_blank" rel="noopener" style="margin-top:8px;text-decoration:none">📲 הסבר התקנה ושליחה לאחרים</a><button class="btn line close" id="shClose">סגירה</button></div>';
     document.body.appendChild(bg);
     bg.onclick = function (e) { if (e.target === bg) bg.remove(); };
     $('shClose').onclick = function () { bg.remove(); };
@@ -177,6 +178,19 @@ iframe{position:fixed;inset:0;width:100%;height:100%;border:0}
     });
   }
 
+  /* right after a sign-in with "stay signed in": offer Face ID / fingerprint once (the tap on the button is what the device needs) */
+  function offerBio() {
+    if (PERSONAL || bioOn() || document.querySelector('.bg')) return;
+    var no = +(ls.get('bio_no') || 0); if (no && Date.now() - no < 7 * 864e5) return;
+    bioAvail().then(function (ok) {
+      if (!ok) return;
+      var bg = document.createElement('div'); bg.className = 'bg';
+      bg.innerHTML = '<div class="sh" style="text-align:center"><div style="font-size:46px;line-height:1">🔐</div><h2 style="margin-top:8px">כניסה מהירה עם ' + BIO + '</h2><p class="sub">מעכשיו האפליקציה נפתחת אחרי זיהוי שלך, בלי הקוד. נשמר רק במכשיר הזה</p><button class="btn" id="obOn">הפעלת ' + BIO + '</button><button class="btn ghost" id="obNo" style="color:#5B6F77">לא עכשיו</button></div>';
+      document.body.appendChild(bg);
+      $('obNo').onclick = function () { ls.set('bio_no', Date.now()); bg.remove(); };
+      $('obOn').onclick = function () { var b = this; b.textContent = 'רגע…'; bioCreate().then(function () { bg.querySelector('.sh').innerHTML = '<div style="font-size:46px;line-height:1">✅</div><h2 style="margin-top:8px">' + BIO + ' פעיל</h2><p class="sub">בפתיחה הבאה נכנסים בזיהוי אחד</p>'; setTimeout(function () { bg.remove(); }, 1800); }, function () { b.textContent = 'הפעלת ' + BIO; alert('ההפעלה בוטלה או לא הצליחה. אפשר לנסות שוב מההגדרות'); }); };
+    });
+  }
   /* ---------- the bridge to the app frame ---------- */
   function toFrame(m) { if (frame && frameOrigin) try { frame.postMessage(m, frameOrigin); } catch (e) {} }
   addEventListener('message', function (e) {
@@ -184,17 +198,17 @@ iframe{position:fixed;inset:0;width:100%;height:100%;border:0}
     var m = e.data; if (!m || m.kop !== 1) return;
     frame = e.source; frameOrigin = e.origin;
     var reply = function (o) { o.kop = 1; o.id = m.id; try { e.source.postMessage(o, e.origin); } catch (x) {} };
-    if (m.op === 'env') return bioAvail().then(function (b) { reply({ v: { standalone: STANDALONE, ios: IOS, push: pushState(), ptok: ls.get('ptok') || '', bio: BIO, bioAvail: !!b, bioOn: bioOn(), personal: PERSONAL } }); });
+    if (m.op === 'env') return bioAvail().then(function (b) { reply({ v: { sab: ($('sap') || {}).offsetHeight || 0, standalone: STANDALONE, ios: IOS, push: pushState(), ptok: ls.get('ptok') || '', bio: BIO, bioAvail: !!b, bioOn: bioOn(), personal: PERSONAL } }); });
     if (m.op === 'sheet') { sheet(); return reply({ v: 1 }); }
     if (!KEYS[m.k]) return;
     var k = 'b_' + m.k;
     if (m.op === 'get') {
-      var answer = function () { reply({ v: (m.k === 'ops_dev' && answerDevNull) ? null : ls.get(k) }); };
-      if (m.k === 'ops_dev' && !unlocked) return waiting.push(answer);
+      var answer = function () { reply({ v: (GUARD[m.k] && answerDevNull) ? null : ls.get(k) }); };
+      if (GUARD[m.k] && !unlocked) return waiting.push(answer);
       return answer();
     }
-    if (m.op === 'set') { ls.set(k, m.v); if (m.k === 'ops_dev' && !m.v) ls.set('fid_cred', null); return reply({ v: 1 }); }
-    if (m.op === 'del') { ls.set(k, null); if (m.k === 'ops_dev') ls.set('fid_cred', null); return reply({ v: 1 }); }
+    if (m.op === 'set') { if (m.k === 'ops_snap' && !ls.get('b_ops_dev')) return reply({ v: 0 }); ls.set(k, m.v); if (m.k === 'ops_dev' && !m.v) { ls.set('fid_cred', null); ls.set('b_ops_snap', null); } if (m.k === 'ops_dev' && m.v) offerBio(); return reply({ v: 1 }); }
+    if (m.op === 'del') { ls.set(k, null); if (m.k === 'ops_dev') { ls.set('fid_cred', null); ls.set('b_ops_snap', null); } return reply({ v: 1 }); }
   });
   // a tapped notification while the app is open: fresh data in place
   if ('serviceWorker' in navigator) navigator.serviceWorker.addEventListener('message', function (e) { if (e.data && e.data.ksh === 'refresh') toFrame({ kop: 1, ev: 'refresh' }); });
