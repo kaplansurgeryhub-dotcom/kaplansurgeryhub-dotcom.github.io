@@ -7,6 +7,10 @@
 <meta name="apple-mobile-web-app-title" content="Kaplan Hub">
 <meta name="application-name" content="Kaplan Hub">
 <meta name="theme-color" content="#0C2A35">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Kaplan Surgical Hub">
 <meta property="og:title" content="המערך הכירורגי · המרכז הרפואי קפלן">
@@ -18,7 +22,12 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="apple-touch-icon" href="https://lh3.googleusercontent.com/d/16SeMwtM0Zzk-ZUfFF47T4jLTfLDIHLpJ=s180">
 <link rel="icon" type="image/png" sizes="192x192" href="https://lh3.googleusercontent.com/d/16SeMwtM0Zzk-ZUfFF47T4jLTfLDIHLpJ=s192">
-<style>html,body{margin:0;height:100%;background:#0C2A35}iframe{position:fixed;inset:0;width:100%;height:100%;border:0}</style>
+<style>html,body{margin:0;height:100%;background:#0C2A35}iframe{position:fixed;inset:0;width:100%;height:100%;border:0}
+.pb{position:fixed;inset:0;z-index:9;background:rgba(6,20,26,.62);display:flex;align-items:flex-end;justify-content:center;font-family:Heebo,Assistant,Arial,sans-serif}
+.ps{background:#F8FBFA;color:#0C2A35;width:min(480px,100%);border-radius:20px 20px 0 0;padding:22px 18px calc(20px + env(safe-area-inset-bottom));box-sizing:border-box;text-align:right;direction:rtl}
+.ps h2{margin:0 0 6px;font-size:20px}.ps p{margin:0 0 12px;font-size:15px;line-height:1.55;color:#3A4A50}.ps ol{margin:0 0 12px;padding-inline-start:20px;font-size:15px;line-height:1.7}
+.ps .b{display:block;width:100%;box-sizing:border-box;border:0;border-radius:14px;padding:14px;font:700 16px inherit;font-family:inherit;background:#0C2A35;color:#fff;margin-top:8px;cursor:pointer}.ps .b.l{background:#E6EEEB;color:#0C2A35}
+.ps .ok{display:block;color:#187A5C;font-weight:700;font-size:15px;margin:4px 0 8px}.ps .w{display:block;color:#A3402E;font-weight:700;font-size:14px;margin:4px 0 8px}</style>
 </head>
 <body>
 <iframe id="app" title="Kaplan Surgical Hub" allow="clipboard-write"></iframe>
@@ -48,6 +57,61 @@
       else if (m.op === 'del') localStorage.removeItem('b_' + m.k);
     } catch (err) { if (m.op === 'set') try { localStorage.removeItem('b_' + m.k); } catch (e2) {} }
     if (e.source) e.source.postMessage({ ksh: 1, id: m.id, v: v }, e.origin);
+  });
+})();
+
+// phone notifications (the daily-report reminder): this page holds the service worker and the Firebase token, because
+// the permission prompt must come from a tap on this page, not from inside the Google frames. The app asks with postMessage
+(function () {
+  var FB = { apiKey: 'AIzaSyDgxuGVjnxJXU4QUYMW8Re8PYLdtRJXR3g', authDomain: 'kaplan-surgical-hub.firebaseapp.com', projectId: 'kaplan-surgical-hub', storageBucket: 'kaplan-surgical-hub.firebasestorage.app', messagingSenderId: '538271511290', appId: '1:538271511290:web:af6678624fa31873818f43' };
+  var VAPID = 'BFfAAO23QxF8ETU3IyJuW6_2lOL_uiP5qhkKSrIm6ReOEtrLfmrlDHb3cFpndp4VE_Nce7m56BgnV9cARVIZ3BE', FBV = '10.12.2';
+  var ORIGIN = /^https:\/\/[a-z0-9-]+-script\.googleusercontent\.com$/, src = null, org = '';
+  var ua = navigator.userAgent, IOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var STANDALONE = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
+  var ls = { get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
+  // a tap on a notification opens the app this phone opened last
+  if (/[?&]t=/.test(location.search)) { try { if ('caches' in window) caches.open('kshi').then(function (c) { return c.put('start', new Response(location.search)); }); } catch (e) {} }
+  function state() {
+    if (!('serviceWorker' in navigator) || !('PushManager' in window) || !('Notification' in window)) return IOS && !STANDALONE ? 'install' : 'unsupported';
+    return Notification.permission === 'granted' ? (ls.get('i_ptok') ? 'on' : 'granted') : Notification.permission;
+  }
+  function tell(m) { if (src) try { m.ksh = 1; src.postMessage(m, org); } catch (e) {} }
+  function enable() {
+    return Notification.requestPermission().then(function (p) {
+      if (p !== 'granted') throw new Error('denied');
+      return navigator.serviceWorker.register('/sw.js', { scope: '/' });
+    }).then(function (reg) { return navigator.serviceWorker.ready.then(function () { return reg; }); }).then(function (reg) {
+      return Promise.all([import('https://www.gstatic.com/firebasejs/' + FBV + '/firebase-app.js'), import('https://www.gstatic.com/firebasejs/' + FBV + '/firebase-messaging.js')]).then(function (m) {
+        var app = m[0].initializeApp(FB, 'interns'), msg = m[1].getMessaging(app);
+        return m[1].getToken(msg, { vapidKey: VAPID, serviceWorkerRegistration: reg });
+      });
+    }).then(function (t) { if (!t) throw new Error('no token'); ls.set('i_ptok', t); tell({ ev: 'ptok', t: t, st: 'on' }); return t; });
+  }
+  function sheet() {
+    if (document.querySelector('.pb')) return;
+    var bg = document.createElement('div'); bg.className = 'pb'; document.body.appendChild(bg);
+    var paint = function () {
+      var s = state(), h = '<div class="ps"><h2>🔔 תזכורת לדיווח היומי</h2><p>אם עד 16:00 עוד לא דיווחת על היום, הטלפון יזכיר לך. רק בימי עבודה, ורק אם לא דיווחת.</p>';
+      if (s === 'on') h += '<span class="ok">✓ ההתראות פעילות בטלפון הזה</span><button class="b l" id="pT">התראת בדיקה</button>';
+      else if (s === 'install') h += '<span class="w">באייפון התראות עובדות רק מהאפליקציה במסך הבית:</span><ol><li>פותחים את הקישור האישי בספארי</li><li>לוחצים על כפתור השיתוף ⬆︎</li><li>בוחרים "הוספה למסך הבית"</li><li>פותחים את האפליקציה מהאייקון וחוזרים לכאן</li></ol>';
+      else if (s === 'denied') h += '<span class="w">ההתראות חסומות בטלפון. פותחים את ההגדרות, מאפשרים התראות ל-Kaplan Hub וחוזרים לכאן.</span>';
+      else if (s === 'unsupported') h += '<span class="w">הדפדפן הזה לא תומך בהתראות. אפשר לנסות בכרום או בספארי מעודכן.</span>';
+      else h += '<button class="b" id="pOn">הפעלת התראות</button>';
+      bg.innerHTML = h + '<button class="b l" id="pX">סגירה</button></div>';
+      bg.querySelector('#pX').onclick = function () { bg.remove(); tell({ ev: 'pstate', st: state() }); };
+      var on = bg.querySelector('#pOn'); if (on) on.onclick = function () { on.textContent = 'מפעיל…'; enable().then(paint, function (e) { paint(); if (String(e && e.message) !== 'denied') alert('ההפעלה לא הצליחה. נסו שוב בעוד רגע'); }); };
+      var t = bg.querySelector('#pT'); if (t) t.onclick = function () { navigator.serviceWorker.ready.then(function (r) { r.showNotification('Kaplan Surgical Hub', { body: 'ההתראות פועלות ✓', icon: '/ops/icon-192.png', lang: 'he', dir: 'rtl' }); }); };
+    };
+    bg.onclick = function (e) { if (e.target === bg) { bg.remove(); tell({ ev: 'pstate', st: state() }); } };
+    paint();
+  }
+  addEventListener('message', function (e) {
+    if (!ORIGIN.test(e.origin)) return; var m = e.data; if (!m || m.ksh !== 1 || (m.op !== 'push' && m.op !== 'pstate')) return;
+    src = e.source; org = e.origin;
+    if (m.op === 'push') return sheet();
+    var s = state(); tell({ ev: 'pstate', st: s, t: s === 'on' ? ls.get('i_ptok') : '' });
+    // a granted permission keeps its token fresh (Firebase rotates tokens now and then)
+    if (s === 'on' || s === 'granted') enable().catch(function () {});
   });
 })();
 if (!window.__go) document.getElementById('app').src = 'https://script.google.com/macros/s/AKfycbzPCrw8mxFvs87Sph-W5FKSRxgulOtZWeV66a2bxFay2Ul2-tu8R2htsnIADUNoOEus/exec' + location.search;
