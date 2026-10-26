@@ -94,13 +94,13 @@
     var mgr = who === 'mgr', bg = document.createElement('div'); bg.className = 'pb'; document.body.appendChild(bg);
     var close = function () { bg.remove(); tell({ ev: 'pstate', st: state() }); };
     var paint = function (msg) {
-      var s = state(), h = '<div class="ps"><h2>🔔 התראות לטלפון</h2>';
+      var s = state(), h = '<div class="ps"><h2>🔔 הפעלת התראות</h2>';
       if (msg) h += '<span class="ok">' + msg + '</span>';
       else if (s === 'on') h += '<span class="ok">✓ ההתראות פעילות בטלפון הזה</span><button class="b l" id="pT">שליחת התראת בדיקה</button>';
       else if (s === 'install') h += '<p>כדי לקבל התראות בטלפון, צריך לפתוח את האפליקציה מהאייקון במסך הבית.</p>' + (mgr ? '<ol><li>לוחצים על כפתור השיתוף ⬆︎ למטה</li><li>"הוספה למסך הבית"</li><li>פותחים מהאייקון החדש</li></ol>' : '<button class="b" id="pA">איך מוסיפים למסך הבית?</button>');
       else if (s === 'denied') h += '<p>ההתראות כבויות בהגדרות הטלפון. הגדרות ← התראות ← Kaplan Hub ← לאפשר.</p>';
       else if (s === 'unsupported') h += '<p>הטלפון הזה לא תומך בהתראות. כדאי לעדכן את מערכת ההפעלה.</p>';
-      else h += '<p>' + (mgr ? 'להפעיל התראות בטלפון הזה?' : 'מפעילים פעם אחת, וזהו.') + '</p>' + (mgr ? '' : '<div class="hl">(חשוב! כך נוכל לעדכן אתכם בזמן אמת על שינויים בתוכנית השבועית ובתורנויות, להעביר הודעות מהצוות ולהזכיר על הדיווח היומי עד 16:00)</div>') + '<button class="b" id="pOn">כן, להפעיל</button>';
+      else h += '<p>' + (mgr ? 'להפעיל התראות בטלפון הזה?' : 'מפעילים פעם אחת וזהו.') + '</p>' + (mgr ? '' : '<div class="hl">(חשוב מאוד! כך תדעו מיד על כל שינוי בתורנויות ובשיבוץ השבועי שלכם, תקבלו הודעות מהצוות ותזכורת לדיווח היומי עד 16:00)</div>') + '<button class="b" id="pOn">כן, להפעיל</button>';
       bg.innerHTML = h + '<button class="b l" id="pX">' + (s === 'default' && !msg ? 'לא עכשיו' : 'סגירה') + '</button></div>';
       bg.querySelector('#pX').onclick = close;
       var on = bg.querySelector('#pOn'); if (on) on.onclick = function () { on.textContent = 'רגע…'; on.disabled = true; enable().then(function () { paint('✓ מעולה, ההתראות פעילות בטלפון הזה'); setTimeout(close, 2500); }, function (e) { paint(); }); };
