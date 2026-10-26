@@ -87,31 +87,38 @@
       });
     }).then(function (t) { if (!t) throw new Error('no token'); ls.set('i_ptok', t); tell({ ev: 'ptok', t: t, st: 'on' }); return t; });
   }
-  function sheet() {
+  // one window, one tap: 'כן, להפעיל' asks the phone for permission right away. It opens by itself once a day until it's on
+  function sheet(who) {
     if (document.querySelector('.pb')) return;
-    var bg = document.createElement('div'); bg.className = 'pb'; document.body.appendChild(bg);
-    var paint = function () {
-      var s = state(), h = '<div class="ps"><h2>🔔 תזכורת לדיווח היומי</h2><p>אם עד 16:00 עוד לא דיווחת על היום, הטלפון יזכיר לך. רק בימי עבודה, ורק אם לא דיווחת.</p>';
-      if (s === 'on') h += '<span class="ok">✓ ההתראות פעילות בטלפון הזה</span><button class="b l" id="pT">התראת בדיקה</button>';
-      else if (s === 'install') h += '<span class="w">באייפון התראות עובדות רק מהאפליקציה במסך הבית:</span><ol><li>פותחים את הקישור האישי בספארי</li><li>לוחצים על כפתור השיתוף ⬆︎</li><li>בוחרים "הוספה למסך הבית"</li><li>פותחים את האפליקציה מהאייקון וחוזרים לכאן</li></ol>';
-      else if (s === 'denied') h += '<span class="w">ההתראות חסומות בטלפון. פותחים את ההגדרות, מאפשרים התראות ל-Kaplan Hub וחוזרים לכאן.</span>';
-      else if (s === 'unsupported') h += '<span class="w">הדפדפן הזה לא תומך בהתראות. אפשר לנסות בכרום או בספארי מעודכן.</span>';
-      else h += '<button class="b" id="pOn">הפעלת התראות</button>';
-      bg.innerHTML = h + '<button class="b l" id="pX">סגירה</button></div>';
-      bg.querySelector('#pX').onclick = function () { bg.remove(); tell({ ev: 'pstate', st: state() }); };
-      var on = bg.querySelector('#pOn'); if (on) on.onclick = function () { on.textContent = 'מפעיל…'; enable().then(paint, function (e) { paint(); if (String(e && e.message) !== 'denied') alert('ההפעלה לא הצליחה. נסו שוב בעוד רגע'); }); };
+    var mgr = who === 'mgr', bg = document.createElement('div'); bg.className = 'pb'; document.body.appendChild(bg);
+    var close = function () { bg.remove(); tell({ ev: 'pstate', st: state() }); };
+    var paint = function (msg) {
+      var s = state(), h = '<div class="ps"><h2>🔔 ' + (mgr ? 'התראות בטלפון' : 'תזכורת לדיווח היומי') + '</h2>';
+      if (msg) h += '<span class="ok">' + msg + '</span>';
+      else if (s === 'on') h += '<span class="ok">✓ ההתראות פעילות בטלפון הזה</span><button class="b l" id="pT">שליחת התראת בדיקה</button>';
+      else if (s === 'install') h += '<p>כדי לקבל ' + (mgr ? 'התראות' : 'תזכורת') + ' בטלפון, צריך לפתוח את האפליקציה מהאייקון במסך הבית.</p>' + (mgr ? '<ol><li>לוחצים על כפתור השיתוף ⬆︎ למטה</li><li>"הוספה למסך הבית"</li><li>פותחים מהאייקון החדש</li></ol>' : '<button class="b" id="pA">איך מוסיפים למסך הבית?</button>');
+      else if (s === 'denied') h += '<p>ההתראות כבויות בהגדרות הטלפון. הגדרות ← התראות ← Kaplan Hub ← לאפשר.</p>';
+      else if (s === 'unsupported') h += '<p>הטלפון הזה לא תומך בהתראות. כדאי לעדכן את מערכת ההפעלה.</p>';
+      else h += '<p>' + (mgr ? 'להפעיל התראות בטלפון הזה?' : 'אם עד 16:00 עוד לא דיווחת על היום, הטלפון יזכיר לך. רק בימי עבודה.') + '</p><button class="b" id="pOn">כן, להפעיל</button>';
+      bg.innerHTML = h + '<button class="b l" id="pX">' + (s === 'default' && !msg ? 'לא עכשיו' : 'סגירה') + '</button></div>';
+      bg.querySelector('#pX').onclick = close;
+      var on = bg.querySelector('#pOn'); if (on) on.onclick = function () { on.textContent = 'רגע…'; on.disabled = true; enable().then(function () { paint('✓ מעולה, ' + (mgr ? 'ההתראות פעילות' : 'התזכורת פעילה') + ' בטלפון הזה'); setTimeout(close, 2500); }, function (e) { paint(); }); };
+      var a2 = bg.querySelector('#pA'); if (a2) a2.onclick = function () { bg.remove(); tell({ ev: 'a2' }); };
       var t = bg.querySelector('#pT'); if (t) t.onclick = function () { navigator.serviceWorker.ready.then(function (r) { r.showNotification('Kaplan Surgical Hub', { body: 'ההתראות פועלות ✓', icon: '/ops/icon-192.png', lang: 'he', dir: 'rtl' }); }); };
     };
-    bg.onclick = function (e) { if (e.target === bg) { bg.remove(); tell({ ev: 'pstate', st: state() }); } };
+    bg.onclick = function (e) { if (e.target === bg) close(); };
     paint();
   }
   addEventListener('message', function (e) {
     if (!ORIGIN.test(e.origin)) return; var m = e.data; if (!m || m.ksh !== 1 || (m.op !== 'push' && m.op !== 'pstate')) return;
     src = e.source; org = e.origin;
-    if (m.op === 'push') return sheet();
+    if (m.op === 'push') return sheet(m.who);
     var s = state(); tell({ ev: 'pstate', st: s, t: s === 'on' ? ls.get('i_ptok') : '' });
     // a granted permission keeps its token fresh (Firebase rotates tokens now and then)
-    if (s === 'on' || s === 'granted') enable().catch(function () {});
+    if (s === 'on' || s === 'granted') return enable().catch(function () {});
+    // not asked yet and the app is on the home screen: the window opens by itself, once a day
+    var day = new Date().toISOString().slice(0, 10);
+    if (m.auto && s === 'default' && ls.get('p_asked') !== day) { ls.set('p_asked', day); setTimeout(function () { sheet(m.who); }, 1500); }
   });
 })();
 if (!window.__go) document.getElementById('app').src = 'https://script.google.com/macros/s/AKfycbzPCrw8mxFvs87Sph-W5FKSRxgulOtZWeV66a2bxFay2Ul2-tu8R2htsnIADUNoOEus/exec' + location.search;
