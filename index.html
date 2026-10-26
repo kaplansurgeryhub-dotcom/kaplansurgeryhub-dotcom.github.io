@@ -27,6 +27,7 @@
 .ps{background:#F8FBFA;color:#0C2A35;width:min(480px,100%);border-radius:20px 20px 0 0;padding:22px 18px calc(20px + env(safe-area-inset-bottom));box-sizing:border-box;text-align:right;direction:rtl}
 .ps h2{margin:0 0 6px;font-size:20px}.ps p{margin:0 0 12px;font-size:15px;line-height:1.55;color:#3A4A50}.ps ol{margin:0 0 12px;padding-inline-start:20px;font-size:15px;line-height:1.7}
 .ps .b{display:block;width:100%;box-sizing:border-box;border:0;border-radius:14px;padding:14px;font:700 16px inherit;font-family:inherit;background:#0C2A35;color:#fff;margin-top:8px;cursor:pointer}.ps .b.l{background:#E6EEEB;color:#0C2A35}
+.ps .hl{background:#E3F4EC;border:2px solid #00967D;border-radius:14px;padding:12px 14px;font-weight:700;font-size:15px;line-height:1.55;color:#0A5A4B;margin:0 0 10px}
 .ps .ok{display:block;color:#187A5C;font-weight:700;font-size:15px;margin:4px 0 8px}.ps .w{display:block;color:#A3402E;font-weight:700;font-size:14px;margin:4px 0 8px}</style>
 </head>
 <body>
@@ -93,16 +94,16 @@
     var mgr = who === 'mgr', bg = document.createElement('div'); bg.className = 'pb'; document.body.appendChild(bg);
     var close = function () { bg.remove(); tell({ ev: 'pstate', st: state() }); };
     var paint = function (msg) {
-      var s = state(), h = '<div class="ps"><h2>🔔 ' + (mgr ? 'התראות בטלפון' : 'תזכורת לדיווח היומי') + '</h2>';
+      var s = state(), h = '<div class="ps"><h2>🔔 התראות לטלפון</h2>';
       if (msg) h += '<span class="ok">' + msg + '</span>';
       else if (s === 'on') h += '<span class="ok">✓ ההתראות פעילות בטלפון הזה</span><button class="b l" id="pT">שליחת התראת בדיקה</button>';
-      else if (s === 'install') h += '<p>כדי לקבל ' + (mgr ? 'התראות' : 'תזכורת') + ' בטלפון, צריך לפתוח את האפליקציה מהאייקון במסך הבית.</p>' + (mgr ? '<ol><li>לוחצים על כפתור השיתוף ⬆︎ למטה</li><li>"הוספה למסך הבית"</li><li>פותחים מהאייקון החדש</li></ol>' : '<button class="b" id="pA">איך מוסיפים למסך הבית?</button>');
+      else if (s === 'install') h += '<p>כדי לקבל התראות בטלפון, צריך לפתוח את האפליקציה מהאייקון במסך הבית.</p>' + (mgr ? '<ol><li>לוחצים על כפתור השיתוף ⬆︎ למטה</li><li>"הוספה למסך הבית"</li><li>פותחים מהאייקון החדש</li></ol>' : '<button class="b" id="pA">איך מוסיפים למסך הבית?</button>');
       else if (s === 'denied') h += '<p>ההתראות כבויות בהגדרות הטלפון. הגדרות ← התראות ← Kaplan Hub ← לאפשר.</p>';
       else if (s === 'unsupported') h += '<p>הטלפון הזה לא תומך בהתראות. כדאי לעדכן את מערכת ההפעלה.</p>';
-      else h += '<p>' + (mgr ? 'להפעיל התראות בטלפון הזה?' : 'אם עד 16:00 עוד לא דיווחת על היום, הטלפון יזכיר לך. רק בימי עבודה.') + '</p><button class="b" id="pOn">כן, להפעיל</button>';
+      else h += '<p>' + (mgr ? 'להפעיל התראות בטלפון הזה?' : 'מפעילים פעם אחת, וזהו.') + '</p>' + (mgr ? '' : '<div class="hl">(חשוב! כך נוכל לעדכן אתכם בזמן אמת על שינויים בתוכנית השבועית ובתורנויות, להעביר הודעות מהצוות ולהזכיר על הדיווח היומי עד 16:00)</div>') + '<button class="b" id="pOn">כן, להפעיל</button>';
       bg.innerHTML = h + '<button class="b l" id="pX">' + (s === 'default' && !msg ? 'לא עכשיו' : 'סגירה') + '</button></div>';
       bg.querySelector('#pX').onclick = close;
-      var on = bg.querySelector('#pOn'); if (on) on.onclick = function () { on.textContent = 'רגע…'; on.disabled = true; enable().then(function () { paint('✓ מעולה, ' + (mgr ? 'ההתראות פעילות' : 'התזכורת פעילה') + ' בטלפון הזה'); setTimeout(close, 2500); }, function (e) { paint(); }); };
+      var on = bg.querySelector('#pOn'); if (on) on.onclick = function () { on.textContent = 'רגע…'; on.disabled = true; enable().then(function () { paint('✓ מעולה, ההתראות פעילות בטלפון הזה'); setTimeout(close, 2500); }, function (e) { paint(); }); };
       var a2 = bg.querySelector('#pA'); if (a2) a2.onclick = function () { bg.remove(); tell({ ev: 'a2' }); };
       var t = bg.querySelector('#pT'); if (t) t.onclick = function () { navigator.serviceWorker.ready.then(function (r) { r.showNotification('Kaplan Surgical Hub', { body: 'ההתראות פועלות ✓', icon: '/ops/icon-192.png', lang: 'he', dir: 'rtl' }); }); };
     };
