@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>מסירת בשורה מרה · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -82,6 +82,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -93,6 +94,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -110,6 +112,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -342,7 +347,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>"מתי אני יכול לחזור לעבודה?"</h2>
  <div class="grid">
   <div>
-   <div class="box n"><b class="t">לרופא/ה</b>אבי, בן 68, נהג אוטובוס, אושפז בגלל צהבת. <bdi>CT</bdi> הראה גידול בראש הלבלב שעוטף את כלי הדם הראשיים. ישיבת הצוות הרב-תחומי קבעה: <b>לא ניתן לכריתה</b>. הוא מחכה לך בחדר עם אשתו. ההמשך: ניקוז דרכי המרה וטיפול אונקולוגי</div>
+   <div class="box n"><b class="t">לרופא/ה</b>אבי, בן 68, נהג אוטובוס, אושפז בגלל צהבת. <bdi>CT</bdi> הראה גידול <span class="nw">ב-<bdi>pancreatic head</bdi></span> שעוטף את כלי הדם הראשיים. ישיבת הצוות הרב-תחומי קבעה: <b>לא ניתן לכריתה</b>. הוא מחכה לך בחדר עם אשתו. ההמשך: ניקוז דרכי המרה וטיפול אונקולוגי</div>
    <h3 style="margin-top:12px">המטרות שלך</h3>
    <ul class="b sm"><li>לברר מה הוא כבר יודע ומה הוא רוצה לדעת</li><li>יריית אזהרה, כותרת אחת ושתיקה</li><li>להגיב לרגש ולסיים בצעד הבא ברור</li></ul>
   </div>
@@ -380,7 +385,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <div class="box n"><b class="t">לרופא/ה</b>משה, בן 88, גר בבית אבות, תלוי בעזרה ברוב פעולות היום-יום, עם שיטיון מתקדם. הגיע עם חשד לאיסכמיה של המעי. הבכיר/ה מעריך/ה שגם אם ינותח, הסיכוי לחזור למצבו הקודם נמוך מאוד. משה לא מסוגל להחליט. שני בניו בחדר</div>
    <h3 style="margin-top:12px">המטרות שלך</h3>
-   <ul class="b sm"><li>למקם את המצב החריף בתוך מחלת הרקע שלו</li><li>לשאול "מה אבא שלכם היה אומר?" ולא רק "מה אתם רוצים?"</li><li>להשתמש ב-<bdi>REMAP</bdi>: מה חשוב, מה לא מקובל</li><li>להמליץ על דרך שתואמת את המטרות, כולל טיפול ממוקד נוחות</li></ul>
+   <ul class="b sm"><li>למקם את המצב החריף בתוך מחלת הרקע שלו</li><li>לשאול "מה אבא שלכם היה אומר?" ולא רק "מה אתם רוצים?"</li><li>להשתמש <span class="nw">ב-<bdi>REMAP</bdi></span>: מה חשוב, מה לא מקובל</li><li>להמליץ על דרך שתואמת את המטרות, כולל טיפול ממוקד נוחות</li></ul>
   </div>
   <div style="display:grid;gap:10px;align-content:start">
    <div class="box a"><b class="t">כרטיס דמות · הבן הבכור</b>"תעשו הכול. אנחנו מאמינים בנסים". בהמשך מספר שאבא אמר פעם שלא היה רוצה "לחיות מחובר למכונות"</div>

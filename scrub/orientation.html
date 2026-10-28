@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>מבוא לסבב · Scrub In</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../emblem.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Frank+Ruhl+Libre:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0C2A35;--navy2:#123845;--g:#00967D;--g2:#3DC08C;--g3:#0A6B5A;--lime:#B5D96B;--red:#A3402E;--amber:#C9893F;--blue:#2F6FA8;--bg:#EDF2F0;--soft:#F3F7F5;--ink:#16262C;--muted:#5C6F73;--line:#DCE6E2}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--navy);color:var(--ink);font-family:Heebo,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.deck{position:fixed;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.deck::-webkit-scrollbar{display:none}
+.s{flex:0 0 100%;height:100%;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;padding:18px 16px 84px;overflow-y:auto;position:relative}
+.s::after{content:'';position:absolute;inset:0;background:url(../ops/art/organs.webp) no-repeat 6% 40%/auto 115%;opacity:.05;filter:invert(1);pointer-events:none}
+.card{width:min(980px,100%);background:#fff;border-radius:22px;box-shadow:0 18px 50px rgba(0,0,0,.35);padding:30px 32px 22px;position:relative;overflow:hidden;z-index:1}
+.card::before{content:'';position:absolute;inset:0 0 auto 0;height:6px;background:linear-gradient(90deg,var(--g3),var(--g),var(--g2),var(--lime))}
+.kick{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--g);letter-spacing:.3px;margin-bottom:6px}
+.kick b{background:var(--navy);color:#fff;border-radius:999px;min-width:26px;height:26px;display:grid;place-items:center;font-size:13px;padding:0 8px}
+h1,h2{font-family:'Frank Ruhl Libre',serif;color:var(--navy);margin:0 0 10px;line-height:1.15}
+h1{font-size:clamp(34px,6.4vw,60px)}h2{font-size:clamp(25px,4.4vw,36px)}
+h3{margin:0 0 6px;font-size:17px;color:var(--navy)}
+.lead{font-size:clamp(15.5px,2.3vw,18.5px);color:var(--muted);margin:0 0 16px;line-height:1.5}
+ul.b{margin:0;padding:0;list-style:none;display:grid;gap:8px}ul.b li{position:relative;padding-inline-start:20px;font-size:16.5px;line-height:1.45}ul.b li::before{content:'';position:absolute;inset-inline-start:2px;top:.62em;width:8px;height:8px;border-radius:2px;background:var(--g);transform:rotate(45deg)}
+ul.b li b{color:var(--navy)}ul.b.sm li{font-size:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.grid.g3{grid-template-columns:repeat(3,1fr)}.grid.f{grid-template-columns:1.05fr .95fr;align-items:center}
+.box{background:var(--soft);border-radius:14px;padding:13px 15px;border-inline-start:4px solid var(--g);font-size:15.5px;line-height:1.45}
+.box.r{border-color:var(--red);background:#FBEDEA}.box.a{border-color:var(--amber);background:#FFF6EA}.box.n{border-color:var(--navy)}.box.b{border-color:var(--blue);background:#EEF4FB}
+.box b.t{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}
+.num{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:4px 0 14px}.num div{background:var(--soft);border-radius:14px;padding:12px 10px;text-align:center}
+.num b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(26px,4vw,38px);color:var(--g3);line-height:1.05}.num span{font-size:13px;color:var(--muted);line-height:1.3;display:block;margin-top:4px}
+figure{margin:0;background:#FBFCFB;border:1px solid var(--line);border-radius:16px;padding:10px;text-align:center}figure img{max-width:100%;max-height:46vh;display:block;margin:0 auto;mix-blend-mode:multiply}
+figcaption{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.35}
+.ill svg{width:100%;height:auto;max-height:50vh}
+.src{margin-top:16px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.src b{color:var(--g3)}
+.tag{display:inline-block;font-size:12px;font-weight:800;border-radius:999px;padding:2px 10px;background:#E3F4EC;color:var(--g3);margin-inline-end:4px}
+.tag.r{background:#F8E3DE;color:var(--red)}.tag.a{background:#FFF3DF;color:#8A5A14}.tag.b{background:#E8F0FA;color:var(--blue)}
+.flow{display:grid;gap:8px}.flow div{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;background:var(--soft);border-radius:12px;padding:9px 12px;font-size:15.5px}.flow div b{color:var(--navy)}
+.study{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#fff}.study .y{font-size:12px;font-weight:800;color:var(--g);letter-spacing:.3px}.study b{display:block;font-size:16px;color:var(--navy);margin:2px 0}.study p{margin:4px 0 0;font-size:14.5px;line-height:1.45}.study small{display:block;margin-top:6px;font-size:11.5px;color:var(--muted)}
+.cover{background:radial-gradient(120% 90% at 85% 0%,#164B54 0%,var(--navy) 58%)}
+.cover::after{opacity:.16;background-position:2% 50%}
+.cover .card{background:transparent;box-shadow:none;color:#fff}.cover .card::before{display:none}.cover h1{color:#fff}.cover .lead{color:#C9D6DA}.cover .kick{color:var(--g2)}
+.pill{display:inline-flex;gap:6px;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px;color:#fff;margin:4px}
+.logo{display:flex;align-items:center;gap:10px;margin-bottom:26px}.logo img{width:48px;height:48px;border-radius:50%;background:#fff}.logo b{color:#fff;font-weight:900}.logo small{display:block;color:#A9C9C0;font-size:12px}
+.obj{counter-reset:o;list-style:none;margin:0;padding:0;display:grid;gap:10px}.obj li{counter-increment:o;display:flex;gap:12px;align-items:flex-start;font-size:16.5px;line-height:1.45}.obj li::before{content:counter(o);flex:0 0 30px;height:30px;border-radius:50%;background:var(--g);color:#fff;font-weight:800;display:grid;place-items:center}
+.nav{position:fixed;inset:auto 0 0 0;display:flex;align-items:center;justify-content:center;gap:14px;padding:12px 16px calc(14px + env(safe-area-inset-bottom));background:linear-gradient(transparent,rgba(6,20,26,.85) 40%);z-index:5}
+.nav button{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;font-size:22px;cursor:pointer}.nav button:disabled{opacity:.3}
+.dots{display:flex;gap:5px;flex-wrap:wrap;max-width:60vw;justify-content:center}.dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer}.dots i.on{background:var(--g2);width:20px;border-radius:5px}
+.count{color:#C9D6D9;font-size:13px;font-weight:700;min-width:44px;text-align:center}
+bdi{unicode-bidi:isolate}
+.cmp{width:100%;border-collapse:separate;border-spacing:0;font-size:14px;border:1px solid var(--line);border-radius:14px;overflow:hidden}.cmp th{background:var(--navy);color:#fff;padding:9px 10px;font-size:16px;text-align:start}.cmp th small{display:block;font-weight:500;color:#A9D9C8;font-size:12px}.cmp td{padding:8px 10px;border-top:1px solid var(--line);vertical-align:top;line-height:1.4}.cmp td:first-child{background:var(--soft);font-weight:800;color:var(--navy);white-space:nowrap}.cmp tr:nth-child(odd) td:not(:first-child){background:#FBFCFB}
+figure.vid video{width:100%;max-height:34vh;border-radius:10px;background:#000;display:block}
+@media (max-width:760px){.cmp{font-size:12.5px}.cmp td,.cmp th{padding:6px}}
+
+.hotw{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;align-items:start}.hoti{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#FBFCFB}.hoti img{display:block;width:100%;mix-blend-mode:multiply}.hoti svg{position:absolute;inset:0;width:100%;height:100%}
+.hz{fill:var(--c);fill-opacity:.38;stroke:var(--c);stroke-width:2;cursor:pointer;transition:fill-opacity .2s}.hz:hover,.hz.on{fill-opacity:.62}.hzl{font:900 22px Heebo,sans-serif;fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;pointer-events:none;text-anchor:middle}
+.hotp .hint{background:var(--soft);border-radius:12px;padding:10px 12px;font-weight:700;color:var(--g3);margin:0}.hzi{background:#fff;border:1px solid var(--line);border-inline-start:5px solid var(--c,var(--g));border-radius:14px;padding:12px 14px;margin-top:8px;font-size:15.5px;line-height:1.45}.hzi>b{display:block;font-size:17px;color:var(--navy);margin-bottom:4px}.hzi p{margin:0}
+figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-size:15px}.obj.sm li::before{flex-basis:26px;height:26px;font-size:13px}.flow.sm div{grid-template-columns:130px 1fr;padding:7px 10px;font-size:14.5px}
+@media (max-width:760px){.hotw{grid-template-columns:1fr}}
+
+@media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
+@media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+/* orientation deck: week grid, stations, six weeks, pocket app */
+.wk{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.wk>div{background:var(--soft);border-radius:14px;padding:8px;display:flex;flex-direction:column;gap:6px}
+.wk h4{margin:0 0 2px;display:flex;align-items:center;gap:7px;font-size:15px;color:var(--navy)}.wk h4 i{font-style:normal;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:900;font-size:14px;flex:0 0 28px}
+.ev{border-radius:10px;padding:6px 8px;font-size:13px;line-height:1.3;background:#fff;border-inline-start:4px solid var(--g)}
+.ev b{display:block;font-size:12.5px;color:var(--g3);font-weight:800}
+.ev.m{background:var(--navy);color:#fff;border-color:var(--g2)}.ev.m b{color:#6FD3A8}
+.ev.p{background:#DDF1E8;border-color:var(--g3)}
+.ev.c{border-color:var(--blue);background:#EEF4FB}.ev.c b{color:var(--blue)}
+.ev.a{border-color:var(--amber);background:#FFF6EA}.ev.a b{color:#8A5A14}
+.ev.k{background:transparent;border:1px dashed #B9C9C3;color:var(--muted)}.ev.k b{color:var(--muted)}
+.lg{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--muted);margin:0 0 10px}.lg span{display:inline-flex;align-items:center;gap:6px}.lg i{width:13px;height:13px;border-radius:4px;display:inline-block;border:1px solid rgba(0,0,0,.08)}
+.sts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.st{border:1px solid var(--line);border-top:5px solid var(--c,var(--g));border-radius:16px;padding:12px 14px;background:#fff;display:flex;flex-direction:column;gap:4px}
+.st .hd{display:flex;align-items:center;gap:10px}.st .ic{flex:0 0 42px;height:42px;border-radius:12px;background:var(--soft);display:grid;place-items:center;font-size:22px}
+.st h3{margin:0;font-size:17px}.st h3 small{display:block;font-size:12px;color:var(--muted);font-weight:600}
+.st p{margin:2px 0;font-size:14.5px;line-height:1.4}
+.st .you{margin-top:auto;font-size:14px;line-height:1.4;background:var(--soft);border-radius:10px;padding:7px 9px}.st .you b{color:var(--c,var(--g3))}
+.st.rule{background:var(--navy);color:#fff;border-color:var(--g2)}.st.rule h3{color:#fff}.st.rule p{color:#D6E4E0}
+.wks{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;position:relative}
+.wks>div{background:var(--soft);border-radius:14px;padding:10px 10px 12px;border-top:5px solid var(--c)}
+.wks .n{font-family:'Frank Ruhl Libre',serif;font-size:30px;font-weight:900;color:var(--c);line-height:1}.wks .n small{font-family:Heebo,sans-serif;font-size:12px;font-weight:800;color:var(--muted);margin-inline-start:4px}
+.wks h4{margin:4px 0 6px;font-size:15px;color:var(--navy);line-height:1.25}
+.wks ul{margin:0;padding:0;list-style:none;font-size:13px;line-height:1.35;display:grid;gap:4px}.wks li{padding-inline-start:10px;position:relative}.wks li::before{content:'';position:absolute;inset-inline-start:0;top:.55em;width:5px;height:5px;border-radius:50%;background:var(--c)}
+.mt{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.mt>div{border:1px solid var(--line);border-radius:16px;padding:12px 14px;background:#fff;font-size:14.5px;line-height:1.42}
+.mt>div>b{display:flex;align-items:center;gap:8px;font-size:17px;color:var(--navy);margin-bottom:4px}.mt>div>b span{font-size:22px}
+.mt small{display:block;color:var(--muted);font-size:12.5px;margin-top:6px}
+.dk{background:var(--navy);color:#E6EEEC;border-radius:16px;padding:14px 16px}.dk h3{color:#fff}.dk ul.b li b{color:#6FD3A8}.dk ul.b li::before{background:var(--g2)}
+.lt{border:1px solid var(--line);border-top:5px solid var(--g);border-radius:16px;padding:14px 16px;background:#fff}
+.chips{display:flex;flex-wrap:wrap;gap:6px}.chips span{display:inline-flex;gap:6px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:10px;padding:5px 10px;font-size:13.5px;font-weight:700;color:var(--navy)}.chips span i{font-style:normal;font-family:'Frank Ruhl Libre',serif;color:var(--g);font-weight:900}
+.chips span.hi{background:var(--navy);color:#fff;border-color:var(--navy)}.chips span.hi i{color:#6FD3A8}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:12px}.vs div{border-radius:14px;padding:11px 14px;font-size:15.5px;line-height:1.4}.vs .no{background:#FBEDEA;color:#7A2E21}.vs .yes{background:#E3F4EC;color:#0A5A49}.vs b{display:block;font-size:13px;margin-bottom:3px}
+.sbar{background:var(--soft);border-radius:14px;padding:12px 14px;display:grid;gap:8px;font-size:15px;line-height:1.4}.sbar div{display:flex;gap:10px;align-items:flex-start}.sbar span{flex:0 0 26px;height:26px;border-radius:8px;background:var(--navy);color:#fff;font-weight:900;font-size:14px;display:grid;place-items:center}
+.quote{margin-top:10px;background:#EEF4FB;border-inline-start:4px solid var(--blue);border-radius:12px;padding:10px 12px;font-size:14.5px;line-height:1.45}
+.steps{counter-reset:s;list-style:none;margin:0;padding:0;display:grid;gap:10px}.steps li{counter-increment:s;font-size:16px;line-height:1.45}.steps li::before{content:counter(s);border-radius:50%;background:var(--navy);color:#fff;font-weight:800;display:grid;place-items:center}.steps.red li::before{background:var(--red)}
+.tl{display:grid;gap:7px}.tl div{display:grid;grid-template-columns:70px 1fr;gap:10px;align-items:start;font-size:14.5px;line-height:1.4}.tl div>b{font-family:'Frank Ruhl Libre',serif;font-size:17px;color:#6FD3A8;text-align:center;background:rgba(255,255,255,.06);border-radius:8px;padding:2px 0}.tl div span b{color:#fff}
+.phw{display:grid;grid-template-columns:260px 1fr;gap:22px;align-items:center}
+.phone{width:250px;margin:0 auto;border-radius:36px;background:#0C2A35;padding:9px;box-shadow:0 14px 34px rgba(12,42,53,.35),inset 0 0 0 2px #2B4C57}
+.scr{background:#EDF2F0;border-radius:28px;overflow:hidden;height:480px;display:flex;flex-direction:column;font-size:12px;color:var(--ink)}
+.scr .top{background:linear-gradient(135deg,#0C2A35,#164B54);color:#fff;padding:16px 14px 12px}.scr .top small{display:block;color:#A9D9C8;font-size:10.5px;font-weight:700}.scr .top b{font-size:15px}
+.scr .bd{flex:1;padding:9px;display:grid;gap:7px;align-content:start}
+.scr .cd{background:#fff;border-radius:12px;padding:8px 9px;box-shadow:0 1px 3px rgba(0,0,0,.06)}.scr .cd h5{margin:0 0 4px;font-size:11.5px;color:var(--navy)}
+.scr .now{border-inline-start:4px solid var(--g)}.scr .now em{font-style:normal;font-size:10px;font-weight:800;color:#fff;background:var(--g);border-radius:999px;padding:1px 7px}
+.scr .row{display:flex;justify-content:space-between;gap:6px;padding:3px 0;border-top:1px solid #EEF2F0;font-size:11px}.scr .row:first-of-type{border-top:0}.scr .row bdi{color:var(--muted);font-weight:700}
+.scr .stars{color:#C9893F;letter-spacing:2px;font-size:13px}.scr .btn{display:block;text-align:center;background:var(--g);color:#fff;border-radius:9px;padding:5px;font-weight:800;font-size:11px;margin-top:5px}
+.scr .tabs{display:grid;grid-template-columns:repeat(5,1fr);background:#fff;border-top:1px solid #DCE6E2;padding:6px 2px 10px}.scr .tabs span{display:grid;justify-items:center;gap:1px;font-size:9.5px;font-weight:700;color:var(--muted)}.scr .tabs span i{font-style:normal;font-size:15px}.scr .tabs span.on{color:var(--g3)}
+.apl{display:grid;gap:8px}.apl div{display:grid;grid-template-columns:40px 1fr;gap:10px;align-items:start;background:var(--soft);border-radius:12px;padding:8px 10px;font-size:14.5px;line-height:1.4}.apl div>i{font-style:normal;font-size:22px;text-align:center}.apl b{color:var(--navy)}
+.ppl{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.ppl>div{border-radius:16px;padding:12px 14px;background:var(--soft);border-inline-start:5px solid var(--c,var(--g));font-size:14.5px;line-height:1.42}.ppl>div>b{display:block;font-size:16.5px;color:var(--navy)}.ppl>div>small{display:block;font-size:12px;font-weight:800;color:var(--c,var(--g3));margin-bottom:4px}
+.gold{counter-reset:g;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}.gold li{counter-increment:g;background:var(--navy);color:#fff;border-radius:14px;padding:12px 14px 12px 14px;font-size:16px;font-weight:700;line-height:1.35;display:flex;gap:12px;align-items:center}.gold li::before{content:counter(g);flex:0 0 32px;height:32px;border-radius:50%;background:var(--g2);color:var(--navy);font-weight:900;display:grid;place-items:center;font-family:'Frank Ruhl Libre',serif;font-size:17px}
+.org{display:grid;gap:10px}.org .top2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.org .rk{border-radius:14px;padding:10px 14px;background:var(--navy);color:#fff}.org .rk small{display:block;color:#6FD3A8;font-size:12px;font-weight:800}.org .rk b{font-size:17px}
+.org .rk.l{background:#fff;color:var(--navy);border:1px solid var(--line)}.org .rk.l small{color:var(--g3)}
+.wing{border-radius:14px;padding:10px 14px;color:#fff;font-weight:800;font-size:16px;display:flex;align-items:center;gap:8px}.wing small{font-weight:600;font-size:12.5px;opacity:.9;display:block}
+.units{list-style:none;margin:0;padding:0;display:grid;gap:6px}.units li{display:flex;gap:10px;align-items:center;background:var(--soft);border-radius:10px;padding:7px 10px;font-size:14.5px;line-height:1.3}.units li i{font-style:normal;font-family:'Frank Ruhl Libre',serif;font-weight:900;color:var(--g);font-size:17px;flex:0 0 24px}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){
+ .wk{grid-template-columns:1fr}.wk>div{flex-direction:row;flex-wrap:wrap}.wk h4{flex:0 0 100%}.wk .ev{flex:1 1 140px}
+ .sts,.mt,.ppl{grid-template-columns:1fr}
+ .wks{grid-template-columns:1fr 1fr}
+ .phw{grid-template-columns:1fr}
+ .gold,.vs,.org .top2{grid-template-columns:1fr}
+}
+@media (min-width:761px) and (max-width:1000px){.wks{grid-template-columns:repeat(3,1fr)}.sts,.mt,.ppl{grid-template-columns:1fr 1fr}}
+/*BRAND*/
+.brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
+.brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
+.s{padding-top:58px}
+.cover .card{display:flex;flex-direction:column;gap:6px;max-width:980px}
+.cvhead{display:flex;align-items:center;gap:16px;margin-bottom:30px}.cvhead img.em{width:74px;height:74px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(61,192,140,.55)}
+.cvhead b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(24px,3.4vw,34px);color:#fff;line-height:1.1}.cvhead span{display:block;font-size:clamp(15px,2vw,19px);color:#A9D9C8;font-weight:700;margin-top:4px}
+.cover h1{font-size:clamp(38px,6.6vw,66px);margin:6px 0 8px}.cover .kick{font-size:14px;letter-spacing:.06em}
+.cvmeta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.cvsrc{margin-top:16px;display:grid;gap:6px;justify-items:start}.cvsrc small{font-size:12.5px;font-weight:800;letter-spacing:.08em;color:#8FB3AA}
+.cvsrc>b{font-size:clamp(16px,2.4vw,19px);color:#fff;font-weight:700}.cvsrc>b bdi{font-weight:800}
+.cvch{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}.cvch span{display:inline-flex;align-items:center;gap:5px;background:rgba(61,192,140,.14);border:1px solid rgba(61,192,140,.45);color:#E6F5EE;border-radius:10px;padding:5px 11px;font-size:14px;font-weight:700;white-space:nowrap}.cvch bdi{font-weight:900;color:#6FD3A8}
+.cvsrc em{font-style:normal;font-size:13.5px;color:#A9C9C0}
+
+.cvlogos{display:flex;align-items:center;gap:18px;margin-top:34px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14)}.cvlogos img{height:44px;width:auto}.cvlogos small{margin-inline-start:auto;color:#8FB3AA;font-size:12.5px;font-weight:700;letter-spacing:.08em}
+.cover .brandbar{display:none}
+@media (max-width:760px){.brandbar{left:10px;gap:7px;padding:4px 9px 4px 4px}.brandbar img{height:20px}.brandbar img.em{width:22px;height:22px}.s{padding-top:48px}.cvhead img.em{width:56px;height:56px}.cvlogos img{height:34px}.cvlogos small{display:none}}
+/* numbered lists: a bold word inside an item stays inline */
+.obj li,.steps li{display:block;position:relative;padding-inline-start:42px;min-height:30px}.obj li::before,.steps li::before{position:absolute;inset-inline-start:0;top:-2px;width:30px;height:30px;line-height:1;font-size:15px}.obj.sm li{padding-inline-start:36px}.obj.sm li::before{width:26px;height:26px;font-size:13px;top:-1px}
+/* bold inside a study's text stays in the sentence (only the study title is a block) */
+.study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
+/* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
+.card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.grid.tight figure img{max-height:24vh}
+/* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
+.s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
+.card{overflow-wrap:break-word}.card img,.card video,.card svg{max-width:100%}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){
+ .brandbar{left:0;right:0;top:0;border-radius:0;border:0;border-bottom:1px solid rgba(255,255,255,.1);padding:calc(6px + env(safe-area-inset-top)) 12px 6px;background:rgba(6,22,28,.94);justify-content:flex-start}
+ .s{padding:calc(50px + env(safe-area-inset-top)) 10px calc(92px + env(safe-area-inset-bottom))}
+ .card{padding:22px 16px 16px}
+ .flow.sm div,.flow div{grid-template-columns:1fr}
+ .cmp td:first-child{white-space:normal}
+ .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
+ .num{grid-template-columns:1fr 1fr}
+ .hzl{font-size:18px}
+}
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
+/* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
+.nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+@media print{.brandbar{display:none}}
+/*/BRAND*/
+</style>
+</head>
+<body>
+<div class="brandbar" aria-hidden="true"><img class="em" src="brand/emblem.jpg" alt=""><i></i><img src="brand/logo_k.webp" alt=""><img src="brand/logo_c.webp" alt=""></div>
+<main class="deck" id="deck">
+
+<section class="s cover"><div class="card">
+ <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
+ <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 1</div>
+ <h1>ברוכים הבאים לכירורגיה</h1>
+ <p class="lead">מבוא לסבב ואדמיניסטרציה: איך בנוי המערך, איך נראה השבוע, איפה תהיו ואיך עובדים נכון ובטוח</p>
+ <div class="cvsrc" data-own="ספרון המערך · המצגת &quot;עבודה נכונה במערך&quot; · תוכנית הסבב"><small>מבוסס על</small><b>ספרון המערך · המצגת &quot;עבודה נכונה במערך&quot; · תוכנית הסבב</b></div>
+ <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>1</b>מטרות המפגש</div>
+ <h2>בסוף המפגש תדעו</h2>
+ <ol class="obj">
+  <li>איך בנוי המערך: <b>שני אגפי אשפוז</b>, חמש יחידות ומי עושה מה</li>
+  <li>להתמצא בזמן: יום טיפוסי, השבוע הקבוע ו<b>ששת השבועות</b> של הסבב</li>
+  <li>מה עושים בכל עמדה: מחלקה, מרפאות, חדר ניתוח, טרום ניתוח ומיון</li>
+  <li>לעבוד בטוח: היגיינת ידיים, זיהוי מטופל, חדים ודיווח מסודר <bdi>(SBAR)</bdi></li>
+  <li>להשתמש באפליקציה בכיס: לו״ז, משוב יומי, פנקס ניתוחים וקשר עם הצוות</li>
+ </ol>
+ <div class="src"><span>קריאה: <b>ספרון המערך</b> · המצגת <b>עבודה נכונה במערך</b></span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>2</b>במספרים</div>
+ <h2>קפלן והסבב שלכם</h2>
+ <p class="lead">בית חולים אוניברסיטאי המסונף לפקולטה לרפואה של האוניברסיטה העברית. עבודה קלינית לצד הוראה ומחקר</p>
+ <div class="num">
+  <div><b>1953</b><span>שנת ההקמה של קפלן</span></div>
+  <div><b dir="ltr">600+</b><span>מיטות אשפוז</span></div>
+  <div><b dir="ltr">~1M</b><span>תושבים באזור השירות</span></div>
+  <div><b>2</b><span>אגפי אשפוז כירורגיים</span></div>
+ </div>
+ <div class="num">
+  <div><b>6</b><span>שבועות של סבב</span></div>
+  <div><b>א׳–ה׳</b><span>ימי הסבב בשבוע</span></div>
+  <div><b dir="ltr">08:00</b><span>תחילת היום שלכם, ברוב הימים</span></div>
+  <div><b>5</b><span>סוגי מפגשים: הרצאה, סדנה, מקרים, דימות וביקור מודרך</span></div>
+ </div>
+ <div class="box b"><b class="t">מה תצאו עם זה</b>החודש וחצי הקרובים הם הזדמנות לראות כירורגיה מקרוב: מחלקה פעילה, חדר ניתוח עמוס וצוות שמחויב ללמד. גם מי שלא רואה את עתידו בכירורגיה ייצא מכאן עם כלים לכל תחום</div>
+ <div class="src"><span>מקור: <b>ספרון המערך</b> · <b>תוכנית הסבב</b></span><span>קפלן בקצרה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>3</b>מבנה המערך</div>
+ <h2>מי זה מי במערך</h2>
+ <div class="grid">
+  <div class="org">
+   <div class="top2">
+    <div class="rk"><small>בראש המערך</small><b>מנהל המערך</b></div>
+    <div class="rk l"><small>לצידו</small><b>סגן מנהל המערך</b></div>
+   </div>
+   <div class="top2">
+    <div class="wing" style="background:#4A86C5">🛏️<div>אגף צפון<small>אגף אשפוז</small></div></div>
+    <div class="wing" style="background:#C9893F">🛏️<div>אגף דרום<small>אגף אשפוז</small></div></div>
+   </div>
+   <div class="box n" style="font-size:14.5px"><b class="t">בכל אגף</b>רופאים בכירים, מתמחים, סטאז׳רים והצוות הסיעודי עם האחות האחראית. בלו״ז שלכם האגפים מופיעים כ<b>אגף א</b> ו<b>אגף ב</b> (כירורגית א, כירורגית ב)</div>
+  </div>
+  <div>
+   <h3>חמש יחידות המערך</h3>
+   <ul class="units">
+    <li><i>1</i>היחידה לכירורגיה הפטוביליארית</li>
+    <li><i>2</i>היחידה לכירורגיה קולורקטלית</li>
+    <li><i>3</i>היחידה לכירורגיה בריאטרית ולכירורגיה של מערכת העיכול העליונה</li>
+    <li><i>4</i>מכון השד</li>
+    <li><i>5</i>היחידה לכירורגיית דופן הבטן</li>
+   </ul>
+   <div class="box" style="margin-top:10px;font-size:14.5px"><b class="t">מלמדים אתכם גם</b>יחידת הטראומה, טיפול נמרץ, מכון הדימות, כלי דם, פלסטיקה, כירורגיית חזה ועו״ס המערך</div>
+  </div>
+ </div>
+ <div class="src"><span>מקור: <b>ספרון המערך</b> · <b>תוכנית הסבב</b></span><span>המערך והצוות</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>4</b>עמדות העבודה</div>
+ <h2>איפה תהיו בסבב</h2>
+ <div class="sts">
+  <div class="st" style="--c:#00967D"><div class="hd"><span class="ic">🛏️</span><h3>המחלקה<small>אגף א ואגף ב</small></h3></div>
+   <p>ביקור בוקר אחרי הישיבה, בראשות רופא בכיר ויחד עם אחות המחלקה. קבלות ומעקב אחרי המטופלים באגף</p>
+   <div class="you"><b>אתם:</b> מכירים את המטופלים באגף, בודקים, כותבים קבלה ומציגים</div></div>
+  <div class="st" style="--c:#2F6FA8"><div class="hd"><span class="ic">🩺</span><h3>מרפאות<small>כל יום מרפאה אחרת</small></h3></div>
+   <p>א׳ שד · ב׳ כללית, <bdi>HPB</bdi>, שד וחזה · ג׳ קולורקטלית · ד׳ כללית, שד וחזה · ה׳ קולורקטלית ושד</p>
+   <div class="you"><b>אתם:</b> אנמנזה ובדיקה ממוקדת. רואים איך מחליטים על ניתוח</div></div>
+  <div class="st" style="--c:#0C2A35"><div class="hd"><span class="ic">✂️</span><h3>חדר הניתוח<small>לפי השיבוץ</small></h3></div>
+   <p>ניתוחים מתוכננים ודחופים בכל תחומי המערך, פתוחים ולפרוסקופיים</p>
+   <div class="you"><b>אתם:</b> צפייה, עזרה וביצוע בהדרכה. כל ניתוח נרשם בפנקס</div></div>
+  <div class="st" style="--c:#7A5BD6"><div class="hd"><span class="ic">📋</span><h3>טרום ניתוח<small>מרפאת טרום ניתוח</small></h3></div>
+   <p>ג׳ <bdi dir="ltr">12:30–14:00</bdi> · כירורגית ב<br>ד׳ <bdi dir="ltr">13:00–14:30</bdi> · כירורגית א</p>
+   <div class="you"><b>אתם:</b> קבלה מלאה למטופל לפני ניתוח מתוכנן: מחלות רקע, תרופות ובדיקות</div></div>
+  <div class="st" style="--c:#A3402E"><div class="hd"><span class="ic">🚑</span><h3>מיון<small>מטופלים דחופים</small></h3></div>
+   <p>כאן מתחיל המטופל הכירורגי הדחוף. ממנו מגיעות הקבלות למחלקה, לפי האגף שמקבל באותו יום</p>
+   <div class="you"><b>אתם:</b> רואים בטן חריפה מקרוב, לפי הלו״ז והנחיית המלמד/ת</div></div>
+  <div class="st rule"><div class="hd"><span class="ic">👋</span><h3>בכל עמדה</h3></div>
+   <p>נכנסים, מציגים את עצמכם בשם ובתפקיד ושואלים במה אפשר לעזור. הנהלים המחייבים של בית החולים זמינים אצל האחות האחראית</p></div>
+ </div>
+ <div class="src"><span>מקור: <b>תוכנית הסבב</b> · <b>ספרון המערך</b></span><span>עמדות העבודה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>5</b>חדר הניתוח</div>
+ <h2>הצעד הראשון אל השולחן</h2>
+ <div class="grid f">
+  <figure><img src="img/or-theatre.jpg" alt="חדר ניתוח לפרוסקופי ריק: שולחן, מנורות ומסכים"><figcaption>חדר ניתוח לפרוסקופי: שולחן, מנורות, מסכים, עגלת הרדמה ושאיבה · <bdi>Dr. Jayesh Amin</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <div>
+   <ul class="b">
+    <li>בשבוע הראשון: מפגש <b>הכרת חדר הניתוח</b>. מגיעים אליו עם מדי חדר ניתוח</li>
+    <li>נכנסים לחדר, מציגים את עצמכם לצוות ושואלים איפה לעמוד</li>
+    <li>היגיינת ידיים לפני כל כניסה. לא נוגעים בשום דבר סטרילי בלי הנחיה</li>
+    <li>שואלים לפני הניתוח מה הולך לקרות ולמה. אחרי הניתוח: מה מצפים לראות במחלקה</li>
+   </ul>
+   <h3 style="margin-top:14px">שלוש דרגות השתתפות</h3>
+   <div class="chips"><span><i>1</i>צפייה</span><span><i>2</i>עזרה</span><span class="hi"><i>3</i>ביצוע בהדרכה</span></div>
+   <p style="font-size:14px;color:var(--muted);margin:8px 0 0">כל ניתוח ופרוצדורה נרשמים בפנקס שבאפליקציה, בלי פרטי מטופל</p>
+  </div>
+ </div>
+ <div class="src"><span>מקור: <b>תוכנית הסבב</b> · <b>ספרון המערך</b></span><span>חדר הניתוח</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>6</b>השבוע במערך</div>
+ <h2>שבוע במבט אחד</h2>
+ <div class="lg"><span><i style="background:#0C2A35"></i>ישיבות המערך</span><span><i style="background:#fff;border-color:#00967D;box-shadow:inset 3px 0 0 #00967D"></i>עבודה קלינית</span><span><i style="background:#DDF1E8"></i>טרום ניתוח</span><span><i style="background:#EEF4FB"></i>ישיבות דימות ואונקולוגיה</span><span><i style="background:#FFF6EA"></i>סיכום שבועי</span></div>
+ <div class="wk">
+  <div><h4><i>א</i>ראשון</h4>
+   <div class="ev m"><b><bdi dir="ltr">07:15</bdi></b>ישיבת בוקר</div>
+   <div class="ev"><b><bdi dir="ltr">08:00</bdi></b>ביקור · מרפאות · חדר ניתוח</div>
+   <div class="ev c"><b><bdi dir="ltr">10:30</bdi></b>ישיבת רנטגן · כירורגית ב</div>
+   <div class="ev k"><b>מרפאה</b>שד</div></div>
+  <div><h4><i>ב</i>שני</h4>
+   <div class="ev m"><b><bdi dir="ltr">07:30</bdi></b>ישיבת בוקר</div>
+   <div class="ev"><b><bdi dir="ltr">08:00</bdi></b>ביקור · מרפאות · חדר ניתוח</div>
+   <div class="ev c"><b><bdi dir="ltr">13:45–15:00</bdi></b><bdi>Tumor board</bdi> · חדר ישיבות רנטגן, קומה 1</div>
+   <div class="ev k"><b>מרפאות</b>כללית, <bdi>HPB</bdi>, שד וחזה</div></div>
+  <div><h4><i>ג</i>שלישי</h4>
+   <div class="ev m"><b><bdi dir="ltr">07:00</bdi></b>ישיבה אקדמית: ג׳ורנל קלאב, <bdi>M&amp;M</bdi></div>
+   <div class="ev"><b><bdi dir="ltr">08:00</bdi></b>ביקור · מרפאות · חדר ניתוח</div>
+   <div class="ev p"><b><bdi dir="ltr">12:30–14:00</bdi></b>טרום ניתוח · כירורגית ב</div>
+   <div class="ev k"><b>מרפאה</b>קולורקטלית</div></div>
+  <div><h4><i>ד</i>רביעי</h4>
+   <div class="ev m"><b><bdi dir="ltr">07:30</bdi></b>ישיבת צוות</div>
+   <div class="ev"><b><bdi dir="ltr">08:00</bdi></b>ביקור · מרפאות · חדר ניתוח</div>
+   <div class="ev p"><b><bdi dir="ltr">13:00–14:30</bdi></b>טרום ניתוח · כירורגית א</div>
+   <div class="ev k"><b>מרפאות</b>כללית, שד וחזה</div></div>
+  <div><h4><i>ה</i>חמישי</h4>
+   <div class="ev m"><b><bdi dir="ltr">07:00</bdi></b>ישיבת צוות ומעבר על ניתוחי השבוע הבא</div>
+   <div class="ev"><b><bdi dir="ltr">08:00</bdi></b>ביקור · מרפאות · חדר ניתוח</div>
+   <div class="ev c"><b><bdi dir="ltr">11:00</bdi></b>ישיבת רנטגן · כירורגית א</div>
+   <div class="ev a"><b><bdi dir="ltr">15:00</bdi></b>סיכום שבועי של הסבב</div></div>
+ </div>
+ <div class="box" style="margin-top:12px"><b class="t">בין לבין</b>הרצאות, סדנאות, דיוני מקרים וביקורים מודרכים. השעות המדויקות לכל יום נמצאות בלו״ז שבאפליקציה. כל מפגש בלו״ז מתחיל בזמן. הנוכחות נרשמת בכל יום</div>
+ <div class="src"><span>מקור: <b>ספרון המערך</b> (ישיבות) · <b>תוכנית הסבב</b> (מרפאות, ישיבות דימות, טרום ניתוח)</span><span>השבוע במערך</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>7</b>יום בסבב</div>
+ <h2>יום טיפוסי, משני הצדדים</h2>
+ <div class="grid">
+  <div>
+   <h3>היום שלכם</h3>
+   <div class="flow sm">
+    <div><b><bdi dir="ltr">08:00</bdi> בוקר</b><span>ביקור באגף, מרפאה או חדר ניתוח, לפי השיבוץ</span></div>
+    <div><b>אמצע היום</b><span>הרצאות, סדנאות ודיוני מקרים</span></div>
+    <div><b><bdi dir="ltr">12:30</bdi> צהריים</b><span>טרום ניתוח או ישיבה של המערך, לפי היום</span></div>
+    <div><b>אחר הצהריים</b><span>ביקור מודרך ליד המיטה, <bdi dir="ltr">2–3</bdi> פעמים בשבוע</span></div>
+    <div><b><bdi dir="ltr">16:00</bdi> סוף היום</b><span>משוב יומי באפליקציה: שתי לחיצות ומשפט</span></div>
+    <div><b>חמישי <bdi dir="ltr">15:00</bdi></b><span>סיכום שבועי עם צוות הסבב</span></div>
+   </div>
+  </div>
+  <div class="dk">
+   <h3>ובמחלקה, מסביב לשעון</h3>
+   <div class="tl">
+    <div><b>04:00</b><span><b>בדיקות דם בוקר</b> בכל המחלקות, עד 07:00</span></div>
+    <div><b>07:00</b><span><b>ישיבת בוקר</b>: מעבר על הקבלות מהלילה ועל מקרים שצריך לטפל בהם מיד</span></div>
+    <div><b>אחריה</b><span><b>ביקור בוקר</b> מיד אחרי הישיבה, עם רופא בכיר ואחות המחלקה</span></div>
+    <div><b>15:00</b><span><b>סיבוב ערב</b> עם הכונן והמתמחה הבכיר. מתחילה התורנות</span></div>
+    <div><b>17:30</b><span><b>בדיקות ערב</b> לפי רשימה של המתמחה התורן</span></div>
+   </div>
+   <p style="font-size:13px;color:#A9C9C0;margin:10px 0 0">בסופי שבוע הביקור נעשה עם הכונן של אותו יום</p>
+  </div>
+ </div>
+ <div class="src"><span>מקור: <b>תוכנית הסבב</b> · <b>ספרון המערך</b> (יום במערך)</span><span>יום בסבב</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>8</b>ששת השבועות</div>
+ <h2>מהיסודות ועד הבחינה</h2>
+ <div class="wks">
+  <div style="--c:#0A6B5A"><div class="n">1<small>שבוע</small></div><h4>היסודות</h4><ul><li>קבלת חולים והערכת סיכון</li><li>בדיקת בטן</li><li>הכרת חדר הניתוח</li><li>סדנאות תפירה וורידים</li><li>בקעים, <bdi dir="ltr">gallbladder</bdi></li></ul></div>
+  <div style="--c:#00967D"><div class="n">2<small>שבוע</small></div><h4>החולה הדחוף</h4><ul><li>שוק וספסיס</li><li>בטן חריפה</li><li>מבוא לטראומה</li><li>צילומי חזה ובטן</li><li>סרטן השד</li></ul></div>
+  <div style="--c:#2F6FA8"><div class="n">3<small>שבוע</small></div><h4>מערכת העיכול</h4><ul><li>סרטן <span class="nw">ה-<bdi dir="ltr">stomach</bdi></span></li><li>דימום תחתון</li><li>סעיפים, חסימת <bdi dir="ltr">small bowel</bdi></li><li><bdi dir="ltr">aorta</bdi></li><li>אולטרסאונד בטן</li></ul></div>
+  <div style="--c:#7A5BD6"><div class="n">4<small>שבוע</small></div><h4><bdi dir="ltr">pancreas</bdi> <span class="nw">ו-<bdi dir="ltr">rectum</bdi></span></h4><ul><li>פנקריאטיטיס</li><li>השמנת יתר חולנית</li><li>סרטן <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span>, פרוקטולוגיה</li><li>סיבוכים כירורגיים</li><li><bdi>CT</bdi> בטן</li></ul></div>
+  <div style="--c:#C9893F"><div class="n">5<small>שבוע</small></div><h4><bdi dir="ltr">liver</bdi>, כלי דם ונוזלים</h4><ul><li><bdi dir="ltr">portal hypertension</bdi></li><li>צהבת חסימתית</li><li>איסכמיה של המעי</li><li>נוזלים ותזונה</li><li><bdi dir="ltr">carotid</bdi></li></ul></div>
+  <div style="--c:#A3402E"><div class="n">6<small>שבוע</small></div><h4>סיכום</h4><ul><li>חבלת בטן קהה</li><li>מסירת בשורה מרה</li><li>דילמות מדיקו-לגליות</li><li>בחינה מסכמת</li><li>משובים ושיחת סיכום</li></ul></div>
+ </div>
+ <div class="grid" style="margin-top:12px">
+  <div class="box b"><b class="t">לכל מפגש: חומר מראש</b>מטרות, קריאה ומצגת מחכים ליד המפגש באפליקציה, תחת "חומר למפגש". מומלץ לעבור עליהם לפני</div>
+  <div class="box a"><b class="t">הסדר זז מעט בין סבבים</b>הלו״ז המעודכן של הקבוצה שלכם תמיד באפליקציה</div>
+ </div>
+ <div class="src"><span>מקור: <b>תוכנית הסבב</b> · שבועות <bdi dir="ltr">1–6</bdi></span><span>ששת השבועות</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>9</b>מפגשי ההוראה</div>
+ <h2>שש דרכים ללמוד במערך</h2>
+ <div class="mt">
+  <div><b><span>🎓</span>הרצאה</b>נושא מרכזי בכירורגיה עם מצגת. קוראים את החומר לפני ומגיעים עם שאלות<small>למשל: בטן חריפה, סרטן <span class="nw">ה-<bdi dir="ltr">colon</bdi></span></small></div>
+  <div><b><span>🧵</span>סדנה</b>ידיים על המודל: ורידים, תפירה, בדיקת בטן, בדיקת שד ובדיקה רקטלית במודלים<small>בשבוע 6: מסירת בשורה מרה בסימולציה</small></div>
+  <div><b><span>🧩</span>דיון מקרים</b>מקרה קליני שאתם מובילים: אבחנה מבדלת, בירור, החלטה וטיפול<small>למשל: כאבי בטן ימנית עליונה, חסימה קולונית</small></div>
+  <div><b><span>🩻</span>דימות</b>עם מכון הדימות: צילומי חזה ובטן, אולטרסאונד וטומוגרפיה ממוחשבת. לומדים לקרוא בשיטה<small>בשבועות 2 עד 4</small></div>
+  <div><b><span>🛏️</span>ביקור מודרך</b>ליד המיטה, בקבוצה קטנה. מציגים מטופל ובודקים יחד עם המלמד/ת<small><bdi dir="ltr">2–3</bdi> פעמים בשבוע, אחר הצהריים</small></div>
+  <div><b><span>🗂️</span>ישיבות המערך</b>ישיבות הרנטגן והישיבה האונקולוגית <bdi>(Tumor board)</bdi>. רואים איך הצוות מחליט על מטופלים<small>וסיכום שבועי בכל חמישי</small></div>
+ </div>
+ <div class="box" style="margin-top:12px"><b class="t">⭐ אחרי כל מפגש</b>מדרגים אותו באפליקציה. כך אנחנו יודעים מה עבד ומה צריך לשפר</div>
+ <div class="src"><span>מקור: <b>תוכנית הסבב</b></span><span>מפגשי ההוראה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>10</b>תיאום ציפיות</div>
+ <h2>מה אנחנו מצפים, מה אתם מקבלים</h2>
+ <div class="grid">
+  <div class="lt">
+   <h3>מה אנחנו מצפים מכם</h3>
+   <ul class="b sm">
+    <li><b>נוכחות בזמן</b> בכל מפגש שבלו״ז. הנוכחות נרשמת בכל יום</li>
+    <li>השתתפות פעילה בביקור הבוקר</li>
+    <li>היכרות עם המטופלים באגף שלכם</li>
+    <li>אחריות על המשימות שקיבלתם, עד הסוף</li>
+    <li>דיווח מיידי על כל שינוי במצב מטופל</li>
+    <li>משוב יומי קצר ורישום בפנקס</li>
+   </ul>
+  </div>
+  <div class="dk">
+   <h3>מה אתם מקבלים מאיתנו</h3>
+   <ul class="b sm">
+    <li><b>ליווי צמוד</b> של צוות המערך לאורך הסבב</li>
+    <li>תוכנית הוראה מסודרת לשישה שבועות</li>
+    <li>חומר לכל מפגש: מטרות, קריאה ומצגת</li>
+    <li>חשיפה לחדר הניתוח, למרפאות ולמחלקה</li>
+    <li>הקשבה: תשובה לכל הודעה ושינוי לפי המשוב שלכם</li>
+   </ul>
+  </div>
+ </div>
+ <div class="box r" style="margin-top:12px"><b class="t">קו אדום</b>תוכנית הטיפול, הוראות, תרופות ומסירת מידע רפואי למטופל ולמשפחה: רק על ידי רופא. כל משימה שלכם נבדקת ומקבלת משוב. אין שאלה מיותרת</div>
+ <div class="src"><span>מקור: <b>ספרון המערך</b> (מה מצופה מכם) · <b>עבודה נכונה במערך</b></span><span>תיאום ציפיות</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>11</b>קבלה למחלקה</div>
+ <h2>ליד המיטה ובכתיבה</h2>
+ <div class="grid">
+  <div class="box n"><b class="t">ליד המיטה</b>
+   <ul class="b sm">
+    <li>מציגים את עצמכם לפני המטופל</li>
+    <li>זיהוי לפי שם מלא ומספר תעודת זהות</li>
+    <li>בדיקה גופנית מלאה ועדכנית במחלקה: לב, ריאות ובטן</li>
+    <li>שמים לב לנקזים, לזונדה ולקטטר: מה יוצא וכמה</li>
+    <li><b>בדיקה רקטלית רק בנוכחות רופא</b></li>
+   </ul></div>
+  <div class="box"><b class="t">בכתיבה</b>
+   <ul class="b sm">
+    <li>עיקר הקבלה: <b>המחלה הנוכחית</b>, בסדר כרונולוגי ברור</li>
+    <li>רק מה שרלוונטי. לא מעתיקים מידע שאינו תורם</li>
+    <li>תרופות קבועות עם מינונים</li>
+    <li>נוגדי קרישה: איזו תרופה <b>ומתי נלקחה המנה האחרונה</b></li>
+    <li>קוראים את מכתב המיון ואת האשפוזים הקודמים</li>
+   </ul></div>
+ </div>
+ <h3 style="margin-top:14px">תבנית הקבלה בעשר שורות</h3>
+ <div class="chips"><span><i>01</i>פרטים</span><span><i>02</i>רקע רפואי</span><span><i>03</i>נוגדי קרישה</span><span><i>04</i>רקע ניתוחי</span><span><i>05</i>אנדוסקופיות</span><span class="hi"><i>06</i>מחלה נוכחית</span><span><i>07</i>במיון</span><span><i>08</i>בדיקות עזר</span><span><i>09</i>במחלקה</span><span><i>10</i>תכנית</span></div>
+ <div class="box b" style="margin-top:12px"><b class="t">בסיום</b>עוברים על הקבלה עם הרופא האחראי. התוכנית נקבעת על ידי רופא בלבד. בשבוע 1 יש מפגש שלם על עקרונות קבלת חולים</div>
+ <div class="src"><span>מקור: <b>ספרון המערך</b> · קבלה למחלקה ותבנית הקבלה</span><span>קבלה למחלקה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>12</b>היגיינת ידיים</div>
+ <h2>חמשת הרגעים</h2>
+ <div class="grid f">
+  <div class="ill"><svg viewBox="0 0 360 250" aria-label="חמשת הרגעים להיגיינת ידיים" font-family="Heebo,sans-serif">
+   <circle cx="180" cy="132" r="66" fill="#F3F7F5" stroke="#DCE6E2" stroke-width="2"/>
+   <rect x="130" y="104" width="100" height="46" rx="12" fill="#fff" stroke="#0C2A35" stroke-width="2"/>
+   <circle cx="149" cy="127" r="10" fill="#0C2A35"/><rect x="164" y="120" width="56" height="14" rx="7" fill="#C9D6D9"/>
+   <text x="180" y="176" text-anchor="middle" font-size="13" fill="#5C6F73">המטופל וסביבתו</text>
+   <g font-weight="800" font-size="15" fill="#fff" text-anchor="middle">
+    <circle cx="56" cy="64" r="21" fill="#00967D"/><text x="56" y="69">1</text>
+    <circle cx="180" cy="26" r="21" fill="#00967D"/><text x="180" y="31">2</text>
+    <circle cx="304" cy="64" r="21" fill="#A3402E"/><text x="304" y="69">3</text>
+    <circle cx="304" cy="192" r="21" fill="#A3402E"/><text x="304" y="197">4</text>
+    <circle cx="56" cy="192" r="21" fill="#A3402E"/><text x="56" y="197">5</text>
+   </g>
+   <g font-size="11.5" fill="#16262C" text-anchor="middle" font-weight="700">
+    <text x="56" y="102">לפני מגע</text><text x="180" y="60">לפני פעולה אספטית</text><text x="304" y="102">אחרי נוזלי גוף</text><text x="304" y="230">אחרי מגע</text><text x="56" y="230">אחרי הסביבה</text>
+   </g>
+  </svg><p style="font-size:12.5px;color:var(--muted);margin:4px 0 0;text-align:center">ירוק: מגינים על המטופל · אדום: מגינים עלינו ועל הסביבה · לפי ארגון הבריאות העולמי <bdi>(WHO)</bdi></p></div>
+  <div>
+   <ol class="obj sm">
+    <li><b>לפני</b> מגע במטופל</li>
+    <li><b>לפני</b> פעולה נקייה או אספטית</li>
+    <li><b>אחרי</b> חשיפה אפשרית לנוזלי גוף</li>
+    <li><b>אחרי</b> מגע במטופל</li>
+    <li><b>אחרי</b> מגע בסביבת המטופל: מיטה, מגש, מוניטור, גם בלי לגעת בו</li>
+   </ol>
+   <div class="grid" style="margin-top:12px;gap:8px">
+    <div class="box"><b class="t"><bdi dir="ltr">20–30</bdi> שניות</b>תכשיר אלכוהולי. ברירת המחדל</div>
+    <div class="box b"><b class="t"><bdi dir="ltr">40–60</bdi> שניות</b>מים וסבון: ידיים מלוכלכות לעין או אחרי מטופל עם שלשול</div>
+   </div>
+   <ul class="b sm" style="margin-top:10px">
+    <li><b>כפפות אינן תחליף</b>: מחטאים לפני שלובשים ואחרי שמסירים</li>
+    <li>בלי טבעות, שעון וציפורניים ארוכות בזמן טיפול</li>
+    <li>חדר בבידוד: קוראים את השלט ולובשים מיגון מתאים</li>
+   </ul>
+  </div>
+ </div>
+ <div class="src"><span>מקור: <b>עבודה נכונה במערך</b> · היגיינת ידיים</span><span>מבוסס על <bdi>WHO</bdi></span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>13</b>זיהוי מטופל</div>
+ <h2>שני מזהים. כל פעם.</h2>
+ <p class="lead">שם מלא ומספר תעודת זהות, מול הצמיד ומול הרשומה הממוחשבת. לפני בדיקה, לקיחת דם, טיפול והעברה</p>
+ <div class="ill" style="max-width:520px;margin:0 auto 12px"><svg viewBox="0 0 360 96" aria-label="צמיד זיהוי" font-family="Heebo,sans-serif"><rect x="10" y="26" width="340" height="44" rx="22" fill="#F3F7F5" stroke="#0C2A35" stroke-width="2"/><rect x="95" y="31" width="170" height="34" rx="6" fill="#fff" stroke="#DCE6E2"/><text x="208" y="46" text-anchor="middle" font-weight="800" font-size="12" fill="#0C2A35">ישראל ישראלי</text><text x="208" y="60" text-anchor="middle" font-size="11" fill="#5C6F73">ת״ז 0•••••••4</text><g fill="#0C2A35"><rect x="105" y="38" width="2" height="20"/><rect x="109" y="38" width="1" height="20"/><rect x="112" y="38" width="3" height="20"/><rect x="117" y="38" width="1" height="20"/><rect x="120" y="38" width="2" height="20"/><rect x="124" y="38" width="1" height="20"/><rect x="127" y="38" width="3" height="20"/></g></svg></div>
+ <div class="vs">
+  <div class="no"><b>✕ לא כך</b>״אתה משה כהן?״</div>
+  <div class="yes"><b>✓ כך</b>״מה שמך ומה מספר תעודת הזהות שלך?״</div>
+ </div>
+ <div class="grid g3" style="margin-top:12px">
+  <div class="box"><b class="t">מבחנות</b>סורקים ומסמנים ליד המטופל, רק אחרי וידוא הזהות. אף פעם לא מראש</div>
+  <div class="box r"><b class="t">אין צמיד?</b>לא מבצעים פעולה עד שהצמיד מוסדר</div>
+  <div class="box a"><b class="t">לא לפי חדר או מיטה</b>שמות דומים באותו אגף: בודקים פעמיים ומעדכנים את הצוות</div>
+ </div>
+ <div class="src"><span>מקור: <b>עבודה נכונה במערך</b> · זיהוי מטופל</span><span>זיהוי מטופל</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>14</b>בטיחות ודיווח</div>
+ <h2>משאירים בטוח, מדווחים מסודר</h2>
+ <div class="grid">
+  <div>
+   <ul class="b">
+    <li>🛏️ <b>מניעת נפילות:</b> דפנות סגורות לפי ההנחיה, מיטה נמוכה, בלמים נעולים, פעמון בהישג יד</li>
+    <li>🔁 <b>בסוף כל פעולה</b> מחזירים את הדפנות, הפעמון והסביבה למצב בטוח</li>
+    <li>📣 <b>שינוי במצב המטופל:</b> מדווחים מיד לרופא האחראי ולאחות</li>
+    <li>✋ <b>אין שאלה מיותרת:</b> כשלא בטוחים עוצרים ושואלים. זו לא חולשה, זו בטיחות</li>
+   </ul>
+  </div>
+  <div>
+   <h3>מדווחים <span class="nw">ב-<bdi>SBAR</bdi></span></h3>
+   <div class="sbar">
+    <div><span>S</span><div><b>מצב:</b> מה קורה עכשיו ולמה אני פונה</div></div>
+    <div><span>B</span><div><b>רקע:</b> אבחנה, ניתוח, תרופות ואלרגיות רלוונטיות</div></div>
+    <div><span>A</span><div><b>הערכה:</b> סימנים חיוניים, בדיקה ומה אני חושב/ת</div></div>
+    <div><span>R</span><div><b>בקשה:</b> מה אני צריך/ה ועד מתי</div></div>
+   </div>
+   <div class="quote">״מטופל בן 68, יום שני אחרי כריתת מעי. חום <bdi dir="ltr">38.6</bdi> ודופק 112. אני חושש/ת לדליפה. אשמח שתבוא/י לראות אותו עכשיו.״</div>
+  </div>
+ </div>
+ <div class="src"><span>מקור: <b>עבודה נכונה במערך</b> · בטיחות המטופל</span><span>דוגמה בדויה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>15</b>חדים וחשיפה לדם</div>
+ <h2>מחט אחת, פעם אחת</h2>
+ <div class="grid">
+  <div style="display:grid;gap:10px;align-content:start">
+   <div class="box r"><b class="t">✕ לא מחזירים מכסה</b>משליכים מיד למכל חדים שנמצא ליד המטופל</div>
+   <div class="box a"><b class="t">מכל החדים</b>לא ממלאים מעבר לקו המילוי</div>
+   <div class="box n"><b class="t">עד שתי דקירות</b>אחרי שני ניסיונות שלא הצליחו קוראים לעזרה. זה טוב למטופל ולכם</div>
+  </div>
+  <div>
+   <h3>נדקרתם או הותזתם?</h3>
+   <ol class="steps red">
+    <li><b>שוטפים מיד</b> במים וסבון. ריריות ועיניים במים זורמים</li>
+    <li><b>מדווחים מיד</b> לאחראי המשמרת</li>
+    <li><b>פונים מיד לטיפול</b> לפי נוהל בית החולים לחשיפה לדם</li>
+   </ol>
+   <div class="box r" style="margin-top:12px"><b class="t">הזמן קריטי</b>טיפול מונע יעיל בעיקר בשעות הראשונות. לא מחכים לסוף היום</div>
+   <div class="ill" style="margin-top:12px;background:var(--soft);border-radius:14px;padding:8px"><svg viewBox="0 0 320 200" aria-label="מכל חדים עם קו מילוי" font-family="Heebo,sans-serif">
+    <rect x="96" y="58" width="128" height="126" rx="14" fill="#F2C94C" stroke="#8A5A14" stroke-width="2.5"/>
+    <rect x="86" y="40" width="148" height="24" rx="8" fill="#A3402E"/>
+    <rect x="140" y="47" width="40" height="9" rx="4" fill="#5A1D13"/>
+    <line x1="88" y1="92" x2="232" y2="92" stroke="#A3402E" stroke-width="3" stroke-dasharray="8 6"/>
+    <text x="276" y="97" text-anchor="middle" font-size="13" font-weight="800" fill="#A3402E">קו המילוי</text>
+    <rect x="104" y="130" width="112" height="46" rx="8" fill="#E9B83A" opacity=".7"/>
+    <g transform="translate(-6,30) rotate(35 160 20)"><rect x="132" y="-6" width="56" height="16" rx="3" fill="#fff" stroke="#0C2A35" stroke-width="2"/><rect x="118" y="-2" width="16" height="8" fill="#0C2A35"/><line x1="188" y1="2" x2="214" y2="2" stroke="#5C6F73" stroke-width="2"/></g>
+    <text x="160" y="125" text-anchor="middle" font-size="15" font-weight="900" fill="#5A3A0A">חדים</text>
+    <text x="44" y="120" text-anchor="middle" font-size="12.5" font-weight="800" fill="#0A6B5A">ליד המטופל</text>
+    <text x="44" y="138" text-anchor="middle" font-size="12.5" fill="#0A6B5A">בלי מכסה</text>
+   </svg></div>
+  </div>
+ </div>
+ <div class="src"><span>מקור: <b>עבודה נכונה במערך</b> · חדים וחשיפה לדם</span><span>חדים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>16</b>תקשורת וצוות</div>
+ <h2>״שלום, אני ___, סטודנט/ית לרפואה״</h2>
+ <div class="grid">
+  <div>
+   <h3>מול המטופל</h3>
+   <ul class="b sm">
+    <li>דופקים, נכנסים ומציגים את עצמכם בשם ובתפקיד. תג השם גלוי</li>
+    <li>מסבירים מה עומדים לעשות ומבקשים הסכמה לפני כל בדיקה</li>
+    <li><b>פרטיות:</b> וילון סגור בבדיקה. לא מדברים על מטופלים במסדרון ובמעלית</li>
+    <li>מידע רפואי ותוצאות נמסרים למטופל ולמשפחה <b>רק על ידי רופא</b></li>
+   </ul>
+  </div>
+  <div>
+   <h3>עם הצוות הסיעודי</h3>
+   <div class="apl">
+    <div><i>👋</i><span><b>היכרות:</b> מכירים את האחיות האחראיות באגף כבר ביום הראשון</span></div>
+    <div><i>🔔</i><span><b>עדכון:</b> מעדכנים את האחות על כל דבר שעשיתם במטופל שלה</span></div>
+    <div><i>🧹</i><span><b>סדר:</b> חדר הטיפולים, העגלות והמכשירים חוזרים למקומם</span></div>
+    <div><i>🤝</i><span><b>הדדיות:</b> שיתוף פעולה, כבוד ותזכורות הדדיות</span></div>
+   </div>
+  </div>
+ </div>
+ <div class="src"><span>מקור: <b>עבודה נכונה במערך</b> · הצגה עצמית ועבודה עם הצוות הסיעודי</span><span>תקשורת וצוות</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>17</b>האפליקציה בכיס</div>
+ <h2>כל הסבב בטלפון אחד</h2>
+ <div class="phw">
+  <div class="phone" aria-label="המסך הראשי של האפליקציה"><div class="scr">
+   <div class="top"><small>Scrub In · שבוע 1 · יום ב׳</small><b>בוקר טוב 👋</b></div>
+   <div class="bd">
+    <div class="cd now"><h5>עכשיו <em>חדר ניתוח</em></h5><div style="font-weight:800;color:var(--navy)">הכרת חדר הניתוח</div><div style="color:var(--muted)">להגיע עם מדי חדר ניתוח</div></div>
+    <div class="cd"><h5>הלו״ז של היום</h5>
+     <div class="row"><span>ביקור · מרפאה · חדר ניתוח</span><bdi dir="ltr">08:00</bdi></div>
+     <div class="row"><span>הכרת חדר הניתוח</span><bdi dir="ltr">12:30</bdi></div>
+     <div class="row"><span>דיון מקרים</span><bdi dir="ltr">14:00</bdi></div>
+     <div class="row"><span>סדנה</span><bdi dir="ltr">15:00</bdi></div></div>
+    <div class="cd"><h5>איך היה היום?</h5><div class="stars">★★★★☆</div><span class="btn">שליחת משוב</span></div>
+   </div>
+   <div class="tabs"><span class="on"><i>☀️</i>היום</span><span><i>🗓️</i>לו״ז</span><span><i>💬</i>משוב</span><span><i>📒</i>פנקס</span><span><i>📞</i>קשר</span></div>
+  </div></div>
+  <div>
+   <p class="lead" style="margin-bottom:10px">קישור אישי לכל סטודנט/ית. פותחים בטלפון ומוסיפים למסך הבית</p>
+   <div class="apl">
+    <div><i>☀️</i><span><b>היום:</b> מה עכשיו ומה הבא, הלו״ז של היום והנוכחות שלכם</span></div>
+    <div><i>🗓️</i><span><b>לו״ז:</b> כל ששת השבועות, יום אחרי יום. ליד כל מפגש: חומר למפגש 📖 ודירוג ⭐</span></div>
+    <div><i>💬</i><span><b>משוב:</b> משוב יומי קצר ומשוב שבועי. רק אחראי הסבב רואים אותו</span></div>
+    <div><i>📒</i><span><b>פנקס:</b> ניתוחים ופרוצדורות: צפייה, עזרה או ביצוע בהדרכה. בלי פרטי מטופלים</span></div>
+    <div><i>📞</i><span><b>קשר:</b> הצוות, הודעות עם תשובות, מרפאות וישיבות</span></div>
+   </div>
+  </div>
+ </div>
+ <div class="src"><span>מקור: <b>תוכנית הסבב</b> · האפליקציה לסטודנט</span><span>המסך להמחשה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>18</b>למי פונים</div>
+ <h2>שאלה? יש כתובת</h2>
+ <div class="ppl">
+  <div style="--c:#00967D"><small>הכתובת הראשונה</small><b>אחראי הסטודנטים</b>לכל נושא בסבב: לו״ז, נוכחות, בעיה אישית או מקצועית. דרך לשונית "קשר" באפליקציה</div>
+  <div style="--c:#2F6FA8"><small>על מטופל</small><b>הרופא האחראי</b>שאלה על מטופל, תוצאה או שינוי במצבו: לרופא האחראי או למתמחה, מיד</div>
+  <div style="--c:#7A5BD6"><small>במפגש</small><b>המלמד/ת</b>שאלות על החומר: במפגש עצמו או בביקור המודרך</div>
+  <div style="--c:#C9893F"><small>באגף</small><b>האחות האחראית</b>סדר העבודה באגף והנהלים המחייבים של בית החולים</div>
+  <div style="--c:#0C2A35"><small>הסבב כולו</small><b>צוות ניהול הסבב</b>פותח את הסבב, מסכם כל חמישי ומקיים את שיחת הסיכום בשבוע 6</div>
+  <div style="--c:#A3402E"><small>משהו לא בסדר?</small><b>משוב באפליקציה</b>המשוב היומי והשבועי מגיע לאחראי הסבב בלבד. כתבו בכנות, זה משנה את הסבב</div>
+ </div>
+ <div class="box b" style="margin-top:12px"><b class="t">הודעה באפליקציה</b>כתבתם בלשונית "קשר"? התשובה חוזרת לאותו מקום</div>
+ <div class="src"><span>מקור: <b>תוכנית הסבב</b> · <b>ספרון המערך</b> (אנשי הקשר)</span><span>למי פונים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>19</b>לסיכום</div>
+ <h2>כללי הזהב של המערך</h2>
+ <ol class="gold">
+  <li>כל מפגש וישיבה מתחילים בזמן</li>
+  <li>זיהוי מטופל, תמיד: שם מלא ותעודת זהות</li>
+  <li>עד שתי דקירות. אחר כך קוראים לעזרה</li>
+  <li>תוכנית הטיפול נקבעת על ידי רופא</li>
+  <li>בקבלה: המחלה הנוכחית קודם</li>
+  <li>אין שאלה מיותרת</li>
+ </ol>
+ <div class="box n" style="margin-top:14px"><b class="t">לשבוע הראשון</b>
+  <ul class="b sm">
+   <li>פותחים את הקישור האישי לאפליקציה ומוסיפים למסך הבית</li>
+   <li>מביאים מדי חדר ניתוח ליום של הכרת חדר הניתוח</li>
+   <li>עוברים על החומר של כל מפגש לפני שמגיעים</li>
+   <li>מכירים את המטופלים ואת האחיות באגף שלכם</li>
+   <li>שולחים משוב יומי בסוף כל יום</li>
+  </ul></div>
+ <p style="font-size:12.5px;color:var(--muted);margin:12px 0 0">המצגת "עבודה נכונה במערך" היא מסמך הכוונה של המערך ולא נוהל רשמי. הנהלים המחייבים של בית החולים זמינים אצל האחות האחראית</p>
+ <div class="src"><span>מקור: <b>עבודה נכונה במערך</b> · <b>ספרון המערך</b> · <b>תוכנית הסבב</b></span><span>ציורי רקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span></div>
+</div></section>
+
+</main>
+<div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
+<script>
+document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz').forEach(function(z){z.addEventListener('click',function(){w.querySelectorAll('.hz').forEach(function(x){x.classList.toggle('on',x===z)});w.querySelectorAll('.hzi').forEach(function(i){i.hidden=i.dataset.hzi!==z.dataset.hz;i.style.setProperty('--c',z.style.getPropertyValue('--c'))});var h=w.querySelector('.hint');if(h)h.hidden=true;});});});
+</script>
+<script>
+(function () {
+  var deck = document.getElementById('deck'), S = [].slice.call(deck.children), dots = document.getElementById('dots'), n = S.length;
+  S.forEach(function (_, k) { var i = document.createElement('i'); i.onclick = function () { go(k); }; dots.appendChild(i); });
+  function idx() { return Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }
+  function go(k) { k = Math.max(0, Math.min(n - 1, k)); S[k].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' }); }
+  function sync() { var k = idx(); [].forEach.call(dots.children, function (d, j) { d.className = j === k ? 'on' : ''; }); document.getElementById('count').textContent = (k + 1) + '/' + n; document.getElementById('prev').disabled = k === 0; document.getElementById('next').disabled = k === n - 1; }
+  deck.addEventListener('scroll', function () { clearTimeout(sync.t); sync.t = setTimeout(sync, 60); }, { passive: true });
+  document.getElementById('next').onclick = function () { go(idx() + 1); };
+  document.getElementById('prev').onclick = function () { go(idx() - 1); };
+  addEventListener('keydown', function (e) { if (e.key === 'ArrowLeft' || e.key === ' ') go(idx() + 1); if (e.key === 'ArrowRight') go(idx() - 1); });
+  sync();
+})();
+</script>
+</body>
+</html>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>מחלות הקרוטיס · Scrub In</title>
+<title>מחלות <span class="nw">ה-<bdi>carotid</bdi></span> · Scrub In</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="../emblem.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Frank+Ruhl+Libre:wght@700;900&display=swap" rel="stylesheet">
@@ -86,6 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -97,6 +98,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -114,6 +116,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -124,8 +129,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s cover"><div class="card">
  <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
  <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 5</div>
- <h1>מחלות הקרוטיס</h1>
- <p class="lead">היצרות של עורק התרדמה: מי עם תסמינים ומי בלי, דופלקס, החלטה על התערבות, אנדארטרקטומיה וסטנט</p>
+ <h1>מחלות <span class="nw">ה-<bdi>carotid</bdi></span></h1>
+ <p class="lead">היצרות של <span class="nw">ה-<bdi>carotid</bdi></span>: מי עם תסמינים ומי בלי, דופלקס, החלטה על התערבות, אנדארטרקטומיה וסטנט</p>
  <div class="cvsrc" data-ch="101" data-note=""><small>מבוסס על</small><b><bdi dir="ltr">Sabiston Textbook of Surgery</bdi> · מהדורה 22</b><div class="cvch"><span>פרק <bdi dir="ltr">101</bdi></span></div></div>
  <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
 </div></section>
@@ -134,9 +139,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>1</b>מטרות הלמידה</div>
  <h2>בסוף המפגש תדעו</h2>
  <ol class="obj">
-  <li>להבחין בין היצרות קרוטיס עם תסמינים לבלי תסמינים ולזהות אמאורוזיס פוגקס, <bdi>TIA</bdi> ושבץ</li>
+  <li>להבחין בין היצרות <bdi>carotid</bdi> עם תסמינים לבלי תסמינים ולזהות אמאורוזיס פוגקס, <bdi>TIA</bdi> ושבץ</li>
   <li>להאזין לאוושה בצוואר ולהבין את מגבלות הבדיקה</li>
-  <li>לפרש דופלקס של הקרוטיס ולהכיר את מקומם של <bdi>CTA</bdi>, <bdi>MRA</bdi> ואנגיוגרפיה</li>
+  <li>לפרש דופלקס של <span class="nw">ה-<bdi>carotid</bdi></span> ולהכיר את מקומם של <bdi>CTA</bdi>, <bdi>MRA</bdi> ואנגיוגרפיה</li>
   <li>לדעת מתי מטפלים בתרופות בלבד ומתי מוסיפים התערבות, לפי אחוז ההיצרות והתסמינים</li>
   <li>להכיר את שלבי האנדארטרקטומיה, את חלופות הסטנט ואת הסיבוכים אחרי הניתוח</li>
  </ol>
@@ -145,21 +150,21 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>2</b>רקע</div>
- <h2>למה הקרוטיס חשוב?</h2>
+ <h2>למה <span class="nw">ה-<bdi>carotid</bdi></span> חשוב?</h2>
  <div class="num">
-  <div><b dir="ltr">1.5%</b><span>מהאוכלוסייה בעולם עם מחלה חוסמת בקרוטיס</span></div>
+  <div><b dir="ltr">1.5%</b><span>מהאוכלוסייה בעולם עם מחלה חוסמת <span class="nw">ב-<bdi>carotid</bdi></span></span></div>
   <div><b dir="ltr">5</b><span>שבץ: סיבת המוות החמישית בארה״ב</span></div>
-  <div><b dir="ltr">~100,000</b><span>התערבויות בקרוטיס בשנה בארה״ב</span></div>
+  <div><b dir="ltr">~100,000</b><span>התערבויות <span class="nw">ב-<bdi>carotid</bdi></span> בשנה בארה״ב</span></div>
   <div><b dir="ltr">6</b><span>חודשים: חלון הזמן שבו היצרות נחשבת "עם תסמינים"</span></div>
  </div>
  <div class="grid">
   <ul class="b">
    <li>טרשת עורקים מתחילה כבר בעשור השלישי לחיים</li>
-   <li><b>ההתפצלות של הקרוטיס</b> חשופה לזרימה סוערת. לכן נוצר בה רובד</li>
+   <li><b>ההתפצלות של <span class="nw">ה-<bdi>carotid</bdi></span></b> חשופה לזרימה סוערת. לכן נוצר בה רובד</li>
    <li>הרובד מצר את העורק, אבל הסכנה העיקרית היא <b>קריש שנוצר עליו ומתסחף</b> למוח או לעין</li>
    <li>גורמי סיכון: עישון, יתר לחץ דם, דיסליפידמיה וסוכרת</li>
   </ul>
-  <figure><img style="max-height:36vh" src="img/carotid-plaque-specimen.jpg" alt="רובד טרשתי מאנדארטרקטומיה"><figcaption>רובד שהוצא באנדארטרקטומיה. רואים את ההתפצלות: הקרוטיס המשותף, הפנימי והחיצוני · <bdi>Ed Uthman, MD</bdi>, CC BY 2.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img style="max-height:36vh" src="img/carotid-plaque-specimen.jpg" alt="רובד טרשתי מאנדארטרקטומיה"><figcaption>רובד שהוצא באנדארטרקטומיה. רואים את ההתפצלות: <span class="nw">ה-<bdi>common, internal & external carotid</bdi></span> · <bdi>Ed Uthman, MD</bdi>, CC BY 2.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 101 עמ׳ <bdi dir="ltr">1603</bdi></span><span>רקע</span></div>
 </div></section>
@@ -167,7 +172,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>3</b>אנטומיה · אינטראקטיבי</div>
  <h2>מה רואים בחתך של אנדארטרקטומיה</h2>
- <div class="hotw"><div class="hoti" style="max-width:360px;width:100%;justify-self:center"><img src="img/carotid-sobotta-neck.jpg" alt="הצוואר במבט צדי אחרי הסרת השריר הסטרנוקליידומסטואיד והווריד הצווארי"><svg viewBox="0 0 700 950" preserveAspectRatio="none" style="--lw:11;--bf:23px">
+ <div class="hotw"><div class="hoti" style="max-width:360px;width:100%;justify-self:center"><img src="img/carotid-sobotta-neck.jpg" alt="הצוואר במבט צדי אחרי הסרת ה-sternocleidomastoid וה-internal jugular vein"><svg viewBox="0 0 700 950" preserveAspectRatio="none" style="--lw:11;--bf:23px">
    <path class="hz" data-hz="cca" d="M220,345 C224.7,335.5 233.7,343 240,343 C246.3,343 255.3,335.5 258,345 C260.7,354.5 257,374.2 256,400 C255,425.8 253.8,466.7 252,500 C250.2,533.3 247.5,566.7 245,600 C242.5,633.3 239.8,666.7 237,700 C234.2,733.3 230.3,769.7 228,800 C225.7,830.3 226.8,867.7 223,882 C219.2,896.3 210.8,886 205,886 C199.2,886 190.5,896.3 188,882 C185.5,867.7 188.8,830.3 190,800 C191.2,769.7 193.3,733.3 195,700 C196.7,666.7 198.3,633.3 200,600 C201.7,566.7 203,533.3 205,500 C207,466.7 209.5,425.8 212,400 C214.5,374.2 215.3,354.5 220,345 Z" style="--c:#D63C32"/>
    <path class="hz" data-hz="bulb" d="M224,293 C227.5,287.8 234.7,288.7 240,287 C245.3,285.3 250.7,283.5 256,283 C261.3,282.5 268.7,281.2 272,284 C275.3,286.8 276.7,293.7 276,300 C275.3,306.3 271,314.5 268,322 C265,329.5 262.7,341.5 258,345 C253.3,348.5 246.3,343 240,343 C233.7,343 223.5,349.2 220,345 C216.5,340.8 218.3,326.7 219,318 C219.7,309.3 220.5,298.2 224,293 Z" style="--c:#7A5BD6"/>
    <path class="hz ln" data-hz="vag" d="M270,325 C269,337.5 266.3,370.8 264,400 C261.7,429.2 258.7,466.7 256,500 C253.3,533.3 250.7,566.7 248,600 C245.3,633.3 243,666.7 240,700 C237,733.3 232.5,772.2 230,800 C227.5,827.8 225.8,855.8 225,867" style="--c:#2EAA5A"/>
@@ -178,10 +183,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <g class="hzb" style="--c:#F0961E"><circle cx="302" cy="246" r="19.6"/><text x="302" y="246">4</text></g>
   </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על מספר בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="cca" hidden><b>1 · הקרוטיס המשותף</b><p>בחלק התחתון של החתך, לאורך הגבול הקדמי של הסטרנוקליידומסטואיד. כאן קל למצוא אותו ולשלוט עליו בלולאה. בציור הווריד הצווארי הפנימי הוסר (הגדמים הכחולים): בניתוח מזיזים אותו לטרלית.</p></div>
-  <div class="hzi" data-hzi="bulb" hidden><b>2 · ההתפצלות והבולבוס</b><p>כאן הזרימה סוערת וכאן נוצר הרובד. הווריד הפציאלי מסמן בדרך כלל את הגובה. לא ממשמשים את הבולבוס: תסחיף מהרובד וברדיקרדיה מהברורצפטורים (אפשר להזריק מעט לידוקאין 1%). הקרוטיס החיצוני פונה לכיוון הפנים. הפנימי ממשיך למעלה ואחורה לבסיס הגולגולת.</p></div>
-  <div class="hzi" data-hzi="vag" hidden><b>3 · עצב הוואגוס</b><p>בדרך כלל מאחורי הקרוטיס ולטרלית לו, לפעמים על פניו הקדמיים. נזהרים בניתוח ובהצבת המלחציים. לא להתבלבל עם ענפי ה-<bdi>ansa cervicalis</bdi> הדקים שעל העורק, שמותר לקשור. שימו לב לעצב לרינגאלי שאינו חוזר, שיוצא מהוואגוס בצוואר.</p></div>
-  <div class="hzi" data-hzi="xii" hidden><b>4 · העצב ההיפוגלוסלי</b><p>חוצה את הקרוטיס הפנימי והחיצוני בחלק העליון של החתך. מזהים אותו ושומרים עליו. בחלק הזה של הניתוח מפשק קבוע עוזר לחשיפה.</p></div>
+  <div class="hzi" data-hzi="cca" hidden><b>1 · <bdi>common carotid artery</bdi></b><p>בחלק התחתון של החתך, לאורך הגבול הקדמי של <span class="nw">ה-<bdi>sternocleidomastoid</bdi></span>. כאן קל למצוא אותו ולשלוט עליו בלולאה. בציור <span class="nw">ה-<bdi>internal jugular vein</bdi></span> הוסר (הגדמים הכחולים): בניתוח מזיזים אותו לטרלית.</p></div>
+  <div class="hzi" data-hzi="bulb" hidden><b>2 · ההתפצלות <span class="nw">וה-<bdi>carotid bulb</bdi></span></b><p>כאן הזרימה סוערת וכאן נוצר הרובד. <span class="nw">ה-<bdi>facial vein</bdi></span> מסמן בדרך כלל את הגובה. לא ממשמשים את <span class="nw">ה-<bdi>bulb</bdi></span>: תסחיף מהרובד וברדיקרדיה מהברורצפטורים (אפשר להזריק מעט לידוקאין 1%). <span class="nw">ה-<bdi>external carotid</bdi></span> פונה לכיוון הפנים. <span class="nw">ה-<bdi>internal carotid</bdi></span> ממשיך למעלה ואחורה <span class="nw">ל-<bdi>skull base</bdi></span>.</p></div>
+  <div class="hzi" data-hzi="vag" hidden><b>3 · <bdi>vagus nerve</bdi></b><p>בדרך כלל מאחורי <span class="nw">ה-<bdi>carotid</bdi></span> ולטרלית לו, לפעמים על פניו הקדמיים. נזהרים בניתוח ובהצבת המלחציים. לא להתבלבל עם ענפי <span class="nw">ה-<bdi>ansa cervicalis</bdi></span> הדקים שעל העורק, שמותר לקשור. שימו לב <span class="nw">ל-<bdi>non-recurrent laryngeal nerve</bdi></span>, שיוצא <span class="nw">מה-<bdi>vagus</bdi></span> בצוואר.</p></div>
+  <div class="hzi" data-hzi="xii" hidden><b>4 · <bdi>hypoglossal nerve</bdi></b><p>חוצה את <span class="nw">ה-<bdi>internal & external carotid</bdi></span> בחלק העליון של החתך. מזהים אותו ושומרים עליו. בחלק הזה של הניתוח מפשק קבוע עוזר לחשיפה.</p></div>
  </div></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 101 עמ׳ <bdi dir="ltr">1603, 1608</bdi></span><span>הצוואר מהצד · <bdi>Sobotta</bdi>, 1909, איור 539 (נחלת הכלל), חתוך · אזורים: Scrub In</span></div>
 </div></section>
@@ -192,12 +197,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div>
    <div class="box r"><b class="t">היצרות עם תסמינים</b>אירוע ב-<b>6 החודשים האחרונים</b> בצד של ההיצרות:
-    <ul class="b sm" style="margin-top:6px"><li><b>אמאורוזיס פוגקס:</b> עיוורון חולף בעין אחת</li><li><b><bdi>TIA</bdi> קורטיקלי:</b> חסר שחולף תוך 24 שעות</li><li><b>שבץ:</b> חסר שנמשך יותר, או שרואים אוטם ב-<bdi>MRI</bdi></li></ul></div>
+    <ul class="b sm" style="margin-top:6px"><li><b>אמאורוזיס פוגקס:</b> עיוורון חולף בעין אחת</li><li><b><bdi>TIA</bdi> קורטיקלי:</b> חסר שחולף תוך 24 שעות</li><li><b>שבץ:</b> חסר שנמשך יותר, או שרואים אוטם <span class="nw">ב-<bdi>MRI</bdi></span></li></ul></div>
    <div class="box a" style="margin-top:10px"><b class="t">לא תמיד מגיעים למיון</b>הפרעה בראייה יכולה להגיע לרופא המשפחה או לרופא העיניים. צריך חשד קליני גבוה</div>
   </div>
   <div>
    <div class="box n"><b class="t">היצרות בלי תסמינים</b>כוח המשימה האמריקאי <b>לא ממליץ על סקר</b> באוכלוסייה. רוב ההיצרויות האלה מתגלות במקרה, בבדיקה שנעשתה מסיבה אחרת. לפעמים בודקים בגלל אוושה, מחלה וסקולרית במקומות אחרים או ריבוי גורמי סיכון</div>
-   <div class="box" style="margin-top:10px"><b class="t">באנמנזה</b>אירועים קודמים בעין, בקורטקס או באזור הוורטברו-בזילרי. <b>פרפור פרוזדורים</b>: סיבה אחרת אפשרית ל-<bdi>TIA</bdi> ולשבץ</div>
+   <div class="box" style="margin-top:10px"><b class="t">באנמנזה</b>אירועים קודמים בעין, בקורטקס או באזור <span class="nw">ה-<bdi>vertebrobasilar</bdi></span>. <b>פרפור פרוזדורים</b>: סיבה אחרת אפשרית <span class="nw">ל-<bdi>TIA</bdi></span> ולשבץ</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 101 עמ׳ <bdi dir="ltr">1603–1604</bdi></span><span>קליניקה</span></div>
@@ -209,15 +214,15 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b">
-    <li><b>אוושה</b> (<bdi>bruit</bdi>) היא הקול של זרימה סוערת בעורק צר. שומעים אותה בסטטוסקופ מעל הקרוטיס</li>
+    <li><b>אוושה</b> (<bdi>bruit</bdi>) היא הקול של זרימה סוערת בעורק צר. שומעים אותה בסטטוסקופ מעל <span class="nw">ה-<bdi>carotid</bdi></span></li>
     <li><b>שלילית כוזבת:</b> בהיצרות קריטית עוברת כל כך מעט זרימה שאין סערה ואין אוושה</li>
-    <li><b>חיובית כוזבת:</b> אוושה יכולה לבוא מהיצרות בקרוטיס <b>החיצוני</b>, שאינה מסוכנת באותה מידה</li>
+    <li><b>חיובית כוזבת:</b> אוושה יכולה לבוא מהיצרות ב-<b><bdi>external carotid</bdi></b>, שאינה מסוכנת באותה מידה</li>
     <li>לכן תמיד משלבים את הבדיקה עם הדמיה</li>
     <li>בכל מטופל עם מחלה וסקולרית מקשיבים גם לבטן ולמפשעה. ממששים את כל הדפקים</li>
    </ul>
    <div class="box b" style="margin-top:12px"><b class="t">במחלקה השבוע</b>האזינו לצוואר של שני מטופלים עם מחלה וסקולרית, בשני הצדדים. השוו למה שהדופלקס הראה. אם יש מטופל אחרי אנדארטרקטומיה: בדקו את הצלקת ואת המצב הנוירולוגי</div>
   </div>
-  <figure><img src="img/carotid-pulse-neck.jpg" alt="מישוש הדופק בקרוטיס בצוואר"><figcaption>הקרוטיס בצוואר: כאן ממששים את הדופק. באותו מקום מניחים את הסטטוסקופ כדי לחפש אוושה · <bdi>BruceBlaus</bdi>, CC BY-SA 4.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/carotid-pulse-neck.jpg" alt="מישוש הדופק ב-carotid בצוואר"><figcaption><span class="nw">ה-<bdi>carotid</bdi></span> בצוואר: כאן ממששים את הדופק. באותו מקום מניחים את הסטטוסקופ כדי לחפש אוושה · <bdi>BruceBlaus</bdi>, CC BY-SA 4.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 101 עמ׳ <bdi dir="ltr">1604</bdi> · פרק 103 עמ׳ <bdi dir="ltr">1647</bdi></span><span>בדיקה</span></div>
 </div></section>
@@ -227,7 +232,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>דופלקס קודם</h2>
  <div class="grid">
   <div>
-   <h3>קריטריונים בדופלקס לקרוטיס הפנימי</h3>
+   <h3>קריטריונים בדופלקס <span class="nw">ל-<bdi>internal carotid</bdi></span></h3>
    <div class="flow sm">
     <div><b>תקין</b><span>מהירות שיא מתחת ל-125 ס״מ/שנ׳, בלי רובד</span></div>
     <div><b dir="ltr">&lt;50%</b><span>מתחת ל-125 ס״מ/שנ׳, יש רובד</span></div>
@@ -243,7 +248,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <div><b><bdi>MRA</bdi></b><span>בלי קרינה. מראה את מבנה הרובד ודימום בתוכו. יקר, לא לסקר</span></div>
     <div><b>אנגיוגרפיה</b><span>הייתה תקן הזהב. סיבוכים נוירולוגיים ב-2.6%. היום רק כשהבדיקות האחרות סותרות</span></div>
    </div>
-   <figure class="sm" style="margin-top:10px"><img src="img/carotid-us-stenosis.jpg" alt="דופלקס של היצרות בקרוטיס הפנימי"><figcaption>אולטרסאונד בחתך רוחבי של הקרוטיס הפנימי הימני: רובד (החץ) שגורם להיצרות של כ-70% · <bdi>James Heilman, MD</bdi>, CC BY-SA 4.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+   <figure class="sm" style="margin-top:10px"><img src="img/carotid-us-stenosis.jpg" alt="דופלקס של היצרות ב-internal carotid"><figcaption>אולטרסאונד בחתך רוחבי של <span class="nw">ה-<bdi>right internal carotid</bdi></span>: רובד (החץ) שגורם להיצרות של כ-70% · <bdi>James Heilman, MD</bdi>, CC BY-SA 4.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 101 עמ׳ <bdi dir="ltr">1604–1606</bdi> (טבלה <bdi>101.1</bdi>)</span><span>הדמיה</span></div>
@@ -258,7 +263,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <div><b>עם תסמינים, מעל 70%</b><span><bdi>NASCET</bdi>: שבץ בצד ההיצרות תוך שנתיים <b>26% עם אספירין לעומת 9% אחרי ניתוח</b></span></div>
     <div><b>עם תסמינים, <bdi dir="ltr">50–69%</bdi></b><span>תועלת קטנה יותר: 22.2% לעומת 15.7% ב-5 שנים</span></div>
     <div><b>עם תסמינים, מתחת ל-50%</b><span>הניתוח לא מוריד אירועים. תרופות בלבד</span></div>
-    <div><b>בלי תסמינים, מעל 70%</b><span>ניתוח עם טיפול תרופתי מרבי (רמת ראיות <bdi>1B</bdi>). <bdi>ACAS</bdi> ו-<bdi>ACST</bdi>: שבץ או מוות ב-5 שנים 4.1% לעומת 10%</span></div>
+    <div><b>בלי תסמינים, מעל 70%</b><span>ניתוח עם טיפול תרופתי מרבי (רמת ראיות <bdi>1B</bdi>). <bdi>ACAS</bdi> <span class="nw">ו-<bdi>ACST</bdi></span>: שבץ או מוות ב-5 שנים 4.1% לעומת 10%</span></div>
    </div>
   </div>
   <div>
@@ -271,20 +276,20 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>8</b>הניתוח</div>
- <h2>אנדארטרקטומיה של הקרוטיס (<bdi>CEA</bdi>)</h2>
+ <h2>אנדארטרקטומיה של <span class="nw">ה-<bdi>carotid</bdi></span> (<bdi>CEA</bdi>)</h2>
  <div class="grid f">
   <div>
    <ol class="obj sm">
     <li><b>תנוחה:</b> שכיבה, כרית מתחת לכתפיים, ראש מסובב לצד השני. קו עורקי לניטור לחץ הדם</li>
-    <li><b>חתך</b> לאורך הגבול הקדמי של השריר הסטרנוקליידומסטואיד. דרך הפלטיזמה אל נדן הקרוטיס</li>
-    <li>הווריד הצווארי הפנימי לטרלית. <b>הווריד הפציאלי</b> מסמן בדרך כלל את גובה ההתפצלות</li>
-    <li>שומרים על <b>עצב הוואגוס</b> (מאחור ולטרלית) ועל <b>העצב ההיפוגלוסלי</b> (למעלה). לא ממשמשים את הבולבוס: תסחיף וברדיקרדיה</li>
-    <li>הפרין ואז מלחציים: <b>קודם על הקרוטיס הפנימי</b>. פותחים לאורך, מוציאים את הרובד ותופרים <b>טלאי</b>. חלופה: אנדארטרקטומיה בהיפוך (<bdi>eversion</bdi>)</li>
+    <li><b>חתך</b> לאורך הגבול הקדמי של <span class="nw">ה-<bdi>sternocleidomastoid</bdi></span>. דרך <span class="nw">ה-<bdi>platysma</bdi></span> אל <span class="nw">ה-<bdi>carotid sheath</bdi></span></li>
+    <li><span class="nw">ה-<bdi>internal jugular vein</bdi></span> לטרלית. <b><span class="nw">ה-<bdi>facial vein</bdi></span></b> מסמן בדרך כלל את גובה ההתפצלות</li>
+    <li>שומרים על <b><span class="nw">ה-<bdi>vagus</bdi></span></b> (מאחור ולטרלית) ועל <b><span class="nw">ה-<bdi>hypoglossal nerve</bdi></span></b> (למעלה). לא ממשמשים את <span class="nw">ה-<bdi>bulb</bdi></span>: תסחיף וברדיקרדיה</li>
+    <li>הפרין ואז מלחציים: <b>קודם על <span class="nw">ה-<bdi>internal carotid</bdi></span></b>. פותחים לאורך, מוציאים את הרובד ותופרים <b>טלאי</b>. חלופה: אנדארטרקטומיה בהיפוך (<bdi>eversion</bdi>)</li>
     <li><b>הגנה על המוח:</b> שאנט, <bdi>EEG</bdi>, מדידת לחץ בגדם, או ניתוח בהרדמה מקומית עם מטופל ער</li>
     <li>בדיקת סיום בדופלקס. מעירים את המטופל בחדר ניתוח ובודקים מצב נוירולוגי</li>
    </ol>
   </div>
-  <figure><img src="img/carotid-cea-blausen.jpg" alt="איור של אנדארטרקטומיה של הקרוטיס"><figcaption>אנדארטרקטומיה של הקרוטיס: פתיחת העורק והוצאת הרובד · <bdi>Blausen.com staff (2014), "Medical gallery of Blausen Medical 2014", WikiJournal of Medicine</bdi>, CC BY 3.0</figcaption></figure>
+  <figure><img src="img/carotid-cea-blausen.jpg" alt="איור של אנדארטרקטומיה של ה-carotid"><figcaption>אנדארטרקטומיה של <span class="nw">ה-<bdi>carotid</bdi></span>: פתיחת העורק והוצאת הרובד · <bdi>Blausen.com staff (2014), "Medical gallery of Blausen Medical 2014", WikiJournal of Medicine</bdi>, CC BY 3.0</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 101 עמ׳ <bdi dir="ltr">1607–1610</bdi></span><span>ניתוח</span></div>
 </div></section>
@@ -293,10 +298,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>9</b>אחרי הניתוח</div>
  <h2>סיבוכים שהסטודנט צריך לזהות</h2>
  <div class="grid">
-  <div class="box r"><b class="t">המטומה בצוואר מתרחבת</b>מצב חירום. סימנים: צרידות חדשה, קוצר נשימה, סטייה של הקנה ונפיחות. יכולה לחסום את דרכי האוויר במהירות. אינטובציה קשה: מרדים מנוסה, אינטובציה בהכרה בסיב אופטי ומוכנות לדרך אוויר כירורגית. רק אחר כך פותחים את הפצע</div>
+  <div class="box r"><b class="t">המטומה בצוואר מתרחבת</b>מצב חירום. סימנים: צרידות חדשה, קוצר נשימה, סטייה של <span class="nw">ה-<bdi>trachea</bdi></span> ונפיחות. יכולה לחסום את דרכי האוויר במהירות. אינטובציה קשה: מרדים מנוסה, אינטובציה בהכרה בסיב אופטי ומוכנות לדרך אוויר כירורגית. רק אחר כך פותחים את הפצע</div>
   <div class="box r"><b class="t">שבץ</b>הסיבוך המפחיד ביותר. חסר חדש מיד אחרי הניתוח: פקקת בעורק, דש של דיסקציה או תסחיף. הדמיה מהירה (דופלקס או <bdi>CTA</bdi>) או חזרה לחדר ניתוח</div>
   <div class="box a"><b class="t">תסמונת היפרפרפוזיה</b>כלי הדם במוח היו מורחבים מאחורי ההיצרות. אחרי הפתיחה: זרימת יתר, פרכוסים ודימום מוחי. <b>הסימן הראשון: כאב ראש</b> באותו צד. בודקים, מאזנים לחץ דם בקפידה</div>
-  <div class="box n"><b class="t">עוד</b>תנודות בלחץ הדם עד שהברורצפטורים מתאזנים. תת לחץ דם עמיד: לחשוב על איסכמיה בלב. רוב המטופלים משתחררים ביום שאחרי הניתוח. היצרות חוזרת ב-<bdi dir="ltr">10–15%</bdi> לאורך השנים</div>
+  <div class="box n"><b class="t">עוד</b>תנודות בלחץ הדם עד שהברורצפטורים מתאזנים. תת לחץ דם עמיד: לחשוב על איסכמיה בלב. רוב המטופלים משתחררים ביום שאחרי הניתוח. היצרות חוזרת <span class="nw">ב-<bdi dir="ltr">10–15%</bdi></span> לאורך השנים</div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 101 עמ׳ <bdi dir="ltr">1610, 1617</bdi></span><span>סיבוכים</span></div>
 </div></section>
@@ -305,12 +310,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>10</b>חלופות לניתוח</div>
  <h2>סטנט: דרך המפשעה או דרך הצוואר</h2>
  <div class="grid">
-  <div class="box b"><b class="t">סטנט דרך עורק הירך (<bdi>TFCAS</bdi>)</b>
+  <div class="box b"><b class="t">סטנט דרך <span class="nw">ה-<bdi>femoral artery</bdi></span> (<bdi>TFCAS</bdi>)</b>
    <ul class="b sm"><li>דרך הקשת. מסנן להגנה מתסחיף במהלך הפעולה</li><li>בהרדמה מקומית, כדי לעקוב אחרי הדיבור והתנועה</li><li>לא מתאים לקשת מסוג <bdi>III</bdi> או לקשת מסוידת וחולה. גם לא לנגע עם קריש</li><li>מעל גיל 70: יותר שבץ ומוות מאשר בניתוח</li><li>לפני: לפחות שבוע של שני נוגדי טסיות וסטטין</li></ul></div>
   <div class="box"><b class="t">דרך הצוואר עם היפוך זרימה (<bdi>TCAR</bdi>)</b>
-   <ul class="b sm"><li>חתך קטן בבסיס הצוואר, סוגרים את הקרוטיס המשותף. הדם זורם הפוך מהמוח לווריד הירך דרך מסנן</li><li>לא נוגעים בקשת</li><li><bdi>ROADSTER</bdi>: שבץ ב-1.4% ב-30 יום</li></ul></div>
+   <ul class="b sm"><li>חתך קטן בבסיס הצוואר, סוגרים את <span class="nw">ה-<bdi>common carotid</bdi></span>. הדם זורם הפוך מהמוח <span class="nw">ל-<bdi>femoral vein</bdi></span> דרך מסנן</li><li>לא נוגעים <span class="nw">ב-<bdi>aortic arch</bdi></span></li><li><bdi>ROADSTER</bdi>: שבץ ב-1.4% ב-30 יום</li></ul></div>
  </div>
- <div class="box a" style="margin-top:12px"><b class="t">ניתוח מול סטנט בניסויים</b><bdi>CREST</bdi>: בסטנט יותר שבץ, בניתוח יותר אוטם. אחרי 10 שנים לא היה הבדל בתוצאה המשולבת. <bdi>EVA-3S</bdi> (עם תסמינים): יותר שבץ או מוות בסטנט. <b>הניתוח מתאים כמעט לכל מטופל.</b> סטנט שוקלים בצוואר "עוין": קרינה או ניתוח קודם, טרכאוסטומיה, נגע מעל <bdi>C2</bdi>, פגיעה בעצב הגרון בצד השני</div>
+ <div class="box a" style="margin-top:12px"><b class="t">ניתוח מול סטנט בניסויים</b><bdi>CREST</bdi>: בסטנט יותר שבץ, בניתוח יותר אוטם. אחרי 10 שנים לא היה הבדל בתוצאה המשולבת. <bdi>EVA-3S</bdi> (עם תסמינים): יותר שבץ או מוות בסטנט. <b>הניתוח מתאים כמעט לכל מטופל.</b> סטנט שוקלים בצוואר "עוין": קרינה או ניתוח קודם, טרכאוסטומיה, נגע מעל <bdi>C2</bdi>, פגיעה <span class="nw">ב-<bdi>recurrent laryngeal nerve</bdi></span> בצד השני</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 101 עמ׳ <bdi dir="ltr">1607, 1610–1616</bdi> (טבלאות <bdi>101.3–101.6</bdi>)</span><span>סטנט</span></div>
 </div></section>
 
@@ -318,9 +323,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>11</b>לא רק טרשת</div>
  <h2>דיסקציה, <bdi>FMD</bdi> ומפרצת</h2>
  <div class="grid g3">
-  <div class="box"><b class="t">דיסקציה של הקרוטיס</b>ספונטנית, אחרי חבלה (כ-1% מהחבלות הקהות) או יאטרוגנית. כאב ראש או <bdi>Horner</bdi>. עד 50% מגיעים עם שבץ או <bdi>TIA</bdi>. טיפול: <b>נוגדי טסיות או נוגדי קרישה</b>. התערבות רק כשהמצב הנוירולוגי מחמיר</div>
+  <div class="box"><b class="t">דיסקציה של <span class="nw">ה-<bdi>carotid</bdi></span></b>ספונטנית, אחרי חבלה (כ-1% מהחבלות הקהות) או יאטרוגנית. כאב ראש או <bdi>Horner</bdi>. עד 50% מגיעים עם שבץ או <bdi>TIA</bdi>. טיפול: <b>נוגדי טסיות או נוגדי קרישה</b>. התערבות רק כשהמצב הנוירולוגי מחמיר</div>
   <div class="box"><b class="t">דיספלזיה פיברומוסקולרית</b>לא טרשתית ולא דלקתית, בעיקר בנשים. "מחרוזת חרוזים" בהדמיה. כאבי ראש, <bdi>TIA</bdi>, שבץ, טנטון פועם. כמעט מחצית מגיעות עם מפרצת או דיסקציה. טיפול: נוגדי טסיות, לעיתים אנגיופלסטיה</div>
-  <div class="box r"><b class="t">מפרצת של הקרוטיס</b>נדירה: זיהום, חבלה, טרשת או ניתוח קודם. גוש פועם בצוואר, <bdi>TIA</bdi>, שבץ, חסר בעצבים או קושי בבליעה. <b>מטפלים כשמגלים</b>, בגלל סיכון גבוה לשבץ ולקרע</div>
+  <div class="box r"><b class="t">מפרצת של <span class="nw">ה-<bdi>carotid</bdi></span></b>נדירה: זיהום, חבלה, טרשת או ניתוח קודם. גוש פועם בצוואר, <bdi>TIA</bdi>, שבץ, חסר בעצבים או קושי בבליעה. <b>מטפלים כשמגלים</b>, בגלל סיכון גבוה לשבץ ולקרע</div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 101 עמ׳ <bdi dir="ltr">1617</bdi></span><span>מחלות אחרות</span></div>
 </div></section>
@@ -346,14 +351,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>13</b>לסיכום</div>
  <h2>חמישה דברים לקחת למחלקה</h2>
  <ol class="obj">
-  <li>הסכנה בקרוטיס היא תסחיף מהרובד. עין אחת שמחשיכה לרגע היא <bdi>TIA</bdi> של הקרוטיס</li>
+  <li>הסכנה <span class="nw">ב-<bdi>carotid</bdi></span> היא תסחיף מהרובד. עין אחת שמחשיכה לרגע היא <bdi>TIA</bdi> של <span class="nw">ה-<bdi>carotid</bdi></span></li>
   <li>"עם תסמינים" = אירוע בצד ההיצרות ב-6 החודשים האחרונים. ההבחנה הזו קובעת את הטיפול</li>
   <li>אוושה לא מספיקה לאבחנה. דופלקס הוא הבדיקה הראשונה</li>
   <li>עם תסמינים ו-50% ומעלה: התערבות. מתחת ל-50%: תרופות. בלי תסמינים: ויכוח פתוח. הטיפול התרופתי חובה לכולם</li>
   <li>אחרי אנדארטרקטומיה: המטומה בצוואר היא בעיה של דרכי אוויר. כאב ראש יכול להיות היפרפרפוזיה</li>
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 101 <bdi>Contemporary Management of Carotid Disease</bdi> (עמ׳ <bdi dir="ltr">1603–1619</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1909, נחלת הכלל) · <bdi>Blausen Medical</bdi> (CC BY) · תמונות מ-<bdi>Wikimedia Commons</bdi> לפי הרישיון בכל כיתוב · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1909, נחלת הכלל) · <bdi>Blausen Medical</bdi> (CC BY) · תמונות <span class="nw">מ-<bdi>Wikimedia Commons</bdi></span> לפי הרישיון בכל כיתוב · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>

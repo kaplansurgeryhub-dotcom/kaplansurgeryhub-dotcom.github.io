@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Scrub In · מדריך לאחראי הסטודנטים</title><meta name="robots" content="noindex"><link rel="icon" href="brand/emblem.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Frank+Ruhl+Libre:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0C2A35;--g:#00967D;--g2:#3DC08C;--g3:#0A6B5A;--mint:#E3F4EC;--bg:#EDF2F0;--line:#DCE6E2;--ink:#16262C;--muted:#5C6F73;--amber:#B7791F;--amberbg:#FFF6E5;--red:#A3402E;--redbg:#FBEDE9}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:Heebo,system-ui,sans-serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+bdi{unicode-bidi:isolate}
+header{position:relative;overflow:hidden;background:radial-gradient(120% 120% at 85% 0%,#164B54 0%,#0C2A35 60%);color:#fff;padding:calc(24px + env(safe-area-inset-top)) 18px 52px}
+header::after{content:'';position:absolute;inset:0;background:url(../ops/art/organs.webp) no-repeat 4% 40%/auto 130%;opacity:.12;filter:invert(1);pointer-events:none}
+.in{max-width:960px;margin:0 auto;position:relative;z-index:1}
+.top{display:flex;align-items:center;gap:14px}.top img.em{width:56px;height:56px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(61,192,140,.55);flex:0 0 auto}
+.top b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:22px;line-height:1.2}.top span{color:#A9D9C8;font-weight:700;font-size:14.5px}
+.logos{margin-inline-start:auto;display:flex;gap:14px}.logos img{height:36px}
+.kick{margin-top:30px;color:var(--g2);font-weight:800;letter-spacing:.04em;font-size:14px}
+h1{font-family:'Frank Ruhl Libre',serif;font-size:clamp(30px,5.4vw,48px);line-height:1.15;margin:6px 0 8px}
+header p{margin:0;color:#C9D6DA;font-size:17px;max-width:680px}
+.by{margin-top:12px;font-size:14px;color:#A9D9C8;font-weight:700}
+main{max-width:960px;margin:-28px auto 40px;padding:0 16px;position:relative;z-index:2}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:6px}
+.toc a{background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:14.5px;font-weight:700;color:var(--navy);text-decoration:none;box-shadow:0 4px 12px rgba(12,42,53,.07)}
+.toc a:hover{border-color:var(--g2)}
+.sec{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px 22px 20px;margin:16px 0;box-shadow:0 8px 24px rgba(12,42,53,.05);scroll-margin-top:12px}
+.sec h2{display:flex;align-items:center;gap:11px;margin:0 0 12px;font-family:'Frank Ruhl Libre',serif;font-size:25px;line-height:1.25;color:var(--navy)}
+.sec h2 i{font-style:normal;flex:0 0 36px;height:36px;border-radius:50%;background:var(--navy);color:var(--g2);display:grid;place-items:center;font-family:Heebo,sans-serif;font-size:17px;font-weight:900}
+.sec h3{margin:18px 0 6px;font-size:18.5px;color:var(--g3)}
+.sec p{margin:6px 0}
+.sec ul,.sec ol{margin:4px 0;padding:0 22px 0 0}.sec li{margin:5px 0}.sec li b,.sec p b{color:var(--navy)}
+ol.steps{list-style:none;padding:0;counter-reset:s}
+ol.steps>li{counter-increment:s;position:relative;padding-right:38px;margin:9px 0}
+ol.steps>li::before{content:counter(s);position:absolute;right:0;top:1px;width:27px;height:27px;border-radius:50%;background:var(--mint);color:var(--g3);font-weight:900;font-size:14.5px;display:grid;place-items:center}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;margin-top:10px}
+.tile{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#FBFCFB}
+.tile b{display:block;font-size:16.5px;color:var(--navy);margin-bottom:2px}.tile span{font-size:15px;color:#3C4F55;line-height:1.55;display:block}
+.tile em{font-style:normal;font-size:20px;margin-left:6px}
+.tip,.warn,.note{border-radius:12px;padding:10px 14px;margin-top:12px;font-size:15.5px}
+.tip{background:var(--mint)}.warn{background:var(--redbg)}.note{background:var(--amberbg)}
+.url{display:inline-block;direction:ltr;unicode-bidi:isolate;background:var(--navy);color:#fff;font-weight:700;border-radius:10px;padding:6px 12px;font-size:15px;word-break:break-all;text-decoration:none}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
+.box{border:1px solid var(--line);border-radius:16px;padding:14px 16px;background:#FBFCFB}
+.box h3{margin:0 0 6px}.box .tag{display:inline-block;font-size:12.5px;font-weight:800;border-radius:999px;padding:2px 10px;background:var(--mint);color:var(--g3);margin-bottom:6px}
+.box.dark{background:var(--navy);color:#E6EEF0;border-color:var(--navy)}.box.dark h3{color:var(--g2)}.box.dark b{color:#fff}.box.dark .tag{background:rgba(61,192,140,.18);color:var(--g2)}
+figure{margin:14px 0 6px}
+.shot{position:relative;margin:0 auto;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 8px 22px rgba(12,42,53,.12);background:#fff}
+.shot img{display:block;width:100%;height:auto}.shot a{display:block;cursor:zoom-in}
+.shot.ph{max-width:300px;border-radius:22px;border:6px solid var(--navy)}
+figcaption{text-align:center;color:var(--muted);font-size:13.5px;margin-top:7px}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+.mk{position:absolute;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;background:var(--g);color:#fff;font-weight:900;font-size:15px;display:grid;place-items:center;border:3px solid #fff;box-shadow:0 0 0 3px rgba(0,150,125,.35),0 3px 8px rgba(0,0,0,.25);font-family:Heebo,sans-serif;line-height:1}
+.lg{list-style:none;padding:0!important;margin:10px 0 0!important}.lg li{display:flex;gap:9px;align-items:flex-start}
+.lg li::before{content:attr(data-n);flex:0 0 24px;height:24px;border-radius:50%;background:var(--g);color:#fff;font-weight:900;font-size:13px;display:grid;place-items:center;margin-top:3px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.chip{font-size:13.5px;font-weight:800;border-radius:999px;padding:3px 11px;border:1px solid var(--line);background:#F4F7F6;color:#4F6F6A}
+.chip.on{background:var(--mint);border-color:#BFE6D3;color:var(--g3)}.chip.bl{background:#E8F0FA;border-color:#CFE0F3;color:#2F6FA8}.chip.am{background:var(--amberbg);border-color:#F1DDB5;color:#8A5A14}
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:12px 0 4px;counter-reset:f}
+.flow div{position:relative;border-radius:14px;padding:12px 10px 10px;background:#F4F8F6;border:1px solid var(--line);text-align:center;font-size:14.5px;line-height:1.45}
+.flow div b{display:block;color:var(--navy);font-size:15px;margin-bottom:3px}
+.flow div::before{counter-increment:f;content:counter(f);display:grid;place-items:center;width:26px;height:26px;margin:0 auto 6px;border-radius:50%;background:var(--navy);color:var(--g2);font-weight:900;font-size:13.5px}
+.flow div.me{background:var(--mint);border-color:#BFE6D3}.flow div.me::before{background:var(--g);color:#fff}
+.check{list-style:none;padding:0!important}.check li{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-top:1px solid var(--line);margin:0!important}.check li:first-child{border-top:0}
+.check li::before{content:'';flex:0 0 22px;height:22px;border-radius:7px;border:2px solid var(--g);margin-top:3px}
+.check li b{color:var(--navy)}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:0 16px 34px;line-height:1.6}
+@media (max-width:720px){.logos{display:none}.top b{font-size:19px}.two,.pair{grid-template-columns:1fr}.flow{grid-template-columns:1fr 1fr}.sec{padding:16px 15px}.sec h2{font-size:22px}body{font-size:16.5px}}
+@media (max-width:720px){.shot:not(.ph) .mk{width:19px;height:19px;font-size:11px;border-width:2px;box-shadow:0 0 0 2px rgba(0,150,125,.35),0 2px 5px rgba(0,0,0,.25)}}
+@media (max-width:380px){.flow{grid-template-columns:1fr}}
+@media print{.toc{display:none}.sec{break-inside:avoid;box-shadow:none}body{background:#fff}header{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style></head><body>
+<header><div class="in">
+ <div class="top"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div><div class="logos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"></div></div>
+ <div class="kick">Scrub In · הסבב בכירורגיה · סטודנטים שנה ד׳</div>
+ <h1>מדריך לאחראי הסטודנטים</h1>
+ <p>לד״ר אלון וואכטל: איך מנהלים את סבב הסטודנטים מתוך פורטל המערך. כניסה, פתיחת סבב, רישום סטודנטים ובדיקת המצגות.</p>
+ <div class="by">ד״ר גיא גוזני · אחראי ההוראה במערך</div>
+</div></header>
+<main>
+<nav class="toc"><a href="#idea">הרעיון</a><a href="#login">כניסה</a><a href="#two">שני דפים</a><a href="#rot">פתיחת סבב</a><a href="#decks">בדיקת המצגות</a><a href="#now">מה עושים עכשיו</a></nav>
+
+<section class="sec" id="idea"><h2><i>1</i>הרעיון במסך אחד</h2>
+ <p><b>Scrub In</b> הוא מרכז הסבב של הסטודנטים. הוא לשונית בתוך פורטל המערך <bdi dir="ltr">(Kaplan Surgical Hub)</bdi>, אותה מערכת שבה מנוהלים התוכנית השבועית, התורנויות והכוננויות. כל מה שקשור לסבב נמצא במקום אחד.</p>
+ <div class="tiles">
+  <div class="tile"><b><em>🗓️</em>תוכנית של 6 שבועות</b><span>נבנית לבד מהתבנית שלך, ראשון עד חמישי. אחר כך מזיזים ומשנים מה שצריך.</span></div>
+  <div class="tile"><b><em>👨‍⚕️</em>שיבוץ מלמדים</b><span>אתה משבץ את הבכירים. מפגש שמחכה למתמחה עובר לצ׳יף והוא משבץ.</span></div>
+  <div class="tile"><b><em>🎓</em>סטודנטים ונוכחות</b><span>קבוצות, טלפון ומייל לכל סטודנט וסימון נוכחות יומי.</span></div>
+  <div class="tile"><b><em>📝</em>משוב ופנקס</b><span>משוב יומי ושבועי, דירוג של כל מפגש ופנקס ניתוחים לכל סטודנט.</span></div>
+  <div class="tile"><b><em>💬</em>הודעות מהסטודנטים</b><span>הם כותבים מהאפליקציה שלהם. התשובה נכתבת מהפורטל.</span></div>
+  <div class="tile"><b><em>📚</em>סילבוס ו-<bdi dir="ltr">58</bdi> מצגות</b><span>מטרות למידה, קריאה ומצגת לכל מפגש. הכול לפי <bdi dir="ltr">Sabiston 22</bdi>.</span></div>
+  <div class="tile"><b><em>📲</em>אפליקציה בכיס לכל סטודנט</b><span>הלו״ז של הקבוצה, משוב, פנקס והודעות. קישור אישי, בלי סיסמה.</span></div>
+ </div>
+</section>
+
+<section class="sec" id="login"><h2><i>2</i>כניסה לפורטל</h2>
+ <p>הכתובת, אותה אפליקציה כמו פורטל המערך:</p>
+ <p><a class="url" href="https://kaplansurgeryhub-dotcom.github.io/ops/">kaplansurgeryhub-dotcom.github.io/ops/</a></p>
+ <div class="note">🔑 נכנסים עם <b>הקוד האישי שלך, שד״ר גוזני שולח בנפרד</b>. הקוד הוא סיסמה: לא מעבירים אותו ולא כותבים אותו בשום מקום.</div>
+ <div class="pair" style="margin-top:6px">
+  <div>
+   <h3>📱 באייפון</h3>
+   <ol class="steps">
+    <li>פותחים את הכתובת ב<b>ספארי</b>.</li>
+    <li>מקלידים את הקוד ולוחצים <b>כניסה</b>.</li>
+    <li>משאירים מסומן <b>"להישאר מחובר/ת במכשיר הזה"</b>.</li>
+    <li>האפליקציה מציעה <b>כניסה עם Face ID</b>. מאשרים. מאז הקוד כבר לא נדרש.</li>
+    <li>כפתור השיתוף <b>⬆︎</b> ← <b>"הוספה למסך הבית"</b>. מעכשיו נפתח כמו אפליקציה, עם הסמל <bdi dir="ltr">KSH</bdi>.</li>
+    <li>אם מוצעת <b>הפעלת התראות</b>, מאשרים. כך יודעים על הודעה מסטודנט.</li>
+   </ol>
+   <h3>💻 במחשב</h3>
+   <ol class="steps">
+    <li>אותה כתובת ב<b>כרום</b>.</li>
+    <li>קוד, כניסה ו"להישאר מחובר/ת".</li>
+    <li>מוסיפים <b>סימנייה</b> לכתובת.</li>
+   </ol>
+  </div>
+  <figure><div class="shot ph"><img src="guide/login.jpg" alt="מסך הכניסה לפורטל" loading="lazy" width="600" height="1299"><span class="mk" style="left:86%;top:47%">1</span><span class="mk" style="left:73%;top:60.7%">2</span><span class="mk" style="left:87%;top:64.5%">3</span></div>
+   <ul class="lg"><li data-n="1"><span>הקוד האישי</span></li><li data-n="2"><span>להשאיר מסומן</span></li><li data-n="3"><span>אחרי הכניסה הראשונה: Face ID במקום קוד</span></li></ul></figure>
+ </div>
+</section>
+
+<section class="sec" id="two"><h2><i>3</i>שני דפים שונים</h2>
+ <p>יש לך שני דפים. חשוב לא להתבלבל ביניהם:</p>
+ <div class="two">
+  <div class="box"><span class="tag">כמו כל רופא במערך</span><h3>🩺 האפליקציה האישית שלך</h3>
+   <ul><li>הקישור האישי <bdi dir="ltr">?p=…</bdi> שיש לכל רופא במערך.</li><li>הלו״ז שלך, תורנויות, כוננויות, בקשות והצוות.</li><li>לא קשורה לניהול הסבב.</li></ul></div>
+  <div class="box dark"><span class="tag">אחראי הסטודנטים</span><h3>🎓 הפורטל · Scrub In</h3>
+   <ul><li>נכנסים עם הקוד (סעיף 2).</li><li>נוחתים ישר בלשונית <b>Scrub In</b>.</li><li>בפורטל אתה מנהל רק את החלק של הסטודנטים.</li></ul></div>
+ </div>
+ <h3>חמשת המסכים של Scrub In</h3>
+ <figure><div class="shot"><a href="guide/center.jpg" target="_blank" rel="noopener"><img src="guide/center.jpg" alt="מרכז הסבב" loading="lazy" width="1280" height="800"></a><span class="mk" style="left:62%;top:7.8%">1</span><span class="mk" style="left:31%;top:16%">2</span><span class="mk" style="left:97%;top:37%">3</span><span class="mk" style="left:97%;top:66.5%">4</span><span class="mk" style="left:28.8%;top:33.5%">5</span></div>
+  <ul class="lg"><li data-n="1"><span><b>חמש לשוניות</b>: מרכז הסבב, לוח הסבב, סטודנטים ונוכחות, משוב ופנקס, סילבוס</span></li><li data-n="2"><span>סטודנטים, מפגשי הוראה, כמה מהם עם מלמד/ת ומה היום</span></li><li data-n="3"><span><b>היום בסבב</b>: כל המפגשים של היום ומי מלמד</span></li><li data-n="4"><span><b>ששת השבועות</b>: אחוז המפגשים עם מלמד/ת. לחיצה פותחת את השבוע</span></li><li data-n="5"><span>הקבוצות והסטודנטים. ירוק = סומנו נוכחים היום</span></li></ul></figure>
+ <ul>
+  <li><b>מרכז הסבב</b>: היום, ששת השבועות ו<b>מחכים למלמד/ת</b> (בתחתית).</li>
+  <li><b>לוח הסבב</b>: שבוע אחר שבוע. לחיצה על מפגש פותחת אותו לעריכה.</li>
+  <li><b>סטודנטים ונוכחות</b>: רשימה, קישורים אישיים ונוכחות.</li>
+  <li><b>משוב ופנקס</b>: מה הסטודנטים כתבו, הודעות ותשובות.</li>
+  <li><b>סילבוס</b>: כל המפגשים, הפרקים בסאביסטון והמצגות.</li>
+ </ul>
+</section>
+
+<section class="sec" id="rot"><h2><i>4</i>פתיחת סבב ורישום סטודנטים</h2>
+ <h3>א. פותחים סבב</h3>
+ <ol class="steps">
+  <li>במרכז הסבב לוחצים <b>"＋ פתיחת סבב"</b>.</li>
+  <li>בוחרים את <b>יום ראשון</b> שבו הסבב מתחיל. שישה שבועות, ראשון עד חמישי.</li>
+  <li>נותנים שם, למשל "סבב ינואר–פברואר 2027".</li>
+  <li>משאירים מסומן <b>"למלא את הלוח מהתבנית"</b> ולוחצים <b>פתיחת הסבב</b>.</li>
+ </ol>
+ <figure><div class="shot"><a href="guide/open.jpg" target="_blank" rel="noopener"><img src="guide/open.jpg" alt="פתיחת סבב" loading="lazy" width="1280" height="800"></a><span class="mk" style="left:67.5%;top:38%">1</span><span class="mk" style="left:67.5%;top:45.9%">2</span><span class="mk" style="left:63.2%;top:60%">3</span><span class="mk" style="left:67.5%;top:69.8%">4</span></div>
+  <ul class="lg"><li data-n="1"><span>יום ראשון של הסבב</span></li><li data-n="2"><span>שם הסבב</span></li><li data-n="3"><span>מילוי מהתבנית: כל ההרצאות, דיוני המקרים, הסדנאות, הביקורים והישיבות</span></li><li data-n="4"><span>פתיחה</span></li></ul></figure>
+
+ <h3>ב. התוכנית לפי שבועות</h3>
+ <figure><div class="shot"><a href="guide/plan.jpg" target="_blank" rel="noopener"><img src="guide/plan.jpg" alt="לוח הסבב" loading="lazy" width="1280" height="800"></a><span class="mk" style="left:97.5%;top:32.5%">1</span><span class="mk" style="left:22.5%;top:39.8%">2</span><span class="mk" style="left:96.5%;top:54.2%">3</span><span class="mk" style="left:96.5%;top:88.9%">4</span></div>
+  <ul class="lg"><li data-n="1"><span>שבוע 1–6</span></li><li data-n="2"><span><b>📋 טקסט למייל ולוואטסאפ</b>: השבוע כטקסט, בפורמט שאתה שולח</span></li><li data-n="3"><span>מפגש עם מלמד/ת מהמערך</span></li><li data-n="4"><span><b>⏳ מתמחה · הצ׳יף ישבץ</b>: מחכה לצ׳יף</span></li></ul></figure>
+ <ul>
+  <li>לחיצה על מפגש: נושא, יום ושעות, מקום, קבוצה ומי מלמד. אורח מבחוץ נכתב בשם חופשי.</li>
+  <li><b>✨ שיבוץ מלמדים</b> משבץ בכירים פנויים לכל המפגשים הפתוחים. אחר כך משנים בלחיצה.</li>
+  <li><b>מפגש של מתמחה</b>: לא משבצים אותו. הוא מופיע לצ׳יף המתמחים. הצ׳יף משבץ מתמחה. אתה רואה את השם כשהוא נקבע.</li>
+ </ul>
+
+ <h3>ג. מדביקים את רשימת הסטודנטים</h3>
+ <div class="pair">
+  <figure><div class="shot ph"><img src="guide/paste.jpg" alt="הדבקת רשימה" loading="lazy" width="600" height="1299"><span class="mk" style="left:95%;top:49%">1</span><span class="mk" style="left:48%;top:56.5%">2</span><span class="mk" style="left:95.5%;top:62.7%">3</span><span class="mk" style="left:95.5%;top:73.5%">4</span></div>
+   <ul class="lg"><li data-n="1"><span>מדביקים: שורה לכל סטודנט, שם, טלפון ומייל</span></li><li data-n="2"><span>בוחרים קבוצה ולוחצים <b>הוספה</b></span></li><li data-n="3"><span><b>שמירת הסטודנטים</b></span></li><li data-n="4"><span>נוכחות: לחיצה על משבצת מחליפה ✓ / ✗ / א</span></li></ul></figure>
+  <figure><div class="shot ph"><img src="guide/students.jpg" alt="סטודנטים ונוכחות" loading="lazy" width="600" height="1299"><span class="mk" style="left:91%;top:54.5%">1</span><span class="mk" style="left:22%;top:72.5%">2</span></div>
+   <ul class="lg"><li data-n="1"><span>הקבוצות. "＋ קבוצה" מוסיף קבוצה</span></li><li data-n="2"><span><b>📲</b> מעתיק הודעה מוכנה עם הקישור האישי</span></li></ul></figure>
+ </div>
+ <ol class="steps">
+  <li>בלשונית <b>סטודנטים ונוכחות</b> מדביקים את הרשימה מהאוניברסיטה. המערכת מזהה לבד שם, טלפון ומייל בכל שורה.</li>
+  <li>בוחרים לאיזו קבוצה, לוחצים <b>הוספה</b> וחוזרים על זה לכל קבוצה.</li>
+  <li>לוחצים <b>שמירת הסטודנטים</b>.</li>
+  <li>ליד כל סטודנט לוחצים <b>📲</b>. נוצר קישור אישי והודעת וואטסאפ מוכנה מועתקת. פותחים צ׳אט פרטי עם הסטודנט ומדביקים.</li>
+ </ol>
+ <div class="note"><b>דגשים</b>
+  <ul>
+   <li><b>שם מלא</b>, כמו ברשימה של האוניברסיטה.</li>
+   <li><b>מספר נייד</b> לכל סטודנט.</li>
+   <li>קבוצות <b>מאוזנות</b> במספר הסטודנטים.</li>
+   <li>שולחים את הקישור <b>רק בפרטי</b>, לא בקבוצה. הקישור אישי ונכנס בלי סיסמה.</li>
+   <li>מבקשים מכל סטודנט <b>להוסיף את האפליקציה למסך הבית</b>.</li>
+   <li><b>נוכחות</b>: מסמנים כל יום (✓ נכח/ה, ✗ נעדר/ת, א היעדרות מאושרת). הסיכום מופיע בעמודה "עד היום".</li>
+   <li><b>מלמדים מתמחים</b> משבץ הצ׳יף. מפגש כזה מסומן ⏳ עד שהוא משבץ.</li>
+  </ul></div>
+
+ <h3>ד. מה הסטודנט מקבל</h3>
+ <div class="pair">
+  <figure><div class="shot ph"><img src="guide/student-app.jpg" alt="האפליקציה של הסטודנט" loading="lazy" width="600" height="1299"></div><figcaption>האפליקציה בכיס · נתונים לדוגמה</figcaption></figure>
+  <div>
+   <ul>
+    <li><b>היום</b>: מה עכשיו ומה הבא, הלו״ז של היום ומשוב יומי.</li>
+    <li><b>לו״ז</b>: כל ששת השבועות של הקבוצה שלו. אחרי מפגש מדרגים אותו ⭐.</li>
+    <li><b>משוב</b>: משוב שבועי על ההוראה, יחס הצוות והארגון.</li>
+    <li><b>פנקס</b>: ניתוחים ופרוצדורות (צפייה, עזרה, ביצוע בהדרכה). בלי פרטי מטופלים.</li>
+    <li><b>קשר</b>: הצוות, וואטסאפ אליך והודעות.</li>
+    <li>ליד מפגש שאושר: <b>📖 חומר למפגש</b>, עם מטרות, קריאה ומצגת.</li>
+   </ul>
+   <div class="tip">כל מה שהם כותבים מגיע ללשונית <b>משוב ופנקס</b>. הודעה מסטודנט נענית משם.</div>
+  </div>
+ </div>
+</section>
+
+<section class="sec" id="decks"><h2><i>5</i>המצגות ובדיקה לפני פרסום</h2>
+ <p>בלשונית <b>סילבוס</b> לכל מפגש יש מטרות למידה, קריאה מסאביסטון וכפתור <b>▶ מצגת</b>. הסטודנטים רואים רק מה ששנינו אישרנו.</p>
+ <div class="flow">
+  <div><b>ד״ר גוזני</b>עובר על המצגות ראשון</div>
+  <div><b>📤 לבדיקת ד״ר וואכטל</b>מסמן את המצגות לבדיקה שלך</div>
+  <div class="me"><b>אתה</b>עובר, כותב הערות ומאשר</div>
+  <div><b>📣 פרסום</b>ד״ר גוזני מפרסם לסטודנטים</div>
+  <div><b>📋 כל ההערות</b>נאספות. ד״ר גוזני מתקן</div>
+ </div>
+ <h3>מה אתה עושה</h3>
+ <ol class="steps">
+  <li>בסילבוס לוחצים <b>📥 לבדיקה שלי</b>. נשארים רק המפגשים שמחכים לך. המספר מראה כמה.</li>
+  <li>לוחצים על מפגש. נפתח חלון עם הסילבוס שלו.</li>
+  <li>פותחים את המצגת (<b>▶ מצגת</b> בטבלה, או <b>פתיחה</b> בחלון).</li>
+  <li>כותבים ב<b>"הערות למצגת"</b>, הערה לכל עניין, עם מספר השקף: <b>"שקף 7 · …"</b>. לוחצים <b>＋ הוספת הערה</b>.</li>
+  <li>בסוף לוחצים <b>✓ עברתי ומאשר/ת</b>. אפשר לבטל אחר כך.</li>
+ </ol>
+ <figure><div class="shot"><a href="guide/syllabus.jpg" target="_blank" rel="noopener"><img src="guide/syllabus.jpg" alt="הסילבוס עם הסינון לבדיקה שלי" loading="lazy" width="1280" height="622"></a><span class="mk" style="left:27.2%;top:32%">1</span><span class="mk" style="left:62%;top:60.5%">2</span><span class="mk" style="left:71%;top:66%">3</span><span class="mk" style="left:33.8%;top:32%">4</span></div>
+  <ul class="lg"><li data-n="1"><span><b>📥 לבדיקה שלי</b>: רק מה שמחכה לך</span></li><li data-n="2"><span>סימני הבדיקה של המפגש</span></li><li data-n="3"><span><b>▶ מצגת</b> נפתחת בלשונית חדשה</span></li><li data-n="4"><span><b>📋 כל ההערות</b>: כל ההערות שנכתבו, להעתקה</span></li></ul></figure>
+ <div class="pair">
+  <figure><div class="shot ph"><img src="guide/review.jpg" alt="חלון המפגש עם תיבת הבדיקה" loading="lazy" width="600" height="1299"><span class="mk" style="left:87%;top:38.9%">1</span><span class="mk" style="left:87%;top:52.1%">2</span><span class="mk" style="left:87%;top:59.6%">3</span><span class="mk" style="left:87%;top:75.3%">4</span></div>
+   <ul class="lg"><li data-n="1"><span>בדיקה ואישור</span></li><li data-n="2"><span><b>✓ עברתי ומאשר/ת</b></span></li><li data-n="3"><span>ההערות שנכתבו</span></li><li data-n="4"><span>הערה חדשה ו<b>＋ הוספת הערה</b></span></li></ul></figure>
+  <div>
+   <h3>מה הסימנים אומרים</h3>
+   <div class="chips"><span class="chip on">✓ גוזני</span><span class="chip on">✓ וואכטל</span></div><p>מי כבר אישר. נקודה במקום ✓ = עוד לא.</p>
+   <div class="chips"><span class="chip bl">לבדיקת וואכטל</span></div><p>ד״ר גוזני סימן לבדיקה שלך.</p>
+   <div class="chips"><span class="chip am">💬 2</span></div><p>כמה הערות נכתבו.</p>
+   <div class="chips"><span class="chip on">מוכן לפרסום</span></div><p>שנינו אישרנו. ד״ר גוזני מפרסם לסטודנטים 📣.</p>
+   <div class="tip">ההערות לא הולכות לאיבוד: ד״ר גוזני אוסף את כולן (<b>📋 כל ההערות</b>) ומתקן את המצגות.</div>
+  </div>
+ </div>
+</section>
+
+<section class="sec" id="now"><h2><i>6</i>מה עושים עכשיו</h2>
+ <ul class="check">
+  <li><span><b>להיכנס לפורטל</b> עם הקוד ולהוסיף אותו למסך הבית (סעיף 2).</span></li>
+  <li><span><b>להסתובב ב-Scrub In</b>: מרכז הסבב, הלוח, הסילבוס ומצגת או שתיים.</span></li>
+  <li><span><b>לחכות לרשימה</b> מד״ר גוזני: אילו מצגות לבדוק קודם.</span></li>
+  <li><span><b>לבדוק</b> עם הערות לפי שקף. לאשר כל מצגת שעברת עליה.</span></li>
+  <li><span><b>להכין את רשימת הסטודנטים</b> של הסבב הבא: שם מלא, נייד ומייל, מחולקים לקבוצות.</span></li>
+ </ul>
+ <div class="tip"><b>בהתחלה נעשה את כל זה ביחד.</b> המטרה היא שבהמשך תנהל את זה לבד. שאלה או תקלה? ד״ר גוזני בוואטסאפ.</div>
+</section>
+</main>
+<footer>© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות<br>הצילומים מסביבת בדיקה עם שמות ונתונים לדוגמה</footer>
+</body></html>

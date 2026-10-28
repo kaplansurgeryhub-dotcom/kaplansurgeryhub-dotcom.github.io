@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>דיון מקרים: כאב בבטן הימנית העליונה · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -90,6 +90,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -101,6 +102,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -118,6 +120,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -129,7 +134,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
  <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 1</div>
  <h1>דיון מקרים: כאב בבטן הימנית העליונה</h1>
- <p class="lead">לא כל כאב מתחת לצלעות הימניות הוא כיס המרה. שלושה מטופלים בדויים: הלב, הקיבה המנוקבת וכיס המרה בלי אבנים</p>
+ <p class="lead">לא כל כאב מתחת לצלעות הימניות הוא <span class="nw">ה-<bdi dir="ltr">gallbladder</bdi></span>. שלושה מטופלים בדויים: הלב, <span class="nw">ה-<bdi dir="ltr">stomach</bdi></span> המנוקבת <span class="nw">וה-<bdi dir="ltr">gallbladder</bdi></span> בלי אבנים</p>
  <div class="cvsrc" data-ch="85,88" data-note=""><small>מבוסס על</small><b><bdi dir="ltr">Sabiston Textbook of Surgery</bdi> · מהדורה 22</b><div class="cvch"><span>פרק <bdi dir="ltr">85</bdi></span><span>פרק <bdi dir="ltr">88</bdi></span></div></div>
  <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
 </div></section>
@@ -149,8 +154,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>2</b>אנטומיה · מי גר ברבע הימני העליון</div>
- <h2>השכנים של כיס המרה</h2>
- <div class="hotw"><div class="hoti"><img src="img/Sobo_1906_405.png" alt="איברי הבטן העליונה במבט מלפנים: כבד, כיס מרה, קיבה, פילורוס, סרעפת ואומנטום"><svg viewBox="0 0 960 655" preserveAspectRatio="none" style="--lw:22;--bf:24px">
+ <h2>השכנים של <span class="nw">ה-<bdi dir="ltr">gallbladder</bdi></span></h2>
+ <div class="hotw"><div class="hoti"><img src="img/Sobo_1906_405.png" alt="איברי הבטן העליונה במבט מלפנים: liver, gallbladder, stomach, pylorus, diaphragm ו-omentum"><svg viewBox="0 0 960 655" preserveAspectRatio="none" style="--lw:22;--bf:24px">
   <path class="hz" data-hz="st" d="M548,160 C590,135 640,128 680,135 C720,150 750,175 765,210 C772,250 774,300 772,345 C770,385 762,420 745,448 C720,460 690,455 660,450 C620,448 580,440 548,432 C520,425 495,420 482,415 C486,395 488,378 482,362 C490,350 505,340 515,320 C522,290 527,250 530,215 C535,190 540,172 548,160 Z" style="--c:#2F6FA8"/>
   <path class="hz" data-hz="om" d="M262,600 C270,575 285,555 300,535 C320,510 345,490 370,470 C395,452 420,442 440,436 C470,432 520,434 548,438 C590,445 630,452 670,456 C710,460 745,458 770,452 C778,480 780,540 781,600 Z" style="--c:#0A6B5A"/>
   <path class="hz" data-hz="lv" d="M168,362 C190,366 215,360 251,348 C270,343 285,340 293,342 C310,345 330,355 340,370 C345,390 346,410 346,426 C348,440 349,450 348,453 C345,462 340,468 334,473 C320,488 305,500 293,509 C280,520 270,530 265,537 C258,555 252,580 248,598 C246,602 243,604 240,603 C232,585 228,568 223,551 C215,530 210,512 204,495 C198,475 192,450 187,426 C182,410 177,395 173,384 C170,375 168,368 168,362 Z M168,292 C164,265 164,240 170,220 C178,200 195,180 212,172 C240,175 275,190 305,210 C305,230 300,250 288,272 C280,285 272,296 265,304 C240,298 210,292 182,292 Z" style="--c:#7A5BD6"/>
@@ -165,14 +170,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <g class="hzb" style="--c:#0A6B5A"><circle cx="600" cy="525" r="20"/><text x="600" y="525">6</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="gb" hidden><b>1 · כיס המרה</b><p>הקרקעית בולטת מתחת לשפת הכבד. כאב בילארי ודלקת חריפה. במטופל קשה גם דלקת בלי אבנים. כאן בודקים סימן מרפי</p></div>
-  <div class="hzi" data-hzi="lv" hidden><b>2 · הכבד (האונה הימנית)</b><p>אבצס בכבד נמצא ברשימת הסיבות הכירורגיות לבטן חריפה. בשולי הכבד עובר הליגמנט הכבדי-תריסריוני עם צינור המרה: אבן בצינור ודלקת של דרכי המרה</p></div>
-  <div class="hzi" data-hzi="py" hidden><b>3 · הפילורוס והתריסריון</b><p>כיב מנוקב בקיבה או בתריסריון: כאב פתאומי וחזק עם סימני צפקת. לכן מחפשים אוויר חופשי. כיב, גסטריטיס ואפילו קוליטיס יכולים לחקות דלקת בכיס המרה</p></div>
-  <div class="hzi" data-hzi="st" hidden><b>4 · הקיבה</b><p>כאב אפיגסטרי. מאחוריה הלבלב: דלקת לבלב (ליפאז מעל פי 3 מהנורמה). אוטם בדופן התחתונה של הלב יכול להתבטא בכאב בבטן העליונה</p></div>
-  <div class="hzi" data-hzi="di" hidden><b>5 · הסרעפת</b><p>מעליה בסיסי הריאות: דלקת ריאות באונה התחתונה הימנית גורמת לכאב ברבע הימני העליון. גירוי של הסרעפת (אוויר חופשי, דם) מוקרן לכתף דרך העצב הפרני</p></div>
-  <div class="hzi" data-hzi="om" hidden><b>6 · האומנטום והמעי הגס הרוחבי</b><p>מתחת לכבד נמצאת הכפיפה הכבדית של המעי הגס. גם כליה ימנית (אבן, פיילונפריטיס) ותוספתן גבוה בהיריון יכולים לכאוב באזור</p></div>
+  <div class="hzi" data-hzi="gb" hidden><b>1 · <bdi dir="ltr">Gallbladder</bdi></b><p><span class="nw">ה-<bdi dir="ltr">fundus</bdi></span> בולטת מתחת <span class="nw">ל-<bdi dir="ltr">liver edge</bdi></span>. כאב בילארי ודלקת חריפה. במטופל קשה גם דלקת בלי אבנים. כאן בודקים סימן מרפי</p></div>
+  <div class="hzi" data-hzi="lv" hidden><b>2 · <bdi dir="ltr">Liver</bdi> (<bdi dir="ltr">right lobe</bdi>)</b><p>אבצס בכבד נמצא ברשימת הסיבות הכירורגיות לבטן חריפה. בשולי <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> עובר <span class="nw">ה-<bdi dir="ltr">hepatoduodenal ligament</bdi></span> עם <span class="nw">ה-<bdi dir="ltr">CBD</bdi></span>: אבן <span class="nw">ב-<bdi dir="ltr">CBD</bdi></span> ודלקת של דרכי המרה</p></div>
+  <div class="hzi" data-hzi="py" hidden><b>3 · <bdi dir="ltr">Pylorus</bdi> <span class="nw">ו-<bdi dir="ltr">duodenum</bdi></span></b><p>כיב מנוקב <span class="nw">ב-<bdi dir="ltr">stomach</bdi></span> או <span class="nw">ב-<bdi dir="ltr">duodenum</bdi></span>: כאב פתאומי וחזק עם סימני צפקת. לכן מחפשים אוויר חופשי. כיב, גסטריטיס ואפילו קוליטיס יכולים לחקות דלקת בכיס המרה</p></div>
+  <div class="hzi" data-hzi="st" hidden><b>4 · <bdi dir="ltr">Stomach</bdi></b><p>כאב אפיגסטרי. מאחוריה <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span>: דלקת לבלב (ליפאז מעל פי 3 מהנורמה). אוטם בדופן התחתונה של הלב יכול להתבטא בכאב בבטן העליונה</p></div>
+  <div class="hzi" data-hzi="di" hidden><b>5 · <bdi dir="ltr">Diaphragm</bdi></b><p>מעליה <span class="nw">ה-<bdi dir="ltr">lung bases</bdi></span>: דלקת ריאות <span class="nw">ב-<bdi dir="ltr">right lower lobe</bdi></span> גורמת לכאב ברבע הימני העליון. גירוי של <span class="nw">ה-<bdi dir="ltr">diaphragm</bdi></span> (אוויר חופשי, דם) מוקרן לכתף דרך <span class="nw">ה-<bdi dir="ltr">phrenic nerve</bdi></span></p></div>
+  <div class="hzi" data-hzi="om" hidden><b>6 · <bdi dir="ltr">Omentum</bdi> <span class="nw">ו-<bdi dir="ltr">transverse colon</bdi></span></b><p>מתחת <span class="nw">ל-<bdi dir="ltr">liver</bdi></span> נמצאת <span class="nw">ה-<bdi dir="ltr">hepatic flexure</bdi></span>. גם <span class="nw">ה-<bdi dir="ltr">right kidney</bdi></span> (אבן, פיילונפריטיס) <span class="nw">וה-<bdi dir="ltr">appendix</bdi></span> שעולה בהיריון יכולים לכאוב באזור</p></div>
  </div></div>
- <p style="font-size:12px;color:var(--muted);margin:8px 0 0">איברי הבטן העליונה במבט מלפנים, הכבד מורם · <bdi>Sobotta, Atlas and Text-book of Human Anatomy</bdi> (1906), איור 405 (נחלת הכלל)</p>
+ <p style="font-size:12px;color:var(--muted);margin:8px 0 0">איברי הבטן העליונה במבט מלפנים, <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> מורם · <bdi>Sobotta, Atlas and Text-book of Human Anatomy</bdi> (1906), איור 405 (נחלת הכלל)</p>
  <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1156–1157</bdi>, <bdi dir="ltr">1164</bdi> · פרק 88 עמ׳ <bdi dir="ltr">1217</bdi>, <bdi dir="ltr">1223</bdi>, <bdi dir="ltr">1225</bdi></span><span>אנטומיה</span></div>
 </div></section>
 
@@ -180,12 +185,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>3</b>אבחנה מבדלת</div>
  <h2>הרשימה שצריך לעבור עליה</h2>
  <div class="grid g3">
-  <div class="box"><b class="t">דרכי המרה</b><ul class="b sm"><li>כאב בילארי</li><li>דלקת חריפה של כיס המרה, עם או בלי אבנים</li><li>אבן בצינור המשותף, דלקת של דרכי המרה</li></ul></div>
-  <div class="box r"><b class="t">כירורגי אחר</b><ul class="b sm"><li>כיב מנוקב בקיבה או בתריסריון</li><li>דלקת לבלב</li><li>אבצס בכבד</li><li>תוספתן (במיוחד בהיריון)</li></ul></div>
-  <div class="box n"><b class="t">מחוץ לבטן</b><ul class="b sm"><li><b>אוטם שריר הלב</b></li><li>דלקת ריאות באונה התחתונה</li><li>תסחיף ריאתי</li></ul></div>
+  <div class="box"><b class="t"><span class="nw">ה-<bdi dir="ltr">biliary tree</bdi></span></b><ul class="b sm"><li>כאב בילארי</li><li>דלקת חריפה של כיס המרה, עם או בלי אבנים</li><li>אבן <span class="nw">ב-<bdi dir="ltr">CBD</bdi></span>, דלקת של דרכי המרה</li></ul></div>
+  <div class="box r"><b class="t">כירורגי אחר</b><ul class="b sm"><li>כיב מנוקב <span class="nw">ב-<bdi dir="ltr">stomach</bdi></span> או <span class="nw">ב-<bdi dir="ltr">duodenum</bdi></span></li><li>דלקת לבלב</li><li>אבצס בכבד</li><li>תוספתן (במיוחד בהיריון)</li></ul></div>
+  <div class="box n"><b class="t">מחוץ לבטן</b><ul class="b sm"><li><b>אוטם שריר הלב</b></li><li>דלקת ריאות <span class="nw">ב-<bdi dir="ltr">lower lobe</bdi></span></li><li>תסחיף ריאתי</li></ul></div>
   <div class="box b"><b class="t">שתן וכליות</b><ul class="b sm"><li>אבן בכליה</li><li>פיילונפריטיס</li><li>אבצס בכליה</li></ul></div>
   <div class="box a"><b class="t">מטבולי ואחר</b><ul class="b sm"><li>חמצת קטוטית סוכרתית</li><li>משבר של אנמיה חרמשית</li><li>הרפס זוסטר</li></ul></div>
-  <div class="box"><b class="t">היריון</b><ul class="b sm"><li>תסמונת <bdi>HELLP</bdi></li><li>דלקת תוספתן או כיס מרה. הרחם המוגדל מזיז את מקום הכאב</li></ul></div>
+  <div class="box"><b class="t">היריון</b><ul class="b sm"><li>תסמונת <bdi>HELLP</bdi></li><li>דלקת תוספתן או כיס מרה. <span class="nw">ה-<bdi dir="ltr">uterus</bdi></span> המוגדל מזיז את מקום הכאב</li></ul></div>
  </div>
  <div class="box a" style="margin-top:10px"><b class="t">כלל הזהב</b>יש גם תחפושת הפוכה: כיב, גסטריטיס וקוליטיס יכולים להיראות כמו דלקת של כיס המרה. ובקשישים, בסוכרתיים ובמדוכאי חיסון הכול נראה פחות מרשים</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1156–1157</bdi>, <bdi dir="ltr">1164–1165</bdi> (טבלאות <bdi dir="ltr">85.1</bdi>, <bdi dir="ltr">85.3</bdi>) · פרק 88 עמ׳ <bdi dir="ltr">1217</bdi>, <bdi dir="ltr">1223</bdi></span><span>אבחנה מבדלת</span></div>
@@ -197,8 +202,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b sm">
-    <li><b>הכאב:</b> מתי התחיל, איך, איפה, אופי ומשך. כאב קרביים עמום ומפוזר. כאב מהצפק הפריאטלי חד וממוקם</li>
-    <li><b>הקרנה:</b> כאב בכתף יכול לבוא מגירוי של הסרעפת. וההפך: אוטם בלב יכול להופיע ככאב בבטן העליונה</li>
+    <li><b>הכאב:</b> מתי התחיל, איך, איפה, אופי ומשך. כאב קרביים עמום ומפוזר. כאב <span class="nw">מה-<bdi dir="ltr">parietal peritoneum</bdi></span> חד וממוקם</li>
+    <li><b>הקרנה:</b> כאב בכתף יכול לבוא מגירוי של <span class="nw">ה-<bdi dir="ltr">diaphragm</bdi></span>. וההפך: אוטם בלב יכול להופיע ככאב בבטן העליונה</li>
     <li><b>רקע:</b> כלי דם ועישון, ניתוחים, תרופות (סטרואידים מסתירים סימנים), נוגדי קרישה. באישה: וסת, היריון</li>
     <li><b>בדיקה:</b> הסתכלות, הקשה ואז מישוש, מהמקום הלא כואב. רגליים מכופפות כדי להרפות את הבטן. מחפשים התגוננות לא רצונית, נוקשות ורגישות בשחרור</li>
     <li><b>כאב לא פרופורציונלי לבדיקה:</b> לחשוב על איסכמיה</li>
@@ -206,7 +211,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>האזנה לבטן</b> כמעט לא עוזרת לאבחנה</li>
    </ul>
   </div>
-  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש בשתי ידיים מתחת לקשת הצלעות הימנית" style="max-height:48vh"><figcaption>מישוש הרבע הימני העליון בשתי ידיים: יד אחת מאחור דוחפת קדימה, השנייה ממששת מתחת לקשת הצלעות · <bdi>Musser, A Practical Treatise on Medical Diagnosis</bdi> (1904), איור 192 (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש בשתי ידיים מתחת לה-right costal margin" style="max-height:48vh"><figcaption>מישוש הרבע הימני העליון בשתי ידיים: יד אחת מאחור דוחפת קדימה, השנייה ממששת מתחת <span class="nw">ל-<bdi dir="ltr">costal margin</bdi></span> · <bdi>Musser, A Practical Treatise on Medical Diagnosis</bdi> (1904), איור 192 (נחלת הכלל)</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1155</bdi>, <bdi dir="ltr">1157–1159</bdi></span><span>בדיקה</span></div>
 </div></section>
@@ -216,11 +221,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>"יש לו אבנים. מזמינים כירורג"</h2>
  <div class="grid f">
   <div>
-   <div class="case">גבר בן 58, מעשן, סוכרתי ויתר לחץ דם. <b>שעתיים</b> של "לחץ" באפיגסטריום ובבטן הימנית העליונה, בחילה ו<b>הזעה</b>. הבטן רכה, רגישות קלה באפיגסטריום, <b>מרפי שלילי</b>. רופא המיון ראה באולטרסאונד ליד המיטה אבנים בכיס המרה.
+   <div class="case">גבר בן 58, מעשן, סוכרתי ויתר לחץ דם. <b>שעתיים</b> של "לחץ" באפיגסטריום ובבטן הימנית העליונה, בחילה ו<b>הזעה</b>. הבטן רכה, רגישות קלה באפיגסטריום, <b>מרפי שלילי</b>. רופא המיון ראה באולטרסאונד ליד המיטה אבנים <span class="nw">ב-<bdi dir="ltr">gallbladder</bdi></span>.
     <div class="vit"><span>ל״ד 158/94</span><span>דופק 106</span><span>חום 36.9</span><span>נשימות 22</span><span>ספירה ותפקודי כבד תקינים</span></div></div>
    <ol class="q"><li>האבנים מסבירות את התמונה?</li><li>מה חייבים לשלול לפני שממשיכים?</li><li>אילו בדיקות פשוטות עושים עכשיו?</li></ol>
   </div>
-  <figure><img src="img/us-gallstone-shadow.jpg" alt="אולטרסאונד: אבן גדולה בכיס המרה עם צל אקוסטי" style="max-height:42vh"><figcaption>אבן גדולה בכיס המרה עם צל אקוסטי. הדופן דקה ואין נוזל סביב (להמחשה) · <bdi dir="ltr">Hellerhoff · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/us-gallstone-shadow.jpg" alt="אולטרסאונד: אבן גדולה ב-gallbladder עם צל אקוסטי" style="max-height:42vh"><figcaption>אבן גדולה <span class="nw">ב-<bdi dir="ltr">gallbladder</bdi></span> עם צל אקוסטי. הדופן דקה ואין נוזל סביב (להמחשה) · <bdi dir="ltr">Hellerhoff · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1157</bdi>, <bdi dir="ltr">1159</bdi> · פרק 88 עמ׳ <bdi dir="ltr">1217</bdi>, <bdi dir="ltr">1221</bdi></span><span>מקרה 1</span></div>
 </div></section>
@@ -239,8 +244,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <details class="rev"><summary>מה חייבים לשלול?</summary>
     <ul class="b sm">
      <li><b>אוטם בשריר הלב</b> יכול להופיע ככאב בבטן העליונה</li>
-     <li>בכאב אפיגסטרי: קולות לב רחוקים ופחות כניסת אוויר בבסיסי הריאות מכוונים לתסמונת כלילית חריפה</li>
-     <li>מטופל עם מחלת כלי דם ומעשן: גם מפרצת באבי העורקים ואיסכמיה של המעי בראש הרשימה</li>
+     <li>בכאב אפיגסטרי: קולות לב רחוקים ופחות כניסת אוויר <span class="nw">ב-<bdi dir="ltr">lung bases</bdi></span> מכוונים לתסמונת כלילית חריפה</li>
+     <li>מטופל עם מחלת כלי דם ומעשן: גם מפרצת <span class="nw">ב-<bdi dir="ltr">aorta</bdi></span> ואיסכמיה של המעי בראש הרשימה</li>
     </ul></details>
   </div>
   <div>
@@ -265,7 +270,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <div class="vit"><span>דופק 118</span><span>ל״ד 108/66</span><span>חום 37.6</span><span>לויקוציטים <bdi dir="ltr">15,800</bdi></span><span>ליפאז תקין</span></div></div>
    <ol class="q"><li>מה מסביר את הכאב בכתף?</li><li>איזה צילום פשוט עוזר כאן?</li><li>מה ההכנה לחדר ניתוח?</li></ol>
   </div>
-  <figure><img src="img/xr-free-air.jpg" alt="צילום חזה עם אוויר מתחת לסרעפת ו-CT עם אוויר חופשי" style="max-height:40vh"><figcaption>אוויר חופשי: מתחת לסרעפת בצילום החזה (משמאל) ומול הכבד ב-<bdi>CT</bdi> (מימין) · <bdi dir="ltr">Cerevisae · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/xr-free-air.jpg" alt="צילום חזה עם אוויר מתחת ל-diaphragm ו-CT עם אוויר חופשי" style="max-height:40vh"><figcaption>אוויר חופשי: מתחת <span class="nw">ל-<bdi dir="ltr">diaphragm</bdi></span> בצילום החזה (משמאל) ומול <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> <span class="nw">ב-<bdi>CT</bdi></span> (מימין) · <bdi dir="ltr">Cerevisae · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1157–1158</bdi>, <bdi dir="ltr">1160</bdi></span><span>מקרה 2</span></div>
 </div></section>
@@ -277,13 +282,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <details class="rev"><summary>הכתף והבטן</summary>
     <ul class="b sm">
-     <li>אוויר חופשי מגרה את הסרעפת. העצב הפרני מוקרן לכתף</li>
-     <li><b>צפקת:</b> התגוננות לא רצונית, נוקשות ורגישות בשחרור, מגירוי של הצפק הפריאטלי</li>
-     <li>החשד: כיב מנוקב בקיבה או בתריסריון</li>
+     <li>אוויר חופשי מגרה את <span class="nw">ה-<bdi dir="ltr">diaphragm</bdi></span>. <span class="nw">ה-<bdi dir="ltr">phrenic nerve</bdi></span> מוקרן לכתף</li>
+     <li><b>צפקת:</b> התגוננות לא רצונית, נוקשות ורגישות בשחרור, מגירוי של <span class="nw">ה-<bdi dir="ltr">parietal peritoneum</bdi></span></li>
+     <li>החשד: כיב מנוקב <span class="nw">ב-<bdi dir="ltr">stomach</bdi></span> או <span class="nw">ב-<bdi dir="ltr">duodenum</bdi></span></li>
     </ul></details>
    <details class="rev"><summary>ההדמיה</summary>
     <ul class="b sm">
-     <li><b>צילום בעמידה:</b> אוויר מתחת לסרעפת. זמין מהר ומקדים את הייעוץ הכירורגי</li>
+     <li><b>צילום בעמידה:</b> אוויר מתחת <span class="nw">ל-<bdi dir="ltr">diaphragm</bdi></span>. זמין מהר ומקדים את הייעוץ הכירורגי</li>
      <li><b>CT עם חומר ניגוד לווריד:</b> הכלי העיקרי בבטן חריפה. בלי חומר ניגוד הדיוק יורד בכ-30%</li>
      <li><b>חומר ניגוד דרך הפה</b> כמעט לא צריך, חוץ מחשד לניקוב או לדליפה. דליפה שלו סגולית אבל לא רגישה</li>
     </ul></details>
@@ -306,18 +311,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>9</b>עוד מתחזים</div>
- <h2>כשהבעיה מעל הסרעפת או מתחת לכליה</h2>
+ <h2>כשהבעיה מעל <span class="nw">ה-<bdi dir="ltr">diaphragm</bdi></span> או מתחת <span class="nw">ל-<bdi dir="ltr">kidney</bdi></span></h2>
  <div class="grid f">
   <div>
    <ul class="b sm">
-    <li><b>דלקת ריאות באונה התחתונה הימנית:</b> כאב ברבע הימני העליון עם חום, שיעול ונשימה מאומצת. צילום חזה מבדיל. זה אחד התפקידים המעטים שנשארו לצילום הבטן והחזה במחלות כיס המרה</li>
+    <li><b>דלקת ריאות <span class="nw">ב-<bdi dir="ltr">right lower lobe</bdi></span>:</b> כאב ברבע הימני העליון עם חום, שיעול ונשימה מאומצת. צילום חזה מבדיל. זה אחד התפקידים המעטים שנשארו לצילום הבטן והחזה במחלות כיס המרה</li>
     <li><b>פיילונפריטיס ואבן בכליה:</b> בדיקת שתן</li>
     <li><b>דלקת לבלב:</b> ליפאז מעל פי 3 מהנורמה. כאב אפיגסטרי בבדיקה מעלה חשד</li>
-    <li><b>אישה בגיל הפוריות:</b> <bdi>β-hCG</bdi> תמיד. בהיריון מעדיפים אולטרסאונד ו-<bdi>MRI</bdi>. אם צריך <bdi>CT</bdi> בשביל האם, עושים אותו: כ-25 מיליגריי לעובר. עד 50 מיליגריי הסיכון נמוך</li>
+    <li><b>אישה בגיל הפוריות:</b> <bdi>β-hCG</bdi> תמיד. בהיריון מעדיפים אולטרסאונד <span class="nw">ו-<bdi>MRI</bdi></span>. אם צריך <bdi>CT</bdi> בשביל האם, עושים אותו: כ-25 מיליגריי לעובר. עד 50 מיליגריי הסיכון נמוך</li>
     <li><b>חמצת קטוטית סוכרתית:</b> מטופל שהפסיק אינסולין</li>
    </ul>
   </div>
-  <figure><img src="img/xr-rll-pneumonia.jpg" alt="צילום חזה עם דלקת ריאות באונה התחתונה הימנית" style="max-height:42vh"><figcaption>דלקת ריאות באונה התחתונה הימנית (בעיגול), ממש מעל הכבד וכיס המרה · <bdi dir="ltr">James Heilman, MD · CC BY 3.0 · Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/xr-rll-pneumonia.jpg" alt="צילום חזה עם דלקת ריאות ב-right lower lobe" style="max-height:42vh"><figcaption>דלקת ריאות <span class="nw">ב-<bdi dir="ltr">right lower lobe</bdi></span> (בעיגול), ממש מעל <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> <span class="nw">וה-<bdi dir="ltr">gallbladder</bdi></span> · <bdi dir="ltr">James Heilman, MD · CC BY 3.0 · Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1157</bdi>, <bdi dir="ltr">1159</bdi>, <bdi dir="ltr">1164</bdi> · פרק 88 עמ׳ <bdi dir="ltr">1217</bdi>, <bdi dir="ltr">1225</bdi></span><span>מתחזים</span></div>
 </div></section>
@@ -331,7 +336,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <div class="vit"><span>לויקוציטים <bdi dir="ltr">17,200</bdi></span><span><bdi>ALP</bdi> עולה</span><span>אולטרסאונד: דופן מעובה ונוזל סביב, <b>בלי אבנים</b></span></div></div>
    <ol class="q"><li>מה האבחנה?</li><li>ניתוח או ניקוז?</li><li>מתי משנים תוכנית?</li></ol>
   </div>
-  <figure><img src="img/ct-cholecystitis-hellerhoff.jpg" alt="CT עם כיס מרה מורחב ודופן מעובה" style="max-height:40vh"><figcaption>כיס מרה מורחב עם דופן מעובה ב-<bdi>CT</bdi> בדלקת חריפה (להמחשה) · <bdi dir="ltr">Hellerhoff · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/ct-cholecystitis-hellerhoff.jpg" alt="CT עם gallbladder מורחב ודופן מעובה" style="max-height:40vh"><figcaption><span class="nw">ה-<bdi dir="ltr">gallbladder</bdi></span> מורחב עם דופן מעובה <span class="nw">ב-<bdi>CT</bdi></span> בדלקת חריפה (להמחשה) · <bdi dir="ltr">Hellerhoff · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 88 עמ׳ <bdi dir="ltr">1227</bdi> · פרק 85 עמ׳ <bdi dir="ltr">1165</bdi></span><span>מקרה 3</span></div>
 </div></section>
@@ -346,7 +351,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
      <li>כנראה סטזיס של מרה, התרחבות, דלקת ואז זיהום ונמק</li>
      <li><b>גורמי סיכון:</b> גיל מבוגר, כוויות וחבלה, הזנה תוך-ורידית ממושכת, מחלה קשה, דיכוי חיסון, סוכרת</li>
      <li>יכולה להיות סוערת יותר מדלקת עם אבנים ולהגיע לנמק</li>
-     <li>לעיתים <b>בלי כאב ובלי סימנים</b>: חום בלי מקור עם דופן מעובה ונוזל סביב כיס המרה צריך להדליק נורה</li>
+     <li>לעיתים <b>בלי כאב ובלי סימנים</b>: חום בלי מקור עם דופן מעובה ונוזל סביב <span class="nw">ה-<bdi dir="ltr">gallbladder</bdi></span> צריך להדליק נורה</li>
      <li>מיפוי <bdi>HIDA</bdi> מאבחן, אבל יכול להיות חיובי כוזב</li>
     </ul></details>
   </div>
@@ -354,7 +359,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <details class="rev"><summary>הטיפול</summary>
     <ul class="b sm">
      <li>כריתה מרפאת, אבל רבים מהמטופלים האלה לא יעמדו בניתוח</li>
-     <li><b>נקז מלעורי לכיס המרה</b> בהנחיית הדמיה: הדרך הבטוחה. יותר מ-90% משתפרים</li>
+     <li><b>נקז מלעורי <span class="nw">ל-<bdi dir="ltr">gallbladder</bdi></span></b> בהנחיית הדמיה: הדרך הבטוחה. יותר מ-90% משתפרים</li>
      <li>כריתה מאוחרת רק אם ההדמיה בהמשך עדיין לא תקינה</li>
      <li><b>לא השתפר תוך 24 שעות?</b> לשקול ניתוח וכריתה. כנראה יש ניקוב והנקז לא מספיק</li>
     </ul></details>
@@ -368,15 +373,15 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>12</b>בחירת הדמיה</div>
  <h2>מה מזמינים ולמה</h2>
  <div class="num n3">
-  <div><b dir="ltr">0 mSv</b><span>אולטרסאונד ו-<bdi>MRI</bdi></span></div>
+  <div><b dir="ltr">0 mSv</b><span>אולטרסאונד <span class="nw">ו-<bdi>MRI</bdi></span></span></div>
   <div><b dir="ltr">0.1–1 mSv</b><span>צילום בטן · מיפוי כיס מרה</span></div>
   <div><b dir="ltr">1–10 mSv</b><span><bdi>CT</bdi> בטן ואגן עם חומר ניגוד</span></div>
  </div>
  <div class="flow">
-  <div><b>אולטרסאונד</b><span>הבדיקה הראשונה לחשד לכיס המרה ולצהבת. בלי קרינה, גם ליד המיטה. מוגבל בגזים ובמטופל שמן</span></div>
+  <div><b>אולטרסאונד</b><span>הבדיקה הראשונה לחשד <span class="nw">ל-<bdi dir="ltr">gallbladder</bdi></span> ולצהבת. בלי קרינה, גם ליד המיטה. מוגבל בגזים ובמטופל שמן</span></div>
   <div><b>צילום בעמידה</b><span>אוויר חופשי, חסימת מעי, דלקת ריאות. אבני מרה רוב הזמן לא נראות</span></div>
   <div><b><bdi>CT</bdi> עם חומר ניגוד</b><span>הכלי העיקרי בבטן חריפה כשהתמונה לא ברורה. רגיש יותר מאולטרסאונד לדלקת בכיס המרה (90% לעומת 80%)</span></div>
-  <div><b>מיפוי <bdi>HIDA</bdi></b><span>כיס מרה שלא מתמלא תוך שעתיים: חסימה של הצינור הציסטי. רגישות 95% וסגוליות 90%</span></div>
+  <div><b>מיפוי <bdi>HIDA</bdi></b><span>אם <span class="nw">ה-<bdi dir="ltr">gallbladder</bdi></span> לא מתמלא תוך שעתיים: חסימה של <span class="nw">ה-<bdi dir="ltr">cystic duct</bdi></span>. רגישות 95% וסגוליות 90%</span></div>
   <div><b><bdi>MRI</bdi></b><span>בהיריון ובילדים. יקר וארוך (30 עד 90 דקות)</span></div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1159–1162</bdi> (טבלה <bdi dir="ltr">85.5</bdi>) · פרק 88 עמ׳ <bdi dir="ltr">1217–1218</bdi></span><span>הדמיה</span></div>
@@ -387,7 +392,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>מחקרים שכדאי להכיר</h2>
  <div class="grid">
   <div class="study"><div class="y"><bdi>J Am Coll Radiol</bdi> 2023 · הנחיות</div><b>הנחיות <bdi>ACR</bdi> לכאב ברבע הימני העליון</b>
-   <p>כאב בלי סיבה ידועה: אולטרסאונד או <bdi>CT</bdi> עם חומר ניגוד. חשד למחלה בדרכי המרה: אולטרסאונד. אולטרסאונד שלילי עם חום ולויקוציטוזיס: <bdi>MRI</bdi> עם <bdi>MRCP</bdi>, מיפוי או <bdi>CT</bdi>. חשד לדלקת בלי אבנים: מיפוי</p>
+   <p>כאב בלי סיבה ידועה: אולטרסאונד או <bdi>CT</bdi> עם חומר ניגוד. חשד למחלה <span class="nw">ב-<bdi dir="ltr">biliary tree</bdi></span>: אולטרסאונד. אולטרסאונד שלילי עם חום ולויקוציטוזיס: <bdi>MRI</bdi> עם <bdi>MRCP</bdi>, מיפוי או <bdi>CT</bdi>. חשד לדלקת בלי אבנים: מיפוי</p>
    <small><bdi dir="ltr">Russo GK, Zaheer A, Kamel IR, et al. J Am Coll Radiol 2023;20(5S):S211-S223</bdi></small></div>
   <div class="study"><div class="y"><bdi>Ann Emerg Med</bdi> 2024 · מטה-אנליזה</div><b>אולטרסאונד ליד המיטה בידי רופאי מיון</b>
    <p>10 מחקרים, 2,356 מטופלים. לדלקת חריפה של כיס המרה: רגישות 70.9% וסגוליות 94.4%. בדיקה חיובית עוזרת לאשר. בדיקה שלילית לא שוללת</p>
@@ -406,14 +411,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>14</b>לסיכום</div>
  <h2>חמישה דברים לקחת למחלקה</h2>
  <ol class="obj">
-  <li>כאב ברבע הימני העליון: דרכי המרה בראש הרשימה, אבל לא לבד. לב, ריאה, כליה, לבלב, כיב והיריון</li>
+  <li>כאב ברבע הימני העליון: <span class="nw">ה-<bdi dir="ltr">biliary tree</bdi></span> בראש הרשימה, אבל לא לבד. לב, ריאה, כליה, לבלב, כיב והיריון</li>
   <li>אבנים באולטרסאונד הן ממצא שכיח. בלי חום, מרפי ודופן מעובה הן לא בהכרח האבחנה</li>
   <li>בודקים את כל המטופל: לב, ריאות, מפשעות. א״ק״ג וצילום חזה זולים ומהירים</li>
   <li>כאב פתאומי, בטן קשה וכאב בכתף: ניקוב. צילום בעמידה, החייאה, אנטיביוטיקה וחדר ניתוח</li>
   <li>מטופל קשה בטיפול נמרץ עם חום בלי מקור: לחשוב על דלקת בלי אבנים ולנקז</li>
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 85 <bdi>The Acute Abdomen</bdi> (עמ׳ <bdi dir="ltr">1155–1165</bdi>) · פרק 88 <bdi>Biliary System</bdi> (עמ׳ <bdi dir="ltr">1217–1227</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906) ו-<bdi>Musser</bdi> (1904), נחלת הכלל · הדמיה מ-<bdi>Wikimedia Commons</bdi> לפי הרישיון בכל איור · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906) <span class="nw">ו-<bdi>Musser</bdi></span> (1904), נחלת הכלל · הדמיה <span class="nw">מ-<bdi>Wikimedia Commons</bdi></span> לפי הרישיון בכל איור · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>

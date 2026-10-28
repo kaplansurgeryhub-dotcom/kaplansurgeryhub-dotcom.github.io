@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>גרורות לכבד מסרטן המעי הגס · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -80,6 +80,7 @@ bdi{unicode-bidi:isolate}
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -91,6 +92,7 @@ bdi{unicode-bidi:isolate}
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -108,6 +110,9 @@ bdi{unicode-bidi:isolate}
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -120,7 +125,7 @@ bdi{unicode-bidi:isolate}
  <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
  <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 5</div>
  <h1>גרורות לכבד מסרטן המעי הגס</h1>
- <p class="lead">מחלה בשלב <bdi>IV</bdi> שאפשר לרפא: הדמיה, מי מתאים לכריתה, נפח הכבד שנשאר, כימותרפיה, הסדר מול הגידול הראשוני וטיפולים מקומיים</p>
+ <p class="lead">מחלה בשלב <bdi>IV</bdi> שאפשר לרפא: הדמיה, מי מתאים לכריתה, נפח <span class="nw">ה-<bdi>liver</bdi></span> שנשאר, כימותרפיה, הסדר מול הגידול הראשוני וטיפולים מקומיים</p>
  <div class="cvsrc" data-ch="90" data-note=""><small>מבוסס על</small><b><bdi dir="ltr">Sabiston Textbook of Surgery</bdi> · מהדורה 22</b><div class="cvch"><span>פרק <bdi dir="ltr">90</bdi></span></div></div>
  <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
 </div></section>
@@ -129,11 +134,11 @@ bdi{unicode-bidi:isolate}
  <div class="kick"><b>1</b>מטרות הלמידה</div>
  <h2>בסוף המפגש תדעו</h2>
  <ol class="obj">
-  <li><span>להסביר למה הכבד הוא האתר השכיח לגרורות של סרטן המעי הגס ולמה כריתה יכולה לרפא</span></li>
+  <li><span>להסביר למה <span class="nw">ה-<bdi>liver</bdi></span> הוא האתר השכיח לגרורות של סרטן המעי הגס ולמה כריתה יכולה לרפא</span></li>
   <li><span>לבנות בירור: <bdi>CEA</bdi>, <bdi>CT</bdi> רב-פאזי, <bdi>MRI</bdi> בכבד שומני ומתי צריך ביופסיה</span></li>
-  <li><span>להגדיר מה נחשב נתיח ולחשב בגדול את נפח הכבד שיישאר (<bdi>FLR</bdi>) ואיך מגדילים אותו</span></li>
+  <li><span>להגדיר מה נחשב נתיח ולחשב בגדול את נפח <span class="nw">ה-<bdi>liver</bdi></span> שיישאר (<bdi>FLR</bdi>) ואיך מגדילים אותו</span></li>
   <li><span>להכיר את גורמי הפרוגנוזה ואת הסמנים המולקולריים: <bdi>RAS</bdi>, <bdi>BRAF</bdi>, <bdi>MSI</bdi></span></li>
-  <li><span>לתכנן את הסדר בין הכבד לגידול הראשוני ואת מקום הכימותרפיה</span></li>
+  <li><span>לתכנן את הסדר בין <span class="nw">ה-<bdi>liver</bdi></span> לגידול הראשוני ואת מקום הכימותרפיה</span></li>
   <li><span>להכיר חלופות לכריתה: אבלציה, משאבה עורקית, הקרנה פנימית והשתלה</span></li>
  </ol>
  <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 90 (עמ׳ <bdi dir="ltr">1306–1317</bdi>)</span><span>Scrub In · קפלן</span></div>
@@ -141,7 +146,7 @@ bdi{unicode-bidi:isolate}
 
 <section class="s"><div class="card">
  <div class="kick"><b>2</b>הבעיה במספרים</div>
- <h2>הכבד והמעי הגס</h2>
+ <h2><span class="nw">ה-<bdi>liver</bdi></span> <span class="nw">וה-<bdi>colon</bdi></span></h2>
  <div class="num">
   <div><b dir="ltr">~50%</b><span>מחולי סרטן המעי הגס יפתחו גרורות בכבד</span></div>
   <div><b dir="ltr">1 · 4</b><span>מגיעים עם גרורות סינכרוניות. עוד רבע יפתחו אותן בהמשך</span></div>
@@ -150,7 +155,7 @@ bdi{unicode-bidi:isolate}
  </div>
  <div class="grid">
   <ul class="b">
-   <li><b>למה הכבד?</b> ניקוז ורידי ישיר דרך וריד השער, סינוסואידים עם אנדותל מחורר וסביבה חיסונית סובלנית: "זרע וקרקע"</li>
+   <li><b>למה <span class="nw">ה-<bdi>liver</bdi></span>?</b> ניקוז ורידי ישיר דרך <span class="nw">ה-<bdi>portal vein</bdi></span>, סינוסואידים עם אנדותל מחורר וסביבה חיסונית סובלנית: "זרע וקרקע"</li>
    <li>סרטן המעי הגס הוא המקור השכיח ביותר לגרורות בכבד. הגרורות האלה הן ההתוויה השכיחה לכריתת כבד בארה״ב</li>
   </ul>
   <div style="display:grid;gap:10px">
@@ -163,18 +168,18 @@ bdi{unicode-bidi:isolate}
 
 <section class="s"><div class="card">
  <div class="kick"><b>3</b>הסתמנות ובירור</div>
- <h2>לרוב הכבד שקט</h2>
+ <h2>לרוב <span class="nw">ה-<bdi>liver</bdi></span> שקט</h2>
  <div class="grid f">
   <div>
    <ul class="b sm">
     <li><b>התסמינים בדרך כלל מהגידול הראשוני</b> (דימום, חסימה). הגרורות עצמן שקטות, אלא אם העומס גדול: כאב, ירידה במשקל, חולשה. חסימה של דרכי המרה: צהבת</li>
-    <li><b>מעבדה:</b> ספירה, כימיה מלאה וקרישה. בילירובין ו-<bdi>PT</bdi> עולים: חשד לתפקוד כבד ירוד. טסיות נמוכות: חשד ליתר לחץ דם פורטלי</li>
+    <li><b>מעבדה:</b> ספירה, כימיה מלאה וקרישה. בילירובין <span class="nw">ו-<bdi>PT</bdi></span> עולים: חשד לתפקוד כבד ירוד. טסיות נמוכות: חשד ליתר לחץ דם פורטלי</li>
     <li><b><bdi>CEA</bdi>:</b> הסמן של סרטן המעי הגס. גם עישון ודלקת כרונית יכולים להעלות אותו</li>
     <li><b>ביופסיה מהגרורה לא חובה</b> כשהגידול הראשוני ידוע והתמונה מתאימה. רקמה עוזרת לבדיקות מולקולריות ולבחירת טיפול</li>
    </ul>
-   <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>מששו את הכבד אצל חולה עם גרורות. לרוב לא תמצאו דבר: הגרורות שקטות עד שהעומס גדול. האבחנה בהדמיה. השוו בצילום שלו את הפאזה העורקית לפורטלית</div>
+   <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>מששו את <span class="nw">ה-<bdi>liver</bdi></span> אצל חולה עם גרורות. לרוב לא תמצאו דבר: הגרורות שקטות עד שהעומס גדול. האבחנה בהדמיה. השוו בצילום שלו את הפאזה העורקית לפורטלית</div>
   </div>
-  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש הכבד בשתי ידיים"><figcaption>מישוש שפת הכבד בשיטת גלנאר: יד אחת מאחור מרימה, יד שנייה ממששת מתחת לקשת הצלעות · <bdi>Musser, Medical Diagnosis</bdi> 1904, איור 192 (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש ה-liver בשתי ידיים"><figcaption>מישוש שפת <span class="nw">ה-<bdi>liver</bdi></span> בשיטת גלנאר: יד אחת מאחור מרימה, יד שנייה ממששת מתחת <span class="nw">ל-<bdi>costal margin</bdi></span> · <bdi>Musser, Medical Diagnosis</bdi> 1904, איור 192 (נחלת הכלל)</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 90 עמ׳ <bdi dir="ltr">1307–1308</bdi></span><span>בירור</span></div>
 </div></section>
@@ -184,12 +189,12 @@ bdi{unicode-bidi:isolate}
  <h2>גרורה בכבד בהדמיה</h2>
  <div class="grid">
   <div style="display:grid;gap:10px">
-   <figure><img style="max-height:28vh" src="img/crc-liver-spleen-mets-ct.jpg" alt="CT עם גרורות בכבד ובטחול מסרטן הסיגמואיד"><figcaption>גרורות היפו-וסקולריות (כהות) בכבד ובטחול מאדנוקרצינומה של הסיגמואיד, <bdi>CT</bdi> צירי ועטרתי · <bdi>Hellerhoff, Wikimedia Commons, CC BY-SA 3.0</bdi></figcaption></figure>
+   <figure><img style="max-height:28vh" src="img/crc-liver-spleen-mets-ct.jpg" alt="CT עם גרורות ב-liver וב-spleen מסרטן ה-sigmoid"><figcaption>גרורות היפו-וסקולריות (כהות) <span class="nw">ב-<bdi>liver</bdi></span> <span class="nw">וב-<bdi>spleen</bdi></span> מאדנוקרצינומה של <span class="nw">ה-<bdi>sigmoid</bdi></span>, <bdi>CT</bdi> צירי ועטרתי · <bdi>Hellerhoff, Wikimedia Commons, CC BY-SA 3.0</bdi></figcaption></figure>
    <figure><img style="max-height:22vh" src="img/crc-liver-met-ceus.jpg" alt="אולטרסאונד עם חומר ניגוד של גרורה בכבד"><figcaption>גרורה מסרטן הקולון באולטרסאונד עם חומר ניגוד · <bdi>R. Badea, S. Ioanitescu, Wikimedia Commons, CC BY 3.0</bdi></figcaption></figure>
   </div>
   <div class="flow">
    <div><b><bdi>CT</bdi> רב-גלאי</b><span>הבדיקה המועדפת. לפחות פאזה עורקית ופורטלית, חתכים של 5 מ״מ או פחות. לתכנון ניתוח: 4 פאזות</span></div>
-   <div><b>איך נראית גרורה</b><span>היפו-וסקולרית: <b>כהה</b> מהכבד בפאזה הפורטלית. בפאזה העורקית לפעמים טבעת האדרה בשוליים</span></div>
+   <div><b>איך נראית גרורה</b><span>היפו-וסקולרית: <b>כהה</b> <span class="nw">מה-<bdi>liver</bdi></span> בפאזה הפורטלית. בפאזה העורקית לפעמים טבעת האדרה בשוליים</span></div>
    <div><b><bdi>MRI</bdi></b><span>באי-ספיקת כליות, באלרגיה לחומר ניגוד ובכבד שומני. עם חומר ספציפי לכבד הגרורה כהה בפאזה ההפטוביליארית</span></div>
    <div><b><bdi>PET</bdi></b><span>לא בשגרה. רק לנגע לא ברור שישנה את הטיפול. חיובי כוזב בדלקת, חלש מתחת ל-1 ס״מ</span></div>
   </div>
@@ -200,26 +205,26 @@ bdi{unicode-bidi:isolate}
 <section class="s"><div class="card">
  <div class="kick"><b>5</b>אנטומיה · אינטראקטיבי</div>
  <h2>הסגמנטים ושמות הכריתות</h2>
- <div class="hotw" style="grid-template-columns:1fr 1fr"><div class="hoti"><img src="img/couinaud-anterior.jpg" alt="סגמנטים של הכבד לפי קוינו, מבט קדמי"><svg viewBox="0 0 1000 1000" preserveAspectRatio="none" style="--lw:10;--bf:26px">
+ <div class="hotw" style="grid-template-columns:1fr 1fr"><div class="hoti"><img src="img/couinaud-anterior.jpg" alt="סגמנטים של ה-liver לפי Couinaud, מבט קדמי"><svg viewBox="0 0 1000 1000" preserveAspectRatio="none" style="--lw:10;--bf:26px">
   <path class="hz" data-hz="p" d="M175,289 C179.2,293.2 178.5,314 182,329 C185.5,344 190.7,362.3 196,379 C201.3,395.7 208,412.3 214,429 C220,445.7 226.7,464.5 232,479 C237.3,493.5 240.7,500.7 246,516 C251.3,531.3 257.3,553.5 264,571 C270.7,588.5 277.7,601.8 286,621 C294.3,640.2 303.7,665.2 314,686 C324.3,706.8 350.3,733 348,746 C345.7,759 316.3,757.3 300,764 C283.7,770.7 265.5,778.8 250,786 C234.5,793.2 221.3,802.3 207,807 C192.7,811.7 174.7,815.2 164,814 C153.3,812.8 148,807.2 143,800 C138,792.8 135.8,785.3 134,771 C132.2,756.7 133.2,735.3 132,714 C130.8,692.7 128.8,664.3 127,643 C125.2,621.7 123.2,605 121,586 C118.8,567 115.7,548.2 114,529 C112.3,509.8 111,490.2 111,471 C111,451.8 112,431.8 114,414 C116,396.2 118.8,378.8 123,364 C127.2,349.2 133.3,335 139,325 C144.7,315 151,310 157,304 C163,298 170.8,284.8 175,289 Z" style="--c:#A3402E"/>
   <path class="hz" data-hz="a" d="M175,289 C176.8,278.8 182.8,274.5 193,268 C203.2,261.5 218.2,254.2 236,250 C253.8,245.8 277.5,244.5 300,243 C322.5,241.5 349.5,240.5 371,241 C392.5,241.5 408.7,243.8 429,246 C449.3,248.2 479.3,245 493,254 C506.7,263 506.8,282.8 511,300 C515.2,317.2 516.3,335.5 518,357 C519.7,378.5 520.5,406.3 521,429 C521.5,451.7 521.5,471.7 521,493 C520.5,514.3 519.7,538 518,557 C516.3,576 513.3,590.3 511,607 C508.7,623.7 506,643.3 504,657 C502,670.7 506.8,680.5 499,689 C491.2,697.5 468.7,702.5 457,708 C445.3,713.5 439.7,717.3 429,722 C418.3,726.7 406.5,732 393,736 C379.5,740 361.2,754.3 348,746 C334.8,737.7 324.3,706.8 314,686 C303.7,665.2 294.3,640.2 286,621 C277.7,601.8 270.7,588.5 264,571 C257.3,553.5 251.3,531.3 246,516 C240.7,500.7 237.3,493.5 232,479 C226.7,464.5 220,445.7 214,429 C208,412.3 201.3,395.7 196,379 C190.7,362.3 185.5,344 182,329 C178.5,314 173.2,299.2 175,289 Z" style="--c:#2F6FA8"/>
   <path class="hz" data-hz="m" d="M493,254 C498.3,248 527.5,260.5 543,264 C558.5,267.5 573.5,272.5 586,275 C598.5,277.5 608,274.8 618,279 C628,283.2 638.8,290.5 646,300 C653.2,309.5 657.7,320.5 661,336 C664.3,351.5 665.5,371.7 666,393 C666.5,414.3 665.5,443.8 664,464 C662.5,484.2 659.2,497.3 657,514 C654.8,530.7 653.3,550.8 651,564 C648.7,577.2 646.7,584.7 643,593 C639.3,601.3 635,606.8 629,614 C623,621.2 616.7,628.8 607,636 C597.3,643.2 581.7,649.8 571,657 C560.3,664.2 552.5,673.7 543,679 C533.5,684.3 521.3,687.3 514,689 C506.7,690.7 500.7,694.3 499,689 C497.3,683.7 502,670.7 504,657 C506,643.3 508.7,623.7 511,607 C513.3,590.3 516.3,576 518,557 C519.7,538 520.5,514.3 521,493 C521.5,471.7 521.5,451.7 521,429 C520.5,406.3 519.7,378.5 518,357 C516.3,335.5 515.2,317.2 511,300 C506.8,282.8 487.7,260 493,254 Z" style="--c:#7A5BD6"/>
   <path class="hz" data-hz="l" d="M618,279 C619.8,276 643.3,282.3 657,282 C670.7,281.7 684.5,277 700,277 C715.5,277 733.3,278.2 750,282 C766.7,285.8 784.5,292.2 800,300 C815.5,307.8 829.8,317.2 843,329 C856.2,340.8 871,355.7 879,371 C887,386.3 889.8,406.7 891,421 C892.2,435.3 888.7,448 886,457 C883.3,466 881,465.5 875,475 C869,484.5 860.2,500.3 850,514 C839.8,527.7 827.2,545.7 814,557 C800.8,568.3 785.2,575.5 771,582 C756.8,588.5 742,594.2 729,596 C716,597.8 703.8,595.3 693,593 C682.2,590.7 671,586.8 664,582 C657,577.2 652.2,575.3 651,564 C649.8,552.7 654.8,530.7 657,514 C659.2,497.3 662.5,484.2 664,464 C665.5,443.8 666.5,414.3 666,393 C665.5,371.7 664.3,351.5 661,336 C657.7,320.5 653.2,309.5 646,300 C638.8,290.5 616.2,282 618,279 Z" style="--c:#00967D"/>
  </svg></div>
-  <div class="hotp"><p class="hint">👆 לחצו על חלק בכבד כדי לקרוא עליו</p>
-   <div class="hzi" data-hzi="p" hidden><b>סגמנטים 6 ו-7 · הסקטור האחורי הימני</b><p>הווריד ההפטי הימני מפריד בינו לבין הסקטור הקדמי. יחד עם 5 ו-8 הם <strong>הכבד הימני</strong>. כריתת סגמנטים 5–8 נקראת כריתת כבד ימנית (<bdi>right hepatectomy</bdi>)</p></div>
-   <div class="hzi" data-hzi="a" hidden><b>סגמנטים 5 ו-8 · הסקטור הקדמי הימני</b><p>בין הכבד הימני לשמאלי עובר <strong>הווריד ההפטי האמצעי</strong>, בקו של קנטלי: ממיטת כיס המרה לצד השמאלי של הווריד הנבוב. אין לגבול הזה סימן חיצוני על פני הכבד</p></div>
-   <div class="hzi" data-hzi="m" hidden><b>סגמנט 4</b><p>חלק מ<strong>הכבד השמאלי</strong>, מימין לחריץ הטבורי. כריתת 2–4 היא כריתת כבד שמאלית. כריתת 4–8 היא כריתה ימנית מורחבת (<bdi>right trisectionectomy</bdi>): אז נשארים רק 1–3: כאן נפח השארית הכי קריטי</p></div>
-   <div class="hzi" data-hzi="l" hidden><b>סגמנטים 2 ו-3 · הסקטור הלטרלי השמאלי</b><p>כריתתם היא <bdi>left lateral sectionectomy</bdi>. בכריתה דו-שלבית מנקים כאן קודם את הגרורות, כי זה בדרך כלל הכבד שיישאר. אחרי תסחיף של הווריד הפורטלי הימני הם גדלים</p></div>
-   <div class="box" style="margin-top:10px"><b class="t">מה זה "נתיח"?</b>אפשר להוציא את כל המחלה בכבד ולשמור זרימה פנימה, ניקוז ורידי, ניקוז מרה ולפחות <b>שני סגמנטים רציפים</b> עם נפח מספיק</div>
+  <div class="hotp"><p class="hint">👆 לחצו על חלק <span class="nw">ב-<bdi>liver</bdi></span> כדי לקרוא עליו</p>
+   <div class="hzi" data-hzi="p" hidden><b>סגמנטים 6 ו-7 · <bdi>right posterior sector</bdi></b><p><span class="nw">ה-<bdi>right hepatic vein</bdi></span> מפריד בינו לבין <span class="nw">ה-<bdi>right anterior sector</bdi></span>. יחד עם 5 ו-8 הם <strong><span class="nw">ה-<bdi>right liver</bdi></span></strong>. כריתת סגמנטים 5–8 נקראת כריתת כבד ימנית (<bdi>right hepatectomy</bdi>)</p></div>
+   <div class="hzi" data-hzi="a" hidden><b>סגמנטים 5 ו-8 · <bdi>right anterior sector</bdi></b><p>בין <span class="nw">ה-<bdi>right liver</bdi></span> <span class="nw">ל-<bdi>left liver</bdi></span> עובר <strong><span class="nw">ה-<bdi>middle hepatic vein</bdi></span></strong>, <span class="nw">ב-<bdi>Cantlie's line</bdi></span>: <span class="nw">מה-<bdi>gallbladder bed</bdi></span> לצד השמאלי של <span class="nw">ה-<bdi>IVC</bdi></span>. אין לגבול הזה סימן חיצוני על פני <span class="nw">ה-<bdi>liver</bdi></span></p></div>
+   <div class="hzi" data-hzi="m" hidden><b>סגמנט 4</b><p>חלק מ<strong><span class="nw">ה-<bdi>left liver</bdi></span></strong>, מימין <span class="nw">ל-<bdi>umbilical fissure</bdi></span>. כריתת 2–4 היא כריתת כבד שמאלית. כריתת 4–8 היא כריתה ימנית מורחבת (<bdi>right trisectionectomy</bdi>): אז נשארים רק 1–3: כאן נפח השארית הכי קריטי</p></div>
+   <div class="hzi" data-hzi="l" hidden><b>סגמנטים 2 ו-3 · <bdi>left lateral section</bdi></b><p>כריתתם היא <bdi>left lateral sectionectomy</bdi>. בכריתה דו-שלבית מנקים כאן קודם את הגרורות, כי זה בדרך כלל <span class="nw">ה-<bdi>liver</bdi></span> שיישאר. אחרי תסחיף של <span class="nw">ה-<bdi>right portal vein</bdi></span> הם גדלים</p></div>
+   <div class="box" style="margin-top:10px"><b class="t">מה זה "נתיח"?</b>אפשר להוציא את כל המחלה <span class="nw">ב-<bdi>liver</bdi></span> ולשמור זרימה פנימה, ניקוז ורידי, ניקוז מרה ולפחות <b>שני סגמנטים רציפים</b> עם נפח מספיק</div>
   </div></div>
- <figcaption>סגמנטים של הכבד לפי <bdi>Couinaud</bdi>, מבט קדמי (סגמנט 1 מאחור, לא נראה) · <bdi>BodyParts3D, Database Center for Life Science (DBCLS), Wikimedia Commons, CC BY-SA 2.1 JP</bdi></figcaption>
+ <figcaption>סגמנטים של <span class="nw">ה-<bdi>liver</bdi></span> לפי <bdi>Couinaud</bdi>, מבט קדמי (סגמנט 1 מאחור, לא נראה) · <bdi>BodyParts3D, Database Center for Life Science (DBCLS), Wikimedia Commons, CC BY-SA 2.1 JP</bdi></figcaption>
  <div class="src"><span><b>Sabiston 22</b> · פרק 89 עמ׳ <bdi dir="ltr">1250–1253, 1296</bdi> · פרק 90 עמ׳ <bdi dir="ltr">1309–1310</bdi></span><span>אנטומיה</span></div>
 </div></section>
 
 <section class="s"><div class="card">
- <div class="kick"><b>6</b>כמה כבד צריך להשאיר</div>
- <h2>הכבד שנשאר (<bdi>FLR</bdi>)</h2>
+ <div class="kick"><b>6</b>כמה <bdi>liver</bdi> צריך להשאיר</div>
+ <h2>נפח <span class="nw">ה-<bdi>liver</bdi></span> שנשאר (<bdi>FLR</bdi>)</h2>
  <div class="num">
   <div><b dir="ltr">20%</b><span>מינימום בכבד בריא. פחות מזה מנבא אי-ספיקה ותמותה</span></div>
   <div><b dir="ltr">30%</b><span>אחרי פגיעה מכימותרפיה</span></div>
@@ -228,14 +233,14 @@ bdi{unicode-bidi:isolate}
  </div>
  <div class="grid">
   <ul class="b sm">
-   <li><b>מחשבים</b> מ-<bdi>CT</bdi> או <bdi>MRI</bdi>: נפח הכבד שיישאר ביחס לנפח הכבד הכולל (<bdi>sFLR</bdi>)</li>
+   <li><b>מחשבים</b> <span class="nw">מ-<bdi>CT</bdi></span> או <bdi>MRI</bdi>: נפח <span class="nw">ה-<bdi>liver</bdi></span> שיישאר ביחס לנפח <span class="nw">ה-<bdi>liver</bdi></span> הכולל (<bdi>sFLR</bdi>)</li>
    <li><b>כריתה חוסכת רקמה</b> עדיפה כשאפשר: אין צורך בשוליים רחבים. בסקירה של יותר מ-2,500 חולים: שיעור <bdi>R0</bdi> והישרדות דומים לכריתה אנטומית</li>
    <li><b>אולטרסאונד תוך-ניתוחי</b> חובה: מגדיר אנטומיה, מוצא גרורות שלא נראו ומכוון את קו החיתוך</li>
   </ul>
   <div class="flow">
-   <div><b>תסחיף וריד השער (<bdi>PVE</bdi>)</b><span>סוגרים את הענף לצד שייכרת. הצד השני גדל בעיקר ב-3 השבועות הראשונים</span></div>
+   <div><b>תסחיף של <span class="nw">ה-<bdi>portal vein</bdi></span> (<bdi>PVE</bdi>)</b><span>סוגרים את הענף לצד שייכרת. הצד השני גדל בעיקר ב-3 השבועות הראשונים</span></div>
    <div><b>קצב הגדילה</b><span>2% בשבוע ומעלה: אפס אי-ספיקה אחרי הניתוח</span></div>
-   <div><b>כשה-<bdi>PVE</bdi> לא מספיק (כ-5%)</b><span>מוסיפים תסחיף של הוורידים ההפטיים (<bdi>LVD</bdi>): גדילה של 61% לעומת 29%</span></div>
+   <div><b><span class="nw">כשה-<bdi>PVE</bdi></span> לא מספיק (כ-5%)</b><span>מוסיפים תסחיף של <span class="nw">ה-<bdi>hepatic veins</bdi></span> (<bdi>LVD</bdi>): גדילה של 61% לעומת 29%</span></div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 90 עמ׳ <bdi dir="ltr">1309–1310</bdi></span><span>נפח הכבד</span></div>
@@ -245,12 +250,12 @@ bdi{unicode-bidi:isolate}
  <div class="kick"><b>7</b>מחלה בשתי האונות</div>
  <h2>כריתה בשני שלבים</h2>
  <div class="flow">
-  <div><b>שלב ראשון</b><span>מנקים את הגרורות מהכבד שיישאר, בדרך כלל השמאלי (כריתות ואבלציות)</span></div>
+  <div><b>שלב ראשון</b><span>מנקים את הגרורות <span class="nw">מה-<bdi>liver</bdi></span> שיישאר, בדרך כלל השמאלי (כריתות ואבלציות)</span></div>
   <div><b>בין השלבים</b><span><bdi>PVE</bdi> לפי הצורך וזמן לגדילה. אפשר כימותרפיה בזמן ההמתנה</span></div>
   <div><b>שלב שני</b><span>כריתה ימנית או ימנית מורחבת, <bdi dir="ltr">6–8</bdi> שבועות אחרי השלב הראשון</span></div>
-  <div><b><bdi>ALPPS</bdi></b><span>קשירת הווריד הפורטלי הימני וחיתוך הכבד בניתוח הראשון. ההשלמה כעבור 9 ימים בממוצע (חציון). שנוי במחלוקת: תחלואה ותמותה גבוהות ותועלת לא ברורה</span></div>
+  <div><b><bdi>ALPPS</bdi></b><span>קשירת <span class="nw">ה-<bdi>right portal vein</bdi></span> וחיתוך <span class="nw">ה-<bdi>liver</bdi></span> בניתוח הראשון. ההשלמה כעבור 9 ימים בממוצע (חציון). שנוי במחלוקת: תחלואה ותמותה גבוהות ותועלת לא ברורה</span></div>
  </div>
- <div class="box a" style="margin-top:12px"><b class="t">מבחן הביולוגיה</b>מחלה שמתקדמת בזמן ההמתנה לגדילת הכבד מעידה על ביולוגיה תוקפנית. כנראה שלא תרוויח מהשלב השני</div>
+ <div class="box a" style="margin-top:12px"><b class="t">מבחן הביולוגיה</b>מחלה שמתקדמת בזמן ההמתנה לגדילת <span class="nw">ה-<bdi>liver</bdi></span> מעידה על ביולוגיה תוקפנית. כנראה שלא תרוויח מהשלב השני</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 90 עמ׳ <bdi dir="ltr">1310–1311, 1316</bdi></span><span>שני שלבים</span></div>
 </div></section>
 
@@ -260,15 +265,15 @@ bdi{unicode-bidi:isolate}
  <div class="grid">
   <div>
    <ul class="b sm">
-    <li><b>קו ראשון:</b> <bdi>FOLFOX</bdi> או <bdi>FOLFIRI</bdi>, תגובה ביותר מ-50%. <bdi>bevacizumab</bdi> משפר הישרדות. נוגדי <bdi>EGFR</bdi> רק כש-<bdi>KRAS</bdi> תקין</li>
+    <li><b>קו ראשון:</b> <bdi>FOLFOX</bdi> או <bdi>FOLFIRI</bdi>, תגובה ביותר מ-50%. <bdi>bevacizumab</bdi> משפר הישרדות. נוגדי <bdi>EGFR</bdi> רק <span class="nw">כש-<bdi>KRAS</bdi></span> תקין</li>
     <li><b>הפיכה לנתיח:</b> מתוך 1,439 חולים, 77% לא היו נתיחים. 12.5% מהם הגיבו מספיק לכריתה: הישרדות ל-5 שנים 33%, לעומת 48% בנתיחים מראש ו-16% בכימותרפיה בלבד (<bdi>Adam</bdi> 2004)</li>
     <li><b>כימותרפיה סביב הניתוח בנתיחים:</b> שנויה במחלוקת. <bdi>EORTC 40983</bdi> (364 חולים): שיפור בהישרדות בלי התקדמות רק בחולים שנכרתו, בלי הבדל בהישרדות הכוללת (49% לעומת 51%)</li>
     <li><b>המחקר היפני</b> (300 חולים): כימותרפיה אחרי הכריתה שיפרה הישרדות בלי מחלה ל-5 שנים (50% לעומת 39%) אבל לא את ההישרדות הכוללת</li>
    </ul>
   </div>
   <div style="display:grid;gap:10px">
-   <div class="box r"><b class="t">הכימותרפיה פוגעת בכבד</b>אוקסליפלטין: פגיעה בסינוסואידים, "כבד כחול". אירינוטקן: סטאטוהפטיטיס, "כבד צהוב", קשור לתמותה אחרי כריתה</div>
-   <div class="box"><b class="t">איך מצמצמים</b>לא יותר מ-<bdi dir="ltr">2–3</bdi> חודשים לפני הניתוח. לחכות יותר מ-4 שבועות עד הכריתה. התגובה המקסימלית ב-<bdi dir="ltr">2–4</bdi> חודשים. <bdi>bevacizumab</bdi> מגן מפגיעת האוקסליפלטין</div>
+   <div class="box r"><b class="t">הכימותרפיה פוגעת <span class="nw">ב-<bdi>liver</bdi></span></b>אוקסליפלטין: פגיעה בסינוסואידים, "כבד כחול". אירינוטקן: סטאטוהפטיטיס, "כבד צהוב", קשור לתמותה אחרי כריתה</div>
+   <div class="box"><b class="t">איך מצמצמים</b>לא יותר <span class="nw">מ-<bdi dir="ltr">2–3</bdi></span> חודשים לפני הניתוח. לחכות יותר מ-4 שבועות עד הכריתה. התגובה המקסימלית <span class="nw">ב-<bdi dir="ltr">2–4</bdi></span> חודשים. <bdi>bevacizumab</bdi> מגן מפגיעת האוקסליפלטין</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 90 עמ׳ <bdi dir="ltr">1311–1312</bdi> (טבלה <bdi>90.1</bdi>)</span><span>כימותרפיה</span></div>
@@ -276,12 +281,12 @@ bdi{unicode-bidi:isolate}
 
 <section class="s"><div class="card">
  <div class="kick"><b>9</b>גרורות סינכרוניות</div>
- <h2>מה קודם: הכבד או המעי?</h2>
+ <h2>מה קודם: <span class="nw">ה-<bdi>liver</bdi></span> או <span class="nw">ה-<bdi>colon</bdi></span>?</h2>
  <div class="grid">
   <div class="flow">
    <div><b>יחד באותו ניתוח</b><span>פחות ניתוחים ופחות הפסקה בכימותרפיה. במחקר אקראי (85 חולים): סיבוכים קשים 49% לעומת 46%. כריתת כבד גדולה עם כריתת מעי בסיכון גבוה: תחלואה 55%, תמותה 5%. לכן רק במרכזים גדולים</span></div>
-   <div><b>המעי קודם</b><span>גידול ראשוני שמדמם או חוסם עם מחלה מוגבלת בכבד</span></div>
-   <div><b>הכבד קודם</b><span>מחלה נרחבת בכבד, שקובעת את הפרוגנוזה. במיוחד בגידול נמוך ברקטום: אפשר תגובה מלאה אחרי קרינה-כימו</span></div>
+   <div><b><span class="nw">ה-<bdi>colon</bdi></span> קודם</b><span>גידול ראשוני שמדמם או חוסם עם מחלה מוגבלת בכבד</span></div>
+   <div><b><span class="nw">ה-<bdi>liver</bdi></span> קודם</b><span>מחלה נרחבת <span class="nw">ב-<bdi>liver</bdi></span>, שקובעת את הפרוגנוזה. במיוחד בגידול נמוך <span class="nw">ב-<bdi>rectum</bdi></span>: אפשר תגובה מלאה אחרי קרינה-כימו</span></div>
   </div>
   <div style="display:grid;gap:10px">
    <div class="box"><b class="t">שום גישה לא הוכחה עדיפה</b>מחליטים לכל חולה בנפרד, בוועדה רב-תחומית עם כירורג כבד</div>
@@ -299,17 +304,17 @@ bdi{unicode-bidi:isolate}
   <div>
    <h3>ציון הסיכון הקליני של <bdi>Fong</bdi> (1999, 1,001 חולים)</h3>
    <ul class="b sm">
-    <li>שוליים חיוביים בכבד</li>
+    <li>שוליים חיוביים <span class="nw">ב-<bdi>liver</bdi></span></li>
     <li>בלוטות חיוביות בגידול הראשוני</li>
     <li>פחות מ-12 חודשים מהכריתה הראשונה עד הגרורות</li>
     <li>יותר מגרורה אחת · גרורה מעל 5 ס״מ</li>
     <li><bdi>CEA</bdi> מעל 200</li>
     <li>מחלה מחוץ לכבד</li>
    </ul>
-   <div class="box" style="margin-top:10px"><b class="t">שוליים</b>המטרה: <bdi>R0</bdi> עם כמה שיותר כבד בריא. שוליים חיוביים הם בעיקר סמן לביולוגיה רעה</div>
+   <div class="box" style="margin-top:10px"><b class="t">שוליים</b>המטרה: <bdi>R0</bdi> עם כמה שיותר <bdi>liver</bdi> בריא. שוליים חיוביים הם בעיקר סמן לביולוגיה רעה</div>
   </div>
   <div style="display:grid;gap:10px">
-   <div class="box n"><b class="t"><bdi>RAS</bdi> · ב-<bdi dir="ltr">40–50%</bdi> מהנכרתים</b>עמידות לנוגדי <bdi>EGFR</bdi>. הישרדות ל-3 שנים 52% לעומת 81%. יחד עם <bdi>TP53</bdi>: גרוע יותר</div>
+   <div class="box n"><b class="t"><bdi>RAS</bdi> · <span class="nw">ב-<bdi dir="ltr">40–50%</bdi></span> מהנכרתים</b>עמידות לנוגדי <bdi>EGFR</bdi>. הישרדות ל-3 שנים 52% לעומת 81%. יחד עם <bdi>TP53</bdi>: גרוע יותר</div>
    <div class="box r"><b class="t"><bdi>BRAF V600E</bdi></b><bdi dir="ltr">8–12%</bdi> מהמחלה הגרורתית, חציון הישרדות 11 חודשים. בסדרות כריתה רק 2%: חציון 40 חודשים לעומת 81</div>
    <div class="box"><b class="t"><bdi>MSI-H</bdi></b>15% מסרטני המעי הגס, פחות מ-2% מהנכרתים בכבד. רגיש לחוסמי נקודות בקרה</div>
    <div class="box b"><b class="t">מחלה מחוץ לכבד</b>לא התוויית נגד מוחלטת. ריאה בלבד: חציון הישרדות 78 חודשים</div>
@@ -320,14 +325,14 @@ bdi{unicode-bidi:isolate}
 
 <section class="s"><div class="card">
  <div class="kick"><b>11</b>כשאי אפשר לכרות</div>
- <h2>טיפולים מקומיים בכבד</h2>
+ <h2>טיפולים מקומיים <span class="nw">ב-<bdi>liver</bdi></span></h2>
  <div class="grid g3">
   <div class="box"><b class="t">אבלציה</b>
-   <ul class="b sm"><li>גידול מתחת ל-3 ס״מ: <bdi>RFA</bdi> יכולה להשמיד אותו לאורך זמן</li><li>כלי דם גדולים מקררים את האזור ומפחיתים יעילות</li><li>מיקרוגל: פחות רגיש לזה ואזור גדול יותר. מועדף</li><li>טובה לגרורה קטנה ועמוקה שכריתתה דורשת הרבה כבד</li></ul></div>
-  <div class="box n"><b class="t">משאבה לעורק הכבד (<bdi>HAIP</bdi>)</b>
-   <ul class="b sm"><li>הגרורות ניזונות כמעט רק מהעורק. <bdi>FUDR</bdi> נקלט בכבד ב-<bdi dir="ltr">94–99%</bdi></li><li>הקטטר בעורק ה-<bdi>GDA</bdi></li><li>בלא נתיחים: 47% הגיעו לכריתה מלאה</li><li>סיבוך ייחודי: פגיעה בדרכי המרה. עוקבים אחרי תפקודי כבד</li></ul></div>
+   <ul class="b sm"><li>גידול מתחת ל-3 ס״מ: <bdi>RFA</bdi> יכולה להשמיד אותו לאורך זמן</li><li>כלי דם גדולים מקררים את האזור ומפחיתים יעילות</li><li>מיקרוגל: פחות רגיש לזה ואזור גדול יותר. מועדף</li><li>טובה לגרורה קטנה ועמוקה שכריתתה דורשת הרבה <bdi>liver</bdi></li></ul></div>
+  <div class="box n"><b class="t">משאבה <span class="nw">ל-<bdi>hepatic artery</bdi></span> (<bdi>HAIP</bdi>)</b>
+   <ul class="b sm"><li>הגרורות ניזונות כמעט רק מהעורק. <bdi>FUDR</bdi> נקלט <span class="nw">ב-<bdi>liver</bdi></span> <span class="nw">ב-<bdi dir="ltr">94–99%</bdi></span></li><li>הקטטר <span class="nw">ב-<bdi>GDA</bdi></span> (<bdi>gastroduodenal artery</bdi>)</li><li>בלא נתיחים: 47% הגיעו לכריתה מלאה</li><li>סיבוך ייחודי: פגיעה בדרכי המרה. עוקבים אחרי תפקודי כבד</li></ul></div>
   <div class="box b"><b class="t">הקרנה פנימית (<bdi>Y-90</bdi>)</b>
-   <ul class="b sm"><li>מיקרו-כדוריות רדיואקטיביות דרך העורקים שמזינים את הגידול</li><li>הוספה לכימותרפיה בקו ראשון לא שיפרה הישרדות</li><li>מוגבלת כשהגידול קרוב למעי או לקיבה</li></ul></div>
+   <ul class="b sm"><li>מיקרו-כדוריות רדיואקטיביות דרך העורקים שמזינים את הגידול</li><li>הוספה לכימותרפיה בקו ראשון לא שיפרה הישרדות</li><li>מוגבלת כשהגידול קרוב <span class="nw">ל-<bdi>bowel</bdi></span> או <span class="nw">ל-<bdi>stomach</bdi></span></li></ul></div>
  </div>
  <div class="box a" style="margin-top:12px"><b class="t">השתלת כבד</b>פעם: הישרדות ל-5 שנים 18% ונזנחה. בנורווגיה (61 חולים): חציון הישרדות 60.3 חודשים, אבל 78.3% חזרה. בבדיקה במחקרים אקראיים</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 90 עמ׳ <bdi dir="ltr">1309, 1314–1316</bdi></span><span>טיפולים מקומיים</span></div>
@@ -371,13 +376,13 @@ bdi{unicode-bidi:isolate}
  <h2>חמישה דברים לקחת למחלקה</h2>
  <ol class="obj">
   <li><span>גרורות בכבד מסרטן המעי הגס הן שלב <bdi>IV</bdi> שאפשר לרפא: כריתה מלאה נותנת כ-50% הישרדות ל-5 שנים</span></li>
-  <li><span><bdi>CT</bdi> רב-פאזי הוא הבסיס. <bdi>MRI</bdi> בכבד שומני. ביופסיה מהכבד לא חובה</span></li>
+  <li><span><bdi>CT</bdi> רב-פאזי הוא הבסיס. <bdi>MRI</bdi> בכבד שומני. ביופסיה <span class="nw">מה-<bdi>liver</bdi></span> לא חובה</span></li>
   <li><span>נתיח = כל המחלה יוצאת ונשארים שני סגמנטים רציפים עם זרימה, ניקוז ונפח (20% בכבד בריא, 30% אחרי כימותרפיה)</span></li>
-  <li><span>אין סדר "נכון" אחד בין הכבד למעי. מחליטים בוועדה עם כירורג כבד</span></li>
+  <li><span>אין סדר "נכון" אחד בין <span class="nw">ה-<bdi>liver</bdi></span> <span class="nw">ל-<bdi>colon</bdi></span>. מחליטים בוועדה עם כירורג כבד</span></li>
   <li><span><bdi>RAS</bdi>, <bdi>BRAF</bdi> ותגובה לכימותרפיה מספרים על הביולוגיה. הביולוגיה היא שקובעת</span></li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 90 <bdi>Secondary Tumors of the Liver</bdi> (עמ׳ <bdi dir="ltr">1306–1317</bdi>) · פרק 89, אנטומיה של הכבד (עמ׳ <bdi dir="ltr">1250–1256</bdi>)</div>
- <div class="src"><span>איורים: <bdi>BodyParts3D</bdi> (<bdi>CC BY-SA 2.1 JP</bdi>) · <bdi>Musser</bdi> 1904 (נחלת הכלל) · הדמיה מ-<bdi>Wikimedia Commons</bdi> לפי הרישיון שבכל כיתוב · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 90 <bdi>Secondary Tumors of the Liver</bdi> (עמ׳ <bdi dir="ltr">1306–1317</bdi>) · פרק 89, אנטומיה של <span class="nw">ה-<bdi>liver</bdi></span> (עמ׳ <bdi dir="ltr">1250–1256</bdi>)</div>
+ <div class="src"><span>איורים: <bdi>BodyParts3D</bdi> (<bdi>CC BY-SA 2.1 JP</bdi>) · <bdi>Musser</bdi> 1904 (נחלת הכלל) · הדמיה <span class="nw">מ-<bdi>Wikimedia Commons</bdi></span> לפי הרישיון שבכל כיתוב · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>

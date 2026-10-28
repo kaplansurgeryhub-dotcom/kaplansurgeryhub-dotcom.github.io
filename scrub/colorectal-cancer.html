@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>קרצינומה של הקולון והרקטום · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -80,6 +80,7 @@ bdi{unicode-bidi:isolate}
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -91,6 +92,7 @@ bdi{unicode-bidi:isolate}
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -108,6 +110,9 @@ bdi{unicode-bidi:isolate}
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -120,7 +125,7 @@ bdi{unicode-bidi:isolate}
  <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
  <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 1</div>
  <h1>קרצינומה של הקולון והרקטום</h1>
- <p class="lead">מהפוליפ לסרטן: אפידמיולוגיה, תסמונות תורשתיות, בירור, שלבים, ניתוח לפי אספקת הדם וטיפול משלים. המיקוד במפגש הזה הוא הקולון</p>
+ <p class="lead">מהפוליפ לסרטן: אפידמיולוגיה, תסמונות תורשתיות, בירור, שלבים, ניתוח לפי אספקת הדם וטיפול משלים. המיקוד במפגש הזה הוא <span class="nw">ה-<bdi>colon</bdi></span></p>
  <div class="cvsrc" data-ch="96" data-note=""><small>מבוסס על</small><b><bdi dir="ltr">Sabiston Textbook of Surgery</bdi> · מהדורה 22</b><div class="cvch"><span>פרק <bdi dir="ltr">96</bdi></span></div></div>
  <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
 </div></section>
@@ -131,7 +136,7 @@ bdi{unicode-bidi:isolate}
  <ol class="obj">
   <li><span>לתאר את שלושת המסלולים מפוליפ לסרטן ולזהות פוליפ בסיכון גבוה</span></li>
   <li><span>לזהות מטופל עם סיכון תורשתי (תסמונת לינץ׳, <bdi>FAP</bdi>) ולהבין מה זה משנה בטיפול</span></li>
-  <li><span>לבנות בירור מלא לחולה חדש: קולונוסקופיה, ביופסיה עם בדיקת <bdi>MMR</bdi>, מעבדה ו-<bdi>CT</bdi></span></li>
+  <li><span>לבנות בירור מלא לחולה חדש: קולונוסקופיה, ביופסיה עם בדיקת <bdi>MMR</bdi>, מעבדה <span class="nw">ו-<bdi>CT</bdi></span></span></li>
   <li><span>להסביר את שלבי <bdi>TNM</bdi> ולמה צריך לפחות 12 בלוטות בפתולוגיה</span></li>
   <li><span>להתאים את הניתוח למיקום הגידול ולאספקת הדם ולדעת מי מקבל טיפול משלים</span></li>
   <li><span>לנהל גידול חוסם של המעי הגס בחדר המיון</span></li>
@@ -155,11 +160,11 @@ bdi{unicode-bidi:isolate}
    <li><b>גורמי סיכון:</b> מחלת מעי דלקתית, השמנה, סוכרת ותנגודת לאינסולין, עישון, אלכוהול, בשר אדום ומעובד וחוסר פעילות גופנית</li>
   </ul>
   <div style="display:grid;gap:10px">
-   <div class="box"><b class="t">סקר באוכלוסייה בסיכון רגיל</b>קולונוסקופיה לכל מי שמעל גיל 45. גורמי הסיכון של אורח החיים לא משנים את גיל ההתחלה או את התדירות</div>
+   <div class="box"><b class="t">סקר באוכלוסייה בסיכון רגיל</b>בארה״ב מגיל <bdi dir="ltr">45</bdi> עד <bdi dir="ltr">75</bdi>: בדיקת צואה לדם סמוי (<bdi>FIT</bdi>) כל שנה או קולונוסקופיה כל <bdi dir="ltr">10</bdi> שנים (יש עוד אפשרויות). בישראל: <bdi>FIT</bdi> כל שנה בגילי <bdi dir="ltr">50–74</bdi> ובדיקה חיובית מחייבת קולונוסקופיה. גורמי הסיכון של אורח החיים לא משנים את גיל ההתחלה או את התדירות</div>
    <div class="box a"><b class="t">סרטן "בין בדיקות"</b>רובם כנראה נובעים מנגעים משוננים שטוחים ועדינים שלא זוהו בקולונוסקופיה</div>
   </div>
  </div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1492, 1497, 1502</bdi> · פרק 52 עמ׳ <bdi dir="ltr">625</bdi> (גיל הסקר)</span><span>אפידמיולוגיה</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1492, 1497, 1502</bdi> · פרק 52 עמ׳ <bdi dir="ltr">625</bdi> (גיל הסקר) · <bdi>USPSTF 2021</bdi> · Davidson KW et al., JAMA 2021;325:1965-77 · התוכנית הלאומית לגילוי מוקדם, משרד הבריאות</span><span>אפידמיולוגיה</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -168,8 +173,8 @@ bdi{unicode-bidi:isolate}
  <div class="grid f">
   <div>
    <div class="flow">
-    <div><b>אי-יציבות כרומוזומלית · <bdi dir="ltr">65–70%</bdi></b><span>המסלול השכיח. <bdi>APC</bdi>, אחר כך <bdi>KRAS</bdi> ואז <bdi>TP53</bdi> או <bdi>SMAD4</bdi>: רצף אדנומה-קרצינומה הקלאסי. בעיקר קולון שמאלי ורקטום</span></div>
-    <div><b>המסלול המשונן · <bdi dir="ltr">15–20%</bdi></b><span>מתחיל לרוב ב-<bdi>BRAF</bdi> ובמתילציה של פרומוטורים (<bdi>CIMP</bdi>). מבוגרים, קולון ימני, נשים</span></div>
+    <div><b>אי-יציבות כרומוזומלית · <bdi dir="ltr">65–70%</bdi></b><span>המסלול השכיח. <bdi>APC</bdi>, אחר כך <bdi>KRAS</bdi> ואז <bdi>TP53</bdi> או <bdi>SMAD4</bdi>: רצף אדנומה-קרצינומה הקלאסי. בעיקר <bdi>left colon</bdi> <span class="nw">ו-<bdi>rectum</bdi></span></span></div>
+    <div><b>המסלול המשונן · <bdi dir="ltr">15–20%</bdi></b><span>מתחיל לרוב <span class="nw">ב-<bdi>BRAF</bdi></span> ובמתילציה של פרומוטורים (<bdi>CIMP</bdi>). מבוגרים, <bdi>right colon</bdi>, נשים</span></div>
     <div><b>אי-יציבות מיקרוסטליטית · <bdi dir="ltr">12–15%</bdi></b><span>אובדן תיקון שגיאות (<bdi>dMMR</bdi>): לינץ׳, מתילציה של <bdi>MLH1</bdi> או שתי מוטציות סומטיות. ריר, תסנין לימפוציטים</span></div>
    </div>
    <h3 style="margin-top:14px">איזה פוליפ מסוכן?</h3>
@@ -179,7 +184,7 @@ bdi{unicode-bidi:isolate}
     <li><b>משונן:</b> פוליפ היפרפלסטי בלי סיכון. אדנומה משוננת יושבת יכולה לפתח דיספלזיה וסרטן</li>
    </ul>
   </div>
-  <figure><img src="img/colon-polyp-endo.jpg" alt="פוליפ בסיגמואיד בקולונוסקופיה"><figcaption>פוליפ בסיגמואיד לפני כריתה, כך הוא נראה בקולונוסקופיה · <bdi>J. Guntau, Wikimedia Commons</bdi> (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/colon-polyp-endo.jpg" alt="פוליפ ב-sigmoid בקולונוסקופיה"><figcaption>פוליפ <span class="nw">ב-<bdi>sigmoid</bdi></span> לפני כריתה, כך הוא נראה בקולונוסקופיה · <bdi>J. Guntau, Wikimedia Commons</bdi> (נחלת הכלל)</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1491–1493</bdi></span><span>פתוגנזה</span></div>
 </div></section>
@@ -189,15 +194,15 @@ bdi{unicode-bidi:isolate}
  <h2>תסמונות שהכירורג חייב לזהות</h2>
  <div class="grid g3">
   <div class="box n"><b class="t">תסמונת לינץ׳</b>
-   <ul class="b sm"><li>אוטוזומלית דומיננטית: <bdi>MLH1</bdi>, <bdi>MSH2</bdi>, <bdi>MSH6</bdi>, <bdi>PMS2</bdi>, <bdi>EPCAM</bdi></li><li>1 ל-279 באוכלוסייה, כ-3% מכלל הסרטנים במעי הגס</li><li>קריטריוני אמסטרדם II: שלושה קרובים, שני דורות, אחד לפני גיל 50</li><li>קולונוסקופיה כל שנה מגיל <bdi dir="ltr">20–25</bdi></li><li>סרטן בקולון: כריתת <b>כל</b> הקולון ולא כריתה מקטעית</li></ul></div>
+   <ul class="b sm"><li>אוטוזומלית דומיננטית: <bdi>MLH1</bdi>, <bdi>MSH2</bdi>, <bdi>MSH6</bdi>, <bdi>PMS2</bdi>, <bdi>EPCAM</bdi></li><li>1 ל-279 באוכלוסייה, כ-3% מכלל הסרטנים במעי הגס</li><li>קריטריוני אמסטרדם <bdi>II</bdi> (שלושה קרובים, שני דורות, אחד לפני גיל 50) מפספסים נשאים רבים. היום מזהים בבדיקת <bdi>MMR</bdi> לכל גידול</li><li>קולונוסקופיה כל <bdi dir="ltr">2–3</bdi> שנים: <span class="nw">ב-<bdi>MLH1</bdi></span> <span class="nw">וב-<bdi>MSH2</bdi></span> מגיל <bdi dir="ltr">25</bdi>, <span class="nw">ב-<bdi>MSH6</bdi></span> <span class="nw">וב-<bdi>PMS2</bdi></span> מגיל <bdi dir="ltr">35</bdi> (בארה״ב: כל <bdi dir="ltr">1–2</bdi> שנים מגיל <bdi dir="ltr">20–25</bdi>)</li><li>סרטן ראשון <span class="nw">ב-<bdi>colon</bdi></span>: <span class="nw">ב-<bdi>MLH1</bdi></span> <span class="nw">וב-<bdi>MSH2</bdi></span> עדיפה <b>כריתה מורחבת</b> של הקולון עם חיבור <span class="nw">ל-<bdi>sigmoid</bdi></span> או <span class="nw">ל-<bdi>rectum</bdi></span>. <span class="nw">ב-<bdi>MSH6</bdi></span> <span class="nw">וב-<bdi>PMS2</bdi></span> כריתה מקטעית רגילה</li></ul></div>
   <div class="box"><b class="t"><bdi>FAP</bdi></b>
-   <ul class="b sm"><li>מוטציה ב-<bdi>APC</bdi>, 1 ל-10,000. כ-20% מוטציה חדשה: היעדר סיפור משפחתי לא שולל</li><li>סיכון לסרטן כמעט 100% בלי כריתה מונעת</li><li>קולונוסקופיה כל שנה מגיל <bdi dir="ltr">10–12</bdi>. ניתוח בסוף גיל ההתבגרות</li><li>עד 20 פוליפים ברקטום: כריתת הקולון וחיבור אילאום לרקטום. יותר מ-20: כריתת קולון ורקטום עם כיס אילאלי</li></ul></div>
+   <ul class="b sm"><li>מוטציה <span class="nw">ב-<bdi>APC</bdi></span>, 1 ל-10,000. כ-20% מוטציה חדשה: היעדר סיפור משפחתי לא שולל</li><li>סיכון לסרטן כמעט 100% בלי כריתה מונעת</li><li>קולונוסקופיה כל שנה מגיל <bdi dir="ltr">10–12</bdi>. ניתוח בסוף גיל ההתבגרות</li><li>עד 20 פוליפים <span class="nw">ב-<bdi>rectum</bdi></span>: כריתת הקולון וחיבור אילאום לרקטום. יותר מ-20: כריתת קולון ורקטום עם כיס אילאלי</li></ul></div>
   <div style="display:grid;gap:10px">
-   <figure><img src="img/fap-sigmoidoscopy.jpg" alt="פוליפוזיס משפחתית בסיגמואידוסקופיה"><figcaption>אינספור פוליפים ב-<bdi>FAP</bdi> בסיגמואידוסקופיה · <bdi>Samir, Wikimedia Commons, CC BY-SA 3.0</bdi></figcaption></figure>
+   <figure><img src="img/fap-sigmoidoscopy.jpg" alt="פוליפוזיס משפחתית בסיגמואידוסקופיה"><figcaption>אינספור פוליפים <span class="nw">ב-<bdi>FAP</bdi></span> בסיגמואידוסקופיה · <bdi>Samir, Wikimedia Commons, CC BY-SA 3.0</bdi></figcaption></figure>
    <div class="box a"><b class="t">בכל ביופסיה של סרטן</b>בודקים <bdi>MMR</bdi> (צביעה או <bdi>MSI</bdi>). חוסר ללא מתילציה של <bdi>MLH1</bdi>: ייעוץ גנטי</div>
   </div>
  </div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1494–1497</bdi></span><span>תסמונות תורשתיות</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1494–1497</bdi> · <bdi>EHTG/ESCP 2021</bdi> · Seppälä TT et al., Br J Surg 2021;108:484-98 · Win AK et al., Cancer Epidemiol Biomarkers Prev 2017;26:404-12</span><span>תסמונות תורשתיות</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -212,9 +217,9 @@ bdi{unicode-bidi:isolate}
     <li><b>הרבה גידולים בלי תסמינים בכלל.</b> לכן סקר בזמן ובמרווחים הנכונים</li>
     <li><b>חסימה משמעותית:</b> מסבכת <bdi dir="ltr">8–29%</bdi> מסרטני הקולון. רוב ההופעות הדחופות</li>
    </ul>
-   <div class="box b" style="margin-top:12px"><b class="t">במחלקה השבוע</b>מצאו חולה לפני כריתת מעי. קראו את דו״ח הקולונוסקופיה (מיקום, קעקוע, בדיקה שלמה, ביופסיה ו-<bdi>MMR</bdi>), את ה-<bdi>CEA</bdi> ואת ה-<bdi>CT</bdi>. הציגו את השלב הקליני לבכיר/ה</div>
+   <div class="box b" style="margin-top:12px"><b class="t">במחלקה השבוע</b>מצאו חולה לפני כריתת מעי. קראו את דו״ח הקולונוסקופיה (מיקום, קעקוע, בדיקה שלמה, ביופסיה <span class="nw">ו-<bdi>MMR</bdi></span>), את <span class="nw">ה-<bdi>CEA</bdi></span> ואת <span class="nw">ה-<bdi>CT</bdi></span>. הציגו את השלב הקליני לבכיר/ה</div>
   </div>
-  <figure><img src="img/rectosigmoid-cancer-endo.jpg" alt="גידול כיבי במעבר רקטו-סיגמואידי בקולונוסקופיה"><figcaption>קרצינומה כיבית עם שוליים מורמים באזור הרקטו-סיגמואיד, מבט אנדוסקופי · <bdi>藤澤孝志, Wikimedia Commons, CC BY-SA 3.0</bdi></figcaption></figure>
+  <figure><img src="img/rectosigmoid-cancer-endo.jpg" alt="גידול כיבי ב-rectosigmoid בקולונוסקופיה"><figcaption>קרצינומה כיבית עם שוליים מורמים באזור <span class="nw">ה-<bdi>rectosigmoid</bdi></span>, מבט אנדוסקופי · <bdi>藤澤孝志, Wikimedia Commons, CC BY-SA 3.0</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1497, 1501</bdi></span><span>הסתמנות</span></div>
 </div></section>
@@ -223,12 +228,12 @@ bdi{unicode-bidi:isolate}
  <div class="kick"><b>6</b>בירור ושלב קליני</div>
  <h2>הבירור של חולה חדש</h2>
  <div class="flow">
-  <div><b>קולונוסקופיה</b><span>מיקום מול סימנים אנטומיים, <b>קעקוע</b> של הנגע, תיעוד שכל הקולון נבדק (נגעים נוספים) וביופסיה. האבחנה היא היסטולוגית</span></div>
+  <div><b>קולונוסקופיה</b><span>מיקום מול סימנים אנטומיים, <b>קעקוע</b> של הנגע, תיעוד שכל <span class="nw">ה-<bdi>colon</bdi></span> נבדק (נגעים נוספים) וביופסיה. האבחנה היא היסטולוגית</span></div>
   <div><b>הביופסיה</b><span>בדיקת <bdi>MMR</bdi>: מזהה מועמדים לייעוץ גנטי ולטיפול אימונולוגי</span></div>
-  <div><b>מעבדה</b><span>ספירת דם, כימיה ו-<bdi>CEA</bdi></span></div>
+  <div><b>מעבדה</b><span>ספירת דם, כימיה <span class="nw">ו-<bdi>CEA</bdi></span></span></div>
   <div><b>גרורות</b><span><bdi>CT</bdi> חזה, בטן ואגן עם חומר ניגוד לווריד ולפה</span></div>
-  <div><b><bdi>PET-CT</bdi></b><span>לא בשגרה. רק לממצא לא חד-משמעי ב-<bdi>CT</bdi></span></div>
-  <div><b>חסימה מונעת קולונוסקופיה מלאה</b><span>קולונוגרפיה ב-<bdi>CT</bdi> לקולון הקרוב, או קולונוסקופיה מלאה בתקופה שאחרי הניתוח</span></div>
+  <div><b><bdi>PET-CT</bdi></b><span>לא בשגרה. רק לממצא לא חד-משמעי <span class="nw">ב-<bdi>CT</bdi></span></span></div>
+  <div><b>חסימה מונעת קולונוסקופיה מלאה</b><span>קולונוגרפיה <span class="nw">ב-<bdi>CT</bdi></span> <span class="nw">ל-<bdi>proximal colon</bdi></span>, או קולונוסקופיה מלאה בתקופה שאחרי הניתוח</span></div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1497, 1503</bdi></span><span>בירור</span></div>
 </div></section>
@@ -238,18 +243,18 @@ bdi{unicode-bidi:isolate}
  <h2>שלבי <bdi>TNM</bdi> בקיצור</h2>
  <div class="grid">
   <div class="flow">
-   <div><b><bdi>T1</bdi></b><span>דרך השריר הרירי לתת-רירית</span></div>
-   <div><b><bdi>T2</bdi></b><span>לשכבת השריר העצמית (<bdi>muscularis propria</bdi>)</span></div>
+   <div><b><bdi>T1</bdi></b><span>דרך <span class="nw">ה-<bdi>muscularis mucosae</bdi></span> <span class="nw">ל-<bdi>submucosa</bdi></span></span></div>
+   <div><b><bdi>T2</bdi></b><span><span class="nw">ל-<bdi>muscularis propria</bdi></span></span></div>
    <div><b><bdi>T3</bdi></b><span>לשכבות החיצוניות של הדופן, בלי לעבור אותן</span></div>
-   <div><b><bdi>T4a · T4b</bdi></b><span>דרך הצפק הוויסצרלי · חודר לאיבר שכן או נצמד אליו</span></div>
+   <div><b><bdi>T4a · T4b</bdi></b><span>דרך <span class="nw">ה-<bdi>visceral peritoneum</bdi></span> · חודר לאיבר שכן או נצמד אליו</span></div>
    <div><b><bdi>N1 · N2a · N2b</bdi></b><span>1–3 בלוטות · 4–6 · 7 ומעלה. <bdi>N1c</bdi>: משקעי גידול בשומן בלי בלוטה</span></div>
-   <div><b><bdi>M1a · M1b · M1c</bdi></b><span>איבר מרוחק אחד · יותר מאחד · צפק</span></div>
+   <div><b><bdi>M1a · M1b · M1c</bdi></b><span>איבר מרוחק אחד · יותר מאחד · <bdi>peritoneum</bdi></span></div>
   </div>
   <div style="display:grid;gap:10px">
    <div class="box"><b class="t">שלב <bdi>I</bdi></b><bdi>T1–T2 N0</bdi></div>
    <div class="box n"><b class="t">שלב <bdi>II</bdi> (<bdi>A · B · C</bdi>)</b><bdi>T3 · T4a · T4b</bdi>, בלי בלוטות</div>
    <div class="box a"><b class="t">שלב <bdi>III</bdi></b>כל <bdi>T</bdi> עם בלוטות חיוביות (<bdi>N1–N2</bdi>), בלי גרורות</div>
-   <div class="box r"><b class="t">שלב <bdi>IV</bdi> (<bdi>A · B · C</bdi>)</b>גרורות מרוחקות. צפק הוא <bdi>IVC</bdi></div>
+   <div class="box r"><b class="t">שלב <bdi>IV</bdi> (<bdi>A · B · C</bdi>)</b>גרורות מרוחקות. גרורות <span class="nw">ב-<bdi>peritoneum</bdi></span>: <bdi>IVC</bdi></div>
    <div class="box b"><b class="t">הישרדות ל-5 שנים</b>ממוקם <bdi dir="ltr">91%</bdi> · אזורי <bdi dir="ltr">72%</bdi> · מרוחק <bdi dir="ltr">13%</bdi></div>
   </div>
  </div>
@@ -259,7 +264,7 @@ bdi{unicode-bidi:isolate}
 <section class="s"><div class="card">
  <div class="kick"><b>8</b>אנטומיה כירורגית · אינטראקטיבי</div>
  <h2>איזה ניתוח לאיזה מקטע?</h2>
- <div class="hotw" style="grid-template-columns:.72fr 1.28fr"><div class="hoti"><img src="img/Sobo_1906_410.jpg" alt="המעי הגס במבט קדמי, המעי הדק מוסט"><svg viewBox="0 0 1200 1582" preserveAspectRatio="none" style="--lw:80;--li:.3;--lh:.42;--lo:.4;--bf:40px">
+ <div class="hotw" style="grid-template-columns:.72fr 1.28fr"><div class="hoti"><img src="img/Sobo_1906_410.jpg" alt="ה-colon במבט קדמי, ה-small bowel מוסט"><svg viewBox="0 0 1200 1582" preserveAspectRatio="none" style="--lw:80;--li:.3;--lh:.42;--lo:.4;--bf:40px">
     <path class="hz ln" data-hz="r" d="M325,1210 C322.5,1200 314.5,1170 310,1150 C305.5,1130 302.8,1115 298,1090 C293.2,1065 286.2,1031.7 281,1000 C275.8,968.3 269.2,933.3 267,900 C264.8,866.7 265,833.3 268,800 C271,766.7 280,730 285,700 C290,670 295.3,638 298,620 C300.7,602 300.5,596.7 301,592" style="--c:#2F6FA8"/>
     <path class="hz ln" data-hz="t" d="M320,503 C323.3,498.8 328.3,487.2 340,478 C351.7,468.8 371.7,456.3 390,448 C408.3,439.7 428.3,434.3 450,428 C471.7,421.7 495,416 520,410 C545,404 570,398.3 600,392 C630,385.7 666.7,377.3 700,372 C733.3,366.7 773.3,361.7 800,360 C826.7,358.3 846.3,360.7 860,362 C873.7,363.3 878.3,367 882,368" style="--c:#00967D"/>
     <path class="hz ln" data-hz="s" d="M942,412 C944.2,417.5 951.7,430.3 955,445 C958.3,459.7 961.2,484.8 962,500 C962.8,515.2 960.3,530 960,536" style="--c:#C9893F"/>
@@ -272,14 +277,14 @@ bdi{unicode-bidi:isolate}
     <g class="hzb" style="--c:#A3402E"><circle cx="800" cy="1310" r="34"/><text x="800" y="1310">5</text></g>
    </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על מקטע של המעי הגס כדי לקרוא על אספקת הדם ועל הניתוח</p>
-   <div class="hzi" data-hzi="r" hidden><b>1 · צקום וקולון עולה</b><p>אספקה מ-<bdi>SMA</bdi>: <bdi>ileocolic</bdi>, <bdi>right colic</bdi> (כשקיים) והענף הימני של <bdi>middle colic</bdi>. <strong>כריתת מעי ימנית:</strong> קשירה גבוהה של הכלים, האילאום נחתך כ-5 ס״מ מהשסתום והקולון הרוחבי בשליש הקרוב. האומנטום יוצא יחד עם הנתיח. בדיסקציה חושפים את התריסריון ואת ראש הלבלב</p></div>
-   <div class="hzi" data-hzi="t" hidden><b>2 · קולון רוחבי</b><p>רוב הגידולים כאן: <strong>כריתה ימנית מורחבת</strong>. קושרים את ה-<bdi>ileocolic</bdi> וגם את ה-<bdi>middle colic</bdi> בבסיסו. החיבור לקולון הרוחבי הרחוק</p></div>
-   <div class="hzi" data-hzi="s" hidden><b>3 · כפיף הטחול</b><p>אין הסכמה. אפשרויות: כריתה ימנית מורחבת, כריתה כמעט מלאה עם חיבור אילאום-קולון יורד, או כריתה מקטעית: קושרים את <bdi>left colic</bdi> במוצאו מה-<bdi>IMA</bdi> ואת הווריד <bdi>IMV</bdi> בגבול התחתון של הלבלב. נתונים חדשים: תוצאות אונקולוגיות דומות לכריתה מורחבת. זרימת הדם לחיבור תלויה בעורק השולי</p></div>
-   <div class="hzi" data-hzi="d" hidden><b>4 · קולון יורד</b><p>אספקה מ-<bdi>IMA</bdi> (<bdi>left colic</bdi>). <strong>כריתה שמאלית</strong> עם קשירה גבוהה של ה-<bdi>IMA</bdi>, תוך הימנעות מהמקלעת העצבית שסביב מוצאו. את ה-<bdi>IMV</bdi> קושרים לטרלית לרצועת טרייץ. משחררים את כפיף הטחול במלואו כדי לחבר בלי מתח. החיבור בדרך כלל בשדכנים מקצה לקצה</p></div>
-   <div class="hzi" data-hzi="g" hidden><b>5 · סיגמואיד</b><p>ענפי הסיגמואיד של ה-<bdi>IMA</bdi>. <strong>כריתה מקטעית</strong> לפי עקרונות אונקולוגיים: החיתוך הרחוק ברקטום העליון והקרוב בקולון היורד הרחוק</p></div>
-   <div class="box" style="margin-top:10px"><b class="t">העורק השולי</b>קשת של כלי דם עוקפים שרצה במקביל לדופן הקולון וקרוב אליה. שומרים עליו כדי שהחיבור לא יהיה איסכמי</div>
+   <div class="hzi" data-hzi="r" hidden><b>1 · <bdi>Cecum and ascending colon</bdi></b><p>אספקה <span class="nw">מ-<bdi>SMA</bdi></span>: <bdi>ileocolic</bdi>, <bdi>right colic</bdi> (כשקיים) והענף הימני של <bdi>middle colic</bdi>. <strong>כריתת מעי ימנית:</strong> קשירה גבוהה של הכלים, <span class="nw">ה-<bdi>ileum</bdi></span> נחתך כ-5 ס״מ <span class="nw">מה-<bdi>ileocecal valve</bdi></span> <span class="nw">וה-<bdi>transverse colon</bdi></span> בשליש הקרוב. <span class="nw">ה-<bdi>omentum</bdi></span> יוצא יחד עם הנתיח. בדיסקציה חושפים את <span class="nw">ה-<bdi>duodenum</bdi></span> ואת <span class="nw">ה-<bdi>pancreatic head</bdi></span></p></div>
+   <div class="hzi" data-hzi="t" hidden><b>2 · <bdi>Transverse colon</bdi></b><p>רוב הגידולים כאן: <strong>כריתה ימנית מורחבת</strong>. קושרים את <span class="nw">ה-<bdi>ileocolic</bdi></span> וגם את <span class="nw">ה-<bdi>middle colic</bdi></span> בבסיסו. החיבור <span class="nw">ל-<bdi>transverse colon</bdi></span> הרחוק</p></div>
+   <div class="hzi" data-hzi="s" hidden><b>3 · <bdi>Splenic flexure</bdi></b><p>אין הסכמה. אפשרויות: כריתה ימנית מורחבת, כריתה כמעט מלאה עם חיבור <bdi>ileum</bdi> <span class="nw">ל-<bdi>descending colon</bdi></span>, או כריתה מקטעית: קושרים את <bdi>left colic</bdi> במוצאו <span class="nw">מה-<bdi>IMA</bdi></span> ואת <span class="nw">ה-<bdi>IMV</bdi></span> בגבול התחתון של <span class="nw">ה-<bdi>pancreas</bdi></span>. נתונים חדשים: תוצאות אונקולוגיות דומות לכריתה מורחבת. זרימת הדם לחיבור תלויה <span class="nw">ב-<bdi>marginal artery</bdi></span></p></div>
+   <div class="hzi" data-hzi="d" hidden><b>4 · <bdi>Descending colon</bdi></b><p>אספקה <span class="nw">מ-<bdi>IMA</bdi></span> (<bdi>left colic</bdi>). <strong>כריתה שמאלית</strong> עם קשירה גבוהה של <span class="nw">ה-<bdi>IMA</bdi></span>, תוך הימנעות <span class="nw">מה-<bdi>sympathetic nerve plexus</bdi></span> שסביב מוצאו. את <span class="nw">ה-<bdi>IMV</bdi></span> קושרים לטרלית <span class="nw">ל-<bdi>ligament of Treitz</bdi></span>. משחררים את <span class="nw">ה-<bdi>splenic flexure</bdi></span> במלואו כדי לחבר בלי מתח. החיבור בדרך כלל בשדכנים מקצה לקצה</p></div>
+   <div class="hzi" data-hzi="g" hidden><b>5 · <bdi>Sigmoid colon</bdi></b><p><span class="nw">ה-<bdi>sigmoid branches</bdi></span> של <span class="nw">ה-<bdi>IMA</bdi></span>. <strong>כריתה מקטעית</strong> לפי עקרונות אונקולוגיים: החיתוך הרחוק <span class="nw">ב-<bdi>upper rectum</bdi></span> והקרוב <span class="nw">ב-<bdi>descending colon</bdi></span> הרחוק</p></div>
+   <div class="box" style="margin-top:10px"><b class="t"><bdi>Marginal artery</bdi></b>קשת של כלי דם עוקפים שרצה במקביל לדופן <span class="nw">ה-<bdi>colon</bdi></span> וקרוב אליה. שומרים עליו כדי שהחיבור לא יהיה איסכמי</div>
   </div></div>
- <figcaption>המעי הגס במבט קדמי, המעי הדק מוסט והמזנטריום חשוף · <bdi>Sobotta, Atlas and Text-book of Human Anatomy</bdi> 1906, איור 410 (נחלת הכלל)</figcaption>
+ <figcaption><span class="nw">ה-<bdi>colon</bdi></span> במבט קדמי, <span class="nw">ה-<bdi>small bowel</bdi></span> מוסט <span class="nw">וה-<bdi>mesentery</bdi></span> חשוף · <bdi>Sobotta, Atlas and Text-book of Human Anatomy</bdi> 1906, איור 410 (נחלת הכלל)</figcaption>
  <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1497–1500</bdi></span><span>אנטומיה כירורגית</span></div>
 </div></section>
 
@@ -291,12 +296,12 @@ bdi{unicode-bidi:isolate}
    <ul class="b">
     <li><b>שוליים:</b> <bdi dir="ltr">5–7</bdi> ס״מ מהגידול בכל צד</li>
     <li><b>בלוטות:</b> יותר מ-12 בלוטות קשורות להישרדות טובה יותר בשלבים <bdi>II–III</bdi>. פחות מ-12: יותר חזרות. קשירה גבוהה של כלי הדם עוזרת להגיע לזה</li>
-    <li><b>החיבור:</b> בלי מתח, מקטעים בריאים עם אספקת דם טובה, שמירה על העורק השולי</li>
+    <li><b>החיבור:</b> בלי מתח, מקטעים בריאים עם אספקת דם טובה, שמירה על <span class="nw">ה-<bdi>marginal artery</bdi></span></li>
     <li><b>לפרוסקופיה ורובוט:</b> פחות כאב, אשפוז קצר יותר, חזרה מהירה של תפקוד המעי ופחות זיהומי פצע. במחקר <bdi>COST</bdi> ההישרדות בלי מחלה ל-5 שנים לא נפלה מניתוח פתוח</li>
    </ul>
   </div>
   <div style="display:grid;gap:10px">
-   <figure><img style="max-height:24vh" src="img/lap-sigmoid-cancer.jpg" alt="גידול בסיגמואיד בלפרוסקופיה"><figcaption>גידול ממאיר בסיגמואיד, מבט לפרוסקופי בזמן ניתוח · <bdi>Anpol42, Wikimedia Commons, CC BY-SA 4.0</bdi></figcaption></figure>
+   <figure><img style="max-height:24vh" src="img/lap-sigmoid-cancer.jpg" alt="גידול ב-sigmoid בלפרוסקופיה"><figcaption>גידול ממאיר <span class="nw">ב-<bdi>sigmoid</bdi></span>, מבט לפרוסקופי בזמן ניתוח · <bdi>Anpol42, Wikimedia Commons, CC BY-SA 4.0</bdi></figcaption></figure>
    <figure><img style="max-height:22vh" src="img/colectomy-specimen-cancer.jpg" alt="נתיח כריתת קולון פתוח עם גידול ושני פוליפים"><figcaption>נתיח פתוח: קרצינומה חודרנית ושני פוליפים אדנומטוטיים · <bdi>Emmanuelm, Wikimedia Commons, CC BY 3.0</bdi></figcaption></figure>
   </div>
  </div>
@@ -314,12 +319,12 @@ bdi{unicode-bidi:isolate}
    </ul>
    <div class="flow" style="margin-top:10px">
     <div><b>חסימה בצד ימין</b><span>כריתה מקטעית אונקולוגית. ברוב המקרים חיבור ראשוני בטוח. בסיכון גבוה לדליפה: סטומה זמנית</span></div>
-    <div><b>חסימה בסיגמואיד ובצד שמאל</b><span>ניתוח דחוף וכריתה מקטעית. מעי קרוב מנוקב או איסכמי: כריתה כמעט מלאה של הקולון</span></div>
+    <div><b>חסימה <span class="nw">ב-<bdi>sigmoid</bdi></span> ובצד שמאל</b><span>ניתוח דחוף וכריתה מקטעית. מעי קרוב מנוקב או איסכמי: כריתה כמעט מלאה של הקולון</span></div>
     <div><b>חיבור ראשוני?</b><span>פעם סגרו את הגדם והוציאו סטומה. היום אפשר לחבר בחולה יציב, בלי מתח ועם אספקת דם טובה</span></div>
     <div><b>סטנט אנדוסקופי</b><span>גשר לניתוח מתוכנן: יותר חיבורים ראשוניים, פחות זיהומי פצע, יותר ניתוחים לפרוסקופיים. <b>אסור</b> בחשד לאיסכמיה או לניקוב</span></div>
    </div>
   </div>
-  <figure><img src="img/colon-cancer-obstruction-ct.jpg" alt="חסימת מעי גס מגידול בקולון היורד בצילום וב-CT"><figcaption>חסימת מעי גס מגידול מצר בקולון היורד: מעי גס מורחב בצילום. ב-<bdi>CT</bdi> קפיצה בקוטר אחרי הגידול · <bdi>Hellerhoff, Wikimedia Commons, CC BY-SA 4.0</bdi></figcaption></figure>
+  <figure><img src="img/colon-cancer-obstruction-ct.jpg" alt="חסימת מעי גס מגידול ב-descending colon בצילום וב-CT"><figcaption>חסימת מעי גס מגידול מצר <span class="nw">ב-<bdi>descending colon</bdi></span>: <bdi>colon</bdi> מורחב בצילום. <span class="nw">ב-<bdi>CT</bdi></span> קפיצה בקוטר אחרי הגידול · <bdi>Hellerhoff, Wikimedia Commons, CC BY-SA 4.0</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1501</bdi></span><span>חירום</span></div>
 </div></section>
@@ -335,7 +340,7 @@ bdi{unicode-bidi:isolate}
    <li><b>גרורות בריאה שניתן לכרות:</b> הכריתה משפרת הישרדות</li>
    <li><b>גרורות בצפק:</b> דיון רב-תחומי. בחולים נבחרים: ניתוח הקטנת גידול עם <bdi>HIPEC</bdi></li>
   </ul>
-  <div class="box b"><b class="t">בשבוע 5</b>הרצאה נפרדת על גרורות לכבד מסרטן המעי הגס: מי מתאים לכריתה, נפח הכבד שנשאר והסדר בין הכבד לגידול הראשוני</div>
+  <div class="box b"><b class="t">בשבוע 5</b>הרצאה נפרדת על גרורות לכבד מסרטן המעי הגס: מי מתאים לכריתה, נפח <span class="nw">ה-<bdi>liver</bdi></span> שנשאר והסדר בין <span class="nw">ה-<bdi>liver</bdi></span> לגידול הראשוני</div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1501</bdi></span><span>מחלה גרורתית</span></div>
 </div></section>
@@ -355,7 +360,7 @@ bdi{unicode-bidi:isolate}
   </div>
   <div style="display:grid;gap:10px">
    <div class="box a"><b class="t">שלב <bdi>II</bdi> בסיכון גבוה, מה מחפשים בדו״ח</b>התמיינות ירודה, חדירה לכלי לימפה ודם, חדירה פרינוירלית, חסימה, פחות מ-12 בלוטות, ניקוב מקומי, שוליים קרובים או חיוביים, "ניצנוץ" גידולי גבוה</div>
-   <div class="box n"><b class="t">גורמי פרוגנוזה נוספים</b><bdi>CEA</bdi> מעל 5 לפני ואחרי הניתוח, היסטולוגיה רירית, תאי טבעת חותם (הישרדות ל-5 שנים <bdi dir="ltr">9–36%</bdi>), <bdi>BRAF</bdi> ו-<bdi>KRAS</bdi> רעים. <bdi>MSI</bdi> משפר הישרדות</div>
+   <div class="box n"><b class="t">גורמי פרוגנוזה נוספים</b><bdi>CEA</bdi> מעל 5 לפני ואחרי הניתוח, היסטולוגיה רירית, תאי טבעת חותם (הישרדות ל-5 שנים <bdi dir="ltr">9–36%</bdi>), <bdi>BRAF</bdi> <span class="nw">ו-<bdi>KRAS</bdi></span> רעים. <bdi>MSI</bdi> משפר הישרדות</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1501</bdi></span><span>טיפול משלים</span></div>
@@ -367,11 +372,11 @@ bdi{unicode-bidi:isolate}
  <div class="num">
   <div><b dir="ltr">1</b><span>שנה אחרי הניתוח: קולונוסקופיה מלאה לכולם</span></div>
   <div><b dir="ltr">1 · 3</b><span>שנים לקולונוסקופיה הבאה: עם אדנומה מתקדמת · בלי</span></div>
-  <div><b dir="ltr">3–6</b><span>חודשים: בדיקה ו-<bdi>CEA</bdi> בשנתיים הראשונות (שלבים <bdi>II–III</bdi>)</span></div>
+  <div><b dir="ltr">3–6</b><span>חודשים: בדיקה <span class="nw">ו-<bdi>CEA</bdi></span> בשנתיים הראשונות (שלבים <bdi>II–III</bdi>)</span></div>
   <div><b dir="ltr">6–12</b><span>חודשים: <bdi>CT</bdi> חזה, בטן ואגן במשך 5 שנים</span></div>
  </div>
  <ul class="b">
-  <li>אחרי השנתיים הראשונות: בדיקה ו-<bdi>CEA</bdi> כל חצי שנה, עד 5 שנים</li>
+  <li>אחרי השנתיים הראשונות: בדיקה <span class="nw">ו-<bdi>CEA</bdi></span> כל חצי שנה, עד 5 שנים</li>
   <li><b>שלב <bdi>I</bdi>:</b> בלי הדמיה ובלי סמנים, רק קולונוסקופיה</li>
   <li><b>שלב <bdi>IV</bdi> אחרי כריתה מרפאת:</b> הדמיה כל <bdi dir="ltr">3–6</bdi> חודשים בשנתיים הראשונות, אחר כך כל <bdi dir="ltr">6–12</bdi> חודשים עד 5 שנים</li>
  </ul>
@@ -383,12 +388,12 @@ bdi{unicode-bidi:isolate}
  <h2>מחקרים שכדאי להכיר</h2>
  <div class="grid">
   <div class="study"><div class="y"><bdi>NEJM</bdi> 2022 · <bdi>Lancet</bdi> 2026 · מחקר אקראי</div><b><bdi>NordICC</bdi>: הזמנה לקולונוסקופיה אחת</b>
-   <p>84,585 בני <bdi dir="ltr">55–64</bdi> בפולין, נורווגיה ושוודיה. אחרי 10 שנים: סרטן ב-<bdi dir="ltr">0.98%</bdi> מהמוזמנים לעומת <bdi dir="ltr">1.20%</bdi> (ירידה של 18%). רק 42% הגיעו לבדיקה. אחרי 13 שנים: ירידה בהיארעות (<bdi dir="ltr">RR 0.81</bdi>) אבל לא בתמותה מהמחלה</p>
+   <p>84,585 בני <bdi dir="ltr">55–64</bdi> בפולין, נורווגיה ושוודיה. אחרי 10 שנים: סרטן <span class="nw">ב-<bdi dir="ltr">0.98%</bdi></span> מהמוזמנים לעומת <bdi dir="ltr">1.20%</bdi> (ירידה של 18%). רק 42% הגיעו לבדיקה. אחרי 13 שנים: ירידה בהיארעות (<bdi dir="ltr">RR 0.81</bdi>) אבל לא בתמותה מהמחלה</p>
    <small>Bretthauer M et al. N Engl J Med 2022;387:1547-56 · Kaminski MF et al. Lancet 2026;407:1787-95</small></div>
   <div class="study"><div class="y"><bdi>J Clin Oncol</bdi> 2023 · מחקר אקראי</div><b><bdi>FOxTROT</bdi>: כימותרפיה לפני ניתוח בקולון</b>
    <p>1,053 חולים עם <bdi>T3–4</bdi> בהדמיה. 6 שבועות אוקסליפלטין לפני הניתוח: יותר כריתות שלמות (94% לעומת 89%) ופחות מחלה שארית או חוזרת בשנתיים (<bdi dir="ltr">16.9%</bdi> לעומת <bdi dir="ltr">21.5%</bdi>). מעט תועלת בגידולי <bdi>dMMR</bdi></p>
    <small>Morton D et al. J Clin Oncol 2023;41:1541-52</small></div>
-  <div class="study"><div class="y"><bdi>NEJM</bdi> 2024 · שלב 2</div><b><bdi>NICHE-2</bdi>: אימונותרפיה לפני ניתוח ב-<bdi>dMMR</bdi></b>
+  <div class="study"><div class="y"><bdi>NEJM</bdi> 2024 · שלב 2</div><b><bdi>NICHE-2</bdi>: אימונותרפיה לפני ניתוח <span class="nw">ב-<bdi>dMMR</bdi></span></b>
    <p>115 חולים עם סרטן קולון מקומי מתקדם <bdi>dMMR</bdi>, ניבולומאב ואיפילימומאב. 98% נותחו בזמן. תגובה פתולוגית משמעותית ב-95% ותגובה מלאה ב-68%. אף חזרה במעקב חציוני של 26 חודשים</p>
    <small>Chalabi M et al. N Engl J Med 2024;390:1949-58</small></div>
   <div class="study"><div class="y"><bdi>NEJM</bdi> 2025 · מחקר אקראי שלב 3</div><b><bdi>CHALLENGE</bdi>: פעילות גופנית אחרי כימותרפיה</b>
@@ -404,12 +409,12 @@ bdi{unicode-bidi:isolate}
  <ol class="obj">
   <li><span>רוב סרטני המעי הגס מתחילים בפוליפ. אדנומה מתקדמת (1 ס״מ ומעלה, דיספלזיה גבוהה או מבנה וילוזי) מסירים</span></li>
   <li><span>חולה צעיר או סיפור משפחתי: לחשוב על לינץ׳. בכל ביופסיה של סרטן בודקים <bdi>MMR</bdi></span></li>
-  <li><span>בירור: קולונוסקופיה מלאה עם קעקוע וביופסיה, <bdi>CEA</bdi> ו-<bdi>CT</bdi> חזה, בטן ואגן</span></li>
+  <li><span>בירור: קולונוסקופיה מלאה עם קעקוע וביופסיה, <bdi>CEA</bdi> <span class="nw">ו-<bdi>CT</bdi></span> חזה, בטן ואגן</span></li>
   <li><span>הניתוח נקבע לפי אספקת הדם: שוליים של <bdi dir="ltr">5–7</bdi> ס״מ, יותר מ-12 בלוטות, חיבור בלי מתח</span></li>
   <li><span>שלב <bdi>III</bdi> מקבל כימותרפיה. גידול חוסם: ניתוח דחוף או סטנט כגשר, אף פעם לא סטנט במעי איסכמי</span></li>
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 96 <bdi>Cancers of the Colon, Rectum, and Anus</bdi> (עמ׳ <bdi dir="ltr">1491–1503</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906, נחלת הכלל) · תמונות קליניות מ-<bdi>Wikimedia Commons</bdi> לפי הרישיון שבכל כיתוב · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906, נחלת הכלל) · תמונות קליניות <span class="nw">מ-<bdi>Wikimedia Commons</bdi></span> לפי הרישיון שבכל כיתוב · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>

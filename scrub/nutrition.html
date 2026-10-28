@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>תזונה אנטרלית ו-TPN · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,6 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -97,6 +98,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -114,6 +116,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -125,7 +130,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s cover"><div class="card">
  <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
  <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 5</div>
- <h1>תזונה אנטרלית ו-<bdi>TPN</bdi></h1>
+ <h1>תזונה אנטרלית <span class="nw">ו-<bdi>TPN</bdi></span></h1>
  <p class="lead">התגובה המטבולית לניתוח, הערכה תזונתית, כמה להאכיל, באיזו דרך ומה יכול להשתבש</p>
  <div class="cvsrc" data-ch="34" data-note=""><small>מבוסס על</small><b><bdi dir="ltr">Sabiston Textbook of Surgery</bdi> · מהדורה 22</b><div class="cvch"><span>פרק <bdi dir="ltr">34</bdi></span></div></div>
  <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
@@ -152,14 +157,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div class="flow">
     <div><b>שלב השפל</b><span>כ-12 השעות הראשונות: הוצאה אנרגטית נמוכה, צריכת חמצן וחום גוף נמוכים יותר</span></div>
     <div><b>שלב הזרימה</b><span>עלייה בהוצאה האנרגטית. בפגיעה קשה: מצב קטבולי מתמשך שלא מגיב להאכלה</span></div>
-    <div><b>הורמונים</b><span>קורטיזול עולה ל-<bdi dir="ltr">24–48</bdi> שעות. קטכולאמינים, גלוקגון. אלדוסטרון ו-<bdi>ADH</bdi>: אגירת מלח ומים ובצקות</span></div>
+    <div><b>הורמונים</b><span>קורטיזול עולה <span class="nw">ל-<bdi dir="ltr">24–48</bdi></span> שעות. קטכולאמינים, גלוקגון. אלדוסטרון <span class="nw">ו-<bdi>ADH</bdi></span>: אגירת מלח ומים ובצקות</span></div>
     <div><b>סוכר</b><span>פירוק גליקוגן, ייצור גלוקוז בכבד עולה עד 50%. תנגודת לאינסולין והיפרגליקמיה</span></div>
    </div>
   </div>
   <div style="display:grid;gap:10px">
    <div class="box r"><b class="t">השריר משלם</b>אין לגוף מאגר של חומצות אמינו. לכן הוא מפרק שריר. כבר בתחילת רעב מתפרקים כ-75 גרם חלבון שריר ביום. בחולה קשה נדרשים <bdi dir="ltr">1.2–2.0</bdi> גרם חלבון לק״ג ליום כדי להתגבר על "התנגודת האנבולית"</div>
    <div class="box"><b class="t">מאזן חנקן</b><bdi dir="ltr">(protein g / 6.25) − (UUN + 4)</bdi>. מאזן שלילי: הגוף מפרק חלבון</div>
-   <div class="box n"><b class="t">כשזה לא נגמר</b><bdi>PICS</bdi> (דלקת, דיכוי חיסוני וקטבוליזם מתמשכים) פוגע ב-<bdi dir="ltr">30–50%</bdi> מהשורדים אחרי אשפוז ארוך בטיפול נמרץ. הוא לא מגיב היטב להאכלה</div>
+   <div class="box n"><b class="t">כשזה לא נגמר</b><bdi>PICS</bdi> (דלקת, דיכוי חיסוני וקטבוליזם מתמשכים) פוגע <span class="nw">ב-<bdi dir="ltr">30–50%</bdi></span> מהשורדים אחרי אשפוז ארוך בטיפול נמרץ. הוא לא מגיב היטב להאכלה</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 34 עמ׳ <bdi dir="ltr">271–273</bdi></span><span>התגובה המטבולית</span></div>
@@ -214,11 +219,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div>
    <div class="flow">
-    <div><b>אחרי ניתוח</b><span><bdi dir="ltr">25–30</bdi> קק״ל לק״ג ו-<bdi dir="ltr">1.2–2</bdi> גרם חלבון לק״ג ביום</span></div>
+    <div><b>אחרי ניתוח</b><span><bdi dir="ltr">25–30</bdi> קק״ל לק״ג <span class="nw">ו-<bdi dir="ltr">1.2–2</bdi></span> גרם חלבון לק״ג ביום</span></div>
     <div><b>טיפול נמרץ</b><span>הנחיות <bdi>ASPEN</bdi> 2021: <bdi dir="ltr">12–25</bdi> קק״ל לק״ג ביום</span></div>
     <div><b>ספסיס</b><span>חלבון <bdi dir="ltr">1.2–2.0</bdi> גרם לק״ג וכ-20 קק״ל לק״ג שאינן מחלבון. בהחלמה: יותר מ-1.5 גרם חלבון</span></div>
     <div><b>השמנה</b><span><bdi dir="ltr">11–14</bdi> קק״ל לק״ג משקל בפועל (מעל <bdi>BMI</bdi> 50: <bdi dir="ltr">22–25</bdi> לק״ג משקל אידיאלי). חלבון <bdi dir="ltr">2.0–2.5</bdi> גרם לק״ג משקל אידיאלי</span></div>
-    <div><b>בטן פתוחה</b><span>עוד <bdi dir="ltr">15–30</bdi> גרם חלבון על כל ליטר נוזל שאובד מהצפק</span></div>
+    <div><b>בטן פתוחה</b><span>עוד <bdi dir="ltr">15–30</bdi> גרם חלבון על כל ליטר נוזל שאובד <span class="nw">מה-<bdi dir="ltr">peritoneum</bdi></span></span></div>
    </div>
   </div>
   <div style="display:grid;gap:10px">
@@ -260,7 +265,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div><b>עד מתי?</b><span>ממשיכים בהזנה התומכת עד שהמטופל אוכל לפחות 60% מהצורך. ממשיכים גם אחרי השחרור: מטופל בתת-תזונה חוזר לאשפוז פי 2</span></div>
   </div>
   <div style="display:grid;gap:10px">
-   <div class="box"><b class="t">למה אנטרלי עדיף?</b>שומר על רירית המעי ועל תנועתיות, מפחית מעבר חיידקים, פחות זיהומים (כולל זיהומי צנתר), אשפוז קצר יותר וזול יותר. בתמותה לא נמצא הבדל בין אנטרלי מוקדם ל-<bdi>TPN</bdi> מוקדם</div>
+   <div class="box"><b class="t">למה אנטרלי עדיף?</b>שומר על רירית המעי ועל תנועתיות, מפחית מעבר חיידקים, פחות זיהומים (כולל זיהומי צנתר), אשפוז קצר יותר וזול יותר. בתמותה לא נמצא הבדל בין אנטרלי מוקדם <span class="nw">ל-<bdi>TPN</bdi></span> מוקדם</div>
    <div class="box n"><b class="t">מטופל מוזן היטב</b>בסיכון נמוך (<bdi>NRS</bdi> מתחת ל-3 או <bdi>NUTRIC</bdi> מתחת ל-5) יכול לעבור עד 7 ימים בלי הזנה, אם צפוי שיפור. בסיכון גבוה או בתת-תזונה קשה שלא סובל הזנה אנטרלית: <bdi>TPN</bdi> מוקדם</div>
   </div>
  </div>
@@ -270,7 +275,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>8</b>איפה מאכילים</div>
  <h2>הדרכים להזנה אנטרלית</h2>
- <div class="hotw"><div class="hoti"><img src="img/nutr-digestive.png" alt="מערכת העיכול: לוע, הוושט, קיבה, מעי דק ומעי גס"><svg viewBox="0 0 1280 1280" preserveAspectRatio="none" style="--lw:16;--bf:31px">
+ <div class="hotw"><div class="hoti"><img src="img/nutr-digestive.png" alt="מערכת העיכול: לוע, esophagus, קיבה, מעי דק ומעי גס"><svg viewBox="0 0 1280 1280" preserveAspectRatio="none" style="--lw:16;--bf:31px">
    <path class="hz ln" data-hz="n" d="M764,212 C745,206 720,202 700,203 C685,205 672,210 665,222 C659,240 657,270 657,300 C657,350 657,400 657,440 C658,470 660,490 664,503 C666,510 669,514 672,517" style="--c:#2F6FA8"/>
    <path class="hz" data-hz="s" d="M735,515 C745,512 750,514 757,516 C766,520 772,526 775,532 C780,540 784,548 784,557 C785,566 785,573 784,580 C782,590 779,597 775,602 C770,610 765,614 760,617 C752,621 746,623 740,625 C728,629 717,631 707,632 C690,634 670,634 650,633 C638,632 632,631 630,630 C620,629 610,628 605,625 C601,620 600,614 602,610 C604,605 607,602 610,600 C615,597 620,596 625,595 C632,592 638,589 645,587 C653,585 662,585 670,585 C680,583 688,580 695,577 C702,573 709,567 715,562 C722,557 730,552 735,545 C739,540 742,535 742,530 C742,524 739,518 735,515 Z" style="--c:#C9893F"/>
    <path class="hz" data-hz="j" d="M557,660 C563,654 570,651 577,650 C585,651 594,656 602,660 C620,668 638,676 655,682 C664,680 673,678 682,677 C695,675 708,673 720,670 C724,668 728,665 732,662 C741,656 750,650 760,645 C764,644 767,644 770,645 C773,653 773,661 772,670 C771,687 771,704 770,720 C769,729 767,737 765,745 C761,754 755,762 750,770 C748,778 747,787 745,795 C743,802 740,809 737,815 C733,821 729,827 725,832 C720,837 715,841 710,845 C703,849 697,852 690,855 C683,857 677,859 670,860 C663,861 657,862 650,862 C642,861 635,859 627,857 C619,854 610,849 602,845 C596,843 590,842 585,840 C581,836 578,831 575,827 C571,820 567,812 565,805 C563,797 561,790 560,782 C558,774 556,765 555,757 C553,749 552,740 552,732 C553,723 554,715 555,707 C555,698 555,690 555,682 C555,675 556,667 557,660 Z" style="--c:#A3402E"/>
@@ -281,9 +286,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <g class="hzb" style="--c:#00967D"><circle cx="492" cy="745" r="26"/><text x="492" y="745">4</text></g>
   </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על אזור כדי לקרוא על דרך ההזנה</p>
-   <div class="hzi" data-hzi="n" hidden><b>1 · דרך האף: צינור לקיבה או למעי</b><p>לטווח קצר. מוחדר ליד המיטה או בשיקוף. קל להחדיר ולהחליף. סיכונים: מיקום שגוי, דלקת סינוסים, דימום מהאף, נמק באף ופגיעה בוושט. צינור לתריסריון או לצם מתאים כשהקיבה לא מתרוקנת, ברפלוקס ובסיכון לשאיפה</p></div>
+   <div class="hzi" data-hzi="n" hidden><b>1 · דרך האף: צינור לקיבה או למעי</b><p>לטווח קצר. מוחדר ליד המיטה או בשיקוף. קל להחדיר ולהחליף. סיכונים: מיקום שגוי, דלקת סינוסים, דימום מהאף, נמק באף ופגיעה <span class="nw">ב-<bdi dir="ltr">esophagus</bdi></span>. צינור <span class="nw">ל-<bdi dir="ltr">duodenum</bdi></span> או <span class="nw">ל-<bdi dir="ltr">jejunum</bdi></span> מתאים כשהקיבה לא מתרוקנת, ברפלוקס ובסיכון לשאיפה</p></div>
    <div class="hzi" data-hzi="s" hidden><b>2 · הקיבה: צינור אף-קיבה או גסטרוסטומיה</b><p>אפשר האכלה במנות (בולוס), הדרך הפיזיולוגית ביותר, רק לקיבה. גסטרוסטומיה (ניתוחית, אנדוסקופית או רדיולוגית) לטווח ארוך, כשהקיבה מתרוקנת היטב ואין סיכון גבוה לשאיפה. הזנה לקיבה בטוחה ברוב החולים</p></div>
-   <div class="hzi" data-hzi="j" hidden><b>3 · המעי הדק: צינור אחרי הפילורוס או ג׳ג׳ונוסטומיה</b><p>כשיש גסטרופרזיס, רפלוקס או סיכון לשאיפה. רק בעירוי רציף. אי אפשר למדוד שארית בקיבה. סיכונים של ג׳ג׳ונוסטומיה: דליפה לצפק, חסימה, איסכמיה של המעי. בדלקת לבלב: הזנה לצם בפורמולה דלת שומן</p></div>
+   <div class="hzi" data-hzi="j" hidden><b>3 · המעי הדק: צינור אחרי <span class="nw">ה-<bdi dir="ltr">pylorus</bdi></span> או ג׳ג׳ונוסטומיה</b><p>כשיש גסטרופרזיס, רפלוקס או סיכון לשאיפה. רק בעירוי רציף. אי אפשר למדוד שארית בקיבה. סיכונים של ג׳ג׳ונוסטומיה: דליפה <span class="nw">ל-<bdi dir="ltr">peritoneum</bdi></span>, חסימה, איסכמיה של המעי. בדלקת לבלב: הזנה <span class="nw">ל-<bdi dir="ltr">jejunum</bdi></span> בפורמולה דלת שומן</p></div>
    <div class="hzi" data-hzi="c" hidden><b>4 · המעי הגס: הסיבים</b><p>סיבים מסיסים מותססים בידי חיידקי המעי לחומצות שומן קצרות, שמזינות את תאי המעי הגס. כמות יומית מומלצת: <bdi dir="ltr">25–30</bdi> גרם. שלשול בהזנה אנטרלית: משנים פורמולה, כמות סיבים וקצב</p></div>
   </div></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 34 עמ׳ <bdi dir="ltr">279, 281–282, 287–289</bdi> (טבלה 34.8)</span><span>איור: <bdi>Blausen.com staff (2014), WikiJournal of Medicine</bdi> · <bdi>CC BY 3.0</bdi> · <bdi>Wikimedia Commons</bdi></span></div>
@@ -300,7 +305,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <div><b>3. ראש המיטה</b><span>מוגבה <bdi dir="ltr">30–45</bdi> מעלות</span></div>
     <div><b>4. טיפול בצינור</b><span>שטיפה במים לפני ואחרי האכלה ותרופות, קיבוע, בדיקת מקום היציאה</span></div>
    </div>
-   <div class="box a" style="margin-top:10px"><b class="t">שאריות בקיבה</b>מנבאות סיבוכים בצורה גרועה. העלאת הסף מ-<bdi dir="ltr">50–150</bdi> ל-<bdi dir="ltr">250–500</bdi> מ״ל לא הגדילה שאיפה. בודקים את הבטן: נפיחות וכאב</div>
+   <div class="box a" style="margin-top:10px"><b class="t">שאריות בקיבה</b>מנבאות סיבוכים בצורה גרועה. העלאת הסף <span class="nw">מ-<bdi dir="ltr">50–150</bdi></span> <span class="nw">ל-<bdi dir="ltr">250–500</bdi></span> מ״ל לא הגדילה שאיפה. בודקים את הבטן: נפיחות וכאב</div>
   </div>
   <div style="display:grid;gap:10px">
    <figure><img src="img/nutr-peg-xray.jpg" alt="צילום עם חומר ניגוד דרך צינור גסטרוסטומיה" style="max-height:28vh"><figcaption>אישור מיקום של גסטרוסטומיה בחומר ניגוד: הקיבה מתמלאת ואין דליפה · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
@@ -320,7 +325,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div class="box a"><b class="t">סיבוכים</b>
    <ul class="b sm"><li><b>שאיפה ודלקת ריאות:</b> ראש מיטה מוגבה</li><li><b>תזוזה או מיקום שגוי:</b> מאשרים בצילום</li><li><b>שלשול, עצירות, נפיחות:</b> מתאימים פורמולה, סיבים וקצב</li><li><b>סתימה:</b> שוטפים לפני ואחרי</li><li><b>תסמונת ההזנה מחדש:</b> מעלים בהדרגה ומנטרים אלקטרוליטים</li></ul></div>
  </div>
- <div class="box n" style="margin-top:12px"><b class="t">פורמולות</b>רוב המטופלים מסתדרים עם פורמולה סטנדרטית. לרוב הפורמולות המיוחדות אין הוכחה ליתרון. פורמולה מרוכזת יותר באי-ספיקת כליות, לב או כבד וב-<bdi>SIADH</bdi></div>
+ <div class="box n" style="margin-top:12px"><b class="t">פורמולות</b>רוב המטופלים מסתדרים עם פורמולה סטנדרטית. לרוב הפורמולות המיוחדות אין הוכחה ליתרון. פורמולה מרוכזת יותר באי-ספיקת כליות, לב או כבד <span class="nw">וב-<bdi>SIADH</bdi></span></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 34 עמ׳ <bdi dir="ltr">279, 281</bdi></span><span>גבולות</span></div>
 </div></section>
 
@@ -339,11 +344,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <ul class="b sm">
     <li><b>הצנתר:</b> זיהום דם וקריש. שמירה קפדנית על אספסיס</li>
     <li><b>מטבולי:</b> היפרגליקמיה (שכיחה, מטפלים באינסולין), טריגליצרידים גבוהים, הפרעות אלקטרוליטים</li>
-    <li><b>הכבד:</b> מחלת כבד מ-<bdi>TPN</bdi>, בעיקר בשימוש ארוך. מתאימים שומנים ונותנים מעט הזנה אנטרלית כשאפשר</li>
+    <li><b><bdi dir="ltr">liver</bdi>:</b> מחלת כבד <span class="nw">מ-<bdi>TPN</bdi></span>, בעיקר בשימוש ארוך. מתאימים שומנים ונותנים מעט הזנה אנטרלית כשאפשר</li>
     <li><b>המעי:</b> <bdi>TPN</bdi> מוקדם בחולה קשה נקשר לניוון של רירית המעי</li>
    </ul>
   </div>
-  <figure style="align-self:start"><img src="img/nutr-cvc.png" alt="צנתר ורידי מרכזי שנכנס מתחת לעצם הבריח ומגיע לווריד הנבוב העליון"><figcaption>צנתר ורידי מרכזי: נכנס לווריד מתחת לעצם הבריח. הקצה שלו בווריד הנבוב העליון מעל הלב. כך ניתנת <bdi>TPN</bdi> · <bdi>Blausen.com staff (2014)</bdi>, <bdi>CC BY 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure style="align-self:start"><img src="img/nutr-cvc.png" alt="צנתר ורידי מרכזי שנכנס ל-subclavian vein ומגיע ל-SVC"><figcaption>צנתר ורידי מרכזי: נכנס <span class="nw">ל-<bdi dir="ltr">subclavian vein</bdi></span>. הקצה שלו <span class="nw">ב-<bdi dir="ltr">SVC</bdi></span> (<bdi dir="ltr">superior vena cava</bdi>) מעל הלב. כך ניתנת <bdi>TPN</bdi> · <bdi>Blausen.com staff (2014)</bdi>, <bdi>CC BY 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 34 עמ׳ <bdi dir="ltr">279–281, 287, 289</bdi></span><span><bdi>TPN</bdi></span></div>
 </div></section>
@@ -357,7 +362,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>מי בסיכון:</b> מטופל אחרי רעב ממושך שמתחילים להאכיל, אנטרלית או תוך-ורידית</li>
     <li><b>מה קורה:</b> זרחן נכנס לתאים לייצור <bdi>ATP</bdi> ורמתו בדם צונחת. בהתחלה: מעברי נוזלים ואלקטרוליטים. מאוחר יותר: ירידות סוכר</li>
     <li><b>סימן ההיכר: זרחן נמוך.</b> לצידו מגנזיום ואשלגן נמוכים וחוסר תיאמין</li>
-    <li><b>הסכנה:</b> הפרעות קצב, אוטם ודום לב. חולשת שרירים (גם הסרעפת) ופגיעה חיסונית</li>
+    <li><b>הסכנה:</b> הפרעות קצב, אוטם ודום לב. חולשת שרירים (גם <span class="nw">ה-<bdi dir="ltr">diaphragm</bdi></span>) ופגיעה חיסונית</li>
    </ul>
   </div>
   <div style="display:grid;gap:10px">
@@ -376,9 +381,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>13</b>מצבים מיוחדים</div>
  <h2>מה שונה אחרי ניתוחי מעי</h2>
  <div class="grid">
-  <div class="box"><b class="t">כריתת מעי דק ומעי קצר</b>פחות מ-200 ס״מ מעי דק: מעי קצר. חסרים כרוניים כשנשארים פחות מ-100 ס״מ בלי המסתם האילאו-צקלי, או <bdi dir="ltr">50–75</bdi> ס״מ איתו. אובדן האילאום: חוסר <bdi>B12</bdi> ומלחי מרה. במקרים הקשים: <bdi>TPN</bdi> בבית</div>
+  <div class="box"><b class="t">כריתת מעי דק ומעי קצר</b>פחות מ-200 ס״מ מעי דק: מעי קצר. חסרים כרוניים כשנשארים פחות מ-100 ס״מ בלי <span class="nw">ה-<bdi dir="ltr">ileocecal valve</bdi></span>, או <bdi dir="ltr">50–75</bdi> ס״מ איתו. אובדן <span class="nw">ה-<bdi dir="ltr">ileum</bdi></span>: חוסר <bdi>B12</bdi> ומלחי מרה. במקרים הקשים: <bdi>TPN</bdi> בבית</div>
   <div class="box b"><b class="t">אילאוסטומיה</b>התייבשות היא סיבה שכיחה לאשפוז חוזר. מלמדים את המטופל לזהות תפוקה גבוהה. לפני השחרור הראשון: תפוקה של כ-1,000 מ״ל ביממה או פחות</div>
-  <div class="box a"><b class="t">דלקת לבלב חריפה</b>דיאטה דלת שומן בתוך 48 שעות מהקבלה בטוחה גם בדלקת קשה. היא מפחיתה כשל רב-מערכתי. אם צריך צינור: לצם, פורמולה דלת שומן</div>
+  <div class="box a"><b class="t">דלקת לבלב חריפה</b>דיאטה דלת שומן בתוך 48 שעות מהקבלה בטוחה גם בדלקת קשה. היא מפחיתה כשל רב-מערכתי. אם צריך צינור: <span class="nw">ל-<bdi dir="ltr">jejunum</bdi></span>, פורמולה דלת שומן</div>
   <div class="box n"><b class="t">אחרי כריתת קיבה ובריאטריה</b>אחרי כריתת קיבה חוזרים לכ-75% מנפח הארוחה בתוך שנתיים. אחרי שרוול: חוסר <bdi>B12</bdi>. אחרי מעקף: חוסר ברזל. מולטי-ויטמין יומי ומעקב לכל החיים</div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 34 עמ׳ <bdi dir="ltr">284–287</bdi></span><span>מצבים מיוחדים</span></div>
@@ -398,7 +403,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <p>935 מונשמים. 2.0 גרם חלבון לק״ג לעומת 1.3: איכות חיים <b>נמוכה יותר</b> לאורך 180 יום. יותר אי-סבילות במערכת העיכול. בלי שיפור בתפקוד</p>
    <small>Bels JLM et al. Lancet 2024;404:659-69</small></div>
  </div>
- <div class="box n" style="margin-top:12px"><b class="t">השורה התחתונה</b>בשלב החריף של מחלה קשה, "יותר" אינו בהכרח טוב יותר. זה תואם את המעבר בהנחיות ל-<bdi dir="ltr">12–25</bdi> קק״ל לק״ג (פרק 46)</div>
+ <div class="box n" style="margin-top:12px"><b class="t">השורה התחתונה</b>בשלב החריף של מחלה קשה, "יותר" אינו בהכרח טוב יותר. זה תואם את המעבר בהנחיות <span class="nw">ל-<bdi dir="ltr">12–25</bdi></span> קק״ל לק״ג (פרק 46)</div>
  <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
 </div></section>
 
@@ -409,7 +414,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>ניתוח מפעיל קטבוליזם: השריר מתפרק. החלבון חשוב לא פחות מהקלוריות</li>
   <li>מזהים סיכון לפי ירידה במשקל, כמה המטופל אוכל, בדיקה וכלי סינון. אלבומין מנבא סיבוכים אבל לא מודד תזונה</li>
   <li>אם המעי עובד, משתמשים בו. מתחילים מוקדם: גם אחרי השקה, גם בלי נוזלים צלולים קודם</li>
-  <li>כלל ה-60%: מהפה לצינור ומהצינור ל-<bdi>TPN</bdi>, כשלא מגיעים ל-60% מהיעד</li>
+  <li>כלל ה-60%: מהפה לצינור ומהצינור <span class="nw">ל-<bdi>TPN</bdi></span>, כשלא מגיעים ל-60% מהיעד</li>
   <li>אחרי רעב: מתחילים לאט ונותנים תיאמין. בודקים זרחן, אשלגן ומגנזיום</li>
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 34 <bdi>Metabolism and Nutrition in Surgical Patients</bdi> (עמ׳ <bdi dir="ltr">269–290</bdi>)</div>

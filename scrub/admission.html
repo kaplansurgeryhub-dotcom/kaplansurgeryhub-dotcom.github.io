@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>עקרונות קבלת חולים בכירורגיה · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,6 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -97,6 +98,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -114,6 +116,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -159,7 +164,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div style="display:grid;gap:10px">
    <div class="box n"><b class="t">מטרת הניתוח: מניעה</b>להקדים מחלה. למשל כריתה מונעת בתסמונת סרטן תורשתית, אנדארטרקטומיה בהיצרות א-תסמינית של הקרוטיס</div>
    <div class="box"><b class="t">מטרת הניתוח: שליטה במחלה</b>מחלה פעילה. למשל כריתת גידול, כריתת כיס מרה בדלקת חריפה, שחרור הידבקויות בחסימת מעי</div>
-   <div class="box a"><b class="t">מטרת הניתוח: הקלה (פליאציה)</b>איכות חיים ולא ריפוי. למשל עקיפה בחסימה ממאירה של הקיבה</div>
+   <div class="box a"><b class="t">מטרת הניתוח: הקלה (פליאציה)</b>איכות חיים ולא ריפוי. למשל עקיפה בחסימה ממאירה של <span class="nw">ה-<bdi>stomach</bdi></span></div>
   </div>
  </div>
  <div class="box b" style="margin-top:12px"><b class="t">למה זה חשוב</b>בלי הסבר ברור של מטרת הניתוח אין הסכמה מדעת אמיתית</div>
@@ -190,7 +195,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div><b>לב</b><span>מחלה כלילית, אי ספיקת לב, מסתמים, סטנטים. כושר תפקודי במט״ים</span></div>
    <div><b>ריאות</b><span>עישון, <bdi>COPD</bdi>, דום נשימה בשינה, זיהום נשימתי בחודש האחרון</span></div>
    <div><b>כליות</b><span>אי ספיקה כרונית, דיאליזה, אשלגן</span></div>
-   <div><b>כבד</b><span>סימני שחמת: צהבת, מיימת, טחול מוגדל, כוכבי עכביש</span></div>
+   <div><b>כבד</b><span>סימני שחמת: צהבת, מיימת, <bdi>spleen</bdi> מוגדל, כוכבי עכביש</span></div>
    <div><b>דם</b><span>היסטוריית דימום, אנמיה, נוגדי קרישה וטסיות</span></div>
    <div><b>אנדוקריני</b><span>סוכרת, בלוטת התריס, סטרואידים, גידולים מפרישים</span></div>
    <div><b>תזונה</b><span>ירידה במשקל, <bdi>BMI</bdi>, אלבומין</span></div>
@@ -219,7 +224,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על איבר בציור כדי לקרוא מה בודקים לפני ניתוח</p>
    <div class="hzi" data-hzi="ht" hidden><b>לב</b><ul class="b sm"><li>בלי תסמינים ומגיע ל-<strong>4 מט״ים</strong> (קומה במדרגות): ממשיכים לניתוח</li><li>ניתוח בסיכון נמוך: אין צורך בבירור, גם כשהכושר נמוך</li><li><strong>אק״ג:</strong> לפני ניתוח שאינו בסיכון נמוך, במחלה כלילית, הפרעת קצב, מחלת עורקים היקפית או מחלה מוחית-וסקולרית</li><li><strong>אקו:</strong> קוצר נשימה לא מוסבר או אי ספיקת לב שמחמירה</li><li>אחרי צנתור: ניתוח מתוכנן לא לפני 14 יום מבלון, 30 יום מסטנט מתכתי. מסטנט מצופה תרופה: רצוי 6 חודשים</li></ul></div>
-   <div class="hzi" data-hzi="lu" hidden><b>ריאות</b><ul class="b sm"><li>סיבוכים ריאתיים: <strong>כ-6%</strong> אחרי ניתוחי בטן גדולים. ככל שהחתך קרוב לסרעפת, הסיכון עולה</li><li>גורמי סיכון: גיל מעל 50, <bdi>ASA</bdi> 2 ומעלה, תלות תפקודית, אלבומין מתחת ל-3.5, <bdi>COPD</bdi> ואי ספיקת לב</li><li><strong>הפסקת עישון</strong> לפחות 4 שבועות לפני מורידה סיבוכים</li><li>ספירומטריה וצילום חזה לא כשגרה. רוויה בדופק לכולם</li><li>קורונה ב-4 השבועות האחרונים מעלה סיכון. אחרי 8 שבועות הסיכון חוזר לרגיל</li></ul></div>
+   <div class="hzi" data-hzi="lu" hidden><b>ריאות</b><ul class="b sm"><li>סיבוכים ריאתיים: <strong>כ-6%</strong> אחרי ניתוחי בטן גדולים. ככל שהחתך קרוב <span class="nw">ל-<bdi>diaphragm</bdi></span>, הסיכון עולה</li><li>גורמי סיכון: גיל מעל 50, <bdi>ASA</bdi> 2 ומעלה, תלות תפקודית, אלבומין מתחת ל-3.5, <bdi>COPD</bdi> ואי ספיקת לב</li><li><strong>הפסקת עישון</strong> לפחות 4 שבועות לפני מורידה סיבוכים</li><li>ספירומטריה וצילום חזה לא כשגרה. רוויה בדופק לכולם</li><li>קורונה ב-4 השבועות האחרונים מעלה סיכון. אחרי 8 שבועות הסיכון חוזר לרגיל</li></ul></div>
    <div class="hzi" data-hzi="th" hidden><b>בלוטת התריס</b><ul class="b sm"><li>בדיקת <bdi>TSH</bdi> ותפקודי תריס מזהים את הבעיה</li><li><strong>יתר פעילות:</strong> דוחים ניתוח מתוכנן עד לאיזון</li><li><strong>תת-פעילות עם תסמינים</strong> (עייפות, עלייה במשקל): דוחים. בלי תסמינים: אפשר להתחיל טיפול בכל שלב</li></ul></div>
    <div class="hzi" data-hzi="aw" hidden><b>דרכי אוויר ודום נשימה בשינה</b><ul class="b sm"><li><bdi>STOP-BANG</bdi>: נחירות, עייפות, הפסקות נשימה, לחץ דם, <bdi>BMI</bdi> מעל 35, גיל מעל 50, היקף צוואר מעל 40 ס״מ, גבר</li><li>5 ומעלה: סיכון גבוה. לפני ניתוח מתוכנן: בדיקת שינה והתאמת <bdi>CPAP</bdi></li><li>ניתוח דחוף: מטפלים בדום הנשימה אחרי הניתוח</li></ul></div>
   </div></div>
@@ -231,7 +236,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>שתי מערכות שמשנות את התוכנית</h2>
  <div class="grid">
   <div class="box n"><b class="t">כליות</b>
-   <ul class="b sm"><li><b>אשלגן תקין</b> הוא תנאי לניתוח מתוכנן או דחוף באי ספיקת כליות. היפרקלמיה יכולה להרוג על שולחן הניתוחים</li><li>דיאליזה ביום שלפני הניתוח או ביום הניתוח, קרוב ל"משקל יבש"</li><li>אי ספיקה דרגה <bdi dir="ltr">3–5</bdi> או ניתוח בסיכון גבוה: אק״ג, ספירה, כימיה ושתן</li><li>להימנע מ-<bdi>NSAIDs</bdi>, אמינוגליקוזידים וחומר ניגוד כשיש תפקוד כלייתי שארי</li><li>דימום מטסיות אורמיות: דסמופרסין</li></ul></div>
+   <ul class="b sm"><li><b>אשלגן תקין</b> הוא תנאי לניתוח מתוכנן או דחוף באי ספיקת כליות. היפרקלמיה יכולה להרוג על שולחן הניתוחים</li><li>דיאליזה ביום שלפני הניתוח או ביום הניתוח, קרוב ל"משקל יבש"</li><li>אי ספיקה דרגה <bdi dir="ltr">3–5</bdi> או ניתוח בסיכון גבוה: אק״ג, ספירה, כימיה ושתן</li><li>להימנע <span class="nw">מ-<bdi>NSAIDs</bdi></span>, אמינוגליקוזידים וחומר ניגוד כשיש תפקוד כלייתי שארי</li><li>דימום מטסיות אורמיות: דסמופרסין</li></ul></div>
   <div class="box r"><b class="t">דם</b>
    <ul class="b sm"><li>לא שולחים תפקודי קרישה כשגרה. <b>שואלים</b>: דימומי אף, דימום וסתי מרובה, דימום למפרקים, דימום בניתוחים ובפעולות קודמות</li><li>בבדיקה: דימום מהחניכיים ונקודות דימום בעור (טסיות), שטפי דם עמוקים ודימום למפרק (גורמי קרישה)</li><li>חשד: ספירה, <bdi>PT/INR</bdi>, <bdi>aPTT</bdi>, קריאטינין ותפקודי כבד. הפניה להמטולוג</li><li>עירוי דם במטופל יציב: כשההמוגלובין 7 או פחות (8 במחלת לב)</li></ul></div>
  </div>
@@ -245,14 +250,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <ul class="b sm">
     <li><b>בשאלות:</b> הזרקת סמים, אלכוהול, קעקועים, השמנה ממושכת, מחלת כבד במשפחה. גרד וצהבת</li>
-    <li><b>בבדיקה:</b> צהבת בלובן העין, כוכבי עכביש, הרחבת ורידים סביב הטבור, טחול מוגדל, מיימת (גל נוזל), גינקומסטיה</li>
+    <li><b>בבדיקה:</b> צהבת <span class="nw">ב-<bdi>sclera</bdi></span>, כוכבי עכביש, הרחבת ורידים סביב הטבור, <bdi>spleen</bdi> מוגדל, מיימת (גל נוזל), גינקומסטיה</li>
     <li>בלי חשד: לא בודקים תפקודי כבד כשגרה</li>
     <li>דלקת כבד חריפה או אלכוהולית: לא מנתחים ניתוח מתוכנן</li>
-    <li>שחמת: תמותה בניתוחי בטן <b>כ-10%, 20%, 60%</b> ב-<bdi>Child A, B, C</bdi>. <bdi>INR</bdi> מוארך לא משקף סיכון דימום</li>
+    <li>שחמת: תמותה בניתוחי בטן <b>כ-10%, 20%, 60%</b> <span class="nw">ב-<bdi>Child A, B, C</bdi></span>. <bdi>INR</bdi> מוארך לא משקף סיכון דימום</li>
     <li>מיימת: לטפל לפני הניתוח (משתנים או ניקוז)</li>
    </ul>
   </div>
-  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש הכבד בשתי ידיים"><figcaption>מישוש הכבד: יד אחת מרימה מאחור, השנייה ממששת מתחת לקשת הצלעות בזמן שאיפה · <bdi>Musser, Medical Diagnosis</bdi> (1904), איור 192 (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש ה-liver בשתי ידיים"><figcaption>מישוש <span class="nw">ה-<bdi>liver</bdi></span>: יד אחת מרימה מאחור, השנייה ממששת מתחת <span class="nw">ל-<bdi>costal margin</bdi></span> בזמן שאיפה · <bdi>Musser, Medical Diagnosis</bdi> (1904), איור 192 (נחלת הכלל)</figcaption></figure>
   <figure><img src="img/spider-nevus-cirrhosis.jpg" alt="כוכבי עכביש על עור צהוב"><figcaption>כוכבי עכביש ענקיים בחולה עם שחמת, צהבת ומיימת · <bdi>Herbert L. Fred, Hendrik A. van Dijk</bdi>, <bdi>CC BY 2.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">14–15</bdi></span><span>כבד</span></div>
@@ -284,7 +289,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li>תערובות מוכנות: מינוס 20% בערב ומינוס 50% בבוקר. משאבה: קצב בסיסי בלבד</li>
     <li><b>מטפורמין וסולפונילאוריאה:</b> לא ביום הניתוח. מעכבי <bdi>DPP-4</bdi>: כן</li>
     <li><b>מעכבי <bdi>SGLT2</bdi>:</b> עוצרים <bdi dir="ltr">3–4</bdi> ימים לפני (חמצת קטוטית עם סוכר תקין)</li>
-    <li><b>אגוניסטים ל-<bdi>GLP-1</bdi>:</b> עוצרים שבוע לפני (לפי הספר. ראו "מה חדש")</li>
+    <li><b>אגוניסטים <span class="nw">ל-<bdi>GLP-1</bdi></span>:</b> זריקה שבועית עוצרים שבוע לפני. תכשיר יומי רק ביום הניתוח. היום אפשר גם להמשיך ברוב המטופלים (ראו "מה חדש")</li>
    </ul>
   </div>
   <div>
@@ -299,7 +304,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    </ul>
   </div>
  </div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">11, 20–21, 24, 29</bdi></span><span>תרופות</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">11, 20–21, 24, 29</bdi> · <bdi>ASA 2023</bdi> · Joshi GP et al., ASA consensus guidance on GLP-1 RA, 2023</span><span>תרופות</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -320,19 +325,19 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <line x1="300" y1="50" x2="300" y2="538" stroke="#0A6B5A" stroke-width="3"/>
    <g font-size="12.5">
     <circle cx="300" cy="66" r="7" fill="#00967D"/><text x="362" y="71" text-anchor="middle" font-weight="800" fill="#0A6B5A">4 שבועות</text><text x="150" y="71" text-anchor="middle" fill="#16262C">הפסקת עישון · אסטרוגן וטמוקסיפן</text>
-    <circle cx="300" cy="116" r="7" fill="#00967D"/><text x="362" y="121" text-anchor="middle" font-weight="800" fill="#0A6B5A">שבוע</text><text x="150" y="114" text-anchor="middle" fill="#16262C">אגוניסט <tspan>GLP-1</tspan> (לפי הספר)</text><text x="150" y="130" text-anchor="middle" fill="#16262C">שום וג׳ינסנג</text>
+    <circle cx="300" cy="116" r="7" fill="#00967D"/><text x="362" y="121" text-anchor="middle" font-weight="800" fill="#0A6B5A">שבוע</text><text x="150" y="114" text-anchor="middle" fill="#16262C">אגוניסט <tspan>GLP-1</tspan> שבועי</text><text x="150" y="130" text-anchor="middle" fill="#16262C">שום וג׳ינסנג</text>
     <circle cx="300" cy="166" r="7" fill="#00967D"/><text x="362" y="171" text-anchor="middle" font-weight="800" fill="#0A6B5A">5 ימים</text><text x="150" y="171" text-anchor="middle" fill="#16262C">וורפרין</text>
     <circle cx="300" cy="216" r="7" fill="#00967D"/><text x="362" y="221" text-anchor="middle" font-weight="800" fill="#0A6B5A">3 עד 4 ימים</text><text x="150" y="221" text-anchor="middle" fill="#16262C">מעכבי <tspan>SGLT2</tspan></text>
     <circle cx="300" cy="266" r="7" fill="#C9893F"/><text x="362" y="271" text-anchor="middle" font-weight="800" fill="#8A5A14">48 שעות</text><text x="150" y="264" text-anchor="middle" fill="#16262C">דביגטרן</text><text x="150" y="280" text-anchor="middle" fill="#16262C">מעכבי <tspan>Xa</tspan> בסיכון דימום גבוה</text>
     <circle cx="300" cy="316" r="7" fill="#C9893F"/><text x="362" y="321" text-anchor="middle" font-weight="800" fill="#8A5A14">24 שעות</text><text x="150" y="314" text-anchor="middle" fill="#16262C">מעכבי <tspan>Xa</tspan> בסיכון נמוך</text><text x="150" y="330" text-anchor="middle" fill="#16262C">הפרין במשקל מולקולרי נמוך</text>
-    <circle cx="300" cy="366" r="7" fill="#C9893F"/><text x="362" y="371" text-anchor="middle" font-weight="800" fill="#8A5A14">הבוקר</text><text x="150" y="364" text-anchor="middle" fill="#16262C">בלי מטפורמין וסולפונילאוריאה</text><text x="150" y="380" text-anchor="middle" fill="#16262C">חצי מינון אינסולין ביניים</text>
+    <circle cx="300" cy="366" r="7" fill="#C9893F"/><text x="362" y="371" text-anchor="middle" font-weight="800" fill="#8A5A14">הבוקר</text><text x="150" y="364" text-anchor="middle" fill="#16262C">בלי מטפורמין וסולפונילאוריאה</text><text x="150" y="380" text-anchor="middle" fill="#16262C">חצי מינון אינסולין ביניים</text><text x="150" y="396" text-anchor="middle" fill="#16262C">אגוניסט <tspan>GLP-1</tspan> יומי</text>
     <circle cx="300" cy="416" r="7" fill="#A3402E"/><text x="362" y="421" text-anchor="middle" font-weight="800" fill="#A3402E">6 שעות</text><text x="150" y="414" text-anchor="middle" fill="#16262C">ארוחה קלה אחרונה</text><text x="150" y="430" text-anchor="middle" fill="#16262C">(מטוגן או בשר: 8 שעות ויותר)</text>
     <circle cx="300" cy="466" r="7" fill="#A3402E"/><text x="362" y="471" text-anchor="middle" font-weight="800" fill="#A3402E">שעתיים</text><text x="150" y="471" text-anchor="middle" fill="#16262C">נוזלים צלולים אחרונים</text>
     <circle cx="300" cy="516" r="9" fill="#0C2A35"/><text x="362" y="521" text-anchor="middle" font-weight="800" fill="#0C2A35">60 דקות</text><text x="150" y="521" text-anchor="middle" fill="#16262C">אנטיביוטיקה מונעת לפני החתך</text>
    </g>
   </svg></div>
  </div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">12, 18–20, 24, 29–30</bdi></span><span>ציר זמן · Scrub In</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">12, 18–20, 24, 29–30</bdi> · <bdi>ASA 2023</bdi> · Joshi GP et al., ASA consensus guidance on GLP-1 RA, 2023</span><span>ציר זמן · Scrub In</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -341,7 +346,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div>
    <ul class="b sm">
-    <li>שואלים על <b>ירידה במשקל</b>, מחלה כרונית ותוספי תזונה. בודקים <bdi>BMI</bdi>, דלדול שרירי הרקה, בצקות ופצעי לחץ</li>
+    <li>שואלים על <b>ירידה במשקל</b>, מחלה כרונית ותוספי תזונה. בודקים <bdi>BMI</bdi>, דלדול <bdi>temporalis</bdi>, בצקות ופצעי לחץ</li>
     <li>כלי סינון נפוץ: <bdi>NRS-2002</bdi>. ציון 3 ומעלה: מתחילים תוכנית תזונתית</li>
     <li><b>אלבומין מתחת ל-3.5</b> מנבא תחלואה ותמותה אחרי ניתוח. זמן מחצית החיים שלו 20 יום. לכן הוא משקף מצב כרוני. פרה-אלבומין: יומיים</li>
     <li>שניהם יורדים גם בדלקת חריפה. לכן הם פחות אמינים סביב הניתוח</li>
@@ -421,8 +426,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div class="study"><div class="y"><bdi>Anesthesiology</bdi> 2023 · הנחיה</div><b>צום לפני ניתוח: עדכון <bdi>ASA</bdi></b>
    <p>המלצה חזקה: מבוגרים בריאים שותים משקה פחמימות צלול עד שעתיים לפני ניתוח מתוכנן (עד כ-400 מ״ל). מסטיק: מוציאים מהפה ולא דוחים את הניתוח. ההמלצה לא חלה על סוכרת, השמנה, חסימה, הריון וניתוחי חירום</p>
    <small>Joshi GP et al. Anesthesiology 2023;138:132-51</small></div>
-  <div class="study"><div class="y">2024 · הנחיה של חמש אגודות</div><b>אגוניסטים ל-<bdi>GLP-1</bdi> סביב הניתוח</b>
-   <p>אפשר להמשיך את הטיפול ברוב המטופלים. סיכון גבוה לשאריות בקיבה: שלב העלאת המינון, מינון גבוה, זריקה שבועית ותסמיני עיכול. בסיכון כזה: דיאטה נוזלית 24 שעות לפני. אם מחליטים להפסיק: שבוע לזריקה שבועית ויום הניתוח לתכשיר יומי</p>
+  <div class="study"><div class="y">2024 · הנחיה של חמש אגודות</div><b>אגוניסטים <span class="nw">ל-<bdi>GLP-1</bdi></span> סביב הניתוח</b>
+   <p>אפשר להמשיך את הטיפול ברוב המטופלים. סיכון גבוה לשאריות <span class="nw">ב-<bdi>stomach</bdi></span>: שלב העלאת המינון, מינון גבוה, זריקה שבועית ותסמיני עיכול. בסיכון כזה: דיאטה נוזלית 24 שעות לפני. אם מחליטים להפסיק: שבוע לזריקה שבועית ויום הניתוח לתכשיר יומי</p>
    <small>Kindel TL et al. Surg Obes Relat Dis 2024;20:1183-6 (פורסם גם ב-Surg Endosc 2025;39:180-3)</small></div>
   <div class="study"><div class="y"><bdi>JAMA Surg</bdi> 2023 · מחקר אקראי</div><b><bdi>PREHAB</bdi>: הכנה גופנית לפני ניתוח מעי גס</b>
    <p>251 מטופלים עם סרטן המעי הגס. 4 שבועות של אימון בעצימות גבוהה, תזונה, תמיכה נפשית וגמילה מעישון. פחות סיבוכים קשים (17.1% לעומת 29.7%) ופחות סיבוכים רפואיים (15.4% לעומת 27.3%)</p>
@@ -442,7 +447,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>הסכמה מדעת היא שיחה: אבחנה, ניתוח, סיכונים, סיכוי, כשירות וחלופות</li>
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 19 <bdi>Principles of Preoperative and Operative Surgery</bdi> (עמ׳ <bdi dir="ltr">2–30</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Sobotta</bdi> 1906 ו-<bdi>Musser</bdi> 1904 (נחלת הכלל) · צילום: <bdi>H.L. Fred, H.A. van Dijk</bdi> (<bdi>CC BY 2.0</bdi>, <bdi>Wikimedia Commons</bdi>) · ציר הזמן: <bdi>Scrub In</bdi> לפי הספר · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>איורים: <bdi>Sobotta</bdi> 1906 <span class="nw">ו-<bdi>Musser</bdi></span> 1904 (נחלת הכלל) · צילום: <bdi>H.L. Fred, H.A. van Dijk</bdi> (<bdi>CC BY 2.0</bdi>, <bdi>Wikimedia Commons</bdi>) · ציר הזמן: <bdi>Scrub In</bdi> לפי הספר · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>

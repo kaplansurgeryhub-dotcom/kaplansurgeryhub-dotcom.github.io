@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>שחזורי שד · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,6 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -97,6 +98,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -114,6 +116,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -230,7 +235,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>6</b>שחזור בשתל</div>
  <h2>איפה מניחים את השתל ואיזה שתל</h2>
- <table class="cmp"><tr><th></th><th>מתחת לשרירים<small>חזה גדול, <bdi>serratus</bdi>, נדן הישר</small></th><th>מתחת לשריר החזה<small>ושכבת <bdi>ADM</bdi> למטה</small></th><th>מעל שריר החזה<small>עטוף כולו ב-<bdi>ADM</bdi></small></th></tr>
+ <table class="cmp"><tr><th></th><th>מתחת לשרירים<small><bdi>pectoralis major, serratus, rectus sheath</bdi></small></th><th>מתחת <span class="nw">ל-<bdi>pectoralis</bdi></span><small>ושכבת <bdi>ADM</bdi> למטה</small></th><th>מעל <span class="nw">ה-<bdi>pectoralis</bdi></span><small>עטוף כולו <span class="nw">ב-<bdi>ADM</bdi></span></small></th></tr>
   <tr><td>יתרון</td><td>כיסוי מלא של השתל ברקמה של המטופלת</td><td>פחות גלים נראים בשתל</td><td>אין תזוזה של השד כשהשריר מתכווץ, פחות כאב</td></tr>
   <tr><td>חיסרון</td><td colspan="2">השד זז כשהשריר מתכווץ (<bdi>animation deformity</bdi>), יותר כאב והחלמה ארוכה יותר</td><td>השתל נראה ומורגש יותר וגלים בעור. השתלת שומן בשלב השני עוזרת</td></tr>
  </table>
@@ -248,7 +253,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>7</b>רקמה עצמית · אינטראקטיבי</div>
- <h2>שחזור מהבטן: <bdi>TRAM</bdi> ו-<bdi>DIEP</bdi></h2>
+ <h2>שחזור מהבטן: <bdi>TRAM</bdi> <span class="nw">ו-<bdi>DIEP</bdi></span></h2>
  <div class="hotw"><div class="hoti"><img src="img/rec-tram.jpg" alt="שחזור שד בדש מהבטן"><svg viewBox="0 0 960 960" preserveAspectRatio="none" style="--lw:10;--bf:23px">
    <path class="hz" data-hz="m" d="M451,349 C451.5,359.3 446.3,375 442,387 C437.7,399 432.3,410.7 425,421 C417.7,431.3 408.2,442.3 398,449 C387.8,455.7 376.7,457.7 364,461 C351.3,464.3 333.5,468.2 322,469 C310.5,469.8 302.7,469.3 295,466 C287.3,462.7 280,456.5 276,449 C272,441.5 272.3,431.3 271,421 C269.7,410.7 268.5,398.3 268,387 C267.5,375.7 267,364.5 268,353 C269,341.5 266.7,326.7 274,318 C281.3,309.3 297,304.3 312,301 C327,297.7 348,297.3 364,298 C380,298.7 395.5,300.5 408,305 C420.5,309.5 431.8,317.7 439,325 C446.2,332.3 450.5,338.7 451,349 Z" style="--c:#A3402E"/>
    <path class="hz" data-hz="f" d="M281,787 C288,779.2 309.7,752.5 323,740 C336.3,727.5 348,719.5 361,712 C374,704.5 389.2,698.7 401,695 C412.8,691.3 422.3,691 432,690 C441.7,689 448.8,688.7 459,689 C469.2,689.3 482.2,690.8 493,692 C503.8,693.2 513.8,693.7 524,696 C534.2,698.3 544.3,702.5 554,706 C563.7,709.5 572.2,711.3 582,717 C591.8,722.7 602.8,731.7 613,740 C623.2,748.3 633.8,758.5 643,767 C652.2,775.5 663.8,787 668,791 C663.8,795.7 654.8,809.2 643,819 C631.2,828.8 612.3,842 597,850 C581.7,858 566.3,862.7 551,867 C535.7,871.3 520.3,874.2 505,876 C489.7,877.8 472.7,878.5 459,878 C445.3,877.5 434.7,875.7 423,873 C411.3,870.3 400.8,865.8 389,862 C377.2,858.2 363.3,854.5 352,850 C340.7,845.5 330.7,841.7 321,835 C311.3,828.3 300.7,818 294,810 C287.3,802 283.2,790.8 281,787 Z" style="--c:#7A5BD6"/>
@@ -262,7 +267,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
   <div class="hzi" data-hzi="m" hidden><b>1 · השד שנכרת</b><p>בכריתה חוסכת עור נשארת מעטפת העור ואותה ממלאים ברקמה מהבטן. בדש חופשי מחברים את כלי הדם של הדש לכלי דם בבית החזה. לרוב שני מנתחים עובדים במקביל: אחד מרים את הדש ואחד חושף את כלי הדם המקבלים.</p></div>
   <div class="hzi" data-hzi="f" hidden><b>2 · הדש: עור ושומן מהבטן התחתונה</b><p>הרקמה שמחליפה את השד. התנאים: מספיק רקמה, בלי ניתוח קודם שפגע בה (מתיחת בטן, שאיבת שומן). מעל <bdi>BMI</bdi> של 35 יש יותר סיבוכים באתר התורם. מעשנת פעילה או הפרעת קרישה: אין דש חופשי.</p></div>
-  <div class="hzi" data-hzi="r" hidden><b>3 · שריר הישר</b><p><b><bdi>TRAM</bdi>:</b> לוקחים את הדש יחד עם השריר (מבוסס או חופשי). המחיר: בקע, בליטה ורפיון של דופן הבטן ולכן לעיתים קרובות מתקנים עם רשת. <b><bdi>DIEP</bdi>:</b> לוקחים רק את כלי הדם המנקבים שעוברים בשריר והשריר נשאר. זה הדש החופשי השכיח היום. <bdi>CTA</bdi> או <bdi>MRA</bdi> לפני הניתוח ממפים את המנקבים.</p></div>
+  <div class="hzi" data-hzi="r" hidden><b>3 · <bdi>rectus abdominis</bdi></b><p><b><bdi>TRAM</bdi>:</b> לוקחים את הדש יחד עם השריר (מבוסס או חופשי). המחיר: בקע, בליטה ורפיון של דופן הבטן ולכן לעיתים קרובות מתקנים עם רשת. <b><bdi>DIEP</bdi>:</b> לוקחים רק את <span class="nw">ה-<bdi>perforators</bdi></span> שעוברים בשריר והשריר נשאר. זה הדש החופשי השכיח היום. <bdi>CTA</bdi> או <bdi>MRA</bdi> לפני הניתוח ממפים את <span class="nw">ה-<bdi>perforators</bdi></span>.</p></div>
   <div class="hzi" data-hzi="c" hidden><b>4 · השד השני</b><p>בשחזור חד-צדדי רקמה עצמית מתאימה טוב יותר לשד השני. אם צריך, מקטינים או מרימים את השד השני לסימטריה, באותו ניתוח או מאוחר יותר.</p></div>
  </div></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 69 עמ׳ <bdi dir="ltr">871–873</bdi> · פרק 68 עמ׳ <bdi dir="ltr">848–849</bdi></span><span>איור: <bdi>Blausen.com staff (2014)</bdi>, <bdi>WikiJournal of Medicine</bdi>, CC BY 3.0 · אזורים: Scrub In</span></div>
@@ -273,13 +278,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>מאיפה עוד לוקחים רקמה</h2>
  <div class="grid g3 tight">
   <figure><img src="img/rec-diep-cruk.png" alt="האזור שנלקח בדש DIEP"><figcaption><bdi>DIEP</bdi>: עור ושומן מהבטן התחתונה, בלי השריר · <bdi>Cancer Research UK</bdi>, CC BY-SA 4.0</figcaption></figure>
-  <figure><img src="img/rec-nci-ld.jpg" alt="דש לטיסימוס דורסי מהגב"><figcaption>דש <bdi>latissimus dorsi</bdi> מהגב, עם אספקת הדם מבית השחי · <bdi>National Cancer Institute</bdi> (נחלת הכלל)</figcaption></figure>
-  <figure><img src="img/rec-ld-cruk.png" alt="דש לטיסימוס עם שתל"><figcaption>הדש עובר מתחת לעור אל השד, עם שתל מתחתיו · <bdi>Cancer Research UK</bdi>, CC BY-SA 4.0 · כולם מ-<bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/rec-nci-ld.jpg" alt="דש latissimus dorsi מהגב"><figcaption>דש <bdi>latissimus dorsi</bdi> מהגב, עם אספקת הדם <span class="nw">מה-<bdi>axilla</bdi></span> · <bdi>National Cancer Institute</bdi> (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/rec-ld-cruk.png" alt="דש latissimus עם שתל"><figcaption>הדש עובר מתחת לעור אל השד, עם שתל מתחתיו · <bdi>Cancer Research UK</bdi>, CC BY-SA 4.0 · כולם <span class="nw">מ-<bdi>Wikimedia Commons</bdi></span></figcaption></figure>
  </div>
  <div class="grid" style="margin-top:12px">
   <ul class="b sm">
-   <li><b>מהבטן:</b> <bdi>DIEP</bdi>, <bdi>SIEA</bdi> ו-<bdi>TRAM</bdi></li>
-   <li><b>לא מהבטן:</b> מהעכוז (<bdi>SGAP</bdi>, <bdi>IGAP</bdi>) ומהירך (<bdi>PAP</bdi>, דש מהגרציליס)</li>
+   <li><b>מהבטן:</b> <bdi>DIEP</bdi>, <bdi>SIEA</bdi> <span class="nw">ו-<bdi>TRAM</bdi></span></li>
+   <li><b>לא מהבטן:</b> מהעכוז (<bdi>SGAP</bdi>, <bdi>IGAP</bdi>) ומהירך (<bdi>PAP</bdi>, דש <bdi>gracilis</bdi>)</li>
    <li><b>דש <bdi>latissimus</bdi> עם שתל:</b> אפשרות הצלה כשצריך עור ורקמה רכה ואין אפשרות לדש מהבטן</li>
   </ul>
   <ul class="b sm">
@@ -298,7 +303,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <tr><td>ניתוח</td><td>קצר, בלי אתר תורם, החלמה מהירה</td><td>ארוך, לרוב מיקרוכירורגיה, החלמה ארוכה</td></tr>
   <tr><td>תוצאה</td><td>יכול להיראות ולהרגיש כמו שתל. גלים בעור מעל השריר</td><td>טבעית יותר. שביעות רצון ואיכות חיים גבוהות יותר אחרי <bdi dir="ltr">3–4</bdi> שנים</td></tr>
   <tr><td>הקרנה</td><td>רגיש יותר: אחרי הקרנה עדיף לעיתים רקמה עצמית</td><td>עמיד יותר. אחרי הקרנה מחכים <bdi dir="ltr">6–12</bdi> חודשים</td></tr>
-  <tr><td>סיבוכים</td><td>זיהום, התכווצות קופסית, <bdi>BIA-ALCL</bdi>, מעקב דליפה בסיליקון</td><td>אובדן דש, בקע או בליטה בבטן (בעיקר ב-<bdi>TRAM</bdi>)</td></tr>
+  <tr><td>סיבוכים</td><td>זיהום, התכווצות קופסית, <bdi>BIA-ALCL</bdi>, מעקב דליפה בסיליקון</td><td>אובדן דש, בקע או בליטה בבטן (בעיקר <span class="nw">ב-<bdi>TRAM</bdi></span>)</td></tr>
   <tr><td>לא מתאים</td><td>עור כריתה עם אספקת דם גרועה, נויטרופניה עמוקה</td><td>עישון פעיל, הפרעת קרישה, חוסר ברקמה תורמת</td></tr>
  </table>
  <div class="box b" style="margin-top:12px"><b class="t">בחדר הניתוח ובמרפאה השבוע</b>הצטרפו לניתוח כריתה עם שחזור, או למרפאת פלסטיקה בזמן מילוי של מרחיב רקמה. שאלו את המנתח/ת למה נבחר דווקא סוג השחזור הזה למטופלת הזאת</div>
@@ -313,7 +318,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <ul class="b sm">
     <li><b>מה משתבש בלי תכנון:</b> העור נמשך פנימה כשהסרומה נספגת, הפטמה זזה (למשל "מקור ציפור" אחרי כריתה בקוטב התחתון), א-סימטריה. ההקרנה מחמירה את כל אלה</li>
     <li><b>מתי לחשוב על זה:</b> כריתה של יותר מ-20% מהשד, אזור עם תוצאה קוסמטית רעה, או סיכון שהפטמה תזוז</li>
-    <li><b>רמה I</b> (פחות מ-20%): חתך מוסתר, שחרור הרקמה מהעור ומשריר החזה וקירוב הרקמה מעל החלל</li>
+    <li><b>רמה I</b> (פחות מ-20%): חתך מוסתר, שחרור הרקמה מהעור <span class="nw">ומה-<bdi>pectoralis</bdi></span> וקירוב הרקמה מעל החלל</li>
     <li><b>רמה II</b> (יותר מ-20%, או שד גדול ונפול): טכניקות של הרמה והקטנה שמחזירות את הפטמה למרכז ומעצבות את השד מחדש</li>
    </ul>
   </div>
@@ -336,10 +341,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b sm">
-    <li><b>שחזור פטמה ועטרה:</b> <bdi dir="ltr">4–6</bdi> חודשים אחרי הקרנה, בדש מקומי או בקעקוע תלת-ממדי</li>
+    <li><b>שחזור פטמה <span class="nw">ו-<bdi>areola</bdi></span>:</b> <bdi dir="ltr">4–6</bdi> חודשים אחרי הקרנה, בדש מקומי או בקעקוע תלת-ממדי</li>
     <li><b>תיקונים:</b> השתלת שומן לגלים ולשקעים, שאיבת שומן או הקטנה של דש עבה</li>
-    <li><b>בצקת לימפתית:</b> אחרי ריקון בית השחי, הקרנה אחרי כריתה וכימותרפיה <bdi dir="ltr">25–40%</bdi>. בסרטן דלקתי 50.6%</li>
-    <li><b>מניעה (<bdi>LYMPHA</bdi>):</b> חיבור מיקרוכירורגי של כלי לימפה פתוחים לווריד בבית השחי מיד אחרי הריקון. הוריד בצקת מ-<bdi dir="ltr">30–40%</bdi> ל-<bdi dir="ltr">4–13%</bdi></li>
+    <li><b>בצקת לימפתית:</b> אחרי ריקון <span class="nw">ה-<bdi>axilla</bdi></span>, הקרנה אחרי כריתה וכימותרפיה <bdi dir="ltr">25–40%</bdi>. בסרטן דלקתי 50.6%</li>
+    <li><b>מניעה (<bdi>LYMPHA</bdi>):</b> חיבור מיקרוכירורגי של כלי לימפה פתוחים לווריד <span class="nw">ב-<bdi>axilla</bdi></span> מיד אחרי הריקון. הוריד בצקת <span class="nw">מ-<bdi dir="ltr">30–40%</bdi></span> <span class="nw">ל-<bdi dir="ltr">4–13%</bdi></span></li>
     <li><b>טיפול בבצקת קיימת:</b> קודם שמרני (עיסוי, שרוול, לחץ פנאומטי). אחר כך מעקף לימפה לווריד או השתלת בלוטות לימפה עם כלי דם, גם באותו ניתוח עם <bdi>DIEP</bdi></li>
    </ul>
   </div>
@@ -381,10 +386,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <p>898 נשים עם שחזור מיידי או מאוחר, בשתל או ברקמה עצמית. סיבוכים בשחזור אחרי שנתיים: 12.3% בהקרנה של 3 שבועות לעומת 10.2% ב-5 שבועות (לא נחות). יותר סיבוכים בשתל לבד מאשר ברקמה עצמית</p>
    <small>Poppe MM et al. J Clin Oncol 2026 (פורסם ברשת), doi:10.1200/JCO-<bdi dir="ltr">26-00474</bdi></small></div>
   <div class="study"><div class="y"><bdi>Plast Reconstr Surg</bdi> 2026</div><b>מעל השריר או מתחתיו, אחרי הקרנה</b>
-   <p>380 נשים מתוך <bdi>FABREC</bdi>. שתל מעל שריר החזה ושתל מתחתיו נתנו סיבוכים, מראה ושביעות רצון דומים אחרי 18 חודשים. הגיל וה-<bdi>BMI</bdi> השפיעו יותר מהמיקום</p>
+   <p>380 נשים מתוך <bdi>FABREC</bdi>. שתל מעל <span class="nw">ה-<bdi>pectoralis</bdi></span> ושתל מתחתיו נתנו סיבוכים, מראה ושביעות רצון דומים אחרי 18 חודשים. הגיל <span class="nw">וה-<bdi>BMI</bdi></span> השפיעו יותר מהמיקום</p>
    <small>Roy E et al. Plast Reconstr Surg 2026 (פורסם ברשת), doi:10.1097/PRS.0000000000013455</small></div>
   <div class="study"><div class="y"><bdi>Ann Surg</bdi> 2023 · מחקר אקראי</div><b>שחזור לימפתי מיידי</b>
-   <p>144 נשים אחרי ריקון בית השחי. בתוצאות הביניים בצקת לימפתית ב-9.5% עם חיבור לימפה לווריד לעומת 32% בלעדיו ואיכות חיים טובה יותר</p>
+   <p>144 נשים אחרי ריקון <span class="nw">ה-<bdi>axilla</bdi></span>. בתוצאות הביניים בצקת לימפתית ב-9.5% עם חיבור לימפה לווריד לעומת 32% בלעדיו ואיכות חיים טובה יותר</p>
    <small>Coriddi M et al. Ann Surg 2023;278(4):<bdi dir="ltr">630-637</bdi></small></div>
  </div>
  <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
@@ -401,7 +406,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>סרומה מאוחרת סביב שתל: לחשוב על <bdi>BIA-ALCL</bdi></li>
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 69 <bdi>Plastic Surgical Considerations in Cancer Surgery</bdi> (עמ׳ <bdi dir="ltr">866–869, 871–873, 887–888</bdi>) · פרק 68 <bdi>Diseases of the Breast</bdi> (עמ׳ <bdi dir="ltr">847–850</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Blausen Medical</bdi>, <bdi>Cancer Research UK</bdi>, <bdi>National Cancer Institute</bdi> ו-<bdi>Wikimedia Commons</bdi> (רישיונות בכל כיתוב) · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>איורים: <bdi>Blausen Medical</bdi>, <bdi>Cancer Research UK</bdi>, <bdi>National Cancer Institute</bdi> <span class="nw">ו-<bdi>Wikimedia Commons</bdi></span> (רישיונות בכל כיתוב) · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>

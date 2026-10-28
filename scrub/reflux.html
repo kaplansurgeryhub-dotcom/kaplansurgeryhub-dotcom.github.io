@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>הגישה לחולה עם רפלוקס · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -83,6 +83,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -94,6 +95,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -111,6 +113,9 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -135,8 +140,8 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   <li>להסביר את מנגנון המחסום נגד רפלוקס ומה שובר אותו</li>
   <li>לקחת אנמנזה של רפלוקס ולזהות תסמינים לא טיפוסיים ותסמיני אזהרה</li>
   <li>לבחור בדיקות לפני ניתוח: גסטרוסקופיה, ניטור pH, מנומטריה ובליעת בריום</li>
-  <li>לדעת מתי מפנים לניתוח ולהבדיל בין <bdi>Nissen</bdi>, <bdi>Toupet</bdi> ו-<bdi>Dor</bdi></li>
-  <li>לסווג בקע סרעפתי (סוגים <bdi>I–IV</bdi>) ולזהות וולוולוס חריף של הקיבה</li>
+  <li>לדעת מתי מפנים לניתוח ולהבדיל בין <bdi>Nissen</bdi>, <bdi>Toupet</bdi> <span class="nw">ו-<bdi>Dor</bdi></span></li>
+  <li>לסווג בקע סרעפתי (סוגים <bdi>I–IV</bdi>) ולזהות וולוולוס חריף של <span class="nw">ה-<bdi dir="ltr">stomach</bdi></span></li>
   <li>להבין את הקשר בין השמנה, רפלוקס וניתוחי ירידה במשקל</li>
  </ol>
  <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 83 (עמ׳ <bdi dir="ltr">1108–1113, 1121–1133</bdi>)</span><span>Scrub In · קפלן</span></div>
@@ -144,7 +149,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
 
 <section class="s"><div class="card">
  <div class="kick"><b>2</b>במספרים</div>
- <h2>המחלה השפירה השכיחה ביותר של הוושט והקיבה</h2>
+ <h2>המחלה השפירה השכיחה ביותר של <span class="nw">ה-<bdi dir="ltr">esophagus</bdi></span> <span class="nw">וה-<bdi dir="ltr">stomach</bdi></span></h2>
  <div class="num">
   <div><b dir="ltr">10–15%</b><span>מהמבוגרים עם בקע סרעפתי בהדמיה</span></div>
   <div><b dir="ltr">≤75%</b><span>מחולי GERD מוכח עם בקע סרעפתי</span></div>
@@ -153,7 +158,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  </div>
  <ul class="b">
   <li>רוב החולים מסתדרים בטיפול תרופתי. לניתוח יש מקום כשהטיפול התרופתי לא מספיק</li>
-  <li>GERD קשור לאדנוקרצינומה של הוושט, למחלות ריאה ולהשמנה</li>
+  <li>GERD קשור לאדנוקרצינומה של <span class="nw">ה-<bdi dir="ltr">esophagus</bdi></span>, למחלות ריאה ולהשמנה</li>
   <li><b>GERD זו אבחנה, לא תסמין.</b> "יש לי רפלוקס" צריך לתרגם לתסמינים מדויקים</li>
  </ul>
  <div class="src"><span><b>Sabiston 22</b> · פרק 83 עמ׳ <bdi dir="ltr">1121, 1124, 1130</bdi></span><span>מספרים</span></div>
@@ -164,20 +169,20 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <h2>לחץ מול שסתום</h2>
  <div class="grid">
   <div>
-   <p style="margin:0 0 8px;line-height:1.5">בחזה הלחץ שלילי, בבטן חיובי. ההפרש "מושך" תוכן קיבה למעלה. רפלוקס מופיע כשההפרש גובר על השסתום בצומת</p>
+   <p style="margin:0 0 8px;line-height:1.5">בחזה הלחץ שלילי, בבטן חיובי. ההפרש "מושך" תוכן קיבה למעלה. רפלוקס מופיע כשההפרש גובר על השסתום <span class="nw">ב-<bdi dir="ltr">GEJ</bdi></span></p>
    <h3>מה בונה את השסתום</h3>
    <ul class="b sm">
-    <li><b>הסוגר התחתון:</b> 3–4 ס״מ של שריר חלק. אצל רוב החולים פגום, אבל אצל חלק גדול הלחץ שלו תקין</li>
-    <li><b>שוקי הסרעפת</b> לוחצים מבחוץ</li>
-    <li><b>זווית <bdi>His</bdi></b> החדה</li>
-    <li>קפל רירית בצומת (<bdi>Gubaroff</bdi>)</li>
-    <li><b>וושט בטני</b>: הלחץ בבטן סוגר אותו</li>
+    <li><b><span class="nw">ה-<bdi dir="ltr">LES</bdi></span>:</b> 3–4 ס״מ של שריר חלק. אצל רוב החולים פגום, אבל אצל חלק גדול הלחץ שלו תקין</li>
+    <li><b><span class="nw">ה-<bdi dir="ltr">diaphragmatic crura</bdi></span></b> לוחצים מבחוץ</li>
+    <li><b><span class="nw">ה-<bdi dir="ltr">angle of His</bdi></span></b> החדה</li>
+    <li><span class="nw">ה-<bdi dir="ltr">mucosal fold</bdi></span> <span class="nw">ב-<bdi dir="ltr">GEJ</bdi></span> (<bdi>Gubaroff</bdi>)</li>
+    <li><b><span class="nw">ה-<bdi dir="ltr">abdominal esophagus</bdi></span></b>: הלחץ בבטן סוגר אותו</li>
    </ul>
   </div>
   <div style="display:grid;gap:10px">
    <div class="box a"><b class="t">לחץ בטני גבוה</b>השמנה (במיוחד מרכזית), היריון, אימוני בטן מוגזמים</div>
    <div class="box n"><b class="t">לחץ חזה שלילי יותר</b>מחלת ריאות חסימתית. גם מנפחי זכוכית וזמרים</div>
-   <div class="box r"><b class="t">שסתום פגום: בקע סרעפתי</b>אין וושט בטני, הזווית נפתחת, הסוגר נמצא בלחץ שלילי, השקים לוחצים על הקיבה במקום על הוושט. גם יותר הרפיות חולפות של הסוגר</div>
+   <div class="box r"><b class="t">שסתום פגום: בקע סרעפתי</b>אין <bdi dir="ltr">abdominal esophagus</bdi>, הזווית נפתחת, <span class="nw">ה-<bdi dir="ltr">LES</bdi></span> נמצא בלחץ שלילי, <span class="nw">ה-<bdi dir="ltr">crura</bdi></span> לוחצים על <span class="nw">ה-<bdi dir="ltr">stomach</bdi></span> במקום על <span class="nw">ה-<bdi dir="ltr">esophagus</bdi></span>. גם יותר הרפיות חולפות של <span class="nw">ה-<bdi dir="ltr">LES</bdi></span></div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 83 עמ׳ <bdi dir="ltr">1108–1109, 1121</bdi></span><span>פתופיזיולוגיה</span></div>
@@ -185,8 +190,8 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
 
 <section class="s"><div class="card">
  <div class="kick"><b>4</b>אנטומיה · אינטראקטיבי</div>
- <h2>צומת הוושט והקיבה</h2>
- <div class="hotw"><div class="hoti"><img src="img/Sobo_1906_369_gej.jpg" alt="הוושט עובר בסרעפת ונכנס לקיבה בקרדיה"><svg viewBox="0 0 860 740" preserveAspectRatio="none" style="--lw:11;--bf:22px">
+ <h2><bdi dir="ltr">Gastroesophageal junction</bdi></h2>
+ <div class="hotw"><div class="hoti"><img src="img/Sobo_1906_369_gej.jpg" alt="ה-esophagus עובר ב-diaphragm ונכנס ל-stomach ב-cardia"><svg viewBox="0 0 860 740" preserveAspectRatio="none" style="--lw:11;--bf:22px">
   <path class="hz ln" data-hz="dia" d="M140,366 C195,337 255,316 300,305 C360,273 420,237 470,211 C510,196 550,189 580,190 C596,192 606,198 612,205" style="--c:#C0392B"/>
   <path class="hz" data-hz="les" d="M400,250 C430,232 470,215 520,205 C555,198 585,200 600,212 C580,222 560,232 545,243 C528,262 518,285 512,310 C505,340 490,365 465,380 C445,395 425,410 410,420 C404,390 402,350 401,320 C400,290 398,265 400,250 Z" style="--c:#7A5BD6"/>
   <path class="hz ln" data-hz="his" d="M548,193 C570,197 590,205 603,215 C620,217 645,221 672,229" style="--c:#C9893F"/>
@@ -197,12 +202,12 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   <g class="hzb" style="--c:#2F6FA8"><circle cx="792" cy="232" r="19"/><text x="792" y="232">4</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="dia" hidden><b>1 · הסרעפת ושוקיה</b><p>המרכיב החיצוני של המחסום: השקים "צובטים" את הוושט כשהלחץ בבטן עולה. בניתוח סוגרים אותם מאחורי הוושט בתפרים לא נספגים, בלי להצר את הוושט</p></div>
-  <div class="hzi" data-hzi="les" hidden><b>2 · הוושט הבטני והסוגר התחתון</b><p>הלחץ בבטן סוגר את הוושט הבטני. בניתוח מוודאים לפחות 2–3 ס״מ של וושט בבטן בלי מתח. אם אין, משחררים עוד במיצר. רק ב-<bdi dir="ltr">1–4%</bdi> צריך הארכה (<bdi>Collis</bdi>)</p></div>
-  <div class="hzi" data-hzi="his" hidden><b>3 · זווית <bdi>His</bdi></b><p>הזווית החדה בין הוושט לפונדוס מרחיקה את המזון מהצומת. בבקע סרעפתי ואחרי שרוול היא נפתחת ולכן יש יותר רפלוקס</p></div>
-  <div class="hzi" data-hzi="fun" hidden><b>4 · הפונדוס</b><p>החומר של הפונדופליקציה. משחררים אותו (כלי הדם הגסטריים הקצרים) ועוטפים את הוושט מאחור: 360° ב-<bdi>Nissen</bdi>, <bdi dir="ltr">240–270°</bdi> ב-<bdi>Toupet</bdi>. אחרי שרוול אין פונדוס ולכן אין פונדופליקציה</p></div>
+  <div class="hzi" data-hzi="dia" hidden><b>1 · <bdi dir="ltr">Diaphragm</bdi> <span class="nw">ו-<bdi dir="ltr">crura</bdi></span></b><p>המרכיב החיצוני של המחסום: <span class="nw">ה-<bdi dir="ltr">crura</bdi></span> "צובטים" את <span class="nw">ה-<bdi dir="ltr">esophagus</bdi></span> כשהלחץ בבטן עולה. בניתוח סוגרים אותם מאחורי <span class="nw">ה-<bdi dir="ltr">esophagus</bdi></span> בתפרים לא נספגים, בלי להצר את <span class="nw">ה-<bdi dir="ltr">esophagus</bdi></span></p></div>
+  <div class="hzi" data-hzi="les" hidden><b>2 · <bdi dir="ltr">Abdominal esophagus</bdi> <span class="nw">ו-<bdi dir="ltr">LES</bdi></span></b><p>הלחץ בבטן סוגר את <span class="nw">ה-<bdi dir="ltr">abdominal esophagus</bdi></span>. בניתוח מוודאים לפחות 2–3 ס״מ של <bdi dir="ltr">abdominal esophagus</bdi> בלי מתח. אם אין, משחררים עוד <span class="nw">ב-<bdi dir="ltr">mediastinum</bdi></span>. רק <span class="nw">ב-<bdi dir="ltr">1–4%</bdi></span> צריך הארכה (<bdi>Collis</bdi>)</p></div>
+  <div class="hzi" data-hzi="his" hidden><b>3 · <bdi dir="ltr">Angle of His</bdi></b><p>הזווית החדה בין <span class="nw">ה-<bdi dir="ltr">esophagus</bdi></span> <span class="nw">ל-<bdi dir="ltr">fundus</bdi></span> מרחיקה את המזון <span class="nw">מה-<bdi dir="ltr">GEJ</bdi></span>. בבקע סרעפתי ואחרי שרוול היא נפתחת ולכן יש יותר רפלוקס</p></div>
+  <div class="hzi" data-hzi="fun" hidden><b>4 · <bdi dir="ltr">Fundus</bdi></b><p>החומר של הפונדופליקציה. משחררים אותו (<bdi dir="ltr">short gastric vessels</bdi>) ועוטפים את <span class="nw">ה-<bdi dir="ltr">esophagus</bdi></span> מאחור: 360° <span class="nw">ב-<bdi>Nissen</bdi></span>, <bdi dir="ltr">240–270°</bdi> <span class="nw">ב-<bdi>Toupet</bdi></span>. אחרי שרוול אין <bdi dir="ltr">fundus</bdi> ולכן אין פונדופליקציה</p></div>
  </div></div>
- <figcaption>הוושט עובר בסרעפת (×) ונכנס לקיבה בקרדיה · <bdi>Sobotta</bdi>, <bdi>Atlas and Text-book of Human Anatomy</bdi> (1906), איור 369, חלק תחתון (נחלת הכלל)</figcaption>
+ <figcaption><span class="nw">ה-<bdi dir="ltr">esophagus</bdi></span> עובר <span class="nw">ב-<bdi dir="ltr">diaphragm</bdi></span> (×) ונכנס <span class="nw">ל-<bdi dir="ltr">stomach</bdi></span> <span class="nw">ב-<bdi dir="ltr">cardia</bdi></span> · <bdi>Sobotta</bdi>, <bdi>Atlas and Text-book of Human Anatomy</bdi> (1906), איור 369, חלק תחתון (נחלת הכלל)</figcaption>
  <div class="src"><span><b>Sabiston 22</b> · פרק 83 עמ׳ <bdi dir="ltr">1108–1109, 1122–1123, 1128, 1133</bdi></span><span>אנטומיה</span></div>
 </div></section>
 
@@ -218,7 +223,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
     <li><b>דיספאגיה</b>: לחשוב על הפרעת תנועה או חסימה</li>
     <li>נפיחות: לחשוב על התרוקנות קיבה איטית</li>
    </ul>
-   <h3 style="margin-top:10px">לא טיפוסיים (מחוץ לוושט)</h3>
+   <h3 style="margin-top:10px">לא טיפוסיים (מחוץ <span class="nw">ל-<bdi dir="ltr">esophagus</bdi></span>)</h3>
    <ul class="b sm"><li>שיעול, קוצר נשימה, תחושת גוש בגרון, כחכוח</li><li>צריך לשלול גם מחלות ריאה, דרכי אוויר ולוע</li></ul>
   </div>
   <div style="display:grid;gap:10px">
@@ -243,7 +248,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
     <div><b>בליעת בריום</b><span>אנטומיה של הבקע, היצרויות. לא מספיקה לאבחנת GERD</span></div>
    </div>
   </div>
-  <figure><img src="img/ph-gerd.jpg" alt="ניטור pH של 24 שעות בחולה עם GERD"><figcaption>ניטור pH בוושט אצל חולה עם GERD: ירידות חוזרות של ה-pH מתחת ל-4 לאורך היממה · <bdi>Miheev</bdi>, <bdi>Wikimedia Commons</bdi> (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/ph-gerd.jpg" alt="ניטור pH של 24 שעות בחולה עם GERD"><figcaption>ניטור pH <span class="nw">ב-<bdi dir="ltr">esophagus</bdi></span> אצל חולה עם GERD: ירידות חוזרות של ה-pH מתחת ל-4 לאורך היממה · <bdi>Miheev</bdi>, <bdi>Wikimedia Commons</bdi> (נחלת הכלל)</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 83 עמ׳ <bdi dir="ltr">1110–1113, 1121–1122</bdi></span><span>בירור</span></div>
 </div></section>
@@ -281,11 +286,11 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
     <div><b>BMI מתחת ל-35</b><span>פונדופליקציה. או טבעת מגנטית (<bdi>LINX</bdi>) במטופל מתאים</span></div>
     <div><b>BMI מעל 35</b><span>לבחור בין פונדופליקציה למעקף קיבה (<bdi>Roux-en-Y</bdi>)</span></div>
     <div><b>BMI מעל 50</b><span>רק מעקף קיבה</span></div>
-    <div><b>אחרי שרוול</b><span>אין פונדוס. הטיפול בתקן הזהב: המרה למעקף</span></div>
+    <div><b>אחרי שרוול</b><span>אין <bdi dir="ltr">fundus</bdi>. הטיפול בתקן הזהב: המרה למעקף</span></div>
    </div>
    <div class="box" style="margin-top:8px"><b class="t">למה מעקף בהשמנה?</b>כיס קטן עם מעט תאים מפרישי חומצה, לולאה ארוכה שמונעת רפלוקס מרה וירידה במשקל שמורידה את הלחץ בבטן</div>
   </div>
-  <figure><img src="img/nissen.png" alt="פונדופליקציה לפי Nissen"><figcaption>פונדופליקציה לפי <bdi>Nissen</bdi>: הפונדוס מועבר מאחורי הוושט (משמאל) ונתפר סביבו מלפנים (מימין) · <bdi>James P. Gray, MD</bdi>, <bdi>Wikimedia Commons</bdi> (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/nissen.png" alt="פונדופליקציה לפי Nissen"><figcaption>פונדופליקציה לפי <bdi>Nissen</bdi>: <span class="nw">ה-<bdi dir="ltr">fundus</bdi></span> מועבר מאחורי <span class="nw">ה-<bdi dir="ltr">esophagus</bdi></span> (משמאל) ונתפר סביבו מלפנים (מימין) · <bdi>James P. Gray, MD</bdi>, <bdi>Wikimedia Commons</bdi> (נחלת הכלל)</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 83 עמ׳ <bdi dir="ltr">1122, 1124–1125, 1128</bdi></span><span>החלטה</span></div>
 </div></section>
@@ -296,11 +301,11 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <div class="grid">
   <div class="flow">
    <div><b>1. תנוחה</b><span>טרנדלנבורג הפוך חד, מרחיק כבד, 4 פורטים לפחות. אנטיביוטיקה ומניעת קרישים</span></div>
-   <div><b>2. צד ימין</b><span>פתיחת החלק הדק של הליגמנט הגסטרו-הפטי, זהירות מעורק כבדי חריג, פתיחת הממברנה מעל השוק הימני</span></div>
-   <div><b>3. צד שמאל</b><span>חלוקת כלי הדם הגסטריים הקצרים, שחרור הפונדוס עד זווית <bdi>His</bdi></span></div>
-   <div><b>4. מאחורי הוושט</b><span>חלון אחורי, פנרוז סביב הוושט, ניקוי 360°. לפחות 3 ס״מ של וושט בבטן</span></div>
-   <div><b>5. סגירת השקים</b><span>מאחור, בתפרים לא נספגים, בלי להצר</span></div>
-   <div><b>6. העטיפה</b><span>"<bdi>shoeshine</bdi>" לבדיקת מתח. ב-<bdi>Nissen</bdi>: 2–3 ס״מ סביב בוז׳י 56 Fr</span></div>
+   <div><b>2. צד ימין</b><span>פתיחת החלק הדק של <span class="nw">ה-<bdi dir="ltr">gastrohepatic ligament</bdi></span>, זהירות <span class="nw">מ-<bdi dir="ltr">aberrant left hepatic artery</bdi></span>, פתיחת <span class="nw">ה-<bdi dir="ltr">phrenoesophageal membrane</bdi></span> מעל <span class="nw">ה-<bdi dir="ltr">right crus</bdi></span></span></div>
+   <div><b>3. צד שמאל</b><span>חלוקת <bdi dir="ltr">short gastric vessels</bdi>, שחרור <span class="nw">ה-<bdi dir="ltr">fundus</bdi></span> עד <span class="nw">ה-<bdi dir="ltr">angle of His</bdi></span></span></div>
+   <div><b>4. מאחורי <span class="nw">ה-<bdi dir="ltr">esophagus</bdi></span></b><span>חלון אחורי, פנרוז סביב <span class="nw">ה-<bdi dir="ltr">esophagus</bdi></span>, ניקוי 360°. לפחות 3 ס״מ של <bdi dir="ltr">abdominal esophagus</bdi></span></div>
+   <div><b>5. סגירת <span class="nw">ה-<bdi dir="ltr">crura</bdi></span></b><span>מאחור, בתפרים לא נספגים, בלי להצר</span></div>
+   <div><b>6. העטיפה</b><span>"<bdi>shoeshine</bdi>" לבדיקת מתח. <span class="nw">ב-<bdi>Nissen</bdi></span>: 2–3 ס״מ סביב בוז׳י 56 Fr</span></div>
   </div>
   <div>
    <table style="width:100%;border-collapse:collapse;font-size:14.5px;line-height:1.4">
@@ -328,7 +333,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   <li><b>אחרי הניתוח:</b> דיאטה נוזלית מלאה לפחות שבוע, אחר כך מחית ואז רכה</li>
   <li><b>דיספאגיה קשה, לא בולע רוק:</b> תיקון ניתוחי מיידי. דיספאגיה מעבר ל-3 חודשים: בליעת בריום</li>
   <li><b>נפיחות גזים (<bdi>gas bloat</bdi>):</b> קושי לגהק, יותר אחרי <bdi>Nissen</bdi>. משקאות בלי גז, לאכול לאט</li>
-  <li><b>כשל העטיפה:</b> השכיח הוא בקע של העטיפה דרך ההיאטוס</li>
+  <li><b>כשל העטיפה:</b> השכיח הוא בקע של העטיפה דרך <span class="nw">ה-<bdi dir="ltr">hiatus</bdi></span></li>
   <li><b>שביעות רצון יורדת עם כל ניתוח:</b> <bdi dir="ltr">91%</bdi> בראשון, <bdi dir="ltr">76%</bdi> בניתוח החוזר הראשון, <bdi dir="ltr">49%</bdi> בשני. לנתח שוב רק אחרי בירור מלא</li>
  </ul>
  <div class="src"><span><b>Sabiston 22</b> · פרק 83 עמ׳ <bdi dir="ltr">1124</bdi></span><span>תוצאות</span></div>
@@ -339,9 +344,9 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <h2>טבעת מגנטית וטיפולים אנדוסקופיים</h2>
  <div class="grid g3">
   <div class="box n"><b class="t">טבעת מגנטית (<bdi>LINX</bdi>)</b>
-   <ul class="b sm"><li>מתאים: דלקת <bdi>LA A–B</bdi>, בקע עד 3 ס״מ, BMI מתחת ל-35, תנועתיות תקינה</li><li>לא מתאים: בקע פרא-וושטי, דלקת <bdi>C–D</bdi>, ברט, דיספאגיה, צורך ב-MRI מעל 1.5 טסלה</li><li>פחות נפיחות מ-<bdi>Nissen</bdi>. הוצאה בגלל סיבוכים ב-<bdi dir="ltr">3.3%</bdi>. חדירה לוושט ב-<bdi dir="ltr">0.3–1%</bdi></li></ul></div>
+   <ul class="b sm"><li>מתאים: דלקת <bdi>LA A–B</bdi>, בקע עד 3 ס״מ, BMI מתחת ל-35, תנועתיות תקינה</li><li>לא מתאים: בקע פרא-וושטי, דלקת <bdi>C–D</bdi>, ברט, דיספאגיה, צורך ב-MRI מעל 1.5 טסלה</li><li>פחות נפיחות <span class="nw">מ-<bdi>Nissen</bdi></span>. הוצאה בגלל סיבוכים <span class="nw">ב-<bdi dir="ltr">3.3%</bdi></span>. חדירה <span class="nw">ל-<bdi dir="ltr">esophagus</bdi></span> <span class="nw">ב-<bdi dir="ltr">0.3–1%</bdi></span></li></ul></div>
   <div class="box"><b class="t">פונדופליקציה דרך הפה (<bdi>TIF 2.0</bdi>)</b>
-   <ul class="b sm"><li>עטיפה של 270° ו-3 ס״מ מתוך הקיבה</li><li>עדיפה על PPI במחקרים אקראיים</li><li>סיבוכים קשים ב-<bdi dir="ltr">2.4%</bdi></li><li>ההנחיות עדיין מעדיפות ניתוח</li></ul></div>
+   <ul class="b sm"><li>עטיפה של 270° ו-3 ס״מ מתוך <span class="nw">ה-<bdi dir="ltr">stomach</bdi></span></li><li>עדיפה על PPI במחקרים אקראיים</li><li>סיבוכים קשים <span class="nw">ב-<bdi dir="ltr">2.4%</bdi></span></li><li>ההנחיות עדיין מעדיפות ניתוח</li></ul></div>
   <div class="box a"><b class="t">מתי לא אנדוסקופי</b>
    <ul class="b sm"><li>דלקת ושט <bdi>LA C–D</bdi></li><li>בקע סרעפתי מעל 2 ס״מ</li><li>השמנה</li><li>תסמינים קשים</li><li><bdi>Stretta</bdi> לא מומלץ ב-GERD עמיד ל-PPI</li></ul></div>
  </div>
@@ -354,17 +359,17 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <div class="grid f">
   <div>
    <div class="flow">
-    <div><b>סוג <bdi>I</bdi> · מחליק</b><span>הצומת עולה לבית החזה. <bdi dir="ltr">70–90%</bdi> מהבקעים. מנתחים רק אם יש התוויה לניתוח רפלוקס</span></div>
-    <div><b>סוג <bdi>II</bdi></b><span>הפונדוס עולה, הצומת נשארת בבטן. נדיר</span></div>
-    <div><b>סוג <bdi>III</bdi></b><span>הצומת וחלק מהקיבה. הבקע הפרא-וושטי השכיח</span></div>
-    <div><b>סוג <bdi>IV</bdi></b><span>הקיבה ואיבר נוסף: מעי גס, לבלב, אומנטום, טחול</span></div>
+    <div><b>סוג <bdi>I</bdi> · מחליק</b><span><span class="nw">ה-<bdi dir="ltr">GEJ</bdi></span> עולה לבית החזה. <bdi dir="ltr">70–90%</bdi> מהבקעים. מנתחים רק אם יש התוויה לניתוח רפלוקס</span></div>
+    <div><b>סוג <bdi>II</bdi></b><span><span class="nw">ה-<bdi dir="ltr">fundus</bdi></span> עולה, <span class="nw">ה-<bdi dir="ltr">GEJ</bdi></span> נשארת בבטן. נדיר</span></div>
+    <div><b>סוג <bdi>III</bdi></b><span><span class="nw">ה-<bdi dir="ltr">GEJ</bdi></span> וחלק <span class="nw">מה-<bdi dir="ltr">stomach</bdi></span>. הבקע הפרא-וושטי השכיח</span></div>
+    <div><b>סוג <bdi>IV</bdi></b><span><span class="nw">ה-<bdi dir="ltr">stomach</bdi></span> ואיבר נוסף: <bdi dir="ltr">colon</bdi>, <bdi dir="ltr">pancreas</bdi>, <bdi dir="ltr">omentum</bdi>, <bdi dir="ltr">spleen</bdi></span></div>
    </div>
    <ul class="b sm" style="margin-top:10px">
     <li>שכיח יותר בנשים, עם הגיל, בהשמנה ובמחלות ריאה</li>
-    <li><b>בקע פרא-וושטי:</b> שובע מוקדם, כאב, רגורגיטציה, קוצר נשימה. <b>אנמיה ב-<bdi dir="ltr">30–40%</bdi></b> מכיבי <bdi>Cameron</bdi></li>
+    <li><b>בקע פרא-וושטי:</b> שובע מוקדם, כאב, רגורגיטציה, קוצר נשימה. <b>אנמיה <span class="nw">ב-<bdi dir="ltr">30–40%</bdi></span></b> מכיבי <bdi>Cameron</bdi></li>
    </ul>
   </div>
-  <figure><img src="img/peh-xray-ct.jpg" alt="בקע פרא-וושטי בבליעת בריום וב-CT"><figcaption>בקע פרא-וושטי: רוב הקיבה מעל הסרעפת, בבליעת חומר ניגוד (משמאל) וב-CT (מימין) · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/peh-xray-ct.jpg" alt="בקע פרא-וושטי בבליעת בריום וב-CT"><figcaption>בקע פרא-וושטי: רוב <span class="nw">ה-<bdi dir="ltr">stomach</bdi></span> מעל <span class="nw">ה-<bdi dir="ltr">diaphragm</bdi></span>, בבליעת חומר ניגוד (משמאל) וב-CT (מימין) · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 83 עמ׳ <bdi dir="ltr">1130</bdi> · פרק 86 עמ׳ <bdi dir="ltr">1189</bdi></span><span>בקע סרעפתי</span></div>
 </div></section>
@@ -375,14 +380,14 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <div class="grid">
   <div>
    <ul class="b sm">
-    <li><b>סיכון לוולוולוס חריף:</b> כ-<bdi dir="ltr">1%</bdi> בשנה. תמותה בתיקון דחוף <bdi dir="ltr">5.4%</bdi>. לכן מנתחים <b>כשיש תסמינים או סיבוכים</b>. עד <bdi dir="ltr">90%</bdi> מספרים על תסמינים כששואלים בעיון</li>
+    <li><b>סיכון לוולוולוס חריף:</b> <span class="nw">כ-<bdi dir="ltr">1%</bdi></span> בשנה. תמותה בתיקון דחוף <bdi dir="ltr">5.4%</bdi>. לכן מנתחים <b>כשיש תסמינים או סיבוכים</b>. עד <bdi dir="ltr">90%</bdi> מספרים על תסמינים כששואלים בעיון</li>
     <li><b>בירור:</b> CT או בליעת בריום וגסטרוסקופיה לפני ניתוח. מנומטריה לא אמינה בבקע גדול</li>
-    <li><b>הניתוח:</b> החזרת התוכן, כריתת השק, שחרור הוושט עד 2–3 ס״מ בבטן, סגירה אחורית של השקים ופונדופליקציה חלקית</li>
-    <li><b>רשת:</b> במחקר הראשון ירדו החזרות ב-6 חודשים (<bdi dir="ltr">24%</bdi> ל-<bdi dir="ltr">9%</bdi>), אבל אחרי 5 שנים אין הבדל (<bdi dir="ltr">54%</bdi> לעומת <bdi dir="ltr">59%</bdi>). רשת קבועה ליד הוושט: סכנת חדירה</li>
-    <li><b>חזרה בהדמיה:</b> כ-<bdi dir="ltr">30%</bdi>, לרוב קטנה ובלי צורך בניתוח. תמותה בניתוח לפרוסקופי <bdi dir="ltr">0.5%</bdi></li>
+    <li><b>הניתוח:</b> החזרת התוכן, כריתת השק, שחרור <span class="nw">ה-<bdi dir="ltr">esophagus</bdi></span> עד 2–3 ס״מ בבטן, סגירה אחורית של <span class="nw">ה-<bdi dir="ltr">crura</bdi></span> ופונדופליקציה חלקית</li>
+    <li><b>רשת:</b> במחקר הראשון ירדו החזרות ב-6 חודשים (<bdi dir="ltr">24%</bdi> <span class="nw">ל-<bdi dir="ltr">9%</bdi></span>), אבל אחרי 5 שנים אין הבדל (<bdi dir="ltr">54%</bdi> לעומת <bdi dir="ltr">59%</bdi>). רשת קבועה ליד <span class="nw">ה-<bdi dir="ltr">esophagus</bdi></span>: סכנת חדירה</li>
+    <li><b>חזרה בהדמיה:</b> <span class="nw">כ-<bdi dir="ltr">30%</bdi></span>, לרוב קטנה ובלי צורך בניתוח. תמותה בניתוח לפרוסקופי <bdi dir="ltr">0.5%</bdi></li>
    </ul>
   </div>
-  <div class="box r"><b class="t">וולוולוס חריף של הקיבה</b>
+  <div class="box r"><b class="t">וולוולוס חריף של <span class="nw">ה-<bdi dir="ltr">stomach</bdi></span></b>
    <p style="margin:0 0 6px"><b>שלישיית <bdi>Borchardt</bdi>:</b> כאב פתאומי בחזה או באפיגסטריום, הקאה "יבשה" (ניסיונות להקיא בלי תוכן), אי אפשר להעביר זונדה</p>
    <ul class="b sm">
     <li>צעד ראשון: <b>זונדה לפירוק לחץ</b>. אם לא עוברת ליד המיטה: אנדוסקופית</li>
@@ -400,13 +405,13 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <div class="grid">
   <ul class="b">
    <li><b><bdi dir="ltr">20–40%</bdi></b> מהמועמדים לניתוח בריאטרי סובלים מ-GERD. <bdi dir="ltr">20%</bdi> מאלה בלי תסמינים יש להם דלקת ושט "שקטה"</li>
-   <li><b>פונדופליקציה בהשמנה</b> מוסיפה רק <bdi dir="ltr">3–10</bdi> מ״מ כספית והלחץ בבטן גבוה ב-<bdi dir="ltr">15–20</bdi>. לכן יותר כשלונות</li>
+   <li><b>פונדופליקציה בהשמנה</b> מוסיפה רק <bdi dir="ltr">3–10</bdi> מ״מ כספית והלחץ בבטן גבוה <span class="nw">ב-<bdi dir="ltr">15–20</bdi></span>. לכן יותר כשלונות</li>
    <li><b>שרוול:</b> GERD חדש או מחמיר בעד <bdi dir="ltr">30%</bdi>. זה הגורם החשוב ביותר לשביעות הרצון</li>
    <li>במעקף קיבה: <bdi dir="ltr">10–30%</bdi> ממשיכים עם תסמינים או תרופות</li>
   </ul>
   <div style="display:grid;gap:10px">
    <div class="box n"><b class="t">המלצות</b>GERD עמיד לטיפול ומועמד לניתוח בריאטרי: <b>מעקף קיבה</b>. גסטרוסקופיה <bdi dir="ltr">3–5</bdi> שנים אחרי שרוול לחיפוש ברט, גם בלי תסמינים</div>
-   <div class="box a"><b class="t">בשרוול עצמו</b>לבדוק את ההיאטוס, לתקן בקע מאחור ולא להשאיר פונדוס. היצרות באינציזורה מעלה את הלחץ ואת הרפלוקס</div>
+   <div class="box a"><b class="t">בשרוול עצמו</b>לבדוק את <span class="nw">ה-<bdi dir="ltr">hiatus</bdi></span>, לתקן בקע מאחור ולא להשאיר <bdi dir="ltr">fundus</bdi>. היצרות <span class="nw">ב-<bdi dir="ltr">incisura</bdi></span> מעלה את הלחץ ואת הרפלוקס</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 83 עמ׳ <bdi dir="ltr">1128–1129</bdi></span><span>השמנה</span></div>
@@ -422,8 +427,8 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   <div class="study"><div class="y"><bdi>Gut</bdi> 2024 · קונצנזוס בינלאומי</div><b><bdi>Lyon 2.0</bdi>: איך מאבחנים GERD</b>
    <p>דלקת ושט <bdi>LA</bdi> דרגה B נחשבת עכשיו ראיה ודאית ל-GERD. בלי הוכחה קודמת: ניטור pH בלי טיפול. עם GERD מוכח ותסמינים: pH-אימפדנס תחת PPI</p>
    <small>Gyawali CP et al. Gut 2024;73:361-71</small></div>
-  <div class="study"><div class="y"><bdi>Surg Endosc</bdi> 2023 · מטא-אנליזת רשת</div><b><bdi>Nissen</bdi>, <bdi>Toupet</bdi> ו-<bdi>Dor</bdi> לטווח ארוך</b>
-   <p>13 מחקרים אקראיים, 2,063 מטופלים, מעקב מעל 5 שנים. <bdi>Toupet</bdi> עם פחות דיספאגיה מ-<bdi>Nissen</bdi> (<bdi>OR</bdi> 0.29). בשאר התוצאות אין הבדל</p>
+  <div class="study"><div class="y"><bdi>Surg Endosc</bdi> 2023 · מטא-אנליזת רשת</div><b><bdi>Nissen</bdi>, <bdi>Toupet</bdi> <span class="nw">ו-<bdi>Dor</bdi></span> לטווח ארוך</b>
+   <p>13 מחקרים אקראיים, 2,063 מטופלים, מעקב מעל 5 שנים. <bdi>Toupet</bdi> עם פחות דיספאגיה <span class="nw">מ-<bdi>Nissen</bdi></span> (<bdi>OR</bdi> 0.29). בשאר התוצאות אין הבדל</p>
    <small>Lee Y et al. Surg Endosc 2023;37:5052-64</small></div>
   <div class="study"><div class="y"><bdi>Surg Endosc</bdi> 2023 · הנחיות <bdi>EAES</bdi></div><b>בקע פרא-וושטי גדול</b>
    <p>מציעות ניתוח גם בבקע עם תסמינים מעטים, אבל לא במטופל שברירי. מעדיפות פונדופליקציה על גסטרופקסיה בניתוח מתוכנן וגסטרופקסיה בחולה לא יציב בחירום. מציעות רשת (המלצה מותנית)</p>
@@ -440,7 +445,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   <li>לפני ניתוח: גסטרוסקופיה, ניטור pH (תקן הזהב), מנומטריה ובליעת בריום</li>
   <li>מי שהגיב ל-PPI יגיב לניתוח. מי שלא הגיב: לחשוב על אבחנה אחרת</li>
   <li>פונדופליקציה חלקית היא היום הבחירה המועדפת. BMI מעל 35: לשקול מעקף קיבה</li>
-  <li>כאב פתאומי, ניסיונות הקאה וזונדה שלא עוברת: וולוולוס של הקיבה. זונדה ואז חדר ניתוח</li>
+  <li>כאב פתאומי, ניסיונות הקאה וזונדה שלא עוברת: וולוולוס של <span class="nw">ה-<bdi dir="ltr">stomach</bdi></span>. זונדה ואז חדר ניתוח</li>
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 83 <bdi>Benign Esophageal Disorders</bdi>, חלקי GERD ובקע סרעפתי (עמ׳ <bdi dir="ltr">1108–1113, 1121–1133</bdi>)</div>
  <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906, נחלת הכלל) · תמונות והדמיה: <bdi>Wikimedia Commons</bdi>, הקרדיט בכל תמונה · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>

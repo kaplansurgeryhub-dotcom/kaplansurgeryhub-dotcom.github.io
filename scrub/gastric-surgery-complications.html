@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>סיבוכי ניתוחי קיבה · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -83,6 +83,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -94,6 +95,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -111,6 +113,9 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -145,18 +150,18 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <div class="kick"><b>2</b>למה זה קורה</div>
  <h2>שלושה דברים שהניתוח לוקח</h2>
  <div class="grid g3">
-  <div class="box n"><b class="t">המאגר</b>הקיבה כבר לא מחזיקה ומעכלת בהדרגה. מזון מגיע מהר למעי הדק</div>
-  <div class="box"><b class="t">הפילורוס</b>אין יותר "שער" שמווסת את ההתרוקנות ומונע חזרה של מרה</div>
-  <div class="box a"><b class="t">העצב הוואגוס</b>אחרי וגוטומיה: התרוקנות מוצקים איטית, נוזלים מהירים, שלשול</div>
+  <div class="box n"><b class="t">המאגר</b><span class="nw">ה-<bdi>stomach</bdi></span> כבר לא מחזיק ומעכל בהדרגה. מזון מגיע מהר <span class="nw">ל-<bdi>small bowel</bdi></span></div>
+  <div class="box"><b class="t"><span class="nw">ה-<bdi>pylorus</bdi></span></b>אין יותר "שער" שמווסת את ההתרוקנות ומונע חזרה של מרה</div>
+  <div class="box a"><b class="t"><span class="nw">ה-<bdi>vagus nerve</bdi></span></b>אחרי וגוטומיה: התרוקנות מוצקים איטית, נוזלים מהירים, שלשול</div>
  </div>
  <div class="grid f" style="margin-top:12px">
   <ul class="b">
   <li>התסמונות לא תלויות בסיבה לניתוח: כיב, סרטן או השמנה</li>
   <li><b><bdi dir="ltr">1–5%</bdi></b> מהמטופלים נשארים עם נכות קבועה מהתסמינים</li>
-  <li><b>שחזורים:</b> <bdi>Billroth I</bdi> (קיבה לתריסריון), <bdi>Billroth II</bdi> (לולאת ג׳חונום לקיבה, נשארת לולאה מובילה עם מרה), <bdi>Roux-en-Y</bdi> (לולאה מבודדת, המרה נכנסת רחוק מהקיבה)</li>
-  <li>רוב התסמונות שכיחות אחרי <bdi>Billroth II</bdi>. הפתרון הניתוחי השכיח: <b>המרה ל-<bdi>Roux-en-Y</bdi></b></li>
+  <li><b>שחזורים:</b> <bdi>Billroth I</bdi> (<bdi>stomach</bdi> <span class="nw">ל-<bdi>duodenum</bdi></span>), <bdi>Billroth II</bdi> (<bdi>jejunal loop</bdi> <span class="nw">ל-<bdi>stomach</bdi></span>, נשארת לולאה מובילה עם מרה), <bdi>Roux-en-Y</bdi> (לולאה מבודדת, המרה נכנסת רחוק <span class="nw">מה-<bdi>stomach</bdi></span>)</li>
+  <li>רוב התסמונות שכיחות אחרי <bdi>Billroth II</bdi>. הפתרון הניתוחי השכיח: <b>המרה <span class="nw">ל-<bdi>Roux-en-Y</bdi></span></b></li>
  </ul>
-  <figure><img src="img/billroth2.png" alt="כריתת קיבה דיסטלית עם שחזור Billroth II" style="max-height:34vh"><figcaption><bdi>Billroth II</bdi>: גדם התריסריון סגור. הלולאה המובילה מביאה מרה ומיצי לבלב אל החיבור עם הקיבה. הלולאה היוצאת ממשיכה למטה · <bdi>ignis</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/billroth2.png" alt="כריתת קיבה דיסטלית עם שחזור Billroth II" style="max-height:34vh"><figcaption><bdi>Billroth II</bdi>: <span class="nw">ה-<bdi>duodenal stump</bdi></span> סגור. הלולאה המובילה מביאה מרה ומיצי לבלב אל החיבור עם <span class="nw">ה-<bdi>stomach</bdi></span>. הלולאה היוצאת ממשיכה למטה · <bdi>ignis</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 86 עמ׳ <bdi dir="ltr">1186–1188</bdi></span><span>רקע</span></div>
 </div></section>
@@ -169,11 +174,11 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   <tr style="background:var(--soft)"><td style="padding:7px"><b>מתי</b></td><td style="padding:7px">תוך שעה מהארוחה, רוב התסמינים תוך 30 דקות</td><td style="padding:7px"><bdi dir="ltr">1–3</bdi> שעות אחרי. פחות שכיח</td></tr>
   <tr><td style="padding:7px"><b>מנגנון</b></td><td style="padding:7px">מזון היפר-אוסמולרי במעי, נוזל עובר ללומן, הורמונים</td><td style="padding:7px">פחמימות נספגות מהר, אינסולין מוגזם (<bdi>GLP-1</bdi>), <b>היפוגליקמיה</b></td></tr>
   <tr style="background:var(--soft)"><td style="padding:7px"><b>תסמינים</b></td><td style="padding:7px">כאב, בחילה, שלשול, נפיחות. הזעה, דופק מהיר, כאב ראש, עילפון</td><td style="padding:7px">הזעה, רעד, סחרחורת, דופק מהיר, בלבול</td></tr>
-  <tr><td style="padding:7px"><b>העמסת סוכר 75 גרם</b></td><td style="padding:7px">אחרי 30 דקות: המטוקריט עולה ב-<bdi dir="ltr">3%</bdi> לפחות, או דופק ב-10 לפחות</td><td style="padding:7px">סוכר מתחת ל-50 מ״ג/ד״ל בין שעה לשלוש</td></tr>
+  <tr><td style="padding:7px"><b>העמסת סוכר 75 גרם</b></td><td style="padding:7px">אחרי 30 דקות: המטוקריט עולה <span class="nw">ב-<bdi dir="ltr">3%</bdi></span> לפחות, או דופק ב-10 לפחות</td><td style="padding:7px">סוכר מתחת ל-50 מ״ג/ד״ל בין שעה לשלוש</td></tr>
  </table>
  <div class="grid" style="margin-top:12px">
   <div class="box"><b class="t">הטיפול</b>קודם כול תזונה: בלי סוכר מרוכז, ארוחות קטנות ותכופות עשירות בחלבון וסיבים, שתייה בנפרד מהאוכל. אקרבוז להיפוגליקמיה. <b>אוקטראוטיד</b> למי שלא הגיב</div>
-  <div class="box a"><b class="t">ניתוח (נדיר)</b>אחרי <bdi>Billroth II</bdi>: המרה ל-<bdi>Roux-en-Y</bdi>. שכיח יותר אחרי <bdi>Billroth II</bdi>, פחות אחרי <bdi>Billroth I</bdi> ו-<bdi>Roux-en-Y</bdi></div>
+  <div class="box a"><b class="t">ניתוח (נדיר)</b>אחרי <bdi>Billroth II</bdi>: המרה <span class="nw">ל-<bdi>Roux-en-Y</bdi></span>. שכיח יותר אחרי <bdi>Billroth II</bdi>, פחות אחרי <bdi>Billroth I</bdi> <span class="nw">ו-<bdi>Roux-en-Y</bdi></span></div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 86 עמ׳ <bdi dir="ltr">1187</bdi></span><span>דמפינג</span></div>
 </div></section>
@@ -183,11 +188,11 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <h2>הלולאות והמרה</h2>
  <div class="grid g3">
   <div class="box r"><b class="t">תסמונת הלולאה המובילה</b>
-   <ul class="b sm"><li>חסימה של הלולאה התריסריונית, לרוב כשהיא ארוכה</li><li>מרה ומיצי לבלב מצטברים: כאב ונפיחות ואז <b>הקאה פורצת של מרה שמקלה מיד</b></li><li>כרוני: צמיחת חיידקים, חוסר <bdi>B12</bdi>, תת-ספיגת שומן</li><li>CT: לולאה מובילה מורחבת</li><li>מוקדם אחרי הניתוח: לתקן מהר, סכנת נמק ופיצוץ גדם התריסריון</li></ul></div>
+   <ul class="b sm"><li>חסימה של <span class="nw">ה-<bdi>duodenal limb</bdi></span>, לרוב כשהיא ארוכה</li><li>מרה ומיצי לבלב מצטברים: כאב ונפיחות ואז <b>הקאה פורצת של מרה שמקלה מיד</b></li><li>כרוני: צמיחת חיידקים, חוסר <bdi>B12</bdi>, תת-ספיגת שומן</li><li>CT: לולאה מובילה מורחבת</li><li>מוקדם אחרי הניתוח: לתקן מהר, סכנת נמק ופיצוץ <span class="nw">ה-<bdi>duodenal stump</bdi></span></li></ul></div>
   <div class="box n"><b class="t">חסימת הלולאה היוצאת</b>
    <ul class="b sm"><li>נדירה. רובה בחודש הראשון</li><li>כאב קוליקי בשמאל העליון, הקאות מרה, נפיחות</li><li>צילום או CT עם חומר ניגוד: החומר לא נכנס ללולאה היוצאת</li><li>הידבקויות, היצרות, אינטוסוספציה, בקע מאחורי החיבור</li><li>כמעט תמיד ניתוח</li></ul></div>
   <div class="box a"><b class="t">גסטריטיס מרה (<bdi>alkaline reflux</bdi>)</b>
-   <ul class="b sm"><li>כאב אפיגסטרי קשה, הקאות מרה, ירידה במשקל</li><li>רירית שבירה ואדומה "כמו בשר"</li><li>אבחנה של שלילה. מיפוי מרה מראה חזרה לקיבה</li><li>תרופות לא עוזרות באופן עקבי</li><li>ניתוח: <bdi>Roux-en-Y</bdi> עם לולאה של <bdi dir="ltr">45–60</bdi> ס״מ</li></ul></div>
+   <ul class="b sm"><li>כאב אפיגסטרי קשה, הקאות מרה, ירידה במשקל</li><li><span class="nw">ה-<bdi>mucosa</bdi></span> שבירה ואדומה "כמו בשר"</li><li>אבחנה של שלילה. מיפוי מרה מראה חזרה <span class="nw">ל-<bdi>stomach</bdi></span></li><li>תרופות לא עוזרות באופן עקבי</li><li>ניתוח: <bdi>Roux-en-Y</bdi> עם לולאה של <bdi dir="ltr">45–60</bdi> ס״מ</li></ul></div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 86 עמ׳ <bdi dir="ltr">1187–1188</bdi></span><span>לולאות</span></div>
 </div></section>
@@ -198,7 +203,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <div class="grid">
   <div style="display:grid;gap:10px">
    <div class="box"><b class="t">אטוניה של הקיבה</b>אחרי וגוטומיה טרונקלית או סלקטיבית: התרוקנות מוצקים איטית. מאשרים במיפוי התרוקנות ושוללים קודם חסימה מכנית (הידבקויות, לולאות, בקע פנימי). מטוקלופרמיד או אריתרומיצין. לעיתים נדירות כריתה משלימה</div>
-   <div class="box n"><b class="t"><bdi>Roux stasis</bdi></b>תנועה לא תקינה של לולאת <bdi>Roux</bdi>: הקאות, כאב, ירידה במשקל. בהדמיה: לולאה מורחבת. אותן תרופות. שארית קיבה גדולה: להקטין</div>
+   <div class="box n"><b class="t"><bdi>Roux stasis</bdi></b>תנועה לא תקינה של לולאת <bdi>Roux</bdi>: הקאות, כאב, ירידה במשקל. בהדמיה: לולאה מורחבת. אותן תרופות. <bdi>gastric remnant</bdi> גדול: להקטין</div>
   </div>
   <div style="display:grid;gap:10px">
    <div class="box a"><b class="t">שלשול אחרי וגוטומיה</b>בעיקר אחרי וגוטומיה טרונקלית. מלחי מרה מגיעים מהר למעי הגס. סיבים, כולסטיראמין או נוגדי שלשול</div>
@@ -228,13 +233,13 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   <g class="hzb" style="--c:#0A6B5A"><circle cx="490" cy="598" r="19"/><text x="490" y="598">7</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="gj" hidden><b>1 · החיבור קיבה-ג׳חונום</b><p>כאן רוב הדליפות במעקף (היום מתחת ל-<bdi dir="ltr">1%</bdi>). היצרות ב-<bdi dir="ltr">2–7%</bdi>, <bdi dir="ltr">4–6</bdi> שבועות אחרי. כיב בחיבור ב-<bdi dir="ltr">2–14%</bdi>, יותר כשהכיס גדול</p></div>
-  <div class="hzi" data-hzi="stp" hidden><b>2 · קו השדכנים בין הכיס לקיבה המנותקת</b><p>דימום מקו השדכנים. אם נפתח חיבור (פיסטולה) לקיבה המנותקת, חומצה מגיעה לחיבור והכיב לא נרפא. הטיפול: ניתוח</p></div>
-  <div class="hzi" data-hzi="rem" hidden><b>3 · הקיבה המנותקת</b><p>לא רואים אותה בגסטרוסקופיה רגילה. בחסימה מתחת, היא והלולאה הביליופנקריאטית מתרחבות לאחור עד פיצוץ קו השדכנים. ב-CT מחפשים קיבה מנותקת מורחבת</p></div>
-  <div class="hzi" data-hzi="bp" hidden><b>4 · הלולאה הביליופנקריאטית</b><p>התריסריון והג׳חונום הקרוב, כ-50 ס״מ מ-<bdi>Treitz</bdi>. מובילה מרה ומיצי לבלב. כאן נספג ברזל ולכן אחרי מעקף יש חוסר ברזל ב-<bdi dir="ltr">15–40%</bdi></p></div>
-  <div class="hzi" data-hzi="roux" hidden><b>5 · לולאת <bdi>Roux</bdi></b><p>100–150 ס״מ, עולה לפני המעי הגס. בין המזנטריום שלה למזוקולון נמצא מרווח <bdi>Petersen</bdi>, מקום של בקע פנימי. גם <bdi>Roux stasis</bdi>: הקאות ולולאה מורחבת</p></div>
-  <div class="hzi" data-hzi="jj" hidden><b>6 · החיבור ג׳חונום-ג׳חונום</b><p>הפתח במזנטריום מתחתיו נסגר בתפר לא נספג, כדי למנוע בקע פנימי. חסימה כאן חוסמת גם את הלולאה הביליופנקריאטית</p></div>
-  <div class="hzi" data-hzi="cc" hidden><b>7 · התעלה המשותפת</b><p>רק מכאן המזון פוגש מרה ומיצי לבלב ונספג כרגיל. ככל שהיא קצרה יותר (כמו ב-<bdi>BPD-DS</bdi>), יותר תת-ספיגה וחוסרים</p></div>
+  <div class="hzi" data-hzi="gj" hidden><b>1 · <bdi>Gastrojejunostomy</bdi></b><p>כאן רוב הדליפות במעקף (היום מתחת <span class="nw">ל-<bdi dir="ltr">1%</bdi></span>). היצרות <span class="nw">ב-<bdi dir="ltr">2–7%</bdi></span>, <bdi dir="ltr">4–6</bdi> שבועות אחרי. כיב בחיבור <span class="nw">ב-<bdi dir="ltr">2–14%</bdi></span>, יותר <span class="nw">כשה-<bdi>gastric pouch</bdi></span> גדול</p></div>
+  <div class="hzi" data-hzi="stp" hidden><b>2 · קו השדכנים בין <span class="nw">ה-<bdi>pouch</bdi></span> <span class="nw">ל-<bdi>gastric remnant</bdi></span></b><p>דימום מקו השדכנים. אם נפתח חיבור (פיסטולה) <span class="nw">ל-<bdi>gastric remnant</bdi></span>, חומצה מגיעה לחיבור והכיב לא נרפא. הטיפול: ניתוח</p></div>
+  <div class="hzi" data-hzi="rem" hidden><b>3 · <bdi>Gastric remnant</bdi></b><p>לא רואים אותו בגסטרוסקופיה רגילה. בחסימה מתחת, הוא <span class="nw">וה-<bdi>biliopancreatic limb</bdi></span> מתרחבים לאחור עד פיצוץ קו השדכנים. ב-CT מחפשים <bdi>gastric remnant</bdi> מורחב</p></div>
+  <div class="hzi" data-hzi="bp" hidden><b>4 · <bdi>Biliopancreatic limb</bdi></b><p><span class="nw">ה-<bdi>duodenum</bdi></span> <span class="nw">וה-<bdi>proximal jejunum</bdi></span>, כ-50 ס״מ <span class="nw">מ-<bdi>ligament of Treitz</bdi></span>. מובילה מרה ומיצי לבלב. כאן נספג ברזל ולכן אחרי מעקף יש חוסר ברזל <span class="nw">ב-<bdi dir="ltr">15–40%</bdi></span></p></div>
+  <div class="hzi" data-hzi="roux" hidden><b>5 · לולאת <bdi>Roux</bdi></b><p>100–150 ס״מ, עולה לפני <span class="nw">ה-<bdi>colon</bdi></span>. בין <span class="nw">ה-<bdi>mesentery</bdi></span> שלה <span class="nw">ל-<bdi>mesocolon</bdi></span> נמצא <span class="nw">ה-<bdi>Petersen's space</bdi></span>, מקום של בקע פנימי. גם <bdi>Roux stasis</bdi>: הקאות ולולאה מורחבת</p></div>
+  <div class="hzi" data-hzi="jj" hidden><b>6 · <bdi>Jejunojejunostomy</bdi></b><p>הפתח <span class="nw">ב-<bdi>mesentery</bdi></span> מתחתיו נסגר בתפר לא נספג, כדי למנוע בקע פנימי. חסימה כאן חוסמת גם את <span class="nw">ה-<bdi>biliopancreatic limb</bdi></span></p></div>
+  <div class="hzi" data-hzi="cc" hidden><b>7 · <bdi>Common channel</bdi></b><p>רק מכאן המזון פוגש מרה ומיצי לבלב ונספג כרגיל. ככל שהיא קצרה יותר (כמו <span class="nw">ב-<bdi>BPD-DS</bdi></span>), יותר תת-ספיגה וחוסרים</p></div>
  </div></div>
  <figcaption>מעקף קיבה <bdi>Roux-en-Y</bdi> · <bdi>Blausen.com staff (2014)</bdi>, "<bdi>Medical gallery of Blausen Medical 2014</bdi>", <bdi>WikiJournal of Medicine</bdi>, <bdi>CC BY 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption>
  <div class="src"><span><b>Sabiston 22</b> · פרק 99 עמ׳ <bdi dir="ltr">1565–1567, 1574–1575</bdi></span><span>אנטומיה</span></div>
@@ -250,8 +255,8 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
     <div><b dir="ltr">0.3–0.5%</b><span>דליפה אחרי שרוול</span></div>
    </div>
    <ul class="b sm">
-    <li><b>מעקף:</b> בעיקר מהחיבור קיבה-ג׳חונום. מוקדמת, עם סימני הלם: טכיקרדיה, טכיפנאה, כאב</li>
-    <li><b>שרוול:</b> לרוב <bdi dir="ltr">1–4</bdi> שבועות אחרי, לפעמים בשקט: זיהום ומורסה בלי הלם. בדרך כלל ליד הקצה העליון, מעל היצרות באינציזורה</li>
+    <li><b>מעקף:</b> בעיקר <span class="nw">מה-<bdi>gastrojejunostomy</bdi></span>. מוקדמת, עם סימני הלם: טכיקרדיה, טכיפנאה, כאב</li>
+    <li><b>שרוול:</b> לרוב <bdi dir="ltr">1–4</bdi> שבועות אחרי, לפעמים בשקט: זיהום ומורסה בלי הלם. בדרך כלל ליד הקצה העליון, מעל היצרות <span class="nw">ב-<bdi>incisura angularis</bdi></span></li>
     <li><b>מוקדמת (עד 48 שעות):</b> כשל שדכן או פגיעה ברקמה. <b>מאוחרת:</b> איסכמיה ולחץ גבוה בשרוול</li>
     <li><b>אבחנה:</b> CT עם חומר ניגוד בשתייה, צילום בליעה ולפעמים לפרוסקופיה</li>
    </ul>
@@ -270,17 +275,17 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <div class="grid">
   <div class="box n"><b class="t">היצרות</b>
    <ul class="b sm">
-    <li><b>מעקף:</b> בחיבור קיבה-ג׳חונום ב-<bdi dir="ltr">2–7%</bdi>. יותר עם שדכן מעגלי. מופיעה <bdi dir="ltr">4–6</bdi> שבועות אחרי: קודם מוצקים ואז נוזלים</li>
-    <li>הרחבה בבלון. לא יותר מ-<bdi dir="ltr">3–5</bdi> מ״מ בכל פעם, לעיתים כמה פעמים. לחפש סיבה: עישון ו-NSAIDs</li>
-    <li><b>שרוול:</b> פחות מ-<bdi dir="ltr">1%</bdi>, באינציזורה. הרחבה או סטנט. לפעמים המרה למעקף</li>
+    <li><b>מעקף:</b> <span class="nw">ב-<bdi>gastrojejunostomy</bdi></span> <span class="nw">ב-<bdi dir="ltr">2–7%</bdi></span>. יותר עם שדכן מעגלי. מופיעה <bdi dir="ltr">4–6</bdi> שבועות אחרי: קודם מוצקים ואז נוזלים</li>
+    <li>הרחבה בבלון. לא יותר <span class="nw">מ-<bdi dir="ltr">3–5</bdi></span> מ״מ בכל פעם, לעיתים כמה פעמים. לחפש סיבה: עישון ו-NSAIDs</li>
+    <li><b>שרוול:</b> פחות <span class="nw">מ-<bdi dir="ltr">1%</bdi></span>, <span class="nw">ב-<bdi>incisura</bdi></span>. הרחבה או סטנט. לפעמים המרה למעקף</li>
    </ul></div>
   <div class="box r"><b class="t">כיב בחיבור (<bdi>marginal ulcer</bdi>)</b>
    <ul class="b sm">
     <li><bdi dir="ltr">2–14%</bdi> מהמעקפים. כאב אפיגסטרי קבוע ו"קודח"</li>
-    <li>כיס גדול יותר = יותר תאים מפרישי חומצה. כל 5 סמ״ק נוספים: סיכוי גבוה פי 2.4</li>
-    <li>מניעה: טיפול ב-<bdi>H. pylori</bdi> לפני הניתוח</li>
+    <li><span class="nw">ה-<bdi>gastric pouch</bdi></span> גדול יותר = יותר תאים מפרישי חומצה. כל 5 סמ״ק נוספים: סיכוי גבוה פי 2.4</li>
+    <li>מניעה: טיפול <span class="nw">ב-<bdi>H. pylori</bdi></span> לפני הניתוח</li>
     <li>טיפול: PPI, בלי NSAIDs ובלי עישון. רוב הכיבים נרפאים</li>
-    <li>לא נרפא: לחפש <b>פיסטולה לקיבה המנותקת</b> (מקור חומצה). צריך ניתוח</li>
+    <li>לא נרפא: לחפש <b>פיסטולה <span class="nw">ל-<bdi>gastric remnant</bdi></span></b> (מקור חומצה). צריך ניתוח</li>
    </ul></div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 99 עמ׳ <bdi dir="ltr">1574–1577</bdi></span><span>היצרות וכיב</span></div>
@@ -293,14 +298,14 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   <div>
    <ul class="b">
     <li>חסימת מעי אחרי מעקף, קלינית או בהדמיה: <b>ניתוח</b>. בגלל בקעים פנימיים, חניקה שכיחה</li>
-    <li><b>CT עם חומר ניגוד בשתייה ובווריד</b>: לראות את הקיבה המנותקת, הלולאות וסיבוב של המזנטריום</li>
-    <li>הסכנה: התרחבות לאחור של הלולאה הביליופנקריאטית ושל הקיבה המנותקת, עד <b>פיצוץ קו השדכנים</b> וצפקת</li>
+    <li><b>CT עם חומר ניגוד בשתייה ובווריד</b>: לראות את <span class="nw">ה-<bdi>gastric remnant</bdi></span>, הלולאות וסיבוב של <span class="nw">ה-<bdi>mesentery</bdi></span></li>
+    <li>הסכנה: התרחבות לאחור של <span class="nw">ה-<bdi>biliopancreatic limb</bdi></span> ושל <span class="nw">ה-<bdi>gastric remnant</bdi></span>, עד <b>פיצוץ קו השדכנים</b> וצפקת</li>
     <li>חוסר תאבון וכאב לסירוגין אחרי ירידה גדולה במשקל: גם זה יכול להיות בקע פנימי</li>
    </ul>
   </div>
   <div style="display:grid;gap:10px">
-   <div class="box n"><b class="t">מניעה: סגירת הפתחים</b>סגירת הפתח מתחת לחיבור ג׳חונום-ג׳חונום ומרווח <bdi>Petersen</bdi> (בין המזנטריום של לולאת <bdi>Roux</bdi> למזוקולון) בתפר לא נספג. מורידה בקעים פנימיים מ-<bdi dir="ltr">4–17%</bdi> ל-<bdi dir="ltr">0–7%</bdi>, כ-<bdi dir="ltr">70%</bdi> פחות</div>
-   <div class="box"><b class="t">מעבר לפני המעי הגס</b><bdi>Antecolic</bdi> מוריד את מספר הפתחים משלושה לאחד</div>
+   <div class="box n"><b class="t">מניעה: סגירת הפתחים</b>סגירת הפתח מתחת <span class="nw">ל-<bdi>jejunojejunostomy</bdi></span> ושל <span class="nw">ה-<bdi>Petersen's space</bdi></span> (בין <span class="nw">ה-<bdi>mesentery</bdi></span> של לולאת <bdi>Roux</bdi> <span class="nw">ל-<bdi>mesocolon</bdi></span>) בתפר לא נספג. מורידה בקעים פנימיים <span class="nw">מ-<bdi dir="ltr">4–17%</bdi></span> <span class="nw">ל-<bdi dir="ltr">0–7%</bdi></span>, <span class="nw">כ-<bdi dir="ltr">70%</bdi></span> פחות</div>
+   <div class="box"><b class="t">מעבר לפני <span class="nw">ה-<bdi>colon</bdi></span></b><bdi>Antecolic</bdi> מוריד את מספר הפתחים משלושה לאחד</div>
    <div class="box b"><b class="t">במחלקה השבוע</b>אצל מטופל במיון אחרי ניתוח בריאטרי: ברר איזה ניתוח, מתי ואיפה, אם יש טכיקרדיה ומה ה-CT הראה. הציגו לבכיר/ה את האבחנה המבדלת</div>
   </div>
  </div>
@@ -313,13 +318,13 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <div class="grid">
   <ul class="b">
    <li>GERD חדש או מחמיר בעד <b><bdi dir="ltr">30%</bdi></b>. קובע את שביעות הרצון</li>
-   <li>מנגנון: שינוי בזווית <bdi>His</bdi> ובסיבי הסוגר ולחץ גבוה בקיבה צינורית צרה. היצרות באינציזורה מחמירה</li>
-   <li><bdi>SLEEVEPASS</bdi> אחרי 10 שנים: <bdi dir="ltr">11.6%</bdi> עברו המרה למעקף בגלל רפלוקס. ב-<bdi dir="ltr">49%</bdi> מהנבדקים התסמינים החמירו</li>
-   <li><b>אין פונדוס, אין פונדופליקציה.</b> תקן הזהב: <b>המרה למעקף</b>. לפעמים תיקון בקע סרעפתי או טבעת מגנטית</li>
+   <li>מנגנון: שינוי <span class="nw">ב-<bdi>angle of His</bdi></span> ובסיבי <span class="nw">ה-<bdi>LES</bdi></span> ולחץ גבוה <span class="nw">ב-<bdi>stomach</bdi></span> צינורי וצר. היצרות <span class="nw">ב-<bdi>incisura</bdi></span> מחמירה</li>
+   <li><bdi>SLEEVEPASS</bdi> אחרי 10 שנים: <bdi dir="ltr">11.6%</bdi> עברו המרה למעקף בגלל רפלוקס. <span class="nw">ב-<bdi dir="ltr">49%</bdi></span> מהנבדקים התסמינים החמירו</li>
+   <li><b>אין <bdi>fundus</bdi>, אין פונדופליקציה.</b> תקן הזהב: <b>המרה למעקף</b>. לפעמים תיקון בקע סרעפתי או טבעת מגנטית</li>
   </ul>
   <div style="display:grid;gap:10px">
-   <div class="box a"><b class="t">ברט אחרי שרוול</b>ה-<bdi>ASMBS</bdi> ממליצה (המלצה מותנית) על גסטרוסקופיה <bdi dir="ltr">3–5</bdi> שנים אחרי שרוול, גם בלי תסמינים</div>
-   <div class="box"><b class="t">לפני הניתוח</b>מטופל עם רפלוקס עמיד: מעקף ולא שרוול. בשרוול: לבדוק את ההיאטוס ולתקן בקע</div>
+   <div class="box a"><b class="t">ברט אחרי שרוול</b><span class="nw">ה-<bdi>ASMBS</bdi></span> ממליצה (המלצה מותנית) על גסטרוסקופיה <bdi dir="ltr">3–5</bdi> שנים אחרי שרוול, גם בלי תסמינים</div>
+   <div class="box"><b class="t">לפני הניתוח</b>מטופל עם רפלוקס עמיד: מעקף ולא שרוול. בשרוול: לבדוק את <span class="nw">ה-<bdi>hiatus</bdi></span> ולתקן בקע</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 99 עמ׳ <bdi dir="ltr">1575</bdi> · פרק 83 עמ׳ <bdi dir="ltr">1128–1129</bdi></span><span>רפלוקס</span></div>
@@ -332,15 +337,15 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   <div>
    <table style="width:100%;border-collapse:collapse;font-size:14.5px;line-height:1.4">
     <tr style="background:var(--navy);color:#fff"><th style="padding:7px;text-align:start">חוסר</th><th style="padding:7px;text-align:start">למה</th><th style="padding:7px;text-align:start">מה עושים</th></tr>
-    <tr style="background:var(--soft)"><td style="padding:7px"><b>ברזל</b></td><td style="padding:7px">נספג בתריסריון ובג׳חונום הקרוב, שנעקפים. במעקף: חוסר ב-<bdi dir="ltr">15–40%</bdi>, אנמיה עד <bdi dir="ltr">20%</bdi></td><td style="padding:7px">ברזל בפה (גלוקונאט נספג טוב בלי חומצה)</td></tr>
+    <tr style="background:var(--soft)"><td style="padding:7px"><b>ברזל</b></td><td style="padding:7px">נספג <span class="nw">ב-<bdi>duodenum</bdi></span> <span class="nw">וב-<bdi>proximal jejunum</bdi></span>, שנעקפים. במעקף: חוסר <span class="nw">ב-<bdi dir="ltr">15–40%</bdi></span>, אנמיה עד <bdi dir="ltr">20%</bdi></td><td style="padding:7px">ברזל בפה (גלוקונאט נספג טוב בלי חומצה)</td></tr>
     <tr><td style="padding:7px"><b><bdi>B12</bdi></b></td><td style="padding:7px">אין פקטור פנימי. במעקף <bdi dir="ltr">15–20%</bdi>, רק לעיתים אנמיה</td><td style="padding:7px">לכל החיים אחרי כריתת קיבה. תת-לשוני, תרסיס לאף או זריקות</td></tr>
     <tr style="background:var(--soft)"><td style="padding:7px"><b>סידן ו-D</b></td><td style="padding:7px">תת-ספיגה. מחלת עצם כ-5 שנים אחרי</td><td style="padding:7px">סידן עם ויטמין D</td></tr>
-    <tr><td style="padding:7px"><b>A, D, E, K</b></td><td style="padding:7px">עקיפת התריסריון, תת-ספיגת שומן</td><td style="padding:7px">תוספים, בעיקר אחרי <bdi>BPD-DS</bdi></td></tr>
-    <tr style="background:var(--soft)"><td style="padding:7px"><b>חלבון</b></td><td style="padding:7px"><bdi dir="ltr">8%</bdi> אחרי <bdi>BPD-DS</bdi> (תעלה משותפת קצרה)</td><td style="padding:7px">אשפוז, הזנה תוך-ורידית <bdi dir="ltr">2–3</bdi> שבועות, לפעמים הארכת התעלה</td></tr>
+    <tr><td style="padding:7px"><b>A, D, E, K</b></td><td style="padding:7px">עקיפת <span class="nw">ה-<bdi>duodenum</bdi></span>, תת-ספיגת שומן</td><td style="padding:7px">תוספים, בעיקר אחרי <bdi>BPD-DS</bdi></td></tr>
+    <tr style="background:var(--soft)"><td style="padding:7px"><b>חלבון</b></td><td style="padding:7px"><bdi dir="ltr">8%</bdi> אחרי <bdi>BPD-DS</bdi> (<bdi>common channel</bdi> קצר)</td><td style="padding:7px">אשפוז, הזנה תוך-ורידית <bdi dir="ltr">2–3</bdi> שבועות, לפעמים הארכת <span class="nw">ה-<bdi>common channel</bdi></span></td></tr>
     <tr><td style="padding:7px"><b>תיאמין (<bdi>B1</bdi>)</b></td><td style="padding:7px">הקאות ממושכות</td><td style="padding:7px">תיאמין בווריד לפני <bdi>Wernicke</bdi></td></tr>
    </table>
   </div>
-  <div class="box n"><b class="t"><bdi>BPD-DS</bdi> מול <bdi>SADI-S</bdi></b>במחקר אחד: חוסר ויטמין A ‏<bdi dir="ltr">36.4%</bdi> לעומת <bdi dir="ltr">13.5%</bdi> ויטמין D ‏<bdi dir="ltr">55.3%</bdi> לעומת <bdi dir="ltr">36.5%</bdi>, ברזל <bdi dir="ltr">41.1%</bdi> לעומת <bdi dir="ltr">19.1%</bdi>. לכן <bdi>SADI-S</bdi> עם תעלה משותפת ארוכה יותר</div>
+  <div class="box n"><b class="t"><bdi>BPD-DS</bdi> מול <bdi>SADI-S</bdi></b>במחקר אחד: חוסר ויטמין A ‏<bdi dir="ltr">36.4%</bdi> לעומת <bdi dir="ltr">13.5%</bdi> ויטמין D ‏<bdi dir="ltr">55.3%</bdi> לעומת <bdi dir="ltr">36.5%</bdi>, ברזל <bdi dir="ltr">41.1%</bdi> לעומת <bdi dir="ltr">19.1%</bdi>. לכן <bdi>SADI-S</bdi> עם <bdi>common channel</bdi> ארוך יותר</div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 86 עמ׳ <bdi dir="ltr">1187</bdi> · פרק 99 עמ׳ <bdi dir="ltr">1574–1575</bdi></span><span>תזונה</span></div>
 </div></section>
@@ -350,11 +355,11 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <h2>טבעת, קרישים ואבני מרה</h2>
  <div class="grid g3">
   <div class="box a"><b class="t">טבעת מתכווננת</b>
-   <ul class="b sm"><li><b>החלקה:</b> דיספאגיה, רגורגיטציה, צרבת, אספירציה. נדיר: חניקת הקיבה בחירום</li><li>בצילום: הטבעת לא בזווית הרגילה (בין 7 ל-2 לפי השעון) אלא אנכית או אופקית</li><li>חדירה לקיבה, הרחבת ושט. בשלושה רבעים מהמוצאים יש הפרעת תנועה בוושט</li><li>מסירים או ממירים</li></ul></div>
+   <ul class="b sm"><li><b>החלקה:</b> דיספאגיה, רגורגיטציה, צרבת, אספירציה. נדיר: חניקת <span class="nw">ה-<bdi>stomach</bdi></span> בחירום</li><li>בצילום: הטבעת לא בזווית הרגילה (בין 7 ל-2 לפי השעון) אלא אנכית או אופקית</li><li>חדירה <span class="nw">ל-<bdi>stomach</bdi></span>, הרחבת <span class="nw">ה-<bdi>esophagus</bdi></span>. בשלושה רבעים מהמוצאים יש הפרעת תנועה <span class="nw">ב-<bdi>esophagus</bdi></span></li><li>מסירים או ממירים</li></ul></div>
   <div class="box r"><b class="t">תרומבואמבוליזם</b>
    <ul class="b sm"><li><bdi dir="ltr">17%</bdi> ממקרי המוות</li><li>עד <bdi dir="ltr">80%</bdi> מהנפטרים עם עדות לקרישים</li><li>עם מגפי לחץ, הליכה מוקדמת והפרין: <bdi dir="ltr">0.23%</bdi></li></ul></div>
   <div class="box"><b class="t">אבני מרה ועוד</b>
-   <ul class="b sm"><li>אבנים או בוצה בכ-<bdi dir="ltr">30%</bdi> אחרי מעקף. אורסודיאול 6 חודשים: <bdi dir="ltr">3%</bdi></li><li>דיכאון והפסקת אכילה</li><li>התייבשות מהקאות: נוזלים בווריד כשיש ספק</li></ul></div>
+   <ul class="b sm"><li>אבנים או בוצה <span class="nw">בכ-<bdi dir="ltr">30%</bdi></span> אחרי מעקף. אורסודיאול 6 חודשים: <bdi dir="ltr">3%</bdi></li><li>דיכאון והפסקת אכילה</li><li>התייבשות מהקאות: נוזלים בווריד כשיש ספק</li></ul></div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 99 עמ׳ <bdi dir="ltr">1563, 1570, 1573–1574</bdi></span><span>סיבוכים נוספים</span></div>
 </div></section>
@@ -387,7 +392,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
    <p>217 מטופלים. המרה לניתוח אחר בגלל ירידה לא מספקת או רפלוקס: <bdi dir="ltr">29.9%</bdi> אחרי שרוול לעומת <bdi dir="ltr">5.5%</bdi> אחרי מעקף. יותר רפלוקס חדש אחרי שרוול</p>
    <small>Kraljević M et al. JAMA Surg 2025;160:369-77</small></div>
   <div class="study"><div class="y"><bdi>Gastrointest Endosc</bdi> 2021 · מטא-אנליזה</div><b>ושט ברט אחרי שרוול</b>
-   <p>10 מחקרים, 680 מטופלים בגסטרוסקופיה אחרי שרוול. ברט ב-<bdi dir="ltr">11.6%</bdi>, בלי קשר לתסמיני רפלוקס. הסיכון לדלקת ושט עלה ב-<bdi dir="ltr">13%</bdi> בכל שנה</p>
+   <p>10 מחקרים, 680 מטופלים בגסטרוסקופיה אחרי שרוול. ברט <span class="nw">ב-<bdi dir="ltr">11.6%</bdi></span>, בלי קשר לתסמיני רפלוקס. הסיכון לדלקת ושט עלה <span class="nw">ב-<bdi dir="ltr">13%</bdi></span> בכל שנה</p>
    <small>Qumseya BJ et al. Gastrointest Endosc 2021;93:343-52</small></div>
  </div>
  <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
@@ -398,13 +403,13 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <h2>חמישה דברים לקחת למחלקה</h2>
  <ol class="obj">
   <li>דמפינג מוקדם: תוך שעה, נוזלים ואוסמולריות. מאוחר: <bdi dir="ltr">1–3</bdi> שעות, היפוגליקמיה. קודם כול תזונה</li>
-  <li>הקאה פורצת של מרה שמקלה: לולאה מובילה. הפתרון הניתוחי לרוב המרה ל-<bdi>Roux-en-Y</bdi></li>
+  <li>הקאה פורצת של מרה שמקלה: לולאה מובילה. הפתרון הניתוחי לרוב המרה <span class="nw">ל-<bdi>Roux-en-Y</bdi></span></li>
   <li>אחרי ניתוח בריאטרי: טכיקרדיה היא דליפה עד שהוכח אחרת</li>
   <li>חסימה אחרי מעקף היא בקע פנימי עד שהוכח אחרת: CT וחדר ניתוח</li>
   <li>ברזל, <bdi>B12</bdi>, סידן ויטמין D ותיאמין למי שמקיא. מעקב לכל החיים</li>
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 86 <bdi>Stomach</bdi>, <bdi>Postgastrectomy Syndromes</bdi> (עמ׳ <bdi dir="ltr">1186–1188</bdi>) · פרק 99 <bdi>Morbid Obesity</bdi>, סיבוכים (עמ׳ <bdi dir="ltr">1570–1577</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Blausen Medical</bdi> (<bdi>CC BY 3.0</bdi>) ותרשימי שחזור מ-<bdi>Wikimedia Commons</bdi>, הקרדיט בכל תמונה · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>איורים: <bdi>Blausen Medical</bdi> (<bdi>CC BY 3.0</bdi>) ותרשימי שחזור <span class="nw">מ-<bdi>Wikimedia Commons</bdi></span>, הקרדיט בכל תמונה · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>גידולים ציסטיים של הלבלב · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -82,6 +82,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -93,6 +94,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -110,6 +112,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -132,9 +137,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>בסוף המפגש תדעו</h2>
  <ol class="obj">
   <li>להבדיל בין פסאודוציסטה לבין גידול ציסטי. להבדיל בין גידול מוציני ללא מוציני</li>
-  <li>להכיר ארבעה גידולים: ציסטה סרוזית, <bdi>MCN</bdi>, <bdi>IPMN</bdi> ו-<bdi>SPN</bdi>. לדעת מה הסיכון לממאירות בכל אחד</li>
+  <li>להכיר ארבעה גידולים: ציסטה סרוזית, <bdi>MCN</bdi>, <bdi>IPMN</bdi> <span class="nw">ו-<bdi>SPN</bdi></span>. לדעת מה הסיכון לממאירות בכל אחד</li>
   <li>להשתמש בבירור נכון: CT או MRI, <bdi>EUS</bdi> ובדיקת נוזל הציסטה (<bdi>CEA</bdi>, עמילאז)</li>
-  <li>לזהות סימנים מדאיגים וסימני סיכון גבוה ב-<bdi>IPMN</bdi> ולהחליט בין מעקב לניתוח</li>
+  <li>לזהות סימנים מדאיגים וסימני סיכון גבוה <span class="nw">ב-<bdi>IPMN</bdi></span> ולהחליט בין מעקב לניתוח</li>
   <li>לדעת איזה ניתוח מתאים ומה המעקב אחריו</li>
  </ol>
  <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 92 (עמ׳ <bdi dir="ltr">1387, 1394–1400</bdi>) · פרק 93 (עמ׳ <bdi dir="ltr">1403</bdi>)</span><span>Scrub In · קפלן</span></div>
@@ -146,7 +151,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div>
    <ul class="b">
-    <li>אחרי אדנוקרצינומה, הגידולים הציסטיים הם הנושא השכיח והחשוב ביותר בלבלב</li>
+    <li>אחרי אדנוקרצינומה, הגידולים הציסטיים הם הנושא השכיח והחשוב ביותר <span class="nw">ב-<bdi dir="ltr">pancreas</bdi></span></li>
     <li>רובם מתגלים <b>במקרה</b>, בגלל השימוש הגובר ב-CT וב-MRI</li>
     <li>חלקם מקדימים סרטן לבלב. לכן <b>המטרה כפולה</b>: למנוע סרטן, בלי לנתח יותר מדי</li>
     <li>שלוש הנחיות מרכזיות: האמריקאית (<bdi>AGA</bdi>, 2015), הבינלאומית (<bdi>IAP</bdi>, 2017) והאירופית (2018)</li>
@@ -164,7 +169,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>3</b>אנטומיה · תמונה אינטראקטיבית</div>
  <h2>איפה כל ציסטה אוהבת לשבת</h2>
-<div class="hotw"><div class="hoti"><img src="img/Sobo_1906_393.png" alt="הלבלב, התריסריון וכלי הדם, מבט מלפנים"><svg viewBox="0 0 1280 1108" preserveAspectRatio="none" style="--lw:24;--bf:31px">
+<div class="hotw"><div class="hoti"><img src="img/Sobo_1906_393.png" alt="pancreas, duodenum וכלי הדם, מבט מלפנים"><svg viewBox="0 0 1280 1108" preserveAspectRatio="none" style="--lw:24;--bf:31px">
  <path class="hz" data-hz="head" d="M381,713 C391.3,705.3 420.5,709 437,704 C453.5,699 467.2,690.2 480,683 C492.8,675.8 501.8,670.3 514,661 C526.2,651.7 553,627 553,627 C553,627 556.7,667.8 558,690 C559.3,712.2 560.5,738.3 561,760 C561.5,781.7 561.2,798.3 561,820 C560.8,841.7 560.7,867.5 560,890 C559.3,912.5 557,955 557,955 C557,955 532.8,963.8 520,965 C507.2,966.2 493.3,964.5 480,962 C466.7,959.5 451.7,954.5 440,950 C428.3,945.5 418,941.3 410,935 C402,928.7 397,921.2 392,912 C387,902.8 383,892 380,880 C377,868 375.2,855 374,840 C372.8,825 372.8,805 373,790 C373.2,775 373.7,762.8 375,750 C376.3,737.2 370.7,720.7 381,713 Z" style="--c:#C0392B"/>
  <path class="hz" data-hz="body" d="M553,627 C553,627 567.2,616.5 575,612 C582.8,607.5 590.8,604.5 600,600 C609.2,595.5 616.7,591.2 630,585 C643.3,578.8 665,568 680,563 C695,558 706.7,555.5 720,555 C733.3,554.5 746.7,558.8 760,560 C773.3,561.2 786.7,561.2 800,562 C813.3,562.8 826.7,565.2 840,565 C853.3,564.8 866.7,560.2 880,561 C893.3,561.8 910,567.3 920,570 C930,572.7 940,577 940,577 C940,577 945,795 945,795 C945,795 942.5,789.3 930,786 C917.5,782.7 883.3,778.3 870,775 C856.7,771.7 858.3,767.7 850,766 C841.7,764.3 831.7,764.3 820,765 C808.3,765.7 795,768.3 780,770 C765,771.7 746.7,773.3 730,775 C713.3,776.7 694.2,778.2 680,780 C665.8,781.8 653.7,783 645,786 C636.3,789 633.5,792.7 628,798 C622.5,803.3 618.3,812.7 612,818 C605.7,823.3 598.3,828 590,830 C581.7,832 562,830 562,830 C562,830 561.7,783.3 561,760 C560.3,736.7 559.3,712.2 558,690 C556.7,667.8 553,627 553,627 Z" style="--c:#2F6FA8"/>
  <path class="hz" data-hz="tail" d="M940,577 C940,577 953.3,581.2 960,585 C966.7,588.8 975.3,590.8 980,600 C984.7,609.2 984.7,625.3 988,640 C991.3,654.7 994.7,676.3 1000,688 C1005.3,699.7 1011.7,706 1020,710 C1028.3,714 1039.2,710.7 1050,712 C1060.8,713.3 1076.7,714.2 1085,718 C1093.3,721.8 1096.5,728 1100,735 C1103.5,742 1105.3,751.5 1106,760 C1106.7,768.5 1106.7,777.7 1104,786 C1101.3,794.3 1096.5,803.5 1090,810 C1083.5,816.5 1076.7,822.3 1065,825 C1053.3,827.7 1034.2,828.2 1020,826 C1005.8,823.8 992.5,817.2 980,812 C967.5,806.8 945,795 945,795 C945,795 940,577 940,577 Z" style="--c:#187A5C"/>
@@ -179,14 +184,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <g class="hzb" style="--c:#8E44AD"><circle cx="1242" cy="912" r="26"/><text x="1242" y="912">6</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="head" hidden><b>ראש הלבלב</b><p>המקום השכיח של <bdi>IPMN</bdi> (ראש יותר מאשר מפושט או גוף וזנב). גם ציסטה סרוזית נוטה לראש. ציסטה בראש שדורשת כריתה פירושה וויפל. לכן ההחלטה כאן כבדה יותר.</p></div>
-  <div class="hzi" data-hzi="body" hidden><b>צוואר וגוף</b><p><bdi>MCN</bdi> ו-<bdi>SPN</bdi> יושבים בעיקר בגוף ובזנב. בגידול קטן ולא אגרסיבי בצוואר או בגוף אפשר לשקול כריתה מרכזית ששומרת רקמת לבלב.</p></div>
-  <div class="hzi" data-hzi="tail" hidden><b>זנב הלבלב</b><p><bdi>MCN</bdi> באישה צעירה, בזנב, בלי קשר לצינור: התמונה הקלאסית. הטיפול הוא כריתה דיסטלית, לעיתים קרובות זעיר-פולשנית. פסאודוציסטה קטנה בזנב נוטה להיעלם לבד.</p></div>
-  <div class="hzi" data-hzi="duod" hidden><b>התריסריון והפפילה</b><p>ב-<bdi>IPMN</bdi> של הצינור הראשי רואים באנדוסקופיה ריר סמיך שיוצא מפפילה פתוחה (״פה של דג״). פסאודוציסטה בראש הלבלב שצמודה לתריסריון מנוקזת אליו.</p></div>
-  <div class="hzi" data-hzi="cbd" hidden><b>צינור המרה</b><p>צהבת אצל מטופל עם ציסטה בראש הלבלב היא סימן בסיכון גבוה: מצדיקה כריתה.</p></div>
-  <div class="hzi" data-hzi="spl" hidden><b>הטחול</b><p>כריתה דיסטלית ל-<bdi>MCN</bdi> או <bdi>SPN</bdi> נעשית לעיתים עם הטחול. בנגע שפיר אפשר לפעמים לשמר אותו.</p></div>
+  <div class="hzi" data-hzi="head" hidden><b><bdi dir="ltr">pancreatic head</bdi></b><p>המקום השכיח של <bdi>IPMN</bdi> (<bdi dir="ltr">head</bdi> יותר מאשר מפושט או <bdi dir="ltr">body</bdi> <span class="nw">ו-<bdi dir="ltr">tail</bdi></span>). גם ציסטה סרוזית נוטה <span class="nw">ל-<bdi dir="ltr">head</bdi></span>. ציסטה <span class="nw">ב-<bdi dir="ltr">head</bdi></span> שדורשת כריתה פירושה וויפל. לכן ההחלטה כאן כבדה יותר.</p></div>
+  <div class="hzi" data-hzi="body" hidden><b><bdi dir="ltr">neck</bdi> <span class="nw">ו-<bdi dir="ltr">body</bdi></span></b><p><bdi>MCN</bdi> <span class="nw">ו-<bdi>SPN</bdi></span> יושבים בעיקר <span class="nw">ב-<bdi dir="ltr">body</bdi></span> <span class="nw">וב-<bdi dir="ltr">tail</bdi></span>. בגידול קטן ולא אגרסיבי <span class="nw">ב-<bdi dir="ltr">neck</bdi></span> או <span class="nw">ב-<bdi dir="ltr">body</bdi></span> אפשר לשקול כריתה מרכזית ששומרת רקמת <bdi dir="ltr">pancreas</bdi>.</p></div>
+  <div class="hzi" data-hzi="tail" hidden><b><bdi dir="ltr">pancreatic tail</bdi></b><p><bdi>MCN</bdi> באישה צעירה, <span class="nw">ב-<bdi dir="ltr">tail</bdi></span>, בלי קשר לצינור: התמונה הקלאסית. הטיפול הוא כריתה דיסטלית, לעיתים קרובות זעיר-פולשנית. פסאודוציסטה קטנה <span class="nw">ב-<bdi dir="ltr">tail</bdi></span> נוטה להיעלם לבד.</p></div>
+  <div class="hzi" data-hzi="duod" hidden><b><bdi dir="ltr">duodenum</bdi> <span class="nw">ו-<bdi dir="ltr">papilla</bdi></span></b><p><span class="nw">ב-<bdi>IPMN</bdi></span> של <span class="nw">ה-<bdi dir="ltr">main duct</bdi></span> רואים באנדוסקופיה ריר סמיך שיוצא <span class="nw">מ-<bdi dir="ltr">papilla</bdi></span> פתוחה (״פה של דג״). פסאודוציסטה <span class="nw">ב-<bdi dir="ltr">pancreatic head</bdi></span> שצמודה <span class="nw">ל-<bdi dir="ltr">duodenum</bdi></span> מנוקזת אליו.</p></div>
+  <div class="hzi" data-hzi="cbd" hidden><b><bdi dir="ltr">CBD</bdi></b><p>צהבת אצל מטופל עם ציסטה <span class="nw">ב-<bdi dir="ltr">pancreatic head</bdi></span> היא סימן בסיכון גבוה: מצדיקה כריתה.</p></div>
+  <div class="hzi" data-hzi="spl" hidden><b><bdi dir="ltr">spleen</bdi></b><p>כריתה דיסטלית <span class="nw">ל-<bdi>MCN</bdi></span> או <bdi>SPN</bdi> נעשית לעיתים עם <span class="nw">ה-<bdi dir="ltr">spleen</bdi></span>. בנגע שפיר אפשר לפעמים לשמר אותו.</p></div>
  </div></div>
- <p style="font-size:12px;color:var(--muted);margin:6px 0 0">הלבלב, התריסריון והעורקים והוורידים שסביבם, מבט מלפנים · <bdi>Sobotta</bdi>, <bdi>Atlas and Text-book of Human Anatomy</bdi> (1906), איור 393 (נחלת הכלל)</p>
+ <p style="font-size:12px;color:var(--muted);margin:6px 0 0"><bdi dir="ltr">pancreas</bdi>, <bdi dir="ltr">duodenum</bdi> והעורקים והוורידים שסביבם, מבט מלפנים · <bdi>Sobotta</bdi>, <bdi>Atlas and Text-book of Human Anatomy</bdi> (1906), איור 393 (נחלת הכלל)</p>
  <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1387, 1395–1398</bdi> · פרק 76 עמ׳ <bdi dir="ltr">1028</bdi></span><span>אנטומיה</span></div>
 </div></section>
 
@@ -194,11 +199,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>4</b>ההבדלים</div>
  <h2>חמש ציסטות, טבלה אחת</h2>
  <div class="grid g3">
-  <div class="box n"><b class="t">פסאודוציסטה</b>אחרי פנקריאטיטיס. בכל חלקי הלבלב. דופן עבה, לעיתים אטרופיה והסתיידויות בלבלב. <b>קשורה לצינור.</b> נוזל: עמילאז גבוה מאוד, <bdi>CEA</bdi> נמוך, בלי מוצין</div>
-  <div class="box b"><b class="t">ציסטה סרוזית (<bdi>SCN</bdi>)</b>אישה, גיל 60–70. ציסטות קטנות רבות עם מחיצות והסתיידות מרכזית בצורת כוכב. <b>לא קשורה לצינור.</b> עמילאז ו-<bdi>CEA</bdi> נמוכים</div>
-  <div class="box a"><b class="t"><bdi>MCN</bdi></b>כמעט רק נשים. בגוף ובזנב. ציסטה גדולה עם דופן עבה, לעיתים הסתיידות "קליפת ביצה". <b>כמעט אף פעם לא קשורה לצינור.</b> <bdi>CEA</bdi> גבוה, עמילאז נמוך</div>
-  <div class="box r"><b class="t"><bdi>IPMN</bdi></b>גברים ונשים, גיל 60–70. בעיקר בראש. ציסטות עם הרחבה של הצינור הראשי או של הענפים. <b>קשורה לצינור.</b> <bdi>CEA</bdi> ועמילאז גבוהים</div>
-  <div class="box"><b class="t"><bdi>SPN</bdi></b>אישה צעירה, גיל 25–40. גוף וזנב. מסה עם דופן עבה, חלק מוצק בהיקף וחלק ציסטי במרכז. לא קשורה לצינור. <bdi>CEA</bdi> ועמילאז נמוכים</div>
+  <div class="box n"><b class="t">פסאודוציסטה</b>אחרי פנקריאטיטיס. בכל חלקי <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span>. דופן עבה, לעיתים אטרופיה והסתיידויות <span class="nw">ב-<bdi dir="ltr">pancreas</bdi></span>. <b>קשורה לצינור.</b> נוזל: עמילאז גבוה מאוד, <bdi>CEA</bdi> נמוך, בלי מוצין</div>
+  <div class="box b"><b class="t">ציסטה סרוזית (<bdi>SCN</bdi>)</b>אישה, גיל 60–70. ציסטות קטנות רבות עם מחיצות והסתיידות מרכזית בצורת כוכב. <b>לא קשורה לצינור.</b> עמילאז <span class="nw">ו-<bdi>CEA</bdi></span> נמוכים</div>
+  <div class="box a"><b class="t"><bdi>MCN</bdi></b>כמעט רק נשים. <span class="nw">ב-<bdi dir="ltr">body</bdi></span> <span class="nw">וב-<bdi dir="ltr">tail</bdi></span>. ציסטה גדולה עם דופן עבה, לעיתים הסתיידות "קליפת ביצה". <b>כמעט אף פעם לא קשורה לצינור.</b> <bdi>CEA</bdi> גבוה, עמילאז נמוך</div>
+  <div class="box r"><b class="t"><bdi>IPMN</bdi></b>גברים ונשים, גיל 60–70. בעיקר <span class="nw">ב-<bdi dir="ltr">head</bdi></span>. ציסטות עם הרחבה של <span class="nw">ה-<bdi dir="ltr">main duct</bdi></span> או של <span class="nw">ה-<bdi dir="ltr">branch ducts</bdi></span>. <b>קשורה לצינור.</b> <bdi>CEA</bdi> ועמילאז גבוהים</div>
+  <div class="box"><b class="t"><bdi>SPN</bdi></b>אישה צעירה, גיל 25–40. <bdi dir="ltr">body</bdi> <span class="nw">ו-<bdi dir="ltr">tail</bdi></span>. מסה עם דופן עבה, חלק מוצק בהיקף וחלק ציסטי במרכז. לא קשורה לצינור. <bdi>CEA</bdi> ועמילאז נמוכים</div>
   <div class="box b"><b class="t">שלוש שאלות שמסדרות הכול</b>1. היה פנקריאטיטיס? · 2. יש קשר לצינור? · 3. הנוזל מוציני (<bdi>CEA</bdi> גבוה)?</div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1395</bdi> (טבלה 92.5) · עמ׳ <bdi dir="ltr">1396</bdi></span><span>השוואה</span></div>
@@ -210,15 +215,15 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div>
    <div class="flow">
-    <div><b>CT או MRI</b><span>גודל, מיקום, מחיצות, הסתיידויות, גוש דופני, קוטר הצינור הראשי. <bdi>MRCP</bdi> מראה קשר לצינור ומאתר גושים</span></div>
+    <div><b>CT או MRI</b><span>גודל, מיקום, מחיצות, הסתיידויות, גוש דופני, קוטר <span class="nw">ה-<bdi dir="ltr">main duct</bdi></span>. <bdi>MRCP</bdi> מראה קשר לצינור ומאתר גושים</span></div>
     <div><b><bdi>EUS</bdi></b><span>מראה טוב יותר את הדופן, המחיצות והגושים. מאפשר שאיבה של נוזל לציטולוגיה ולבדיקות</span></div>
     <div><b>נוזל הציסטה</b><span><bdi>CEA</bdi> מעל 192 ננוגרם/מ״ל: ציסטה מוצינית. עמילאז גבוה: קשר לצינור (פסאודוציסטה, <bdi>IPMN</bdi>)</span></div>
    </div>
   </div>
   <div style="display:grid;gap:10px">
    <div class="box a"><b class="t">שתי מגבלות חשובות</b><bdi>CEA</bdi> גבוה מראה שהציסטה מוצינית, <b>לא</b> שיש בה סרטן פולשני. בדיקות נוזל נותנות אבחנה נכונה בעד 80% מהמקרים. בדיקות גנטיות בנוזל עדיין לא שיפרו את ההחלטה</div>
-   <div class="box n"><b class="t">פסאודוציסטה או גידול?</b>ב-<bdi>MCN</bdi> כ-20% מהמטופלים מספרים על פנקריאטיטיס בעבר. לכן היא מאובחנת בטעות כפסאודוציסטה. כשלא בטוחים: <bdi>EUS</bdi> עם דגימה לפני כל ניקוז</div>
-   <div class="box b"><b class="t">במחלקה השבוע</b>בקשו מהצוות מטופל/ת עם ציסטה בלבלב (גם מהמרפאה). קראו את ה-CT או ה-MRI, מלאו את טבלת ההבדלים וחפשו סימנים מדאיגים. הציגו לבכיר/ה: מעקב או ניתוח ולמה</div>
+   <div class="box n"><b class="t">פסאודוציסטה או גידול?</b><span class="nw">ב-<bdi>MCN</bdi></span> כ-20% מהמטופלים מספרים על פנקריאטיטיס בעבר. לכן היא מאובחנת בטעות כפסאודוציסטה. כשלא בטוחים: <bdi>EUS</bdi> עם דגימה לפני כל ניקוז</div>
+   <div class="box b"><b class="t">במחלקה השבוע</b>בקשו מהצוות מטופל/ת עם ציסטה <span class="nw">ב-<bdi dir="ltr">pancreas</bdi></span> (גם מהמרפאה). קראו את ה-CT או ה-MRI, מלאו את טבלת ההבדלים וחפשו סימנים מדאיגים. הציגו לבכיר/ה: מעקב או ניתוח ולמה</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1387, 1396–1399</bdi></span><span>בירור</span></div>
@@ -227,31 +232,31 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>6</b>בהדמיה</div>
  <h2>איך הציסטות נראות</h2>
  <div class="grid g3">
- <figure><img src="img/ipmn-bd-mri.jpg" alt="IPMN ב-MRI"><figcaption><bdi>IPMN</bdi> של ענף צדדי ב-MRI (<bdi>T2</bdi>): ציסטה קטנה ובהירה בגוף הלבלב (מסומנת) · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
- <figure><img src="img/scn-gross.jpg" alt="ציסטה סרוזית ב-CT"><figcaption>ציסטה סרוזית בראש הלבלב ב-CT (חץ): גוש מחולק לציסטות קטנות רבות · <bdi>Wikimedia Commons</bdi> (נחלת הכלל)</figcaption></figure>
+ <figure><img src="img/ipmn-bd-mri.jpg" alt="IPMN ב-MRI"><figcaption><bdi>IPMN</bdi> של ענף צדדי ב-MRI (<bdi>T2</bdi>): ציסטה קטנה ובהירה <span class="nw">ב-<bdi dir="ltr">pancreatic body</bdi></span> (מסומנת) · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ <figure><img src="img/scn-gross.jpg" alt="ציסטה סרוזית ב-CT"><figcaption>ציסטה סרוזית <span class="nw">ב-<bdi dir="ltr">pancreatic head</bdi></span> ב-CT (חץ): גוש מחולק לציסטות קטנות רבות · <bdi>Wikimedia Commons</bdi> (נחלת הכלל)</figcaption></figure>
  <figure><img src="img/pseudocyst-ct-stomach.jpg" alt="פסאודוציסטה"><figcaption>פסאודוציסטה: אוסף אחיד עם דופן, צמוד לקיבה, אחרי פנקריאטיטיס · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
- <div class="box b" style="margin-top:12px"><b class="t">מה לחפש בכל ציסטה</b>גודל · מחיצות · הסתיידות (כוכב מרכזי או קליפת ביצה) · גוש בדופן · קוטר הצינור הראשי · קשר לצינור</div>
+ <div class="box b" style="margin-top:12px"><b class="t">מה לחפש בכל ציסטה</b>גודל · מחיצות · הסתיידות (כוכב מרכזי או קליפת ביצה) · גוש בדופן · קוטר <span class="nw">ה-<bdi dir="ltr">main duct</bdi></span> · קשר לצינור</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1387, 1395–1398</bdi></span><span>תמונות</span></div>
 </div></section>
 
 
 <section class="s"><div class="card">
  <div class="kick"><b>7</b>לא מוציניים</div>
- <h2>ציסטה סרוזית ו-<bdi>SPN</bdi></h2>
+ <h2>ציסטה סרוזית <span class="nw">ו-<bdi>SPN</bdi></span></h2>
  <div class="grid">
   <div class="box b"><b class="t">ציסטה סרוזית (<bdi>SCN</bdi>)</b>
    <ul class="b sm">
     <li>כמעט תמיד שפירה. בדרך כלל <b>לא צריך מעקב</b></li>
-    <li>בראש הלבלב, במטופלים מבוגרים יותר. כאב לא ממוקד, לעיתים ירידה במשקל או צהבת</li>
+    <li><span class="nw">ב-<bdi dir="ltr">pancreatic head</bdi></span>, במטופלים מבוגרים יותר. כאב לא ממוקד, לעיתים ירידה במשקל או צהבת</li>
     <li>ציסטות קטנות רבות מלאות גליקוגן. הסתיידות מרכזית עם מחיצות שיוצאות ממנה ("כוכב") ב-10–20% מה-CT</li>
     <li><b>מתי כורתים:</b> כשיש תסמינים, כשהאבחנה לא בטוחה, או בגודל מעל 4 ס״מ או גדילה מהירה</li>
    </ul></div>
   <div class="box a"><b class="t">גידול פסאודופפילרי מוצק (<bdi>SPN</bdi>, גידול <bdi>Frantz</bdi>)</b>
    <ul class="b sm">
-    <li>אישה צעירה (25–35). גודל ממוצע 8 ס״מ, בגוף ובזנב</li>
+    <li>אישה צעירה (25–35). גודל ממוצע 8 ס״מ, <span class="nw">ב-<bdi dir="ltr">body</bdi></span> <span class="nw">וב-<bdi dir="ltr">tail</bdi></span></li>
     <li>לרוב מתגלה במקרה. עם תסמינים: גוש נמוש</li>
-    <li>מוטציה ב-<bdi>β-catenin</bdi>, בלי <bdi>KRAS</bdi>, <bdi>SMAD4</bdi> ו-<bdi>TP53</bdi></li>
+    <li>מוטציה <span class="nw">ב-<bdi>β-catenin</bdi></span>, בלי <bdi>KRAS</bdi>, <bdi>SMAD4</bdi> <span class="nw">ו-<bdi>TP53</bdi></span></li>
     <li>נחשב ממאיר: <b>תמיד כורתים</b>. אחרי כריתה שלמה 95.6% נשארים בלי מחלה</li>
     <li>6% מגיעים עם מחלה מתקדמת מקומית, 8% עם גרורות. מעקב שנתי לכל החיים</li>
    </ul></div>
@@ -266,7 +271,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <ul class="b">
     <li>ציסטה מוצינית <b>בלי</b> קשר לצינור. בדופן: <b>סטרומה דמוית שחלה</b>, לרוב חיובית לקולטני אסטרוגן ופרוגסטרון</li>
-    <li>נשים, בדרך כלל בעשור החמישי. בגוף ובזנב, רק לעיתים בראש</li>
+    <li>נשים, בדרך כלל בעשור החמישי. <span class="nw">ב-<bdi dir="ltr">body</bdi></span> <span class="nw">וב-<bdi dir="ltr">tail</bdi></span>, רק לעיתים <span class="nw">ב-<bdi dir="ltr">head</bdi></span></li>
     <li>עד 50% עם כאב לא ממוקד. כ-20% עם פנקריאטיטיס בעבר</li>
     <li><b>ב-CT:</b> ציסטה בודדת, לעיתים עם מחיצות דקות והסתיידות היקפית</li>
    </ul>
@@ -284,9 +289,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>9</b>מוציניים · 2</div>
  <h2><bdi>IPMN</bdi>: שלושה סוגים</h2>
  <div class="grid g3">
-  <div class="box b"><b class="t">ענף צדדי (<bdi>BD-IPMN</bdi>)</b>הרחבה של ענפים שמחוברים לצינור הראשי, בלי לערב אותו. בודדת או רב-מוקדית. כמה ציסטות יחד מחזקות את האבחנה. <b>רוב המטופלים לא צריכים ניתוח</b></div>
-  <div class="box r"><b class="t">צינור ראשי (<bdi>MD-IPMN</bdi>)</b>הרחבה של הצינור הראשי עם ריר סמיך. באנדוסקופיה: ריר יוצא מפפילה פתוחה ("פה של דג"). <b>30–50% כבר עם סרטן פולשני</b> באבחנה</div>
-  <div class="box a"><b class="t">מעורב</b>ענף צדדי שהתפשט לצינור הראשי. חשד: ציסטה של ענף עם הרחבה של הצינור במעלה הזרם. מתנהג כמו צינור ראשי: <b>30–50% פולשני</b></div>
+  <div class="box b"><b class="t">ענף צדדי (<bdi>BD-IPMN</bdi>)</b>הרחבה של <bdi dir="ltr">branch ducts</bdi> שמחוברים <span class="nw">ל-<bdi dir="ltr">main duct</bdi></span>, בלי לערב אותו. בודדת או רב-מוקדית. כמה ציסטות יחד מחזקות את האבחנה. <b>רוב המטופלים לא צריכים ניתוח</b></div>
+  <div class="box r"><b class="t"><bdi dir="ltr">main duct</bdi> (<bdi>MD-IPMN</bdi>)</b>הרחבה של <span class="nw">ה-<bdi dir="ltr">main duct</bdi></span> עם ריר סמיך. באנדוסקופיה: ריר יוצא <span class="nw">מ-<bdi dir="ltr">papilla</bdi></span> פתוחה ("פה של דג"). <b>30–50% כבר עם סרטן פולשני</b> באבחנה</div>
+  <div class="box a"><b class="t">מעורב</b>ענף צדדי שהתפשט <span class="nw">ל-<bdi dir="ltr">main duct</bdi></span>. חשד: ציסטה של ענף עם הרחבה של הצינור במעלה הזרם. מתנהג כמו <bdi dir="ltr">main duct</bdi>: <b>30–50% פולשני</b></div>
  </div>
  <div class="grid" style="margin-top:12px">
   <div>
@@ -295,20 +300,20 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li>דרגות: דיספלזיה נמוכה, בינונית או גבוהה, עם או בלי סרטן פולשני</li>
    </ul>
   </div>
-  <div class="box n"><b class="t">פחות מ-10% מסרטני הלבלב</b>מתפתחים מ-<bdi>IPMN</bdi>. רובם המכריע מתחילים בנגעים מיקרוסקופיים בצינורות (<bdi>PanIN</bdi>)</div>
+  <div class="box n"><b class="t">פחות מ-10% מסרטני הלבלב</b>מתפתחים <span class="nw">מ-<bdi>IPMN</bdi></span>. רובם המכריע מתחילים בנגעים מיקרוסקופיים בצינורות (<bdi>PanIN</bdi>)</div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1397–1399</bdi> · פרק 93 עמ׳ <bdi dir="ltr">1403</bdi></span><span><bdi>IPMN</bdi></span></div>
 </div></section>
 
 <section class="s"><div class="card">
- <div class="kick"><b>10</b>ההחלטה ב-<bdi>IPMN</bdi></div>
+ <div class="kick"><b>10</b>ההחלטה <span class="nw">ב-<bdi>IPMN</bdi></span></div>
  <h2>סימנים מדאיגים וסימני סיכון גבוה</h2>
  <div class="grid">
   <div class="box a"><b class="t">סימנים מדאיגים · <bdi>EUS</bdi> לכולם</b>
    <ul class="b sm">
     <li>ציסטה של ענף צדדי מעל 3 ס״מ</li>
     <li>גוש בדופן שנצבע, קטן מ-5 מ״מ · דופן מעובה ונצבעת</li>
-    <li>צינור ראשי 5–9 מ״מ · שינוי חד בקוטר הצינור עם אטרופיה מאחוריו</li>
+    <li><bdi dir="ltr">main duct</bdi> 5–9 מ״מ · שינוי חד בקוטר הצינור עם אטרופיה מאחוריו</li>
     <li>בלוטות מוגדלות</li>
     <li>פנקריאטיטיס · <bdi>CA 19-9</bdi> מוגבר · גדילה של יותר מ-5 מ״מ בשנתיים</li>
    </ul></div>
@@ -316,11 +321,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <ul class="b sm">
     <li>צהבת</li>
     <li>גוש בדופן שנצבע, 5 מ״מ ומעלה</li>
-    <li>צינור ראשי מעל 1 ס״מ</li>
+    <li><bdi dir="ltr">main duct</bdi> מעל 1 ס״מ</li>
    </ul>
    <p style="margin:10px 0 0;font-size:14.5px">כל מטופל עם סיכון גבוה או תסמינים: <b>ניתוח</b>, אם הוא כשיר</p></div>
  </div>
- <div class="box n" style="margin-top:12px"><b class="t">ההנחיות האירופיות (התוויות יחסיות לניתוח)</b>ציסטה מעל 4 ס״מ, גדילה של 5 מ״מ בשנה ומעלה, <bdi>CA 19-9</bdi> מעל 37, צינור ראשי 5–10 מ״מ, תסמינים (פנקריאטיטיס, סוכרת חדשה)</div>
+ <div class="box n" style="margin-top:12px"><b class="t">ההנחיות האירופיות (התוויות יחסיות לניתוח)</b>ציסטה מעל 4 ס״מ, גדילה של 5 מ״מ בשנה ומעלה, <bdi>CA 19-9</bdi> מעל 37, <bdi dir="ltr">main duct</bdi> 5–10 מ״מ, תסמינים (פנקריאטיטיס, סוכרת חדשה)</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1397</bdi> (טבלה 92.6)</span><span>החלטה</span></div>
 </div></section>
 
@@ -328,7 +333,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>11</b>מעקב או ניתוח</div>
  <h2>איך מגיעים להחלטה</h2>
  <div class="flow">
-  <div><b>צינור ראשי או מעורב</b><span>כריתה לכל מי שכשיר לניתוח: הסיכון לממאירות גבוה</span></div>
+  <div><b><bdi dir="ltr">main duct</bdi> או מעורב</b><span>כריתה לכל מי שכשיר לניתוח: הסיכון לממאירות גבוה</span></div>
   <div><b>ענף צדדי · סיכון גבוה</b><span>כריתה</span></div>
   <div><b>ענף צדדי · סימן מדאיג</b><span><bdi>EUS</bdi>. לפי התוצאה: ניתוח או מעקב צמוד</span></div>
   <div><b>ענף צדדי · בלי סימנים</b><span>מעקב הדמייתי. בממוצע: סיכון לסרטן פולשני של 10–15% בסך הכול, כ-2–3% בשנה</span></div>
@@ -346,16 +351,16 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div>
    <ul class="b sm">
-    <li><b>ענף צדדי:</b> כורתים את הנגע הבעייתי. הכריתה לפי המיקום: וויפל בראש, כריתה דיסטלית בגוף ובזנב</li>
-    <li><b>צינור ראשי:</b> קשה לדעת כמה מהצינור מעורב. בלי גושים לאורך כל הצינור: עדיפה כריתה מצד ימין (וויפל) עם <b>חתך קפוא</b> מהשוליים בצוואר</li>
+    <li><b>ענף צדדי:</b> כורתים את הנגע הבעייתי. הכריתה לפי המיקום: וויפל <span class="nw">ב-<bdi dir="ltr">head</bdi></span>, כריתה דיסטלית <span class="nw">ב-<bdi dir="ltr">body</bdi></span> <span class="nw">וב-<bdi dir="ltr">tail</bdi></span></li>
+    <li><b><bdi dir="ltr">main duct</bdi>:</b> קשה לדעת כמה מהצינור מעורב. בלי גושים לאורך כל הצינור: עדיפה כריתה מצד ימין (וויפל) עם <b>חתך קפוא</b> מהשוליים <span class="nw">ב-<bdi dir="ltr">neck</bdi></span></li>
     <li>דיספלזיה גבוהה או סרטן בשוליים: הרחבה לכריתת לבלב מלאה. כ-<b>15%</b> מהמטופלים יעברו בסוף כריתה מלאה. מדברים איתם על כך לפני הניתוח</li>
     <li>חשד לדיספלזיה גבוהה או סרטן: כריתה אונקולוגית מלאה עם בלוטות, בכל סוג ציסטה</li>
    </ul>
   </div>
   <div>
    <div class="num" style="grid-template-columns:1fr 1fr">
-    <div><b>77%</b><span>הישרדות ל-5 שנים ב-<bdi>IPMN</bdi> לא פולשני</span></div>
-    <div><b>43%</b><span>הישרדות ל-5 שנים ב-<bdi>IPMN</bdi> פולשני</span></div>
+    <div><b>77%</b><span>הישרדות ל-5 שנים <span class="nw">ב-<bdi>IPMN</bdi></span> לא פולשני</span></div>
+    <div><b>43%</b><span>הישרדות ל-5 שנים <span class="nw">ב-<bdi>IPMN</bdi></span> פולשני</span></div>
    </div>
    <div class="box a"><b class="t">זעיר-פולשני?</b>מטופלים עם ציסטות צעירים יותר ונרפאים בניתוח. לכן איכות החיים חשובה. כריתה דיסטלית זעיר-פולשנית מקובלת. בוויפל לפרוסקופי, <bdi>LEOPARD-2</bdi> נעצר בגלל תמותה של 10% לעומת 2%</div>
   </div>
@@ -379,8 +384,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   </div>
   <div class="flow">
    <div><b>בלי תסמינים</b><span>מעקב</span></div>
-   <div><b>עם תסמינים או סיבוכים</b><span>ניקוז, לרוב אנדוסקופי (<bdi>EUS</bdi>) דרך הקיבה או התריסריון</span></div>
-   <div><b>כשאי אפשר אנדוסקופית</b><span>ניקוז בניתוח לקיבה, לתריסריון או ללולאת <bdi>Roux-en-Y</bdi></span></div>
+   <div><b>עם תסמינים או סיבוכים</b><span>ניקוז, לרוב אנדוסקופי (<bdi>EUS</bdi>) דרך הקיבה או <span class="nw">ה-<bdi dir="ltr">duodenum</bdi></span></span></div>
+   <div><b>כשאי אפשר אנדוסקופית</b><span>ניקוז בניתוח לקיבה, <span class="nw">ל-<bdi dir="ltr">duodenum</bdi></span> או ללולאת <bdi>Roux-en-Y</bdi></span></div>
    <div><b>לא בטוחים שזו פסאודוציסטה?</b><span>אבחנה לפני ניקוז. ניקוז של גידול ציסטי הוא טעות</span></div>
   </div>
  </div>
@@ -391,8 +396,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>14</b>מה חדש בתחום · 2024</div>
  <h2>מחקרים שכדאי להכיר</h2>
  <div class="grid g3">
-  <div class="study"><div class="y"><bdi>Pancreatology</bdi> 2024 · הנחיות בינלאומיות</div><b>הנחיות קיוטו ל-<bdi>IPMN</bdi></b>
-   <p>מחליפות את הנחיות פוקואוקה 2017. לראשונה מבוססות על סקירות שיטתיות. מוסיפות ממצאי <bdi>EUS</bdi> וציטולוגיה להגדרת הסימנים. בציסטה קטנה שלא השתנתה 5 שנים: אפשר <b>להפסיק מעקב</b>, או להמשיך בגלל הסיכון לסרטן נפרד בלבלב</p>
+  <div class="study"><div class="y"><bdi>Pancreatology</bdi> 2024 · הנחיות בינלאומיות</div><b>הנחיות קיוטו <span class="nw">ל-<bdi>IPMN</bdi></span></b>
+   <p>מחליפות את הנחיות פוקואוקה 2017. לראשונה מבוססות על סקירות שיטתיות. מוסיפות ממצאי <bdi>EUS</bdi> וציטולוגיה להגדרת הסימנים. בציסטה קטנה שלא השתנתה 5 שנים: אפשר <b>להפסיק מעקב</b>, או להמשיך בגלל הסיכון לסרטן נפרד <span class="nw">ב-<bdi dir="ltr">pancreas</bdi></span></p>
    <small>Ohtsuka T et al. Pancreatology 2024;24(2):255-70</small></div>
   <div class="study"><div class="y"><bdi>JAMA Surg</bdi> 2024 · 5 מרכזים</div><b>כל כמה זמן לעקוב?</b>
    <p>3,656 מטופלים עם ענף צדדי, מעקב ממוצע 7 שנים. ממאירות בניתוח ב-4.7%. ציסטה מתחת ל-2 ס״מ, בלי סימנים ובלי גדילה במשך 5 שנים: <b>אף מקרה של ממאירות</b> אחר כך. מרווחים מוצעים: 1.5 שנים, שנה או חצי שנה לפי הגודל</p>
@@ -410,8 +415,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <ol class="obj">
   <li>לפני הכול: האם היה פנקריאטיטיס? פסאודוציסטה אינה גידול, אבל אסור לנקז גידול בטעות</li>
   <li><bdi>CEA</bdi> בנוזל מעל 192 אומר מוציני, לא פולשני</li>
-  <li>ציסטה סרוזית: לרוב משאירים. <bdi>MCN</bdi> ו-<bdi>SPN</bdi>: כורתים</li>
-  <li><bdi>IPMN</bdi> של הצינור הראשי: כורתים. ענף צדדי: לפי סימנים מדאיגים וסימני סיכון גבוה</li>
+  <li>ציסטה סרוזית: לרוב משאירים. <bdi>MCN</bdi> <span class="nw">ו-<bdi>SPN</bdi></span>: כורתים</li>
+  <li><bdi>IPMN</bdi> של <span class="nw">ה-<bdi dir="ltr">main duct</bdi></span>: כורתים. ענף צדדי: לפי סימנים מדאיגים וסימני סיכון גבוה</li>
   <li>צהבת, גוש בדופן מעל 5 מ״מ או צינור מעל 1 ס״מ: ניתוח</li>
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 92 <bdi>Exocrine Pancreas</bdi>, <bdi>Cystic Neoplasms of the Pancreas</bdi> (עמ׳ <bdi dir="ltr">1394–1400</bdi>) ופסאודוציסטה (עמ׳ <bdi dir="ltr">1387</bdi>)</div>

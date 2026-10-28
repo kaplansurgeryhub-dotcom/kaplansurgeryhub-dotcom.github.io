@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>בדיקת שד ובדיקה רקטלית · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,6 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -97,6 +98,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -114,6 +116,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -134,7 +139,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>1</b>מטרות הלמידה</div>
  <h2>בסוף הסדנה תדעו</h2>
  <ol class="obj">
-  <li>לתאר את הניקוז הלימפטי של השד ואת רמות בלוטות בית השחי</li>
+  <li>לתאר את הניקוז הלימפטי של השד ואת הרמות של <span class="nw">ה-<bdi>axillary nodes</bdi></span></li>
   <li>לקחת אנמנזה ממוקדת של תלונה בשד ושל תלונה אנורקטלית</li>
   <li>לבצע בדיקת שד מלאה: הסתכלות בישיבה, בלוטות לימפה ומישוש בשכיבה</li>
   <li>לתאר גוש בשד ולזהות סימני עור ופטמה מחשידים</li>
@@ -147,7 +152,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>2</b>השד · אנטומיה · אינטראקטיבי</div>
  <h2>לאן מתנקזת הלימפה?</h2>
- <div class="hotw"><div class="hoti"><img src="img/Gray607.png" alt="כלי הלימפה של השד ובלוטות בית השחי"><svg viewBox="0 0 600 467" preserveAspectRatio="none" style="--lw:6;--bf:15px">
+ <div class="hotw"><div class="hoti"><img src="img/Gray607.png" alt="כלי הלימפה של השד ו-axillary nodes"><svg viewBox="0 0 600 467" preserveAspectRatio="none" style="--lw:6;--bf:15px">
    <path class="hz" data-hz="sap" d="M427,326 C427,330.8 425.4,336.3 422.8,340.5 C420.3,344.7 416,348.7 411.5,351.1 C407,353.5 401.2,355 396,355 C390.8,355 385,353.5 380.5,351.1 C376,348.7 371.7,344.7 369.2,340.5 C366.6,336.3 365,330.8 365,326 C365,321.2 366.6,315.7 369.2,311.5 C371.7,307.3 376,303.3 380.5,300.9 C385,298.5 390.8,297 396,297 C401.2,297 407,298.5 411.5,300.9 C416,303.3 420.3,307.3 422.8,311.5 C425.4,315.7 427,321.2 427,326 Z" style="--c:#A3402E"/>
    <path class="hz" data-hz="ax" d="M188,152 C193.2,149.2 205.5,148.3 215,148 C224.5,147.7 235,150 245,150 C255,150 266.2,148 275,148 C283.8,148 293.5,147.2 298,150 C302.5,152.8 302.3,160 302,165 C301.7,170 298.3,174.2 296,180 C293.7,185.8 289,192.5 288,200 C287,207.5 290.5,216.7 290,225 C289.5,233.3 286.7,241.7 285,250 C283.3,258.3 281.8,266.7 280,275 C278.2,283.3 275.2,290.8 274,300 C272.8,309.2 274,322 273,330 C272,338 270.8,345 268,348 C265.2,351 258.3,352.7 256,348 C253.7,343.3 253.7,328.8 254,320 C254.3,311.2 258.7,304.2 258,295 C257.3,285.8 253,274.2 250,265 C247,255.8 243.3,248.3 240,240 C236.7,231.7 233,222.5 230,215 C227,207.5 226.2,200.5 222,195 C217.8,189.5 210.3,184.8 205,182 C199.7,179.2 193.5,180.8 190,178 C186.5,175.2 184.3,169.3 184,165 C183.7,160.7 182.8,154.8 188,152 Z" style="--c:#2F6FA8"/>
    <path class="hz" data-hz="apx" d="M300,148 C302.3,144.2 311.3,143.2 318,142 C324.7,140.8 333,140.3 340,141 C347,141.7 354.5,144 360,146 C365.5,148 370.8,149.7 373,153 C375.2,156.3 375.2,162.7 373,166 C370.8,169.3 365.5,172.2 360,173 C354.5,173.8 346.7,171.7 340,171 C333.3,170.3 326,170 320,169 C314,168 307.3,168.5 304,165 C300.7,161.5 297.7,151.8 300,148 Z" style="--c:#7A5BD6"/>
@@ -158,12 +163,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <g class="hzb" style="--c:#C9893F"><circle cx="492" cy="400" r="12.8"/><text x="492" y="400">4</text></g>
   </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="sap" hidden><b>1 · מתחת לפטמה ולעטרה</b><p>מקלעת לימפה מתחת לפטמה (<bdi>Sappey</bdi>). הלימפה זורמת מהעור למקלעת הזו ומשם לתוך רקמת השד. לכן בודקים תמיד גם את הרקמה שמתחת לפטמה</p></div>
-  <div class="hzi" data-hzi="ax" hidden><b>2 · בית השחי · רמות <bdi>I–II</bdi></b><p><bdi dir="ltr">70–80%</bdi> מהלימפה של השד מתנקזת לבית השחי. רמה <bdi>I</bdi> לטרלית לשריר החזה הקטן, רמה <bdi>II</bdi> מאחוריו (כולל בלוטות <bdi>Rotter</bdi> בין שרירי החזה). מוששים בישיבה, כשהבודק תומך בזרוע</p></div>
-  <div class="hzi" data-hzi="apx" hidden><b>3 · רמה <bdi>III</bdi> · קודקוד בית השחי</b><p>מדיאלית לשריר החזה הקטן, כולל הבלוטות שמתחת לבריח. מכאן הלימפה ממשיכה לבלוטות שמעל הבריח, שכבר נחשבות מחוץ לבית השחי. מוששים גם מעל ומתחת לבריח</p></div>
-  <div class="hzi" data-hzi="im" hidden><b>4 · לכיוון הבלוטות של העורק החזי הפנימי</b><p>ניקוז עיקרי ב-<bdi dir="ltr">2–3%</bdi> מהמטופלות. ניקוז משני (יחד עם בית השחי) בכ-<bdi dir="ltr">20%</bdi>. בלוטות אלה לא מוששות בבדיקה</p></div>
+  <div class="hzi" data-hzi="sap" hidden><b>1 · מתחת לפטמה <span class="nw">ול-<bdi>areola</bdi></span></b><p><span class="nw">ה-<bdi>subareolar plexus</bdi></span> (<bdi>Sappey</bdi>). הלימפה זורמת מהעור למקלעת הזו ומשם לתוך רקמת השד. לכן בודקים תמיד גם את הרקמה שמתחת לפטמה</p></div>
+  <div class="hzi" data-hzi="ax" hidden><b>2 · <span class="nw">ה-<bdi>axilla</bdi></span> · רמות <bdi>I–II</bdi></b><p><bdi dir="ltr">70–80%</bdi> מהלימפה של השד מתנקזת <span class="nw">ל-<bdi>axilla</bdi></span>. רמה <bdi>I</bdi> לטרלית <span class="nw">ל-<bdi>pectoralis minor</bdi></span>, רמה <bdi>II</bdi> מאחוריו (כולל <bdi>Rotter's nodes</bdi> בין <bdi>pectoralis major</bdi> <span class="nw">ל-<bdi>minor</bdi></span>). מוששים בישיבה, כשהבודק תומך בזרוע</p></div>
+  <div class="hzi" data-hzi="apx" hidden><b>3 · רמה <bdi>III</bdi> · <bdi>axillary apex</bdi></b><p>מדיאלית <span class="nw">ל-<bdi>pectoralis minor</bdi></span>, כולל <span class="nw">ה-<bdi>infraclavicular nodes</bdi></span>. מכאן הלימפה ממשיכה <span class="nw">ל-<bdi>supraclavicular nodes</bdi></span>, שכבר נחשבות מחוץ <span class="nw">ל-<bdi>axilla</bdi></span>. מוששים גם מעל ומתחת <span class="nw">ל-<bdi>clavicle</bdi></span></p></div>
+  <div class="hzi" data-hzi="im" hidden><b>4 · לכיוון <span class="nw">ה-<bdi>internal mammary nodes</bdi></span></b><p>ניקוז עיקרי <span class="nw">ב-<bdi dir="ltr">2–3%</bdi></span> מהמטופלות. ניקוז משני (יחד עם <span class="nw">ה-<bdi>axilla</bdi></span>) <span class="nw">בכ-<bdi dir="ltr">20%</bdi></span>. בלוטות אלה לא מוששות בבדיקה</p></div>
  </div></div>
- <div class="box n" style="margin-top:10px"><b class="t">רצועות <bdi>Cooper</bdi></b>מחברות את קיר החזה לעור. גידול שמושך אותן גורם לשקע בעור. בצקת של העור נותנת מראה "קליפת תפוז" (<bdi>peau d'orange</bdi>)</div>
+ <div class="box n" style="margin-top:10px"><b class="t"><bdi>Cooper's ligaments</bdi></b>מחברות את קיר החזה לעור. גידול שמושך אותן גורם לשקע בעור. בצקת של העור נותנת מראה "קליפת תפוז" (<bdi>peau d'orange</bdi>)</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 68 עמ׳ <bdi dir="ltr">819, 821</bdi></span><span>איור: <bdi>Gray's Anatomy</bdi>, איור 607 (נחלת הכלל)</span></div>
 </div></section>
 
@@ -185,7 +190,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <ul class="b sm">
     <li>גיל ומוצא</li>
     <li><b>חשיפה לאסטרוגן:</b> גיל הווסת הראשונה, גיל המעבר, הריונות וגיל הלידה הראשונה, הנקה, טיפול הורמונלי וגלולות</li>
-    <li>כריתת רחם: האם הוצאו גם השחלות</li>
+    <li>כריתת רחם: האם הוצאו גם <span class="nw">ה-<bdi>ovaries</bdi></span></li>
     <li><b>משפחה:</b> מוטציות ידועות, סרטן שד ושחלות, הגיל בזמן האבחנה</li>
     <li>הקרנות לבית החזה בגיל צעיר</li>
    </ul>
@@ -200,8 +205,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div class="flow">
    <div><b>1 · ישיבה · הסתכלות</b><span>גושים, אסימטריה, שינויים בעור: שקע, חדירה, כיב. הפטמות: משיכה פנימה, היפוך, קילוף</span></div>
-   <div><b>2 · ידיים למעלה · כיווץ שרירי החזה</b><span>מדגישים אסימטריה ושקעים. תאורה מהצד חושפת שקע עדין</span></div>
-   <div><b>3 · ישיבה · בלוטות</b><span>הבודק תומך בזרוע וממשש את בית השחי. אחר כך מעל ומתחת לבריח</span></div>
+   <div><b>2 · ידיים למעלה · כיווץ <span class="nw">ה-<bdi>pectoralis</bdi></span></b><span>מדגישים אסימטריה ושקעים. תאורה מהצד חושפת שקע עדין</span></div>
+   <div><b>3 · ישיבה · בלוטות</b><span>הבודק תומך בזרוע וממשש את <span class="nw">ה-<bdi>axilla</bdi></span>. אחר כך מעל ומתחת <span class="nw">ל-<bdi>clavicle</bdi></span></span></div>
    <div><b>4 · שכיבה · מישוש</b><span>על משטח קשיח, היד מעל הראש. לוחצים את הרקמה כלפי קיר החזה ועוברים בשיטתיות על כל רבע ועל הרקמה שמתחת לפטמה</span></div>
   </div>
   <figure><img src="img/breast-exam-nci.jpg" alt="שישה שלבים של בדיקת שד"><figcaption>השלבים: הסתכלות עם ידיים למטה, למעלה ועל המותניים, מישוש בעמידה ומישוש בשכיבה עם היד מעל הראש · <bdi>National Cancer Institute</bdi> 1984 (נחלת הכלל)</figcaption></figure>
@@ -219,7 +224,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>שפיר</b> (פיברואדנומה, ציסטה): יכול להיות קשה, אבל בדרך כלל תחום היטב וזז בקלות</li>
     <li><b>סרטן:</b> קשה, פחות תחום. כשמזיזים אותו הוא "גורר" את הרקמה סביבו</li>
     <li>רגישות למגע כמעט אף פעם לא עוזרת לאבחנה</li>
-    <li><b>פטמה:</b> מחלת <bdi>Paget</bdi> מתחילה בפטמה. אקזמה מתחילה בעטרה. משיכה חד-צדדית חדשה (שבועות-חודשים) מחשידה. היפוך דו-צדדי ותיק בדרך כלל שפיר</li>
+    <li><b>פטמה:</b> מחלת <bdi>Paget</bdi> מתחילה בפטמה. אקזמה מתחילה <span class="nw">ב-<bdi>areola</bdi></span>. משיכה חד-צדדית חדשה (שבועות-חודשים) מחשידה. היפוך דו-צדדי ותיק בדרך כלל שפיר</li>
     <li><b>הפרשה:</b> מצד אחד או משניהם? מצינור אחד או מכמה? דמית? מצינור אחד ובלי גוש: בדרך כלל פפילומה (<bdi dir="ltr">60–80%</bdi>)</li>
    </ul>
    <div class="box a" style="margin-top:10px"><b class="t">שקע בעור או משיכת הפטמה</b>כשמחפשים אותם בקפידה, הם סימן רגיש וסגולי לסרטן מתחת</div>
@@ -230,50 +235,50 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 </div></section>
 
 <section class="s"><div class="card">
- <div class="kick"><b>6</b>פי הטבעת · אנטומיה ואנמנזה</div>
+ <div class="kick"><b>6</b><span class="nw">ה-<bdi>anus</bdi></span> · אנטומיה ואנמנזה</div>
  <h2>למה זה כל כך רגיש?</h2>
  <div class="grid f">
   <div>
    <ul class="b sm">
-    <li><b>התעלה האנאלית:</b> כ-4 ס״מ, מפתח פי הטבעת ועד הטבעת האנורקטלית</li>
-    <li><b>הקו המשונן (<bdi>dentate</bdi>):</b> באמצע התעלה. מתחתיו עצבוב סומטי (כואב), מעליו עצבוב אוטונומי</li>
+    <li><b><span class="nw">ה-<bdi>anal canal</bdi></span>:</b> כ-4 ס״מ, <span class="nw">מה-<bdi>anal verge</bdi></span> ועד <span class="nw">ה-<bdi>anorectal ring</bdi></span></li>
+    <li><b><span class="nw">ה-<bdi>dentate line</bdi></span>:</b> באמצע התעלה. מתחתיו עצבוב סומטי (כואב), מעליו עצבוב אוטונומי</li>
     <li><b>כריות הטחורים:</b> בדרך כלל שמאל לטרלי, ימין קדמי וימין אחורי</li>
-    <li><b>השוער הפנימי</b> (שריר חלק) <b>והחיצוני</b> (שריר רצוני). <bdi>Puborectalis</bdi> הוא "המתלה" סביב הרקטום</li>
+    <li><b><span class="nw">ה-<bdi>internal anal sphincter</bdi></span></b> (שריר חלק) <b><span class="nw">וה-<bdi>external anal sphincter</bdi></span></b> (שריר רצוני). <bdi>Puborectalis</bdi> הוא "המתלה" סביב <span class="nw">ה-<bdi>rectum</bdi></span></li>
    </ul>
    <h3 style="margin-top:12px">האנמנזה מובילה לאבחנה</h3>
    <ul class="b sm">
     <li>כאב חד "כמו סכין" ביציאה ועווית אחריה: <b>פיסורה</b></li>
-    <li>כאב פתאומי עם גוש קשה בפי הטבעת: <b>טחור חיצוני עם קריש</b></li>
+    <li>כאב פתאומי עם גוש קשה <span class="nw">ב-<bdi>anus</bdi></span>: <b>טחור חיצוני עם קריש</b></li>
     <li>כאב שמחמיר עם חום: <b>מורסה</b></li>
     <li>כאב גם בלי יציאה, במיוחד עם דימום: לחשוב על <b>ממאירות</b></li>
     <li>דימום: צבע, כמות, קשר ליציאה, על הנייר או מעורב בצואה. הרגלי יציאות, בריחה, ניתוחים קודמים, הקרנות, לידות</li>
    </ul>
   </div>
-  <figure><img src="img/hemorrhoids-diagram.png" alt="איור של טחורים פנימיים וחיצוניים בתעלה האנאלית" style="max-height:44vh"><figcaption>התעלה האנאלית בחתך: השוער הפנימי והחיצוני, האנודרם והקו המשונן. טחור פנימי (מעליו, כאן צונח) וטחור חיצוני (מתחתיו) · <bdi>WikipedianProlific &amp; Mikael Häggström</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/hemorrhoids-diagram.png" alt="איור של טחורים פנימיים וחיצוניים ב-anal canal" style="max-height:44vh"><figcaption><span class="nw">ה-<bdi>anal canal</bdi></span> בחתך: <bdi>internal & external sphincter, anoderm, dentate line</bdi>. טחור פנימי (מעל <span class="nw">ה-<bdi>dentate line</bdi></span>, כאן צונח) וטחור חיצוני (מתחתיו) · <bdi>WikipedianProlific &amp; Mikael Häggström</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1515, 1517</bdi></span><span>אנטומיה ואנמנזה</span></div>
 </div></section>
 
 <section class="s"><div class="card">
- <div class="kick"><b>7</b>פי הטבעת · צעד אחר צעד</div>
+ <div class="kick"><b>7</b><span class="nw">ה-<bdi>anus</bdi></span> · צעד אחר צעד</div>
  <h2>הבדיקה הרקטלית</h2>
  <div class="grid f">
   <div class="flow">
    <div><b>1 · הכנה</b><span>מסבירים, מוודאים שהמטופל מסכים. <b>מלווה בחדר לאורך כל הבדיקה</b>, בלי קשר למין המטופל והבודק</span></div>
    <div><b>2 · תנוחה</b><span>שכיבה על הצד השמאלי, או "אולר" על הבטן בשולחן פרוקטולוגי</span></div>
-   <div><b>3 · הסתכלות</b><span>מפשקים בעדינות את העכוזים. עור, שולי פי הטבעת. "לכווץ ולשחרר", "ללחוץ כמו ביציאה": צניחה?</span></div>
-   <div><b>4 · מישוש מבחוץ</b><span>סביב פי הטבעת: רגישות. נותן למטופל זמן להתכונן</span></div>
-   <div><b>5 · אצבע</b><span>תמיד עם חומר סיכה. אורך התעלה, עצם העצה והזנב, שרירי רצפת האגן. ערמונית בגבר, רקטוצלה באישה. <b>סריקה של התעלה עצמה</b> עם הפרק הראשון של האצבע</span></div>
-   <div><b>6 · לפני סיום</b><span>"לכווץ" (כוח השוער), "ללחוץ" (השרירים צריכים להירפות)</span></div>
-   <div><b>7 · אנוסקופיה</b><span>עם חומר סיכה ומוביל, מוציאים את המוביל ומסובבים: הקו המשונן, טחורים, רירית הרקטום</span></div>
+   <div><b>3 · הסתכלות</b><span>מפשקים בעדינות את העכוזים. עור, <span class="nw">ה-<bdi>anal verge</bdi></span>. "לכווץ ולשחרר", "ללחוץ כמו ביציאה": צניחה?</span></div>
+   <div><b>4 · מישוש מבחוץ</b><span>סביב <span class="nw">ה-<bdi>anus</bdi></span>: רגישות. נותן למטופל זמן להתכונן</span></div>
+   <div><b>5 · אצבע</b><span>תמיד עם חומר סיכה. אורך התעלה, <span class="nw">ה-<bdi>sacrum, coccyx</bdi></span> <span class="nw">וה-<bdi>pelvic floor</bdi></span>. <span class="nw">ה-<bdi>prostate</bdi></span> בגבר, רקטוצלה באישה. <b>סריקה של התעלה עצמה</b> עם הפרק הראשון של האצבע</span></div>
+   <div><b>6 · לפני סיום</b><span>"לכווץ" (כוח <span class="nw">ה-<bdi>sphincter</bdi></span>), "ללחוץ" (השרירים צריכים להירפות)</span></div>
+   <div><b>7 · אנוסקופיה</b><span>עם חומר סיכה ומוביל, מוציאים את המוביל ומסובבים: <span class="nw">ה-<bdi>dentate line</bdi></span>, טחורים, רירית <span class="nw">ה-<bdi>rectum</bdi></span></span></div>
   </div>
-  <figure><img src="img/dre-nci.jpg" alt="בדיקה רקטלית במבט מהצד"><figcaption>בדיקה רקטלית במבט מהצד: האצבע בכפפה ועם חומר סיכה ממששת את הערמונית דרך הדופן הקדמית של הרקטום · <bdi>National Cancer Institute</bdi> (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/dre-nci.jpg" alt="בדיקה רקטלית במבט מהצד"><figcaption>בדיקה רקטלית במבט מהצד: האצבע בכפפה ועם חומר סיכה ממששת את <span class="nw">ה-<bdi>prostate</bdi></span> דרך הדופן הקדמית של <span class="nw">ה-<bdi>rectum</bdi></span> · <bdi>National Cancer Institute</bdi> (נחלת הכלל)</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1517</bdi></span><span>בדיקה</span></div>
 </div></section>
 
 <section class="s"><div class="card">
- <div class="kick"><b>8</b>פי הטבעת · מה מוצאים</div>
+ <div class="kick"><b>8</b><span class="nw">ה-<bdi>anus</bdi></span> · מה מוצאים</div>
  <h2>טחורים ופיסורה</h2>
  <div class="grid">
   <div>
@@ -286,7 +291,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    </div>
   </div>
   <div style="display:grid;gap:10px;align-content:start">
-   <div class="box"><b class="t">פיסורה אנאלית</b>קרע אליפטי מפי הטבעת לכיוון הקו המשונן. השכיחה ביותר <b>בקו האמצע האחורי</b> (<bdi dir="ltr">75%</bdi>). גם קדמית, בעיקר בנשים. כרונית (מעל <bdi dir="ltr">6–8</bdi> שבועות): סיבי השוער בבסיס, פפילה מוגדלת ותג עור</div>
+   <div class="box"><b class="t">פיסורה אנאלית</b>קרע אליפטי <span class="nw">מה-<bdi>anal verge</bdi></span> לכיוון <span class="nw">ה-<bdi>dentate line</bdi></span>. השכיחה ביותר <b>בקו האמצע האחורי</b> (<bdi dir="ltr">75%</bdi>). גם קדמית, בעיקר בנשים. כרונית (מעל <bdi dir="ltr">6–8</bdi> שבועות): סיבי <span class="nw">ה-<bdi>internal sphincter</bdi></span> בבסיס, פפילה מוגדלת ותג עור</div>
    <div class="box r"><b class="t">פיסורה שלא בקו האמצע</b>לא טיפוסית: לחשוב על קרוהן, סרטן אנאלי, שחפת, <bdi>HIV</bdi>, עגבת, הרפס, לוקמיה</div>
    <div class="box a"><b class="t">מתי לא להכניס אצבע</b>חשד לפיסורה וכאב קשה: אפשר לדחות אצבע ואנוסקופ. אם האבחנה לא ברורה: בדיקה בהרדמה. עד שבודקים את התעלה, ההערכה לא שלמה</div>
   </div>
@@ -302,10 +307,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <h3>טעויות נפוצות</h3>
    <ul class="b sm">
     <li>מישוש שד בישיבה בלבד, בלי שכיבה ובלי יד מעל הראש</li>
-    <li>לשכוח את בית השחי, את אזור הבריח או את הרקמה שמתחת לפטמה</li>
+    <li>לשכוח את <span class="nw">ה-<bdi>axilla</bdi></span>, את אזור <span class="nw">ה-<bdi>clavicle</bdi></span> או את הרקמה שמתחת לפטמה</li>
     <li>"יש גוש" בלי גודל, מיקום לפי שעון וקיבוע</li>
     <li>בדיקה רקטלית בלי מלווה או בלי הסבר</li>
-    <li>למשש רק את הרקטום ולדלג על התעלה האנאלית</li>
+    <li>למשש רק את <span class="nw">ה-<bdi>rectum</bdi></span> ולדלג על <span class="nw">ה-<bdi>anal canal</bdi></span></li>
     <li>להתעקש על אצבע במטופל עם פיסורה כואבת</li>
    </ul>
    <div class="box b" style="margin-top:12px"><b class="t">במחלקה השבוע</b>תרגלו את שתי הבדיקות על המודלים עד שהסדר טבעי. אחר כך הצטרפו לבדיקה של מטופל אמיתי (במרפאת שד או בבדיקה רקטלית במיון), תמיד עם בכיר/ה ומלווה</div>
@@ -314,12 +319,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <h3>רשימת בדיקה</h3>
    <ul class="b sm">
     <li>☐ הצגה עצמית, הסבר, הסכמה, מלווה</li>
-    <li>☐ שד: הסתכלות בישיבה, ידיים למעלה, כיווץ שרירי החזה</li>
-    <li>☐ בית השחי, מעל ומתחת לבריח, משני הצדדים</li>
+    <li>☐ שד: הסתכלות בישיבה, ידיים למעלה, כיווץ <span class="nw">ה-<bdi>pectoralis</bdi></span></li>
+    <li>☐ <span class="nw">ה-<bdi>axilla</bdi></span>, מעל ומתחת <span class="nw">ל-<bdi>clavicle</bdi></span>, משני הצדדים</li>
     <li>☐ שכיבה, יד מעל הראש, כל הרבעים ומתחת לפטמה</li>
     <li>☐ תיאור ממצא: גודל, צורה, עקביות, שעון ומרחק, קיבוע</li>
     <li>☐ רקטלי: תנוחה על הצד השמאלי, הסתכלות, "לכווץ" ו"ללחוץ"</li>
-    <li>☐ חומר סיכה, תעלה אנאלית ורקטום, ערמונית / רקטוצלה</li>
+    <li>☐ חומר סיכה, <bdi>anal canal, rectum, prostate</bdi> / רקטוצלה</li>
     <li>☐ צבע הצואה על הכפפה, דם</li>
     <li>☐ לכסות את המטופל, להודות ולתעד</li>
    </ul>
@@ -333,15 +338,15 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>מחקרים שכדאי להכיר</h2>
  <div class="grid">
   <div class="study"><div class="y"><bdi>BMJ</bdi> 2021 · מחקר אקראי באשכולות</div><b>בדיקת שד קלינית כסקירה (מומבאי)</b>
-   <p><bdi dir="ltr">151,538</bdi> נשים בנות <bdi dir="ltr">35–64</bdi>, מעקב של 20 שנה. בדיקת שד כל שנתיים בידי עובדות בריאות הקטינה את שיעור הסרטן בשלב <bdi>III–IV</bdi> (<bdi dir="ltr">37%</bdi> לעומת <bdi dir="ltr">47%</bdi>). ירידה של כ-<bdi dir="ltr">30%</bdi> בתמותה בנשים בנות 50 ומעלה</p>
+   <p><bdi dir="ltr">151,538</bdi> נשים בנות <bdi dir="ltr">35–64</bdi>, מעקב של 20 שנה. בדיקת שד כל שנתיים בידי עובדות בריאות הקטינה את שיעור הסרטן בשלב <bdi>III–IV</bdi> (<bdi dir="ltr">37%</bdi> לעומת <bdi dir="ltr">47%</bdi>). ירידה של <span class="nw">כ-<bdi dir="ltr">30%</bdi></span> בתמותה בנשים בנות 50 ומעלה</p>
    <small>Mittra I et al. BMJ 2021;372:n256</small></div>
   <div class="study"><div class="y"><bdi>Eur Urol Oncol</bdi> 2023 · מתוך <bdi>PROBASE</bdi></div><b>בדיקה רקטלית לסקירת סרטן ערמונית?</b>
-   <p>6,537 גברים בני 45. הבדיקה גילתה סרטן ב-<bdi dir="ltr">0.05%</bdi>, פי ארבעה פחות מ-<bdi>PSA</bdi>. ב-<bdi dir="ltr">86%</bdi> מהגידולים שנמצאו ב-<bdi>PSA</bdi> הבדיקה הייתה תקינה. לא כבדיקת סקירה בגברים צעירים</p>
+   <p>6,537 גברים בני 45. הבדיקה גילתה סרטן <span class="nw">ב-<bdi dir="ltr">0.05%</bdi></span>, פי ארבעה פחות <span class="nw">מ-<bdi>PSA</bdi></span>. <span class="nw">ב-<bdi dir="ltr">86%</bdi></span> מהגידולים שנמצאו <span class="nw">ב-<bdi>PSA</bdi></span> הבדיקה הייתה תקינה. לא כבדיקת סקירה בגברים צעירים</p>
    <small>Krilaviciute A et al. Eur Urol Oncol 2023;6(6):566-73</small></div>
   <div class="study"><div class="y"><bdi>Dis Colon Rectum</bdi> 2024 · הנחיות <bdi>ASCRS</bdi></div><b>הנחיות לטיפול בטחורים</b>
-   <p>האבחנה קלינית. בדיקה רקטלית כדי לשלול מחלה אחרת ולהעריך את השוער. אנוסקופיה לפי הצורך. קולונוסקופיה למטופלים נבחרים עם דימום. קודם סיבים ונוזלים, אחר כך קשירה בגומייה</p>
+   <p>האבחנה קלינית. בדיקה רקטלית כדי לשלול מחלה אחרת ולהעריך את <span class="nw">ה-<bdi>sphincter</bdi></span>. אנוסקופיה לפי הצורך. קולונוסקופיה למטופלים נבחרים עם דימום. קודם סיבים ונוזלים, אחר כך קשירה בגומייה</p>
    <small>Hawkins AT et al. Dis Colon Rectum 2024;67(5):614-23</small></div>
-  <div class="box n"><b class="t">השורה התחתונה</b>הבדיקה הגופנית לא מחליפה הדמיה ו-<bdi>PSA</bdi> בסקירה, אבל היא הכלי הראשון אצל מטופל עם תלונה</div>
+  <div class="box n"><b class="t">השורה התחתונה</b>הבדיקה הגופנית לא מחליפה הדמיה <span class="nw">ו-<bdi>PSA</bdi></span> בסקירה, אבל היא הכלי הראשון אצל מטופל עם תלונה</div>
  </div>
  <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
 </div></section>
@@ -350,14 +355,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>11</b>לסיכום</div>
  <h2>חמישה דברים לקחת למחלקה</h2>
  <ol class="obj">
-  <li>רוב הלימפה של השד מתנקזת לבית השחי. בודקים אותו תמיד, יחד עם אזור הבריח</li>
+  <li>רוב הלימפה של השד מתנקזת <span class="nw">ל-<bdi>axilla</bdi></span>. בודקים אותה תמיד, יחד עם אזור <span class="nw">ה-<bdi>clavicle</bdi></span></li>
   <li>שד: הסתכלות בישיבה עם ידיים למעלה, מישוש בשכיבה עם יד מעל הראש, כל הרבעים ומתחת לפטמה</li>
   <li>גוש מתארים לפי גודל, צורה, עקביות, שעון ומרחק מהפטמה וקיבוע</li>
-  <li>בדיקה רקטלית: הסבר, מלווה, צד שמאל וחומר סיכה. לא לשכוח את התעלה האנאלית</li>
+  <li>בדיקה רקטלית: הסבר, מלווה, צד שמאל וחומר סיכה. לא לשכוח את <span class="nw">ה-<bdi>anal canal</bdi></span></li>
   <li>פיסורה בקו האמצע האחורי שכיחה. פיסורה בצד מחייבת לחשוב על מחלה אחרת</li>
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 68 <bdi>Diseases of the Breast</bdi> (עמ׳ <bdi dir="ltr">819–825</bdi>) · פרק 97 <bdi>Benign Anorectal Disorders</bdi> (עמ׳ <bdi dir="ltr">1515–1517</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Gray's Anatomy</bdi> (1918) ו-<bdi>National Cancer Institute</bdi>, נחלת הכלל · צילום: <bdi>John Hayman</bdi> (נחלת הכלל) · איור טחורים: <bdi>WikipedianProlific &amp; Mikael Häggström</bdi> (<bdi>CC BY-SA 3.0</bdi>) · <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>איורים: <bdi>Gray's Anatomy</bdi> (1918) <span class="nw">ו-<bdi>National Cancer Institute</bdi></span>, נחלת הכלל · צילום: <bdi>John Hayman</bdi> (נחלת הכלל) · איור טחורים: <bdi>WikipedianProlific &amp; Mikael Häggström</bdi> (<bdi>CC BY-SA 3.0</bdi>) · <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>

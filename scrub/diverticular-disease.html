@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>מחלות סעיפים של המעי הגס · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -90,6 +90,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -101,6 +102,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -118,6 +120,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -155,7 +160,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <ul class="b">
    <li><b>סעיף:</b> כיס קטן שבולט מדופן המעי</li>
    <li><b>סעיף אמיתי:</b> כל שכבות הדופן. נדיר ובדרך כלל מולד</li>
-   <li><b>סעיף "כוזב" (פסאודו-סעיף):</b> רק רירית ושריר הרירית שבולטים החוצה. כמעט כל הסעיפים במעי הגס הם כאלה</li>
+   <li><b>סעיף "כוזב" (פסאודו-סעיף):</b> רק <bdi>mucosa</bdi> <span class="nw">ו-<bdi>muscularis mucosae</bdi></span> שבולטים החוצה. כמעט כל הסעיפים <span class="nw">ב-<bdi>colon</bdi></span> הם כאלה</li>
    <li><b>מחלת סעיפים:</b> כל הקשת של מה שסעיפים עושים: דלקת, סיבוכים ודימום</li>
   </ul>
   <div style="display:grid;gap:10px">
@@ -188,7 +193,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>4</b>אנטומיה · שקף אינטראקטיבי</div>
  <h2>איפה נוצרים סעיפים ולמה זה חשוב בניתוח</h2>
- <div class="hotw"><div class="hoti"><img src="img/Gray1076.png" alt="הסיגמה, הקולון היורד והרקטום, מבט מלפנים"><svg viewBox="0 0 600 503" preserveAspectRatio="none" style="--lw:8;--bf:14.5px">
+ <div class="hotw"><div class="hoti"><img src="img/Gray1076.png" alt="sigmoid colon, descending colon ו-rectum, מבט מלפנים"><svg viewBox="0 0 600 503" preserveAspectRatio="none" style="--lw:8;--bf:14.5px">
   <path class="hz" data-hz="d" d="M418,19 C423.7,16 443,18.5 454,21 C465,23.5 475,27.5 484,34 C493,40.5 503,49.2 508,60 C513,70.8 514.3,85.5 514,99 C513.7,112.5 511,128.2 506,141 C501,153.8 493.3,167 484,176 C474.7,185 462.2,191.2 450,195 C437.8,198.8 422,200 411,199 C400,198 390.3,194.3 384,189 C377.7,183.7 371.3,174.2 373,167 C374.7,159.8 386.5,152.3 394,146 C401.5,139.7 411.8,136.8 418,129 C424.2,121.2 429.2,109.8 431,99 C432.8,88.2 430.8,74 429,64 C427.2,54 421.8,46.5 420,39 C418.2,31.5 412.3,22 418,19 Z" style="--c:#C9893F"/>
   <path class="hz" data-hz="s" d="M184,141 C187.2,130.3 193.8,123 201,116 C208.2,109 216.2,102.7 227,99 C237.8,95.3 253.8,93.3 266,94 C278.2,94.7 291.5,103.7 300,103 C308.5,102.3 310.5,94.3 317,90 C323.5,85.7 329.7,79.5 339,77 C348.3,74.5 363,73.5 373,75 C383,76.5 392.7,81.3 399,86 C405.3,90.7 407.8,95.8 411,103 C414.2,110.2 420.8,121.8 418,129 C415.2,136.2 399.3,137.5 394,146 C388.7,154.5 388.2,168.7 386,180 C383.8,191.3 382.5,201.2 381,214 C379.5,226.8 378.3,244.2 377,257 C375.7,269.8 381.5,283.2 373,291 C364.5,298.8 342.5,303.2 326,304 C309.5,304.8 289.8,299.5 274,296 C258.2,292.5 242.3,288 231,283 C219.7,278 213,276 206,266 C199,256 193,237.3 189,223 C185,208.7 182.8,193.7 182,180 C181.2,166.3 180.8,151.7 184,141 Z" style="--c:#2F6FA8"/>
   <path class="hz" data-hz="r" d="M214,300 C222.7,296.2 247.3,309.2 266,311 C284.7,312.8 307.5,312.5 326,311 C344.5,309.5 369.2,296.7 377,302 C384.8,307.3 376.5,329 373,343 C369.5,357 361.7,371.7 356,386 C350.3,400.3 344,417.3 339,429 C334,440.7 332.5,450.2 326,456 C319.5,461.8 309.3,464 300,464 C290.7,464 277.2,460.3 270,456 C262.8,451.7 260.5,444 257,438 C253.5,432 253.3,430.2 249,420 C244.7,409.8 236.8,391.3 231,377 C225.2,362.7 216.8,346.8 214,334 C211.2,321.2 205.3,303.8 214,300 Z" style="--c:#A3402E"/>
@@ -197,11 +202,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <g class="hzb" style="--c:#A3402E"><circle cx="392" cy="380" r="12.3"/><text x="392" y="380">3</text></g>
  </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-   <div class="hzi" data-hzi="d" hidden><b>1 · הקולון היורד</b><p>יחד עם הסיגמה, המקום הטיפוסי לסעיפים. לא צריך לכרות את כל הסעיפים: השוליים הקרובים נקבעים במעי רך וגמיש</p></div>
-   <div class="hzi" data-hzi="s" hidden><b>2 · הסיגמה</b><p>האתר השכיח. שריר מעובה, חלל צר ולחץ גבוה. הסעיפים יוצאים בצד המזנטרי, במקום שבו כלי הדם חוצים את השריר. לכן רוב הנקבים נתחמים במזנטריום</p></div>
-   <div class="hzi" data-hzi="r" hidden><b>3 · הרקטום</b><p>שכבת שריר נוספת ולכן כמעט אין בו סעיפים. <b>ההשקה הרחוקה תמיד לרקטום העליון</b>: שארית סיגמה מעלה את הסיכון לחזרה</p></div>
+   <div class="hzi" data-hzi="d" hidden><b>1 · <bdi>Descending colon</bdi></b><p>יחד עם <span class="nw">ה-<bdi>sigmoid</bdi></span>, המקום הטיפוסי לסעיפים. לא צריך לכרות את כל הסעיפים: השוליים הקרובים נקבעים במעי רך וגמיש</p></div>
+   <div class="hzi" data-hzi="s" hidden><b>2 · <bdi>Sigmoid colon</bdi></b><p>האתר השכיח. שריר מעובה, חלל צר ולחץ גבוה. הסעיפים יוצאים בצד המזנטרי, במקום שבו כלי הדם חוצים את השריר. לכן רוב הנקבים נתחמים <span class="nw">ב-<bdi>mesentery</bdi></span></p></div>
+   <div class="hzi" data-hzi="r" hidden><b>3 · <bdi>Rectum</bdi></b><p>שכבת שריר נוספת ולכן כמעט אין בו סעיפים. <b>ההשקה הרחוקה תמיד <span class="nw">ל-<bdi>upper rectum</bdi></span></b>: שארית <bdi>sigmoid</bdi> מעלה את הסיכון לחזרה</p></div>
   </div></div>
- <figure style="margin-top:8px;border:0;padding:0"><figcaption>הקולון היורד, הסיגמה והרקטום, מבט מלפנים · <bdi>Gray's Anatomy</bdi> 1918, איור 1076 (נחלת הכלל)</figcaption></figure>
+ <figure style="margin-top:8px;border:0;padding:0"><figcaption><span class="nw">ה-<bdi>descending colon</bdi></span>, <span class="nw">ה-<bdi>sigmoid</bdi></span> <span class="nw">וה-<bdi>rectum</bdi></span>, מבט מלפנים · <bdi>Gray's Anatomy</bdi> 1918, איור 1076 (נחלת הכלל)</figcaption></figure>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1449–1450, 1452</bdi></span><span>אנטומיה</span></div>
 </div></section>
 
@@ -211,12 +216,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div class="flow">
    <div><b>שריר מעובה</b><span>חלל צר ותנועתיות לא מתואמת: אזורים של לחץ גבוה</span></div>
-   <div><b>נקודות חולשה</b><span>הרירית בולטת במקום שבו כלי הדם (<bdi>vasa recta</bdi>) חוצים את השריר, בצד המזנטרי</span></div>
+   <div><b>נקודות חולשה</b><span><span class="nw">ה-<bdi>mucosa</bdi></span> בולטת במקום שבו כלי הדם (<bdi>vasa recta</bdi>) חוצים את השריר, בצד המזנטרי</span></div>
    <div><b>פתח הסעיף נחסם</b><span>קיפאון, שגשוג חיידקים, לחץ בתוך הסעיף, איסכמיה</span></div>
    <div><b>נקב זעיר</b><span>זיהום ודלקת מקומית סביב המעי</span></div>
   </div>
   <div style="display:grid;gap:10px">
-   <div class="box"><b class="t">המזנטריום מגן</b>רוב הנקבים בצד המזנטרי והמזנטריום תוחם אותם. לכן רוב המקרים ממוקדים: פלגמון או מורסה ולא פריטוניטיס</div>
+   <div class="box"><b class="t"><span class="nw">ה-<bdi>mesentery</bdi></span> מגן</b>רוב הנקבים בצד המזנטרי <span class="nw">וה-<bdi>mesentery</bdi></span> תוחם אותם. לכן רוב המקרים ממוקדים: פלגמון או מורסה ולא פריטוניטיס</div>
    <div class="box r"><b class="t">כשהגבול נפרץ</b>הזיהום מתפשט לחלל הבטן: פריטוניטיס מוגלתית או צואתית ואלח דם</div>
   </div>
  </div>
@@ -229,15 +234,15 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b">
-    <li><b>כאב בבטן שמאלית תחתונה</b>, שם נמצאת הסיגמה</li>
-    <li>חום, שינוי ביציאות, חוסר תיאבון. דחיפות במתן שתן כשהשלפוחית מגורה</li>
+    <li><b>כאב בבטן שמאלית תחתונה</b>, שם נמצא <span class="nw">ה-<bdi>sigmoid</bdi></span></li>
+    <li>חום, שינוי ביציאות, חוסר תיאבון. דחיפות במתן שתן <span class="nw">כשה-<bdi>bladder</bdi></span> מגורה</li>
     <li><b>בבדיקה:</b> רגישות ממוקדת, לעיתים תפיחות קלה. פלגמון גדול: <b>גוש רגיש</b> במישוש</li>
     <li><b>מעבדה:</b> לויקוציטוזיס ומדדי דלקת מוגברים</li>
    </ul>
    <div class="box r" style="margin-top:12px"><b class="t">דימום רקטלי? לחשוב שוב</b>נדיר בדלקת סעיפים חריפה. מכוון לאבחנה אחרת: קוליטיס איסכמית או מחלת מעי דלקתית</div>
    <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>בדקו מטופל עם דלקת סעיפים: מקום הרגישות, גוש, סימני פריטוניטיס. השוו לממצאי ה-CT וקבעו לבד את דרגת <bdi>Hinchey</bdi> לפני שאתם שואלים את המתמחה</div>
   </div>
-  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש בטן בשתי ידיים"><figcaption>מישוש הבטן בשתי ידיים, מטופל שוכב והרופא לצידו (כאן מישוש הכבד) · <bdi>Musser</bdi>, 1904, איור 192 (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש בטן בשתי ידיים"><figcaption>מישוש הבטן בשתי ידיים, מטופל שוכב והרופא לצידו (כאן מישוש <span class="nw">ה-<bdi>liver</bdi></span>) · <bdi>Musser</bdi>, 1904, איור 192 (נחלת הכלל)</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1450</bdi></span><span>קליניקה</span></div>
 </div></section>
@@ -255,7 +260,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>קולונוסקופיה בזמן ההתקף:</b> בזהירות. ניפוח המעי עלול להחמיר נקב</li>
    </ul>
   </div>
-  <figure><img src="img/ct-diverticulitis-perforation.jpg" alt="CT של דלקת סעיפים מנוקבת"><figcaption>CT רוחבי: דלקת סעיפים של הסיגמה עם נקב ואוויר מחוץ למעי (בעיגול) · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/ct-diverticulitis-perforation.jpg" alt="CT של דלקת סעיפים מנוקבת"><figcaption>CT רוחבי: דלקת סעיפים של <span class="nw">ה-<bdi>sigmoid</bdi></span> עם נקב ואוויר מחוץ למעי (בעיגול) · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1450–1451</bdi></span><span>הדמיה</span></div>
 </div></section>
@@ -266,14 +271,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="flow">
   <div><b>0</b><span>דלקת קלינית קלה. ב-CT אפשר לראות עיבוי דופן בלי הסננה סביב</span></div>
   <div><b><bdi>Ia</bdi></b><span>דלקת תחומה סביב המעי: פלגמון</span></div>
-  <div><b><bdi>Ib</bdi></b><span>מורסה תחומה ליד המעי או במזנטריום של הסיגמה</span></div>
+  <div><b><bdi>Ib</bdi></b><span>מורסה תחומה ליד המעי או <span class="nw">ב-<bdi>mesentery</bdi></span> של <span class="nw">ה-<bdi>sigmoid</bdi></span></span></div>
   <div><b><bdi>II</bdi></b><span>מורסה באגן או רחוקה בבטן</span></div>
   <div><b><bdi>III</bdi></b><span>פריטוניטיס מוגלתית מפושטת</span></div>
   <div><b><bdi>IV</bdi></b><span>פריטוניטיס צואתית</span></div>
  </div>
  <div class="grid" style="margin-top:12px">
   <div class="box"><b class="t">לא מסובכת מול מסובכת</b>מסובכת = מורסה, פיסטולה, חסימה או נקב חופשי</div>
-  <div class="box a"><b class="t">גבול של ה-CT</b>קשה להבדיל ב-CT בין <bdi>III</bdi> ל-<bdi>IV</bdi>. האבחנה המדויקת היא בדרך כלל בחדר הניתוח</div>
+  <div class="box a"><b class="t">גבול של ה-CT</b>קשה להבדיל ב-CT בין <bdi>III</bdi> <span class="nw">ל-<bdi>IV</bdi></span>. האבחנה המדויקת היא בדרך כלל בחדר הניתוח</div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1450–1452</bdi> (טבלה 95.1)</span><span>מיון</span></div>
 </div></section>
@@ -291,7 +296,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    </ul>
   </div>
   <div style="display:grid;gap:10px">
-   <div class="box a"><b class="t">האם זה בכלל סעיף?</b>כ-<bdi dir="ltr">1–3%</bdi> מהמאובחנים עם דלקת סעיפים מתגלים כגידול, יותר במחלה מסובכת. לכן קולונוסקופיה <bdi dir="ltr">4–8</bdi> שבועות אחרי ההחלמה</div>
+   <div class="box a"><b class="t">האם זה בכלל סעיף?</b><span class="nw">כ-<bdi dir="ltr">1–3%</bdi></span> מהמאובחנים עם דלקת סעיפים מתגלים כגידול, יותר במחלה מסובכת. לכן קולונוסקופיה <bdi dir="ltr">4–8</bdi> שבועות אחרי ההחלמה</div>
    <div class="box n"><b class="t">גישה חדשה יותר</b>אחרי דלקת לא מסובכת שאובחנה ב-CT, הסיכון לסרטן דומה לאוכלוסייה. ההחלטה על קולונוסקופיה אישית: ודאות האבחנה, תסמינים שנמשכים, גורמי סיכון וסיכוני הפעולה</div>
   </div>
  </div>
@@ -322,7 +327,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div class="box"><b class="t">מורסה</b>
    <ul class="b sm"><li>קטנה: אנטיביוטיקה לבד בדרך כלל מספיקה</li><li>גדולה: ניקוז מלעורי</li><li>אחרי ההחלמה: יותר חזרות וסיבוכים. ההנחיות האמריקאיות (<bdi>ASCRS</bdi>): לשקול כריתה מתוכננת</li><li>לא מתנקזת ולא משתפרת: ניתוח דחוף</li></ul></div>
   <div class="box b"><b class="t">פיסטולה</b>
-   <ul class="b sm"><li>השכיחה: <b>לשלפוחית</b>, בעיקר בגברים. דלקות שתן חוזרות, אוויר וצואה בשתן</li><li>לנרתיק: כמעט רק אחרי כריתת רחם</li><li>לעור: במקום ניקוז קודם</li><li>בדרך כלל לא דחוף: אנטיביוטיקה, קולונוסקופיה וציסטוסקופיה (לשלול גידול וקרוהן), אחר כך כריתה והשקה. שלפוחית: קטטר <bdi dir="ltr">7–10</bdi> ימים</li></ul></div>
+   <ul class="b sm"><li>השכיחה: <b><span class="nw">ל-<bdi>bladder</bdi></span></b>, בעיקר בגברים. דלקות שתן חוזרות, אוויר וצואה בשתן</li><li><span class="nw">ל-<bdi>vagina</bdi></span>: כמעט רק אחרי כריתת רחם</li><li>לעור: במקום ניקוז קודם</li><li>בדרך כלל לא דחוף: אנטיביוטיקה, קולונוסקופיה וציסטוסקופיה (לשלול גידול וקרוהן), אחר כך כריתה והשקה. פיסטולה <span class="nw">ל-<bdi>bladder</bdi></span>: קטטר <bdi dir="ltr">7–10</bdi> ימים</li></ul></div>
   <div class="box n"><b class="t">היצרות וחסימה</b>
    <ul class="b sm"><li>פיברוזיס אחרי התקפים חוזרים: חסימה חלקית ותסמינים מתגנבים</li><li>זונדה, אנטיביוטיקה, נוזלים וצום. אם נפתר: כריתה מתוכננת</li><li>לפני כן: קולונוסקופיה לשלול גידול. לא עוברים? קולונוגרפיה וירטואלית או חוקן ניגוד</li><li>חסימה מלאה שלא מגיבה: ניתוח דחוף</li></ul></div>
  </div>
@@ -335,9 +340,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div>
    <ul class="b sm">
-    <li><bdi>Hinchey III</bdi> ו-<bdi>IV</bdi> הם חירום: החייאה ואז ניתוח לשליטה במקור ולשטיפה</li>
+    <li><bdi>Hinchey III</bdi> <span class="nw">ו-<bdi>IV</bdi></span> הם חירום: החייאה ואז ניתוח לשליטה במקור ולשטיפה</li>
     <li><b><bdi>Hartmann</bdi>:</b> כריתה וקולוסטומיה. החזרת הרציפות היא ניתוח גדול נוסף ועד 50% לא עוברים אותו לעולם</li>
-    <li><b>כריתה והשקה ראשונית</b> (עם או בלי אילאוסטומיה מסיטה): ב-<bdi>DIVERTI</bdi> וב-<bdi>LADIES-DIVA</bdi> פחות סטומות קבועות, פחות סיבוכים וניתוחים חוזרים ופחות בקעים</li>
+    <li><b>כריתה והשקה ראשונית</b> (עם או בלי אילאוסטומיה מסיטה): <span class="nw">ב-<bdi>DIVERTI</bdi></span> <span class="nw">וב-<bdi>LADIES-DIVA</bdi></span> פחות סטומות קבועות, פחות סיבוכים וניתוחים חוזרים ופחות בקעים</li>
     <li><b>שטיפה לפרוסקופית</b> בלי כריתה (בעיקר <bdi>III</bdi>): פחות סטומות, אבל חזרה של המחלה פי 6 בערך. <bdi>LOLA</bdi> נעצר מוקדם בגלל סיבוכים</li>
     <li><b>בקרת נזקים:</b> כריתה, בטן פתוחה וחזרה אחרי <bdi dir="ltr">24–48</bdi> שעות להחליט על השקה</li>
    </ul>
@@ -360,15 +365,15 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <ol class="obj">
     <li><b>שוליים קרובים:</b> במעי רך וגמיש. לא צריך לכרות את כל הסעיפים</li>
-    <li><b>שוליים רחוקים: ברקטום העליון.</b> שארית סיגמה מעלה את הסיכון לחזרה</li>
+    <li><b>שוליים רחוקים: <span class="nw">ב-<bdi>upper rectum</bdi></span>.</b> שארית <bdi>sigmoid</bdi> מעלה את הסיכון לחזרה</li>
     <li><b>השקה ראשונית</b> של מעי בריא. הגישה: פתוחה, לפרוסקופית, בסיוע יד או רובוטית</li>
    </ol>
    <ul class="b sm" style="margin-top:12px">
     <li>זעיר-פולשני: חזרה מהירה יותר של פעילות המעי, פחות כאב, אשפוז קצר</li>
-    <li>סטנטים בשופכנים: לפי המקרה, כמדריך בתוך רקמה דלקתית</li>
+    <li>סטנטים <span class="nw">ב-<bdi>ureters</bdi></span>: לפי המקרה, כמדריך בתוך רקמה דלקתית</li>
    </ul>
   </div>
-  <figure><img src="img/lap-sigmoid-diverticulosis.jpg" alt="סעיף בסיגמה במבט לפרוסקופי"><figcaption>סעיף בדופן הסיגמה, כפי שנראה בלפרוסקופיה · <bdi>Hic et nunc</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/lap-sigmoid-diverticulosis.jpg" alt="סעיף ב-sigmoid במבט לפרוסקופי"><figcaption>סעיף בדופן <span class="nw">ה-<bdi>sigmoid</bdi></span>, כפי שנראה בלפרוסקופיה · <bdi>Hic et nunc</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1450, 1452</bdi></span><span>ניתוח</span></div>
 </div></section>
@@ -377,7 +382,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>14</b>אוכלוסיות מיוחדות</div>
  <h2>ימין, מדוכאי חיסון וצעירים</h2>
  <div class="grid g3">
-  <div class="box"><b class="t">דלקת סעיפים בצד ימין</b>שכיחה באסיה, נדירה במערב, בצעירים. נראית בדיוק כמו אפנדיציט. אבחנה מבדלת: סעיף מקל, כיס מרה, קוליטיס איסכמית, דלקת בלוטות במזנטריום, פיאלונפריטיס, <bdi>PID</bdi>. אותה גישה כמו בצד שמאל</div>
+  <div class="box"><b class="t">דלקת סעיפים בצד ימין</b>שכיחה באסיה, נדירה במערב, בצעירים. נראית בדיוק כמו אפנדיציט. אבחנה מבדלת: סעיף מקל, <bdi>gallbladder</bdi>, קוליטיס איסכמית, דלקת בלוטות במזנטריום, פיאלונפריטיס, <bdi>PID</bdi>. אותה גישה כמו בצד שמאל</div>
   <div class="box a"><b class="t">מדוכאי חיסון</b>השתלה, סוכרת, אי ספיקת כליות, שחמת, סטרואידים, כימותרפיה. ניתוח מתוכנן אחרי התקף לא מסובך: החלטה אישית. אותה תמותה, אבל יותר סיבוכים קשים ופתיחת פצע</div>
   <div class="box n"><b class="t">מתחת לגיל 50</b>פעם נותחו אחרי התקף אחד. היום: יותר חזרות, אבל לא יותר ניתוחים דחופים. מטפלים בהם כמו בכל אחד</div>
  </div>
@@ -397,7 +402,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    </div>
    <div class="box" style="margin-top:10px"><b class="t">איזה ניתוח</b>מקור ידוע: כריתה של הקטע. מקור לא ידוע ודימום פעיל: קולקטומיה תת-טוטלית (תחלואה כ-37%, תמותה <bdi dir="ltr">11–33%</bdi>). לכן מנסים לאתר לפני הניתוח</div>
   </div>
-  <figure><img src="img/ct-diverticular-bleed.jpg" alt="CT של דימום פעיל מסעיף בסיגמה"><figcaption>דימום פעיל מסעיף בסיגמה: חומר הניגוד בתוך המעי (חצים) גדל מהשלב העורקי (משמאל) לשלב הוורידי · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/ct-diverticular-bleed.jpg" alt="CT של דימום פעיל מסעיף ב-sigmoid"><figcaption>דימום פעיל מסעיף <span class="nw">ב-<bdi>sigmoid</bdi></span>: חומר הניגוד בתוך המעי (חצים) גדל מהשלב העורקי (משמאל) לשלב הוורידי · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1450</bdi> · פרק 98 עמ׳ <bdi dir="ltr">1549–1551</bdi></span><span>דימום</span></div>
 </div></section>
@@ -429,7 +434,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>כאב בבטן שמאלית תחתונה, חום ורגישות: לחשוב על דלקת סעיפים. דם ברקטום מכוון לאבחנה אחרת</li>
   <li>CT מאשר ומדרג. <bdi>Hinchey III–IV</bdi> הם חירום</li>
   <li>דלקת לא מסובכת: רובם בבית ואנטיביוטיקה לא לכולם</li>
-  <li>ניתוח מתוכנן לפי איכות החיים והסיבוכים, לא לפי מספר ההתקפים או הגיל. השוליים הרחוקים ברקטום</li>
+  <li>ניתוח מתוכנן לפי איכות החיים והסיבוכים, לא לפי מספר ההתקפים או הגיל. השוליים הרחוקים <span class="nw">ב-<bdi>rectum</bdi></span></li>
   <li>בנקב: <bdi>Hartmann</bdi> כבר אינו הבחירה היחידה. השקה ראשונית מתאימה למטופל יציב</li>
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 95 <bdi>Colon and Rectum</bdi> (עמ׳ <bdi dir="ltr">1449–1454</bdi>) · פרק 98 <bdi>Acute Gastrointestinal Hemorrhage</bdi> (עמ׳ <bdi dir="ltr">1549–1551</bdi>)</div>

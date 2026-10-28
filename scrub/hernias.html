@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>בקעים של דופן הבטן · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,6 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -97,6 +98,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -114,6 +116,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -134,7 +139,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>1</b>מטרות הלמידה</div>
  <h2>בסוף המפגש תדעו</h2>
  <ol class="obj">
-  <li>לתאר את התעלה המפשעתית ואת המשולש של הסלבך. להבדיל בין בקע ישיר, עקיף ופמורלי</li>
+  <li>לתאר את <span class="nw">ה-<bdi>inguinal canal</bdi></span> ואת <span class="nw">ה-<bdi>Hesselbach's triangle</bdi></span>. להבדיל בין בקע ישיר, עקיף ופמורלי</li>
   <li>לבצע בדיקה גופנית של המפשעה ושל דופן הבטן ולדעת מתי צריך הדמיה</li>
   <li>להחליט מתי לנתח ומתי אפשר להמתין</li>
   <li>להכיר את סוגי התיקון העיקריים: ברקמה, ברשת פתוח וזעיר-פולשני</li>
@@ -149,16 +154,16 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <ul class="b">
    <li><b>בקע:</b> פגם בדופן הבטן שדרכו בולטים תוכן פרה-פריטונאלי או תוך-בטני. המטופל רואה בליטה</li>
-   <li><b>שק הבקע:</b> הצפק שעוטף את התוכן הבולט</li>
+   <li><b>שק הבקע:</b> <span class="nw">ה-<bdi>peritoneum</bdi></span> שעוטף את התוכן הבולט</li>
    <li><b>בקע ספונטני:</b> טבורי, אפיגסטרי. <b>נרכש:</b> בעיקר בקע בחתך ניתוחי (<bdi>incisional</bdi>)</li>
-   <li><b>בקע מחליק (<bdi>sliding</bdi>):</b> חלק מדופן השק הוא איבר רטרופריטונאלי, בדרך כלל מעי גס או שלפוחית</li>
+   <li><b>בקע מחליק (<bdi>sliding</bdi>):</b> חלק מדופן השק הוא איבר רטרופריטונאלי, בדרך כלל <bdi>colon</bdi> או <bdi>bladder</bdi></li>
   </ul>
   <div style="display:grid;gap:10px">
    <figure class="sm"><img src="img/blausen-inguinal.jpg" alt="בקע מפשעתי: לולאת מעי דרך שכבה חלשה בדופן הבטן"><figcaption>לולאת מעי יוצאת דרך אזור חלש בדופן · Blausen.com staff (2014), WikiJournal of Medicine · CC BY 3.0</figcaption></figure>
    <div class="box"><b class="t">ניתן להחזרה</b>התוכן חוזר לבטן בשכיבה או בלחיצה עדינה</div>
    <div class="box a"><b class="t">כלוא (<bdi>incarcerated</bdi>)</b>התוכן לא חוזר. יכול להיות כרוני ושקט, או חריף עם כאב</div>
    <div class="box r"><b class="t">חנוק (<bdi>strangulated</bdi>)</b>אספקת הדם לתוכן נפגעת. חירום כירורגי</div>
-   <div class="box n"><b class="t">דיאסטזיס רקטי · לא בקע</b>מתיחה של הקו הלבן בלי פגם בפציה ובלי שק</div>
+   <div class="box n"><b class="t">דיאסטזיס רקטי · לא בקע</b>מתיחה של <span class="nw">ה-<bdi>linea alba</bdi></span> בלי פגם בפציה ובלי שק</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 80 עמ׳ <bdi dir="ltr">1063</bdi> · פרק 82 עמ׳ <bdi dir="ltr">1098, 1103</bdi></span><span>מושגים</span></div>
@@ -176,7 +181,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <ul class="b">
   <li><b>בקע פמורלי:</b> כ-3% מבקעי המפשעה, נשים פי 10 מגברים. ובכל זאת, גם בנשים הבקע השכיח ביותר הוא מפשעתי</li>
   <li>בקע עקיף הוא השכיח ביותר <b>בשני המינים</b></li>
-  <li>בקע עקיף ופמורלי שכיחים יותר <b>בצד ימין</b> (ירידה איטית יותר של האשך הימני. משמאל הסיגמואיד חוסם את התעלה הפמורלית)</li>
+  <li>בקע עקיף ופמורלי שכיחים יותר <b>בצד ימין</b> (ירידה איטית יותר של <span class="nw">ה-<bdi>testis</bdi></span> הימני. משמאל <span class="nw">ה-<bdi>sigmoid colon</bdi></span> חוסם את <span class="nw">ה-<bdi>femoral canal</bdi></span>)</li>
   <li>בקע בחתך: רוב הסיכון ב-<b>5 השנים הראשונות</b> אחרי הניתוח</li>
  </ul>
  <div class="src"><span><b>Sabiston 22</b> · פרק 82 עמ׳ <bdi dir="ltr">1091</bdi> · פרק 80 עמ׳ <bdi dir="ltr">1063</bdi></span><span>אפידמיולוגיה</span></div>
@@ -184,37 +189,37 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>4</b>אנטומיה · מבט מלפנים</div>
- <h2>התעלה המפשעתית</h2>
+ <h2><bdi>Inguinal canal</bdi></h2>
  <div class="grid f">
   <div>
    <div class="flow">
-    <div><b>קיר קדמי</b><span>האפונורוזה של השריר האלכסוני החיצוני</span></div>
-    <div><b>רצפה (קיר אחורי)</b><span>הפציה הטרנסברסלית והשריר הרוחבי</span></div>
-    <div><b>תקרה</b><span>השריר האלכסוני הפנימי והרוחבי</span></div>
-    <div><b>קיר תחתון</b><span>הרצועה המפשעתית (פופרט) והרצועה הלקונרית</span></div>
+    <div><b>קיר קדמי</b><span>האפונורוזה של <span class="nw">ה-<bdi>external oblique</bdi></span></span></div>
+    <div><b>רצפה (קיר אחורי)</b><span><span class="nw">ה-<bdi>transversalis fascia</bdi></span> <span class="nw">וה-<bdi>transversus abdominis</bdi></span></span></div>
+    <div><b>תקרה</b><span><span class="nw">ה-<bdi>internal oblique</bdi></span> <span class="nw">וה-<bdi>transversus abdominis</bdi></span></span></div>
+    <div><b>קיר תחתון</b><span><span class="nw">ה-<bdi>inguinal ligament</bdi></span> (<bdi>Poupart</bdi>) <span class="nw">וה-<bdi>lacunar ligament</bdi></span></span></div>
    </div>
    <h3 style="margin-top:14px">מה עובר בתעלה</h3>
-   <ul class="b sm"><li><b>בגבר:</b> חבל הזרע: שריר הקרמסטר, צינור הזרע, כלי הדם של האשך, הענף הגניטלי של העצב הגניטופמורלי, לימפה ושארית ה-<bdi>processus vaginalis</bdi></li><li><b>באישה:</b> הרצועה העגולה</li></ul>
+   <ul class="b sm"><li><b>בגבר:</b> <span class="nw">ה-<bdi>spermatic cord</bdi></span>: <span class="nw">ה-<bdi>cremaster</bdi></span>, <span class="nw">ה-<bdi>vas deferens</bdi></span>, <span class="nw">ה-<bdi>testicular vessels</bdi></span>, <span class="nw">ה-<bdi>genital branch</bdi></span> של <span class="nw">ה-<bdi>genitofemoral nerve</bdi></span>, לימפה ושארית <span class="nw">ה-<bdi>processus vaginalis</bdi></span></li><li><b>באישה:</b> <span class="nw">ה-<bdi>round ligament</bdi></span></li></ul>
   </div>
-  <figure><img class="tall" src="img/bourgery38-sac.jpg" alt="התעלה המפשעתית פתוחה ושק של בקע עקיף"><figcaption>התעלה פתוחה: שק בקע עקיף לאורך חבל הזרע, בתוך הקרמסטר · <bdi>Bourgery &amp; Jacob</bdi>, כרך 6, לוח 38 (נחלת הכלל)</figcaption></figure>
+  <figure><img class="tall" src="img/bourgery38-sac.jpg" alt="inguinal canal פתוח ושק של בקע עקיף"><figcaption>התעלה פתוחה: שק בקע עקיף לאורך <span class="nw">ה-<bdi>spermatic cord</bdi></span>, בתוך <span class="nw">ה-<bdi>cremaster</bdi></span> · <bdi>Bourgery &amp; Jacob</bdi>, כרך 6, לוח 38 (נחלת הכלל)</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 82 עמ׳ <bdi dir="ltr">1092</bdi></span><span>אנטומיה</span></div>
 </div></section>
 
 <section class="s"><div class="card">
  <div class="kick"><b>5</b>אנטומיה · המפתח לאבחנה</div>
- <h2>המשולש של הסלבך</h2>
+ <h2><bdi>Hesselbach's triangle</bdi></h2>
  <div class="grid f">
   <div>
    <ul class="b">
-    <li><b>גבולות:</b> כלי הדם האפיגסטריים התחתונים (לטרלית), שולי שריר הישר (מדיאלית), הרצועה המפשעתית (למטה)</li>
-    <li><b>בקע ישיר:</b> דרך רצפת התעלה <b>בתוך המשולש</b>, מדיאלית לכלים האפיגסטריים. הסיבה: חולשה של הפציה הטרנסברסלית</li>
-    <li><b>בקע עקיף:</b> דרך הטבעת הפנימית, <b>לטרלית</b> לכלים האפיגסטריים, לאורך חבל הזרע</li>
-    <li><b>בקע פמורלי:</b> <b>מתחת</b> לרצועה המפשעתית, מדיאלית לווריד הפמורלי</li>
+    <li><b>גבולות:</b> <span class="nw">ה-<bdi>inferior epigastric vessels</bdi></span> (לטרלית), שולי <span class="nw">ה-<bdi>rectus abdominis</bdi></span> (מדיאלית), <span class="nw">ה-<bdi>inguinal ligament</bdi></span> (למטה)</li>
+    <li><b>בקע ישיר:</b> דרך רצפת התעלה <b>בתוך המשולש</b>, מדיאלית <span class="nw">ל-<bdi>epigastric vessels</bdi></span>. הסיבה: חולשה של <span class="nw">ה-<bdi>transversalis fascia</bdi></span></li>
+    <li><b>בקע עקיף:</b> דרך <span class="nw">ה-<bdi>internal inguinal ring</bdi></span>, <b>לטרלית</b> <span class="nw">ל-<bdi>epigastric vessels</bdi></span>, לאורך <span class="nw">ה-<bdi>spermatic cord</bdi></span></li>
+    <li><b>בקע פמורלי:</b> <b>מתחת</b> <span class="nw">ל-<bdi>inguinal ligament</bdi></span>, מדיאלית <span class="nw">ל-<bdi>femoral vein</bdi></span></li>
    </ul>
-   <div class="box a" style="margin-top:12px"><b class="t">כלל אצבע לבדיקה</b>בליטה מתחת לרצועה המפשעתית? לחשוב על בקע פמורלי</div>
+   <div class="box a" style="margin-top:12px"><b class="t">כלל אצבע לבדיקה</b>בליטה מתחת <span class="nw">ל-<bdi>inguinal ligament</bdi></span>? לחשוב על בקע פמורלי</div>
   </div>
-  <figure><img src="img/depace-hernia-sites.jpg" alt="אתרי הבקע הישיר, העקיף והפמורלי"><figcaption>מבט מבפנים, צד ימין: אתר הבקע הישיר (המשולש), העקיף (הטבעת הפנימית) והפמורלי · על בסיס <bdi>Gray's</bdi> 547, צבע: <bdi>Dennis M. DePace</bdi> · CC BY-SA 4.0</figcaption></figure>
+  <figure><img src="img/depace-hernia-sites.jpg" alt="אתרי הבקע הישיר, העקיף והפמורלי"><figcaption>מבט מבפנים, צד ימין: אתר הבקע הישיר (המשולש), העקיף (<bdi>internal ring</bdi>) והפמורלי · על בסיס <bdi>Gray's</bdi> 547, צבע: <bdi>Dennis M. DePace</bdi> · CC BY-SA 4.0</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 82 עמ׳ <bdi dir="ltr">1091–1092, 1095</bdi></span><span>אנטומיה</span></div>
 </div></section>
@@ -235,12 +240,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <g class="hzb" style="--c:#F0961E"><rect x="386" y="230" width="50" height="24" rx="12" style="fill:var(--c);stroke:#fff;stroke-width:2" vector-effect="non-scaling-stroke"/><text x="411" y="242">Pain</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על משולש בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="d" hidden><b>D · בקע ישיר (המשולש של הסלבך)</b><p>מדיאלית לכלים האפיגסטריים התחתונים. הבקע יוצא דרך רצפה חלשה של התעלה (הפציה הטרנסברסלית). בניתוח מנקים את השומן מהמשולש כדי לא לפספס פגם קטן.</p></div>
-  <div class="hzi" data-hzi="i" hidden><b>I · בקע עקיף (הטבעת הפנימית)</b><p>לטרלית לכלים האפיגסטריים. השק יוצא לאורך חבל הזרע. בניתוח מפרידים את השק מצינור הזרע ומכלי האשך (פריאטליזציה) עד שהם שוכבים שטוחים.</p></div>
-  <div class="hzi" data-hzi="f" hidden><b>F · בקע פמורלי</b><p>מתחת לטרקטוס האיליופובי, מדיאלית לווריד האיליאקי החיצוני. חובה לבדוק את האזור הזה בכל תיקון: מנתחים בין הווריד לרצועת קופר ושוללים בקע פמורלי.</p></div>
-  <div class="hzi" data-hzi="doom" hidden><b>Doom · משולש האבדון</b><p>בין צינור הזרע (מדיאלית) לכלי האשך (לטרלית). הקודקוד בטבעת הפנימית. מתחתיו העורק והווריד האיליאקיים החיצוניים. <b>אין כאן קיבוע של רשת ואין ניתוח עיוור:</b> פגיעה כאן היא דימום מסכן חיים.</p></div>
-  <div class="hzi" data-hzi="pain" hidden><b>Pain · משולש הכאב</b><p>לטרלית לכלי האשך ומתחת לטרקטוס האיליופובי. כאן עוברים העצב העורי הלטרלי של הירך והענפים של העצב הגניטופמורלי. לא מקבעים ולא מנתחים באגרסיביות: פגיעה גורמת לכאב כרוני.</p></div>
-  <div class="box a" style="margin-top:10px"><b class="t">כלל הזהב בניתוח זעיר-פולשני</b>קיבוע רק <b>מעל</b> קו דמיוני בין עמוד הכסל הקדמי-עליון לטבעת הפנימית</div>
+  <div class="hzi" data-hzi="d" hidden><b>D · בקע ישיר (<bdi>Hesselbach's triangle</bdi>)</b><p>מדיאלית <span class="nw">ל-<bdi>inferior epigastric vessels</bdi></span>. הבקע יוצא דרך רצפה חלשה של התעלה (<bdi>transversalis fascia</bdi>). בניתוח מנקים את השומן מהמשולש כדי לא לפספס פגם קטן.</p></div>
+  <div class="hzi" data-hzi="i" hidden><b>I · בקע עקיף (<bdi>internal ring</bdi>)</b><p>לטרלית <span class="nw">ל-<bdi>epigastric vessels</bdi></span>. השק יוצא לאורך <span class="nw">ה-<bdi>spermatic cord</bdi></span>. בניתוח מפרידים את השק <span class="nw">מה-<bdi>vas deferens</bdi></span> <span class="nw">ומה-<bdi>testicular vessels</bdi></span> (פריאטליזציה) עד שהם שוכבים שטוחים.</p></div>
+  <div class="hzi" data-hzi="f" hidden><b>F · בקע פמורלי</b><p>מתחת <span class="nw">ל-<bdi>iliopubic tract</bdi></span>, מדיאלית <span class="nw">ל-<bdi>external iliac vein</bdi></span>. חובה לבדוק את האזור הזה בכל תיקון: מנתחים בין הווריד <span class="nw">ל-<bdi>Cooper's ligament</bdi></span> ושוללים בקע פמורלי.</p></div>
+  <div class="hzi" data-hzi="doom" hidden><b>Doom · <bdi>triangle of doom</bdi></b><p>בין <span class="nw">ה-<bdi>vas deferens</bdi></span> (מדיאלית) <span class="nw">ל-<bdi>testicular vessels</bdi></span> (לטרלית). הקודקוד <span class="nw">ב-<bdi>internal ring</bdi></span>. מתחתיו <span class="nw">ה-<bdi>external iliac artery</bdi></span> <span class="nw">וה-<bdi>external iliac vein</bdi></span>. <b>אין כאן קיבוע של רשת ואין ניתוח עיוור:</b> פגיעה כאן היא דימום מסכן חיים.</p></div>
+  <div class="hzi" data-hzi="pain" hidden><b>Pain · <bdi>triangle of pain</bdi></b><p>לטרלית <span class="nw">ל-<bdi>testicular vessels</bdi></span> ומתחת <span class="nw">ל-<bdi>iliopubic tract</bdi></span>. כאן עוברים <span class="nw">ה-<bdi>lateral femoral cutaneous nerve</bdi></span> והענפים של <span class="nw">ה-<bdi>genitofemoral nerve</bdi></span>. לא מקבעים ולא מנתחים באגרסיביות: פגיעה גורמת לכאב כרוני.</p></div>
+  <div class="box a" style="margin-top:10px"><b class="t">כלל הזהב בניתוח זעיר-פולשני</b>קיבוע רק <b>מעל</b> קו דמיוני בין <span class="nw">ה-<bdi>anterior superior iliac spine (ASIS)</bdi></span> <span class="nw">ל-<bdi>internal ring</bdi></span></div>
  </div></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 82 עמ׳ <bdi dir="ltr">1093–1096, 1100</bdi></span><span><bdi>Gray's Anatomy</bdi>, איור 547 (נחלת הכלל) · אזורים: Scrub In</span></div>
 </div></section>
@@ -249,10 +254,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>7</b>כך זה נראה בניתוח</div>
  <h2>המפשעה בלפרוסקופיה</h2>
  <div class="grid">
-  <figure><img src="img/lap-tep-hesselbach.jpg" alt="מבט לפרוסקופי על המשולש של הסלבך"><figcaption><b>בקע ישיר קטן (TEP):</b> a שריר הישר · b כלים אפיגסטריים · c הרצועה המפשעתית · d המשולש של הסלבך · e הפגם · Anpol42, CC BY-SA 3.0</figcaption></figure>
-  <figure><img src="img/lap-tapp-indirect.jpg" alt="מבט לפרוסקופי על בקע עקיף"><figcaption><b>בקע עקיף אחרי החזרה (TAPP):</b> 1 הטבעת הפנימית · 2 הכלים האפיגסטריים · 3 חבל הזרע · Anpol42, CC BY-SA 3.0</figcaption></figure>
+  <figure><img src="img/lap-tep-hesselbach.jpg" alt="מבט לפרוסקופי על Hesselbach's triangle"><figcaption><b>בקע ישיר קטן (TEP):</b> a <bdi>rectus abdominis</bdi> · b <bdi>epigastric vessels</bdi> · c <bdi>inguinal ligament</bdi> · d <bdi>Hesselbach's triangle</bdi> · e הפגם · Anpol42, CC BY-SA 3.0</figcaption></figure>
+  <figure><img src="img/lap-tapp-indirect.jpg" alt="מבט לפרוסקופי על בקע עקיף"><figcaption><b>בקע עקיף אחרי החזרה (TAPP):</b> 1 <bdi>internal ring</bdi> · 2 <bdi>epigastric vessels</bdi> · 3 <bdi>spermatic cord</bdi> · Anpol42, CC BY-SA 3.0</figcaption></figure>
  </div>
- <div class="box b" style="margin-top:12px"><b class="t">בחדר הניתוח השבוע</b>בתיקון לפרוסקופי, בקשו מהמנתח/ת להראות לכם את הכלים האפיגסטריים, הטבעת הפנימית, צינור הזרע וכלי האשך. הם יראו לכם גם את שני המשולשים המסוכנים</div>
+ <div class="box b" style="margin-top:12px"><b class="t">בחדר הניתוח השבוע</b>בתיקון לפרוסקופי, בקשו מהמנתח/ת להראות לכם את <span class="nw">ה-<bdi>epigastric vessels</bdi></span>, <span class="nw">ה-<bdi>internal ring</bdi></span>, <span class="nw">ה-<bdi>vas deferens</bdi></span> <span class="nw">וה-<bdi>testicular vessels</bdi></span>. הם יראו לכם גם את שני המשולשים המסוכנים</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 82 עמ׳ <bdi dir="ltr">1100–1101</bdi></span><span>תמונות: Wikimedia Commons</span></div>
 </div></section>
 
@@ -262,14 +267,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b">
-    <li>יוצא דרך התעלה הפמורלית: <b>מתחת</b> לרצועה המפשעתית, <b>מדיאלית לווריד</b> הפמורלי</li>
+    <li>יוצא דרך <span class="nw">ה-<bdi>femoral canal</bdi></span>: <b>מתחת</b> <span class="nw">ל-<bdi>inguinal ligament</bdi></span>, <b>מדיאלית</b> <span class="nw">ל-<bdi>femoral vein</bdi></span></li>
     <li>יחס נשים לגברים <b>10:1</b>. לעיתים קרובות מתפספס</li>
     <li>סיכון גבוה יותר לחניקה מבקע מפשעתי. לכן <b>לא ממתינים</b>: מתקנים בזמן סביר</li>
     <li>ההמלצות מעדיפות גישה זעיר-פולשנית בבקע פמורלי ובנשים</li>
-    <li>בבקע פמורלי חנוק בלי אפשרות לרשת: תיקון <bdi>McVay</bdi> לרצועת קופר סוגר את התעלה הפמורלית</li>
+    <li>בבקע פמורלי חנוק בלי אפשרות לרשת: תיקון <bdi>McVay</bdi> <span class="nw">ל-<bdi>Cooper's ligament</bdi></span> סוגר את <span class="nw">ה-<bdi>femoral canal</bdi></span></li>
    </ul>
   </div>
-  <div style="display:grid;gap:10px"><figure><img src="img/bourgery36-femoral.jpg" alt="בקע פמורלי באישה"><figcaption>בקע פמורלי: בליטה <b>מתחת</b> לרצועה המפשעתית · <bdi>Bourgery &amp; Jacob</bdi>, כרך 6, לוח 36 (נחלת הכלל)</figcaption></figure><figure><img src="img/Gray546.png" alt="המבנים מתחת לרצועה המפשעתית"><figcaption>מתחת לרצועה המפשעתית: עצב, עורק ווריד. הטבעת הפמורלית מדיאלית לווריד · <bdi>Gray's Anatomy</bdi>, איור 546 (נחלת הכלל)</figcaption></figure></div>
+  <div style="display:grid;gap:10px"><figure><img src="img/bourgery36-femoral.jpg" alt="בקע פמורלי באישה"><figcaption>בקע פמורלי: בליטה <b>מתחת</b> <span class="nw">ל-<bdi>inguinal ligament</bdi></span> · <bdi>Bourgery &amp; Jacob</bdi>, כרך 6, לוח 36 (נחלת הכלל)</figcaption></figure><figure><img src="img/Gray546.png" alt="המבנים מתחת ל-inguinal ligament"><figcaption>מתחת <span class="nw">ל-<bdi>inguinal ligament</bdi></span>: <bdi>femoral nerve, artery and vein</bdi>. <span class="nw">ה-<bdi>femoral ring</bdi></span> מדיאלית <span class="nw">ל-<bdi>femoral vein</bdi></span> · <bdi>Gray's Anatomy</bdi>, איור 546 (נחלת הכלל)</figcaption></figure></div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 82 עמ׳ <bdi dir="ltr">1091, 1094, 1097, 1099, 1102</bdi></span><span>בקע פמורלי</span></div>
 </div></section>
@@ -281,19 +286,19 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <h3>איך בודקים את המפשעה</h3>
    <ol class="obj sm">
-    <li><b>בעמידה:</b> מסתכלים על שתי המפשעות ומשווים. בליטה מעל הרצועה המפשעתית או מתחתיה</li>
+    <li><b>בעמידה:</b> מסתכלים על שתי המפשעות ומשווים. בליטה מעל <span class="nw">ה-<bdi>inguinal ligament</bdi></span> או מתחתיו</li>
     <li><b><bdi>Valsalva</bdi> או שיעול:</b> הבליטה גדלה או מופיעה</li>
-    <li><b>מישוש הטבעת החיצונית:</b> אצבע מכניסים דרך עור שק האשכים לאורך חבל הזרע. מבקשים מהמטופל להשתעל</li>
+    <li><b>מישוש <span class="nw">ה-<bdi>external inguinal ring</bdi></span>:</b> אצבע מכניסים דרך עור <span class="nw">ה-<bdi>scrotum</bdi></span> לאורך <span class="nw">ה-<bdi>spermatic cord</bdi></span>. מבקשים מהמטופל להשתעל</li>
     <li><b>בשכיבה:</b> האם הבקע חוזר לבטן לבד או בלחיצה עדינה. בודקים גם את הצד השני</li>
-    <li><b>בליטה מתחת לרצועה</b> (במיוחד באישה): לחשוב על בקע פמורלי</li>
+    <li><b>בליטה מתחת <span class="nw">ל-<bdi>inguinal ligament</bdi></span></b> (במיוחד באישה): לחשוב על בקע פמורלי</li>
    </ol>
    <h3 style="margin-top:12px">אנמנזה</h3>
-   <ul class="b sm"><li>תסמינים והשפעה על איכות החיים. ניתוחים קודמים ו<b>דוחות ניתוח</b></li><li>לחץ תוך-בטני כרוני: שיעול, מיימת, ערמונית, עצירות</li></ul>
+   <ul class="b sm"><li>תסמינים והשפעה על איכות החיים. ניתוחים קודמים ו<b>דוחות ניתוח</b></li><li>לחץ תוך-בטני כרוני: שיעול, מיימת, <bdi>prostate</bdi>, עצירות</li></ul>
   </div>
   <div style="display:grid;gap:10px">
    <div class="grid">
     <figure><img class="tall" src="img/bourgery35-bulges.jpg" alt="בקעים מפשעתיים דו-צדדיים בעמידה"><figcaption>בעמידה: בליטות בשתי המפשעות · <bdi>Bourgery &amp; Jacob</bdi>, לוח 35 (נחלת הכלל)</figcaption></figure>
-    <figure><img class="tall" src="img/exam-ring-crop.jpg" alt="מישוש הטבעת המפשעתית החיצונית"><figcaption>אצבע דרך עור שק האשכים אל הטבעת החיצונית · <bdi>H.I. Herych</bdi>, CC BY 3.0</figcaption></figure>
+    <figure><img class="tall" src="img/exam-ring-crop.jpg" alt="מישוש ה-external inguinal ring"><figcaption>אצבע דרך עור <span class="nw">ה-<bdi>scrotum</bdi></span> אל <span class="nw">ה-<bdi>external ring</bdi></span> · <bdi>H.I. Herych</bdi>, CC BY 3.0</figcaption></figure>
    </div>
    <div class="flow sm">
     <div><b>בקע ברור</b><span>אין צורך בהדמיה</span></div>
@@ -322,7 +327,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <p>• כליאה בזרוע ההמתנה: <b>0.3%</b> בשנתיים, בלי מקרי מוות</p>
    <p>• כרבע עברו לניתוח בגלל כאב. אחרי 10 שנים: <b>68%</b>. בני 65 ומעלה: כמעט 80%</p>
    <p>• מי שנותח מאוחר יותר לא סבל מיותר זיהומים או חזרות</p>
-   <small>כפי שמסוכם ב-<bdi>Sabiston 22</bdi>, פרק 82 עמ׳ <bdi dir="ltr">1097</bdi></small></div>
+   <small>כפי שמסוכם <span class="nw">ב-<bdi>Sabiston 22</bdi></span>, פרק 82 עמ׳ <bdi dir="ltr">1097</bdi></small></div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 82 עמ׳ <bdi dir="ltr">1097</bdi></span><span>החלטה</span></div>
 </div></section>
@@ -331,10 +336,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>11</b>ניתוח · גישה פתוחה מלפנים</div>
  <h2>תיקון פתוח: רשת או רקמה</h2>
 <div class="grid f"><div>
- <div class="box"><b class="t"><bdi>Lichtenstein</bdi> · רשת ללא מתח (הנפוץ בעולם)</b><ol class="obj sm"><li>חתך מעל הרצועה המפשעתית, פתיחת האפונורוזה של האלכסוני החיצוני דרך הטבעת החיצונית</li><li>זיהוי ושמירה של שלושה עצבים: האיליואינגווינלי, האיליוהיפוגסטרי והענף הגניטלי</li><li>שחרור חבל הזרע, הפרדת השק העקיף והחזרתו (או קשירה). בקע ישיר: החזרה מתחת לפציה הטרנסברסלית</li><li>רשת שטוחה, לפחות 2 ס״מ מעבר לפקעת הפוביס, בלי תפר לפקעת עצמה</li><li>השוליים התחתונים לרצועה המפשעתית, העליונים לגיד המשותף. הזנבות סביב חבל הזרע יוצרים טבעת פנימית חדשה</li></ol></div>
- <div class="box n" style="margin-top:10px"><b class="t">תיקון ברקמה, בלי רשת</b><bdi>Shouldice</bdi>: תפירה רב-שכבתית של הקיר האחורי, הטוב ביותר בלי רשת (מנתח מנוסה, כ-300 ניתוחים ללמידה). <bdi>Bassini</bdi>, <bdi>McVay</bdi> (לרצועת קופר, מתאים לבקע פמורלי חנוק). מתי: שדה מזוהם, כריתת מעי</div>
+ <div class="box"><b class="t"><bdi>Lichtenstein</bdi> · רשת ללא מתח (הנפוץ בעולם)</b><ol class="obj sm"><li>חתך מעל <span class="nw">ה-<bdi>inguinal ligament</bdi></span>, פתיחת האפונורוזה של <span class="nw">ה-<bdi>external oblique</bdi></span> דרך <span class="nw">ה-<bdi>external ring</bdi></span></li><li>זיהוי ושמירה של שלושה עצבים: <bdi>ilioinguinal</bdi>, <bdi>iliohypogastric</bdi> <span class="nw">וה-<bdi>genital branch</bdi></span></li><li>שחרור <span class="nw">ה-<bdi>spermatic cord</bdi></span>, הפרדת השק העקיף והחזרתו (או קשירה). בקע ישיר: החזרה מתחת <span class="nw">ל-<bdi>transversalis fascia</bdi></span></li><li>רשת שטוחה, לפחות 2 ס״מ מעבר <span class="nw">ל-<bdi>pubic tubercle</bdi></span>, בלי תפר <span class="nw">ל-<bdi>tubercle</bdi></span> עצמו</li><li>השוליים התחתונים <span class="nw">ל-<bdi>inguinal ligament</bdi></span>, העליונים <span class="nw">ל-<bdi>conjoint tendon</bdi></span>. הזנבות סביב <span class="nw">ה-<bdi>spermatic cord</bdi></span> יוצרים <bdi>internal ring</bdi> חדשה</li></ol></div>
+ <div class="box n" style="margin-top:10px"><b class="t">תיקון ברקמה, בלי רשת</b><bdi>Shouldice</bdi>: תפירה רב-שכבתית של הקיר האחורי, הטוב ביותר בלי רשת (מנתח מנוסה, כ-300 ניתוחים ללמידה). <bdi>Bassini</bdi>, <bdi>McVay</bdi> (<span class="nw">ל-<bdi>Cooper's ligament</bdi></span>, מתאים לבקע פמורלי חנוק). מתי: שדה מזוהם, כריתת מעי</div>
 </div><div style="display:grid;gap:10px">
- <figure><img src="img/lichtenstein-anpol42.jpg" alt="תיקון ליכטנשטיין"><figcaption>רשת <bdi>Lichtenstein</bdi> במקומה, מעל רצפת התעלה וסביב חבל הזרע · Anpol42, CC BY-SA 3.0</figcaption></figure>
+ <figure><img src="img/lichtenstein-anpol42.jpg" alt="תיקון ליכטנשטיין"><figcaption>רשת <bdi>Lichtenstein</bdi> במקומה, מעל רצפת התעלה וסביב <span class="nw">ה-<bdi>spermatic cord</bdi></span> · Anpol42, CC BY-SA 3.0</figcaption></figure>
  <figure class="sm"><img src="img/shouldice-anpol42.jpg" alt="תיקון שולדייס"><figcaption>שכבות התפרים בתיקון <bdi>Shouldice</bdi> · Anpol42, CC BY-SA 3.0</figcaption></figure>
 </div></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 82 עמ׳ <bdi dir="ltr">1097–1100</bdi></span><span>ניתוח פתוח</span></div>
@@ -343,16 +348,16 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>12</b>ניתוח · גישה זעיר-פולשנית מאחור</div>
  <h2>שלוש דרכים להגיע לאותו מקום: <bdi>TAPP</bdi>, <bdi>TEP</bdi>, <bdi>eTEP</bdi></h2>
-<p class="lead" style="margin-bottom:10px">בשלושתן הרשת יושבת באותו מקום: בחלל הפרה-פריטונאלי, מאחורי הפתח המיופקטינאלי. ההבדל הוא איך נכנסים. אפשר בלפרוסקופיה או ברובוט</p>
-<table class="cmp"><tr><th></th><th><bdi>TAPP</bdi><small>דרך חלל הבטן</small></th><th><bdi>TEP</bdi><small>מחוץ לצפק</small></th><th><bdi>eTEP</bdi><small>מחוץ לצפק, מבט מורחב</small></th></tr><tr><td>כניסה</td><td>טרוקר מצלמה בקו האמצע, לפחות 15 ס״מ מהפוביס. עוד שני טרוקרים לצדדים. נכנסים לחלל הבטן</td><td>חתך של 1–2 ס״מ מתחת לטבור, פתיחת הנדן הקדמי, הזזת שריר הישר ופיתוח החלל מאחוריו עד הפוביס, למשל בבלון</td><td>כמו <bdi>TEP</bdi>, עם חיתוך של הקו הקשתי (<bdi>arcuate line</bdi>) כדי להגדיל את החלל</td></tr><tr><td>הדרך לרשת</td><td>פתיחת דש צפק 4–6 ס״מ מעל הפגם ועד עמוד הכסל. בסוף: סגירת הדש מעל הרשת</td><td><bdi>Hasson</bdi> ועוד שני טרוקרים של 5 מ״מ בקו האמצע. לא נכנסים לצפק בכלל</td><td>מיקום טרוקרים גמיש, נוח יותר למנתח (<bdi>2009</bdi>)</td></tr><tr><td>יתרון</td><td>הכי נפוצה. רואים את שני הצדדים ואת תוכן הבטן</td><td>בלי כניסה לחלל הבטן (<bdi>McKernan</bdi>, <bdi>1993</bdi>)</td><td>יותר מקום ויותר ארגונומי מ-<bdi>TEP</bdi></td></tr><tr><td>מה לזכור</td><td>חובה לסגור את הצפק: מונע הדבקויות ותזוזה של הרשת</td><td>קרע בצפק מוציא את ה-<bdi>CO₂</bdi> ומקטין את החלל. לפעמים עוברים ל-<bdi>TAPP</bdi>. קרע גדול שלא זוהה: סיכון לבקע בין שכבות הדופן</td><td>אותם עקרונות כמו <bdi>TEP</bdi></td></tr></table>
-<div class="grid tight" style="margin-top:12px"><figure><img src="img/mesh-positions-anpol42.jpg" alt="מיקום הרשת בגישות השונות"><figcaption>חתך סגיטלי: בגישות האחוריות (<bdi>TAPP</bdi>, <bdi>TEP</bdi>, <bdi>Stoppa</bdi>) הרשת מאחורי השרירים, ב-<bdi>Lichtenstein</bdi> לפניהם · Anpol42, CC BY-SA 3.0</figcaption></figure><figure><img src="img/mis-port-wounds.jpg" alt="פצעי טרוקרים אחרי תיקון זעיר-פולשני"><figcaption>שלושה פצעים קטנים אחרי תיקון זעיר-פולשני · Don Politicus, CC BY-SA 4.0</figcaption></figure></div>
+<p class="lead" style="margin-bottom:10px">בשלושתן הרשת יושבת באותו מקום: <span class="nw">ב-<bdi>preperitoneal space</bdi></span>, מאחורי <span class="nw">ה-<bdi>myopectineal orifice</bdi></span>. ההבדל הוא איך נכנסים. אפשר בלפרוסקופיה או ברובוט</p>
+<table class="cmp"><tr><th></th><th><bdi>TAPP</bdi><small>דרך חלל הבטן</small></th><th><bdi>TEP</bdi><small>מחוץ <span class="nw">ל-<bdi>peritoneum</bdi></span></small></th><th><bdi>eTEP</bdi><small>מחוץ <span class="nw">ל-<bdi>peritoneum</bdi></span>, מבט מורחב</small></th></tr><tr><td>כניסה</td><td>טרוקר מצלמה בקו האמצע, לפחות 15 ס״מ מהפוביס. עוד שני טרוקרים לצדדים. נכנסים לחלל הבטן</td><td>חתך של 1–2 ס״מ מתחת <span class="nw">ל-<bdi>umbilicus</bdi></span>, פתיחת <span class="nw">ה-<bdi>anterior rectus sheath</bdi></span>, הזזת <span class="nw">ה-<bdi>rectus abdominis</bdi></span> ופיתוח החלל מאחוריו עד הפוביס, למשל בבלון</td><td>כמו <bdi>TEP</bdi>, עם חיתוך של <span class="nw">ה-<bdi>arcuate line</bdi></span> כדי להגדיל את החלל</td></tr><tr><td>הדרך לרשת</td><td>פתיחת דש של <bdi>peritoneum</bdi> 4–6 ס״מ מעל הפגם ועד <span class="nw">ה-<bdi>ASIS</bdi></span>. בסוף: סגירת הדש מעל הרשת</td><td><bdi>Hasson</bdi> ועוד שני טרוקרים של 5 מ״מ בקו האמצע. לא נכנסים <span class="nw">ל-<bdi>peritoneum</bdi></span> בכלל</td><td>מיקום טרוקרים גמיש, נוח יותר למנתח (<bdi>2009</bdi>)</td></tr><tr><td>יתרון</td><td>הכי נפוצה. רואים את שני הצדדים ואת תוכן הבטן</td><td>בלי כניסה לחלל הבטן (<bdi>McKernan</bdi>, <bdi>1993</bdi>)</td><td>יותר מקום ויותר ארגונומי <span class="nw">מ-<bdi>TEP</bdi></span></td></tr><tr><td>מה לזכור</td><td>חובה לסגור את <span class="nw">ה-<bdi>peritoneum</bdi></span>: מונע הדבקויות ותזוזה של הרשת</td><td>קרע <span class="nw">ב-<bdi>peritoneum</bdi></span> מוציא את <span class="nw">ה-<bdi>CO₂</bdi></span> ומקטין את החלל. לפעמים עוברים <span class="nw">ל-<bdi>TAPP</bdi></span>. קרע גדול שלא זוהה: סיכון לבקע בין שכבות הדופן</td><td>אותם עקרונות כמו <bdi>TEP</bdi></td></tr></table>
+<div class="grid tight" style="margin-top:12px"><figure><img src="img/mesh-positions-anpol42.jpg" alt="מיקום הרשת בגישות השונות"><figcaption>חתך סגיטלי: בגישות האחוריות (<bdi>TAPP</bdi>, <bdi>TEP</bdi>, <bdi>Stoppa</bdi>) הרשת מאחורי השרירים, <span class="nw">ב-<bdi>Lichtenstein</bdi></span> לפניהם · Anpol42, CC BY-SA 3.0</figcaption></figure><figure><img src="img/mis-port-wounds.jpg" alt="פצעי טרוקרים אחרי תיקון זעיר-פולשני"><figcaption>שלושה פצעים קטנים אחרי תיקון זעיר-פולשני · Don Politicus, CC BY-SA 4.0</figcaption></figure></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 82 עמ׳ <bdi dir="ltr">1100–1102</bdi></span><span>ניתוח זעיר-פולשני</span></div>
 </div></section>
 
 <section class="s"><div class="card">
  <div class="kick"><b>13</b>ניתוח · הסטנדרט בכל גישה אחורית</div>
- <h2>"המבט הקריטי" של הפתח המיופקטינאלי</h2>
-<div class="grid f"><div><ol class="obj sm"><li>פקעת הפוביס מזוהה ומנותחת <b>מעבר לקו האמצע</b>. רצועת קופר מזוהה</li><li>המרחב הישיר נקי משומן: רואים את המשולש של הסלבך</li><li>בחלל <bdi>Retzius</bdi>: לפחות 2 ס״מ בין רצועת קופר לשלפוחית, כדי שהרשת לא תתקפל</li><li>בין הווריד האיליאקי לרצועת קופר: שוללים בקע פמורלי</li><li>פריאטליזציה: השק והצפק מופרדים מצינור הזרע ומכלי האשך עד שהם שוכבים שטוחים</li><li>ליפומה של חבל הזרע מזוהה ומוחזרת</li><li>הדיסקציה ממשיכה לטרלית מעבר לעמוד הכסל הקדמי-עליון</li><li>רשת של <bdi dir="ltr">10×15</bdi> ס״מ לפחות, שטוחה, בלי חתך לחבל הזרע. קיבוע רק מעל הקו בין עמוד הכסל לטבעת הפנימית. ריקון הגז תחת ראייה</li></ol></div><div style="display:grid;gap:10px"><figure class="vid"><video controls playsinline preload="metadata" poster="img/lap-tep-hesselbach.jpg"><source src="https://upload.wikimedia.org/wikipedia/commons/transcoded/1/1c/Indirect_groin_hernia._Intraoperative_view_by_TEP.ogv/Indirect_groin_hernia._Intraoperative_view_by_TEP.ogv.360p.mpeg4.mov" type="video/mp4"><source src="https://upload.wikimedia.org/wikipedia/commons/transcoded/1/1c/Indirect_groin_hernia._Intraoperative_view_by_TEP.ogv/Indirect_groin_hernia._Intraoperative_view_by_TEP.ogv.240p.vp9.webm" type="video/webm"><source src="https://upload.wikimedia.org/wikipedia/commons/1/1c/Indirect_groin_hernia._Intraoperative_view_by_TEP.ogv" type="video/ogg"></video><figcaption>🎬 וידאו מניתוח: בקע עקיף במבט <bdi>TEP</bdi> (18 שניות) · Anpol42, CC BY-SA 3.0</figcaption></figure><div class="box b"><b class="t">🎥 להרחבה</b>הקלטה מכנס בנושא גישות לתיקון בקע מפשעתי, עם ניתוחים בשידור ופרשנות (<bdi>Prof. R. Bittner</bdi> ועמיתים, 2015) · <a href="https://commons.wikimedia.org/wiki/File:Different_surgical_approaches_to_inguinal_hernia.webm" target="_blank" rel="noopener">צפייה ב-<bdi>Wikimedia Commons</bdi></a> · CC BY 3.0</div></div></div>
+ <h2>"המבט הקריטי" של <span class="nw">ה-<bdi>myopectineal orifice</bdi></span></h2>
+<div class="grid f"><div><ol class="obj sm"><li><span class="nw">ה-<bdi>pubic tubercle</bdi></span> מזוהה ומנותח <b>מעבר לקו האמצע</b>. <span class="nw">ה-<bdi>Cooper's ligament</bdi></span> מזוהה</li><li>המרחב הישיר נקי משומן: רואים את <span class="nw">ה-<bdi>Hesselbach's triangle</bdi></span></li><li>בחלל <bdi>Retzius</bdi>: לפחות 2 ס״מ בין <span class="nw">ה-<bdi>Cooper's ligament</bdi></span> <span class="nw">ל-<bdi>bladder</bdi></span>, כדי שהרשת לא תתקפל</li><li>בין <span class="nw">ה-<bdi>external iliac vein</bdi></span> <span class="nw">ל-<bdi>Cooper's ligament</bdi></span>: שוללים בקע פמורלי</li><li>פריאטליזציה: השק <span class="nw">וה-<bdi>peritoneum</bdi></span> מופרדים <span class="nw">מה-<bdi>vas deferens</bdi></span> <span class="nw">ומה-<bdi>testicular vessels</bdi></span> עד שהם שוכבים שטוחים</li><li>ליפומה של <span class="nw">ה-<bdi>spermatic cord</bdi></span> מזוהה ומוחזרת</li><li>הדיסקציה ממשיכה לטרלית מעבר <span class="nw">ל-<bdi>ASIS</bdi></span></li><li>רשת של <bdi dir="ltr">10×15</bdi> ס״מ לפחות, שטוחה, בלי חתך <span class="nw">ל-<bdi>spermatic cord</bdi></span>. קיבוע רק מעל הקו בין <span class="nw">ה-<bdi>ASIS</bdi></span> <span class="nw">ל-<bdi>internal ring</bdi></span>. ריקון הגז תחת ראייה</li></ol></div><div style="display:grid;gap:10px"><figure class="vid"><video controls playsinline preload="metadata" poster="img/lap-tep-hesselbach.jpg"><source src="https://upload.wikimedia.org/wikipedia/commons/transcoded/1/1c/Indirect_groin_hernia._Intraoperative_view_by_TEP.ogv/Indirect_groin_hernia._Intraoperative_view_by_TEP.ogv.360p.mpeg4.mov" type="video/mp4"><source src="https://upload.wikimedia.org/wikipedia/commons/transcoded/1/1c/Indirect_groin_hernia._Intraoperative_view_by_TEP.ogv/Indirect_groin_hernia._Intraoperative_view_by_TEP.ogv.240p.vp9.webm" type="video/webm"><source src="https://upload.wikimedia.org/wikipedia/commons/1/1c/Indirect_groin_hernia._Intraoperative_view_by_TEP.ogv" type="video/ogg"></video><figcaption>🎬 וידאו מניתוח: בקע עקיף במבט <bdi>TEP</bdi> (18 שניות) · Anpol42, CC BY-SA 3.0</figcaption></figure><div class="box b"><b class="t">🎥 להרחבה</b>הקלטה מכנס בנושא גישות לתיקון בקע מפשעתי, עם ניתוחים בשידור ופרשנות (<bdi>Prof. R. Bittner</bdi> ועמיתים, 2015) · <a href="https://commons.wikimedia.org/wiki/File:Different_surgical_approaches_to_inguinal_hernia.webm" target="_blank" rel="noopener">צפייה <span class="nw">ב-<bdi>Wikimedia Commons</bdi></span></a> · CC BY 3.0</div></div></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 82 עמ׳ <bdi dir="ltr">1100–1101</bdi></span><span>המבט הקריטי</span></div>
 </div></section>
 
@@ -385,7 +390,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div style="display:grid;gap:10px">
    <div class="box"><b class="t">מניעה: איך סוגרים בטן</b>"ביסים קטנים": 0.5x0.5 ס״מ, יחס חוט לאורך החתך 4:1, חוט שנספג לאט (מחקר <bdi>STITCH</bdi>)</div>
    <div class="box a"><b class="t">לפני ניתוח מתוכנן</b>הפסקת עישון 4 שבועות מורידה זיהום. השמנה ניכרת מעלה את הסיכון לזיהום</div>
-   <div class="box n"><b class="t">בקעים נדירים</b><bdi>Spigelian</bdi> (לאורך הקו הלוניארי), מותני, אובטורטורי</div>
+   <div class="box n"><b class="t">בקעים נדירים</b><bdi>Spigelian</bdi> (לאורך <span class="nw">ה-<bdi>linea semilunaris</bdi></span>), מותני, אובטורטורי</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 80 עמ׳ <bdi dir="ltr">1063, 1066–1067</bdi> · פרק 81</span><span>דופן הבטן</span></div>
@@ -438,8 +443,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div class="study"><div class="y"><bdi>BJS Open</bdi> 2023 · הנחיות בינלאומיות</div><b>עדכון הנחיות <bdi>HerniaSurge</bdi></b>
    <p>39 קביעות ו-32 המלצות. רשת לרוב המטופלים. בלי רשת: <bdi>Shouldice</bdi>. בבקע ראשוני חד-צדדי (בכל המינים) מומלצת גישה זעיר-פולשנית, אם יש מומחיות ומשאבים</p>
    <small>Stabilini C et al. BJS Open 2023;7(5):zrad080</small></div>
-  <div class="study"><div class="y"><bdi>JAMA Surg</bdi> 2020 · <bdi>BJS</bdi> 2026</div><b>רובוט מול לפרוסקופיה: <bdi>RIVAL</bdi> ו-<bdi>ROGER</bdi></b>
-   <p>שני מחקרים אקראיים בבקע מפשעתי. לא נמצא יתרון קליני לרובוט בכאב, בסיבוכים או באיכות החיים. הניתוח הרובוטי ארך יותר. ב-<bdi>RIVAL</bdi> הוא גם עלה יותר</p>
+  <div class="study"><div class="y"><bdi>JAMA Surg</bdi> 2020 · <bdi>BJS</bdi> 2026</div><b>רובוט מול לפרוסקופיה: <bdi>RIVAL</bdi> <span class="nw">ו-<bdi>ROGER</bdi></span></b>
+   <p>שני מחקרים אקראיים בבקע מפשעתי. לא נמצא יתרון קליני לרובוט בכאב, בסיבוכים או באיכות החיים. הניתוח הרובוטי ארך יותר. <span class="nw">ב-<bdi>RIVAL</bdi></span> הוא גם עלה יותר</p>
    <small>Prabhu AS et al. JAMA Surg 2020;155:<bdi dir="ltr">380-7</bdi> · Angehrn FV et al. Br J Surg 2026;113:znaf283</small></div>
   <div class="study"><div class="y"><bdi>JAMA Surg</bdi> 2025 · מחקר אקראי</div><b><bdi>BIOLAP</bdi>: רשת ביולוגית מול סינתטית</b>
    <p>491 מטופלים עם בקע דו-צדדי, רשת שונה בכל צד. בלי הבדל בכאב. בצד הביולוגי יותר חזרות (11.2% לעומת 2.5%) ויותר סרומות (33% לעומת 22%)</p>
@@ -455,7 +460,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>19</b>לסיכום</div>
  <h2>חמישה דברים לקחת למחלקה</h2>
  <ol class="obj">
-  <li>הכלים האפיגסטריים התחתונים מבדילים בין ישיר (מדיאלית) לעקיף (לטרלית). מתחת לרצועה: פמורלי</li>
+  <li><span class="nw">ה-<bdi>inferior epigastric vessels</bdi></span> מבדילים בין ישיר (מדיאלית) לעקיף (לטרלית). מתחת <span class="nw">ל-<bdi>inguinal ligament</bdi></span>: פמורלי</li>
   <li>האבחנה קלינית: בודקים בעמידה ובשכיבה. הדמיה רק כשלא ברור</li>
   <li>גבר עם תסמינים קלים יכול להמתין. אישה עם בקע במפשעה ובקע פמורלי לא ממתינים</li>
   <li>רוב התיקונים ברשת. הגישה תלויה במטופל, בבקע ובמנתח</li>

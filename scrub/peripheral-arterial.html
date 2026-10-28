@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>מחלות כלי דם פריפריים · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,6 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -97,6 +98,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -114,6 +116,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -137,7 +142,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>לתאר את הספקטרום של מחלת עורקים פריפרית: בלי תסמינים, צליעה לסירוגין, איסכמיה כרונית מאיימת (<bdi>CLTI</bdi>) ואיסכמיה חריפה</li>
   <li>לבצע בדיקה וסקולרית של הרגל ולחשב ולפרש מדד קרסול-זרוע (<bdi>ABI</bdi>)</li>
   <li>להכיר את הטיפול התרופתי ושינוי אורח החיים שכל מטופל צריך לקבל</li>
-  <li>לדעת מתי מטפלים פולשנית בצליעה ומתי ב-<bdi>CLTI</bdi>. להכיר את עקרונות המעקף והטיפול האנדווסקולרי</li>
+  <li>לדעת מתי מטפלים פולשנית בצליעה ומתי <span class="nw">ב-<bdi>CLTI</bdi></span>. להכיר את עקרונות המעקף והטיפול האנדווסקולרי</li>
   <li>לזהות איסכמיה חריפה של הגפה, לסווג את חומרתה ולדעת מה עושים מיד</li>
  </ol>
  <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 103 (עמ׳ <bdi dir="ltr">1643–1675</bdi>)</span><span>Scrub In · קפלן</span></div>
@@ -149,8 +154,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="num">
   <div><b dir="ltr">30–60%</b><span>מהחולים בלי תסמינים</span></div>
   <div><b dir="ltr">32%</b><span>תמותה ב-5 שנים: יותר מסרטנים רבים</span></div>
-  <div><b dir="ltr">22%</b><span>תמותה בשנה ב-<bdi>CLTI</bdi> בלי טיפול</span></div>
-  <div><b dir="ltr">20–40%</b><span>אובדן גפה ב-<bdi>CLTI</bdi> בלי טיפול</span></div>
+  <div><b dir="ltr">22%</b><span>תמותה בשנה <span class="nw">ב-<bdi>CLTI</bdi></span> בלי טיפול</span></div>
+  <div><b dir="ltr">20–40%</b><span>אובדן גפה <span class="nw">ב-<bdi>CLTI</bdi></span> בלי טיפול</span></div>
  </div>
  <div class="grid">
   <ul class="b">
@@ -177,11 +182,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <g class="hzb" style="--c:#D63C32"><circle cx="410" cy="810" r="19"/><text x="410" y="810">4</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על מספר בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="il" hidden><b>1 · אגן ואאורטה (<bdi>inflow</bdi>)</b><p>מחלה אאורטו-איליאקית: צליעה בישבנים ובירכיים. שכיחה במעשנים. דופק פמורלי חלש או חסר. <bdi>Leriche</bdi>: צליעה, היעדר דופק פמורלי ואין-אונות. טיפול: אנדווסקולרי או מעקף אאורטו-פמורלי.</p></div>
-  <div class="hzi" data-hzi="cfa" hidden><b>2 · העורק הפמורלי המשותף (<bdi>CFA</bdi>)</b><p>מתחת לרצועה המפשעתית. כאן ממששים את הדופק הפמורלי. מחלה מקומית כאן מטופלת בניתוח פתוח: אנדארטרקטומיה וטלאי, שעדיפים על טיפול אנדווסקולרי. זה גם אתר הדקירה השכיח לצנתור.</p></div>
-  <div class="hzi" data-hzi="sfa" hidden><b>3 · העורק הפמורלי השטחי (<bdi>SFA</bdi>)</b><p>מחלה פמורו-פופליטאלית: צליעה בשוק. רוב החולים עם צליעה סובלים ממחלה במקטע אחד. הקולטרלים מהעורק הפמורלי העמוק יכולים לפצות על חסימה.</p></div>
-  <div class="hzi" data-hzi="hun" hidden><b>4 · התעלה של האדוקטורים (<bdi>Hunter</bdi>)</b><p><b>המקום השכיח ביותר</b> לטרשת ברגל: ה-<bdi>SFA</bdi> הדיסטלי ביציאה מהתעלה. הגיד של האדוקטור מגנוס לוחץ על העורק ומונע ממנו להתרחב.</p></div>
-  <div class="box a" style="margin-top:10px"><b class="t">ומה בשוק?</b>סוכרת, מחלת כליות וגיל מבוגר: מחלה דיסטלית בעורקי השוק. עורקי כף הרגל נשמרים לעיתים קרובות. לכן אפשר לעשות אליהם מעקף</div>
+  <div class="hzi" data-hzi="il" hidden><b>1 · <bdi dir="ltr">aorta</bdi> <span class="nw">ו-<bdi dir="ltr">iliac arteries</bdi></span> (<bdi>inflow</bdi>)</b><p>מחלה אאורטו-איליאקית: צליעה בישבנים ובירכיים. שכיחה במעשנים. דופק פמורלי חלש או חסר. <bdi>Leriche</bdi>: צליעה, היעדר דופק פמורלי ואין-אונות. טיפול: אנדווסקולרי או מעקף אאורטו-פמורלי.</p></div>
+  <div class="hzi" data-hzi="cfa" hidden><b>2 · <bdi dir="ltr">common femoral artery</bdi> (<bdi>CFA</bdi>)</b><p>מתחת <span class="nw">ל-<bdi dir="ltr">inguinal ligament</bdi></span>. כאן ממששים את הדופק הפמורלי. מחלה מקומית כאן מטופלת בניתוח פתוח: אנדארטרקטומיה וטלאי, שעדיפים על טיפול אנדווסקולרי. זה גם אתר הדקירה השכיח לצנתור.</p></div>
+  <div class="hzi" data-hzi="sfa" hidden><b>3 · <bdi dir="ltr">superficial femoral artery</bdi> (<bdi>SFA</bdi>)</b><p>מחלה פמורו-פופליטאלית: צליעה בשוק. רוב החולים עם צליעה סובלים ממחלה במקטע אחד. הקולטרלים <span class="nw">מה-<bdi dir="ltr">profunda femoris</bdi></span> יכולים לפצות על חסימה.</p></div>
+  <div class="hzi" data-hzi="hun" hidden><b>4 · <bdi dir="ltr">adductor canal</bdi> (<bdi>Hunter</bdi>)</b><p><b>המקום השכיח ביותר</b> לטרשת ברגל: <span class="nw">ה-<bdi>SFA</bdi></span> הדיסטלי ביציאה מהתעלה. הגיד של <span class="nw">ה-<bdi dir="ltr">adductor magnus</bdi></span> לוחץ על העורק ומונע ממנו להתרחב.</p></div>
+  <div class="box a" style="margin-top:10px"><b class="t">ומה בשוק?</b>סוכרת, מחלת כליות וגיל מבוגר: מחלה דיסטלית <span class="nw">ב-<bdi dir="ltr">tibial arteries</bdi></span>. <span class="nw">ה-<bdi dir="ltr">pedal arteries</bdi></span> נשמרים לעיתים קרובות. לכן אפשר לעשות אליהם מעקף</div>
  </div></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 103 עמ׳ <bdi dir="ltr">1644–1646, 1649, 1652, 1664, 1668</bdi></span><span>עורקי הירך · <bdi>Sobotta</bdi>, 1909, איור 574 (נחלת הכלל) · אזורים: Scrub In</span></div>
 </div></section>
@@ -190,13 +195,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>4</b>התמונה הקלינית</div>
  <h2>מצליעה ועד כאב במנוחה</h2>
  <div class="flow">
-  <div><b>בלי תסמינים</b><span>מתגלה בבדיקה או ב-<bdi>ABI</bdi> נמוך. עדיין סיכון קרדיווסקולרי גבוה</span></div>
+  <div><b>בלי תסמינים</b><span>מתגלה בבדיקה או <span class="nw">ב-<bdi>ABI</bdi></span> נמוך. עדיין סיכון קרדיווסקולרי גבוה</span></div>
   <div><b>צליעה לסירוגין</b><span>כאב או התכווצות בשריר בהליכה, שעוברים במנוחה קצרה. מופיעים במרחק קבוע. בעלייה ובהליכה מהירה מוקדם יותר</span></div>
   <div><b>כאב איסכמי במנוחה</b><span>בכף הרגל הקדמית, מחמיר בהרמת הרגל ומוקל כשהיא תלויה. המטופל ישן עם הרגל מחוץ למיטה</span></div>
   <div><b>אובדן רקמה</b><span>כיב או נמק בשוק או בכף הרגל יותר משבועיים, עם עדות לאיסכמיה שמונעת ריפוי</span></div>
  </div>
  <div class="grid" style="margin-top:12px">
-  <div class="box"><b class="t">רמת הכאב מרמזת על רמת החסימה</b>ישבנים וירכיים: אאורטה ואגן. שוק: עורק פמורלי ופופליטאלי. קבוצת שרירים אחת, דיסטלית לחסימה</div>
+  <div class="box"><b class="t">רמת הכאב מרמזת על רמת החסימה</b>ישבנים וירכיים: <bdi dir="ltr">aorta</bdi> <span class="nw">ו-<bdi dir="ltr">iliac arteries</bdi></span>. שוק: <bdi dir="ltr">femoral artery</bdi> <span class="nw">ו-<bdi dir="ltr">popliteal artery</bdi></span>. קבוצת שרירים אחת, דיסטלית לחסימה</div>
   <div class="box a"><b class="t">מה עוד יכול לגרום כאב בהליכה</b>היצרות של תעלת עמוד השדרה, לחץ על שורש עצבי, דלקת פרקים, תסמונת מדור כרונית. כאב עצבי משתנה יותר, יכול להופיע בעמידה בלבד ומוקל בשינוי תנוחה</div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 103 עמ׳ <bdi dir="ltr">1643, 1646–1647</bdi></span><span>קליניקה</span></div>
@@ -215,7 +220,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    </ul>
    <h3 style="margin-top:10px">מישוש והאזנה</h3>
    <ul class="b sm">
-    <li>דפקים: פמורלי, פופליטאלי, <bdi>dorsalis pedis</bdi> וטיביאלי אחורי. השוו בין הצדדים</li>
+    <li>דפקים: <bdi dir="ltr">femoral</bdi>, <bdi dir="ltr">popliteal</bdi>, <bdi>dorsalis pedis</bdi> <span class="nw">ו-<bdi dir="ltr">posterior tibial</bdi></span>. השוו בין הצדדים</li>
     <li>דופק בולט בבטן, במפשעה או בברך: חשד למפרצת</li>
     <li>האזנה לאוושה בצוואר, בבטן ובמפשעה</li>
     <li>נוירופתיה: מונופילמנט. בכיב: האם מגיעים לעצם (<bdi>probe-to-bone</bdi>)</li>
@@ -239,7 +244,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>איך:</b> שרוול לחץ דם ודופלר ידני. הלחץ הסיסטולי הגבוה בקרסול (<bdi>DP</bdi> או <bdi>PT</bdi>) חלקי הלחץ הסיסטולי הגבוה בזרוע</li>
     <li><b>תקין:</b> <bdi dir="ltr">0.9–1.2</bdi></li>
     <li><b>מתחת ל-0.9:</b> אבחנה של מחלה פריפרית. רגישות <bdi dir="ltr">79–95%</bdi>, סגוליות מעל 95%</li>
-    <li><b>מתאים ל-<bdi>CLTI</bdi>:</b> <bdi>ABI</bdi> מתחת ל-0.5, לחץ בקרסול מתחת ל-50 ממ״כ בכאב במנוחה או מתחת ל-70 ממ״כ באובדן רקמה</li>
+    <li><b>מתאים <span class="nw">ל-<bdi>CLTI</bdi></span>:</b> <bdi>ABI</bdi> מתחת ל-0.5, לחץ בקרסול מתחת ל-50 ממ״כ בכאב במנוחה או מתחת ל-70 ממ״כ באובדן רקמה</li>
     <li><b>מעל 1.3:</b> עורקים מסוידים שלא נלחצים (סוכרת, כליות, גיל). התוצאה תקינה באופן כוזב. מודדים <b>לחץ באצבע</b>: מתחת ל-30 ממ״כ ריפוי לא סביר, מעל 60 ריפוי סביר</li>
     <li><b>צליעה עם <bdi>ABI</bdi> תקין:</b> <bdi>ABI</bdi> אחרי מאמץ. ירידה של 20 ממ״כ או 20% בלחץ בקרסול תומכת באבחנה</li>
    </ul>
@@ -266,8 +271,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <h3>הדמיה לפני התערבות</h3>
    <div class="flow sm">
     <div><b>דופלקס עורקי</b><span>זמין ולא פולשני. מהירות שיא פי 2 מהמקטע הקודם: היצרות <bdi dir="ltr">50–74%</bdi>. פי 4: מעל 75%</span></div>
-    <div><b><bdi>CTA</bdi></b><span>טוב לאאורטה ולאגן (למשל דופק פמורלי חסר). מוגבל בעורקי שוק קטנים ומסוידים</span></div>
-    <div><b><bdi>MRA</bdi></b><span>בלי קרינה. מדויק בהיצרות מעל 50% ובעורקי השוק</span></div>
+    <div><b><bdi>CTA</bdi></b><span>טוב <span class="nw">ל-<bdi dir="ltr">aorta</bdi></span> <span class="nw">ול-<bdi dir="ltr">iliac arteries</bdi></span> (למשל דופק פמורלי חסר). מוגבל <span class="nw">ב-<bdi dir="ltr">tibial arteries</bdi></span> קטנים ומסוידים</span></div>
+    <div><b><bdi>MRA</bdi></b><span>בלי קרינה. מדויק בהיצרות מעל 50% <span class="nw">וב-<bdi dir="ltr">tibial arteries</bdi></span></span></div>
     <div><b>אנגיוגרפיה (<bdi>DSA</bdi>)</b><span>פולשנית, אבל מאפשרת טיפול באותה פעולה</span></div>
    </div>
   </div>
@@ -282,8 +287,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div class="box"><b class="t">נוגדי טסיות</b>אספירין <bdi dir="ltr">75–325</bdi> מ״ג או קלופידוגרל 75 מ״ג ביום בכל מחלה פריפרית עם תסמינים. בחולים בלי סיכון דימום מוגבר: ריברוקסבן 2.5 מ״ג פעמיים ביום עם אספירין (<bdi>COMPASS</bdi>: פחות אירועים לבביים ופחות אירועים בגפה). נוגדי קרישה במינון מלא: לא באופן שגרתי</div>
   <div class="box"><b class="t">סטטין בעוצמה גבוהה</b>לכל חולה. יעד <bdi>LDL</bdi> מתחת ל-70 מ״ג/ד״ל. אם לא מגיעים: אזטימיב ואחר כך מעכבי <bdi>PCSK9</bdi></div>
-  <div class="box n"><b class="t">לחץ דם וסוכרת</b>מעכבי <bdi>ACE</bdi> או חוסמי קולטן לאנגיוטנסין מורידים אירועים קרדיווסקולריים. <bdi>HbA1c</bdi>: יעד מתחת ל-7% לפי ההנחיות ל-<bdi>CLTI</bdi>, או מתחת ל-8% בגלל סכנת היפוגליקמיה. מתאימים אישית</div>
-  <div class="box r"><b class="t">הפסקת עישון</b>שואלים בכל ביקור. תמותה ב-5 שנים: 14% במי שהפסיק לעומת 31% במי שממשיך (ב-<bdi>CLTI</bdi>: 18% לעומת 43%). ורניקלין, בופרופיון ותחליפי ניקוטין עוזרים</div>
+  <div class="box n"><b class="t">לחץ דם וסוכרת</b>מעכבי <bdi>ACE</bdi> או חוסמי קולטן לאנגיוטנסין מורידים אירועים קרדיווסקולריים. <bdi>HbA1c</bdi>: יעד מתחת ל-7% לפי ההנחיות <span class="nw">ל-<bdi>CLTI</bdi></span>, או מתחת ל-8% בגלל סכנת היפוגליקמיה. מתאימים אישית</div>
+  <div class="box r"><b class="t">הפסקת עישון</b>שואלים בכל ביקור. תמותה ב-5 שנים: 14% במי שהפסיק לעומת 31% במי שממשיך (<span class="nw">ב-<bdi>CLTI</bdi></span>: 18% לעומת 43%). ורניקלין, בופרופיון ותחליפי ניקוטין עוזרים</div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 103 עמ׳ <bdi dir="ltr">1646, 1650–1651</bdi></span><span>טיפול רפואי</span></div>
 </div></section>
@@ -303,7 +308,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <li><b>צילוסטזול</b> 100 מ״ג פעמיים ביום, ניסיון של 3 חודשים. <b>אסור באי ספיקת לב</b>. תופעות: כאב ראש, שלשול, דפיקות לב</li>
    <li><b>בלי תסמינים:</b> אין טיפול פולשני, גם אם ההדמיה מראה חסימה</li>
   </ul>
-  <div class="box a"><b class="t">מתי מתערבים בצליעה</b>רק כשהצליעה משבשת את החיים, אחרי כישלון של אימון וטיפול תרופתי, באנטומיה מתאימה ובסיכוי טוב לתוצאה עמידה. התערבות בעורקי השוק בצליעה עלולה להחמיר ולסכן את הרגל. לא עושים מעקף עם שתל סינתטי לצליעה</div>
+  <div class="box a"><b class="t">מתי מתערבים בצליעה</b>רק כשהצליעה משבשת את החיים, אחרי כישלון של אימון וטיפול תרופתי, באנטומיה מתאימה ובסיכוי טוב לתוצאה עמידה. התערבות <span class="nw">ב-<bdi dir="ltr">tibial arteries</bdi></span> בצליעה עלולה להחמיר ולסכן את הרגל. לא עושים מעקף עם שתל סינתטי לצליעה</div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 103 עמ׳ <bdi dir="ltr">1651–1652, 1665</bdi></span><span>צליעה</span></div>
 </div></section>
@@ -316,7 +321,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <ul class="b sm">
     <li>תמותה של <b>50% ב-5 שנים</b> וסיכון גבוה לקטיעה</li>
     <li><b><bdi>WIfI</bdi></b>: מדרגים פצע (<bdi>W</bdi>), איסכמיה (<bdi>I</bdi>) וזיהום בכף הרגל (<bdi>fI</bdi>), כל אחד בציון 0–3. השילוב נותן שלב קליני <bdi dir="ltr">I–IV</bdi></li>
-    <li>סיכון לקטיעה בשנה לפי שלב: <b>0%</b> בשלב <bdi>I</bdi>, <b>8%</b> ב-<bdi>II</bdi>, <b>11%</b> ב-<bdi>III</bdi>, <b>38%</b> ב-<bdi>IV</bdi></li>
+    <li>סיכון לקטיעה בשנה לפי שלב: <b>0%</b> בשלב <bdi>I</bdi>, <b>8%</b> <span class="nw">ב-<bdi>II</bdi></span>, <b>11%</b> <span class="nw">ב-<bdi>III</bdi></span>, <b>38%</b> <span class="nw">ב-<bdi>IV</bdi></span></li>
     <li><b><bdi>PLAN</bdi></b>: מחליטים לפי המטופל (סיכון ותוחלת חיים), הגפה (<bdi>WIfI</bdi>) והאנטומיה (<bdi>GLASS</bdi>)</li>
     <li>פצע יציב: יש זמן לשפר את המצב הרפואי. כאב במנוחה או פצע שמתקדם: לא מחכים, אלא בתעוקה לא יציבה או אי ספיקת לב לא מאוזנת</li>
     <li>תוחלת חיים קצרה או מטופל מרותק: לשקול טיפול פליאטיבי או קטיעה ראשונית</li>
@@ -335,10 +340,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>מעקף או טיפול אנדווסקולרי?</h2>
  <div class="grid g3">
   <div class="box b"><b class="t">אנדווסקולרי</b><ul class="b sm"><li>בלון, סטנט או אתרקטומיה דרך דקירה בעורק</li><li>הרדמה מקומית, מעט דימום ומעט עומס פיזיולוגי</li><li>פחות עמיד: היצרות חוזרת שכיחה, בעיקר בנגעים ארוכים ומסוידים</li></ul></div>
-  <div class="box"><b class="t">מעקף פתוח</b><ul class="b sm"><li>הצינור הטוב ביותר: <b>וריד ספנה גדול</b> מקטע אחד</li><li>פתיחות ב-5 שנים: כ-75% לפופליטאלי מעל הברך, 69% לעורקי השוק, 59% לכף הרגל</li><li><bdi dir="ltr">20–45%</bdi> מהחולים בלי וריד מתאים</li></ul></div>
-  <div class="box n"><b class="t">אגן ומפשעה</b><ul class="b sm"><li>מעקף אאורטו-פמורלי: תחלואה כ-30%, תמותה <bdi dir="ltr">0.8–2.3%</bdi></li><li>חולה בסיכון גבוה: מעקף אקסילו-פמורלי או פמורו-פמורלי. פחות עמיד, פחות מסוכן</li><li>עורק פמורלי משותף: אנדארטרקטומיה וטלאי</li></ul></div>
+  <div class="box"><b class="t">מעקף פתוח</b><ul class="b sm"><li>הצינור הטוב ביותר: <b><bdi dir="ltr">great saphenous vein</bdi></b> מקטע אחד</li><li>פתיחות ב-5 שנים: כ-75% <span class="nw">ל-<bdi dir="ltr">popliteal artery</bdi></span> מעל הברך, 69% <span class="nw">ל-<bdi dir="ltr">tibial arteries</bdi></span>, 59% לכף הרגל</li><li><bdi dir="ltr">20–45%</bdi> מהחולים בלי וריד מתאים</li></ul></div>
+  <div class="box n"><b class="t">אגן ומפשעה</b><ul class="b sm"><li>מעקף אאורטו-פמורלי: תחלואה כ-30%, תמותה <bdi dir="ltr">0.8–2.3%</bdi></li><li>חולה בסיכון גבוה: מעקף אקסילו-פמורלי או פמורו-פמורלי. פחות עמיד, פחות מסוכן</li><li><bdi dir="ltr">common femoral artery</bdi>: אנדארטרקטומיה וטלאי</li></ul></div>
  </div>
- <div class="box a" style="margin-top:12px"><b class="t">מה אומרים המחקרים</b><bdi>BEST-CLI</bdi>: בחולים עם וריד ספנה מתאים, מעקף הוריד את שיעור האירועים בגפה או המוות (42.6% לעומת 57.4%). בלי וריד מתאים לא היה הבדל. <bdi>BASIL-2</bdi> (מחלה מתחת לברך): יותר מוות בזרוע המעקף. לכן ההחלטה אישית: סיכון, אנטומיה ווריד זמין</div>
+ <div class="box a" style="margin-top:12px"><b class="t">מה אומרים המחקרים</b><bdi>BEST-CLI</bdi>: בחולים עם <bdi dir="ltr">great saphenous vein</bdi> מתאים, מעקף הוריד את שיעור האירועים בגפה או המוות (42.6% לעומת 57.4%). בלי וריד מתאים לא היה הבדל. <bdi>BASIL-2</bdi> (מחלה מתחת לברך): יותר מוות בזרוע המעקף. לכן ההחלטה אישית: סיכון, אנטומיה ווריד זמין</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 103 עמ׳ <bdi dir="ltr">1651–1652, 1654–1657, 1664–1665</bdi></span><span>רה-וסקולריזציה</span></div>
 </div></section>
 
@@ -350,7 +355,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <ul class="b sm">
     <li>הפסקה פתאומית של זרימת הדם. <b>אחרי 6 שעות</b> של איסכמיה קשה יכול להיגרם נזק בלתי הפיך לשריר ולעצב</li>
     <li>תמותה סביב הניתוח <bdi dir="ltr">20–40%</bdi>, אובדן גפה <bdi dir="ltr">12–50%</bdi></li>
-    <li><b>ששת ה-<bdi>P</bdi>:</b> כאב, היעדר דופק, קור, נימול, חיוורון ושיתוק</li>
+    <li><b>ששת <span class="nw">ה-<bdi>P</bdi></span>:</b> כאב, היעדר דופק, קור, נימול, חיוורון ושיתוק</li>
     <li>גבול הקור ודפקים שנשמרו מעליו מראים איפה החסימה. משווים לרגל השנייה ובודקים בדופלר עורקי <b>וורידי</b></li>
    </ul>
    <div class="grid" style="margin-top:10px">
@@ -368,8 +373,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>סיווג <bdi>Rutherford</bdi> ומה עושים</h2>
  <div class="flow">
   <div><b><span class="tag">I</span> בת קיימא</b><span>בלי חסר תחושתי ובלי חולשה. דופלר עורקי ווורידי נשמע. אפשר בירור והדמיה, טיפול אנדווסקולרי</span></div>
-  <div><b><span class="tag a">IIa</span> מאוימת קלות</b><span>חסר תחושה מינימלי (אצבעות) או בלי. בלי חולשה. דופלר עורקי לא נשמע. ניתנת להצלה בטיפול מהיר. מתאים טיפול אנדווסקולרי (תרומבוליזה בצנתר)</span></div>
-  <div><b><span class="tag r">IIb</span> מאוימת מיידית</b><span>חסר תחושה מעבר לאצבעות, כאב במנוחה, חולשה קלה עד בינונית. <b>רה-וסקולריזציה מיד:</b> אמבולקטומיה פתוחה בצנתר <bdi>Fogarty</bdi></span></div>
+  <div><b><span class="tag a">IIa</span> מאוימת קלות</b><span>חסר תחושה מינימלי (אצבעות) או בלי. בלי חולשה. דופלר עורקי לרוב לא נשמע. דופלר ורידי נשמע. ניתנת להצלה בטיפול מהיר. מתאים טיפול אנדווסקולרי (תרומבוליזה בצנתר)</span></div>
+  <div><b><span class="tag r">IIb</span> מאוימת מיידית</b><span>חסר תחושה מעבר לאצבעות, כאב במנוחה, חולשה קלה עד בינונית. דופלר ורידי נשמע. <b>רה-וסקולריזציה מיד:</b> אמבולקטומיה פתוחה בצנתר <bdi>Fogarty</bdi></span></div>
   <div><b><span class="tag r">III</span> בלתי הפיכה</b><span>הרדמה מלאה, שיתוק, נוקשות. אין דופלר עורקי ואין ורידי. <b>קטיעה ראשונית</b>: החזרת זרימה עלולה לגרום לאי ספיקה רב-מערכתית ולמוות</span></div>
  </div>
  <div class="box r" style="margin-top:12px"><b class="t">ברגע שחושדים: הפרין</b>בולוס תוך-ורידי <bdi dir="ltr">75–100</bdi> יח׳/ק״ג. אחריו עירוי רציף עד לטיפול המוחלט. כך מונעים התפשטות של הקריש ושומרים על הקולטרלים</div>
@@ -400,7 +405,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>מחקרים שכדאי להכיר</h2>
  <div class="grid">
   <div class="study"><div class="y"><bdi>NEJM</bdi> 2022 · מחקר אקראי</div><b><bdi>BEST-CLI</bdi>: מעקף מול טיפול אנדווסקולרי</b>
-   <p>1,830 חולי <bdi>CLTI</bdi>. כשיש וריד ספנה מתאים: אירוע מז׳ורי בגפה או מוות ב-42.6% אחרי מעקף לעומת 57.4% אחרי טיפול אנדווסקולרי. בלי וריד מתאים: 42.8% לעומת 47.7%, בלי הבדל מובהק</p>
+   <p>1,830 חולי <bdi>CLTI</bdi>. כשיש <bdi dir="ltr">great saphenous vein</bdi> מתאים: אירוע מז׳ורי בגפה או מוות ב-42.6% אחרי מעקף לעומת 57.4% אחרי טיפול אנדווסקולרי. בלי וריד מתאים: 42.8% לעומת 47.7%, בלי הבדל מובהק</p>
    <small><bdi dir="ltr">Farber A et al. N Engl J Med 2022;387:2305-16</bdi></small></div>
   <div class="study"><div class="y"><bdi>BMJ</bdi> 2025 · מחקר אקראי</div><b><bdi>BASIL-3</bdi>: בלון ותומכן עם תרופה</b>
    <p>481 חולי <bdi>CLTI</bdi> עם מחלה פמורו-פופליטאלית. קטיעה גדולה או מוות: 66% בבלון רגיל, 60% בבלון מצופה תרופה, 58% בתומכן מצופה. ההבדלים לא מובהקים: אין יתרון קליני לטכנולוגיה היקרה</p>
@@ -426,7 +431,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>רגל קרה, חיוורת ובלי דופק: הפרין מיד, סיווג <bdi>Rutherford</bdi> ופנייה דחופה לכירורג כלי דם</li>
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 103 <bdi>Peripheral Occlusive Disease</bdi> (עמ׳ <bdi dir="ltr">1643–1657, 1671–1674</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1909, נחלת הכלל) · <bdi>NHLBI</bdi> (נחלת הכלל) · תמונות קליניות מ-<bdi>Wikimedia Commons</bdi> לפי הרישיון בכל כיתוב · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1909, נחלת הכלל) · <bdi>NHLBI</bdi> (נחלת הכלל) · תמונות קליניות <span class="nw">מ-<bdi>Wikimedia Commons</bdi></span> לפי הרישיון בכל כיתוב · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>

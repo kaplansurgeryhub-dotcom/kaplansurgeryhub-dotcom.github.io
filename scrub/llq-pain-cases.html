@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>דיון מקרים: כאבי בטן שמאלית תחתונה · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -90,6 +90,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -101,6 +102,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -118,6 +120,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -153,8 +158,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>מה יכול לכאוב בבטן שמאלית תחתונה?</h2>
  <div class="grid">
   <div style="display:grid;gap:10px">
-   <div class="box n"><b class="t">מעי</b>דלקת סעיפים (גם מנוקבת), קוליטיס איסכמית, מחלת מעי דלקתית, גידול מנוקב, חסימה, בקע כלוא. גם וולבולוס של הסיגמה</div>
-   <div class="box b"><b class="t">גינקולוגיה</b>היריון מחוץ לרחם, תסביב שחלה, ציסטה מדממת, מורסה טובו-שחלתית ו-<bdi>PID</bdi>, אנדומטריוזיס</div>
+   <div class="box n"><b class="t">מעי</b>דלקת סעיפים (גם מנוקבת), קוליטיס איסכמית, מחלת מעי דלקתית, גידול מנוקב, חסימה, בקע כלוא. גם וולבולוס של <span class="nw">ה-<bdi dir="ltr">sigmoid</bdi></span></div>
+   <div class="box b"><b class="t">גינקולוגיה</b>היריון מחוץ לרחם, תסביב שחלה, ציסטה מדממת, מורסה טובו-שחלתית <span class="nw">ו-<bdi>PID</bdi></span>, אנדומטריוזיס</div>
    <div class="box"><b class="t">דרכי שתן</b>אבן בשופכן, פיאלונפריטיס, מורסה בכליה</div>
    <div class="box a"><b class="t">"רפואי" שמחקה בטן כירורגית</b>חמצת קטוטית סוכרתית, פיאלונפריטיס, הרפס זוסטר, משבר חרמשי, תרופות (אופיאטים, אנטיכולינרגיות)</div>
   </div>
@@ -186,20 +191,20 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    </ul>
    <div class="box b" style="margin-top:12px"><b class="t">שאלות לקבוצה</b>האם צריך הדמיה? איזו? ומה תעשו אם התשובה היא דלקת סעיפים קלה?</div>
   </div>
-  <figure><img src="img/ct-diverticulitis-uncomplicated.jpg" alt="CT של דלקת סעיפים בלי מורסה"><figcaption>CT (רוחבי וקורונלי) של מטופלת אחרת: דלקת סעיפים במעבר בין הקולון היורד לסיגמה, בלי נקב ובלי מורסה · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/ct-diverticulitis-uncomplicated.jpg" alt="CT של דלקת סעיפים בלי מורסה"><figcaption>CT (רוחבי וקורונלי) של מטופלת אחרת: דלקת סעיפים במעבר בין <bdi dir="ltr">descending colon</bdi> <span class="nw">ל-<bdi dir="ltr">sigmoid</bdi></span>, בלי נקב ובלי מורסה · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span>מקרה בדוי · <b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1450</bdi></span><span>מקרה 1</span></div>
 </div></section>
 
 <section class="s"><div class="card">
  <div class="kick"><b>4</b>מקרה 1 · אבחנה</div>
- <h2>CT מאשר: דלקת סעיפים של הסיגמה בלי מורסה</h2>
+ <h2>CT מאשר: דלקת סעיפים של <span class="nw">ה-<bdi dir="ltr">sigmoid</bdi></span> בלי מורסה</h2>
  <details class="box"><summary><b>▸ למה CT ולא רק קליניקה?</b></summary>
   <p style="margin:8px 0 0">CT מאשר את האבחנה, שולל אבחנות אחרות וקובע את החומרה. הסימנים: סעיפים, עיבוי דופן, הסננה של השומן סביב המעי ואין מורסה. צילום בטן לא ספציפי</p></details>
  <details class="box b" style="margin-top:10px"><summary><b>▸ איזו דרגה?</b></summary>
   <p style="margin:8px 0 0"><bdi>Hinchey</bdi> המתוקן <bdi>Ia</bdi>: דלקת תחומה סביב המעי (פלגמון). אם יש רק עיבוי דופן בלי הסננה סביב: דרגה 0</p></details>
  <details class="box a" style="margin-top:10px"><summary><b>▸ קולונוסקופיה עכשיו?</b></summary>
-  <p style="margin:8px 0 0">לא. בזמן התקף ניפוח המעי עלול להחמיר נקב. אחרי ההחלמה: כ-<bdi dir="ltr">1–3%</bdi> מהמקרים הם בעצם גידול ולכן קולונוסקופיה בעוד <bdi dir="ltr">4–8</bdi> שבועות. במחלה לא מסובכת שאובחנה ב-CT ההחלטה יכולה להיות אישית</p></details>
+  <p style="margin:8px 0 0">לא. בזמן התקף ניפוח המעי עלול להחמיר נקב. אחרי ההחלמה: <span class="nw">כ-<bdi dir="ltr">1–3%</bdi></span> מהמקרים הם בעצם גידול ולכן קולונוסקופיה בעוד <bdi dir="ltr">4–8</bdi> שבועות. במחלה לא מסובכת שאובחנה ב-CT ההחלטה יכולה להיות אישית</p></details>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1450–1451</bdi> (טבלה 95.1)</span><span>מקרה 1</span></div>
 </div></section>
 
@@ -228,7 +233,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li>דופק 104, ל״ד 122/74</li>
     <li>גוש רגיש בבטן שמאלית תחתונה, בלי פריטוניטיס מפושטת</li>
     <li>לויקוציטים 17,800, <bdi>CRP</bdi> 190</li>
-    <li>CT: דלקת של הסיגמה עם <b>מורסה של 6 ס״מ</b> בצמוד למעי</li>
+    <li>CT: דלקת של <span class="nw">ה-<bdi dir="ltr">sigmoid</bdi></span> עם <b>מורסה של 6 ס״מ</b> בצמוד למעי</li>
    </ul>
    <div class="box b" style="margin-top:12px"><b class="t">שאלות לקבוצה</b>איזו דרגה? אנטיביוטיקה לבד מספיקה? מה התוכנית לאחר שחרור?</div>
   </div>
@@ -251,12 +256,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <g class="hzb" style="--c:#00967D"><circle cx="340" cy="836" r="20"/><text x="340" y="836">4</text></g>
   </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על אזור בתמונה כדי לקרוא עליו</p>
-   <div class="hzi" data-hzi="a" hidden><b>1 · המורסה</b><p>אוסף נוזלים תחום ליד המעי (החץ האדום): נקב קטן שהמזנטריום תחם. כך נראה <bdi>Hinchey Ib</bdi>. קטנה: אנטיביוטיקה. גדולה: ניקוז מלעורי</p></div>
-   <div class="hzi" data-hzi="s" hidden><b>2 · הסיגמה עם סעיפים</b><p>הכיסים הקטנים עם האוויר הם הסעיפים. הדופן מעובה והשומן סביבה "מלוכלך": אלה סימני הדלקת ב-CT</p></div>
-   <div class="hzi" data-hzi="d" hidden><b>3 · הקולון היורד</b><p>מלא בחומר ניגוד ובלי דלקת. המחלה ממוקמת בדרך כלל בסיגמה ובקולון היורד</p></div>
-   <div class="hzi" data-hzi="b" hidden><b>4 · השלפוחית</b><p>צמודה לסיגמה המודלקת. לכן יש לעיתים דחיפות במתן שתן. מורסה כאן יכולה להתנקז לשלפוחית וליצור פיסטולה (ההמשך של המקרה)</p></div>
+   <div class="hzi" data-hzi="a" hidden><b>1 · המורסה</b><p>אוסף נוזלים תחום ליד המעי (החץ האדום): נקב קטן <span class="nw">שה-<bdi dir="ltr">mesentery</bdi></span> תחם. כך נראה <bdi>Hinchey Ib</bdi>. קטנה: אנטיביוטיקה. גדולה: ניקוז מלעורי</p></div>
+   <div class="hzi" data-hzi="s" hidden><b>2 · <bdi dir="ltr">sigmoid</bdi> עם סעיפים</b><p>הכיסים הקטנים עם האוויר הם הסעיפים. הדופן מעובה והשומן סביבה "מלוכלך": אלה סימני הדלקת ב-CT</p></div>
+   <div class="hzi" data-hzi="d" hidden><b>3 · <bdi dir="ltr">descending colon</bdi></b><p>מלא בחומר ניגוד ובלי דלקת. המחלה ממוקמת בדרך כלל <span class="nw">ב-<bdi dir="ltr">sigmoid</bdi></span> <span class="nw">וב-<bdi dir="ltr">descending colon</bdi></span></p></div>
+   <div class="hzi" data-hzi="b" hidden><b>4 · השלפוחית</b><p>צמודה <span class="nw">ל-<bdi dir="ltr">sigmoid</bdi></span> המודלק. לכן יש לעיתים דחיפות במתן שתן. מורסה כאן יכולה להתנקז לשלפוחית וליצור פיסטולה (ההמשך של המקרה)</p></div>
   </div></div>
- <figure style="margin-top:8px;border:0;padding:0"><figcaption>CT קורונלי של מטופל אחר: דלקת סעיפים של הסיגמה עם נקב ומורסה קטנה · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ <figure style="margin-top:8px;border:0;padding:0"><figcaption>CT קורונלי של מטופל אחר: דלקת סעיפים של <span class="nw">ה-<bdi dir="ltr">sigmoid</bdi></span> עם נקב ומורסה קטנה · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1450–1452</bdi></span><span>מקרה 2</span></div>
 </div></section>
 
@@ -314,9 +319,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <details class="box"><summary><b>▸ למה לא דלקת סעיפים?</b></summary>
   <p style="margin:8px 0 0">דימום רקטלי נדיר בדלקת סעיפים חריפה. השילוב של כאב פתאומי, התכווצויות ודם, <b>כשהכאב קודם לדם</b>, אופייני לקוליטיס איסכמית (כחצי מהמטופלים). הדימום בדרך כלל קטן</p></details>
  <details class="box b" style="margin-top:10px"><summary><b>▸ למה דווקא היא ולמה דווקא שם?</b></summary>
-  <p style="margin:8px 0 0">מבוגרת, אישה, מחלות רקע ומצב של זרימה נמוכה (אי ספיקת לב, התייבשות). השכיח ביותר: הקולון השמאלי כולל הכפיפה הטחולית ואחריו הסיגמה. אזורי "פרשת המים": הכפיפה הטחולית (<bdi>Griffiths</bdi>) והמעבר בין הסיגמה לרקטום (<bdi>Sudeck</bdi>). הרקטום כמעט אף פעם לא נפגע</p></details>
+  <p style="margin:8px 0 0">מבוגרת, אישה, מחלות רקע ומצב של זרימה נמוכה (אי ספיקת לב, התייבשות). השכיח ביותר: <bdi dir="ltr">left colon</bdi> כולל <bdi dir="ltr">splenic flexure</bdi> ואחריו <span class="nw">ה-<bdi dir="ltr">sigmoid</bdi></span>. אזורי "פרשת המים": <bdi dir="ltr">splenic flexure</bdi> (<bdi>Griffiths</bdi>) והמעבר בין <span class="nw">ה-<bdi dir="ltr">sigmoid</bdi></span> <span class="nw">ל-<bdi dir="ltr">rectum</bdi></span> (<bdi>Sudeck</bdi>). <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span> כמעט אף פעם לא נפגע</p></details>
  <details class="box a" style="margin-top:10px"><summary><b>▸ הבירור</b></summary>
-  <ul class="b sm" style="margin-top:8px"><li>מעבדה: ספירה, כימיה, לקטט, גזים. לויקוציטים, אוריאה ו-<bdi>LDH</bdi> גבוהים, המוגלובין ואלבומין נמוכים וחמצת: מחלה קשה</li><li>צואה: <bdi>C. difficile</bdi>, ביצי טפילים ותרבית</li><li>CT: עיבוי של קטע, הסננה, "טביעות אגודל". אוויר בדופן או בווריד השער: מחלה מלאה בעובי הדופן</li><li><b>קולונוסקופיה בתוך 48 שעות</b> היא בדיקת הבחירה, בלי ניפוח יתר ובלי להתקדם מעבר לקצה המחלה. לא בפריטוניטיס</li></ul></details>
+  <ul class="b sm" style="margin-top:8px"><li>מעבדה: ספירה, כימיה, לקטט, גזים. לויקוציטים, אוריאה <span class="nw">ו-<bdi>LDH</bdi></span> גבוהים, המוגלובין ואלבומין נמוכים וחמצת: מחלה קשה</li><li>צואה: <bdi>C. difficile</bdi>, ביצי טפילים ותרבית</li><li>CT: עיבוי של קטע, הסננה, "טביעות אגודל". אוויר בדופן או <span class="nw">ב-<bdi dir="ltr">portal vein</bdi></span>: מחלה מלאה בעובי הדופן</li><li><b>קולונוסקופיה בתוך 48 שעות</b> היא בדיקת הבחירה, בלי ניפוח יתר ובלי להתקדם מעבר לקצה המחלה. לא בפריטוניטיס</li></ul></details>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1450, 1476–1479</bdi></span><span>מקרה 3</span></div>
 </div></section>
 

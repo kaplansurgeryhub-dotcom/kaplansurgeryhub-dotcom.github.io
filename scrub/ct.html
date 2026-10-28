@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>CT בטן · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,6 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -97,6 +98,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -114,6 +116,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -125,7 +130,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
  <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 4</div>
  <h1><bdi>CT</bdi> בטן</h1>
- <p class="lead">איך מזמינים, איך מתמצאים בחתך ומה מחפשים: חסימה, סעיפים, תוספתן, לבלב, איסכמיה וחבלה</p>
+ <p class="lead">איך מזמינים, איך מתמצאים בחתך ומה מחפשים: חסימה, סעיפים, <bdi>appendix</bdi>, <bdi>pancreas</bdi>, איסכמיה וחבלה</p>
  <div class="cvsrc" data-ch="85,91,92,94,95,106,36" data-note=""><small>מבוסס על</small><b><bdi dir="ltr">Sabiston Textbook of Surgery</bdi> · מהדורה 22</b><div class="cvch"><span>פרק <bdi dir="ltr">85</bdi></span><span>פרק <bdi dir="ltr">91</bdi></span><span>פרק <bdi dir="ltr">92</bdi></span><span>פרק <bdi dir="ltr">94</bdi></span><span>פרק <bdi dir="ltr">95</bdi></span><span>פרק <bdi dir="ltr">106</bdi></span><span>פרק <bdi dir="ltr">36</bdi></span></div></div>
  <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
 </div></section>
@@ -135,8 +140,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>בסוף המפגש תדעו</h2>
  <ol class="obj">
   <li>לבחור פרוטוקול נכון: בלי חומר ניגוד, עם חומר ניגוד לווריד, <bdi>CTA</bdi> ומתי חומר ניגוד דרך הפה</li>
-  <li>להתמצא בחתך רוחבי: איפה ימין, איפה הכבד, הטחול, אבי העורקים והווריד הנבוב</li>
-  <li>לזהות ב-<bdi>CT</bdi> חסימת מעי דק, לולאה סגורה וסימני איסכמיה</li>
+  <li>להתמצא בחתך רוחבי: איפה ימין, איפה <span class="nw">ה-<bdi>liver</bdi></span>, <span class="nw">ה-<bdi>spleen</bdi></span>, <span class="nw">ה-<bdi>aorta</bdi></span> <span class="nw">וה-<bdi>IVC</bdi></span></li>
+  <li>לזהות <span class="nw">ב-<bdi>CT</bdi></span> חסימת מעי דק, לולאה סגורה וסימני איסכמיה</li>
   <li>לתאר דלקת סעיפים לפי <bdi>Hinchey</bdi> ודלקת תוספתן לפי הקריטריונים</li>
   <li>לדעת מתי עושים <bdi>CT</bdi> בדלקת לבלב ומה מחפשים בו</li>
   <li>להבין את מקומו של <bdi>CT</bdi> באיסכמיה של המעי ובחבלה</li>
@@ -150,19 +155,19 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="num">
   <div><b dir="ltr">−30%</b><span>דיוק אבחנתי של <bdi>CT</bdi> בלי חומר ניגוד לעומת עם חומר ניגוד, בכאב בטן במיון</span></div>
   <div><b dir="ltr">&gt;1 h</b><span>עיכוב אפשרי בגלל חומר ניגוד דרך הפה</span></div>
-  <div><b dir="ltr">42% · 90%</b><span>תמותה בחסימה חריפה של העורק המזנטרי העליון: עם <bdi>CT</bdi> בחומר ניגוד · בלי</span></div>
-  <div><b dir="ltr">~25 mGy</b><span>מנת קרינה לעובר ב-<bdi>CT</bdi> בטן ואגן (סיכון נמוך עד <bdi dir="ltr">50</bdi>)</span></div>
+  <div><b dir="ltr">42% · 90%</b><span>תמותה בחסימה חריפה של <span class="nw">ה-<bdi>superior mesenteric artery (SMA)</bdi></span>: עם <bdi>CT</bdi> בחומר ניגוד · בלי</span></div>
+  <div><b dir="ltr">~25 mGy</b><span>מנת קרינה לעובר <span class="nw">ב-<bdi>CT</bdi></span> בטן ואגן (סיכון נמוך עד <bdi dir="ltr">50</bdi>)</span></div>
  </div>
  <div class="grid">
   <ul class="b sm">
    <li><b>בלי חומר ניגוד:</b> אבנים בכליות. הפחד מפגיעה כלייתית מחומר ניגוד "הולך ומתיישן". שוקלים אותו מול התועלת</li>
    <li><b>חומר ניגוד דרך הפה:</b> בדרך כלל לא צריך. היוצא מן הכלל: חשד לניקוב או לדליפה מחיבור. גם אז אוויר מחוץ למעי, דופן לא רציפה ותסנין בשומן בדרך כלל מספיקים</li>
-   <li><b>חומר ניגוד ברקטום:</b> בלי עיכוב, אבל לא נוח למטופל ולא מוסיף הרבה. בחסימה של המעי הגס יש לו מקום</li>
+   <li><b>חומר ניגוד <span class="nw">ב-<bdi>rectum</bdi></span>:</b> בלי עיכוב, אבל לא נוח למטופל ולא מוסיף הרבה. בחסימה של המעי הגס יש לו מקום</li>
   </ul>
   <ul class="b sm">
-   <li><b><bdi>CTA</bdi>:</b> צילום בזמן השיא העורקי או הוורידי. בחשד לאיסכמיה של המעי או לבתירה של אבי העורקים. להגיד לרדיולוג מה החשד</li>
-   <li><b>הריון:</b> מעדיפים אולטרסאונד ו-<bdi>MRI</bdi>. אם צריך <bdi>CT</bdi> כדי לא לעכב טיפול באם, עושים</li>
-   <li><b>מטופל לא יציב:</b> לא שולחים ל-<bdi>CT</bdi> במקום לחדר ניתוח</li>
+   <li><b><bdi>CTA</bdi>:</b> צילום בזמן השיא העורקי או הוורידי. בחשד לאיסכמיה של המעי או לבתירה של <span class="nw">ה-<bdi>aorta</bdi></span>. להגיד לרדיולוג מה החשד</li>
+   <li><b>הריון:</b> מעדיפים אולטרסאונד <span class="nw">ו-<bdi>MRI</bdi></span>. אם צריך <bdi>CT</bdi> כדי לא לעכב טיפול באם, עושים</li>
+   <li><b>מטופל לא יציב:</b> לא שולחים <span class="nw">ל-<bdi>CT</bdi></span> במקום לחדר ניתוח</li>
   </ul>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1160–1162, 1164</bdi> · פרק 95 עמ׳ <bdi dir="ltr">1456</bdi></span><span>פרוטוקולים</span></div>
@@ -171,7 +176,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>3</b>להתמצא בחתך · אינטראקטיבי</div>
  <h2>חתך רוחבי בבטן העליונה</h2>
- <div class="hotw"><div class="hoti"><img src="img/ct-spleen-rupture-axial.jpg" alt="CT בחתך רוחבי של הבטן העליונה עם קרע בטחול"><svg viewBox="0 0 960 673" preserveAspectRatio="none" style="--lw:10;--bf:23px">
+ <div class="hotw"><div class="hoti"><img src="img/ct-spleen-rupture-axial.jpg" alt="CT בחתך רוחבי של הבטן העליונה עם קרע ב-spleen"><svg viewBox="0 0 960 673" preserveAspectRatio="none" style="--lw:10;--bf:23px">
   <path class="hz" data-hz="liv" d="M200,151 C218.8,146 243.7,150.5 257,153 C270.3,155.5 271.2,162 280,166 C288.8,170 296.7,174.3 310,177 C323.3,179.7 343.3,180 360,182 C376.7,184 391.7,187 410,189 C428.3,191 454.5,192 470,194 C485.5,196 496,195.7 503,201 C510,206.3 512.5,217.8 512,226 C511.5,234.2 507,244.5 500,250 C493,255.5 483.3,256.8 470,259 C456.7,261.2 436.7,261.8 420,263 C403.3,264.2 385,264.5 370,266 C355,267.5 340,268.7 330,272 C320,275.3 314.5,281.3 310,286 C305.5,290.7 301,294 303,300 C305,306 317.8,313.7 322,322 C326.2,330.3 324.2,341.7 328,350 C331.8,358.3 336.3,366 345,372 C353.7,378 372.5,381.3 380,386 C387.5,390.7 392.5,394.3 390,400 C387.5,405.7 373.3,413 365,420 C356.7,427 346.7,433.7 340,442 C333.3,450.3 328.7,460.3 325,470 C321.3,479.7 319.5,490 318,500 C316.5,510 317.3,519 316,530 C314.7,541 314.7,556.2 310,566 C305.3,575.8 300,584.7 288,589 C276,593.3 255.7,592 238,592 C220.3,592 200.3,593.3 182,589 C163.7,584.7 143.8,576.8 128,566 C112.2,555.2 97.7,538.5 87,524 C76.3,509.5 70.3,496 64,479 C57.7,462 52.2,441 49,422 C45.8,403 44.3,383.3 45,365 C45.7,346.7 48,329.7 53,312 C58,294.3 66.2,275.3 75,259 C83.8,242.7 94.5,226.7 106,214 C117.5,201.3 128.3,193.5 144,183 C159.7,172.5 181.2,156 200,151 Z" style="--c:#A3402E"/>
   <path class="hz" data-hz="sto" d="M420,140 C423.2,132.2 426.3,126.8 435,121 C443.7,115.2 454,108.8 472,105 C490,101.2 515.5,98.8 543,98 C570.5,97.2 609.5,98.5 637,100 C664.5,101.5 687.5,101.8 708,107 C728.5,112.2 749,121.5 760,131 C771,140.5 772.3,153.3 774,164 C775.7,174.7 773.7,183.7 770,195 C766.3,206.3 757.3,219.2 752,232 C746.7,244.8 743.7,258.2 738,272 C732.3,285.8 726.8,304.7 718,315 C709.2,325.3 698.5,331.7 685,334 C671.5,336.3 651.2,333 637,329 C622.8,325 612.5,317.8 600,310 C587.5,302.2 573,292.2 562,282 C551,271.8 541.2,260.8 534,249 C526.8,237.2 523.8,220.5 519,211 C514.2,201.5 511.2,195.2 505,192 C498.8,188.8 493,192.8 482,192 C471,191.2 450,191 439,187 C428,183 419.2,175.8 416,168 C412.8,160.2 416.8,147.8 420,140 Z" style="--c:#2F6FA8"/>
   <path class="hz" data-hz="ivc" d="M467,357 C467,362.5 465.3,368.7 462.4,373.5 C459.6,378.3 454.9,382.8 450,385.6 C445.1,388.3 438.7,390 433,390 C427.3,390 420.9,388.3 416,385.6 C411.1,382.8 406.4,378.3 403.6,373.5 C400.7,368.7 399,362.5 399,357 C399,351.5 400.7,345.3 403.6,340.5 C406.4,335.7 411.1,331.2 416,328.4 C420.9,325.7 427.3,324 433,324 C438.7,324 445.1,325.7 450,328.4 C454.9,331.2 459.6,335.7 462.4,340.5 C465.3,345.3 467,351.5 467,357 Z" style="--c:#7A5BD6"/>
@@ -184,11 +189,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <g class="hzb" style="--c:#00967D"><circle cx="862" cy="304" r="19.6"/><text x="862" y="304">5</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בתמונה כדי לקרוא עליו. מסתכלים כאילו עומדים לרגלי המטופל: <b>ימין המטופל בצד שמאל של התמונה</b>, הבטן למעלה</p>
-  <div class="hzi" data-hzi="liv" hidden><b>1 · הכבד</b><p>בצד ימין של המטופל (שמאל התמונה). איבר מוצק עם האדרה אחידה בשלב הוורידי</p></div>
-  <div class="hzi" data-hzi="sto" hidden><b>2 · הקיבה</b><p>מלאה מזון ואוויר (השחור הוא גז). איברים חלולים מכילים אוויר ונוזל. אוויר <b>מחוץ</b> למעי הוא אוויר חופשי</p></div>
-  <div class="hzi" data-hzi="ivc" hidden><b>3 · הווריד הנבוב התחתון</b><p>מימין לקו האמצע, לפני החוליה. בהלם הוא יכול להיראות שטוח</p></div>
-  <div class="hzi" data-hzi="ao" hidden><b>4 · אבי העורקים</b><p>עגול, צמוד לחוליה משמאל. ב-<bdi>CTA</bdi> בודקים את המילוי שלו ושל ענפיו, למשל העורק המזנטרי העליון</p></div>
-  <div class="hzi" data-hzi="spl" hidden><b>5 · הטחול · קרע אחרי חבלה</b><p>אזור לא אחיד עם האדרה מופחתת: קרע בפרנכימה ודם סביבו. בחבלה קהה מבצעים <bdi>CT</bdi> בשלב עורקי ובשלב ורידי כדי לדרג את הפגיעה ולראות דימום פעיל</p></div>
+  <div class="hzi" data-hzi="liv" hidden><b>1 · <bdi>Liver</bdi></b><p>בצד ימין של המטופל (שמאל התמונה). איבר מוצק עם האדרה אחידה בשלב הוורידי</p></div>
+  <div class="hzi" data-hzi="sto" hidden><b>2 · <bdi>Stomach</bdi></b><p>מלאה מזון ואוויר (השחור הוא גז). איברים חלולים מכילים אוויר ונוזל. אוויר <b>מחוץ</b> למעי הוא אוויר חופשי</p></div>
+  <div class="hzi" data-hzi="ivc" hidden><b>3 · <bdi>Inferior vena cava (IVC)</bdi></b><p>מימין לקו האמצע, לפני <span class="nw">ה-<bdi>vertebral body</bdi></span>. בהלם הוא יכול להיראות שטוח</p></div>
+  <div class="hzi" data-hzi="ao" hidden><b>4 · <bdi>Aorta</bdi></b><p>עגול, צמוד <span class="nw">ל-<bdi>vertebral body</bdi></span> משמאל. <span class="nw">ב-<bdi>CTA</bdi></span> בודקים את המילוי שלו ושל ענפיו, למשל <span class="nw">ה-<bdi>SMA</bdi></span></p></div>
+  <div class="hzi" data-hzi="spl" hidden><b>5 · <bdi>Spleen</bdi> · קרע אחרי חבלה</b><p>אזור לא אחיד עם האדרה מופחתת: קרע בפרנכימה ודם סביבו. בחבלה קהה מבצעים <bdi>CT</bdi> בשלב עורקי ובשלב ורידי כדי לדרג את הפגיעה ולראות דימום פעיל</p></div>
  </div></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">341</bdi> · כיוון התמונה והאנטומיה: מוסכמה מקובלת</span><span>צילום: <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></span></div>
 </div></section>
@@ -202,72 +207,72 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><bdi>CT</bdi> הוא <b>בדיקת הבחירה</b>: רגיש וסגולי בחסימה מלאה או בדרגה גבוהה ומראה מיקום וסיבה. פחות רגיש בחסימה חלקית</li>
     <li>לולאה מורחבת מעל <bdi dir="ltr">2.5</bdi> ס״מ: חשד לחסימה בדרגה גבוהה</li>
     <li><b>אזור המעבר</b> בין מעי רחב למעי צר וסיבות מבחוץ: גידול, דלקת, מורסה, בקע</li>
-    <li><b>לולאה סגורה:</b> לולאה בצורת <bdi>U</bdi> או "פול קפה" עם שני קצוות צרים. <b>מערבולת</b> במזנטריום = וולוולוס</li>
+    <li><b>לולאה סגורה:</b> לולאה בצורת <bdi>U</bdi> או "פול קפה" עם שני קצוות צרים. <b>מערבולת</b> <span class="nw">ב-<bdi>mesentery</bdi></span> = וולוולוס</li>
    </ul>
-   <div class="box r" style="margin-top:10px"><b class="t">סימני איסכמיה</b>דופן מעובה (מעל 3 מ״מ), בצקת במזנטריום, נוזל בין הלולאות, האדרה מופחתת של הדופן, אוויר בדופן, גז בוורידי המזנטריום והפורטה. לצערנו אלה בדרך כלל סימנים של נזק בלתי הפיך. מטופל רעיל לא מחכה ל-<bdi>CT</bdi></div>
+   <div class="box r" style="margin-top:10px"><b class="t">סימני איסכמיה</b>דופן מעובה (מעל 3 מ״מ), בצקת <span class="nw">ב-<bdi>mesentery</bdi></span>, נוזל בין הלולאות, האדרה מופחתת של הדופן, אוויר בדופן, גז <span class="nw">ב-<bdi>mesenteric veins</bdi></span> <span class="nw">וב-<bdi>portal vein</bdi></span>. לצערנו אלה בדרך כלל סימנים של נזק בלתי הפיך. מטופל רעיל לא מחכה <span class="nw">ל-<bdi>CT</bdi></span></div>
   </div>
-  <figure><img src="img/ct-sbo-coronal.jpg" alt="CT בחתך קורונלי עם לולאות מעי דק מורחבות"><figcaption>חסימת מעי דק בחתך קורונלי: לולאות מורחבות מלאות נוזל לפני גוש מזון באילאום והמעי שאחריו צר · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/ct-sbo-coronal.jpg" alt="CT בחתך קורונלי עם לולאות מעי דק מורחבות"><figcaption>חסימת מעי דק בחתך קורונלי: לולאות מורחבות מלאות נוזל לפני גוש מזון <span class="nw">ב-<bdi>ileum</bdi></span> והמעי שאחריו צר · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 91 עמ׳ <bdi dir="ltr">1334–1335</bdi></span><span>חסימה</span></div>
 </div></section>
 
 <section class="s"><div class="card">
- <div class="kick"><b>5</b>המעי הגס</div>
+ <div class="kick"><b>5</b><span class="nw">ה-<bdi>colon</bdi></span></div>
  <h2>דלקת סעיפים: <bdi>Hinchey</bdi> המתוקן</h2>
  <div class="grid f">
   <div>
-   <p style="margin:0 0 8px;font-size:15.5px"><b>ב-<bdi>CT</bdi>:</b> סעיפים, דופן מעובה, תסנין בשומן סביב המעי, מורסה. <bdi>CT</bdi> מאשר, שולל אבחנות אחרות וקובע חומרה</p>
+   <p style="margin:0 0 8px;font-size:15.5px"><b><span class="nw">ב-<bdi>CT</bdi></span>:</b> סעיפים, דופן מעובה, תסנין בשומן סביב המעי, מורסה. <bdi>CT</bdi> מאשר, שולל אבחנות אחרות וקובע חומרה</p>
    <div class="flow">
-    <div><b>0</b><span>דלקת קלה. ב-<bdi>CT</bdi>: דופן מעובה בלי תסנין</span></div>
+    <div><b>0</b><span>דלקת קלה. <span class="nw">ב-<bdi>CT</bdi></span>: דופן מעובה בלי תסנין</span></div>
     <div><b><bdi>Ia</bdi></b><span>פלגמון: דופן מעובה ותסנין בשומן</span></div>
-    <div><b><bdi>Ib</bdi></b><span>מורסה ליד המעי (במזנטריום של הסיגמואיד)</span></div>
+    <div><b><bdi>Ib</bdi></b><span>מורסה ליד המעי (<span class="nw">ב-<bdi>mesentery</bdi></span> של <span class="nw">ה-<bdi>sigmoid</bdi></span>)</span></div>
     <div><b><bdi>II</bdi></b><span>מורסה רחוקה: באגן או בבטן</span></div>
     <div><b><bdi>III</bdi></b><span>צפקת מוגלתית מפושטת</span></div>
     <div><b><bdi>IV</bdi></b><span>צפקת צואתית</span></div>
    </div>
    <ul class="b sm" style="margin-top:10px">
-    <li><bdi>CT</bdi> לא מבדיל טוב בין <bdi>III</bdi> ל-<bdi>IV</bdi>. ההבחנה בחדר הניתוח. שניהם חירום כירורגי</li>
+    <li><bdi>CT</bdi> לא מבדיל טוב בין <bdi>III</bdi> <span class="nw">ל-<bdi>IV</bdi></span>. ההבחנה בחדר הניתוח. שניהם חירום כירורגי</li>
     <li>אחרי ההתאוששות: קולונוסקופיה בעוד <bdi dir="ltr">4–8</bdi> שבועות. <bdi dir="ltr">1–3%</bdi> מה"סעיפים" הם בעצם גידול</li>
    </ul>
   </div>
-  <figure><img src="img/ct-diverticulitis-1b.jpg" alt="CT של דלקת סעיפים בסיגמואיד"><figcaption>דלקת סעיפים בסיגמואיד: דופן מעובה ותסנין בשומן עם מעט נוזל. בלי אוויר חופשי ובלי מורסה · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/ct-diverticulitis-1b.jpg" alt="CT של דלקת סעיפים ב-sigmoid"><figcaption>דלקת סעיפים <span class="nw">ב-<bdi>sigmoid</bdi></span>: דופן מעובה ותסנין בשומן עם מעט נוזל. בלי אוויר חופשי ובלי מורסה · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1450–1452</bdi> (טבלה 95.1)</span><span>סעיפים</span></div>
 </div></section>
 
 <section class="s"><div class="card">
- <div class="kick"><b>6</b>התוספתן</div>
- <h2>דלקת תוספתן ב-<bdi>CT</bdi></h2>
+ <div class="kick"><b>6</b><span class="nw">ה-<bdi>appendix</bdi></span></div>
+ <h2>דלקת תוספתן <span class="nw">ב-<bdi>CT</bdi></span></h2>
  <div class="grid f">
   <div>
    <ul class="b">
     <li>הבדיקה השכיחה ביותר לאבחנה: רגישות <bdi dir="ltr">95%</bdi>, סגוליות <bdi dir="ltr">94%</bdi>. חומר ניגוד מעלה את הרגישות</li>
-    <li><b>מה רואים:</b> תוספתן <b>מעל <bdi dir="ltr">7</bdi> מ״מ</b>, דופן מעובה עם האדרה ("מטרה"), תסנין בשומן סביבו</li>
-    <li>נוזל או אוויר סביב התוספתן: חשד לניקוב</li>
-    <li>לא רואים את התוספתן ואין סימני דלקת? כנראה אין דלקת תוספתן</li>
+    <li><b>מה רואים:</b> <bdi>appendix</bdi> <b>מעל <bdi dir="ltr">7</bdi> מ״מ</b>, דופן מעובה עם האדרה ("מטרה"), תסנין בשומן סביבו</li>
+    <li>נוזל או אוויר סביב <span class="nw">ה-<bdi>appendix</bdi></span>: חשד לניקוב</li>
+    <li>לא רואים את <span class="nw">ה-<bdi>appendix</bdi></span> ואין סימני דלקת? כנראה אין דלקת תוספתן</li>
     <li><b>המלצה עדכנית:</b> <bdi>CT</bdi> במינון קרינה נמוך עם חומר ניגוד. מומלץ בכל מבוגר עם חשד, גם לתכנון הניתוח ולשלילת אבחנות אחרות</li>
    </ul>
   </div>
-  <figure><img src="img/ct-appendicitis-heilman.jpg" alt="CT של תוספתן מורחב"><figcaption>דלקת תוספתן: התוספתן מורחב לקוטר <bdi dir="ltr">17.1</bdi> מ״מ (המדידה בתמונה) · <bdi>James Heilman, MD</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/ct-appendicitis-heilman.jpg" alt="CT של appendix מורחב"><figcaption>דלקת תוספתן: <span class="nw">ה-<bdi>appendix</bdi></span> מורחב לקוטר <bdi dir="ltr">17.1</bdi> מ״מ (המדידה בתמונה) · <bdi>James Heilman, MD</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 94 עמ׳ <bdi dir="ltr">1417–1418</bdi></span><span>תוספתן</span></div>
 </div></section>
 
 <section class="s"><div class="card">
- <div class="kick"><b>7</b>הלבלב</div>
+ <div class="kick"><b>7</b><span class="nw">ה-<bdi>pancreas</bdi></span></div>
  <h2>דלקת לבלב: מתי <bdi>CT</bdi> ומה מחפשים</h2>
  <div class="grid f">
   <div>
    <ul class="b sm">
     <li><b>האבחנה:</b> 2 מתוך 3: כאב אופייני, עמילאז או ליפאז פי 3 מהנורמה, הדמיה אופיינית. לא צריך <bdi>CT</bdi> כדי לאבחן כשיש שני הראשונים</li>
     <li><b>מתי <bdi>CT</bdi> עם חומר ניגוד:</b> אבחנה לא ברורה, אישור חומרה, אין שיפור בטיפול שמרני, הידרדרות. השלב הוורידי (<bdi dir="ltr">65–70</bdi> שניות) הכי מועיל</li>
-    <li><b>נמק:</b> אזורים שלא מקבלים חומר ניגוד (<bdi dir="ltr">&lt;40–50</bdi> יחידות לעומת <bdi dir="ltr">100–150</bdi> בלבלב תקין). עד <bdi dir="ltr">20%</bdi> מהמטופלים</li>
-    <li>סיכון לזיהום הנמק: <bdi dir="ltr">22%</bdi> כשמעורב פחות משליש הבלוטה, עד <bdi dir="ltr">46%</bdi> מעל <bdi dir="ltr">70%</bdi>. גז בתוך הנמק מאשר זיהום, אבל נדיר</li>
+    <li><b>נמק:</b> אזורים שלא מקבלים חומר ניגוד (<bdi dir="ltr">&lt;40–50</bdi> יחידות לעומת <bdi dir="ltr">100–150</bdi> <span class="nw">ב-<bdi>pancreas</bdi></span> תקין). עד <bdi dir="ltr">20%</bdi> מהמטופלים</li>
+    <li>סיכון לזיהום הנמק: <bdi dir="ltr">22%</bdi> כשמעורב פחות משליש <span class="nw">ה-<bdi>pancreas</bdi></span>, עד <bdi dir="ltr">46%</bdi> מעל <bdi dir="ltr">70%</bdi>. גז בתוך הנמק מאשר זיהום, אבל נדיר</li>
     <li><b>אוספים:</b> עד 4 שבועות "חריפים". אחרי 4 שבועות: פסאודוציסטה, או נמק מוקף דופן</li>
     <li>אולטרסאונד תמיד, לחפש אבנים (רגישות <bdi dir="ltr">95%</bdi>)</li>
    </ul>
   </div>
-  <figure><img src="img/ct-pancreatitis-exudative.jpg" alt="CT של דלקת לבלב חריפה"><figcaption>דלקת לבלב חריפה: נוזל ותסנין סביב הלבלב (חץ). הלבלב מקבל חומר ניגוד, אין סימן לנמק · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/ct-pancreatitis-exudative.jpg" alt="CT של דלקת לבלב חריפה"><figcaption>דלקת לבלב חריפה: נוזל ותסנין סביב <span class="nw">ה-<bdi>pancreas</bdi></span> (חץ). <span class="nw">ה-<bdi>pancreas</bdi></span> מקבל חומר ניגוד, אין סימן לנמק · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1382, 1385–1386</bdi></span><span>לבלב</span></div>
 </div></section>
@@ -278,14 +283,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b sm">
-    <li><b>החשד קליני:</b> כאב קשה שלא תואם לבדיקה, מטופל עם פרפור פרוזדורים או מחלת כלי דם. איחור של מעל 24 שעות באבחנה של תסחיף לעורק המזנטרי העליון: ההישרדות יורדת מ-<bdi dir="ltr">50%</bdi> ל-<bdi dir="ltr">30%</bdi></li>
-    <li><b><bdi>CTA</bdi> היא בדיקת הבחירה:</b> רגישות <bdi dir="ltr">93%</bdi>, סגוליות <bdi dir="ltr">96%</bdi>. בשני שלבים (עורקי וורידי) רואים גם את מערכת הפורטה ואת אספקת הדם לדופן</li>
-    <li><b>מה רואים:</b> חסר מילוי בכלי הדם, דופן מעובה, שינוי בהאדרת הרירית, אוויר בדופן, גז בווריד הפורטה. גם פקקת בוורידי המזנטריום</li>
-    <li>באיסכמיה בלי חסימה (<bdi>NOMI</bdi>) ה-<bdi>CTA</bdi> פחות אמין</li>
+    <li><b>החשד קליני:</b> כאב קשה שלא תואם לבדיקה, מטופל עם פרפור פרוזדורים או מחלת כלי דם. איחור של מעל 24 שעות באבחנה של תסחיף <span class="nw">ל-<bdi>SMA</bdi></span>: ההישרדות יורדת <span class="nw">מ-<bdi dir="ltr">50%</bdi></span> <span class="nw">ל-<bdi dir="ltr">30%</bdi></span></li>
+    <li><b><bdi>CTA</bdi> היא בדיקת הבחירה:</b> רגישות <bdi dir="ltr">93%</bdi>, סגוליות <bdi dir="ltr">96%</bdi>. בשני שלבים (עורקי וורידי) רואים גם את מערכת <span class="nw">ה-<bdi>portal vein</bdi></span> ואת אספקת הדם לדופן</li>
+    <li><b>מה רואים:</b> חסר מילוי בכלי הדם, דופן מעובה, שינוי בהאדרת הרירית, אוויר בדופן, גז <span class="nw">ב-<bdi>portal vein</bdi></span>. גם פקקת <span class="nw">ב-<bdi>mesenteric veins</bdi></span></li>
+    <li>באיסכמיה בלי חסימה (<bdi>NOMI</bdi>) <span class="nw">ה-<bdi>CTA</bdi></span> פחות אמין</li>
     <li>צילום פשוט כמעט תמיד תקין, עד שכבר יש נמק</li>
    </ul>
   </div>
-  <figure><img src="img/ct-ischemia-pneumatosis.jpg" alt="CT של איסכמיה של המעי עם אוויר בדופן ובווריד הפורטה"><figcaption>איסכמיה של המעי: אוויר בדופן המעי וגז בוורידי הפורטה בכבד, בחלון ריאה · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/ct-ischemia-pneumatosis.jpg" alt="CT של איסכמיה של המעי עם אוויר בדופן וב-portal vein"><figcaption>איסכמיה של המעי: אוויר בדופן המעי וגז בענפי <span class="nw">ה-<bdi>portal vein</bdi></span> <span class="nw">ב-<bdi>liver</bdi></span>, בחלון ריאה · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 106 עמ׳ <bdi dir="ltr">1709–1710</bdi> · פרק 85 עמ׳ <bdi dir="ltr">1158, 1162</bdi></span><span>איסכמיה</span></div>
 </div></section>
@@ -299,12 +304,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li>בחבלה קהה, <bdi>CT</bdi> הוא הכלי המרכזי לבירור מלא במטופל <b>יציב</b></li>
     <li>חומר ניגוד לווריד בשלב עורקי ובשלב ורידי: דרגת הפגיעה באיברים המוצקים ו<b>דימום פעיל</b></li>
     <li>ההחלטה על ניתוח לפי <b>המצב הפיזיולוגי</b>, לא רק לפי הממצא. דם בבטן עם סימנים חיוניים יציבים: אפשר טיפול שמרני</li>
-    <li><b>מה <bdi>CT</bdi> מפספס:</b> פגיעות במעי ובסרעפת. נוזל חופשי בלי פגיעה באיבר מוצק, עם מנגנון וסימנים מתאימים: לשקול לפרוסקופיה אבחנתית</li>
-    <li>מטופל לא יציב עם נוזל ב-<bdi>FAST</bdi>: חדר ניתוח, לא <bdi>CT</bdi></li>
+    <li><b>מה <bdi>CT</bdi> מפספס:</b> פגיעות במעי <span class="nw">וב-<bdi>diaphragm</bdi></span>. נוזל חופשי בלי פגיעה באיבר מוצק, עם מנגנון וסימנים מתאימים: לשקול לפרוסקופיה אבחנתית</li>
+    <li>מטופל לא יציב עם נוזל <span class="nw">ב-<bdi>FAST</bdi></span>: חדר ניתוח, לא <bdi>CT</bdi></li>
    </ul>
    <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>בחרו מטופל אחד שעבר <bdi>CT</bdi> בקבלה. עברו על הבדיקה עם מתמחה או רדיולוג/ית, חתך אחר חתך ונסו למצוא את הממצא לפני שאתם קוראים את הפענוח</div>
   </div>
-  <figure><img src="img/ct-spleen-subcapsular.jpg" alt="CT של קרע בטחול עם המטומה מתחת לקופסית"><figcaption>קרע בטחול אחרי חבלה עם המטומה מתחת לקופסית, בחתך רוחבי וקורונלי · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/ct-spleen-subcapsular.jpg" alt="CT של קרע ב-spleen עם המטומה תת-קופסית"><figcaption>קרע בטחול אחרי חבלה עם המטומה מתחת <span class="nw">ל-<bdi>capsule</bdi></span>, בחתך רוחבי וקורונלי · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">341, 343</bdi> · פרק 85 עמ׳ <bdi dir="ltr">1163</bdi></span><span>חבלה</span></div>
 </div></section>
@@ -313,7 +318,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>10</b>תרגול</div>
  <h2>ארבע הזמנות, ארבעה ממצאים</h2>
  <div class="grid">
-  <div class="box"><b class="t">1 · בת 78 עם פרפור פרוזדורים, כאב קשה, בטן רכה, לקטט גבוה</b>מה מזמינים? <bdi>CTA</bdi> ואומרים לרדיולוג שהחשד הוא איסכמיה. חסר מילוי בעורק המזנטרי העליון: טיפול דחוף לפתיחת כלי הדם ולבדיקת המעי, בלי לחכות</div>
+  <div class="box"><b class="t">1 · בת 78 עם פרפור פרוזדורים, כאב קשה, בטן רכה, לקטט גבוה</b>מה מזמינים? <bdi>CTA</bdi> ואומרים לרדיולוג שהחשד הוא איסכמיה. חסר מילוי <span class="nw">ב-<bdi>SMA</bdi></span>: טיפול דחוף לפתיחת כלי הדם ולבדיקת המעי, בלי לחכות</div>
   <div class="box"><b class="t">2 · בן 60, כאב ברבע השמאלי התחתון, חום. <bdi>CT</bdi>: מורסה של 5 ס״מ באגן</b><bdi>Hinchey II</bdi>. אנטיביוטיקה וניקוז מלעורי. בעוד <bdi dir="ltr">4–8</bdi> שבועות: קולונוסקופיה</div>
   <div class="box"><b class="t">3 · בן 45 עם דלקת לבלב, ביום החמישי חום ומצב מתדרדר</b><bdi>CT</bdi> עם חומר ניגוד בשלב הוורידי: נמק? אוסף? גז בנמק = זיהום</div>
   <div class="box"><b class="t">4 · בת 30 אחרי תאונה, יציבה. <bdi>CT</bdi>: קרע בטחול ודם סביבו, בלי דימום פעיל</b>טיפול שמרני במעקב צמוד. התדרדרות: חדר ניתוח</div>
@@ -329,7 +334,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <p>21 מחקרי עוקבה מותאמים, <bdi dir="ltr">169,455</bdi> מטופלים. אותו סיכון לפגיעה כלייתית עם חומר ניגוד ובלעדיו (<bdi dir="ltr">OR 0.97</bdi>). זהירות ביתר לחץ דם ובסינון כלייתי של 30 ומטה</p>
    <small>Obed M et al. Eur Radiol 2022;32(12):8432-42</small></div>
   <div class="study"><div class="y"><bdi>Ann Surg</bdi> 2021 · מחקר אקראי (<bdi>DINAMO</bdi>)</div><b>דלקת סעיפים קלה בלי אנטיביוטיקה</b>
-   <p><bdi dir="ltr">480</bdi> מטופלים עם דלקת קלה שאובחנה ב-<bdi>CT</bdi>, טיפול בבית. אשפוז: <bdi dir="ltr">5.8%</bdi> עם אנטיביוטיקה, <bdi dir="ltr">3.3%</bdi> בלי. טיפול בלי אנטיביוטיקה לא נחות</p>
+   <p><bdi dir="ltr">480</bdi> מטופלים עם דלקת קלה שאובחנה <span class="nw">ב-<bdi>CT</bdi></span>, טיפול בבית. אשפוז: <bdi dir="ltr">5.8%</bdi> עם אנטיביוטיקה, <bdi dir="ltr">3.3%</bdi> בלי. טיפול בלי אנטיביוטיקה לא נחות</p>
    <small>Mora-López L et al. Ann Surg 2021;274(5):e435-42</small></div>
   <div class="study"><div class="y"><bdi>Eur J Trauma Emerg Surg</bdi> 2025 · הנחיה</div><b>הדמיה בחדר הטראומה</b>
    <p>21 מחקרים, <bdi dir="ltr">55,227</bdi> מטופלים. <bdi>eFAST</bdi> בסקירה הראשונית. <bdi>CT</bdi> של כל הגוף בפרוטוקול טראומה הוא מרכז הבירור בפצוע קשה, מוקדם ככל האפשר אם אין צורך בהתערבות מיידית</p>
@@ -346,11 +351,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>מזמינים <bdi>CT</bdi> עם שאלה: איזה פרוטוקול, איזה שלב ומה החשד. חומר ניגוד דרך הפה בעיקר בחשד לדליפה</li>
   <li>מסתכלים מכיוון הרגליים: ימין המטופל בצד שמאל של התמונה</li>
   <li>חסימה: אזור מעבר, לולאה סגורה, מערבולת וסימני איסכמיה</li>
-  <li>סעיפים לפי <bdi>Hinchey</bdi>. תוספתן מעל <bdi dir="ltr">7</bdi> מ״מ עם דופן מעובה. בלבלב <bdi>CT</bdi> רק כשיש סיבה</li>
-  <li>חשד לאיסכמיה = <bdi>CTA</bdi> מיד. מטופל לא יציב לא נכנס ל-<bdi>CT</bdi></li>
+  <li>סעיפים לפי <bdi>Hinchey</bdi>. <bdi>appendix</bdi> מעל <bdi dir="ltr">7</bdi> מ״מ עם דופן מעובה. <span class="nw">ב-<bdi>pancreas</bdi></span> <bdi>CT</bdi> רק כשיש סיבה</li>
+  <li>חשד לאיסכמיה = <bdi>CTA</bdi> מיד. מטופל לא יציב לא נכנס <span class="nw">ל-<bdi>CT</bdi></span></li>
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 85 (עמ׳ <bdi dir="ltr">1160–1162</bdi>) · פרק 91 (<bdi dir="ltr">1334–1335</bdi>) · פרק 95 (<bdi dir="ltr">1450–1451</bdi>) · פרק 92 (<bdi dir="ltr">1382, 1385</bdi>) · פרק 106 (<bdi dir="ltr">1710</bdi>)</div>
- <div class="src"><span>תמונות: <bdi>Hellerhoff</bdi> (<bdi>CC BY-SA 3.0/4.0</bdi>) ו-<bdi>James Heilman, MD</bdi> (<bdi>CC BY-SA 3.0</bdi>) · <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>תמונות: <bdi>Hellerhoff</bdi> (<bdi>CC BY-SA 3.0/4.0</bdi>) <span class="nw">ו-<bdi>James Heilman, MD</bdi></span> (<bdi>CC BY-SA 3.0</bdi>) · <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>

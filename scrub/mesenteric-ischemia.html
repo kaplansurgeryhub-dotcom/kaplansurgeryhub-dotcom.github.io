@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>איסכמיה של המעי · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -88,6 +88,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -99,6 +100,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -116,6 +118,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -148,8 +153,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>2</b>אנטומיה · אינטראקטיבי</div>
- <h2>העורק המזנטרי העליון וענפיו</h2>
- <div class="hotw"><div class="hoti"><img src="img/Gray534.png" alt="העורק המזנטרי העליון וענפיו למעי הדק ולמעי הגס"><svg viewBox="0 0 500 609" preserveAspectRatio="none" style="--lw:7;--bf:12px">
+ <h2><bdi dir="ltr">superior mesenteric artery</bdi> (<bdi dir="ltr">SMA</bdi>) וענפיו</h2>
+ <div class="hotw"><div class="hoti"><img src="img/Gray534.png" alt="SMA וענפיו ל-small bowel ול-colon"><svg viewBox="0 0 500 609" preserveAspectRatio="none" style="--lw:7;--bf:12px">
    <path class="hz ln" data-hz="sma" d="M265,213 C265,240 264,270 263,300 C262,330 259,360 256,385 C253,410 249,435 244,460" style="--c:#A3402E;--lw:10"/>
    <path class="hz ln" data-hz="mc" d="M256,228 C246,214 233,198 222,183 M222,183 C240,172 265,163 286,154 C300,146 310,136 320,130 C335,122 350,118 362,117 M222,183 C208,178 196,170 194,160 C196,148 205,135 214,120 C220,112 225,108 228,104" style="--c:#C9893F"/>
    <path class="hz ln" data-hz="rc" d="M258,294 C240,292 220,288 200,286 C185,283 170,280 158,275 C150,272 143,271 137,273 M137,273 C136,260 136,240 137,222 M137,273 C131,285 127,300 126,318" style="--c:#7A5BD6"/>
@@ -164,12 +169,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <g class="hzb" style="--c:#0C2A35"><circle cx="232" cy="560" r="10"/><text x="232" y="560">6</text></g>
   </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-   <div class="hzi" data-hzi="sma" hidden><b>1 · ה-<bdi>SMA</bdi> עצמו</b><p>הענף השני של אבי העורקים, אחרי הגזע הצליאקי. יוצא בזווית חדה כלפי מטה. לכן תסחיפים נכנסים אליו בקלות. בכ-15% התסחיף נתקע ממש במוצא. <b>פקקת</b> על רקע טרשת נוצרת לרוב עד 2 ס״מ מהמוצא: נפגע קטע ארוך של מעי והתמותה גבוהה יותר</p></div>
-   <div class="hzi" data-hzi="mc" hidden><b>2 · העורק הקוליקי האמצעי</b><p>מספק את המעי הגס הרוחבי ומתחבר לעורקים הקוליים הימני והשמאלי (העורק השולי של דרומונד). כ-50% מהתסחיפים נתקעים <b>מעט אחרי</b> יציאתו: לכן בתסחיף הג׳ג׳ונום הקרוב והמעי הגס הרוחבי נחסכים לרוב. קשת ריולן מחברת אותו לעורק הקוליקי השמאלי (מה-<bdi>IMA</bdi>)</p></div>
-   <div class="hzi" data-hzi="rc" hidden><b>3 · העורק הקוליקי הימני</b><p>למעי הגס העולה. חלק מרשת העורקים שמספקת את חצי המעי הגס הימני מה-<bdi>SMA</bdi></p></div>
-   <div class="hzi" data-hzi="ic" hidden><b>4 · העורק האילאוקוליקי</b><p>לאילאום הסופי, לצקום ולתוספתן. בפקקת ורידית (<bdi>MVT</bdi>) נפגעים בעיקר האילאום והג׳ג׳ונום. התריסריון והמעי הגס נחסכים יחסית</p></div>
-   <div class="hzi" data-hzi="jej" hidden><b>5 · ענפי הג׳ג׳ונום</b><p>קשת אחת או שתיים עם כלים ישרים ארוכים. ה-<bdi>SMA</bdi> מצטמצם אחרי הענפים הראשונים לג׳ג׳ונום. לכן תסחיפים נעצרים לרוב קרוב למוצא</p></div>
-   <div class="hzi" data-hzi="ile" hidden><b>6 · ענפי האילאום</b><p>ארבע או חמש קשתות עם כלים ישרים קצרים. אזור רחוק מהמוצא: בחסימה קרובה כל המעי הזה בסכנה</p></div>
+   <div class="hzi" data-hzi="sma" hidden><b>1 · <span class="nw">ה-<bdi>SMA</bdi></span> עצמו</b><p>הענף השני של <span class="nw">ה-<bdi dir="ltr">aorta</bdi></span>, אחרי <span class="nw">ה-<bdi dir="ltr">celiac trunk</bdi></span>. יוצא בזווית חדה כלפי מטה. לכן תסחיפים נכנסים אליו בקלות. בכ-15% התסחיף נתקע ממש במוצא. <b>פקקת</b> על רקע טרשת נוצרת לרוב עד 2 ס״מ מהמוצא: נפגע קטע ארוך של מעי והתמותה גבוהה יותר</p></div>
+   <div class="hzi" data-hzi="mc" hidden><b>2 · <bdi dir="ltr">middle colic artery</bdi></b><p>מספק את <span class="nw">ה-<bdi dir="ltr">transverse colon</bdi></span> ומתחבר <span class="nw">ל-<bdi dir="ltr">right colic artery</bdi></span> <span class="nw">ול-<bdi dir="ltr">left colic artery</bdi></span> (<bdi dir="ltr">marginal artery of Drummond</bdi>). כ-50% מהתסחיפים נתקעים <b>מעט אחרי</b> יציאתו: לכן בתסחיף <span class="nw">ה-<bdi dir="ltr">proximal jejunum</bdi></span> <span class="nw">וה-<bdi dir="ltr">transverse colon</bdi></span> נחסכים לרוב. <span class="nw">ה-<bdi dir="ltr">arc of Riolan</bdi></span> מחבר אותו <span class="nw">ל-<bdi dir="ltr">left colic artery</bdi></span> (<span class="nw">מה-<bdi>IMA</bdi></span>)</p></div>
+   <div class="hzi" data-hzi="rc" hidden><b>3 · <bdi dir="ltr">right colic artery</bdi></b><p><span class="nw">ל-<bdi dir="ltr">ascending colon</bdi></span>. חלק מרשת העורקים שמספקת את <span class="nw">ה-<bdi dir="ltr">right colon</bdi></span> <span class="nw">מה-<bdi>SMA</bdi></span></p></div>
+   <div class="hzi" data-hzi="ic" hidden><b>4 · <bdi dir="ltr">ileocolic artery</bdi></b><p><span class="nw">ל-<bdi dir="ltr">terminal ileum</bdi></span>, <span class="nw">ל-<bdi dir="ltr">cecum</bdi></span> <span class="nw">ול-<bdi dir="ltr">appendix</bdi></span>. בפקקת ורידית (<bdi>MVT</bdi>) נפגעים בעיקר <span class="nw">ה-<bdi dir="ltr">ileum</bdi></span> <span class="nw">וה-<bdi dir="ltr">jejunum</bdi></span>. <span class="nw">ה-<bdi dir="ltr">duodenum</bdi></span> <span class="nw">וה-<bdi dir="ltr">colon</bdi></span> נחסכים יחסית</p></div>
+   <div class="hzi" data-hzi="jej" hidden><b>5 · <bdi dir="ltr">jejunal branches</bdi></b><p><bdi dir="ltr">arcade</bdi> אחת או שתיים עם <bdi dir="ltr">vasa recta</bdi> ארוכים. <span class="nw">ה-<bdi>SMA</bdi></span> מצטמצם אחרי הענפים הראשונים <span class="nw">ל-<bdi dir="ltr">jejunum</bdi></span>. לכן תסחיפים נעצרים לרוב קרוב למוצא</p></div>
+   <div class="hzi" data-hzi="ile" hidden><b>6 · <bdi dir="ltr">ileal branches</bdi></b><p>ארבע או חמש <bdi dir="ltr">arcades</bdi> עם <bdi dir="ltr">vasa recta</bdi> קצרים. אזור רחוק מהמוצא: בחסימה קרובה כל המעי הזה בסכנה</p></div>
   </div></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 106 עמ׳ <bdi dir="ltr">1709–1710, 1713, 1719</bdi> · פרק 91 עמ׳ <bdi dir="ltr">1322</bdi> · הציור: <bdi dir="ltr">Gray's Anatomy (1918)</bdi>, איור 534 (נחלת הכלל)</span><span>אנטומיה</span></div>
 </div></section>
@@ -180,17 +185,17 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b sm">
-    <li><b>שלושה עורקים:</b> הגזע הצליאקי, <bdi>SMA</bdi> ו-<bdi>IMA</bdi>. מוצא הצליאק וה-<bdi>SMA</bdi> בגובה <bdi dir="ltr">T12–L1</bdi></li>
-    <li><b>מעגלים עוקפים:</b> קשת ביולר (הקשת הפנקריאטיקו-דואודנלית) והעורק הגסטרו-דואודנלי בין הצליאק ל-<bdi>SMA</bdi>. קשת ריולן בין ה-<bdi>SMA</bdi> ל-<bdi>IMA</bdi>. העורק השולי של דרומונד</li>
-    <li>בזכות הרשת הזו, חסימה של עורק אחד לרוב שקטה. תסחיף לצליאק לבד גורם לתסמינים בעיקר כשה-<bdi>SMA</bdi> כבר חולה</li>
-    <li><b>ה-<bdi>SMA</bdi></b> יוצא סמוך לגבול התחתון של הלבלב ועובר מלפני החלק השלישי של התריסריון</li>
+    <li><b>שלושה עורקים:</b> <bdi dir="ltr">celiac trunk</bdi>, <bdi>SMA</bdi> <span class="nw">ו-<bdi>IMA</bdi></span>. מוצא <span class="nw">ה-<bdi dir="ltr">celiac trunk</bdi></span> <span class="nw">וה-<bdi>SMA</bdi></span> בגובה <bdi dir="ltr">T12–L1</bdi></li>
+    <li><b>מעגלים עוקפים:</b> <bdi dir="ltr">arc of Bühler</bdi> (<bdi dir="ltr">pancreaticoduodenal arcade</bdi>) <span class="nw">וה-<bdi dir="ltr">gastroduodenal artery</bdi></span> (<bdi dir="ltr">GDA</bdi>) בין <span class="nw">ה-<bdi dir="ltr">celiac trunk</bdi></span> <span class="nw">ל-<bdi>SMA</bdi></span>. <bdi dir="ltr">arc of Riolan</bdi> בין <span class="nw">ה-<bdi>SMA</bdi></span> <span class="nw">ל-<bdi>IMA</bdi></span>. <bdi dir="ltr">marginal artery of Drummond</bdi></li>
+    <li>בזכות הרשת הזו, חסימה של עורק אחד לרוב שקטה. תסחיף <span class="nw">ל-<bdi dir="ltr">celiac trunk</bdi></span> לבד גורם לתסמינים בעיקר <span class="nw">כשה-<bdi>SMA</bdi></span> כבר חולה</li>
+    <li><b><span class="nw">ה-<bdi>SMA</bdi></span></b> יוצא סמוך לגבול התחתון של <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span> ועובר מלפני החלק השלישי של <span class="nw">ה-<bdi dir="ltr">duodenum</bdi></span></li>
    </ul>
    <div class="num" style="grid-template-columns:1fr 1fr;margin-top:12px">
     <div><b dir="ltr">20–25%</b><span>מתפוקת הלב עוברת למעי בצום</span></div>
     <div><b dir="ltr">35–40%</b><span>אחרי ארוחה. שומן וחלבון: עלייה גדולה וארוכה יותר</span></div>
    </div>
   </div>
-  <figure><img src="img/Sobo_1906_413_sma.jpg" alt="החלל הרטרופריטונאלי: הלבלב, התריסריון, הכליות ואבי העורקים עם גדמי העורק והווריד המזנטריים העליונים" style="max-height:50vh"><figcaption>מאחורי המעי: גדמי העורק והווריד המזנטריים העליונים בין הלבלב לתריסריון, אבי העורקים ומוצא ה-<bdi>IMA</bdi> · <bdi dir="ltr">Sobotta (1906)</bdi>, איור 413 (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/Sobo_1906_413_sma.jpg" alt="retroperitoneum: pancreas, duodenum, kidneys ו-aorta עם גדמי ה-SMA וה-SMV" style="max-height:50vh"><figcaption>מאחורי המעי: גדמי <span class="nw">ה-<bdi dir="ltr">SMA</bdi></span> <span class="nw">וה-<bdi dir="ltr">SMV</bdi></span> בין <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span> <span class="nw">ל-<bdi dir="ltr">duodenum</bdi></span>, <span class="nw">ה-<bdi dir="ltr">aorta</bdi></span> ומוצא <span class="nw">ה-<bdi>IMA</bdi></span> · <bdi dir="ltr">Sobotta (1906)</bdi>, איור 413 (נחלת הכלל)</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 106 עמ׳ <bdi dir="ltr">1710, 1713–1714</bdi> · פרק 91 עמ׳ <bdi dir="ltr">1322</bdi></span><span>אנטומיה</span></div>
 </div></section>
@@ -207,7 +212,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div style="display:grid;gap:10px">
    <div class="box r"><b class="t">תסחיף</b>ממקור לבבי: פרפור או רפרוף פרוזדורים, קריש בחדר אחרי אוטם או באי-ספיקת לב, מסתמים, אנדוקרדיטיס, מפרצת עם קריש. עד 68% עם תסחיפים גם במקומות אחרים (מוח, גפיים). תמותה בלי טיפול: 54%</div>
-   <div class="box a"><b class="t">פקקת</b>על היצרות כרונית, לרוב עם סיפור של איסכמיה כרונית. גם מצבי קרישיות יתר, דיסקציה של אבי העורקים, פקקת בסטנט או בשתל. תמותה בלי טיפול: 77%</div>
+   <div class="box a"><b class="t">פקקת</b>על היצרות כרונית, לרוב עם סיפור של איסכמיה כרונית. גם מצבי קרישיות יתר, דיסקציה של <span class="nw">ה-<bdi dir="ltr">aorta</bdi></span>, פקקת בסטנט או בשתל. תמותה בלי טיפול: 77%</div>
   </div>
   <div style="display:grid;gap:10px">
    <div class="box n"><b class="t">לא חסימתית (<bdi>NOMI</bdi>)</b>זרימה נמוכה וכיווץ כלי דם בחולה קשה: אי-ספיקת לב קשה, אחרי ניתוח לב, דיאליזה ושימוש בוזופרסורים. התמותה הגבוהה מכולם</div>
@@ -224,12 +229,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div><b dir="ltr">&lt;1</b><span>לכל 100,000 אשפוזים. פחות מ-2% מאשפוזי מערכת העיכול</span></div>
   <div><b>פי 2</b><span>כל 5 שנים מעל גיל 70. פי 3 בנשים</span></div>
   <div><b dir="ltr">17–21%</b><span>תמותה גם בקרב מי שעובר התערבות</span></div>
-  <div><b dir="ltr">50% → 30%</b><span>הישרדות בתסחיף ל-<bdi>SMA</bdi> כשהאבחנה אחרי 24 שעות</span></div>
+  <div><b dir="ltr">50% → 30%</b><span>הישרדות בתסחיף <span class="nw">ל-<bdi>SMA</bdi></span> כשהאבחנה אחרי 24 שעות</span></div>
  </div>
  <div class="grid">
   <ul class="b">
    <li><b>גורמי סיכון:</b> טרשת עורקים, פרפור פרוזדורים, אוטם טרי, אי-ספיקת לב, איסכמיה כרונית ידועה</li>
-   <li><b>ל-<bdi>NOMI</bdi>:</b> חולים קשים בהלם, אחרי ניתוחי לב ובדיאליזה</li>
+   <li><b><span class="nw">ל-<bdi>NOMI</bdi></span>:</b> חולים קשים בהלם, אחרי ניתוחי לב ובדיאליזה</li>
   </ul>
   <div class="box r"><b class="t">המסר</b>הזמן הוא מעי. חשד גבוה מספיק כדי לא לעכב את האבחנה. בחסימת <bdi>SMA</bdi> התמותה בבית החולים הייתה 42% במי שעבר <bdi>CT</bdi> עם חומר ניגוד, לעומת 90% בלעדיו</div>
  </div>
@@ -250,7 +255,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>תסחיף:</b> התחלה פתאומית והידרדרות מהירה (אין מעגלים עוקפים)</li>
     <li><b>פקקת:</b> התחלה הדרגתית, לעיתים ימים עד שבועות. לפעמים איסכמיה חריפה על כרונית</li>
     <li><b><bdi>NOMI</bdi>:</b> בטיפול נמרץ, עם כשל איברים. יכול להיות בלי כאב: תפיחות, אלח דם וממצאי מעבדה</li>
-    <li><b>אבחנה מבדלת:</b> תוספתן, דיברטיקוליטיס, כיס מרה, לבלב, חסימת מעי</li>
+    <li><b>אבחנה מבדלת:</b> אפנדיציטיס, דיברטיקוליטיס, כולציסטיטיס, פנקריאטיטיס, חסימת מעי</li>
    </ul>
   </div>
   <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש בטן בשתי ידיים" style="max-height:46vh"><figcaption>מישוש עמוק ועדין בשתי ידיים. באיסכמיה מוקדמת הבטן רכה למרות כאב חזק · <bdi dir="ltr">Musser, A Practical Treatise on Medical Diagnosis (1904) · Internet Archive Book Images · Wikimedia Commons</bdi> (נחלת הכלל)</figcaption></figure>
@@ -271,13 +276,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    </ul>
    <h3 style="margin-top:10px">הדמיה</h3>
    <div class="flow">
-    <div><b><bdi>CTA</bdi> דו-שלבי</b><span>בדיקת הבחירה: רגישות 93%, סגוליות 96%. מראה את החסימה, את הוורידים ואת זילוח הדופן. פחות אמין ב-<bdi>NOMI</bdi></span></div>
-    <div><b>סימני איסכמיה</b><span>דופן מעובה, שינוי בהאדרת הרירית, אוויר בדופן (פנאומטוזיס), גז בוורידי הפורטה</span></div>
+    <div><b><bdi>CTA</bdi> דו-שלבי</b><span>בדיקת הבחירה: רגישות 93%, סגוליות 96%. מראה את החסימה, את הוורידים ואת זילוח הדופן. פחות אמין <span class="nw">ב-<bdi>NOMI</bdi></span></span></div>
+    <div><b>סימני איסכמיה</b><span>דופן מעובה, שינוי בהאדרת הרירית, אוויר בדופן (פנאומטוזיס), גז <span class="nw">ב-<bdi dir="ltr">portal vein</bdi></span></span></div>
     <div><b>צילום בטן</b><span>לרוב תקין עד שיש נמק. מאוחר: אילאוס, ״טביעות אגודל״, אוויר בדופן</span></div>
     <div><b>דופלר · <bdi>MRA</bdi></b><span>דופלר לא אמין במצב החריף. <bdi>MRA</bdi> מדויק אבל איטי ופחות זמין</span></div>
    </div>
   </div>
-  <figure><img src="img/ct-pneumatosis-portal-gas.jpg" alt="CT עם אוויר בדופן המעי וגז בוורידי הפורטה" style="max-height:52vh"><figcaption>איסכמיה מתקדמת ב-<bdi>CT</bdi>: אוויר בדופן המעי (פנאומטוזיס) וגז בענפי וריד הפורטה בכבד · <bdi dir="ltr">Hellerhoff · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/ct-pneumatosis-portal-gas.jpg" alt="CT עם אוויר בדופן המעי וגז ב-portal vein" style="max-height:52vh"><figcaption>איסכמיה מתקדמת <span class="nw">ב-<bdi>CT</bdi></span>: אוויר בדופן המעי (פנאומטוזיס) וגז בענפי <span class="nw">ה-<bdi dir="ltr">portal vein</bdi></span> בתוך <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> · <bdi dir="ltr">Hellerhoff · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 106 עמ׳ <bdi dir="ltr">1710–1711</bdi></span><span>אבחנה</span></div>
 </div></section>
@@ -298,8 +303,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div class="box n" style="margin-top:10px"><b class="t"><bdi>NOMI</bdi></b>מטפלים בגורם: תפוקת לב, הורדת וזופרסורים, תמיכה. עירוי מרחיבי כלי דם לעורק (פפאברין ועוד) תואר רק בסדרות קטנות</div>
   </div>
   <div class="flow">
-   <div><b>תסחיף</b><span>לפרוטומיה, חשיפת ה-<bdi>SMA</bdi> בבסיס המזוקולון הרוחבי, הוצאת הקריש בבלון (<bdi>Fogarty</bdi>) ובדיקת המעי</span></div>
-   <div><b>פקקת</b><span>לרוב צריך מעקף, למשל מעורק הכסל המשותף הימני בצורת <bdi>C</bdi>, בלי לחסום את אבי העורקים. או <bdi>ROMS</bdi>: סטנט רטרוגרדי פתוח (הצלחה 98%)</span></div>
+   <div><b>תסחיף</b><span>לפרוטומיה, חשיפת <span class="nw">ה-<bdi>SMA</bdi></span> בבסיס <span class="nw">ה-<bdi dir="ltr">transverse mesocolon</bdi></span>, הוצאת הקריש בבלון (<bdi>Fogarty</bdi>) ובדיקת המעי</span></div>
+   <div><b>פקקת</b><span>לרוב צריך מעקף, למשל <span class="nw">מה-<bdi dir="ltr">right common iliac artery</bdi></span> בצורת <bdi>C</bdi>, בלי לחסום את <span class="nw">ה-<bdi dir="ltr">aorta</bdi></span>. או <bdi>ROMS</bdi>: סטנט רטרוגרדי פתוח (הצלחה 98%)</span></div>
    <div><b>אנדווסקולרי בלבד</b><span>רק בלי סימנים לאיסכמיה של המעי. חוסך לפרוטומיה ותזונה תוך-ורידית</span></div>
    <div><b>מעי מנוקב או נמק מלא</b><span>ניקוב או אוויר חופשי: כריתה קודם. נמק של כל המעי: לרוב מצב שאין ממנו הישרדות</span></div>
   </div>
@@ -320,7 +325,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li>קריש שנשאר רחוק: אפשר להזליף <bdi dir="ltr">0.5–1 mg</bdi> <bdi>tPA</bdi> לעורק</li>
    </ul>
   </div>
-  <figure><img src="img/op-ischemic-bowel.jpg" alt="ניתוח: לולאות מעי דק איסכמיות"><figcaption>כך זה נראה בניתוח: לולאות מעי דק איסכמיות, כהות ובצקתיות · <bdi dir="ltr">Haitham Alfalah · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/op-ischemic-bowel.jpg" alt="ניתוח: לולאות small bowel איסכמיות"><figcaption>כך זה נראה בניתוח: לולאות <bdi dir="ltr">small bowel</bdi> איסכמיות, כהות ובצקתיות · <bdi dir="ltr">Haitham Alfalah · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 106 עמ׳ <bdi dir="ltr">1711–1712</bdi></span><span>ניתוח</span></div>
 </div></section>
@@ -331,10 +336,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div>
    <ul class="b sm">
-    <li><b>לרוב ב-<bdi>SMV</bdi>.</b> ב-<bdi>IMV</bdi> רק <bdi dir="ltr">5–10%</bdi>. נפגעים בעיקר האילאום והג׳ג׳ונום</li>
-    <li>מצב קרישיות יתר מזוהה ב-<bdi dir="ltr">60–70%</bdi> ומנבא איסכמיה</li>
-    <li><b>חריפה (כ-70%):</b> כאב שלא תואם את הבדיקה, בחילות והקאות. דימום ממערכת העיכול ב-<bdi dir="ltr">15–50%</bdi></li>
-    <li><b>תת-חריפה:</b> תסמינים לא ספציפיים שבועות עד חודשים. <b>כרונית:</b> לרוב שקטה, מתגלה עם סיבוכי יתר לחץ פורטלי</li>
+    <li><b>לרוב <span class="nw">ב-<bdi>SMV</bdi></span>.</b> <span class="nw">ב-<bdi>IMV</bdi></span> רק <bdi dir="ltr">5–10%</bdi>. נפגעים בעיקר <span class="nw">ה-<bdi dir="ltr">ileum</bdi></span> <span class="nw">וה-<bdi dir="ltr">jejunum</bdi></span></li>
+    <li>מצב קרישיות יתר מזוהה <span class="nw">ב-<bdi dir="ltr">60–70%</bdi></span> ומנבא איסכמיה</li>
+    <li><b>חריפה (כ-70%):</b> כאב שלא תואם את הבדיקה, בחילות והקאות. דימום ממערכת העיכול <span class="nw">ב-<bdi dir="ltr">15–50%</bdi></span></li>
+    <li><b>תת-חריפה:</b> תסמינים לא ספציפיים שבועות עד חודשים. <b>כרונית:</b> לרוב שקטה, מתגלה עם סיבוכי <bdi dir="ltr">portal hypertension</bdi></li>
     <li><b>האבחנה:</b> <bdi>CT</bdi> עם חומר ניגוד בשלב עורקי ובשלב ורידי פורטלי. גם בירור קרישיות וסקר סרטן לפי הגיל</li>
    </ul>
   </div>
@@ -366,10 +371,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <li><b>בבדיקה:</b> לרוב לא ספציפית. בדיקת כלי דם מלאה, כולל דפקים בגפיים</li>
    <li><b>חובה לשלול גידול</b>: כל חולה עם כאב בטן וירידה במשקל עובר בירור מהיר לממאירות</li>
   </ul>
+  <div style="display:grid;gap:10px;align-content:start">
   <div class="flow">
-   <div><b>סקר: דופלר</b><span>מהירות שיא <bdi dir="ltr">200 cm/s</bdi> בצליאק ו-<bdi dir="ltr">275 cm/s</bdi> ב-<bdi>SMA</bdi> מתאימה להיצרות מעל 70%</span></div>
+   <div><b>סקר: דופלר</b><span>מהירות שיא <bdi dir="ltr">200 cm/s</bdi> <span class="nw">ב-<bdi dir="ltr">celiac trunk</bdi></span> <span class="nw">ו-<bdi dir="ltr">275 cm/s</bdi></span> <span class="nw">ב-<bdi>SMA</bdi></span> מתאימה להיצרות מעל 70%</span></div>
    <div><b><bdi>CTA</bdi></b><span>הבדיקה המועדפת ולתכנון הטיפול</span></div>
-   <div><b>האבחנה</b><span>היצרות מעל 70% בצליאק ו/או ב-<bdi>SMA</bdi> יחד עם תסמינים מתאימים</span></div>
+   <div><b>האבחנה</b><span>היצרות מעל 70% <span class="nw">ב-<bdi dir="ltr">celiac trunk</bdi></span> ו/או <span class="nw">ב-<bdi>SMA</bdi></span> יחד עם תסמינים מתאימים</span></div>
+  </div>
+  <figure><img src="img/cmi-cta-sma-stenosis.jpg" alt="CTA בחתך אורך: היצרות של ה-SMA סמוך למוצאו מה-aorta" style="max-height:20vh"><figcaption><b><bdi>CTA</bdi> בחתך אורך:</b> היצרות של <span class="nw">ה-<bdi>SMA</bdi></span> סמוך למוצאו (חץ). <span class="nw">ה-<bdi dir="ltr">aorta</bdi></span> מסוידת · <bdi dir="ltr">Spangler R et al., Int J Emerg Med 2014 · CC BY 4.0 · Wikimedia Commons</bdi></figcaption></figure>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 106 עמ׳ <bdi dir="ltr">1713–1714</bdi></span><span>איסכמיה כרונית</span></div>
@@ -382,7 +390,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <ul class="b sm">
     <li><b>למה לטפל:</b> להעלים תסמינים, למנוע איסכמיה חריפה ולשפר איכות חיים. ללא תסמינים: מעקב שנתי בדופלר והחלטה משותפת</li>
-    <li><b>המטרה העיקרית: ה-<bdi>SMA</bdi>.</b> הצליאק וה-<bdi>IMA</bdi> הם מטרות משניות</li>
+    <li><b>המטרה העיקרית: <span class="nw">ה-<bdi>SMA</bdi></span>.</b> <span class="nw">ה-<bdi dir="ltr">celiac trunk</bdi></span> <span class="nw">וה-<bdi>IMA</bdi></span> הם מטרות משניות</li>
     <li><b>טיפול תרופתי לכולם:</b> נוגדי טסיות, הורדת שומנים, חוסמי בטא והפסקת עישון</li>
     <li><b>תזונה תוך-ורידית</b> אינה תחליף לטיפול. מותרת רק סביב הניתוח</li>
     <li><b>אחרי סטנט:</b> לרוב שני נוגדי טסיות <bdi dir="ltr">6–12</bdi> שבועות. מעקב הדמיה אחרי חודש, כל חצי שנה בשנתיים הראשונות ואחר כך כל שנה</li>
@@ -390,7 +398,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   </div>
   <div style="display:grid;gap:10px">
    <div class="box"><b class="t">אנדווסקולרי (קו ראשון)</b>הרחבה בבלון עם סטנט מכוסה מתרחב בבלון. במטא-אנליזה: הצלחה טכנית 95%, תמותה 2% ב-30 יום, אבל חזרת תסמינים או התערבות חוזרת בכ-25%</div>
-   <div class="box n"><b class="t">ניתוח פתוח</b>לצעירים, לאנטומיה שלא מתאימה לסטנט, או לחזרה אחרי סטנטים. מעקף אנטגרדי מאבי העורקים מעל הצליאק, או רטרוגרדי מאבי העורקים התחתון או מעורקי הכסל. אשפוז ארוך יותר, פחות היצרות חוזרת</div>
+   <div class="box n"><b class="t">ניתוח פתוח</b>לצעירים, לאנטומיה שלא מתאימה לסטנט, או לחזרה אחרי סטנטים. מעקף אנטגרדי <span class="nw">מה-<bdi dir="ltr">supraceliac aorta</bdi></span>, או רטרוגרדי <span class="nw">מה-<bdi dir="ltr">infrarenal aorta</bdi></span> או <span class="nw">מה-<bdi dir="ltr">iliac arteries</bdi></span>. אשפוז ארוך יותר, פחות היצרות חוזרת</div>
    <div class="box a"><b class="t">התוצאות</b>הקלה בתסמינים ב-80% עד יותר מ-90% אחרי <bdi dir="ltr">24–36</bdi> חודשים בשתי הגישות. בלי הבדל בהישרדות</div>
   </div>
  </div>
@@ -405,7 +413,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <p>העדכון הראשון מאז 2017: 102 המלצות על איסכמיה כרונית, איסכמיה עורקית חריפה, <bdi>NOMI</bdi>, פקקת ורידית, מפרצות ודיסקציות של עורקי הבטן</p>
    <small>Koelemay MJ et al. Eur J Vasc Endovasc Surg 2025;70:153-218</small></div>
   <div class="study"><div class="y"><bdi>Crit Care</bdi> 2024 · 32 בתי חולים</div><b><bdi>AMESI</bdi>: איסכמיה חריפה בעולם האמיתי</b>
-   <p>418 חולים. מהתחלת התסמינים לאשפוז: חציון 24 שעות. מהאשפוז לאבחנה: 6 שעות. עורקית חסימתית 55.3%, <bdi>NOMI</bdi> 13.2% וורידית 17.5%. תמותה בבית החולים 49%: הכי נמוכה בוורידית (13.7%), הכי גבוהה ב-<bdi>NOMI</bdi> (72.7%)</p>
+   <p>418 חולים. מהתחלת התסמינים לאשפוז: חציון 24 שעות. מהאשפוז לאבחנה: 6 שעות. עורקית חסימתית 55.3%, <bdi>NOMI</bdi> 13.2% וורידית 17.5%. תמותה בבית החולים 49%: הכי נמוכה בוורידית (13.7%), הכי גבוהה <span class="nw">ב-<bdi>NOMI</bdi></span> (72.7%)</p>
    <small>Reintam Blaser A et al. Crit Care 2024;28:32</small></div>
   <div class="study"><div class="y"><bdi>World J Emerg Surg</bdi> 2025 · מחקר המשך</div><b>אנדווסקולרי מול ניתוח בחסימת <bdi>SMA</bdi></b>
    <p>158 חולים. התמותה: 2.9% כשהטיפול האנדווסקולרי הצליח, 41.2% כשלא הספיק לבד, 45.8% בניתוח. אחרי תיקון לחומרת המחלה, השיטה לא השפיעה על התמותה: היתרון נובע מבחירת החולים</p>

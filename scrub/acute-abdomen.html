@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>בטן חריפה · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -88,6 +88,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -99,6 +100,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -116,6 +118,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -156,12 +161,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>לא אבחנה:</b> אוסף של תסמינים, ממצאים ובירור שמרמזים על תהליך חריף בבטן (או מחוצה לה) שלעיתים קרובות מחייב ניתוח</li>
     <li><b>חריף:</b> הגבול המקובל, השרירותי, הוא כאב של עד שבוע</li>
     <li><b>ארבעה מנגנונים:</b> דלקת, חסימה, ניקוב ואיסכמיה</li>
-    <li><b>תוך-צפקי:</b> קיבה, מעי דק, מעי גס רוחבי, כבד, טחול, תוספתן</li>
-    <li><b>רטרופריטונאלי:</b> כליות, לבלב, המעי הגס העולה והיורד וכלי הדם הגדולים</li>
-    <li><b>אספקת הדם:</b> אבי העורקים מתפצל לעורקי הכסל בגובה חוליה <bdi>L4</bdi>. ענפי הבטן: הגזע הצליאקי, <bdi>SMA</bdi> ו-<bdi>IMA</bdi>. פגיעה בזרימה גורמת לאיסכמיה של המעי</li>
+    <li><b>תוך-צפקי:</b> <bdi>stomach, small bowel, transverse colon, liver, spleen, appendix</bdi></li>
+    <li><b>רטרופריטונאלי:</b> <bdi>kidneys, pancreas, ascending & descending colon</bdi> וכלי הדם הגדולים</li>
+    <li><b>אספקת הדם:</b> <span class="nw">ה-<bdi>aorta</bdi></span> מתפצל <span class="nw">ל-<bdi>common iliac arteries</bdi></span> בגובה חוליה <bdi>L4</bdi>. ענפי הבטן: <bdi>celiac trunk</bdi>, <bdi>SMA</bdi> <span class="nw">ו-<bdi>IMA</bdi></span>. פגיעה בזרימה גורמת לאיסכמיה של המעי</li>
    </ul>
   </div>
-  <figure><img src="img/Sobo_1906_413.jpg" alt="החלל הרטרופריטונאלי: לבלב, תריסריון, כליות ואבי העורקים" style="max-height:52vh"><figcaption>החלל הרטרופריטונאלי אחרי הוצאת המעי: הלבלב, התריסריון, הטחול, הכליות, אבי העורקים והווריד הנבוב · <bdi dir="ltr">Sobotta, Atlas and Text-book of Human Anatomy (1906)</bdi>, איור 413 (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/Sobo_1906_413.jpg" alt="החלל הרטרופריטונאלי: pancreas, duodenum, kidneys, aorta" style="max-height:52vh"><figcaption>החלל הרטרופריטונאלי אחרי הוצאת המעי: <span class="nw">ה-<bdi>pancreas, duodenum, spleen, kidneys, aorta</bdi></span> <span class="nw">וה-<bdi>IVC</bdi></span> · <bdi dir="ltr">Sobotta, Atlas and Text-book of Human Anatomy (1906)</bdi>, איור 413 (נחלת הכלל)</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1155</bdi></span><span>מושגים</span></div>
 </div></section>
@@ -171,14 +176,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>למה הכאב ״נודד״?</h2>
  <div class="grid">
   <div style="display:grid;gap:10px">
-   <div class="box n"><b class="t">כאב ויסצרלי</b>הצפק הקרביי מעוצבב בעצבים אוטונומיים. כאב עמום, לא ממוקד, ״התכווצויות״ או ״לחץ״</div>
-   <div class="box"><b class="t">כאב פריאטלי</b>הצפק הקירי מעוצבב בעצבים סומטיים לפי הדרמטומים של העור. כאב חד וממוקד</div>
-   <div class="box a"><b class="t">הדוגמה הקלאסית: דלקת התוספתן</b>כאב עמום סביב הטבור, שעובר לרבע הימני התחתון כשהדלקת מגיעה לצפק הקירי</div>
+   <div class="box n"><b class="t">כאב ויסצרלי</b><span class="nw">ה-<bdi>visceral peritoneum</bdi></span> מעוצבב בעצבים אוטונומיים. כאב עמום, לא ממוקד, ״התכווצויות״ או ״לחץ״</div>
+   <div class="box"><b class="t">כאב פריאטלי</b><span class="nw">ה-<bdi>parietal peritoneum</bdi></span> מעוצבב בעצבים סומטיים לפי הדרמטומים של העור. כאב חד וממוקד</div>
+   <div class="box a"><b class="t">הדוגמה הקלאסית: דלקת התוספתן</b>כאב עמום סביב הטבור, שעובר לרבע הימני התחתון כשהדלקת מגיעה <span class="nw">ל-<bdi>parietal peritoneum</bdi></span></div>
   </div>
   <div>
    <h3>כאב מושלך</h3>
    <ul class="b sm">
-    <li>אוויר חופשי או דם מתחת לסרעפת: כאב בכתף, דרך העצב הפרני</li>
+    <li>אוויר חופשי או דם מתחת <span class="nw">ל-<bdi>diaphragm</bdi></span>: כאב בכתף, דרך <span class="nw">ה-<bdi>phrenic nerve</bdi></span></li>
     <li>אוטם שריר הלב יכול להופיע ככאב בבטן העליונה</li>
     <li>לכן שואלים גם על כאב מחוץ לבטן ובודקים את כל הגוף</li>
    </ul>
@@ -206,12 +211,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <g class="hzb" style="--c:#0C2A35"><circle cx="235" cy="1240" r="23"/><text x="235" y="1240">6</text></g>
  </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-   <div class="hzi" data-hzi="ruq" hidden><b>1 · כבד וכיס מרה (ימין עליון)</b><p>דלקת כיס המרה (סימן מרפי), אבצס בכבד. באולטרסאונד: דופן כיס מרה מעובה ואבנים. דם או אוויר מתחת לסרעפת יכולים לגרום לכאב בכתף. לחשוב גם על דלקת ריאות שמחקה כאב בטן</p></div>
-   <div class="hzi" data-hzi="epi" hidden><b>2 · קיבה ותריסריון (אפיגסטריום)</b><p>כיב מנוקב: אוויר חופשי מתחת לסרעפת בצילום בעמידה. דלקת לבלב (מאחורי הקיבה, רטרופריטונאלית): ליפאז. לעיתים סימן גריי טרנר. לחשוב גם על אוטם שריר הלב שמופיע ככאב בבטן העליונה</p></div>
-   <div class="hzi" data-hzi="mid" hidden><b>3 · מרכז הבטן: המעי הדק מתחת לאומנטום</b><p>חסימת מעי (צלקות ניתוח, בקע), איסכמיה של המעי (כאב שלא תואם את הבדיקה, פרפור פרוזדורים). כאן מתחיל גם הכאב הוויסצרלי של דלקת התוספתן, סביב הטבור</p></div>
-   <div class="hzi" data-hzi="rlq" hidden><b>4 · ימין תחתון: תוספתן וצקום</b><p>דלקת התוספתן: רגישות, סימן רובזינג, פסואס ואובטורטור. באישה בגיל הפוריות: היריון מחוץ לרחם, תסביב שחלה ואבצס טובו-אובריאלי. תמיד <bdi>β-hCG</bdi></p></div>
-   <div class="hzi" data-hzi="llq" hidden><b>5 · שמאל תחתון: הסיגמואיד</b><p>דיברטיקוליטיס, שכיחה במבוגרים ולא בצעירים. וולוולוס של הסיגמואיד: סימן ״פולי הקפה״ בצילום בטן. ניקוב מכוסה בלי פריטוניטיס מטופל לרוב בלי ניתוח</p></div>
-   <div class="hzi" data-hzi="pel" hidden><b>6 · אגן ומפשעות</b><p>בדיקת המפשעות היא חובה בכל בדיקת בטן: בקע כלוא. איברי האגן: הרחם והשחלות, השלפוחית. אצל גברים: תסביב אשך ודלקת האפידידימיס. בדיקה רקטלית: דימום, עצירות, גוש חוסם</p></div>
+   <div class="hzi" data-hzi="ruq" hidden><b>1 · ימין עליון: <bdi>liver, gallbladder</bdi></b><p>דלקת כיס המרה (סימן מרפי), אבצס <span class="nw">ב-<bdi>liver</bdi></span>. באולטרסאונד: דופן <bdi>gallbladder</bdi> מעובה ואבנים. דם או אוויר מתחת <span class="nw">ל-<bdi>diaphragm</bdi></span> יכולים לגרום לכאב בכתף. לחשוב גם על דלקת ריאות שמחקה כאב בטן</p></div>
+   <div class="hzi" data-hzi="epi" hidden><b>2 · אפיגסטריום: <bdi>stomach, duodenum</bdi></b><p>כיב מנוקב: אוויר חופשי מתחת <span class="nw">ל-<bdi>diaphragm</bdi></span> בצילום בעמידה. דלקת לבלב (מאחורי <span class="nw">ה-<bdi>stomach</bdi></span>, רטרופריטונאלית): ליפאז. לעיתים סימן גריי טרנר. לחשוב גם על אוטם שריר הלב שמופיע ככאב בבטן העליונה</p></div>
+   <div class="hzi" data-hzi="mid" hidden><b>3 · מרכז הבטן: <bdi>small bowel</bdi> מתחת <span class="nw">ל-<bdi>omentum</bdi></span></b><p>חסימת מעי (צלקות ניתוח, בקע), איסכמיה של המעי (כאב שלא תואם את הבדיקה, פרפור פרוזדורים). כאן מתחיל גם הכאב הוויסצרלי של דלקת התוספתן, סביב הטבור</p></div>
+   <div class="hzi" data-hzi="rlq" hidden><b>4 · ימין תחתון: <bdi>appendix, cecum</bdi></b><p>דלקת התוספתן: רגישות, סימן רובזינג, פסואס ואובטורטור. באישה בגיל הפוריות: היריון מחוץ לרחם, תסביב שחלה ואבצס טובו-אובריאלי. תמיד <bdi>β-hCG</bdi></p></div>
+   <div class="hzi" data-hzi="llq" hidden><b>5 · שמאל תחתון: <bdi>sigmoid</bdi></b><p>דיברטיקוליטיס, שכיחה במבוגרים ולא בצעירים. וולוולוס של <span class="nw">ה-<bdi>sigmoid</bdi></span>: סימן ״פולי הקפה״ בצילום בטן. ניקוב מכוסה בלי פריטוניטיס מטופל לרוב בלי ניתוח</p></div>
+   <div class="hzi" data-hzi="pel" hidden><b>6 · אגן ומפשעות</b><p>בדיקת המפשעות היא חובה בכל בדיקת בטן: בקע כלוא. איברי האגן: <bdi>uterus, ovaries, bladder</bdi>. אצל גברים: תסביב אשך ודלקת האפידידימיס. בדיקה רקטלית: דימום, עצירות, גוש חוסם</p></div>
   </div></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1155–1160, 1164</bdi> · הציור: <bdi>Sobotta</bdi> (1906), איור 407, הבטן אחרי פתיחה (נחלת הכלל)</span><span>מפת הבטן</span></div>
 </div></section>
@@ -224,9 +229,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <h3>סיבות כירורגיות</h3>
    <ul class="b sm">
     <li><b>מערכת העיכול:</b> כיב מנוקב, כיס מרה, תוספתן, בקע כלוא, חסימה, דיברטיקוליטיס, תסביב (וולוולוס), קוליטיס איסכמית</li>
-    <li><b>איברים מוצקים:</b> אבצס בכבד או בטחול, דלקת לבלב נמקית, קרע בטחול</li>
+    <li><b>איברים מוצקים:</b> אבצס <span class="nw">ב-<bdi>liver</bdi></span> או <span class="nw">ב-<bdi>spleen</bdi></span>, דלקת לבלב נמקית, קרע <span class="nw">ב-<bdi>spleen</bdi></span></li>
     <li><b>אורוגניטלי:</b> אבן בכליה, היריון מחוץ לרחם, תסביב שחלה או אשך, אבצס טובו-אובריאלי</li>
-    <li><b>וסקולרי:</b> מפרצת אבי העורקים, דיסקציה, חסימה של עורק מזנטרי, דימום תוך-בטני</li>
+    <li><b>וסקולרי:</b> מפרצת של <span class="nw">ה-<bdi>aorta</bdi></span>, דיסקציה, חסימה של <bdi>mesenteric artery</bdi>, דימום תוך-בטני</li>
    </ul>
   </div>
   <div>
@@ -282,7 +287,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    </ul>
    <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>בדקו שני מטופלים שהגיעו מהמיון עם כאב בטן. בשכיבה על הגב עם ברכיים כפופות. הציגו לבכיר/ה: איפה הרגישות המרבית והאם יש סימני פריטוניטיס</div>
   </div>
-  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש בטן בשתי ידיים" style="max-height:50vh"><figcaption>מישוש בשתי ידיים: יד אחת מקבעת ויד אחת ממששת (שיטת גלנאר למישוש הכבד, בעמידה) · <bdi dir="ltr">Musser, A Practical Treatise on Medical Diagnosis (1904) · Internet Archive Book Images · Wikimedia Commons</bdi> (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש בטן בשתי ידיים" style="max-height:50vh"><figcaption>מישוש בשתי ידיים: יד אחת מקבעת ויד אחת ממששת (שיטת גלנאר למישוש <span class="nw">ה-<bdi>liver</bdi></span>, בעמידה) · <bdi dir="ltr">Musser, A Practical Treatise on Medical Diagnosis (1904) · Internet Archive Book Images · Wikimedia Commons</bdi> (נחלת הכלל)</figcaption></figure>
  </div>
  <div class="box a" style="margin-top:10px"><b class="t">טיפ להבדלה בין התגוננות רצונית ללא רצונית</b>המטופל שוכב על הגב, ברכיים כפופות וכפות הרגליים על המיטה. כך שרירי הבטן רפויים והבדיקה מדויקת יותר</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1157–1159</bdi></span><span>בדיקה גופנית</span></div>
@@ -292,15 +297,15 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>8</b>סימנים על שם</div>
  <h2>הסימנים שכדאי להכיר</h2>
  <div class="grid g3">
-  <div class="box"><b class="t">מרפי</b>מישוש מתחת לקשת הצלעות מימין ושאיפה עמוקה: הנשימה נעצרת מכאב. דלקת כיס המרה</div>
+  <div class="box"><b class="t">מרפי</b>מישוש מתחת <span class="nw">ל-<bdi>costal margin</bdi></span> מימין ושאיפה עמוקה: הנשימה נעצרת מכאב. דלקת כיס המרה</div>
   <div class="box"><b class="t">רובזינג</b>לחיצה ברבע השמאלי התחתון גורמת לכאב ברבע הימני התחתון. דלקת התוספתן</div>
-  <div class="box"><b class="t">פסואס</b>הרמת רגל ישרה נגד התנגדות כואבת. תוספתן רטרו-צקלי</div>
-  <div class="box"><b class="t">אובטורטור</b>סיבוב פנימי פסיבי של הירך עם ברך כפופה. תוספתן אגני או אבצס באגן</div>
+  <div class="box"><b class="t">פסואס</b>הרמת רגל ישרה נגד התנגדות כואבת. <bdi>retrocecal appendix</bdi></div>
+  <div class="box"><b class="t">אובטורטור</b>סיבוב פנימי פסיבי של הירך עם ברך כפופה. אבצס באגן או <bdi>pelvic appendix</bdi></div>
   <div class="box"><b class="t">בלומברג</b>הכאב מחמיר כשמשחררים את הלחץ ולא כשלוחצים. פריטוניטיס</div>
   <div class="box"><b class="t">קרנט</b>הכאב נמשך או מחמיר כשמכווצים את שרירי הבטן. מקור בדופן הבטן</div>
   <div class="box n"><b class="t">קאלן · גריי טרנר</b>שטף דם סביב הטבור או במותניים. דימום תוך-בטני, רטרופריטונאלי או דלקת לבלב קשה</div>
   <div class="box n"><b class="t">האושיפ-רומברג</b>כאב בירך הפנימית בסיבוב פנימי של הירך. בקע אובטורטורי</div>
-  <div class="box n"><b class="t">שנדליר</b>כאב אגני קשה בהזזת צוואר הרחם. מחלה דלקתית של האגן</div>
+  <div class="box n"><b class="t">שנדליר</b>כאב אגני קשה בהזזת <span class="nw">ה-<bdi>cervix</bdi></span>. מחלה דלקתית של האגן</div>
  </div>
  <div class="grid f" style="margin-top:12px">
   <div class="box r"><b class="t">שימו לב</b>לרוב הסימנים אין רגישות וסגוליות מספיקות לאבחנה לבדם. הם תוספת לאנמנזה ולבדיקה המלאה</div>
@@ -346,18 +351,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b sm">
-    <li><b>קודם אבחנה מבדלת, אחר כך הדמיה.</b> לא שולחים כל בטן ל-<bdi>CT</bdi> באופן אוטומטי</li>
-    <li><b>אולטרסאונד:</b> בלי קרינה, מהיר, ליד המיטה (<bdi>POCUS</bdi>). זמין לכבד ולמרה, לכלי הדם, למערכת השתן ולאגן. מוגבל בגזים במעי ובמטופלים גדולי גוף</li>
+    <li><b>קודם אבחנה מבדלת, אחר כך הדמיה.</b> לא שולחים כל בטן <span class="nw">ל-<bdi>CT</bdi></span> באופן אוטומטי</li>
+    <li><b>אולטרסאונד:</b> בלי קרינה, מהיר, ליד המיטה (<bdi>POCUS</bdi>). זמין <span class="nw">ל-<bdi>liver</bdi></span> ולדרכי המרה, לכלי הדם, למערכת השתן ולאגן. מוגבל בגזים במעי ובמטופלים גדולי גוף</li>
     <li><b>צילום בטן:</b> דיוק נמוך יותר, אבל מהיר:</li>
    </ul>
    <div class="flow" style="margin-top:8px">
-    <div><b>אוויר מתחת לסרעפת</b><span>ניקוב של איבר חלול (צילום בעמידה)</span></div>
-    <div><b>לולאות מורחבות ורמות נוזל-אוויר</b><span>חסימת מעי דק. לשים זונדה לפני ה-<bdi>CT</bdi> כדי למנוע אספירציה</span></div>
-    <div><b>״פולי קפה״, ״צינור מכופף״</b><span>וולוולוס של הצקום או הסיגמואיד</span></div>
+    <div><b>אוויר מתחת <span class="nw">ל-<bdi>diaphragm</bdi></span></b><span>ניקוב של איבר חלול (צילום בעמידה)</span></div>
+    <div><b>לולאות מורחבות ורמות נוזל-אוויר</b><span>חסימת מעי דק. לשים זונדה לפני <span class="nw">ה-<bdi>CT</bdi></span> כדי למנוע אספירציה</span></div>
+    <div><b>״פולי קפה״, ״צינור מכופף״</b><span>וולוולוס של <span class="nw">ה-<bdi>cecum</bdi></span> או <span class="nw">ה-<bdi>sigmoid</bdi></span></span></div>
     <div><b>עוד</b><span>אבנים בכליות, גוף זר</span></div>
    </div>
   </div>
-  <figure><img src="img/xray-free-air.jpg" alt="צילום חזה בעמידה עם אוויר חופשי מתחת לשתי כיפות הסרעפת" style="max-height:48vh"><figcaption>אוויר חופשי מתחת לשתי כיפות הסרעפת בצילום בעמידה, אחרי ניקוב של הסיגמואיד · <bdi dir="ltr">Hellerhoff · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/xray-free-air.jpg" alt="צילום חזה בעמידה עם אוויר חופשי מתחת לשתי כיפות ה-diaphragm" style="max-height:48vh"><figcaption>אוויר חופשי מתחת לשתי כיפות <span class="nw">ה-<bdi>diaphragm</bdi></span> בצילום בעמידה, אחרי ניקוב של <span class="nw">ה-<bdi>sigmoid</bdi></span> · <bdi dir="ltr">Hellerhoff · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1159–1160</bdi></span><span>הדמיה</span></div>
 </div></section>
@@ -366,7 +371,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>11</b>הדמיה · חלק ב׳</div>
  <h2><bdi>CT</bdi>, <bdi>MRI</bdi> ולפרוסקופיה אבחנתית</h2>
  <div class="num">
-  <div><b dir="ltr">30%</b><span>פחות דיוק ב-<bdi>CT</bdi> בלי חומר ניגוד לווריד</span></div>
+  <div><b dir="ltr">30%</b><span>פחות דיוק <span class="nw">ב-<bdi>CT</bdi></span> בלי חומר ניגוד לווריד</span></div>
   <div><b dir="ltr">&gt;1 h</b><span>עיכוב אפשרי בגלל חומר ניגוד לשתייה, בלי רווח באבחנה</span></div>
   <div><b dir="ltr">42% · 90%</b><span>תמותה בחסימה של <bdi>SMA</bdi>: עם <bdi>CT</bdi> בחומר ניגוד · בלעדיו</span></div>
   <div><b dir="ltr">&gt;90%</b><span>רגישות וסגוליות של <bdi>MRI</bdi> לתוספתן בהיריון</span></div>
@@ -376,10 +381,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <li><b><bdi>CT</bdi> היא בדיקת הבחירה</b> היום. חומר ניגוד לווריד משפר מאוד את הדיוק. חומר לשתייה רק בחשד לניקוב או לדליפה מהשקה</li>
    <li><b><bdi>CTA</bdi></b> בחשד לאיסכמיה מזנטרית או לדיסקציה. מראה גם דופן מעי שלא נצבעת</li>
    <li><b><bdi>MRI</bdi>:</b> בלי קרינה, טוב לילדים ולהיריון. יקר וארוך (<bdi dir="ltr">30–90</bdi> דקות)</li>
-   <li><b>צנתור:</b> היום בעיקר לטיפול, או כשה-<bdi>CTA</bdi> לא חד-משמעי</li>
+   <li><b>צנתור:</b> היום בעיקר לטיפול, או <span class="nw">כשה-<bdi>CTA</bdi></span> לא חד-משמעי</li>
    <li><b>לפרוסקופיה אבחנתית:</b> כשלא ברור, למשל תוספתן מול בעיה גינקולוגית, אחרי ניתוח בריאטרי ובחבלה</li>
   </ul>
-  <figure><img src="img/ct-free-air.jpg" alt="CT בטן עם אוויר חופשי מול הכבד"><figcaption>אוויר חופשי (החץ) בין דופן הבטן לכבד ב-<bdi>CT</bdi> · <bdi dir="ltr">James Heilman, MD · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/ct-free-air.jpg" alt="CT בטן עם אוויר חופשי מול ה-liver"><figcaption>אוויר חופשי (החץ) בין דופן הבטן <span class="nw">ל-<bdi>liver</bdi></span> <span class="nw">ב-<bdi>CT</bdi></span> · <bdi dir="ltr">James Heilman, MD · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1160–1163</bdi></span><span>הדמיה</span></div>
 </div></section>
@@ -418,7 +423,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="num n3">
   <div><b dir="ltr">29%</b><span>מהמטופלים באנטיביוטיקה לתוספתן עברו כריתה תוך 90 יום (<bdi>CODA</bdi>)</span></div>
   <div><b dir="ltr">40%</b><span>שיעור סיבוכים עד כ-40% בניתוח חירום לדיברטיקוליטיס</span></div>
-  <div><b dir="ltr">71.4–94%</b><span>הצלחה בניקוב מכוסה של הסיגמואיד: צום ואנטיביוטיקה לווריד</span></div>
+  <div><b dir="ltr">71.4–94%</b><span>הצלחה בניקוב מכוסה של <span class="nw">ה-<bdi>sigmoid</bdi></span>: צום ואנטיביוטיקה לווריד</span></div>
  </div>
  <div class="grid">
   <ul class="b sm">
@@ -443,8 +448,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div class="box b"><b class="t">היריון</b>
     <ul class="b sm">
      <li>תוספתן: כ-100 לכל 100,000 לידות, עם יותר פריטוניטיס ואלח דם. <b>מנתחים</b>: טיפול שמרני מסוכן יותר</li>
-     <li>מעדיפים אולטרסאונד ו-<bdi>MRI</bdi>. אם צריך <bdi>CT</bdi>, לא מעכבים: עיכוב מסכן את האם ואת העובר</li>
-     <li>מנה לעובר ב-<bdi>CT</bdi> בטן ואגן: כ-<bdi dir="ltr">25 mGy</bdi>. סיכון נמוך עד <bdi dir="ltr">50 mGy</bdi>. הרגישות לטרטוגניות הגבוהה ביותר בשבועות <bdi dir="ltr">10–17</bdi></li>
+     <li>מעדיפים אולטרסאונד <span class="nw">ו-<bdi>MRI</bdi></span>. אם צריך <bdi>CT</bdi>, לא מעכבים: עיכוב מסכן את האם ואת העובר</li>
+     <li>מנה לעובר <span class="nw">ב-<bdi>CT</bdi></span> בטן ואגן: <span class="nw">כ-<bdi dir="ltr">25 mGy</bdi></span>. סיכון נמוך עד <bdi dir="ltr">50 mGy</bdi>. הרגישות לטרטוגניות הגבוהה ביותר בשבועות <bdi dir="ltr">10–17</bdi></li>
     </ul></div>
    <div class="box"><b class="t">נשים · גברים</b>אנדומטריוזיס (כאב מחזורי), תסביב שחלה, היריון מחוץ לרחם. בגברים: תסביב אשך ואפידידימיטיס</div>
   </div>
@@ -489,7 +494,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>חולה לא יציב לא מחכה: החייאה, אנטיביוטיקה רחבה, שיחה כנה וחדר ניתוח</li>
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 85 <bdi>The Acute Abdomen</bdi> (עמ׳ <bdi dir="ltr">1155–1165</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906) ו-<bdi>Musser</bdi> (1904), נחלת הכלל · צילומים: <bdi>Hellerhoff</bdi>, <bdi>James Heilman</bdi> (<bdi>CC BY-SA</bdi>) ו-<bdi>H.L. Fred · H.A. van Dijk</bdi> (<bdi>CC BY 2.0</bdi>), <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906) <span class="nw">ו-<bdi>Musser</bdi></span> (1904), נחלת הכלל · צילומים: <bdi>Hellerhoff</bdi>, <bdi>James Heilman</bdi> (<bdi>CC BY-SA</bdi>) <span class="nw">ו-<bdi>H.L. Fred · H.A. van Dijk</bdi></span> (<bdi>CC BY 2.0</bdi>), <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>

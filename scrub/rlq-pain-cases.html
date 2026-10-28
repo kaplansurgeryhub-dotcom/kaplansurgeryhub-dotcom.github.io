@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>דיון מקרים: כאבי בטן ימנית תחתונה · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -88,6 +88,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -99,6 +100,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -116,6 +118,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -148,11 +153,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>2</b>רקע קצר</div>
- <h2>התוספתן ולמה הוא מודלק</h2>
+ <h2><span class="nw">ה-<bdi dir="ltr">appendix</bdi></span> ולמה הוא מודלק</h2>
  <div class="num">
   <div><b dir="ltr">6–7%</b><span>סיכון לאורך החיים. השיא בעשור השני</span></div>
   <div><b dir="ltr">8–9 cm</b><span>אורך ממוצע במבוגר (<bdi dir="ltr">5–35</bdi> ס״מ)</span></div>
-  <div><b dir="ltr">~60%</b><span>הקצה מאחורי הצקום (עדיין תוך-צפקי)</span></div>
+  <div><b dir="ltr">~60%</b><span>הקצה מאחורי <span class="nw">ה-<bdi dir="ltr">cecum</bdi></span> (עדיין תוך-צפקי)</span></div>
   <div><b dir="ltr">30%</b><span>אגני. רטרופריטונאלי: <bdi dir="ltr">7–10%</bdi></span></div>
  </div>
  <div class="grid f">
@@ -161,14 +166,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <div><b>חסימה של החלל</b><span>צואה מאובנת, היפרפלזיה לימפטית, גידול, טפילים</span></div>
     <div><b>הלחץ עולה</b><span>הפרשת ריר וגזים של חיידקים מותחים את הדופן</span></div>
     <div><b>איסכמיה</b><span>הניקוז הוורידי נפגע, הרירית ואחר כך כל הדופן</span></div>
-    <div><b>ניקוב</b><span>לרוב אבצס סביב התוספתן או באגן. לעיתים פריטוניטיס מפושטת</span></div>
+    <div><b>ניקוב</b><span>לרוב אבצס סביב <span class="nw">ה-<bdi dir="ltr">appendix</bdi></span> או באגן. לעיתים פריטוניטיס מפושטת</span></div>
    </div>
    <ul class="b sm" style="margin-top:10px">
-    <li><b>אספקת הדם:</b> העורק של התוספתן, ענף של <bdi>ileocolic</bdi>, מה-<bdi>SMA</bdi></li>
+    <li><b>אספקת הדם:</b> <span class="nw">ה-<bdi dir="ltr">appendicular artery</bdi></span>, ענף של <span class="nw">ה-<bdi>ileocolic</bdi></span>, <span class="nw">מה-<bdi>SMA</bdi></span></li>
     <li><b>החיידקים:</b> כמו במעי הגס, פולימיקרוביאלי: <bdi>E. coli</bdi> (כ-65% בתרביות), <bdi>Bacteroides</bdi>, פסאודומונס. מכסים גראם שליליים ואנאירובים</li>
    </ul>
   </div>
-  <figure><img src="img/lap-appendix.jpg" alt="תוספתן מודלק במבט לפרוסקופי" style="max-height:42vh"><figcaption>כך זה נראה בחדר הניתוח: תוספתן פלגמוני עם רבדי פיברין בפוסה האיליאקית הימנית · <bdi dir="ltr">Javier Montero Arredondo · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/lap-appendix.jpg" alt="appendix מודלק במבט לפרוסקופי" style="max-height:42vh"><figcaption>כך זה נראה בחדר הניתוח: <bdi dir="ltr">phlegmonous appendix</bdi> עם רבדי פיברין <span class="nw">ב-<bdi dir="ltr">right iliac fossa</bdi></span> · <bdi dir="ltr">Javier Montero Arredondo · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 94 עמ׳ <bdi dir="ltr">1415–1416</bdi></span><span>רקע</span></div>
 </div></section>
@@ -176,7 +181,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>3</b>אנטומיה · אינטראקטיבי</div>
  <h2>מה עוד גר ברבע הימני התחתון?</h2>
- <div class="hotw"><div class="hoti"><img src="img/Sobo_1906_410_rlq.jpg" alt="הבטן התחתונה אחרי הרחקת המעי הדק: צקום, מזנטריום, סיגמואיד"><svg viewBox="0 0 1200 825" preserveAspectRatio="none" style="--lw:13;--bf:28px">
+ <div class="hotw"><div class="hoti"><img src="img/Sobo_1906_410_rlq.jpg" alt="הבטן התחתונה אחרי הרחקת ה-small bowel: cecum, mesentery, sigmoid colon"><svg viewBox="0 0 1200 825" preserveAspectRatio="none" style="--lw:13;--bf:28px">
   <path class="hz" data-hz="cec" d="M150,8 L288,8 C300,70 325,180 345,290 C365,350 385,400 400,445 C405,480 405,505 400,515 C395,560 385,595 358,620 C340,630 318,632 300,625 C270,600 230,550 205,495 C180,440 160,380 152,320 C146,250 146,150 150,8 Z" style="--c:#A3402E"/>
   <path class="hz" data-hz="ile" d="M502,112 C520,85 545,65 570,56 C600,45 630,40 656,39 C700,40 730,44 746,43 C790,32 830,20 870,12 C890,10 898,30 901,64 C904,95 905,115 905,129 C922,145 932,160 931,172 C928,195 920,210 905,228 C890,240 892,255 905,275 C914,295 914,320 896,343 C885,360 870,375 845,390 C830,400 826,420 824,438 C810,448 795,452 789,455 C780,480 775,500 772,506 C768,525 763,545 755,549 C740,540 725,510 716,481 C710,450 707,430 703,412 C680,395 660,382 635,378 C620,392 605,405 583,412 C570,420 560,435 553,445 C548,455 540,460 530,462 C500,466 465,465 440,458 C420,445 405,425 403,405 C403,380 405,360 410,345 C430,325 460,305 489,300 C500,280 503,260 502,240 C502,190 502,140 502,112 Z" style="--c:#2F6FA8"/>
   <path class="hz" data-hz="sig" d="M862,430 C900,442 945,440 983,426 C982,460 975,490 969,506 C960,535 952,555 944,575 C930,600 920,615 912,625 C895,650 880,668 868,679 C850,693 835,700 818,704 C800,708 780,710 764,710 C740,710 720,709 701,707 C680,703 665,700 654,694 C640,685 634,675 632,663 C627,640 624,620 623,600 C621,570 620,545 620,521 C621,500 624,485 629,474 C637,462 645,455 654,452 C665,450 675,451 686,455 C698,460 704,467 708,474 C714,486 717,496 717,506 C717,525 714,540 711,553 C709,570 708,585 710,600 C718,608 727,613 736,613 C745,605 752,597 761,588 C770,577 778,566 786,556 C794,546 801,537 808,528 C816,515 823,503 830,490 C837,478 843,468 849,459 C854,449 858,440 862,430 Z" style="--c:#7A5BD6"/>
@@ -189,11 +194,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <g class="hzb" style="--c:#0C2A35"><circle cx="540" cy="805" r="24"/><text x="540" y="805">5</text></g>
  </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-   <div class="hzi" data-hzi="cec" hidden><b>1 · הצקום והמעי הגס העולה</b><p>בסיס התוספתן נמצא במקום שבו נפגשות הטניות בקצה הצקום. כשהקצה מאחורי הצקום או רטרופריטונאלי, הכאב יכול להיות במותן או בגב ולהתפתח לאט יותר. מאחור: הכליה והשופכן. אבן בכליה ודלקת בדרכי השתן נותנות כאב ימני תחתון בשני המינים. בחולה נויטרופני: טיפליטיס</p></div>
-   <div class="hzi" data-hzi="app" hidden><b>2 · אזור התוספתן (נקודת מקברני)</b><p>שליש הדרך מעמוד הכסל הקדמי-עליון לטבור. כאן הרגישות הקלאסית, עם רגישות בהרפיה. הכאב מתחיל סביב הטבור (ויסצרלי) ועובר לכאן כשהקצה המודלק מגרה את הצפק הקירי (סומטי)</p></div>
-   <div class="hzi" data-hzi="ile" hidden><b>3 · האילאום הסופי והמזנטריום</b><p>אדניטיס מזנטריאלית (לרוב אחרי מחלה ויראלית, בילדים), דיברטיקולום של מקל, מחלת קרוהן (״שומן זוחל״ על המזנטריום), אינטוסוספציה בילדים. את כל אלה בודקים בניתוח כשהתוספתן נראה תקין</p></div>
-   <div class="hzi" data-hzi="sig" hidden><b>4 · הסיגמואיד</b><p>בקשישים: דיברטיקוליטיס וגידול ממאיר. סיגמואיד ארוך יכול לשכב ברבע הימני התחתון ולחקות דלקת תוספתן</p></div>
-   <div class="hzi" data-hzi="pel" hidden><b>5 · האגן</b><p>באישה בגיל הפוריות: ציסטה שחלתית שנקרעה, כאב ביוץ (<bdi>mittelschmerz</bdi>), אנדומטריוזיס, תסביב שחלה, היריון מחוץ לרחם ומחלה דלקתית של האגן. תוספתן אגני נותן כאב מעל הערווה שמחקה דלקת בדרכי השתן. בגבר: תסביב אשך. הציור של <bdi>Sobotta</bdi> הוא של גבר: השלפוחית והרקטום</p></div>
+   <div class="hzi" data-hzi="cec" hidden><b>1 · <bdi dir="ltr">Cecum</bdi> <span class="nw">ו-<bdi dir="ltr">ascending colon</bdi></span></b><p>בסיס <span class="nw">ה-<bdi dir="ltr">appendix</bdi></span> נמצא במקום שבו נפגשות <span class="nw">ה-<bdi dir="ltr">taeniae coli</bdi></span> בקצה <span class="nw">ה-<bdi dir="ltr">cecum</bdi></span>. כשהקצה מאחורי <span class="nw">ה-<bdi dir="ltr">cecum</bdi></span> או רטרופריטונאלי, הכאב יכול להיות במותן או בגב ולהתפתח לאט יותר. מאחור: <span class="nw">ה-<bdi dir="ltr">kidney</bdi></span> <span class="nw">וה-<bdi dir="ltr">ureter</bdi></span>. אבן בכליה ודלקת בדרכי השתן נותנות כאב ימני תחתון בשני המינים. בחולה נויטרופני: טיפליטיס</p></div>
+   <div class="hzi" data-hzi="app" hidden><b>2 · <bdi dir="ltr">Appendix</bdi> (<bdi dir="ltr">McBurney's point</bdi>)</b><p>שליש הדרך <span class="nw">מ-<bdi dir="ltr">ASIS</bdi></span> <span class="nw">ל-<bdi dir="ltr">umbilicus</bdi></span>. כאן הרגישות הקלאסית, עם רגישות בהרפיה. הכאב מתחיל סביב <span class="nw">ה-<bdi dir="ltr">umbilicus</bdi></span> (ויסצרלי) ועובר לכאן כשהקצה המודלק מגרה את <span class="nw">ה-<bdi dir="ltr">parietal peritoneum</bdi></span> (סומטי)</p></div>
+   <div class="hzi" data-hzi="ile" hidden><b>3 · <bdi dir="ltr">Terminal ileum</bdi> <span class="nw">ו-<bdi dir="ltr">mesentery</bdi></span></b><p>אדניטיס מזנטריאלית (לרוב אחרי מחלה ויראלית, בילדים), דיברטיקולום של מקל, מחלת קרוהן (״שומן זוחל״ על <span class="nw">ה-<bdi dir="ltr">mesentery</bdi></span>), אינטוסוספציה בילדים. את כל אלה בודקים בניתוח <span class="nw">כשה-<bdi dir="ltr">appendix</bdi></span> נראה תקין</p></div>
+   <div class="hzi" data-hzi="sig" hidden><b>4 · <bdi dir="ltr">Sigmoid colon</bdi></b><p>בקשישים: דיברטיקוליטיס וגידול ממאיר. <bdi dir="ltr">sigmoid colon</bdi> ארוך יכול לשכב ברבע הימני התחתון ולחקות דלקת תוספתן</p></div>
+   <div class="hzi" data-hzi="pel" hidden><b>5 · האגן</b><p>באישה בגיל הפוריות: ציסטה שחלתית שנקרעה, כאב ביוץ (<bdi>mittelschmerz</bdi>), אנדומטריוזיס, תסביב שחלה, היריון מחוץ לרחם ומחלה דלקתית של האגן. <span class="nw">ה-<bdi dir="ltr">pelvic appendix</bdi></span> נותן כאב מעל הערווה שמחקה דלקת בדרכי השתן. בגבר: תסביב אשך. הציור של <bdi>Sobotta</bdi> הוא של גבר: <span class="nw">ה-<bdi dir="ltr">bladder</bdi></span> <span class="nw">וה-<bdi dir="ltr">rectum</bdi></span></p></div>
   </div></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 94 עמ׳ <bdi dir="ltr">1415–1417, 1421</bdi> · הציור: <bdi dir="ltr">Sobotta (1906)</bdi>, איור 410, הבטן התחתונה אחרי הרחקת המעי הדק (נחלת הכלל)</span><span>אנטומיה</span></div>
 </div></section>
@@ -203,13 +208,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>סטודנט בן 24 עם כאב שזז</h2>
  <div class="grid f">
   <div>
-   <div class="box n"><b class="t">הסיפור</b>אתמול בערב כאב עמום סביב הטבור. בלילה הכאב עבר לבטן הימנית התחתונה והחמיר. אין תיאבון, בחילה והקאה אחת. לא נותח בעבר</div>
-   <div class="box" style="margin-top:10px"><b class="t">בבדיקה</b>שוכב בלי לזוז. חום <bdi dir="ltr">38.1°C</bdi>, דופק 104. רגישות מרבית בנקודת מקברני עם התגוננות ורגישות בהרפיה. לחיצה בצד שמאל גורמת לכאב מימין</div>
+   <div class="box n"><b class="t">הסיפור</b>אתמול בערב כאב עמום סביב <span class="nw">ה-<bdi dir="ltr">umbilicus</bdi></span>. בלילה הכאב עבר לבטן הימנית התחתונה והחמיר. אין תיאבון, בחילה והקאה אחת. לא נותח בעבר</div>
+   <div class="box" style="margin-top:10px"><b class="t">בבדיקה</b>שוכב בלי לזוז. חום <bdi dir="ltr">38.1°C</bdi>, דופק 104. רגישות מרבית <span class="nw">ב-<bdi dir="ltr">McBurney's point</bdi></span> עם התגוננות ורגישות בהרפיה. לחיצה בצד שמאל גורמת לכאב מימין</div>
    <div class="box a" style="margin-top:10px"><b class="t">מעבדה</b>לויקוציטים <bdi dir="ltr">14,500</bdi> עם עודף נויטרופילים. שתן: עקבות של לויקוציטים</div>
    <h3 style="margin-top:12px">שאלות לדיון</h3>
    <ul class="b sm"><li>מה האבחנה הסבירה ומה עוד ברשימה?</li><li>מה המשמעות של השתן?</li><li>האם צריך הדמיה?</li></ul>
   </div>
-  <figure><img src="img/mcburney-point.jpg" alt="נקודת מקברני על דופן הבטן"><figcaption>נקודת מקברני (1): שליש הדרך מעמוד הכסל הקדמי-עליון (3) לטבור (2) · <bdi dir="ltr">Steven Fruitsmaak · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/mcburney-point.jpg" alt="McBurney's point על דופן הבטן"><figcaption><span class="nw">ה-<bdi dir="ltr">McBurney's point</bdi></span> (1): שליש הדרך <span class="nw">מ-<bdi dir="ltr">ASIS</bdi></span> (3) <span class="nw">ל-<bdi dir="ltr">umbilicus</bdi></span> (2) · <bdi dir="ltr">Steven Fruitsmaak · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span>מקרה בדוי · <b>Sabiston 22</b> · פרק 94 עמ׳ <bdi dir="ltr">1416–1417</bdi></span><span>מקרה 1</span></div>
 </div></section>
@@ -221,7 +226,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <h3>מה תומך בדלקת תוספתן</h3>
    <ul class="b sm">
-    <li><b>נדידת הכאב</b> מהטבור לימין למטה: סימן אמין</li>
+    <li><b>נדידת הכאב</b> <span class="nw">מה-<bdi dir="ltr">umbilicus</bdi></span> לימין למטה: סימן אמין</li>
     <li>חוסר תיאבון, בחילה. גם שלשול או עצירות אפשריים</li>
     <li>שוכב בשקט (פריטוניטיס מקומית), דופק מהיר, חום. <b>היעדר חום לא שולל</b></li>
     <li>רובזינג, פסואס ואובטורטור: מראים פריטוניטיס מקומית, לא אבחנה ספציפית</li>
@@ -232,14 +237,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <details class="rev"><summary>הצגת התשובה: מעבדה ומדדים</summary>
     <ul class="b sm">
      <li><b>לויקוציטוזיס</b> ב-90% מהמקרים. ספירה תקינה ב-10%: לא שוללת</li>
-     <li><b>עקבות לויקוציטים בשתן</b> שכיחות: התוספתן המודלק קרוב לשלפוחית ולשופכן. גם קטונוריה</li>
+     <li><b>עקבות לויקוציטים בשתן</b> שכיחות: <span class="nw">ה-<bdi dir="ltr">appendix</bdi></span> המודלק קרוב <span class="nw">ל-<bdi dir="ltr">bladder</bdi></span> <span class="nw">ול-<bdi dir="ltr">ureter</bdi></span>. גם קטונוריה</li>
      <li><bdi>CRP</bdi> הרגיש ביותר מבין הסמנים, אבל לא סגולי</li>
-     <li><b>מדדים:</b> אלוורדו, מדד ילדים, <bdi>AIR</bdi> ו-<bdi>AAS</bdi>. ההנחיות ממליצות על <bdi>AIR</bdi> או <bdi>AAS</bdi>. אלוורדו טוב לשלילה אבל לא מספיק סגולי</li>
+     <li><b>מדדים:</b> אלוורדו, מדד ילדים, <bdi>AIR</bdi> <span class="nw">ו-<bdi>AAS</bdi></span>. ההנחיות ממליצות על <bdi>AIR</bdi> או <bdi>AAS</bdi>. אלוורדו טוב לשלילה אבל לא מספיק סגולי</li>
      <li>אף סימן או בדיקה לבד לא מנבאים. מה שקובע הוא התמונה כולה</li>
     </ul>
    </details>
    <details class="rev"><summary>הצגת התשובה: מה עוד ברשימה בגבר צעיר</summary>
-    <p style="margin:0;font-size:15px">אבן בכליה ודלקת בדרכי השתן, אדניטיס מזנטריאלית, גסטרואנטריטיס, דיברטיקוליטיס של מקל, מחלת מעי דלקתית, תסביב אשך. לבדוק גם את האשכים</p>
+    <p style="margin:0;font-size:15px">אבן בכליה ודלקת בדרכי השתן, אדניטיס מזנטריאלית, גסטרואנטריטיס, דיברטיקוליטיס של מקל, מחלת מעי דלקתית, תסביב אשך. לבדוק גם את <span class="nw">ה-<bdi dir="ltr">testes</bdi></span></p>
    </details>
   </div>
  </div>
@@ -253,15 +258,15 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <details class="rev"><summary>הצגת התשובה</summary>
     <ul class="b sm">
-     <li><b>כן.</b> הדמיה מורידה את שיעור הכריתות המיותרות, שיכול להגיע ל-15%. <bdi>CT</bdi> מומלץ לכל מבוגר בחשד לתוספתן: לתכנון ולשלילת מחלות אחרות</li>
+     <li><b>כן.</b> הדמיה מורידה את שיעור הכריתות המיותרות, שיכול להגיע ל-15%. <bdi>CT</bdi> מומלץ לכל מבוגר בחשד לדלקת תוספתן: לתכנון ולשלילת מחלות אחרות</li>
      <li><b><bdi>CT</bdi>:</b> רגישות 95%, סגוליות 94%. היום ממליצים על <bdi>CT</bdi> במינון נמוך עם חומר ניגוד</li>
      <li><b>הממצאים:</b> קוטר מעל 7 מ״מ, דופן מעובה עם האדרה (״מטרה״), ״הסתננות״ בשומן. נוזל או אוויר סביבו מרמזים על ניקוב</li>
-     <li>תוספתן שלא נראה ואין דלקת: כנראה אין דלקת תוספתן</li>
+     <li><span class="nw">כשה-<bdi dir="ltr">appendix</bdi></span> לא נראה ואין דלקת: כנראה אין דלקת תוספתן</li>
      <li><b>צילום בטן:</b> כמעט לא עוזר. צואה מאובנת נראית רק בכ-5%. אוויר חופשי לא אופייני: לחשוב על כיב או דיברטיקוליטיס</li>
     </ul>
    </details>
   </div>
-  <figure><img src="img/ct-appendicitis.jpg" alt="CT עם תוספתן מורחב בקוטר 17 מ״מ"><figcaption>דלקת תוספתן ב-<bdi>CT</bdi>: תוספתן מורחב בקוטר 17.1 מ״מ (המדידה בתמונה) · <bdi dir="ltr">James Heilman, MD · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/ct-appendicitis.jpg" alt="CT עם appendix מורחב בקוטר 17 מ״מ"><figcaption>דלקת תוספתן <span class="nw">ב-<bdi>CT</bdi></span>: <bdi dir="ltr">appendix</bdi> מורחב בקוטר 17.1 מ״מ (המדידה בתמונה) · <bdi dir="ltr">James Heilman, MD · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 94 עמ׳ <bdi dir="ltr">1417–1418</bdi></span><span>מקרה 1</span></div>
 </div></section>
@@ -269,7 +274,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>7</b>מקרה 1 · ההחלטה</div>
  <h2>ניתוח או אנטיביוטיקה?</h2>
- <p class="lead" style="margin-bottom:10px">ב-<bdi>CT</bdi>: תוספתן <bdi dir="ltr">11 mm</bdi>, בלי צואה מאובנת, בלי אבצס, אוויר חופשי או נוזל. דלקת <b>לא מסובכת</b>. המטופל שואל: ״חייבים לנתח?״</p>
+ <p class="lead" style="margin-bottom:10px"><span class="nw">ב-<bdi>CT</bdi></span>: <bdi dir="ltr">appendix</bdi> <bdi dir="ltr">11 mm</bdi>, בלי צואה מאובנת, בלי אבצס, אוויר חופשי או נוזל. דלקת <b>לא מסובכת</b>. המטופל שואל: ״חייבים לנתח?״</p>
  <div class="grid">
   <div style="display:grid;gap:10px">
    <div class="box"><b class="t">לא מסובכת · שתי אפשרויות טובות</b>אנטיביוטיקה היא היום טיפול קו ראשון מקובל. מחליטים יחד עם המטופל (החלטה משותפת)</div>
@@ -286,9 +291,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div class="box n"><b class="t">ואם מנתחים</b>
     <ul class="b sm">
      <li><b>לפרוסקופיה</b> עדיפה: פחות זיהומי פצע, פחות כאב, החלמה מהירה וראייה של כל הבטן</li>
-     <li>שוכב על הגב, יד ימין פתוחה ושמאל צמודה לגוף. לרוקן שלפוחית</li>
-     <li>כניסה פתוחה בטבור (<bdi>Hasson</bdi>) ועוד שתי פתחים. המנתח והעוזר משמאל למטופל</li>
-     <li>בסיס התוספתן: סטפלר או לולאות. הוצאה בשקית</li>
+     <li>שוכב על הגב, יד ימין פתוחה ושמאל צמודה לגוף. לרוקן <bdi dir="ltr">bladder</bdi></li>
+     <li>כניסה פתוחה <span class="nw">ב-<bdi dir="ltr">umbilicus</bdi></span> (<bdi>Hasson</bdi>) ועוד שתי פתחים. המנתח והעוזר משמאל למטופל</li>
+     <li>בסיס <span class="nw">ה-<bdi dir="ltr">appendix</bdi></span>: סטפלר או לולאות. הוצאה בשקית</li>
     </ul></div>
    <div class="box r"><b class="t">דלקת מסובכת (נמק או ניקוב) בלי אבצס</b>ניתוח. אנטיביוטיקה אחרי הניתוח עד 4 ימים (יש נתונים ליומיים). בלי נקז שגרתי ובלי תרביות שגרתיות</div>
   </div>
@@ -302,19 +307,19 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div>
    <div class="box n"><b class="t">הסיפור</b>כאב ברבע הימני התחתון כבר 14 שעות, בחילה. וסת אחרונה לפני שבועיים. יש בן זוג, גלולות למניעה ״לפעמים״. חום <bdi dir="ltr">37.8°C</bdi></div>
-   <div class="box" style="margin-top:10px"><b class="t">בבדיקה</b>רגישות ברבע הימני התחתון עם רגישות בהרפיה. בבדיקה אגנית: רגישות בהזזת צוואר הרחם</div>
+   <div class="box" style="margin-top:10px"><b class="t">בבדיקה</b>רגישות ברבע הימני התחתון עם רגישות בהרפיה. בבדיקה אגנית: רגישות בהזזת <span class="nw">ה-<bdi dir="ltr">cervix</bdi></span></div>
    <h3 style="margin-top:12px">שאלות לדיון</h3>
-   <ul class="b sm"><li>מה האבחנה המבדלת?</li><li>האם רגישות בצוואר הרחם שוללת תוספתן?</li><li>איזו בדיקה ראשונה?</li></ul>
+   <ul class="b sm"><li>מה האבחנה המבדלת?</li><li>האם רגישות <span class="nw">ב-<bdi dir="ltr">cervix</bdi></span> שוללת דלקת תוספתן?</li><li>איזו בדיקה ראשונה?</li></ul>
   </div>
   <div>
    <details class="rev"><summary>הצגת התשובה: אבחנה מבדלת</summary>
     <ul class="b sm">
      <li><b>גינקולוגי:</b> היריון מחוץ לרחם, תסביב שחלה, ציסטה שחלתית שנקרעה, כאב ביוץ, אנדומטריוזיס (כאב מחזורי), מחלה דלקתית של האגן ואבצס טובו-אובריאלי</li>
-     <li><b>לא גינקולוגי:</b> תוספתן, אבן בכליה, דלקת בדרכי השתן</li>
+     <li><b>לא גינקולוגי:</b> דלקת תוספתן, אבן בכליה, דלקת בדרכי השתן</li>
     </ul>
    </details>
-   <details class="rev"><summary>הצגת התשובה: צוואר הרחם</summary>
-    <p style="margin:0;font-size:15px"><b>לא שוללת.</b> רגישות בהזזת צוואר הרחם אופיינית למחלה דלקתית של האגן, אבל יכולה להופיע גם בדלקת תוספתן, מגירוי של איברי האגן</p>
+   <details class="rev"><summary>הצגת התשובה: <span class="nw">ה-<bdi dir="ltr">cervix</bdi></span></summary>
+    <p style="margin:0;font-size:15px"><b>לא שוללת.</b> רגישות בהזזת <span class="nw">ה-<bdi dir="ltr">cervix</bdi></span> אופיינית למחלה דלקתית של האגן, אבל יכולה להופיע גם בדלקת תוספתן, מגירוי של איברי האגן</p>
    </details>
    <details class="rev"><summary>הצגת התשובה: הבדיקה הראשונה</summary>
     <p style="margin:0;font-size:15px"><b><bdi>β-hCG</bdi></b>, לכל אישה בגיל הפוריות. אחריו שתן, ספירה ואולטרסאונד של הבטן והאגן. היסטוריה של וסת, מחלות מין ופעילות מינית</p>
@@ -327,23 +332,23 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>9</b>מקרה 2 · הדמיה וניתוח</div>
  <h2>קודם אולטרסאונד, אחר כך לפרוסקופיה</h2>
- <p class="lead" style="margin-bottom:10px"><bdi>β-hCG</bdi> שלילי. באולטרסאונד: שחלות תקינות, תוספתן מורחב שלא נלחץ</p>
+ <p class="lead" style="margin-bottom:10px"><bdi>β-hCG</bdi> שלילי. באולטרסאונד: <bdi dir="ltr">ovaries</bdi> תקינות, <bdi dir="ltr">appendix</bdi> מורחב שלא נלחץ</p>
  <div class="grid f">
   <div>
    <ul class="b sm">
-    <li><b>אולטרסאונד:</b> בלי קרינה. תוספתן מודלק מורחב, לא זז ולא נלחץ. רגישות <bdi dir="ltr">71–94%</bdi>, סגוליות <bdi dir="ltr">81–98%</bdi>, תלוי מאוד במבצע</li>
-    <li>תוספתן שלא נראה: הבדיקה לא חד-משמעית. סימנים עקיפים: נוזל חופשי, שומן מזנטרי מעובה, בלוטות</li>
-    <li><b>לפרוסקופיה</b> מתאימה במיוחד כאן: רואים את התוספתן ואת איברי האגן. בהדמיה קשה להבדיל ביניהם</li>
+    <li><b>אולטרסאונד:</b> בלי קרינה. <span class="nw">ה-<bdi dir="ltr">appendix</bdi></span> המודלק מורחב, לא זז ולא נלחץ. רגישות <bdi dir="ltr">71–94%</bdi>, סגוליות <bdi dir="ltr">81–98%</bdi>, תלוי מאוד במבצע</li>
+    <li><span class="nw">כשה-<bdi dir="ltr">appendix</bdi></span> לא נראה: הבדיקה לא חד-משמעית. סימנים עקיפים: נוזל חופשי, שומן מזנטרי מעובה, בלוטות</li>
+    <li><b>לפרוסקופיה</b> מתאימה במיוחד כאן: רואים את <span class="nw">ה-<bdi dir="ltr">appendix</bdi></span> ואת איברי האגן. בהדמיה קשה להבדיל ביניהם</li>
    </ul>
-   <details class="rev"><summary>ובניתוח התוספתן נראה תקין. מה עושים?</summary>
+   <details class="rev"><summary>ובניתוח <span class="nw">ה-<bdi dir="ltr">appendix</bdi></span> נראה תקין. מה עושים?</summary>
     <ul class="b sm">
-     <li>מחפשים סיבה אחרת: <b>אילאום סופי</b> (מקל), <b>המעי הדק</b> (קרוהן), <b>בלוטות במזנטריום</b> (אדניטיס), <b>השחלות והחצוצרות</b> (תסביב, אבצס, אנדומטריוזיס, ציסטה), <b>הסיגמואיד</b>. אחר כך כיס המרה והתריסריון</li>
-     <li>אם הכול תקין: <b>לשקול ברצינות לכרות</b> את התוספתן. כך הוא יוצא מהאבחנה המבדלת בפעם הבאה</li>
-     <li>קרוהן: כורתים, אלא אם הבסיס והצקום מעורבים (סכנת פיסטולה)</li>
+     <li>מחפשים סיבה אחרת: <b><bdi dir="ltr">terminal ileum</bdi></b> (מקל), <b><span class="nw">ה-<bdi dir="ltr">small bowel</bdi></span></b> (קרוהן), <b>בלוטות <span class="nw">ב-<bdi dir="ltr">mesentery</bdi></span></b> (אדניטיס), <b><span class="nw">ה-<bdi dir="ltr">ovaries</bdi></span> <span class="nw">וה-<bdi dir="ltr">fallopian tubes</bdi></span></b> (תסביב, אבצס, אנדומטריוזיס, ציסטה), <b><span class="nw">ה-<bdi dir="ltr">sigmoid colon</bdi></span></b>. אחר כך <span class="nw">ה-<bdi dir="ltr">gallbladder</bdi></span> <span class="nw">וה-<bdi dir="ltr">duodenum</bdi></span></li>
+     <li>אם הכול תקין: <b>לשקול ברצינות לכרות</b> את <span class="nw">ה-<bdi dir="ltr">appendix</bdi></span>. כך הוא יוצא מהאבחנה המבדלת בפעם הבאה</li>
+     <li>קרוהן: כורתים, אלא אם הבסיס <span class="nw">וה-<bdi dir="ltr">cecum</bdi></span> מעורבים (סכנת פיסטולה)</li>
     </ul>
    </details>
   </div>
-  <figure><img src="img/us-appendicitis.jpg" alt="אולטרסאונד של תוספתן מודלק"><figcaption>דלקת תוספתן באולטרסאונד: תוספתן מורחב עם דופן בשכבות ושומן אקוגני סביבו (דוגמה ממטופל אחר) · <bdi dir="ltr">Hellerhoff · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/us-appendicitis.jpg" alt="אולטרסאונד של appendix מודלק"><figcaption>דלקת תוספתן באולטרסאונד: <bdi dir="ltr">appendix</bdi> מורחב עם דופן בשכבות ושומן אקוגני סביבו (דוגמה ממטופל אחר) · <bdi dir="ltr">Hellerhoff · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 94 עמ׳ <bdi dir="ltr">1417, 1421–1422</bdi> · פרק 85 עמ׳ <bdi dir="ltr">1163</bdi></span><span>מקרה 2</span></div>
 </div></section>
@@ -354,20 +359,20 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="num">
   <div><b dir="ltr">50–60%</b><span>מהמקרים בהיריון בהסתמנות טיפוסית</span></div>
   <div><b dir="ltr">11% · 6%</b><span>לידה מוקדמת · אובדן עובר בדלקת מסובכת</span></div>
-  <div><b dir="ltr">10% · 4%</b><span>אותם סיכונים בכריתה של תוספתן תקין</span></div>
+  <div><b dir="ltr">10% · 4%</b><span>אותם סיכונים בכריתה של <bdi dir="ltr">appendix</bdi> תקין</span></div>
   <div><b dir="ltr">6% · 2%</b><span>בדלקת לא מסובכת: הכי נמוך</span></div>
  </div>
  <div class="grid">
   <ul class="b sm">
    <li><b>המצב הלא מיילדותי הדחוף השכיח ביותר בהיריון</b>, כ-100 לכל 100,000 לידות</li>
-   <li>בחילות שכיחות גם בהיריון תקין. החום מוחלש. הרחם דוחף את התוספתן כלפי מעלה. לויקוציטוזיס קלה ו-<bdi>CRP</bdi> יכולים להיות תקינים בהיריון</li>
-   <li>לחשוב גם על מצבים מיילדותיים: היפרדות שליה, צירים מוקדמים, קרע ברחם</li>
+   <li>בחילות שכיחות גם בהיריון תקין. החום מוחלש. <span class="nw">ה-<bdi dir="ltr">uterus</bdi></span> דוחף את <span class="nw">ה-<bdi dir="ltr">appendix</bdi></span> כלפי מעלה. לויקוציטוזיס קלה <span class="nw">ו-<bdi>CRP</bdi></span> יכולים להיות תקינים בהיריון</li>
+   <li>לחשוב גם על מצבים מיילדותיים: היפרדות שליה, צירים מוקדמים, קרע <span class="nw">ב-<bdi dir="ltr">uterus</bdi></span></li>
   </ul>
   <div class="flow">
-   <div><b>1. אולטרסאונד</b><span>בלחץ מדורג. רגישות וסגוליות 83%: נמוכות יותר בגלל הרחם</span></div>
+   <div><b>1. אולטרסאונד</b><span>בלחץ מדורג. רגישות וסגוליות 83%: נמוכות יותר בגלל <span class="nw">ה-<bdi dir="ltr">uterus</bdi></span></span></div>
    <div><b>2. <bdi>MRI</bdi> בלי גדוליניום</b><span>אם האולטרסאונד לא ברור. מוריד כריתות מיותרות ב-47%</span></div>
    <div><b>3. <bdi>CT</bdi></b><span>אם אין <bdi>MRI</bdi> זמין: מינון נמוך, בלי חומר ניגוד לווריד</span></div>
-   <div><b>טיפול</b><span>ניתוח, לרוב לפרוסקופי. מיקום הפתחים לפי גובה הרחם</span></div>
+   <div><b>טיפול</b><span>ניתוח, לרוב לפרוסקופי. מיקום הפתחים לפי גובה <span class="nw">ה-<bdi dir="ltr">uterus</bdi></span></span></div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 94 עמ׳ <bdi dir="ltr">1422, 1425</bdi> · פרק 85 עמ׳ <bdi dir="ltr">1164</bdi></span><span>מקרה 2</span></div>
@@ -381,16 +386,16 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div class="box n"><b class="t">הסיפור</b>כאב ברבע הימני התחתון כבר שבוע, חום נמוך. ״חשב שזה יעבור״. יציב, לא רעיל</div>
    <div class="box" style="margin-top:10px"><b class="t">בבדיקה</b>גוש רגיש במישוש ברבע הימני התחתון. בלי פריטוניטיס מפושטת</div>
    <h3 style="margin-top:12px">שאלות לדיון</h3>
-   <ul class="b sm"><li>מה רואים ב-<bdi>CT</bdi>?</li><li>ניתוח מיידי?</li><li>מה האבחנה המבדלת בגיל הזה?</li></ul>
+   <ul class="b sm"><li>מה רואים <span class="nw">ב-<bdi>CT</bdi></span>?</li><li>ניתוח מיידי?</li><li>מה האבחנה המבדלת בגיל הזה?</li></ul>
    <details class="rev"><summary>הצגת התשובה</summary>
     <ul class="b sm">
-     <li><b>אבצס סביב התוספתן</b>: דלקת מסובכת</li>
-     <li>ניתוח מיידי ברקמה דלקתית ושבירה מסתכן באי-מציאת התוספתן, אבצס או פיסטולה והרחבה לכריתת צקום. טיפול לא ניתוחי מצליח לרוב עם פחות סיבוכים. הנחיות <bdi>WSES</bdi>: בלי מומחיות לפרוסקופית מטפלים בלי ניתוח. בידיים מנוסות אפשר גם לנתח</li>
-     <li><b>בקשיש:</b> דיברטיקוליטיס, גידול ממאיר, איסכמיה של המעי, קוליטיס איסכמית, כיב מנוקב. ניקוב התוספתן בקשישים: <bdi dir="ltr">40–70%</bdi></li>
+     <li><b>אבצס סביב <span class="nw">ה-<bdi dir="ltr">appendix</bdi></span></b>: דלקת מסובכת</li>
+     <li>ניתוח מיידי ברקמה דלקתית ושבירה מסתכן באי-מציאת <span class="nw">ה-<bdi dir="ltr">appendix</bdi></span>, אבצס או פיסטולה והרחבה לכריתת צקום. טיפול לא ניתוחי מצליח לרוב עם פחות סיבוכים. הנחיות <bdi>WSES</bdi>: בלי מומחיות לפרוסקופית מטפלים בלי ניתוח. בידיים מנוסות אפשר גם לנתח</li>
+     <li><b>בקשיש:</b> דיברטיקוליטיס, גידול ממאיר, איסכמיה של המעי, קוליטיס איסכמית, כיב מנוקב. ניקוב <span class="nw">ה-<bdi dir="ltr">appendix</bdi></span> בקשישים: <bdi dir="ltr">40–70%</bdi></li>
     </ul>
    </details>
   </div>
-  <figure><img src="img/ct-appendix-abscess.jpg" alt="CT עם אבצס סביב התוספתן"><figcaption>דלקת תוספתן עם אבצס סביבה ב-<bdi>CT</bdi> (חתך רוחב) · <bdi dir="ltr">Hellerhoff · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/ct-appendix-abscess.jpg" alt="CT עם אבצס סביב ה-appendix"><figcaption>דלקת תוספתן עם אבצס סביבה <span class="nw">ב-<bdi>CT</bdi></span> (חתך רוחב) · <bdi dir="ltr">Hellerhoff · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span>מקרה בדוי · <b>Sabiston 22</b> · פרק 94 עמ׳ <bdi dir="ltr">1420, 1425</bdi></span><span>מקרה 3</span></div>
 </div></section>
@@ -404,13 +409,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <div><b>אבצס שאפשר לנקז</b><span>ניקוז מלעורי בהנחיית הדמיה ואנטיביוטיקה. אחרי שליטה במקור: 4 ימי אנטיביוטיקה</span></div>
     <div><b>אבצס שאי אפשר לנקז</b><span>ניקוז לפרוסקופי ואנטיביוטיקה</span></div>
     <div><b>פלגמון בלי נוזל לניקוז</b><span>אנטיביוטיקה <bdi dir="ltr">4–7</bdi> ימים. לא משתפר: הדמיה חוזרת לחפש אבצס (באלגוריתם: אחרי <bdi dir="ltr">3–5</bdi> ימים)</span></div>
-    <div><b>חזרה אחרי טיפול שמרני</b><span><bdi dir="ltr">8–31.8%</bdi>. לכן לא כורתים באופן שגרתי מאוחר יותר. צואה מאובנת ב-<bdi>CT</bdi> יכולה להצדיק כריתה</span></div>
+    <div><b>חזרה אחרי טיפול שמרני</b><span><bdi dir="ltr">8–31.8%</bdi>. לכן לא כורתים באופן שגרתי מאוחר יותר. צואה מאובנת <span class="nw">ב-<bdi>CT</bdi></span> יכולה להצדיק כריתה</span></div>
    </div>
-   <div class="box r" style="margin-top:10px"><b class="t">גיל 40 ומעלה: לחפש גידול</b>אם לא כורתים: קולונוסקופיה ו-<bdi>CT</bdi> מלא עם חומר ניגוד. מחקר שהשווה כריתה מאוחרת ל-<bdi>MRI</bdi> נעצר מוקדם בגלל שיעור גבוה של גידולים, כולם מעל גיל 40. גידולים נמצאים בעד 3.7% מהתוספתנים שנכרתים: כל תוספתן נשלח לפתולוגיה</div>
+   <div class="box r" style="margin-top:10px"><b class="t">גיל 40 ומעלה: לחפש גידול</b>אם לא כורתים: קולונוסקופיה <span class="nw">ו-<bdi>CT</bdi></span> מלא עם חומר ניגוד. מחקר שהשווה כריתה מאוחרת <span class="nw">ל-<bdi>MRI</bdi></span> נעצר מוקדם בגלל שיעור גבוה של גידולים, כולם מעל גיל 40. גידולים נמצאים בעד 3.7% <span class="nw">מה-<bdi dir="ltr">appendices</bdi></span> שנכרתים: כל <bdi dir="ltr">appendix</bdi> נשלח לפתולוגיה</div>
   </div>
   <figure><img src="img/ct-abscess-drain.jpg" alt="CT אחרי הכנסת נקז לאבצס"><figcaption>אותו מטופל אחרי ניקוז מלעורי בהנחיית <bdi>CT</bdi>: הנקז בתוך חלל האבצס · <bdi dir="ltr">Hellerhoff · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption></figure>
  </div>
- <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>מצאו מטופל/ת שאושפז/ה עם דלקת תוספתן. בררו: מסובכת או לא, ניתוח או אנטיביוטיקה ולמה. אם אפשר, הצטרפו לכריתה לפרוסקופית וזהו את בסיס התוספתן ואת הטניות</div>
+ <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>מצאו מטופל/ת שאושפז/ה עם דלקת תוספתן. בררו: מסובכת או לא, ניתוח או אנטיביוטיקה ולמה. אם אפשר, הצטרפו לכריתה לפרוסקופית וזהו את בסיס <span class="nw">ה-<bdi dir="ltr">appendix</bdi></span> ואת <span class="nw">ה-<bdi dir="ltr">taeniae coli</bdi></span></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 94 עמ׳ <bdi dir="ltr">1420–1421, 1425–1426</bdi></span><span>מקרה 3</span></div>
 </div></section>
 
@@ -418,14 +423,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>13</b>מה חדש בתחום · 2021–2026</div>
  <h2>מחקרים שכדאי להכיר</h2>
  <div class="grid">
-  <div class="study"><div class="y"><bdi>JAMA</bdi> 2026 · מעקב של 10 שנים</div><b><bdi>APPAC</bdi>: אנטיביוטיקה לתוספתן לא מסובך</b>
+  <div class="study"><div class="y"><bdi>JAMA</bdi> 2026 · מעקב של 10 שנים</div><b><bdi>APPAC</bdi>: אנטיביוטיקה לדלקת תוספתן לא מסובכת</b>
    <p>257 מטופלים שקיבלו אנטיביוטיקה. אחרי 10 שנים: חזרה מוכחת 37.8%, כריתה מצטברת 44.3%. סיבוכים: 8.5% בקבוצת האנטיביוטיקה לעומת 27.4% בקבוצת הניתוח. בלי הבדל באיכות החיים</p>
    <small>Salminen P et al. JAMA 2026;335:1041-9</small></div>
   <div class="study"><div class="y"><bdi>JAMA</bdi> 2021 · מחקר אקראי</div><b><bdi>APPAC II</bdi>: אנטיביוטיקה בפה בלבד?</b>
    <p>599 מבוגרים. 7 ימי מוקסיפלוקסצין בפה מול יומיים לווריד ואחר כך בפה. הצלחה בשנה: 70.2% מול 73.8%. שתי הקבוצות מעל 65%, אבל אי-הנחיתות של הטיפול בפה לא הוכחה</p>
    <small>Sippola S et al. JAMA 2021;325:353-62</small></div>
   <div class="study"><div class="y"><bdi>BJS</bdi> 2022 · כפול סמיות</div><b><bdi>APPAC III</bdi>: אנטיביוטיקה מול פלצבו</b>
-   <p>72 מבוגרים עם דלקת לא מסובכת ב-<bdi>CT</bdi>. הצלחה ב-10 ימים: 87% עם פלצבו, 97% עם אנטיביוטיקה. ההבדל לא מובהק. מחקר קטן: צריך מחקר גדול יותר</p>
+   <p>72 מבוגרים עם דלקת לא מסובכת <span class="nw">ב-<bdi>CT</bdi></span>. הצלחה ב-10 ימים: 87% עם פלצבו, 97% עם אנטיביוטיקה. ההבדל לא מובהק. מחקר קטן: צריך מחקר גדול יותר</p>
    <small>Salminen P et al. Br J Surg 2022;109:503-9</small></div>
   <div class="study"><div class="y"><bdi>JAMA Surg</bdi> 2025 · 1,797 מטופלים</div><b><bdi>PERFECT</bdi>: אנטיביוטיקה בזמן ההמתנה לניתוח</b>
    <p>כשהכריתה נעשתה תוך 24 שעות, אנטיביוטיקה לפני הניתוח לא הורידה ניקוב (8.3% לעומת 8.9%). זיהום פצע מעט נמוך יותר (1.6% לעומת 3.2%)</p>
@@ -438,11 +443,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>14</b>לסיכום</div>
  <h2>חמישה דברים לקחת למחלקה</h2>
  <ol class="obj">
-  <li>כאב שנודד מהטבור לימין למטה הוא הסימן האמין ביותר. ספירה תקינה לא שוללת</li>
-  <li>באישה בגיל הפוריות: <bdi>β-hCG</bdi>, אנמנזה גינקולוגית ובדיקה אגנית. רגישות בצוואר הרחם לא שוללת תוספתן</li>
+  <li>כאב שנודד <span class="nw">מה-<bdi dir="ltr">umbilicus</bdi></span> לימין למטה הוא הסימן האמין ביותר. ספירה תקינה לא שוללת</li>
+  <li>באישה בגיל הפוריות: <bdi>β-hCG</bdi>, אנמנזה גינקולוגית ובדיקה אגנית. רגישות <span class="nw">ב-<bdi dir="ltr">cervix</bdi></span> לא שוללת <bdi dir="ltr">appendix</bdi></li>
   <li>מבוגר: <bdi>CT</bdi>. ילד או היריון: אולטרסאונד. בהיריון <bdi>MRI</bdi> אחריו</li>
   <li>לא מסובכת: ניתוח או אנטיביוטיקה, בהחלטה משותפת. מסובכת: ניתוח. אבצס: ניקוז ואנטיביוטיקה</li>
-  <li>מעל גיל 40 אחרי טיפול שמרני באבצס: קולונוסקופיה ו-<bdi>CT</bdi>. כל תוספתן לפתולוגיה</li>
+  <li>מעל גיל 40 אחרי טיפול שמרני באבצס: קולונוסקופיה <span class="nw">ו-<bdi>CT</bdi></span>. כל <bdi dir="ltr">appendix</bdi> לפתולוגיה</li>
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 94 <bdi>The Appendix</bdi> (עמ׳ <bdi dir="ltr">1415–1426</bdi>) · פרק 85 <bdi>The Acute Abdomen</bdi> (עמ׳ <bdi dir="ltr">1155–1165</bdi>)</div>
  <div class="src"><span>איורים: <bdi dir="ltr">Sobotta (1906)</bdi>, נחלת הכלל · צילומים: <bdi dir="ltr">Hellerhoff, James Heilman, Steven Fruitsmaak, Javier Montero Arredondo (CC BY-SA, Wikimedia Commons)</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל) · המקרים בדויים</span><span>Scrub In · קפלן</span></div>

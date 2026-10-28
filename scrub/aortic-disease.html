@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>מחלות האאורטה · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,6 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -97,6 +98,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -114,6 +116,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -124,8 +129,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s cover"><div class="card">
  <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
  <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 3</div>
- <h1>מחלות אבי העורקים</h1>
- <p class="lead">מפרצת של אבי העורקים הבטני: סקר, מעקב, ספי ניתוח וקרע. ודיסקציה: סיווג ומי הולך לחדר ניתוח</p>
+ <h1>מחלות <span class="nw">ה-<bdi>aorta</bdi></span></h1>
+ <p class="lead">מפרצת של <span class="nw">ה-<bdi>abdominal aorta</bdi></span>: סקר, מעקב, ספי ניתוח וקרע. ודיסקציה: סיווג ומי הולך לחדר ניתוח</p>
  <div class="cvsrc" data-ch="102" data-note=""><small>מבוסס על</small><b><bdi dir="ltr">Sabiston Textbook of Surgery</bdi> · מהדורה 22</b><div class="cvch"><span>פרק <bdi dir="ltr">102</bdi></span></div></div>
  <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
 </div></section>
@@ -135,10 +140,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>בסוף המפגש תדעו</h2>
  <ol class="obj">
   <li>להגדיר מפרצת ולהכיר את גורמי הסיכון להיווצרות, להתרחבות ולקרע</li>
-  <li>להכיר את ההמלצות לסקר ולמעקב במפרצת של אבי העורקים הבטני (<bdi>AAA</bdi>)</li>
+  <li>להכיר את ההמלצות לסקר ולמעקב במפרצת של <span class="nw">ה-<bdi>abdominal aorta</bdi></span> (<bdi>AAA</bdi>)</li>
   <li>לדעת את ספי הקוטר לתיקון ולהכיר את התיקון הפתוח ואת <bdi>EVAR</bdi>, כולל סוגי הדליפות</li>
   <li>לזהות מפרצת שנקרעה ולהבין את עקרונות הטיפול בה</li>
-  <li>לסווג דיסקציה של אבי העורקים ולדעת מי צריך ניתוח דחוף ומי טיפול תרופתי</li>
+  <li>לסווג דיסקציה של <span class="nw">ה-<bdi>aorta</bdi></span> ולדעת מי צריך ניתוח דחוף ומי טיפול תרופתי</li>
  </ol>
  <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 102 (עמ׳ <bdi dir="ltr">1620–1633</bdi>)</span><span>Scrub In · קפלן</span></div>
 </div></section>
@@ -158,7 +163,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <li><b>מפרצת אמיתית:</b> כל שלוש שכבות הדופן. <b>מפרצת כוזבת</b> (<bdi>pseudoaneurysm</bdi>): חור בעורק עם דם שנחסם ברקמה שמסביב. למשל בהשקה ניתוחית או אחרי חבלה</li>
    <li>רוב המפרצות <b>ניווניות</b>. פחות שכיח: זיהום, דלקת, מחלת רקמת חיבור (<bdi>Marfan</bdi>, <bdi>Ehlers-Danlos</bdi> וסקולרי)</li>
   </ul>
-  <div class="box n"><b class="t">הקוטר התקין שונה בכל מקטע</b>אבי העורקים העולה, היורד והבטני שונים בקוטר. לכן גם הסף שבו קוראים לו "מפרצת" שונה. הוא תלוי גם בגיל, במין ובשיטת המדידה</div>
+  <div class="box n"><b class="t">הקוטר התקין שונה בכל מקטע</b><span class="nw">ה-<bdi>ascending, descending & abdominal aorta</bdi></span> שונים בקוטר. לכן גם הסף שבו קוראים לו "מפרצת" שונה. הוא תלוי גם בגיל, במין ובשיטת המדידה</div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 102 עמ׳ <bdi dir="ltr">1624–1625, 1632, 1639</bdi></span><span>מושגים</span></div>
 </div></section>
@@ -180,8 +185,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>4</b>אנטומיה · אינטראקטיבי</div>
- <h2>אבי העורקים הבטני במבט של המנתח</h2>
- <div class="hotw"><div class="hoti"><img src="img/aorta-sobotta-retroperitoneum.jpg" alt="הרטרופריטונאום אחרי הסרת המעיים: אבי העורקים, הכליות והעורקים האיליאקיים"><svg viewBox="0 0 800 750" preserveAspectRatio="none" style="--lw:13;--bf:19px">
+ <h2><span class="nw">ה-<bdi>abdominal aorta</bdi></span> במבט של המנתח</h2>
+ <div class="hotw"><div class="hoti"><img src="img/aorta-sobotta-retroperitoneum.jpg" alt="הרטרופריטונאום אחרי הסרת המעיים: aorta, kidneys, iliac arteries"><svg viewBox="0 0 800 750" preserveAspectRatio="none" style="--lw:13;--bf:19px">
   <path class="hz ln" data-hz="vis" d="M428,108 C450,118 465,128 480,138 C500,150 515,162 530,170 C540,174 548,176 556,178 M455,100 C470,108 488,118 505,127 C520,134 538,141 556,147" style="--c:#7A5BD6"/>
   <path class="hz" data-hz="infra" d="M382,205 L404,205 C407,225 409,245 410,260 C413,280 415,295 417,307 C420,325 422,345 424,360 C426,375 427,388 428,398 C418,404 408,408 400,410 C390,408 380,404 372,398 C372,385 373,372 373,360 C374,340 375,322 376,307 C377,290 377,275 378,260 C379,240 380,222 382,205 Z" style="--c:#D63C32"/>
   <path class="hz" data-hz="ivc" d="M318,205 L366,205 C367,240 368,270 368,300 C369,330 371,355 372,380 C372,400 371,420 368,440 C360,452 345,458 330,455 C328,430 327,405 326,380 C325,350 323,325 322,300 C321,270 319,240 318,205 Z" style="--c:#2F8CD6"/>
@@ -194,11 +199,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <g class="hzb" style="--c:#F0961E"><circle cx="441" cy="345" r="16"/><text x="441" y="345">5</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על מספר בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="vis" hidden><b>1 · עורקי הכליה והווריד הכלייתי השמאלי</b><p>"הצוואר" של המפרצת מתחת לעורקי הכליה. שם מציבים את המלחציים או את האיטום של <bdi>EVAR</bdi>. הווריד הכלייתי השמאלי עובר לפני אבי העורקים. בניתוח מזיזים אותו. אם חותכים אותו חייבים לשמור על הוורידים של בלוטת יותרת הכליה ושל הגונדה, שינקזו את הכליה.</p></div>
-  <div class="hzi" data-hzi="infra" hidden><b>2 · אבי העורקים מתחת לכליות</b><p>כאן נמצאות רוב המפרצות הבטניות. כאן מודדים בסקר ובמעקב. בניתוח פותחים את השק, מוציאים את הקריש ותופרים את העורקים המותניים שמדממים מהדופן האחורית.</p></div>
-  <div class="hzi" data-hzi="ivc" hidden><b>3 · הווריד הנבוב התחתון</b><p>מימין לאבי העורקים. הוורידים האיליאקיים עוברים <b>מאחורי</b> העורקים וצמודים אליהם ליד ההתפצלות. לכן בתיקון בצינור ישר שולטים על העורקים האיליאקיים הקרובים בזהירות, בלי לנתח מאחוריהם.</p></div>
-  <div class="hzi" data-hzi="ili" hidden><b>4 · ההתפצלות והעורקים האיליאקיים</b><p>בגברים עם <bdi>AAA</bdi> שכיחות גם מפרצות איליאקיות. השופכנים חוצים את העורקים מלפנים בגובה ההתפצלות: נזהרים בניתוח. ב-<bdi>EVAR</bdi> זה אזור האיטום התחתון (דליפה <bdi>1B</bdi>) ודרך הגישה מהמפשעה.</p></div>
-  <div class="hzi" data-hzi="ima" hidden><b>5 · העורק המזנטרי התחתון</b><p>יוצא מהחזית של אבי העורקים. בניתוח פתוח בודקים כמה הוא מדמם לאחור: מעט דימום, שומרים אותו להשתלה. בסוף בודקים את הסיגמואיד. אם יש איסכמיה משתילים אותו מחדש. אחרי <bdi>EVAR</bdi> הוא מקור לדליפה מסוג 2.</p></div>
+  <div class="hzi" data-hzi="vis" hidden><b>1 · <bdi>renal arteries, left renal vein</bdi></b><p>"הצוואר" של המפרצת מתחת <span class="nw">ל-<bdi>renal arteries</bdi></span>. שם מציבים את המלחציים או את האיטום של <bdi>EVAR</bdi>. <span class="nw">ה-<bdi>left renal vein</bdi></span> עובר לפני <span class="nw">ה-<bdi>aorta</bdi></span>. בניתוח מזיזים אותו. אם חותכים אותו חייבים לשמור על <span class="nw">ה-<bdi>adrenal vein</bdi></span> <span class="nw">וה-<bdi>gonadal vein</bdi></span>, שינקזו את <span class="nw">ה-<bdi>kidney</bdi></span>.</p></div>
+  <div class="hzi" data-hzi="infra" hidden><b>2 · <bdi>infrarenal aorta</bdi></b><p>כאן נמצאות רוב המפרצות הבטניות. כאן מודדים בסקר ובמעקב. בניתוח פותחים את השק, מוציאים את הקריש ותופרים את <span class="nw">ה-<bdi>lumbar arteries</bdi></span> שמדממים מהדופן האחורית.</p></div>
+  <div class="hzi" data-hzi="ivc" hidden><b>3 · <bdi>IVC</bdi></b><p>מימין <span class="nw">ל-<bdi>aorta</bdi></span>. <span class="nw">ה-<bdi>iliac veins</bdi></span> עוברים <b>מאחורי</b> העורקים וצמודים אליהם ליד ההתפצלות. לכן בתיקון בצינור ישר שולטים על <span class="nw">ה-<bdi>iliac arteries</bdi></span> הקרובים בזהירות, בלי לנתח מאחוריהם.</p></div>
+  <div class="hzi" data-hzi="ili" hidden><b>4 · ההתפצלות <span class="nw">וה-<bdi>iliac arteries</bdi></span></b><p>בגברים עם <bdi>AAA</bdi> שכיחות גם מפרצות איליאקיות. <span class="nw">ה-<bdi>ureters</bdi></span> חוצים את העורקים מלפנים בגובה ההתפצלות: נזהרים בניתוח. <span class="nw">ב-<bdi>EVAR</bdi></span> זה אזור האיטום התחתון (דליפה <bdi>1B</bdi>) ודרך הגישה מהמפשעה.</p></div>
+  <div class="hzi" data-hzi="ima" hidden><b>5 · <bdi>IMA</bdi> (<bdi>inferior mesenteric artery</bdi>)</b><p>יוצא מהחזית של <span class="nw">ה-<bdi>aorta</bdi></span>. בניתוח פתוח בודקים כמה הוא מדמם לאחור: מעט דימום, שומרים אותו להשתלה. בסוף בודקים את <span class="nw">ה-<bdi>sigmoid</bdi></span>. אם יש איסכמיה משתילים אותו מחדש. אחרי <bdi>EVAR</bdi> הוא מקור לדליפה מסוג 2.</p></div>
  </div></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 102 עמ׳ <bdi dir="ltr">1625, 1629–1631</bdi></span><span>הרטרופריטונאום · <bdi>Sobotta</bdi>, 1906, איור 413 (נחלת הכלל), חתוך · אזורים: Scrub In</span></div>
 </div></section>
@@ -212,12 +217,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>רוב המפרצות בלי תסמינים.</b> רבות מתגלות במקרה בהדמיה שנעשתה מסיבה אחרת</li>
     <li><b>כאב:</b> מפרצת שגדלה מהר או מודלקת</li>
     <li><b>מפרצת בטנית גדולה:</b> תחושת מלאות ושובע מוקדם</li>
-    <li><b>מפרצת בחזה:</b> צרידות מלחץ על העצב הלרינגאלי החוזר השמאלי (<bdi>Ortner</bdi>), לחץ על הסימפון השמאלי, תסמונת הווריד הנבוב העליון</li>
-    <li><b>בבדיקה:</b> דופק בולט בבטן, במפשעה או מאחורי הברך מעלה חשד למפרצת. בגבר עם <bdi>AAA</bdi> ממששים גם את העורקים הפופליטאליים</li>
+    <li><b>מפרצת בחזה:</b> צרידות מלחץ על <span class="nw">ה-<bdi>left recurrent laryngeal nerve</bdi></span> (<bdi>Ortner</bdi>), לחץ על <span class="nw">ה-<bdi>left main bronchus</bdi></span>, תסמונת <bdi>SVC</bdi></li>
+    <li><b>בבדיקה:</b> דופק בולט בבטן, במפשעה או מאחורי הברך מעלה חשד למפרצת. בגבר עם <bdi>AAA</bdi> ממששים גם את <span class="nw">ה-<bdi>popliteal arteries</bdi></span></li>
    </ul>
-   <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>מצאו מטופל עם <bdi>AAA</bdi> (במעקב או אחרי תיקון). ממששו את הבטן ואת הדפקים ברגליים, קראו יחד עם הבכיר/ה את ה-<bdi>CT</bdi> ומדדו את הקוטר המרבי</div>
+   <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>מצאו מטופל עם <bdi>AAA</bdi> (במעקב או אחרי תיקון). ממששו את הבטן ואת הדפקים ברגליים, קראו יחד עם הבכיר/ה את <span class="nw">ה-<bdi>CT</bdi></span> ומדדו את הקוטר המרבי</div>
   </div>
-  <figure><img src="img/aorta-us-aaa.jpg" alt="אולטרסאונד של מפרצת באבי העורקים הבטני"><figcaption>אולטרסאונד בחתך אורך של מפרצת באבי העורקים הבטני. הקו האדום: הקוטר הקדמי-אחורי. הקו הצהוב: הקוטר המרבי · <bdi>Mikael Häggström, M.D.</bdi>, CC0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/aorta-us-aaa.jpg" alt="אולטרסאונד של מפרצת ב-abdominal aorta"><figcaption>אולטרסאונד בחתך אורך של מפרצת <span class="nw">ב-<bdi>abdominal aorta</bdi></span>. הקו האדום: הקוטר הקדמי-אחורי. הקו הצהוב: הקוטר המרבי · <bdi>Mikael Häggström, M.D.</bdi>, CC0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 102 עמ׳ <bdi dir="ltr">1625–1626</bdi> · פרק 103 עמ׳ <bdi dir="ltr">1647</bdi></span><span>קליניקה</span></div>
 </div></section>
@@ -232,10 +237,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <div><b>אולטרסאונד</b><span>מדויק, לא פולשני וזול. הבדיקה לסקר ולמעקב של <bdi>AAA</bdi>. עם חומר ניגוד: מאתר דליפות אחרי <bdi>EVAR</bdi></span></div>
     <div><b><bdi>CT</bdi> עם חומר ניגוד (<bdi>CTA</bdi>)</b><span>אנטומיה מלאה: הסתיידות, קריש, מחלה חוסמת, שחזור תלת-ממדי לתכנון. החסרונות: קרינה וחומר ניגוד בחולים עם מחלת כליות</span></div>
     <div><b><bdi>MRI</bdi></b><span>בלי קרינה ובלי יוד. לא מראה הסתיידות. לא אחרי חלק מהשתלים המתכתיים</span></div>
-    <div><b>אקו לב (<bdi>TTE</bdi>, <bdi>TEE</bdi>)</b><span>לשורש ולאבי העורקים העולה ולמסתם. <bdi>TEE</bdi> רואה את רוב אבי העורקים בחזה</span></div>
+    <div><b>אקו לב (<bdi>TTE</bdi>, <bdi>TEE</bdi>)</b><span>לשורש <span class="nw">ול-<bdi>ascending aorta</bdi></span> ולמסתם. <bdi>TEE</bdi> רואה את רוב <span class="nw">ה-<bdi>thoracic aorta</bdi></span></span></div>
    </div>
   </div>
-  <figure><img src="img/aorta-ct-aaa.jpg" alt="CT עם חומר ניגוד של מפרצת באבי העורקים הבטני"><figcaption><bdi>CT</bdi> עם חומר ניגוד: מפרצת של <bdi dir="ltr">4.8 × 3.8</bdi> ס״מ באבי העורקים הבטני, עם קריש בדופן · <bdi>James Heilman, MD</bdi>, CC BY-SA 3.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/aorta-ct-aaa.jpg" alt="CT עם חומר ניגוד של מפרצת ב-abdominal aorta"><figcaption><bdi>CT</bdi> עם חומר ניגוד: מפרצת של <bdi dir="ltr">4.8 × 3.8</bdi> ס״מ <span class="nw">ב-<bdi>abdominal aorta</bdi></span>, עם קריש בדופן · <bdi>James Heilman, MD</bdi>, CC BY-SA 3.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 102 עמ׳ <bdi dir="ltr">1626–1627</bdi></span><span>הדמיה</span></div>
 </div></section>
@@ -250,7 +255,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>ההמלצות המקובלות:</b> כל הגברים מגיל 65. גברים מגיל 55 עם סיפור משפחתי של <bdi>AAA</bdi></li>
     <li><b>כוח המשימה האמריקאי (<bdi>USPSTF</bdi>):</b> גברים בני <bdi dir="ltr">65–75</bdi> שעישנו אי פעם</li>
     <li><b>נשים:</b> שנוי במחלוקת. מעט נשים השתתפו במחקרי הסקר</li>
-    <li>מצאו <bdi>AAA</bdi>? בודקים גם את אבי העורקים בחזה</li>
+    <li>מצאו <bdi>AAA</bdi>? בודקים גם את <span class="nw">ה-<bdi>thoracic aorta</bdi></span></li>
     <li>מפרצת ידועה בלי מעקב: סיכון לקרע גבוה עד פי 6</li>
    </ul>
   </div>
@@ -286,7 +291,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <h3>קוטר לתיקון מפרצת בלי תסמינים</h3>
    <div class="flow sm">
-    <div><b>אבי העורקים הבטני</b><span><b dir="ltr">≥55 mm</b> בכל המטופלים</span></div>
+    <div><b><bdi>abdominal aorta</bdi></b><span><b dir="ltr">≥55 mm</b> בכל המטופלים</span></div>
     <div><b>עולה ושורש</b><span><b dir="ltr">≥55 mm</b>. <bdi>Marfan</bdi>: <bdi dir="ltr">≥50 mm</bdi> (ובחלק מהמקרים 45)</span></div>
     <div><b>הקשת</b><span><b dir="ltr">≥55 mm</b>, או בכל קוטר עם תסמיני לחץ</span></div>
     <div><b>יורד</b><span><b dir="ltr">≥55 mm</b> כשאפשר <bdi>TEVAR</bdi>. <bdi dir="ltr">≥60 mm</bdi> לניתוח פתוח</span></div>
@@ -302,17 +307,17 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b sm">
-    <li><b>גישה:</b> דרך הבטן (בדיקה של הבטן, שליטה מעל הצליאק, חשיפה טובה של האגן) או רטרופריטונאלית מצד שמאל</li>
-    <li>חושפים את צוואר המפרצת. בדרך: וריד המזנטרי התחתון והווריד הכלייתי השמאלי, שעובר מעל אבי העורקים</li>
-    <li>הפרין לפני הצבת המלחציים. פותחים את השק, מוציאים את הקריש ותופרים את העורקים המותניים שמדממים לאחור</li>
+    <li><b>גישה:</b> דרך הבטן (בדיקה של הבטן, שליטה מעל <span class="nw">ה-<bdi>celiac trunk</bdi></span>, חשיפה טובה של האגן) או רטרופריטונאלית מצד שמאל</li>
+    <li>חושפים את צוואר המפרצת. בדרך: <span class="nw">ה-<bdi>IMV</bdi></span> <span class="nw">וה-<bdi>left renal vein</bdi></span>, שעובר מעל <span class="nw">ה-<bdi>aorta</bdi></span></li>
+    <li>הפרין לפני הצבת המלחציים. פותחים את השק, מוציאים את הקריש ותופרים את <span class="nw">ה-<bdi>lumbar arteries</bdi></span> שמדממים לאחור</li>
     <li>תופרים שתל סינתטי: קודם השקה עליונה ואחר כך תחתונה. משחררים את המלחציים לאט, בתיאום עם המרדים</li>
-    <li><b>בסוף בודקים את הסיגמואיד:</b> איסכמיה? משתילים מחדש את העורק המזנטרי התחתון</li>
-    <li>סוגרים את שק המפרצת ואת הצפק האחורי מעל השתל, כדי להפריד אותו מהמעי</li>
+    <li><b>בסוף בודקים את <span class="nw">ה-<bdi>sigmoid</bdi></span>:</b> איסכמיה? משתילים מחדש את <span class="nw">ה-<bdi>IMA</bdi></span></li>
+    <li>סוגרים את שק המפרצת ואת <span class="nw">ה-<bdi>posterior peritoneum</bdi></span> מעל השתל, כדי להפריד אותו מהמעי</li>
    </ul>
   </div>
-  <figure><img src="img/aorta-open-repair.jpg" alt="תיקון פתוח של מפרצת אבי העורקים הבטני"><figcaption>תיקון פתוח של מפרצת בטנית: השדה הניתוחי בבטן הפתוחה · <bdi>D.G.S.V.D. Gajasinghe</bdi>, CC BY-SA 3.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/aorta-open-repair.jpg" alt="תיקון פתוח של מפרצת ב-abdominal aorta"><figcaption>תיקון פתוח של מפרצת בטנית: השדה הניתוחי בבטן הפתוחה · <bdi>D.G.S.V.D. Gajasinghe</bdi>, CC BY-SA 3.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
- <div class="box a" style="margin-top:12px"><b class="t">התוצאות</b>תמותה של <bdi dir="ltr">1–4%</bdi> במרכזים מצוינים ו-<bdi dir="ltr">4–8%</bdi> במאגרים לאומיים. סיבוכים ב-<bdi dir="ltr">15–30%</bdi> מהמטופלים</div>
+ <div class="box a" style="margin-top:12px"><b class="t">התוצאות</b>תמותה של <bdi dir="ltr">1–4%</bdi> במרכזים מצוינים <span class="nw">ו-<bdi dir="ltr">4–8%</bdi></span> במאגרים לאומיים. סיבוכים <span class="nw">ב-<bdi dir="ltr">15–30%</bdi></span> מהמטופלים</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 102 עמ׳ <bdi dir="ltr">1629–1631</bdi></span><span>תיקון פתוח</span></div>
 </div></section>
 
@@ -322,19 +327,19 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b sm">
-    <li>שתל-סטנט בצורת <bdi>Y</bdi> שמוחדר דרך העורקים הפמורליים. הצלחתו תלויה באזור האיטום והקיבוע באבי העורקים</li>
-    <li>מעקב הדמיה לכל החיים: חודש, 6 חודשים, שנה ואחר כך כל שנה. מי שלא יכול להתמיד במעקב אולי לא מתאים ל-<bdi>EVAR</bdi></li>
+    <li>שתל-סטנט בצורת <bdi>Y</bdi> שמוחדר דרך <span class="nw">ה-<bdi>femoral arteries</bdi></span>. הצלחתו תלויה באזור האיטום והקיבוע <span class="nw">ב-<bdi>aorta</bdi></span></li>
+    <li>מעקב הדמיה לכל החיים: חודש, 6 חודשים, שנה ואחר כך כל שנה. מי שלא יכול להתמיד במעקב אולי לא מתאים <span class="nw">ל-<bdi>EVAR</bdi></span></li>
     <li><bdi>EVAR</bdi> בבריטניה (1,252 מטופלים, מפרצת מעל 5.5 ס״מ): תמותה ב-30 יום 1.8% לעומת 4.3% בניתוח פתוח. היתרון נעלם בהמשך. היו יותר ניתוחים חוזרים</li>
     <li>לאורך זמן: עלייה בתמותה הקשורה למפרצת אחרי <bdi>EVAR</bdi>, חלקית בגלל קרעים מאוחרים</li>
    </ul>
    <div class="flow sm" style="margin-top:10px">
     <div><b><span class="tag r">1A · 1B</span></b><span>דליפה באזור האיטום העליון או התחתון. <b>מתקנים</b></span></div>
-    <div><b><span class="tag a">2</span></b><span>זרימה לאחור מהעורקים המותניים או מהמזנטרי התחתון. רובן נעלמות. עוקבים כל עוד השק לא גדל</span></div>
+    <div><b><span class="tag a">2</span></b><span>זרימה לאחור <span class="nw">מה-<bdi>lumbar arteries</bdi></span> או <span class="nw">מה-<bdi>IMA</bdi></span>. רובן נעלמות. עוקבים כל עוד השק לא גדל</span></div>
     <div><b><span class="tag r">3</span></b><span>היפרדות בין רכיבי השתל. <b>מתקנים</b></span></div>
     <div><b><span class="tag">4 · 5</span></b><span>דופן השתל חדירה · שק שגדל בלי זרימה שנראית</span></div>
    </div>
   </div>
-  <figure><img src="img/aorta-evar-ct.jpg" alt="CT של שתל-סטנט בצורת Y באבי העורקים הבטני"><figcaption><bdi>CT</bdi>, שחזור קורונלי: שתל-סטנט בצורת <bdi>Y</bdi> אחרי <bdi>EVAR</bdi>. העיגול הכחול: שק המפרצת סביב השתל · <bdi>Dr Haudebourg</bdi>, נחלת הכלל, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/aorta-evar-ct.jpg" alt="CT של שתל-סטנט בצורת Y ב-abdominal aorta"><figcaption><bdi>CT</bdi>, שחזור קורונלי: שתל-סטנט בצורת <bdi>Y</bdi> אחרי <bdi>EVAR</bdi>. העיגול הכחול: שק המפרצת סביב השתל · <bdi>Dr Haudebourg</bdi>, נחלת הכלל, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 102 עמ׳ <bdi dir="ltr">1630–1631</bdi></span><span><bdi>EVAR</bdi></span></div>
 </div></section>
@@ -345,34 +350,34 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b sm">
-    <li>בניסויים: <b>אין הבדל בתמותה המוקדמת</b> בין תיקון פתוח ל-<bdi>EVAR</bdi> (בניסוי אירופי: 39% לעומת 35% תמותה ניתוחית)</li>
-    <li><bdi>IMPROVE</bdi>: אין הבדל ב-30 וב-90 יום. יתרון ל-<bdi>EVAR</bdi> אחרי 4 שנים, שנעלם אחרי 7 שנים</li>
-    <li>מי שהתאים ל-<bdi>EVAR</bdi> הגיע לתוצאות טובות יותר. לכן רבים ממליצים על גישה של <b><bdi>EVAR</bdi> קודם</b></li>
+    <li>בניסויים אקראיים: <b>אין הבדל בתמותה המוקדמת</b> בין תיקון פתוח <span class="nw">ל-<bdi>EVAR</bdi></span>. <span class="nw">ב-<bdi>IMPROVE</bdi></span> (<bdi dir="ltr">613</bdi> מטופלים): תמותה ב-30 יום <bdi dir="ltr">35.4%</bdi> באסטרטגיית <bdi>EVAR</bdi> לעומת <bdi dir="ltr">37.4%</bdi> בניתוח פתוח</li>
+    <li><bdi>IMPROVE</bdi>: אין הבדל ב-30 וב-90 יום. יתרון <span class="nw">ל-<bdi>EVAR</bdi></span> אחרי 3 שנים (תמותה <bdi dir="ltr">48%</bdi> לעומת <bdi dir="ltr">56%</bdi>), שנעלם אחרי 7 שנים (<span class="nw">כ-<bdi dir="ltr">60%</bdi></span> בשתי הקבוצות)</li>
+    <li>מי שהתאים <span class="nw">ל-<bdi>EVAR</bdi></span> הגיע לתוצאות טובות יותר. לכן רבים ממליצים על גישה של <b><bdi>EVAR</bdi> קודם</b></li>
     <li><b>מה צריך:</b> צוות מיומן, ציוד אנדווסקולרי זמין ופרוטוקול מוסכם: מעבר מהיר לחדר ניתוח שבו אפשר גם פתוח וגם אנדווסקולרי, מינימום בדיקות לפני</li>
-    <li><b>בלון חוסם באבי העורקים</b> לפני ההרדמה: יכול לתמוך בלחץ הדם בכל סוג תיקון. ב-<bdi>EVAR</bdi>, הרדמה מקומית עדיפה על כללית</li>
+    <li><b>בלון חוסם <span class="nw">ב-<bdi>aorta</bdi></span></b> לפני ההרדמה: יכול לתמוך בלחץ הדם בכל סוג תיקון. <span class="nw">ב-<bdi>EVAR</bdi></span>, הרדמה מקומית עדיפה על כללית</li>
     <li><b>העברה לבית חולים אחר:</b> אחד מכל 7 מועברים לא מגיע לניתוח. כשיש אפשרות לטפל במקום, זה עדיף</li>
    </ul>
   </div>
   <figure><img src="img/aorta-ct-rupture.jpg" alt="CT של מפרצת בטנית שנקרעת"><figcaption><bdi>CT</bdi> בחתכים רוחביים ובחתך קורונלי: מפרצת בטנית שנקרעת עם דימום רטרופריטונאלי · <bdi>Hellerhoff</bdi>, CC BY-SA 4.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 102 עמ׳ <bdi dir="ltr">1632–1633</bdi></span><span>קרע</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 102 עמ׳ <bdi dir="ltr">1632–1633</bdi> · <bdi>IMPROVE</bdi> · BMJ 2014;348:f7661 · BMJ 2017;359:j4859</span><span>קרע</span></div>
 </div></section>
 
 <section class="s"><div class="card">
  <div class="kick"><b>12</b>תסמונת אאורטלית חריפה</div>
- <h2>דיסקציה: מגדירים לפי אבי העורקים העולה</h2>
+ <h2>דיסקציה: מגדירים לפי <span class="nw">ה-<bdi>ascending aorta</bdi></span></h2>
  <div class="grid f">
   <div>
    <ul class="b sm">
-    <li><b>דיסקציה:</b> קרע באינטימה ודם שמפצל את שכבת המדיה. <b>המצב החריף השכיח ביותר</b> של אבי העורקים</li>
+    <li><b>דיסקציה:</b> קרע באינטימה ודם שמפצל את שכבת המדיה. <b>המצב החריף השכיח ביותר</b> של <span class="nw">ה-<bdi>aorta</bdi></span></li>
     <li>היארעות <bdi dir="ltr">3.5–16.3</bdi> ל-100,000 בשנה. גברים 16 לעומת נשים 7.9 ל-100,000. נשים מגיעות מאוחר יותר ובתמותה גבוהה יותר</li>
-    <li><b>Stanford A:</b> כל מעורבות של אבי העורקים העולה. <b>Stanford B:</b> רק דיסטלית לעורק התת-בריחי השמאלי. סוג <bdi>A</bdi> שכיח פי 2</li>
-    <li><b>DeBakey:</b> <bdi>I</bdi> עולה, קשת ויורד · <bdi>II</bdi> רק עולה · <bdi>III</bdi> רק יורד (<bdi>IIIa</bdi> בחזה, <bdi>IIIb</bdi> מתחת לסרעפת)</li>
+    <li><b>Stanford A:</b> כל מעורבות של <span class="nw">ה-<bdi>ascending aorta</bdi></span>. <b>Stanford B:</b> רק דיסטלית <span class="nw">ל-<bdi>left subclavian artery</bdi></span>. סוג <bdi>A</bdi> שכיח פי 2</li>
+    <li><b>DeBakey:</b> <bdi>I</bdi> עולה, קשת ויורד · <bdi>II</bdi> רק עולה · <bdi>III</bdi> רק יורד (<bdi>IIIa</bdi> בחזה, <bdi>IIIb</bdi> מתחת <span class="nw">ל-<bdi>diaphragm</bdi></span>)</li>
     <li>שני שיאי גיל: מבוגרים עם יתר לחץ דם וטרשת. צעירים עם מחלת רקמת חיבור, מסתם דו-צניפי או שימוש בקוקאין</li>
     <li>חריף עד שבועיים. כיום גם חלוקה מפורטת: עד 24 שעות, <bdi dir="ltr">2–7</bdi> ימים, <bdi dir="ltr">8–30</bdi> ימים, מעל 30</li>
    </ul>
   </div>
-  <figure><img src="img/aorta-dissection-types.jpg" alt="סוגי דיסקציה של אבי העורקים"><figcaption><bdi>A</bdi> · <bdi>DeBakey I</bdi> &nbsp; <bdi>B</bdi> · <bdi>DeBakey II</bdi> (שתיהן <bdi>Stanford A</bdi>) &nbsp; <bdi>C</bdi> · <bdi>DeBakey III</bdi> (<bdi>Stanford B</bdi>). החיצים: מקום הקרע באינטימה · <bdi>J. Heuser</bdi>, CC BY-SA 3.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/aorta-dissection-types.jpg" alt="סוגי דיסקציה של ה-aorta"><figcaption><bdi>A</bdi> · <bdi>DeBakey I</bdi> &nbsp; <bdi>B</bdi> · <bdi>DeBakey II</bdi> (שתיהן <bdi>Stanford A</bdi>) &nbsp; <bdi>C</bdi> · <bdi>DeBakey III</bdi> (<bdi>Stanford B</bdi>). החיצים: מקום הקרע באינטימה · <bdi>J. Heuser</bdi>, CC BY-SA 3.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 102 עמ׳ <bdi dir="ltr">1620–1621</bdi></span><span>דיסקציה</span></div>
 </div></section>
@@ -391,7 +396,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    </ul>
    <div class="box r" style="margin-top:10px"><b class="t">למה מפספסים</b>דיסקציה נדירה בהרבה מתסמונת כלילית חריפה (16 לעומת 440 ל-100,000) ומתסחיף ריאתי (69 ל-100,000), שנראים דומה. לפני שהיה <bdi>CT</bdi>, ביותר מרבע מהחולים האבחנה נעשתה רק בנתיחה</div>
   </div>
-  <figure><img src="img/aorta-dissection-ct.jpg" alt="CT של דיסקציה של אבי העורקים"><figcaption><bdi>CT</bdi> עם חומר ניגוד, חתך רוחבי בחזה: דיסקציה מסוג <bdi>A</bdi>. החיצים האדומים: הדש באבי העורקים העולה והיורד. החץ הכחול: תפליט בקרום הלב · <bdi>James Heilman, MD</bdi>, CC BY-SA 4.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/aorta-dissection-ct.jpg" alt="CT של דיסקציה של ה-aorta"><figcaption><bdi>CT</bdi> עם חומר ניגוד, חתך רוחבי בחזה: דיסקציה מסוג <bdi>A</bdi>. החיצים האדומים: הדש <span class="nw">ב-<bdi>ascending & descending aorta</bdi></span>. החץ הכחול: תפליט בקרום הלב · <bdi>James Heilman, MD</bdi>, CC BY-SA 4.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 102 עמ׳ <bdi dir="ltr">1621</bdi></span><span>דיסקציה</span></div>
 </div></section>
@@ -401,9 +406,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2><bdi>A</bdi> לחדר ניתוח, <bdi>B</bdi> לתרופות (בדרך כלל)</h2>
  <div class="grid">
   <div class="box r"><b class="t">Stanford A: ניתוח חירום</b>
-   <ul class="b sm"><li>תמותה של <bdi dir="ltr">1–2%</bdi> לשעה ב-24 השעות הראשונות בלי טיפול</li><li>ניתוח פתוח בלב-ריאה, לרוב בעצירת מחזור בקירור: סוגרים את הקרע ומחליפים את אבי העורקים העולה</li><li>תמותה ניתוחית <bdi dir="ltr">15–25%</bdi>. במרכזים מתמחים: ספרה אחת</li><li>טיפול תרופתי רק כגשר או כשהמטופל לא מועמד לניתוח</li></ul></div>
+   <ul class="b sm"><li>תמותה של <bdi dir="ltr">1–2%</bdi> לשעה ב-24 השעות הראשונות בלי טיפול</li><li>ניתוח פתוח בלב-ריאה, לרוב בעצירת מחזור בקירור: סוגרים את הקרע ומחליפים את <span class="nw">ה-<bdi>ascending aorta</bdi></span></li><li>תמותה ניתוחית <bdi dir="ltr">15–25%</bdi>. במרכזים מתמחים: ספרה אחת</li><li>טיפול תרופתי רק כגשר או כשהמטופל לא מועמד לניתוח</li></ul></div>
   <div class="box b"><b class="t">Stanford B: טיפול תרופתי</b>
-   <ul class="b sm"><li><b>חוסמי בטא</b> קודם: מורידים את לחץ הדם ואת הכוח של כל פעימה על הדופן</li><li><b>מסובכת</b> (קרע או <bdi>malperfusion</bdi>): <bdi>TEVAR</bdi>, סטנט-שתל שמכסה את הקרע</li><li>לא מסובכת: טיפול תרופתי ומעקב. <bdi>TEVAR</bdi> אפשרי כשיש סימנים בסיכון גבוה</li><li><bdi>INSTEAD-XL</bdi>: פחות תמותה הקשורה לאבי העורקים אחרי 5 שנים עם <bdi>TEVAR</bdi></li></ul></div>
+   <ul class="b sm"><li><b>חוסמי בטא</b> קודם: מורידים את לחץ הדם ואת הכוח של כל פעימה על הדופן</li><li><b>מסובכת</b> (קרע או <bdi>malperfusion</bdi>): <bdi>TEVAR</bdi>, סטנט-שתל שמכסה את הקרע</li><li>לא מסובכת: טיפול תרופתי ומעקב. <bdi>TEVAR</bdi> אפשרי כשיש סימנים בסיכון גבוה</li><li><bdi>INSTEAD-XL</bdi>: פחות תמותה הקשורה <span class="nw">ל-<bdi>aorta</bdi></span> אחרי 5 שנים עם <bdi>TEVAR</bdi></li></ul></div>
  </div>
  <div class="grid" style="margin-top:12px">
   <div class="box"><b class="t">המטומה תוך-דופנית (<bdi>IMH</bdi>)</b>כ-10% מהתסמונות החריפות. דופן מעובה מעל 5 מ״מ בלי זרימה. מטפלים כמו בדיסקציה: סוג <bdi>A</bdi> בדרך כלל ניתוח, סוג <bdi>B</bdi> בדרך כלל תרופות</div>
@@ -417,13 +422,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>מחקרים והנחיות שכדאי להכיר</h2>
  <div class="grid">
   <div class="study"><div class="y"><bdi>NEJM</bdi> 2022 · מחקר אקראי בדנמרק</div><b><bdi>DANCAVAS</bdi>: סקר קרדיווסקולרי מקיף</b>
-   <p>46,611 גברים בני <bdi dir="ltr">65–74</bdi>. הסקר כלל <bdi>CT</bdi> (סידן בעורקים הכליליים ומפרצות), <bdi>ABI</bdi> ובדיקות דם. אחרי 5.6 שנים: תמותה 12.6% בקבוצת ההזמנה לעומת 13.1% בביקורת (יחס סיכון 0.95, לא מובהק)</p>
+   <p>46,611 גברים בני <bdi dir="ltr">65–74</bdi>. הסקר כלל <bdi>CT</bdi> (סידן <span class="nw">ב-<bdi>coronary arteries</bdi></span> ומפרצות), <bdi>ABI</bdi> ובדיקות דם. אחרי 5.6 שנים: תמותה 12.6% בקבוצת ההזמנה לעומת 13.1% בביקורת (יחס סיכון 0.95, לא מובהק)</p>
    <small><bdi dir="ltr">Lindholt JS et al. N Engl J Med 2022;387:1385-94</bdi></small></div>
   <div class="study"><div class="y"><bdi>EJVES</bdi> 2024 · הנחיות אירופיות</div><b>הנחיות <bdi>ESVS</bdi> למפרצות בבטן ובאגן</b>
-   <p>160 המלצות: סקר, מעקב, תיקון מתוכנן. במפרצת שנקרעה גם <b>יתר לחץ דם מתירני</b> ובלון חוסם באבי העורקים. כוללות קבלת החלטות משותפת עם המטופל</p>
+   <p>160 המלצות: סקר, מעקב, תיקון מתוכנן. במפרצת שנקרעה גם <b>יתר לחץ דם מתירני</b> ובלון חוסם <span class="nw">ב-<bdi>aorta</bdi></span>. כוללות קבלת החלטות משותפת עם המטופל</p>
    <small><bdi dir="ltr">Wanhainen A et al. Eur J Vasc Endovasc Surg 2024;67:192-331</bdi></small></div>
-  <div class="study"><div class="y"><bdi>Circulation</bdi> 2022 · הנחיות אמריקאיות</div><b>הנחיות <bdi>ACC/AHA</bdi> למחלות אבי העורקים</b>
-   <p>מאחדות לראשונה את ההמלצות לכל אבי העורקים: אבחנה, בדיקה גנטית וסקר משפחה, טיפול ומעקב. מדגישות קבלת החלטות משותפת והיריון. וגם את נפח הניתוחים וצוות אאורטה רב-תחומי במוסד</p>
+  <div class="study"><div class="y"><bdi>Circulation</bdi> 2022 · הנחיות אמריקאיות</div><b>הנחיות <bdi>ACC/AHA</bdi> למחלות <span class="nw">ה-<bdi>aorta</bdi></span></b>
+   <p>מאחדות לראשונה את ההמלצות לכל <span class="nw">ה-<bdi>aorta</bdi></span>: אבחנה, בדיקה גנטית וסקר משפחה, טיפול ומעקב. מדגישות קבלת החלטות משותפת והיריון. וגם את נפח הניתוחים וצוות אאורטה רב-תחומי במוסד</p>
    <small><bdi dir="ltr">Isselbacher EM et al. Circulation 2022;146:e334-e482</bdi></small></div>
   <div class="study"><div class="y"><bdi>EJVES</bdi> 2025 · מחקר אקראי</div><b>מטפורמין להאטת מפרצת קטנה?</b>
    <p>58 מטופלים בלי סוכרת עם מפרצת של <bdi dir="ltr">3.0–4.9</bdi> ס״מ, 2 גרם מטפורמין לעומת אינבו. אחרי 12 ו-18 חודשים לא היה הבדל בקוטר או בנפח המפרצת. המחקר קטן מהמתוכנן (נעצר בגלל הקורונה)</p>
@@ -443,7 +448,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>כאב חד בחזה, בגב או בבטן עם חסר בדפקים: חושבים על דיסקציה. <bdi>A</bdi> לניתוח, <bdi>B</bdi> לחוסמי בטא</li>
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 102 <bdi>Aortic Disease</bdi> (עמ׳ <bdi dir="ltr">1620–1633</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906, נחלת הכלל) · תמונות קליניות והדמיה מ-<bdi>Wikimedia Commons</bdi> לפי הרישיון בכל כיתוב · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906, נחלת הכלל) · תמונות קליניות והדמיה <span class="nw">מ-<bdi>Wikimedia Commons</bdi></span> לפי הרישיון בכל כיתוב · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>

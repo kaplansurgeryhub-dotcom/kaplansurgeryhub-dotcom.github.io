@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>ריפוי פצע · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,6 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -97,6 +98,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -114,6 +116,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -151,7 +156,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b">
-    <li><b>תיקון ולא התחדשות:</b> במבוגר הפצע נסגר בצלקת. התחדשות מלאה יש רק בעובר ובחלק מהרקמות, כמו כבד ועצם</li>
+    <li><b>תיקון ולא התחדשות:</b> במבוגר הפצע נסגר בצלקת. התחדשות מלאה יש רק בעובר ובחלק מהרקמות, כמו <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> ועצם</li>
     <li>השלבים: <b>עצירת דימום, דלקת, שגשוג והבשלה</b>. הם חופפים. בפצע גדול אפשר לראות את כולם יחד</li>
     <li>פצע חריף עובר את כל השלבים בזמן. <b>פצע כרוני נתקע בשלב הדלקת</b></li>
     <li>סדר התאים: נויטרופילים בשיא ביום 2, מקרופאגים ביום 3, לימפוציטים ביום 7. אחר כך הפיברובלסטים שולטים</li>
@@ -197,7 +202,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>רקמת גרנולציה:</b> רשת נימים, פיברובלסטים, מקרופאגים וקולגן רופף. אדומה, לחה ומדממת בקלות</li>
     <li><b>כלי דם חדשים:</b> <bdi>FGF-2</bdi> בשלושת הימים הראשונים. אחריו <bdi>VEGF</bdi> בימים <bdi dir="ltr">4–7</bdi>. חוסר חמצן הוא הגירוי</li>
     <li><b>פיברובלסטים</b> מייצרים קולגן. ההשהיה עד שהקולגן מופיע: <bdi dir="ltr">3–5</bdi> ימים</li>
-    <li><b>אפיתל:</b> מתחיל לנדוד תוך שעות, מהשוליים וממבני העור (זקיקי שערה). מהיר יותר כשקרום הבסיס שלם</li>
+    <li><b>אפיתל:</b> מתחיל לנדוד תוך שעות, מהשוליים <span class="nw">ומה-<bdi dir="ltr">skin appendages</bdi></span> (<bdi dir="ltr">hair follicles</bdi>). מהיר יותר <span class="nw">כשה-<bdi dir="ltr">basement membrane</bdi></span> שלם</li>
     <li><b>כיווץ הפצע:</b> מיופיברובלסטים מושכים את השוליים פנימה. האקטין מופיע ביום 6 ונעלם אחרי כ-4 שבועות. כיווץ יתר מעל מפרק = התכווצות שמגבילה תנועה</li>
    </ul>
   </div>
@@ -217,7 +222,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  </div>
  <ul class="b sm">
   <li>אחרי 4 שבועות קצב ייצור הקולגן יורד ומתאזן עם הפירוק. כלי הדם החדשים נסוגים והצלקת מחווירה</li>
-  <li>הצלקת קשיחה ופחות גמישה מעור רגיל. אין בה את הבליטות שמעגנות את האפידרמיס. לכן העור החדש נקרע בקלות</li>
+  <li>הצלקת קשיחה ופחות גמישה מעור רגיל. אין בה את הבליטות (<bdi dir="ltr">rete ridges</bdi>) שמעגנות את <span class="nw">ה-<bdi dir="ltr">epidermis</bdi></span>. לכן העור החדש נקרע בקלות</li>
   <li><b>ויטמין <bdi>C</bdi></b> נחוץ לבניית סליל הקולגן. בחסר שלו (צפדינה) כלי הדם שבירים והשיניים מתנדנדות. גם חמצן נחוץ לשלב הזה</li>
   <li>סטרואידים מעכבים ייצור קולגן</li>
  </ul>
@@ -238,7 +243,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div class="hotp"><p class="hint">👆 לחצו על אזור בפצע כדי לקרוא עליו</p>
    <div class="hzi" data-hzi="bed" hidden><b>1 · בסיס הפצע</b><p>רקמה אדומה וגרעינית היא גרנולציה: שלב השגשוג. הכיסוי הצהבהב והכהה הוא פיברין, רקמה מתה ושאריות: שלב הדלקת. פצע טוב לריפוי הוא אדום, לח ונקי. רקמה מתה מסירים (הטריה)</p></div>
    <div class="hzi" data-hzi="pw" hidden><b>2 · השוליים והעור סביב</b><p>בשוליים האפיתל מתקדם והפצע מתכווץ: שלב ההבשלה. העור הסגול והמודלק מסביב מראה שהנזק מהלחץ רחב יותר מהפצע הגלוי. בודקים גם שהעור סביב לא מתרכך מהפרשות</p></div>
-   <div class="hzi" data-hzi="sp" hidden><b>3 · נקודת לחץ נוספת</b><p>כתם כהה על בליטה גרמית נוספת: התחלה של פצע לחץ חדש. פצעי לחץ נוצרים מעל עצם (עצה, ישבן, עקבים) כשהלחץ ברקמה עולה מעל לחץ הזילוח בנימים (32 מ״מ כספית). מניעה: זיהוי מטופלים בסיכון, שינויי תנוחה קבועים, תזונה והפחתת לחץ</p></div>
+   <div class="hzi" data-hzi="sp" hidden><b>3 · נקודת לחץ נוספת</b><p>כתם כהה על בליטה גרמית נוספת: התחלה של פצע לחץ חדש. פצעי לחץ נוצרים מעל עצם (<bdi dir="ltr">sacrum</bdi>, <bdi dir="ltr">ischial tuberosity</bdi>, עקבים) כשהלחץ ברקמה עולה מעל לחץ הזילוח בנימים (32 מ״מ כספית). מניעה: זיהוי מטופלים בסיכון, שינויי תנוחה קבועים, תזונה והפחתת לחץ</p></div>
   </div></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 23 עמ׳ <bdi dir="ltr">88</bdi> · פרק 45 עמ׳ <bdi dir="ltr">503, 526</bdi></span><span>צילום: <bdi>Ahmed Shawky Mohammedin, MD</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></span></div>
 </div></section>
@@ -249,13 +254,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div class="flow">
    <div><b>חמצן ודם</b><span>ייצור קולגן נפגע כשהחמצן ברקמה יורד מתחת ל-40 מ״מ כספית. בפצע כרוני: <bdi dir="ltr">5–20</bdi>, לעומת <bdi dir="ltr">35–50</bdi> ברקמה בריאה</span></div>
-   <div><b>עישון</b><span>מוריד את זרימת הדם לפצע ב-<bdi dir="ltr">30–40%</bdi>. ממליצים להפסיק <bdi dir="ltr">4–6</bdi> שבועות לפני ניתוח מתוכנן</span></div>
+   <div><b>עישון</b><span>מוריד את זרימת הדם לפצע <span class="nw">ב-<bdi dir="ltr">30–40%</bdi></span>. ממליצים להפסיק <bdi dir="ltr">4–6</bdi> שבועות לפני ניתוח מתוכנן</span></div>
    <div><b>סוכרת</b><span>מחלת כלי דם, נוירופתיה שגורמת לפגיעות חוזרות, חיסון חלש וקולגן שביר</span></div>
    <div><b>זיהום</b><span>מאריך את הדלקת</span></div>
    <div><b>קרינה</b><span>פוגעת בתאים מתחלקים ובכלי דם קטנים: עור דק, פיברוטי ופצעים שלא נסגרים</span></div>
   </div>
   <div class="flow">
-   <div><b>גיל</b><span>תחלופת תאי העור איטית ב-<bdi dir="ltr">50%</bdi>, פחות קולגן וכלי דם. יותר פתיחת פצעים</span></div>
+   <div><b>גיל</b><span>תחלופת תאי העור איטית <span class="nw">ב-<bdi dir="ltr">50%</bdi></span>, פחות קולגן וכלי דם. יותר פתיחת פצעים</span></div>
    <div><b>תזונה</b><span>אלבומין מתחת ל-2: פתיחת פצעים. חסר ויטמין <bdi>C</bdi>, <bdi>A</bdi> ואבץ</span></div>
    <div><b>סטרואידים</b><span>פחות גרנולציה וקולגן. ויטמין <bdi>A</bdi> מבטל חלק מההשפעה</span></div>
    <div><b>כימותרפיה</b><span>במיוחד כשניתנת לפני הניתוח. גם טמוקסיפן</span></div>
@@ -280,7 +285,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   </div>
   <div style="display:grid;gap:10px;align-content:start">
    <div class="box r"><b class="t">כיב <bdi>Marjolin</bdi></b>סרטן תאי קשקש שמתפתח בפצע כרוני, בצלקת כוויה, בפצע לחץ או בכיב ורידי. פצע כרוני שנראה לא רגיל: ביופסיה</div>
-   <div class="box a"><b class="t">רגל סוכרתית</b>כ-<bdi dir="ltr">15%</bdi> מחולי הסוכרת יפתחו כיב ברגל. הכיב קודם ליותר מ-<bdi dir="ltr">80%</bdi> מהקטיעות שקשורות לסוכרת</div>
+   <div class="box a"><b class="t">רגל סוכרתית</b><span class="nw">כ-<bdi dir="ltr">15%</bdi></span> מחולי הסוכרת יפתחו כיב ברגל. הכיב קודם ליותר <span class="nw">מ-<bdi dir="ltr">80%</bdi></span> מהקטיעות שקשורות לסוכרת</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 23 עמ׳ <bdi dir="ltr">100–103, 105</bdi> · פרק 45 עמ׳ <bdi dir="ltr">509–515</bdi></span><span>פצע כרוני</span></div>
@@ -291,11 +296,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>לחץ, מחלת ורידים או מחלת עורקים?</h2>
  <div class="grid f">
   <div class="flow">
-   <div><b>פצע לחץ</b><span>מעל בליטה גרמית: עצה, עצם הישיבה, עקבים. מבוגרים ומרותקים. גם חיכוך, גזירה, לחות ותת-תזונה. טיפול: הורדת לחץ, תזונה, ניידות. בסוף אפשר לסגור בכיסוי ממקום אחר (מתלה)</span></div>
-   <div><b>כיב ורידי</b><span>הכיב השכיח ברגל. מסתמים שלא נסגרים ומשאבת שוק שנכשלה. דליות, דלקת עור ושינוי צבע חום. גרבי לחץ והרמת רגל. טיפול בדליות עם מומחה כלי דם</span></div>
+   <div><b>פצע לחץ</b><span>מעל בליטה גרמית: <bdi dir="ltr">sacrum</bdi>, <bdi dir="ltr">ischial tuberosity</bdi>, עקבים. מבוגרים ומרותקים. גם חיכוך, גזירה, לחות ותת-תזונה. טיפול: הורדת לחץ, תזונה, ניידות. בסוף אפשר לסגור בכיסוי ממקום אחר (מתלה)</span></div>
+   <div><b>כיב ורידי</b><span>הכיב השכיח ברגל. <span class="nw">ה-<bdi dir="ltr">venous valves</bdi></span> לא נסגרים <span class="nw">וה-<bdi dir="ltr">calf muscle pump</bdi></span> נכשלה. דליות, דלקת עור ושינוי צבע חום. גרבי לחץ והרמת רגל. טיפול בדליות עם מומחה כלי דם</span></div>
    <div><b>כיב עורקי</b><span>בהונות, צד כף הרגל, קרסול ושוק. חד-גבולות, עמוק וחיוור, עור דק בלי שיער, מילוי נימי איטי ויחס לחץ קרסול-זרוע נמוך. הפניה דחופה למנתח כלי דם: בלי זרימה הוא לא ייסגר</span></div>
   </div>
-  <figure><img src="img/venous-ulcer-riehl1925.jpg" alt="ציור אטלס צבעוני של רגל עם דליות וכיב מעל הקרסול הפנימי"><figcaption>כיב ורידי מעל הקרסול הפנימי ודליות בשוק · <bdi>Riehl &amp; Zumbusch, Atlas der Hautkrankheiten</bdi> (1925), לוח 60, <bdi>Licence Ouverte</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/venous-ulcer-riehl1925.jpg" alt="ציור אטלס צבעוני של רגל עם דליות וכיב מעל ה-medial malleolus"><figcaption>כיב ורידי מעל <span class="nw">ה-<bdi dir="ltr">medial malleolus</bdi></span> ודליות בשוק · <bdi>Riehl &amp; Zumbusch, Atlas der Hautkrankheiten</bdi> (1925), לוח 60, <bdi>Licence Ouverte</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 45 עמ׳ <bdi dir="ltr">526</bdi></span><span>כיבים</span></div>
 </div></section>
@@ -310,7 +315,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <div><b>מהלך</b><span>היפרטרופית: לרוב נסוגה. קלואיד: נשאר</span></div>
     <div><b>איפה</b><span>היפרטרופית: אזורי מתח (גב, חזה, כתפיים, מפרקים). קלואיד: תנוך האוזן, כתפיים, חזה, גב, לחיים</span></div>
     <div><b>מי</b><span>קלואיד: נטייה גנטית, <bdi dir="ltr">15–20%</bdi> בעור כהה</span></div>
-    <div><b>טיפול</b><span>סיליקון ולחץ. זריקות סטרואיד לתוך הצלקת כל <bdi dir="ltr">2–4</bdi> שבועות: <bdi dir="ltr">50–100%</bdi> מגיבים, עד <bdi dir="ltr">50%</bdi> חוזרים. כריתת קלואיד לבד: חזרה ב-<bdi dir="ltr">50–100%</bdi>. קרינה מיד אחרי הכריתה מורידה חזרה ב-<bdi dir="ltr">50–95%</bdi></span></div>
+    <div><b>טיפול</b><span>סיליקון ולחץ. זריקות סטרואיד לתוך הצלקת כל <bdi dir="ltr">2–4</bdi> שבועות: <bdi dir="ltr">50–100%</bdi> מגיבים, עד <bdi dir="ltr">50%</bdi> חוזרים. כריתת קלואיד לבד: חזרה <span class="nw">ב-<bdi dir="ltr">50–100%</bdi></span>. קרינה מיד אחרי הכריתה מורידה חזרה <span class="nw">ב-<bdi dir="ltr">50–95%</bdi></span></span></div>
    </div>
   </div>
   <figure><img src="img/keloid-post-surgical.jpg" alt="קלואיד עבה בצלקת ניתוח בבטן"><figcaption>קלואיד גדול בצלקת של ניתוח בטן · <bdi>Htirgan</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi> (חתוך)</figcaption></figure>
@@ -346,7 +351,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div class="box n"><b class="t">ואקום (<bdi>NPWT</bdi>)</b>
    <ul class="b sm"><li>ספוג ולחץ שלילי מעל הפצע</li><li>מוציא בצקת והפרשות, מגדיל את זרימת הדם לעור פי 5 ומעודד גרנולציה</li><li>משמש בפצעים פתוחים, ברגל סוכרתית, בכיבים, בפצעי בטן מורכבים ומעל חתכים סגורים</li><li>מקצר אשפוז ומוזיל טיפול</li></ul></div>
   <div class="box b"><b class="t">חמצן בלחץ (<bdi>HBO</bdi>)</b>
-   <ul class="b sm"><li>חמצן 100% בלחץ של <bdi dir="ltr">1.9–2.5</bdi> אטמוספרות, <bdi dir="ltr">90–120</bdi> דקות, 5 עד 6 פעמים בשבוע</li><li>מתאים לרגל סוכרתית ולנזקי קרינה, כתוספת לטיפול. רואים שיפור אחרי <bdi dir="ltr">15–20</bdi> טיפולים</li><li>קודם פותחים את העורק החסום. חמצן מתחת לעור מתחת ל-35 מ״מ כספית = פצע חסר חמצן</li><li>סיבוך שכיח: פגיעה באוזן התיכונה. נדיר: חזה אוויר</li></ul></div>
+   <ul class="b sm"><li>חמצן 100% בלחץ של <bdi dir="ltr">1.9–2.5</bdi> אטמוספרות, <bdi dir="ltr">90–120</bdi> דקות, 5 עד 6 פעמים בשבוע</li><li>מתאים לרגל סוכרתית ולנזקי קרינה, כתוספת לטיפול. רואים שיפור אחרי <bdi dir="ltr">15–20</bdi> טיפולים</li><li>קודם פותחים את העורק החסום. חמצן מתחת לעור מתחת ל-35 מ״מ כספית = פצע חסר חמצן</li><li>סיבוך שכיח: פגיעה <span class="nw">ב-<bdi dir="ltr">middle ear</bdi></span>. נדיר: חזה אוויר</li></ul></div>
  </div>
  <div class="box b" style="margin-top:12px"><b class="t">במחלקה השבוע</b>השתתפו בהחלפת חבישה של פצע פתוח או של ואקום. תארו בכתב: מיקום, גודל, בסיס (גרנולציה, פיברין, נמק), הפרשה, שוליים ועור מסביב. הציגו לבכיר/ה</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 23 עמ׳ <bdi dir="ltr">109–110</bdi></span><span>טיפולים מתקדמים</span></div>
@@ -360,10 +365,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <p>85 מחקרים אקראיים, 16,980 מטופלים. פחות זיהום פצע (יחס סיכון 0.64), פחות פתיחה וסרומה. אבל יותר שלפוחיות ותקלות במכשיר. צריך לטפל ב-21 מטופלים כדי למנוע זיהום אחד. המסקנה: לשימוש נבחר במטופלים בסיכון, לא לכולם</p>
    <small>Patel S et al. JAMA Surg 2026;161:1024-32</small></div>
   <div class="study"><div class="y"><bdi>NEJM</bdi> 2022 · מחקר אקראי</div><b><bdi>BEST-CLI</bdi>: איך פותחים עורק לכיב עורקי?</b>
-   <p>1,830 מטופלים עם איסכמיה שמסכנת את הרגל. כשיש וריד ספינוס טוב: מעקף ניתוחי עדיף על צנתור (קטיעה, ניתוח חוזר או מוות: <bdi dir="ltr">42.6%</bdi> לעומת <bdi dir="ltr">57.4%</bdi>). בלי וריד טוב: אין הבדל</p>
+   <p>1,830 מטופלים עם איסכמיה שמסכנת את הרגל. <span class="nw">כשה-<bdi dir="ltr">great saphenous vein</bdi></span> מתאים: מעקף ניתוחי עדיף על צנתור (קטיעה, ניתוח חוזר או מוות: <bdi dir="ltr">42.6%</bdi> לעומת <bdi dir="ltr">57.4%</bdi>). בלי וריד טוב: אין הבדל</p>
    <small>Farber A et al. N Engl J Med 2022;387:2305-16</small></div>
   <div class="study"><div class="y"><bdi>JAMA</bdi> 2025 · מחקר אקראי</div><b><bdi>SUNRRISE</bdi>: ואקום בלפרוטומיה דחופה</b>
-   <p>840 מטופלים. זיהום פצע <bdi dir="ltr">28.4%</bdi> עם ואקום ו-<bdi dir="ltr">27.4%</bdi> עם חבישה רגילה. בניתוח חירום הוואקום לא מנע זיהום</p>
+   <p>840 מטופלים. זיהום פצע <bdi dir="ltr">28.4%</bdi> עם ואקום <span class="nw">ו-<bdi dir="ltr">27.4%</bdi></span> עם חבישה רגילה. בניתוח חירום הוואקום לא מנע זיהום</p>
    <small>Atherton K et al. JAMA 2025;333:853-63</small></div>
  </div>
  <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>

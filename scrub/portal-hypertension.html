@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>יתר לחץ דם פורטלי · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -82,6 +82,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -93,6 +94,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -110,6 +112,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -131,10 +136,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>1</b>מטרות הלמידה</div>
  <h2>בסוף המפגש תדעו</h2>
  <ol class="obj">
-  <li>להגדיר יתר לחץ דם פורטלי ולמיין את הסיבות: לפני הכבד, בתוך הכבד ואחריו</li>
+  <li>להגדיר יתר לחץ דם פורטלי ולמיין את הסיבות: <bdi dir="ltr">prehepatic</bdi>, <bdi dir="ltr">intrahepatic</bdi> <span class="nw">ו-<bdi dir="ltr">posthepatic</bdi></span></li>
   <li>להכיר את מסלולי המעקף בין המערכת הפורטלית לסיסטמית ואת הסימנים בבדיקה</li>
   <li>להעריך את מצב הכבד לפי <bdi>Child-Pugh</bdi> ולהכיר את מדד <bdi>MELD</bdi></li>
-  <li>לנהל דימום חריף מדליות לפי הסדר: החייאה, תרופות, אנדוסקופיה ו-<bdi>TIPS</bdi></li>
+  <li>לנהל דימום חריף מדליות לפי הסדר: החייאה, תרופות, אנדוסקופיה <span class="nw">ו-<bdi>TIPS</bdi></span></li>
   <li>להסביר את הטיפול במיימת ואת המקום של <bdi>TIPS</bdi>, שאנטים והשתלת כבד</li>
  </ol>
  <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 89 (עמ׳ <bdi dir="ltr">1255, 1267–1274</bdi>) · פרק 46 (עמ׳ <bdi dir="ltr">541–542</bdi>) · פרק 51 (עמ׳ <bdi dir="ltr">619–620</bdi>)</span><span>Scrub In · קפלן</span></div>
@@ -144,7 +149,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>2</b>הגדרה</div>
  <h2>יתר לחץ דם פורטלי במספרים</h2>
  <div class="num">
-  <div><b dir="ltr">&gt;5</b><span>מ״מ כספית: מפל לחצים בין הווריד השערי לוורידי הכבד. זו ההגדרה</span></div>
+  <div><b dir="ltr">&gt;5</b><span>מ״מ כספית: מפל לחצים בין <span class="nw">ה-<bdi dir="ltr">portal vein</bdi></span> <span class="nw">ל-<bdi dir="ltr">hepatic veins</bdi></span>. זו ההגדרה</span></div>
   <div><b dir="ltr">8–10</b><span>מ״מ כספית: מתחילים להיווצר כלי דם עוקפים</span></div>
   <div><b dir="ltr">&gt;12</b><span>מ״מ כספית: הזרימה מתהפכת ונוצרות דליות</span></div>
   <div><b dir="ltr">1/3</b><span>ממקרי המוות בשחמת נגרמים מדימום מדליות</span></div>
@@ -152,14 +157,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div>
    <ul class="b">
-    <li><b>שחמת:</b> צלקות ופקעיות התחדשות בכבד. אין לה טיפול יעיל. לכן מטפלים בעיקר ביתר הלחץ ובסיבוכיו</li>
+    <li><b>שחמת:</b> צלקות ופקעיות התחדשות <span class="nw">ב-<bdi dir="ltr">liver</bdi></span>. אין לה טיפול יעיל. לכן מטפלים בעיקר ביתר הלחץ ובסיבוכיו</li>
     <li><b>מפוצה:</b> בלי אירוע של דימום מדליות, אנצפלופתיה או מיימת. חציון הישרדות <b>מעל 12 שנה</b></li>
     <li><b>לא מפוצה:</b> אחרי אירוע כזה. חציון הישרדות <b>1.8 שנים</b> בלבד</li>
    </ul>
   </div>
   <div style="display:grid;gap:10px">
-   <div class="box"><b class="t">איך מודדים</b>צנתור של וריד הכבד עם בלון (לחץ חסום). בהערכה לפני כריתת כבד: לחץ חסום מעל 10 מ״מ כספית הוא העדות הטובה ביותר ליתר לחץ דם פורטלי. הוא גם מנבא אי-ספיקת כבד אחרי הניתוח</div>
-   <div class="box a"><b class="t">שתי סיבות לעלייה בלחץ</b>התנגדות מוגברת בכבד (צלקות וכיווץ כלי דם) וזרימה מוגברת מהמעי (מחזור דם היפרדינמי והרחבת כלי הדם בבטן)</div>
+   <div class="box"><b class="t">איך מודדים</b>צנתור של <bdi dir="ltr">hepatic vein</bdi> עם בלון (לחץ חסום). בהערכה לפני כריתת כבד: לחץ חסום מעל 10 מ״מ כספית הוא העדות הטובה ביותר ליתר לחץ דם פורטלי. הוא גם מנבא אי-ספיקת כבד אחרי הניתוח</div>
+   <div class="box a"><b class="t">שתי סיבות לעלייה בלחץ</b>התנגדות מוגברת <span class="nw">ב-<bdi dir="ltr">liver</bdi></span> (צלקות וכיווץ כלי דם) וזרימה מוגברת מהמעי (מחזור דם היפרדינמי והרחבת כלי הדם בבטן)</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 89 עמ׳ <bdi dir="ltr">1267–1268</bdi> · פרק 46 עמ׳ <bdi dir="ltr">542</bdi></span><span>הגדרה</span></div>
@@ -167,8 +172,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>3</b>אנטומיה · תמונה אינטראקטיבית</div>
- <h2>הווריד השערי ומסלולי המעקף</h2>
-<div class="hotw"><div class="hoti" style="max-width:min(100%,46vh);margin:0 auto"><img src="img/Gray591.png" alt="הווריד השערי ויובליו"><svg viewBox="0 0 491 750" preserveAspectRatio="none" style="--lw:9;--bf:13px">
+ <h2><bdi dir="ltr">portal vein</bdi> ומסלולי המעקף</h2>
+<div class="hotw"><div class="hoti" style="max-width:min(100%,46vh);margin:0 auto"><img src="img/Gray591.png" alt="ה-portal vein ויובליו"><svg viewBox="0 0 491 750" preserveAspectRatio="none" style="--lw:9;--bf:13px">
  <path class="hz ln" data-hz="pv" d="M166,163 C167,166.2 169.7,175.8 172,182 C174.3,188.2 177.2,193.3 180,200 C182.8,206.7 186.2,215.3 189,222 C191.8,228.7 194.5,234.3 197,240 C199.5,245.7 202.8,253.3 204,256" style="--c:#1F4E79;--lw:16"/>
  <path class="hz ln" data-hz="lgv" d="M206,214 C210,211.2 222,202.2 230,197 C238,191.8 245.7,186.5 254,183 C262.3,179.5 272.3,178.8 280,176 C287.7,173.2 293.7,170.2 300,166 C306.3,161.8 313.3,156.8 318,151 C322.7,145.2 326,138.2 328,131 C330,123.8 330.2,115.7 330,108 C329.8,100.3 329,92 327,85 C325,78 322.2,70.8 318,66 C313.8,61.2 304.7,57.7 302,56" style="--c:#A3402E"/>
  <path class="hz ln" data-hz="sg" d="M432,227 C430.8,224.5 426.8,217.2 425,212 C423.2,206.8 422.2,201.2 421,196 C419.8,190.8 419.5,185.7 418,181 C416.5,176.3 413,170.2 412,168 M421,196 C421.7,193.7 424,186.2 425,182 C426,177.8 426.7,172.8 427,171" style="--c:#C9893F"/>
@@ -189,17 +194,17 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <g class="hzb" style="--c:#7A5BD6"><circle cx="25" cy="42" r="11"/><text x="25" y="42">9</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="pv" hidden><b>הווריד השערי</b><p>נוצר מאחורי צוואר הלבלב מהמזנטרי העליון ומווריד הטחול. אורכו 5.5–8 ס״מ וקוטרו כ-1 ס״מ. מביא כ-75% מהדם לכבד. אין בו מסתמים. לכן הלחץ בו זהה לאורך כל המערכת. יתר לחץ דם פורטלי: מפל לחצים של יותר מ-5 מ״מ כספית בין הווריד השערי לוורידי הכבד.</p></div>
-  <div class="hzi" data-hzi="lgv" hidden><b>הווריד הקורונרי (הקיבתי השמאלי)</b><p>יחד עם הוורידים הקיבתיים הקצרים הוא מזרים דם לוורידים שמתחת לרירית בקיבה העליונה ובוושט התחתון. משם הדם עובר לווריד האזיגוס. זה המעקף החשוב ביותר: כך נוצרים <b>דליות בוושט ובקיבה</b>.</p></div>
-  <div class="hzi" data-hzi="sg" hidden><b>הוורידים הקיבתיים הקצרים</b><p>מחברים את הטחול לפונדוס של הקיבה. בפקקת של וריד הטחול (״יתר לחץ דם פורטלי שמאלי״, לרוב מפנקריאטיטיס או מגידול) הדם עוקף דרך ורידי הקיבה, בעיקר הגסטרו-אפיפלואי השמאלי. כך נוצרות דליות בקיבה. כריתת טחול לבדה פותרת את הבעיה.</p></div>
-  <div class="hzi" data-hzi="spv" hidden><b>וריד הטחול</b><p>עובר מאחורי הלבלב אל הווריד השערי. בשאנט ספלנו-רנלי דיסטלי מחברים את הקצה הדיסטלי שלו לווריד הכליה השמאלי: הדליות מתנקזות דרך הטחול. הכבד ממשיך לקבל דם מהמזנטרי העליון.</p></div>
-  <div class="hzi" data-hzi="sp" hidden><b>הטחול</b><p>ביתר לחץ דם פורטלי הטחול מוגדל ויש מיעוט טסיות. לרוב אלה לא בעיה קלינית. לכן כריתת טחול בגללן בדרך כלל מיותרת.</p></div>
-  <div class="hzi" data-hzi="smv" hidden><b>הווריד המזנטרי העליון</b><p>מנקז את המעי הדק ואת חצי המעי הגס הימני. בשאנטים לא סלקטיביים (פורטו-קבלי, מזו-קבלי) מנתבים את כל הזרימה הפורטלית למערכת הסיסטמית: הדליות נעלמות, אבל עולה הסיכון לאנצפלופתיה ולאי-ספיקת כבד.</p></div>
-  <div class="hzi" data-hzi="imv" hidden><b>הווריד המזנטרי התחתון</b><p>מתנקז לרוב לווריד הטחול. דרך הענף ההמורואידלי העליון הוא מתחבר למקלעת הוורידים של החלחולת, שם יכולים להיווצר דליות ברקטום.</p></div>
-  <div class="hzi" data-hzi="rect" hidden><b>החלחולת</b><p>אחד ממקומות המעקף בין המערכת הפורטלית לסיסטמית. ביתר לחץ דם פורטלי יכולים להופיע כאן ורידים מורחבים.</p></div>
-  <div class="hzi" data-hzi="liver" hidden><b>הכבד: איפה ההתנגדות</b><p>בשחמת מאלכוהול ההתנגדות לזרימה היא בסינוסואידים ואחריהם. מהענף השמאלי של הווריד השערי, הווריד הטבורי ברצועה העגולה נפתח מחדש ויוצר את ״ראש המדוזה״ סביב הטבור.</p></div>
+  <div class="hzi" data-hzi="pv" hidden><b><bdi dir="ltr">portal vein</bdi></b><p>נוצר מאחורי <span class="nw">ה-<bdi dir="ltr">pancreatic neck</bdi></span> <span class="nw">מה-<bdi dir="ltr">superior mesenteric vein</bdi></span> (<bdi dir="ltr">SMV</bdi>) <span class="nw">ומה-<bdi dir="ltr">splenic vein</bdi></span>. אורכו 5.5–8 ס״מ וקוטרו כ-1 ס״מ. מביא כ-75% מהדם <span class="nw">ל-<bdi dir="ltr">liver</bdi></span>. אין בו מסתמים. לכן הלחץ בו זהה לאורך כל המערכת. יתר לחץ דם פורטלי: מפל לחצים של יותר מ-5 מ״מ כספית בין <span class="nw">ה-<bdi dir="ltr">portal vein</bdi></span> <span class="nw">ל-<bdi dir="ltr">hepatic veins</bdi></span>.</p></div>
+  <div class="hzi" data-hzi="lgv" hidden><b><bdi dir="ltr">coronary vein</bdi> (<bdi dir="ltr">left gastric vein</bdi>)</b><p>יחד עם <span class="nw">ה-<bdi dir="ltr">short gastric veins</bdi></span> הוא מזרים דם לוורידים שמתחת לרירית בקיבה העליונה <span class="nw">וב-<bdi dir="ltr">esophagus</bdi></span> התחתון. משם הדם עובר <span class="nw">ל-<bdi dir="ltr">azygos vein</bdi></span>. זה המעקף החשוב ביותר: כך נוצרים <b>דליות בוושט ובקיבה</b>.</p></div>
+  <div class="hzi" data-hzi="sg" hidden><b><bdi dir="ltr">short gastric veins</bdi></b><p>מחברים את <span class="nw">ה-<bdi dir="ltr">spleen</bdi></span> <span class="nw">ל-<bdi dir="ltr">fundus</bdi></span> של הקיבה. בפקקת של <span class="nw">ה-<bdi dir="ltr">splenic vein</bdi></span> (״יתר לחץ דם פורטלי שמאלי״, לרוב מפנקריאטיטיס או מגידול) הדם עוקף דרך <span class="nw">ה-<bdi dir="ltr">gastric veins</bdi></span>, בעיקר <span class="nw">ה-<bdi dir="ltr">left gastroepiploic vein</bdi></span>. כך נוצרות דליות בקיבה. כריתת טחול לבדה פותרת את הבעיה.</p></div>
+  <div class="hzi" data-hzi="spv" hidden><b><bdi dir="ltr">splenic vein</bdi></b><p>עובר מאחורי <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span> אל <span class="nw">ה-<bdi dir="ltr">portal vein</bdi></span>. בשאנט ספלנו-רנלי דיסטלי מחברים את הקצה הדיסטלי שלו <span class="nw">ל-<bdi dir="ltr">left renal vein</bdi></span>: הדליות מתנקזות דרך <span class="nw">ה-<bdi dir="ltr">spleen</bdi></span>. <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> ממשיך לקבל דם <span class="nw">מה-<bdi dir="ltr">SMV</bdi></span>.</p></div>
+  <div class="hzi" data-hzi="sp" hidden><b><bdi dir="ltr">spleen</bdi></b><p>ביתר לחץ דם פורטלי <span class="nw">ה-<bdi dir="ltr">spleen</bdi></span> מוגדל ויש מיעוט טסיות. לרוב אלה לא בעיה קלינית. לכן כריתת טחול בגללן בדרך כלל מיותרת.</p></div>
+  <div class="hzi" data-hzi="smv" hidden><b><bdi dir="ltr">superior mesenteric vein</bdi> (<bdi dir="ltr">SMV</bdi>)</b><p>מנקז את המעי הדק ואת חצי המעי הגס הימני. בשאנטים לא סלקטיביים (פורטו-קבלי, מזו-קבלי) מנתבים את כל הזרימה הפורטלית למערכת הסיסטמית: הדליות נעלמות, אבל עולה הסיכון לאנצפלופתיה ולאי-ספיקת כבד.</p></div>
+  <div class="hzi" data-hzi="imv" hidden><b><bdi dir="ltr">inferior mesenteric vein</bdi> (<bdi dir="ltr">IMV</bdi>)</b><p>מתנקז לרוב <span class="nw">ל-<bdi dir="ltr">splenic vein</bdi></span>. דרך <span class="nw">ה-<bdi dir="ltr">superior rectal vein</bdi></span> הוא מתחבר <span class="nw">ל-<bdi dir="ltr">rectal venous plexus</bdi></span>, שם יכולים להיווצר דליות ברקטום.</p></div>
+  <div class="hzi" data-hzi="rect" hidden><b><bdi dir="ltr">rectum</bdi></b><p>אחד ממקומות המעקף בין המערכת הפורטלית לסיסטמית. ביתר לחץ דם פורטלי יכולים להופיע כאן ורידים מורחבים.</p></div>
+  <div class="hzi" data-hzi="liver" hidden><b><bdi dir="ltr">liver</bdi>: איפה ההתנגדות</b><p>בשחמת מאלכוהול ההתנגדות לזרימה היא בסינוסואידים ואחריהם. מהענף השמאלי של <span class="nw">ה-<bdi dir="ltr">portal vein</bdi></span>, <span class="nw">ה-<bdi dir="ltr">umbilical vein</bdi></span> <span class="nw">ב-<bdi dir="ltr">ligamentum teres</bdi></span> נפתח מחדש ויוצר את ״ראש המדוזה״ סביב הטבור.</p></div>
  </div></div>
- <p style="font-size:12px;color:var(--muted);margin:6px 0 0">הווריד השערי ויובליו, מבט מלפנים · <bdi>Gray's Anatomy</bdi> (1918), איור 591 (נחלת הכלל)</p>
+ <p style="font-size:12px;color:var(--muted);margin:6px 0 0"><bdi dir="ltr">portal vein</bdi> ויובליו, מבט מלפנים · <bdi>Gray's Anatomy</bdi> (1918), איור 591 (נחלת הכלל)</p>
  <div class="src"><span><b>Sabiston 22</b> · פרק 89 עמ׳ <bdi dir="ltr">1255, 1267–1268, 1271–1272</bdi></span><span>אנטומיה</span></div>
 </div></section>
 
@@ -208,13 +213,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>איפה הלחץ "בורח"</h2>
  <div class="grid">
   <div class="flow">
-   <div><b>קיבה ווושט</b><span>הקורונרי והקיבתיים הקצרים אל האזיגוס: <b>דליות בוושט ובקיבה</b>. החשוב ביותר קלינית</span></div>
-   <div><b>טבור</b><span>הווריד הטבורי נפתח מחדש מהענף השמאלי של הווריד השערי אל ורידי דופן הבטן: <b>ראש מדוזה</b></span></div>
-   <div><b>חלחולת</b><span>מהמזנטרי התחתון דרך הוורידים ההמורואידליים: דליות וטחורים גדולים</span></div>
-   <div><b>רטרופריטונאום</b><span>כלי דם עוקפים מאחורי הצפק. הופכים ניתוח בבטן למסוכן</span></div>
+   <div><b>קיבה <span class="nw">ו-<bdi dir="ltr">esophagus</bdi></span></b><span><span class="nw">ה-<bdi dir="ltr">coronary vein</bdi></span> <span class="nw">וה-<bdi dir="ltr">short gastric veins</bdi></span> אל <span class="nw">ה-<bdi dir="ltr">azygos vein</bdi></span>: <b>דליות בוושט ובקיבה</b>. החשוב ביותר קלינית</span></div>
+   <div><b><bdi dir="ltr">umbilicus</bdi></b><span><span class="nw">ה-<bdi dir="ltr">umbilical vein</bdi></span> נפתח מחדש מהענף השמאלי של <span class="nw">ה-<bdi dir="ltr">portal vein</bdi></span> אל ורידי דופן הבטן: <b>ראש מדוזה</b></span></div>
+   <div><b><bdi dir="ltr">rectum</bdi></b><span><span class="nw">מה-<bdi dir="ltr">IMV</bdi></span> דרך <span class="nw">ה-<bdi dir="ltr">hemorrhoidal veins</bdi></span>: דליות וטחורים גדולים</span></div>
+   <div><b><bdi dir="ltr">retroperitoneum</bdi></b><span>כלי דם עוקפים <bdi dir="ltr">retroperitoneal</bdi>. הופכים ניתוח בבטן למסוכן</span></div>
   </div>
   <div style="display:grid;gap:10px">
-   <div class="box n"><b class="t">גם בתוך הכבד</b>חלק מהזרימה עוקף את תאי הכבד דרך שאנטים בתוך הכבד. כשזרימת הדם הפורטלי לכבד יורדת, הזרימה בעורק הכבד עולה (תגובת חיץ)</div>
+   <div class="box n"><b class="t">גם בתוך <span class="nw">ה-<bdi dir="ltr">liver</bdi></span></b>חלק מהזרימה עוקף את <span class="nw">ה-<bdi dir="ltr">hepatocytes</bdi></span> דרך שאנטים <bdi dir="ltr">intrahepatic</bdi>. כשזרימת הדם הפורטלי <span class="nw">ל-<bdi dir="ltr">liver</bdi></span> יורדת, הזרימה <span class="nw">ב-<bdi dir="ltr">hepatic artery</bdi></span> עולה (תגובת חיץ)</div>
    <div class="box a"><b class="t">למה זה חשוב לכירורג</b>כל מעקף כזה הוא כלי דם בלחץ גבוה. בניתוח במטופל עם שחמת: הדבקויות מדממות, דימום מהדופן ומהרטרופריטונאום</div>
   </div>
  </div>
@@ -224,21 +229,21 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>5</b>סיבות</div>
- <h2>לפני, בתוך או אחרי הכבד</h2>
+ <h2><bdi dir="ltr">prehepatic</bdi>, <bdi dir="ltr">intrahepatic</bdi> או <bdi dir="ltr">posthepatic</bdi></h2>
  <div class="grid g3">
-  <div class="box b"><b class="t">לפני הכבד</b>
+  <div class="box b"><b class="t"><bdi dir="ltr">prehepatic</bdi></b>
    <ul class="b sm">
-    <li><b>פקקת בווריד השערי:</b> הסיבה השכיחה. כ-50% מהמקרים בילדים. נוצרים כלי דם עוקפים אל הכבד ("טרנספורמציה קברנוזית")</li>
-    <li><b>פקקת בווריד הטחול בלבד:</b> לרוב מפנקריאטיטיס או גידול. דליות בקיבה, לחץ פורטלי תקין. <b>כריתת טחול מרפאת</b></li>
+    <li><b>פקקת <span class="nw">ב-<bdi dir="ltr">portal vein</bdi></span>:</b> הסיבה השכיחה. כ-50% מהמקרים בילדים. נוצרים כלי דם עוקפים אל <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> ("טרנספורמציה קברנוזית")</li>
+    <li><b>פקקת <span class="nw">ב-<bdi dir="ltr">splenic vein</bdi></span> בלבד:</b> לרוב מפנקריאטיטיס או גידול. דליות בקיבה, לחץ פורטלי תקין. <b>כריתת טחול מרפאת</b></li>
    </ul></div>
-  <div class="box"><b class="t">בתוך הכבד</b>
+  <div class="box"><b class="t"><bdi dir="ltr">intrahepatic</bdi></b>
    <ul class="b sm">
     <li><b>לפני הסינוסואידים:</b> הסיבה השכיחה היא שיסטוזומיאזיס. גם חלק מסוגי השחמת שאינם מאלכוהול</li>
-    <li><b>בסינוסואידים ואחריהם:</b> שחמת מאלכוהול, הסיבה השכיחה בארה״ב. קולגן בחלל <bdi>Disse</bdi> ופקעיות שלוחצות על ורידי הכבד הקטנים</li>
+    <li><b>בסינוסואידים ואחריהם:</b> שחמת מאלכוהול, הסיבה השכיחה בארה״ב. קולגן <span class="nw">ב-<bdi dir="ltr">space of Disse</bdi></span> ופקעיות שלוחצות על <span class="nw">ה-<bdi dir="ltr">hepatic veins</bdi></span> הקטנים</li>
    </ul></div>
-  <div class="box a"><b class="t">אחרי הכבד (נדיר)</b>
+  <div class="box a"><b class="t"><bdi dir="ltr">posthepatic</bdi> (נדיר)</b>
    <ul class="b sm">
-    <li>תסמונת <bdi>Budd-Chiari</bdi> (פקקת בוורידי הכבד)</li>
+    <li>תסמונת <bdi>Budd-Chiari</bdi> (פקקת <span class="nw">ב-<bdi dir="ltr">hepatic veins</bdi></span>)</li>
     <li>פריקרדיטיס מכווצת, אי-ספיקת לב</li>
     <li>נדיר: רק זרימה מוגברת (טחול ענק, פיסטולה עורקית-ורידית בבטן)</li>
    </ul></div>
@@ -267,7 +272,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <div><b>דרגה 2</b><span>בינונית: הבטן תפוחה</span></div>
     <div><b>דרגה 3</b><span>קשה: בטן מתוחה עם גל נוזל</span></div>
    </div>
-   <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>בדקו מטופל/ת עם שחמת או מיימת: חפשו את הסימנים ברשימה, הקישו על הבטן לחיפוש עמימות משתנה ובדקו גל נוזל. חשבו את ה-<bdi>Child-Pugh</bdi> והציגו לבכיר/ה</div>
+   <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>בדקו מטופל/ת עם שחמת או מיימת: חפשו את הסימנים ברשימה, הקישו על הבטן לחיפוש עמימות משתנה ובדקו גל נוזל. חשבו את <span class="nw">ה-<bdi>Child-Pugh</bdi></span> והציגו לבכיר/ה</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 46 עמ׳ <bdi dir="ltr">541–542</bdi> · פרק 89 עמ׳ <bdi dir="ltr">1267</bdi></span><span>בדיקה</span></div>
@@ -277,11 +282,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>להסתכל, למשש ולהקיש</h2>
  <div class="grid">
   <figure><img src="img/ascites-cirrhosis.jpg" alt="בטן תפוחה עם מיימת"><figcaption>מיימת גדולה בשחמת: בטן מתוחה, הטבור בולט ורואים ורידים מורחבים בדופן · <bdi>James Heilman, MD</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
-  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש הכבד בשתי ידיים"><figcaption>מישוש הכבד בשתי ידיים: יד אחת מאחור תומכת, השנייה ממששת מתחת לקשת הצלעות הימנית · <bdi>Musser, A Practical Treatise on Medical Diagnosis</bdi> (1904), איור 192 (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש ה-liver בשתי ידיים"><figcaption>מישוש <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> בשתי ידיים: יד אחת מאחור תומכת, השנייה ממששת מתחת <span class="nw">ל-<bdi dir="ltr">right costal margin</bdi></span> · <bdi>Musser, A Practical Treatise on Medical Diagnosis</bdi> (1904), איור 192 (נחלת הכלל)</figcaption></figure>
  </div>
  <div class="flow" style="margin-top:12px">
   <div><b>הסתכלות</b><span>צהבת, בטן תפוחה, טבור בולט, כלי דם מורחבים בדופן הבטן ("ראש מדוזה"), "עכבישים" בעור, גינקומסטיה</span></div>
-  <div><b>מישוש</b><span>שולי הכבד מתחת לקשת הצלעות הימנית. טחול מוגדל בצד שמאל</span></div>
+  <div><b>מישוש</b><span>שולי <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> מתחת <span class="nw">ל-<bdi dir="ltr">right costal margin</bdi></span>. טחול מוגדל בצד שמאל</span></div>
   <div><b>הקשה</b><span>עמימות בצדדים שזזה כשהמטופל מסתובב על הצד. בבטן מתוחה: גל נוזל (מיימת דרגה 3)</span></div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 46 עמ׳ <bdi dir="ltr">541–542</bdi> · פרק 89 עמ׳ <bdi dir="ltr">1255, 1267</bdi> · טכניקת הבדיקה: כללית</span><span>בדיקה</span></div>
@@ -289,8 +294,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 
 <section class="s"><div class="card">
- <div class="kick"><b>8</b>מה הכבד יכול לשאת</div>
- <h2><bdi>Child-Pugh</bdi> ו-<bdi>MELD</bdi></h2>
+ <div class="kick"><b>8</b>מה <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> יכול לשאת</div>
+ <h2><bdi>Child-Pugh</bdi> <span class="nw">ו-<bdi>MELD</bdi></span></h2>
  <div class="grid">
   <div>
    <h3><bdi>Child-Pugh</bdi> · 5 פרמטרים, 1–3 נקודות כל אחד</h3>
@@ -304,9 +309,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <p style="font-size:14.5px;margin:8px 0 0"><b>A</b>: 5–6 נקודות · <b>B</b>: 7–9 · <b>C</b>: 10–15</p>
   </div>
   <div style="display:grid;gap:10px">
-   <div class="box"><b class="t">מה זה אומר</b>הישרדות לשנה: 100% ב-<bdi>A</bdi>, 45% ב-<bdi>C</bdi>. תמותה אחרי ניתוח שאינו בכבד: 10% ב-<bdi>A</bdi>, 63% ב-<bdi>C</bdi></div>
-   <div class="box b"><b class="t"><bdi>MELD</bdi></b>נבנה לחזות תמותה אחרי <bdi>TIPS</bdi>. משתנים אובייקטיביים: בילירובין, <bdi>INR</bdi> וקראטינין (וב-<bdi>MELD-Na</bdi> גם נתרן). משמש להשתלות ולהערכת סיכון בניתוח. מתחת ל-16: תמותה נמוכה יותר אחרי ניתוח</div>
-   <div class="box a"><b class="t">ניתוח מתוכנן</b><bdi>Child A</bdi> בלי יתר לחץ דם פורטלי משמעותי: אפשר. <bdi>Child B</bdi> ו-<bdi>C</bdi>: בדרך כלל לא מנתחים באופן מתוכנן</div>
+   <div class="box"><b class="t">מה זה אומר</b>הישרדות לשנה: 100% <span class="nw">ב-<bdi>A</bdi></span>, 45% <span class="nw">ב-<bdi>C</bdi></span>. תמותה אחרי ניתוח שאינו בכבד: 10% <span class="nw">ב-<bdi>A</bdi></span>, 63% <span class="nw">ב-<bdi>C</bdi></span></div>
+   <div class="box b"><b class="t"><bdi>MELD</bdi></b>נבנה לחזות תמותה אחרי <bdi>TIPS</bdi>. משתנים אובייקטיביים: בילירובין, <bdi>INR</bdi> וקראטינין (<span class="nw">וב-<bdi>MELD-Na</bdi></span> גם נתרן). משמש להשתלות ולהערכת סיכון בניתוח. מתחת ל-16: תמותה נמוכה יותר אחרי ניתוח</div>
+   <div class="box a"><b class="t">ניתוח מתוכנן</b><bdi>Child A</bdi> בלי יתר לחץ דם פורטלי משמעותי: אפשר. <bdi>Child B</bdi> <span class="nw">ו-<bdi>C</bdi></span>: בדרך כלל לא מנתחים באופן מתוכנן</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 89 עמ׳ <bdi dir="ltr">1267</bdi> (טבלה 89.2) · פרק 46 עמ׳ <bdi dir="ltr">541</bdi> · פרק 51 עמ׳ <bdi dir="ltr">619</bdi></span><span>הערכה</span></div>
@@ -346,8 +351,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div><b>5 · ניתוח</b><span>רק כשאין <bdi>TIPS</bdi> או שנכשל. תמותה מעל 25% בניתוח דחוף</span></div>
   </div>
   <div style="display:grid;gap:10px">
-   <div class="box r"><b class="t">הסיכון למות</b>תלוי בעיקר בכבד: עם תפקוד כבד תקין (פקקת פורטלית) כמעט לא מתים מדימום. ב-<bdi>Child C</bdi> התמותה יכולה לעבור 50%. הסיכון לדימום חוזר גבוה בימים הראשונים ויורד עד 6 שבועות</div>
-   <div class="box a"><b class="t">בלון הלחץ</b>עוצר מיד יותר מ-85% מהדימומים, אבל עד 50% מדממים שוב כשמרוקנים אותו. מכניסים כ-50 ס״מ, מנפחים את הבלון הקיבתי ב-100 סמ״ק אוויר, מאשרים בצילום שהוא מתחת לסרעפת. אחר כך ממלאים עד הנפח המלא ומותחים. עד 24–48 שעות: סכנה לאיסכמיה ולניקוב של הוושט</div>
+   <div class="box r"><b class="t">הסיכון למות</b>תלוי בעיקר בכבד: עם תפקוד כבד תקין (פקקת פורטלית) כמעט לא מתים מדימום. <span class="nw">ב-<bdi>Child C</bdi></span> התמותה יכולה לעבור 50%. הסיכון לדימום חוזר גבוה בימים הראשונים ויורד עד 6 שבועות</div>
+   <div class="box a"><b class="t">בלון הלחץ</b>עוצר מיד יותר מ-85% מהדימומים, אבל עד 50% מדממים שוב כשמרוקנים אותו. מכניסים כ-50 ס״מ, מנפחים את הבלון הקיבתי ב-100 סמ״ק אוויר, מאשרים בצילום שהוא מתחת <span class="nw">ל-<bdi dir="ltr">diaphragm</bdi></span>. אחר כך ממלאים עד הנפח המלא ומותחים. עד 24–48 שעות: סכנה לאיסכמיה ולניקוב של <span class="nw">ה-<bdi dir="ltr">esophagus</bdi></span></div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 89 עמ׳ <bdi dir="ltr">1268–1270</bdi> · פרק 46 עמ׳ <bdi dir="ltr">542</bdi></span><span>דימום חריף</span></div>
@@ -358,7 +363,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid g3">
  <figure><img src="img/varices-bleeding.png" alt="דליות מדממות בוושט"><figcaption>דליות בוושט בזמן דימום פעיל, במבט אנדוסקופי · <bdi>Jeremias</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  <figure><img src="img/varices-band-ligation.jpg" alt="קשירת דליה בגומייה"><figcaption>קשירה בגומייה: הדליה נשאבת לתוך הכובע שבקצה האנדוסקופ. עליה משתחררת טבעת גומי · <bdi>J. Guntau</bdi>, שימוש חופשי, <bdi>Wikimedia Commons</bdi></figcaption></figure>
- <figure><img src="img/caput-medusae.jpg" alt="ראש מדוזה"><figcaption>ראש מדוזה: ורידים מורחבים סביב הטבור ביתר לחץ דם פורטלי · <bdi>Pei-Ming Yang, MD</bdi> ו-<bdi>Ding-Shinn Chen, MD</bdi>, <bdi>Wikimedia Commons</bdi> (בייחוס)</figcaption></figure>
+ <figure><img src="img/caput-medusae.jpg" alt="ראש מדוזה"><figcaption>ראש מדוזה: ורידים מורחבים סביב הטבור ביתר לחץ דם פורטלי · <bdi>Pei-Ming Yang, MD</bdi> <span class="nw">ו-<bdi>Ding-Shinn Chen, MD</bdi></span>, <bdi>Wikimedia Commons</bdi> (בייחוס)</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 89 עמ׳ <bdi dir="ltr">1255, 1269–1270</bdi></span><span>תמונות</span></div>
 </div></section>
@@ -388,14 +393,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div class="box b"><b class="t"><bdi>TIPS</bdi></b>
    <ul class="b sm">
-    <li>דרך וריד הצוואר הימני אל וריד הכבד. משם במחט דרך רקמת הכבד אל הווריד השערי. סטנט מחבר ביניהם: שאנט צד-לצד בלי ניתוח</li>
+    <li>דרך <span class="nw">ה-<bdi dir="ltr">right internal jugular vein</bdi></span> אל <bdi dir="ltr">hepatic vein</bdi>. משם במחט דרך רקמת <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> אל <span class="nw">ה-<bdi dir="ltr">portal vein</bdi></span>. סטנט מחבר ביניהם: שאנט צד-לצד בלי ניתוח</li>
     <li>עוצר דימום כמעט תמיד. טוב גם למיימת עמידה</li>
     <li>חסרונות: אנצפלופתיה. היצרות או חסימה של השאנט (עד 50% בשנה הראשונה). פחות עם סטנטים מצופים</li>
     <li>לא מתאים: אי-ספיקת לב, <bdi>MELD</bdi> מעל 18</li>
    </ul></div>
   <div style="display:grid;gap:10px">
-   <div class="box n"><b class="t">שאנט לא סלקטיבי</b>פורטו-קבלי, מזו-קבלי, ספלנו-רנלי רגיל. מנקז את כל הזרימה הפורטלית: הדליות נעלמות, אבל יותר אנצפלופתיה ואי-ספיקת כבד. היום כמעט רק כש-<bdi>TIPS</bdi> לא אפשרי או נכשל</div>
-   <div class="box"><b class="t">שאנט סלקטיבי: ספלנו-רנלי דיסטלי (<bdi>Warren</bdi>)</b>וריד הטחול לווריד הכליה השמאלי, עם קשירת הקורונרי. הדליות מתנקזות. הכבד ממשיך לקבל דם מהמעי. מול <bdi>TIPS</bdi>: דימום חוזר 6% לעומת 11%, אבל התערבויות חוזרות 11% לעומת 82%</div>
+   <div class="box n"><b class="t">שאנט לא סלקטיבי</b>פורטו-קבלי, מזו-קבלי, ספלנו-רנלי רגיל. מנקז את כל הזרימה הפורטלית: הדליות נעלמות, אבל יותר אנצפלופתיה ואי-ספיקת כבד. היום כמעט רק <span class="nw">כש-<bdi>TIPS</bdi></span> לא אפשרי או נכשל</div>
+   <div class="box"><b class="t">שאנט סלקטיבי: ספלנו-רנלי דיסטלי (<bdi>Warren</bdi>)</b><bdi dir="ltr">splenic vein</bdi> <span class="nw">ל-<bdi dir="ltr">left renal vein</bdi></span>, עם קשירת <span class="nw">ה-<bdi dir="ltr">coronary vein</bdi></span>. הדליות מתנקזות. <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> ממשיך לקבל דם מהמעי. מול <bdi>TIPS</bdi>: דימום חוזר 6% לעומת 11%, אבל התערבויות חוזרות 11% לעומת 82%</div>
    <div class="box a"><b class="t">מגמה</b>יותר <bdi>TIPS</bdi>, אנדוסקופיה והשתלות. ניתוחי שאנט הולכים ונעלמים. כמעט אין ניתוחי חירום</div>
   </div>
  </div>
@@ -406,12 +411,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>איך עושים <bdi>TIPS</bdi></h2>
  <div class="grid f">
  <div class="flow">
-  <div><b>1 · גישה</b><span>דרך וריד הצוואר הפנימי הימני אל הווריד הנבוב התחתון ווריד הכבד הימני</span></div>
-  <div><b>2 · מפה</b><span>צנתר נתקע בענף של וריד הכבד. מזריקים גז <bdi>CO2</bdi> כדי לראות את מערכת הפורטל</span></div>
-  <div><b>3 · ניקור</b><span>מחט עוברת מדופן וריד הכבד דרך רקמת הכבד אל הווריד השערי הימני. מוודאים שלא נפגעו צינור מרה או עורק</span></div>
-  <div><b>4 · סטנט</b><span>סטנט מחבר בין הווריד השערי לווריד הכבד: הלחץ יורד והדליות מתרוקנות</span></div>
+  <div><b>1 · גישה</b><span>דרך <span class="nw">ה-<bdi dir="ltr">right internal jugular vein</bdi></span> אל <span class="nw">ה-<bdi dir="ltr">IVC</bdi></span> <span class="nw">ו-<bdi dir="ltr">right hepatic vein</bdi></span></span></div>
+  <div><b>2 · מפה</b><span>צנתר נתקע בענף של <bdi dir="ltr">hepatic vein</bdi>. מזריקים גז <bdi>CO2</bdi> כדי לראות את <span class="nw">ה-<bdi dir="ltr">portal system</bdi></span></span></div>
+  <div><b>3 · ניקור</b><span>מחט עוברת מדופן <span class="nw">ה-<bdi dir="ltr">hepatic vein</bdi></span> דרך רקמת <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> אל <span class="nw">ה-<bdi dir="ltr">right portal vein</bdi></span>. מוודאים שלא נפגעו <bdi dir="ltr">bile duct</bdi> או עורק</span></div>
+  <div><b>4 · סטנט</b><span>סטנט מחבר בין <span class="nw">ה-<bdi dir="ltr">portal vein</bdi></span> <span class="nw">ל-<bdi dir="ltr">hepatic vein</bdi></span>: הלחץ יורד והדליות מתרוקנות</span></div>
  </div>
- <figure><img src="img/tips-schematic.jpg" alt="שלבי TIPS"><figcaption>שלבי <bdi>TIPS</bdi>: (<bdi>A</bdi>) דליות מהקורונרי ומהווריד הטבורי, (<bdi>B</bdi>) ניקור מווריד הכבד לווריד השערי, (<bdi>C</bdi>) הרחבה בבלון, (<bdi>D</bdi>) סטנט במקום · <bdi>R. Torrance Andrews, MD</bdi>, <bdi>CC BY 1.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ <figure><img src="img/tips-schematic.jpg" alt="שלבי TIPS"><figcaption>שלבי <bdi>TIPS</bdi>: (<bdi>A</bdi>) דליות <span class="nw">מה-<bdi dir="ltr">coronary vein</bdi></span> <span class="nw">ומה-<bdi dir="ltr">umbilical vein</bdi></span>, (<bdi>B</bdi>) ניקור <span class="nw">מ-<bdi dir="ltr">hepatic vein</bdi></span> <span class="nw">ל-<bdi dir="ltr">portal vein</bdi></span>, (<bdi>C</bdi>) הרחבה בבלון, (<bdi>D</bdi>) סטנט במקום · <bdi>R. Torrance Andrews, MD</bdi>, <bdi>CC BY 1.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 89 עמ׳ <bdi dir="ltr">1271</bdi> · פרק 46 עמ׳ <bdi dir="ltr">542</bdi></span><span>תמונות</span></div>
 </div></section>
@@ -426,11 +431,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li>לנתח באופן מתוכנן רק כשמחלת הכבד מאוזנת. בכל מקרה: הפטולוג מוקדם, צוות מנוסה</li>
     <li>לפני הניתוח: לשלוט במיימת, לטפל בדליות ובאנצפלופתיה</li>
     <li>בניתוחי כבד, יתר לחץ דם פורטלי משמעותי מכפיל את התמותה ומשלש את הסיבוכים</li>
-    <li>להעריך אותו לפי לחץ חסום בוורידי הכבד או דליות, לא לפי טחול גדול או טסיות נמוכות</li>
+    <li>להעריך אותו לפי לחץ חסום <span class="nw">ב-<bdi dir="ltr">hepatic veins</bdi></span> או דליות, לא לפי טחול גדול או טסיות נמוכות</li>
    </ul>
   </div>
   <div style="display:grid;gap:10px">
-   <div class="box a"><b class="t">דוגמה: בקע טבורי עם מיימת</b>בקעים בדופן הבטן ב-20–40% מהחולים בשחמת. ניתוח דחוף: 60% תחלואה ותמותה, 10% תמותה ב-90 יום. ניתוח מתוכנן: 27% ו-3%. לכן מציעים תיקון מתוכנן כש-<bdi>MELD</bdi> מתחת ל-20, אחרי טיפול במיימת</div>
+   <div class="box a"><b class="t">דוגמה: בקע טבורי עם מיימת</b>בקעים בדופן הבטן ב-20–40% מהחולים בשחמת. ניתוח דחוף: 60% תחלואה ותמותה, 10% תמותה ב-90 יום. ניתוח מתוכנן: 27% ו-3%. לכן מציעים תיקון מתוכנן <span class="nw">כש-<bdi>MELD</bdi></span> מתחת ל-20, אחרי טיפול במיימת</div>
    <div class="box n"><b class="t"><bdi>TIPS</bdi> לפני ניתוח?</b>דווח רק בסדרות קטנות ולא מבוקרות. לא שגרה</div>
   </div>
  </div>
@@ -458,14 +463,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>17</b>לסיכום</div>
  <h2>חמישה דברים לקחת למחלקה</h2>
  <ol class="obj">
-  <li>יתר לחץ דם פורטלי: מפל מעל 5 מ״מ כספית. שחמת היא הסיבה השכיחה. דליות בקיבה בלבד: לחשוב על פקקת בווריד הטחול</li>
-  <li><bdi>Child-Pugh</bdi> ו-<bdi>MELD</bdi> מנבאים מי ישרוד ניתוח. <bdi>Child B</bdi> ו-<bdi>C</bdi>: לא מנתחים באופן מתוכנן</li>
+  <li>יתר לחץ דם פורטלי: מפל מעל 5 מ״מ כספית. שחמת היא הסיבה השכיחה. דליות בקיבה בלבד: לחשוב על פקקת <span class="nw">ב-<bdi dir="ltr">splenic vein</bdi></span></li>
+  <li><bdi>Child-Pugh</bdi> <span class="nw">ו-<bdi>MELD</bdi></span> מנבאים מי ישרוד ניתוח. <bdi>Child B</bdi> <span class="nw">ו-<bdi>C</bdi></span>: לא מנתחים באופן מתוכנן</li>
   <li>דימום מדליות: נתיב אוויר, עירוי מצמצם, אנטיביוטיקה ואוקטראוטייד. אנדוסקופיה עם גומיות תוך 12 שעות</li>
-  <li>כשלא נעצר: בלון כגשר ו-<bdi>TIPS</bdi>. ניתוח חירום הוא המוצא האחרון</li>
+  <li>כשלא נעצר: בלון כגשר <span class="nw">ו-<bdi>TIPS</bdi></span>. ניתוח חירום הוא המוצא האחרון</li>
   <li>מיימת: מלח, משתנים וניקור עם אלבומין. חום או הידרדרות: לנקר ולשלול פריטוניטיס ספונטנית</li>
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 89 <bdi>The Liver</bdi>, <bdi>Portal Hypertension</bdi> (עמ׳ <bdi dir="ltr">1267–1274</bdi>) · פרק 46 <bdi>Surgical Critical Care</bdi>, כבד (עמ׳ <bdi dir="ltr">541–543</bdi>)</div>
- <div class="src"><span>איור: <bdi>Gray's Anatomy</bdi> (1918, נחלת הכלל, <bdi>Wikimedia Commons</bdi>) · תמונות: <bdi>Musser</bdi> (1904, נחלת הכלל), <bdi>James Heilman</bdi>, <bdi>Jeremias</bdi>, <bdi>J. Guntau</bdi>, <bdi>Pei-Ming Yang</bdi> ו-<bdi>Ding-Shinn Chen</bdi>, <bdi>R. Torrance Andrews</bdi>, <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>איור: <bdi>Gray's Anatomy</bdi> (1918, נחלת הכלל, <bdi>Wikimedia Commons</bdi>) · תמונות: <bdi>Musser</bdi> (1904, נחלת הכלל), <bdi>James Heilman</bdi>, <bdi>Jeremias</bdi>, <bdi>J. Guntau</bdi>, <bdi>Pei-Ming Yang</bdi> <span class="nw">ו-<bdi>Ding-Shinn Chen</bdi></span>, <bdi>R. Torrance Andrews</bdi>, <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>

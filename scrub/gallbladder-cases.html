@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>דיון מקרים: מחלות כיס המרה · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -90,6 +90,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -101,6 +102,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -118,6 +120,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -129,7 +134,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
  <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 1</div>
  <h1>דיון מקרים: מחלות כיס המרה</h1>
- <p class="lead">שלושה מטופלים בדויים: כאב בילארי, דלקת חריפה של כיס המרה ואבן בצינור המרה המשותף. מהאבחנה ועד חדר הניתוח</p>
+ <p class="lead">שלושה מטופלים בדויים: כאב בילארי, דלקת חריפה של כיס המרה ואבן <span class="nw">ב-<bdi>common bile duct (CBD)</bdi></span>. מהאבחנה ועד חדר הניתוח</p>
  <div class="cvsrc" data-ch="88" data-note=""><small>מבוסס על</small><b><bdi dir="ltr">Sabiston Textbook of Surgery</bdi> · מהדורה 22</b><div class="cvch"><span>פרק <bdi dir="ltr">88</bdi></span></div></div>
  <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
 </div></section>
@@ -141,8 +146,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>להבדיל בין אבנים שקטות, כאב בילארי ודלקת חריפה של כיס המרה לפי הסיפור, הבדיקה והאולטרסאונד</li>
   <li>לבצע ולפרש את סימן מרפי ולבחור את בדיקות המעבדה וההדמיה הנכונות</li>
   <li>להתאים את הטיפול בדלקת חריפה לחומרה ולמצב המטופל: ניתוח מוקדם, "קירור" או נקז מלעורי</li>
-  <li>להעריך את הסיכון לאבן בצינור המשותף ולבחור בין צילום דרכי מרה בניתוח, <bdi>MRCP</bdi>, <bdi>ERCP</bdi> וחקירת הצינור</li>
-  <li>להסביר את "המבט הקריטי לבטיחות" ואת הדרכים לצאת מניתוח קשה בלי לפגוע בצינור המרה</li>
+  <li>להעריך את הסיכון לאבן <span class="nw">ב-<bdi>CBD</bdi></span> ולבחור בין צילום דרכי מרה בניתוח, <bdi>MRCP</bdi>, <bdi>ERCP</bdi> וחקירת <span class="nw">ה-<bdi>CBD</bdi></span></li>
+  <li>להסביר את "המבט הקריטי לבטיחות" ואת הדרכים לצאת מניתוח קשה בלי לפגוע <span class="nw">ב-<bdi>bile duct</bdi></span></li>
  </ol>
  <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 88 (עמ׳ <bdi dir="ltr">1213–1240</bdi>)</span><span>Scrub In · קפלן</span></div>
 </div></section>
@@ -150,7 +155,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>2</b>אנטומיה · לפני שמתחילים</div>
  <h2>מה רואים בשדה הניתוח</h2>
- <div class="hotw"><div class="hoti"><img src="img/Sobo_1906_393.png" alt="כיס המרה, דרכי המרה, עורק הכבד, התריסריון והלבלב"><svg viewBox="0 0 1280 1108" preserveAspectRatio="none" style="--lw:20;--bf:31px">
+ <div class="hotw"><div class="hoti"><img src="img/Sobo_1906_393.png" alt="gallbladder, biliary tree, hepatic artery, duodenum ו-pancreas"><svg viewBox="0 0 1280 1108" preserveAspectRatio="none" style="--lw:20;--bf:31px">
   <path class="hz" data-hz="gb" d="M105,55 C112.5,42.2 134.3,29.2 155,23 C175.7,16.8 209.2,12.7 229,18 C248.8,23.3 261.8,30.5 274,55 C286.2,79.5 292.8,131.5 302,165 C311.2,198.5 320.7,230.2 329,256 C337.3,281.8 345.2,299.3 352,320 C358.8,340.7 364,361.7 370,380 C376,398.3 383.3,415.3 388,430 C392.7,444.7 397.7,457.2 398,468 C398.3,478.8 394.3,489.2 390,495 C385.7,500.8 378.7,503.8 372,503 C365.3,502.2 358.7,498.5 350,490 C341.3,481.5 330.8,467 320,452 C309.2,437 296.7,417.8 285,400 C273.3,382.2 261.7,363.3 250,345 C238.3,326.7 226.7,309.2 215,290 C203.3,270.8 192.5,251.7 180,230 C167.5,208.3 151.7,181.7 140,160 C128.3,138.3 115.8,117.5 110,100 C104.2,82.5 97.5,67.8 105,55 Z" style="--c:#7A5BD6"/>
   <path class="hz ln" data-hz="cd" d="M368,503 C371.8,506.7 381.5,516.3 391,525 C400.5,533.7 414.8,546.2 425,555 C435.2,563.8 447.5,574.2 452,578" style="--c:#00967D;--lw:18"/>
   <path class="hz ln" data-hz="cbd" d="M459,405 C459.3,410.8 460.5,426 461,440 C461.5,454 461.7,472.3 462,489 C462.3,505.7 462.3,523 463,540 C463.7,557 465.3,573.8 466,591 C466.7,608.2 466.5,625.8 467,643 C467.5,660.2 468.7,685.5 469,694" style="--c:#2F6FA8;--lw:24"/>
@@ -165,14 +170,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <g class="hzb" style="--c:#0A6B5A"><circle cx="602" cy="862" r="26.3"/><text x="602" y="862">6</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="gb" hidden><b>1 · כיס המרה</b><p>באורך <bdi dir="ltr">7–10</bdi> ס״מ, מחזיק <bdi dir="ltr">30–60</bdi> מ״ל מרה. קרקעית, גוף, צוואר ואינפונדיבולום עם כיס הרטמן. צמוד לכבד בסגמנטים <bdi>IVB</bdi> ו-<bdi>V</bdi>. בצד של הכבד אין צפק אלא "לוח ציסטי"</p></div>
-  <div class="hzi" data-hzi="cd" hidden><b>2 · הצינור הציסטי</b><p>אורכו <bdi dir="ltr">1–5</bdi> ס״מ. נכנס לצינור המשותף בזווית חדה, עם שונות רבה בנקודת הכניסה. כשמושכים את קרקעית כיס המרה למעלה בלבד, הוא רץ מקביל לצינור הכבדי המשותף. זה המנגנון הקלאסי לפגיעה בצינור</p></div>
-  <div class="hzi" data-hzi="cbd" hidden><b>3 · הצינור הכבדי והצינור המשותף</b><p>הצינור הכבדי המשותף נמצא מעל כניסת הצינור הציסטי. הצינור המשותף מתחתיה. אספקת הדם רק עורקית, משני כלים לאורכו (בשעה 3 ובשעה 9). ניתוח צמוד מדי לצינור פוגע בהם ומוביל להיצרות איסכמית</p></div>
-  <div class="hzi" data-hzi="ha" hidden><b>4 · עורק הכבד</b><p>העורק הימני של הכבד עובר בדרך כלל מאחורי הצינור הכבדי ונכנס למשולש של קאלו. משם יוצא העורק הציסטי. בכ-20% יש עורק כבד ימני נוסף או חלופי. שונות בדרכי המרה ובכלי הדם: עד 30% מהאנשים</p></div>
-  <div class="hzi" data-hzi="du" hidden><b>5 · התריסריון</b><p>הצינור המשותף עובר מאחורי החלק הראשון של התריסריון. דרכו נכנס האנדוסקופ ב-<bdi>ERCP</bdi> אל הפפילה</p></div>
-  <div class="hzi" data-hzi="ph" hidden><b>6 · ראש הלבלב</b><p>החלק הרחוק של הצינור המשותף עובר בתוך ראש הלבלב ומצטרף לצינור הלבלב באמפולה. לכן אבן שעוברת דרך האמפולה יכולה לגרום לדלקת לבלב</p></div>
+  <div class="hzi" data-hzi="gb" hidden><b>1 · <bdi>Gallbladder</bdi></b><p>באורך <bdi dir="ltr">7–10</bdi> ס״מ, מחזיק <bdi dir="ltr">30–60</bdi> מ״ל מרה. <bdi>fundus, body, neck</bdi> <span class="nw">ו-<bdi>infundibulum</bdi></span> עם <bdi>Hartmann's pouch</bdi>. צמוד <span class="nw">ל-<bdi>liver</bdi></span> בסגמנטים <bdi>IVB</bdi> <span class="nw">ו-<bdi>V</bdi></span>. בצד של <span class="nw">ה-<bdi>liver</bdi></span> אין <bdi>peritoneum</bdi> אלא <bdi>cystic plate</bdi></p></div>
+  <div class="hzi" data-hzi="cd" hidden><b>2 · <bdi>Cystic duct</bdi></b><p>אורכו <bdi dir="ltr">1–5</bdi> ס״מ. נכנס <span class="nw">ל-<bdi>CBD</bdi></span> בזווית חדה, עם שונות רבה בנקודת הכניסה. כשמושכים את <span class="nw">ה-<bdi>fundus</bdi></span> של <span class="nw">ה-<bdi>gallbladder</bdi></span> למעלה בלבד, הוא רץ מקביל <span class="nw">ל-<bdi>common hepatic duct (CHD)</bdi></span>. זה המנגנון הקלאסי לפגיעה <span class="nw">ב-<bdi>CBD</bdi></span></p></div>
+  <div class="hzi" data-hzi="cbd" hidden><b>3 · <bdi>CHD</bdi> <span class="nw">ו-<bdi>CBD</bdi></span></b><p><span class="nw">ה-<bdi>common hepatic duct (CHD)</bdi></span> נמצא מעל כניסת <span class="nw">ה-<bdi>cystic duct</bdi></span>. <span class="nw">ה-<bdi>common bile duct (CBD)</bdi></span> מתחתיה. אספקת הדם רק עורקית, משני כלים לאורכו (בשעה 3 ובשעה 9). ניתוח צמוד מדי <span class="nw">ל-<bdi>CBD</bdi></span> פוגע בהם ומוביל להיצרות איסכמית</p></div>
+  <div class="hzi" data-hzi="ha" hidden><b>4 · <bdi>Hepatic artery</bdi></b><p><span class="nw">ה-<bdi>right hepatic artery</bdi></span> עובר בדרך כלל מאחורי <span class="nw">ה-<bdi>CHD</bdi></span> ונכנס <span class="nw">ל-<bdi>Calot's triangle</bdi></span>. משם יוצא <span class="nw">ה-<bdi>cystic artery</bdi></span>. בכ-20% יש <bdi>right hepatic artery</bdi> נוסף או חלופי. שונות <span class="nw">ב-<bdi>biliary tree</bdi></span> ובכלי הדם: עד 30% מהאנשים</p></div>
+  <div class="hzi" data-hzi="du" hidden><b>5 · <bdi>Duodenum</bdi></b><p><span class="nw">ה-<bdi>CBD</bdi></span> עובר מאחורי החלק הראשון של <span class="nw">ה-<bdi>duodenum</bdi></span>. דרכו נכנס האנדוסקופ <span class="nw">ב-<bdi>ERCP</bdi></span> אל <span class="nw">ה-<bdi>papilla</bdi></span></p></div>
+  <div class="hzi" data-hzi="ph" hidden><b>6 · <bdi>Pancreatic head</bdi></b><p>החלק הרחוק של <span class="nw">ה-<bdi>CBD</bdi></span> עובר בתוך <span class="nw">ה-<bdi>pancreatic head</bdi></span> ומצטרף <span class="nw">ל-<bdi>pancreatic duct</bdi></span> <span class="nw">ב-<bdi>ampulla</bdi></span>. לכן אבן שעוברת דרך <span class="nw">ה-<bdi>ampulla</bdi></span> יכולה לגרום לדלקת לבלב</p></div>
  </div></div>
- <p style="font-size:12px;color:var(--muted);margin:8px 0 0">כיס המרה, דרכי המרה, כלי הדם, התריסריון והלבלב · <bdi>Sobotta, Atlas and Text-book of Human Anatomy</bdi> (1906), איור 393 (נחלת הכלל)</p>
+ <p style="font-size:12px;color:var(--muted);margin:8px 0 0"><span class="nw">ה-<bdi>gallbladder</bdi></span>, <span class="nw">ה-<bdi>biliary tree</bdi></span>, כלי הדם, <span class="nw">ה-<bdi>duodenum</bdi></span> <span class="nw">וה-<bdi>pancreas</bdi></span> · <bdi>Sobotta, Atlas and Text-book of Human Anatomy</bdi> (1906), איור 393 (נחלת הכלל)</p>
  <div class="src"><span><b>Sabiston 22</b> · פרק 88 עמ׳ <bdi dir="ltr">1213–1215</bdi>, <bdi dir="ltr">1226</bdi>, <bdi dir="ltr">1237</bdi></span><span>אנטומיה</span></div>
 </div></section>
 
@@ -183,14 +188,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div><b dir="ltr">10–15%</b><span>מהאוכלוסייה עם אבני מרה</span></div>
   <div><b dir="ltr">20–30%</b><span>מבעלי אבנים שקטות יפתחו תסמינים תוך 20 שנה</span></div>
   <div><b dir="ltr">~1%</b><span>יפתחו סיבוך לפני שהיו להם תסמינים</span></div>
-  <div><b dir="ltr">עד 20%</b><span>מבעלי אבנים בכיס המרה עם אבן גם בצינור המשותף</span></div>
+  <div><b dir="ltr">עד 20%</b><span>מבעלי אבנים <span class="nw">ב-<bdi>gallbladder</bdi></span> עם אבן גם <span class="nw">ב-<bdi>CBD</bdi></span></span></div>
  </div>
  <div class="grid f">
   <div class="flow">
    <div><b>אבנים שקטות</b><span>רוב האבנים. מתגלות במקרה בהדמיה</span></div>
-   <div><b>כאב בילארי</b><span>אבן חוסמת זמנית את הצינור הציסטי. הכאב חולף</span></div>
+   <div><b>כאב בילארי</b><span>אבן חוסמת זמנית את <span class="nw">ה-<bdi>cystic duct</bdi></span>. הכאב חולף</span></div>
    <div><b>דלקת חריפה</b><span>החסימה לא משתחררת: בצקת, דלקת ולעיתים זיהום ונמק</span></div>
-   <div><b>אבן בצינור המשותף</b><span>צהבת, דלקת של דרכי המרה, דלקת לבלב</span></div>
+   <div><b>אבן <span class="nw">ב-<bdi>CBD</bdi></span></b><span>צהבת, דלקת של דרכי המרה, דלקת לבלב</span></div>
   </div>
   <figure><img src="img/gallstones-specimen.jpg" alt="כיס מרה פתוח מלא אבני כולסטרול" style="max-height:34vh"><figcaption>כיס מרה אחרי כריתה, מלא אבנים צהבהבות (כנראה כולסטרול) · <bdi dir="ltr">Alex Khimich · Public domain · Wikimedia Commons</bdi></figcaption></figure>
  </div>
@@ -202,7 +207,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>"זה קורה לי אחרי ארוחת ערב"</h2>
  <div class="grid f">
   <div>
-   <div class="case">אישה בת 41, מגיעה למרפאה הכירורגית בהפניית רופאת המשפחה. בחצי השנה האחרונה שלושה התקפים של כאב באפיגסטריום וברבע הימני העליון, <b>מקרין לשכמה הימנית</b>, עם בחילה ונפיחות. כל התקף נמשך <b>שעתיים עד שלוש</b> וחולף. היום בלי כאב.
+   <div class="case">אישה בת 41, מגיעה למרפאה הכירורגית בהפניית רופאת המשפחה. בחצי השנה האחרונה שלושה התקפים של כאב באפיגסטריום וברבע הימני העליון, <b>מקרין <span class="nw">ל-<bdi>scapula</bdi></span> הימנית</b>, עם בחילה ונפיחות. כל התקף נמשך <b>שעתיים עד שלוש</b> וחולף. היום בלי כאב.
     <div class="vit"><span>חום 36.8</span><span>דופק 76</span><span>בטן רכה, בלי רגישות</span><span>ספירה ותפקודי כבד תקינים</span></div></div>
    <ol class="q"><li>מה האבחנה המשוערת ומה מבדיל אותה מדלקת חריפה?</li><li>איזו בדיקה אחת מאשרת אותה?</li><li>להמליץ על ניתוח?</li></ol>
   </div>
@@ -217,7 +222,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div>
    <details class="rev"><summary>האבחנה: כאב בילארי</summary>
-    <ul class="b sm"><li>חסימה זמנית של הצינור הציסטי, לרוב אחרי ארוחה שמשחררת <bdi>CCK</bdi>. רק כמחצית מהמטופלים מקשרים את הכאב לאוכל</li><li>כאב באפיגסטריום או ברבע הימני העליון, לעיתים לשכמה, שנמשך <b>כמה שעות</b></li><li>כאב <b>מעל 24 שעות</b> או עם <b>חום</b>: לחשוב על דלקת חריפה</li><li>בכאב בילארי בלי דלקת אין סימן מרפי</li></ul></details>
+    <ul class="b sm"><li>חסימה זמנית של <span class="nw">ה-<bdi>cystic duct</bdi></span>, לרוב אחרי ארוחה שמשחררת <bdi>CCK</bdi>. רק כמחצית מהמטופלים מקשרים את הכאב לאוכל</li><li>כאב באפיגסטריום או ברבע הימני העליון, לעיתים לשכמה, שנמשך <b>כמה שעות</b></li><li>כאב <b>מעל 24 שעות</b> או עם <b>חום</b>: לחשוב על דלקת חריפה</li><li>בכאב בילארי בלי דלקת אין סימן מרפי</li></ul></details>
    <details class="rev"><summary>הבדיקה: אולטרסאונד</summary>
     <ul class="b sm"><li>הבדיקה הראשונה. רגישות וסגוליות מעל 95% לאבנים</li><li>אבן מטילה צל אקוסטי וזזה עם שינוי תנוחה. פוליפ קבוע במקומו. בוצה זזה לאט ובלי צל</li><li>בוצה או מיקרוליתיאזיס עם תסמינים מתאימים: כמו אבנים עם תסמינים</li></ul></details>
   </div>
@@ -239,13 +244,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <div class="vit"><span>חום 38.4</span><span>דופק 104</span><span>ל״ד 132/78</span><span>לויקוציטים <bdi dir="ltr">19,500</bdi></span><span>בילירובין <bdi dir="ltr">1.6</bdi> מ״ג/ד״ל</span><span><bdi>ALP</bdi> מוגבה קלות</span></div></div>
    <h3 style="margin-top:12px">איך בודקים סימן מרפי</h3>
    <ul class="b sm">
-    <li>המטופל שוכב על הגב. מבקשים ממנו <b>לנשוף</b> ומניחים את היד מתחת לקשת הצלעות הימנית</li>
-    <li>מבקשים <b>לשאוף עמוק</b>. הסרעפת דוחפת את כיס המרה המודלק אל היד</li>
+    <li>המטופל שוכב על הגב. מבקשים ממנו <b>לנשוף</b> ומניחים את היד מתחת <span class="nw">ל-<bdi>costal margin</bdi></span> הימני</li>
+    <li>מבקשים <b>לשאוף עמוק</b>. <span class="nw">ה-<bdi>diaphragm</bdi></span> דוחפת את <span class="nw">ה-<bdi>gallbladder</bdi></span> המודלק אל היד</li>
     <li>חיובי: <b>עצירה לא רצונית של השאיפה</b> בגלל כאב</li>
     <li>בקשישים, בסוכרתיים, בשמנים ובמדוכאי חיסון הבדיקה יכולה להיות שקטה</li>
    </ul>
   </div>
-  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש מתחת לקשת הצלעות הימנית בשתי ידיים" style="max-height:46vh"><figcaption>מישוש בשתי ידיים מתחת לקשת הצלעות הימנית (שיטת <bdi>Glénard</bdi> למישוש הכבד), אותו מקום שבו בודקים מרפי · <bdi>Musser, A Practical Treatise on Medical Diagnosis</bdi> (1904), איור 192 (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש מתחת ל-costal margin הימני בשתי ידיים" style="max-height:46vh"><figcaption>מישוש בשתי ידיים מתחת <span class="nw">ל-<bdi>costal margin</bdi></span> הימני (שיטת <bdi>Glénard</bdi> למישוש <span class="nw">ה-<bdi>liver</bdi></span>), אותו מקום שבו בודקים מרפי · <bdi>Musser, A Practical Treatise on Medical Diagnosis</bdi> (1904), איור 192 (נחלת הכלל)</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 88 עמ׳ <bdi dir="ltr">1223</bdi> · פרק 85 עמ׳ <bdi dir="ltr">1158–1159</bdi></span><span>מקרה 2 · בדיקה</span></div>
 </div></section>
@@ -258,16 +263,16 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <ol class="q"><li>מה מאשר את האבחנה?</li><li>הבילירובין מוגבה. זה מדאיג?</li><li>כמה חמורה הדלקת?</li></ol>
    <details class="rev"><summary>הצגת התשובות</summary>
     <ul class="b sm">
-     <li><b>אולטרסאונד:</b> הבדיקה המועדפת. רגישות 85% וסגוליות 95%: אבנים, <b>דופן מעובה</b>, <b>נוזל סביב כיס המרה</b>, מרפי סונוגרפי</li>
+     <li><b>אולטרסאונד:</b> הבדיקה המועדפת. רגישות 85% וסגוליות 95%: אבנים, <b>דופן מעובה</b>, <b>נוזל סביב <span class="nw">ה-<bdi>gallbladder</bdi></span></b>, מרפי סונוגרפי</li>
      <li><b>CT:</b> כשהתמונה לא אופיינית או כדי לשלול דבר אחר. אם הממצאים אופייניים, לא צריך גם אולטרסאונד</li>
-     <li><b>מיפוי <bdi>HIDA</bdi>:</b> אם כיס המרה לא מתמלא תוך שעתיים: חסימה של הצינור הציסטי. אם מתמלא, האבחנה נשללת</li>
+     <li><b>מיפוי <bdi>HIDA</bdi>:</b> אם <span class="nw">ה-<bdi>gallbladder</bdi></span> לא מתמלא תוך שעתיים: חסימה של <span class="nw">ה-<bdi>cystic duct</bdi></span>. אם מתמלא, האבחנה נשללת</li>
      <li><b>בילירובין:</b> עלייה קלה (עד 3 מ״ג/ד״ל) אפשרית מהדלקת סביב. <b>צהבת עמוקה</b> לא אופיינית: לחשוב על דלקת של דרכי המרה או על תסמונת <bdi>Mirizzi</bdi></li>
-     <li><b>חומרה (<bdi>Tokyo 2018</bdi>):</b> לויקוציטים מעל <bdi dir="ltr">18,000</bdi> מסווגים כדרגה <bdi>II</bdi> (בינונית). הסיווג מתחשב גם בהשפעה מערכתית, כמו כשל איברים</li>
+     <li><b>אבחנה (<bdi>Tokyo 2018</bdi>):</b> סימן מקומי (מרפי, כאב או גוש ברבע הימני העליון) ועוד סימן מערכתי (חום, <bdi>CRP</bdi> או לויקוציטים) = חשד. עם הדמיה אופיינית = אבחנה ודאית</li><li><b>חומרה:</b> דרגה <bdi>III</bdi> = כשל של איבר אחד לפחות (לחץ דם שדורש נוראדרנלין, ירידה בהכרה, <bdi>PaO2/FiO2</bdi> מתחת <span class="nw">ל-<bdi dir="ltr">300</bdi></span>, קראטינין מעל <bdi dir="ltr">2</bdi>, <bdi>INR</bdi> מעל <bdi dir="ltr">1.5</bdi>, טסיות מתחת <span class="nw">ל-<bdi dir="ltr">100,000</bdi></span>). דרגה <bdi>II</bdi> = אחד מאלה: לויקוציטים מעל <bdi dir="ltr">18,000</bdi>, גוש רגיש, תסמינים מעל <bdi dir="ltr">72</bdi> שעות או דלקת מקומית קשה (גנגרנה, אבצס, פריטוניטיס מרתית). דרגה <bdi>I</bdi> = כל השאר</li>
     </ul></details>
   </div>
-  <figure><img src="img/us-cholecystitis.jpg" alt="אולטרסאונד של דלקת חריפה בכיס המרה עם דופן מעובה ואבן" style="max-height:40vh"><figcaption>דלקת חריפה באולטרסאונד: דופן מעובה (<bdi dir="ltr">5.8</bdi> מ״מ) ואבן עם צל · <bdi dir="ltr">Cerevisae · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/us-cholecystitis.jpg" alt="אולטרסאונד של דלקת חריפה ב-gallbladder עם דופן מעובה ואבן" style="max-height:40vh"><figcaption>דלקת חריפה באולטרסאונד: דופן מעובה (<bdi dir="ltr">5.8</bdi> מ״מ) ואבן עם צל · <bdi dir="ltr">Cerevisae · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
  </div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 88 עמ׳ <bdi dir="ltr">1217–1218</bdi>, <bdi dir="ltr">1223</bdi></span><span>מקרה 2 · אבחנה</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 88 עמ׳ <bdi dir="ltr">1217–1218</bdi>, <bdi dir="ltr">1223</bdi> · <bdi>Tokyo Guidelines 2018</bdi> · Yokoe M et al. / Kiriyama S et al., J Hepatobiliary Pancreat Sci 2018;25:41-54 / 17-30</span><span>מקרה 2 · אבחנה</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -279,11 +284,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div class="flow" style="margin-top:10px">
     <div><b>בלי מחלות רקע, מוקדם במחלה</b><span>כריתה בלפרוסקופיה <b>באותו אשפוז</b>, בשבוע הראשון. תוצאות טובות או זהות לניתוח מאוחר</span></div>
     <div><b>מחלות רקע שאפשר לשפר, דלקת קלה</b><span>טיפול שמרני ("קירור") וכריתה אחרי <bdi dir="ltr">6–12</bdi> שבועות</span></div>
-    <div><b>חולה קשה, דלקת קשה</b><span>נקז מלעורי לכיס המרה עם אנטיביוטיקה. כריתה כשהמצב משתפר (<bdi dir="ltr">3–6</bdi> חודשים)</span></div>
+    <div><b>חולה קשה, דלקת קשה</b><span>נקז מלעורי <span class="nw">ל-<bdi>gallbladder</bdi></span> עם אנטיביוטיקה. כריתה כשהמצב משתפר (<bdi dir="ltr">3–6</bdi> חודשים)</span></div>
    </div>
    <div class="box a" style="margin-top:10px"><b class="t">והמטופל שלנו?</b>כ-20% ממי שמתחיל טיפול שמרני נכשל ומגיע לניתוח לפני הכריתה המתוכננת. עם אי ספיקת לב מפוצה, הוא מועמד לכריתה מוקדמת אחרי הערכה טרום ניתוחית</div>
   </div>
-  <figure><img src="img/cholecystostomy-drain.jpg" alt="נקז מלעורי של כיס המרה עם שקית איסוף" style="max-height:44vh"><figcaption>נקז מלעורי בכיס המרה (כולציסטוסטומיה) עם שקית איסוף, בגבר בן 71 עם דלקת נמקית · <bdi dir="ltr">Jmarchn · CC0 · Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/cholecystostomy-drain.jpg" alt="נקז מלעורי של ה-gallbladder עם שקית איסוף" style="max-height:44vh"><figcaption>נקז מלעורי <span class="nw">ב-<bdi>gallbladder</bdi></span> (כולציסטוסטומיה) עם שקית איסוף, בגבר בן 71 עם דלקת נמקית · <bdi dir="ltr">Jmarchn · CC0 · Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 88 עמ׳ <bdi dir="ltr">1220–1221</bdi>, <bdi dir="ltr">1223–1224</bdi></span><span>מקרה 2 · טיפול</span></div>
 </div></section>
@@ -294,15 +299,15 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <div class="box"><b class="t">שלושה תנאים לפני שחותכים משהו</b>
-    <ol class="obj sm"><li><b>שני מבנים בלבד</b> נכנסים לכיס המרה: הצינור הציסטי והעורק הציסטי</li><li><b>השליש התחתון</b> של כיס המרה מופרד מהכבד וחושף את הלוח הציסטי</li><li><b>המשולש הכבדי-ציסטי</b> (קאלו) נקי משומן ורקמה</li></ol></div>
+    <ol class="obj sm"><li><b>שני מבנים בלבד</b> נכנסים <span class="nw">ל-<bdi>gallbladder</bdi></span>: <span class="nw">ה-<bdi>cystic duct</bdi></span> <span class="nw">וה-<bdi>cystic artery</bdi></span></li><li><b>השליש התחתון</b> של <span class="nw">ה-<bdi>gallbladder</bdi></span> מופרד <span class="nw">מה-<bdi>liver</bdi></span> וחושף את <span class="nw">ה-<bdi>cystic plate</bdi></span></li><li><b><span class="nw">ה-<bdi>hepatocystic triangle</bdi></span></b> (<bdi>Calot</bdi>) נקי משומן ורקמה</li></ol></div>
    <ul class="b sm" style="margin-top:10px">
-    <li><b>המשולש של קאלו:</b> הצינור הציסטי, הצינור הכבדי המשותף ושפת הכבד</li>
-    <li><b>המשיכה:</b> הקרקעית למעלה לכיוון הכתף הימנית, האינפונדיבולום <b>למטה ולצד</b>. בלי המשיכה הזו הצינור הציסטי מקביל לצינור הכבדי ואפשר להתבלבל ביניהם</li>
-    <li><b>בלוטת קאלו</b> יושבת על העורק הציסטי. נשארים בצד של כיס המרה ממנה</li>
+    <li><b><span class="nw">ה-<bdi>Calot's triangle</bdi></span>:</b> <span class="nw">ה-<bdi>cystic duct</bdi></span>, <span class="nw">ה-<bdi>CHD</bdi></span> ושפת <span class="nw">ה-<bdi>liver</bdi></span></li>
+    <li><b>המשיכה:</b> <span class="nw">ה-<bdi>fundus</bdi></span> למעלה לכיוון הכתף הימנית, <span class="nw">ה-<bdi>infundibulum</bdi></span> <b>למטה ולצד</b>. בלי המשיכה הזו <span class="nw">ה-<bdi>cystic duct</bdi></span> מקביל <span class="nw">ל-<bdi>CHD</bdi></span> ואפשר להתבלבל ביניהם</li>
+    <li><b><span class="nw">ה-<bdi>Calot's node</bdi></span></b> יושבת על <span class="nw">ה-<bdi>cystic artery</bdi></span>. נשארים בצד של <span class="nw">ה-<bdi>gallbladder</bdi></span> ממנה</li>
     <li>רוב הפגיעות נובעות מ<b>טעות בזיהוי</b> ולא מחוסר מיומנות. "הטיית אישוש": רואים מה שמצפים לראות. לכן רוב הפגיעות מתגלות רק אחרי הניתוח</li>
    </ul>
   </div>
-  <figure><img src="img/lap-cholecystectomy-steps.png" alt="ארבעה שלבים בכריתה לפרוסקופית של כיס המרה" style="max-height:52vh"><figcaption>שלבי הכריתה במבט הלפרוסקופ: זיהוי כיס המרה, קליפס על העורק הציסטי ועל הצינור הציסטי, הוצאה בשקית · <bdi dir="ltr">Drus1a (photo: Pschemp) · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/lap-cholecystectomy-steps.png" alt="ארבעה שלבים בכריתה לפרוסקופית של כיס המרה" style="max-height:52vh"><figcaption>שלבי הכריתה במבט הלפרוסקופ: זיהוי <span class="nw">ה-<bdi>gallbladder</bdi></span>, קליפס על <span class="nw">ה-<bdi>cystic artery</bdi></span> ועל <span class="nw">ה-<bdi>cystic duct</bdi></span>, הוצאה בשקית · <bdi dir="ltr">Drus1a (photo: Pschemp) · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 88 עמ׳ <bdi dir="ltr">1215</bdi>, <bdi dir="ltr">1231–1232</bdi>, <bdi dir="ltr">1237</bdi></span><span>ניתוח</span></div>
 </div></section>
@@ -318,15 +323,15 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  </div>
  <div class="grid">
   <ul class="b sm">
-   <li><b>ריקון כיס המרה</b> במחט כשהוא מתוח ואי אפשר לתפוס אותו</li>
-   <li><b>"מלמעלה למטה" (<bdi>dome-down</bdi>):</b> מהקרקעית לכיוון הצוואר, צמוד ללוח הציסטי. סטייה פנימה מסכנת את הצינור הכבדי</li>
-   <li><b>כריתה חלקית (<bdi>subtotal</bdi>):</b> חותכים גבוה באינפונדיבולום ומוציאים את כל האבנים. משאירים פתוח (<bdi>fenestrating</bdi>) או סוגרים (<bdi>reconstituting</bdi>). תמיד משאירים נקז, כי דליפת מרה שכיחה</li>
+   <li><b>ריקון <span class="nw">ה-<bdi>gallbladder</bdi></span></b> במחט כשהוא מתוח ואי אפשר לתפוס אותו</li>
+   <li><b>"מלמעלה למטה" (<bdi>dome-down</bdi>):</b> <span class="nw">מה-<bdi>fundus</bdi></span> לכיוון <span class="nw">ה-<bdi>neck</bdi></span>, צמוד <span class="nw">ל-<bdi>cystic plate</bdi></span>. סטייה פנימה מסכנת את <span class="nw">ה-<bdi>CHD</bdi></span></li>
+   <li><b>כריתה חלקית (<bdi>subtotal</bdi>):</b> חותכים גבוה <span class="nw">ב-<bdi>infundibulum</bdi></span> ומוציאים את כל האבנים. משאירים פתוח (<bdi>fenestrating</bdi>) או סוגרים (<bdi>reconstituting</bdi>). תמיד משאירים נקז, כי דליפת מרה שכיחה</li>
    <li><b>מעבר לפתוח</b> בלי היסוס כשלא מצליחים</li>
   </ul>
   <ul class="b sm">
-   <li><b>צילום דרכי מרה בניתוח:</b> לא שגרתי. בדלקת לבלב ממקור אבנים, אנטומיה לא ברורה, או חשד לאבן בצינור</li>
-   <li><b>צביעה פלואורסצנטית (<bdi>ICG</bdi>):</b> מוזרקת לווריד, מופרשת למרה ומאירה את הצינורות בזמן אמת. משלימה את המבט הקריטי. לא ברור אם היא מפחיתה פגיעות קשות</li>
-   <li><b>דליפת מרה אחרי הניתוח</b> (צינור ציסטי או צינור <bdi>Luschka</bdi>): לרוב בשבוע הראשון. נקז. אם הדליפה גדולה (<bdi dir="ltr">300–500</bdi> מ״ל ביום) <bdi>ERCP</bdi> עם סטנט. לא מנסים לתקן בניתוח</li>
+   <li><b>צילום דרכי מרה בניתוח:</b> לא שגרתי. בדלקת לבלב ממקור אבנים, אנטומיה לא ברורה, או חשד לאבן <span class="nw">ב-<bdi>CBD</bdi></span></li>
+   <li><b>צביעה פלואורסצנטית (<bdi>ICG</bdi>):</b> מוזרקת לווריד, מופרשת למרה ומאירה את <span class="nw">ה-<bdi>bile ducts</bdi></span> בזמן אמת. משלימה את המבט הקריטי. לא ברור אם היא מפחיתה פגיעות קשות</li>
+   <li><b>דליפת מרה אחרי הניתוח</b> (<bdi>cystic duct</bdi> או <bdi>duct of Luschka</bdi>): לרוב בשבוע הראשון. נקז. אם הדליפה גדולה (<bdi dir="ltr">300–500</bdi> מ״ל ביום) <bdi>ERCP</bdi> עם סטנט. לא מנסים לתקן בניתוח</li>
   </ul>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 88 עמ׳ <bdi dir="ltr">1224</bdi>, <bdi dir="ltr">1231–1234</bdi>, <bdi dir="ltr">1239–1240</bdi></span><span>ניתוח קשה</span></div>
@@ -338,25 +343,25 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <div class="case">אישה בת 48 עם התקפי כאב בילארי בעבר. ביומיים האחרונים <b>שתן כהה</b> ו<b>צואה בהירה</b>, כאב קל ברבע הימני העליון. בלי חום. צהבת קלה בלחמיות.
-    <div class="vit"><span>חום 37.1</span><span>ל״ד 124/76</span><span>בילירובין <bdi dir="ltr">4.2</bdi> מ״ג/ד״ל</span><span><bdi>ALP</bdi> ו-<bdi>GGT</bdi> גבוהים</span><span>ליפאז תקין</span><span>אולטרסאונד: אבנים בכיס המרה, צינור משותף <bdi dir="ltr">9</bdi> מ״מ</span></div></div>
-   <ol class="q"><li>מה הסבירות לאבן בצינור המשותף?</li><li>צריך עוד הדמיה לפני טיפול?</li><li>מה עושים ובאיזה סדר?</li></ol>
+    <div class="vit"><span>חום 37.1</span><span>ל״ד 124/76</span><span>בילירובין <bdi dir="ltr">4.2</bdi> מ״ג/ד״ל</span><span><bdi>ALP</bdi> <span class="nw">ו-<bdi>GGT</bdi></span> גבוהים</span><span>ליפאז תקין</span><span>אולטרסאונד: אבנים <span class="nw">ב-<bdi>gallbladder</bdi></span>, <bdi>CBD</bdi> <bdi dir="ltr">9</bdi> מ״מ</span></div></div>
+   <ol class="q"><li>מה הסבירות לאבן <span class="nw">ב-<bdi>CBD</bdi></span>?</li><li>צריך עוד הדמיה לפני טיפול?</li><li>מה עושים ובאיזה סדר?</li></ol>
   </div>
-  <figure><img src="img/mrcp-choledocholithiasis.jpg" alt="MRCP עם אבנים בכיס המרה ובצינור המרה המשותף" style="max-height:44vh"><figcaption><bdi>MRCP</bdi> להמחשה: (a) אבנים בכיס המרה, (b) אבנים בצינור המשותף, (c) צינור הלבלב, (d) נוזל בתריסריון · <bdi dir="ltr">Hellerhoff · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/mrcp-choledocholithiasis.jpg" alt="MRCP עם אבנים ב-gallbladder וב-CBD" style="max-height:44vh"><figcaption><bdi>MRCP</bdi> להמחשה: (a) אבנים <span class="nw">ב-<bdi>gallbladder</bdi></span>, (b) אבנים <span class="nw">ב-<bdi>CBD</bdi></span>, (c) <bdi>pancreatic duct</bdi>, (d) נוזל <span class="nw">ב-<bdi>duodenum</bdi></span> · <bdi dir="ltr">Hellerhoff · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 88 עמ׳ <bdi dir="ltr">1225</bdi></span><span>מקרה 3</span></div>
 </div></section>
 
 <section class="s"><div class="card">
  <div class="kick"><b>12</b>מקרה 3 · תשובות</div>
- <h2>אבן בצינור המשותף</h2>
+ <h2>אבן <span class="nw">ב-<bdi>CBD</bdi></span></h2>
  <div class="grid">
   <div>
    <details class="rev" open><summary>הערכת הסיכון</summary>
     <ul class="b sm">
-     <li>כאב בילארי, צהבת, תפקודי כבד כולסטטיים וצינור רחב (לרוב מעל 8 מ״מ) מכוונים לאבן</li>
+     <li>כאב בילארי, צהבת, תפקודי כבד כולסטטיים <span class="nw">ו-<bdi>CBD</bdi></span> רחב (לרוב מעל 8 מ״מ) מכוונים לאבן</li>
      <li><b>בילירובין גבוה עם אולטרסאונד לא תקין:</b> סבירות של כ-<b>90%</b></li>
      <li><b>אולטרסאונד ותפקודי כבד תקינים:</b> פחות מ-5%</li>
-     <li>צינור מעל <bdi dir="ltr">5–6</bdi> מ״מ חשוד. מעל גיל 65: מעל 8 מ״מ. אחרי כריתה הצינור רחב יותר</li>
+     <li>קוטר <bdi>CBD</bdi> מעל <bdi dir="ltr">5–6</bdi> מ״מ חשוד. מעל גיל 65: מעל 8 מ״מ. אחרי כריתה <span class="nw">ה-<bdi>CBD</bdi></span> רחב יותר</li>
      <li>הצהבת באבן כואבת, כי החסימה חדה. זה מבדיל אותה מחסימה ממארת</li>
     </ul></details>
   </div>
@@ -364,10 +369,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <details class="rev"><summary>הבדיקה והטיפול</summary>
     <div class="flow sm">
      <div><b>סיכון נמוך</b><span>כריתה בלפרוסקופיה עם צילום דרכי מרה בניתוח</span></div>
-     <div><b>סיכון בינוני</b><span><bdi>MRCP</bdi> (רגישות מעל 90%, סגוליות כ-99%) או <bdi>EUS</bdi>. <bdi>MRCP</bdi> מפספס אבנים קטנות מ-6 מ״מ באמפולה</span></div>
-     <div><b>סיכון גבוה (כמו כאן)</b><span>מנקים את הצינור: <bdi>ERCP</bdi> לפני או אחרי הניתוח, או חקירת צינור לפרוסקופית באותו ניתוח</span></div>
+     <div><b>סיכון בינוני</b><span><bdi>MRCP</bdi> (רגישות מעל 90%, סגוליות כ-99%) או <bdi>EUS</bdi>. <bdi>MRCP</bdi> מפספס אבנים קטנות מ-6 מ״מ <span class="nw">ב-<bdi>ampulla</bdi></span></span></div>
+     <div><b>סיכון גבוה (כמו כאן)</b><span>מנקים את <span class="nw">ה-<bdi>CBD</bdi></span>: <bdi>ERCP</bdi> לפני או אחרי הניתוח, או חקירת <bdi>CBD</bdi> לפרוסקופית באותו ניתוח</span></div>
     </div>
-    <ul class="b sm" style="margin-top:8px"><li><bdi>ERCP</bdi> מנקה את הצינור ביותר מ-75% בפעם הראשונה וב-90% עם חזרה. סיבוכים, כולל דלקת לבלב: עד 10%</li><li>יותר ממחצית מהמטופלים אחרי <bdi>ERCP</bdi> בלי כריתה יחזרו עם תסמינים. לכן כורתים <b>באותו אשפוז</b></li></ul>
+    <ul class="b sm" style="margin-top:8px"><li><bdi>ERCP</bdi> מנקה את <span class="nw">ה-<bdi>CBD</bdi></span> ביותר מ-75% בפעם הראשונה וב-90% עם חזרה. סיבוכים, כולל דלקת לבלב: עד 10%</li><li>יותר ממחצית מהמטופלים אחרי <bdi>ERCP</bdi> בלי כריתה יחזרו עם תסמינים. לכן כורתים <b>באותו אשפוז</b></li></ul>
    </details>
    <div class="box r" style="margin-top:10px"><b class="t">מה היה משנה את התוכנית?</b>חום וסימני ספסיס: דלקת של דרכי המרה, ניקוז דחוף (נלמד בשבוע 5). ליפאז מעל פי 3 מהנורמה: דלקת לבלב ממקור אבנים, כריתה לפני השחרור במקרה קל</div>
   </div>
@@ -379,18 +384,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>13</b>אחרי הניתוח</div>
  <h2>מה יכול להשתבש</h2>
  <div class="num">
-  <div><b dir="ltr">&gt;80%</b><span>מהפגיעות בצינורות המרה קורות בכריתת כיס מרה</span></div>
-  <div><b dir="ltr">20–40%</b><span>מהכריתות: כיס המרה נפתח ואבנים נשפכות</span></div>
-  <div><b dir="ltr">1–2%</b><span>אבן "שנשארה" בצינור, עד שנתיים אחרי הכריתה</span></div>
+  <div><b dir="ltr">&gt;80%</b><span>מהפגיעות <span class="nw">ב-<bdi>bile ducts</bdi></span> קורות בכריתת כיס מרה</span></div>
+  <div><b dir="ltr">20–40%</b><span>מהכריתות: <span class="nw">ה-<bdi>gallbladder</bdi></span> נפתח ואבנים נשפכות</span></div>
+  <div><b dir="ltr">1–2%</b><span>אבן "שנשארה" <span class="nw">ב-<bdi>CBD</bdi></span>, עד שנתיים אחרי הכריתה</span></div>
   <div><b dir="ltr">10–15%</b><span>תסמינים דומים לאלה שלפני הניתוח (<bdi>postcholecystectomy syndrome</bdi>)</span></div>
  </div>
  <div class="grid">
   <ul class="b sm">
-   <li><b>חום, כאב שמחמיר, צהבת או מרה בנקז אחרי הניתוח:</b> לחשוב על דליפה או פגיעה בצינור. <bdi>CT</bdi> לאיתור הצטברות</li>
-   <li><b>דליפה מעל 6 שבועות:</b> לחשוד בפגיעה בצינור שלא זוהתה</li>
+   <li><b>חום, כאב שמחמיר, צהבת או מרה בנקז אחרי הניתוח:</b> לחשוב על דליפה או פגיעה <span class="nw">ב-<bdi>bile duct</bdi></span>. <bdi>CT</bdi> לאיתור הצטברות</li>
+   <li><b>דליפה מעל 6 שבועות:</b> לחשוד בפגיעה <span class="nw">ב-<bdi>bile duct</bdi></span> שלא זוהתה</li>
    <li><b>אבנים שנשפכו:</b> שטיפה, ניסיון רציני להוציא, אנטיביוטיקה ותיעוד בדוח הניתוח. אין צורך לעבור לפתוח</li>
   </ul>
-  <div class="box b"><b class="t">במחלקה השבוע</b>היכנסו לכריתת כיס מרה. לפני חיתוך הצינור, בקשו מהמנתח להראות לכם את שלושת התנאים של המבט הקריטי. אחר כך הציגו לבכיר/ה מטופל עם דלקת חריפה: הסיפור, סימן מרפי, המעבדה והאולטרסאונד</div>
+  <div class="box b"><b class="t">במחלקה השבוע</b>היכנסו לכריתת כיס מרה. לפני חיתוך <span class="nw">ה-<bdi>cystic duct</bdi></span>, בקשו מהמנתח להראות לכם את שלושת התנאים של המבט הקריטי. אחר כך הציגו לבכיר/ה מטופל עם דלקת חריפה: הסיפור, סימן מרפי, המעבדה והאולטרסאונד</div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 88 עמ׳ <bdi dir="ltr">1224</bdi>, <bdi dir="ltr">1236–1240</bdi></span><span>סיבוכים</span></div>
 </div></section>
@@ -406,8 +411,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <p>457 מטופלים עם דלקת חריפה קלה עד בינונית שנותחו מיד. זיהומים אחרי הניתוח: 7.1% עם מנה של <bdi>cefazolin</bdi> לעומת 12.6% בלי. זיהומי פצע: 5.3% לעומת 12.1%. המסקנה: לא לוותר על המנה</p>
    <small><bdi dir="ltr">van Braak WG, Ponten JEH, Loozen CS, et al. Br J Surg 2022;109(3):267-73</bdi></small></div>
   <div class="study"><div class="y"><bdi>J Am Coll Surg</bdi> 2022 · מרכז אחד</div><b>צביעה פלואורסצנטית של דרכי המרה: 7 שנים</b>
-   <p>828 כריתות לפרוסקופיות עם <bdi>ICG</bdi>. אף פגיעה בצינור המשותף. בהשוואה לאור רגיל: ניתוח קצר יותר (68 לעומת 99 דקות) ופחות מעברים לפתוח (0.7% לעומת 8%). מחקר רטרוספקטיבי ממרכז אחד, לכן זו עדיין לא הוכחה</p>
-   <small><bdi dir="ltr">Broderick RC, Li JZ, Huang EY, et al. J Am Coll Surg 2022;235:713-23</bdi> (מצוטט ב-<bdi>Sabiston 22</bdi>)</small></div>
+   <p>828 כריתות לפרוסקופיות עם <bdi>ICG</bdi>. אף פגיעה <span class="nw">ב-<bdi>CBD</bdi></span>. בהשוואה לאור רגיל: ניתוח קצר יותר (68 לעומת 99 דקות) ופחות מעברים לפתוח (0.7% לעומת 8%). מחקר רטרוספקטיבי ממרכז אחד, לכן זו עדיין לא הוכחה</p>
+   <small><bdi dir="ltr">Broderick RC, Li JZ, Huang EY, et al. J Am Coll Surg 2022;235:713-23</bdi> (מצוטט <span class="nw">ב-<bdi>Sabiston 22</bdi></span>)</small></div>
  </div>
  <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
 </div></section>
@@ -419,11 +424,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>כאב של שעות שחולף: כאב בילארי. כאב מעל 24 שעות, חום ומרפי חיובי: דלקת חריפה. אולטרסאונד הוא הבדיקה הראשונה</li>
   <li>אבנים שקטות לא כורתים. אבנים עם תסמינים כורתים. הכריתה מרפאת יותר מ-90%</li>
   <li>בדלקת חריפה: נוזלים, אנטיביוטיקה וכריתה מוקדמת באותו אשפוז. בחולה קשה: נקז מלעורי וכריתה מאוחרת</li>
-  <li>צהבת עם אבנים וצינור רחב: סיכון גבוה לאבן. מנקים את הצינור ואז כורתים באותו אשפוז</li>
+  <li>צהבת עם אבנים <span class="nw">ו-<bdi>CBD</bdi></span> רחב: סיכון גבוה לאבן. מנקים את <span class="nw">ה-<bdi>CBD</bdi></span> ואז כורתים באותו אשפוז</li>
   <li>לא חותכים לפני המבט הקריטי לבטיחות. כשאי אפשר להשיג אותו: כריתה חלקית או מעבר לפתוח</li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 88 <bdi>Biliary System</bdi>, עמ׳ <bdi dir="ltr">1213–1240</bdi> (בעיקר <bdi dir="ltr">1221–1227</bdi> ו-<bdi dir="ltr">1231–1240</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906) ו-<bdi>Musser</bdi> (1904), נחלת הכלל · הדמיה וצילומים מ-<bdi>Wikimedia Commons</bdi> לפי הרישיון בכל איור · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 88 <bdi>Biliary System</bdi>, עמ׳ <bdi dir="ltr">1213–1240</bdi> (בעיקר <bdi dir="ltr">1221–1227</bdi> <span class="nw">ו-<bdi dir="ltr">1231–1240</bdi></span>)</div>
+ <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906) <span class="nw">ו-<bdi>Musser</bdi></span> (1904), נחלת הכלל · הדמיה וצילומים <span class="nw">מ-<bdi>Wikimedia Commons</bdi></span> לפי הרישיון בכל איור · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>

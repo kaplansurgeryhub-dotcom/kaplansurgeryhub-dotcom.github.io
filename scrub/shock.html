@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>הגישה לחולה בשוק · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,6 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -97,6 +98,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -114,6 +116,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -148,7 +153,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>2</b>הגדרה וסיווג</div>
  <h2>מה זה שוק ואיפה הבעיה?</h2>
  <p class="lead" style="margin-bottom:10px"><b>שוק</b> הוא אספקת דם לא מספקת לרקמות, שמתבטאת בפגיעה באיברי המטרה: לקטט עולה, שינוי בהכרה, פחות שתן ועלייה באנזימי הכבד. לא רק חמצן חסר: הדם מביא לתאים גם חומרי מזון, בופרים והורמונים</p>
- <div class="hotw"><div class="hoti"><img src="img/shock-cv-system.png" alt="מערכת הדם: לב, כלי דם גדולים ומיטות נימים"><svg viewBox="0 0 1280 1280" preserveAspectRatio="none" style="--lw:24;--bf:31px">
+ <div class="hotw"><div class="hoti"><img src="img/shock-cv-system.png" alt="מערכת הדם: heart, great vessels ו-capillary beds"><svg viewBox="0 0 1280 1280" preserveAspectRatio="none" style="--lw:24;--bf:31px">
   <path class="hz" data-hz="o" d="M384,457 C413,452 434,451 448,466 C462,481 462,519 466,548 C470,577 474,614 475,640 C476,666 478,686 475,704 C472,722 464,733 457,750 C450,767 436,784 430,804 C424,824 418,845 420,868 C422,891 437,921 439,941 C441,961 438,976 430,987 C422,998 414,991 393,1005 C372,1019 328,1044 302,1069 C276,1094 253,1140 238,1152 C223,1164 219,1168 210,1143 C201,1118 190,1051 183,1005 C176,959 166,914 165,868 C164,822 166,778 174,731 C182,684 193,624 210,585 C227,546 245,515 274,494 C303,473 355,462 384,457 Z M877,448 C901,451 955,455 987,475 C1019,495 1048,527 1069,567 C1090,607 1104,663 1115,713 C1126,763 1132,819 1133,868 C1134,917 1130,958 1124,1005 C1118,1052 1108,1123 1097,1152 C1086,1181 1075,1188 1060,1179 C1045,1170 1029,1121 1005,1097 C981,1073 938,1048 914,1033 C890,1018 865,1022 859,1005 C853,988 876,962 877,932 C878,902 877,852 868,823 C859,794 834,779 823,759 C812,739 806,727 804,704 C802,681 810,654 813,622 C816,590 818,540 823,512 C828,484 832,468 841,457 C850,446 853,445 877,448 Z" style="--c:#2F6FA8"/>
   <path class="hz" data-hz="d" d="M366,1099 a267,130 0 1,0 534,0 a267,130 0 1,0 -534,0 Z M470,402 a167,128 0 1,0 334,0 a167,128 0 1,0 -334,0 Z" style="--c:#00967D"/>
   <path class="hz" data-hz="c" d="M600,748 C610,734 633,730 650,725 C667,720 683,718 700,720 C717,722 739,729 752,738 C765,747 772,761 778,775 C784,789 785,803 786,820 C787,837 789,861 786,878 C783,895 778,910 770,920 C762,930 748,936 735,938 C722,940 708,934 695,930 C682,926 670,919 658,912 C646,905 635,899 625,890 C615,881 606,873 600,860 C594,847 590,829 590,810 C590,791 590,762 600,748 Z" style="--c:#A3402E"/>
@@ -159,10 +164,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <g class="hzb" style="--c:#2F6FA8"><circle cx="1160" cy="650" r="26"/><text x="1160" y="650">4</text></g>
  </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא על סוג השוק</p>
-   <div class="hzi" data-hzi="c" hidden><b>1 · הלב: שוק קרדיוגני</b><p>כשל של המשאבה, עם כיווץ כלי דם מפצה: "שוק קר". הסיבה השכיחה: מחלת לב כלילית, אוטם חריף או השלכותיו</p></div>
-   <div class="hzi" data-hzi="h" hidden><b>2 · כלי הדם הגדולים: שוק היפובולמי</b><p>אובדן נפח: דימום, או אובדן נוזלים בהקאות, שלשולים, פיסטולות ונקזים. תפוקת לב נמוכה בגלל מילוי נמוך, תנגודת כלי דם גבוהה, גפיים קרות</p></div>
-   <div class="hzi" data-hzi="d" hidden><b>3 · כלי הדם הקטנים: שוק חלוקתי</b><p>הרחבת כלי דם ופיזור לא תקין של נפח הדם: ספסיס, פגיעה בחוט השדרה (נוירוגני), אנפילקסיס, משבר אדרנלי. לרוב "שוק חם"</p></div>
-   <div class="hzi" data-hzi="o" hidden><b>4 · מחוץ ללב ובריאה: שוק חסימתי</b><p>חזה אוויר בלחץ, טמפונדה, פריקרדיטיס מכווצת ותסחיף ריאתי מסיבי. הטיפול: להסיר את החסימה</p></div>
+   <div class="hzi" data-hzi="c" hidden><b>1 · <bdi dir="ltr">Heart</bdi>: שוק קרדיוגני</b><p>כשל של המשאבה, עם כיווץ כלי דם מפצה: "שוק קר". הסיבה השכיחה: מחלת לב כלילית, אוטם חריף או השלכותיו</p></div>
+   <div class="hzi" data-hzi="h" hidden><b>2 · <bdi dir="ltr">Great vessels</bdi>: שוק היפובולמי</b><p>אובדן נפח: דימום, או אובדן נוזלים בהקאות, שלשולים, פיסטולות ונקזים. תפוקת לב נמוכה בגלל מילוי נמוך, תנגודת כלי דם גבוהה, גפיים קרות</p></div>
+   <div class="hzi" data-hzi="d" hidden><b>3 · <bdi dir="ltr">Microcirculation</bdi>: שוק חלוקתי</b><p>הרחבת כלי דם ופיזור לא תקין של נפח הדם: ספסיס, פגיעה <span class="nw">ב-<bdi dir="ltr">spinal cord</bdi></span> (נוירוגני), אנפילקסיס, משבר אדרנלי. לרוב "שוק חם"</p></div>
+   <div class="hzi" data-hzi="o" hidden><b>4 · מחוץ <span class="nw">ל-<bdi dir="ltr">heart</bdi></span> <span class="nw">ול-<bdi dir="ltr">lungs</bdi></span>: שוק חסימתי</b><p>חזה אוויר בלחץ, טמפונדה, פריקרדיטיס מכווצת ותסחיף ריאתי מסיבי. הטיפול: להסיר את החסימה</p></div>
    <div class="box n" style="margin-top:10px"><b class="t">שימו לב</b>סוגי שוק יכולים להופיע יחד באותו חולה. פצוע יכול לדמם וגם להיות בטמפונדה</div>
   </div></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 33 עמ׳ <bdi dir="ltr">222–223, 226–227</bdi> · פרק 46 עמ׳ <bdi dir="ltr">533–536</bdi></span><span>איור: <bdi>Blausen.com staff (2014), WikiJournal of Medicine</bdi> · <bdi>CC BY 3.0</bdi> · <bdi>Wikimedia Commons</bdi></span></div>
@@ -173,9 +178,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>איך הגוף מפצה</h2>
  <div class="grid">
   <div class="flow">
-   <div><b>עצבי</b><span>ירידה בלחץ מפעילה את הברורצפטורים (קשת אבי העורקים, עליות, קרוטיס). שחרור אדרנלין ונוראדרנלין: דופק, התכווצות ותנגודת עולים</span></div>
-   <div><b>הסטת זרימה</b><span>הדם מוסט מהעור, השרירים ומחזור הדם הספלנכני אל האיברים החיוניים</span></div>
-   <div><b>הורמונלי</b><span>רנין מהכליה, אנגיוטנסין 2 ואלדוסטרון: החזרת נתרן ומים. <bdi>ADH</bdi> מההיפופיזה: החזרת מים חופשיים</span></div>
+   <div><b>עצבי</b><span>ירידה בלחץ מפעילה את הברורצפטורים (<bdi dir="ltr">aortic arch</bdi>, <bdi dir="ltr">atria</bdi>, <bdi dir="ltr">carotid sinus</bdi>). שחרור אדרנלין ונוראדרנלין: דופק, התכווצות ותנגודת עולים</span></div>
+   <div><b>הסטת זרימה</b><span>הדם מוסט מהעור, השרירים <span class="nw">וה-<bdi dir="ltr">splanchnic circulation</bdi></span> אל האיברים החיוניים</span></div>
+   <div><b>הורמונלי</b><span>רנין <span class="nw">מה-<bdi dir="ltr">kidney</bdi></span>, אנגיוטנסין 2 ואלדוסטרון: החזרת נתרן ומים. <bdi>ADH</bdi> <span class="nw">מה-<bdi dir="ltr">pituitary</bdi></span>: החזרת מים חופשיים</span></div>
    <div><b>גיוס נוזלים</b><span>הלחץ ההידרוסטטי בנימים יורד. מים עוברים מהחללים הבין-תאי והתוך-תאי אל כלי הדם</span></div>
   </div>
   <div style="display:grid;gap:10px">
@@ -204,7 +209,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   </div>
   <div style="display:grid;gap:10px">
    <div class="box a"><b class="t">"אופטימיזציה" לערכים על-נורמליים</b>בשנות ה-80 דחפו את תפוקת הלב ואת צריכת החמצן לערכים גבוהים בנוזלים ובדובוטמין. מחקרים אקראיים לא הראו תועלת. נוזלים בכמות גדולה הוסיפו כשל רב-מערכתי ותסמונת מדור בבטן</div>
-   <div class="box n"><b class="t">צנתר עורק ריאה</b>כמעט נעלם מהטיפול הנמרץ הכירורגי (חוץ מניתוחי לב). הפסקת השימוש בו לא פגעה בתוצאות</div>
+   <div class="box n"><b class="t">צנתר <span class="nw">ב-<bdi dir="ltr">pulmonary artery</bdi></span> (<bdi>Swan-Ganz</bdi>)</b>כמעט נעלם מהטיפול הנמרץ הכירורגי (חוץ מניתוחי לב). הפסקת השימוש בו לא פגעה בתוצאות</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 33 עמ׳ <bdi dir="ltr">235–237</bdi> · פרק 46 עמ׳ <bdi dir="ltr">531</bdi></span><span>אספקת חמצן</span></div>
@@ -218,7 +223,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <ul class="b sm">
     <li><b>מראה ומצב נפשי:</b> אדישות, תגובות איטיות, חוסר שקט. פנים מתוחות וחרדות, עיניים שקועות</li>
     <li><b>עור:</b> חיוור או אפרפר, קר, לח ודביק. כתמים (<bdi>mottling</bdi>) באזורים הנמוכים של הגוף</li>
-    <li><b>ורידים שטחיים:</b> קרוסים ולא מתמלאים בלחיצה. פעימות ורידי הצוואר בקושי נראות</li>
+    <li><b>ורידים שטחיים:</b> קרוסים ולא מתמלאים בלחיצה. פעימות <span class="nw">ה-<bdi dir="ltr">jugular veins</bdi></span> בקושי נראות</li>
     <li><b>דופק:</b> בדרך כלל מהיר, קטן וחוטי. <b>לחץ הדם</b> נמוך ולחץ הדופק צר</li>
     <li><b>נשימה:</b> מהירה, בעומק משתנה. <b>צמא, הקאות וירידה בשתן</b></li>
     <li><b>חם או קר?</b> שוק חלוקתי לרוב "חם" עם גפיים חמות. היפובולמי וקרדיוגני "קרים" עם גפיים קרות</li>
@@ -280,8 +285,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <ul class="b">
     <li>זילוח ירוד יוצר חמצת לקטית וצריכת גורמי קרישה. נוזלים קרים ובכמות גדולה מוסיפים קור ודילול</li>
-    <li>אנזימי הקרישה עובדים הכי טוב ב-37 מעלות וב-<bdi>pH</bdi> של 7.4. החולה הקר <b>מדמם יותר</b> ממה שבדיקות הקרישה מראות, כי המעבדה מחממת את הדגימה</li>
-    <li><b>חמצת:</b> מטפלים בגורם ולא במספר. טיפול ב-<bdi>pH</bdi> לבד לא הראה תועלת</li>
+    <li>אנזימי הקרישה עובדים הכי טוב ב-37 מעלות <span class="nw">וב-<bdi>pH</bdi></span> של 7.4. החולה הקר <b>מדמם יותר</b> ממה שבדיקות הקרישה מראות, כי המעבדה מחממת את הדגימה</li>
+    <li><b>חמצת:</b> מטפלים בגורם ולא במספר. טיפול <span class="nw">ב-<bdi>pH</bdi></span> לבד לא הראה תועלת</li>
     <li>הדרך לשבור את המעגל: <b>לעצור את הדימום</b> ולמנוע קירור</li>
    </ul>
   </div>
@@ -313,8 +318,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div style="display:grid;gap:10px">
    <div class="study"><div class="y">מחקר מכונן · <bdi>NEJM</bdi> 1994</div><b>נוזלים לפני הניתוח או אחריו (<bdi>Bickell, Mattox</bdi>)</b>
     <p>פצועים חודרים בגו עם לחץ סיסטולי מתחת ל-90. מניעת נוזלים עד לשליטה בדימום שיפרה את ההישרדות באופן מובהק</p>
-    <small>כפי שמסוכם ב-<bdi>Sabiston 22</bdi>, פרק 33 עמ׳ <bdi dir="ltr">239</bdi></small></div>
-   <div class="box a"><b class="t">למה לא ליטרים של סליין?</b>אחרי כמה שעות נשארים בכלי הדם רק <bdi dir="ltr">175–200</bdi> מ״ל מכל ליטר. כמויות גדולות מגבירות דלקת, תסמונת מדור בבטן ו-<bdi>ARDS</bdi></div>
+    <small>כפי שמסוכם <span class="nw">ב-<bdi>Sabiston 22</bdi></span>, פרק 33 עמ׳ <bdi dir="ltr">239</bdi></small></div>
+   <div class="box a"><b class="t">למה לא ליטרים של סליין?</b>אחרי כמה שעות נשארים בכלי הדם רק <bdi dir="ltr">175–200</bdi> מ״ל מכל ליטר. כמויות גדולות מגבירות דלקת, תסמונת מדור בבטן <span class="nw">ו-<bdi>ARDS</bdi></span></div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 33 עמ׳ <bdi dir="ltr">226, 239–240, 244–245</bdi> (תיבה 33.2) · פרק 46 עמ׳ <bdi dir="ltr">535</bdi></span><span>החייאה</span></div>
@@ -334,7 +339,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   </div>
   <div style="display:grid;gap:10px">
    <div class="box"><b class="t">פרוטוקול עירוי מסיבי · דוגמה</b>צידנית ראשונה: 5 יחידות דם מלא, או 4 תאים ו-4 פלזמה מסוג <bdi>AB</bdi> או <bdi>A</bdi>. אחר כך צידניות ביחס 1:1:1. לוקחים דגימה לסוג והצלבה <b>לפני</b> העירוי</div>
-   <div class="box b"><b class="t">דם <bdi>O</bdi> שלילי</b>שמור לנשים בגיל הפוריות שסוג הדם שלהן לא ידוע או ידוע כ-<bdi>Rh</bdi> שלילי</div>
+   <div class="box b"><b class="t">דם <bdi>O</bdi> שלילי</b>שמור לנשים בגיל הפוריות שסוג הדם שלהן לא ידוע או ידוע <span class="nw">כ-<bdi>Rh</bdi></span> שלילי</div>
    <div class="box a"><b class="t">חומצה טרנקסמית</b>מחקר <bdi>CRASH-2</bdi> (20,211 חולים): תמותה 14.5% לעומת 16.0%. יעילה רק בתוך 3 שעות. מספר הנדרש לטיפול: 68</div>
   </div>
  </div>
@@ -346,8 +351,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>כלי הדם מתרחבים</h2>
  <div class="grid">
   <div style="display:grid;gap:10px">
-   <div class="box"><b class="t">נוירוגני</b>אובדן הטונוס הסימפתטי אחרי פגיעה בחוט השדרה. "שוק חם". פגיעה מתחת ל-<bdi>C5</bdi>: טכיקרדיה מפצה. ב-<bdi>C5</bdi> ומעלה: לעיתים קרובות ברדיקרדיה. הטיפול: תרופות מכווצות כלים, יותר ויותר נוראדרנלין</div>
-   <div class="box n"><b class="t">לא לבלבל</b>"שוק שדרתי" הוא אובדן זמני של רפלקסים אחרי פגיעה בחוט השדרה, לא מצב המודינמי</div>
+   <div class="box"><b class="t">נוירוגני</b>אובדן הטונוס הסימפתטי אחרי פגיעה <span class="nw">ב-<bdi dir="ltr">spinal cord</bdi></span>. "שוק חם". פגיעה מתחת <span class="nw">ל-<bdi>C5</bdi></span>: טכיקרדיה מפצה. <span class="nw">ב-<bdi>C5</bdi></span> ומעלה: לעיתים קרובות ברדיקרדיה. הטיפול: תרופות מכווצות כלים, יותר ויותר נוראדרנלין</div>
+   <div class="box n"><b class="t">לא לבלבל</b>"שוק שדרתי" הוא אובדן זמני של רפלקסים אחרי פגיעה <span class="nw">ב-<bdi dir="ltr">spinal cord</bdi></span>, לא מצב המודינמי</div>
   </div>
   <div style="display:grid;gap:10px">
    <div class="box r"><b class="t">אנפילקטי</b>הטיפול הראשון: אדרנלין. אנטיהיסטמין לא פותר את בעיית דרכי האוויר. סטרואידים פועלים רק אחרי שעות</div>
@@ -373,7 +378,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <ul class="b sm">
     <li><b>לב ימני:</b> נוזלים בזהירות עד אאוולמיה. אחר כך דובוטמין או מילרינון. להימנע מפנילפרין: הוא מעלה את התנגודת הריאתית</li>
-    <li><b>לב שמאלי:</b> קודם לקבוע את מצב הנפח: משקל, בצקות, אולטרסאונד של הווריד הנבוב. החולה יכול להיות עמוס, יבש או מאוזן</li>
+    <li><b>לב שמאלי:</b> קודם לקבוע את מצב הנפח: משקל, בצקות, אולטרסאונד של <span class="nw">ה-<bdi dir="ltr">IVC</bdi></span>. החולה יכול להיות עמוס, יבש או מאוזן</li>
     <li>עם לחץ דם גבוה: ניטרוגליצרין או ניקרדיפין להורדת העומס</li>
     <li>לחץ ותפוקה נמוכים: אדרנלין או דופמין. אם אין תגובה: תמיכה מכנית (בלון תוך-אאורטלי, מכשיר עזר לחדר, <bdi>ECMO</bdi>)</li>
    </ul>
@@ -392,10 +397,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <div><b>טמפונדה</b><span>ניקור פריקרד, חלון פריקרדיאלי או פתיחת חזה</span></div>
     <div><b>תסחיף ריאתי מסיבי</b><span>הפרין. ממיסי קריש בווריד או בצנתר, עם או בלי כריתת הקריש</span></div>
    </div>
-   <div class="box a" style="margin-top:10px"><b class="t">חושבים על זה מוקדם</b>האבחנות האלה דורשות חשד גבוה. החדר הימני לא עומד בעלייה חדה בתנגודת הריאתית, למשל בתסחיף ריאתי</div>
-   <figure style="margin-top:10px"><img src="img/shock-tamponade.png" alt="טמפונדה: נוזל בשק הפריקרד לוחץ על הלב" style="max-height:24vh"><figcaption>טמפונדה: נוזל בשק הפריקרד לוחץ על הלב · <bdi>Blausen.com staff (2014)</bdi>, <bdi>CC BY 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+   <div class="box a" style="margin-top:10px"><b class="t">חושבים על זה מוקדם</b>האבחנות האלה דורשות חשד גבוה. <span class="nw">ה-<bdi dir="ltr">right ventricle</bdi></span> לא עומד בעלייה חדה בתנגודת הריאתית, למשל בתסחיף ריאתי</div>
+   <figure style="margin-top:10px"><img src="img/shock-tamponade.png" alt="טמפונדה: נוזל ב-pericardial sac לוחץ על ה-heart" style="max-height:24vh"><figcaption>טמפונדה: נוזל <span class="nw">ב-<bdi dir="ltr">pericardial sac</bdi></span> לוחץ על <span class="nw">ה-<bdi dir="ltr">heart</bdi></span> · <bdi>Blausen.com staff (2014)</bdi>, <bdi>CC BY 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
   </div>
-  <figure style="align-self:start"><img src="img/shock-tension-ptx.jpg" alt="צילום חזה: חזה אוויר בלחץ משמאל, לפני נקז ואחריו"><figcaption>חזה אוויר בלחץ בריאה השמאלית. בתמונה השמאלית: הריאה קרוסה, אין סימני ריאה בצד הפגוע והמיצר נדחק לצד הנגדי. בתמונה הימנית: אחרי נקז חזה הריאה התפשטה · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure style="align-self:start"><img src="img/shock-tension-ptx.jpg" alt="צילום חזה: חזה אוויר בלחץ משמאל, לפני נקז ואחריו"><figcaption>חזה אוויר בלחץ <span class="nw">ב-<bdi dir="ltr">left lung</bdi></span>. בתמונה השמאלית: <span class="nw">ה-<bdi dir="ltr">lung</bdi></span> קרוסה, אין סימני ריאה בצד הפגוע <span class="nw">וה-<bdi dir="ltr">mediastinum</bdi></span> נדחק לצד הנגדי. בתמונה הימנית: אחרי נקז חזה <span class="nw">ה-<bdi dir="ltr">lung</bdi></span> התפשטה · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 46 עמ׳ <bdi dir="ltr">532, 536</bdi></span><span>חסימתי</span></div>
 </div></section>
@@ -406,9 +411,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div class="flow">
    <div><b>1. האם זה שוק?</b><span>לחץ דם, מדד שוק, הכרה, שתן, עור, לקטט</span></div>
-   <div><b>2. מאיזה סוג?</b><span>חם או קר? יש דימום? חום ומקור זיהום? פגיעה בעמוד השדרה? לב או חסימה בחזה?</span></div>
+   <div><b>2. מאיזה סוג?</b><span>חם או קר? יש דימום? חום ומקור זיהום? פגיעה <span class="nw">ב-<bdi dir="ltr">spine</bdi></span>? לב או חסימה בחזה?</span></div>
    <div><b>3. מה מצילים עכשיו?</b><span>דימום: לעצור ולתת דם. חסימה: לנקז. ספסיס: אנטיביוטיקה ושליטה במקור</span></div>
-   <div><b>4. איך נדע שזה עובד?</b><span>לקטט, חוסר בסיס ו-<bdi>pH</bdi> מתנרמלים, שתן, הכרה. בדיקות דינמיות כמו הרמת רגליים פסיבית. לא לחץ ורידי מרכזי</span></div>
+   <div><b>4. איך נדע שזה עובד?</b><span>לקטט, חוסר בסיס <span class="nw">ו-<bdi>pH</bdi></span> מתנרמלים, שתן, הכרה. בדיקות דינמיות כמו הרמת רגליים פסיבית. לא לחץ ורידי מרכזי</span></div>
    <div><b>5. מה מזיק?</b><span>יותר מדי קריסטלואידים, קור, איחור בשליטה במקור</span></div>
   </div>
   <div style="display:grid;gap:10px">

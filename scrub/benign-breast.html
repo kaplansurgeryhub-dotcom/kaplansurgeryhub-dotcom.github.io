@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>מחלות שפירות של השד · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,6 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -97,6 +98,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -114,6 +116,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -159,11 +164,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <g class="hzb" style="--c:#00967D"><circle cx="700" cy="600" r="20"/><text x="700" y="600">E</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="n" hidden><b>A · הפטמה והעטרה</b><p>פריחה שמתחילה בפטמה מחשידה ל-<bdi>Paget</bdi>, אקזמה מתחילה בעטרה. פטמה שנמשכה פנימה: אחרי דלקת כרונית מתחת לעטרה היא בדרך כלל דו-צדדית וקיימת שנים. סרטן גורם לשינוי חד-צדדי שמתפתח בשבועות עד חודשים.</p></div>
-  <div class="hzi" data-hzi="d" hidden><b>B · הצינורות הגדולים מתחת לפטמה</b><p>כאן יושבת הפפילומה התוך-צינורית, הסיבה השכיחה ביותר להפרשה דמית מצינור אחד. כאן גם הרחבת הצינורות והדלקת סביבם (<bdi>periductal mastitis</bdi>) אצל מעשנות וחולות סוכרת. גלקטוצלה יושבת לרוב במרכז השד או מתחת לפטמה.</p></div>
-  <div class="hzi" data-hzi="l" hidden><b>C · האונות והאונוניות (<bdi>TDLU</bdi>)</b><p>ציסטות נוצרות מהרחבה של אונוניות וצינוריות קטנות. פיברואדנומה ופילודס בנויים מסטרומה ומאפיתל. כאן גם השינויים השגשוגיים, האטיפיה וה-<bdi>LCIS</bdi> וכאן מתחיל גם רוב סרטן השד.</p></div>
+  <div class="hzi" data-hzi="n" hidden><b>A · הפטמה <span class="nw">וה-<bdi>areola</bdi></span></b><p>פריחה שמתחילה בפטמה מחשידה <span class="nw">ל-<bdi>Paget</bdi></span>, אקזמה מתחילה <span class="nw">ב-<bdi>areola</bdi></span>. פטמה שנמשכה פנימה: אחרי דלקת כרונית מתחת <span class="nw">ל-<bdi>areola</bdi></span> היא בדרך כלל דו-צדדית וקיימת שנים. סרטן גורם לשינוי חד-צדדי שמתפתח בשבועות עד חודשים.</p></div>
+  <div class="hzi" data-hzi="d" hidden><b>B · <bdi>lactiferous ducts</bdi> מתחת לפטמה</b><p>כאן יושבת הפפילומה התוך-צינורית, הסיבה השכיחה ביותר להפרשה דמית מצינור אחד. כאן גם הרחבת הצינורות והדלקת סביבם (<bdi>periductal mastitis</bdi>) אצל מעשנות וחולות סוכרת. גלקטוצלה יושבת לרוב במרכז השד או מתחת לפטמה.</p></div>
+  <div class="hzi" data-hzi="l" hidden><b>C · <bdi>lobes, lobules (TDLU)</bdi></b><p>ציסטות נוצרות מהרחבה של <bdi>lobules</bdi> וצינוריות קטנות. פיברואדנומה ופילודס בנויים מסטרומה ומאפיתל. כאן גם השינויים השגשוגיים, האטיפיה <span class="nw">וה-<bdi>LCIS</bdi></span> וכאן מתחיל גם רוב סרטן השד.</p></div>
   <div class="hzi" data-hzi="f" hidden><b>D · רקמת השומן</b><p>נמק שומן אחרי חבלה, ניתוח, השתלת שומן או הקרנה. יכול להיראות כמו סרטן: גוש קשה עם הסתיידויות. אין לו פוטנציאל ממאיר.</p></div>
-  <div class="hzi" data-hzi="p" hidden><b>E · שריר החזה ודופן החזה</b><p>לא כל כאב "בשד" מגיע מהשד. הסיבה השכיחה לכאב מוקרן היא דלקת בבורסה שבין השכמה לדופן החזה. הזרקה בנקודה הכואבת לאורך הגבול הפנימי של השכמה היא גם האבחנה וגם הטיפול.</p></div>
+  <div class="hzi" data-hzi="p" hidden><b>E · <bdi>pectoralis major</bdi> ודופן החזה</b><p>לא כל כאב "בשד" מגיע מהשד. הסיבה השכיחה לכאב מוקרן היא דלקת <span class="nw">ב-<bdi>scapulothoracic bursa</bdi></span>. הזרקה בנקודה הכואבת לאורך <span class="nw">ה-<bdi>medial border</bdi></span> של <span class="nw">ה-<bdi>scapula</bdi></span> היא גם האבחנה וגם הטיפול.</p></div>
  </div></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 68 עמ׳ <bdi dir="ltr">824, 834–837, 841</bdi></span><span>איור: <bdi>Patrick J. Lynch</bdi> (עיבוד <bdi>Morgoth666</bdi>), CC BY 3.0, <bdi>Wikimedia Commons</bdi> · אזורים: Scrub In</span></div>
 </div></section>
@@ -173,8 +178,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>מה תקין ולא צריך ביופסיה</h2>
  <div class="grid">
   <ul class="b sm">
-   <li><b>קו החלב:</b> מבית השחי עד המפשעה. שד נוסף או פטמה נוספת לאורכו. רקמת שד בבית השחי יכולה לגדול בהריון ולהישאר אחרי ההנקה</li>
-   <li><b>תסמונת <bdi>Poland</bdi>:</b> חוסר חד-צדדי של רקמת שד, של שרירי החזה ושל ה-<bdi>serratus</bdi> ולפעמים של צלעות</li>
+   <li><b>קו החלב:</b> <span class="nw">מה-<bdi>axilla</bdi></span> עד המפשעה. שד נוסף או פטמה נוספת לאורכו. רקמת שד <span class="nw">ב-<bdi>axilla</bdi></span> יכולה לגדול בהריון ולהישאר אחרי ההנקה</li>
+   <li><b>תסמונת <bdi>Poland</bdi>:</b> חוסר חד-צדדי של רקמת שד, של <span class="nw">ה-<bdi>pectoralis</bdi></span> ושל <span class="nw">ה-<bdi>serratus</bdi></span> ולפעמים של צלעות</li>
    <li><b>יילודים:</b> ב-90% יש הפרשה מהשד ("חלב מכשפות") מהורמונים של האם. חולפת תוך <bdi dir="ltr">3–4</bdi> שבועות</li>
    <li><b>ניצן שד לפני גיל 12 בלי סימני התבגרות אחרים:</b> לא גידול ולא סיבה לביופסיה</li>
   </ul>
@@ -227,7 +232,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>כאב מחזורי:</b> לפני הווסת. דנזול, לופרון או טמוקסיפן עוזרים, אבל עם תופעות לוואי משמעותיות</li>
     <li><b>כאב לא מחזורי:</b> בדרך כלל ללא סיבה ידועה וקשה יותר לטיפול. מגיל 30: בדיקה, ממוגרפיה ואולטרסאונד. גוש שנמצא הופך למוקד הבירור</li>
     <li><b>ציסטה כואבת:</b> שאיבה בדרך כלל פותרת את הכאב</li>
-    <li><b>כאב מוקרן:</b> בעיקר מהבורסה שבין השכמה לדופן החזה. הזרקה בנקודה הכואבת, אחר כך חום ונוגדי דלקת</li>
+    <li><b>כאב מוקרן:</b> בעיקר <span class="nw">מה-<bdi>scapulothoracic bursa</bdi></span>. הזרקה בנקודה הכואבת, אחר כך חום ונוגדי דלקת</li>
    </ul>
   </div>
   <div style="display:grid;gap:10px;align-content:start">
@@ -274,13 +279,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li>בעיקר בשנות ה-40. ממוצע כ-5 ס״מ, גדל מהר. רמזים: מעל 3 ס״מ, גדילה מהירה, אישה מבוגרת יותר</li>
     <li>שפיר, גבולי או ממאיר לפי הסטרומה</li>
     <li><b>שפיר:</b> כריתה כמו פיברואדנומה. <b>גבולי וממאיר:</b> כריתה רחבה עם שוליים של 1 ס״מ ומעלה, לפעמים כריתת שד</li>
-    <li><b>לא בודקים את בית השחי.</b> הישנות מקומית בעיקר בשנתיים הראשונות. גרורות בדם, בעיקר לריאות</li>
+    <li><b>לא בודקים את <span class="nw">ה-<bdi>axilla</bdi></span>.</b> הישנות מקומית בעיקר בשנתיים הראשונות. גרורות בדם, בעיקר לריאות</li>
    </ul></div>
  </div>
  <div class="grid g3 tight" style="margin-top:12px">
   <figure><img src="img/ben-mammo-fa.jpg" alt="ממוגרפיה של גוש תחום"><figcaption>גוש סגלגל וחלק בממוגרפיה. בביופסיה: גידול פיברואפיתליאלי · <bdi>Cerevisae</bdi>, CC BY-SA 4.0</figcaption></figure>
   <figure><img src="img/ben-mammo-fa-calc.jpg" alt="פיברואדנומות מסוידות בשני השדיים"><figcaption>פיברואדנומות ישנות עם הסתיידויות גסות ("פופקורן") בשני השדיים · <bdi>Hellerhoff</bdi>, CC BY-SA 4.0</figcaption></figure>
-  <figure><img src="img/ben-phyllodes.jpg" alt="חתכים בגידול פילודס"><figcaption>גידול פילודס בתכשיר: גוש גדול, אונתי ותחום · <bdi>Ed Uthman</bdi>, CC BY 2.0 · כולם מ-<bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/ben-phyllodes.jpg" alt="חתכים בגידול פילודס"><figcaption>גידול פילודס בתכשיר: גוש גדול, אונתי ותחום · <bdi>Ed Uthman</bdi>, CC BY 2.0 · כולם <span class="nw">מ-<bdi>Wikimedia Commons</bdi></span></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 68 עמ׳ <bdi dir="ltr">835, 841–842</bdi></span><span>פיברואדנומה ופילודס</span></div>
 </div></section>
@@ -293,12 +298,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div class="flow sm">
     <div><b>דו-צדדית, מכמה צינורות</b><span>בדרך כלל לא סיבה לניתוח</span></div>
     <div><b>חלבית בשני הצדדים</b><span>גלקטוריאה. בלי הריון או הנקה: לבדוק פרולקטין</span></div>
-    <div><b>דמית בשני הצדדים</b><span>בדרך כלל הורמונלית: הריון, תת-פעילות של בלוטת התריס</span></div>
+    <div><b>דמית בשני הצדדים</b><span>בדרך כלל הורמונלית: הריון, תת-פעילות של <span class="nw">ה-<bdi>thyroid</bdi></span></span></div>
     <div><b>ספונטנית, מצינור אחד</b><span>פפילומה תוך-צינורית <bdi dir="ltr">(60–80%)</bdi>, הרחבת צינורות (20%). בדיקה והדמיה</span></div>
     <div><b>דמית מצינור אחד בלי אבחנה</b><span>כריתה של הצינור המעורב, לאבחנה ולעצירת ההפרשה</span></div>
    </div>
    <div class="num" style="margin-top:12px;grid-template-columns:1fr 1fr">
-    <div><b dir="ltr">5.9%</b><span>סרטן בביופסיות מתחת לעטרה בהפרשה מצינור אחד בלי גוש</span></div>
+    <div><b dir="ltr">5.9%</b><span>סרטן בביופסיות מתחת <span class="nw">ל-<bdi>areola</bdi></span> בהפרשה מצינור אחד בלי גוש</span></div>
     <div><b dir="ltr">20%</b><span>ממאירות בפפילומות רחוקות מהפטמה</span></div>
    </div>
   </div>
@@ -315,15 +320,15 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <ul class="b sm">
     <li>חיידקים נכנסים דרך הפטמה. בדרך כלל <bdi>S. aureus</bdi> או סטרפטוקוק</li>
     <li>חום, לויקוציטוזיס, אודם ורגישות</li>
-    <li>אנטיביוטיקה (לפי הסיכון ל-<bdi>MRSA</bdi>) <b>וממשיכים לרוקן את השד</b></li>
+    <li>אנטיביוטיקה (לפי הסיכון <span class="nw">ל-<bdi>MRSA</bdi></span>) <b>וממשיכים לרוקן את השד</b></li>
     <li><b>מורסה:</b> אולטרסאונד ושאיבה במחט קודם. חתך וניקוז רק כשהשאיבה והאנטיביוטיקה לא הצליחו. מורסות כאלה בדרך כלל מרובות מדורים</li>
    </ul></div>
   <div class="box a"><b class="t">דלקת סביב הצינורות (מחוץ להנקה)</b>
    <ul class="b sm">
     <li>קשורה לעישון ולסוכרת. זיהום מעורב, אירובי ואנאירובי</li>
-    <li>כאב ואודם מתחת לעטרה. התקפים חוזרים גורמים לפטמה שנמשכת פנימה, לגוש ולפעמים לפיסטולה לעור שליד העטרה</li>
+    <li>כאב ואודם מתחת <span class="nw">ל-<bdi>areola</bdi></span>. התקפים חוזרים גורמים לפטמה שנמשכת פנימה, לגוש ולפעמים לפיסטולה לעור שליד <span class="nw">ה-<bdi>areola</bdi></span></li>
     <li>בהתחלה: חום מקומי ואנטיביוטיקה שמכסה גם אנאירובים. מורסה: שאיבה</li>
-    <li><b>חוזרת:</b> כריתה של כל מערכת הצינורות מתחת לעטרה, רק אחרי שהדלקת החריפה חלפה</li>
+    <li><b>חוזרת:</b> כריתה של כל מערכת הצינורות מתחת <span class="nw">ל-<bdi>areola</bdi></span>, רק אחרי שהדלקת החריפה חלפה</li>
    </ul></div>
  </div>
  <div class="grid" style="margin-top:12px">
@@ -358,13 +363,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  </div>
  <div class="grid">
   <ul class="b sm">
-   <li><b><bdi>ADH</bdi> בביופסיה:</b> יותר מ-20% מתגלים כסרטן בכריתה ולכן בדרך כלל כורתים. ב-<bdi>ALH</bdi> הסיכון נמוך יותר וההחלטה אישית</li>
+   <li><b><bdi>ADH</bdi> בביופסיה:</b> יותר מ-20% מתגלים כסרטן בכריתה ולכן בדרך כלל כורתים. <span class="nw">ב-<bdi>ALH</bdi></span> הסיכון נמוך יותר וההחלטה אישית</li>
    <li><b>צלקת רדיאלית:</b> נראית כמו כוכב בהדמיה. בדרך כלל כורתים כדי לשלול סרטן</li>
-   <li><b>פפילומה עם אטיפיה:</b> כמחצית מתגלות כ-<bdi>DCIS</bdi> או סרטן: כריתה. בלי אטיפיה, קטנה ומקרית: פחות מ-10%, אפשר לעקוב</li>
+   <li><b>פפילומה עם אטיפיה:</b> כמחצית מתגלות <span class="nw">כ-<bdi>DCIS</bdi></span> או סרטן: כריתה. בלי אטיפיה, קטנה ומקרית: פחות מ-10%, אפשר לעקוב</li>
   </ul>
   <ul class="b sm">
    <li><b><bdi>LCIS</bdi> קלאסי:</b> סמן לסיכון ולא שלב לפני סרטן. חצי מהגידולים מופיעים בשד השני. מעקב בסיכון גבוה ושקילת מניעה בתרופות</li>
-   <li><b><bdi>LCIS</bdi> פלאומורפי:</b> אגרסיבי. מטפלים בו כמו ב-<bdi>DCIS</bdi>: כריתה</li>
+   <li><b><bdi>LCIS</bdi> פלאומורפי:</b> אגרסיבי. מטפלים בו כמו <span class="nw">ב-<bdi>DCIS</bdi></span>: כריתה</li>
    <li><b>מניעה:</b> טמוקסיפן הוריד ב-75% סרטן חודרני באטיפיה. אפשר מינון נמוך של 5 מ״ג ל-3 שנים</li>
   </ul>
  </div>
@@ -377,10 +382,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b sm">
-    <li>פוליפ של האפיתל בתוך צינור. בדרך כלל ליד העטרה, פחות מ-1 ס״מ, אבל יכולה להגיע ל-<bdi dir="ltr">4–5</bdi> ס״מ</li>
-    <li>ליד הפטמה: הפרשה דמית. לפעמים גוש מתחת לעטרה או ממצא בממוגרפיה</li>
+    <li>פוליפ של האפיתל בתוך צינור. בדרך כלל ליד <span class="nw">ה-<bdi>areola</bdi></span>, פחות מ-1 ס״מ, אבל יכולה להגיע <span class="nw">ל-<bdi dir="ltr">4–5</bdi></span> ס״מ</li>
+    <li>ליד הפטמה: הפרשה דמית. לפעמים גוש מתחת <span class="nw">ל-<bdi>areola</bdi></span> או ממצא בממוגרפיה</li>
     <li><b>מתי כורתים:</b> הפרשה דמית, גוש נמוש או אטיפיה בביופסיה</li>
-    <li><b>איך:</b> חתך סביב העטרה, מזהים את הצינור המפריש עם גשושית דקה או צבע וכורתים רק אותו</li>
+    <li><b>איך:</b> חתך סביב <span class="nw">ה-<bdi>areola</bdi></span>, מזהים את הצינור המפריש עם גשושית דקה או צבע וכורתים רק אותו</li>
     <li>פפילומות רבות (<bdi>papillomatosis</bdi>) מעלות את הסיכון לסרטן גם בלי אטיפיה</li>
    </ul>
   </div>
@@ -398,13 +403,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>גינקומסטיה:</b> רקמת בלוטה. <b>פסאודו-גינקומסטיה:</b> רק שומן</li>
     <li><b>בגיל ההתבגרות</b> (13 עד בגרות צעירה): חד או דו-צדדית ובדרך כלל נסוגה. ניתוח רק אם לא נסוגה, חד-צדדית או מפריעה מאוד</li>
     <li><b>מעל גיל 50:</b> שכיחה. מחפשים תרופות: דיגוקסין, תיאזידים, אסטרוגנים, פנותיאזינים, תיאופילין, קנאביס</li>
-    <li><b>מחלות שצריך לחפש:</b> שחמת, אי-ספיקת כליות, תת-תזונה, היפוגונדיזם, גידול באשך, יתר פעילות של בלוטת התריס</li>
+    <li><b>מחלות שצריך לחפש:</b> שחמת, אי-ספיקת כליות, תת-תזונה, היפוגונדיזם, גידול באשך, יתר פעילות של <span class="nw">ה-<bdi>thyroid</bdi></span></li>
    </ul>
   </div>
   <div>
    <div class="flow sm">
-    <div><b>גינקומסטיה</b><span>דיסקה חלקה ומוצקה, סימטרית מתחת לעטרה, לרוב רגישה</span></div>
-    <div><b>סרטן</b><span>לא רגיש, לא סימטרי, מתחת לעטרה או לידה, יכול להיות מקובע לעור או לשריר</span></div>
+    <div><b>גינקומסטיה</b><span>דיסקה חלקה ומוצקה, סימטרית מתחת <span class="nw">ל-<bdi>areola</bdi></span>, לרוב רגישה</span></div>
+    <div><b>סרטן</b><span>לא רגיש, לא סימטרי, מתחת <span class="nw">ל-<bdi>areola</bdi></span> או לידה, יכול להיות מקובע לעור או לשריר</span></div>
    </div>
    <figure style="margin-top:10px"><img src="img/ben-gynecomastia.jpg" alt="גבר עם גינקומסטיה לפני ניתוח ואחריו"><figcaption>גינקומסטיה בדרגה III לפני ניתוח (משמאל) ואחריו · <bdi>David Andrew Copeland, Dr. Mordcai Blau</bdi>, CC BY-SA 3.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
    <div class="box a" style="margin-top:10px"><b class="t">שימו לב</b>גינקומסטיה אינה גורם סיכון לסרטן שד בגבר. ממוגרפיה ואולטרסאונד עוזרים כשיש ספק</div>
@@ -438,7 +443,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>פיברואדנומה מאובחנת בביופסיה ולא חייבת כריתה. גוש מעל 3 ס״מ או שגדל מהר: לחשוב על פילודס</li>
   <li>הפרשה דמית, ספונטנית ומצינור אחד דורשת בירור. דו-צדדית מכמה צינורות: בדרך כלל לא</li>
   <li>מורסה בשד: אולטרסאונד ושאיבה במחט קודם. אצל אישה שלא מניקה לחשוב גם על עישון, על <bdi>IGM</bdi> ועל סרטן דלקתי</li>
-  <li>אטיפיה ו-<bdi>LCIS</bdi> הם סמנים לסיכון: כריתה לפי סוג הנגע, מעקב צמוד ושקילת מניעה בתרופות</li>
+  <li>אטיפיה <span class="nw">ו-<bdi>LCIS</bdi></span> הם סמנים לסיכון: כריתה לפי סוג הנגע, מעקב צמוד ושקילת מניעה בתרופות</li>
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 68 <bdi>Diseases of the Breast</bdi>, הסעיפים על אנטומיה, גורמי סיכון ומחלות שפירות (עמ׳ <bdi dir="ltr">822–837, 841–842</bdi>)</div>
  <div class="src"><span>איורים ותמונות: <bdi>Wikimedia Commons</bdi> (רישיונות בכל כיתוב) · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>דילמות מדיקו-לגליות · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -84,6 +84,7 @@ details.rev{margin-top:10px;border:1px dashed var(--g);border-radius:12px;paddin
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -95,6 +96,7 @@ details.rev{margin-top:10px;border:1px dashed var(--g);border-radius:12px;paddin
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -112,6 +114,9 @@ details.rev{margin-top:10px;border:1px dashed var(--g);border-radius:12px;paddin
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -159,7 +164,7 @@ details.rev{margin-top:10px;border:1px dashed var(--g);border-radius:12px;paddin
   <div class="hzi" data-hzi="body" hidden><b>1 · האדם שעל השולחן</b><p>אף אחד לא שאל אותו. היום, על פי עיקרון הכבוד לאוטונומיה, אדם כשיר מחליט על גופו. בלי הסכמה מדעת לא מנתחים, חוץ מבמצבים מוגדרים</p></div>
   <div class="hzi" data-hzi="tulp" hidden><b>2 · המומחה</b><p>לפני 60–70 שנה עוד היה מקובל ש"הרופא יודע הכי טוב". הגישה הפטרנליסטית התחלפה בהחלטה משותפת. כשיש כמה אפשרויות סבירות, ההעדפה של המטופל קובעת</p></div>
   <div class="hzi" data-hzi="guild" hidden><b>3 · הקהילה המקצועית</b><p>מקצוע מוגדר באגודה מקצועית, גוף ידע, הכשרה מוסדרת, רישוי, פיקוח עמיתים וקוד אתי. המנתח מקבל אמון מיוחד, כי הוא מחליט בשביל אדם מורדם</p></div>
-  <div class="hzi" data-hzi="paper" hidden><b>4 · מה שכתוב</b><p>היום מה שלא תועד כאילו לא נעשה: ההסבר שניתן, ההסכמה, ה-<bdi>time-out</bdi> וההנחיות המקדימות של המטופל צריכים להיות ברשומה וזמינים</p></div>
+  <div class="hzi" data-hzi="paper" hidden><b>4 · מה שכתוב</b><p>היום מה שלא תועד כאילו לא נעשה: ההסבר שניתן, ההסכמה, <span class="nw">ה-<bdi>time-out</bdi></span> וההנחיות המקדימות של המטופל צריכים להיות ברשומה וזמינים</p></div>
  </div></div>
  <div class="src"><span><bdi>The Anatomy Lesson of Dr Nicolaes Tulp</bdi> · רמברנדט, 1632 · <bdi>Wikimedia Commons</bdi> (נחלת הכלל) · <b>Sabiston 22</b> · פרק 16 עמ׳ <bdi dir="ltr">e214–e217</bdi> · פרק 9 עמ׳ <bdi dir="ltr">e105</bdi> · פרק 27 עמ׳ <bdi dir="ltr">149</bdi></span><span>אינטראקטיבי</span></div>
 </div></section>
@@ -202,7 +207,7 @@ details.rev{margin-top:10px;border:1px dashed var(--g);border-radius:12px;paddin
   <div style="display:grid;gap:10px;align-content:start">
    <div class="box"><b class="t">איך</b>בשפה פשוטה, בלי ז׳רגון. אפשר להיעזר בכלי החלטה, באיורים, בחומר כתוב ובמחשבוני סיכון. הם משפרים את הידע ואת שביעות הרצון מההחלטה</div>
    <div class="box n"><b class="t">מטופל שלא רוצה לשמוע</b>החובה היא לתת <b>הזדמנות</b> לקבל מידע. דקלום פרטים בכפייה למי שמבקש לסמוך על ההמלצה פוגע באוטונומיה שלו</div>
-   <div class="box b"><b class="t">בחדר הניתוח</b>מוודאים שוב את ההסכמה, את זהות המטופל, את הצד ואת הניתוח: באימות לפני ההליך, בסימון האתר וב-<bdi>time-out</bdi> לפני החתך</div>
+   <div class="box b"><b class="t">בחדר הניתוח</b>מוודאים שוב את ההסכמה, את זהות המטופל, את הצד ואת הניתוח: באימות לפני ההליך, בסימון האתר <span class="nw">וב-<bdi>time-out</bdi></span> לפני החתך</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">2–3, 5–6</bdi> · פרק 16 עמ׳ <bdi dir="ltr">e215</bdi> · פרק 9 עמ׳ <bdi dir="ltr">e104, e106</bdi></span><span>הסכמה מדעת</span></div>
@@ -363,7 +368,7 @@ details.rev{margin-top:10px;border:1px dashed var(--g);border-radius:12px;paddin
  <div class="grid">
   <div class="box"><b class="t">ג · "רק אל תגידו לה"</b>בן משפחה מבקש להסתיר מאמו בת 70, צלולה, שהביופסיה הראתה סרטן
    <details class="rev"><summary>הצגת תשובה</summary><p>היא כשירה, לכן המידע שלה. שואלים <b>אותה</b> כמה היא רוצה לדעת ומי תרצה שישתתף בשיחה. מטופל רשאי לבחור לא לשמוע הכול. בישראל, אי-מסירת מידע רפואי למטופל אפשרית רק באישור ועדת אתיקה, אם המסירה עלולה לגרום לו נזק חמור (סעיף 13(ד))</p></details></div>
-  <div class="box"><b class="t">ד · ה-<bdi>time-out</bdi> עצר את הניתוח</b>בזמן ה-<bdi>time-out</bdi> מתברר שהצד המסומן לא תואם לטופס ההסכמה
+  <div class="box"><b class="t">ד · <span class="nw">ה-<bdi>time-out</bdi></span> עצר את הניתוח</b>בזמן <span class="nw">ה-<bdi>time-out</bdi></span> מתברר שהצד המסומן לא תואם לטופס ההסכמה
    <details class="rev"><summary>הצגת תשובה</summary><p>עוצרים. לא מתחילים עד שהפער נפתר מול המטופל, הרשומה וההדמיה. זה בדיוק מה שהנוהל נועד לתפוס. מדווחים כ"כמעט-אירוע" כדי שהמערכת תלמד. היררכיה שטוחה עוזרת: כל אחד בחדר צריך להרגיש חופשי להעיר</p></details></div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 16 עמ׳ <bdi dir="ltr">e215</bdi> · פרק 9 עמ׳ <bdi dir="ltr">e102, e104–e105, e107</bdi> · חוק זכויות החולה, סעיף 13(ד)</span><span>תרחישים בדויים</span></div>

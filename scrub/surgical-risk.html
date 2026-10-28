@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>הערכת סיכון ניתוחי · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,6 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -97,6 +98,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -114,6 +116,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -152,7 +157,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div><b dir="ltr">~10%</b><span>מהמטופלים בסיכון גבוה לסיבוכים</span></div>
   <div><b dir="ltr">1:50,000</b><span>סיכון תמותה בפעולה אמבולטורית בסיכון נמוך מאוד</span></div>
   <div><b dir="ltr">&gt;20%</b><span>תמותה צפויה בניתוח חירום בסיכון גבוה בחולה קשה</span></div>
-  <div><b dir="ltr">~20%</b><span>תמותה מוקדמת ב-<bdi>ASA</bdi> 5 בניתוח חירום</span></div>
+  <div><b dir="ltr">~20%</b><span>תמותה מוקדמת <span class="nw">ב-<bdi>ASA</bdi></span> 5 בניתוח חירום</span></div>
  </div>
  <ul class="b">
   <li>מנתחים <b>לא מזהים באופן אמין</b> מי בסיכון גבוה. פספוס עולה בתחלואה ובתמותה</li>
@@ -194,7 +199,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>5</b>סיכון לפי הניתוח · אינטראקטיבי</div>
  <h2>איזה איבר, איזה סיכון?</h2>
- <div class="hotw"><div class="hoti" style="max-width:430px;justify-self:center"><img src="img/Sobo_1906_413_crop.jpg" alt="איברי הבטן האחורית: לבלב, תריסריון, טחול, כליות, אבי העורקים, מעי סיגמואידי ושלפוחית"><svg viewBox="0 0 1100 1170" preserveAspectRatio="none" style="--lw:30;--bf:30px">
+ <div class="hotw"><div class="hoti" style="max-width:430px;justify-self:center"><img src="img/Sobo_1906_413_crop.jpg" alt="איברי הבטן האחורית: pancreas, duodenum, spleen, kidneys, aorta, sigmoid colon ו-bladder"><svg viewBox="0 0 1100 1170" preserveAspectRatio="none" style="--lw:30;--bf:30px">
   <path class="hz" data-hz="ao" d="M533,462 C525,472,531,499,530,521 C529,543,528,576,528,594 C527,612,527,619,525,630 C523,641,520,649,517,659 C513,668,507,677,502,687 C498,697,493,708,488,719 C484,731,478,745,474,756 C470,767,467,775,464,784 C461,794,458,805,459,812 C459,820,463,830,466,829 C469,827,471,813,474,804 C477,796,480,787,484,776 C489,765,495,751,500,740 C506,728,512,717,519,707 C526,698,536,684,543,683 C550,682,554,692,559,699 C565,706,570,715,575,723 C581,732,585,745,591,752 C598,758,608,764,612,764 C616,764,616,758,616,752 C615,745,612,733,608,723 C604,714,596,704,591,695 C587,686,582,680,579,671 C577,662,576,655,575,642 C575,630,577,614,577,594 C578,574,580,543,579,521 C579,499,583,472,575,462 C568,452,540,452,533,462 Z" style="--c:#A3402E"/>
   <path class="hz" data-hz="pd" d="M443,286 C449,277,463,276,473,271 C483,266,490,260,503,256 C515,252,534,251,547,245 C560,239,569,230,581,223 C593,215,606,205,618,200 C630,195,641,190,655,193 C669,196,687,211,703,219 C720,227,739,232,752,241 C765,251,771,262,781,275 C792,287,808,304,815,316 C822,327,829,335,824,342 C820,348,807,356,789,357 C771,357,739,351,715,345 C690,340,656,325,640,323 C624,321,632,333,618,334 C604,335,568,327,555,330 C542,334,544,349,540,357 C536,364,536,370,529,375 C522,380,509,386,499,386 C488,386,475,381,466,375 C456,370,448,361,443,353 C438,344,436,334,436,323 C436,312,437,295,443,286 Z M566,180 C558,178,541,185,529,187 C516,190,504,192,492,195 C479,198,466,201,454,204 C443,207,430,207,421,212 C412,216,406,225,402,234 C399,243,400,255,400,264 C401,272,407,278,406,286 C405,293,397,298,395,308 C393,318,392,332,393,345 C394,359,397,376,400,390 C404,404,408,417,413,427 C419,437,425,445,436,451 C446,457,462,462,477,462 C491,463,509,459,521,455 C533,451,542,444,547,438 C553,432,556,427,555,420 C553,413,549,403,540,397 C531,392,515,392,503,388 C490,385,475,382,466,377 C456,372,448,365,443,357 C438,348,436,334,436,323 C436,312,437,298,443,290 C449,281,463,277,473,271 C483,265,490,260,503,256 C515,252,535,250,547,245 C560,240,572,234,577,226 C582,219,577,208,575,200 C573,193,574,182,566,180 Z" style="--c:#A3402E"/>
   <path class="hz" data-hz="sp" d="M666,165 C672,155,677,142,689,133 C700,125,716,117,733,113 C750,109,771,107,789,109 C807,111,827,117,841,126 C855,135,866,149,874,163 C882,177,887,195,889,212 C891,228,889,245,886,260 C882,275,875,290,867,301 C859,312,845,321,837,327 C830,332,826,336,822,334 C818,332,818,322,813,314 C808,306,799,295,793,286 C786,277,781,267,774,260 C767,253,762,249,752,243 C742,237,727,231,715,225 C702,218,687,210,677,204 C668,199,659,198,657,191 C655,185,661,175,666,165 Z" style="--c:#C9893F"/>
@@ -209,13 +214,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <g class="hzb" style="--c:#00967D"><circle cx="398" cy="1110" r="26"/><text x="398" y="1110">6</text></g>
  </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על איבר בציור כדי לראות את רמת הסיכון של הניתוח בו</p>
-   <div class="hzi" data-hzi="ao" hidden><b>1 · אבי העורקים וכלי דם גדולים</b><p><span class="tag r">סיכון גבוה · מעל 5%</span></p><p>ניתוחי אבי העורקים וכלי דם גדולים. באותה קבוצה: ניתוח פתוח לשחזור עורקי הרגל, קטיעה או הוצאת קריש</p></div>
-   <div class="hzi" data-hzi="pd" hidden><b>2 · לבלב ותריסריון</b><p><span class="tag r">סיכון גבוה · מעל 5%</span></p><p>ניתוח לבלב ותריסריון (<bdi>Whipple</bdi>). באותה קבוצה: כריתת כבד, ניתוחי דרכי מרה, כריתת ושט</p></div>
-   <div class="hzi" data-hzi="sp" hidden><b>3 · טחול</b><p><span class="tag a">סיכון ביניים · <bdi dir="ltr">1–5%</bdi></span></p><p>כריתת טחול נחשבת ניתוח תוך-בטני בסיכון ביניים, כמו כריתת כיס מרה ותיקון בקע סרעפתי</p></div>
-   <div class="hzi" data-hzi="kd" hidden><b>4 · כליות ויותרת הכליה</b><p><span class="tag a">השתלת כליה: ביניים</span> <span class="tag r">כריתת יותרת הכליה: גבוה</span></p><p>יותרת הכליה יושבת על הקוטב העליון של הכליה. כריתה שלה מופיעה ברשימת הניתוחים בסיכון הגבוה</p></div>
-   <div class="hzi" data-hzi="sg" hidden><b>5 · מעי גס</b><p><span class="tag r">תיקון ניקוב מעי: גבוה</span></p><p>ניתוח חירום על מעי מנוקב הוא בסיכון לבבי גבוה. כל ניתוח בתוך הצפק נותן נקודה אחת במדד <bdi>RCRI</bdi></p></div>
-   <div class="hzi" data-hzi="bl" hidden><b>6 · שלפוחית השתן והערמונית</b><p><span class="tag">פעולה דרך השופכה: נמוך</span> <span class="tag r">כריתה מלאה של השלפוחית: גבוה</span></p><p>כריתת ערמונית דרך השופכה היא פעולה אורולוגית קטנה בסיכון נמוך. כריתה מלאה של השלפוחית בסיכון גבוה. אותו אזור, סיכון שונה לגמרי</p></div>
-   <div class="box" style="margin-top:10px"><b class="t">בסיכון נמוך (מתחת ל-1%)</b>ניתוחים שטחיים, שד, עיניים, בלוטת התריס, שיניים ופעולות אנדוסקופיות</div>
+   <div class="hzi" data-hzi="ao" hidden><b>1 · <bdi dir="ltr">Aorta</bdi> <span class="nw">ו-<bdi dir="ltr">great vessels</bdi></span></b><p><span class="tag r">סיכון גבוה · מעל 5%</span></p><p>ניתוחי <span class="nw">ה-<bdi dir="ltr">aorta</bdi></span> <span class="nw">וה-<bdi dir="ltr">great vessels</bdi></span>. באותה קבוצה: ניתוח פתוח לשחזור <span class="nw">ה-<bdi dir="ltr">lower extremity arteries</bdi></span>, קטיעה או הוצאת קריש</p></div>
+   <div class="hzi" data-hzi="pd" hidden><b>2 · <bdi dir="ltr">Pancreas</bdi> <span class="nw">ו-<bdi dir="ltr">duodenum</bdi></span></b><p><span class="tag r">סיכון גבוה · מעל 5%</span></p><p>ניתוח <span class="nw">ב-<bdi dir="ltr">pancreas</bdi></span> <span class="nw">וב-<bdi dir="ltr">duodenum</bdi></span> (<bdi>Whipple</bdi>). באותה קבוצה: כריתת כבד, ניתוחי דרכי מרה, כריתת ושט</p></div>
+   <div class="hzi" data-hzi="sp" hidden><b>3 · <bdi dir="ltr">Spleen</bdi></b><p><span class="tag a">סיכון ביניים · <bdi dir="ltr">1–5%</bdi></span></p><p>כריתת טחול נחשבת ניתוח תוך-בטני בסיכון ביניים, כמו כריתת כיס מרה ותיקון בקע סרעפתי</p></div>
+   <div class="hzi" data-hzi="kd" hidden><b>4 · <bdi dir="ltr">Kidneys</bdi> <span class="nw">ו-<bdi dir="ltr">adrenal gland</bdi></span></b><p><span class="tag a">השתלת כליה: ביניים</span> <span class="tag r">כריתת יותרת הכליה: גבוה</span></p><p><span class="nw">ה-<bdi dir="ltr">adrenal gland</bdi></span> יושבת על <span class="nw">ה-<bdi dir="ltr">upper pole</bdi></span> של <span class="nw">ה-<bdi dir="ltr">kidney</bdi></span>. כריתה שלה מופיעה ברשימת הניתוחים בסיכון הגבוה</p></div>
+   <div class="hzi" data-hzi="sg" hidden><b>5 · <bdi dir="ltr">Colon</bdi></b><p><span class="tag r">תיקון ניקוב מעי: גבוה</span></p><p>ניתוח חירום על מעי מנוקב הוא בסיכון לבבי גבוה. כל ניתוח <bdi dir="ltr">intraperitoneal</bdi> נותן נקודה אחת במדד <bdi>RCRI</bdi></p></div>
+   <div class="hzi" data-hzi="bl" hidden><b>6 · <bdi dir="ltr">Bladder</bdi> <span class="nw">ו-<bdi dir="ltr">prostate</bdi></span></b><p><span class="tag">פעולה <bdi dir="ltr">transurethral</bdi>: נמוך</span> <span class="tag r">כריתה מלאה של <span class="nw">ה-<bdi dir="ltr">bladder</bdi></span>: גבוה</span></p><p>כריתת <bdi dir="ltr">prostate</bdi> דרך <span class="nw">ה-<bdi dir="ltr">urethra</bdi></span> (<bdi dir="ltr">TURP</bdi>) היא פעולה אורולוגית קטנה בסיכון נמוך. כריתה מלאה של <span class="nw">ה-<bdi dir="ltr">bladder</bdi></span> בסיכון גבוה. אותו אזור, סיכון שונה לגמרי</p></div>
+   <div class="box" style="margin-top:10px"><b class="t">בסיכון נמוך (מתחת ל-1%)</b>ניתוחים שטחיים, <bdi dir="ltr">breast</bdi>, עיניים, <bdi dir="ltr">thyroid</bdi>, שיניים ופעולות אנדוסקופיות</div>
   </div></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">4, 9</bdi> · פרק 4 עמ׳ <bdi dir="ltr">e50</bdi></span><span>איור: <bdi>Sobotta</bdi>, 1906, איור 413 (נחלת הכלל)</span></div>
 </div></section>
@@ -226,7 +231,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div>
    <ol class="obj">
-    <li>ניתוח בסיכון גבוה: בתוך הצפק, בתוך בית החזה, או כלי דם מעל המפשעה</li>
+    <li>ניתוח בסיכון גבוה: <bdi dir="ltr">intraperitoneal</bdi>, <bdi dir="ltr">intrathoracic</bdi> או <bdi dir="ltr">suprainguinal vascular</bdi></li>
     <li>מחלת לב איסכמית</li>
     <li>אי ספיקת לב</li>
     <li>מחלה מוחית-וסקולרית</li>
@@ -241,7 +246,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <div><b>2 נקודות</b><span><bdi dir="ltr">7%</bdi></span></div>
     <div><b>3 ומעלה</b><span><bdi dir="ltr">11%</bdi></span></div>
    </div>
-   <div class="box r" style="margin-top:10px"><b class="t">מצבים לבביים בסיכון מוות גבוה</b>אי ספיקת לב בינונית עד קשה, יתר לחץ דם ריאתי (מעל 25), היצרות מסתם אבי העורקים קשה (שטח מתחת ל-1 סמ״ר). מחליטים בצוות רב-תחומי. לפעמים מוותרים על הניתוח</div>
+   <div class="box r" style="margin-top:10px"><b class="t">מצבים לבביים בסיכון מוות גבוה</b>אי ספיקת לב בינונית עד קשה, יתר לחץ דם ריאתי (מעל 25), היצרות של <span class="nw">ה-<bdi dir="ltr">aortic valve</bdi></span> קשה (שטח מתחת ל-1 סמ״ר). מחליטים בצוות רב-תחומי. לפעמים מוותרים על הניתוח</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 4 עמ׳ <bdi dir="ltr">e45, e50</bdi> · פרק 19 עמ׳ <bdi dir="ltr">9, 11</bdi></span><span>סיכון לבבי</span></div>
@@ -303,9 +308,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div><b>ניתוח חירום</b><span>8</span></div>
   </div>
   <div style="display:grid;gap:10px;align-content:start">
-   <div class="box"><b class="t">פחות מ-26 נקודות</b>סיכון נמוך: כ-<bdi dir="ltr">1.6%</bdi> סיבוכים ריאתיים</div>
-   <div class="box a"><b class="t"><bdi dir="ltr">26–44</bdi> נקודות</b>סיכון בינוני: כ-<bdi dir="ltr">13%</bdi></div>
-   <div class="box r"><b class="t">45 ומעלה</b>סיכון גבוה: כ-<bdi dir="ltr">42%</bdi></div>
+   <div class="box"><b class="t">פחות מ-26 נקודות</b>סיכון נמוך: <span class="nw">כ-<bdi dir="ltr">1.6%</bdi></span> סיבוכים ריאתיים</div>
+   <div class="box a"><b class="t"><bdi dir="ltr">26–44</bdi> נקודות</b>סיכון בינוני: <span class="nw">כ-<bdi dir="ltr">13%</bdi></span></div>
+   <div class="box r"><b class="t">45 ומעלה</b>סיכון גבוה: <span class="nw">כ-<bdi dir="ltr">42%</bdi></span></div>
    <div class="box n"><b class="t">לזכור</b>המדד סופר גם סיבוכים קלים. לכן הוא עלול להגזים. מדדים אחרים: <bdi>Arozullah</bdi> ומחשבוני <bdi>Gupta</bdi> לכשל נשימתי ולדלקת ריאות</div>
   </div>
  </div>
@@ -322,7 +327,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   </div>
   <div style="display:grid;gap:10px;align-content:start">
    <div class="box b"><b class="t">מדד 9 הנקודות <bdi>(S-MPM)</bdi></b>
-    <ul class="b sm"><li><bdi>ASA</bdi> 1 עד 5: 0, 2, 4, 5, 6 נקודות</li><li>ניתוח בסיכון ביניים: 1. גבוה: 2</li><li>חירום: 1</li><li>פחות מ-5: תמותה מתחת ל-<bdi dir="ltr">0.5%</bdi> · 5 או 6: <bdi dir="ltr">1.5–4%</bdi> · מעל 6: מעל <bdi dir="ltr">10%</bdi></li></ul></div>
+    <ul class="b sm"><li><bdi>ASA</bdi> 1 עד 5: 0, 2, 4, 5, 6 נקודות</li><li>ניתוח בסיכון ביניים: 1. גבוה: 2</li><li>חירום: 1</li><li>פחות מ-5: תמותה מתחת <span class="nw">ל-<bdi dir="ltr">0.5%</bdi></span> · 5 או 6: <bdi dir="ltr">1.5–4%</bdi> · מעל 6: מעל <bdi dir="ltr">10%</bdi></li></ul></div>
    <div class="box a"><b class="t">גבולות המחשבון</b>הוא לא מכיר את ממצאי הניתוח. הוא פחות מדויק בקבוצות קטנות ואחידות. הוא לא מחליף את הניסיון של המחלקה ושל המנתח</div>
   </div>
  </div>
@@ -331,12 +336,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>10</b>שחמת</div>
- <h2>כבד חולה, ניתוח מסוכן</h2>
+ <h2><span class="nw">ה-<bdi dir="ltr">liver</bdi></span> חולה, הניתוח מסוכן</h2>
  <div class="grid f">
   <div>
    <div class="flow">
-    <div><b><bdi>Child</bdi> A · B · C</b><span>תמותה בניתוחי בטן: כ-<bdi dir="ltr">10%</bdi>, <bdi dir="ltr">20%</bdi>, <bdi dir="ltr">60%</bdi>. הציון: אנצפלופתיה, מיימת, אלבומין, <bdi>INR</bdi> ובילירובין</span></div>
-    <div><b><bdi>MELD</bdi></b><span>בילירובין, קריאטינין ו-<bdi>INR</bdi> בלבד. מתחת ל-8: תמותה של <bdi dir="ltr">6%</bdi> ב-30 יום. מעל 20: יותר מ-<bdi dir="ltr">50%</bdi></span></div>
+    <div><b><bdi>Child</bdi> A · B · C</b><span>תמותה בניתוחי בטן: <span class="nw">כ-<bdi dir="ltr">10%</bdi></span>, <bdi dir="ltr">20%</bdi>, <bdi dir="ltr">60%</bdi>. הציון: אנצפלופתיה, מיימת, אלבומין, <bdi>INR</bdi> ובילירובין</span></div>
+    <div><b><bdi>MELD</bdi></b><span>בילירובין, קריאטינין <span class="nw">ו-<bdi>INR</bdi></span> בלבד. מתחת ל-8: תמותה של <bdi dir="ltr">6%</bdi> ב-30 יום. מעל 20: יותר <span class="nw">מ-<bdi dir="ltr">50%</bdi></span></span></div>
    </div>
    <ul class="b sm" style="margin-top:12px">
     <li>הסיכון תלוי בניתוח: יחס סיכויים 3.4 בכריתת כיס מרה ו-8 בניתוח מעקפים</li>
@@ -356,20 +361,20 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div>
    <ul class="b sm">
-    <li>בני 65 ומעלה הם <bdi dir="ltr">15%</bdi> מהאוכלוסייה ו-<bdi dir="ltr">40%</bdi> מהניתוחים בארצות הברית</li>
-    <li><b>שבריריות</b> היא המנבא החשוב ביותר, לא הגיל. מדד שבריריות ניבא דום לב ומוות טוב יותר מ-<bdi>ASA</bdi> ומאוטם בעבר</li>
+    <li>בני 65 ומעלה הם <bdi dir="ltr">15%</bdi> מהאוכלוסייה <span class="nw">ו-<bdi dir="ltr">40%</bdi></span> מהניתוחים בארצות הברית</li>
+    <li><b>שבריריות</b> היא המנבא החשוב ביותר, לא הגיל. מדד שבריריות ניבא דום לב ומוות טוב יותר <span class="nw">מ-<bdi>ASA</bdi></span> ומאוטם בעבר</li>
     <li><b>חמשת סימני <bdi>Fried</bdi>:</b> ירידה במשקל, תשישות, הליכה איטית, אחיזת יד חלשה, פעילות מעטה. 3 ומעלה = שברירי, 1 או 2 = טרום-שברירי</li>
-    <li><bdi>Timed Up &amp; Go</bdi>: לקום מכיסא, ללכת 3 מטרים, להסתובב ולשבת. מעל 20 שניות בבני 70 ומעלה: <bdi dir="ltr">50%</bdi> סיבוכים קשים, לעומת <bdi dir="ltr">14%</bdi></li>
+    <li><bdi>Timed Up &amp; Go</bdi>: לקום מכיסא, ללכת 3 מטרים, להסתובב ולשבת. מעל 20 שניות בבני 70 ומעלה: <bdi dir="ltr">50%</bdi> סיבוכים קשים, לעומת <bdi dir="ltr">14%</bdi> (סף אחר, מעל <bdi dir="ltr">15</bdi> שניות, משמש להערכת סיכון לנפילה)</li>
     <li>כלי סינון מהיר: <bdi>RAI</bdi>. גם מחשבון <bdi>NSQIP</bdi> הגריאטרי מנבא דליריום וירידה בתפקוד</li>
    </ul>
   </div>
   <div style="display:grid;gap:10px;align-content:start">
-   <div class="box r"><b class="t">מה מפחיד את המטופל</b>יותר מ-<bdi dir="ltr">70%</bdi> מהמבוגרים עם מחלה קשה לא ירצו אפילו טיפול קל אם התוצאה הצפויה היא פגיעה קשה בתפקוד או בזיכרון. החשש הזה גדול מהפחד מהמוות</div>
+   <div class="box r"><b class="t">מה מפחיד את המטופל</b>יותר <span class="nw">מ-<bdi dir="ltr">70%</bdi></span> מהמבוגרים עם מחלה קשה לא ירצו אפילו טיפול קל אם התוצאה הצפויה היא פגיעה קשה בתפקוד או בזיכרון. החשש הזה גדול מהפחד מהמוות</div>
    <div class="box n"><b class="t">שאלה שחייבים לשאול</b>האם המטופל יחזור לתפקד כמו לפני הניתוח? <bdi dir="ltr">56%</bdi> מהמאושפזים הקשים לא היו מוכנים לחיות דרך קבע בבית אבות</div>
    <div class="box b"><b class="t">בחירום</b>שבריריות מעלה תמותה גם בניתוח חירום "קטן". שיחת "התרחיש הטוב והרע" <bdi>(Best Case/Worst Case)</bdi> עוזרת לתאם ציפיות</div>
   </div>
  </div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">8</bdi> · פרק 4 עמ׳ <bdi dir="ltr">e43, e51–e52</bdi> · פרק 27 עמ׳ <bdi dir="ltr">144, 146–149</bdi></span><span>שבריריות</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">8</bdi> · פרק 4 עמ׳ <bdi dir="ltr">e43, e51–e52</bdi> · פרק 27 עמ׳ <bdi dir="ltr">144, 146–149</bdi> · Huisman MG et al., PLoS One 2014;9:e86863</span><span>שבריריות</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -385,8 +390,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div><b>כושר</b><span>הכנה גופנית לפני ניתוח מעי גס הורידה סיבוכים קשים</span></div>
   </div>
   <div style="display:grid;gap:10px;align-content:start">
-   <div class="box a"><b class="t">בדיקות מעבדה כשגרה?</b>רק <bdi dir="ltr">0.22%</bdi> מבדיקות השגרה לפני ניתוח מתוכנן מצאו משהו שישנה טיפול. ההמלצה: לא לשלוח בדיקות שגרה ל-<bdi>ASA</bdi> 1 או 2 בניתוח בסיכון נמוך</div>
-   <div class="box b"><b class="t">במחלקה השבוע</b>בחרו מטופל שמתוכנן לניתוח מחר. חשבו <bdi>ASA</bdi>, <bdi>RCRI</bdi> ו-<bdi>ARISCAT</bdi>, הריצו את מחשבון <bdi>NSQIP</bdi> וכתבו בשורה אחת מה הייתם משנים לפני הניתוח. הציגו בישיבת הבוקר</div>
+   <div class="box a"><b class="t">בדיקות מעבדה כשגרה?</b>רק <bdi dir="ltr">0.22%</bdi> מבדיקות השגרה לפני ניתוח מתוכנן מצאו משהו שישנה טיפול. ההמלצה: לא לשלוח בדיקות שגרה <span class="nw">ל-<bdi>ASA</bdi></span> 1 או 2 בניתוח בסיכון נמוך</div>
+   <div class="box b"><b class="t">במחלקה השבוע</b>בחרו מטופל שמתוכנן לניתוח מחר. חשבו <bdi>ASA</bdi>, <bdi>RCRI</bdi> <span class="nw">ו-<bdi>ARISCAT</bdi></span>, הריצו את מחשבון <bdi>NSQIP</bdi> וכתבו בשורה אחת מה הייתם משנים לפני הניתוח. הציגו בישיבת הבוקר</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 4 עמ׳ <bdi dir="ltr">e43–e44</bdi> · פרק 27 עמ׳ <bdi dir="ltr">152</bdi></span><span>אופטימיזציה</span></div>
@@ -421,7 +426,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <p>9,535 מטופלים. 1 גרם בתחילת הניתוח ובסופו הוריד דימום משמעותי (<bdi dir="ltr">9.1%</bdi> לעומת <bdi dir="ltr">11.7%</bdi>). אירועי לב וכלי דם דומים (<bdi dir="ltr">14.2%</bdi> לעומת <bdi dir="ltr">13.9%</bdi>), אבל הבטיחות לא הוכחה סטטיסטית</p>
    <small>Devereaux PJ et al. N Engl J Med 2022;386:1986-97</small></div>
   <div class="study"><div class="y"><bdi>JAMA Surg</bdi> 2023 · 50,463 מטופלים</div><b>סינון שבריריות שגרתי לפני ניתוח מתוכנן</b>
-   <p>כל מטופל נבדק ב-<bdi>RAI</bdi>. שבריריים הופנו להערכה נוספת ולהחלטה משותפת. ההפניות עלו. התמותה בשנה ירדה (יחס סיכויים 0.82)</p>
+   <p>כל מטופל נבדק <span class="nw">ב-<bdi>RAI</bdi></span>. שבריריים הופנו להערכה נוספת ולהחלטה משותפת. ההפניות עלו. התמותה בשנה ירדה (יחס סיכויים 0.82)</p>
    <small>Varley PR et al. JAMA Surg 2023;158:475-83</small></div>
  </div>
  <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
@@ -432,7 +437,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>חמישה דברים לקחת למחלקה</h2>
  <ol class="obj">
   <li>הסיכון מגיע משלושה מקורות: המטופל, ההרדמה והניתוח. חירום מוסיף לכולם</li>
-  <li><bdi>ASA</bdi> הוא תמונה מהירה ולא מחשבון. ליד המיטה: <bdi>RCRI</bdi> ללב ו-<bdi>ARISCAT</bdi> לריאות</li>
+  <li><bdi>ASA</bdi> הוא תמונה מהירה ולא מחשבון. ליד המיטה: <bdi>RCRI</bdi> ללב <span class="nw">ו-<bdi>ARISCAT</bdi></span> לריאות</li>
   <li>4 מט״ים בלי תסמינים: מנתחים. בדיקה נוספת רק אם תשנה את ההחלטה</li>
   <li>שחמת ושבריריות מעלות סיכון יותר מכל מספר בגיל</li>
   <li>מספר הוא רק התחלה: מסבירים אותו למטופל ושואלים מה חשוב לו</li>

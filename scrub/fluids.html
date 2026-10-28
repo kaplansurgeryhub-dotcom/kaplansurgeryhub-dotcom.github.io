@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>תכנון תוכנית נוזלים · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,6 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -97,6 +98,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -114,6 +116,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -135,7 +140,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>1</b>מטרות הלמידה</div>
  <h2>בסוף המפגש תדעו</h2>
  <ol class="obj">
-  <li>לתאר את חלוקת המים בגוף ואת התפקיד של הכליה, <bdi>ADH</bdi> ואלדוסטרון בוויסות מים ומלח</li>
+  <li>לתאר את חלוקת המים בגוף ואת התפקיד של <span class="nw">ה-<bdi>kidney</bdi></span>, <bdi>ADH</bdi> ואלדוסטרון בוויסות מים ומלח</li>
   <li>להכיר את הרכב התמיסות הנפוצות ולבחור תמיסה לפי המצב</li>
   <li>לחשב נוזלי אחזקה ולהתאים אותם כל יום למצב הנפח של החולה</li>
   <li>להעריך מצב נפח ליד המיטה ולבנות תוכנית נוזלים למטופל כירורגי</li>
@@ -168,9 +173,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 </div></section>
 
 <section class="s"><div class="card">
- <div class="kick"><b>3</b>הכליה</div>
+ <div class="kick"><b>3</b><span class="nw">ה-<bdi>kidney</bdi></span></div>
  <h2>איפה נקבע כמה מים ומלח נשארים</h2>
- <div class="hotw"><div class="hoti"><img src="img/fluids-nephron.png" alt="אנטומיה של הנפרון: גלומרולוס, צינורית מקורבת, לולאה וצינור מאסף"><svg viewBox="0 0 1280 1280" preserveAspectRatio="none" style="--lw:24;--bf:31px">
+ <div class="hotw"><div class="hoti"><img src="img/fluids-nephron.png" alt="אנטומיה של ה-nephron: glomerulus, proximal tubule, loop of Henle ו-collecting duct"><svg viewBox="0 0 1280 1280" preserveAspectRatio="none" style="--lw:24;--bf:31px">
   <path class="hz" data-hz="g" d="M712,485 C717.8,480 732,480.7 744,480 C756,479.3 772,478.3 784,481 C796,483.7 806,489.3 816,496 C826,502.7 837.2,513.7 844,521 C850.8,528.3 856.3,533.5 857,540 C857.7,546.5 854.8,553.7 848,560 C841.2,566.3 828.5,572.7 816,578 C803.5,583.3 785.5,589.3 773,592 C760.5,594.7 750,595.8 741,594 C732,592.2 724.2,589 719,581 C713.8,573 711.7,557.8 710,546 C708.3,534.2 708.7,520.2 709,510 C709.3,499.8 706.2,490 712,485 Z" style="--c:#A3402E"/>
   <path class="hz" data-hz="p" d="M855,546 C852.7,542.3 851.5,530 848,524 C844.5,518 837,517.2 834,510 C831,502.8 828.8,487.5 830,481 C831.2,474.5 839,476.3 841,471 C843,465.7 841.8,457.3 842,449 C842.2,440.7 841.3,429.8 842,421 C842.7,412.2 842,402.5 846,396 C850,389.5 856.8,384.5 866,382 C875.2,379.5 889.2,380 901,381 C912.8,382 926.8,384 937,388 C947.2,392 955.5,397.8 962,405 C968.5,412.2 972.7,421.2 976,431 C979.3,440.8 983.2,456.2 982,464 C980.8,471.8 975.3,474.8 969,478 C962.7,481.2 952.8,480.7 944,483 C935.2,485.3 924.3,488.2 916,492 C907.7,495.8 900,500.7 894,506 C888,511.3 885.3,517.3 880,524 C874.7,530.7 866.2,542.3 862,546 C857.8,549.7 857.3,549.7 855,546 Z" style="--c:#C9893F"/>
   <path class="hz ln" data-hz="l" d="M848,606 C848,621.7 848,667.7 848,700 C848,732.3 848,766.7 848,800 C848,833.3 848,866.7 848,900 C848,933.3 847.8,972 848,1000 C848.2,1028 847,1051.7 849,1068 C851,1084.3 854.5,1091.3 860,1098 C865.5,1104.7 874.8,1108.5 882,1108 C889.2,1107.5 898,1103 903,1095 C908,1087 910.2,1075.8 912,1060 C913.8,1044.2 913.7,1026.7 914,1000 C914.3,973.3 914,933.3 914,900 C914,866.7 914.2,833.3 914,800 C913.8,766.7 913.7,732.3 913,700 C912.3,667.7 910.5,621.7 910,606" style="--c:#2F6FA8;--lw:20"/>
@@ -180,12 +185,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <g class="hzb" style="--c:#2F6FA8"><circle cx="954" cy="1060" r="26.3"/><text x="954" y="1060">3</text></g>
   <g class="hzb" style="--c:#00967D"><circle cx="1150" cy="800" r="26.3"/><text x="1150" y="800">4</text></g>
  </svg></div>
-  <div class="hotp"><p class="hint">👆 לחצו על חלק בנפרון כדי לקרוא מה קורה בו</p>
-   <div class="hzi" data-hzi="g" hidden><b>1 · הגלומרולוס: סינון</b><p>הכליות מקבלות 25% מתפוקת הלב. סינון תקין: כ-120 מ״ל לדקה. הזרימה נשמרת בלחץ זילוח של <bdi dir="ltr">80–180</bdi>. כשהלחץ יורד משתחרר רנין. אנגיוטנסין 2 מכווץ את העורקיק היוצא כדי לשמור על הסינון</p></div>
-   <div class="hzi" data-hzi="p" hidden><b>2 · הצינורית המקורבת</b><p>סופגת בחזרה כמעט את כל הגלוקוז וחומצות האמינו, כ-65% מהנתרן והמים וכמעט את כל הביקרבונט. באובדן נפח אלדוסטרון מגביר ספיגת ביקרבונט: זו "בססת ההתכווצות" של החולה המקיא</p></div>
-   <div class="hzi" data-hzi="l" hidden><b>3 · לולאת הנלה</b><p>הזרוע העולה העבה לא חדירה למים וסופגת נתרן וכלוריד. כך נוצר מפל ריכוזים עד 1,200 מיליאוסמול בעומק הליבה. כאן פועל פורוסמיד. מתן פורוסמיד לחולה יבש עם מיעוט שתן מגדיל את השתן אבל מזיק</p></div>
-   <div class="hzi" data-hzi="c" hidden><b>4 · הצינורית הרחוקה והצינור המאסף</b><p>חדירים למים רק בנוכחות <bdi>ADH</bdi>, שמכניס תעלות מים (אקווהפורינים). אלדוסטרון מגביר ספיגת נתרן והפרשת אשלגן. עודף <bdi>ADH</bdi>: שימור מים ונתרן נמוך (<bdi>SIADH</bdi>). חוסר <bdi>ADH</bdi>: שתן מדולל ונתרן גבוה (סוכרת תפלה)</p></div>
-   <div class="box a" style="margin-top:10px"><b class="t">אחרי ניתוח</b>רנין, אלדוסטרון ו-<bdi>ADH</bdi> עולים גם בלי חוסר נפח. לכן מיעוט שתן אחרי ניתוח לא תמיד אומר שהחולה יבש</div>
+  <div class="hotp"><p class="hint">👆 לחצו על חלק <span class="nw">ב-<bdi>nephron</bdi></span> כדי לקרוא מה קורה בו</p>
+   <div class="hzi" data-hzi="g" hidden><b>1 · <bdi>Glomerulus</bdi>: סינון</b><p><span class="nw">ה-<bdi>kidneys</bdi></span> מקבלות 25% מתפוקת הלב. סינון תקין: כ-120 מ״ל לדקה. הזרימה נשמרת בלחץ זילוח של <bdi dir="ltr">80–180</bdi>. כשהלחץ יורד משתחרר רנין. אנגיוטנסין 2 מכווץ את <span class="nw">ה-<bdi>efferent arteriole</bdi></span> כדי לשמור על הסינון</p></div>
+   <div class="hzi" data-hzi="p" hidden><b>2 · <bdi>Proximal tubule</bdi></b><p>סופגת בחזרה כמעט את כל הגלוקוז וחומצות האמינו, כ-65% מהנתרן והמים וכמעט את כל הביקרבונט. באובדן נפח אלדוסטרון מגביר ספיגת ביקרבונט: זו "בססת ההתכווצות" של החולה המקיא</p></div>
+   <div class="hzi" data-hzi="l" hidden><b>3 · <bdi>Loop of Henle</bdi></b><p><span class="nw">ה-<bdi>thick ascending limb</bdi></span> לא חדירה למים וסופגת נתרן וכלוריד. כך נוצר מפל ריכוזים עד 1,200 מיליאוסמול בעומק הליבה. כאן פועל פורוסמיד. מתן פורוסמיד לחולה יבש עם מיעוט שתן מגדיל את השתן אבל מזיק</p></div>
+   <div class="hzi" data-hzi="c" hidden><b>4 · <bdi>Distal tubule</bdi> <span class="nw">ו-<bdi>collecting duct</bdi></span></b><p>חדירים למים רק בנוכחות <bdi>ADH</bdi>, שמכניס תעלות מים (אקווהפורינים). אלדוסטרון מגביר ספיגת נתרן והפרשת אשלגן. עודף <bdi>ADH</bdi>: שימור מים ונתרן נמוך (<bdi>SIADH</bdi>). חוסר <bdi>ADH</bdi>: שתן מדולל ונתרן גבוה (סוכרת תפלה)</p></div>
+   <div class="box a" style="margin-top:10px"><b class="t">אחרי ניתוח</b>רנין, אלדוסטרון <span class="nw">ו-<bdi>ADH</bdi></span> עולים גם בלי חוסר נפח. לכן מיעוט שתן אחרי ניתוח לא תמיד אומר שהחולה יבש</div>
   </div></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 46 עמ׳ <bdi dir="ltr">541, 543–544</bdi> · פרק 33 עמ׳ <bdi dir="ltr">257–258</bdi></span><span>איור: <bdi>BruceBlaus</bdi> · <bdi>CC BY-SA 4.0</bdi> · <bdi>Wikimedia Commons</bdi></span></div>
 </div></section>
@@ -344,7 +349,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    </ul>
   </div>
   <div style="display:grid;gap:10px">
-   <div class="box"><b class="t">איך מחליפים</b>בפה: <bdi dir="ltr">40–100</bdi> מ״ק ביום ב-<bdi dir="ltr">2–4</bdi> מנות. בווריד: <bdi dir="ltr">10–20</bdi> מ״ק לשעה. מעל 10 לשעה: ניטור לב. עד 40 לשעה רק בחירום ובווריד מרכזי. מעדיפים אשלגן כלורי</div>
+   <div class="box"><b class="t">איך מחליפים</b>בפה: <bdi dir="ltr">40–100</bdi> מ״ק ביום <span class="nw">ב-<bdi dir="ltr">2–4</bdi></span> מנות. בווריד: <bdi dir="ltr">10–20</bdi> מ״ק לשעה. מעל 10 לשעה: ניטור לב. עד 40 לשעה רק בחירום ובווריד מרכזי. מעדיפים אשלגן כלורי</div>
    <div class="box r"><b class="t">קודם מגנזיום</b>60% מחולי ההיפוקלמיה עם מגנזיום נמוך. בלי לתקן מגנזיום, האשלגן לא יעלה</div>
    <div class="box a"><b class="t">זהירות</b>באי-ספיקת כליות: קצב ומינון נמוכים יותר. כל 10 מ״ק בווריד מגיעים עם 100 מ״ל נוזל. אחרי ניתוח לב: יעד מעל 4.0</div>
   </div>
@@ -358,7 +363,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div class="flow">
    <div><b>קודם כול</b><span>עוצרים כל עירוי של אשלגן. דגימה מהמוליזה? חוזרים על הבדיקה לפני טיפול דרסטי</span></div>
-   <div><b>אק״ג לפני דום</b><span>אין גל <bdi>P</bdi>, <bdi>QRS</bdi> רחב: סידן בווריד מיד (10 מ״ל סידן כלורי 10% ב-10 דקות, או סידן גלוקונט ב-<bdi dir="ltr">3–5</bdi> דקות). אחר כך ביקרבונט <bdi dir="ltr">50–100</bdi> מ״ק</span></div>
+   <div><b>אק״ג לפני דום</b><span>אין גל <bdi>P</bdi>, <bdi>QRS</bdi> רחב: סידן בווריד מיד (10 מ״ל סידן כלורי 10% ב-10 דקות, או סידן גלוקונט <span class="nw">ב-<bdi dir="ltr">3–5</bdi></span> דקות). אחר כך ביקרבונט <bdi dir="ltr">50–100</bdi> מ״ק</span></div>
    <div><b>גלי <bdi>T</bdi> מחודדים</b><span>אינסולין רגיל 10 יחידות עם 50 מ״ל גלוקוז 50%. לנטר סוכר. דיאליזה דחופה</span></div>
    <div><b>רק במעבדה</b><span>טיפול בתוך שעות: שרף קושר אשלגן במעי, משתן לולאה</span></div>
   </div>
@@ -375,9 +380,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>שלושה שקל לשכוח</h2>
  <div class="grid g3">
   <div class="box"><b class="t">סידן</b>
-   <ul class="b sm"><li>תקין <bdi dir="ltr">8.5–10.5</bdi> מ״ג/ד״ל. רק כ-45% מיונן ופעיל</li><li>מתקנים לאלבומין: 0.8 על כל 1 ג׳/ד״ל</li><li>נמוך אחרי כריתת בלוטת התריס (<bdi dir="ltr">1–2%</bdi>), בדלקת לבלב ובעירוי מהיר של מוצרי דם (ציטרט)</li><li>תסמינים: נימול, עוויתות, <bdi>QT</bdi> ארוך. מתחת ל-7: סידן גלוקונט <bdi dir="ltr">1–2</bdi> ג׳ ב-<bdi dir="ltr">10–20</bdi> דקות</li></ul></div>
+   <ul class="b sm"><li>תקין <bdi dir="ltr">8.5–10.5</bdi> מ״ג/ד״ל. רק כ-45% מיונן ופעיל</li><li>מתקנים לאלבומין: 0.8 על כל 1 ג׳/ד״ל</li><li>נמוך אחרי כריתת בלוטת התריס (<bdi dir="ltr">1–2%</bdi>), בדלקת לבלב ובעירוי מהיר של מוצרי דם (ציטרט)</li><li>תסמינים: נימול, עוויתות, <bdi>QT</bdi> ארוך. מתחת ל-7: סידן גלוקונט <bdi dir="ltr">1–2</bdi> ג׳ <span class="nw">ב-<bdi dir="ltr">10–20</bdi></span> דקות</li></ul></div>
   <div class="box b"><b class="t">מגנזיום</b>
-   <ul class="b sm"><li>נמוך ב-<bdi dir="ltr">11–65%</bdi> מחולי טיפול נמרץ</li><li>משתנים, שלשולים, אלכוהול</li><li>גורם לאשלגן ולסידן "עקשניים". בחסר קשה: <bdi>torsades</bdi></li><li>תיקון: מגנזיום סולפט, <bdi dir="ltr">8–12</bdi> ג׳ ביממה הראשונה. זהירות באי-ספיקת כליות</li></ul></div>
+   <ul class="b sm"><li>נמוך <span class="nw">ב-<bdi dir="ltr">11–65%</bdi></span> מחולי טיפול נמרץ</li><li>משתנים, שלשולים, אלכוהול</li><li>גורם לאשלגן ולסידן "עקשניים". בחסר קשה: <bdi>torsades</bdi></li><li>תיקון: מגנזיום סולפט, <bdi dir="ltr">8–12</bdi> ג׳ ביממה הראשונה. זהירות באי-ספיקת כליות</li></ul></div>
   <div class="box a"><b class="t">זרחן</b>
    <ul class="b sm"><li>תקין <bdi dir="ltr">2.5–4.5</bdi> מ״ג/ד״ל</li><li>נמוך: חולשת סרעפת וקושי בגמילה מהנשמה. שכיח אחרי כריתת כבד גדולה</li><li><b>תסמונת הזנה מחדש:</b> זרחן נמוך הוא סימן ההיכר. בהרצאה על תזונה</li><li>מתחת ל-1: בווריד, עד 45 מילימול</li></ul></div>
  </div>

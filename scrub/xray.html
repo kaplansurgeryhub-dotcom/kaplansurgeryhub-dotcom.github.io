@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>צילומי חזה ובטן · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,6 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -97,6 +98,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -114,6 +116,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -125,7 +130,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
  <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 2</div>
  <h1>צילומי חזה ובטן</h1>
- <p class="lead">מה כירורג צריך לראות בצילום פשוט: אוויר חופשי, חסימה, תסביב (וולוולוס), חזה אוויר ונוזל בפלאורה</p>
+ <p class="lead">מה כירורג צריך לראות בצילום פשוט: אוויר חופשי, חסימה, תסביב (וולוולוס), חזה אוויר ונוזל <span class="nw">ב-<bdi dir="ltr">pleura</bdi></span></p>
  <div class="cvsrc" data-ch="85,91,95,110,36" data-note=""><small>מבוסס על</small><b><bdi dir="ltr">Sabiston Textbook of Surgery</bdi> · מהדורה 22</b><div class="cvch"><span>פרק <bdi dir="ltr">85</bdi></span><span>פרק <bdi dir="ltr">91</bdi></span><span>פרק <bdi dir="ltr">95</bdi></span><span>פרק <bdi dir="ltr">110</bdi></span><span>פרק <bdi dir="ltr">36</bdi></span></div></div>
  <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
 </div></section>
@@ -134,12 +139,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>1</b>מטרות הלמידה</div>
  <h2>בסוף המפגש תדעו</h2>
  <ol class="obj">
-  <li>לדעת מתי צילום פשוט עוזר ומתי הולכים ישר ל-<bdi>CT</bdi></li>
+  <li>לדעת מתי צילום פשוט עוזר ומתי הולכים ישר <span class="nw">ל-<bdi>CT</bdi></span></li>
   <li>לקרוא צילום בטן בשיטה קבועה: תנוחה, גז, קוטר, אוויר חופשי, הסתיידויות</li>
-  <li>לזהות אוויר מתחת לסרעפת ולהבין שזה חירום</li>
-  <li>לזהות סימנים של חסימת מעי דק ושל וולוולוס של המעי הגס</li>
+  <li>לזהות אוויר מתחת <span class="nw">ל-<bdi dir="ltr">diaphragm</bdi></span> ולהבין שזה חירום</li>
+  <li>לזהות סימנים של חסימת מעי דק ושל וולוולוס של <span class="nw">ה-<bdi dir="ltr">colon</bdi></span></li>
   <li>להבדיל בין חסימה מכנית לפסאודו-חסימה ולזכור את המספרים: <bdi dir="ltr">3</bdi>, <bdi dir="ltr">5</bdi>, <bdi dir="ltr">12</bdi> ס״מ</li>
-  <li>לזהות חזה אוויר, נוזל ודם בפלאורה בצילום חזה</li>
+  <li>לזהות חזה אוויר, נוזל ודם <span class="nw">ב-<bdi dir="ltr">pleura</bdi></span> בצילום חזה</li>
  </ol>
  <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 85 (עמ׳ <bdi dir="ltr">1159–1163</bdi>) · פרק 91 (עמ׳ <bdi dir="ltr">1333–1336</bdi>) · פרק 95 (עמ׳ <bdi dir="ltr">1455–1458</bdi>) · פרק 110 (עמ׳ <bdi dir="ltr">1796, 1799</bdi>)</span><span>Scrub In · קפלן</span></div>
 </div></section>
@@ -162,7 +167,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <li>אבנים בכליות וגופים זרים</li>
   </ul>
   <div style="display:grid;gap:10px;align-content:start">
-   <div class="box a"><b class="t">חסימה? צילום ואז זונדה</b>צילום מוקדם מאפשר להכניס זונדה לקיבה לפני שהמטופל שוכב על הגב ל-<bdi>CT</bdi>. כך קטן הסיכון לשאיפת הקאה</div>
+   <div class="box a"><b class="t">חסימה? צילום ואז זונדה</b>צילום מוקדם מאפשר להכניס זונדה <span class="nw">ל-<bdi dir="ltr">stomach</bdi></span> לפני שהמטופל שוכב על הגב <span class="nw">ל-<bdi>CT</bdi></span>. כך קטן הסיכון לשאיפת הקאה</div>
    <div class="box n"><b class="t">לפני ניתוח חירום</b>אק״ג וצילום חזה נותנים מידע חשוב בלי לעכב את הניתוח</div>
   </div>
  </div>
@@ -174,9 +179,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>צילום בטן בחמישה צעדים</h2>
  <div class="flow">
   <div><b>1 · מי ואיך</b><span>שם, תאריך, תנוחה. <b>בשכיבה</b> רואים את התפלגות הגז והקוטר. <b>בעמידה או על הצד השמאלי</b> רואים רמות נוזל-אוויר ואוויר חופשי</span></div>
-  <div><b>2 · התפלגות הגז</b><span>קיבה, מעי דק, מעי גס, רקטום. יש גז ברקטום? חסר גז במעי הגס?</span></div>
-  <div><b>3 · קוטר</b><span>מעי דק מעל <bdi dir="ltr">3</bdi> ס״מ: מורחב · מעי גס רוחבי מעל <bdi dir="ltr">5</bdi> ס״מ במטופל עם קוליטיס: מגהקולון טוקסי · צקום מעל <bdi dir="ltr">12</bdi> ס״מ: סכנת נמק וניקוב</span></div>
-  <div><b>4 · אוויר במקום לא נכון</b><span>מתחת לסרעפת (אוויר חופשי) · בדופן המעי (<bdi>pneumatosis</bdi>)</span></div>
+  <div><b>2 · התפלגות הגז</b><span>גז <span class="nw">ב-<bdi dir="ltr">stomach</bdi></span>, <span class="nw">ב-<bdi dir="ltr">small bowel</bdi></span>, <span class="nw">ב-<bdi dir="ltr">colon</bdi></span> <span class="nw">וב-<bdi dir="ltr">rectum</bdi></span>. יש גז <span class="nw">ב-<bdi dir="ltr">rectum</bdi></span>? חסר גז <span class="nw">ב-<bdi dir="ltr">colon</bdi></span>?</span></div>
+  <div><b>3 · קוטר</b><span><span class="nw">ה-<bdi dir="ltr">small bowel</bdi></span> מעל <bdi dir="ltr">3</bdi> ס״מ: מורחב · <bdi dir="ltr">transverse colon</bdi> מעל <bdi dir="ltr">5</bdi> ס״מ במטופל עם קוליטיס: מגהקולון טוקסי · <bdi dir="ltr">cecum</bdi> מעל <bdi dir="ltr">12</bdi> ס״מ: סכנת נמק וניקוב</span></div>
+  <div><b>4 · אוויר במקום לא נכון</b><span>מתחת <span class="nw">ל-<bdi dir="ltr">diaphragm</bdi></span> (אוויר חופשי) · בדופן המעי (<bdi>pneumatosis</bdi>)</span></div>
   <div><b>5 · מה עוד</b><span>הסתיידויות ואבנים (אבן מרה בתוך המעי), גופים זרים, עצמות, זונדות וצנתרים</span></div>
  </div>
  <div class="box b" style="margin-top:12px"><b class="t">כלל זהב</b>קודם מסתכלים על המטופל. מטופל רעיל עם חסימה הולך לחדר ניתוח, בלי לחכות להדמיות מיותרות</div>
@@ -185,18 +190,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>4</b>ממצא שאסור לפספס</div>
- <h2>אוויר חופשי מתחת לסרעפת</h2>
+ <h2>אוויר חופשי מתחת <span class="nw">ל-<bdi dir="ltr">diaphragm</bdi></span></h2>
  <div class="grid f">
   <div>
    <ul class="b">
-    <li>בצילום <b>בעמידה</b> האוויר עולה ונאסף מתחת לכיפת הסרעפת, בעיקר מעל הכבד מימין</li>
+    <li>בצילום <b>בעמידה</b> האוויר עולה ונאסף מתחת <span class="nw">ל-<bdi dir="ltr">hemidiaphragm</bdi></span>, בעיקר מעל <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> מימין</li>
     <li>המשמעות: <b>ניקוב של איבר חלול</b>. מזמינים ייעוץ כירורגי מיד</li>
-    <li>המטופל מתאר לפעמים כאב בכתף: האוויר מגרה את הסרעפת</li>
+    <li>המטופל מתאר לפעמים כאב בכתף: האוויר מגרה את <span class="nw">ה-<bdi dir="ltr">diaphragm</bdi></span></li>
     <li>אחרי ניתוח בטן אוויר חופשי יכול להיות צפוי. מחפשים דליפה כשהמצב הקליני לא מתאים</li>
    </ul>
    <div class="box r" style="margin-top:12px"><b class="t">מה עושים</b>צום, עירוי ונוזלים, אנטיביוטיקה רחבת טווח ובדיקות לפני ניתוח. <bdi>CT</bdi> מאתר את המקור, אבל לא מעכבים מטופל לא יציב</div>
   </div>
-  <figure><img src="img/xr-free-air-hellerhoff.jpg" alt="צילום בטן עם אוויר חופשי מתחת לסרעפת" style="max-height:52vh"><figcaption>אוויר חופשי: פס כהה בצורת סהר בין הסרעפת לכבד, אחרי ניקוב של הסיגמואיד · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/xr-free-air-hellerhoff.jpg" alt="צילום בטן עם אוויר חופשי מתחת ל-diaphragm" style="max-height:52vh"><figcaption>אוויר חופשי: פס כהה בצורת סהר בין <span class="nw">ה-<bdi dir="ltr">diaphragm</bdi></span> <span class="nw">ל-<bdi dir="ltr">liver</bdi></span>, אחרי ניקוב של <span class="nw">ה-<bdi dir="ltr">sigmoid colon</bdi></span> · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1157, 1159–1160, 1163</bdi></span><span>אוויר חופשי</span></div>
 </div></section>
@@ -213,9 +218,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <g class="hzb" style="--c:#00967D"><circle cx="680" cy="350" r="20"/><text x="680" y="350">3</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בצילום כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="l1" hidden><b>1 · רמות נוזל-אוויר</b><p>קו ישר ואופקי: נוזל למטה, גז למעלה. בצילום בעמידה יש <b>הרבה רמות</b>, לעתים קרובות במדרגות. רמות ארוכות מ-<bdi dir="ltr">2.5</bdi> ס״מ מחשידות</p></div>
+  <div class="hzi" data-hzi="l1" hidden><b>1 · רמות נוזל-אוויר</b><p>קו ישר ואופקי: נוזל למטה, גז למעלה. בצילום בעמידה יש <b>הרבה רמות</b>, לעתים קרובות במדרגות. רמות ארוכות <span class="nw">מ-<bdi dir="ltr">2.5</bdi></span> ס״מ מחשידות</p></div>
   <div class="hzi" data-hzi="l2" hidden><b>2 · רמות בגבהים שונים</b><p>שתי רמות באותה לולאה בגובה שונה הן סימן נוסף לחסימה. בשורה של כיסי אוויר קטנים ("מחרוזת חרוזים") לחשוב על חסימה גבוהה בדרגה או על לולאה סגורה</p></div>
-  <div class="hzi" data-hzi="dl" hidden><b>3 · לולאה מורחבת</b><p>מעי דק מלא גז או נוזל בקוטר <b>מעל <bdi dir="ltr">3</bdi> ס״מ</b>. המעי הדק מורחב יותר מהמעי הגס. חפשו גם קיבה מורחבת ומיעוט גז במעי הגס וברקטום</p></div>
+  <div class="hzi" data-hzi="dl" hidden><b>3 · לולאה מורחבת</b><p><span class="nw">ה-<bdi dir="ltr">small bowel</bdi></span> מלא גז או נוזל בקוטר <b>מעל <bdi dir="ltr">3</bdi> ס״מ</b>. <span class="nw">ה-<bdi dir="ltr">small bowel</bdi></span> מורחב יותר <span class="nw">מה-<bdi dir="ltr">colon</bdi></span>. חפשו גם <bdi dir="ltr">stomach</bdi> מורחבת ומיעוט גז <span class="nw">ב-<bdi dir="ltr">colon</bdi></span> <span class="nw">וב-<bdi dir="ltr">rectum</bdi></span></p></div>
  </div></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 91 עמ׳ <bdi dir="ltr">1333–1334</bdi> (תיבה 91.2)</span><span>צילום: <bdi>James Heilman, MD</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></span></div>
 </div></section>
@@ -227,38 +232,38 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <h3>סימנים בצילום בשכיבה</h3>
    <ul class="b sm">
-    <li>לולאות מעי דק מורחבות, קיבה מורחבת</li>
-    <li>היעדר גז ברקטום. לפעמים בטן כמעט בלי גז בכלל (הלולאות מלאות נוזל)</li>
-    <li>הצילום יכול להראות את הסיבה: גוף זר או <b>אבן מרה</b> שחוסמת את האילאום</li>
+    <li>לולאות <bdi dir="ltr">small bowel</bdi> מורחבות, <bdi dir="ltr">stomach</bdi> מורחבת</li>
+    <li>היעדר גז <span class="nw">ב-<bdi dir="ltr">rectum</bdi></span>. לפעמים בטן כמעט בלי גז בכלל (הלולאות מלאות נוזל)</li>
+    <li>הצילום יכול להראות את הסיבה: גוף זר או <b>אבן מרה</b> שחוסמת את <span class="nw">ה-<bdi dir="ltr">ileum</bdi></span></li>
    </ul>
    <h3 style="margin-top:12px">מה הלאה</h3>
    <ul class="b sm">
     <li><b><bdi>CT</bdi> הוא בדיקת הבחירה:</b> מיקום, סיבה, אזור מעבר, לולאה סגורה וסימני איסכמיה</li>
-    <li><b>אתגר בחומר ניגוד מסיס במים:</b> <bdi dir="ltr">100</bdi> מ״ל דרך הזונדה וצילומים אחרי 8 ו-24 שעות. אם החומר לא הגיע למעי הגס אחרי 24 שעות, הטיפול השמרני כנראה ייכשל</li>
+    <li><b>אתגר בחומר ניגוד מסיס במים:</b> <bdi dir="ltr">100</bdi> מ״ל דרך הזונדה וצילומים אחרי 8 ו-24 שעות. אם החומר לא הגיע <span class="nw">ל-<bdi dir="ltr">colon</bdi></span> אחרי 24 שעות, הטיפול השמרני כנראה ייכשל</li>
     <li>חסימה חלקית: עד <bdi dir="ltr">85%</bdi> מסתדרים בלי ניתוח. התרחבות שהולכת וגדלה בצילומים חוזרים: לחדר ניתוח</li>
    </ul>
   </div>
-  <figure><img src="img/xr-sbo-supine.jpg" alt="צילום בטן בשכיבה עם לולאות מעי דק מורחבות" style="max-height:50vh"><figcaption>חסימת מעי דק בצילום בשכיבה: לולאות מורחבות במרכז הבטן לפני גוש מזון באילאום הסופי · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/xr-sbo-supine.jpg" alt="צילום בטן בשכיבה עם לולאות small bowel מורחבות" style="max-height:50vh"><figcaption>חסימת מעי דק בצילום בשכיבה: לולאות מורחבות במרכז הבטן לפני גוש מזון <span class="nw">ב-<bdi dir="ltr">terminal ileum</bdi></span> · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 91 עמ׳ <bdi dir="ltr">1333–1336</bdi></span><span>חסימת מעי דק</span></div>
 </div></section>
 
 <section class="s"><div class="card">
- <div class="kick"><b>7</b>המעי הגס</div>
+ <div class="kick"><b>7</b><span class="nw">ה-<bdi dir="ltr">colon</bdi></span></div>
  <h2>וולוולוס: פול קפה</h2>
  <div class="grid">
   <div>
    <ul class="b sm">
-    <li>בעולם וולוולוס אחראי לכשליש מחסימות המעי הגס. השכיח ביותר: <b>הסיגמואיד</b>. גם צקום</li>
+    <li>בעולם וולוולוס אחראי לכשליש מחסימות <span class="nw">ה-<bdi dir="ltr">colon</bdi></span>. השכיח ביותר: <b><span class="nw">ה-<bdi dir="ltr">sigmoid colon</bdi></span></b>. גם <bdi dir="ltr">cecum</bdi></li>
     <li><b>בצילום:</b> לולאה ענקית מלאה גז, "פול קפה" או "צמיג מקופל". זו <b>לולאה סגורה</b>: הלחץ עולה עד נמק וניקוב</li>
-    <li><b>ב-<bdi>CT</bdi>:</b> מערבולת במזנטריום (<bdi>whirl</bdi>)</li>
-    <li><b>צקום מעל <bdi dir="ltr">12</bdi> ס״מ:</b> סכנת נמק וניקוב, טיפול דחוף, בדרך כלל ניתוח. לפי חוק לפלס, הצקום הרחב מתנקב ראשון גם כשהחסימה רחוקה ממנו</li>
-    <li><b>מסתם אילאוצקלי שלם:</b> גידול חוסם במעי הגס יוצר לולאה סגורה והסתמנות חריפה יותר</li>
-    <li>אנדוסקופיה יכולה לפתוח וולוולוס של הסיגמואיד</li>
+    <li><b><span class="nw">ב-<bdi>CT</bdi></span>:</b> מערבולת <span class="nw">ב-<bdi dir="ltr">mesentery</bdi></span> (<bdi>whirl</bdi>)</li>
+    <li><b><span class="nw">ה-<bdi dir="ltr">cecum</bdi></span> מעל <bdi dir="ltr">12</bdi> ס״מ:</b> סכנת נמק וניקוב, טיפול דחוף, בדרך כלל ניתוח. לפי חוק לפלס, <span class="nw">ה-<bdi dir="ltr">cecum</bdi></span> הרחב מתנקב ראשון גם כשהחסימה רחוקה ממנו</li>
+    <li><b><bdi dir="ltr">Ileocecal valve</bdi> שלם:</b> גידול חוסם <span class="nw">ב-<bdi dir="ltr">colon</bdi></span> יוצר לולאה סגורה והסתמנות חריפה יותר</li>
+    <li>אנדוסקופיה יכולה לפתוח וולוולוס של <span class="nw">ה-<bdi dir="ltr">sigmoid colon</bdi></span></li>
    </ul>
   </div>
   <div class="grid" style="gap:8px">
-   <figure><img src="img/xr-sigmoid-volvulus-child.jpg" alt="צילום בטן עם וולוולוס של הסיגמואיד" style="max-height:40vh"><figcaption>וולוולוס של הסיגמואיד בצילום בטן · <bdi>Mont4nha</bdi>, <bdi>CC0</bdi></figcaption></figure>
+   <figure><img src="img/xr-sigmoid-volvulus-child.jpg" alt="צילום בטן עם וולוולוס של ה-sigmoid colon" style="max-height:40vh"><figcaption>וולוולוס של <span class="nw">ה-<bdi dir="ltr">sigmoid colon</bdi></span> בצילום בטן · <bdi>Mont4nha</bdi>, <bdi>CC0</bdi></figcaption></figure>
    <figure><img src="img/op-sigmoid-volvulus.jpg" alt="סיגמואיד מסובב ונמקי בניתוח" style="max-height:40vh"><figcaption>אותה מחלה בחדר הניתוח: סיגמואיד מסובב ונמקי · <bdi>Herecomesdoc</bdi>, <bdi>CC BY-SA 3.0</bdi></figcaption></figure>
   </div>
  </div>
@@ -269,28 +274,28 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>8</b>מכני או לא</div>
  <h2>פסאודו-חסימה, מגהקולון ופנאומטוזיס</h2>
  <div class="grid g3">
-  <div class="box"><b class="t">חסימה מכנית</b>גז ושרפרף מצטברים מעל החסימה. <b>מתחת לחסימה כמעט אין גז</b>. <bdi>CT</bdi> עם חומר ניגוד ברקטום מראה מקום וסיבה</div>
-  <div class="box a"><b class="t">פסאודו-חסימה (<bdi>Ogilvie</bdi>)</b>מעי גס מורחב, הכי רחב בצקום ובימין (<bdi dir="ltr">10–12</bdi> ס״מ). <b>גז ממשיך עד הרקטום</b>. רגישות, חום ולויקוציטוזיס או צקום מעל <bdi dir="ltr">12</bdi> ס״מ: חשד לאיסכמיה. איסכמיה או ניקוב ב-<bdi dir="ltr">3–15%</bdi>. במקרים האלה התמותה קרובה ל-<bdi dir="ltr">50%</bdi></div>
-  <div class="box r"><b class="t">מגהקולון טוקסי</b>קוליטיס קשה עם 3 מתוך: דופק מעל <bdi dir="ltr">100</bdi>, לויקוציטים מעל <bdi dir="ltr">12,000</bdi>, אלבומין מתחת ל-3, חום מעל 38°, מעי גס רוחבי מעל <bdi dir="ltr">5</bdi> ס״מ בצילום. ההגדרה לא דורשת "מגהקולון"</div>
+  <div class="box"><b class="t">חסימה מכנית</b>גז ושרפרף מצטברים מעל החסימה. <b>מתחת לחסימה כמעט אין גז</b>. <bdi>CT</bdi> עם חומר ניגוד <span class="nw">ב-<bdi dir="ltr">rectum</bdi></span> מראה מקום וסיבה</div>
+  <div class="box a"><b class="t">פסאודו-חסימה (<bdi>Ogilvie</bdi>)</b><span class="nw">ה-<bdi dir="ltr">colon</bdi></span> מורחב, הכי רחב <span class="nw">ב-<bdi dir="ltr">cecum</bdi></span> <span class="nw">וב-<bdi dir="ltr">right colon</bdi></span> (<bdi dir="ltr">10–12</bdi> ס״מ). <b>גז ממשיך עד <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span></b>. רגישות, חום ולויקוציטוזיס או <bdi dir="ltr">cecum</bdi> מעל <bdi dir="ltr">12</bdi> ס״מ: חשד לאיסכמיה. איסכמיה או ניקוב <span class="nw">ב-<bdi dir="ltr">3–15%</bdi></span>. במקרים האלה התמותה קרובה <span class="nw">ל-<bdi dir="ltr">50%</bdi></span></div>
+  <div class="box r"><b class="t">מגהקולון טוקסי</b>קוליטיס קשה עם 3 מתוך: דופק מעל <bdi dir="ltr">100</bdi>, לויקוציטים מעל <bdi dir="ltr">12,000</bdi>, אלבומין מתחת ל-3, חום מעל 38°, <bdi dir="ltr">transverse colon</bdi> מעל <bdi dir="ltr">5</bdi> ס״מ בצילום. ההגדרה לא דורשת "מגהקולון"</div>
  </div>
- <div class="box n" style="margin-top:12px"><b class="t">אוויר בדופן המעי (<bdi>pneumatosis intestinalis</bdi>)</b>ממצא בהדמיה, לא אבחנה. <bdi dir="ltr">85%</bdi> שניוניים. מטפלים בסיבה. יחד עם צפקת או גז בוורידי המזנטריום והפורטה: סימן מבשר רע לאיסכמיה של המעי. ההחלטה על ניתוח לפי המצב הקליני</div>
+ <div class="box n" style="margin-top:12px"><b class="t">אוויר בדופן המעי (<bdi>pneumatosis intestinalis</bdi>)</b>ממצא בהדמיה, לא אבחנה. <bdi dir="ltr">85%</bdi> שניוניים. מטפלים בסיבה. יחד עם צפקת או גז <span class="nw">ב-<bdi dir="ltr">mesenteric veins</bdi></span> <span class="nw">וב-<bdi dir="ltr">portal vein</bdi></span>: סימן מבשר רע לאיסכמיה של המעי. ההחלטה על ניתוח לפי המצב הקליני</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1456–1458, 1464</bdi> · פרק 91 עמ׳ <bdi dir="ltr">1369</bdi></span><span>פסאודו-חסימה</span></div>
 </div></section>
 
 <section class="s"><div class="card">
  <div class="kick"><b>9</b>צילום חזה</div>
- <h2>אוויר, נוזל ודם בפלאורה</h2>
+ <h2>אוויר, נוזל ודם <span class="nw">ב-<bdi dir="ltr">pleura</bdi></span></h2>
  <div class="grid f">
   <div>
    <ul class="b sm">
-    <li><b>חזה אוויר:</b> אזור שקוף בלי סימני ריאה, מחוץ לשפת הריאה הקורסת. סיבות: חבלה, ניתוח, <b>צנתר מרכזי</b>, הנשמה, מחלת ריאה, ספונטני (גבר צעיר, גבוה ורזה, מעשן)</li>
-    <li>ספונטני קטן (<bdi dir="ltr">3</bdi> ס״מ בקודקוד או <bdi dir="ltr">2</bdi> ס״מ בהילום): אפשר מעקב. גדול או גדל: שאיבה או נקז</li>
-    <li>בחבלה: כל חזה אוויר או דם שנראה בצילום שוקלים לנקז. בלי חוסר יציבות, חזה אוויר עד <bdi dir="ltr">35</bdi> מ״מ ב-<bdi>CT</bdi> אפשר לעקוב. חוזרים על הצילום אחרי <bdi dir="ltr">12–24</bdi> שעות</li>
-    <li><b>נוזל בפלאורה:</b> כ-<bdi dir="ltr">300</bdi> מ״ל מטשטשים את הזווית הקוסטופרנית בצילום בעמידה</li>
-    <li><b>דם בפלאורה:</b> הצללה תלוית כובד. מה שנראה בצילום בעמידה הוא כ-<bdi dir="ltr">400–500</bdi> מ״ל: נקז</li>
+    <li><b>חזה אוויר:</b> אזור שקוף בלי סימני ריאה, מחוץ <span class="nw">ל-<bdi dir="ltr">lung edge</bdi></span> הקורסת. סיבות: חבלה, ניתוח, <b>צנתר מרכזי</b>, הנשמה, מחלת ריאה, ספונטני (גבר צעיר, גבוה ורזה, מעשן)</li>
+    <li>ספונטני קטן (<bdi dir="ltr">3</bdi> ס״מ <span class="nw">ב-<bdi dir="ltr">apex</bdi></span> או <bdi dir="ltr">2</bdi> ס״מ <span class="nw">ב-<bdi dir="ltr">hilum</bdi></span>): אפשר מעקב. גדול או גדל: שאיבה או נקז</li>
+    <li>בחבלה: כל חזה אוויר או דם שנראה בצילום שוקלים לנקז. בלי חוסר יציבות, חזה אוויר עד <bdi dir="ltr">35</bdi> מ״מ <span class="nw">ב-<bdi>CT</bdi></span> אפשר לעקוב. חוזרים על הצילום אחרי <bdi dir="ltr">12–24</bdi> שעות</li>
+    <li><b>נוזל <span class="nw">ב-<bdi dir="ltr">pleura</bdi></span>:</b> <span class="nw">כ-<bdi dir="ltr">300</bdi></span> מ״ל מטשטשים את <span class="nw">ה-<bdi dir="ltr">costophrenic angle</bdi></span> בצילום בעמידה</li>
+    <li><b>דם <span class="nw">ב-<bdi dir="ltr">pleura</bdi></span>:</b> הצללה תלוית כובד. מה שנראה בצילום בעמידה הוא <span class="nw">כ-<bdi dir="ltr">400–500</bdi></span> מ״ל: נקז</li>
    </ul>
   </div>
-  <figure><img src="img/xr-pneumothorax-left.jpg" alt="צילום חזה עם חזה אוויר משמאל" style="max-height:46vh"><figcaption>חזה אוויר משמאל (בצד ימין של התמונה): אין סימני ריאה בין שפת הריאה לדופן החזה · <bdi>Clinical Cases</bdi>, <bdi>CC BY-SA 2.5</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/xr-pneumothorax-left.jpg" alt="צילום חזה עם חזה אוויר משמאל" style="max-height:46vh"><figcaption>חזה אוויר משמאל (בצד ימין של התמונה): אין סימני ריאה בין <span class="nw">ה-<bdi dir="ltr">lung edge</bdi></span> <span class="nw">ל-<bdi dir="ltr">chest wall</bdi></span> · <bdi>Clinical Cases</bdi>, <bdi>CC BY-SA 2.5</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 110 עמ׳ <bdi dir="ltr">1796, 1799</bdi> · פרק 36 עמ׳ <bdi dir="ltr">335–336</bdi></span><span>צילום חזה</span></div>
 </div></section>
@@ -300,11 +305,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>הצילום לא מחליף את העיניים</h2>
  <div class="grid">
   <div style="display:grid;gap:10px;align-content:start">
-   <div class="box r"><b class="t">חזה אוויר בלחץ: אבחנה קלינית</b>לחץ דם נמוך, אין קולות נשימה בצד הפגוע, הקנה נדחק לצד השני. ורידי הצוואר גודשים. לא מחכים לצילום: ניקור במחט (<bdi dir="ltr">10–16G</bdi>) במרווח הבין-צלעי החמישי, בקו בית השחי הקדמי, או נקז חזה</div>
-   <div class="box n"><b class="t">בסקירה הראשונית</b>צילום חזה, צילום אגן ו-<bdi>eFAST</bdi> מאתרים את מקור הדימום: דם רב בחזה, שבר באגן</div>
+   <div class="box r"><b class="t">חזה אוויר בלחץ: אבחנה קלינית</b>לחץ דם נמוך, אין קולות נשימה בצד הפגוע, <span class="nw">ה-<bdi dir="ltr">trachea</bdi></span> נדחקת לצד השני. <span class="nw">ה-<bdi dir="ltr">jugular veins</bdi></span> גודשים. לא מחכים לצילום: ניקור במחט (<bdi dir="ltr">10–16G</bdi>) <span class="nw">ב-<bdi dir="ltr">5th intercostal space</bdi></span>, <span class="nw">ב-<bdi dir="ltr">anterior axillary line</bdi></span>, או נקז חזה</div>
+   <div class="box n"><b class="t">בסקירה הראשונית</b>צילום חזה, צילום אגן <span class="nw">ו-<bdi>eFAST</bdi></span> מאתרים את מקור הדימום: דם רב בחזה, שבר באגן</div>
   </div>
   <div style="display:grid;gap:10px;align-content:start">
-   <div class="box a"><b class="t">מיצר רחב</b>מיצר רחב, "כיפה" בקודקוד או היעלמות קשת אבי העורקים מחשידים לפגיעה באבי העורקים. הצילום לא רגיש מספיק כבדיקת סינון: <bdi>CTA</bdi> של החזה</div>
+   <div class="box a"><b class="t"><bdi dir="ltr">Widened mediastinum</bdi></b><span class="nw">ה-<bdi dir="ltr">mediastinum</bdi></span> רחב, <bdi dir="ltr">apical cap</bdi> או היעלמות של <span class="nw">ה-<bdi dir="ltr">aortic knob</bdi></span> מחשידים לפגיעה <span class="nw">ב-<bdi dir="ltr">aorta</bdi></span>. הצילום לא רגיש מספיק כבדיקת סינון: <bdi>CTA</bdi> של החזה</div>
    <div class="box b"><b class="t">במחלקה השבוע</b>בכל ביקור בוקר בקשו לראות את צילומי היום. קראו אותם בקול לפי חמשת הצעדים לפני שאתם קוראים את הפענוח. השוו לצילום הקודם</div>
   </div>
  </div>
@@ -315,10 +320,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>11</b>תרגול</div>
  <h2>ארבעה צילומים, ארבע החלטות</h2>
  <div class="grid">
-  <div class="box"><b class="t">1 · אישה בת 70, כאב פתאומי באפיגסטריום, צילום בעמידה: סהר אוויר מתחת לסרעפת</b>ניקוב של איבר חלול. נוזלים, אנטיביוטיקה, ייעוץ כירורגי מיד. <bdi>CT</bdi> רק אם המטופלת יציבה</div>
-  <div class="box"><b class="t">2 · גבר עם ניתוח בטן בעבר, הקאות, רמות במדרגות, אין גז ברקטום</b>חסימת מעי דק, כנראה מהדבקויות. זונדה, נוזלים, <bdi>CT</bdi>. סימני צפקת או רעילות: לחדר ניתוח</div>
-  <div class="box"><b class="t">3 · מטופל סיעודי מבוגר, בטן תפוחה מאוד, "פול קפה" באגן</b>וולוולוס של הסיגמואיד: לולאה סגורה. <bdi>CT</bdi> ואנדוסקופיה לפתיחה. נמק או ניקוב: ניתוח</div>
-  <div class="box"><b class="t">4 · אחרי צנתר מרכזי בווריד התת-בריחי: קוצר נשימה</b>לחשוב על חזה אוויר. צילום חזה. אם לחץ הדם צונח: ניקור במחט בלי לחכות</div>
+  <div class="box"><b class="t">1 · אישה בת 70, כאב פתאומי באפיגסטריום, צילום בעמידה: סהר אוויר מתחת <span class="nw">ל-<bdi dir="ltr">diaphragm</bdi></span></b>ניקוב של איבר חלול. נוזלים, אנטיביוטיקה, ייעוץ כירורגי מיד. <bdi>CT</bdi> רק אם המטופלת יציבה</div>
+  <div class="box"><b class="t">2 · גבר עם ניתוח בטן בעבר, הקאות, רמות במדרגות, אין גז <span class="nw">ב-<bdi dir="ltr">rectum</bdi></span></b>חסימת מעי דק, כנראה מהדבקויות. זונדה, נוזלים, <bdi>CT</bdi>. סימני צפקת או רעילות: לחדר ניתוח</div>
+  <div class="box"><b class="t">3 · מטופל סיעודי מבוגר, בטן תפוחה מאוד, "פול קפה" באגן</b>וולוולוס של <span class="nw">ה-<bdi dir="ltr">sigmoid colon</bdi></span>: לולאה סגורה. <bdi>CT</bdi> ואנדוסקופיה לפתיחה. נמק או ניקוב: ניתוח</div>
+  <div class="box"><b class="t">4 · אחרי צנתר מרכזי <span class="nw">ב-<bdi dir="ltr">subclavian vein</bdi></span>: קוצר נשימה</b>לחשוב על חזה אוויר. צילום חזה. אם לחץ הדם צונח: ניקור במחט בלי לחכות</div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1159–1160</bdi> · פרק 91 עמ׳ <bdi dir="ltr">1333–1335</bdi> · פרק 95 עמ׳ <bdi dir="ltr">1455–1457</bdi> · פרק 110 עמ׳ <bdi dir="ltr">1799</bdi> · פרק 36 עמ׳ <bdi dir="ltr">309</bdi></span><span>מקרים בדויים</span></div>
 </div></section>
@@ -331,7 +336,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <p>11 מחקרים אקראיים (<bdi dir="ltr">817</bdi> מטופלים). קיצר את האשפוז בכ-2 ימים במי שלא נותח. שיעור הניתוחים לא השתנה במחקרים האקראיים (<bdi dir="ltr">19.8%</bdi> לעומת <bdi dir="ltr">21.4%</bdi>)</p>
    <small>Klingbeil KD et al. Ann Surg 2022;276(6):981-8</small></div>
   <div class="study"><div class="y"><bdi>BJS Open</bdi> 2025 · מטא-אנליזה</div><b>ושוב: האם החומר מונע ניתוח?</b>
-   <p>11 מחקרים אקראיים. אין הבדל מובהק בצורך בניתוח (<bdi dir="ltr">OR 0.63</bdi>, גבולי), באיסכמיה, בכריתת מעי או בתמותה. רק מחקר אחד אבחן את החסימה ב-<bdi>CT</bdi>. השימוש הטיפולי עדיין לא מוכח</p>
+   <p>11 מחקרים אקראיים. אין הבדל מובהק בצורך בניתוח (<bdi dir="ltr">OR 0.63</bdi>, גבולי), באיסכמיה, בכריתת מעי או בתמותה. רק מחקר אחד אבחן את החסימה <span class="nw">ב-<bdi>CT</bdi></span>. השימוש הטיפולי עדיין לא מוכח</p>
    <small>Gowell M et al. BJS Open 2025;9(3):zraf049</small></div>
   <div class="study"><div class="y"><bdi>Med Ultrason</bdi> 2023 · מטא-אנליזה</div><b>אולטרסאונד לחזה אוויר בחבלה</b>
    <p>12 מחקרים פרוספקטיביים. רגישות <bdi dir="ltr">89%</bdi> וסגוליות <bdi dir="ltr">96%</bdi>. אולטרסאונד ליד המיטה הוא כלי אמין לגילוי חזה אוויר במטופל חבול</p>
@@ -346,9 +351,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>חמישה דברים לקחת למחלקה</h2>
  <ol class="obj">
   <li>קוראים כל צילום באותו סדר: תנוחה, גז, קוטר, אוויר במקום לא נכון, כל השאר</li>
-  <li>אוויר מתחת לסרעפת בצילום בעמידה = ניקוב עד שיוכח אחרת</li>
-  <li>מעי דק מעל <bdi dir="ltr">3</bdi> ס״מ, רמות במדרגות ומעט גז במעי הגס: חסימת מעי דק. הבדיקה הבאה היא <bdi>CT</bdi></li>
-  <li>"פול קפה" = וולוולוס = לולאה סגורה. צקום מעל <bdi dir="ltr">12</bdi> ס״מ = סכנת ניקוב</li>
+  <li>אוויר מתחת <span class="nw">ל-<bdi dir="ltr">diaphragm</bdi></span> בצילום בעמידה = ניקוב עד שיוכח אחרת</li>
+  <li><span class="nw">ה-<bdi dir="ltr">small bowel</bdi></span> מעל <bdi dir="ltr">3</bdi> ס״מ, רמות במדרגות ומעט גז <span class="nw">ב-<bdi dir="ltr">colon</bdi></span>: חסימת מעי דק. הבדיקה הבאה היא <bdi>CT</bdi></li>
+  <li>"פול קפה" = וולוולוס = לולאה סגורה. <bdi dir="ltr">cecum</bdi> מעל <bdi dir="ltr">12</bdi> ס״מ = סכנת ניקוב</li>
   <li>חזה אוויר בלחץ מאבחנים ליד המיטה, לא בצילום</li>
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 85 (עמ׳ <bdi dir="ltr">1159–1162</bdi>) · פרק 91 (עמ׳ <bdi dir="ltr">1333–1336</bdi>) · פרק 95 (עמ׳ <bdi dir="ltr">1454–1458</bdi>) · פרק 110 (עמ׳ <bdi dir="ltr">1799</bdi>)</div>

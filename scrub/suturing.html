@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>סדנת תפירה · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,6 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -97,6 +98,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -114,6 +116,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -162,7 +167,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>3</b>שכבות העור · אינטראקטיבי</div>
  <h2>באיזו שכבה התפר אוחז?</h2>
- <div class="hotw"><div class="hoti"><img src="img/skin-blausen.jpg" alt="חתך תלת-ממדי של העור: אפידרמיס, דרמיס ורקמה תת-עורית"><svg viewBox="0 0 1100 911" preserveAspectRatio="none" style="--lw:20;--bf:27px">
+ <div class="hotw"><div class="hoti"><img src="img/skin-blausen.jpg" alt="חתך תלת-ממדי של העור: epidermis, dermis ו-subcutaneous tissue"><svg viewBox="0 0 1100 911" preserveAspectRatio="none" style="--lw:20;--bf:27px">
   <path class="hz" data-hz="ep" d="M193,248 C193,248,213,239,237,235 C260,232,301,228,335,226 C368,224,403,223,438,222 C472,221,509,219,541,218 C573,218,602,218,628,218 C655,219,698,220,698,220 C698,220,698,277,698,277 C698,277,665,284,644,288 C623,292,598,295,572,301 C546,307,508,319,489,325 C470,331,470,334,458,337 C447,339,434,339,422,341 C410,342,401,345,386,345 C372,344,352,341,335,339 C317,338,300,336,283,335 C266,335,247,336,232,337 C217,338,193,339,193,339 C193,339,193,248,193,248 Z" style="--c:#C9893F"/>
   <path class="hz" data-hz="de" d="M193,339 C193,339,217,338,232,337 C247,336,266,335,283,335 C300,336,317,338,335,339 C352,341,372,344,386,345 C401,345,410,342,422,341 C434,339,447,339,458,337 C470,334,470,331,489,325 C508,319,546,307,572,301 C598,295,623,292,644,288 C665,284,698,277,698,277 C698,277,724,265,737,262 C749,259,760,258,773,260 C786,261,804,266,814,272 C824,278,829,287,832,296 C835,304,836,312,835,324 C833,336,828,352,824,365 C820,378,807,391,811,401 C816,411,852,417,850,425 C848,433,813,439,800,450 C787,461,780,481,770,490 C760,499,750,502,740,505 C730,508,723,502,709,507 C695,512,674,532,656,536 C638,540,621,532,603,531 C585,530,566,528,550,528 C534,528,520,529,508,531 C496,533,485,535,476,539 C467,543,459,544,455,555 C451,566,456,591,452,602 C448,613,440,621,429,623 C418,625,395,620,386,613 C377,606,380,593,376,581 C372,569,370,551,365,539 C360,527,353,516,344,507 C335,498,324,493,312,486 C300,479,283,471,270,465 C257,459,243,454,233,449 C223,444,217,440,212,438 C207,436,204,436,204,436 C204,436,193,339,193,339 Z" style="--c:#7A5BD6"/>
   <path class="hz" data-hz="hy" d="M204,436 C204,436,207,436,212,438 C217,440,223,444,233,449 C243,454,257,459,270,465 C283,471,300,479,312,486 C324,493,335,498,344,507 C353,516,360,527,365,539 C370,551,372,569,376,581 C380,593,377,606,386,613 C395,620,418,625,429,623 C440,621,448,613,452,602 C456,591,451,566,455,555 C459,544,467,543,476,539 C485,535,496,533,508,531 C520,529,534,528,550,528 C566,528,585,530,603,531 C621,532,638,540,656,536 C674,532,695,512,709,507 C723,502,730,508,740,505 C750,502,760,499,770,490 C780,481,787,461,800,450 C813,439,834,429,850,425 C866,421,899,428,899,428 C899,428,898,458,896,480 C894,502,892,535,887,560 C882,585,877,605,869,630 C861,655,850,683,837,710 C824,737,790,792,790,792 C790,792,732,787,700,781 C668,775,634,767,600,758 C566,749,532,738,497,728 C462,718,426,708,392,697 C358,686,317,674,290,665 C263,656,228,640,228,640 C228,640,218,594,214,560 C210,526,204,436,204,436 Z" style="--c:#00967D"/>
@@ -171,9 +176,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <g class="hzb" style="--c:#00967D"><circle cx="180" cy="560" r="23"/><text x="180" y="560">3</text></g>
  </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על שכבה כדי לראות איזה תפר עובר בה</p>
-   <div class="hzi" data-hzi="ep" hidden><b>1 · אפידרמיס</b><p>השכבה החיצונית, המחסום נגד איבוד נוזלים וחיידקים. התאים שלה מתחילים לנדוד ולכסות את החתך כבר בשעות הראשונות. המטרה: שולי העור נוגעים זה בזה, מעט כלפי חוץ, בלי לחנוק. שם הקשר יושב על העור</p></div>
-   <div class="hzi" data-hzi="de" hidden><b>2 · דרמיס</b><p>השכבה שמחזיקה את התפר: כאן הקולגן. התפר התוך-עורי עובר כולו בדרמיס בחוט נספג. התוצאה אסתטית, בלי צורך להוציא תפרים. תפר מזרן אנכי אוחז בשני עומקים ומפזר מתח. לכן הוא מתאים לפצע במתח</p></div>
-   <div class="hzi" data-hzi="hy" hidden><b>3 · רקמה תת-עורית</b><p>שומן עם מעט כלי דם. לכן הוא פגיע לזיהום. מתחתיה הפאציה, השכבה החזקה שסוגרים בבטן. הפאציה מגיעה לכחצי מהחוזק המקורי בין היום ה-8 לחודש השני. לכן סוגרים אותה בחוט שנספג לאט</p></div>
+   <div class="hzi" data-hzi="ep" hidden><b>1 · <bdi dir="ltr">Epidermis</bdi></b><p>השכבה החיצונית, המחסום נגד איבוד נוזלים וחיידקים. התאים שלה מתחילים לנדוד ולכסות את החתך כבר בשעות הראשונות. המטרה: שולי העור נוגעים זה בזה, מעט כלפי חוץ, בלי לחנוק. שם הקשר יושב על העור</p></div>
+   <div class="hzi" data-hzi="de" hidden><b>2 · <bdi dir="ltr">Dermis</bdi></b><p>השכבה שמחזיקה את התפר: כאן הקולגן. התפר התוך-עורי עובר כולו <span class="nw">ב-<bdi dir="ltr">dermis</bdi></span> בחוט נספג. התוצאה אסתטית, בלי צורך להוציא תפרים. תפר מזרן אנכי אוחז בשני עומקים ומפזר מתח. לכן הוא מתאים לפצע במתח</p></div>
+   <div class="hzi" data-hzi="hy" hidden><b>3 · <bdi dir="ltr">Subcutaneous tissue</bdi></b><p>שומן עם מעט כלי דם. לכן הוא פגיע לזיהום. מתחתיה <span class="nw">ה-<bdi dir="ltr">fascia</bdi></span>, השכבה החזקה שסוגרים בבטן. <span class="nw">ה-<bdi dir="ltr">fascia</bdi></span> מגיעה לכחצי מהחוזק המקורי בין היום ה-8 לחודש השני. לכן סוגרים אותה בחוט שנספג לאט</p></div>
   </div></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">32</bdi> · פרק 23 עמ׳ <bdi dir="ltr">94–95</bdi> · פרק 25 עמ׳ <bdi dir="ltr">120</bdi> · פרק 80 עמ׳ <bdi dir="ltr">1067</bdi></span><span>איור: <bdi>Blausen.com staff (2014)</bdi>, <bdi>WikiJournal of Medicine</bdi>, <bdi>CC BY 3.0</bdi></span></div>
 </div></section>
@@ -185,8 +190,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <div class="flow">
     <div><b>נספג</b><span>מתפרק בגוף. בשכבה התוך-עורית: סגירה יפה בלי הוצאת תפרים</span></div>
-    <div><b>נספג לאט</b><span>לפאציה של הבטן: מחזיק עד שהפאציה חוזרת לחוזק. חוט שנספג מהר עלול "להיגמר" לפני כן</span></div>
-    <div><b>קבוע</b><span>לפאציה במטופל מתת-תזונה או חלש, או כשהמעקב מוקדם. חיסרון: תחושת גוף זר וגרנולומות</span></div>
+    <div><b>נספג לאט</b><span><span class="nw">ל-<bdi dir="ltr">abdominal fascia</bdi></span>: מחזיק עד <span class="nw">שה-<bdi dir="ltr">fascia</bdi></span> חוזרת לחוזק. חוט שנספג מהר עלול "להיגמר" לפני כן</span></div>
+    <div><b>קבוע</b><span><span class="nw">ל-<bdi dir="ltr">fascia</bdi></span> במטופל מתת-תזונה או חלש, או כשהמעקב מוקדם. חיסרון: תחושת גוף זר וגרנולומות</span></div>
     <div><b>מצופה טריקלוזן</b><span>חוט נספג עם חומר נגד חיידקים. מופיע בחלק מההנחיות, אבל הראיות מעורבות</span></div>
    </div>
   </div>
@@ -206,8 +211,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div class="flow">
    <div><b>תפר בודד</b><span>כל תפר עומד לבד. אם צריך, פותחים חלק מהפצע לניקוז או לריפוד בלי לפתוח את כולו. טוב לפצע בסיכון לזיהום</span></div>
    <div><b>תפר רציף</b><span>חוט אחד לכל האורך, מהיר. רציף בכמה שכבות אוטם טוב יותר, למשל כשיש מיימת</span></div>
-   <div><b>מזרן אנכי</b><span>נכנס רחוק ועמוק, חוזר קרוב ושטחי. מפזר את המתח על שני עומקים ומקרב היטב את הדרמיס. לפצע במתח</span></div>
-   <div><b>תוך-עורי</b><span>רציף בתוך הדרמיס, בחוט נספג. התוצאה האסתטית הטובה ביותר, בלי הוצאת תפרים</span></div>
+   <div><b>מזרן אנכי</b><span>נכנס רחוק ועמוק, חוזר קרוב ושטחי. מפזר את המתח על שני עומקים ומקרב היטב את <span class="nw">ה-<bdi dir="ltr">dermis</bdi></span>. לפצע במתח</span></div>
+   <div><b>תוך-עורי</b><span>רציף בתוך <span class="nw">ה-<bdi dir="ltr">dermis</bdi></span>, בחוט נספג. התוצאה האסתטית הטובה ביותר, בלי הוצאת תפרים</span></div>
    <div><b>שדכן לעור (סיכות)</b><span>מהיר לחתכים ארוכים. מוציאים במחלקה או במרפאה (נוהג מקובל)</span></div>
   </div>
   <figure><img src="img/stitches-wellcome.jpg" alt="ציור עפרון צבעוני של תפרים לסגירת פצעים"><figcaption>תפרים לסגירת פצעים: בודדים (למעלה) ורציפים (למטה), ציור עפרון צבעוני · <bdi>Wellcome Collection V0016824</bdi>, <bdi>CC BY 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
@@ -243,15 +248,15 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div>
    <ul class="b">
-    <li><b>מתח</b> מפעיל את הפיברובלסטים ומוביל לעודף קולגן. פצע בניצב לקווי <bdi>Langer</bdi> נמצא במתח גדול יותר</li>
+    <li><b>מתח</b> מפעיל את הפיברובלסטים ומוביל לעודף קולגן. פצע בניצב <span class="nw">ל-<bdi dir="ltr">Langer's lines</bdi></span> נמצא במתח גדול יותר</li>
     <li>חתך <b>בניצב לסיבי השריר</b> מתחתיו נוטה להיות שטוח וצר. חתך מקביל להם נפתח כשהשריר מתכווץ</li>
-    <li>אזורים בסיכון לצלקת רעה: הכתף (הדלתואיד) והסטרנום</li>
+    <li>אזורים בסיכון לצלקת רעה: הכתף (<span class="nw">ה-<bdi dir="ltr">deltoid</bdi></span>) <span class="nw">וה-<bdi dir="ltr">sternum</bdi></span></li>
     <li><b>אחרי הסגירה:</b> הדבקת סטריפים על הצלקת 3 חודשים, לחות וסיליקון, הגנה מהשמש (מקדם 50 ומעלה) שנה</li>
    </ul>
   </div>
   <div style="display:grid;gap:10px;align-content:start">
    <div class="box a"><b class="t">צלקת היפרטרופית</b>מורמת אבל בתוך גבולות הפצע. לרוב נסוגה לבד. אפשר למנוע: פחות מתח ופחות דלקת</div>
-   <div class="box r"><b class="t">קלואיד</b>גדל מעבר לגבולות הפצע ולא נסוג. נטייה גנטית, <bdi dir="ltr">15–20%</bdi> בעור כהה. כריתה לבד חוזרת ב-<bdi dir="ltr">50–100%</bdi></div>
+   <div class="box r"><b class="t">קלואיד</b>גדל מעבר לגבולות הפצע ולא נסוג. נטייה גנטית, <bdi dir="ltr">15–20%</bdi> בעור כהה. כריתה לבד חוזרת <span class="nw">ב-<bdi dir="ltr">50–100%</bdi></span></div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 23 עמ׳ <bdi dir="ltr">98–100</bdi></span><span>צלקת</span></div>
@@ -266,7 +271,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li>פצע מחלים הכי טוב <b>לח, נקי וחם</b>. מתחת לחבישה סוגרת שמשמרת לחות, האפיתל מכסה פי 2 מהר יותר מפצע שמתייבש</li>
     <li>לחתך ניתוחי נקי: חבישה רגילה, משחה או חבישה שקופה סוגרת</li>
     <li>חבישת ואקום מעל חתך סגור: הספר ממליץ לשקול. מחקר חדש בניתוחי חירום לא מצא תועלת (ראו "מה חדש")</li>
-    <li>זיהום בחתך מופיע בממוצע כ-10 ימים אחרי לפרוטומיה. יותר מ-<bdi dir="ltr">60%</bdi> מתגלים אחרי השחרור. לכן מסבירים למטופל על מה לשים לב</li>
+    <li>זיהום בחתך מופיע בממוצע כ-10 ימים אחרי לפרוטומיה. יותר <span class="nw">מ-<bdi dir="ltr">60%</bdi></span> מתגלים אחרי השחרור. לכן מסבירים למטופל על מה לשים לב</li>
    </ul>
   </div>
   <div style="display:grid;gap:10px;align-content:start">
@@ -300,7 +305,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <p>802 מטופלים אחרי ניתוח לסרטן המעי הגס. בקע בחתך אחרי שנה: <bdi dir="ltr">14.8%</bdi> לעומת <bdi dir="ltr">17.1%</bdi>, בלי הבדל מובהק. יותר זיהום פצע בשיטה החדשה (<bdi dir="ltr">13.2%</bdi> לעומת <bdi dir="ltr">7.7%</bdi>)</p>
    <small>HART Collaborative. Br J Surg 2022;109:943-50</small></div>
   <div class="study"><div class="y"><bdi>JAMA</bdi> 2025 · מחקר אקראי</div><b><bdi>SUNRRISE</bdi>: ואקום על חתך סגור בלפרוטומיה דחופה</b>
-   <p>840 מטופלים בבריטניה ובאוסטרליה. זיהום פצע: <bdi dir="ltr">28.4%</bdi> עם ואקום ו-<bdi dir="ltr">27.4%</bdi> עם חבישה רגילה. בלי תועלת</p>
+   <p>840 מטופלים בבריטניה ובאוסטרליה. זיהום פצע: <bdi dir="ltr">28.4%</bdi> עם ואקום <span class="nw">ו-<bdi dir="ltr">27.4%</bdi></span> עם חבישה רגילה. בלי תועלת</p>
    <small>Atherton K et al. JAMA 2025;333:853-63</small></div>
  </div>
  <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
@@ -311,7 +316,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>חמישה דברים לקחת למחלקה</h2>
  <ol class="obj">
   <li>פצע נקי סוגרים. פצע מלוכלך מאוד משאירים פתוח</li>
-  <li>הדרמיס מחזיק את התפר. מקרבים ולא חונקים</li>
+  <li><span class="nw">ה-<bdi dir="ltr">dermis</bdi></span> מחזיק את התפר. מקרבים ולא חונקים</li>
   <li>בודד כשחושבים שאולי נצטרך לפתוח. מזרן אנכי למתח. תוך-עורי ליופי</li>
   <li>הבטן: ביסים קטנים וחוט שנספג לאט</li>
   <li>פחות מתח, הגנה מהשמש ומעקב: צלקת טובה יותר וזיהום שמתגלה בזמן</li>

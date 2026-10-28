@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>חזה אוויר · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,6 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -97,6 +98,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -114,6 +116,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -125,7 +130,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
  <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 1</div>
  <h1>חזה אוויר (<bdi>Pneumothorax</bdi>)</h1>
- <p class="lead">הפלאורה, חזה אוויר ספונטני וחבלתי, חזה אוויר בלחץ, נקז חזה. ובקצרה: תפליט ואמפיאמה</p>
+ <p class="lead"><bdi dir="ltr">pleura</bdi>, חזה אוויר ספונטני וחבלתי, חזה אוויר בלחץ, נקז חזה. ובקצרה: תפליט ואמפיאמה</p>
  <div class="cvsrc" data-ch="110,36" data-note=""><small>מבוסס על</small><b><bdi dir="ltr">Sabiston Textbook of Surgery</bdi> · מהדורה 22</b><div class="cvch"><span>פרק <bdi dir="ltr">110</bdi></span><span>פרק <bdi dir="ltr">36</bdi></span></div></div>
  <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
 </div></section>
@@ -134,7 +139,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>1</b>מטרות הלמידה</div>
  <h2>בסוף המפגש תדעו</h2>
  <ol class="obj">
-  <li>לתאר את הפלאורה ואת המרווח הפלאורלי. להבין למה מכניסים נקז מעל הצלע</li>
+  <li>לתאר את <span class="nw">ה-<bdi dir="ltr">pleura</bdi></span> ואת <span class="nw">ה-<bdi dir="ltr">pleural space</bdi></span>. להבין למה מכניסים נקז מעל הצלע</li>
   <li>לסווג חזה אוויר: ספונטני ראשוני ומשני, חבלתי ויאטרוגני</li>
   <li>לזהות חזה אוויר בלחץ לפי הקליניקה בלבד ולדעת איפה מנקזים במחט ובאצבע</li>
   <li>לבחור בין מעקב, שאיבה, נקז וניתוח בחזה אוויר ספונטני</li>
@@ -145,7 +150,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>2</b>אנטומיה · אינטראקטיבי</div>
- <h2>הפלאורה והמרווח הפלאורלי</h2>
+ <h2><bdi dir="ltr">pleura</bdi> <span class="nw">ו-<bdi dir="ltr">pleural space</bdi></span></h2>
  <div class="hotw"><div class="hoti" style="max-width:420px;width:100%;justify-self:center"><img src="img/Sobo_1906_451.jpg" alt="הריאות בבית החזה, מבט קדמי, אחרי הסרת דופן החזה הקדמית"><svg viewBox="0 0 819 1100" preserveAspectRatio="none" style="--lw:34;--li:.3;--lh:.42;--lo:.4;--bf:23px">
  <path class="hz ln" data-hz="wall" d="M553,342 C558.5,351.2 576.3,376.7 586,397 C595.7,417.3 601.8,438.5 611,464 C620.2,489.5 631.8,519.3 641,550 C650.2,580.7 658.8,614.5 666,648 C673.2,681.5 679,714.5 684,751 C689,787.5 692.5,829.3 696,867 C699.5,904.7 703,948.5 705,977 C707,1005.5 707.5,1027.8 708,1038 M226,354 C222,366.3 210.2,400.5 202,428 C193.8,455.5 185.2,488.5 177,519 C168.8,549.5 161.2,580.5 153,611 C144.8,641.5 135.7,671.5 128,702 C120.3,732.5 113,763.3 107,794 C101,824.7 96.2,855.5 92,886 C87.8,916.5 84.2,951.7 82,977 C79.8,1002.3 79.5,1027.8 79,1038" style="--c:#D63C32"/>
  <path class="hz" data-hz="lung" d="M241,397 C246.2,390.7 254.3,384 263,382 C271.7,380 285.2,382 293,385 C300.8,388 304.5,394.8 310,400 C315.5,405.2 319.8,406.8 326,416 C332.2,425.2 340,441.5 347,455 C354,468.5 361.5,483 368,497 C374.5,511 381.2,525.5 386,539 C390.8,552.5 394.8,562.8 397,578 C399.2,593.2 398.2,612.7 399,630 C399.8,647.3 401.5,666.7 402,682 C402.5,697.3 402.7,709 402,722 C401.3,735 400.3,746.5 398,760 C395.7,773.5 391.8,785.5 388,803 C384.2,820.5 379.2,847 375,865 C370.8,883 368.5,896.5 363,911 C357.5,925.5 352.3,941 342,952 C331.7,963 316.8,970 301,977 C285.2,984 266.5,990.5 247,994 C227.5,997.5 205.2,997.7 184,998 C162.8,998.3 133.8,997.3 120,996 C106.2,994.7 103.8,997.7 101,990 C98.2,982.3 102,962.3 103,950 C104,937.7 104.8,936.8 107,916 C109.2,895.2 112,855.5 116,825 C120,794.5 125.8,758.5 131,733 C136.2,707.5 141.3,692.3 147,672 C152.7,651.7 159,631.3 165,611 C171,590.7 176.8,568.3 183,550 C189.2,531.7 195.8,517.7 202,501 C208.2,484.3 215,463.5 220,450 C225,436.5 228.5,428.8 232,420 C235.5,411.2 235.8,403.3 241,397 Z" style="--c:#2EAA5A"/>
@@ -159,11 +164,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <g class="hzb" style="--c:#F0961E"><circle cx="662" cy="1074" r="20"/><text x="662" y="1074">5</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על מספר בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="wall" hidden><b>1 · דופן החזה והפלאורה הפריאטלית</b><p>הפלאורה הפריאטלית מצפה את דופן החזה, את המדיאסטינום ואת הסרעפת. היא מעוצבבת בעושר מעצבי הצלעות. לכן נותנים <b>הרדמה מקומית נדיבה</b> לפני נקז. הצרור (וריד, עורק ועצב) עובר לאורך השפה התחתונה של כל צלע מלפנים: <b>נכנסים מעל הצלע</b>.</p></div>
-  <div class="hzi" data-hzi="lung" hidden><b>2 · הריאה והפלאורה הוויסצרלית</b><p>הפלאורה הוויסצרלית עוטפת את הריאה ומפרידה בין האונות. היא מעוצבבת מהוואגוס ומהמערכת הסימפתטית. בין שתי הפלאורות יש רק מעט נוזל, שמאפשר לריאה לגלוש כמעט בלי חיכוך. אוויר, נוזל, גידול או זיהום במרווח הזה לוחצים על הריאה.</p></div>
-  <div class="hzi" data-hzi="apex" hidden><b>3 · קודקוד הריאה</b><p>כאן נמצאות הבועות הקטנות מתחת לפלאורה (<bdi>blebs</bdi>). כשהן נקרעות נוצר <b>חזה אוויר ספונטני ראשוני</b>. בניתוח (<bdi>VATS</bdi>) כורתים אותן. חזה אוויר קטן נמדד כאן: עד 3 ס״מ בקודקוד.</p></div>
-  <div class="hzi" data-hzi="rec" hidden><b>4 · הזווית הקוסטופרנית והסרעפת</b><p>כאן מתקבץ נוזל. בצילום בעמידה רואים תפליט מ-300 מ״ל, כקהות של הזווית. מתחת לסרעפת: הכבד והטחול. לכן נקז נכנס במרווח החמישי. חתך גבוה יותר מקטין את הסיכון להיכנס לבטן.</p></div>
-  <div class="hzi" data-hzi="med" hidden><b>5 · המדיאסטינום והלב</b><p>ב<b>חזה אוויר בלחץ</b> המדיאסטינום נדחק לצד השני וההחזר הוורידי ללב יורד: תת לחץ דם. אתרי הניקוז במחט (המרווח החמישי בקו בית השחי, או המרווח השני בקו אמצע הבריח) נבחרו כדי להתרחק מהלב ומהכלים הגדולים.</p></div>
+  <div class="hzi" data-hzi="wall" hidden><b>1 · דופן החזה <span class="nw">ו-<bdi dir="ltr">parietal pleura</bdi></span></b><p><span class="nw">ה-<bdi dir="ltr">parietal pleura</bdi></span> מצפה את דופן החזה, את <span class="nw">ה-<bdi dir="ltr">mediastinum</bdi></span> ואת <span class="nw">ה-<bdi dir="ltr">diaphragm</bdi></span>. היא מעוצבבת בעושר <span class="nw">מה-<bdi dir="ltr">intercostal nerves</bdi></span>. לכן נותנים <b>הרדמה מקומית נדיבה</b> לפני נקז. <span class="nw">ה-<bdi dir="ltr">neurovascular bundle</bdi></span> (וריד, עורק ועצב) עובר לאורך השפה התחתונה של כל צלע מלפנים: <b>נכנסים מעל הצלע</b>.</p></div>
+  <div class="hzi" data-hzi="lung" hidden><b>2 · הריאה <span class="nw">ו-<bdi dir="ltr">visceral pleura</bdi></span></b><p><span class="nw">ה-<bdi dir="ltr">visceral pleura</bdi></span> עוטפת את הריאה ומפרידה בין האונות. היא מעוצבבת <span class="nw">מה-<bdi dir="ltr">vagus nerve</bdi></span> ומהמערכת הסימפתטית. בין שתי שכבות <span class="nw">ה-<bdi dir="ltr">pleura</bdi></span> יש רק מעט נוזל, שמאפשר לריאה לגלוש כמעט בלי חיכוך. אוויר, נוזל, גידול או זיהום במרווח הזה לוחצים על הריאה.</p></div>
+  <div class="hzi" data-hzi="apex" hidden><b>3 · <bdi dir="ltr">apex</bdi> של הריאה</b><p>כאן נמצאות הבועות הקטנות מתחת <span class="nw">ל-<bdi dir="ltr">pleura</bdi></span> (<bdi>blebs</bdi>). כשהן נקרעות נוצר <b>חזה אוויר ספונטני ראשוני</b>. בניתוח (<bdi>VATS</bdi>) כורתים אותן. חזה אוויר קטן נמדד כאן: עד 3 ס״מ <span class="nw">ב-<bdi dir="ltr">apex</bdi></span>.</p></div>
+  <div class="hzi" data-hzi="rec" hidden><b>4 · <bdi dir="ltr">costophrenic angle</bdi> <span class="nw">ו-<bdi dir="ltr">diaphragm</bdi></span></b><p>כאן מתקבץ נוזל. בצילום בעמידה רואים תפליט מ-300 מ״ל, כקהות של הזווית. מתחת <span class="nw">ל-<bdi dir="ltr">diaphragm</bdi></span>: <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> <span class="nw">וה-<bdi dir="ltr">spleen</bdi></span>. לכן נקז נכנס במרווח החמישי. חתך גבוה יותר מקטין את הסיכון להיכנס לבטן.</p></div>
+  <div class="hzi" data-hzi="med" hidden><b>5 · <bdi dir="ltr">mediastinum</bdi> והלב</b><p>ב<b>חזה אוויר בלחץ</b> <span class="nw">ה-<bdi dir="ltr">mediastinum</bdi></span> נדחק לצד השני וההחזר הוורידי ללב יורד: תת לחץ דם. אתרי הניקוז במחט (המרווח החמישי <span class="nw">ב-<bdi dir="ltr">axillary line</bdi></span>, או המרווח השני <span class="nw">ב-<bdi dir="ltr">midclavicular line</bdi></span>) נבחרו כדי להתרחק מהלב ומהכלים הגדולים.</p></div>
  </div></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 110 עמ׳ <bdi dir="ltr">1762–1763, 1796, 1799</bdi> · פרק 36 עמ׳ <bdi dir="ltr">320</bdi></span><span>הריאות במקומן · <bdi>Sobotta</bdi>, 1906, איור 451 (נחלת הכלל) · אזורים: Scrub In</span></div>
 </div></section>
@@ -174,14 +179,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b">
-    <li><b>חזה אוויר:</b> אוויר שהצטבר במרווח הפלאורלי. הריאה קורסת לכיוון ההילוס</li>
-    <li><b>ספונטני ראשוני:</b> בלי מחלת ריאה ידועה. בועות קטנות (<bdi>blebs</bdi>) מתחת לפלאורה בקודקוד הריאה נקרעות. <b>גבר צעיר, גבוה ורזה</b>. עישון מעלה את הסיכון</li>
+    <li><b>חזה אוויר:</b> אוויר שהצטבר <span class="nw">ב-<bdi dir="ltr">pleural space</bdi></span>. הריאה קורסת לכיוון <span class="nw">ה-<bdi dir="ltr">hilum</bdi></span></li>
+    <li><b>ספונטני ראשוני:</b> בלי מחלת ריאה ידועה. בועות קטנות (<bdi>blebs</bdi>) מתחת <span class="nw">ל-<bdi dir="ltr">pleura</bdi></span> <span class="nw">ב-<bdi dir="ltr">apex</bdi></span> של הריאה נקרעות. <b>גבר צעיר, גבוה ורזה</b>. עישון מעלה את הסיכון</li>
     <li><b>ספונטני משני:</b> על רקע מחלת ריאה: <bdi>COPD</bdi> ובולות, סיסטיק פיברוזיס, <bdi>Pneumocystis</bdi>, פיברוזיס ריאתי. גם קטמניאלי (בקשר למחזור)</li>
     <li><b>חבלתי:</b> חודר או קהה</li>
     <li><b>יאטרוגני:</b> הנשמה במכונה, ניקור פלאורלי, ביופסיה בריאה, <b>הכנסת קו מרכזי</b>, אחרי ניתוח</li>
    </ul>
   </div>
-  <figure><img src="img/xr-pneumothorax-left.jpg" alt="צילום חזה עם חזה אוויר משמאל"><figcaption>צילום חזה: חזה אוויר משמאל. הריאה השמאלית קרסה לכיוון ההילוס ואין בה סימני ריאה בהיקף · <bdi>Clinical Cases</bdi>, CC BY-SA 2.5, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/xr-pneumothorax-left.jpg" alt="צילום חזה עם חזה אוויר משמאל"><figcaption>צילום חזה: חזה אוויר משמאל. הריאה השמאלית קרסה לכיוון <span class="nw">ה-<bdi dir="ltr">hilum</bdi></span> ואין בה סימני ריאה בהיקף · <bdi>Clinical Cases</bdi>, CC BY-SA 2.5, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 110 עמ׳ <bdi dir="ltr">1799</bdi> (<bdi>Box 110.5</bdi>)</span><span>מושגים</span></div>
 </div></section>
@@ -196,7 +201,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>כאב בחזה וקוצר נשימה</b> שהופיעו פתאום</li>
     <li>בהאזנה: <b>אין קולות נשימה</b> או שהם מוחלשים בצד הפגוע</li>
     <li>במישוש: <b>אמפיזמה תת-עורית</b> (קרפיטציות מתחת לעור)</li>
-    <li>בחבלה: תנועה לא סימטרית של בית החזה, פצע שמתקשר לפלאורה (חזה אוויר פתוח)</li>
+    <li>בחבלה: תנועה לא סימטרית של בית החזה, פצע שמתקשר <span class="nw">ל-<bdi dir="ltr">pleura</bdi></span> (חזה אוויר פתוח)</li>
     <li>קולות נשימה מוחלשים יכולים להיות גם המוטורקס, קונטוזיה, חסימה של הסימפון או צינור שנכנס עמוק לסימפון הימני</li>
    </ul>
    <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>האזינו לשתי הריאות של מטופל עם נקז חזה. בדקו את הנקז: האם יש בועות (דליפת אוויר), האם עמוד המים זז עם הנשימה, כמה ניקז ביממה. הציגו לבכיר/ה</div>
@@ -205,7 +210,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <h3>הדמיה</h3>
    <div class="flow sm">
     <div><b>צילום חזה</b><span>הבדיקה הבסיסית. אחרי נקז: צילום כל יום עד שהריאה מתפשטת</span></div>
-    <div><b>אולטרסאונד</b><span>אין החלקה של הריאה. ב-<bdi>M-mode</bdi>: "ברקוד" במקום "חוף ים". רגיש יותר מצילום בחבלה, ספציפיות 91% אצל בודק מנוסה</span></div>
+    <div><b>אולטרסאונד</b><span>אין החלקה של הריאה. <span class="nw">ב-<bdi>M-mode</bdi></span>: "ברקוד" במקום "חוף ים". רגיש יותר מצילום בחבלה, ספציפיות 91% אצל בודק מנוסה</span></div>
     <div><b><bdi>CT</bdi></b><span>מחפש את הסיבה ומחלת ריאה נסתרת</span></div>
    </div>
    <figure class="sm" style="margin-top:10px"><img src="img/trauma-needle.jpg" alt="תרגול ניקוז במחט על בובה"><figcaption>תרגול ניקוז במחט על בובה · <bdi>Cpl. Fallon Lewis, U.S. Army</bdi>, נחלת הכלל</figcaption></figure>
@@ -220,7 +225,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b sm">
-    <li>האוויר נכנס לפלאורה ולא יוצא. המדיאסטינום נדחק לצד השני, ההחזר הוורידי והאוורור יורדים. <b>קריסה ומוות</b></li>
+    <li>האוויר נכנס <span class="nw">ל-<bdi dir="ltr">pleura</bdi></span> ולא יוצא. <span class="nw">ה-<bdi dir="ltr">mediastinum</bdi></span> נדחק לצד השני, ההחזר הוורידי והאוורור יורדים. <b>קריסה ומוות</b></li>
     <li><b>אבחנה קלינית.</b> לא מחכים לצילום: צילום לפני הטיפול אסור</li>
    </ul>
    <h3 style="margin-top:10px">הסימנים</h3>
@@ -229,12 +234,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>תת לחץ דם</b> (ההחזר הוורידי ללב יורד)</li>
     <li>לחצי הנשמה גבוהים במונשם</li>
     <li>ורידי צוואר גדושים (קשה לראות), אמפיזמה תת-עורית</li>
-    <li>סטייה של הקנה לצד השני, לרוב עדינה ונמששת בגומה העליונה של עצם החזה</li>
+    <li>סטייה של <span class="nw">ה-<bdi dir="ltr">trachea</bdi></span> לצד השני, לרוב עדינה ונמששת <span class="nw">ב-<bdi dir="ltr">sternal notch</bdi></span></li>
    </ul>
   </div>
-  <figure><img src="img/trauma-tension-ptx.jpg" alt="חזה אוויר בלחץ משמאל לפני ואחרי נקז"><figcaption>משמאל בתמונה: חזה אוויר בלחץ משמאל, המדיאסטינום נדחק ימינה. מימין: אחרי נקז חזה · <bdi>Hellerhoff</bdi>, CC BY-SA 4.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/trauma-tension-ptx.jpg" alt="חזה אוויר בלחץ משמאל לפני ואחרי נקז"><figcaption>משמאל בתמונה: חזה אוויר בלחץ משמאל, <span class="nw">ה-<bdi dir="ltr">mediastinum</bdi></span> נדחק ימינה. מימין: אחרי נקז חזה · <bdi>Hellerhoff</bdi>, CC BY-SA 4.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
- <div class="box r" style="margin-top:12px"><b class="t">מה עושים מיד</b>ניקוז במחט (<bdi dir="ltr">10–16G</bdi>) ב<b>מרווח הבין-צלעי החמישי</b>, בגובה הקפל מתחת לשד או מעליו, בקו בית השחי הקדמי או בין הקדמי לאמצעי. חלופה: <b>מרווח שני בקו אמצע הבריח</b> (למשל במטופל עם <bdi>BMI</bdi> גבוה). אמין יותר: <b>"תורקוסטומיה באצבע"</b> באותו מקום. אחריה נקז חזה. גם אם המחט הצליחה, הטיפול הבא הוא נקז</div>
+ <div class="box r" style="margin-top:12px"><b class="t">מה עושים מיד</b>ניקוז במחט (<bdi dir="ltr">10–16G</bdi>) ב<b>מרווח הבין-צלעי החמישי</b>, בגובה הקפל מתחת לשד או מעליו, <span class="nw">ב-<bdi dir="ltr">anterior axillary line</bdi></span> או בין <span class="nw">ה-<bdi dir="ltr">anterior axillary line</bdi></span> <span class="nw">ל-<bdi dir="ltr">mid-axillary line</bdi></span>. חלופה: <b>מרווח שני <span class="nw">ב-<bdi dir="ltr">midclavicular line</bdi></span></b> (למשל במטופל עם <bdi>BMI</bdi> גבוה). אמין יותר: <b>"תורקוסטומיה באצבע"</b> באותו מקום. אחריה נקז חזה. גם אם המחט הצליחה, הטיפול הבא הוא נקז</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 110 עמ׳ <bdi dir="ltr">1799</bdi> · פרק 36 עמ׳ <bdi dir="ltr">309, 320–321</bdi> (<bdi>Box 36.3</bdi>)</span><span>חזה אוויר בלחץ</span></div>
 </div></section>
 
@@ -242,13 +247,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>6</b>חזה אוויר ספונטני</div>
  <h2>מעקב, שאיבה, נקז או ניתוח?</h2>
  <div class="flow">
-  <div><b>קטן ובלי תסמינים</b><span>עד 3 ס״מ בקודקוד או 2 ס״מ בהילוס: אפשר מעקב. הוא נספג לבד</span></div>
+  <div><b>קטן ובלי תסמינים</b><span>עד 3 ס״מ <span class="nw">ב-<bdi dir="ltr">apex</bdi></span> או 2 ס״מ <span class="nw">ב-<bdi dir="ltr">hilum</bdi></span>: אפשר מעקב. הוא נספג לבד</span></div>
   <div><b>גדול או גדל</b><span>שאיבה במחט או נקז חזה</span></div>
   <div><b>אחרי הנקז</b><span>צילום חזה כל יום עד שהריאה מתפשטת והדליפה נעצרת</span></div>
   <div><b>דליפה מתמשכת</b><span>יותר מ-2 ימים, או ריאה שלא מתפשטת עד הסוף: לשקול ניתוח</span></div>
   <div><b>מי הולך לניתוח</b><span>דליפה מתמשכת, חזרה או אפיזודה שנייה. וגם מקצועות בסיכון (צוללנים, טייסים)</span></div>
  </div>
- <div class="box" style="margin-top:12px"><b class="t">הניתוח</b>ניתוח בית חזה זעיר-פולשני (<bdi>VATS</bdi>): כריתה של הבועות בקודקוד ופלאורודזיס, הדבקה של הפלאורות זו לזו כדי שהריאה לא תקרוס שוב</div>
+ <div class="box" style="margin-top:12px"><b class="t">הניתוח</b>ניתוח בית חזה זעיר-פולשני (<bdi>VATS</bdi>): כריתה של הבועות <span class="nw">ב-<bdi dir="ltr">apex</bdi></span> ופלאורודזיס, הדבקה של שתי שכבות <span class="nw">ה-<bdi dir="ltr">pleura</bdi></span> זו לזו כדי שהריאה לא תקרוס שוב</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 110 עמ׳ <bdi dir="ltr">1799</bdi></span><span>טיפול</span></div>
 </div></section>
 
@@ -259,16 +264,16 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <ul class="b sm">
     <li><b>מה הנקז עושה:</b> מנקז אוויר ודם, מוריד לחץ ומאפשר לריאה להתפשט. בחבלה זה הטיפול הראשון ברוב פגיעות החזה</li>
-    <li><b>איפה:</b> מרווח בין-צלעי חמישי, בין קו בית השחי הקדמי לאמצעי. חתך גבוה יותר מקטין את הסיכון להיכנס לבטן ולכבד או לטחול</li>
-    <li><b>מעל הצלע:</b> הצרור (וריד, עורק ועצב) עובר לאורך השפה התחתונה של כל צלע מלפנים</li>
-    <li><b>הרדמה מקומית נדיבה:</b> הפלאורה הפריאטלית מעוצבבת בעושר מעצבי הצלעות. הוויסצרלית לא כואבת</li>
+    <li><b>איפה:</b> מרווח בין-צלעי חמישי, בין <span class="nw">ה-<bdi dir="ltr">anterior axillary line</bdi></span> <span class="nw">ל-<bdi dir="ltr">mid-axillary line</bdi></span>. חתך גבוה יותר מקטין את הסיכון להיכנס לבטן, <span class="nw">ל-<bdi dir="ltr">liver</bdi></span> או <span class="nw">ל-<bdi dir="ltr">spleen</bdi></span></li>
+    <li><b>מעל הצלע:</b> <span class="nw">ה-<bdi dir="ltr">neurovascular bundle</bdi></span> (וריד, עורק ועצב) עובר לאורך השפה התחתונה של כל צלע מלפנים</li>
+    <li><b>הרדמה מקומית נדיבה:</b> <span class="nw">ה-<bdi dir="ltr">parietal pleura</bdi></span> מעוצבבת בעושר <span class="nw">מה-<bdi dir="ltr">intercostal nerves</bdi></span>. <span class="nw">ה-<bdi dir="ltr">visceral pleura</bdi></span> לא כואבת</li>
     <li><b>גודל:</b> כבר לא נחשב קריטי. נקזים של <bdi dir="ltr">12–20 Fr</bdi> יעילים. במטופל במצב קיצוני: טכניקה פתוחה, כי הזמן חשוב</li>
    </ul>
   </div>
   <div style="display:grid;gap:10px">
-   <div class="box a"><b class="t">חזה אוויר פתוח</b>פצע שהאוויר נכנס דרכו לפלאורה בשאיפה. מכניסים נקז ואז חבישה אטומה. אם מנשימים בלחץ חיובי, הנקז בא לפני החבישה, כדי שלא ייווצר חזה אוויר בלחץ</div>
-   <div class="box r"><b class="t">המוטורקס</b>המוטורקס גדול בצילום או ב-<bdi>eFAST</bdi>: נקז. דימום שממשיך אחרי הנקז: לשקול תורקוטומיה</div>
-   <div class="box n"><b class="t">מתי מוציאים (באמפיאמה)</b>ניקוז יומי מתחת ל-<bdi dir="ltr">100–200</bdi> מ״ל, ההדמיה משתפרת והזיהום חולף</div>
+   <div class="box a"><b class="t">חזה אוויר פתוח</b>פצע שהאוויר נכנס דרכו <span class="nw">ל-<bdi dir="ltr">pleura</bdi></span> בשאיפה. מכניסים נקז ואז חבישה אטומה. אם מנשימים בלחץ חיובי, הנקז בא לפני החבישה, כדי שלא ייווצר חזה אוויר בלחץ</div>
+   <div class="box r"><b class="t">המוטורקס</b>המוטורקס גדול בצילום או <span class="nw">ב-<bdi>eFAST</bdi></span>: נקז. דימום שממשיך אחרי הנקז: לשקול תורקוטומיה</div>
+   <div class="box n"><b class="t">מתי מוציאים (באמפיאמה)</b>ניקוז יומי מתחת <span class="nw">ל-<bdi dir="ltr">100–200</bdi></span> מ״ל, ההדמיה משתפרת והזיהום חולף</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 110 עמ׳ <bdi dir="ltr">1762–1763, 1798</bdi> · פרק 36 עמ׳ <bdi dir="ltr">320–322</bdi></span><span>נקז חזה</span></div>
@@ -282,7 +287,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <ul class="b sm">
     <li>בצילום בעמידה רואים תפליט מ-<b>300 מ״ל</b>: קהות של הזווית הקוסטופרנית</li>
     <li><b>טרנסודט</b> (מעט חלבון, לחץ הידרוסטטי או אונקוטי): אי ספיקת לב, שחמת, תסמונת נפרוטית, היפואלבומינמיה</li>
-    <li><b>אקסודט</b> (עשיר בחלבון, דלקת מקומית): זיהום, ממאירות, שחפת, מחלות קולגן, לבלב, פרפורציה של הוושט</li>
+    <li><b>אקסודט</b> (עשיר בחלבון, דלקת מקומית): זיהום, ממאירות, שחפת, מחלות קולגן, <bdi dir="ltr">pancreas</bdi>, פרפורציה של <span class="nw">ה-<bdi dir="ltr">esophagus</bdi></span></li>
     <li><b>תפליט ממאיר:</b> כ-15% מחולי הסרטן. חציון הישרדות 5 חודשים. טיפול פליאטיבי: ניקוז, צנתר פלאורלי קבוע או פלאורודזיס</li>
     <li>תפליט בלי תסמינים לרוב לא מנקזים. מטפלים בסיבה</li>
    </ul>
@@ -295,15 +300,15 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
      <div><b><bdi>LDH</bdi> בנוזל</b><span>מעל 2/3 מהגבול העליון של התקין בסרום</span></div>
     </div></div>
    <div class="box" style="margin-top:10px"><b class="t">מה שולחים מהנוזל</b>מראה, ספירת תאים, חלבון, <bdi>pH</bdi>, <bdi>LDH</bdi>, גלוקוז, כולסטרול. בחשד לזיהום או ממאירות: תרביות, צביעת גראם וציטולוגיה</div>
-   <div class="box a" style="margin-top:10px"><b class="t">כילותורקס</b>נוזל חלבי מצינור הלימפה. טריגליצרידים מעל 110 מ״ג/ד״ל</div>
+   <div class="box a" style="margin-top:10px"><b class="t">כילותורקס</b>נוזל חלבי <span class="nw">מה-<bdi dir="ltr">thoracic duct</bdi></span>. טריגליצרידים מעל 110 מ״ג/ד״ל</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 110 עמ׳ <bdi dir="ltr">1796–1798</bdi> (<bdi>Box 110.3</bdi>)</span><span>תפליט</span></div>
 </div></section>
 
 <section class="s"><div class="card">
- <div class="kick"><b>9</b>זיהום בפלאורה</div>
- <h2>אמפיאמה: מוגלה בפלאורה</h2>
+ <div class="kick"><b>9</b>זיהום <span class="nw">ב-<bdi dir="ltr">pleura</bdi></span></div>
+ <h2>אמפיאמה: מוגלה <span class="nw">ב-<bdi dir="ltr">pleura</bdi></span></h2>
  <div class="flow">
   <div><b><span class="tag">1</span> חריף</b><span>נוזל דליל. אפשר לנקז אותו כולו בצנתר פיגטייל או בנקז חזה</span></div>
   <div><b><span class="tag a">2</span> פיברינו-מוגלתי</b><span>הנוזל עכור וסמיך, נוצרים מדורים (לוקולציות). המוגלה לוחצת על הריאה</span></div>
@@ -311,11 +316,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  </div>
  <div class="grid" style="margin-top:12px">
   <ul class="b sm">
-   <li><b>מאיפה:</b> לרוב תפליט תגובתי לדלקת ריאות. גם חבלה, ניתוח, פרפורציה של הוושט</li>
+   <li><b>מאיפה:</b> לרוב תפליט תגובתי לדלקת ריאות. גם חבלה, ניתוח, פרפורציה של <span class="nw">ה-<bdi dir="ltr">esophagus</bdi></span></li>
    <li><b>חיידקים:</b> גראם שליליים, אנאירובים, סטרפטוקוקים ופנאומוקוק. לחשוב על שחפת</li>
-   <li><b>תסמינים:</b> חום, חולשה, ירידה בתיאבון ובמשקל. בירור: צילום חזה ו-<bdi>CT</bdi></li>
+   <li><b>תסמינים:</b> חום, חולשה, ירידה בתיאבון ובמשקל. בירור: צילום חזה <span class="nw">ו-<bdi>CT</bdi></span></li>
   </ul>
-  <div class="box"><b class="t">הטיפול: ניקוז ואנטיביוטיקה</b>שלב מוקדם: נקז. תפליט מורכב עם מדורים: בדרך כלל ניתוח. <bdi>VATS</bdi> מוקדם מקצר אשפוז. <bdi>tPA</bdi> ו-<bdi>DNase</bdi> לתוך הפלאורה יכולים לעזור, אבל לא באופן שגרתי. קליפה עבה: תורקוטומיה ודקורטיקציה</div>
+  <div class="box"><b class="t">הטיפול: ניקוז ואנטיביוטיקה</b>שלב מוקדם: נקז. תפליט מורכב עם מדורים: בדרך כלל ניתוח. <bdi>VATS</bdi> מוקדם מקצר אשפוז. <bdi>tPA</bdi> <span class="nw">ו-<bdi>DNase</bdi></span> לתוך <span class="nw">ה-<bdi dir="ltr">pleura</bdi></span> יכולים לעזור, אבל לא באופן שגרתי. קליפה עבה: תורקוטומיה ודקורטיקציה</div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 110 עמ׳ <bdi dir="ltr">1797–1798</bdi></span><span>אמפיאמה</span></div>
 </div></section>
@@ -328,7 +333,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <p>24 המלצות לחזה אוויר ספונטני. בחזה אוויר ראשוני: <b>טיפול שמרני</b> במטופל יציב עם מעט תסמינים. <b>שאיבה במחט עדיפה על נקז</b> כטיפול ראשון (המלצה חזקה). אפשר טיפול אמבולטורי. ניתוח מוקדם למי שמעדיף למנוע חזרה</p>
    <small><bdi dir="ltr">Walker S et al. Eur J Cardiothorac Surg 2024;65:ezae189</bdi></small></div>
   <div class="study"><div class="y"><bdi>World J Emerg Surg</bdi> 2025 · מטא-אנליזה</div><b>איפה ובאיזו מחט מנקזים חזה אוויר בלחץ</b>
-   <p>51 מחקרים. לפי מדידות הדמיה (24 מחקרים, 8,046 מטופלים) המחט לא הגיעה לפלאורה ב-32.8%. כל ס״מ של אורך הוריד את הכישלון ב-7.8%. דופן החזה דקה יותר במרווח החמישי מאשר בשני. המחברים מציעים מחט של 7 ס״מ</p>
+   <p>51 מחקרים. לפי מדידות הדמיה (24 מחקרים, 8,046 מטופלים) המחט לא הגיעה <span class="nw">ל-<bdi dir="ltr">pleura</bdi></span> ב-32.8%. כל ס״מ של אורך הוריד את הכישלון ב-7.8%. דופן החזה דקה יותר במרווח החמישי מאשר בשני. המחברים מציעים מחט של 7 ס״מ</p>
    <small><bdi dir="ltr">Ahmad SJS et al. World J Emerg Surg 2025;20:39</bdi></small></div>
   <div class="study"><div class="y"><bdi>J Am Coll Surg</bdi> 2026 · מחקר אקראי באשכולות</div><b><bdi>SEAL IT</bdi>: יניקה או חותם מים?</b>
    <p>72 מטופלים עם חזה אוויר חבלתי ונקז. התחלה בחותם מים (בלי יניקה) קיצרה את משך הנקז (41 לעומת 51 שעות) בלי יותר סיבוכים. מחקר ממרכז אחד, דרוש אישור במחקר גדול</p>
@@ -343,12 +348,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <ol class="obj">
   <li>חזה אוויר ספונטני ראשוני: גבר צעיר, גבוה ורזה, לרוב מעשן. כאב פתאומי וקוצר נשימה</li>
   <li>חזה אוויר בלחץ הוא אבחנה קלינית: תת לחץ דם וקולות נשימה חסרים. מנקזים לפני צילום</li>
-  <li>ניקוז במחט או באצבע במרווח החמישי בקו בית השחי, או במרווח השני בקו אמצע הבריח. אחר כך נקז</li>
+  <li>ניקוז במחט או באצבע במרווח החמישי <span class="nw">ב-<bdi dir="ltr">axillary line</bdi></span>, או במרווח השני <span class="nw">ב-<bdi dir="ltr">midclavicular line</bdi></span>. אחר כך נקז</li>
   <li>נקז נכנס מעל הצלע, עם הרדמה מקומית נדיבה. חזה אוויר קטן ויציב אפשר לעקוב</li>
   <li>תפליט: <bdi>Light</bdi> מבדיל בין טרנסודט לאקסודט. אמפיאמה: ניקוז ואנטיביוטיקה. בשלב מתקדם: ניתוח</li>
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 110 <bdi>Lung, Chest Wall, Pleura, and Mediastinum</bdi> (עמ׳ <bdi dir="ltr">1762–1763, 1796–1799</bdi>) · פרק 36 <bdi>Management of Acute Trauma</bdi> (עמ׳ <bdi dir="ltr">319–322</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906, נחלת הכלל) · צילומים מ-<bdi>Wikimedia Commons</bdi> לפי הרישיון בכל כיתוב · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906, נחלת הכלל) · צילומים <span class="nw">מ-<bdi>Wikimedia Commons</bdi></span> לפי הרישיון בכל כיתוב · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>

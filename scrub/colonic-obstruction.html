@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>חסימות קולוניות · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -90,6 +90,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -101,6 +102,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -118,6 +120,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -139,9 +144,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>בסוף המפגש תדעו</h2>
  <ol class="obj">
   <li>להגדיר חסימה של המעי הגס ולמיין את הסיבות: מכנית (בתוך החלל, בדופן, מבחוץ) או תפקודית</li>
-  <li>להסביר חסימה בלולאה סגורה, את תפקיד המסתם האילאו-צקאלי ולמה דווקא הצקום מתנקב</li>
+  <li>להסביר חסימה בלולאה סגורה, את תפקיד <span class="nw">ה-<bdi>ileocecal valve</bdi></span> ולמה דווקא <span class="nw">ה-<bdi>cecum</bdi></span> מתנקב</li>
   <li>לבצע בירור מסודר: אנמנזה, בדיקה כולל מפשעות ובדיקה רקטלית, מעבדה, צילום בטן ו-CT</li>
-  <li>לזהות וולבולוס של הסיגמה ושל הצקום ולדעת את סדר הטיפול בכל אחד</li>
+  <li>לזהות וולבולוס של <span class="nw">ה-<bdi>sigmoid</bdi></span> ושל <span class="nw">ה-<bdi>cecum</bdi></span> ולדעת את סדר הטיפול בכל אחד</li>
   <li>להכיר את עקרונות הטיפול בגידול חוסם: ימין מול שמאל, סטנט כגשר לניתוח ומתי מוציאים סטומה</li>
   <li>לזהות תסמונת אוגילבי ולטפל בה בשלבים, משמירה ועד ניתוח</li>
  </ol>
@@ -151,14 +156,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>2</b>מושגים</div>
  <h2>מה חוסם את המעי הגס?</h2>
- <p class="lead">חסימה של המעי הגס היא חסימה <b>דיסטלית למסתם האילאו-צקאלי</b>. שתי משפחות גדולות: מכנית ותפקודית</p>
+ <p class="lead">חסימה של המעי הגס היא חסימה <b>דיסטלית <span class="nw">ל-<bdi>ileocecal valve</bdi></span></b>. שתי משפחות גדולות: מכנית ותפקודית</p>
  <div class="grid g3">
   <div class="box n"><b class="t">בתוך החלל</b>
    <ul class="b sm"><li>גידול (הסיבה השכיחה במערב)</li><li>גוף זר, בזואר</li><li>צואה דחוסה</li></ul></div>
   <div class="box"><b class="t">בדופן המעי</b>
    <ul class="b sm"><li>היצרות על רקע מחלת סעיפים</li><li>היצרות בקרוהן, איסכמיה או אחרי קרינה</li><li>זיהומים, הירשפרונג</li></ul></div>
   <div class="box b"><b class="t">מחוץ למעי</b>
-   <ul class="b sm"><li>וולבולוס של הסיגמה או הצקום</li><li>בקע (מפשעתי, בטני, פנימי)</li><li>גידול גרורתי, מורסה, פיברוזיס רטרופריטונאלי</li><li>הידבקויות: נדיר במעי הגס</li></ul></div>
+   <ul class="b sm"><li>וולבולוס של <span class="nw">ה-<bdi>sigmoid</bdi></span> או <span class="nw">ה-<bdi>cecum</bdi></span></li><li>בקע (מפשעתי, בטני, פנימי)</li><li>גידול גרורתי, מורסה, פיברוזיס רטרופריטונאלי</li><li>הידבקויות: נדיר במעי הגס</li></ul></div>
  </div>
  <div class="box a" style="margin-top:12px"><b class="t">חסימה תפקודית: אין שום דבר שחוסם</b>פסאודו-חסימה (אוגילבי), מגה-קולון טוקסי, איליאוס שיתוקי</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1454–1455</bdi> (תיבה 95.3)</span><span>מושגים</span></div>
@@ -170,12 +175,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="num">
   <div><b dir="ltr">~1/3</b><span>מהחסימות של המעי הגס בעולם נגרמות מוולבולוס</span></div>
   <div><b dir="ltr">8–29%</b><span>מסרטני המעי הגס מסתבכים בחסימה משמעותית</span></div>
-  <div><b dir="ltr">7.5</b><span>ס״מ: הקוטר הממוצע של הצקום, הרחב ביותר במעי הגס</span></div>
+  <div><b dir="ltr">7.5</b><span>ס״מ: הקוטר הממוצע של <span class="nw">ה-<bdi>cecum</bdi></span>, הרחב ביותר <span class="nw">ב-<bdi>colon</bdi></span></span></div>
   <div><b dir="ltr">100</b><span>מקרי אוגילבי לכל 100,000 אשפוזים</span></div>
  </div>
  <ul class="b">
   <li>בארה״ב הסיבה המכנית השכיחה היא <b>סרטן המעי הגס</b>. וולבולוס שכיח יותר במזרח אירופה, באפריקה, בהודו <b>ובמזרח התיכון</b></li>
-  <li>האתר השכיח של וולבולוס הוא <b>הסיגמה</b>. גם הצקום יכול להסתובב</li>
+  <li>האתר השכיח של וולבולוס הוא <b><span class="nw">ה-<bdi>sigmoid</bdi></span></b>. גם <span class="nw">ה-<bdi>cecum</bdi></span> יכול להסתובב</li>
   <li>חסימה היא הסיבה לרוב ההופעות הדחופות של סרטן המעי הגס</li>
  </ul>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1430, 1454–1455, 1457</bdi> · פרק 96 עמ׳ <bdi dir="ltr">1501</bdi></span><span>אפידמיולוגיה</span></div>
@@ -184,7 +189,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>4</b>אנטומיה · שקף אינטראקטיבי</div>
  <h2>מסגרת המעי הגס: איפה זה קורה</h2>
- <div class="hotw"><div class="hoti"><img src="img/sobotta-409-colon.jpg" alt="המעי הגס בבטן פתוחה, המעי הדק מוסט ימינה"><svg viewBox="0 0 1280 1663" preserveAspectRatio="none" style="--lw:90;--li:.3;--lh:.42;--lo:.4;--bf:31px">
+ <div class="hotw"><div class="hoti"><img src="img/sobotta-409-colon.jpg" alt="ה-colon בבטן פתוחה, ה-small bowel מוסט ימינה"><svg viewBox="0 0 1280 1663" preserveAspectRatio="none" style="--lw:90;--li:.3;--lh:.42;--lo:.4;--bf:31px">
     <path class="hz" data-hz="c" d="M345,1092 C358.3,1090.3 383.3,1097 400,1100 C416.7,1103 433.3,1104.2 445,1110 C456.7,1115.8 463.3,1125 470,1135 C476.7,1145 481.7,1158.3 485,1170 C488.3,1181.7 490,1193 490,1205 C490,1217 489.2,1231.7 485,1242 C480.8,1252.3 471.7,1260.7 465,1267 C458.3,1273.3 453.3,1276.7 445,1280 C436.7,1283.3 424.7,1287 415,1287 C405.3,1287 394.5,1284.5 387,1280 C379.5,1275.5 375.8,1268.3 370,1260 C364.2,1251.7 358.3,1238.3 352,1230 C345.7,1221.7 338.2,1217.5 332,1210 C325.8,1202.5 319.5,1194.2 315,1185 C310.5,1175.8 306.3,1164.2 305,1155 C303.7,1145.8 304.5,1137.5 307,1130 C309.5,1122.5 313.7,1116.3 320,1110 C326.3,1103.7 331.7,1093.7 345,1092 Z" style="--c:#7A5BD6"/>
     <path class="hz ln" data-hz="t" d="M355,690 C354.5,681.7 350.8,656.7 352,640 C353.2,623.3 356.5,606.7 362,590 C367.5,573.3 375.3,555.8 385,540 C394.7,524.2 406.7,508 420,495 C433.3,482 448.3,471.2 465,462 C481.7,452.8 497.5,447.8 520,440 C542.5,432.2 570,423.3 600,415 C630,406.7 666.7,396.7 700,390 C733.3,383.3 766.7,380 800,375 C833.3,370 873.3,360.8 900,360 C926.7,359.2 941.7,364.2 960,370 C978.3,375.8 993.3,383.3 1010,395 C1026.7,406.7 1045.8,422.5 1060,440 C1074.2,457.5 1088.5,485.3 1095,500 C1101.5,514.7 1098.3,523.3 1099,528" style="--c:#00967D"/>
     <path class="hz ln" data-hz="d" d="M1088,598 C1084.5,603.3 1075.8,614.7 1067,630 C1058.2,645.3 1044.5,668.3 1035,690 C1025.5,711.7 1015,738.3 1010,760 C1005,781.7 1003.7,800 1005,820 C1006.3,840 1014.7,856.7 1018,880 C1021.3,903.3 1024.7,935 1025,960 C1025.3,985 1024.2,1007.8 1020,1030 C1015.8,1052.2 1009.2,1073 1000,1093 C990.8,1113 974.2,1135.8 965,1150 C955.8,1164.2 948.3,1173.3 945,1178" style="--c:#C9893F"/>
@@ -195,12 +200,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <g class="hzb" style="--c:#2F6FA8"><circle cx="860" cy="1440" r="26.3"/><text x="860" y="1440">4</text></g>
    </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-   <div class="hzi" data-hzi="c" hidden><b>1 · הצקום</b><p>הקוטר הרחב ביותר (בממוצע 7.5 ס״מ) והדופן הדקה ביותר. לפי חוק לפלס הוא נמתח ראשון ולכן <b>מתנקב בצקום</b> גם כשהגידול בסיגמה. צקום ניע במיוחד יכול להסתובב (וולבולוס) או להתקפל קדימה (<bdi>bascule</bdi>). באוגילבי קוטר מעל 12 ס״מ הוא סימן אזהרה</p></div>
-   <div class="hzi" data-hzi="t" hidden><b>2 · הקולון הרוחבי</b><p>בפסאודו-חסימה ההרחבה יכולה להיות מסיבית גם כאן. גידול בכפיפה הכבדית הוא חסימה ימנית: כריתה אונקולוגית של צד ימין, בדרך כלל עם השקה ראשונית</p></div>
-   <div class="hzi" data-hzi="d" hidden><b>3 · הקולון היורד</b><p>קבוע לרטרופריטונאום ולכן לא מסתובב. רוב החסימות הממאירות הן <b>בצד שמאל</b>, כי שם הגידולים צומחים מסביב לחלל (בצד ימין הם בדרך כלל פוליפואידיים)</p></div>
-   <div class="hzi" data-hzi="s" hidden><b>4 · הסיגמה</b><p>לולאה ניידת על מזנטריום ארוך: האתר השכיח של וולבולוס. סיבוב סביב המזנטריום יוצר לולאה סגורה. מתחתיה הרקטום: גידול חוסם ברקטום הנמוך והאמצעי מקבל קודם סטומה מסיטה ואז כימו-קרינה</p></div>
+   <div class="hzi" data-hzi="c" hidden><b>1 · <bdi>Cecum</bdi></b><p>הקוטר הרחב ביותר (בממוצע 7.5 ס״מ) והדופן הדקה ביותר. לפי חוק לפלס הוא נמתח ראשון ולכן <b>מתנקב <span class="nw">ב-<bdi>cecum</bdi></span></b> גם כשהגידול <span class="nw">ב-<bdi>sigmoid</bdi></span>. <bdi>cecum</bdi> ניע במיוחד יכול להסתובב (וולבולוס) או להתקפל קדימה (<bdi>bascule</bdi>). באוגילבי קוטר מעל 12 ס״מ הוא סימן אזהרה</p></div>
+   <div class="hzi" data-hzi="t" hidden><b>2 · <bdi>Transverse colon</bdi></b><p>בפסאודו-חסימה ההרחבה יכולה להיות מסיבית גם כאן. גידול <span class="nw">ב-<bdi>hepatic flexure</bdi></span> הוא חסימה ימנית: כריתה אונקולוגית של צד ימין, בדרך כלל עם השקה ראשונית</p></div>
+   <div class="hzi" data-hzi="d" hidden><b>3 · <bdi>Descending colon</bdi></b><p>קבוע <span class="nw">ל-<bdi>retroperitoneum</bdi></span> ולכן לא מסתובב. רוב החסימות הממאירות הן <b>בצד שמאל</b>, כי שם הגידולים צומחים מסביב לחלל (בצד ימין הם בדרך כלל פוליפואידיים)</p></div>
+   <div class="hzi" data-hzi="s" hidden><b>4 · <bdi>Sigmoid colon</bdi></b><p>לולאה ניידת על <bdi>mesentery</bdi> ארוך: האתר השכיח של וולבולוס. סיבוב סביב <span class="nw">ה-<bdi>mesentery</bdi></span> יוצר לולאה סגורה. מתחתיה <span class="nw">ה-<bdi>rectum</bdi></span>: גידול חוסם <span class="nw">ב-<bdi>rectum</bdi></span> הנמוך והאמצעי מקבל קודם סטומה מסיטה ואז כימו-קרינה</p></div>
   </div></div>
- <figure style="margin-top:8px;border:0;padding:0"><figcaption>הקולון כמסגרת סביב המעי הדק · <bdi>Sobotta, Atlas and Text-book of Human Anatomy</bdi> 1906, איור 409 (נחלת הכלל)</figcaption></figure>
+ <figure style="margin-top:8px;border:0;padding:0"><figcaption><span class="nw">ה-<bdi>colon</bdi></span> כמסגרת סביב <span class="nw">ה-<bdi>small bowel</bdi></span> · <bdi>Sobotta, Atlas and Text-book of Human Anatomy</bdi> 1906, איור 409 (נחלת הכלל)</figcaption></figure>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1430, 1455–1458</bdi> · פרק 96 עמ׳ <bdi dir="ltr">1501</bdi></span><span>אנטומיה</span></div>
 </div></section>
 
@@ -211,13 +216,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div class="flow">
    <div><b>גז וצואה מצטברים</b><span>כשני שלישים מהגז הוא אוויר שנבלע, השאר מתסיסה של חיידקים</span></div>
    <div><b>הלחץ בדופן עולה</b><span>מעל לחץ הנימים: פחות חמצן לדופן</span></div>
-   <div><b>איסכמיה</b><span>נמק ונקב. בצקום קודם, כי הוא הרחב ביותר</span></div>
-   <div><b>בוולבולוס ובבקע כלוא</b><span>לחץ על המזנטריום: קודם נחסם הניקוז הוורידי ואחר כך העורקי</span></div>
+   <div><b>איסכמיה</b><span>נמק ונקב. <span class="nw">ב-<bdi>cecum</bdi></span> קודם, כי הוא הרחב ביותר</span></div>
+   <div><b>בוולבולוס ובבקע כלוא</b><span>לחץ על <span class="nw">ה-<bdi>mesentery</bdi></span>: קודם נחסם הניקוז הוורידי ואחר כך העורקי</span></div>
   </div>
   <div style="display:grid;gap:10px">
-   <div class="box r"><b class="t">לולאה סגורה = חירום</b>קטע מעי חסום משני צדדיו. מתרחב מהר, נעשה איסכמי ומתנקב. דוגמאות: וולבולוס, בקע חנוק וגידול שמאלי עם מסתם אילאו-צקאלי שלם</div>
-   <div class="box"><b class="t">מסתם אילאו-צקאלי שלם</b>לא מאפשר זרימה חזרה למעי הדק. ההופעה חריפה יותר והסיכון לנקב גבוה</div>
-   <div class="box n"><b class="t">מסתם שלא סוגר</b>התוכן חוזר למעי הדק: בטן שהולכת ומתנפחת, הקאות צואתיות, פחות סיכון לנקב</div>
+   <div class="box r"><b class="t">לולאה סגורה = חירום</b>קטע מעי חסום משני צדדיו. מתרחב מהר, נעשה איסכמי ומתנקב. דוגמאות: וולבולוס, בקע חנוק וגידול שמאלי עם <bdi>ileocecal valve</bdi> שלם</div>
+   <div class="box"><b class="t"><span class="nw">ה-<bdi>ileocecal valve</bdi></span> שלם</b>לא מאפשר זרימה חזרה <span class="nw">ל-<bdi>small bowel</bdi></span>. ההופעה חריפה יותר והסיכון לנקב גבוה</div>
+   <div class="box n"><b class="t"><span class="nw">ה-<bdi>ileocecal valve</bdi></span> לא סוגר</b>התוכן חוזר <span class="nw">ל-<bdi>small bowel</bdi></span>: בטן שהולכת ומתנפחת, הקאות צואתיות, פחות סיכון לנקב</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1455–1456</bdi></span><span>פתופיזיולוגיה</span></div>
@@ -262,7 +267,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    </ul>
    <div class="box b" style="margin-top:12px"><b class="t">במחלקה השבוע</b>בדקו מטופל עם בטן תפוחה או עם חסימה. נקשו את כל הבטן, בדקו מפשעות וצלקות וצפו בבדיקה רקטלית עם בכיר/ה. הציגו את הממצאים בביקור</div>
   </div>
-  <figure><img src="img/dre-nci-cropped.jpg" alt="בדיקה רקטלית: אצבע בכפפה בתוך הרקטום"><figcaption>בדיקה רקטלית באצבע, מבט מהצד (חתוך) · <bdi>National Cancer Institute</bdi>, <bdi>NCI Visuals Online</bdi> (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/dre-nci-cropped.jpg" alt="בדיקה רקטלית: אצבע בכפפה בתוך ה-rectum"><figcaption>בדיקה רקטלית באצבע, מבט מהצד (חתוך) · <bdi>National Cancer Institute</bdi>, <bdi>NCI Visuals Online</bdi> (נחלת הכלל)</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1456</bdi> · פרק 85 עמ׳ <bdi dir="ltr">1158</bdi></span><span>בדיקה</span></div>
 </div></section>
@@ -272,8 +277,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>מעבדה והדמיה</h2>
  <div class="grid">
   <div class="flow">
-   <div><b>מעבדה</b><span>ספירה, אלקטרוליטים, כליות. לויקוציטוזיס, <bdi>CRP</bdi>, לקטט, <bdi>BE</bdi> שלילי ו-<bdi>pH</bdi> נמוך: מצב קשה יותר</span></div>
-   <div><b>צילום בטן</b><span>איפה החסימה, כמה המעי מורחב, האם המסתם האילאו-צקאלי שלם. לפעמים נותן את האבחנה (וולבולוס)</span></div>
+   <div><b>מעבדה</b><span>ספירה, אלקטרוליטים, כליות. לויקוציטוזיס, <bdi>CRP</bdi>, לקטט, <bdi>BE</bdi> שלילי <span class="nw">ו-<bdi>pH</bdi></span> נמוך: מצב קשה יותר</span></div>
+   <div><b>צילום בטן</b><span>איפה החסימה, כמה המעי מורחב, האם <span class="nw">ה-<bdi>ileocecal valve</bdi></span> שלם. לפעמים נותן את האבחנה (וולבולוס)</span></div>
    <div><b>CT עם ניגוד</b><span>מיקום וסיבה, סימני איסכמיה ונקב מתקרב. בחשד לחסימה קולונית מעדיפים גם ניגוד רקטלי</span></div>
    <div><b>חוקן ניגוד מסיס במים</b><span>לאבחנה ולפעמים גם לטיפול</span></div>
    <div><b>אנדוסקופיה גמישה</b><span>אבחנה וביופסיות. גם טיפול: התרת וולבולוס, סטנט</span></div>
@@ -296,7 +301,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div class="box"><b class="t">כל השאר</b>מטפלים לפי הסיבה (בטבלה)</div>
   </div>
   <div class="flow">
-   <div><b>וולבולוס של הסיגמה</b><span>התרה אנדוסקופית ושרוול רקטלי</span></div>
+   <div><b>וולבולוס של <span class="nw">ה-<bdi>sigmoid</bdi></span></b><span>התרה אנדוסקופית ושרוול רקטלי</span></div>
    <div><b>מחלת מעי דלקתית פעילה</b><span>בדרך כלל מגיבה בהתחלה לסטרואידים</span></div>
    <div><b>מורסה ליד המעי</b><span>ניקוז מלעורי</span></div>
    <div><b>גוף זר</b><span>הוצאה אנדוסקופית</span></div>
@@ -310,17 +315,17 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>10</b>וולבולוס</div>
- <h2>הסיגמה מול הצקום</h2>
+ <h2><span class="nw">ה-<bdi>sigmoid</bdi></span> מול <span class="nw">ה-<bdi>cecum</bdi></span></h2>
  <div class="grid f">
   <div>
    <div class="grid">
-    <div class="box b"><b class="t">וולבולוס של הסיגמה</b>
-     <ul class="b sm"><li>סיבוב של הלולאה סביב המזנטריום: לולאה סגורה</li><li>צילום: "צינור פנימי מקופל", "פולי קפה"</li><li>CT: מערבולת במזנטריום</li><li><b>אין איסכמיה:</b> התרה בסיגמואידוסקופ קשיח או גמיש ושרוול רקטלי מעל הפיתול</li><li><b>הצליח:</b> כריתה מתוכננת של הסיגמה עם השקה ראשונית, כי החזרה שכיחה</li><li><b>נכשל:</b> ניתוח, כריתה וקולוסטומיה (הרטמן)</li></ul></div>
-    <div class="box n"><b class="t">וולבולוס של הצקום</b>
-     <ul class="b sm"><li>צקום וקולון עולה ניידים באופן לא תקין</li><li>הטיפול: כריתה והשקה ראשונית</li><li>השקה נדחית כשהסיכון לדליפה גבוה: מעי לא חיוני, אלח דם, תת-לחץ דם</li></ul></div>
+    <div class="box b"><b class="t">וולבולוס של <span class="nw">ה-<bdi>sigmoid</bdi></span></b>
+     <ul class="b sm"><li>סיבוב של הלולאה סביב <span class="nw">ה-<bdi>mesentery</bdi></span>: לולאה סגורה</li><li>צילום: "צינור פנימי מקופל", "פולי קפה"</li><li>CT: מערבולת <span class="nw">ב-<bdi>mesentery</bdi></span></li><li><b>אין איסכמיה:</b> התרה בסיגמואידוסקופ קשיח או גמיש ושרוול רקטלי מעל הפיתול</li><li><b>הצליח:</b> כריתה מתוכננת של <span class="nw">ה-<bdi>sigmoid</bdi></span> עם השקה ראשונית, כי החזרה שכיחה</li><li><b>נכשל:</b> ניתוח, כריתה וקולוסטומיה (הרטמן)</li></ul></div>
+    <div class="box n"><b class="t">וולבולוס של <span class="nw">ה-<bdi>cecum</bdi></span></b>
+     <ul class="b sm"><li><span class="nw">ה-<bdi>cecum</bdi></span> <span class="nw">וה-<bdi>ascending colon</bdi></span> ניידים באופן לא תקין</li><li>הטיפול: כריתה והשקה ראשונית</li><li>השקה נדחית כשהסיכון לדליפה גבוה: מעי לא חיוני, אלח דם, תת-לחץ דם</li></ul></div>
    </div>
   </div>
-  <figure><img src="img/xray-sigmoid-volvulus.jpg" alt="צילום בטן בוולבולוס של הסיגמה"><figcaption>וולבולוס של הסיגמה: לולאות מורחבות מאוד ורקטום בלי גז · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/xray-sigmoid-volvulus.jpg" alt="צילום בטן בוולבולוס של ה-sigmoid"><figcaption>וולבולוס של <span class="nw">ה-<bdi>sigmoid</bdi></span>: לולאות מורחבות מאוד <span class="nw">ו-<bdi>rectum</bdi></span> בלי גז · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1430, 1455, 1457</bdi> · פרק 85 עמ׳ <bdi dir="ltr">1160</bdi></span><span>וולבולוס</span></div>
 </div></section>
@@ -331,9 +336,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div style="display:grid;gap:10px">
    <div class="box"><b class="t">חסימה ימנית</b>כריתה אונקולוגית של הקטע (המי-קולקטומיה ימנית). ברוב המקרים השקה איליאו-קולית ראשונית בטוחה. בסיכון גבוה לדליפה: סטומה זמנית</div>
-   <div class="box n"><b class="t">חסימה בסיגמה ובצד שמאל</b>בדרך כלל ניתוח דחוף וכריתה של הקטע. אפשרויות: הרטמן (קולוסטומיה וגדם רקטלי סגור) או השקה ראשונית, עם או בלי סטומה מסיטה. השקה רק במטופל יציב, בלי מתח ועם אספקת דם טובה</div>
-   <div class="box r"><b class="t">הצקום איסכמי או מנוקב</b>קולקטומיה תת-טוטלית</div>
-   <div class="box a"><b class="t">רקטום נמוך ואמצעי</b>קודם סטומה מסיטה, אחר כך כימו-קרינה ורק אז הניתוח הסופי</div>
+   <div class="box n"><b class="t">חסימה <span class="nw">ב-<bdi>sigmoid</bdi></span> ובצד שמאל</b>בדרך כלל ניתוח דחוף וכריתה של הקטע. אפשרויות: הרטמן (קולוסטומיה וגדם רקטלי סגור) או השקה ראשונית, עם או בלי סטומה מסיטה. השקה רק במטופל יציב, בלי מתח ועם אספקת דם טובה</div>
+   <div class="box r"><b class="t"><span class="nw">ה-<bdi>cecum</bdi></span> איסכמי או מנוקב</b>קולקטומיה תת-טוטלית</div>
+   <div class="box a"><b class="t"><span class="nw">ה-<bdi>rectum</bdi></span> הנמוך והאמצעי</b>קודם סטומה מסיטה, אחר כך כימו-קרינה ורק אז הניתוח הסופי</div>
   </div>
   <div>
    <h3>סטנט כגשר לניתוח</h3>
@@ -359,13 +364,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>מה זה:</b> הרחבה חריפה של המעי הגס <b>בלי חסימה מכנית</b>. כנראה חוסר איזון אוטונומי (יותר סימפתטי)</li>
     <li><b>מי:</b> מבוגר עם מחלות רקע, מאושפז בגלל מחלה חריפה או אחרי ניתוח (אורתופדי, עמוד שדרה, לב, השתלה), אחרי לידה או קיסרי, נוירולוגי (פרקינסון, שבץ), אי ספיקת לב, <bdi>COPD</bdi>, חבלה קשה וכוויות</li>
     <li><b>תרופות:</b> אופיאטים, אנטיכולינרגיות, נגד פרקינסון, אנטי-פסיכוטיות, קלונידין</li>
-    <li><b>צילום:</b> קולון מורחב, הכי רחב בצקום ובצד ימין (עד 10–12 ס״מ). <b>גז עד הרקטום</b> תומך באוגילבי. בחסימה מכנית אין כמעט גז מעבר לחסימה</li>
+    <li><b>צילום:</b> <bdi>colon</bdi> מורחב, הכי רחב <span class="nw">ב-<bdi>cecum</bdi></span> ובצד ימין (עד 10–12 ס״מ). <b>גז עד <span class="nw">ה-<bdi>rectum</bdi></span></b> תומך באוגילבי. בחסימה מכנית אין כמעט גז מעבר לחסימה</li>
     <li><b>CT:</b> הבדיקה המאשרת. מבדיל ממכני ומחפש איסכמיה</li>
-    <li><b>אבחנה מבדלת:</b> חסימה מכנית, מגה-קולון טוקסי מ-<bdi>C. difficile</bdi></li>
+    <li><b>אבחנה מבדלת:</b> חסימה מכנית, מגה-קולון טוקסי <span class="nw">מ-<bdi>C. difficile</bdi></span></li>
    </ul>
-   <div class="box r" style="margin-top:10px"><b class="t">סימני סכנה</b>רגישות בבטן, לויקוציטוזיס, חום, צקום מעל 12 ס״מ</div>
+   <div class="box r" style="margin-top:10px"><b class="t">סימני סכנה</b>רגישות בבטן, לויקוציטוזיס, חום, <bdi>cecum</bdi> מעל 12 ס״מ</div>
   </div>
-  <figure><img src="img/ct-ogilvie-coronal.jpg" alt="CT של קולון מורחב מאוד באוגילבי"><figcaption>CT (חתך קורונלי) של מטופלת מבוגרת עם אוגילבי: כל הקולון מורחב · <bdi>Milliways</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/ct-ogilvie-coronal.jpg" alt="CT של colon מורחב מאוד באוגילבי"><figcaption>CT (חתך קורונלי) של מטופלת מבוגרת עם אוגילבי: כל <span class="nw">ה-<bdi>colon</bdi></span> מורחב · <bdi>Milliways</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1457–1458</bdi> (טבלה 95.2) · פרק 85 עמ׳ <bdi dir="ltr">1165</bdi></span><span>אוגילבי</span></div>
 </div></section>
@@ -374,13 +379,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>13</b>אוגילבי · טיפול</div>
  <h2>סולם הטיפול</h2>
  <div class="flow">
-  <div><b>1 · שמרני</b><span>צקום מתחת ל-12 ס״מ בלי איסכמיה: צום, תיקון אלקטרוליטים, הפסקת תרופות אשמות, זונדה ושרוול רקטלי, הליכה ושכיבה על הבטן או ברכיים-חזה. <b>בלי משלשלים</b>. בדיקה וצילום חוזרים</span></div>
-  <div><b>2 · ניאוסטיגמין</b><span>אם אין שיפור או הצקום מעל 12 ס״מ (בלי טוקסיות): <bdi dir="ltr">2–2.5</bdi> מ״ג בווריד במשך <bdi dir="ltr">3–5</bdi> דקות, במוניטור ועם אטרופין מוכן. הצלחה <bdi dir="ltr">60–94%</bdi>, חזרה עד 31%</span></div>
+  <div><b>1 · שמרני</b><span><span class="nw">ה-<bdi>cecum</bdi></span> מתחת ל-12 ס״מ בלי איסכמיה: צום, תיקון אלקטרוליטים, הפסקת תרופות אשמות, זונדה ושרוול רקטלי, הליכה ושכיבה על הבטן או ברכיים-חזה. <b>בלי משלשלים</b>. בדיקה וצילום חוזרים</span></div>
+  <div><b>2 · ניאוסטיגמין</b><span>אם אין שיפור או <span class="nw">ה-<bdi>cecum</bdi></span> מעל 12 ס״מ (בלי טוקסיות): <bdi dir="ltr">2–2.5</bdi> מ״ג בווריד במשך <bdi dir="ltr">3–5</bdi> דקות, במוניטור ועם אטרופין מוכן. הצלחה <bdi dir="ltr">60–94%</bdi>, חזרה עד 31%</span></div>
   <div><b>3 · קולונוסקופיה</b><span>כשיש התוויית נגד לניאוסטיגמין או שלא עבד: הכנסת צינור הנקזה. הצלחה ראשונית <bdi dir="ltr">61–95%</bdi>, נקב <bdi dir="ltr">1–3%</bdi></span></div>
   <div><b>4 · ניתוח</b><span>אין תגובה, טוקסיות, איסכמיה או נקב. מעי חיוני: צקוסטומיה. איסכמיה או נקב: כריתה, בדרך כלל עם סטומה</span></div>
  </div>
  <div class="grid" style="margin-top:12px">
-  <div class="box r"><b class="t">למה לא מחכים יותר מדי</b>איסכמיה או נקב ב-<bdi dir="ltr">3–15%</bdi> ואז תמותה קרובה ל-50%</div>
+  <div class="box r"><b class="t">למה לא מחכים יותר מדי</b>איסכמיה או נקב <span class="nw">ב-<bdi dir="ltr">3–15%</bdi></span> ואז תמותה קרובה ל-50%</div>
   <div class="box a"><b class="t">ניאוסטיגמין: מתי לא</b>חסימה מכנית, איסכמיה או נקב. זהירות: אסתמה, <bdi>COPD</bdi>, ברדיקרדיה, תסמונת כלילית חריפה, אי ספיקת כליות</div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1458–1459</bdi></span><span>אוגילבי</span></div>
@@ -427,8 +432,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <ol class="obj">
   <li>בטן תפוחה בלי גזים: קודם לשלול לולאה סגורה, איסכמיה ונקב. פריטוניטיס = חדר ניתוח</li>
   <li>תמיד לבדוק מפשעות ולעשות בדיקה רקטלית</li>
-  <li>הצקום הוא שמתנקב, גם כשהחסימה בסיגמה. צקום מעל 12 ס״מ מדאיג</li>
-  <li>וולבולוס של הסיגמה בלי איסכמיה: התרה אנדוסקופית ואחר כך כריתה מתוכננת. בצקום: כריתה</li>
+  <li><span class="nw">ה-<bdi>cecum</bdi></span> הוא שמתנקב, גם כשהחסימה <span class="nw">ב-<bdi>sigmoid</bdi></span>. <bdi>cecum</bdi> מעל 12 ס״מ מדאיג</li>
+  <li>וולבולוס של <span class="nw">ה-<bdi>sigmoid</bdi></span> בלי איסכמיה: התרה אנדוסקופית ואחר כך כריתה מתוכננת. <span class="nw">ב-<bdi>cecum</bdi></span>: כריתה</li>
   <li>אוגילבי: שמרני, ניאוסטיגמין, קולונוסקופיה ורק אז ניתוח. בלי משלשלים</li>
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 95 <bdi>Colon and Rectum</bdi> (עמ׳ <bdi dir="ltr">1454–1459</bdi>) · פרק 96 <bdi>Cancers of the Colon, Rectum, and Anus</bdi> (עמ׳ <bdi dir="ltr">1501</bdi>)</div>

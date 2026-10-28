@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>פרוקטולוגיה · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,6 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -97,6 +98,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -114,6 +116,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -134,11 +139,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>1</b>מטרות הלמידה</div>
  <h2>בסוף המפגש תדעו</h2>
  <ol class="obj">
-  <li>לתאר את האנטומיה של תעלת פי הטבעת: הקו המשונן, הסוגרים, כריות הטחורים והבלוטות האנאליות</li>
+  <li>לתאר את האנטומיה של <span class="nw">ה-<bdi dir="ltr">anal canal</bdi></span>: <span class="nw">ה-<bdi dir="ltr">dentate line</bdi></span>, <span class="nw">ה-<bdi dir="ltr">anal sphincters</bdi></span>, <span class="nw">ה-<bdi dir="ltr">anal cushions</bdi></span> <span class="nw">וה-<bdi dir="ltr">anal glands</bdi></span></li>
   <li>לקחת אנמנזה ממוקדת ולבצע בדיקה פרוקטולוגית: מנח, הסתכלות, בדיקה רקטלית ואנוסקופיה</li>
   <li>לדרג טחורים פנימיים ולבחור טיפול: שמרני, במרפאה או ניתוח</li>
   <li>לאבחן פיסורה ולהכיר את סולם הטיפול בה</li>
-  <li>לטפל במורסה סביב פי הטבעת ולהבין איך היא הופכת לפיסטולה</li>
+  <li>לטפל במורסה סביב <span class="nw">ה-<bdi dir="ltr">anus</bdi></span> ולהבין איך היא הופכת לפיסטולה</li>
   <li>לזהות סינוס פילונידלי ומצבים דחופים כמו גנגרנה של פורנייה</li>
  </ol>
  <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 97 (עמ׳ <bdi dir="ltr">1515–1534</bdi>)</span><span>Scrub In · קפלן</span></div>
@@ -146,8 +151,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>2</b>אנטומיה · אינטראקטיבי</div>
- <h2>תעלת פי הטבעת</h2>
- <div class="hotw"><div class="hoti" style="max-width:360px;width:100%;justify-self:center"><img src="img/Sobo_1906_386.png" alt="החלחולת ותעלת פי הטבעת בחתך, מבט מלפנים"><svg viewBox="0 0 1280 1609" preserveAspectRatio="none" style="--lw:14;--bf:43px">
+ <h2><bdi dir="ltr">Anal canal</bdi></h2>
+ <div class="hotw"><div class="hoti" style="max-width:360px;width:100%;justify-self:center"><img src="img/Sobo_1906_386.png" alt="ה-rectum ו-anal canal בחתך, מבט מלפנים"><svg viewBox="0 0 1280 1609" preserveAspectRatio="none" style="--lw:14;--bf:43px">
   <path class="hz" data-hz="amp" d="M330,660 C420,660 540,740 655,770 C730,768 790,690 860,662 C905,660 928,700 932,760 C942,850 940,960 918,1050 C760,1046 520,1046 372,1052 C342,980 326,860 325,780 C325,730 326,690 330,660 Z" style="--c:#2F8CD6"/>
   <path class="hz" data-hz="col" d="M372,1062 C520,1052 760,1052 912,1060 C904,1130 892,1200 872,1252 C800,1244 470,1244 394,1254 C386,1190 378,1120 372,1062 Z" style="--c:#7A5BD6"/>
   <path class="hz ln" data-hz="crypt" d="M395,1262 C470,1272 560,1270 625,1274 C700,1282 780,1298 870,1292" style="--c:#F0961E"/>
@@ -160,11 +165,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <g class="hzb" style="--c:#2EAA5A"><circle cx="215" cy="1420" r="37"/><text x="215" y="1420">5</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="amp" hidden><b>1 · אמפולת החלחולת</b><p>מה שהאצבע מרגישה מעל לתעלה. בבדיקה רקטלית בודקים את דופן החלחולת, את עצם הזנב ושרירי הלבטור מאחור. מלפנים: את הערמונית או רקטוצלה. גוש: מיקום לפי שעון, גודל, קשה או רך, נייד או מקובע. גם המרחק מהטבעת השרירית.</p></div>
-  <div class="hzi" data-hzi="col" hidden><b>2 · עמודות מורגני וכריות הטחורים</b><p>מעל הקו המשונן: רירית עמודית עם עצבוב אוטונומי בלבד. לכן כמעט בלי כאב. כאן יושבות כריות הטחורים הפנימיים (שמאל לטרלי, ימין קדמי וימין אחורי). כאן מניחים גומייה.</p></div>
-  <div class="hzi" data-hzi="crypt" hidden><b>3 · הקו המשונן והקריפטות</b><p>הגבול בין אנדודרם לאקטודרם, באמצע תעלה של כ-4 ס״מ. בבסיס העמודות יש קריפטות שמתנקזות אליהן <bdi dir="ltr">6–12</bdi> בלוטות אנאליות, בעיקר מאחור. בלוטה חסומה היא נקודת ההתחלה של רוב המורסות והפיסטולות.</p></div>
-  <div class="hzi" data-hzi="anod" hidden><b>4 · עור התעלה (אנודרם)</b><p>מתחת לקו המשונן: אפיתל קשקשי בלי שערות ובלוטות, עם עצבוב סומטי עשיר. לכן כאן כואב: פיסורה (בדרך כלל בקו האמצע האחורי), טחור חיצוני עם קריש או גומייה שהונחה נמוך מדי.</p></div>
-  <div class="hzi" data-hzi="sph" hidden><b>5 · הסוגרים</b><p><b>הפנימי:</b> המשך מעובה של השכבה המעגלית של החלחולת, שריר חלק עם עצבוב אוטונומי, ב-<bdi dir="ltr">2–4</bdi> ס״מ התחתונים. העווית שלו מחזיקה את הפיסורה פתוחה. אותו חותכים חלקית ב-<bdi>LIS</bdi>.<br><b>החיצוני:</b> שריר שלד שבשליטה רצונית, עצבוב מהעצב הפודנדלי. כמה ממנו נחתך קובע את הסיכון לבריחה בניתוח פיסטולה.</p></div>
+  <div class="hzi" data-hzi="amp" hidden><b>1 · <bdi dir="ltr">Rectal ampulla</bdi></b><p>מה שהאצבע מרגישה מעל <span class="nw">ל-<bdi dir="ltr">anal canal</bdi></span>. בבדיקה רקטלית בודקים את דופן <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span>, את <span class="nw">ה-<bdi dir="ltr">coccyx</bdi></span> <span class="nw">וה-<bdi dir="ltr">levator ani</bdi></span> מאחור. מלפנים: את <span class="nw">ה-<bdi dir="ltr">prostate</bdi></span> או רקטוצלה. גוש: מיקום לפי שעון, גודל, קשה או רך, נייד או מקובע. גם המרחק <span class="nw">מה-<bdi dir="ltr">anorectal ring</bdi></span>.</p></div>
+  <div class="hzi" data-hzi="col" hidden><b>2 · <bdi dir="ltr">Columns of Morgagni</bdi> <span class="nw">ו-<bdi dir="ltr">anal cushions</bdi></span></b><p>מעל <span class="nw">ה-<bdi dir="ltr">dentate line</bdi></span>: רירית עמודית עם עצבוב אוטונומי בלבד. לכן כמעט בלי כאב. כאן יושבות <span class="nw">ה-<bdi dir="ltr">anal cushions</bdi></span> של הטחורים הפנימיים (שמאל לטרלי, ימין קדמי וימין אחורי). כאן מניחים גומייה.</p></div>
+  <div class="hzi" data-hzi="crypt" hidden><b>3 · <span class="nw">ה-<bdi dir="ltr">dentate line</bdi></span> <span class="nw">וה-<bdi dir="ltr">anal crypts</bdi></span></b><p>הגבול בין אנדודרם לאקטודרם, באמצע <bdi dir="ltr">anal canal</bdi> של כ-4 ס״מ. בבסיס <span class="nw">ה-<bdi dir="ltr">columns of Morgagni</bdi></span> יש <bdi dir="ltr">anal crypts</bdi> שמתנקזות אליהן <bdi dir="ltr">6–12</bdi> <bdi dir="ltr">anal glands</bdi>, בעיקר מאחור. בלוטה חסומה היא נקודת ההתחלה של רוב המורסות והפיסטולות.</p></div>
+  <div class="hzi" data-hzi="anod" hidden><b>4 · <bdi dir="ltr">Anoderm</bdi></b><p>מתחת <span class="nw">ל-<bdi dir="ltr">dentate line</bdi></span>: אפיתל קשקשי בלי שערות ובלוטות, עם עצבוב סומטי עשיר. לכן כאן כואב: פיסורה (בדרך כלל בקו האמצע האחורי), טחור חיצוני עם קריש או גומייה שהונחה נמוך מדי.</p></div>
+  <div class="hzi" data-hzi="sph" hidden><b>5 · <bdi dir="ltr">Anal sphincters</bdi></b><p><b><bdi dir="ltr">Internal anal sphincter</bdi>:</b> המשך מעובה של <span class="nw">ה-<bdi dir="ltr">circular muscle layer</bdi></span> של <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span>, שריר חלק עם עצבוב אוטונומי, <span class="nw">ב-<bdi dir="ltr">2–4</bdi></span> ס״מ התחתונים. העווית שלו מחזיקה את הפיסורה פתוחה. אותו חותכים חלקית <span class="nw">ב-<bdi>LIS</bdi></span>.<br><b><bdi dir="ltr">External anal sphincter</bdi>:</b> שריר שלד שבשליטה רצונית, עצבוב <span class="nw">מה-<bdi dir="ltr">pudendal nerve</bdi></span>. כמה ממנו נחתך קובע את הסיכון לבריחה בניתוח פיסטולה.</p></div>
  </div></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1515–1516</bdi></span><span><bdi>Sobotta</bdi>, אטלס האנטומיה (1906), איור 386 (נחלת הכלל) · אזורים: Scrub In</span></div>
 </div></section>
@@ -175,7 +180,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div class="flow">
    <div><b>כאב חד "כמו זכוכית" ביציאה ואחריו עווית שעות</b><span>פיסורה</span></div>
-   <div><b>כאב פתאומי וגוש קשה ליד פי הטבעת</b><span>טחור חיצוני עם קריש</span></div>
+   <div><b>כאב פתאומי וגוש קשה ליד <span class="nw">ה-<bdi dir="ltr">anus</bdi></span></b><span>טחור חיצוני עם קריש</span></div>
    <div><b>כאב שמחמיר, חום וחולשה</b><span>מורסה</span></div>
    <div><b>כאב גם בלי יציאה, עם דם</b><span>לחשוב על גידול</span></div>
    <div><b>דם טרי ללא כאב ביציאה, עם או בלי בליטה</b><span>טחורים פנימיים</span></div>
@@ -184,7 +189,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div style="display:grid;gap:10px">
    <div class="box"><b class="t">לשאול על היציאות</b>כמה ביום, מאמץ, כמה זמן בשירותים, קוטר ומרקם הצואה, דליפה ובריחה</div>
    <div class="box n"><b class="t">לשאול על הדם</b>טרי או כהה, כמה, קרישים, קשור ליציאה, מעורב בצואה או על פניה, רק בניגוב</div>
-   <div class="box a"><b class="t">לא לשכוח</b>ניתוחים קודמים בפי הטבעת, קרינה, לידות וקרעים, היסטוריה מינית (בעדינות) ומחלות מין. לפני כל פעולה: הערכה של שליטה על סוגרים</div>
+   <div class="box a"><b class="t">לא לשכוח</b>ניתוחים קודמים <span class="nw">ב-<bdi dir="ltr">anus</bdi></span>, קרינה, לידות וקרעים, היסטוריה מינית (בעדינות) ומחלות מין. לפני כל פעולה: הערכה של שליטה על <bdi dir="ltr">anal sphincters</bdi></div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1517, 1519</bdi></span><span>אנמנזה</span></div>
@@ -192,7 +197,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>4</b>בדיקה גופנית</div>
- <h2>איך בודקים פי טבעת</h2>
+ <h2>איך בודקים <bdi dir="ltr">anus</bdi></h2>
  <div class="grid f">
   <div>
    <ol class="obj">
@@ -200,14 +205,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>מנח:</b> שכיבה על הצד השמאלי, או מנח "סכין מתקפלת" על שולחן פרוקטולוגי</li>
     <li><b>הסתכלות:</b> הפרדה עדינה של העכוזים. לבקש לכווץ ואז ללחוץ כלפי מטה (צניחה, ירידת רצפת האגן)</li>
     <li><b>מישוש העור סביב</b> לפני הכנסת האצבע: רגישות. גם מאפשר למטופל להתכונן</li>
-    <li><b>בדיקה רקטלית עם ג׳ל:</b> אורך התעלה עד הפובורקטליס, עצם הזנב ושרירי הלבטור, ערמונית או רקטוצלה מלפנים. בסוף סריקה של התעלה עצמה עם הפלנגה הראשונה</li>
-    <li><b>לסיום:</b> לכווץ ואז <bdi>Valsalva</bdi>: הסוגרים צריכים להירפות</li>
+    <li><b>בדיקה רקטלית עם ג׳ל:</b> אורך <span class="nw">ה-<bdi dir="ltr">anal canal</bdi></span> עד <span class="nw">ה-<bdi dir="ltr">puborectalis</bdi></span>, <span class="nw">ה-<bdi dir="ltr">coccyx</bdi></span> <span class="nw">וה-<bdi dir="ltr">levator ani</bdi></span>, <bdi dir="ltr">prostate</bdi> או רקטוצלה מלפנים. בסוף סריקה של <span class="nw">ה-<bdi dir="ltr">anal canal</bdi></span> עצמה עם הפלנגה הראשונה</li>
+    <li><b>לסיום:</b> לכווץ ואז <bdi>Valsalva</bdi>: <span class="nw">ה-<bdi dir="ltr">anal sphincters</bdi></span> צריכים להירפות</li>
     <li><b>אנוסקופיה:</b> הרבה ג׳ל, מכניסים עם המוביל, מוציאים אותו ומסובבים כדי לראות את כל ההיקף</li>
    </ol>
   </div>
   <div style="display:grid;gap:10px">
    <figure class="sm"><img src="img/procto-sims-position.jpg" alt="מנח שכיבה על הצד השמאלי לבדיקה"><figcaption><b>שכיבה על הצד השמאלי</b> (מנח <bdi>Sims</bdi>): ברכיים מכופפות, המטופל מכוסה ורק האזור הנבדק חשוף · Sue Clark (נחלת הכלל), Wikimedia Commons</figcaption></figure>
-   <figure class="sm"><img src="img/dre-nci.jpg" alt="בדיקה רקטלית באצבע, חתך אורך"><figcaption><b>הבדיקה הרקטלית:</b> האצבע בתוך החלחולת, הערמונית מלפנים · <bdi>National Cancer Institute</bdi> (נחלת הכלל), Wikimedia Commons</figcaption></figure>
+   <figure class="sm"><img src="img/dre-nci.jpg" alt="בדיקה רקטלית באצבע, חתך אורך"><figcaption><b>הבדיקה הרקטלית:</b> האצבע בתוך <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span>, <span class="nw">ה-<bdi dir="ltr">prostate</bdi></span> מלפנים · <bdi>National Cancer Institute</bdi> (נחלת הכלל), Wikimedia Commons</figcaption></figure>
   </div>
  </div>
  <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>הצטרפו למרפאה פרוקטולוגית או לבדיקה רקטלית במחלקה. בצעו לפחות בדיקה אחת בעצמכם, בנוכחות בכיר/ה ומלווה. תארו את הממצא לפי שעון</div>
@@ -220,10 +225,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b sm">
-    <li><b>כריות נורמליות</b> בתת-הרירית: בשמאל לטרלי, בימין קדמי ובימין אחורי. הדימום מהן <b>עורקי</b>, בגלל חיבורים ישירים בין עורקים לוורידים</li>
+    <li><b>כריות נורמליות</b> <span class="nw">ב-<bdi dir="ltr">submucosa</bdi></span>: בשמאל לטרלי, בימין קדמי ובימין אחורי. הדימום מהן <b>עורקי</b>, בגלל חיבורים ישירים בין עורקים לוורידים</li>
     <li><b>מה מקדם אותן:</b> עצירות, מאמץ וישיבה ארוכה בשירותים. גם הזדקנות של רקמת התמיכה</li>
-    <li><b>פנימיים:</b> מעל הקו המשונן. התלונה השכיחה: דם טרי בלי כאב ביציאה, עם או בלי בליטה</li>
-    <li><b>חיצוניים:</b> מתחת לקו המשונן, מכוסים בעור עם עצבוב סומטי. כואבים כשנוצר בהם קריש</li>
+    <li><b>פנימיים:</b> מעל <span class="nw">ה-<bdi dir="ltr">dentate line</bdi></span>. התלונה השכיחה: דם טרי בלי כאב ביציאה, עם או בלי בליטה</li>
+    <li><b>חיצוניים:</b> מתחת <span class="nw">ל-<bdi dir="ltr">dentate line</bdi></span>, מכוסים בעור עם עצבוב סומטי. כואבים כשנוצר בהם קריש</li>
    </ul>
    <div class="flow" style="margin-top:10px">
     <div><b>דרגה <bdi>I</bdi></b><span>מדממים, בלי בליטה</span></div>
@@ -232,7 +237,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <div><b>דרגה <bdi>IV</bdi></b><span>בולטים ולא חוזרים</span></div>
    </div>
   </div>
-  <figure><img src="img/procto-blausen-hemorrhoids.png" alt="טחורים פנימיים וחיצוניים, איור"><figcaption><b>טחורים פנימיים (מעל הקו המשונן) וחיצוניים (מתחתיו)</b> · <bdi>Blausen.com staff (2014). "Medical gallery of Blausen Medical 2014". WikiJournal of Medicine</bdi>, <bdi>CC BY 3.0</bdi></figcaption></figure>
+  <figure><img src="img/procto-blausen-hemorrhoids.png" alt="טחורים פנימיים וחיצוניים, איור"><figcaption><b>טחורים פנימיים (מעל <span class="nw">ה-<bdi dir="ltr">dentate line</bdi></span>) וחיצוניים (מתחתיו)</b> · <bdi>Blausen.com staff (2014). "Medical gallery of Blausen Medical 2014". WikiJournal of Medicine</bdi>, <bdi>CC BY 3.0</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1515, 1519, 1521</bdi> (טבלה 97.1)</span><span>טחורים</span></div>
 </div></section>
@@ -242,15 +247,15 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>סולם הטיפול</h2>
  <div class="grid g3">
   <div class="box"><b class="t">1 · שמרני לכולם, <bdi dir="ltr">6–8</bdi> שבועות</b>
-   <ul class="b sm"><li>שתייה: לפחות 64 אונקיות ביום (כ-1.9 ליטר)</li><li>סיבים: <bdi dir="ltr">20–35</bdi> גרם ביום</li><li>לא יותר מ-<bdi dir="ltr">2–3</bdi> דקות בשירותים, בלי טלפון ובלי לקרוא</li><li>אמבטיית ישיבה חמה אחרי יציאה</li><li>משחות ופתילות: מעט ראיות</li></ul></div>
-  <div class="box n"><b class="t">2 · במרפאה · דרגות <bdi>I–II</bdi> וחלק מ-<bdi>III</bdi></b>
-   <ul class="b sm"><li><b>קשירה בגומייה:</b> השכיחה והיעילה ביותר. מעל הקו המשונן. לכן כמעט בלי כאב. כאב חזק: הגומייה נמוכה מדי, מורידים מיד</li><li>בנוטלי נוגדי קרישה וטסיות: זהירות. הכיב שנוצר אחרי ימים יכול לדמם</li><li><b>הזרקה טרשתית</b> (כ-1 מ״ל): מתאימה לנוטלי נוגדי קרישה</li><li>קרישה באינפרא-אדום</li></ul></div>
+   <ul class="b sm"><li>שתייה: לפחות 64 אונקיות ביום (כ-1.9 ליטר)</li><li>סיבים: <bdi dir="ltr">20–35</bdi> גרם ביום</li><li>לא יותר <span class="nw">מ-<bdi dir="ltr">2–3</bdi></span> דקות בשירותים, בלי טלפון ובלי לקרוא</li><li>אמבטיית ישיבה חמה אחרי יציאה</li><li>משחות ופתילות: מעט ראיות</li></ul></div>
+  <div class="box n"><b class="t">2 · במרפאה · דרגות <bdi>I–II</bdi> וחלק <span class="nw">מ-<bdi>III</bdi></span></b>
+   <ul class="b sm"><li><b>קשירה בגומייה:</b> השכיחה והיעילה ביותר. מעל <span class="nw">ה-<bdi dir="ltr">dentate line</bdi></span>. לכן כמעט בלי כאב. כאב חזק: הגומייה נמוכה מדי, מורידים מיד</li><li>בנוטלי נוגדי קרישה וטסיות: זהירות. הכיב שנוצר אחרי ימים יכול לדמם</li><li><b>הזרקה טרשתית</b> (כ-1 מ״ל): מתאימה לנוטלי נוגדי קרישה</li><li>קרישה באינפרא-אדום</li></ul></div>
   <div class="box b"><b class="t">3 · ניתוח · דרגות <bdi>III–IV</bdi> מעורבים</b>
-   <ul class="b sm"><li>כריתה סגורה (<bdi>Ferguson</bdi>): פחות כאב, ריפוי מהיר ופחות דימום מהפתוחה (<bdi>Milligan-Morgan</bdi>)</li><li>כורתים רק את העודף ושומרים על הסוגר הפנימי. לא כורתים שלוש כריות בלי גשרי רירית (היצרות)</li><li>בלי אנטיביוטיקה מונעת ובלי טמפון</li><li>סיכות (<bdi>stapled</bdi>): פחות כאב, יותר חזרות</li></ul></div>
+   <ul class="b sm"><li>כריתה סגורה (<bdi>Ferguson</bdi>): פחות כאב, ריפוי מהיר ופחות דימום מהפתוחה (<bdi>Milligan-Morgan</bdi>)</li><li>כורתים רק את העודף ושומרים על <span class="nw">ה-<bdi dir="ltr">internal anal sphincter</bdi></span>. לא כורתים שלוש כריות בלי גשרי רירית (היצרות)</li><li>בלי אנטיביוטיקה מונעת ובלי טמפון</li><li>סיכות (<bdi>stapled</bdi>): פחות כאב, יותר חזרות</li></ul></div>
  </div>
  <div class="grid" style="margin-top:12px">
-  <div class="box a"><b class="t">אחרי ניתוח</b>מרככי צואה, אמבטיות ישיבה ומשככי כאב משולבים. דימום ב-<bdi dir="ltr">1–2%</bdi>, אצירת שתן ב-<bdi dir="ltr">1–15%</bdi></div>
-  <div class="box r"><b class="t">דגל אדום: אלח דם באגן</b>אצירת שתן, כאב שמחמיר בפי הטבעת או באגן וחום, אחרי ניתוח או אחרי קשירה במרפאה: בדיקה בהרדמה ותחקיר מיידי</div>
+  <div class="box a"><b class="t">אחרי ניתוח</b>מרככי צואה, אמבטיות ישיבה ומשככי כאב משולבים. דימום <span class="nw">ב-<bdi dir="ltr">1–2%</bdi></span>, אצירת שתן <span class="nw">ב-<bdi dir="ltr">1–15%</bdi></span></div>
+  <div class="box r"><b class="t">דגל אדום: אלח דם באגן</b>אצירת שתן, כאב שמחמיר <span class="nw">ב-<bdi dir="ltr">anus</bdi></span> או באגן וחום, אחרי ניתוח או אחרי קשירה במרפאה: בדיקה בהרדמה ותחקיר מיידי</div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1519–1521</bdi></span><span>טחורים</span></div>
 </div></section>
@@ -259,12 +264,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>7</b>טחורים · כך זה נראה</div>
  <h2>קשירה בגומייה במרפאה</h2>
  <div class="grid">
-  <figure><img src="img/procto-band-ligation.jpg" alt="גומייה על טחור פנימי מעל הקו המשונן, איור בחתך"><figcaption><b>הגומייה יושבת על הכרית, מעל הקו המשונן.</b> רואים גם את הסוגרים, שריר הלבטור ושומן החלל האיסכיורקטלי · <bdi>www.scientificanimations.com</bdi>, <bdi>CC BY-SA 4.0</bdi>, Wikimedia Commons</figcaption></figure>
+  <figure><img src="img/procto-band-ligation.jpg" alt="גומייה על טחור פנימי מעל ה-dentate line, איור בחתך"><figcaption><b>הגומייה יושבת על הכרית, מעל <span class="nw">ה-<bdi dir="ltr">dentate line</bdi></span>.</b> רואים גם את <span class="nw">ה-<bdi dir="ltr">anal sphincters</bdi></span>, <span class="nw">ה-<bdi dir="ltr">levator ani</bdi></span> ושומן <span class="nw">ה-<bdi dir="ltr">ischiorectal space</bdi></span> · <bdi>www.scientificanimations.com</bdi>, <bdi>CC BY-SA 4.0</bdi>, Wikimedia Commons</figcaption></figure>
   <figure><img src="img/procto-band-anoscopy.jpg" alt="טחור פנימי עם גומייה במבט אנוסקופי"><figcaption><b>מבט דרך האנוסקופ:</b> טחור פנימי אחרי הנחת גומייה בבסיסו · Απόστολος Σταματιάδης, <bdi>CC BY-SA 3.0</bdi>, Wikimedia Commons</figcaption></figure>
  </div>
  <div class="grid g3" style="margin-top:12px">
   <div class="box"><b class="t">למה זה עובד</b>הגומייה חונקת את הרקמה. היא עוברת איסכמיה ונמק. במקומה נוצרת צלקת שמקבעת את הכרית לדופן</div>
-  <div class="box a"><b class="t">כאב חזק אחרי קשירה</b>הגומייה כנראה מתחת לקו המשונן, באזור עם עצבוב סומטי. מורידים אותה מיד</div>
+  <div class="box a"><b class="t">כאב חזק אחרי קשירה</b>הגומייה כנראה מתחת <span class="nw">ל-<bdi dir="ltr">dentate line</bdi></span>, באזור עם עצבוב סומטי. מורידים אותה מיד</div>
   <div class="box r"><b class="t">ימים אחרי</b>הרקמה המתה נושרת ומשאירה כיב. בנוטלי נוגדי קרישה או טסיות הוא עלול לדמם</div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1520</bdi></span><span>טחורים</span></div>
@@ -276,7 +281,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid g3">
    <div class="box"><b class="t">טחור חיצוני עם קריש</b>כאב פתאומי וחזק שמחמיר בישיבה וביציאה, גוש עגול וקשה. לעיתים אחרי עצירות, שלשול או מאמץ. רובם משתפרים בתוך <bdi dir="ltr">48–72</bdi> שעות עם אמבטיות ישיבה, משחת לידוקאין ומרככים. בכאב קשה: כריתה בהרדמה מקומית עדיפה על פינוי הקריש בלבד (מהיר יותר ופחות חזרות)</div>
    <div class="box a"><b class="t">טחורים פנימיים כלואים</b>בדרך כלל אחרי טחורים מדרגה <bdi>III–IV</bdi>. בלי חניקה ובלי אלח דם: מנסים להחזיר. סוכר כחומר אוסמוטי, קרח וחסם מקומי. גם הזרקת היאלורונידאז</div>
-   <div class="box r"><b class="t">נמק או חניקה</b>ניתוח מהיר. שומרים כמה שיותר רירית ועור תעלה, כדי למנוע היצרות ובריחת צואה</div>
+   <div class="box r"><b class="t">נמק או חניקה</b>ניתוח מהיר. שומרים כמה שיותר <bdi dir="ltr">mucosa</bdi> <span class="nw">ו-<bdi dir="ltr">anoderm</bdi></span>, כדי למנוע היצרות ובריחת צואה</div>
   </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1521–1522</bdi></span><span>חירום</span></div>
 </div></section>
@@ -287,9 +292,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b sm">
-    <li><b>מה זה:</b> קרע אליפטי בעור התעלה, מפי הטבעת כלפי הקו המשונן</li>
-    <li><b>למה לא נרפא:</b> הכאב גורם לעווית של הסוגר, העווית מורידה זרימת דם והקרע נשאר באיסכמיה</li>
-    <li><b>איפה:</b> בקו האמצע האחורי ב-<bdi dir="ltr">75%</bdi>. בקו האמצע הקדמי בעיקר בנשים</li>
+    <li><b>מה זה:</b> קרע אליפטי <span class="nw">ב-<bdi dir="ltr">anoderm</bdi></span>, <span class="nw">מ-<bdi dir="ltr">anus</bdi></span> כלפי <span class="nw">ה-<bdi dir="ltr">dentate line</bdi></span></li>
+    <li><b>למה לא נרפא:</b> הכאב גורם לעווית של <span class="nw">ה-<bdi dir="ltr">anal sphincter</bdi></span>, העווית מורידה זרימת דם והקרע נשאר באיסכמיה</li>
+    <li><b>איפה:</b> בקו האמצע האחורי <span class="nw">ב-<bdi dir="ltr">75%</bdi></span>. בקו האמצע הקדמי בעיקר בנשים</li>
     <li><b>כרונית:</b> מעל <bdi dir="ltr">6–8</bdi> שבועות</li>
     <li><b>האבחנה מהסיפור.</b> הפרדה עדינה של העכוזים מראה את הסדק. בדיקה רקטלית ואנוסקופיה לרוב נדחות בגלל הכאב</li>
    </ul>
@@ -297,7 +302,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   </div>
   <div style="display:grid;gap:10px">
    <div class="box n"><b class="t">איפה לחפש</b>מסתכלים בעדינות בין העכוזים. אם לא רואים: לחץ קל עם קצה האצבע או מקלון צמר גפן בקו האמצע האחורי או הקדמי משחזר את הכאב. אפשר להיעזר באיור האינטראקטיבי בתחילת המפגש (אזור 4)</div>
-   <div class="box a"><b class="t">שלושת הסימנים של פיסורה כרונית</b>סיבי סוגר פנימי חשופים בבסיס · פפילה מוגדלת מעל · גבשושית עור ("טחור זקיף") מתחת</div>
+   <div class="box a"><b class="t">שלושת הסימנים של פיסורה כרונית</b>סיבי <bdi dir="ltr">internal anal sphincter</bdi> חשופים בבסיס · פפילה מוגדלת מעל · גבשושית עור ("טחור זקיף") מתחת</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1523</bdi></span><span>פיסורה</span></div>
@@ -305,45 +310,45 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>10</b>פיסורה · טיפול</div>
- <h2>להרפות את הסוגר</h2>
+ <h2>להרפות את <span class="nw">ה-<bdi dir="ltr">anal sphincter</bdi></span></h2>
  <div class="flow">
-  <div><b>חריפה</b><span>רוב הפיסורות החריפות נרפאות בטיפול שמרני: שתייה, סיבים ואמבטיות ישיבה, שמקלות על הכאב ביותר מ-<bdi dir="ltr">90%</bdi></span></div>
+  <div><b>חריפה</b><span>רוב הפיסורות החריפות נרפאות בטיפול שמרני: שתייה, סיבים ואמבטיות ישיבה, שמקלות על הכאב ביותר <span class="nw">מ-<bdi dir="ltr">90%</bdi></span></span></div>
   <div><b>משחת ניטרטים</b><span>ריפוי בכמחצית מהפיסורות הכרוניות. כאב ראש שכיח. עד <bdi dir="ltr">20%</bdi> מפסיקים בגללו</span></div>
   <div><b>חוסמי תעלות סידן במשחה</b><span>(דילטיאזם, ניפדיפין) ריפוי דומה עם פחות כאבי ראש. הקו הראשון המועדף</span></div>
   <div><b>בוטולינום</b><span><bdi dir="ltr">20–100</bdi> יחידות, הרפיה של כ-3 חודשים. דומה לטיפול המקומי כקו ראשון. תופעת לוואי שכיחה: בריחת גזים זמנית</span></div>
-  <div><b>חיתוך חלקי של הסוגר הפנימי בצד</b><span>(<bdi>LIS</bdi>) הטיפול המועדף בפיסורה כרונית: ריפוי <bdi dir="ltr">88–100%</bdi>. בריחה, בעיקר של גזים ובחודש הראשון, ב-<bdi dir="ltr">8–30%</bdi></span></div>
+  <div><b>חיתוך חלקי של <span class="nw">ה-<bdi dir="ltr">internal anal sphincter</bdi></span> בצד</b><span>(<bdi>LIS</bdi>) הטיפול המועדף בפיסורה כרונית: ריפוי <bdi dir="ltr">88–100%</bdi>. בריחה, בעיקר של גזים ובחודש הראשון, <span class="nw">ב-<bdi dir="ltr">8–30%</bdi></span></span></div>
  </div>
- <div class="box a" style="margin-top:12px"><b class="t">לא לחתוך את הסוגר אצל</b>מי שכבר יש לו בריחה, נשים עם קרע בלידה, אחרי ניתוחים קודמים בפי הטבעת או עם פגיעה ידועה בסוגר</div>
+ <div class="box a" style="margin-top:12px"><b class="t">לא לחתוך את <span class="nw">ה-<bdi dir="ltr">anal sphincter</bdi></span> אצל</b>מי שכבר יש לו בריחה, נשים עם קרע בלידה, אחרי ניתוחים קודמים <span class="nw">ב-<bdi dir="ltr">anus</bdi></span> או עם פגיעה ידועה <span class="nw">ב-<bdi dir="ltr">anal sphincter</bdi></span></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1523–1524</bdi></span><span>פיסורה</span></div>
 </div></section>
 
 <section class="s"><div class="card">
  <div class="kick"><b>11</b>מורסה</div>
- <h2>מורסה סביב פי הטבעת: מאיפה ולאן</h2>
+ <h2>מורסה סביב <span class="nw">ה-<bdi dir="ltr">anus</bdi></span>: מאיפה ולאן</h2>
  <div class="grid f">
   <div>
    <ul class="b sm">
-    <li><b>מקור:</b> בלוטה אנאלית שנחסמה בקריפטה בקו המשונן. הזיהום מתחיל בין הסוגרים ומתפשט</li>
-    <li><b>לאן:</b> כלפי מטה לעור (סביב פי הטבעת), דרך הסוגר החיצוני לחלל האיסכיורקטלי, למעלה מעל הלבטור, או בקו האמצע האחורי לחלל הפוסט-אנאלי העמוק ומשם לשני הצדדים ("פרסה")</li>
-    <li>כ-<bdi dir="ltr">10%</bdi> מסיבות אחרות: קרוהן, חבלה, <bdi>HIV</bdi>, מחלות מין, קרינה, גוף זר, ממאירות</li>
+    <li><b>מקור:</b> <bdi dir="ltr">anal gland</bdi> שנחסמה <span class="nw">ב-<bdi dir="ltr">anal crypt</bdi></span> <span class="nw">ב-<bdi dir="ltr">dentate line</bdi></span>. הזיהום מתחיל בין <span class="nw">ה-<bdi dir="ltr">anal sphincters</bdi></span> ומתפשט</li>
+    <li><b>לאן:</b> כלפי מטה לעור (סביב <span class="nw">ה-<bdi dir="ltr">anus</bdi></span>), דרך <span class="nw">ה-<bdi dir="ltr">external anal sphincter</bdi></span> <span class="nw">ל-<bdi dir="ltr">ischiorectal space</bdi></span>, למעלה מעל <span class="nw">ה-<bdi dir="ltr">levator ani</bdi></span>, או בקו האמצע האחורי <span class="nw">ל-<bdi dir="ltr">deep postanal space</bdi></span> ומשם לשני הצדדים ("פרסה")</li>
+    <li><span class="nw">כ-<bdi dir="ltr">10%</bdi></span> מסיבות אחרות: קרוהן, חבלה, <bdi>HIV</bdi>, מחלות מין, קרינה, גוף זר, ממאירות</li>
     <li><b>הסיפור:</b> כאב קבוע ופועם שמתפתח בהדרגה, נפיחות, אודם ותנודה</li>
    </ul>
-   <div class="box r" style="margin-top:10px"><b class="t">טעות נפוצה</b>"צלוליטיס" סביב פי הטבעת בלי תנודה היא לעיתים קרובות מורסה עמוקה. אנטיביוטיקה לבד לא תספיק. CT של האגן כשהבדיקה לא ברורה</div>
+   <div class="box r" style="margin-top:10px"><b class="t">טעות נפוצה</b>"צלוליטיס" סביב <span class="nw">ה-<bdi dir="ltr">anus</bdi></span> בלי תנודה היא לעיתים קרובות מורסה עמוקה. אנטיביוטיקה לבד לא תספיק. CT של האגן כשהבדיקה לא ברורה</div>
   </div>
-  <figure><img src="img/procto-abscess-diagram.png" alt="סוגי מורסות סביב פי הטבעת, איור בחתך"><figcaption><b>סוגי המורסות לפי המיקום:</b> מעל הלבטור, בין הסוגרים, איסכיורקטלית, תת-רירית ותת-עורית · <bdi>McortNGHH</bdi> על בסיס <bdi>Armin Kübelbeck</bdi>, <bdi>CC BY-SA 4.0</bdi>, Wikimedia Commons</figcaption></figure>
+  <figure><img src="img/procto-abscess-diagram.png" alt="סוגי מורסות סביב ה-anus, איור בחתך"><figcaption><b>סוגי המורסות לפי המיקום:</b> <bdi dir="ltr">supralevator</bdi>, <bdi dir="ltr">intersphincteric</bdi>, <bdi dir="ltr">ischiorectal</bdi>, <bdi dir="ltr">submucosal</bdi> <span class="nw">ו-<bdi dir="ltr">perianal</bdi></span> · <bdi>McortNGHH</bdi> על בסיס <bdi>Armin Kübelbeck</bdi>, <bdi>CC BY-SA 4.0</bdi>, Wikimedia Commons</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1524–1525</bdi> (איור 97.13)</span><span>מורסה</span></div>
 </div></section>
 
 <section class="s"><div class="card">
  <div class="kick"><b>12</b>מורסה · טיפול</div>
- <h2>מנקזים מיד וקרוב לפי הטבעת</h2>
+ <h2>מנקזים מיד וקרוב <span class="nw">ל-<bdi dir="ltr">anus</bdi></span></h2>
  <div class="grid">
   <div class="box"><b class="t">הניקוז</b>
-   <ul class="b sm"><li>אפשר במרפאה בהרדמה מקומית או בחדר ניתוח</li><li>במקום הכי תנודתי וקרוב ככל האפשר לפי הטבעת, כדי שהפיסטולה שאולי תיווצר תהיה קצרה</li><li>חתך צלב והסרת הפינות, כדי שלא ייסגר מוקדם</li><li>לא מפרקים מחיצות באגרסיביות: סכנה לסוגר, לעצב הפודנדלי ולדימום</li><li>חלל מעל 5 ס״מ: חתכים נוספים וגשר בנקז</li></ul></div>
+   <ul class="b sm"><li>אפשר במרפאה בהרדמה מקומית או בחדר ניתוח</li><li>במקום הכי תנודתי וקרוב ככל האפשר <span class="nw">ל-<bdi dir="ltr">anus</bdi></span>, כדי שהפיסטולה שאולי תיווצר תהיה קצרה</li><li>חתך צלב והסרת הפינות, כדי שלא ייסגר מוקדם</li><li>לא מפרקים מחיצות באגרסיביות: סכנה <span class="nw">ל-<bdi dir="ltr">anal sphincter</bdi></span>, <span class="nw">ל-<bdi dir="ltr">pudendal nerve</bdi></span> ולדימום</li><li>חלל מעל 5 ס״מ: חתכים נוספים וגשר בנקז</li></ul></div>
   <div style="display:grid;gap:10px">
-   <div class="box a"><b class="t">בלי תנודה מבחוץ</b>לא מנקזים דרך העור (סכנה לפיסטולה). בין הסוגרים ומעל הלבטור מנקזים לתוך התעלה. "פרסה": ניקוז החלל הפוסט-אנאלי העמוק בקו האמצע וחתכים נגדיים בשני הצדדים</div>
-   <div class="box n"><b class="t">אחרי הניקוז</b>בלי טמפון שגרתי ובלי אנטיביוטיקה שגרתית (רק בצלוליטיס, מחלה מערכתית או דיכוי חיסוני). אמבטיות ישיבה וסיבים. ריפוי ב-<bdi dir="ltr">6–8</bdi> שבועות. לא נרפא או חוזר? לחשוב על פיסטולה</div>
+   <div class="box a"><b class="t">בלי תנודה מבחוץ</b>לא מנקזים דרך העור (סכנה לפיסטולה). בין <span class="nw">ה-<bdi dir="ltr">anal sphincters</bdi></span> ומעל <span class="nw">ה-<bdi dir="ltr">levator ani</bdi></span> מנקזים לתוך <span class="nw">ה-<bdi dir="ltr">anal canal</bdi></span>. "פרסה": ניקוז <span class="nw">ה-<bdi dir="ltr">deep postanal space</bdi></span> בקו האמצע וחתכים נגדיים בשני הצדדים</div>
+   <div class="box n"><b class="t">אחרי הניקוז</b>בלי טמפון שגרתי ובלי אנטיביוטיקה שגרתית (רק בצלוליטיס, מחלה מערכתית או דיכוי חיסוני). אמבטיות ישיבה וסיבים. ריפוי <span class="nw">ב-<bdi dir="ltr">6–8</bdi></span> שבועות. לא נרפא או חוזר? לחשוב על פיסטולה</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1525–1526</bdi></span><span>מורסה</span></div>
@@ -355,19 +360,19 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div>
    <ul class="b sm">
-    <li>כמחצית מהמטופלים אחרי מורסה יפתחו פיסטולה: פתח פנימי בקריפטה ופתח חיצוני בעור</li>
+    <li>כמחצית מהמטופלים אחרי מורסה יפתחו פיסטולה: פתח פנימי <span class="nw">ב-<bdi dir="ltr">anal crypt</bdi></span> ופתח חיצוני בעור</li>
     <li><b>הסיפור:</b> הפרשה כרונית, או מחזור של כאב ונפיחות שמוקל כשהיא מתנקזת</li>
-    <li><b>חוק גודסל:</b> פתח חיצוני לפני הקו הרוחבי הולך ישר לתעלה. פתח מאחור מתעקל לקו האמצע האחורי (פתח קדמי רחוק מ-3 ס״מ יכול להיות המשך של "פרסה" אחורית)</li>
-    <li>פתחים בשני הצדדים: חלל פוסט-אנאלי עמוק. הרבה פתחים ("זילוף"): לחשוב על קרוהן</li>
+    <li><b>חוק גודסל:</b> פתח חיצוני לפני <span class="nw">ה-<bdi dir="ltr">transverse anal line</bdi></span> הולך ישר <span class="nw">ל-<bdi dir="ltr">anal canal</bdi></span>. פתח מאחור מתעקל לקו האמצע האחורי (פתח קדמי רחוק מ-3 ס״מ יכול להיות המשך של "פרסה" אחורית)</li>
+    <li>פתחים בשני הצדדים: <bdi dir="ltr">deep postanal space</bdi>. הרבה פתחים ("זילוף"): לחשוב על קרוהן</li>
     <li>לא ברור? <bdi>MRI</bdi> של האגן בפרוטוקול פיסטולה</li>
    </ul>
   </div>
   <div>
-  <figure class="sm"><img src="img/procto-fistula-diagram.png" alt="סוגי פיסטולות לפי היחס לסוגרים, איור בחתך"><figcaption><b>סוגי הפיסטולות לפי היחס לסוגרים</b> · <bdi>McortNGHH</bdi> על בסיס <bdi>Armin Kübelbeck</bdi>, <bdi>CC BY-SA 4.0</bdi>, Wikimedia Commons</figcaption></figure>
+  <figure class="sm"><img src="img/procto-fistula-diagram.png" alt="סוגי פיסטולות לפי היחס ל-anal sphincters, איור בחתך"><figcaption><b>סוגי הפיסטולות לפי היחס <span class="nw">ל-<bdi dir="ltr">anal sphincters</bdi></span></b> · <bdi>McortNGHH</bdi> על בסיס <bdi>Armin Kübelbeck</bdi>, <bdi>CC BY-SA 4.0</bdi>, Wikimedia Commons</figcaption></figure>
   <div class="flow sm" style="margin-top:10px">
-   <div><b>סיווג <bdi>Parks</bdi></b><span>בין הסוגרים <bdi dir="ltr">45%</bdi> · חוצה סוגרים <bdi dir="ltr">30%</bdi> · מעל הסוגרים <bdi dir="ltr">20%</bdi> · מחוץ לסוגרים <bdi dir="ltr">5%</bdi></span></div>
-   <div><b>פיסטולה נמוכה</b><span>(פחות משליש מהסוגר החיצוני): פתיחה לכל האורך. בריחה משמעותית בפחות מ-<bdi dir="ltr">5%</bdi>, חזרה ב-<bdi dir="ltr">2–8%</bdi></span></div>
-   <div><b>מעורבות גדולה של הסוגר</b><span>סטון מנקז. אחר כך ניתוח ששומר על הסוגר: קשירה בין הסוגרים (<bdi>LIFT</bdi>) או מתלה רירית (ריפוי <bdi dir="ltr">66–87%</bdi>)</span></div>
+   <div><b>סיווג <bdi>Parks</bdi></b><span><bdi dir="ltr">intersphincteric</bdi> <bdi dir="ltr">45%</bdi> · <bdi dir="ltr">transsphincteric</bdi> <bdi dir="ltr">30%</bdi> · <bdi dir="ltr">suprasphincteric</bdi> <bdi dir="ltr">20%</bdi> · <bdi dir="ltr">extrasphincteric</bdi> <bdi dir="ltr">5%</bdi></span></div>
+   <div><b>פיסטולה נמוכה</b><span>(פחות משליש <span class="nw">מה-<bdi dir="ltr">external anal sphincter</bdi></span>): פתיחה לכל האורך. בריחה משמעותית בפחות <span class="nw">מ-<bdi dir="ltr">5%</bdi></span>, חזרה <span class="nw">ב-<bdi dir="ltr">2–8%</bdi></span></span></div>
+   <div><b>מעורבות גדולה של <span class="nw">ה-<bdi dir="ltr">anal sphincter</bdi></span></b><span>סטון מנקז. אחר כך ניתוח ששומר על <span class="nw">ה-<bdi dir="ltr">anal sphincter</bdi></span>: קשירה בין <span class="nw">ה-<bdi dir="ltr">anal sphincters</bdi></span> (<bdi>LIFT</bdi>) או מתלה רירית (ריפוי <bdi dir="ltr">66–87%</bdi>)</span></div>
    <div><b>המטרות</b><span>לנקז זיהום, להבין את המסלול, להסיר אותו, לשמור על שליטה ולמנוע חזרה</span></div>
   </div>
   </div>
@@ -377,17 +382,17 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>14</b>סינוס פילונידלי</div>
- <h2>קן של שערות בקפל העכוז</h2>
+ <h2>קן של שערות <span class="nw">ב-<bdi dir="ltr">natal cleft</bdi></span></h2>
  <div class="grid f">
   <div>
    <ul class="b sm">
     <li>צעירים, בדרך כלל באמצע עד סוף שנות ה-20. כ-70,000 מטופלים בשנה בארה״ב</li>
-    <li><b>המנגנון:</b> שערות נשאבות לעור דרך גומות בקו האמצע של קפל העכוז, תגובה לגוף זר וזיהום</li>
-    <li><b>הסימן:</b> גומות בקו האמצע ופתחי סינוס. מורסה רחוקה מפי הטבעת. לא בצמוד אליו כמו מורסה פרי-אנאלית</li>
+    <li><b>המנגנון:</b> שערות נשאבות לעור דרך גומות בקו האמצע של <span class="nw">ה-<bdi dir="ltr">natal cleft</bdi></span>, תגובה לגוף זר וזיהום</li>
+    <li><b>הסימן:</b> גומות בקו האמצע ופתחי סינוס. מורסה רחוקה <span class="nw">מ-<bdi dir="ltr">anus</bdi></span>. לא בצמוד אליו כמו <bdi dir="ltr">perianal abscess</bdi></li>
     <li><b>גורמי סיכון:</b> גברים (שיעור), השמנה, ישיבה ממושכת וחיכוך</li>
    </ul>
    <div class="box" style="margin-top:10px"><b class="t">הטיפול</b>
-    <ul class="b sm"><li><b>מורסה:</b> ניקוז בחתך לטרלי, מחוץ לקו האמצע וגירוד השערות. הסרת שיער מפחיתה חזרות</li><li><b>חוזר:</b> כריתת הגומות וניקוי החלל (שיטת גיפס, של ד״ר משה גיפס) או כריתה מלאה</li><li>להימנע מתפר בקו האמצע (<bdi>Bascom</bdi>). מקרים מורכבים: מתלים, למשל <bdi>Limberg</bdi> או <bdi>cleft lift</bdi></li><li>אנטיביוטיקה כתוספת: חיידקים ב-<bdi dir="ltr">50–70%</bdi></li></ul></div>
+    <ul class="b sm"><li><b>מורסה:</b> ניקוז בחתך לטרלי, מחוץ לקו האמצע וגירוד השערות. הסרת שיער מפחיתה חזרות</li><li><b>חוזר:</b> כריתת הגומות וניקוי החלל (שיטת גיפס, של ד״ר משה גיפס) או כריתה מלאה</li><li>להימנע מתפר בקו האמצע (<bdi>Bascom</bdi>). מקרים מורכבים: מתלים, למשל <bdi>Limberg</bdi> או <bdi>cleft lift</bdi></li><li>אנטיביוטיקה כתוספת: חיידקים <span class="nw">ב-<bdi dir="ltr">50–70%</bdi></span></li></ul></div>
   </div>
   <figure><img src="img/procto-pilonidal-specimen.png" alt="סינוס פילונידלי אחרי כריתה"><figcaption><b>סינוס פילונידלי אחרי כריתה</b>, ליד סרגל בסנטימטרים · Lord Lucan, <bdi>CC BY-SA 4.0</bdi>, Wikimedia Commons</figcaption></figure>
  </div>
@@ -399,16 +404,16 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>גרד, מחלות מין ומצב חירום אחד</h2>
  <div class="grid">
   <div style="display:grid;gap:10px">
-   <div class="box"><b class="t">גרד בפי הטבעת</b>גרוע יותר בלילה ומעיר משינה. שואלים על דליפה, הפרשה ולחות סביב פי הטבעת. מסתכלים על העור. גרד מופיע גם בטחורים ובמחלות מין: קונדילומות, הרפס, זיבה וכלמידיה. אמבטיות ישיבה חמות מקלות על גרד ושריפה</div>
-   <div class="box n"><b class="t">מחלות מין בפי הטבעת</b>
-    <ul class="b sm"><li><b>קונדילומה</b> (<bdi>HPV</bdi>): טיפול מקומי או הסרה. פתולוגיה לכל נגע שהוסר, בעיקר ב-<bdi>HIV</bdi>. חזרה ב-<bdi dir="ltr">20–30%</bdi></li><li><b>הרפס:</b> שלפוחיות קטנות, כאב, טנזמוס. אציקלוביר <bdi dir="ltr">7–10</bdi> ימים</li><li><b>זיבה וכלמידיה:</b> לעיתים קרובות בלי תסמינים. בזיבה מטפלים גם בכלמידיה, בגלל זיהום משולב שכיח</li><li>מחלת מין: מציעים בדיקת <bdi>HIV</bdi></li></ul></div>
+   <div class="box"><b class="t">גרד <span class="nw">ב-<bdi dir="ltr">anus</bdi></span></b>גרוע יותר בלילה ומעיר משינה. שואלים על דליפה, הפרשה ולחות סביב <span class="nw">ה-<bdi dir="ltr">anus</bdi></span>. מסתכלים על העור. גרד מופיע גם בטחורים ובמחלות מין: קונדילומות, הרפס, זיבה וכלמידיה. אמבטיות ישיבה חמות מקלות על גרד ושריפה</div>
+   <div class="box n"><b class="t">מחלות מין <span class="nw">ב-<bdi dir="ltr">anus</bdi></span></b>
+    <ul class="b sm"><li><b>קונדילומה</b> (<bdi>HPV</bdi>): טיפול מקומי או הסרה. פתולוגיה לכל נגע שהוסר, בעיקר <span class="nw">ב-<bdi>HIV</bdi></span>. חזרה <span class="nw">ב-<bdi dir="ltr">20–30%</bdi></span></li><li><b>הרפס:</b> שלפוחיות קטנות, כאב, טנזמוס. אציקלוביר <bdi dir="ltr">7–10</bdi> ימים</li><li><b>זיבה וכלמידיה:</b> לעיתים קרובות בלי תסמינים. בזיבה מטפלים גם בכלמידיה, בגלל זיהום משולב שכיח</li><li>מחלת מין: מציעים בדיקת <bdi>HIV</bdi></li></ul></div>
   </div>
   <div class="box r"><b class="t">גנגרנה של פורנייה · חירום</b>
    <ul class="b sm">
-    <li>פסציאיטיס נמקית של הפרינאום, איברי המין או פי הטבעת. גברים, סוכרת, אלכוהול, דיכוי חיסוני</li>
+    <li>פסציאיטיס נמקית של <span class="nw">ה-<bdi dir="ltr">perineum</bdi></span>, איברי המין או <span class="nw">ה-<bdi dir="ltr">anus</bdi></span>. גברים, סוכרת, אלכוהול, דיכוי חיסוני</li>
     <li>כאב ונפיחות, קרפיטציות, שלפוחיות סגולות-שחורות. המטופל חולה הרבה יותר ממה שהעור מראה</li>
     <li>ציון <bdi>LRINEC</bdi> של 6 ומעלה: ערך מנבא חיובי <bdi dir="ltr">92%</bdi> ושלילי <bdi dir="ltr">96%</bdi></li>
-    <li>החייאה, אנטיביוטיקה רחבה ו<b>הטריה ניתוחית מוקדמת ונרחבת</b>. בממוצע <bdi dir="ltr">3–4</bdi> ניתוחים. האשכים בדרך כלל נחסכים</li>
+    <li>החייאה, אנטיביוטיקה רחבה ו<b>הטריה ניתוחית מוקדמת ונרחבת</b>. בממוצע <bdi dir="ltr">3–4</bdi> ניתוחים. <span class="nw">ה-<bdi dir="ltr">testes</bdi></span> בדרך כלל נחסכים</li>
    </ul></div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1517, 1519, 1530–1532</bdi></span><span>זיהומים</span></div>
@@ -422,13 +427,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <p>79 מטופלים בניתוח הכלכלי של המחקר. אחרי 24 חודשים הכריתה נתנה איכות חיים טובה יותר ופחות חזרות (הפרש של <bdi dir="ltr">33.5%</bdi>), במחיר גבוה יותר. המסקנה: לא לוותר על כריתה רק בגלל עלות</p>
    <small>van Oostendorp JY et al. Dis Colon Rectum 2025;68:1100-11</small></div>
   <div class="study"><div class="y"><bdi>Surgery</bdi> 2022 · מטא-אנליזה של רשת</div><b>פיסורה: מה הכי מרפא?</b>
-   <p>69 מחקרים אקראיים. חיתוך הסוגר בצד נתן את הסיכוי הגבוה ביותר לריפוי בכל נקודות הזמן, אבל גם את הסיכון הגבוה ביותר לבריחה. בוטולינום וטיפול מקומי דומים זה לזה</p>
+   <p>69 מחקרים אקראיים. חיתוך <span class="nw">ה-<bdi dir="ltr">anal sphincter</bdi></span> בצד נתן את הסיכוי הגבוה ביותר לריפוי בכל נקודות הזמן, אבל גם את הסיכון הגבוה ביותר לבריחה. בוטולינום וטיפול מקומי דומים זה לזה</p>
    <small>Jin JZ et al. Surgery 2022;172:41-52</small></div>
   <div class="study"><div class="y"><bdi>Dis Colon Rectum</bdi> 2024 · מחקר אקראי בישראל</div><b>אנטיביוטיקה אחרי ניקוז מורסה?</b>
    <p>98 מטופלים, אוגמנטין שבוע מול בלי אנטיביוטיקה. פיסטולה: <bdi dir="ltr">16.3%</bdi> לעומת <bdi dir="ltr">10.2%</bdi>, מורסה חוזרת: <bdi dir="ltr">9.2%</bdi> בסך הכול, בלי הבדל מובהק. האנטיביוטיקה לא מנעה פיסטולה</p>
    <small>Nasasra A et al. Dis Colon Rectum 2024;67:1072-6 (שמיר ורמב״ם)</small></div>
   <div class="study"><div class="y"><bdi>BJS</bdi> 2024 · מחקר עוקבה בבריטניה</div><b><bdi>PITSTOP</bdi>: ניתוחי סינוס פילונידלי</b>
-   <p>667 משתתפים, 12 שיטות ניתוח. סיבוכים ב-<bdi dir="ltr">45.1%</bdi>. ניתוח זעיר-פולשני: איכות חיים טובה יותר, פחות כאב ופחות סיבוכים, אבל כ-<bdi dir="ltr">10%</bdi> יותר כישלונות. אחרי 6 חודשים לרבע מהמטופלים הפצע עדיין לא נסגר</p>
+   <p>667 משתתפים, 12 שיטות ניתוח. סיבוכים <span class="nw">ב-<bdi dir="ltr">45.1%</bdi></span>. ניתוח זעיר-פולשני: איכות חיים טובה יותר, פחות כאב ופחות סיבוכים, אבל <span class="nw">כ-<bdi dir="ltr">10%</bdi></span> יותר כישלונות. אחרי 6 חודשים לרבע מהמטופלים הפצע עדיין לא נסגר</p>
    <small>Brown SR et al. Br J Surg 2024;111:znae009</small></div>
  </div>
  <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
@@ -438,11 +443,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>17</b>לסיכום</div>
  <h2>חמישה דברים לקחת למחלקה</h2>
  <ol class="obj">
-  <li>הקו המשונן מפריד: מעליו אין כאב (גומייה), מתחתיו כואב (טחור חיצוני, פיסורה)</li>
+  <li><span class="nw">ה-<bdi dir="ltr">dentate line</bdi></span> מפריד: מעליו אין כאב (גומייה), מתחתיו כואב (טחור חיצוני, פיסורה)</li>
   <li>בודקים עם מלווה, בשכיבה על הצד, בהסתכלות, מישוש, בדיקה רקטלית ואנוסקופיה. בפיסורה מוותרים על בדיקה כואבת</li>
   <li>טחורים: קודם סיבים, שתייה והרגלי שירותים. אחר כך גומייה. בדרגות <bdi>III–IV</bdi> ניתוח</li>
-  <li>פיסורה כרונית: משחה (חוסם סידן), בוטולינום. בסוף חיתוך חלקי של הסוגר. לא בקו האמצע: לחשוב אחרת</li>
-  <li>מורסה מנקזים מיד וקרוב לפי הטבעת. אחריה פיסטולה בכמחצית</li>
+  <li>פיסורה כרונית: משחה (חוסם סידן), בוטולינום. בסוף חיתוך חלקי של <span class="nw">ה-<bdi dir="ltr">anal sphincter</bdi></span>. לא בקו האמצע: לחשוב אחרת</li>
+  <li>מורסה מנקזים מיד וקרוב <span class="nw">ל-<bdi dir="ltr">anus</bdi></span>. אחריה פיסטולה בכמחצית</li>
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 97 <bdi>Benign Anorectal Disorders</bdi> (עמ׳ <bdi dir="ltr">1515–1534</bdi>)</div>
  <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906), <bdi>NCI</bdi> ו-Sue Clark (נחלת הכלל) · <bdi>Blausen Medical</bdi> (<bdi>CC BY 3.0</bdi>) · <bdi>scientificanimations.com</bdi>, <bdi>McortNGHH</bdi>, Απόστολος Σταματιάδης, Lord Lucan (<bdi>CC BY-SA</bdi>, <bdi>Wikimedia Commons</bdi>) · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>

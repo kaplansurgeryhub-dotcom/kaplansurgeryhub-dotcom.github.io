@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>חסימת מעי דק · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -88,6 +88,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -99,6 +100,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -116,6 +118,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -149,8 +154,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>2</b>אנטומיה · אינטראקטיבי</div>
- <h2>המעי הדק במקומו</h2>
- <div class="hotw"><div class="hoti"><img src="img/Sobo_1906_408_sbo.jpg" alt="הבטן הפתוחה: האומנטום מורם, המעי הדק במקומו ומסגרת המעי הגס"><svg viewBox="0 0 1000 1110" preserveAspectRatio="none" style="--lw:9;--bf:24px">
+ <h2><span class="nw">ה-<bdi dir="ltr">small bowel</bdi></span> במקומו</h2>
+ <div class="hotw"><div class="hoti"><img src="img/Sobo_1906_408_sbo.jpg" alt="הבטן הפתוחה: ה-omentum מורם, ה-small bowel במקומו ומסגרת ה-colon"><svg viewBox="0 0 1000 1110" preserveAspectRatio="none" style="--lw:9;--bf:24px">
   <path class="hz" data-hz="om" d="M529,46 C555,40 558,55 571,64 C584,73 593,87 607,100 C621,113 639,130 657,143 C675,156 695,172 714,179 C733,186 747,180 771,186 C795,192 839,195 857,214 C875,233 876,252 879,300 C882,348 879,448 875,500 C871,552 868,595 857,614 C846,633 819,621 807,614 C795,607 796,590 786,571 C776,552 762,519 750,500 C738,481 732,462 714,457 C696,452 679,470 643,471 C607,472 548,466 500,464 C452,462 395,456 357,457 C319,458 291,464 271,471 C251,478 246,484 236,500 C226,516 224,557 214,564 C204,571 189,560 179,543 C169,526 160,501 154,464 C148,427 143,360 143,321 C143,282 144,253 154,229 C164,205 186,197 200,179 C214,161 222,133 236,121 C250,109 256,110 286,107 C316,104 374,110 414,100 C454,90 503,52 529,46 Z" style="--c:#C9893F"/>
   <path class="hz" data-hz="col" d="M271,471 C294,462 349,457 393,457 C437,457 488,469 536,471 C584,473 643,466 679,471 C715,476 737,487 750,500 C763,513 763,538 757,550 C751,562 745,564 714,571 C683,578 618,593 571,593 C524,593 476,577 429,571 C382,565 315,566 286,557 C257,548 260,528 257,514 C254,500 248,480 271,471 Z M229,743 C247,738 281,732 300,757 C319,782 334,861 343,893 C352,925 358,932 357,950 C356,968 348,989 336,1000 C324,1011 303,1020 286,1014 C269,1008 250,990 236,964 C222,938 207,887 200,857 C193,827 188,805 193,786 C198,767 211,748 229,743 Z M793,793 C800,801 806,828 800,857 C794,886 774,935 757,964 C740,993 719,1018 700,1029 C681,1040 656,1036 643,1029 C630,1022 619,1003 621,986 C623,969 642,950 657,929 C672,908 697,877 714,857 C731,837 744,818 757,807 C770,796 786,785 793,793 Z" style="--c:#7A5BD6"/>
   <path class="hz" data-hz="jej" d="M221,629 C224,616 219,601 236,593 C253,585 290,582 321,582 C352,582 390,586 420,590 C450,594 469,603 500,607 C531,611 571,614 607,614 C643,614 690,602 714,607 C738,612 744,625 750,643 C756,661 758,693 752,714 C746,735 738,758 714,771 C690,784 640,795 607,793 C574,791 544,764 514,757 C484,750 461,750 429,750 C397,750 352,763 321,757 C290,751 260,728 243,714 C226,700 225,685 221,671 C217,657 218,642 221,629 Z" style="--c:#2F6FA8"/>
@@ -165,12 +170,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <g class="hzb" style="--c:#A3402E"><circle cx="205" cy="1048" r="20"/><text x="205" y="1048">6</text></g>
  </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-   <div class="hzi" data-hzi="om" hidden><b>1 · האומנטום הגדול</b><p>בסוף ניתוח מניחים אותו על אזור הניתוח או על אגן חשוף כחלק מטכניקה שמפחיתה הדבקויות. טכניקה טובה היא עדיין הדרך היעילה ביותר למנוע הדבקויות</p></div>
-   <div class="hzi" data-hzi="col" hidden><b>2 · מסגרת המעי הגס</b><p>בחסימת מעי דק המעי הגס ריק: בצילום המעי הדק מורחב ביחס למעי הגס ואין גז ברקטום. סרטן בצקום או במעי הגס העולה יכול להופיע כחסימת מעי דק</p></div>
-   <div class="hzi" data-hzi="jej" hidden><b>3 · ג׳ג׳ונום (שתי החמישיות העליונות)</b><p>מתחיל בזווית הדואודנו-ג׳ג׳ונלית (רצועת טרייץ), כ-<bdi dir="ltr">100–110</bdi> ס״מ. דופן עבה, 1–2 קשתות עם כלים ישרים ארוכים. <b>חסימה גבוהה:</b> בחילות והקאות בולטות. לעיתים הן התסמין היחיד. איבוד מיצי קיבה: חוסר כלור ואשלגן ובססת מטבולית</p></div>
-   <div class="hzi" data-hzi="ile" hidden><b>4 · אילאום (שלוש החמישיות התחתונות)</b><p>כ-<bdi dir="ltr">150–160</bdi> ס״מ, 4–5 קשתות עם כלים קצרים. <b>חסימה נמוכה:</b> כאב התכווצותי הוא התסמין הראשון והבולט, פחות הקאות ויותר תפיחות. הפרעות האלקטרוליטים פחות דרמטיות</p></div>
-   <div class="hzi" data-hzi="pel" hidden><b>5 · האגן</b><p>הדבקויות אחרי ניתוחים באגן (גינקולוגיה, תוספתן, מעי גס) הן יותר מ-60% מהחסימות. המעי נייד יותר באגן וקשור יותר בבטן העליונה</p></div>
-   <div class="hzi" data-hzi="gr" hidden><b>6 · המפשעות</b><p>בקע הוא הסיבה השנייה בשכיחותה, כ-10%: מפשעתי, פמורלי, בטני. בכל חולה עם חסימה בודקים מפשעות, משולש הירך ואזור האובטורטור</p></div>
+   <div class="hzi" data-hzi="om" hidden><b>1 · <bdi dir="ltr">Greater omentum</bdi></b><p>בסוף ניתוח מניחים אותו על אזור הניתוח או על אגן חשוף כחלק מטכניקה שמפחיתה הדבקויות. טכניקה טובה היא עדיין הדרך היעילה ביותר למנוע הדבקויות</p></div>
+   <div class="hzi" data-hzi="col" hidden><b>2 · <bdi dir="ltr">Colon</bdi> (המסגרת)</b><p>בחסימת מעי דק <span class="nw">ה-<bdi dir="ltr">colon</bdi></span> ריק: בצילום <span class="nw">ה-<bdi dir="ltr">small bowel</bdi></span> מורחב ביחס <span class="nw">ל-<bdi dir="ltr">colon</bdi></span> ואין גז <span class="nw">ב-<bdi dir="ltr">rectum</bdi></span>. סרטן <span class="nw">ב-<bdi dir="ltr">cecum</bdi></span> או <span class="nw">ב-<bdi dir="ltr">ascending colon</bdi></span> יכול להופיע כחסימת מעי דק</p></div>
+   <div class="hzi" data-hzi="jej" hidden><b>3 · <bdi dir="ltr">Jejunum</bdi> (שתי החמישיות העליונות)</b><p>מתחיל <span class="nw">ב-<bdi dir="ltr">duodenojejunal flexure</bdi></span> (<bdi dir="ltr">ligament of Treitz</bdi>), <span class="nw">כ-<bdi dir="ltr">100–110</bdi></span> ס״מ. דופן עבה, 1–2 <bdi dir="ltr">arcades</bdi> עם <bdi dir="ltr">vasa recta</bdi> ארוכים. <b>חסימה גבוהה:</b> בחילות והקאות בולטות. לעיתים הן התסמין היחיד. איבוד מיצי קיבה: חוסר כלור ואשלגן ובססת מטבולית</p></div>
+   <div class="hzi" data-hzi="ile" hidden><b>4 · <bdi dir="ltr">Ileum</bdi> (שלוש החמישיות התחתונות)</b><p><span class="nw">כ-<bdi dir="ltr">150–160</bdi></span> ס״מ, 4–5 <bdi dir="ltr">arcades</bdi> עם <bdi dir="ltr">vasa recta</bdi> קצרים. <b>חסימה נמוכה:</b> כאב התכווצותי הוא התסמין הראשון והבולט, פחות הקאות ויותר תפיחות. הפרעות האלקטרוליטים פחות דרמטיות</p></div>
+   <div class="hzi" data-hzi="pel" hidden><b>5 · האגן</b><p>הדבקויות אחרי ניתוחים באגן (גינקולוגיה, תוספתן, <bdi dir="ltr">colon</bdi>) הן יותר מ-60% מהחסימות. המעי נייד יותר באגן וקשור יותר בבטן העליונה</p></div>
+   <div class="hzi" data-hzi="gr" hidden><b>6 · המפשעות</b><p>בקע הוא הסיבה השנייה בשכיחותה, כ-10%: מפשעתי, פמורלי, בטני. בכל חולה עם חסימה בודקים מפשעות, <span class="nw">ה-<bdi dir="ltr">femoral triangle</bdi></span> ואזור <span class="nw">ה-<bdi dir="ltr">obturator foramen</bdi></span></p></div>
   </div></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 91 עמ׳ <bdi dir="ltr">1321–1322, 1332–1333, 1337</bdi> · הציור: <bdi dir="ltr">Sobotta (1906)</bdi>, איור 408 (נחלת הכלל)</span><span>אנטומיה</span></div>
 </div></section>
@@ -181,7 +186,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="num">
   <div><b dir="ltr">&gt;60%</b><span>הדבקויות, בעיקר אחרי ניתוחים באגן</span></div>
   <div><b dir="ltr">~10%</b><span>בקעים: הסיבה השנייה בשכיחותה</span></div>
-  <div><b dir="ltr">~5%</b><span>גידולים ממאירים, רובם גרורות בצפק</span></div>
+  <div><b dir="ltr">~5%</b><span>גידולים ממאירים, רובם גרורות <span class="nw">ב-<bdi dir="ltr">peritoneum</bdi></span></span></div>
   <div><b dir="ltr">~5%</b><span>מחלת קרוהן: הסיבה הרביעית</span></div>
  </div>
  <div class="grid f">
@@ -194,10 +199,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <ul class="b sm" style="margin-top:10px">
     <li><b>אבצס</b> (תוספתן, דיברטיקול, דליפה מהשקה) יכול לגרום לחסימה ולא תמיד חושבים עליו</li>
     <li><b>אינטוסוספציה במבוגר:</b> לרוב יש נקודת הובלה, פוליפ או גידול</li>
-    <li><b>אבן מרה</b> עוברת למעי דרך פיסטולה בין כיס המרה למעי</li>
+    <li><b>אבן מרה</b> עוברת למעי דרך פיסטולה בין <span class="nw">ה-<bdi dir="ltr">gallbladder</bdi></span> למעי</li>
    </ul>
   </div>
-  <figure><img src="img/gallstone-ileus.jpg" alt="אילאוס מאבן מרה בצילום וב-CT"><figcaption>חסימה מאבן מרה: אבן מסוידת בצילום וב-<bdi>CT</bdi> (בעיגול) · <bdi dir="ltr">Hellerhoff · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/gallstone-ileus.jpg" alt="אילאוס מאבן מרה בצילום וב-CT"><figcaption>חסימה מאבן מרה: אבן מסוידת בצילום <span class="nw">וב-<bdi>CT</bdi></span> (בעיגול) · <bdi dir="ltr">Hellerhoff · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 91 עמ׳ <bdi dir="ltr">1331–1332</bdi></span><span>סיבות</span></div>
 </div></section>
@@ -210,12 +215,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div><b>בהתחלה</b><span>פריסטלטיקה מוגברת, מעל ומתחת לחסימה. לכן <b>שלשול לא שולל חסימה</b></span></div>
    <div><b>אחר כך</b><span>המעי מתעייף ומתרחב. ההתכווצויות נחלשות</span></div>
    <div><b>מדור שלישי</b><span>מים ומלחים נאגרים בחלל ובדופן: התייבשות, מיעוט שתן, אזוטמיה, ריכוז הדם</span></div>
-   <div><b>לחץ בבטן</b><span>החזר ורידי יורד, הסרעפת עולה והנשימה נפגעת</span></div>
-   <div><b>זרימת דם</b><span>הלחץ בחלל מוריד את זרימת הדם לרירית</span></div>
+   <div><b>לחץ בבטן</b><span>החזר ורידי יורד, <span class="nw">ה-<bdi dir="ltr">diaphragm</bdi></span> עולה והנשימה נפגעת</span></div>
+   <div><b>זרימת דם</b><span>הלחץ בחלל מוריד את זרימת הדם <span class="nw">ל-<bdi dir="ltr">mucosa</bdi></span></span></div>
   </div>
   <div style="display:grid;gap:10px">
    <div class="box r"><b class="t">לולאה סגורה</b>שני הקצוות חסומים (רצועה, בקע פנימי), לעיתים עם סיבוב (וולוולוס). הלחץ גבוה במיוחד: חסימה עורקית, איסכמיה, ניקוב ופריטוניטיס</div>
-   <div class="box a"><b class="t">חיידקים</b>בג׳ג׳ונום התקין <bdi dir="ltr">10³–10⁵ CFU/mL</bdi>. בחסימה עד <bdi dir="ltr">10⁹–10¹⁰</bdi>, בעיקר <bdi>E. coli</bdi>, סטרפטוקוקוס פקליס וקלבסיאלה. מעבר חיידקים לבלוטות ולמחזור הדם: דלקת מערכתית, אלח דם וכשל רב-מערכתי</div>
+   <div class="box a"><b class="t">חיידקים</b><span class="nw">ב-<bdi dir="ltr">jejunum</bdi></span> התקין <bdi dir="ltr">10³–10⁵ CFU/mL</bdi>. בחסימה עד <bdi dir="ltr">10⁹–10¹⁰</bdi>, בעיקר <bdi>E. coli</bdi>, סטרפטוקוקוס פקליס וקלבסיאלה. מעבר חיידקים לבלוטות ולמחזור הדם: דלקת מערכתית, אלח דם וכשל רב-מערכתי</div>
    <div class="box n"><b class="t">ההקאות בחסימה גבוהה</b>חוסר כלור, חוסר אשלגן ובססת מטבולית</div>
   </div>
  </div>
@@ -251,12 +256,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>הסתכלות:</b> בטן תפוחה, צלקות ניתוח. בחולה רזה רואים לעיתים גלי פריסטלטיקה</li>
     <li><b>האזנה:</b> בהתחלה קולות מוגברים ו״שאגות״. מאוחר יותר שקט</li>
     <li><b>מישוש:</b> רגישות קלה, לעיתים גוש. רגישות ממוקדת, רגישות בהרפיה והתגוננות: פריטוניטיס וחשד לחנק</li>
-    <li><b>שערי בקע:</b> מפשעות, משולש הירך, אזור האובטורטור</li>
+    <li><b>שערי בקע:</b> מפשעות, <span class="nw">ה-<bdi dir="ltr">femoral triangle</bdi></span>, אזור <span class="nw">ה-<bdi dir="ltr">obturator foramen</bdi></span></li>
     <li><b>בדיקה רקטלית תמיד:</b> גוש חוסם או דם סמוי (גידול, אינטוסוספציה, אוטם)</li>
    </ul>
    <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>בדקו חולה מאושפז עם חסימת מעי דק: ספרו את הצלקות ובדקו את שערי הבקע. בדקו גם את הזונדה: כמה הפרישה ומה צבע התוכן. עקבו אחרי מאזן הנוזלים והאלקטרוליטים</div>
   </div>
-  <figure><img src="img/exam-ring-crop.jpg" alt="בדיקת הטבעת המפשעתית החיצונית באצבע" style="max-height:44vh"><figcaption>בדיקת שער הבקע במפשעה: אצבע דרך העור אל הטבעת המפשעתית החיצונית · <bdi dir="ltr">Herych H.I. · CC BY 3.0 · Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/exam-ring-crop.jpg" alt="בדיקת ה-superficial inguinal ring באצבע" style="max-height:44vh"><figcaption>בדיקת שער הבקע במפשעה: אצבע דרך העור אל <span class="nw">ה-<bdi dir="ltr">superficial inguinal ring</bdi></span> · <bdi dir="ltr">Herych H.I. · CC BY 3.0 · Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 91 עמ׳ <bdi dir="ltr">1333</bdi></span><span>בדיקה גופנית</span></div>
 </div></section>
@@ -273,13 +278,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    </ul>
    <h3 style="margin-top:12px">סימנים בצילום</h3>
    <div class="flow">
-    <div><b>בשכיבה</b><span>מעי דק מורחב (מעל 3 ס״מ), מורחב ביחס למעי הגס, אין גז ברקטום, בטן חסרת גז</span></div>
+    <div><b>בשכיבה</b><span><span class="nw">ה-<bdi dir="ltr">small bowel</bdi></span> מורחב (מעל 3 ס״מ), מורחב ביחס <span class="nw">ל-<bdi dir="ltr">colon</bdi></span>, אין גז <span class="nw">ב-<bdi dir="ltr">rectum</bdi></span>, בטן חסרת גז</span></div>
     <div><b>בעמידה</b><span>רמות נוזל-אוויר מרובות ״במדרגות״, ארוכות מ-2.5 ס״מ, בגבהים שונים באותה לולאה</span></div>
     <div><b>מדאיג</b><span>מעט גז בשכיבה ו״מחרוזת חרוזים״ בעמידה: חסימה גבוהה או לולאה סגורה</span></div>
     <div><b>לפעמים הסיבה</b><span>אבן מרה, גוף זר</span></div>
    </div>
   </div>
-  <figure><img src="img/xray-sbo-upright.jpg" alt="צילום בטן בעמידה עם רמות נוזל-אוויר" style="max-height:52vh"><figcaption>צילום בטן בעמידה: לולאות מעי דק מורחבות עם רמות נוזל-אוויר מרובות · <bdi dir="ltr">James Heilman, MD · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/xray-sbo-upright.jpg" alt="צילום בטן בעמידה עם רמות נוזל-אוויר" style="max-height:52vh"><figcaption>צילום בטן בעמידה: לולאות <bdi dir="ltr">small bowel</bdi> מורחבות עם רמות נוזל-אוויר מרובות · <bdi dir="ltr">James Heilman, MD · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 91 עמ׳ <bdi dir="ltr">1333–1334</bdi> (תיבה <bdi dir="ltr">91.2</bdi>)</span><span>מעבדה וצילום</span></div>
 </div></section>
@@ -296,9 +301,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>חומר ניגוד מסיס במים</b> (<bdi>Gastrografin</bdi>) דרך זונדה או בפה: מראה את מקום החסימה ולעיתים מזרז את הפתרון (אוסמוטי, מוריד בצקת בדופן)</li>
     <li><b>אולטרסאונד</b> בהיריון. <bdi>MRI</bdi> לא חלק מהבירור הרגיל</li>
    </ul>
-   <div class="box r" style="margin-top:10px"><b class="t">לא מעכבים</b>חולה רעיל עם חסימה ברורה מהאנמנזה ומהבדיקה הולך לניתוח. לא מחכים לבדיקות מיותרות. גם בבטן חריפה: קודם צילום וזונדה, כדי למנוע אספירציה בשכיבה ל-<bdi>CT</bdi></div>
+   <div class="box r" style="margin-top:10px"><b class="t">לא מעכבים</b>חולה רעיל עם חסימה ברורה מהאנמנזה ומהבדיקה הולך לניתוח. לא מחכים לבדיקות מיותרות. גם בבטן חריפה: קודם צילום וזונדה, כדי למנוע אספירציה בשכיבה <span class="nw">ל-<bdi>CT</bdi></span></div>
   </div>
-  <figure><img src="img/ct-sbo-adhesive.jpg" alt="CT של חסימה מהדבקויות עם מעבר חד בקוטר"><figcaption>חסימה מהדבקות ב-<bdi>CT</bdi>: לולאות מורחבות בבטן העליונה ומעבר חד למעי קרוס (מסומן באדום) · <bdi dir="ltr">Hellerhoff · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/ct-sbo-adhesive.jpg" alt="CT של חסימה מהדבקויות עם מעבר חד בקוטר"><figcaption>חסימה מהדבקות <span class="nw">ב-<bdi>CT</bdi></span>: לולאות מורחבות בבטן העליונה ומעבר חד למעי קרוס (מסומן באדום) · <bdi dir="ltr">Hellerhoff · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 91 עמ׳ <bdi dir="ltr">1334–1335</bdi> · פרק 85 עמ׳ <bdi dir="ltr">1160</bdi></span><span>הדמיה</span></div>
 </div></section>
@@ -313,13 +318,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>חנוקה:</b> לרוב לולאה סגורה עם פגיעה באספקת הדם. אוטם המעי, יותר תחלואה ותמותה</li>
     <li><b>הסימנים הקלאסיים:</b> דופק מהיר, חום, לויקוציטוזיס, חמצת לקטית וכאב קבוע. <b>אף אחד מהם לא מזהה או שולל חנק בכל המקרים. גם לא שילוב שלהם</b></li>
    </ul>
-   <h3 style="margin-top:10px">ב-<bdi>CT</bdi></h3>
+   <h3 style="margin-top:10px"><span class="nw">ב-<bdi>CT</bdi></span></h3>
    <div class="flow">
-    <div><b>לולאה סגורה</b><span>לולאה בצורת <bdi>U</bdi> או ״פול קפה״, עם התחדדות בשני הקצוות. מערבולת במזנטריום (וולוולוס)</span></div>
-    <div><b>איסכמיה</b><span>דופן מעובה (מעל 3 מ״מ), בצקת במזנטריום, נוזל בין הלולאות, האדרה ירודה של הדופן, אוויר בדופן, גז בוורידים המזנטריים או בפורטה</span></div>
+    <div><b>לולאה סגורה</b><span>לולאה בצורת <bdi>U</bdi> או ״פול קפה״, עם התחדדות בשני הקצוות. מערבולת <span class="nw">ב-<bdi dir="ltr">mesentery</bdi></span> (וולוולוס)</span></div>
+    <div><b>איסכמיה</b><span>דופן מעובה (מעל 3 מ״מ), בצקת <span class="nw">ב-<bdi dir="ltr">mesentery</bdi></span>, נוזל בין הלולאות, האדרה ירודה של הדופן, אוויר בדופן, גז <span class="nw">ב-<bdi dir="ltr">mesenteric veins</bdi></span> או <span class="nw">ב-<bdi dir="ltr">portal vein</bdi></span></span></div>
    </div>
   </div>
-  <figure><img src="img/op-sbo-gangrene.jpg" alt="ניתוח: לולאת ג'ג'ונום נמקית מחסימה מהדבקות"><figcaption>כך זה נראה בניתוח: חסימה מרצועת הדבקות עם נמק של חלק מהג׳ג׳ונום · <bdi dir="ltr">Thomas Zimmermann (THWZ) · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/op-sbo-gangrene.jpg" alt="ניתוח: לולאת jejunum נמקית מחסימה מהדבקות"><figcaption>כך זה נראה בניתוח: חסימה מרצועת הדבקות עם נמק של חלק <span class="nw">מה-<bdi dir="ltr">jejunum</bdi></span> · <bdi dir="ltr">Thomas Zimmermann (THWZ) · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 91 עמ׳ <bdi dir="ltr">1333, 1335</bdi></span><span>חנק</span></div>
 </div></section>
@@ -334,7 +339,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>נוזלים:</b> החייאה אגרסיבית בתמיסה איזוטונית (רינגר לקטט או סליין). אשלגן רק אחרי שיש שתן</li>
     <li><b>מעקב:</b> תפוקת שתן (קטטר או איסוף חיצוני), אלקטרוליטים, המטוקריט ולויקוציטים שוב ושוב</li>
     <li><b>אנטיביוטיקה:</b> אין הוכחה לתועלת בחולה לא רעיל. נותנים לפני ניתוח</li>
-    <li><b>זונדה:</b> מרוקנת את הקיבה, מקטינה סיכון לאספירציה ואת התפיחות מאוויר שנבלע. מקובלת, אבל ההוכחות לא חד-משמעיות: החלטה לכל חולה. צנתר ארוך למעי לא עדיף</li>
+    <li><b>זונדה:</b> מרוקנת את <span class="nw">ה-<bdi dir="ltr">stomach</bdi></span>, מקטינה סיכון לאספירציה ואת התפיחות מאוויר שנבלע. מקובלת, אבל ההוכחות לא חד-משמעיות: החלטה לכל חולה. צנתר ארוך למעי לא עדיף</li>
    </ul>
   </div>
   <div style="display:grid;gap:10px">
@@ -356,8 +361,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div><b>מתי</b><span>בחסימה מהדבקויות, בדרך כלל <bdi dir="ltr">24–48</bdi> שעות אחרי ניקוז טוב בזונדה</span></div>
   <div><b>מה נותנים</b><span><bdi dir="ltr">100 mL</bdi> חומר ניגוד מסיס במים, דרך הזונדה או בפה</span></div>
   <div><b>צילומים</b><span>בזמנים קבועים, למשל אחרי 8 ואחרי 24 שעות</span></div>
-  <div><b>חומר הניגוד במעי הגס</b><span>החסימה כנראה תיפתח. ממשיכים בשמרני</span></div>
-  <div><b>לא הגיע למעי הגס אחרי 24 שעות</b><span>הטיפול השמרני כנראה ייכשל. סביר שצריך ניתוח</span></div>
+  <div><b>חומר הניגוד <span class="nw">ב-<bdi dir="ltr">colon</bdi></span></b><span>החסימה כנראה תיפתח. ממשיכים בשמרני</span></div>
+  <div><b>לא הגיע <span class="nw">ל-<bdi dir="ltr">colon</bdi></span> אחרי 24 שעות</b><span>הטיפול השמרני כנראה ייכשל. סביר שצריך ניתוח</span></div>
  </div>
  <div class="box a" style="margin-top:12px"><b class="t">שימו לב</b>התועלת הוכחה בחסימה מהדבקויות. אין הוכחה דומה בחסימות מסיבות אחרות</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 91 עמ׳ <bdi dir="ltr">1335–1336</bdi></span><span>מבחן חומר ניגוד</span></div>
@@ -372,7 +377,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <ul class="b sm"><li>כישלון של טיפול שמרני</li><li>פגיעה באספקת הדם, חנק או ניקוב</li></ul>
    <h3 style="margin-top:10px">לפי הסיבה</h3>
    <ul class="b sm">
-    <li><b>רצועה:</b> שחרור הדבקויות בעדינות. לא לפגוע בסרוזה ולא לפתוח את המעי</li>
+    <li><b>רצועה:</b> שחרור הדבקויות בעדינות. לא לפגוע <span class="nw">ב-<bdi dir="ltr">serosa</bdi></span> ולא לפתוח את המעי</li>
     <li><b>בקע כלוא:</b> החזרת המעי וסגירת הפגם</li>
     <li><b>גידול מפושט:</b> אם השמרני לא מצליח, לרוב עקיפה (<bdi>bypass</bdi>) ולא ניתוח ארוך עם כריתות</li>
     <li><b>קרוהן:</b> חריף נפתח לרוב בשמרני. היצרות פיברוטית: כריתה או הרחבה (<bdi>strictureplasty</bdi>)</li>
@@ -405,7 +410,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div class="flow">
     <div><b>הסיבות</b><span>אחרי לפרוטומיה, אופיאטים ותרופות אנטיכולינרגיות, חוסר אשלגן, נתרן או מגנזיום, דלקת בבטן, דימום רטרופריטונאלי, אלח דם</span></div>
     <div><b>התמונה</b><span>תפיחות בלי כאב התכווצותי. לעיתים עוברים גזים או שלשול</span></div>
-    <div><b>בצילום</b><span>גם מעי דק וגם מעי גס מורחבים. כשלא ברור: <bdi>CT</bdi></span></div>
+    <div><b>בצילום</b><span>גם <bdi dir="ltr">small bowel</bdi> וגם <bdi dir="ltr">colon</bdi> מורחבים. כשלא ברור: <bdi>CT</bdi></span></div>
     <div><b>הטיפול</b><span>תומך: זונדה, נוזלים, טיפול באלח הדם, תיקון אלקטרוליטים, הפסקת התרופות. מסטיק עשוי לעזור</span></div>
    </div>
   </div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>קרצינומה של הקיבה · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -83,6 +83,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -94,6 +95,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -111,6 +113,9 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -147,15 +152,15 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <h2>סרטן הקיבה במספרים</h2>
  <div class="num">
   <div><b dir="ltr">&gt;1M</b><span>מקרים חדשים בשנה בעולם, יותר מ-780 אלף מקרי מוות</span></div>
-  <div><b dir="ltr">~75%</b><span>מהמקרים בעולם קשורים לזיהום ב-<bdi>H. pylori</bdi></span></div>
+  <div><b dir="ltr">~75%</b><span>מהמקרים בעולם קשורים לזיהום <span class="nw">ב-<bdi>H. pylori</bdi></span></span></div>
   <div><b dir="ltr">&gt;60%</b><span>מאובחנים במחלה מתקדמת מקומית או גרורתית</span></div>
   <div><b dir="ltr">~35%</b><span>הישרדות ל-5 שנים בכלל החולים</span></div>
  </div>
  <ul class="b">
-  <li>השכיחות הגבוהה ביותר <b>במזרח אסיה ובמזרח אירופה</b>. ביפן הישרדות ספציפית למחלה ל-5 שנים מעל <bdi dir="ltr">80%</bdi>, בארה״ב מתחת ל-<bdi dir="ltr">50%</bdi></li>
-  <li>כ-<bdi dir="ltr">60%</bdi> מהחולים בארה״ב <b>גברים</b></li>
-  <li><b>גידולי קרדיה</b> חולקים גורמי סיכון עם ושט ברט: השמנה ורפלוקס. השכיחות שלהם יציבה או עולה במערב</li>
-  <li><b>גידולים דיסטליים</b> קשורים בעיקר ל-<bdi>H. pylori</bdi>. עלייה מדאיגה בגידולים כאלה בגילים <bdi dir="ltr">25–40</bdi></li>
+  <li>השכיחות הגבוהה ביותר <b>במזרח אסיה ובמזרח אירופה</b>. ביפן הישרדות ספציפית למחלה ל-5 שנים מעל <bdi dir="ltr">80%</bdi>, בארה״ב מתחת <span class="nw">ל-<bdi dir="ltr">50%</bdi></span></li>
+  <li><span class="nw">כ-<bdi dir="ltr">60%</bdi></span> מהחולים בארה״ב <b>גברים</b></li>
+  <li><b>גידולי <bdi>cardia</bdi></b> חולקים גורמי סיכון עם ושט ברט: השמנה ורפלוקס. השכיחות שלהם יציבה או עולה במערב</li>
+  <li><b>גידולים דיסטליים</b> קשורים בעיקר <span class="nw">ל-<bdi>H. pylori</bdi></span>. עלייה מדאיגה בגידולים כאלה בגילים <bdi dir="ltr">25–40</bdi></li>
  </ul>
  <div class="src"><span><b>Sabiston 22</b> · פרק 87 עמ׳ <bdi dir="ltr">1192, 1205</bdi></span><span>אפידמיולוגיה</span></div>
 </div></section>
@@ -180,8 +185,8 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
     <li><b>תזונה:</b> בשר ודגים מעושנים ומומלחים, חנקות (תרכובות <bdi>N-nitroso</bdi>), מעט פירות וירקות טריים</li>
     <li><b>עישון:</b> סיכון גבוה פי 1.5 בערך. גם אלכוהול</li>
     <li><b>אנמיה ממארת</b> (אכלורהידריה), <b>גסטריטיס אטרופית</b>, פוליפים אדנומטוטיים</li>
-    <li><b>ניתוח קודם בקיבה</b>, הקרנה קודמת לבטן (למשל אחרי לימפומת הודג׳קין או סרטן אשך)</li>
-    <li><b>השמנה</b> (לגידולי קרדיה), שימוש ממושך ב-PPI, נגיף <bdi>EBV</bdi></li>
+    <li><b>ניתוח קודם <span class="nw">ב-<bdi>stomach</bdi></span></b>, הקרנה קודמת לבטן (למשל אחרי לימפומת הודג׳קין או סרטן אשך)</li>
+    <li><b>השמנה</b> (לגידולי <bdi>cardia</bdi>), שימוש ממושך ב-PPI, נגיף <bdi>EBV</bdi></li>
     <li>מצב סוציואקונומי נמוך, מין זכר, חוסר קירור ומי באר מזוהמים</li>
    </ul>
    <div class="box a" style="margin-top:10px"><b class="t">PPI ממושך</b>מומלץ להפסיק PPI למי שאין לו התוויה. דיספפסיה מתמשכת למרות PPI: לבדוק <bdi>H. pylori</bdi> ולטפל</div>
@@ -194,29 +199,29 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <div class="kick"><b>4</b>תורשה ופוליפים</div>
  <h2>מי בסיכון גבוה במיוחד</h2>
  <div class="grid">
-  <div class="box n"><b class="t">סרטן קיבה דיפוזי תורשתי (מוטציה ב-<bdi>CDH1</bdi>)</b>
+  <div class="box n"><b class="t">סרטן קיבה דיפוזי תורשתי (מוטציה <span class="nw">ב-<bdi>CDH1</bdi></span>)</b>
    <ul class="b sm">
     <li>סיכון לכל החיים: <bdi dir="ltr">37–42%</bdi> בגברים, <bdi dir="ltr">25–33%</bdi> בנשים</li>
     <li>בנשים גם סיכון של <bdi dir="ltr">39–55%</bdi> לסרטן שד לובולרי: MRI שד שנתי מגיל 30</li>
-    <li><b>כריתת קיבה מלאה מונעת</b>, בדרך כלל בגיל <bdi dir="ltr">20–30</bdi>. ב-<bdi dir="ltr">90%</bdi> ומעלה מהתכשירים יש מוקדים מיקרוסקופיים של סרטן</li>
+    <li><b>כריתת קיבה מלאה מונעת</b>, בדרך כלל בגיל <bdi dir="ltr">20–30</bdi>. <span class="nw">ב-<bdi dir="ltr">90%</bdi></span> ומעלה מהתכשירים יש מוקדים מיקרוסקופיים של סרטן</li>
     <li>מי שמסרב: גסטרוסקופיה שנתית עם ביופסיות לפי פרוטוקול</li>
    </ul></div>
-  <div class="box"><b class="t">פוליפים בקיבה (כ-<bdi dir="ltr">6%</bdi> מהגסטרוסקופיות)</b>
+  <div class="box"><b class="t">פוליפים <span class="nw">ב-<bdi>stomach</bdi></span> (<span class="nw">כ-<bdi dir="ltr">6%</bdi></span> מהגסטרוסקופיות)</b>
    <ul class="b sm">
     <li>כל פוליפ: <b>ביופסיה</b>. פוליפ בודד מעל 1 ס״מ: כריתה מלאה</li>
-    <li><b>אדנומה:</b> כריתה אנדוסקופית מלאה ומעקב. סיכון גם לסרטן במקום אחר בקיבה</li>
-    <li><b>היפרפלסטי:</b> דיספלזיה ב-<bdi dir="ltr">1–20%</bdi>. סיכון גבוה יותר מעל 1 ס״מ ובפוליפ עם גבעול</li>
+    <li><b>אדנומה:</b> כריתה אנדוסקופית מלאה ומעקב. סיכון גם לסרטן במקום אחר <span class="nw">ב-<bdi>stomach</bdi></span></li>
+    <li><b>היפרפלסטי:</b> דיספלזיה <span class="nw">ב-<bdi dir="ltr">1–20%</bdi></span>. סיכון גבוה יותר מעל 1 ס״מ ובפוליפ עם גבעול</li>
     <li><b>פוליפ של בלוטות הפונדוס עם PPI:</b> בשליש מהמטופלים אחרי שנה. לא כורתים ולא עוקבים</li>
    </ul></div>
  </div>
- <div class="box a" style="margin-top:12px"><b class="t">מטאפלזיה מעיית נרחבת או אטרופיה נרחבת</b>מעקב אנדוסקופי כל <bdi dir="ltr">1–3</bdi> שנים. תסמונת <bdi>Lynch</bdi>, <bdi>FAP</bdi> ו-<bdi>Peutz-Jeghers</bdi> מעלות גם הן את הסיכון</div>
+ <div class="box a" style="margin-top:12px"><b class="t">מטאפלזיה מעיית נרחבת או אטרופיה נרחבת</b>מעקב אנדוסקופי כל <bdi dir="ltr">1–3</bdi> שנים. תסמונת <bdi>Lynch</bdi>, <bdi>FAP</bdi> <span class="nw">ו-<bdi>Peutz-Jeghers</bdi></span> מעלות גם הן את הסיכון</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 87 עמ׳ <bdi dir="ltr">1193–1196</bdi></span><span>תורשה ופוליפים</span></div>
 </div></section>
 
 <section class="s"><div class="card">
  <div class="kick"><b>5</b>אנטומיה · אינטראקטיבי</div>
- <h2>אספקת הדם של הקיבה</h2>
- <div class="hotw"><div class="hoti"><img src="img/Gray532.png" alt="הגזע הצליאקי וענפיו, הקיבה מורמת"><svg viewBox="0 0 650 669" preserveAspectRatio="none" style="--lw:7;--bf:15.5px">
+ <h2>אספקת הדם של <span class="nw">ה-<bdi>stomach</bdi></span></h2>
+ <div class="hotw"><div class="hoti"><img src="img/Gray532.png" alt="celiac trunk וענפיו, ה-stomach מורם"><svg viewBox="0 0 650 669" preserveAspectRatio="none" style="--lw:7;--bf:15.5px">
   <path class="hz ln" data-hz="cel" d="M334,262 C333.3,265.8 331.7,277.8 330,285 C328.3,292.2 325.8,300.2 324,305 C322.2,309.8 319.8,312.5 319,314" style="--c:#C0392B;--lw:9"/>
   <path class="hz ln" data-hz="lga" d="M330,310 C332.8,306.7 341.2,296 347,290 C352.8,284 360,278.2 365,274 C370,269.8 373.3,266.3 377,265 C380.7,263.7 384.2,264 387,266 C389.8,268 392.7,272.2 394,277 C395.3,281.8 395,287.8 395,295 C395,302.2 395,312.5 394,320 C393,327.5 391.3,334.2 389,340 C386.7,345.8 384,350.5 380,355 C376,359.5 370.8,363.7 365,367 C359.2,370.3 352.5,373 345,375 C337.5,377 324.2,378.3 320,379 M377,265 C375.8,264.5 371.7,266.2 370,262 C368.3,257.8 367.7,247 367,240 C366.3,233 366.5,227.2 366,220 C365.5,212.8 364.7,203.3 364,197 C363.3,190.7 363.2,187 362,182 C360.8,177 358.7,172.3 357,167 C355.3,161.7 353.2,155.8 352,150 C350.8,144.2 350.3,135 350,132" style="--c:#7A5BD6;--lw:6"/>
   <path class="hz ln" data-hz="hep" d="M319,314 C316.2,313.7 307.7,312.7 302,312 C296.3,311.3 291.2,311.7 285,310 C278.8,308.3 271.7,304.5 265,302 C258.3,299.5 251.7,297.5 245,295 C238.3,292.5 230.5,289.5 225,287 C219.5,284.5 215.2,283.3 212,280 C208.8,276.7 207.7,271.2 206,267 C204.3,262.8 203,259.2 202,255 C201,250.8 200.2,247 200,242 C199.8,237 200.2,230.3 201,225 C201.8,219.7 204.3,212.5 205,210" style="--c:#C9893F;--lw:8"/>
@@ -233,15 +238,15 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   <g class="hzb" style="--c:#0A6B5A"><circle cx="234" cy="374" r="13.2"/><text x="234" y="374">7</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="cel" hidden><b>1 · הגזע הצליאקי</b><p>מספק את רוב הדם לקיבה. שלושה ענפים: העורק הגסטרי השמאלי, העורק הכבדי המשותף והעורק הטחולי. כל ארבע קבוצות הבלוטות של הקיבה מתנקזות בסוף לבלוטות הצליאקיות</p></div>
-  <div class="hzi" data-hzi="lga" hidden><b>2 · העורק הגסטרי השמאלי</b><p>העורק הגדול ביותר של הקיבה. עובר לאורך העקמומיות הקטנה. בכריתה אונקולוגית קושרים אותו בבסיסו ומוציאים את הבלוטות סביבו</p></div>
-  <div class="hzi" data-hzi="hep" hidden><b>3 · העורק הכבדי המשותף</b><p>ממנו יוצא העורק הגסטרודואודנלי וממנו העורק הגסטרואפיפלואי הימני. העורק הגסטרי הימני יוצא בדרך כלל מהעורק הכבדי. הבלוטות לאורכו הן חלק מכריתת <bdi>D2</bdi></p></div>
-  <div class="hzi" data-hzi="rge" hidden><b>4 · העורק הגסטרואפיפלואי הימני</b><p>עובר לאורך העקמומיות הגדולה. כשבונים צינור מהקיבה אחרי כריתת ושט, זה העורק ששומרים עליו: הוא מזין את הצינור</p></div>
-  <div class="hzi" data-hzi="lge" hidden><b>5 · העורק הגסטרואפיפלואי השמאלי</b><p>ענף של העורק הטחולי. נפגש עם הימני וסוגר קשת לאורך העקמומיות הגדולה</p></div>
-  <div class="hzi" data-hzi="sg" hidden><b>6 · הטחול והעורקים הגסטריים הקצרים</b><p>ענפים של העורק הטחולי לפונדוס. בזכות הקשתות, הקיבה שורדת ברוב המקרים גם כששלושה מתוך ארבעת העורקים הראשיים נקשרים</p></div>
-  <div class="hzi" data-hzi="pyl" hidden><b>7 · הפילורוס</b><p>הסוגר בין האנטרום לתריסריון. גידול דיסטלי שחוסם אותו גורם לחסימת מוצא הקיבה: הקאות של מזון לא מעוכל</p></div>
+  <div class="hzi" data-hzi="cel" hidden><b>1 · <bdi>Celiac trunk</bdi></b><p>מספק את רוב הדם <span class="nw">ל-<bdi>stomach</bdi></span>. שלושה ענפים: <bdi>left gastric artery</bdi>, <bdi>common hepatic artery</bdi> <span class="nw">ו-<bdi>splenic artery</bdi></span>. כל ארבע קבוצות הבלוטות של <span class="nw">ה-<bdi>stomach</bdi></span> מתנקזות בסוף <span class="nw">ל-<bdi>celiac nodes</bdi></span></p></div>
+  <div class="hzi" data-hzi="lga" hidden><b>2 · <bdi>Left gastric artery</bdi></b><p>העורק הגדול ביותר של <span class="nw">ה-<bdi>stomach</bdi></span>. עובר לאורך <span class="nw">ה-<bdi>lesser curvature</bdi></span>. בכריתה אונקולוגית קושרים אותו בבסיסו ומוציאים את הבלוטות סביבו</p></div>
+  <div class="hzi" data-hzi="hep" hidden><b>3 · <bdi>Common hepatic artery</bdi></b><p>ממנו יוצא <span class="nw">ה-<bdi>gastroduodenal artery (GDA)</bdi></span> וממנו <span class="nw">ה-<bdi>right gastroepiploic artery</bdi></span>. <span class="nw">ה-<bdi>right gastric artery</bdi></span> יוצא בדרך כלל <span class="nw">מה-<bdi>hepatic artery</bdi></span>. הבלוטות לאורכו הן חלק מכריתת <bdi>D2</bdi></p></div>
+  <div class="hzi" data-hzi="rge" hidden><b>4 · <bdi>Right gastroepiploic artery</bdi></b><p>עובר לאורך <span class="nw">ה-<bdi>greater curvature</bdi></span>. כשבונים צינור <span class="nw">מה-<bdi>stomach</bdi></span> אחרי כריתת ושט, זה העורק ששומרים עליו: הוא מזין את הצינור</p></div>
+  <div class="hzi" data-hzi="lge" hidden><b>5 · <bdi>Left gastroepiploic artery</bdi></b><p>ענף של <span class="nw">ה-<bdi>splenic artery</bdi></span>. נפגש עם הימני וסוגר קשת לאורך <span class="nw">ה-<bdi>greater curvature</bdi></span></p></div>
+  <div class="hzi" data-hzi="sg" hidden><b>6 · <bdi>Spleen</bdi> <span class="nw">ו-<bdi>short gastric arteries</bdi></span></b><p>ענפים של <span class="nw">ה-<bdi>splenic artery</bdi></span> <span class="nw">ל-<bdi>fundus</bdi></span>. בזכות הקשתות, <span class="nw">ה-<bdi>stomach</bdi></span> שורד ברוב המקרים גם כששלושה מתוך ארבעת העורקים הראשיים נקשרים</p></div>
+  <div class="hzi" data-hzi="pyl" hidden><b>7 · <bdi>Pylorus</bdi></b><p>הסוגר בין <span class="nw">ה-<bdi>antrum</bdi></span> <span class="nw">ל-<bdi>duodenum</bdi></span>. גידול דיסטלי שחוסם אותו גורם לחסימת מוצא הקיבה: הקאות של מזון לא מעוכל</p></div>
  </div></div>
- <figcaption>הגזע הצליאקי וענפיו, הקיבה מורמת · <bdi>Gray's Anatomy</bdi> (1918), איור 532 (נחלת הכלל)</figcaption>
+ <figcaption><span class="nw">ה-<bdi>celiac trunk</bdi></span> וענפיו, <span class="nw">ה-<bdi>stomach</bdi></span> מורם · <bdi>Gray's Anatomy</bdi> (1918), איור 532 (נחלת הכלל)</figcaption>
  <div class="src"><span><b>Sabiston 22</b> · פרק 86 עמ׳ <bdi dir="ltr">1166–1168</bdi> · פרק 87 עמ׳ <bdi dir="ltr">1202–1203</bdi> · פרק 84 עמ׳ <bdi dir="ltr">1147</bdi></span><span>אנטומיה</span></div>
 </div></section>
 
@@ -255,7 +260,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
     <tr style="background:var(--soft)"><td style="padding:7px"><b>רקע</b></td><td style="padding:7px">אטרופיה ומטאפלזיה, <bdi>H. pylori</bdi></td><td style="padding:7px">לא קשור לגסטריטיס, סוג דם A</td></tr>
     <tr><td style="padding:7px"><b>מי</b></td><td style="padding:7px">גברים יותר, מבוגרים</td><td style="padding:7px">שני המינים, צעירים יותר</td></tr>
     <tr style="background:var(--soft)"><td style="padding:7px"><b>מבנה</b></td><td style="padding:7px">יוצר בלוטות, ממוין היטב</td><td style="padding:7px">תאי טבעת חותם, בלי בלוטות</td></tr>
-    <tr><td style="padding:7px"><b>פיזור</b></td><td style="padding:7px">גרורות <b>לכבד</b></td><td style="padding:7px">התפשטות בתת-רירית, <b>לצפק</b></td></tr>
+    <tr><td style="padding:7px"><b>פיזור</b></td><td style="padding:7px">גרורות <b>לכבד</b></td><td style="padding:7px">התפשטות <span class="nw">ב-<bdi>submucosa</bdi></span>, <b>לצפק</b></td></tr>
     <tr style="background:var(--soft)"><td style="padding:7px"><b>פרוגנוזה</b></td><td style="padding:7px">טובה יותר</td><td style="padding:7px">גרועה יותר</td></tr>
    </table>
    <ul class="b sm" style="margin-top:10px">
@@ -263,7 +268,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
     <li><b>סמנים שבודקים בכל ביופסיה:</b> <bdi>HER2</bdi>, <bdi>MSI</bdi> או <bdi>MMR</bdi>, <bdi>PD-L1</bdi>, <bdi>EBV</bdi>. הם קובעים טיפול</li>
    </ul>
   </div>
-  <figure><img src="img/gastric-ca-infiltrative.jpg" alt="דופן קיבה מעובה בסרטן מסתנן"><figcaption>סרטן קיבה מסתנן (דיפוזי): הדופן מעובה ולבנה, הרירית שטוחה · <bdi>Narraburra</bdi>, <bdi>Wikimedia Commons</bdi> (CC0)</figcaption></figure>
+  <figure><img src="img/gastric-ca-infiltrative.jpg" alt="דופן קיבה מעובה בסרטן מסתנן"><figcaption>סרטן קיבה מסתנן (דיפוזי): הדופן מעובה ולבנה, <span class="nw">ה-<bdi>mucosa</bdi></span> שטוחה · <bdi>Narraburra</bdi>, <bdi>Wikimedia Commons</bdi> (CC0)</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 87 עמ׳ <bdi dir="ltr">1195, 1198</bdi></span><span>פתולוגיה</span></div>
 </div></section>
@@ -276,28 +281,28 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
    <h3>התסמינים</h3>
    <ul class="b sm">
     <li>השכיחים: <b>ירידה במשקל</b> ו<b>כאב בטן מתמשך</b></li>
-    <li>גידול ליד הקרדיה: <b>דיספאגיה</b>. גידול דיסטלי: <b>חסימת מוצא הקיבה</b></li>
-    <li>דימום: כ-<bdi dir="ltr">40%</bdi> עם אנמיה</li>
+    <li>גידול ליד <span class="nw">ה-<bdi>cardia</bdi></span>: <b>דיספאגיה</b>. גידול דיסטלי: <b>חסימת מוצא הקיבה</b></li>
+    <li>דימום: <span class="nw">כ-<bdi dir="ltr">40%</bdi></span> עם אנמיה</li>
    </ul>
    <h3 style="margin-top:12px">בדיקות דם</h3>
    <ul class="b sm"><li>ספירה, כימיה כולל תפקודי כבד, תפקודי קרישה</li><li>CEA ו-CA19-9 לפעמים מוגברים</li></ul>
-   <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>אצל מטופל עם חשד לגידול בקיבה: מששו את הגומה העל-בריחית משמאל ואת הטבור, חפשו מיימת וצהבת. הציגו לבכיר/ה את הממצאים ואת תוכנית הבירור</div>
+   <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>אצל מטופל עם חשד לגידול <span class="nw">ב-<bdi>stomach</bdi></span>: מששו את <span class="nw">ה-<bdi>supraclavicular fossa</bdi></span> משמאל ואת <span class="nw">ה-<bdi>umbilicus</bdi></span>, חפשו מיימת וצהבת. הציגו לבכיר/ה את הממצאים ואת תוכנית הבירור</div>
   </div>
   <div>
    <h3>מה מחפשים בבדיקה: סימני מחלה מתקדמת</h3>
    <div class="flow">
-    <div><b>בלוטת <bdi>Virchow</bdi></b><span>בלוטה על-בריחית (משמאל)</span></div>
-    <div><b>בלוטת <bdi>Irish</bdi></b><span>בלוטה בבית השחי</span></div>
-    <div><b><bdi>Sister Mary Joseph</bdi></b><span>קשרית בטבור</span></div>
-    <div><b>גידול <bdi>Krukenberg</bdi></b><span>גרורה בשחלה, בבדיקה גינקולוגית</span></div>
+    <div><b>בלוטת <bdi>Virchow</bdi></b><span><span class="nw">ה-<bdi>left supraclavicular lymph node</bdi></span></span></div>
+    <div><b>בלוטת <bdi>Irish</bdi></b><span><span class="nw">ה-<bdi>axillary lymph node</bdi></span></span></div>
+    <div><b><bdi>Sister Mary Joseph</bdi></b><span>קשרית <span class="nw">ב-<bdi>umbilicus</bdi></span></span></div>
+    <div><b>גידול <bdi>Krukenberg</bdi></b><span>גרורה <span class="nw">ב-<bdi>ovary</bdi></span>, בבדיקה גינקולוגית</span></div>
     <div><b>מדף <bdi>Blumer</bdi></b><span>מדף קשה בבדיקה רקטלית: גרורות בצפק</span></div>
     <div><b>בבטן</b><span>כבד מוגדל, צהבת, מיימת</span></div>
    </div>
   </div>
  </div>
  <div class="grid" style="margin-top:12px">
-  <figure><img src="img/Gray602.png" alt="בלוטות הלימפה של הצוואר" style="max-height:26vh"><figcaption>בלוטות הלימפה של הצוואר: הבלוטות הצוואריות העמוקות התחתונות יושבות מעל עצם הבריח. כאן ממששים, בצד שמאל, את בלוטת <bdi>Virchow</bdi> · <bdi>Gray's Anatomy</bdi> (1918), איור 602 (נחלת הכלל)</figcaption></figure>
-  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש הכבד בשתי ידיים" style="max-height:26vh"><figcaption>מישוש הכבד בשתי ידיים: מחפשים כבד מוגדל וגושי בגרורות · <bdi>Musser</bdi>, <bdi>A practical treatise on medical diagnosis</bdi> (1904), איור 192 (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/Gray602.png" alt="cervical lymph nodes" style="max-height:26vh"><figcaption><span class="nw">ה-<bdi>cervical lymph nodes</bdi></span>: <span class="nw">ה-<bdi>inferior deep cervical nodes</bdi></span> יושבות מעל <span class="nw">ה-<bdi>clavicle</bdi></span>. כאן ממששים, בצד שמאל, את בלוטת <bdi>Virchow</bdi> · <bdi>Gray's Anatomy</bdi> (1918), איור 602 (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש ה-liver בשתי ידיים" style="max-height:26vh"><figcaption>מישוש <span class="nw">ה-<bdi>liver</bdi></span> בשתי ידיים: מחפשים כבד מוגדל וגושי בגרורות · <bdi>Musser</bdi>, <bdi>A practical treatise on medical diagnosis</bdi> (1904), איור 192 (נחלת הכלל)</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 87 עמ׳ <bdi dir="ltr">1196</bdi></span><span>הצגה קלינית</span></div>
 </div></section>
@@ -308,16 +313,16 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <div class="grid f">
   <div>
    <div class="flow">
-    <div><b>גסטרוסקופיה</b><span><b>6–8 ביופסיות</b> מאזורים שונים בנגע. לתעד מיקום ויחס לצומת הוושט-קיבה. נגע קטן מ-2 ס״מ בלי כיב: אפשר לכרות כבר בבדיקה</span></div>
+    <div><b>גסטרוסקופיה</b><span><b>6–8 ביופסיות</b> מאזורים שונים בנגע. לתעד מיקום ויחס <span class="nw">ל-<bdi>gastroesophageal junction (GEJ)</bdi></span>. נגע קטן מ-2 ס״מ בלי כיב: אפשר לכרות כבר בבדיקה</span></div>
     <div><b>CT חזה, בטן ואגן</b><span>לכולם, עם חומר ניגוד. מדויק פחות לעומק החדירה ולבלוטות</span></div>
     <div><b>חשד למחלה מוקדמת (<bdi>cT1–2 N0</bdi>)</b><span>EUS: הבדיקה המדויקת ביותר לעומק החדירה</span></div>
     <div><b>חשד למחלה מתקדמת (<bdi>cT3–4</bdi> או <bdi>N+</bdi>)</b><span>PET-CT ו<b>לפרוסקופיה אבחנתית עם שטיפת צפק</b>, לפני ניתוח או כימותרפיה</span></div>
    </div>
-   <div class="box r" style="margin-top:10px"><b class="t">למה לפרוסקופיה?</b>PET-CT ולפרוסקופיה מגלים גרורות ב-<bdi dir="ltr">25–30%</bdi> ממי שנראה "מקומי" ב-CT. דיוק הלפרוסקופיה לגרורות בצפק מעל <bdi dir="ltr">90%</bdi>. ציטולוגיה חיובית בשטיפה = M1</div>
+   <div class="box r" style="margin-top:10px"><b class="t">למה לפרוסקופיה?</b>PET-CT ולפרוסקופיה מגלים גרורות <span class="nw">ב-<bdi dir="ltr">25–30%</bdi></span> ממי שנראה "מקומי" ב-CT. דיוק הלפרוסקופיה לגרורות בצפק מעל <bdi dir="ltr">90%</bdi>. ציטולוגיה חיובית בשטיפה = M1</div>
   </div>
   <div style="display:grid;gap:10px">
-   <figure><img src="img/gastric-ca-endo.jpg" alt="גידול מתקדם בקיבה בגסטרוסקופיה" style="max-height:27vh"><figcaption>גידול מתקדם, מכויב ומדמם, בגסטרוסקופיה · <bdi>Boreali</bdi>, <bdi>Wikimedia Commons</bdi> (נחלת הכלל)</figcaption></figure>
-   <figure><img src="img/early-gastric-ca.jpg" alt="סרטן קיבה מוקדם בגוף הקיבה" style="max-height:22vh"><figcaption>סרטן קיבה מוקדם בגוף הקיבה: שינוי עדין ברירית · <bdi>Med_Chaos</bdi>, <bdi>Wikimedia Commons</bdi> (נחלת הכלל)</figcaption></figure>
+   <figure><img src="img/gastric-ca-endo.jpg" alt="גידול מתקדם ב-stomach בגסטרוסקופיה" style="max-height:27vh"><figcaption>גידול מתקדם, מכויב ומדמם, בגסטרוסקופיה · <bdi>Boreali</bdi>, <bdi>Wikimedia Commons</bdi> (נחלת הכלל)</figcaption></figure>
+   <figure><img src="img/early-gastric-ca.jpg" alt="סרטן קיבה מוקדם ב-gastric body" style="max-height:22vh"><figcaption>סרטן קיבה מוקדם <span class="nw">ב-<bdi>gastric body</bdi></span>: שינוי עדין <span class="nw">ב-<bdi>mucosa</bdi></span> · <bdi>Med_Chaos</bdi>, <bdi>Wikimedia Commons</bdi> (נחלת הכלל)</figcaption></figure>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 87 עמ׳ <bdi dir="ltr">1197–1199</bdi></span><span>בירור</span></div>
@@ -330,11 +335,11 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   <div>
    <h3>עומק החדירה (T)</h3>
    <div class="flow">
-    <div><b><bdi>T1a</bdi></b><span>למינה פרופריה או שכבת השריר הרירי</span></div>
-    <div><b><bdi>T1b</bdi></b><span>תת-רירית</span></div>
-    <div><b><bdi>T2</bdi></b><span>שכבת השריר העיקרית</span></div>
-    <div><b><bdi>T3</bdi></b><span>רקמה תת-סרוזלית, בלי חדירה לצפק הקרביים</span></div>
-    <div><b><bdi>T4a / T4b</bdi></b><span>חודר את הסרוזה / חודר לאיבר שכן</span></div>
+    <div><b><bdi>T1a</bdi></b><span><bdi>lamina propria</bdi> או <bdi>muscularis mucosae</bdi></span></div>
+    <div><b><bdi>T1b</bdi></b><span><bdi>submucosa</bdi></span></div>
+    <div><b><bdi>T2</bdi></b><span><bdi>muscularis propria</bdi></span></div>
+    <div><b><bdi>T3</bdi></b><span><bdi>subserosa</bdi>, בלי חדירה <span class="nw">ל-<bdi>visceral peritoneum</bdi></span></span></div>
+    <div><b><bdi>T4a / T4b</bdi></b><span>חודר את <span class="nw">ה-<bdi>serosa</bdi></span> / חודר לאיבר שכן</span></div>
    </div>
   </div>
   <div>
@@ -343,16 +348,16 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
     <li><bdi>N1</bdi>: <bdi dir="ltr">1–2</bdi> · <bdi>N2</bdi>: <bdi dir="ltr">3–6</bdi> · <bdi>N3a</bdi>: <bdi dir="ltr">7–15</bdi> · <bdi>N3b</bdi>: 16 ומעלה</li>
     <li>צריך לבדוק <b>לפחות 16 בלוטות</b> כדי שהשלב יהיה מדויק</li>
    </ul>
-   <h3 style="margin-top:10px">גידולי הצומת לפי <bdi>Siewert</bdi></h3>
+   <h3 style="margin-top:10px">גידולי <span class="nw">ה-<bdi>GEJ</bdi></span> לפי <bdi>Siewert</bdi></h3>
    <ul class="b sm">
-    <li><b>I:</b> מרכז <bdi dir="ltr">1–5</bdi> ס״מ מעל הצומת. מטופל כמו סרטן ושט</li>
-    <li><b>II:</b> מ-1 ס״מ מעל עד 2 ס״מ מתחת. בשלבים לפי הוושט, שנוי במחלוקת</li>
-    <li><b>III:</b> <bdi dir="ltr">2–5</bdi> ס״מ מתחת לצומת. מטופל כמו סרטן קיבה</li>
+    <li><b>I:</b> מרכז <bdi dir="ltr">1–5</bdi> ס״מ מעל <span class="nw">ה-<bdi>GEJ</bdi></span>. מטופל כמו סרטן ושט</li>
+    <li><b>II:</b> מ-1 ס״מ מעל עד 2 ס״מ מתחת. שלבים כמו בסרטן ושט, שנוי במחלוקת</li>
+    <li><b>III:</b> <bdi dir="ltr">2–5</bdi> ס״מ מתחת <span class="nw">ל-<bdi>GEJ</bdi></span>. מטופל כמו סרטן קיבה</li>
    </ul>
    <div class="box n" style="margin-top:8px"><b class="t">שוליים</b><bdi>R0</bdi>: בלי גידול. <bdi>R1</bdi>: גידול מיקרוסקופי בשוליים. <bdi>R2</bdi>: גידול שנשאר בעין</div>
   </div>
  </div>
-  <figure style="margin-top:12px"><img src="img/siewert.png" alt="סיווג Siewert" style="max-height:22vh"><figcaption>גידולי צומת הוושט-קיבה לפי <bdi>Siewert</bdi>: סוג 1 (כחול), 2 (תכלת), 3 (ירוק) · <bdi>Olek Remesz</bdi>, <bdi>Wikimedia Commons</bdi> (CC0)</figcaption></figure>
+  <figure style="margin-top:12px"><img src="img/siewert.png" alt="סיווג Siewert" style="max-height:22vh"><figcaption>גידולי <span class="nw">ה-<bdi>GEJ</bdi></span> לפי <bdi>Siewert</bdi>: סוג 1 (כחול), 2 (תכלת), 3 (ירוק) · <bdi>Olek Remesz</bdi>, <bdi>Wikimedia Commons</bdi> (CC0)</figcaption></figure>
  <div class="src"><span><b>Sabiston 22</b> · פרק 87 עמ׳ <bdi dir="ltr">1196–1197</bdi></span><span>שלבים</span></div>
 </div></section>
 
@@ -362,12 +367,12 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <div class="grid">
   <div class="box"><b class="t">כריתה אנדוסקופית (EMR או ESD)</b>
    <p style="margin:0 0 6px">רק כשכל התנאים מתקיימים:</p>
-   <ul class="b sm"><li>אדנוקרצינומה מסוג מעיי</li><li>מוגבל לרירית (<bdi>Tis</bdi> או <bdi>T1a</bdi>)</li><li>בלי חדירה לכלי לימפה ודם</li><li>בלי כיב</li><li>קטן מ-2 ס״מ</li></ul>
-   <p style="margin:6px 0 0;font-size:14.5px">שוליים עמוקים חיוביים, חדירה לתת-רירית או לכלי דם: <b>לכריתת קיבה עם בלוטות</b></p></div>
+   <ul class="b sm"><li>אדנוקרצינומה מסוג מעיי</li><li>מוגבל <span class="nw">ל-<bdi>mucosa</bdi></span> (<bdi>Tis</bdi> או <bdi>T1a</bdi>)</li><li>בלי חדירה לכלי לימפה ודם</li><li>בלי כיב</li><li>קטן מ-2 ס״מ</li></ul>
+   <p style="margin:6px 0 0;font-size:14.5px">שוליים עמוקים חיוביים, חדירה <span class="nw">ל-<bdi>submucosa</bdi></span> או לכלי דם: <b>לכריתת קיבה עם בלוטות</b></p></div>
   <div style="display:grid;gap:10px">
    <div class="box n"><b class="t">מחלה בשלב <bdi>II</bdi> ומעלה</b>במערב: <b>כימותרפיה לפני הניתוח ואחריו</b>. במזרח: ניתוח ואחריו כימותרפיה משלימה</div>
    <div class="box a"><b class="t">גידול <bdi>MSI-high</bdi></b>לא מגיב לכימותרפיה רגילה. הגישה היום: ניתוח מיידי בלי כימותרפיה. מגיב היטב לאימונותרפיה</div>
-   <div class="box r"><b class="t">לא נתיח</b>גרורות רחוקות, או חדירה לאאורטה, לגזע הצליאקי או לעורק הכבדי המשותף</div>
+   <div class="box r"><b class="t">לא נתיח</b>גרורות רחוקות, או חדירה <span class="nw">ל-<bdi>aorta</bdi></span>, <span class="nw">ל-<bdi>celiac trunk</bdi></span> או <span class="nw">ל-<bdi>common hepatic artery</bdi></span></div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 87 עמ׳ <bdi dir="ltr">1199, 1204–1205</bdi></span><span>החלטה</span></div>
@@ -380,17 +385,17 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   <div>
    <h3>היקף הכריתה</h3>
    <ul class="b sm">
-    <li><b>גוף ואנטרום:</b> כריתת קיבה דיסטלית. שוליים: 2 ס״מ ב-<bdi>cT1</bdi>, 3 ס״מ ב-<bdi>cT2–T4</bdi> עם גבול ברור, 5 ס״מ בגידול מסתנן</li>
+    <li><b><span class="nw">ה-<bdi>body</bdi></span> <span class="nw">וה-<bdi>antrum</bdi></span>:</b> כריתת קיבה דיסטלית. שוליים: 2 ס״מ <span class="nw">ב-<bdi>cT1</bdi></span>, 3 ס״מ <span class="nw">ב-<bdi>cT2–T4</bdi></span> עם גבול ברור, 5 ס״מ בגידול מסתנן</li>
     <li>שוליים קרובים: <b>חתך קפוא</b> לפני החיבור</li>
-    <li><b>שחזור:</b> <bdi>Roux-en-Y</bdi> גורם פחות גסטריטיס ופחות רפלוקס מרה מ-<bdi>Billroth</bdi></li>
-    <li><b>פונדוס וקרדיה:</b> כריתה מלאה עם <bdi>Roux-en-Y</bdi> לוושט, או כריתה פרוקסימלית. שקולות אונקולוגית</li>
+    <li><b>שחזור:</b> <bdi>Roux-en-Y</bdi> גורם פחות גסטריטיס ופחות רפלוקס מרה <span class="nw">מ-<bdi>Billroth</bdi></span></li>
+    <li><b><span class="nw">ה-<bdi>fundus</bdi></span> <span class="nw">וה-<bdi>cardia</bdi></span>:</b> כריתה מלאה עם <bdi>Roux-en-Y</bdi> <span class="nw">ל-<bdi>esophagus</bdi></span>, או כריתה פרוקסימלית. שקולות אונקולוגית</li>
     <li><bdi>T4</bdi>: כורתים <b>בגוש אחד</b> את האיבר שנפגע</li>
    </ul>
   </div>
   <div>
    <h3>כריתת בלוטות</h3>
    <ul class="b sm">
-    <li><bdi>D1</bdi>: הבלוטות סביב הקיבה. <bdi>D2</bdi>: מוסיף את תחנות הבלוטות לאורך העורקים הגדולים (בטבלה היפנית: <bdi dir="ltr">8a, 9, 11p, 12a</bdi>)</li>
+    <li><bdi>D1</bdi>: <span class="nw">ה-<bdi>perigastric nodes</bdi></span>. <bdi>D2</bdi>: מוסיף את תחנות הבלוטות לאורך העורקים הגדולים (בטבלה היפנית: <bdi dir="ltr">8a, 9, 11p, 12a</bdi>)</li>
     <li><bdi>D2</bdi> שיפר הישרדות ספציפית למחלה, אבל במחקרים הישנים עם יותר תמותה, בעיקר בגלל כריתת טחול וזנב הלבלב</li>
     <li>ההמלצה: <b><bdi>D2</bdi> מותאם בלי כריתת טחול ולבלב</b> במרכזים מנוסים. לפחות 16 בלוטות, רצוי מעל 30</li>
    </ul>
@@ -409,13 +414,13 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
    <ul class="b">
     <li><bdi>MAGIC</bdi>: 3 מחזורים לפני ו-3 אחרי הניתוח שיפרו הישרדות לעומת ניתוח בלבד</li>
     <li><bdi>FLOT4</bdi>: <bdi>FLOT</bdi> (4 לפני ו-4 אחרי) עדיף על <bdi>MAGIC</bdi>. זה הטיפול המומלץ למטופל במצב תפקודי טוב</li>
-    <li>רק <bdi dir="ltr">41–46%</bdi> השלימו את המחזורים שאחרי הניתוח. למי שלא יעמוד ב-<bdi>FLOT</bdi>: <bdi>FOLFOX</bdi></li>
-    <li><b>הקרנה:</b> מוסיפים בעיקר כשכריתת הבלוטות הייתה פחות מ-<bdi>D2</bdi></li>
+    <li>רק <bdi dir="ltr">41–46%</bdi> השלימו את המחזורים שאחרי הניתוח. למי שלא יעמוד <span class="nw">ב-<bdi>FLOT</bdi></span>: <bdi>FOLFOX</bdi></li>
+    <li><b>הקרנה:</b> מוסיפים בעיקר כשכריתת הבלוטות הייתה פחות <span class="nw">מ-<bdi>D2</bdi></span></li>
    </ul>
   </div>
   <div style="display:grid;gap:10px">
    <div class="box n"><b class="t"><bdi>HER2</bdi> חיובי</b>טרסטוזומאב מתווסף לכימותרפיה בקו הראשון במחלה מתקדמת</div>
-   <div class="box"><b class="t"><bdi>MSI-high</bdi>, <bdi>PD-L1</bdi> גבוה, <bdi>EBV</bdi></b>מגיבים לאימונותרפיה. במחקרי שלב 2 בגידולי <bdi>MSI-high</bdi>: תגובה פתולוגית מלאה בכ-<bdi dir="ltr">60%</bdi></div>
+   <div class="box"><b class="t"><bdi>MSI-high</bdi>, <bdi>PD-L1</bdi> גבוה, <bdi>EBV</bdi></b>מגיבים לאימונותרפיה. במחקרי שלב 2 בגידולי <bdi>MSI-high</bdi>: תגובה פתולוגית מלאה <span class="nw">בכ-<bdi dir="ltr">60%</bdi></span></div>
    <div class="box a"><b class="t">החזרה</b>בעיקר רחוקה ובצפק. <bdi dir="ltr">10–20%</bdi> חוזרים רק מקומית. פחות חזרה מקומית אחרי <bdi>D2</bdi></div>
   </div>
  </div>
@@ -444,15 +449,15 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
 </div></section>
 
 <section class="s"><div class="card">
- <div class="kick"><b>14</b>לא כל גידול בקיבה הוא אדנוקרצינומה</div>
+ <div class="kick"><b>14</b>לא כל גידול <span class="nw">ב-<bdi>stomach</bdi></span> הוא אדנוקרצינומה</div>
  <h2>GIST, לימפומה ו-NET</h2>
  <div class="grid g3">
   <div class="box n"><b class="t">GIST</b>
-   <ul class="b sm"><li>הגידול המזנכימלי השכיח. <bdi dir="ltr">40–60%</bdi> בקיבה</li><li>מתאי <bdi>Cajal</bdi>. כ-<bdi dir="ltr">95%</bdi> מבטאים <bdi>KIT</bdi></li><li>גוש תת-רירי חלק. ביופסיה רגילה לרוב לא מאבחנת</li><li>כורתים מעל <bdi dir="ltr">2–3</bdi> ס״מ או עם תסמינים. שוליים של 1 ס״מ, <b>בלי כריתת בלוטות</b>, בלי לקרוע את הגידול</li><li>סיכון גבוה: אימטיניב <b>3 שנים</b></li></ul></div>
+   <ul class="b sm"><li>הגידול המזנכימלי השכיח. <bdi dir="ltr">40–60%</bdi> <span class="nw">ב-<bdi>stomach</bdi></span></li><li>מתאי <bdi>Cajal</bdi>. <span class="nw">כ-<bdi dir="ltr">95%</bdi></span> מבטאים <bdi>KIT</bdi></li><li>גוש תת-רירי חלק. ביופסיה רגילה לרוב לא מאבחנת</li><li>כורתים מעל <bdi dir="ltr">2–3</bdi> ס״מ או עם תסמינים. שוליים של 1 ס״מ, <b>בלי כריתת בלוטות</b>, בלי לקרוע את הגידול</li><li>סיכון גבוה: אימטיניב <b>3 שנים</b></li></ul></div>
   <div class="box b"><b class="t">לימפומה</b>
-   <ul class="b sm"><li>הקיבה היא האתר השכיח ללימפומה מחוץ לבלוטות. כ-<bdi dir="ltr">3%</bdi> מגידולי הקיבה</li><li><bdi>DLBCL</bdi> (<bdi dir="ltr">45–60%</bdi>): כימותרפיה. ניתוח רק לסיבוכים: דימום, חסימה, ניקוב</li><li><bdi>MALT</bdi>: כמעט תמיד עם <bdi>H. pylori</bdi>. <b>הכחדת החיידק</b> משיגה הפוגה ביותר מ-<bdi dir="ltr">75%</bdi> מהמקרים המוקדמים</li></ul></div>
+   <ul class="b sm"><li><span class="nw">ה-<bdi>stomach</bdi></span> הוא האתר השכיח ללימפומה מחוץ לבלוטות. <span class="nw">כ-<bdi dir="ltr">3%</bdi></span> מגידולי <span class="nw">ה-<bdi>stomach</bdi></span></li><li><bdi>DLBCL</bdi> (<bdi dir="ltr">45–60%</bdi>): כימותרפיה. ניתוח רק לסיבוכים: דימום, חסימה, ניקוב</li><li><bdi>MALT</bdi>: כמעט תמיד עם <bdi>H. pylori</bdi>. <b>הכחדת החיידק</b> משיגה הפוגה ביותר <span class="nw">מ-<bdi dir="ltr">75%</bdi></span> מהמקרים המוקדמים</li></ul></div>
   <div class="box"><b class="t">גידול נוירואנדוקריני</b>
-   <ul class="b sm"><li><b>סוג I</b> (<bdi dir="ltr">70–80%</bdi>): גסטריטיס אטרופית, גסטרין גבוה, קטנים ומרובים, פרוגנוזה מצוינת</li><li><b>סוג II</b>: גסטרינומה ו-<bdi>MEN1</bdi></li><li><b>סוג III</b>: ספורדי, בודד, אגרסיבי. כריתה אונקולוגית עם בלוטות</li></ul></div>
+   <ul class="b sm"><li><b>סוג I</b> (<bdi dir="ltr">70–80%</bdi>): גסטריטיס אטרופית, גסטרין גבוה, קטנים ומרובים, פרוגנוזה מצוינת</li><li><b>סוג II</b>: גסטרינומה <span class="nw">ו-<bdi>MEN1</bdi></span></li><li><b>סוג III</b>: ספורדי, בודד, אגרסיבי. כריתה אונקולוגית עם בלוטות</li></ul></div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 87 עמ׳ <bdi dir="ltr">1206–1210</bdi></span><span>גידולים אחרים</span></div>
 </div></section>
@@ -462,7 +467,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <h2>מחקרים שכדאי להכיר</h2>
  <div class="grid">
   <div class="study"><div class="y"><bdi>NEJM</bdi> 2025 · מחקר אקראי שלב 3</div><b><bdi>MATTERHORN</bdi>: אימונותרפיה סביב הניתוח</b>
-   <p>948 מטופלים עם גידול נתיח בקיבה או בצומת. דורבלומאב עם <bdi>FLOT</bdi> מול <bdi>FLOT</bdi> לבד. הישרדות ללא אירוע לשנתיים <bdi dir="ltr">67.4%</bdi> לעומת <bdi dir="ltr">58.5%</bdi>. תגובה פתולוגית מלאה <bdi dir="ltr">19.2%</bdi> לעומת <bdi dir="ltr">7.2%</bdi>. בלי עלייה בתופעות לוואי קשות</p>
+   <p>948 מטופלים עם גידול נתיח <span class="nw">ב-<bdi>stomach</bdi></span> או <span class="nw">ב-<bdi>GEJ</bdi></span>. דורבלומאב עם <bdi>FLOT</bdi> מול <bdi>FLOT</bdi> לבד. הישרדות ללא אירוע לשנתיים <bdi dir="ltr">67.4%</bdi> לעומת <bdi dir="ltr">58.5%</bdi>. תגובה פתולוגית מלאה <bdi dir="ltr">19.2%</bdi> לעומת <bdi dir="ltr">7.2%</bdi>. בלי עלייה בתופעות לוואי קשות</p>
    <small>Janjigian YY et al. N Engl J Med 2025;393:217-30</small></div>
   <div class="study"><div class="y"><bdi>NEJM</bdi> 2024 · מחקר אקראי שלב 3</div><b><bdi>TOPGEAR</bdi>: הקרנה לפני הניתוח</b>
    <p>574 מטופלים. הוספת כימו-הקרנה לפני הניתוח לכימותרפיה סביב הניתוח: יותר תגובה פתולוגית מלאה (<bdi dir="ltr">17%</bdi> לעומת <bdi dir="ltr">8%</bdi>), אבל <b>בלי שיפור בהישרדות</b> (חציון 46 לעומת 49 חודשים)</p>
@@ -471,7 +476,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
    <p>1,056 מטופלים, כריתה דיסטלית עם <bdi>D2</bdi>. הישרדות ל-5 שנים <bdi dir="ltr">72.6%</bdi> בלפרוסקופיה לעומת <bdi dir="ltr">76.3%</bdi> בפתוח, הבדל לא מובהק. מנתחים מנוסים במרכזים גדולים</p>
    <small>Huang C et al. JAMA Surg 2022;157:9-17</small></div>
   <div class="study"><div class="y"><bdi>Lancet</bdi> 2021 · מחקר אקראי שלב 3</div><b><bdi>CheckMate 649</bdi>: ניבולומאב בקו ראשון</b>
-   <p>1,581 מטופלים עם מחלה מתקדמת ו-<bdi>HER2</bdi> שלילי. ניבולומאב עם כימותרפיה שיפר הישרדות כוללת (<bdi>HR</bdi> 0.71 כש-<bdi>PD-L1 CPS</bdi> 5 ומעלה). יותר תופעות לוואי בדרגה 3–4 (<bdi dir="ltr">59%</bdi> לעומת <bdi dir="ltr">44%</bdi>)</p>
+   <p>1,581 מטופלים עם מחלה מתקדמת <span class="nw">ו-<bdi>HER2</bdi></span> שלילי. ניבולומאב עם כימותרפיה שיפר הישרדות כוללת (<bdi>HR</bdi> 0.71 <span class="nw">כש-<bdi>PD-L1 CPS</bdi></span> 5 ומעלה). יותר תופעות לוואי בדרגה 3–4 (<bdi dir="ltr">59%</bdi> לעומת <bdi dir="ltr">44%</bdi>)</p>
    <small>Janjigian YY et al. Lancet 2021;398:27-40</small></div>
  </div>
  <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
@@ -484,7 +489,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   <li><bdi>H. pylori</bdi> הוא גורם הסיכון החשוב ביותר: גסטריטיס, אטרופיה, מטאפלזיה, דיספלזיה ואז סרטן</li>
   <li>ירידה במשקל וכאב מתמשך מחייבים גסטרוסקופיה. בבדיקה מחפשים <bdi>Virchow</bdi>, טבור, מיימת ומדף רקטלי</li>
   <li>בירור: 6–8 ביופסיות, CT לכולם, EUS במחלה מוקדמת, PET-CT ולפרוסקופיה במחלה מתקדמת</li>
-  <li>גידול קטן ברירית בלי סימני סיכון: כריתה אנדוסקופית. שלב <bdi>II</bdi> ומעלה: <bdi>FLOT</bdi> לפני הניתוח ואחריו</li>
+  <li>גידול קטן <span class="nw">ב-<bdi>mucosa</bdi></span> בלי סימני סיכון: כריתה אנדוסקופית. שלב <bdi>II</bdi> ומעלה: <bdi>FLOT</bdi> לפני הניתוח ואחריו</li>
   <li>ניתוח טוב: שוליים נקיים, <bdi>D2</bdi> מותאם ולפחות 16 בלוטות. אחר כך ברזל, <bdi>B12</bdi> ומעקב</li>
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 87 <bdi>Gastric Cancer</bdi> (עמ׳ <bdi dir="ltr">1192–1211</bdi>) · פרק 86 <bdi>Stomach</bdi>, אנטומיה (עמ׳ <bdi dir="ltr">1166–1168</bdi>)</div>

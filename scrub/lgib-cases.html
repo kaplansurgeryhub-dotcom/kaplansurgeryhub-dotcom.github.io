@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>דימום מדרכי העיכול התחתונות · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,6 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -97,6 +98,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -114,6 +116,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -125,7 +130,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
  <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 3</div>
  <h1>דיון מקרים: דימום מדרכי העיכול התחתונות</h1>
- <p class="lead">שלושה מטופלים עם דם מהחלחולת: דימום מדיברטיקול, דימום מסיבי עם הלם ודלקת איסכמית של המעי הגס. איך מוצאים את המקור ומתי מנתחים</p>
+ <p class="lead">שלושה מטופלים עם דם <span class="nw">מה-<bdi dir="ltr">rectum</bdi></span>: דימום מדיברטיקול, דימום מסיבי עם הלם ודלקת איסכמית של <span class="nw">ה-<bdi dir="ltr">colon</bdi></span>. איך מוצאים את המקור ומתי מנתחים</p>
  <div class="cvsrc" data-ch="98,95" data-note=""><small>מבוסס על</small><b><bdi dir="ltr">Sabiston Textbook of Surgery</bdi> · מהדורה 22</b><div class="cvch"><span>פרק <bdi dir="ltr">98</bdi></span><span>פרק <bdi dir="ltr">95</bdi></span></div></div>
  <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
 </div></section>
@@ -134,11 +139,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>1</b>מטרות הלמידה</div>
  <h2>בסוף המפגש תדעו</h2>
  <ol class="obj">
-  <li>לבנות אבחנה מבדלת של דם מהחלחולת ולזכור שחלק מהדימומים מגיעים מלמעלה</li>
+  <li>לבנות אבחנה מבדלת של דם <span class="nw">מה-<bdi dir="ltr">rectum</bdi></span> ולזכור שחלק מהדימומים מגיעים מלמעלה</li>
   <li>להעריך חומרה ולהתחיל החייאה, כמו בדימום עליון</li>
   <li>לבחור את הבדיקה הנכונה למטופל: קולונוסקופיה במטופל יציב, <bdi>CTA</bdi> ואנגיוגרפיה בדימום פעיל וקשה</li>
   <li>להכיר את ההתוויות לניתוח ולהבין למה כמעט תמיד מנסים למקם את הדימום לפני כריתה</li>
-  <li>לזהות דלקת איסכמית של המעי הגס ולהבין את אספקת הדם של המעי הגס</li>
+  <li>לזהות דלקת איסכמית של <span class="nw">ה-<bdi dir="ltr">colon</bdi></span> ולהבין את אספקת הדם של <span class="nw">ה-<bdi dir="ltr">colon</bdi></span></li>
  </ol>
  <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 98 (עמ׳ <bdi dir="ltr">1544–1552</bdi>) · פרק 95 (עמ׳ <bdi dir="ltr">1449–1450, 1476–1479</bdi>)</span><span>Scrub In · קפלן</span></div>
 </div></section>
@@ -149,13 +154,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="num">
   <div><b dir="ltr">36</b><span>דימומים תחתונים ל-100,000 איש בשנה. שכיח יותר בגברים</span></div>
   <div><b dir="ltr">80–85%</b><span>נעצרים לבד</span></div>
-  <div><b dir="ltr">10–15%</b><span>מהדם הטרי מהחלחולת מגיע ממקור עליון</span></div>
+  <div><b dir="ltr">10–15%</b><span>מהדם הטרי <span class="nw">מה-<bdi dir="ltr">rectum</bdi></span> מגיע ממקור עליון</span></div>
   <div><b dir="ltr">&lt;4%</b><span>תמותה בבית החולים, רובה ממחלות הרקע</span></div>
  </div>
  <div class="grid">
   <ul class="b sm">
-   <li><b>דימום תחתון:</b> מקורו מתחת לרצועת טרייץ, ברוב המקרים במעי הגס</li>
-   <li><b>הסימן:</b> דם אדום או בצבע בורדו, לעיתים עם קרישים. דימום מהצד הימני של המעי הגס יכול לתת לעיתים נדירות מלנה</li>
+   <li><b>דימום תחתון:</b> מקורו מתחת <span class="nw">ל-<bdi dir="ltr">ligament of Treitz</bdi></span>, ברוב המקרים <span class="nw">ב-<bdi dir="ltr">colon</bdi></span></li>
+   <li><b>הסימן:</b> דם אדום או בצבע בורדו, לעיתים עם קרישים. דימום <span class="nw">מה-<bdi dir="ltr">right colon</bdi></span> יכול לתת לעיתים נדירות מלנה</li>
    <li><b>הסיבה השכיחה:</b> דיברטיקולוזיס</li>
   </ul>
   <div class="box n"><b class="t">אבחנה מבדלת לפי קבוצות</b>
@@ -163,8 +168,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>אנטומי:</b> דיברטיקולוזיס</li>
     <li><b>כלי דם:</b> אנגיודיספלזיה, איסכמיה, נזק מקרינה</li>
     <li><b>דלקתי:</b> קוליטיס זיהומית, מחלות מעי דלקתיות</li>
-    <li><b>גידולי:</b> פוליפים, סרטן המעי הגס</li>
-    <li><b>פי הטבעת:</b> טחורים, פיסורה, דליות בחלחולת</li>
+    <li><b>גידולי:</b> פוליפים, סרטן <span class="nw">ה-<bdi dir="ltr">colon</bdi></span></li>
+    <li><b><bdi dir="ltr">anal canal</bdi>:</b> טחורים, פיסורה, דליות <span class="nw">ב-<bdi dir="ltr">rectum</bdi></span></li>
     <li><b>אחרי טיפול:</b> כריתת פוליפ, ביופסיה</li>
    </ul></div>
  </div>
@@ -181,7 +186,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li>דופק 104, לחץ דם 112/70. אחרי ליטר נוזלים: דופק 88</li>
     <li>בטן רכה ולא רגישה. בבדיקה רקטלית: דם טרי וקרישים, בלי גוש</li>
     <li>המוגלובין 11.2, אוריאה וקראטינין תקינים</li>
-    <li>קולונוסקופיה לפני 4 שנים: "דיברטיקולוזיס בסיגמואיד"</li>
+    <li>קולונוסקופיה לפני 4 שנים: "דיברטיקולוזיס <span class="nw">ב-<bdi dir="ltr">sigmoid colon</bdi></span>"</li>
    </ul>
   </div>
   <div class="box b"><b class="t">שאלות לדיון</b>
@@ -203,13 +208,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <ul class="b sm">
     <li><b>מקור תחתון:</b> קרישים בצואה מרחיקים ממקור עליון (יחס סבירות 0.05). גם יחס אוריאה לקראטינין תקין</li>
-    <li><b>דיברטיקולות "כוזבות":</b> רק רירית ושכבת שריר הרירית בולטות החוצה, בצד המזנטרי, בדיוק במקום שבו כלי הדם הקטנים (<bdi>vasa recta</bdi>) חודרים את דופן השריר</li>
-    <li>דיברטיקולות ב-<bdi dir="ltr">40%</bdi> מבני <bdi dir="ltr">50–60</bdi> ובמעל <bdi dir="ltr">60%</bdi> מבני 80 ומעלה</li>
+    <li><b>דיברטיקולות "כוזבות":</b> רק רירית ושכבת שריר הרירית בולטות החוצה, <span class="nw">ב-<bdi dir="ltr">mesenteric side</bdi></span>, בדיוק במקום שבו כלי הדם הקטנים (<bdi>vasa recta</bdi>) חודרים את דופן השריר</li>
+    <li>דיברטיקולות <span class="nw">ב-<bdi dir="ltr">40%</bdi></span> מבני <bdi dir="ltr">50–60</bdi> ובמעל <bdi dir="ltr">60%</bdi> מבני 80 ומעלה</li>
     <li>דיברטיקולוזיס היא הסיבה השכיחה לדימום תחתון מסיבי. דימום בזמן דלקת חריפה של דיברטיקול נדיר. לכן כאב עם דימום מכוון לאבחנה אחרת, כמו איסכמיה או מחלת מעי דלקתית</li>
     <li>הדימום בדרך כלל ללא כאב. בשינוי בהרגלי היציאה חושבים על גידול</li>
    </ul>
   </div>
-  <figure><img src="img/lgib-diverticula-endo.jpg" alt="דיברטיקולות בסיגמואיד בקולונוסקופיה"><figcaption><b>דיברטיקולות בסיגמואיד בקולונוסקופיה:</b> הפתחים הכהים ליד חלל המעי · Joachim Guntau, <bdi>CC BY-SA 3.0</bdi>, Wikimedia Commons</figcaption></figure>
+  <figure><img src="img/lgib-diverticula-endo.jpg" alt="דיברטיקולות ב-sigmoid colon בקולונוסקופיה"><figcaption><b>דיברטיקולות <span class="nw">ב-<bdi dir="ltr">sigmoid colon</bdi></span> בקולונוסקופיה:</b> הפתחים הכהים ליד חלל המעי · Joachim Guntau, <bdi>CC BY-SA 3.0</bdi>, Wikimedia Commons</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1449–1450</bdi> · פרק 98 עמ׳ <bdi dir="ltr">1544–1545</bdi></span><span>מקרה 1</span></div>
 </div></section>
@@ -223,13 +228,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>ההתחלה זהה לדימום עליון:</b> גישה ורידית רחבה, מיון לרמת הטיפול, חמצן ונוזלים. עירוי לפי אותם ספים (7. בחולה לב: 8)</li>
     <li><b>קולונוסקופיה</b> היא הבדיקה המועדפת במטופל יציב: ממקמת, לוקחת ביופסיה ומטפלת</li>
     <li><b>מתי:</b> בתור הפנוי הבא, אחרי הכנת מעי טובה. אין הבדל בדימום חוזר או בעירויים בין פחות מ-24 שעות לבין <bdi dir="ltr">24–96</bdi> שעות</li>
-    <li>מקור ודאי או אפשרי נמצא ב-<bdi dir="ltr">45–90%</bdi> מהקולונוסקופיות</li>
+    <li>מקור ודאי או אפשרי נמצא <span class="nw">ב-<bdi dir="ltr">45–90%</bdi></span> מהקולונוסקופיות</li>
    </ul>
   </div>
   <div style="display:grid;gap:10px">
    <div class="box a"><b class="t">"מצאנו דיברטיקולות". זה המקור?</b>לא בהכרח. נגע שלא מדמם לא שולל מקור גבוה יותר. לעיתים קרובות יש יותר ממקור אפשרי אחד (למשל דיברטיקולות וטחורים). לפעמים לא נמצא מקור בכלל</div>
    <div class="box"><b class="t">מתי אפשר בלי קולונוסקופיה</b>דימום קודם מדיברטיקול, דימום מתון שנעצר לבד וקולונוסקופיה איכותית בשנה האחרונה בלי גידול</div>
-   <div class="box b"><b class="t">במחלקה השבוע</b>צפו בקולונוסקופיה במטופל עם דימום. שימו לב איך מזהים "סימנים של דימום אחרון" ומה עושים בהם. אם אין, בדקו בעצמכם מטופל עם דם מהחלחולת, כולל בדיקה רקטלית בנוכחות בכיר/ה</div>
+   <div class="box b"><b class="t">במחלקה השבוע</b>צפו בקולונוסקופיה במטופל עם דימום. שימו לב איך מזהים "סימנים של דימום אחרון" ומה עושים בהם. אם אין, בדקו בעצמכם מטופל עם דם <span class="nw">מה-<bdi dir="ltr">rectum</bdi></span>, כולל בדיקה רקטלית בנוכחות בכיר/ה</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 98 עמ׳ <bdi dir="ltr">1545, 1549–1550</bdi></span><span>מקרה 1</span></div>
@@ -240,7 +245,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>הלם במיון: דם, עוד דם ועוד דם</h2>
  <div class="grid">
   <div class="box n"><b class="t">הסיפור (מקרה בדוי)</b>
-   גבר בן 82, אי-ספיקת כליות ומחלת לב. מגיע עם דימום מסיבי מהחלחולת שנמשך גם במיון.
+   גבר בן 82, אי-ספיקת כליות ומחלת לב. מגיע עם דימום מסיבי <span class="nw">מה-<bdi dir="ltr">rectum</bdi></span> שנמשך גם במיון.
    <ul class="b sm" style="margin-top:8px">
     <li>לחץ דם 82/50 אחרי שני ליטרים, דופק 128</li>
     <li>המוגלובין 7.0, ממשיך לדמם על המיטה</li>
@@ -249,7 +254,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   </div>
   <div class="box b"><b class="t">שאלות לדיון</b>
    <ol class="obj" style="margin-top:6px">
-    <li>מה צריך לשלול לפני שמתמקדים במעי הגס?</li>
+    <li>מה צריך לשלול לפני שמתמקדים <span class="nw">ב-<bdi dir="ltr">colon</bdi></span>?</li>
     <li>האם יש מקום לקולונוסקופיה עכשיו?</li>
     <li>מה הבדיקה הראשונה ומה הצעד שאחריה?</li>
     <li>מתי הוא הולך לחדר ניתוח ואיזה ניתוח?</li>
@@ -269,11 +274,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>החייאה:</b> בדימום קשה ומתמשך מנות ביחס <bdi dir="ltr">1:1:1</bdi>, כמו בחבלה</li>
     <li><b><bdi>CTA</bdi> היא הבדיקה הראשונה</b> בדימום משמעותי ומתמשך עם פגיעה המודינמית. מזהה דימום של <bdi dir="ltr">0.3–0.5</bdi> מ״ל לדקה, רגישות <bdi dir="ltr">85%</bdi> וסגוליות <bdi dir="ltr">92%</bdi></li>
     <li><b>CTA חיובי:</b> אנגיוגרפיה מהר, רצוי בתוך 90 דקות, אחרת הדימום עלול להיעצר ונפספס את האמבוליזציה</li>
-    <li><b>אנגיוגרפיה:</b> צריכה דימום של <bdi dir="ltr">0.5–1</bdi> מ״ל לדקה. בלי מיקום מוקדם מתחילים בעורק המזנטרי העליון. הצלחה <bdi dir="ltr">25–70%</bdi></li>
-    <li><b>אמבוליזציה סופר-סלקטיבית:</b> אפשרית ב-<bdi dir="ltr">98%</bdi>, סיבוכים ב-<bdi dir="ltr">4.6%</bdi> (בעיקר אוטם או כיב במעי)</li>
+    <li><b>אנגיוגרפיה:</b> צריכה דימום של <bdi dir="ltr">0.5–1</bdi> מ״ל לדקה. בלי מיקום מוקדם מתחילים <span class="nw">ב-<bdi dir="ltr">SMA</bdi></span>. הצלחה <bdi dir="ltr">25–70%</bdi></li>
+    <li><b>אמבוליזציה סופר-סלקטיבית:</b> אפשרית <span class="nw">ב-<bdi dir="ltr">98%</bdi></span>, סיבוכים <span class="nw">ב-<bdi dir="ltr">4.6%</bdi></span> (בעיקר אוטם או כיב במעי)</li>
    </ul>
   </div>
-  <figure><img src="img/lgib-ct-diverticular-bleed.jpg" alt="CT עם דליפה פעילה של חומר ניגוד לתוך הסיגמואיד"><figcaption><b>דימום פעיל מדיברטיקול בסיגמואיד ב-CT:</b> שני שלבים של ההזרקה (עורקי ופורטלי). חומר הניגוד נשפך לחלל המעי ומתפשט בין השלבים (חיצים) · Hellerhoff, <bdi>CC BY-SA 4.0</bdi>, Wikimedia Commons</figcaption></figure>
+  <figure><img src="img/lgib-ct-diverticular-bleed.jpg" alt="CT עם דליפה פעילה של חומר ניגוד לתוך ה-sigmoid colon"><figcaption><b>דימום פעיל מדיברטיקול <span class="nw">ב-<bdi dir="ltr">sigmoid colon</bdi></span> ב-CT:</b> שני שלבים של ההזרקה (עורקי ופורטלי). חומר הניגוד נשפך לחלל המעי ומתפשט בין השלבים (חיצים) · Hellerhoff, <bdi>CC BY-SA 4.0</bdi>, Wikimedia Commons</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 98 עמ׳ <bdi dir="ltr">1545, 1547, 1549–1550</bdi></span><span>מקרה 2</span></div>
 </div></section>
@@ -286,7 +291,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div><b><bdi>CTA</bdi></b><span>מהירה, זמינה ומדויקת במיקום. רק בזמן דימום פעיל, בלי טיפול, עם קרינה וחומר ניגוד</span></div>
   <div><b>אנגיוגרפיה</b><span>ממקמת ומטפלת (אמבוליזציה), בלי הכנת מעי. פולשנית ועובדת רק בזמן דימום פעיל</span></div>
   <div><b>מיפוי כדוריות אדומות</b><span>הרגיש ביותר: <bdi dir="ltr">0.1–0.5</bdi> מ״ל לדקה. אבל ממקם רק לאזור כללי בבטן (דיוק <bdi dir="ltr">24–91%</bdi>), כי הדם זז עם התנועתיות</span></div>
-  <div><b>לא נמצא מקור</b><span>גסטרוסקופיה או אנטרוסקופיה בדחיפה (כ-60 ס״מ ראשונים של הג׳ג׳ונום): עד <bdi dir="ltr">15%</bdi> מהם מדממים מלמעלה. אחר כך קפסולה. אם הדימום נעצר: השגחה <bdi dir="ltr">24–48</bdi> שעות</span></div>
+  <div><b>לא נמצא מקור</b><span>גסטרוסקופיה או אנטרוסקופיה בדחיפה (כ-60 ס״מ ראשונים של <span class="nw">ה-<bdi dir="ltr">jejunum</bdi></span>): עד <bdi dir="ltr">15%</bdi> מהם מדממים מלמעלה. אחר כך קפסולה. אם הדימום נעצר: השגחה <bdi dir="ltr">24–48</bdi> שעות</span></div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 98 עמ׳ <bdi dir="ltr">1549–1551</bdi> (טבלה 98.4)</span><span>בירור</span></div>
 </div></section>
@@ -306,8 +311,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   </div>
   <div class="flow">
    <div><b>המקור ממוקם · יציב</b><span>כריתה סגמנטלית של החלק המדמם</span></div>
-   <div><b>המקור לא ידוע · ממשיך לדמם</b><span>כריתה סאב-טוטלית של המעי הגס. סיבוכים כ-<bdi dir="ltr">37%</bdi>, תמותה <bdi dir="ltr">11–33%</bdi></span></div>
-   <div><b>לא ממוקם · לא יציב</b><span>בשני שלבים: איליאוסטומיה ובהמשך חיבור המעי הדק לחלחולת</span></div>
+   <div><b>המקור לא ידוע · ממשיך לדמם</b><span>כריתה סאב-טוטלית של <span class="nw">ה-<bdi dir="ltr">colon</bdi></span>. סיבוכים <span class="nw">כ-<bdi dir="ltr">37%</bdi></span>, תמותה <bdi dir="ltr">11–33%</bdi></span></div>
+   <div><b>לא ממוקם · לא יציב</b><span>בשני שלבים: איליאוסטומיה ובהמשך חיבור <span class="nw">ה-<bdi dir="ltr">ileum</bdi></span> <span class="nw">ל-<bdi dir="ltr">rectum</bdi></span></span></div>
    <div><b>לא ממוקם · יציב ובלי מחלות רקע</b><span>אפשר בשלב אחד עם חיבור מיידי</span></div>
   </div>
  </div>
@@ -340,8 +345,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>11</b>מקרה 3 · אנטומיה</div>
- <h2>אספקת הדם של המעי הגס ואזורי קו פרשת המים</h2>
- <div class="hotw"><div class="hoti"><img src="img/Gray537.png" alt="העורק המזנטרי התחתון וענפיו"><svg viewBox="0 0 535 650" preserveAspectRatio="none" style="--lw:9;--bf:13px">
+ <h2>אספקת הדם של <span class="nw">ה-<bdi dir="ltr">colon</bdi></span> ואזורי קו פרשת המים</h2>
+ <div class="hotw"><div class="hoti"><img src="img/Gray537.png" alt="inferior mesenteric artery (IMA) וענפיו"><svg viewBox="0 0 535 650" preserveAspectRatio="none" style="--lw:9;--bf:13px">
   <path class="hz" data-hz="rc" d="M84,66 C70,72 64,95 62,120 C60,150 54,180 46,210 C42,240 38,265 30,290 C18,300 13,330 14,350 C8,370 4,395 12,412 C20,430 24,455 38,472 C55,478 75,465 86,435 C98,410 104,380 100,345 C104,320 108,300 106,280 C104,250 108,200 108,150 C108,110 106,85 100,64 C95,58 90,60 84,66 Z" style="--c:#2F8CD6"/>
   <path class="hz ln" data-hz="mc" d="M212,199 C206,189 202,175 205,158 C206,152 207,148 207,146 C200,138 190,128 180,126 C170,126 160,130 148,138 M207,146 C215,142 230,135 245,130 C258,127 275,120 292,112" style="--c:#7A5BD6"/>
   <path class="hz" data-hz="sf" d="M398,48 C410,42 425,38 440,40 C460,45 480,55 495,72 C505,90 512,108 516,125 C520,140 523,160 520,178 C500,186 455,186 433,176 C436,150 437,132 430,118 C418,108 405,98 393,92 C390,75 393,58 398,48 Z" style="--c:#D63C32"/>
@@ -358,32 +363,32 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <g class="hzb" style="--c:#B8860B"><circle cx="216" cy="500" r="11"/><text x="216" y="500">7</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="rc" hidden><b>1 · המעי הגס הימני (עורק מזנטרי עליון)</b><p>העורק האילאוקולי הוא ענף סופי של המזנטרי העליון. לכן הצד הימני רגיש לתסחיף ולזרימה נמוכה (אי-ספיקת לב, דימום, אלח דם). איסכמיה של צד ימין בלבד: פחות דם ויותר ניתוחים. מחייבת <bdi>CTA</bdi> לשלילת איסכמיה מזנטרית חריפה.</p></div>
-  <div class="hzi" data-hzi="mc" hidden><b>2 · העורק הקוליק האמצעי</b><p>ענף של העורק המזנטרי העליון. באנגיוגרפיה לדימום תחתון בלי מיקום מוקדם מתחילים בעורק המזנטרי העליון, כי שם נמצאים רוב מקורות הדימום. אחר כך המזנטרי התחתון והצליאק.</p></div>
-  <div class="hzi" data-hzi="sf" hidden><b>3 · הכפף הטחולי (נקודת <bdi>Griffiths</bdi>)</b><p>קו פרשת המים בין המזנטרי העליון לתחתון. העורק השולי (<bdi>Drummond</bdi>) חסר כאן אצל עד <bdi dir="ltr">18%</bdi> מהאנשים. בחלק מהמחקרים: עד <bdi dir="ltr">50%</bdi>. מקום שכיח לאיסכמיה. מנתחים נמנעים מחיבור כאן.</p></div>
-  <div class="hzi" data-hzi="ima" hidden><b>4 · מוצא העורק המזנטרי התחתון</b><p>בניתוחי אבי העורקים, או כשקושרים את העורק בניתוח בטן, האספקה לסיגמואיד ולצד שמאל תלויה בעורקים העוקפים. אם הם לא מספיקים: איסכמיה של הסיגמואיד ושל צד שמאל.</p></div>
-  <div class="hzi" data-hzi="lca" hidden><b>5 · העורק הקוליק השמאלי</b><p>ענף של המזנטרי התחתון. צד שמאל, כולל הכפף הטחולי, הוא המקום השכיח ביותר לדלקת איסכמית. הדימום בה בדרך כלל קל.</p></div>
-  <div class="hzi" data-hzi="sig" hidden><b>6 · הסיגמואיד ועורקיו</b><p>הסיגמואיד והמעי היורד הם המקום הטיפוסי לדיברטיקולות. הן נוצרות בצד המזנטרי, במקום שבו כלי הדם הקטנים חודרים את השריר. לכן הן יכולות לדמם. זה גם המקום השני בשכיחותו לאיסכמיה.</p></div>
-  <div class="hzi" data-hzi="rs" hidden><b>7 · המעבר לחלחולת (נקודת <bdi>Sudeck</bdi>)</b><p>אזור פרשת מים שני: מקבל דם מהעורק ההמורואידלי העליון ומענפי הסיגמואיד, שניהם ענפים סופיים של המזנטרי התחתון. החלחולת עצמה כמעט לא נפגעת מאיסכמיה, כי יש לה אספקה גם מעורקי האגן.</p></div>
+  <div class="hzi" data-hzi="rc" hidden><b>1 · <bdi dir="ltr">right colon</bdi> (<bdi dir="ltr">SMA</bdi>)</b><p><span class="nw">ה-<bdi dir="ltr">ileocolic artery</bdi></span> הוא ענף סופי של <span class="nw">ה-<bdi dir="ltr">SMA</bdi></span>. לכן הצד הימני רגיש לתסחיף ולזרימה נמוכה (אי-ספיקת לב, דימום, אלח דם). איסכמיה של צד ימין בלבד: פחות דם ויותר ניתוחים. מחייבת <bdi>CTA</bdi> לשלילת איסכמיה מזנטרית חריפה.</p></div>
+  <div class="hzi" data-hzi="mc" hidden><b>2 · <bdi dir="ltr">middle colic artery</bdi></b><p>ענף של <span class="nw">ה-<bdi dir="ltr">superior mesenteric artery</bdi></span> (<bdi dir="ltr">SMA</bdi>). באנגיוגרפיה לדימום תחתון בלי מיקום מוקדם מתחילים <span class="nw">ב-<bdi dir="ltr">SMA</bdi></span>, כי שם נמצאים רוב מקורות הדימום. אחר כך <span class="nw">ה-<bdi dir="ltr">IMA</bdi></span> <span class="nw">וה-<bdi dir="ltr">celiac trunk</bdi></span>.</p></div>
+  <div class="hzi" data-hzi="sf" hidden><b>3 · <bdi dir="ltr">splenic flexure</bdi> (<bdi dir="ltr">Griffiths' point</bdi>)</b><p>קו פרשת המים בין <span class="nw">ה-<bdi dir="ltr">SMA</bdi></span> <span class="nw">ל-<bdi dir="ltr">IMA</bdi></span>. <span class="nw">ה-<bdi dir="ltr">marginal artery</bdi></span> (<bdi>Drummond</bdi>) חסר כאן אצל עד <bdi dir="ltr">18%</bdi> מהאנשים. בחלק מהמחקרים: עד <bdi dir="ltr">50%</bdi>. מקום שכיח לאיסכמיה. מנתחים נמנעים מחיבור כאן.</p></div>
+  <div class="hzi" data-hzi="ima" hidden><b>4 · מוצא <span class="nw">ה-<bdi dir="ltr">IMA</bdi></span></b><p>בניתוחי <bdi dir="ltr">aorta</bdi>, או כשקושרים את העורק בניתוח בטן, האספקה <span class="nw">ל-<bdi dir="ltr">sigmoid colon</bdi></span> ולצד שמאל תלויה בעורקים העוקפים. אם הם לא מספיקים: איסכמיה של <span class="nw">ה-<bdi dir="ltr">sigmoid colon</bdi></span> ושל צד שמאל.</p></div>
+  <div class="hzi" data-hzi="lca" hidden><b>5 · <bdi dir="ltr">left colic artery</bdi></b><p>ענף של <span class="nw">ה-<bdi dir="ltr">IMA</bdi></span>. צד שמאל, כולל <span class="nw">ה-<bdi dir="ltr">splenic flexure</bdi></span>, הוא המקום השכיח ביותר לדלקת איסכמית. הדימום בה בדרך כלל קל.</p></div>
+  <div class="hzi" data-hzi="sig" hidden><b>6 · <bdi dir="ltr">sigmoid colon</bdi> <span class="nw">ו-<bdi dir="ltr">sigmoid arteries</bdi></span></b><p><span class="nw">ה-<bdi dir="ltr">sigmoid colon</bdi></span> <span class="nw">וה-<bdi dir="ltr">descending colon</bdi></span> הם המקום הטיפוסי לדיברטיקולות. הן נוצרות <span class="nw">ב-<bdi dir="ltr">mesenteric side</bdi></span>, במקום שבו כלי הדם הקטנים חודרים את השריר. לכן הן יכולות לדמם. זה גם המקום השני בשכיחותו לאיסכמיה.</p></div>
+  <div class="hzi" data-hzi="rs" hidden><b>7 · <bdi dir="ltr">rectosigmoid junction</bdi> (<bdi dir="ltr">Sudeck's point</bdi>)</b><p>אזור פרשת מים שני: מקבל דם <span class="nw">מה-<bdi dir="ltr">superior rectal artery</bdi></span> <span class="nw">ומה-<bdi dir="ltr">sigmoid arteries</bdi></span>, שניהם ענפים סופיים של <span class="nw">ה-<bdi dir="ltr">IMA</bdi></span>. <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span> עצמו כמעט לא נפגע מאיסכמיה, כי יש לו אספקה גם <span class="nw">מה-<bdi dir="ltr">internal iliac arteries</bdi></span>.</p></div>
  </div></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1430, 1449–1450, 1476–1478</bdi> · פרק 98 עמ׳ <bdi dir="ltr">1550</bdi></span><span><bdi>Gray's Anatomy</bdi>, איור 537 (נחלת הכלל) · אזורים: Scrub In</span></div>
 </div></section>
 
 <section class="s"><div class="card">
  <div class="kick"><b>12</b>מקרה 3 · תשובות</div>
- <h2>דלקת איסכמית של המעי הגס</h2>
+ <h2>דלקת איסכמית של <span class="nw">ה-<bdi dir="ltr">colon</bdi></span></h2>
  <div class="grid">
   <div>
    <ul class="b sm">
     <li><b>מחלה של כלי דם קטנים.</b> לרוב קלה וחולפת. באיסכמיה מזנטרית חריפה יש חסימה של עורק גדול וכאב שאינו תואם את הבדיקה</li>
-    <li><b>מי בסיכון:</b> מבוגרים, נשים, מצבי זרימה נמוכה (אי-ספיקת לב, אלח דם), פרפור פרוזדורים, ניתוחי אבי העורקים, עצירות ותרופות שגורמות לה</li>
+    <li><b>מי בסיכון:</b> מבוגרים, נשים, מצבי זרימה נמוכה (אי-ספיקת לב, אלח דם), פרפור פרוזדורים, ניתוחי <bdi dir="ltr">aorta</bdi>, עצירות ותרופות שגורמות לה</li>
     <li><b>הסיפור:</b> כאב פתאומי ועוויתות, טנזמוס ודם. הכאב מקדים את הדימום. השילוב קיים בכמחצית. הדימום קל ורק לעיתים נדירות צריך עירוי</li>
-    <li><b>המיקום השכיח:</b> צד שמאל (כולל הכפף הטחולי) ואחריו הסיגמואיד. ברבע מהמקרים רק בצד ימין: פחות דם, יותר ניתוחים ופרוגנוזה גרועה יותר</li>
+    <li><b>המיקום השכיח:</b> צד שמאל (כולל <span class="nw">ה-<bdi dir="ltr">splenic flexure</bdi></span>) ואחריו <span class="nw">ה-<bdi dir="ltr">sigmoid colon</bdi></span>. ברבע מהמקרים רק בצד ימין: פחות דם, יותר ניתוחים ופרוגנוזה גרועה יותר</li>
    </ul>
   </div>
   <div class="grid tight">
-   <figure class="sm"><img src="img/lgib-ischemic-colitis-endo.jpg" alt="דלקת איסכמית בקולונוסקופיה"><figcaption><b>בקולונוסקופיה:</b> רירית בצקתית ושבירה עם כיבים, בגבול חד מרירית תקינה (המעי הרוחבי, אישה בת 82) · melvil, <bdi>CC BY-SA 4.0</bdi>, Wikimedia Commons</figcaption></figure>
-   <figure class="sm"><img src="img/lgib-ischemic-colitis-ct.jpg" alt="דלקת איסכמית ב-CT"><figcaption><b>ב-CT:</b> עיבוי מקטעי של דופן המעי הרוחבי · Hellerhoff, <bdi>CC BY-SA 4.0</bdi>, Wikimedia Commons</figcaption></figure>
+   <figure class="sm"><img src="img/lgib-ischemic-colitis-endo.jpg" alt="דלקת איסכמית בקולונוסקופיה"><figcaption><b>בקולונוסקופיה:</b> רירית בצקתית ושבירה עם כיבים, בגבול חד מרירית תקינה (<bdi dir="ltr">transverse colon</bdi>, אישה בת 82) · melvil, <bdi>CC BY-SA 4.0</bdi>, Wikimedia Commons</figcaption></figure>
+   <figure class="sm"><img src="img/lgib-ischemic-colitis-ct.jpg" alt="דלקת איסכמית ב-CT"><figcaption><b>ב-CT:</b> עיבוי מקטעי של דופן <span class="nw">ה-<bdi dir="ltr">transverse colon</bdi></span> · Hellerhoff, <bdi>CC BY-SA 4.0</bdi>, Wikimedia Commons</figcaption></figure>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1476–1478</bdi></span><span>מקרה 3</span></div>
@@ -395,13 +400,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div class="flow">
    <div><b>מעבדה</b><span>לא ספציפית. ספירה גבוהה, לקטט וחמצת מעידים על מחלה קשה. בדיקות צואה לשלול זיהום (כולל <bdi>C. difficile</bdi>)</span></div>
-   <div><b>CT עם חומר ניגוד</b><span>עיבוי מקטעי של הדופן, תסנין בשומן, "טביעות אגודל". אוויר בדופן, אוויר בווריד השערי או דופן שלא נצבעת: מחלה של כל עובי הדופן</span></div>
+   <div><b>CT עם חומר ניגוד</b><span>עיבוי מקטעי של הדופן, תסנין בשומן, "טביעות אגודל". אוויר בדופן, אוויר <span class="nw">ב-<bdi dir="ltr">portal vein</bdi></span> או דופן שלא נצבעת: מחלה של כל עובי הדופן</span></div>
    <div><b><bdi>CTA</bdi> רב-שלבי</b><span>רק בכאב פתאומי שאינו תואם את הבדיקה או באיסכמיה של צד ימין בלבד, כדי לשלול איסכמיה מזנטרית חריפה</span></div>
-   <div><b>קולונוסקופיה בתוך 48 שעות</b><span>תקן הזהב. בלי ניפוח יתר ובלי להתקדם מעבר לגבול המחלה. "פס יחיד" לאורך המעי ספציפי. רירית תקינה בחלחולת תומכת באיסכמיה ולא במחלה דלקתית</span></div>
+   <div><b>קולונוסקופיה בתוך 48 שעות</b><span>תקן הזהב. בלי ניפוח יתר ובלי להתקדם מעבר לגבול המחלה. "פס יחיד" לאורך המעי ספציפי. רירית תקינה <span class="nw">ב-<bdi dir="ltr">rectum</bdi></span> תומכת באיסכמיה ולא במחלה דלקתית</span></div>
   </div>
   <div style="display:grid;gap:10px">
-   <div class="box"><b class="t">טיפול שמרני: כ-<bdi dir="ltr">80%</bdi> משתפרים בתוך ימים</b>מנוחת מעי, נוזלים לווריד, אנטיביוטיקה רחבת טווח, זונדה אם יש איליאוס. מתקנים זרימה נמוכה. בלי משלשלים ובלי סטרואידים</div>
-   <div class="box r"><b class="t">ניתוח דחוף</b>צפקת, חוסר יציבות, אוויר חופשי, אוויר בווריד השערי. תמותה ב-30 יום כ-<bdi dir="ltr">25%</bdi>. כריתה אנטומית, בדרך כלל בלי חיבור באותו ניתוח. לעיתים "מבט שני" אחרי 24 שעות</div>
+   <div class="box"><b class="t">טיפול שמרני: <span class="nw">כ-<bdi dir="ltr">80%</bdi></span> משתפרים בתוך ימים</b>מנוחת מעי, נוזלים לווריד, אנטיביוטיקה רחבת טווח, זונדה אם יש איליאוס. מתקנים זרימה נמוכה. בלי משלשלים ובלי סטרואידים</div>
+   <div class="box r"><b class="t">ניתוח דחוף</b>צפקת, חוסר יציבות, אוויר חופשי, אוויר <span class="nw">ב-<bdi dir="ltr">portal vein</bdi></span>. תמותה ב-30 יום <span class="nw">כ-<bdi dir="ltr">25%</bdi></span>. כריתה אנטומית, בדרך כלל בלי חיבור באותו ניתוח. לעיתים "מבט שני" אחרי 24 שעות</div>
    <div class="box a"><b class="t">לא משתפרת אחרי כמה ימים?</b>חושבים על מחלה של כל עובי הדופן: הדמיה או אנדוסקופיה חוזרת</div>
   </div>
  </div>
@@ -419,7 +424,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <p>במטופל לא יציב עם חשד לדימום פעיל: <bdi>CTA</bdi> לפני טיפול אנדוסקופי או צנתורי. לא להפסיק אספירין במניעה שניונית. אם הופסק: לחדש בתוך 5 ימים. בדימום משמעותי עוצרים זמנית נוגדי קרישה ישירים</p>
    <small>Triantafyllou K et al. Endoscopy 2021;53:850-68</small></div>
   <div class="study"><div class="y"><bdi>Endoscopy</bdi> 2022 · 49 בתי חולים ביפן</div><b><bdi>CODE BLUE-J</bdi>: גומייה מול קליפסים</b>
-   <p>1,679 מטופלים עם דימום מדיברטיקול. קשירה בגומייה הורידה דימום חוזר מוקדם (<bdi>OR</bdi> 0.46) ומאוחר (0.62) וצורך באנגיוגרפיה, בלי הבדל בעצירה הראשונית או בתמותה. נקב ב-<bdi dir="ltr">0.31%</bdi></p>
+   <p>1,679 מטופלים עם דימום מדיברטיקול. קשירה בגומייה הורידה דימום חוזר מוקדם (<bdi>OR</bdi> 0.46) ומאוחר (0.62) וצורך באנגיוגרפיה, בלי הבדל בעצירה הראשונית או בתמותה. נקב <span class="nw">ב-<bdi dir="ltr">0.31%</bdi></span></p>
    <small>Kobayashi K et al. Endoscopy 2022;54:735-44</small></div>
  </div>
  <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
@@ -433,7 +438,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>דם טרי עם הלם: לשלול מקור עליון (<bdi dir="ltr">10–15%</bdi>)</li>
   <li>יציב: קולונוסקופיה בתור הבא אחרי הכנה. לא יציב ומדמם: <bdi>CTA</bdi> ואז אנגיוגרפיה בתוך 90 דקות</li>
   <li>מנתחים כשהמטופל לא יציב, כשהדימום חוזר או אחרי יותר מ-4 מנות ביממה. כמעט תמיד ממקמים קודם</li>
-  <li>כאב ואחריו שלשול דמי במבוגר עם מחלות לב: לחשוב על איסכמיה של המעי הגס</li>
+  <li>כאב ואחריו שלשול דמי במבוגר עם מחלות לב: לחשוב על איסכמיה של <span class="nw">ה-<bdi dir="ltr">colon</bdi></span></li>
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 98 <bdi>Acute Gastrointestinal Hemorrhage</bdi> (עמ׳ <bdi dir="ltr">1544–1552</bdi>) · פרק 95 <bdi>Colon and Rectum</bdi> (עמ׳ <bdi dir="ltr">1449–1450, 1476–1479</bdi>)</div>
  <div class="src"><span>איורים: <bdi>Gray's Anatomy</bdi> (1918, נחלת הכלל) · אנדוסקופיה ו-CT: Joachim Guntau, Hellerhoff, melvil (<bdi>CC BY-SA</bdi>, <bdi>Wikimedia Commons</bdi>) · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>דיון מקרים: פנקריאטיטיס · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -82,6 +82,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -93,6 +94,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -110,6 +112,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -135,7 +140,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>להעריך חומרה (קלה, בינונית או קשה) ולהכיר את הכלים לחיזוי (<bdi>SIRS</bdi>, <bdi>BISAP</bdi>, <bdi>Ranson</bdi>)</li>
   <li>לרשום טיפול ראשוני: נוזלים במינון סביר, משככי כאבים, הזנה מוקדמת ובלי אנטיביוטיקה מונעת</li>
   <li>לתזמן ERCP וכריתת כיס מרה בפנקריאטיטיס ביליארית</li>
-  <li>לסווג אוספים סביב הלבלב ולהסביר את גישת ה״צעד אחר צעד״ בנמק נגוע</li>
+  <li>לסווג אוספים סביב <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span> ולהסביר את גישת ה״צעד אחר צעד״ בנמק נגוע</li>
  </ol>
  <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 92 (עמ׳ <bdi dir="ltr">1379–1388</bdi>)</span><span>Scrub In · קפלן</span></div>
 </div></section>
@@ -166,7 +171,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>אלכוהול:</b> השנייה (35%). גברים צעירים</li>
     <li><b>אחרי ERCP:</b> הסיבוך השכיח שלה, עד 5%</li>
     <li><b>טריגליצרידים</b> מעל 1000 מ״ג/ד״ל, <b>היפרקלצמיה</b>, תרופות (עד 2%), חבלה</li>
-    <li>גידול בלבלב יכול לחסום את הצינור, אבל לרוב לא גורם לפנקריאטיטיס</li>
+    <li>גידול <span class="nw">ב-<bdi dir="ltr">pancreas</bdi></span> יכול לחסום את הצינור, אבל לרוב לא גורם לפנקריאטיטיס</li>
    </ul>
   </div>
  </div>
@@ -175,8 +180,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>3</b>אנטומיה · תמונה אינטראקטיבית</div>
- <h2>איפה הלבלב יושב ולמה זה משנה</h2>
-<div class="hotw"><div class="hoti"><img src="img/Sobo_1906_406.png" alt="השק הקטן נפתח: הקיבה מורמת והלבלב נראה מאחוריה"><svg viewBox="0 0 1280 889" preserveAspectRatio="none" style="--lw:20;--bf:31px">
+ <h2>איפה <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span> יושב ולמה זה משנה</h2>
+<div class="hotw"><div class="hoti"><img src="img/Sobo_1906_406.png" alt="ה-lesser sac נפתח: הקיבה מורמת וה-pancreas נראה מאחוריה"><svg viewBox="0 0 1280 889" preserveAspectRatio="none" style="--lw:20;--bf:31px">
  <path class="hz" data-hz="stom" d="M460,637 C452.3,634.5 441.5,622.3 436,612 C430.5,601.7 427.7,587 427,575 C426.3,563 428.2,550.8 432,540 C435.8,529.2 442.3,518.3 450,510 C457.7,501.7 469.7,498.8 478,490 C486.3,481.2 491.7,467.8 500,457 C508.3,446.2 515,438.5 528,425 C541,411.5 561.8,390.5 578,376 C594.2,361.5 609.3,349.8 625,338 C640.7,326.2 656.2,315 672,305 C687.8,295 705.8,285.5 720,278 C734.2,270.5 743.7,262.3 757,260 C770.3,257.7 784.2,263.7 800,264 C815.8,264.3 831.7,261 852,262 C872.3,263 900.8,265.2 922,270 C943.2,274.8 965.5,282 979,291 C992.5,300 997.5,309 1003,324 C1008.5,339 1011.3,361.3 1012,381 C1012.7,400.7 1011,423.2 1007,442 C1003,460.8 995.8,479.8 988,494 C980.2,508.2 973.3,519.8 960,527 C946.7,534.2 926,536.2 908,537 C890,537.8 869.2,536 852,532 C834.8,528 819.2,521.5 805,513 C790.8,504.5 778.2,489.5 767,481 C755.8,472.5 747.5,466.3 738,462 C728.5,457.7 719.7,457.5 710,455 C700.3,452.5 690.2,447.8 680,447 C669.8,446.2 656.5,446.2 649,450 C641.5,453.8 643.2,462.2 635,470 C626.8,477.8 610.8,488.3 600,497 C589.2,505.7 578.3,514.8 570,522 C561.7,529.2 555.8,534.8 550,540 C544.2,545.2 540.8,546.3 535,553 C529.2,559.7 520.8,571.3 515,580 C509.2,588.7 505.5,597.2 500,605 C494.5,612.8 488.7,621.7 482,627 C475.3,632.3 467.7,639.5 460,637 Z" style="--c:#C0392B"/>
  <path class="hz" data-hz="panc" d="M552,550 C554,540.5 563.2,534.3 570,528 C576.8,521.7 584.7,518.3 593,512 C601.3,505.7 609.8,496.5 620,490 C630.2,483.5 638.7,477.7 654,473 C669.3,468.3 695.8,461.3 712,462 C728.2,462.7 738,471.2 751,477 C764,482.8 777.2,489.8 790,497 C802.8,504.2 815.2,513.7 828,520 C840.8,526.3 854.2,532.2 867,535 C879.8,537.8 899,532.8 905,537 C911,541.2 906.2,555.2 903,560 C899.8,564.8 895.7,564.3 886,566 C876.3,567.7 857.8,568.7 845,570 C832.2,571.3 824.8,572.8 809,574 C793.2,575.2 769.3,576.3 750,577 C730.7,577.7 714.7,577.2 693,578 C671.3,578.8 642.5,580.8 620,582 C597.5,583.2 569.3,590.3 558,585 C546.7,579.7 550,559.5 552,550 Z" style="--c:#2F6FA8"/>
  <path class="hz" data-hz="meso" d="M558,585 C568.2,578.7 597.5,583.2 620,582 C642.5,580.8 671.3,578.8 693,578 C714.7,577.2 730.7,577.7 750,577 C769.3,576.3 793.2,575.2 809,574 C824.8,572.8 832.2,571.3 845,570 C857.8,568.7 876.5,565.7 886,566 C895.5,566.3 900.5,567.2 902,572 C903.5,576.8 898.3,587.7 895,595 C891.7,602.3 887.8,610.2 882,616 C876.2,621.8 868.7,626.3 860,630 C851.3,633.7 838.5,636 830,638 C821.5,640 822.3,640 809,642 C795.7,644 769.3,647.7 750,650 C730.7,652.3 713,654.5 693,656 C673,657.5 649.3,658 630,659 C610.7,660 588.2,663.5 577,662 C565.8,660.5 566,657 563,650 C560,643 559.8,630.8 559,620 C558.2,609.2 547.8,591.3 558,585 Z" style="--c:#187A5C"/>
@@ -191,14 +196,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <g class="hzb" style="--c:#5D6D3A"><circle cx="230" cy="420" r="26"/><text x="230" y="420">6</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="stom" hidden><b>הדופן האחורית של הקיבה</b><p>בציור הקיבה מורמת כלפי מעלה. מאחוריה נמצא השק הקטן. ברצפת השק: הלבלב. פסאודוציסטה או נמק מוקף שצמודים לדופן האחורית (פחות מ-1 ס״מ) מנוקזים דרך הקיבה, באנדוסקופיה או בניתוח (ציסטוגסטרוסטומיה).</p></div>
-  <div class="hzi" data-hzi="panc" hidden><b>הלבלב ברצפת השק הקטן</b><p>הלבלב רטרופריטונאלי ושוכב מאחורי הקיבה, לפני החוליה המותנית הראשונה. כשהוא מודלק, נוצרים סביבו אוספי נוזל ונמק. חלקם צמודים לדופן האחורית של הקיבה. זה מה שמאפשר לנקז אותם דרכה.</p></div>
-  <div class="hzi" data-hzi="meso" hidden><b>המזוקולון הרוחבי</b><p>יוצא מהגבול התחתון של הלבלב. בצילום בטן בפנקריאטיטיס אפשר לראות ״קטיעה״ של הגז במעי הגס בכפף הטחולי, בגלל עווית של המעי.</p></div>
-  <div class="hzi" data-hzi="colon" hidden><b>המעי הגס הרוחבי</b><p>קרוב מאוד ללבלב. בצילום בטן בפנקריאטיטיס רואים לעיתים מפלסי נוזל-אוויר של אילאוס. צילום לא עוזר לאבחנה, אבל עוזר לשלול ניקוב של כיב.</p></div>
-  <div class="hzi" data-hzi="spl" hidden><b>הטחול ועורק הטחול</b><p>זנב הלבלב מגיע עד שער הטחול. הדלקת יכולה לפגוע בעורק הטחול (פסאודואנוריזמה מדממת) או לגרום לפקקת בווריד הטחול, עם דליות בקיבה. דימום חוזר מהדליות האלה מטופל בכריתת טחול.</p></div>
-  <div class="hzi" data-hzi="gb" hidden><b>כיס המרה</b><p>אבנים בכיס המרה הן הסיבה השכיחה ביותר לפנקריאטיטיס במערב (כ-40% בארה״ב). אחרי פנקריאטיטיס ביליארית קלה מוציאים את כיס המרה עוד באותו אשפוז.</p></div>
+  <div class="hzi" data-hzi="stom" hidden><b>הדופן האחורית של הקיבה</b><p>בציור הקיבה מורמת כלפי מעלה. מאחוריה נמצא <span class="nw">ה-<bdi dir="ltr">lesser sac</bdi></span>. ברצפת <span class="nw">ה-<bdi dir="ltr">lesser sac</bdi></span>: <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span>. פסאודוציסטה או נמק מוקף שצמודים לדופן האחורית (פחות מ-1 ס״מ) מנוקזים דרך הקיבה, באנדוסקופיה או בניתוח (ציסטוגסטרוסטומיה).</p></div>
+  <div class="hzi" data-hzi="panc" hidden><b><bdi dir="ltr">pancreas</bdi> ברצפת <span class="nw">ה-<bdi dir="ltr">lesser sac</bdi></span></b><p><span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span> רטרופריטונאלי ושוכב מאחורי הקיבה, לפני חוליה <bdi dir="ltr">L1</bdi>. כשהוא מודלק, נוצרים סביבו אוספי נוזל ונמק. חלקם צמודים לדופן האחורית של הקיבה. זה מה שמאפשר לנקז אותם דרכה.</p></div>
+  <div class="hzi" data-hzi="meso" hidden><b><bdi dir="ltr">transverse mesocolon</bdi></b><p>יוצא מהגבול התחתון של <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span>. בצילום בטן בפנקריאטיטיס אפשר לראות ״קטיעה״ של הגז במעי הגס <span class="nw">ב-<bdi dir="ltr">splenic flexure</bdi></span>, בגלל עווית של המעי.</p></div>
+  <div class="hzi" data-hzi="colon" hidden><b><bdi dir="ltr">transverse colon</bdi></b><p>קרוב מאוד <span class="nw">ל-<bdi dir="ltr">pancreas</bdi></span>. בצילום בטן בפנקריאטיטיס רואים לעיתים מפלסי נוזל-אוויר של אילאוס. צילום לא עוזר לאבחנה, אבל עוזר לשלול ניקוב של כיב.</p></div>
+  <div class="hzi" data-hzi="spl" hidden><b><bdi dir="ltr">spleen</bdi> <span class="nw">ו-<bdi dir="ltr">splenic artery</bdi></span></b><p><span class="nw">ה-<bdi dir="ltr">pancreatic tail</bdi></span> מגיע עד <span class="nw">ה-<bdi dir="ltr">splenic hilum</bdi></span>. הדלקת יכולה לפגוע <span class="nw">ב-<bdi dir="ltr">splenic artery</bdi></span> (פסאודואנוריזמה מדממת) או לגרום לפקקת <span class="nw">ב-<bdi dir="ltr">splenic vein</bdi></span>, עם דליות בקיבה. דימום חוזר מהדליות האלה מטופל בכריתת טחול.</p></div>
+  <div class="hzi" data-hzi="gb" hidden><b><bdi dir="ltr">gallbladder</bdi></b><p>אבנים <span class="nw">ב-<bdi dir="ltr">gallbladder</bdi></span> הן הסיבה השכיחה ביותר לפנקריאטיטיס במערב (כ-40% בארה״ב). אחרי פנקריאטיטיס ביליארית קלה מוציאים את <span class="nw">ה-<bdi dir="ltr">gallbladder</bdi></span> עוד באותו אשפוז.</p></div>
  </div></div>
- <p style="font-size:12px;color:var(--muted);margin:6px 0 0">השק הקטן (<bdi>omental bursa</bdi>) נפתח: הקיבה מורמת כלפי מעלה, הלבלב נראה מאחוריה ומתחתיו המעי הגס הרוחבי · <bdi>Sobotta</bdi>, <bdi>Atlas and Text-book of Human Anatomy</bdi> (1906), איור 406 (נחלת הכלל)</p>
+ <p style="font-size:12px;color:var(--muted);margin:6px 0 0"><bdi dir="ltr">lesser sac</bdi> (<bdi>omental bursa</bdi>) נפתח: הקיבה מורמת כלפי מעלה, <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span> נראה מאחוריה ומתחתיו <span class="nw">ה-<bdi dir="ltr">transverse colon</bdi></span> · <bdi>Sobotta</bdi>, <bdi>Atlas and Text-book of Human Anatomy</bdi> (1906), איור 406 (נחלת הכלל)</p>
  <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1374, 1380, 1382, 1385, 1387–1388</bdi></span><span>אנטומיה</span></div>
 </div></section>
 
@@ -210,7 +215,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <ul class="b sm">
     <li>כאב חזק ומתמשך באפיגסטריום שמקרין לגב, החל לפני 8 שעות אחרי ארוחה</li>
     <li>הקאות שלא מקלות על הכאב</li>
-    <li>ידועה עם אבנים בכיס המרה, לא שותה אלכוהול</li>
+    <li>ידועה עם אבנים <span class="nw">ב-<bdi dir="ltr">gallbladder</bdi></span>, לא שותה אלכוהול</li>
     <li>דופק 104, לחץ דם 128/76, חום 37.6, סטורציה 97%</li>
     <li>בבדיקה: רגישות באפיגסטריום, בלי סימני גירוי צפקי</li>
    </ul></div>
@@ -222,7 +227,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li>המוגלובין והמטוקריט גבוהים (התייבשות)</li>
    </ul></div>
  </div>
- <div class="box a" style="margin-top:12px"><b class="t">שאלות לדיון</b>1. האם זו פנקריאטיטיס? צריך CT? · 2. כמה היא קשה? · 3. מה רושמים בהוראות הקבלה? · 4. מה עושים עם כיס המרה ומתי?</div>
+ <div class="box a" style="margin-top:12px"><b class="t">שאלות לדיון</b>1. האם זו פנקריאטיטיס? צריך CT? · 2. כמה היא קשה? · 3. מה רושמים בהוראות הקבלה? · 4. מה עושים עם <span class="nw">ה-<bdi dir="ltr">gallbladder</bdi></span> ומתי?</div>
  <div class="src"><span>מקרה בדוי למטרות הוראה · <b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1381–1382</bdi></span><span>מקרה 1</span></div>
 </div></section>
 
@@ -239,7 +244,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div class="box" style="margin-top:10px"><b class="t">לרחל יש שניים: אין צורך ב-CT לאבחנה</b>ליפאז עדיף: ספציפי יותר ונשאר מוגבר יותר זמן (8–14 יום מול 3–5 לעמילאז). חשוב במי שמגיע אחרי 24–48 שעות</div>
   </div>
   <div style="display:grid;gap:10px">
-   <div class="box b"><b class="t">אולטרסאונד לכל מטופל</b>רגישות של 95% לאבנים בכיס המרה. אנזימי כבד מוגברים, ליפאז גבוה ואבנים: רגישות 97% וסגוליות 100% לפנקריאטיטיס ביליארית. <bdi>ALT</bdi> מוגבר לבד: ערך מנבא חיובי של 95%</div>
+   <div class="box b"><b class="t">אולטרסאונד לכל מטופל</b>רגישות של 95% לאבנים <span class="nw">ב-<bdi dir="ltr">gallbladder</bdi></span>. אנזימי כבד מוגברים, ליפאז גבוה ואבנים: רגישות 97% וסגוליות 100% לפנקריאטיטיס ביליארית. <bdi>ALT</bdi> מוגבר לבד: ערך מנבא חיובי של 95%</div>
    <div class="box a"><b class="t">מתי CT עם חומר ניגוד</b>אבחנה לא ברורה, אישור חומרה לפי מדדים קליניים, חוסר שיפור בטיפול שמרני או הידרדרות. שלב ורידי פורטלי (65–70 שניות) מראה הכי טוב נמק</div>
    <div class="box n"><b class="t">בבדיקה הגופנית</b>בפנקריאטיטיס קלה הבטן יכולה להיות כמעט תקינה. סימנים נדירים של מחלה קשה: שטף דם במותניים (<bdi>Grey Turner</bdi>) או סביב הטבור (<bdi>Cullen</bdi>)</div>
   </div>
@@ -255,11 +260,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div><b>הסתכלות</b><span>מטופל מיובש, טכיקרדי, לעיתים מבולבל (במבוגרים). בטן תפוחה במחלה קשה. שטפי דם במותניים או סביב הטבור: נדירים, סימן לדימום רטרופריטונאלי</span></div>
    <div><b>מישוש</b><span>במחלה קלה: רגישות קלה באפיגסטריום בלבד. במחלה קשה: רגישות מפושטת, ריבאונד וקשיחות</span></div>
    <div><b>חזה</b><span>עמימות בהקשה וירידה בכניסת אוויר בבסיס השמאלי: תפליט פלאורלי</span></div>
-   <div><b>עור ועיניים</b><span>צהבת: אבן בצינור המרה או בצקת בראש הלבלב</span></div>
+   <div><b>עור ועיניים</b><span>צהבת: אבן <span class="nw">ב-<bdi dir="ltr">CBD</bdi></span> או בצקת <span class="nw">ב-<bdi dir="ltr">pancreatic head</bdi></span></span></div>
   </div>
   <div class="box a" style="margin-top:10px"><b class="t">שימו לב</b>עוצמת הכאב לא תמיד מתאימה לממצאים בבדיקה או לחומרת הדלקת</div>
  </div>
- <figure><img src="img/grey-turner-sign.jpg" alt="שטפי דם במותן"><figcaption>סימן <bdi>Grey Turner</bdi>: שטפי דם במותן ובדופן הצדדית בפנקריאטיטיס דמממית · <bdi>Herbert L. Fred, MD</bdi> ו-<bdi>Hendrik A. van Dijk</bdi>, <bdi>CC BY 2.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ <figure><img src="img/grey-turner-sign.jpg" alt="שטפי דם במותן"><figcaption>סימן <bdi>Grey Turner</bdi>: שטפי דם במותן ובדופן הצדדית בפנקריאטיטיס דמממית · <bdi>Herbert L. Fred, MD</bdi> <span class="nw">ו-<bdi>Hendrik A. van Dijk</bdi></span>, <bdi>CC BY 2.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1381–1382</bdi></span><span>תמונות</span></div>
 </div></section>
@@ -297,7 +302,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>נוזלים, כאב ואוכל</h2>
  <div class="grid g3">
   <div class="box b"><b class="t">נוזלים</b>
-   <ul class="b sm"><li>קריסטלואידים איזוטוניים. רינגר לקטט עשוי להיות עדיף על סליין (פחות SIRS ב-24 שעות)</li><li>לא "כמה שיותר": מתאימים לגיל, למחלות הרקע, לסימנים החיוניים ולתפוקת השתן</li><li>ב-<bdi>WATERFALL</bdi> טיפול אגרסיבי גרם לעומס נוזלים ב-21% לעומת 6%, בלי תועלת</li></ul></div>
+   <ul class="b sm"><li>קריסטלואידים איזוטוניים. רינגר לקטט עשוי להיות עדיף על סליין (פחות SIRS ב-24 שעות)</li><li>לא "כמה שיותר": מתאימים לגיל, למחלות הרקע, לסימנים החיוניים ולתפוקת השתן</li><li><span class="nw">ב-<bdi>WATERFALL</bdi></span> טיפול אגרסיבי גרם לעומס נוזלים ב-21% לעומת 6%, בלי תועלת</li></ul></div>
   <div class="box"><b class="t">כאב וחמצן</b>
    <ul class="b sm"><li>אופיואידים, בעיקר מורפין. אין הוכחה שהם מזיקים במחלה</li><li>מד סטורציה רציף. חמצן לשמירה על סטורציה מעל 95%</li></ul></div>
   <div class="box a"><b class="t">אוכל</b>
@@ -308,7 +313,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 </div></section>
 
 <section class="s"><div class="card">
- <div class="kick"><b>9</b>מקרה 1 · כיס המרה</div>
+ <div class="kick"><b>9</b>מקרה 1 · <bdi dir="ltr">gallbladder</bdi></div>
  <h2><bdi>ERCP</bdi> או ניתוח? ומתי?</h2>
  <div class="grid">
   <div>
@@ -364,12 +369,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>חמצן:</b> פגיעה ריאתית חריפה היא מהסיבוכים המערכתיים השכיחים. תפליט פלאורלי משמאל מתאים לפנקריאטיטיס</li>
     <li><b>CT:</b> כאן יש אינדיקציה, כי המטופל לא משתפר. מחפשים <b>נמק</b>: אזורים שלא נצבעים (מתחת ל-40–50 יחידות, לעומת 100–150 ברקמה תקינה)</li>
    </ul>
-   <div class="box a" style="margin-top:10px"><b class="t">תזונה</b>הזנה אנטרלית עדיפה על הזנה תוך-ורידית: פחות מוות, פחות אי-ספיקת איברים ופחות זיהומים. לא אוכל דרך הפה תוך 72 שעות? זונדה לקיבה או לג׳ג׳ונום. הזנה תוך-ורידית רק כשאי אפשר (אילאוס, חסימה)</div>
+   <div class="box a" style="margin-top:10px"><b class="t">תזונה</b>הזנה אנטרלית עדיפה על הזנה תוך-ורידית: פחות מוות, פחות אי-ספיקת איברים ופחות זיהומים. לא אוכל דרך הפה תוך 72 שעות? זונדה לקיבה או <span class="nw">ל-<bdi dir="ltr">jejunum</bdi></span>. הזנה תוך-ורידית רק כשאי אפשר (אילאוס, חסימה)</div>
   </div>
   <div>
    <h3>מדד החומרה ב-CT (<bdi>CTSI</bdi>)</h3>
    <div class="flow">
-    <div><b>דלקת: 0–4 נק׳</b><span>מלבלב תקין ועד שני אוספים או יותר או גז</span></div>
+    <div><b>דלקת: 0–4 נק׳</b><span><span class="nw">מ-<bdi dir="ltr">pancreas</bdi></span> תקין ועד שני אוספים או יותר או גז</span></div>
     <div><b>נמק: 0–6 נק׳</b><span>אין · עד 30% · 30–50% · מעל 50%</span></div>
     <div><b>0–3 נקודות</b><span>תמותה 3%, תחלואה 8%</span></div>
     <div><b>4–6 נקודות</b><span>תמותה 6%, תחלואה 35%</span></div>
@@ -383,22 +388,22 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>12</b>מקרה 2 · ההדמיה</div>
  <h2>מה רואים ב-CT</h2>
  <div class="grid">
- <figure><img src="img/ap-ct-exudative.jpg" alt="CT של פנקריאטיטיס חריפה"><figcaption>בשבוע הראשון: לבלב נפוח ונוזל רב סביבו, בלי דופן. אין אזור שלא נצבע (אין נמק) · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ <figure><img src="img/ap-ct-exudative.jpg" alt="CT של פנקריאטיטיס חריפה"><figcaption>בשבוע הראשון: <bdi dir="ltr">pancreas</bdi> נפוח ונוזל רב סביבו, בלי דופן. אין אזור שלא נצבע (אין נמק) · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  <figure><img src="img/pseudocyst-ct-stomach.jpg" alt="פסאודוציסטה צמודה לקיבה"><figcaption>אחרי שבועות: אוסף אחיד עם דופן, צמוד לדופן האחורית של הקיבה. נוקז דרך הקיבה · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
- <div class="box n" style="margin-top:12px"><b class="t">איך קוראים</b>מחפשים: נוזל סביב הלבלב, אזורים בלבלב שלא נצבעים (נמק), גז באוסף, דופן מוגדרת. את הנמק מעריכים הכי טוב בשלב הוורידי הפורטלי</div>
+ <div class="box n" style="margin-top:12px"><b class="t">איך קוראים</b>מחפשים: נוזל סביב <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span>, אזורים <span class="nw">ב-<bdi dir="ltr">pancreas</bdi></span> שלא נצבעים (נמק), גז באוסף, דופן מוגדרת. את הנמק מעריכים הכי טוב בשלב הוורידי הפורטלי</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1382, 1385, 1387</bdi></span><span>תמונות</span></div>
 </div></section>
 
 
 <section class="s"><div class="card">
- <div class="kick"><b>13</b>אוספים סביב הלבלב</div>
+ <div class="kick"><b>13</b>אוספים סביב <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span></div>
  <h2>ארבעה שמות, שני צירים</h2>
  <p class="lead" style="margin-bottom:10px">ציר אחד: נוזל בלבד או נמק. ציר שני: פחות או יותר מ-4 שבועות</p>
  <div class="grid">
   <div class="box b"><b class="t">אוסף נוזל חריף · עד 4 שבועות</b>אחיד, נוזלי, בלי דופן. ב-30–57% מההתקפים. רובם נספגים לבד</div>
   <div class="box"><b class="t">פסאודוציסטה · אחרי 4 שבועות</b>נוזל אחיד בתוך דופן מוגדרת של קולגן ורקמה גרנולציונית, בלי אפיתל</div>
-  <div class="box a"><b class="t">אוסף נמקי חריף · עד 4 שבועות</b>תערובת של נוזל ורקמה מתה, בלי דופן, בתוך הלבלב או סביבו</div>
+  <div class="box a"><b class="t">אוסף נמקי חריף · עד 4 שבועות</b>תערובת של נוזל ורקמה מתה, בלי דופן, בתוך <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span> או סביבו</div>
   <div class="box r"><b class="t">נמק מוקף דופן (<bdi>WON</bdi>) · אחרי 4 שבועות</b>נוזל ונמק בתוך דופן מוגדרת. זה השלב שבו נוח ובטוח יותר להתערב</div>
  </div>
  <div class="box n" style="margin-top:12px"><b class="t">כל אחד מהם יכול להזדהם</b>גז באוסף בלי התערבות קודמת הוא אבחנתי. חום, לויקוציטוזיס וכאב יכולים להופיע גם בלי זיהום. לכן הידרדרות או חוסר שיפור אחרי 10–14 יום מעלים חשד</div>
@@ -418,7 +423,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <ul class="b sm">
     <li><b>האבחנה:</b> חשד קליני (חום ממושך, הידרדרות, אי-ספיקה מאוחרת אחרי יום 7). גז ב-CT מאשר. כשלא ברור: דגימה במחט לצביעת גרם ותרבית</li>
     <li><b>חיידקים:</b> בעיקר מהמעי (<bdi>E. coli</bdi>, <bdi>Klebsiella</bdi>, אנטרוקוקים)</li>
-    <li><b>אנטיביוטיקה:</b> קרבפנמים קודם, בגלל החדירה ללבלב. חלופות: קווינולונים, מטרונידזול, צפלוספורינים מדור 3, פיפרצילין</li>
+    <li><b>אנטיביוטיקה:</b> קרבפנמים קודם, בגלל החדירה <span class="nw">ל-<bdi dir="ltr">pancreas</bdi></span>. חלופות: קווינולונים, מטרונידזול, צפלוספורינים מדור 3, פיפרצילין</li>
    </ul>
   </div>
   <div>
@@ -426,7 +431,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div class="flow">
     <div><b>1 · לחכות</b><span>אנטיביוטיקה ותמיכה. לדחות התערבות ככל האפשר, עד שהנמק מוקף דופן</span></div>
     <div><b>2 · לנקז</b><span>ניקוז מלעורי או אנדוסקופי דרך הקיבה, עם סטנט רחב</span></div>
-    <div><b>3 · לנקות</b><span>נקרוזקטומיה אנדוסקופית, או ניתוח זעיר-פולשני מאחורי הצפק</span></div>
+    <div><b>3 · לנקות</b><span>נקרוזקטומיה אנדוסקופית, או ניתוח זעיר-פולשני <bdi dir="ltr">retroperitoneal</bdi></span></div>
     <div><b>4 · ניתוח פתוח</b><span>רק כשכל השאר נכשל</span></div>
    </div>
    <div class="box r" style="margin-top:10px"><b class="t">למה לחכות?</b>תמותה אחרי נקרוזקטומיה פתוחה: 75% בשבועיים הראשונים, 45% בימים 15–29 ו-8% אחרי 30 יום</div>
@@ -439,9 +444,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>15</b>הראיות שבספר</div>
  <h2>שלושה מחקרים הולנדיים ששינו את הטיפול</h2>
  <div class="grid g3">
-  <div class="study"><div class="y">2010 · מחקר אקראי</div><b>צעד אחר צעד מול ניתוח פתוח</b><p>ניקוז מלעורי ואחריו ניקוי זעיר-פולשני, מול נקרוזקטומיה פתוחה מוקדמת. בגישה ההדרגתית: פחות תמותה ופחות אי-ספיקה אקסוקרינית ואנדוקרינית בטווח הארוך</p><small>כפי שמסוכם ב-<bdi>Sabiston 22</bdi>, פרק 92 עמ׳ <bdi dir="ltr">1386</bdi></small></div>
-  <div class="study"><div class="y">2018 · מחקר אקראי</div><b>אנדוסקופי מול כירורגי</b><p>הגישה האנדוסקופית לא עדיפה בתמותה, אבל עם פחות פיסטולות, אשפוז קצר יותר ועלות נמוכה יותר</p><small>כפי שמסוכם ב-<bdi>Sabiston 22</bdi>, פרק 92 עמ׳ <bdi dir="ltr">1386</bdi></small></div>
-  <div class="study"><div class="y"><bdi>POINTER</bdi> · מחקר אקראי</div><b>לנקז מיד או לדחות?</b><p>104 מטופלים עם נמק נגוע. אותם סיבוכים ואותה תמותה. בדחייה: פחות התערבויות (2.6 לעומת 4.4). חלק מהמטופלים לא נזקקו לניקוז בכלל</p><small>כפי שמסוכם ב-<bdi>Sabiston 22</bdi>, פרק 92 עמ׳ <bdi dir="ltr">1386–1387</bdi></small></div>
+  <div class="study"><div class="y">2010 · מחקר אקראי</div><b>צעד אחר צעד מול ניתוח פתוח</b><p>ניקוז מלעורי ואחריו ניקוי זעיר-פולשני, מול נקרוזקטומיה פתוחה מוקדמת. בגישה ההדרגתית: פחות תמותה ופחות אי-ספיקה אקסוקרינית ואנדוקרינית בטווח הארוך</p><small>כפי שמסוכם <span class="nw">ב-<bdi>Sabiston 22</bdi></span>, פרק 92 עמ׳ <bdi dir="ltr">1386</bdi></small></div>
+  <div class="study"><div class="y">2018 · מחקר אקראי</div><b>אנדוסקופי מול כירורגי</b><p>הגישה האנדוסקופית לא עדיפה בתמותה, אבל עם פחות פיסטולות, אשפוז קצר יותר ועלות נמוכה יותר</p><small>כפי שמסוכם <span class="nw">ב-<bdi>Sabiston 22</bdi></span>, פרק 92 עמ׳ <bdi dir="ltr">1386</bdi></small></div>
+  <div class="study"><div class="y"><bdi>POINTER</bdi> · מחקר אקראי</div><b>לנקז מיד או לדחות?</b><p>104 מטופלים עם נמק נגוע. אותם סיבוכים ואותה תמותה. בדחייה: פחות התערבויות (2.6 לעומת 4.4). חלק מהמטופלים לא נזקקו לניקוז בכלל</p><small>כפי שמסוכם <span class="nw">ב-<bdi>Sabiston 22</bdi></span>, פרק 92 עמ׳ <bdi dir="ltr">1386–1387</bdi></small></div>
  </div>
  <div class="box" style="margin-top:12px"><b class="t">היום</b>ניקוז אנדוסקופי עם סטנט רחב, לפעמים עם ניקוי אנדוסקופי או ניקוז מלעורי, חוסך ניתוח מרוב המטופלים. אם נכשל, ניתוח זעיר-פולשני פשוט יותר. דיון רב-תחומי ומרכז מנוסה</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1386–1387</bdi></span><span>ראיות</span></div>
@@ -460,8 +465,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   </div>
   <div>
    <div class="flow">
-    <div><b>בלי תסמינים</b><span>מעקב. עד 70% נעלמות לבד, במיוחד מתחת ל-4 ס״מ, בזנב ובלי קשר לצינור הראשי</span></div>
-    <div><b>עם תסמינים · צמודה לקיבה</b><span>ניקוז אנדוסקופי דרך הקיבה (או התריסריון), כשהמרחק פחות מ-1 ס״מ</span></div>
+    <div><b>בלי תסמינים</b><span>מעקב. עד 70% נעלמות לבד, במיוחד מתחת ל-4 ס״מ, <span class="nw">ב-<bdi dir="ltr">tail</bdi></span> ובלי קשר <span class="nw">ל-<bdi dir="ltr">main pancreatic duct</bdi></span></span></div>
+    <div><b>עם תסמינים · צמודה לקיבה</b><span>ניקוז אנדוסקופי דרך הקיבה (או <span class="nw">ה-<bdi dir="ltr">duodenum</bdi></span>), כשהמרחק פחות מ-1 ס״מ</span></div>
     <div><b>אנדוסקופיה לא אפשרית</b><span>ניתוח: ציסטוגסטרוסטומיה, ציסטודואודנוסטומיה או ציסטוג׳ג׳ונוסטומיה. הצלחה מעל 90%, חזרה עד 12%</span></div>
     <div><b>ניקוז מלעורי</b><span>רק בציסטה נגועה עם ספסיס: סיכון גבוה לפיסטולה לעור</span></div>
    </div>
@@ -476,12 +481,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div class="box r"><b class="t">פסאודואנוריזמה שנקרעה</b>
    <ul class="b sm">
-    <li>אלסטאז מהלבלב פוגע בדופן העורק. השכיח ביותר: <b>עורק הטחול</b>. גם הגסטרודואודנלי, המזנטרי העליון ועורק כיס המרה</li>
+    <li>אלסטאז <span class="nw">מה-<bdi dir="ltr">pancreas</bdi></span> פוגע בדופן העורק. השכיח ביותר: <b><bdi dir="ltr">splenic artery</bdi></b>. גם <span class="nw">ה-<bdi dir="ltr">gastroduodenal artery</bdi></span>, <span class="nw">ה-<bdi dir="ltr">SMA</bdi></span> <span class="nw">וה-<bdi dir="ltr">cystic artery</bdi></span></li>
     <li>כאב בטן פתאומי, טכיקרדיה ותת-לחץ דם</li>
     <li><b>טיפול:</b> החייאה וצנתור לתסחיף. כשלא מצליח: קשירת העורק בניתוח</li>
     <li>תמותה: 28–56%</li>
    </ul></div>
-  <div class="box a"><b class="t">פקקת בווריד הטחול</b>
+  <div class="box a"><b class="t">פקקת <span class="nw">ב-<bdi dir="ltr">splenic vein</bdi></span></b>
    <ul class="b sm">
     <li>הדלקת גורמת לפקקת, לעיתים עד מערכת הפורטל</li>
     <li>בהדמיה: טחול מוגדל ו<b>דליות בקיבה</b></li>
@@ -489,7 +494,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li>דימום חוזר מהדליות בקיבה: <b>כריתת טחול</b></li>
    </ul></div>
  </div>
- <div class="box n" style="margin-top:12px"><b class="t">סיבוכים נדירים נוספים</b>מיימת לבלבית ופיסטולה לבלבית-פלאורלית (קרע בצינור הלבלב: עמילאז גבוה בנוזל, מעל 50,000 בנוזל הפלאורלי). טיפול: ניקוז, סטנט בצינור הלבלב ותמיכה תזונתית</div>
+ <div class="box n" style="margin-top:12px"><b class="t">סיבוכים נדירים נוספים</b>מיימת לבלבית ופיסטולה לבלבית-פלאורלית (קרע <span class="nw">ב-<bdi dir="ltr">pancreatic duct</bdi></span>: עמילאז גבוה בנוזל, מעל 50,000 בנוזל הפלאורלי). טיפול: ניקוז, סטנט <span class="nw">ב-<bdi dir="ltr">pancreatic duct</bdi></span> ותמיכה תזונתית</div>
  <div class="src"><span>מקרה בדוי למטרות הוראה · <b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1387–1388</bdi></span><span>מקרה 3</span></div>
 </div></section>
 
@@ -521,7 +526,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>נמק נגוע: אנטיביוטיקה ולחכות לדופן. אחר כך צעד אחר צעד. ניתוח פתוח מוקדם הורג</li>
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 92 <bdi>Exocrine Pancreas</bdi>, החלק על פנקריאטיטיס חריפה (עמ׳ <bdi dir="ltr">1379–1388</bdi>)</div>
- <div class="src"><span>איור: <bdi>Sobotta, Atlas and Text-book of Human Anatomy</bdi> (1906, נחלת הכלל, <bdi>Wikimedia Commons</bdi>) · תמונות: <bdi>Herbert L. Fred</bdi> ו-<bdi>Hendrik A. van Dijk</bdi> (<bdi>CC BY 2.0</bdi>), <bdi>Hellerhoff</bdi> (<bdi>CC BY-SA</bdi>), <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>איור: <bdi>Sobotta, Atlas and Text-book of Human Anatomy</bdi> (1906, נחלת הכלל, <bdi>Wikimedia Commons</bdi>) · תמונות: <bdi>Herbert L. Fred</bdi> <span class="nw">ו-<bdi>Hendrik A. van Dijk</bdi></span> (<bdi>CC BY 2.0</bdi>), <bdi>Hellerhoff</bdi> (<bdi>CC BY-SA</bdi>), <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>

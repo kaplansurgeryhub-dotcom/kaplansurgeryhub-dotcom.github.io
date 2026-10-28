@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>הכרת חדר הניתוח · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,6 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -97,6 +98,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -114,6 +116,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -260,7 +265,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>ארבע סכנות שקטות</h2>
  <div class="grid">
   <div class="box b"><b class="t">קור</b>
-   <ul class="b sm"><li>ההרדמה פוגעת בוויסות החום. הירידה החדה ביותר בשעה הראשונה</li><li>היפותרמיה: כ-<bdi dir="ltr">20%</bdi> יותר דימום, יותר זיהום פצע, תרופות פועלות זמן רב יותר</li><li>מודדים חום ליבה (בוושט במונשם). חום בעור, במצח, באוזן או בפי הטבעת לא מדויק</li><li>חימום באוויר חם. עירוי של יותר מ-1 ליטר בשעה מחממים</li></ul></div>
+   <ul class="b sm"><li>ההרדמה פוגעת בוויסות החום. הירידה החדה ביותר בשעה הראשונה</li><li>היפותרמיה: <span class="nw">כ-<bdi dir="ltr">20%</bdi></span> יותר דימום, יותר זיהום פצע, תרופות פועלות זמן רב יותר</li><li>מודדים חום ליבה (<span class="nw">ב-<bdi dir="ltr">esophagus</bdi></span> במונשם). חום בעור, במצח, באוזן או בפי הטבעת לא מדויק</li><li>חימום באוויר חם. עירוי של יותר מ-1 ליטר בשעה מחממים</li></ul></div>
   <div class="box a"><b class="t">פריט שנשכח</b>
    <ul class="b sm"><li>עד 1 מכל 700 ניתוחים בסיכון גבוה</li><li>זו לא רק טעות של אדם: גם תקשורת ונהלים</li><li>ספירות, עצירה לפני סגירה ותחקיר בסוף הניתוח</li></ul></div>
   <div class="box r"><b class="t">שריפה</b>
@@ -276,7 +281,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>מה עושה ה"בובי"?</h2>
  <div class="grid">
   <div class="flow">
-   <div><b>חד-קוטבי</b><span>זרם עובר מהעט, דרך המטופל, אל משטח הארקה גדול על העור. "חיתוך": זרם רציף, מעט נזק סביב. "קרישה": זרם לסירוגין (פחות מ-<bdi dir="ltr">10%</bdi> מהזמן), יותר פיזור חום</span></div>
+   <div><b>חד-קוטבי</b><span>זרם עובר מהעט, דרך המטופל, אל משטח הארקה גדול על העור. "חיתוך": זרם רציף, מעט נזק סביב. "קרישה": זרם לסירוגין (פחות <span class="nw">מ-<bdi dir="ltr">10%</bdi></span> מהזמן), יותר פיזור חום</span></div>
    <div><b>דו-קוטבי</b><span>הזרם עובר רק בין שתי הלסתות. בלי משטח הארקה. בטוח ליד קוצב או מכשיר מושתל</span></div>
    <div><b>מכשירי איטום</b><span>לוחצים, מודדים את הרקמה ואוטמים כלי דם עד 7 מ״מ. אחר כך להב חותך</span></div>
    <div><b>מכשיר על-קולי</b><span>להב רוטט שחותך וקורש בלי זרם חשמלי</span></div>
@@ -285,7 +290,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div style="display:grid;gap:10px;align-content:start">
    <div class="box"><b class="t">כלי דם</b>נימים וורידים קטנים: צריבה. כלי דם מעל 1 מ״מ וכל כלי דם עם שם: קשירה, קליפס, סטפלר או מכשיר איטום</div>
    <div class="box a"><b class="t">תקלות</b>שני שלישים מהמנתחים הזעיר-פולשניים נתקלו בתקלת סטפלר. יותר מ-100 מקרי מוות דווחו</div>
-   <div class="box r"><b class="t">קרישה בגז ארגון</b>טובה לשטח של כבד או טחול. אסור לכוון לוורידים גדולים: תסחיף גז ודום לב</div>
+   <div class="box r"><b class="t">קרישה בגז ארגון</b>טובה לשטח של <bdi dir="ltr">liver</bdi> או <bdi dir="ltr">spleen</bdi>. אסור לכוון לוורידים גדולים: תסחיף גז ודום לב</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">31, 33–34</bdi> · פרק 9 עמ׳ <bdi dir="ltr">e109</bdi></span><span>אנרגיה</span></div>
@@ -296,9 +301,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>מצבי חירום בחדר ומה התפקיד שלכם</h2>
  <div class="grid">
   <div class="flow">
-   <div><b>היפרתרמיה ממאירה</b><span>תגובה לגזי הרדמה ולסוקסינילכולין. חום, דופק מהיר, עלייה ב-<bdi>CO<sub>2</sub></bdi> בנשיפה, נוקשות שרירים, אשלגן גבוה. מפסיקים את הגז, דנטרולן 2.5 מ״ג לק״ג וקירור. התמותה ירדה מ-<bdi dir="ltr">60–80%</bdi> לפחות מ-<bdi dir="ltr">5%</bdi></span></div>
-   <div><b>תסחיף גז</b><span>ירידה פתאומית ב-<bdi>CO<sub>2</sub></bdi> בנשיפה וקריסה. עוצרים את כניסת הגז, החייאה. תמותה כ-<bdi dir="ltr">20%</bdi></span></div>
-   <div><b>חזה אוויר</b><span>אין קולות נשימה או סרעפת בולטת: נקז בית חזה</span></div>
+   <div><b>היפרתרמיה ממאירה</b><span>תגובה לגזי הרדמה ולסוקסינילכולין. חום, דופק מהיר, עלייה ב-<bdi>CO<sub>2</sub></bdi> בנשיפה, נוקשות שרירים, אשלגן גבוה. מפסיקים את הגז, דנטרולן 2.5 מ״ג לק״ג וקירור. התמותה ירדה <span class="nw">מ-<bdi dir="ltr">60–80%</bdi></span> לפחות <span class="nw">מ-<bdi dir="ltr">5%</bdi></span></span></div>
+   <div><b>תסחיף גז</b><span>ירידה פתאומית ב-<bdi>CO<sub>2</sub></bdi> בנשיפה וקריסה. עוצרים את כניסת הגז, החייאה. תמותה <span class="nw">כ-<bdi dir="ltr">20%</bdi></span></span></div>
+   <div><b>חזה אוויר</b><span>אין קולות נשימה או <bdi dir="ltr">diaphragm</bdi> בולט: נקז בית חזה</span></div>
    <div><b>דימום מסיבי</b><span>לחיצה ושליטה בכלי הדם מעליו. מנות דם ולא נוזלים צלולים. לפעמים ריפוד הבטן וסיום מאוחר יותר</span></div>
   </div>
   <div style="display:grid;gap:10px;align-content:start">
@@ -315,7 +320,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>מחקרים שכדאי להכיר</h2>
  <div class="grid">
   <div class="study"><div class="y"><bdi>Lancet</bdi> 2022 · מחקר אקראי באשכולות</div><b><bdi>ChEETAh</bdi>: החלפת כפפות ומכשירים לפני סגירה</b>
-   <p>13,301 מטופלים בניתוחי בטן מזוהמים בשבע מדינות. כל הצוות המתרחץ החליף כפפות ומכשירים לפני סגירת הבטן. זיהום פצע ירד מ-<bdi dir="ltr">18.9%</bdi> ל-<bdi dir="ltr">16.0%</bdi></p>
+   <p>13,301 מטופלים בניתוחי בטן מזוהמים בשבע מדינות. כל הצוות המתרחץ החליף כפפות ומכשירים לפני סגירת הבטן. זיהום פצע ירד <span class="nw">מ-<bdi dir="ltr">18.9%</bdi></span> <span class="nw">ל-<bdi dir="ltr">16.0%</bdi></span></p>
    <small>NIHR Global Research Health Unit on Global Surgery. Lancet 2022;400:1767-76</small></div>
   <div class="study"><div class="y"><bdi>Lancet</bdi> 2021 · מחקר אקראי</div><b><bdi>FALCON</bdi>: כלורהקסידין ותפרים עם טריקלוזן</b>
    <p>5,788 מטופלים בניתוחי בטן במדינות בהכנסה נמוכה ובינונית. לא נמצא הבדל בזיהום בין כלורהקסידין באלכוהול ליוד במים. גם לא בין תפר עם טריקלוזן לתפר רגיל</p>

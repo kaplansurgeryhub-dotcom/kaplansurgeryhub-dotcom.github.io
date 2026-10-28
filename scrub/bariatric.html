@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>השמנת יתר חולנית · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -83,6 +83,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -94,6 +95,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -111,6 +113,9 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -135,7 +140,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   <li>להגדיר השמנה חולנית ולמנות את המחלות הנלוות העיקריות</li>
   <li>להסביר למה ניתוח עובד: הגבלה, תת-ספיגה וההורמונים של המעי</li>
   <li>לדעת את ההתוויות לניתוח בריאטרי ואת ההכנה לפניו</li>
-  <li>להכיר את הניתוחים העיקריים: שרוול, מעקף <bdi>Roux-en-Y</bdi>, <bdi>BPD-DS</bdi> ו-<bdi>SADI-S</bdi> ואת התוצאות שלהם</li>
+  <li>להכיר את הניתוחים העיקריים: שרוול, מעקף <bdi>Roux-en-Y</bdi>, <bdi>BPD-DS</bdi> <span class="nw">ו-<bdi>SADI-S</bdi></span> ואת התוצאות שלהם</li>
   <li>לזהות את סימני האזהרה בימים שאחרי הניתוח</li>
  </ol>
  <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 99 (עמ׳ <bdi dir="ltr">1554–1578</bdi>)</span><span>Scrub In · קפלן</span></div>
@@ -153,8 +158,8 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <ul class="b">
   <li><b>הגדרה:</b> <bdi>BMI</bdi> 40 ומעלה (משקל בק״ג חלקי הגובה במטרים בריבוע). המונח המועדף היום: השמנה חמורה</li>
   <li>השמנה הוכרה כמחלה ב-2013. היא הסיבה השנייה למוות שניתן למנוע בארה״ב, אחרי עישון</li>
-  <li>בדיאטה בלבד, הסיכוי לרדת ולהישאר מתחת ל-<bdi>BMI</bdi> 35 הוא <bdi dir="ltr">3%</bdi> או פחות</li>
-  <li>מנותחים פחות מ-<bdi dir="ltr">2%</bdi> מהמטופלים שהיו מרוויחים מניתוח</li>
+  <li>בדיאטה בלבד, הסיכוי לרדת ולהישאר מתחת <span class="nw">ל-<bdi>BMI</bdi></span> 35 הוא <bdi dir="ltr">3%</bdi> או פחות</li>
+  <li>מנותחים פחות <span class="nw">מ-<bdi dir="ltr">2%</bdi></span> מהמטופלים שהיו מרוויחים מניתוח</li>
  </ul>
  <div class="src"><span><b>Sabiston 22</b> · פרק 99 עמ׳ <bdi dir="ltr">1554–1557, 1561, 1577</bdi></span><span>מספרים</span></div>
 </div></section>
@@ -175,7 +180,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   <div style="display:grid;gap:8px">
    <div class="box n"><b class="t">לב וכלי דם</b>מוות פתאומי, קרדיומיופתיה, אי-ספיקה ורידית, DVT, יתר לחץ דם ריאתי</div>
    <div class="box"><b class="t">מטבולי וכבד</b>סוכרת מסוג 2, כבד שומני (<bdi>NASH</bdi>), אבני מרה</div>
-   <div class="box a"><b class="t">סרטן</b>ושט, קיבה, מעי גס, כליה, לבלב, כיס מרה, שד אחרי גיל המעבר, רחם, שחלה ועוד</div>
+   <div class="box a"><b class="t">סרטן</b><span class="nw">ב-<bdi>esophagus, stomach, colon, kidney, pancreas, gallbladder, uterus, ovary</bdi></span>, בשד אחרי גיל המעבר ועוד</div>
    <div class="box b"><b class="t">נפש וחברה</b>דיכאון, הערכה עצמית נמוכה, אפליה. שכיח רקע של התעללות</div>
   </div>
  </div>
@@ -190,8 +195,8 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
    <ul class="b sm">
     <li><b>רעב שלא נגמר:</b> במטופל עם השמנה חמורה, כמות מזון שמשביעה אחרים לא משביעה. ה"נקודה הקבועה" של האנרגיה במוח עולה</li>
     <li><b>גנטיקה:</b> <bdi>FTO</bdi>, <bdi>MC4R</bdi> (הגן הבודד השכיח). גם המיקרוביום</li>
-    <li><b>גרלין</b> ("הורמון הרעב") מופרש בפונדוס. אחרי דיאטה הוא עולה ואחרי שרוול הוא יורד</li>
-    <li><b>GLP-1</b> מהמעי הדיסטלי מגביר הפרשת אינסולין. עולה אחרי מעקף ושרוול ולא אחרי ירידה במשקל בדיאטה. <b>PYY</b> (שובע) עולה בעיקר אחרי מעקף</li>
+    <li><b>גרלין</b> ("הורמון הרעב") מופרש <span class="nw">ב-<bdi>fundus</bdi></span>. אחרי דיאטה הוא עולה ואחרי שרוול הוא יורד</li>
+    <li><b>GLP-1</b> <span class="nw">מה-<bdi>distal bowel</bdi></span> מגביר הפרשת אינסולין. עולה אחרי מעקף ושרוול ולא אחרי ירידה במשקל בדיאטה. <b>PYY</b> (שובע) עולה בעיקר אחרי מעקף</li>
    </ul>
   </div>
   <div>
@@ -214,9 +219,9 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <div class="grid">
   <div>
    <ul class="b sm">
-    <li><b>מחקר <bdi>SOS</bdi> (שבדיה):</b> 2,010 מנותחים מול 2,037 ביקורות, מעקב מעל 20 שנה. תמותה נמוכה ב-<bdi dir="ltr">30%</bdi> (<bdi>HR</bdi> 0.70). פחות אוטמי לב</li>
-    <li><b>סוכרת (<bdi>STAMPEDE</bdi> ואחרים):</b> ניתוח מוריד <bdi>HbA1c</bdi> ב-<bdi dir="ltr">2–3.5%</bdi>, טיפול תרופתי ב-<bdi dir="ltr">1–1.5%</bdi>. <bdi dir="ltr">29–43%</bdi> מהמנותחים במעקף מגיעים מתחת ל-6, לעומת <bdi dir="ltr">5–7%</bdi></li>
-    <li>בסוכרתיים מנותחים: <bdi dir="ltr">71%</bdi> פחות רטינופתיה ו-<bdi dir="ltr">69%</bdi> פחות אי-ספיקת כליות סופנית</li>
+    <li><b>מחקר <bdi>SOS</bdi> (שבדיה):</b> 2,010 מנותחים מול 2,037 ביקורות, מעקב מעל 20 שנה. תמותה נמוכה <span class="nw">ב-<bdi dir="ltr">30%</bdi></span> (<bdi>HR</bdi> 0.70). פחות אוטמי לב</li>
+    <li><b>סוכרת (<bdi>STAMPEDE</bdi> ואחרים):</b> ניתוח מוריד <bdi>HbA1c</bdi> <span class="nw">ב-<bdi dir="ltr">2–3.5%</bdi></span>, טיפול תרופתי <span class="nw">ב-<bdi dir="ltr">1–1.5%</bdi></span>. <bdi dir="ltr">29–43%</bdi> מהמנותחים במעקף מגיעים מתחת ל-6, לעומת <bdi dir="ltr">5–7%</bdi></li>
+    <li>בסוכרתיים מנותחים: <bdi dir="ltr">71%</bdi> פחות רטינופתיה <span class="nw">ו-<bdi dir="ltr">69%</bdi></span> פחות אי-ספיקת כליות סופנית</li>
    </ul>
   </div>
   <div class="box n"><b class="t">תרופות <bdi>GLP-1</bdi></b>
@@ -247,7 +252,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   </div>
   <div style="display:grid;gap:10px">
    <div class="box r"><b class="t">התוויות נגד</b><bdi>Prader-Willi</bdi> (התוויה נגד מוחלטת). מטופל שלא יכול ללכת. מעל 500 ליברות: קודם ירידה במשקל בלי ניתוח</div>
-   <div class="box"><b class="t">מתבגרים</b>אחרי קפיצת הגדילה. ב-<bdi>Teen-LABS</bdi>: הפוגה של סוכרת ב-<bdi dir="ltr">88%</bdi> אחרי 5 שנים, יותר מ-<bdi dir="ltr">50–70%</bdi> במבוגרים</div>
+   <div class="box"><b class="t">מתבגרים</b>אחרי קפיצת הגדילה. <span class="nw">ב-<bdi>Teen-LABS</bdi></span>: הפוגה של סוכרת <span class="nw">ב-<bdi dir="ltr">88%</bdi></span> אחרי 5 שנים, יותר <span class="nw">מ-<bdi dir="ltr">50–70%</bdi></span> במבוגרים</div>
    <div class="box a"><b class="t">מבוגרים</b>לא הגיל אלא השבריריות ותוחלת החיים. משך ההשמנה וחומרתה הם הגורמים החשובים</div>
   </div>
  </div>
@@ -268,7 +273,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
    </ul>
   </div>
   <div style="display:grid;gap:10px">
-   <div class="box"><b class="t">כיס המרה</b>אבנים עם תסמינים: כריתת כיס מרה באותו ניתוח. אחרי מעקף נוצרות אבנים או בוצה בכ-<bdi dir="ltr">30%</bdi>. אורסודיאול 6 חודשים מוריד ל-<bdi dir="ltr">3%</bdi></div>
+   <div class="box"><b class="t"><bdi>Gallbladder</bdi></b>אבנים עם תסמינים: כריתת כיס מרה באותו ניתוח. אחרי מעקף נוצרות אבנים או בוצה <span class="nw">בכ-<bdi dir="ltr">30%</bdi></span>. אורסודיאול 6 חודשים מוריד <span class="nw">ל-<bdi dir="ltr">3%</bdi></span></div>
    <div class="box n"><b class="t">ביום הניתוח</b>צפלוספורין דור 1 במינון לפי משקל. מניעת קרישים: הליכה מוקדמת, מגפי לחץ והפרין במשקל מולקולרי נמוך</div>
    <div class="box b"><b class="t">במחלקה השבוע</b>בדקו מטופל לפני ניתוח בריאטרי: <bdi>BMI</bdi>, היקף מותניים, עור (פטריות, שינויי סטזיס ורידית) ובקעים בדופן. שאלו על נחירות ועל תסמיני רפלוקס. הציגו לבכיר/ה</div>
   </div>
@@ -278,8 +283,8 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
 
 <section class="s"><div class="card">
  <div class="kick"><b>8</b>אנטומיה · אינטראקטיבי</div>
- <h2>הקיבה בעיני המנתח הבריאטרי</h2>
- <div class="hotw"><div class="hoti"><img src="img/Sobo_1906_405.png" alt="הקיבה במקומה, הכבד מורם"><svg viewBox="0 0 960 655" preserveAspectRatio="none" style="--lw:14;--bf:23px">
+ <h2><span class="nw">ה-<bdi>stomach</bdi></span> בעיני המנתח הבריאטרי</h2>
+ <div class="hotw"><div class="hoti"><img src="img/Sobo_1906_405.png" alt="ה-stomach במקומו, ה-liver מורם"><svg viewBox="0 0 960 655" preserveAspectRatio="none" style="--lw:14;--bf:23px">
   <path class="hz" data-hz="fun" d="M552,165 C565,150 600,138 646,134 C680,137 711,150 735,170 C755,190 766,215 771,245 C740,252 700,250 660,240 C620,230 585,218 556,208 C553,192 552,178 552,165 Z" style="--c:#7A5BD6"/>
   <path class="hz ln" data-hz="body" d="M600,139 C650,131 711,150 749,182 C766,212 771,250 769,293 C766,336 755,370 732,409 C711,426 668,439 625,443 C582,439 526,430 475,426" style="--c:#2F6FA8"/>
   <path class="hz" data-hz="pyl" d="M350,372 C356,362 368,356 385,352 C410,347 440,342 472,334 C476,352 478,370 479,388 C480,402 480,415 480,428 C455,431 430,432 405,431 C385,429 366,426 353,418 C344,405 344,386 350,372 Z" style="--c:#187A5C"/>
@@ -294,14 +299,14 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   <g class="hzb" style="--c:#B5476B"><circle cx="520" cy="565" r="20"/><text x="520" y="565">6</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="fun" hidden><b>1 · הפונדוס וזווית <bdi>His</bdi></b><p>כאן מופרש הגרלין. בשרוול כורתים אותו עד זווית <bdi>His</bdi> וחושפים את השוק השמאלי. במעקף משאירים אותו מחוץ לכיס הקטן</p></div>
-  <div class="hzi" data-hzi="body" hidden><b>2 · העקמומיות הגדולה</b><p>בשרוול משחררים את כל העקמומיות הגדולה ומשדכים לאורך בוז׳י <bdi dir="ltr">34–40</bdi> Fr. נשארת קיבה צינורית על העקמומיות הקטנה</p></div>
-  <div class="hzi" data-hzi="pyl" hidden><b>3 · האנטרום והפילורוס</b><p>בשרוול מתחילים לשדך <bdi dir="ltr">3–5</bdi> ס״מ מהפילורוס ולא מצרים את האינציזורה: שם נוצרות היצרות ודליפות. הפילורוס נשמר ולכן אין דמפינג</p></div>
-  <div class="hzi" data-hzi="less" hidden><b>4 · העקמומיות הקטנה והאומנטום הקטן</b><p>שומרים על כלי הדם הגסטריים השמאליים. במעקף בונים כאן כיס קטן של <bdi dir="ltr">15–30</bdi> מ״ל. בטבעת עוברים דרך החלק הדק (<bdi>pars flaccida</bdi>)</p></div>
-  <div class="hzi" data-hzi="spl" hidden><b>5 · הטחול</b><p>מחובר לקיבה בכלי הדם הגסטריים הקצרים, שמחלקים בשרוול. זהירות מפגיעה בטחול ומחום של מכשיר האנרגיה</p></div>
-  <div class="hzi" data-hzi="om" hidden><b>6 · האומנטום הגדול והמעי הגס הרוחבי</b><p>במעקף מעלים את לולאת ה-<bdi>Roux</bdi> מלפני המעי הגס (<bdi>antecolic</bdi>): פחות פתחים בממנטרי, פחות בקעים פנימיים</p></div>
+  <div class="hzi" data-hzi="fun" hidden><b>1 · <bdi>fundus</bdi> <span class="nw">ו-<bdi>angle of His</bdi></span></b><p>כאן מופרש הגרלין. בשרוול כורתים אותו עד <span class="nw">ה-<bdi>angle of His</bdi></span> וחושפים את <span class="nw">ה-<bdi>left crus</bdi></span>. במעקף משאירים אותו מחוץ לכיס הקטן</p></div>
+  <div class="hzi" data-hzi="body" hidden><b>2 · <bdi>greater curvature</bdi></b><p>בשרוול משחררים את כל <span class="nw">ה-<bdi>greater curvature</bdi></span> ומשדכים לאורך בוז׳י <bdi dir="ltr">34–40</bdi> Fr. נשאר שרוול צינורי על <span class="nw">ה-<bdi>lesser curvature</bdi></span></p></div>
+  <div class="hzi" data-hzi="pyl" hidden><b>3 · <bdi>antrum, pylorus</bdi></b><p>בשרוול מתחילים לשדך <bdi dir="ltr">3–5</bdi> ס״מ <span class="nw">מה-<bdi>pylorus</bdi></span> ולא מצרים את <span class="nw">ה-<bdi>incisura angularis</bdi></span>: שם נוצרות היצרות ודליפות. <span class="nw">ה-<bdi>pylorus</bdi></span> נשמר ולכן אין דמפינג</p></div>
+  <div class="hzi" data-hzi="less" hidden><b>4 · <bdi>lesser curvature, lesser omentum</bdi></b><p>שומרים על <span class="nw">ה-<bdi>left gastric vessels</bdi></span>. במעקף בונים כאן כיס קטן של <bdi dir="ltr">15–30</bdi> מ״ל. בטבעת עוברים דרך החלק הדק (<bdi>pars flaccida</bdi>)</p></div>
+  <div class="hzi" data-hzi="spl" hidden><b>5 · <bdi>spleen</bdi></b><p>מחובר <span class="nw">ל-<bdi>stomach</bdi></span> <span class="nw">ב-<bdi>short gastric vessels</bdi></span>, שמחלקים בשרוול. זהירות מפגיעה <span class="nw">ב-<bdi>spleen</bdi></span> ומחום של מכשיר האנרגיה</p></div>
+  <div class="hzi" data-hzi="om" hidden><b>6 · <bdi>greater omentum, transverse colon</bdi></b><p>במעקף מעלים את לולאת <span class="nw">ה-<bdi>Roux</bdi></span> מלפני <span class="nw">ה-<bdi>transverse colon</bdi></span> (<bdi>antecolic</bdi>): פחות פתחים <span class="nw">ב-<bdi>mesentery</bdi></span>, פחות בקעים פנימיים</p></div>
  </div></div>
- <figcaption>הקיבה במקומה, הכבד מורם · <bdi>Sobotta</bdi>, <bdi>Atlas and Text-book of Human Anatomy</bdi> (1906), איור 405 (נחלת הכלל)</figcaption>
+ <figcaption><span class="nw">ה-<bdi>stomach</bdi></span> במקומו, <span class="nw">ה-<bdi>liver</bdi></span> מורם · <bdi>Sobotta</bdi>, <bdi>Atlas and Text-book of Human Anatomy</bdi> (1906), איור 405 (נחלת הכלל)</figcaption>
  <div class="src"><span><b>Sabiston 22</b> · פרק 99 עמ׳ <bdi dir="ltr">1560, 1563–1570</bdi> · פרק 86 עמ׳ <bdi dir="ltr">1166–1167</bdi></span><span>אנטומיה</span></div>
 </div></section>
 
@@ -311,16 +316,16 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <div class="grid f">
   <div>
    <div class="flow">
-    <div><b>שרוול</b><span>כריתת העקמומיות הגדולה על בוז׳י <bdi dir="ltr">34–40</bdi> Fr, <bdi dir="ltr">3–5</bdi> ס״מ מהפילורוס ועד זווית <bdi>His</bdi>. פשוט, בלי תת-ספיגה, בלי בקעים פנימיים</span></div>
-    <div><b>מעקף <bdi>Roux-en-Y</bdi></b><span>כיס קטן על העקמומיות הקטנה. חיתוך הג׳חונום כ-50 ס״מ מ-<bdi>Treitz</bdi>. לולאת <bdi>Roux</bdi> של 100 ס״מ (150 ב-<bdi>BMI</bdi> מעל 50), לפני המעי הגס. סגירת הפתחים בממנטרי</span></div>
-    <div><b><bdi>BPD-DS</bdi></b><span>שרוול, חיתוך התריסריון 2 ס״מ אחרי הפילורוס ותעלה משותפת של <bdi dir="ltr">100–200</bdi> ס״מ. הכי הרבה ירידה, הכי הרבה חוסרים</span></div>
-    <div><b><bdi>SADI-S</bdi></b><span>שרוול וחיבור אחד בין התריסריון לאילאום, תעלה משותפת <bdi dir="ltr">250–350</bdi> ס״מ. פחות חוסרים מ-<bdi>BPD-DS</bdi></span></div>
+    <div><b>שרוול</b><span>כריתת <span class="nw">ה-<bdi>greater curvature</bdi></span> על בוז׳י <bdi dir="ltr">34–40</bdi> Fr, <bdi dir="ltr">3–5</bdi> ס״מ <span class="nw">מה-<bdi>pylorus</bdi></span> ועד <span class="nw">ה-<bdi>angle of His</bdi></span>. פשוט, בלי תת-ספיגה, בלי בקעים פנימיים</span></div>
+    <div><b>מעקף <bdi>Roux-en-Y</bdi></b><span>כיס קטן על <span class="nw">ה-<bdi>lesser curvature</bdi></span>. חיתוך <span class="nw">ה-<bdi>jejunum</bdi></span> כ-50 ס״מ <span class="nw">מ-<bdi>Treitz</bdi></span>. לולאת <bdi>Roux</bdi> של 100 ס״מ (150 <span class="nw">ב-<bdi>BMI</bdi></span> מעל 50), לפני <span class="nw">ה-<bdi>colon</bdi></span>. סגירת הפתחים <span class="nw">ב-<bdi>mesentery</bdi></span></span></div>
+    <div><b><bdi>BPD-DS</bdi></b><span>שרוול, חיתוך <span class="nw">ה-<bdi>duodenum</bdi></span> 2 ס״מ אחרי <span class="nw">ה-<bdi>pylorus</bdi></span> ותעלה משותפת של <bdi dir="ltr">100–200</bdi> ס״מ. הכי הרבה ירידה, הכי הרבה חוסרים</span></div>
+    <div><b><bdi>SADI-S</bdi></b><span>שרוול וחיבור אחד בין <span class="nw">ה-<bdi>duodenum</bdi></span> <span class="nw">ל-<bdi>ileum</bdi></span>, תעלה משותפת <bdi dir="ltr">250–350</bdi> ס״מ. פחות חוסרים <span class="nw">מ-<bdi>BPD-DS</bdi></span></span></div>
    </div>
    <div class="box a" style="margin-top:8px"><b class="t">טבעת מתכווננת</b>כמעט נעלמה: <bdi dir="ltr">0.9%</bdi> מהניתוחים ב-2022. <bdi dir="ltr">71%</bdi> עברו ניתוח חוזר תוך 7 שנים במאגר הצרפתי</div>
   </div>
   <div style="display:grid;gap:10px">
-   <figure><img src="img/niddk-rygb.png" alt="מעקף קיבה Roux-en-Y" style="max-height:26vh"><figcaption>מעקף <bdi>Roux-en-Y</bdi>: כיס קטן מחובר ללולאת ג׳חונום · <bdi>NIDDK</bdi>, <bdi>NIH</bdi>, <bdi>Wikimedia Commons</bdi> (נחלת הכלל)</figcaption></figure>
-   <figure><img src="img/sleeve-specimen.jpg" alt="החלק הנכרת בשרוול" style="max-height:24vh"><figcaption>שרוול: החלק הנכרת מהעקמומיות הגדולה, אחרי הניתוח · <bdi>Herecomesdoc</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+   <figure><img src="img/niddk-rygb.png" alt="מעקף קיבה Roux-en-Y" style="max-height:26vh"><figcaption>מעקף <bdi>Roux-en-Y</bdi>: כיס קטן מחובר ללולאת <bdi>jejunum</bdi> · <bdi>NIDDK</bdi>, <bdi>NIH</bdi>, <bdi>Wikimedia Commons</bdi> (נחלת הכלל)</figcaption></figure>
+   <figure><img src="img/sleeve-specimen.jpg" alt="החלק הנכרת בשרוול" style="max-height:24vh"><figcaption>שרוול: החלק הנכרת <span class="nw">מה-<bdi>greater curvature</bdi></span>, אחרי הניתוח · <bdi>Herecomesdoc</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 99 עמ׳ <bdi dir="ltr">1564–1570, 1573</bdi></span><span>ניתוחים</span></div>
@@ -332,13 +337,13 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <table style="width:100%;border-collapse:collapse;font-size:15px;line-height:1.4;text-align:center">
   <tr style="background:var(--navy);color:#fff"><th style="padding:7px;text-align:start">ניתוח</th><th style="padding:7px">ירידה מעודף המשקל</th><th style="padding:7px">תמותה</th><th style="padding:7px;text-align:start">נקודות חשובות</th></tr>
   <tr style="background:var(--soft)"><td style="padding:7px;text-align:start"><b>שרוול</b></td><td><bdi dir="ltr">53–62%</bdi></td><td><bdi dir="ltr">0.08%</bdi></td><td style="text-align:start"><bdi dir="ltr">57.5%</bdi> מהניתוחים בארה״ב ב-2022. רפלוקס חדש או מחמיר</td></tr>
-  <tr><td style="padding:7px;text-align:start"><b>מעקף</b></td><td><bdi dir="ltr">57–67%</bdi></td><td><bdi dir="ltr">0.11%</bdi></td><td style="text-align:start"><bdi dir="ltr">22.2%</bdi> מהניתוחים. צרבת חולפת מיד ביותר מ-<bdi dir="ltr">90%</bdi></td></tr>
+  <tr><td style="padding:7px;text-align:start"><b>מעקף</b></td><td><bdi dir="ltr">57–67%</bdi></td><td><bdi dir="ltr">0.11%</bdi></td><td style="text-align:start"><bdi dir="ltr">22.2%</bdi> מהניתוחים. צרבת חולפת מיד ביותר <span class="nw">מ-<bdi dir="ltr">90%</bdi></span></td></tr>
   <tr style="background:var(--soft)"><td style="padding:7px;text-align:start"><b><bdi>BPD-DS</bdi> / <bdi>SADI-S</bdi></b></td><td><bdi dir="ltr">74–78%</bdi></td><td><bdi dir="ltr">0.4–0.6%</bdi></td><td style="text-align:start">הפוגת סוכרת מעל <bdi dir="ltr">85%</bdi>. ויטמינים ומעקב לכל החיים</td></tr>
   <tr><td style="padding:7px;text-align:start"><b>טבעת</b></td><td><bdi dir="ltr">44–46%</bdi></td><td>0</td><td style="text-align:start">הרבה ניתוחים חוזרים, ירידה לא מספקת</td></tr>
  </table>
  <div class="grid" style="margin-top:12px">
   <div class="box"><b class="t">שרוול מול מעקף ב-5 שנים (<bdi>SLEEVEPASS</bdi>, <bdi>SM-BOSS</bdi>)</b>מעט יותר ירידה במעקף (<bdi dir="ltr">57%</bdi> מול <bdi dir="ltr">49%</bdi>), בלי הבדל מובהק בסוכרת ובסיבוכים מאוחרים. במעקף יותר הפוגה של רפלוקס (<bdi dir="ltr">60.4%</bdi> מול <bdi dir="ltr">25%</bdi>)</div>
-  <div class="box n"><b class="t">אחרי מעקף, 7–12 שנים</b>הפוגה של סוכרת בכ-<bdi dir="ltr">51–59%</bdi>, של יתר לחץ דם בכ-<bdi dir="ltr">36–39%</bdi></div>
+  <div class="box n"><b class="t">אחרי מעקף, 7–12 שנים</b>הפוגה של סוכרת <span class="nw">בכ-<bdi dir="ltr">51–59%</bdi></span>, של יתר לחץ דם <span class="nw">בכ-<bdi dir="ltr">36–39%</bdi></span></div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 99 עמ׳ <bdi dir="ltr">1569, 1571–1573</bdi></span><span>תוצאות</span></div>
 </div></section>
@@ -372,13 +377,13 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <h2>מבט על (פירוט במפגש הבא)</h2>
  <div class="grid g3">
   <div class="box n"><b class="t">מעקף</b>
-   <ul class="b sm"><li>דליפה: מתחת ל-<bdi dir="ltr">1%</bdi> היום</li><li>בקע פנימי וחסימה: CT וניתוח</li><li>היצרות בחיבור: <bdi dir="ltr">2–7%</bdi></li><li>כיב בחיבור: <bdi dir="ltr">2–14%</bdi></li><li>חוסר ברזל ו-<bdi>B12</bdi></li></ul></div>
+   <ul class="b sm"><li>דליפה: מתחת <span class="nw">ל-<bdi dir="ltr">1%</bdi></span> היום</li><li>בקע פנימי וחסימה: CT וניתוח</li><li>היצרות בחיבור: <bdi dir="ltr">2–7%</bdi></li><li>כיב בחיבור: <bdi dir="ltr">2–14%</bdi></li><li>חוסר ברזל <span class="nw">ו-<bdi>B12</bdi></span></li></ul></div>
   <div class="box"><b class="t">שרוול</b>
-   <ul class="b sm"><li>דליפה: <bdi dir="ltr">0.3–0.5%</bdi>, לרוב <bdi dir="ltr">1–4</bdi> שבועות אחרי</li><li>היצרות באינציזורה: פחות מ-<bdi dir="ltr">1%</bdi></li><li>רפלוקס: הסיבה העיקרית להמרה למעקף</li></ul></div>
+   <ul class="b sm"><li>דליפה: <bdi dir="ltr">0.3–0.5%</bdi>, לרוב <bdi dir="ltr">1–4</bdi> שבועות אחרי</li><li>היצרות באינציזורה: פחות <span class="nw">מ-<bdi dir="ltr">1%</bdi></span></li><li>רפלוקס: הסיבה העיקרית להמרה למעקף</li></ul></div>
   <div class="box a"><b class="t"><bdi>BPD-DS</bdi> / <bdi>SADI-S</bdi></b>
    <ul class="b sm"><li>תת-תזונה של חלבון: <bdi dir="ltr">8%</bdi> אחרי <bdi>BPD-DS</bdi></li><li>חוסר בוויטמינים מסיסי שומן: A, D, E, K</li><li>2–4 יציאות ביום</li></ul></div>
  </div>
- <div class="box" style="margin-top:12px"><b class="t">ניתוח חוזר</b>נשקל בירידה לא מספקת (פחות מ-<bdi dir="ltr">50%</bdi> מהעודף אחרי 18 חודשים), עלייה של יותר מ-<bdi dir="ltr">10%</bdi>, או חזרה של המחלות הנלוות. במאגר הגדול: <bdi dir="ltr">6.3%</bdi> ניתוחים חוזרים בלבד, תמותה <bdi dir="ltr">0.12–0.21%</bdi></div>
+ <div class="box" style="margin-top:12px"><b class="t">ניתוח חוזר</b>נשקל בירידה לא מספקת (פחות <span class="nw">מ-<bdi dir="ltr">50%</bdi></span> מהעודף אחרי 18 חודשים), עלייה של יותר <span class="nw">מ-<bdi dir="ltr">10%</bdi></span>, או חזרה של המחלות הנלוות. במאגר הגדול: <bdi dir="ltr">6.3%</bdi> ניתוחים חוזרים בלבד, תמותה <bdi dir="ltr">0.12–0.21%</bdi></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 99 עמ׳ <bdi dir="ltr">1574–1576</bdi></span><span>סיבוכים</span></div>
 </div></section>
 
@@ -387,13 +392,13 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <h2>לפני, בזמן ואחרי</h2>
  <div class="grid">
   <ul class="b sm">
-   <li><b>לפני:</b> לפי שיקול המנתח. ב-<bdi dir="ltr">7.6%</bdi> מהמטופלים הממצאים דחו או שינו את הניתוח</li>
-   <li><b>בזמן הניתוח:</b> בדיקת דליפה: מנפחים אוויר בקיבה מתחת לסליין ומחפשים בועות. אפשר גם לעצור דימום מקו השדכנים</li>
+   <li><b>לפני:</b> לפי שיקול המנתח. <span class="nw">ב-<bdi dir="ltr">7.6%</bdi></span> מהמטופלים הממצאים דחו או שינו את הניתוח</li>
+   <li><b>בזמן הניתוח:</b> בדיקת דליפה: מנפחים אוויר <span class="nw">ב-<bdi>stomach</bdi></span> מתחת לסליין ומחפשים בועות. אפשר גם לעצור דימום מקו השדכנים</li>
    <li><b>אחרי:</b> סטנט מכוסה לדליפה (<bdi dir="ltr">4–6</bdi> שבועות) ואקום אנדוסקופי לחלל (<bdi dir="ltr">8–12</bdi> טיפולים), הרחבה בבלון להיצרות (עד <bdi dir="ltr">3–5</bdi> מ״מ בכל פעם)</li>
   </ul>
   <div style="display:grid;gap:10px">
-   <div class="box"><b class="t">טיפולים אנדוסקופיים לירידה במשקל</b>בלון בקיבה ל-6 חודשים (ירידה של <bdi dir="ltr">30–50</bdi> ליברות, לרוב לא נשמרת). שרוול אנדוסקופי בתפרים. נתונים לטווח ארוך חסרים</div>
-   <div class="box a"><b class="t">חזרה במשקל</b>בכ-<bdi dir="ltr">10–15%</bdi>. אפשרויות: המרה לניתוח אחר, תרופות <bdi>GLP-1</bdi>, הקטנת הפתח אנדוסקופית</div>
+   <div class="box"><b class="t">טיפולים אנדוסקופיים לירידה במשקל</b>בלון <span class="nw">ב-<bdi>stomach</bdi></span> ל-6 חודשים (ירידה של <bdi dir="ltr">30–50</bdi> ליברות, לרוב לא נשמרת). שרוול אנדוסקופי בתפרים. נתונים לטווח ארוך חסרים</div>
+   <div class="box a"><b class="t">חזרה במשקל</b><span class="nw">בכ-<bdi dir="ltr">10–15%</bdi></span>. אפשרויות: המרה לניתוח אחר, תרופות <bdi>GLP-1</bdi>, הקטנת הפתח אנדוסקופית</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 99 עמ׳ <bdi dir="ltr">1576–1577</bdi></span><span>אנדוסקופיה</span></div>
@@ -403,8 +408,8 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <div class="kick"><b>14</b>מה חדש בתחום · 2021–2026</div>
  <h2>הנחיות ומחקרים שכדאי להכיר</h2>
  <div class="grid">
-  <div class="study"><div class="y"><bdi>Obes Surg</bdi> 2023 · הנחיות <bdi>ASMBS</bdi> ו-<bdi>IFSO</bdi></div><b>התוויות חדשות לניתוח</b>
-   <p>מחליפות את קריטריוני 1991: ניתוח מומלץ ב-<bdi>BMI</bdi> מעל 35 גם בלי מחלות נלוות ויישקל ב-<bdi dir="ltr">30–34.9</bdi> עם מחלה מטבולית. באסיה מעל 27.5. גם מתבגרים נבחרים</p>
+  <div class="study"><div class="y"><bdi>Obes Surg</bdi> 2023 · הנחיות <bdi>ASMBS</bdi> <span class="nw">ו-<bdi>IFSO</bdi></span></div><b>התוויות חדשות לניתוח</b>
+   <p>מחליפות את קריטריוני 1991: ניתוח מומלץ <span class="nw">ב-<bdi>BMI</bdi></span> מעל 35 גם בלי מחלות נלוות ויישקל <span class="nw">ב-<bdi dir="ltr">30–34.9</bdi></span> עם מחלה מטבולית. באסיה מעל 27.5. גם מתבגרים נבחרים</p>
    <small>Eisenberg D et al. Obes Surg 2023;33:3-14</small></div>
   <div class="study"><div class="y"><bdi>Lancet Diabetes Endocrinol</bdi> 2025 · אקראי</div><b><bdi>By-Band-Sleeve</bdi>: מעקף, טבעת או שרוול</b>
    <p>1,351 מטופלים ב-12 בתי חולים בבריטניה. ירידה של <bdi dir="ltr">50%</bdi> מהעודף אחרי 3 שנים: מעקף <bdi dir="ltr">68%</bdi>, שרוול <bdi dir="ltr">41%</bdi>, טבעת <bdi dir="ltr">25%</bdi>. המעקף היה גם המשתלם ביותר</p>

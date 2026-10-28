@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>הגישה לחולה הספטי · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,6 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -97,6 +98,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -114,6 +116,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -136,7 +141,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>בסוף המפגש תדעו</h2>
  <ol class="obj">
   <li>להסביר בקצרה את התגובה הדלקתית: מי מזהה את החיידק, אילו ציטוקינים משתחררים ולמה כלי הדם מתרחבים</li>
-  <li>להגדיר ספסיס ושוק ספטי לפי <bdi>Sepsis-3</bdi> ולהכיר את מקומם של <bdi>SIRS</bdi>, <bdi>SOFA</bdi> ו-<bdi>qSOFA</bdi></li>
+  <li>להגדיר ספסיס ושוק ספטי לפי <bdi>Sepsis-3</bdi> ולהכיר את מקומם של <bdi>SIRS</bdi>, <bdi>SOFA</bdi> <span class="nw">ו-<bdi>qSOFA</bdi></span></li>
   <li>לפעול בשעה הראשונה: תרביות, אנטיביוטיקה, נוזלים, יעד לחץ דם ונוראדרנלין</li>
   <li>לחפש את מקור הזיהום ולהבין מה זה שליטה במקור: ניקוז, הטריה והוצאת גוף זר</li>
   <li>להכיר את הזיהומים הנרכשים בטיפול נמרץ ואת הטיפול התומך בחולה הספטי</li>
@@ -152,7 +157,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div class="flow">
     <div><b>1. זיהוי</b><span>קולטנים לזיהוי דפוסים (<bdi>PRR</bdi>, למשל <bdi>TLR4</bdi>) מזהים מבנים של חיידקים (<bdi>PAMPs</bdi>, כמו <bdi>LPS</bdi>) ואותות מתאים פגועים (<bdi>DAMPs</bdi>)</span></div>
     <div><b>2. הפעלה</b><span>מסלולים תוך-תאיים כמו <bdi>NF-κB</bdi> מגבירים את ייצור הציטוקינים</span></div>
-    <div><b>3. ציטוקינים</b><span><bdi>TNF-α</bdi> ו-<bdi>IL-1</bdi> פועלים תוך <bdi dir="ltr">1–2</bdi> שעות וגורמים לחום. <bdi>IL-6</bdi> פועל אחרי <bdi dir="ltr">1–4</bdi> שעות ומפעיל את תגובת השלב החריף</span></div>
+    <div><b>3. ציטוקינים</b><span><bdi>TNF-α</bdi> <span class="nw">ו-<bdi>IL-1</bdi></span> פועלים תוך <bdi dir="ltr">1–2</bdi> שעות וגורמים לחום. <bdi>IL-6</bdi> פועל אחרי <bdi dir="ltr">1–4</bdi> שעות ומפעיל את תגובת השלב החריף</span></div>
     <div><b>4. גיוס תאים</b><span>נויטרופילים נצמדים לדופן כלי הדם, מתגלגלים ויוצאים לרקמה</span></div>
    </div>
   </div>
@@ -180,7 +185,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על תא כדי לקרוא מה הוא עושה</p>
    <div class="hzi" data-hzi="n" hidden><b>1 · נויטרופיל: הראשון בשטח</b><p>לרוב התא הראשון שמגיע לפציעה או לזיהום. נצמד לדופן, מתגלגל ויוצא לרקמה. בולע חיידקים, משחרר גרגירים עם אנזימים ופורש "רשת" (<bdi>NET</bdi>) שלוכדת חיידקים. משתתף גם בריפוי ובבניית כלי דם חדשים</p></div>
-   <div class="hzi" data-hzi="m" hidden><b>2 · מונוציט ומקרופאג׳: המנצח</b><p>המונוציט הופך למקרופאג׳ ברקמה. בולע חיידקים ומציג אנטיגנים. מקרופאג׳ מסוג <bdi>M1</bdi> מפריש <bdi>IL-1β</bdi> ו-<bdi>TNF-α</bdi> ומגביר דלקת. סוג <bdi>M2</bdi> מפריש <bdi>IL-10</bdi> ומוביל לריפוי. תאי קופפר בכבד הם מקרופאג׳ים</p></div>
+   <div class="hzi" data-hzi="m" hidden><b>2 · מונוציט ומקרופאג׳: המנצח</b><p>המונוציט הופך למקרופאג׳ ברקמה. בולע חיידקים ומציג אנטיגנים. מקרופאג׳ מסוג <bdi>M1</bdi> מפריש <bdi>IL-1β</bdi> <span class="nw">ו-<bdi>TNF-α</bdi></span> ומגביר דלקת. סוג <bdi>M2</bdi> מפריש <bdi>IL-10</bdi> ומוביל לריפוי. תאי קופפר <span class="nw">ב-<bdi dir="ltr">liver</bdi></span> הם מקרופאג׳ים</p></div>
    <div class="hzi" data-hzi="l" hidden><b>3 · לימפוציטים: החסינות הנרכשת</b><p>תאי <bdi>T</bdi> מכוונים את התגובה התאית ותאי <bdi>B</bdi> מייצרים נוגדנים. שניהם יוצרים זיכרון חיסוני. בספסיס יש מוות מוגבר של לימפוציטים ולימפופניה, חלק מהדיכוי החיסוני. תאי <bdi>NK</bdi> הם <bdi dir="ltr">8–20%</bdi> מהלימפוציטים בדם</p></div>
    <div class="hzi" data-hzi="g" hidden><b>4 · אאוזינופיל ובזופיל</b><p>יחד עם תאי פיטום הם מפרישים <bdi>IL-4</bdi>, שמכוון את התגובה לכיוון נוגדנים ואלרגיה ומרסן את התגובה התאית</p></div>
   </div></div>
@@ -235,11 +240,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b sm">
-    <li><b>החולה במחלקה או בטיפול נמרץ לא תמיד "נראה ספטי":</b> לא תמיד יש לויקוציטוזיס, אין חום בדיאליזה רציפה או ב-<bdi>ECMO</bdi>. יש גם סיבות אחרות לכשל נשימתי, בלבול ולקטט</li>
+    <li><b>החולה במחלקה או בטיפול נמרץ לא תמיד "נראה ספטי":</b> לא תמיד יש לויקוציטוזיס, אין חום בדיאליזה רציפה או <span class="nw">ב-<bdi>ECMO</bdi></span>. יש גם סיבות אחרות לכשל נשימתי, בלבול ולקטט</li>
     <li><b>החתך הניתוחי:</b> מסירים את <b>כל</b> החבישות. מחפשים אודם, חום, הפרשה מוגלתית ונמק</li>
     <li><b>סימנים מערכתיים:</b> חום, דופק, לחץ דם, קצב נשימה</li>
-    <li><b>החלל העמוק של הניתוח:</b> אחרי ניתוח בטן בודקים בטן, אגן ופי הטבעת. אחרי ניתוח בגפה, בודקים את כל הגפה</li>
-    <li><b>שאר המקורות בטיפול נמרץ:</b> ריאות (מונשם), עירוי מרכזי, קטטר בשלפוחית, שלשול אחרי אנטיביוטיקה</li>
+    <li><b>החלל העמוק של הניתוח:</b> אחרי ניתוח בטן בודקים בטן, אגן <span class="nw">ו-<bdi dir="ltr">anus</bdi></span> (בדיקה רקטלית). אחרי ניתוח בגפה, בודקים את כל הגפה</li>
+    <li><b>שאר המקורות בטיפול נמרץ:</b> ריאות (מונשם), עירוי מרכזי, קטטר <span class="nw">ב-<bdi dir="ltr">bladder</bdi></span>, שלשול אחרי אנטיביוטיקה</li>
    </ul>
    <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>במעקב הבוקר על חולה אחרי ניתוח בטן עם חום: הורידו את החבישה יחד עם הבכיר/ה ובדקו את החתך ואת הבטן. חפשו עוד מקורות (עירוי, קטטר, ריאות). הציגו את האבחנה המבדלת</div>
   </div>
@@ -283,7 +288,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div class="box"><b class="t">איך יודעים אם לתת עוד נוזל?</b>לא לפי לחץ ורידי מרכזי, שלא מנבא תגובה לנוזלים. כן לפי מדדים דינמיים: הרמת רגליים פסיבית, מתן נוזל במנה קטנה ושינוי בלחץ הדופק בהנשמה</div>
    <div class="study"><div class="y">מחקר מכונן · 2001</div><b>טיפול מכוון יעדים מוקדם (<bdi>Rivers</bdi>)</b>
     <p>פרוטוקול של 6 שעות עם צנתר מרכזי ויעדים מוגדרים: תמותה 30.5% לעומת 46.5%. מחקרים אקראיים מאוחרים יותר לא הראו תועלת לפרוטוקול, כנראה כי הטיפול הרגיל כבר אימץ את עקרונותיו</p>
-    <small>כפי שמסוכם ב-<bdi>Sabiston 22</bdi>, פרק 33 עמ׳ <bdi dir="ltr">238</bdi> ופרק 46 עמ׳ <bdi dir="ltr">534</bdi></small></div>
+    <small>כפי שמסוכם <span class="nw">ב-<bdi>Sabiston 22</bdi></span>, פרק 33 עמ׳ <bdi dir="ltr">238</bdi> ופרק 46 עמ׳ <bdi dir="ltr">534</bdi></small></div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 46 עמ׳ <bdi dir="ltr">534, 548</bdi> · פרק 33 עמ׳ <bdi dir="ltr">238</bdi></span><span>השעה הראשונה</span></div>
@@ -295,7 +300,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div class="flow">
    <div><b>1. נוראדרנלין</b><span>הבחירה הראשונה. עדיף על האחרות, עם פחות תמותה ופחות צורך בנוזלים. מתחילים מוקדם</span></div>
-   <div><b>2. וזופרסין</b><span>מוסיפים כשצריך הרבה נוראדרנלין (מעל כ-5 מק״ג לדקה). מינון נמוך: 0.04 יחידות לדקה. לא במינון גבוה</span></div>
+   <div><b>2. וזופרסין</b><span>מוסיפים במקום להעלות עוד את הנוראדרנלין כשלחץ הדם הממוצע לא מספיק. בפועל כשהנוראדרנלין מגיע <span class="nw">לכ-<bdi dir="ltr">0.25–0.5</bdi></span> מק״ג/ק״ג/דקה. מינון קבוע של <bdi dir="ltr">0.03</bdi> יחידות לדקה, בלי טיטרציה. לא במינון גבוה</span></div>
    <div><b>3. אדרנלין</b><span>כשהשניים לא מספיקים, במיוחד אם יש גם רכיב לבבי. יכול להעלות לקטט באופן מטעה</span></div>
    <div><b>דובוטמין</b><span>כשתפוקת הלב נמוכה</span></div>
   </div>
@@ -305,7 +310,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div class="box n"><b class="t">חולה על סטרואידים כרוניים</b>אם הציר ההורמונלי שלו פגוע, צריך מינון דחק. אחרים מקבלים לפחות את המינון הביתי</div>
   </div>
  </div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 46 עמ׳ <bdi dir="ltr">534, 547–548, 550</bdi></span><span>תרופות</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 46 עמ׳ <bdi dir="ltr">534, 547–548, 550</bdi> · <bdi>Surviving Sepsis Campaign 2021</bdi> · Evans L et al., Crit Care Med 2021;49:e1063-143</span><span>תרופות</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -322,7 +327,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    </div>
   </div>
   <div style="display:grid;gap:10px">
-   <figure><img src="img/sepsis-liver-abscess-ct.jpg" alt="CT בטן: מורסות מרובות באונה הימנית של הכבד"><figcaption>דלקת הרסנית של כיס המרה שפרצה לכבד: מורסות מרובות באונה הימנית (<bdi>CT</bdi> עם חומר ניגוד, חתך רוחבי ומישור עטרתי) · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+   <figure><img src="img/sepsis-liver-abscess-ct.jpg" alt="CT בטן: מורסות מרובות ב-right lobe של ה-liver"><figcaption>דלקת הרסנית של כיס המרה שפרצה <span class="nw">ל-<bdi dir="ltr">liver</bdi></span>: מורסות מרובות <span class="nw">ב-<bdi dir="ltr">right lobe</bdi></span> (<bdi>CT</bdi> עם חומר ניגוד, חתך רוחבי ומישור עטרתי) · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
    <figure><img src="img/sepsis-nf-debride.jpg" alt="הטריה ניתוחית של רקמה נמקית ברגל" style="max-height:22vh"><figcaption>הטריה ניתוחית של הזיהום הנמקי מהשקף הקודם · <bdi>Smuszkiewicz P et al.</bdi>, <bdi>CC BY 2.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
   </div>
  </div>
@@ -354,8 +359,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>12</b>זיהומים נרכשים בטיפול נמרץ</div>
  <h2>ארבעה מקורות שחוזרים</h2>
  <div class="grid">
-  <div class="box"><b class="t">דלקת ריאות בהנשמה</b>מעל 48 שעות הנשמה. תרבית לפני טיפול. מניעה: ראש המיטה ב-<bdi dir="ltr">30–45</bdi> מעלות, הפסקת הרדמה יומית, ניסיון נשימה עצמונית, כלורהקסידין לפה. טיפול בדרך כלל שבוע</div>
-  <div class="box b"><b class="t">זיהום דם מצנתר מרכזי</b>תמותה של 15%. סיכון לפי מיקום: ירכי &gt; צווארי &gt; תת-בריחי. טיפול: אנטיביוטיקה <b>והוצאת הצנתר</b>. החלפה קבועה לא מורידה סיכון</div>
+  <div class="box"><b class="t">דלקת ריאות בהנשמה</b>מעל 48 שעות הנשמה. תרבית לפני טיפול. מניעה: ראש המיטה <span class="nw">ב-<bdi dir="ltr">30–45</bdi></span> מעלות, הפסקת הרדמה יומית, ניסיון נשימה עצמונית, כלורהקסידין לפה. טיפול בדרך כלל שבוע</div>
+  <div class="box b"><b class="t">זיהום דם מצנתר מרכזי</b>תמותה של 15%. סיכון לפי מיקום: <bdi dir="ltr">femoral &gt; internal jugular &gt; subclavian</bdi>. טיפול: אנטיביוטיקה <b>והוצאת הצנתר</b>. החלפה קבועה לא מורידה סיכון</div>
   <div class="box a"><b class="t">זיהום בדרכי השתן מקטטר</b>הזיהום הנרכש השכיח ביותר. הגורם המרכזי: משך הקטטר. בלי פיוריה זה כמעט לא זיהום. מוציאים או מחליפים את הקטטר ומטפלים</div>
   <div class="box r"><b class="t"><bdi>C. difficile</bdi></b>שלשול מימי אחרי אנטיביוטיקה. טיפול: ונקומיצין או פידקסומיצין דרך הפה. מחלה סוערת (שוק, מגה-קולון, ניקוב): ניתוח, לרוב כריתת מעי גס תת-שלמה. איחור בניתוח מעלה תמותה</div>
  </div>
@@ -373,7 +378,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <li><b>מניעת פקקת:</b> כל חולה נבדק. איחור של יותר מ-24 שעות קשור לפי 3 פקקות אחרי טראומה קשה. ספסיס מעלה את שיעור הכישלון של המניעה</li>
   </ul>
   <ul class="b">
-   <li><b>הגנה על הקיבה:</b> בעיקר למונשמים מעל 48 שעות ולבעלי הפרעת קרישה. לא לכולם: דיכוי חומצה מעלה סיכון לדלקת ריאות ול-<bdi>C. difficile</bdi></li>
+   <li><b>הגנה על <span class="nw">ה-<bdi dir="ltr">stomach</bdi></span>:</b> בעיקר למונשמים מעל 48 שעות ולבעלי הפרעת קרישה. לא לכולם: דיכוי חומצה מעלה סיכון לדלקת ריאות <span class="nw">ול-<bdi>C. difficile</bdi></span></li>
    <li><b>ריאות:</b> בתסמונת מצוקה נשימתית: נפח הנשמה <bdi dir="ltr">6–8</bdi> מ״ל לק״ג ולחץ פלטו עד 30. שכיבה על הבטן מורידה תמותה</li>
    <li><b>שיחה עם המשפחה:</b> טיפול פליאטיבי מוקדם אינו הפסקת טיפול. בחולה מבוגר ושברירי כדאי לערב צוות פליאטיבי מוקדם</li>
   </ul>

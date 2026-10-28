@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ביקור מודרך ליד המיטה · Scrub In</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../emblem.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Frank+Ruhl+Libre:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0C2A35;--navy2:#123845;--g:#00967D;--g2:#3DC08C;--g3:#0A6B5A;--lime:#B5D96B;--red:#A3402E;--amber:#C9893F;--blue:#2F6FA8;--bg:#EDF2F0;--soft:#F3F7F5;--ink:#16262C;--muted:#5C6F73;--line:#DCE6E2}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--navy);color:var(--ink);font-family:Heebo,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.deck{position:fixed;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.deck::-webkit-scrollbar{display:none}
+.s{flex:0 0 100%;height:100%;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;padding:18px 16px 84px;overflow-y:auto;position:relative}
+.s::after{content:'';position:absolute;inset:0;background:url(../ops/art/organs.webp) no-repeat 6% 40%/auto 115%;opacity:.05;filter:invert(1);pointer-events:none}
+.card{width:min(980px,100%);background:#fff;border-radius:22px;box-shadow:0 18px 50px rgba(0,0,0,.35);padding:30px 32px 22px;position:relative;overflow:hidden;z-index:1}
+.card::before{content:'';position:absolute;inset:0 0 auto 0;height:6px;background:linear-gradient(90deg,var(--g3),var(--g),var(--g2),var(--lime))}
+.kick{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--g);letter-spacing:.3px;margin-bottom:6px}
+.kick b{background:var(--navy);color:#fff;border-radius:999px;min-width:26px;height:26px;display:grid;place-items:center;font-size:13px;padding:0 8px}
+h1,h2{font-family:'Frank Ruhl Libre',serif;color:var(--navy);margin:0 0 10px;line-height:1.15}
+h1{font-size:clamp(34px,6.4vw,60px)}h2{font-size:clamp(25px,4.4vw,36px)}
+h3{margin:0 0 6px;font-size:17px;color:var(--navy)}
+.lead{font-size:clamp(15.5px,2.3vw,18.5px);color:var(--muted);margin:0 0 16px;line-height:1.5}
+ul.b{margin:0;padding:0;list-style:none;display:grid;gap:8px}ul.b li{position:relative;padding-inline-start:20px;font-size:16.5px;line-height:1.45}ul.b li::before{content:'';position:absolute;inset-inline-start:2px;top:.62em;width:8px;height:8px;border-radius:2px;background:var(--g);transform:rotate(45deg)}
+ul.b li b{color:var(--navy)}ul.b.sm li{font-size:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.grid.g3{grid-template-columns:repeat(3,1fr)}.grid.f{grid-template-columns:1.05fr .95fr;align-items:center}
+.box{background:var(--soft);border-radius:14px;padding:13px 15px;border-inline-start:4px solid var(--g);font-size:15.5px;line-height:1.45}
+.box.r{border-color:var(--red);background:#FBEDEA}.box.a{border-color:var(--amber);background:#FFF6EA}.box.n{border-color:var(--navy)}.box.b{border-color:var(--blue);background:#EEF4FB}
+.box b.t{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}
+.num{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:4px 0 14px}.num div{background:var(--soft);border-radius:14px;padding:12px 10px;text-align:center}
+.num b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(26px,4vw,38px);color:var(--g3);line-height:1.05}.num span{font-size:13px;color:var(--muted);line-height:1.3;display:block;margin-top:4px}
+figure{margin:0;background:#FBFCFB;border:1px solid var(--line);border-radius:16px;padding:10px;text-align:center}figure img{max-width:100%;max-height:46vh;display:block;margin:0 auto;mix-blend-mode:multiply}
+figcaption{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.35}
+.ill svg{width:100%;height:auto;max-height:50vh}
+.src{margin-top:16px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.src b{color:var(--g3)}
+.tag{display:inline-block;font-size:12px;font-weight:800;border-radius:999px;padding:2px 10px;background:#E3F4EC;color:var(--g3);margin-inline-end:4px}
+.tag.r{background:#F8E3DE;color:var(--red)}.tag.a{background:#FFF3DF;color:#8A5A14}.tag.b{background:#E8F0FA;color:var(--blue)}
+.flow{display:grid;gap:8px}.flow div{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;background:var(--soft);border-radius:12px;padding:9px 12px;font-size:15.5px}.flow div b{color:var(--navy)}
+.study{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#fff}.study .y{font-size:12px;font-weight:800;color:var(--g);letter-spacing:.3px}.study b{display:block;font-size:16px;color:var(--navy);margin:2px 0}.study p{margin:4px 0 0;font-size:14.5px;line-height:1.45}.study small{display:block;margin-top:6px;font-size:11.5px;color:var(--muted)}
+.cover{background:radial-gradient(120% 90% at 85% 0%,#164B54 0%,var(--navy) 58%)}
+.cover::after{opacity:.16;background-position:2% 50%}
+.cover .card{background:transparent;box-shadow:none;color:#fff}.cover .card::before{display:none}.cover h1{color:#fff}.cover .lead{color:#C9D6DA}.cover .kick{color:var(--g2)}
+.pill{display:inline-flex;gap:6px;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px;color:#fff;margin:4px}
+.logo{display:flex;align-items:center;gap:10px;margin-bottom:26px}.logo img{width:48px;height:48px;border-radius:50%;background:#fff}.logo b{color:#fff;font-weight:900}.logo small{display:block;color:#A9C9C0;font-size:12px}
+.obj{counter-reset:o;list-style:none;margin:0;padding:0;display:grid;gap:10px}.obj li{counter-increment:o;display:flex;gap:12px;align-items:flex-start;font-size:16.5px;line-height:1.45}.obj li::before{content:counter(o);flex:0 0 30px;height:30px;border-radius:50%;background:var(--g);color:#fff;font-weight:800;display:grid;place-items:center}
+.nav{position:fixed;inset:auto 0 0 0;display:flex;align-items:center;justify-content:center;gap:14px;padding:12px 16px calc(14px + env(safe-area-inset-bottom));background:linear-gradient(transparent,rgba(6,20,26,.85) 40%);z-index:5}
+.nav button{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;font-size:22px;cursor:pointer}.nav button:disabled{opacity:.3}
+.dots{display:flex;gap:5px;flex-wrap:wrap;max-width:60vw;justify-content:center}.dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer}.dots i.on{background:var(--g2);width:20px;border-radius:5px}
+.count{color:#C9D6D9;font-size:13px;font-weight:700;min-width:44px;text-align:center}
+bdi{unicode-bidi:isolate}
+.cmp{width:100%;border-collapse:separate;border-spacing:0;font-size:14px;border:1px solid var(--line);border-radius:14px;overflow:hidden}.cmp th{background:var(--navy);color:#fff;padding:9px 10px;font-size:16px;text-align:start}.cmp th small{display:block;font-weight:500;color:#A9D9C8;font-size:12px}.cmp td{padding:8px 10px;border-top:1px solid var(--line);vertical-align:top;line-height:1.4}.cmp td:first-child{background:var(--soft);font-weight:800;color:var(--navy);white-space:nowrap}.cmp tr:nth-child(odd) td:not(:first-child){background:#FBFCFB}
+figure.vid video{width:100%;max-height:34vh;border-radius:10px;background:#000;display:block}
+@media (max-width:760px){.cmp{font-size:12.5px}.cmp td,.cmp th{padding:6px}}
+
+.hotw{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;align-items:start}.hoti{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#FBFCFB}.hoti img{display:block;width:100%;mix-blend-mode:multiply}.hoti svg{position:absolute;inset:0;width:100%;height:100%}
+.hz{fill:var(--c);fill-opacity:.38;stroke:var(--c);stroke-width:2;cursor:pointer;transition:fill-opacity .2s}.hz:hover,.hz.on{fill-opacity:.62}.hzl{font:900 22px Heebo,sans-serif;fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;pointer-events:none;text-anchor:middle}
+.hotp .hint{background:var(--soft);border-radius:12px;padding:10px 12px;font-weight:700;color:var(--g3);margin:0}.hzi{background:#fff;border:1px solid var(--line);border-inline-start:5px solid var(--c,var(--g));border-radius:14px;padding:12px 14px;margin-top:8px;font-size:15.5px;line-height:1.45}.hzi>b{display:block;font-size:17px;color:var(--navy);margin-bottom:4px}.hzi p{margin:0}
+figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-size:15px}.obj.sm li::before{flex-basis:26px;height:26px;font-size:13px}.flow.sm div{grid-template-columns:130px 1fr;padding:7px 10px;font-size:14.5px}
+@media (max-width:760px){.hotw{grid-template-columns:1fr}}
+
+@media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
+@media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;background:#fff}details.rev summary{cursor:pointer;list-style:none;padding:10px 14px;font-weight:800;color:#fff;background:var(--g3);border-radius:13px}details.rev summary::-webkit-details-marker{display:none}details.rev summary::before{content:'👁 '}details.rev[open] summary{border-radius:13px 13px 0 0}details.rev>div{padding:12px 14px}details.rev p{margin:8px 0 0;font-size:15px;line-height:1.45}
+.key{background:#E3F4EC;border-radius:10px;padding:8px 10px;color:var(--g3)}.key b{color:var(--navy)}
+.note{font-size:13.5px;color:var(--muted);margin:10px 0 0}
+.steps{counter-reset:st;list-style:none;margin:0;padding:0;display:grid;gap:9px}.steps li{counter-increment:st;font-size:15px;line-height:1.45}.steps li::before{content:counter(st);border-radius:50%;background:var(--navy);color:#fff;font-weight:800;display:grid;place-items:center}.steps li b{color:var(--navy)}
+.journey{counter-reset:j;list-style:none;margin:6px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:22px 14px;position:relative}
+.journey li{counter-increment:j;position:relative;background:var(--soft);border-radius:16px;padding:40px 12px 12px;text-align:center;border-top:4px solid var(--g)}
+.journey li::before{content:counter(j);position:absolute;top:-17px;inset-inline-start:50%;transform:translateX(50%);width:34px;height:34px;border-radius:50%;background:var(--navy);color:#fff;font-weight:900;display:grid;place-items:center;box-shadow:0 0 0 4px #fff}
+.journey li:not(:nth-child(4n))::after{content:'←';position:absolute;top:44%;inset-inline-end:-14px;color:var(--g);font-weight:900;font-size:16px}
+.journey li:nth-child(n+5){border-top-color:var(--g3)}.journey li:nth-child(7){border-top-color:var(--red)}
+.journey b{display:block;font-size:17px;color:var(--navy);font-family:'Frank Ruhl Libre',serif}.journey span{display:block;font-size:14px;line-height:1.4;color:var(--muted);margin-top:4px}
+.loop{margin:12px 0 0;font-weight:800;color:var(--g3);font-size:15px;text-align:center}
+.case{margin-top:12px;background:var(--navy);color:#E6F0EE;border-radius:14px;padding:12px 15px;font-size:15.5px;line-height:1.5}.case b{color:#fff}.case .tag{margin-bottom:6px}
+.stn{display:flex;gap:5px;margin:0 0 8px}.stn i{font-style:normal;width:24px;height:24px;border-radius:50%;background:var(--soft);color:var(--muted);font-size:12px;font-weight:800;display:grid;place-items:center;border:1px solid var(--line)}.stn i.on{background:var(--g);color:#fff;border-color:var(--g);width:34px;border-radius:12px}
+.vit{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}.vit span{background:#fff;border-radius:10px;padding:7px 8px;text-align:center;font-size:12.5px;color:var(--muted);border:1px solid var(--line)}.vit b{display:block;font-size:21px;color:var(--navy);font-family:'Frank Ruhl Libre',serif;line-height:1.15}.vit small{display:block;font-size:11px;color:var(--red);font-weight:700}
+.dd{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;padding:8px 0;border-bottom:1px dashed var(--line);font-size:15px;line-height:1.45}.dd .tag{white-space:nowrap;margin-top:2px}
+.tl{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative;margin-top:6px}.tl::before{content:'';position:absolute;top:15px;inset-inline:6%;height:4px;border-radius:2px;background:linear-gradient(270deg,var(--g2),var(--g),var(--amber),var(--red))}
+.tl div{position:relative;padding:34px 8px 0;text-align:center;font-size:14px;line-height:1.4}.tl div::before{content:'';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);width:18px;height:18px;border-radius:50%;background:#fff;border:4px solid var(--g3)}
+.tl b{display:block;color:var(--navy);font-size:15.5px;margin-bottom:3px}.tl span{color:var(--ink)}
+.pres{display:grid;gap:7px}.pres div{display:grid;grid-template-columns:30px 110px 1fr;gap:10px;align-items:center;background:var(--soft);border-radius:12px;padding:8px 10px;font-size:14.5px;line-height:1.4}.pres i{font-style:normal;width:28px;height:28px;border-radius:50%;background:var(--g);color:#fff;font-weight:800;display:grid;place-items:center}.pres b{color:var(--navy)}
+.chkhead{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.chkhead h2{margin:0}
+.prt{border:1px solid var(--g);background:#fff;color:var(--g3);font:800 14px Heebo,sans-serif;border-radius:999px;padding:7px 14px;cursor:pointer}
+.chk{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}.chk>div{background:var(--soft);border-radius:14px;padding:10px 12px}
+.chk h3{display:flex;align-items:center;gap:7px;font-size:15.5px;margin-bottom:6px}.chk h3 i{font-style:normal;width:24px;height:24px;border-radius:50%;background:var(--navy);color:#fff;font-size:12.5px;display:grid;place-items:center}
+.chk label{display:flex;gap:7px;align-items:flex-start;font-size:13.5px;line-height:1.35;margin:5px 0;cursor:pointer}.chk input{accent-color:var(--g);width:16px;height:16px;margin:1px 0 0;flex:0 0 16px}
+@media (max-width:1100px){.chk{grid-template-columns:1fr 1fr}}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){
+ .journey{grid-template-columns:1fr 1fr;gap:22px 10px}.journey li:not(:nth-child(4n))::after{content:none}.journey li{padding:30px 8px 10px}.journey b{font-size:16px}.journey span{font-size:13px}
+ .vit{grid-template-columns:repeat(3,1fr);gap:6px}.vit b{font-size:18px}
+ .tl{grid-template-columns:1fr;gap:8px}.tl::before{top:6px;bottom:6px;inset-inline:auto;inset-inline-start:8px;width:4px;height:auto;background:linear-gradient(180deg,var(--g2),var(--g),var(--amber),var(--red))}
+ .tl div{padding:0 0 0;padding-inline-start:30px;text-align:start}.tl div::before{top:3px;inset-inline-start:1px;transform:none}
+ .pres div{grid-template-columns:28px 1fr}.pres div span{grid-column:2}
+ .dd{grid-template-columns:1fr;gap:4px}
+ .chk{grid-template-columns:1fr}
+}
+@media print{body.pchk .s:not(#chk),body.pchk .brandbar{display:none!important}body.pchk #chk{page-break-after:auto}body.pchk .prt{display:none}body.pchk .chk{grid-template-columns:1fr 1fr}}
+/*BRAND*/
+.brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
+.brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
+.s{padding-top:58px}
+.cover .card{display:flex;flex-direction:column;gap:6px;max-width:980px}
+.cvhead{display:flex;align-items:center;gap:16px;margin-bottom:30px}.cvhead img.em{width:74px;height:74px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(61,192,140,.55)}
+.cvhead b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(24px,3.4vw,34px);color:#fff;line-height:1.1}.cvhead span{display:block;font-size:clamp(15px,2vw,19px);color:#A9D9C8;font-weight:700;margin-top:4px}
+.cover h1{font-size:clamp(38px,6.6vw,66px);margin:6px 0 8px}.cover .kick{font-size:14px;letter-spacing:.06em}
+.cvmeta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.cvsrc{margin-top:16px;display:grid;gap:6px;justify-items:start}.cvsrc small{font-size:12.5px;font-weight:800;letter-spacing:.08em;color:#8FB3AA}
+.cvsrc>b{font-size:clamp(16px,2.4vw,19px);color:#fff;font-weight:700}.cvsrc>b bdi{font-weight:800}
+.cvch{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}.cvch span{display:inline-flex;align-items:center;gap:5px;background:rgba(61,192,140,.14);border:1px solid rgba(61,192,140,.45);color:#E6F5EE;border-radius:10px;padding:5px 11px;font-size:14px;font-weight:700;white-space:nowrap}.cvch bdi{font-weight:900;color:#6FD3A8}
+.cvsrc em{font-style:normal;font-size:13.5px;color:#A9C9C0}
+
+.cvlogos{display:flex;align-items:center;gap:18px;margin-top:34px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14)}.cvlogos img{height:44px;width:auto}.cvlogos small{margin-inline-start:auto;color:#8FB3AA;font-size:12.5px;font-weight:700;letter-spacing:.08em}
+.cover .brandbar{display:none}
+@media (max-width:760px){.brandbar{left:10px;gap:7px;padding:4px 9px 4px 4px}.brandbar img{height:20px}.brandbar img.em{width:22px;height:22px}.s{padding-top:48px}.cvhead img.em{width:56px;height:56px}.cvlogos img{height:34px}.cvlogos small{display:none}}
+/* numbered lists: a bold word inside an item stays inline */
+.obj li,.steps li{display:block;position:relative;padding-inline-start:42px;min-height:30px}.obj li::before,.steps li::before{position:absolute;inset-inline-start:0;top:-2px;width:30px;height:30px;line-height:1;font-size:15px}.obj.sm li{padding-inline-start:36px}.obj.sm li::before{width:26px;height:26px;font-size:13px;top:-1px}
+/* bold inside a study's text stays in the sentence (only the study title is a block) */
+.study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
+/* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
+.card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.grid.tight figure img{max-height:24vh}
+/* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
+.s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
+.card{overflow-wrap:break-word}.card img,.card video,.card svg{max-width:100%}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){
+ .brandbar{left:0;right:0;top:0;border-radius:0;border:0;border-bottom:1px solid rgba(255,255,255,.1);padding:calc(6px + env(safe-area-inset-top)) 12px 6px;background:rgba(6,22,28,.94);justify-content:flex-start}
+ .s{padding:calc(50px + env(safe-area-inset-top)) 10px calc(92px + env(safe-area-inset-bottom))}
+ .card{padding:22px 16px 16px}
+ .flow.sm div,.flow div{grid-template-columns:1fr}
+ .cmp td:first-child{white-space:normal}
+ .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
+ .num{grid-template-columns:1fr 1fr}
+ .hzl{font-size:18px}
+}
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
+/* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
+.nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+@media print{.brandbar{display:none}}
+/*/BRAND*/
+</style>
+</head>
+<body>
+<div class="brandbar" aria-hidden="true"><img class="em" src="brand/emblem.jpg" alt=""><i></i><img src="brand/logo_k.webp" alt=""><img src="brand/logo_c.webp" alt=""></div>
+<main class="deck" id="deck">
+
+<section class="s cover"><div class="card">
+ <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
+ <div class="kick">Scrub In · סטודנטים שנה ד׳ · ביקור מודרך</div>
+ <h1>ביקור מודרך ליד המיטה</h1>
+ <p class="lead">שיטה אחת לכל המפגשים מהסוג הזה: מהרגע שנכנסים לחדר ועד המעקב. גישה, אנמנזה, בדיקה, בדיקות עזר, אבחנה מבדלת, תוכנית, סיבוכים ומעקב</p>
+ <div class="cvsrc" data-ch="19,25,26,85" data-note=""><small>מבוסס על</small><b><bdi dir="ltr">Sabiston Textbook of Surgery</bdi> · מהדורה 22</b><div class="cvch"><span>פרק <bdi dir="ltr">19</bdi></span><span>פרק <bdi dir="ltr">25</bdi></span><span>פרק <bdi dir="ltr">26</bdi></span><span>פרק <bdi dir="ltr">85</bdi></span></div></div>
+ <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>1</b>מטרות הלמידה</div>
+ <h2>בסוף המפגש תדעו</h2>
+ <ol class="obj">
+  <li>לגשת למטופל בצורה מסודרת: הכנה לפני החדר, הצגה עצמית והסתכלות "מהדלת" לפני שנוגעים</li>
+  <li>לעבור בסדר קבוע משמונה תחנות: גישה, אנמנזה, בדיקה, בדיקות עזר, אבחנה מבדלת, תוכנית, סיבוכים ומעקב</li>
+  <li>להזמין רק בדיקות שהתשובה שלהן תשנה החלטה ולבנות אבחנה מבדלת של "הכי סביר" מול "אסור לפספס"</li>
+  <li>לכתוב תוכנית לפי בעיות ולצפות את הסיבוכים לפי היום שאחרי הניתוח</li>
+  <li>להציג מטופל ליד המיטה בשתי דקות ובשפה שהמטופל מבין. להשתמש ברשימת הבדיקה בכל ביקור מודרך</li>
+ </ol>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">2–6, 23</bdi> · פרק 85 עמ׳ <bdi dir="ltr">1155–1165</bdi> · פרק 26 עמ׳ <bdi dir="ltr">127–139</bdi> · פרק 25 עמ׳ <bdi dir="ltr">118–124</bdi></span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>2</b>הרעיון</div>
+ <h2>מה זה ביקור מודרך?</h2>
+ <div class="grid f">
+  <div>
+   <ul class="b">
+    <li>קבוצה קטנה, מטופל אחד ומדריך/ה. לומדים <b>לחשוב ליד המיטה</b>, לא לשמוע הרצאה</li>
+    <li>המטרה הראשונה של האנמנזה והבדיקה היא <b>לאשש או לשלול את האבחנה החשודה</b>. כל השאר נבנה על זה</li>
+    <li>שיחה ברורה ואמון הם הבסיס של הקשר בין המטופל למנתח. שאלה על המשפחה או על העבודה בונה את הקשר הזה</li>
+    <li>המטופל הוא שותף: מבקשים רשות, מסבירים מה עושים ומודים לו בסוף</li>
+   </ul>
+   <div class="flow sm" style="margin-top:12px">
+    <div><b>לפני החדר · <bdi dir="ltr">10</bdi> דק׳</b><span>קוראים את התיק, הגיליון והמעבדה. מחלקים תפקידים</span></div>
+    <div><b>ליד המיטה · <bdi dir="ltr">20</bdi> דק׳</b><span>סטודנט/ית אחד/ת מציג/ה, שואל/ת ובודק/ת. השאר צופים ורושמים</span></div>
+    <div><b>מחוץ לחדר · <bdi dir="ltr">20</bdi> דק׳</b><span>אבחנה מבדלת, תוכנית ושאלות. מה היה טוב ומה לשפר</span></div>
+   </div>
+  </div>
+  <figure><img src="img/Fildes_The_Doctor.jpg" alt="הציור הרופא של לוק פילדס: רופא יושב ליד מיטת ילדה חולה ומתבונן"><figcaption>הרופא ליד המיטה: מתבונן לפני שהוא נוגע · <bdi>Luke Fildes</bdi>, <bdi>The Doctor</bdi>, 1891 (נחלת הכלל)</figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">2</bdi> · חלוקת הזמן: נוהג מקובל במערך</span><span>הרעיון</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>3</b>המסע</div>
+ <h2>שמונה תחנות, שאלה אחת בכל תחנה</h2>
+ <ol class="journey">
+  <li><b>גישה</b><span>מי המטופל ומה רואים מהדלת?</span></li>
+  <li><b>אנמנזה</b><span>מה קרה ומה השתנה מאתמול?</span></li>
+  <li><b>בדיקה</b><span>מה הגוף מראה, מהמדדים ועד הפצע?</span></li>
+  <li><b>בדיקות עזר</b><span>איזו תשובה תשנה החלטה?</span></li>
+  <li><b>אבחנה מבדלת</b><span>מה הכי סביר ומה אסור לפספס?</span></li>
+  <li><b>תוכנית</b><span>מה עושים, מי עושה ועד מתי?</span></li>
+  <li><b>סיבוכים</b><span>מה עלול לקרות ואיך נזהה מוקדם?</span></li>
+  <li><b>מעקב</b><span>מתי בודקים שוב ומה יגיד שאנחנו בכיוון?</span></li>
+ </ol>
+ <p class="loop">↻ המעקב מחזיר אותנו לאנמנזה של מחר. כל יום מתחיל מחדש בתחנה 2</p>
+ <div class="case"><span class="tag b">המקרה שלנו לאורך המצגת</span><b>מר ל׳, בן 67, יום 2 אחרי כריתת מעי גס ימני בלפרוסקופיה בגלל גידול <span class="nw">ב-<bdi>cecum</bdi></span>.</b> רקע: סוכרת, יתר לחץ דם, עישון בעבר. בכל תחנה נעצור, תחשבו ואז תפתחו את התשובה</div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1165</bdi> (גישה שיטתית: אנמנזה, בדיקה, מעבדה והדמיה) · פרק 19 עמ׳ <bdi dir="ltr">2</bdi> · מקרה בדוי</span><span>המסע</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>4</b>תחנה 1 · גישה</div>
+ <div class="stn"><i class="on">1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i></div>
+ <h2>לפני שנוגעים: מהדלת ועד המיטה</h2>
+ <div class="grid">
+  <div>
+   <ul class="b sm">
+    <li><b>לפני החדר:</b> גיליון המדדים ומאזן הנוזלים של <b>24 השעות האחרונות</b>, התרופות שניתנו בלילה, המעבדה מהבוקר ומה נכתב בסיכום הניתוח</li>
+    <li><b>בכניסה:</b> היגיינת ידיים, שם ותפקיד, רשות לבדוק, פרטיות ומלווה כשצריך</li>
+    <li><b>מהדלת:</b> איך הוא נראה? חיוור, מזיע, נושם מהר, שוכב בלי לזוז או מתפתל?</li>
+    <li><b>סביב המיטה:</b> כל מה שמחובר למטופל: עירוי, זונדה, קטטר ומה יש בשקית, נקזים ומה יוצא מהם, מד רוויה, משאבת כאב</li>
+   </ul>
+   <div class="box a" style="margin-top:10px"><b class="t">סימני רעילות כללית</b>דופק מהיר, הזעה וחיוורון. נשימה מהירה בלי צפצופים יכולה להיות פיצוי על חמצת מזיהום בבטן</div>
+  </div>
+  <div>
+   <div class="box n"><b class="t">מר ל׳ · גיליון הבוקר</b>
+    <div class="vit"><span>חום<b dir="ltr">38.0°</b></span><span>דופק<b dir="ltr">104</b><small>אתמול 84</small></span><span>ל״ד<b dir="ltr">118/70</b></span><span>נשימות<b dir="ltr">20</b></span><span>רוויה<b dir="ltr">93%</b><small>באוויר החדר</small></span><span>שתן<b dir="ltr">25</b><small>מ״ל לשעה, 4 שעות</small></span></div>
+   </div>
+   <details class="rev"><summary>מה רואים מהדלת?</summary><div><ul class="b sm"><li>שוכב שטוח. לא קם מהמיטה מאז הניתוח</li><li>שתן מרוכז בשקית הקטטר. עירוי בקצב איטי</li><li>מד נשימה (ספירומטר) על השידה, לא בשימוש</li><li>אין זונדה ואין נקז</li></ul><p class="key">הממצא החשוב ביותר כבר בגיליון: <b>דופק שעלה</b> ו<b>שתן שירד</b>. מגמה חשובה יותר מערך בודד</p></div></details>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1159</bdi> · פרק 19 עמ׳ <bdi dir="ltr">2</bdi> · סדר הכניסה לחדר: נוהג מקובל</span><span>תחנה 1 · גישה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>5</b>תחנה 2 · אנמנזה</div>
+ <div class="stn"><i>1</i><i class="on">2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i></div>
+ <h2>מה השתנה מאתמול?</h2>
+ <div class="grid">
+  <div>
+   <h3>מטופל חדש</h3>
+   <ul class="b sm">
+    <li>הכאב: מתי התחיל, איפה, לאן הוא נודד ומקרין, מה האופי שלו. סדר מלא במצגת <b>הצגת מקרה</b></li>
+    <li>תסמינים נלווים: בחילה, הקאות, שלשול, גזים ויציאות, חום וצמרמורות</li>
+    <li>ניתוחים קודמים, מחלות רקע, תרופות (סטרואידים ומדכאי חיסון מסווים כאב וזיהום), רגישויות, עישון ואלכוהול</li>
+    <li>באישה בגיל הפוריות: וסת אחרונה ואפשרות להיריון</li>
+   </ul>
+  </div>
+  <div>
+   <h3>אחרי ניתוח · שמונה שאלות בכל בוקר</h3>
+   <ol class="obj sm">
+    <li>כאב: איפה, כמה, האם הוא שונה מאתמול</li>
+    <li>בחילה או הקאות</li>
+    <li>גזים או יציאה</li>
+    <li>אוכל ושותה?</li>
+    <li>הטיל שתן? (רוב המטופלים בתוך 6–8 שעות מהניתוח)</li>
+    <li>קם והלך?</li>
+    <li>נשימה, שיעול, כאב בחזה</li>
+    <li>כאב או נפיחות ברגליים, בלבול בלילה</li>
+   </ol>
+  </div>
+ </div>
+ <details class="rev"><summary>מר ל׳ · מה הוא מספר?</summary><div><ul class="b sm"><li>הבטן כואבת "כמו אתמול, אבל יותר עמום ומפושט". הקאה אחת בלילה</li><li>לא עברו גזים. לא אכל. לא הלך</li><li>כואב לנשום עמוק. אין כאב ברגליים. לא מבולבל</li><li>בגיליון התרופות: <b>4 מנות אופיואיד</b> בלילה</li></ul><p class="key">אופיואידים, הפרעות מלחים וחוסר תנועה מאריכים שיתוק מעיים. אבל כאב שמשנה אופי אחרי השקה דורש מחשבה נוספת</p></div></details>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1156–1157</bdi> · פרק 26 עמ׳ <bdi dir="ltr">135</bdi> · שמונה השאלות: נוהג מקובל</span><span>תחנה 2 · אנמנזה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>6</b>תחנה 3 · בדיקה גופנית</div>
+ <div class="stn"><i>1</i><i>2</i><i class="on">3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i></div>
+ <h2>מהמדדים ועד הפצע</h2>
+ <div class="grid f" style="align-items:start">
+  <div>
+   <ol class="steps">
+    <li><b>מדדים קודם.</b> דופק מהיר חדש בלי סיבה ברורה הוא לעיתים קרובות הסימן הראשון לסיבוך</li>
+    <li><b>בדיקה כללית:</b> לב, ריאות (בסיסים), הכרה ובלבול</li>
+    <li><b>בטן:</b> הסתכלות, הקשה ומישוש. מחפשים מקום רגישות מרבית, התגוננות ורגישות בהרפיה. כאב חזק בלי רגישות מתאימה מעלה חשד לאיסכמיה. הפרטים במצגת <b>בדיקת בטן</b></li>
+    <li><b>הפצע:</b> מורידים את החבישה ובודקים אודם, חום, מוגלה ונמק</li>
+    <li><b>כל מה שמחובר:</b> מה יוצא מהנקז ומהזונדה, אתר העירוי, הקטטר</li>
+    <li><b>רגליים:</b> נפיחות או רגישות בשוק</li>
+   </ol>
+   <p class="note">האזנה לבטן: רגישות וסגוליות נמוכות. לא מסיקים ממנה לבד</p>
+  </div>
+  <div>
+   <figure class="sm"><img src="img/mis-port-wounds.jpg" alt="שלושה פצעי ניקוב קטנים בבטן אחרי ניתוח לפרוסקופי"><figcaption>פצעי ניקוב אחרי ניתוח לפרוסקופי. בודקים כל אחד מהם · <bdi>Don Politicus</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+   <details class="rev"><summary>מר ל׳ · מה מצאנו?</summary><div><ul class="b sm"><li>נראה עייף, מזיע מעט</li><li>כניסת אוויר מופחתת בשני הבסיסים</li><li>בטן תפוחה קלות וטימפנית. רגישות סביב הפצעים ובימין, <b>בלי התגוננות ובלי רגישות בהרפיה</b></li><li>הפצעים נקיים. השוקיים רכות</li></ul></div></details>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1157–1159</bdi> · פרק 25 עמ׳ <bdi dir="ltr">123–124</bdi></span><span>תחנה 3 · בדיקה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>7</b>תחנה 4 · בדיקות עזר</div>
+ <div class="stn"><i>1</i><i>2</i><i>3</i><i class="on">4</i><i>5</i><i>6</i><i>7</i><i>8</i></div>
+ <h2>איזו תשובה תשנה החלטה?</h2>
+ <div class="grid">
+  <div>
+   <div class="box n"><b class="t">העיקרון: התער של אוקאם</b>מזמינים רק בדיקה שיש לה סיכוי טוב לתוצאה שנפעל לפיה. לא בודקים כשהתשובה כמעט ידועה מראש או כשהיא לא תשנה את הטיפול</div>
+   <table class="cmp" style="margin-top:10px">
+    <tr><th>בדיקה</th><th>השאלה שהיא עונה עליה</th></tr>
+    <tr><td>ספירת דם</td><td>זיהום (לויקוציטים, הסטה שמאלה)? דימום או התייבשות (המוגלובין)?</td></tr>
+    <tr><td>כימיה ולקטט</td><td>כליות, מלחים, חמצת. לקטט גבוה: התייבשות, אלח דם או איסכמיה</td></tr>
+    <tr><td><bdi>CRP</bdi></td><td>עולה בזיהום ובדליפה. לא סגולי. המגמה חשובה יותר מהערך</td></tr>
+    <tr><td>הדמיה</td><td>בוחרים לפי האבחנה המבדלת: אולטרסאונד, צילום או <bdi>CT</bdi></td></tr>
+   </table>
+  </div>
+  <div>
+   <ul class="b sm">
+    <li>חשד לדליפה מהשקה: <bdi>CT</bdi> עם חומר ניגוד לווריד. חומר ניגוד דרך הפה מוסיף כאן, כי דליפה שלו סגולית מאוד לנקב</li>
+    <li>נוזל רב סביב ההשקה, גז חופשי, הסננה ועיבוי דופן מעלים חשד גם בלי דליפת חומר ניגוד</li>
+    <li>לפני ניתוח צפוי: סוג והצלבה ותפקודי קרישה</li>
+   </ul>
+   <details class="rev"><summary>מר ל׳ · המעבדה</summary><div><div class="vit"><span>לויקוציטים<b dir="ltr">13.8K</b><small>אתמול 11K</small></span><span><bdi>CRP</bdi><b dir="ltr">210</b><small>אתמול 140</small></span><span>קריאטינין<b dir="ltr">1.4</b><small>בסיס 0.9</small></span><span>אשלגן<b dir="ltr">3.3</b></span><span>לקטט<b dir="ltr">1.6</b></span><span>סוכר<b dir="ltr">220</b></span></div><p class="key">הכול עולה. אין עדיין בדיקה אחת שמכריעה. השאלה הבאה היא לא "מה עוד לשלוח" אלא <b>מה האבחנה המבדלת</b></p></div></details>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">2</bdi> · פרק 85 עמ׳ <bdi dir="ltr">1159–1161</bdi> · פרק 26 עמ׳ <bdi dir="ltr">139</bdi></span><span>תחנה 4 · בדיקות עזר</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>8</b>תחנה 5 · אבחנה מבדלת</div>
+ <div class="stn"><i>1</i><i>2</i><i>3</i><i>4</i><i class="on">5</i><i>6</i><i>7</i><i>8</i></div>
+ <h2>הכי סביר מול אסור לפספס</h2>
+ <div class="grid">
+  <div>
+   <ul class="b sm">
+    <li><b>שלושה צירים לבניית הרשימה:</b> אנטומיה (מה נמצא באזור), מערכות (לא כל כאב בטן הוא כירורגי: אוטם שריר הלב, דלקת ריאות, חמצת קטוטית) וזמן</li>
+    <li><b>הזמן אחרי ניתוח:</b> חום ב-48 השעות הראשונות נובע בדרך כלל מהתגובה הדלקתית לניתוח. תמט ריאות הוא הסיבה השכיחה. חום מ-72 שעות והלאה מכוון יותר לזיהום</li>
+    <li><b>שיתוק מעיים:</b> <span class="nw">ה-<bdi>small bowel</bdi></span> מתאושש בתוך שעות, <span class="nw">ה-<bdi>stomach</bdi></span> בתוך <bdi dir="ltr">24–48</bdi> שעות <span class="nw">וה-<bdi>colon</bdi></span> בתוך <bdi dir="ltr">3–5</bdi> ימים. רגישות או רגישות בהרפיה מחייבות לחפש סיבה אחרת</li>
+    <li><b>דליפה מהשקה:</b> חום, דופק מהיר, כאב שמחמיר, לויקוציטים, ירידה בשתן וקוצר נשימה. היא יכולה גם להתחבא מאחורי שיתוק מעיים ממושך</li>
+   </ul>
+  </div>
+  <div>
+   <details class="rev" open><summary>מר ל׳ · האבחנה המבדלת שלנו</summary><div>
+    <div class="dd"><b class="tag">הכי סביר</b><span>חוסר נוזלים ושיתוק מעיים (אופיואידים, אשלגן נמוך, חוסר תנועה). תמט ריאות</span></div>
+    <div class="dd r"><b class="tag r">אסור לפספס</b><span><b>דליפה מההשקה</b>, דימום, תסחיף ריאתי, אוטם שריר הלב (סוכרתי: תסמינים לא טיפוסיים)</span></div>
+    <div class="dd a"><b class="tag a">פחות סביר עכשיו</b><span>זיהום בדרכי השתן (קטטר), זיהום בפצע (מוקדם מדי ופצעים נקיים)</span></div>
+    <p class="key">משפט סיכום: "בן 67 ביום 2 אחרי השקה, עם דופק שעלה, מיעוט שתן <span class="nw">ו-<bdi>CRP</bdi></span> עולה. הכי סביר חוסר נוזלים ושיתוק מעיים, אבל צריך לשלול דליפה"</p>
+   </div></details>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1155–1157</bdi> · פרק 26 עמ׳ <bdi dir="ltr">129–130, 135, 138–139</bdi></span><span>תחנה 5 · אבחנה מבדלת</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>9</b>תחנה 6 · תוכנית</div>
+ <div class="stn"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i class="on">6</i><i>7</i><i>8</i></div>
+ <h2>תוכנית לפי בעיות</h2>
+ <div class="grid g3">
+  <div class="box n"><b class="t">אבחון</b>מה בודקים, למה ומתי מקבלים תשובה</div>
+  <div class="box"><b class="t">טיפול</b>נוזלים, תרופות, נשימה, תנועה ותזונה</div>
+  <div class="box b"><b class="t">מעקב ותקשורת</b>מתי בודקים שוב, מה הסף לקרוא לבכיר/ה ומה מסבירים למטופל</div>
+ </div>
+ <details class="rev"><summary>מר ל׳ · התוכנית</summary><div>
+  <ol class="obj sm">
+   <li><b>דופק מהיר ומיעוט שתן:</b> בולוס נוזלים, מדידת שתן כל שעה, אק״ג (סוכרתי עם דופק מהיר) ובדיקה חוזרת בעוד <bdi dir="ltr">2–4</bdi> שעות</li>
+   <li><b>שיתוק מעיים:</b> תיקון אשלגן, פחות אופיואידים ויותר משככים אחרים, הליכה. זונדה רק אם ההקאות חוזרות</li>
+   <li><b>ריאות:</b> מד נשימה, נשימות עמוקות ושיעול, ישיבה בכיסא</li>
+   <li><b>חשד לדליפה:</b> עדכון הבכיר/ה עכשיו. <bdi>CT</bdi> עם חומר ניגוד אם הדופק והשתן לא משתפרים או שהבטן מחמירה</li>
+   <li><b>שאר הבעיות:</b> איזון סוכר, מניעת קרישים ממשיכה, הסבר למטופל ולמשפחה</li>
+  </ol>
+ </div></details>
+ <div class="box a" style="margin-top:10px"><b class="t">מטופל לא יציב</b>החייאה לא מחכה לאבחנה: עירוי רחב, נוזלים או דם, תיקון מלחים, תרביות ואנטיביוטיקה רחבה. רק אחר כך הדמיה</div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1163</bdi> · פרק 26 עמ׳ <bdi dir="ltr">130, 135, 139</bdi> · פרק 19 עמ׳ <bdi dir="ltr">23</bdi></span><span>תחנה 6 · תוכנית</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>10</b>תחנה 7 · סיבוכים</div>
+ <div class="stn"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i class="on">7</i><i>8</i></div>
+ <h2>לצפות לפי הזמן</h2>
+ <div class="tl">
+  <div><b>שעות</b><span>דימום, אצירת שתן (נפח <bdi>bladder</bdi> מ-500 מ״ל: קטטר)</span></div>
+  <div><b>ימים <bdi dir="ltr">1–2</bdi></b><span>חום מהתגובה הדלקתית, תמט ריאות, שאיפה</span></div>
+  <div><b>ימים <bdi dir="ltr">3–5</bdi></b><span>חזרת <span class="nw">ה-<bdi>colon</bdi></span> לפעילות. חום מעכשיו: לחפש זיהום (ריאות, שתן, קטטר, בטן)</span></div>
+  <div><b>השבוע הראשון</b><span>דליפה מהשקה: מוקדם עם אלח דם או מאוחר ושקט, עם מורסה</span></div>
+  <div><b>אחרי השחרור</b><span>זיהום בפצע: בממוצע כ-10 ימים אחרי ניתוח בטן, יותר <span class="nw">מ-<bdi dir="ltr">60%</bdi></span> מתגלים בבית. חסימת מעי מוקדמת: עד 6 שבועות</span></div>
+ </div>
+ <div class="grid" style="margin-top:12px">
+  <div class="box r"><b class="t">סימני אזהרה ליד המיטה</b>דופק מהיר חדש · ירידה בשתן · חום מיום 3 · כאב שמשנה אופי או מחמיר · רגישות בהרפיה · קוצר נשימה · בלבול חדש · תוכן מעי או מוגלה בנקז</div>
+  <details class="rev" style="margin-top:0"><summary>מר ל׳ · ואם זו דליפה?</summary><div><p><span class="nw">ב-<bdi>CT</bdi></span> נמצאה מורסה של 4 ס״מ ליד ההשקה. ניקוז דרך העור ואנטיביוטיקה: דרגה <bdi>IIIa</bdi> לפי <bdi>Clavien-Dindo</bdi>. ניתוח חוזר בהרדמה כללית היה <bdi>IIIb</bdi>. הטבלה המלאה במצגת <b>הצגת מקרה</b></p></div></details>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 26 עמ׳ <bdi dir="ltr">127, 129–130, 135–136, 138–139</bdi> · פרק 25 עמ׳ <bdi dir="ltr">123</bdi></span><span>תחנה 7 · סיבוכים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>11</b>תחנה 8 · מעקב</div>
+ <div class="stn"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i class="on">8</i></div>
+ <h2>לסגור את המעגל</h2>
+ <div class="grid">
+  <div>
+   <ul class="b sm">
+    <li><b>באותו יום:</b> חוזרים למיטה בשעה שנקבעה. האם הדופק ירד? האם השתן עלה? רושמים מה מצאנו</li>
+    <li><b>מחר בבוקר:</b> אותן שמונה שאלות ואותה בדיקה. משווים לאתמול</li>
+    <li><b>מסלול החלמה:</b> הליכה מוקדמת, אכילה מוקדמת, משככי כאב עם מעט אופיואידים ומניעת קרישים</li>
+    <li><b>לפני שחרור:</b> אוכל ושותה, הכאב נשלט בכדורים, הולך, יש גזים או יציאה, אין חום. המטופל מבין את סימני האזהרה</li>
+    <li><b>אחרי שחרור:</b> רוב הזיהומים בפצע מתגלים בבית. מסבירים למטופל מה לבדוק ולמי להתקשר. ביקור במרפאה: הפצע ותשובת הפתולוגיה</li>
+   </ul>
+  </div>
+  <div>
+   <details class="rev" open><summary>מר ל׳ · מה קרה בהמשך</summary><div><ol class="obj sm"><li>אחרי נוזלים הדופק ירד ל-92, אבל <span class="nw">ה-<bdi>CRP</bdi></span> המשיך לעלות</li><li>יום 3: <bdi>CT</bdi> הראה מורסה קטנה ליד ההשקה. ניקוז דרך העור ואנטיביוטיקה</li><li>יום 4: גזים. יום 5: אוכל</li><li>יום 8: שחרור עם הסבר על סימני אזהרה ותור למרפאה עם תשובת הפתולוגיה</li></ol></div></details>
+   <div class="box b" style="margin-top:10px"><b class="t">בביקור המודרך הבא</b>מי שהציג/ה את המטופל מספר/ת לקבוצה מה קרה לו מאז</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">23</bdi> · פרק 25 עמ׳ <bdi dir="ltr">123</bdi> · פרק 26 עמ׳ <bdi dir="ltr">139</bdi> · תנאי השחרור: נוהג מקובל</span><span>תחנה 8 · מעקב</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>12</b>הצגה ליד המיטה</div>
+ <h2>שתי דקות, בשפה שהמטופל מבין</h2>
+ <div class="grid">
+  <div class="pres">
+   <div><i>1</i><b>שורת פתיחה</b><span>"מר ל׳, בן 67, יום 2 אחרי כריתת מעי גס ימני בלפרוסקופיה"</span></div>
+   <div><i>2</i><b>מה השתנה</b><span>תלונות הלילה והבוקר. שמונה השאלות</span></div>
+   <div><i>3</i><b>מדדים ובדיקה</b><span>מגמה מאתמול. ממצאים חיוביים ושליליים חשובים</span></div>
+   <div><i>4</i><b>בדיקות עזר</b><span>רק מה שמשנה החלטה, עם ערך אתמול לידו</span></div>
+   <div><i>5</i><b>הערכה</b><span>משפט סיכום אחד. הכי סביר ואסור לפספס</span></div>
+   <div><i>6</i><b>תוכנית</b><span>לפי בעיות, עם שעה לבדיקה חוזרת</span></div>
+  </div>
+  <div style="display:grid;gap:10px;align-content:start">
+   <div class="box"><b class="t">ליד המיטה</b>מדברים <b>אל</b> המטופל ולא עליו. בלי ז׳רגון. מידע רגיש (חשד לגידול, פרוגנוזה) נאמר מחוץ לחדר</div>
+   <div class="box n"><b class="t">מה המדריך/ה מצפה לראות</b>
+    <ul class="b sm"><li>קראתם את התיק לפני שנכנסתם</li><li>מתחייבים לאבחנה: "אני חושב/ת ש..." ולמה</li><li>חושבים בקול ואומרים מה לא יודעים</li><li>כל בדיקה עם סיבה. כל תוכנית עם שעה</li><li>חוזרים למטופל ומספרים מה קרה</li></ul></div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">2, 5–6</bdi> · המבנה המלא במצגת <b>הצגת מקרה</b> · ההצגה ליד המיטה: נוהג מקובל</span><span>הצגה ליד המיטה</span></div>
+</div></section>
+
+<section class="s" id="chk"><div class="card">
+ <div class="kick"><b>13</b>רשימת בדיקה · להדפסה</div>
+ <div class="chkhead"><h2>רשימת הבדיקה לכל ביקור מודרך</h2><button type="button" class="prt" onclick="document.body.classList.add('pchk');window.print();setTimeout(function(){document.body.classList.remove('pchk')},500)">🖨 הדפסת העמוד</button></div>
+ <div class="chk">
+  <div><h3><i>1</i>גישה</h3><label><input type="checkbox">קראתי גיליון, מאזן נוזלים, תרופות ומעבדה</label><label><input type="checkbox">ידיים, שם ותפקיד, רשות ופרטיות</label><label><input type="checkbox">מהדלת: מראה, נשימה, כל מה שמחובר</label></div>
+  <div><h3><i>2</i>אנמנזה</h3><label><input type="checkbox">חדש: כאב, תסמינים, רקע, תרופות, רגישויות</label><label><input type="checkbox">אחרי ניתוח: שמונה שאלות הבוקר</label></div>
+  <div><h3><i>3</i>בדיקה</h3><label><input type="checkbox">מדדים ומגמה</label><label><input type="checkbox">לב, ריאות, בטן (התגוננות, הרפיה)</label><label><input type="checkbox">פצע בלי חבישה, נקזים, עירוי, שוקיים</label></div>
+  <div><h3><i>4</i>בדיקות עזר</h3><label><input type="checkbox">לכל בדיקה: איזו החלטה היא תשנה?</label><label><input type="checkbox">מגמה מול אתמול</label></div>
+  <div><h3><i>5</i>אבחנה מבדלת</h3><label><input type="checkbox">אנטומיה, מערכות וזמן</label><label><input type="checkbox">הכי סביר מול אסור לפספס</label><label><input type="checkbox">משפט סיכום אחד</label></div>
+  <div><h3><i>6</i>תוכנית</h3><label><input type="checkbox">לפי בעיות: אבחון, טיפול, מעקב</label><label><input type="checkbox">סף לקריאה לבכיר/ה</label></div>
+  <div><h3><i>7</i>סיבוכים</h3><label><input type="checkbox">מה צפוי ביום הזה אחרי הניתוח?</label><label><input type="checkbox">סימני אזהרה נבדקו</label></div>
+  <div><h3><i>8</i>מעקב</h3><label><input type="checkbox">שעה לבדיקה חוזרת</label><label><input type="checkbox">הסבר למטופל ולמשפחה</label><label><input type="checkbox">מספר/ת לקבוצה מה קרה</label></div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרקים 19, 25, 26 ו-85 · Scrub In · הרשימה עצמה: נוהג מקובל</span><span>רשימת בדיקה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>14</b>מה חדש בתחום · <bdi dir="ltr">2021–2024</bdi></div>
+ <h2>מחקרים שכדאי להכיר</h2>
+ <div class="grid">
+  <div class="study"><div class="y"><bdi>AHRQ</bdi> 2022 · סקירה שיטתית</div><b>טעויות אבחון במיון</b>
+   <p>הערכה: <span class="nw">בכ-<bdi dir="ltr">5.7%</bdi></span> מהביקורים במיון יש לפחות טעות אבחון אחת. <span class="nw">בכ-<bdi dir="ltr">0.3%</bdi></span> נגרם נזק חמור. רוב הטעויות קשורות לחשיבה בתהליך האבחון ליד המיטה ולא לחוסר בבדיקות</p>
+   <small>Newman-Toker DE et al. Diagnostic Errors in the Emergency Department: A Systematic Review. AHRQ Comparative Effectiveness Review 258, Publication 22(23)-EHC043, 2022</small></div>
+  <div class="study"><div class="y"><bdi>World J Surg</bdi> 2021 · מחקר פרוספקטיבי</div><b>מדד <bdi>AIR</bdi> לדלקת תוספתן</b>
+   <p>3,878 מטופלים ב-25 מחלקות מיון בשוודיה. המדד, שבנוי מאנמנזה, בדיקה ומעבדה פשוטה, זיהה היטב דלקת מסובכת. מתחת ל-4 נקודות דלקת מסובכת לא סבירה (ערך מנבא שלילי <bdi dir="ltr">99%</bdi>)</p>
+   <small>Andersson M, Kolodziej B, Andersson RE. World J Surg 2021;45(7):2081-91</small></div>
+  <div class="study"><div class="y"><bdi>JAMA Netw Open</bdi> 2024 · מחקר אקראי</div><b>מודל שפה כעוזר לאבחנה</b>
+   <p>רופאים שקיבלו גישה למודל שפה גדול לא אבחנו טוב יותר מרופאים עם מקורות רגילים. המודל לבדו הגיע לציון גבוה יותר. כלי חדש לא מחליף שיטת חשיבה מסודרת. צריך ללמוד לעבוד איתו</p>
+   <small>Goh E et al. JAMA Netw Open 2024;7(10):e2440969</small></div>
+  <div class="study"><div class="y"><bdi>Neurology</bdi> 2021 · מחקר אקראי</div><b>ביקור ליד המיטה או במסדרון</b>
+   <p>81 מטופלים חולקו אקראית. ביקור ליד המיטה לקח אותו זמן, האחיות השתתפו יותר והמטופלים קיבלו יותר זמן עם הצוות. מי שחווה ביקור ליד המיטה העדיף אותו</p>
+   <small>Solomon JM et al. Neurology 2021;97(9):434-42</small></div>
+ </div>
+ <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>15</b>לסיכום</div>
+ <h2>חמישה דברים לקחת לכל ביקור</h2>
+ <ol class="obj">
+  <li>מתכוננים לפני החדר ומסתכלים מהדלת לפני שנוגעים</li>
+  <li>שמונה תחנות בסדר קבוע. אחרי ניתוח: שמונה שאלות בכל בוקר</li>
+  <li>מגמה חשובה יותר מערך בודד. דופק מהיר חדש הוא סימן אזהרה עד שיוכח אחרת</li>
+  <li>כל בדיקה עם סיבה. אבחנה מבדלת של הכי סביר מול אסור לפספס</li>
+  <li>תוכנית לפי בעיות עם שעה לבדיקה חוזרת. סוגרים את המעגל עם המטופל ועם הקבוצה</li>
+ </ol>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני הביקור הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 85 <bdi>The Acute Abdomen</bdi> (עמ׳ <bdi dir="ltr">1155–1165</bdi>) ופרק 26 <bdi>Surgical Complications</bdi> (עמ׳ <bdi dir="ltr">127–139</bdi>). מצגות קשורות: הצגת מקרה, עקרונות קבלת חולים ובדיקת בטן</div>
+ <div class="src"><span>ציור: <bdi>Luke Fildes</bdi>, 1891 (נחלת הכלל) · צילום: <bdi>Don Politicus</bdi> (<bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi>) · המקרה בדוי · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+</main>
+<div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
+<script>
+document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz').forEach(function(z){z.addEventListener('click',function(){w.querySelectorAll('.hz').forEach(function(x){x.classList.toggle('on',x===z)});w.querySelectorAll('.hzi').forEach(function(i){i.hidden=i.dataset.hzi!==z.dataset.hz;i.style.setProperty('--c',z.style.getPropertyValue('--c'))});var h=w.querySelector('.hint');if(h)h.hidden=true;});});});
+</script>
+<script>
+(function () {
+  var deck = document.getElementById('deck'), S = [].slice.call(deck.children), dots = document.getElementById('dots'), n = S.length;
+  S.forEach(function (_, k) { var i = document.createElement('i'); i.onclick = function () { go(k); }; dots.appendChild(i); });
+  function idx() { return Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }
+  function go(k) { k = Math.max(0, Math.min(n - 1, k)); S[k].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' }); }
+  function sync() { var k = idx(); [].forEach.call(dots.children, function (d, j) { d.className = j === k ? 'on' : ''; }); document.getElementById('count').textContent = (k + 1) + '/' + n; document.getElementById('prev').disabled = k === 0; document.getElementById('next').disabled = k === n - 1; }
+  deck.addEventListener('scroll', function () { clearTimeout(sync.t); sync.t = setTimeout(sync, 60); }, { passive: true });
+  document.getElementById('next').onclick = function () { go(idx() + 1); };
+  document.getElementById('prev').onclick = function () { go(idx() - 1); };
+  addEventListener('keydown', function (e) { if (e.key === 'ArrowLeft' || e.key === ' ') go(idx() + 1); if (e.key === 'ArrowRight') go(idx() - 1); });
+  sync();
+})();
+</script>
+</body>
+</html>

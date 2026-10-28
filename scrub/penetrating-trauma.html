@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>חבלת בטן חודרת · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,6 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -97,6 +98,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -114,6 +116,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -138,7 +143,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>להבדיל בין הגישה לפצע ירי בבטן לגישה לפצע דקירה</li>
   <li>לזהות את המטופל שצריך ניתוח בטן מיד</li>
   <li>להכיר את דרכי הבירור בפצע דקירה יציב: חקירת הפצע, בדיקות חוזרות, CT ולפרוסקופיה</li>
-  <li>לתאר את שלבי ניתוח הבטן בטראומה ואת שלושת אזורי הרטרופריטונאום</li>
+  <li>לתאר את שלבי ניתוח הבטן בטראומה ואת שלושת אזורי <span class="nw">ה-<bdi dir="ltr">retroperitoneum</bdi></span></li>
   <li>להסביר מתי עוצרים ב"ניתוח לשליטה בנזק" ומה זה בטן פתוחה</li>
  </ol>
  <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 36 (עמ׳ <bdi dir="ltr">340–353</bdi>) · פרק 37 (עמ׳ <bdi dir="ltr">356–360</bdi>)</span><span>Scrub In · קפלן</span></div>
@@ -150,14 +155,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="num">
   <div><b dir="ltr">11.7%</b><span>מכלל הפצועים במאגר האמריקאי נפגעו בבטן</span></div>
   <div><b dir="ltr">12.9%</b><span>תמותה בפצועים עם פגיעת בטן</span></div>
-  <div><b dir="ltr">26.1%</b><span>מפצעי הבטן החודרים פוגעים בכבד, האיבר הנפגע ביותר</span></div>
-  <div><b dir="ltr">~80%</b><span>מפגיעות התריסריון נגרמות מירי</span></div>
+  <div><b dir="ltr">26.1%</b><span>מפצעי הבטן החודרים פוגעים <span class="nw">ב-<bdi dir="ltr">liver</bdi></span>, האיבר הנפגע ביותר</span></div>
+  <div><b dir="ltr">~80%</b><span>מהפגיעות <span class="nw">ב-<bdi dir="ltr">duodenum</bdi></span> נגרמות מירי</span></div>
  </div>
  <ul class="b">
   <li><b>שני דברים הורגים:</b> דימום ונקב במעי עם זיהום</li>
   <li><b>פצע חודר</b> חותך ישירות איברים מוצקים וחלולים: דימום וזליגת תוכן מעי שבדרך כלל צריכים תיקון בניתוח</li>
-  <li>המעי הדק הוא מהאיברים הנפגעים ביותר בפצע חודר. הקיבה נפגעת ב-<bdi dir="ltr">11–18%</bdi> מהפצעים החודרים, הלבלב ב-4.4%</li>
-  <li><b>לא כל פצע חודר חוצה את הצפק.</b> כאן ההבדל בין ירי לדקירה מתחיל</li>
+  <li>המעי הדק הוא מהאיברים הנפגעים ביותר בפצע חודר. הקיבה נפגעת <span class="nw">ב-<bdi dir="ltr">11–18%</bdi></span> מהפצעים החודרים, <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span> ב-4.4%</li>
+  <li><b>לא כל פצע חודר חוצה את <span class="nw">ה-<bdi dir="ltr">peritoneum</bdi></span>.</b> כאן ההבדל בין ירי לדקירה מתחיל</li>
  </ul>
  <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">341, 344, 348–349, 351</bdi></span><span>אפידמיולוגיה</span></div>
 </div></section>
@@ -178,7 +183,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   </div>
   <figure><img src="img/pen-gsw.jpg" alt="פצע ירי בבטן עם פצע כניסה ויציאה"><figcaption>פצע ירי בבטן: פצע כניסה ופצע יציאה מכוסה בגזה · <bdi>Bobjgalindo</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">325, 342</bdi></span><span>ירי</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">325, 342</bdi> · <bdi>WTA 2019</bdi> · Martin MJ et al., J Trauma Acute Care Surg 2019;87:1220-7</span><span>ירי</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -187,13 +192,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <div class="box r"><b class="t">ניתוח בטן מיד, בירי ובדקירה</b>
-    <ul class="b sm" style="margin-top:6px"><li>הלם או חוסר יציבות המודינמית</li><li>פריטוניטיס</li><li>אוויסצרציה (מעי או אומנטום בחוץ)</li><li>אוויר חופשי בצילום חזה</li></ul></div>
+    <ul class="b sm" style="margin-top:6px"><li>הלם או חוסר יציבות המודינמית</li><li>פריטוניטיס</li><li>אוויסצרציה (מעי או <bdi dir="ltr">omentum</bdi> בחוץ)</li><li>אוויר חופשי בצילום חזה</li></ul></div>
    <div class="box a" style="margin-top:10px"><b class="t">גם בהמשך ההשגחה</b>הופעת פריטוניטיס, חוסר יציבות, ירידה משמעותית בהמוגלובין או עלייה בלויקוציטים: בדרך כלל ניתוח</div>
-   <div class="box n" style="margin-top:10px"><b class="t">פצוע שאי אפשר לבדוק</b>(מורדם, פגיעת ראש) בודקים אם הצפק נחדר בחקירת הפצע, ב-CT או בלפרוסקופיה</div>
+   <div class="box n" style="margin-top:10px"><b class="t">פצוע שאי אפשר לבדוק</b>(מורדם, פגיעת ראש) בודקים אם <span class="nw">ה-<bdi dir="ltr">peritoneum</bdi></span> נחדר בחקירת הפצע, ב-CT או בלפרוסקופיה</div>
   </div>
-  <figure><img src="img/pen-free-air.jpg" alt="אוויר מתחת לסרעפת בצילום חזה וב-CT"><figcaption>אוויר חופשי: בצילום חזה מתחת לסרעפת השמאלית וב-CT מלפני הכבד · <bdi>Cerevisae</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/pen-free-air.jpg" alt="אוויר מתחת ל-diaphragm בצילום חזה וב-CT"><figcaption>אוויר חופשי: בצילום חזה מתחת <span class="nw">ל-<bdi dir="ltr">diaphragm</bdi></span> השמאלי וב-CT מלפני <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> · <bdi>Cerevisae</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">342–343</bdi> (איור 36.28)</span><span>החלטה</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">342–343</bdi> (איור 36.28) · <bdi>EAST 2010</bdi> · Como JJ et al., J Trauma 2010;68:721-33 · <bdi>WTA 2018</bdi> · Martin MJ et al., J Trauma Acute Care Surg 2018;85:1007-15</span><span>החלטה</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -204,10 +209,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div><b>הפציה לא נחדרה</b><span>אפשר לשקול שחרור</span></div>
   <div><b>הפציה נחדרה או לא ברור</b><span>בדיקות בטן חוזרות במשך 24 שעות, CT או לפרוסקופיה אבחנתית</span></div>
   <div><b>מותן וגב</b><span>בדיקת CT עם חומר ניגוד לווריד (ולפי הצורך גם רקטלי). דימום פעיל מאיבר מוצק: לשקול צנתור ותסחיף</span></div>
-  <div><b>גבול חזה-בטן</b><span>צילום חזה (חזה אוויר), <bdi>FAST</bdi> של קרום הלב (פגיעה בלב) ולפרוסקופיה לבדיקת הסרעפת. בצד שמאל עליון כמעט תמיד, בימין עליון לפי שיקול (הכבד מגן)</span></div>
+  <div><b>גבול חזה-בטן</b><span>צילום חזה (חזה אוויר), <bdi>FAST</bdi> של <span class="nw">ה-<bdi dir="ltr">pericardium</bdi></span> (פגיעה בלב) ולפרוסקופיה לבדיקת <span class="nw">ה-<bdi dir="ltr">diaphragm</bdi></span>. בצד שמאל עליון כמעט תמיד, בימין עליון לפי שיקול (<span class="nw">ה-<bdi dir="ltr">liver</bdi></span> מגן)</span></div>
  </div>
- <div class="box b" style="margin-top:12px"><b class="t">לפרוסקופיה אבחנתית</b>מדויקת מאוד בזיהוי חדירה לצפק. כשמוצאים חדירה, ממשיכים בלפרוסקופיה או פותחים לפי ניסיון המנתח</div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">342–343</bdi> (איור 36.28)</span><span>דקירה</span></div>
+ <div class="box b" style="margin-top:12px"><b class="t">לפרוסקופיה אבחנתית</b>מדויקת מאוד בזיהוי חדירה <span class="nw">ל-<bdi dir="ltr">peritoneum</bdi></span>. כשמוצאים חדירה, ממשיכים בלפרוסקופיה או פותחים לפי ניסיון המנתח</div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">342–343</bdi> (איור 36.28) · <bdi>EAST 2010</bdi> · Como JJ et al., J Trauma 2010;68:721-33 · <bdi>WTA 2018</bdi> · Martin MJ et al., J Trauma Acute Care Surg 2018;85:1007-15</span><span>דקירה</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -220,7 +225,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>מה מחייב ניתוח:</b> פריטוניטיס, חוסר יציבות, ירידה משמעותית בהמוגלובין, עלייה בלויקוציטים</li>
     <li><b>24 שעות בלי שינוי:</b> מתחילים לאכול ושוקלים שחרור</li>
     <li>הגישה הזו דורשת צוות ומחלקה שיכולים לעקוב מקרוב. לא בכל מקום יש</li>
-    <li><b>גם בירי:</b> מטופל יציב עם פגיעה בכבד נשקל קודם לטיפול בלי ניתוח. בלוס אנג׳לס הטיפול נכשל בכ-5% מפצעי הירי בכבד</li>
+    <li><b>גם בירי:</b> מטופל יציב עם פגיעה <span class="nw">ב-<bdi dir="ltr">liver</bdi></span> נשקל קודם לטיפול בלי ניתוח. בלוס אנג׳לס הטיפול נכשל בכ-5% מפצעי הירי <span class="nw">ב-<bdi dir="ltr">liver</bdi></span></li>
     <li>פגיעה בחלול מתגלה לפעמים רק בשעות שאחרי ההגעה. ככל שמאחרים בניתוח, התמותה עולה</li>
    </ul>
   </div>
@@ -228,25 +233,25 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div class="box b"><b class="t">במחלקה השבוע</b>עקבו אחרי מטופל בהשגחה אחרי פצע דקירה. בדקו את הבטן יחד עם הבכיר/ה כמה פעמים במשמרת, רשמו בכל פעם דופק, לחץ דם, ממצאי הבדיקה וספירה והציגו מה השתנה</div>
   </div>
  </div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">342, 346–348</bdi></span><span>השגחה</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">342, 346–348</bdi> · <bdi>EAST 2010</bdi> · Como JJ et al., J Trauma 2010;68:721-33 · Velmahos GC et al., Ann Surg 2001;234:395-403</span><span>השגחה</span></div>
 </div></section>
 
 <section class="s"><div class="card">
- <div class="kick"><b>7</b>הסרעפת</div>
+ <div class="kick"><b>7</b><bdi dir="ltr">diaphragm</bdi></div>
  <h2>הפגיעה שקל לפספס</h2>
  <div class="num">
-  <div><b dir="ltr">0.46%</b><span>שכיחות פגיעת סרעפת בכלל הפצועים</span></div>
-  <div><b dir="ltr">67%</b><span>מפגיעות הסרעפת נגרמות מפצע חודר</span></div>
-  <div><b dir="ltr">≤78%</b><span>רגישות ה-CT לפגיעת סרעפת</span></div>
-  <div><b dir="ltr">8.8%</b><span>תמותה בפגיעת סרעפת חודרת (19.8% בקהה)</span></div>
+  <div><b dir="ltr">0.46%</b><span>שכיחות פגיעה <span class="nw">ב-<bdi dir="ltr">diaphragm</bdi></span> בכלל הפצועים</span></div>
+  <div><b dir="ltr">67%</b><span>מהפגיעות <span class="nw">ב-<bdi dir="ltr">diaphragm</bdi></span> נגרמות מפצע חודר</span></div>
+  <div><b dir="ltr">≤78%</b><span>רגישות ה-CT לפגיעה <span class="nw">ב-<bdi dir="ltr">diaphragm</bdi></span></span></div>
+  <div><b dir="ltr">8.8%</b><span>תמותה בפגיעה חודרת <span class="nw">ב-<bdi dir="ltr">diaphragm</bdi></span> (19.8% בקהה)</span></div>
  </div>
  <ul class="b">
-  <li>פגיעה קטנה בסרעפת לא מסכנת חיים מיד, אבל בלי תיקון היא <b>גדלה עם השנים</b> והקיבה והמעי עולים לחזה (בקע סרעפתי ענק)</li>
+  <li>פגיעה קטנה <span class="nw">ב-<bdi dir="ltr">diaphragm</bdi></span> לא מסכנת חיים מיד, אבל בלי תיקון היא <b>גדלה עם השנים</b> והקיבה והמעי עולים לחזה (בקע סרעפתי ענק)</li>
   <li>במטופל יציב בלי פריטוניטיס, <b>לפרוסקופיה</b> עדיפה על CT לבד כדי לא לפספס</li>
-  <li>בצד <b>ימין</b> הכבד מגן והפגיעות כמעט לא מתגלות באיחור ולכן אפשר לשקול טיפול בלי ניתוח</li>
-  <li><b>תיקון:</b> הסרעפת גמישה ולכן כמעט תמיד אפשר לתפור ישירות בשכבה אחת של חוט שלא נספג</li>
+  <li>בצד <b>ימין</b> <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> מגן והפגיעות כמעט לא מתגלות באיחור ולכן אפשר לשקול טיפול בלי ניתוח</li>
+  <li><b>תיקון:</b> <span class="nw">ה-<bdi dir="ltr">diaphragm</bdi></span> גמיש ולכן כמעט תמיד אפשר לתפור ישירות בשכבה אחת של חוט שלא נספג</li>
  </ul>
- <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">340, 343</bdi></span><span>סרעפת</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">340, 343</bdi> · <bdi>EAST 2018</bdi> · McDonald AA et al., J Trauma Acute Care Surg 2018;85:198-207</span><span>סרעפת</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -255,10 +260,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div class="flow sm">
    <div><b>1 · חתך</b><span>מהקסיפואיד עד הפוביס, כדי לראות הכול</span></div>
-   <div><b>2 · הרצועה הפלציפורמית</b><span>חותכים, כדי שהכבד לא ייקרע במשיכה ואפשר יהיה לרפד סביבו</span></div>
+   <div><b>2 · <bdi dir="ltr">falciform ligament</bdi></b><span>חותכים, כדי <span class="nw">שה-<bdi dir="ltr">liver</bdi></span> לא ייקרע במשיכה ואפשר יהיה לרפד סביבו</span></div>
    <div><b>3 · דם</b><span>מקור ידוע: ניגשים ישר. לא ידוע: שואבים ומרפדים בפדים את ארבעת הרבעים</span></div>
    <div><b>4 · מוציאים פדים</b><span>אחד אחד ושולטים בכל מקור דימום</span></div>
-   <div><b>5 · זיהום</b><span>עוברים על כל המעי מהוושט-קיבה עד החלחולת, כולל השק הקטן (הקיבה האחורית והלבלב)</span></div>
+   <div><b>5 · זיהום</b><span>עוברים על כל המעי <span class="nw">מה-<bdi dir="ltr">GE junction</bdi></span> עד <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span>, כולל <span class="nw">ה-<bdi dir="ltr">lesser sac</bdi></span> (הקיבה האחורית <span class="nw">וה-<bdi dir="ltr">pancreas</bdi></span>)</span></div>
    <div><b>6 · סגירה</b><span>סוגרים פציה, או עוצרים בשליטה בנזק</span></div>
   </div>
   <div style="display:grid;gap:10px">
@@ -270,9 +275,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 </div></section>
 
 <section class="s"><div class="card">
- <div class="kick"><b>9</b>הרטרופריטונאום · אינטראקטיבי</div>
+ <div class="kick"><b>9</b><bdi dir="ltr">retroperitoneum</bdi> · אינטראקטיבי</div>
  <h2>שלושה אזורים, החלטה אחת: בפצע חודר פותחים</h2>
- <div class="hotw"><div class="hoti" style="max-width:420px;justify-self:center;width:100%"><img src="img/Sobo_1906_413_crop.jpg" alt="הדופן האחורית של הבטן: כליות, אבי העורקים, הווריד הנבוב ואגן"><svg viewBox="0 0 1100 1170" preserveAspectRatio="none" style="--lw:20;--bf:31px">
+ <div class="hotw"><div class="hoti" style="max-width:420px;justify-self:center;width:100%"><img src="img/Sobo_1906_413_crop.jpg" alt="הדופן האחורית של הבטן: כליות, aorta, IVC ואגן"><svg viewBox="0 0 1100 1170" preserveAspectRatio="none" style="--lw:20;--bf:31px">
  <path class="hz" data-hz="z1" d="M452,75 C465,70.3 509.5,70.3 530,72 C550.5,73.7 562.5,77.8 575,85 C587.5,92.2 597.5,100.8 605,115 C612.5,129.2 616.2,150.8 620,170 C623.8,189.2 625.5,208.3 628,230 C630.5,251.7 633,281.7 635,300 C637,318.3 640.8,326.7 640,340 C639.2,353.3 635.8,365 630,380 C624.2,395 610.8,415 605,430 C599.2,445 597.2,455 595,470 C592.8,485 592.8,501.7 592,520 C591.2,538.3 590.7,560 590,580 C589.3,600 590.5,624.7 588,640 C585.5,655.3 581.7,664.3 575,672 C568.3,679.7 557.2,682.7 548,686 C538.8,689.3 529.7,690 520,692 C510.3,694 498.3,698.3 490,698 C481.7,697.7 475,699.7 470,690 C465,680.3 462.2,658.3 460,640 C457.8,621.7 457.7,600 457,580 C456.3,560 456.3,538.3 456,520 C455.7,501.7 456.2,480.8 455,470 C453.8,459.2 453.2,459 449,455 C444.8,451 435.2,449.2 430,446 C424.8,442.8 422.5,443.7 418,436 C413.5,428.3 406,414.3 403,400 C400,385.7 400,366.7 400,350 C400,333.3 402.2,315 403,300 C403.8,285 405,270.5 405,260 C405,249.5 402.2,245 403,237 C403.8,229 406.3,219.5 410,212 C413.7,204.5 420,199.3 425,192 C430,184.7 435.5,176.7 440,168 C444.5,159.3 450,151.3 452,140 C454,128.7 452,110.8 452,100 C452,89.2 439,79.7 452,75 Z" style="--c:#7A5BD6"/>
  <path class="hz" data-hz="z2" d="M352,302 C358.7,295.7 364.8,291 372,289 C379.2,287 390,284.8 395,290 C400,295.2 401.2,304.5 402,320 C402.8,335.5 397.3,363.7 400,383 C402.7,402.3 411.3,423.5 418,436 C424.7,448.5 435.5,447.3 440,458 C444.5,468.7 445,486.3 445,500 C445,513.7 442.5,527.5 440,540 C437.5,552.5 435,565 430,575 C425,585 417.5,594.2 410,600 C402.5,605.8 393.3,608.8 385,610 C376.7,611.2 368.3,610 360,607 C351.7,604 342,599 335,592 C328,585 323,575.3 318,565 C313,554.7 308.2,542.5 305,530 C301.8,517.5 299.8,505 299,490 C298.2,475 299.2,455 300,440 C300.8,425 301.5,412.5 304,400 C306.5,387.5 310.3,377.2 315,365 C319.7,352.8 325.8,337.5 332,327 C338.2,316.5 345.3,308.3 352,302 Z M688,400 C692.7,390 691.3,382.5 700,375 C708.7,367.5 725.8,358.8 740,355 C754.2,351.2 771.7,349.8 785,352 C798.3,354.2 811.2,360 820,368 C828.8,376 834.3,388 838,400 C841.7,412 842,425 842,440 C842,455 840.3,473.3 838,490 C835.7,506.7 833,525.3 828,540 C823,554.7 816.8,568.3 808,578 C799.2,587.7 786.8,594 775,598 C763.2,602 748.7,603.3 737,602 C725.3,600.7 713.8,596.2 705,590 C696.2,583.8 690.2,576.7 684,565 C677.8,553.3 671,535.8 668,520 C665,504.2 665.3,484.2 666,470 C666.7,455.8 668.3,446.7 672,435 C675.7,423.3 683.3,410 688,400 Z" style="--c:#00967D"/>
  <path class="hz" data-hz="z3" d="M548,686 C558,685.7 569.3,686.8 580,690 C590.7,693.2 602,693.3 612,705 C622,716.7 630.7,740.8 640,760 C649.3,779.2 658,800 668,820 C678,840 690,860 700,880 C710,900 718.8,920 728,940 C737.2,960 747.7,981.7 755,1000 C762.3,1018.3 771.2,1033.3 772,1050 C772.8,1066.7 772,1084.2 760,1100 C748,1115.8 723.3,1134.2 700,1145 C676.7,1155.8 646.7,1161.2 620,1165 C593.3,1168.8 565,1168.8 540,1168 C515,1167.2 490,1164.7 470,1160 C450,1155.3 434.2,1149.2 420,1140 C405.8,1130.8 393.3,1118.3 385,1105 C376.7,1091.7 370.8,1077.5 370,1060 C369.2,1042.5 375,1020 380,1000 C385,980 392.5,961.7 400,940 C407.5,918.3 416.7,893.3 425,870 C433.3,846.7 442.5,820 450,800 C457.5,780 463.7,764.7 470,750 C476.3,735.3 479.7,721.7 488,712 C496.3,702.3 510,696.3 520,692 C530,687.7 538,686.3 548,686 Z" style="--c:#C9893F"/>
@@ -282,8 +287,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <g class="hzb" style="--c:#C9893F"><circle cx="810" cy="1060" r="26"/><text x="810" y="1060">3</text></g>
  </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-   <div class="hzi" data-hzi="z1" hidden><b>אזור 1 · מרכזי</b><p>אבי העורקים, הווריד הנבוב התחתון, תחילת כלי הדם של המעי ולידם הלבלב והתריסריון. המטומה כאן נבדקת תמיד, גם בחבלה קהה. גישה לאבי העורקים מעל הכליות ולשער הכליה השמאלית: הזזת הקרביים השמאליים למרכז (<bdi>Mattox</bdi>). לווריד הנבוב ולכלים מתחת לכליות: הזזת הקרביים הימניים (<bdi>Cattell-Braasch</bdi>)</p></div>
-   <div class="hzi" data-hzi="z2" hidden><b>אזור 2 · צדדי</b><p>הכליות ובלוטות האדרנל. בפצע חודר פותחים וחוקרים את ההמטומה. בחבלה קהה הכללים שונים ונדבר עליהם בשבוע 6</p></div>
+   <div class="hzi" data-hzi="z1" hidden><b>אזור 1 · מרכזי</b><p><bdi dir="ltr">aorta</bdi>, <bdi dir="ltr">IVC</bdi> (<bdi dir="ltr">inferior vena cava</bdi>), תחילת כלי הדם של המעי ולידם <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span> <span class="nw">וה-<bdi dir="ltr">duodenum</bdi></span>. המטומה כאן נבדקת תמיד, גם בחבלה קהה. גישה <span class="nw">ל-<bdi dir="ltr">aorta</bdi></span> מעל הכליות <span class="nw">ול-<bdi dir="ltr">left renal hilum</bdi></span>: הזזת הקרביים השמאליים למרכז (<bdi>Mattox</bdi>). <span class="nw">ל-<bdi dir="ltr">IVC</bdi></span> ולכלים מתחת לכליות: הזזת הקרביים הימניים (<bdi>Cattell-Braasch</bdi>)</p></div>
+   <div class="hzi" data-hzi="z2" hidden><b>אזור 2 · צדדי</b><p>הכליות <span class="nw">וה-<bdi dir="ltr">adrenal glands</bdi></span>. בפצע חודר פותחים וחוקרים את ההמטומה. בחבלה קהה הכללים שונים ונדבר עליהם בשבוע 6</p></div>
    <div class="hzi" data-hzi="z3" hidden><b>אזור 3 · אגן</b><p>כלי הדם של האגן. בפצע חודר פותחים וחוקרים. בחבלה קהה ההמטומה כאן נובעת בדרך כלל משבר באגן ומשאירים אותה סגורה</p></div>
   </div></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">352–353</bdi> · איור: <bdi>Sobotta</bdi>, אטלס 1906, איור 413 (נחלת הכלל)</span><span>רטרופריטונאום</span></div>
@@ -291,13 +296,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>10</b>תיקון המעי</div>
- <h2>מעי דק, מעי גס וחלחולת</h2>
+ <h2>מעי דק, מעי גס <span class="nw">ו-<bdi dir="ltr">rectum</bdi></span></h2>
  <div class="grid g3">
   <div class="box"><b class="t">מעי דק</b>
-   <ul class="b sm"><li>נקב קטן: ניקוי רקמה מתה ותפירה בשכבה אחת או שתיים, בלי להצר את החלל</li><li>יותר מ-50% מהיקף הדופן, או כמה נקבים צמודים: כריתה והשקה</li><li>קרע במזנטריום עם אספקת דם פגועה: כריתה, גם בפגם קטן</li></ul></div>
+   <ul class="b sm"><li>נקב קטן: ניקוי רקמה מתה ותפירה בשכבה אחת או שתיים, בלי להצר את החלל</li><li>יותר מ-50% מהיקף הדופן, או כמה נקבים צמודים: כריתה והשקה</li><li>קרע <span class="nw">ב-<bdi dir="ltr">mesentery</bdi></span> עם אספקת דם פגועה: כריתה, גם בפגם קטן</li></ul></div>
   <div class="box n"><b class="t">מעי גס</b>
    <ul class="b sm"><li><b>לא הרסני:</b> תיקון ראשוני</li><li><b>הרסני</b> (מעל 50% מההיקף, חיתוך מלא, מקטע בלי דם): כריתה והשקה במטופל בריא</li><li>עם יותר מ-6 מנות דם ומחלות רקע הדליפה הייתה 42% (לעומת 3%): שוקלים סטומה</li></ul></div>
-  <div class="box a"><b class="t">חלחולת מחוץ לצפק</b>
+  <div class="box a"><b class="t"><bdi dir="ltr">extraperitoneal rectum</bdi></b>
    <ul class="b sm"><li>פגיעה הרסנית (מעל 25% מההיקף): הסטה, אילאוסטומיה או קולוסטומיה</li><li>ניקוז פרה-סקרלי שגרתי לא מומלץ</li><li>חוקן ניגודי אחרי כ-6 שבועות לפני סגירת הסטומה</li></ul></div>
  </div>
  <div class="box r" style="margin-top:12px"><b class="t">מהמלחמה העולמית השנייה עד היום</b>אז כל פגיעה במעי הגס קיבלה קולוסטומיה והתמותה הייתה <bdi dir="ltr">22–35%</bdi>. היום התמותה מפגיעת מעי גס נמוכה עד 1% ורוב הפגיעות מתוקנות בלי סטומה</div>
@@ -306,16 +311,16 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>11</b>הבטן העליונה</div>
- <h2>קיבה, תריסריון ולבלב</h2>
+ <h2>קיבה, <bdi dir="ltr">duodenum</bdi> <span class="nw">ו-<bdi dir="ltr">pancreas</bdi></span></h2>
  <div class="grid g3">
   <div class="box"><b class="t">קיבה</b>
-   <ul class="b sm"><li><bdi dir="ltr">11–18%</bdi> מהפצעים החודרים, תמותה 2.2%</li><li>פריטוניטיס מופיעה מהר (תוכן חומצי)</li><li>חובה לבדוק גם את הדופן האחורית דרך השק הקטן</li><li>תיקון בשכבה אחת או שתיים, או בשדכן</li></ul></div>
-  <div class="box n"><b class="t">תריסריון</b>
-   <ul class="b sm"><li>פחות מ-2% מפגיעות הבטן, כ-80% מירי, תמותה 24%</li><li>רטרופריטונאלי: אין סימנים בבדיקה</li><li>98% אפשר לתקן ישירות, אחרי <bdi>Kocher</bdi> רחב ולכסות באומנטום</li></ul></div>
-  <div class="box a"><b class="t">לבלב</b>
-   <ul class="b sm"><li>4.4% מהפצעים החודרים. המסוכן הוא קרע בצינור (דרגה 3 ומעלה)</li><li>צינור פגוע משמאל לכלי ה-<bdi>SMV</bdi>: כריתת זנב הלבלב ונקז</li><li>בראש הלבלב: לרוב ניקוז בלבד. וויפל רק בפיזיולוגיה תקינה</li></ul></div>
+   <ul class="b sm"><li><bdi dir="ltr">11–18%</bdi> מהפצעים החודרים, תמותה 2.2%</li><li>פריטוניטיס מופיעה מהר (תוכן חומצי)</li><li>חובה לבדוק גם את הדופן האחורית דרך <span class="nw">ה-<bdi dir="ltr">lesser sac</bdi></span></li><li>תיקון בשכבה אחת או שתיים, או בשדכן</li></ul></div>
+  <div class="box n"><b class="t"><bdi dir="ltr">duodenum</bdi></b>
+   <ul class="b sm"><li>פחות מ-2% מפגיעות הבטן, כ-80% מירי, תמותה 24%</li><li>רטרופריטונאלי: אין סימנים בבדיקה</li><li>98% אפשר לתקן ישירות, אחרי <bdi>Kocher</bdi> רחב ולכסות <span class="nw">ב-<bdi dir="ltr">omentum</bdi></span></li></ul></div>
+  <div class="box a"><b class="t"><bdi dir="ltr">pancreas</bdi></b>
+   <ul class="b sm"><li>4.4% מהפצעים החודרים. המסוכן הוא קרע <span class="nw">ב-<bdi dir="ltr">pancreatic duct</bdi></span> (דרגה 3 ומעלה)</li><li>צינור פגוע משמאל <span class="nw">ל-<bdi>SMV</bdi></span>: כריתת <bdi dir="ltr">pancreatic tail</bdi> ונקז</li><li><span class="nw">ב-<bdi dir="ltr">pancreatic head</bdi></span>: לרוב ניקוז בלבד. וויפל רק בפיזיולוגיה תקינה</li></ul></div>
  </div>
- <figure style="margin-top:12px"><img src="img/Sobo_1906_393.png" alt="הלבלב, התריסריון, הטחול והכליות" style="max-height:24vh"><figcaption>התריסריון עוטף את ראש הלבלב והזנב מגיע לטחול. מאחור: הכליות וכלי הדם הגדולים · <bdi>Sobotta</bdi>, אטלס 1906, איור 393 (נחלת הכלל)</figcaption></figure>
+ <figure style="margin-top:12px"><img src="img/Sobo_1906_393.png" alt="pancreas, duodenum, spleen והכליות" style="max-height:24vh"><figcaption><span class="nw">ה-<bdi dir="ltr">duodenum</bdi></span> עוטף את <span class="nw">ה-<bdi dir="ltr">pancreatic head</bdi></span> <span class="nw">וה-<bdi dir="ltr">tail</bdi></span> מגיע <span class="nw">ל-<bdi dir="ltr">spleen</bdi></span>. מאחור: הכליות וכלי הדם הגדולים · <bdi>Sobotta</bdi>, אטלס 1906, איור 393 (נחלת הכלל)</figcaption></figure>
  <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">348–350</bdi></span><span>בטן עליונה</span></div>
 </div></section>
 
@@ -363,23 +368,23 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 </div></section>
 
 <section class="s"><div class="card">
- <div class="kick"><b>14</b>מה חדש בתחום · <bdi dir="ltr">2022–2024</bdi></div>
+ <div class="kick"><b>14</b>מחקרים והנחיות מרכזיים · <bdi dir="ltr">2001–2022</bdi></div>
  <h2>פחות ניתוחים מיותרים</h2>
  <div class="grid">
   <div class="study"><div class="y"><bdi>Ann Surg</bdi> 2022 · קייפטאון, מחקר פרוספקטיבי</div><b>805 פצועים חודרים בבטן</b>
-   <p>62% ירי, 38% דקירה. טיפול בלי ניתוח ניתן ל-61% מהדקירות ול-29% מהירי והצליח ב-93% בשתי הקבוצות. הבדיקה הקלינית קבעה נכון את הצורך בניתוח ב-<bdi dir="ltr">91–92%</bdi></p>
+   <p>62% ירי, 38% דקירה. טיפול בלי ניתוח ניתן ל-61% מהדקירות ול-29% מהירי והצליח ב-93% בשתי הקבוצות. הבדיקה הקלינית קבעה נכון את הצורך בניתוח <span class="nw">ב-<bdi dir="ltr">91–92%</bdi></span></p>
    <small>Sander A et al. Ann Surg 2022;275(2):e527-33</small></div>
   <div class="study"><div class="y"><bdi>J Trauma Acute Care Surg</bdi> 2022 · מחקר פרוספקטיבי</div><b>כמה זמן להשגיח אחרי דקירה?</b>
    <p>256 פצועי דקירה: 18% נותחו מיד, 83% מהנותרים טופלו בלי ניתוח. רק 3 (2%) נכשלו וכולם בתוך 24 שעות. המסקנה: 24 שעות השגחה צמודה לפני שחרור</p>
    <small>Owattanapanich N et al. J Trauma Acute Care Surg 2022;93(5):639-43</small></div>
-  <div class="study"><div class="y"><bdi>Eur J Trauma Emerg Surg</bdi> 2023 · מחקר אקראי</div><b>CT מול לפרוסקופיה בפצע חודר קדמי</b>
-   <p>106 מטופלים יציבים. אשפוז דומה (3 מול 3.5 ימים). ניתוחים שלא טיפלו בכלום: 65.4% בזרוע הלפרוסקופיה לעומת 17.4% בזרוע ה-CT. טיפול לפי CT הצליח ב-93.8%</p>
-   <small>Kaur S et al. Eur J Trauma Emerg Surg 2023;49(1):1-10</small></div>
-  <div class="study"><div class="y"><bdi>Int J Surg</bdi> 2024 · מטה-אנליזה</div><b>טיפול בלי ניתוח בפצעי ירי בבטן</b>
-   <p>53 מחקרים, 60,291 מטופלים. 27% טופלו בלי ניתוח והטיפול נכשל ב-10%, כמעט בלי תמותה. ניתוח מיד עדיין הדרך העיקרית (73%) ו-10% מהניתוחים האלה לא היו נחוצים</p>
-   <small>Liu T et al. Int J Surg 2024;110(2):1183-95</small></div>
+  <div class="study"><div class="y"><bdi>Ann Surg</bdi> 2001 · <bdi dir="ltr">1,856</bdi> פצועים</div><b>ירי בבטן בלי ניתוח שגרתי</b>
+   <p><bdi dir="ltr">42%</bdi> נבחרו להשגחה. <bdi dir="ltr">4%</bdi> נזקקו לניתוח מאוחר ורק <span class="nw">ב-<bdi dir="ltr">0.3%</bdi></span> היה סיבוך שאולי נבע מהעיכוב. ניתוח שגרתי לכולם היה מיותר אצל <bdi dir="ltr">47%</bdi></p>
+   <small>Velmahos GC et al. Ann Surg 2001;234:395-403</small></div>
+  <div class="study"><div class="y"><bdi>J Trauma Acute Care Surg</bdi> 2018 · הנחיה של <bdi>EAST</bdi></div><b>פגיעת <bdi dir="ltr">diaphragm</bdi>: לפרוסקופיה לפני <bdi>CT</bdi></b>
+   <p>המלצה לטובת לפרוסקופיה על פני <bdi>CT</bdi> לאבחנה, השגחה בפצע חודר בצד ימין ותיקון דרך הבטן בפגיעה חריפה</p>
+   <small>McDonald AA et al. J Trauma Acute Care Surg 2018;85:198-207</small></div>
  </div>
- <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
+ <div class="src"><span>מחקרים והנחיות מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מחקרים והנחיות</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -389,11 +394,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>הלם, פריטוניטיס, אוויסצרציה או אוויר חופשי: לחדר ניתוח מיד, בירי ובדקירה</li>
   <li>בירי: סופרים פצעים וקליעים, מסמנים ומצלמים מעור לעור. יציב? CT</li>
   <li>בדקירה יציבה: הבירור לפי המיקום ו-24 שעות של בדיקות חוזרות לפני שחרור</li>
-  <li>ניתוח בטן בטראומה: עוצרים דימום, אחר כך זיהום ועוברים על הכול באותו סדר. בפצע חודר פותחים את שלושת אזורי הרטרופריטונאום</li>
+  <li>ניתוח בטן בטראומה: עוצרים דימום, אחר כך זיהום ועוברים על הכול באותו סדר. בפצע חודר פותחים את שלושת אזורי <span class="nw">ה-<bdi dir="ltr">retroperitoneum</bdi></span></li>
   <li>פיזיולוגיה מתדרדרת? ניתוח קצר לשליטה בנזק, טיפול נמרץ וחזרה אחרי <bdi dir="ltr">24–48</bdi> שעות</li>
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 36 <bdi>Management of Acute Trauma</bdi>, חבלות בטן (עמ׳ <bdi dir="ltr">340–353</bdi>) · פרק 37 <bdi>The Difficult Abdominal Wall</bdi> (עמ׳ <bdi dir="ltr">356–360</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906, נחלת הכלל) · צילומים: <bdi>Bobjgalindo</bdi> ו-<bdi>Cerevisae</bdi> (<bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi>) · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906, נחלת הכלל) · צילומים: <bdi>Bobjgalindo</bdi> <span class="nw">ו-<bdi>Cerevisae</bdi></span> (<bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi>) · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>

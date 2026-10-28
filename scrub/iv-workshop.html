@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>סדנת ורידים · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,6 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -97,6 +98,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -114,6 +116,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -178,9 +183,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <g class="hzb" style="--c:#C9893F"><circle cx="46" cy="598" r="11"/><text x="46" y="598">5</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="ceph" hidden><b>1 · הווריד הצפלי</b><p>בצד החיצוני (הרדיאלי) של הזרוע, מגב כף היד ועד הכתף. שטחי ויציב. מתאים לעירוי באמה ובזרוע</p></div>
-  <div class="hzi" data-hzi="cub" hidden><b>2 · גומת המרפק · הווריד הקובטלי האמצעי</b><p>וריד גדול ונוח. המקום הקלאסי ל<b>לקיחת דם</b>. עירוי כאן מתקפל כשהמטופל מכופף את המרפק. לכן הוא פחות מתאים לעירוי ממושך. לעירוי רחב בחירום הוא טוב</p></div>
-  <div class="hzi" data-hzi="bas" hidden><b>3 · הווריד הבזילי</b><p>בצד הפנימי (האולנרי). בגומת המרפק עוברים לידו עמוק יותר העורק הברכיאלי ועצב המדיאנוס. דוקרים בזהירות ולא עמוק. דם בהיר ופועם: דקירת עורק, מוציאים ולוחצים</p></div>
+  <div class="hzi" data-hzi="ceph" hidden><b>1 · <bdi dir="ltr">cephalic vein</bdi></b><p>בצד החיצוני (הרדיאלי) של הזרוע, מגב כף היד ועד הכתף. שטחי ויציב. מתאים לעירוי באמה ובזרוע</p></div>
+  <div class="hzi" data-hzi="cub" hidden><b>2 · גומת המרפק · <bdi dir="ltr">median cubital vein</bdi></b><p>וריד גדול ונוח. המקום הקלאסי ל<b>לקיחת דם</b>. עירוי כאן מתקפל כשהמטופל מכופף את המרפק. לכן הוא פחות מתאים לעירוי ממושך. לעירוי רחב בחירום הוא טוב</p></div>
+  <div class="hzi" data-hzi="bas" hidden><b>3 · <bdi dir="ltr">basilic vein</bdi></b><p>בצד הפנימי (האולנרי). בגומת המרפק עוברים לידו עמוק יותר <bdi dir="ltr">brachial artery</bdi> <span class="nw">ו-<bdi dir="ltr">median nerve</bdi></span>. דוקרים בזהירות ולא עמוק. דם בהיר ופועם: דקירת עורק, מוציאים ולוחצים</p></div>
   <div class="hzi" data-hzi="fa" hidden><b>4 · האמה</b><p>המקום המועדף לעירוי: ורידים ישרים, רחוקים מהמפרקים, נוח למטופל. מתחילים מרוחק, כך שאם נכשלים אפשר לנסות מעל</p></div>
   <div class="hzi" data-hzi="hand" hidden><b>5 · כף היד</b><p>רשת ורידים שקל לראות, אבל הם דקים ונעים. הדקירה כואבת יותר. מתאים לעירוי דק כשאין ברירה</p></div>
  </div></div>
@@ -216,7 +221,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>החדרת עירוי היקפי</h2>
  <div class="grid f">
   <div class="flow">
-   <div><b>1 · חוסם</b><span>כ-<bdi dir="ltr">7–10</bdi> ס״מ מעל מקום הדקירה. הזרוע למטה, אגרוף רפוי</span></div>
+   <div><b>1 · חוסם</b><span><span class="nw">כ-<bdi dir="ltr">7–10</bdi></span> ס״מ מעל מקום הדקירה. הזרוע למטה, אגרוף רפוי</span></div>
    <div><b>2 · בחירה</b><span>ממששים: וריד טוב קפיצי וישר. מתחילים רחוק במורד הזרוע</span></div>
    <div><b>3 · חיטוי</b><span>מחטאים ומחכים שיתייבש. לא נוגעים שוב במקום</span></div>
    <div><b>4 · מתיחה ודקירה</b><span>מותחים את העור מתחת לווריד. השיפוע של המחט למעלה, בזווית נמוכה (<bdi dir="ltr">15–30°</bdi>)</span></div>
@@ -334,7 +339,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>מחקרים שכדאי להכיר</h2>
  <div class="grid">
   <div class="study"><div class="y"><bdi>J Vasc Access</bdi> 2026 · מטא-אנליזה</div><b>עירוי בהנחיית אולטרסאונד במיון</b>
-   <p>8 מחקרים אקראיים ו-<bdi dir="ltr">1,477</bdi> מטופלים עם ורידים קשים. אולטרסאונד שיפר את ההצלחה בניסיון הראשון (<bdi dir="ltr">RR 1.80</bdi>) לעומת מישוש והסתכלות</p>
+   <p>8 מחקרים אקראיים <span class="nw">ו-<bdi dir="ltr">1,477</bdi></span> מטופלים עם ורידים קשים. אולטרסאונד שיפר את ההצלחה בניסיון הראשון (<bdi dir="ltr">RR 1.80</bdi>) לעומת מישוש והסתכלות</p>
    <small>Anderssen LM et al. J Vasc Access 2026;27(2):435-43</small></div>
   <div class="study"><div class="y"><bdi>JAMA Pediatr</bdi> 2025 · מחקר אקראי</div><b><bdi>EPIC</bdi>: אולטרסאונד לכל ילד?</b>
    <p>164 ילדים. הצלחה בניסיון הראשון <bdi dir="ltr">85.7%</bdi> באולטרסאונד לעומת <bdi dir="ltr">32.5%</bdi> בשיטה הרגילה, בכל רמות הקושי. העלות המיידית הייתה מעט גבוהה יותר</p>
@@ -358,7 +363,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>מבחנות מסמנים ליד המטופל. אשלגן גבוה ומפתיע? לחשוב על המוליזה ולחזור על הבדיקה</li>
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 33 <bdi>Shock, Electrolytes, and Fluid</bdi> (עמ׳ <bdi dir="ltr">248–249, 255–256</bdi>) · פרק 36 <bdi>Management of Acute Trauma</bdi> (עמ׳ <bdi dir="ltr">321</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Gray's Anatomy</bdi> (1918) ו-<bdi>U.S. Naval Medical School</bdi> (1963), נחלת הכלל · צילום: <bdi>PoisonVampire</bdi>, <bdi>CC0</bdi> · <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>איורים: <bdi>Gray's Anatomy</bdi> (1918) <span class="nw">ו-<bdi>U.S. Naval Medical School</bdi></span> (1963), נחלת הכלל · צילום: <bdi>PoisonVampire</bdi>, <bdi>CC0</bdi> · <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>

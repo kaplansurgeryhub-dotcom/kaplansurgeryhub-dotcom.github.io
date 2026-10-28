@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>דיון מקרים: צהבת חסימתית · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -90,6 +90,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -101,6 +102,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -118,6 +120,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -129,7 +134,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
  <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 5</div>
  <h1>דיון מקרים: צהבת חסימתית</h1>
- <p class="lead">שלושה מטופלים בדויים: דלקת של דרכי המרה עם ספסיס, צהבת שקטה מגידול באזור הפפילה והיצרות של צינור המרה אחרי ניתוח</p>
+ <p class="lead">שלושה מטופלים בדויים: דלקת של דרכי המרה עם ספסיס, צהבת שקטה מגידול באזור <span class="nw">ה-<bdi dir="ltr">papilla</bdi></span> והיצרות של <span class="nw">ה-<bdi dir="ltr">bile duct</bdi></span> אחרי ניתוח</p>
  <div class="cvsrc" data-ch="88,93" data-note=""><small>מבוסס על</small><b><bdi dir="ltr">Sabiston Textbook of Surgery</bdi> · מהדורה 22</b><div class="cvch"><span>פרק <bdi dir="ltr">88</bdi></span><span>פרק <bdi dir="ltr">93</bdi></span></div></div>
  <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
 </div></section>
@@ -156,9 +161,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>בילירובין ישיר (מצומד)</b> עולה בחסימה. בילירובין עקיף עולה בבעיה עד שלב הצימוד (פירוק מוגבר, קליטה או צימוד פגומים)</li>
     <li><b>איפה רואים קודם:</b> מתחת ללשון, אחר כך בלחמיות (מבילירובין של <bdi dir="ltr">2.5</bdi> מ״ג/ד״ל) ורק אחר כך בעור (מ-5 מ״ג/ד״ל)</li>
     <li><b>הסיפור:</b> שתן כהה, צואה בהירה, גרד</li>
-    <li><b>דפוס כולסטטי:</b> <bdi>ALP</bdi> ו-<bdi>GGT</bdi> גבוהים, טרנסאמינזות כמעט תקינות. באבן חדה <bdi>ALT</bdi> יכול לעלות מאוד</li>
+    <li><b>דפוס כולסטטי:</b> <bdi>ALP</bdi> <span class="nw">ו-<bdi>GGT</bdi></span> גבוהים, טרנסאמינזות כמעט תקינות. באבן חדה <bdi>ALT</bdi> יכול לעלות מאוד</li>
     <li><b><bdi>CA 19-9</bdi>:</b> סמן לגידולי לבלב ודרכי מרה, אבל עולה גם בחסימה שפירה</li>
-    <li><b>הסיבה השכיחה:</b> אבן בצינור המשותף. ברשימה גם <bdi>Mirizzi</bdi>, היצרויות וגידולים</li>
+    <li><b>הסיבה השכיחה:</b> אבן <span class="nw">ב-<bdi dir="ltr">CBD</bdi></span> (<bdi dir="ltr">common bile duct</bdi>). ברשימה גם <bdi>Mirizzi</bdi>, היצרויות וגידולים</li>
    </ul>
   </div>
   <figure><img src="img/jaundice-sclera.jpg" alt="צהבת בלחמיות" style="max-height:30vh"><figcaption>צהבת בלחמיות: המקום הראשון שבו רואים אותה בבדיקה רגילה · <bdi dir="ltr">Bobjgalindo · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
@@ -168,8 +173,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>3</b>אנטומיה · איפה נחסם</div>
- <h2>מהשער של הכבד ועד הפפילה</h2>
- <div class="hotw"><div class="hoti" style="max-width:46vh;justify-self:center;width:100%"><img src="img/ill-cbd-stone-cholangitis.jpg" alt="איור של כיס מרה עם אבנים, אבן בצינור המשותף, לבלב ותריסריון"><svg viewBox="0 0 812 900" preserveAspectRatio="none" style="--lw:20;--bf:21px">
+ <h2><span class="nw">מה-<bdi dir="ltr">hilum</bdi></span> ועד <span class="nw">ה-<bdi dir="ltr">papilla</bdi></span></h2>
+ <div class="hotw"><div class="hoti" style="max-width:46vh;justify-self:center;width:100%"><img src="img/ill-cbd-stone-cholangitis.jpg" alt="איור של gallbladder עם אבנים, אבן ב-CBD, pancreas ו-duodenum"><svg viewBox="0 0 812 900" preserveAspectRatio="none" style="--lw:20;--bf:21px">
   <path class="hz" data-hz="gb" d="M28,239 C24,225 24,205 33,188 C40,172 46,165 51,157 C60,146 68,140 77,134 C88,126 96,121 105,118 C115,113 126,110 136,109 C146,109 153,110 161,112 C170,116 180,120 187,123 C195,127 200,131 205,134 C210,138 212,140 215,141 C223,143 231,144 238,145 C246,146 253,147 259,149 C265,151 269,154 272,157 C279,163 283,168 285,172 C287,177 288,181 287,185 C282,188 277,189 272,190 C265,190 258,190 251,190 C244,189 238,189 233,188 C227,186 222,183 218,180 C213,174 209,170 205,167 C199,163 193,160 187,159 C178,158 169,157 161,158 C155,160 151,162 149,165 C143,173 138,183 133,193 C127,204 122,214 118,224 C113,235 109,246 105,257 C102,266 99,276 95,285 C92,292 88,296 84,298 C79,300 74,300 69,300 C62,298 56,296 51,293 C45,289 39,282 35,275 C32,264 30,250 28,239 Z" style="--c:#0A6B5A"/>
   <path class="hz" data-hz="ph" d="M190,345 C205,338 220,333 235,331 C248,331 262,333 274,336 C287,340 299,344 310,349 C322,352 334,355 345,358 C349,367 351,377 354,385 C364,393 375,400 385,407 C395,413 404,418 411,424 C418,432 425,441 429,451 C433,462 437,474 438,486 C437,501 432,516 425,530 C420,544 414,558 407,570 C397,582 387,591 376,597 C363,601 349,603 336,603 C320,603 304,602 288,601 C270,597 252,593 235,588 C225,582 216,575 208,566 C202,555 199,543 195,530 C190,518 183,506 177,495 C173,483 170,472 168,460 C169,445 171,430 173,415 C174,400 175,385 177,371 C180,362 185,353 190,345 Z" style="--c:#2F6FA8"/>
   <path class="hz" data-hz="du" d="M149,166 C143,175 138,184 133,193 C127,204 122,214 118,224 C113,235 109,246 105,257 C102,266 99,276 95,285 C92,292 88,296 84,298 C70,302 56,300 48,304 C44,312 43,320 42,327 C36,349 32,371 31,393 C31,415 33,438 36,462 C41,484 48,504 56,522 C68,543 81,562 96,578 C110,598 125,618 140,636 C162,655 185,672 208,686 C234,697 261,703 288,705 C311,707 334,706 356,702 C378,697 401,689 424,678 C436,662 451,650 465,637 C478,622 491,607 504,592 C520,575 545,560 572,540 C586,520 588,470 575,442 C560,440 545,440 531,442 C522,445 514,448 509,451 C493,456 478,461 465,469 C453,477 444,486 438,495 C433,507 429,518 425,530 C420,545 414,560 407,575 C397,585 387,592 376,597 C363,601 349,603 336,603 C320,603 304,602 288,601 C270,597 252,593 235,588 C225,582 216,575 208,566 C202,555 197,542 190,530 C183,517 175,504 168,491 C156,483 144,474 133,464 C135,450 138,437 142,424 C148,410 156,395 164,380 C170,366 175,351 181,336 C187,322 193,309 199,296 C202,284 205,272 208,261 C214,250 220,240 226,230 C228,221 229,212 230,203 C228,194 225,185 221,177 C210,171 198,166 186,163 C173,163 160,164 149,166 Z" style="--c:#00967D"/>
@@ -184,14 +189,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <g class="hzb" style="--c:#00967D"><circle cx="58" cy="420" r="18"/><text x="58" y="420">6</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="hl" hidden><b>1 · השער: הצינורות הכבדיים</b><p>גידול בפיצול (<bdi>Klatskin</bdi>), היצרויות של <bdi>PSC</bdi>, פגיעה גבוהה בניתוח. החסימה גבוהה, לכן <b>כיס המרה והצינור המשותף ריקים</b> והצינורות בתוך הכבד רחבים</p></div>
-  <div class="hzi" data-hzi="gb" hidden><b>2 · כיס המרה</b><p>תסמונת <bdi>Mirizzi</bdi>: אבן גדולה בכיס הרטמן לוחצת על הצינור הכבדי וגורמת לצהבת, לפעמים עם פיסטולה. בחסימה נמוכה (גידול בפפילה) כיס המרה <b>מתוח</b></p></div>
-  <div class="hzi" data-hzi="st" hidden><b>3 · אבן בצינור המשותף</b><p>הסיבה השכיחה לחסימה. החסימה חדה, הצינור נמתח מהר ולכן <b>כואב</b>. חסימה עם חיידקים: דלקת של דרכי המרה</p></div>
-  <div class="hzi" data-hzi="am" hidden><b>4 · הצינור הרחוק והפפילה</b><p>כאן יושבים גידולי האמפולה וכולנגיוקרצינומה רחוקה. הם חוסמים את צינור המרה <b>בלי</b> לחסום את צינור הלבלב. אבן קטנה באמפולה עלולה להתפספס ב-<bdi>MRCP</bdi></p></div>
-  <div class="hzi" data-hzi="ph" hidden><b>5 · ראש הלבלב</b><p>רוב סרטני הלבלב בראש הלבלב. רוב הגידולים באזור הפפילה הם מהלבלב. סימן אופייני ב-<bdi>CT</bdi>: מסה, הרחבה של צינור המרה <b>וגם</b> של צינור הלבלב ונסיגה של הלבלב שמעבר לגידול</p></div>
-  <div class="hzi" data-hzi="du" hidden><b>6 · התריסריון</b><p>דרכו עובר ה-<bdi>ERCP</bdi> אל הפפילה. גידול בתריסריון יכול לחסום את דרכי המרה. גידול מתקדם בראש הלבלב יכול לחסום את התריסריון (הקאות, קיבה מתוחה)</p></div>
+  <div class="hzi" data-hzi="hl" hidden><b>1 · <bdi dir="ltr">hilum</bdi>: <bdi dir="ltr">hepatic ducts</bdi></b><p>גידול בפיצול (<bdi>Klatskin</bdi>), היצרויות של <bdi>PSC</bdi>, פגיעה גבוהה בניתוח. החסימה גבוהה, לכן <b><bdi dir="ltr">gallbladder</bdi> <span class="nw">ו-<bdi dir="ltr">CBD</bdi></span> ריקים</b> <span class="nw">ו-<bdi dir="ltr">intrahepatic ducts</bdi></span> רחבים</p></div>
+  <div class="hzi" data-hzi="gb" hidden><b>2 · <bdi dir="ltr">gallbladder</bdi></b><p>תסמונת <bdi>Mirizzi</bdi>: אבן גדולה <span class="nw">ב-<bdi dir="ltr">Hartmann's pouch</bdi></span> לוחצת על <bdi dir="ltr">common hepatic duct</bdi> וגורמת לצהבת, לפעמים עם פיסטולה. בחסימה נמוכה (גידול <span class="nw">ב-<bdi dir="ltr">papilla</bdi></span>) <span class="nw">ה-<bdi dir="ltr">gallbladder</bdi></span> <b>מתוח</b></p></div>
+  <div class="hzi" data-hzi="st" hidden><b>3 · אבן <span class="nw">ב-<bdi dir="ltr">CBD</bdi></span></b><p>הסיבה השכיחה לחסימה. החסימה חדה, הצינור נמתח מהר ולכן <b>כואב</b>. חסימה עם חיידקים: דלקת של דרכי המרה</p></div>
+  <div class="hzi" data-hzi="am" hidden><b>4 · <bdi dir="ltr">distal CBD</bdi> <span class="nw">ו-<bdi dir="ltr">papilla</bdi></span></b><p>כאן יושבים גידולי <span class="nw">ה-<bdi dir="ltr">ampulla</bdi></span> וכולנגיוקרצינומה רחוקה. הם חוסמים את <span class="nw">ה-<bdi dir="ltr">bile duct</bdi></span> <b>בלי</b> לחסום את <span class="nw">ה-<bdi dir="ltr">pancreatic duct</bdi></span>. אבן קטנה <span class="nw">ב-<bdi dir="ltr">ampulla</bdi></span> עלולה להתפספס <span class="nw">ב-<bdi>MRCP</bdi></span></p></div>
+  <div class="hzi" data-hzi="ph" hidden><b>5 · <bdi dir="ltr">pancreatic head</bdi></b><p>רוב סרטני הלבלב <span class="nw">ב-<bdi dir="ltr">pancreatic head</bdi></span>. רוב הגידולים באזור <span class="nw">ה-<bdi dir="ltr">papilla</bdi></span> הם <span class="nw">מה-<bdi dir="ltr">pancreas</bdi></span>. סימן אופייני <span class="nw">ב-<bdi>CT</bdi></span>: מסה, הרחבה של <span class="nw">ה-<bdi dir="ltr">bile duct</bdi></span> <b>וגם</b> של <span class="nw">ה-<bdi dir="ltr">pancreatic duct</bdi></span> ונסיגה של <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span> שמעבר לגידול</p></div>
+  <div class="hzi" data-hzi="du" hidden><b>6 · <bdi dir="ltr">duodenum</bdi></b><p>דרכו עובר <span class="nw">ה-<bdi>ERCP</bdi></span> אל <span class="nw">ה-<bdi dir="ltr">papilla</bdi></span>. גידול <span class="nw">ב-<bdi dir="ltr">duodenum</bdi></span> יכול לחסום את דרכי המרה. גידול מתקדם <span class="nw">ב-<bdi dir="ltr">pancreatic head</bdi></span> יכול לחסום את <span class="nw">ה-<bdi dir="ltr">duodenum</bdi></span> (הקאות, קיבה מתוחה)</p></div>
  </div></div>
- <p style="font-size:12px;color:var(--muted);margin:8px 0 0">כיס מרה עם אבנים, אבן בצינור המשותף עם דלקת, לבלב ותריסריון · <bdi dir="ltr">BruceBlaus · CC BY-SA 4.0 · Wikimedia Commons</bdi></p>
+ <p style="font-size:12px;color:var(--muted);margin:8px 0 0"><bdi dir="ltr">gallbladder</bdi> עם אבנים, אבן <span class="nw">ב-<bdi dir="ltr">CBD</bdi></span> עם דלקת, <bdi dir="ltr">pancreas</bdi> <span class="nw">ו-<bdi dir="ltr">duodenum</bdi></span> · <bdi dir="ltr">BruceBlaus · CC BY-SA 4.0 · Wikimedia Commons</bdi></p>
  <div class="src"><span><b>Sabiston 22</b> · פרק 88 עמ׳ <bdi dir="ltr">1225–1226</bdi>, <bdi dir="ltr">1229</bdi>, <bdi dir="ltr">1245</bdi> · פרק 93 עמ׳ <bdi dir="ltr">1403–1404</bdi></span><span>אנטומיה</span></div>
 </div></section>
 
@@ -202,14 +207,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <table class="cmp"><tr><th></th><th>אבן<small>חסימה חדה</small></th><th>גידול<small>חסימה הדרגתית</small></th></tr>
    <tr><td>כאב</td><td>כואב: הצינור נמתח מהר</td><td><b>צהבת שקטה</b>. כאב קבוע מרמז על מחלה מתקדמת</td></tr>
    <tr><td>דלקת של דרכי המרה</td><td>שכיחה</td><td>לא שכיחה</td></tr>
-   <tr><td>כיס המרה</td><td>לרוב עם אבנים</td><td>חסימה נמוכה: כיס מרה מתוח. חסימה בשער: כיס מרה ריק</td></tr>
+   <tr><td><bdi dir="ltr">gallbladder</bdi></td><td>לרוב עם אבנים</td><td>חסימה נמוכה: <bdi dir="ltr">gallbladder</bdi> מתוח. חסימה <span class="nw">ב-<bdi dir="ltr">hilum</bdi></span>: <bdi dir="ltr">gallbladder</bdi> ריק</td></tr>
    <tr><td>עוד</td><td>היסטוריה של כאב בילארי</td><td>ירידה במשקל, סוכרת חדשה, גרד</td></tr>
   </table>
   <div class="flow sm">
    <div><b>1 · אולטרסאונד</b><span>הבדיקה הראשונה בצהבת. רואה צינורות רחבים. לא תמיד רואה את מקום החסימה</span></div>
    <div><b>2 · <bdi>CT</bdi></b><span>בחשד לגידול: לפני כל פעולה פולשנית. רב-שלבי לתכנון ניתוח</span></div>
    <div><b>3 · <bdi>MRCP</bdi></b><span>מפה של דרכי המרה בלי קרינה ובלי פעולה פולשנית</span></div>
-   <div><b>4 · <bdi>EUS</bdi></b><span>הצינור הרחוק והאמפולה. ביופסיה בהנחיה</span></div>
+   <div><b>4 · <bdi>EUS</bdi></b><span><bdi dir="ltr">distal CBD</bdi> <span class="nw">ו-<bdi dir="ltr">ampulla</bdi></span>. ביופסיה בהנחיה</span></div>
    <div><b>5 · <bdi>ERCP</bdi> או <bdi>PTC</bdi></b><span>מאבחנים <b>ומטפלים</b>: ניקוי אבנים, סטנט, ניקוז</span></div>
   </div>
  </div>
@@ -221,11 +226,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>חום, צהבת ובלבול</h2>
  <div class="grid f">
   <div>
-   <div class="case">אישה בת 78 מבית אבות, עם אבנים ידועות בכיס המרה. מאתמול <b>צמרמורות</b>, היום <b>מבולבלת</b>. צהובה, רגישה ברבע הימני העליון.
-    <div class="vit"><span>חום 39.2</span><span>ל״ד <b>84/50</b></span><span>דופק 122</span><span>לויקוציטים <bdi dir="ltr">22,000</bdi></span><span>בילירובין <bdi dir="ltr">5.8</bdi> מ״ג/ד״ל</span><span><bdi>ALP</bdi> ו-<bdi>AST</bdi> גבוהים</span></div></div>
+   <div class="case">אישה בת 78 מבית אבות, עם אבנים ידועות <span class="nw">ב-<bdi dir="ltr">gallbladder</bdi></span>. מאתמול <b>צמרמורות</b>, היום <b>מבולבלת</b>. צהובה, רגישה ברבע הימני העליון.
+    <div class="vit"><span>חום 39.2</span><span>ל״ד <b>84/50</b></span><span>דופק 122</span><span>לויקוציטים <bdi dir="ltr">22,000</bdi></span><span>בילירובין <bdi dir="ltr">5.8</bdi> מ״ג/ד״ל</span><span><bdi>ALP</bdi> <span class="nw">ו-<bdi>AST</bdi></span> גבוהים</span></div></div>
    <ol class="q"><li>מה האבחנה וכמה היא חמורה?</li><li>מה עושים בשעה הראשונה?</li><li>איך ומתי מנקזים?</li></ol>
   </div>
-  <figure><img src="img/us-cbd-dilated.jpg" alt="אולטרסאונד: צינור מרה משותף רחב עם אבן ודרכי מרה רחבות בכבד" style="max-height:40vh"><figcaption>האולטרסאונד (להמחשה): צינור משותף רחב עם אבן וצינורות רחבים בכבד · <bdi dir="ltr">Cerevisae · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/us-cbd-dilated.jpg" alt="אולטרסאונד: CBD רחב עם אבן ו-intrahepatic ducts רחבים" style="max-height:40vh"><figcaption>האולטרסאונד (להמחשה): <bdi dir="ltr">CBD</bdi> רחב עם אבן <span class="nw">ו-<bdi dir="ltr">intrahepatic ducts</bdi></span> רחבים · <bdi dir="ltr">Cerevisae · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 88 עמ׳ <bdi dir="ltr">1226</bdi></span><span>מקרה 1</span></div>
 </div></section>
@@ -237,9 +242,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <details class="rev"><summary>האבחנה</summary>
     <ul class="b sm">
-     <li>זיהום עולה בצינור המשותף בגלל חסימה ולחץ גבוה. הסיבה השכיחה: אבן</li>
+     <li>זיהום עולה <span class="nw">ב-<bdi dir="ltr">CBD</bdi></span> בגלל חסימה ולחץ גבוה. הסיבה השכיחה: אבן</li>
      <li><b>שלישיית <bdi>Charcot</bdi></b> (חום, צהבת, כאב ברבע הימני העליון) מופיעה בפחות ממחצית. הצהבת היא הסימן הכי פחות שכיח. לויקוציטוזיס ותפקודי כבד לא תקינים שכיחים יותר</li>
      <li><b>מחומש <bdi>Reynolds</bdi>:</b> גם בלבול ותת-לחץ דם. סימן רע. בלי טיפול מהיר התמותה קרובה ל-100%</li>
+     <li><b><bdi>Tokyo 2018</bdi>:</b> דלקת מערכתית (חום או צמרמורת, מדדי דלקת) ועוד כולסטזיס (בילירובין <bdi dir="ltr">2</bdi> ומעלה או תפקודי כבד) או הדמיה (צינור מורחב, אבן, היצרות) = חשד. שלושתם = אבחנה ודאית</li>
      <li>אצלה: <b>דלקת קשה</b> עם הלם ספטי</li>
     </ul></details>
    <details class="rev"><summary>החיידקים</summary>
@@ -250,15 +256,15 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <div class="flow sm">
      <div><b>לכולם, מיד</b><span>נוזלים ואנטיביוטיקה לווריד</span></div>
      <div><b>קלה</b><span>לרוב אנטיביוטיקה מספיקה. אם אין שיפור: ניקוז מיד</span></div>
-     <div><b>בינונית</b><span>ניקוי מוקדם של הצינור, אנדוסקופי או מלעורי</span></div>
-     <div><b>קשה (כמו כאן)</b><span>ייצוב המודינמי ונשימתי ואז <b>ניקוז מהיר</b></span></div>
+     <div><b>בינונית</b><span>ניקוי מוקדם של הצינור, אנדוסקופי או מלעורי (שניים מאלה: לויקוציטים מעל <bdi dir="ltr">12,000</bdi> או מתחת <span class="nw">ל-<bdi dir="ltr">4,000</bdi></span>, חום <bdi dir="ltr">39</bdi> ומעלה, גיל <bdi dir="ltr">75</bdi> ומעלה, בילירובין <bdi dir="ltr">5</bdi> ומעלה, אלבומין נמוך)</span></div>
+     <div><b>קשה (כמו כאן)</b><span>כשל של איבר אחד לפחות. ייצוב המודינמי ונשימתי ואז <b>ניקוז מהיר</b></span></div>
      <div><b>אם אין <bdi>ERCP</bdi> ואין <bdi>PTC</bdi></b><span>חקירת הצינור בניתוח והשארת נקז <bdi>T</bdi></span></div>
     </div>
     <p style="font-size:14.5px;margin:8px 0 0">הטיפול המלא (כריתת כיס המרה) נדחה עד שהמטופלת יציבה והזיהום טופל</p>
    </details>
   </div>
  </div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 88 עמ׳ <bdi dir="ltr">1220</bdi>, <bdi dir="ltr">1226</bdi></span><span>מקרה 1</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 88 עמ׳ <bdi dir="ltr">1220</bdi>, <bdi dir="ltr">1226</bdi> · <bdi>Tokyo Guidelines 2018</bdi> · Yokoe M et al. / Kiriyama S et al., J Hepatobiliary Pancreat Sci 2018;25:41-54 / 17-30</span><span>מקרה 1</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -269,14 +275,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <ul class="b sm">
     <li><b><bdi>ERCP</bdi>:</b> חתך בסוגר (<bdi>sphincterotomy</bdi>) והוצאת אבנים בבלון. מנקה ביותר מ-75% בפעם הראשונה וב-90% עם חזרה. סיבוכים, כולל דלקת לבלב: עד 10%</li>
     <li><b>לא הצליחו לנקות הכול?</b> משאירים סטנט ומנסים שוב</li>
-    <li><b>למה <bdi>ERCP</bdi> נכשל:</b> אבן מעל <bdi dir="ltr">2.5</bdi> ס״מ, <bdi>Roux-en-Y</bdi>, אבן תקועה, אבנים בתוך הכבד, הרבה אבנים</li>
-    <li><b><bdi>PTC</bdi>:</b> מחט דרך הכבד לצינורות, בהנחיית אולטרסאונד. משאירים צנתר לניקוז. יעיל כמו <bdi>ERCP</bdi> כשהצינורות רחבים. כשהם צרים הוא קשה יותר</li>
+    <li><b>למה <bdi>ERCP</bdi> נכשל:</b> אבן מעל <bdi dir="ltr">2.5</bdi> ס״מ, <bdi>Roux-en-Y</bdi>, אבן תקועה, אבנים <span class="nw">ב-<bdi dir="ltr">intrahepatic ducts</bdi></span>, הרבה אבנים</li>
+    <li><b><bdi>PTC</bdi>:</b> מחט דרך <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> <span class="nw">ל-<bdi dir="ltr">intrahepatic ducts</bdi></span>, בהנחיית אולטרסאונד. משאירים צנתר לניקוז. יעיל כמו <bdi>ERCP</bdi> כשהצינורות רחבים. כשהם צרים הוא קשה יותר</li>
     <li><b>מיפוי <bdi>HIDA</bdi></b> פחות אמין בדלקת של דרכי המרה</li>
    </ul>
-   <div class="box a" style="margin-top:10px"><b class="t">ואחרי שהיא מתאוששת?</b>יותר ממחצית מהמטופלים אחרי <bdi>ERCP</bdi> בלי כריתה יחזרו עם תסמינים. כורתים את כיס המרה כשהמצב מאפשר</div>
+   <div class="box a" style="margin-top:10px"><b class="t">ואחרי שהיא מתאוששת?</b>יותר ממחצית מהמטופלים אחרי <bdi>ERCP</bdi> בלי כריתה יחזרו עם תסמינים. כורתים את <span class="nw">ה-<bdi dir="ltr">gallbladder</bdi></span> כשהמצב מאפשר</div>
   </div>
-  <figure><img src="img/ercp-cbd-stone.jpg" alt="ERCP: אבן תקועה בצינור המשותף הרחוק" style="max-height:30vh"><figcaption><bdi>ERCP</bdi>: חומר ניגוד ממלא את דרכי המרה. אבן תקועה בחלק הרחוק של הצינור המשותף · <bdi dir="ltr">Samir · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption>
-   <img src="img/ptc-cholangiogram.jpg" alt="צילום דרכי מרה דרך הכבד" style="max-height:22vh;margin-top:8px"><figcaption><bdi>PTC</bdi>: הזרקה דרך הכבד ממלאת את דרכי המרה מלמעלה · <bdi dir="ltr">J. Guntau · Public domain · Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/ercp-cbd-stone.jpg" alt="ERCP: אבן תקועה ב-distal CBD" style="max-height:30vh"><figcaption><bdi>ERCP</bdi>: חומר ניגוד ממלא את דרכי המרה. אבן תקועה <span class="nw">ב-<bdi dir="ltr">distal CBD</bdi></span> · <bdi dir="ltr">Samir · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption>
+   <img src="img/ptc-cholangiogram.jpg" alt="צילום דרכי מרה דרך ה-liver" style="max-height:22vh;margin-top:8px"><figcaption><bdi>PTC</bdi>: הזרקה דרך <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> ממלאת את דרכי המרה מלמעלה · <bdi dir="ltr">J. Guntau · Public domain · Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 88 עמ׳ <bdi dir="ltr">1219–1220</bdi>, <bdi dir="ltr">1225–1226</bdi></span><span>מקרה 1</span></div>
 </div></section>
@@ -286,11 +292,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>"אשתי אמרה שאני צהוב"</h2>
  <div class="grid f">
   <div>
-   <div class="case">גבר בן 66. שלושה שבועות של צהבת <b>שהולכת ומחמירה, בלי כאב</b>. גרד, שתן כהה, צואה בהירה. ירד <b>6 ק״ג</b>. לפני חודשיים אובחנה <b>סוכרת חדשה</b>. בבדיקה: צהוב, בטן לא רגישה, כיס מרה מתוח שאפשר למשש.
-    <div class="vit"><span>חום 36.7</span><span>בילירובין <bdi dir="ltr">11.2</bdi> מ״ג/ד״ל</span><span><bdi>ALP</bdi> גבוה</span><span><bdi>CA 19-9</bdi> גבוה</span><span>אולטרסאונד: צינור משותף וצינורות בכבד רחבים, בלי אבנים</span></div></div>
-   <ol class="q"><li>איפה החסימה ומה הסיבות האפשריות?</li><li>לשלוח מחר ל-<bdi>ERCP</bdi>?</li><li>איך מגיעים לאבחנה רקמתית?</li></ol>
+   <div class="case">גבר בן 66. שלושה שבועות של צהבת <b>שהולכת ומחמירה, בלי כאב</b>. גרד, שתן כהה, צואה בהירה. ירד <b>6 ק״ג</b>. לפני חודשיים אובחנה <b>סוכרת חדשה</b>. בבדיקה: צהוב, בטן לא רגישה, <bdi dir="ltr">gallbladder</bdi> מתוח שאפשר למשש.
+    <div class="vit"><span>חום 36.7</span><span>בילירובין <bdi dir="ltr">11.2</bdi> מ״ג/ד״ל</span><span><bdi>ALP</bdi> גבוה</span><span><bdi>CA 19-9</bdi> גבוה</span><span>אולטרסאונד: <bdi dir="ltr">CBD</bdi> <span class="nw">ו-<bdi dir="ltr">intrahepatic ducts</bdi></span> רחבים, בלי אבנים</span></div></div>
+   <ol class="q"><li>איפה החסימה ומה הסיבות האפשריות?</li><li>לשלוח מחר <span class="nw">ל-<bdi>ERCP</bdi></span>?</li><li>איך מגיעים לאבחנה רקמתית?</li></ol>
   </div>
-  <figure><img src="img/Sobo1906-392-duodenum-pancreas.png" alt="התריסריון פתוח עם הפפילה וצינורות הלבלב" style="max-height:34vh"><figcaption>האזור "הפריאמפולרי": התריסריון פתוח עם הפפילה, ראש הלבלב וצינור הלבלב · <bdi>Sobotta, Atlas and Text-book of Human Anatomy</bdi> (1906), איור 392 (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/Sobo1906-392-duodenum-pancreas.png" alt="duodenum פתוח עם ה-papilla וה-pancreatic ducts" style="max-height:34vh"><figcaption>האזור "הפריאמפולרי": <bdi dir="ltr">duodenum</bdi> פתוח עם <span class="nw">ה-<bdi dir="ltr">papilla</bdi></span>, <bdi dir="ltr">pancreatic head</bdi> <span class="nw">ו-<bdi dir="ltr">pancreatic duct</bdi></span> · <bdi>Sobotta, Atlas and Text-book of Human Anatomy</bdi> (1906), איור 392 (נחלת הכלל)</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 93 עמ׳ <bdi dir="ltr">1403–1404</bdi> · פרק 88 עמ׳ <bdi dir="ltr">1245</bdi></span><span>מקרה 2</span></div>
 </div></section>
@@ -302,43 +308,43 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <details class="rev"><summary>איפה ומה</summary>
     <ul class="b sm">
-     <li>צינור משותף רחב וכיס מרה מתוח: <b>חסימה נמוכה</b>, באזור הפפילה</li>
-     <li>אפשרויות: <b>סרטן בראש הלבלב</b> (הכי שכיח), גידול באמפולה, בתריסריון, כולנגיוקרצינומה רחוקה</li>
+     <li><bdi dir="ltr">CBD</bdi> רחב <span class="nw">ו-<bdi dir="ltr">gallbladder</bdi></span> מתוח: <b>חסימה נמוכה</b>, באזור <span class="nw">ה-<bdi dir="ltr">papilla</bdi></span></li>
+     <li>אפשרויות: <b>סרטן <span class="nw">ב-<bdi dir="ltr">pancreatic head</bdi></span></b> (הכי שכיח), גידול <span class="nw">ב-<bdi dir="ltr">ampulla</bdi></span>, <span class="nw">ב-<bdi dir="ltr">duodenum</bdi></span>, כולנגיוקרצינומה רחוקה</li>
      <li>סרטן לבלב: צהבת, כאב בבטן העליונה או בגב וירידה במשקל. כ-40% עם סוכרת חדשה וירידה במשקל</li>
-     <li>בלוטה מעל עצם הבריח השמאלית או ליד הטבור: חשד לגרורות</li>
+     <li>בלוטה <bdi dir="ltr">supraclavicular</bdi> משמאל או ליד <span class="nw">ה-<bdi dir="ltr">umbilicus</bdi></span>: חשד לגרורות</li>
     </ul></details>
    <details class="rev"><summary>למה לא <bdi>ERCP</bdi> מחר בבוקר</summary>
     <ul class="b sm">
      <li>בגידול בלבלב החסימה הדרגתית ולרוב בלי דלקת של דרכי המרה. ניקוז דחוף כמעט אף פעם לא נחוץ</li>
-     <li>אחרי <bdi>ERCP</bdi> יש דלקת לבלב בכ-4%. הדלקת מטשטשת את הקשר בין הגידול לכלי הדם ב-<bdi>CT</bdi> ופוגעת בהערכת השלב</li>
-     <li><b>קודם <bdi>CT</bdi> בפרוטוקול לבלב</b> (פרוסות של 1 מ״מ, שלב עורקי מאוחר ושלב ורידי) עם צילום חזה ב-<bdi>CT</bdi></li>
+     <li>אחרי <bdi>ERCP</bdi> יש דלקת לבלב בכ-4%. הדלקת מטשטשת את הקשר בין הגידול לכלי הדם <span class="nw">ב-<bdi>CT</bdi></span> ופוגעת בהערכת השלב</li>
+     <li><b>קודם <bdi>CT</bdi> בפרוטוקול לבלב</b> (פרוסות של 1 מ״מ, שלב עורקי מאוחר ושלב ורידי) עם צילום חזה <span class="nw">ב-<bdi>CT</bdi></span></li>
     </ul></details>
   </div>
-  <figure><img src="img/pdac-ct.png" alt="CT של סרטן לבלב" style="max-height:30vh"><figcaption>סרטן לבלב ב-<bdi>CT</bdi>: מסה היפודנסית בלבלב · <bdi dir="ltr">Hellerhoff · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption>
+  <figure><img src="img/pdac-ct.png" alt="CT של סרטן לבלב" style="max-height:30vh"><figcaption>סרטן לבלב <span class="nw">ב-<bdi>CT</bdi></span>: מסה היפודנסית <span class="nw">ב-<bdi dir="ltr">pancreas</bdi></span> · <bdi dir="ltr">Hellerhoff · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption>
    <img src="img/ct-biliary-dilation.png" alt="CT עטרתי עם דרכי מרה רחבות" style="max-height:24vh;margin-top:8px"><figcaption>הרחבה של דרכי המרה מחסימה (<bdi>CT</bdi> בחתך עטרתי) · <bdi dir="ltr">James Heilman, MD · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 93 עמ׳ <bdi dir="ltr">1403–1404</bdi></span><span>מקרה 2</span></div>
 </div></section>
 
 <section class="s"><div class="card">
- <div class="kick"><b>10</b>מקרה 2 · מה רואים ב-<bdi>CT</bdi></div>
+ <div class="kick"><b>10</b>מקרה 2 · מה רואים <span class="nw">ב-<bdi>CT</bdi></span></div>
  <h2>ממצאים, רקמה וסטנט</h2>
  <div class="grid">
   <div>
    <h3>שלושה סימנים של סרטן בלבלב</h3>
-   <ol class="obj sm"><li>מסה בראש הלבלב</li><li><b>"צינור כפול":</b> הרחבה של צינור המרה וגם של צינור הלבלב</li><li>נסיגה (אטרופיה) של הלבלב שמעבר לגידול</li></ol>
-   <p style="font-size:14.5px;margin:8px 0 0">אין צינור כפול ואין מסה? לחשוב על גידול באמפולה, בתריסריון או כולנגיוקרצינומה רחוקה</p>
+   <ol class="obj sm"><li>מסה <span class="nw">ב-<bdi dir="ltr">pancreatic head</bdi></span></li><li><b>"צינור כפול":</b> הרחבה של <span class="nw">ה-<bdi dir="ltr">bile duct</bdi></span> וגם של <span class="nw">ה-<bdi dir="ltr">pancreatic duct</bdi></span></li><li>נסיגה (אטרופיה) של <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span> שמעבר לגידול</li></ol>
+   <p style="font-size:14.5px;margin:8px 0 0">אין צינור כפול ואין מסה? לחשוב על גידול <span class="nw">ב-<bdi dir="ltr">ampulla</bdi></span>, <span class="nw">ב-<bdi dir="ltr">duodenum</bdi></span> או כולנגיוקרצינומה רחוקה</p>
    <h3 style="margin-top:12px">השלב קובע את הדרך</h3>
    <ul class="b sm">
-    <li><b>נתיח:</b> אין מגע עם העורקים (<bdi>SMA</bdi>, צליאק, עורק הכבד)</li>
+    <li><b>נתיח:</b> אין מגע עם העורקים (<bdi>SMA</bdi>, <bdi dir="ltr">celiac trunk</bdi>, <bdi dir="ltr">common hepatic artery</bdi>)</li>
     <li><b>גבולי:</b> מגע של עד 180 מעלות עם עורק, או וריד שאפשר לשחזר. מקבלים טיפול לפני הניתוח</li>
     <li><b>מתקדם מקומית:</b> עטיפה של יותר מ-180 מעלות. <b>גרורות:</b> לא מנתחים</li>
     <li>יותר מ-80% מגיעים עם גרורות</li>
    </ul>
   </div>
   <div>
-   <div class="box n"><b class="t">רקמה: <bdi>EUS</bdi> עם ביופסיה</b>עדיף על ביופסיה מלעורית בהנחיית <bdi>CT</bdi>, שגרמה לפיזור בצפק בעד 16%. באותה הרדמה שמים סטנט מתכת</div>
-   <div class="box" style="margin-top:10px"><b class="t">איזה סטנט</b>סטנט מתכת לא מצופה עדיף על פלסטיק: פתוח יותר זמן (104 לעומת 83 ימים) ופחות סיבוכים (12% לעומת 35%). מתכת מצופה זזה יותר וחוסמת את הצינור הציסטי (דלקת בכיס המרה), אבל אפשר להוציא אותה</div>
+   <div class="box n"><b class="t">רקמה: <bdi>EUS</bdi> עם ביופסיה</b>עדיף על ביופסיה מלעורית בהנחיית <bdi>CT</bdi>, שגרמה לפיזור <span class="nw">ב-<bdi dir="ltr">peritoneum</bdi></span> בעד 16%. באותה הרדמה שמים סטנט מתכת</div>
+   <div class="box" style="margin-top:10px"><b class="t">איזה סטנט</b>סטנט מתכת לא מצופה עדיף על פלסטיק: פתוח יותר זמן (104 לעומת 83 ימים) ופחות סיבוכים (12% לעומת 35%). מתכת מצופה זזה יותר וחוסמת את <span class="nw">ה-<bdi dir="ltr">cystic duct</bdi></span> (דלקת בכיס המרה), אבל אפשר להוציא אותה</div>
    <div class="box a" style="margin-top:10px"><b class="t"><bdi>CA 19-9</bdi> בצהבת</b>גבוה בכ-75% מסרטני הלבלב, אבל צהבת מעלה אותו בטעות. אפשר להסתמך עליו רק כשבילירובין מתחת ל-2 מ״ג/ד״ל</div>
    <div class="box b" style="margin-top:10px"><b class="t">והניתוח</b>כריתת לבלב ותריסריון (<bdi>Whipple</bdi>). לפני החתך: לפרוסקופיה, כי בעד 10% מוצאים גרורות קטנות שלא נראו בהדמיה</div>
   </div>
@@ -353,15 +359,15 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <ul class="b">
    <li>במטופל שמתאים לניתוח <b>לא חייבים אבחנה רקמתית</b> לפני הכריתה. ציטולוגיה ממברשת לא אמינה. תשובה שלילית לא שוללת סרטן</li>
    <li>בעד 15% ממי שנותח בחשד לגידול בדרכי המרה מתברר שהמחלה שפירה</li>
-   <li><b>ניקוז לפני ניתוח</b> בכולנגיוקרצינומה רחוקה מעלה את שיעור הזיהומים אחרי הניתוח (<bdi>Sabiston</bdi> מפרט זאת בפרק דרכי המרה)</li>
-   <li>ובכל זאת מנקזים כשהבילירובין <b>מעל 10 מ״ג/ד״ל</b>, או כשהניתוח יתעכב (למשל טיפול כימי לפני הניתוח)</li>
+   <li><b>גם בסרטן ראש הלבלב ניקוז שגרתי לפני ניתוח מזיק.</b> במחקר <bdi>DROP</bdi> (<bdi dir="ltr">202</bdi> חולים, בילירובין <bdi dir="ltr">2.3–14.6</bdi> מ״ג/ד״ל): סיבוכים קשים <bdi dir="ltr">74%</bdi> עם ניקוז לעומת <bdi dir="ltr">39%</bdi> בניתוח מוקדם</li>
+   <li>מנקזים רק בדלקת של דרכי המרה, בצהבת קשה עם גרד, כשהניתוח יתעכב ולפני טיפול כימי מקדים. אם מנקזים: סטנט מתכת</li>
   </ul>
   <div>
-   <div class="box"><b class="t">והמטופל שלנו?</b>בילירובין <bdi dir="ltr">11.2</bdi> וגרד. אם השלב גבולי, יהיו כמה חודשים של טיפול לפני ניתוח. לכן כאן כן ננקז: <bdi>EUS</bdi> עם ביופסיה וסטנט מתכת באותה פעולה, אחרי ה-<bdi>CT</bdi></div>
-   <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>מצאו במחלקה או במרפאה מטופל עם צהבת. בדקו את הלחמיות, שאלו על צבע השתן והצואה, על גרד ועל ירידה במשקל. מששו את כיס המרה. הציגו לבכיר/ה: כואב או שקט? חסימה גבוהה או נמוכה?</div>
+   <div class="box"><b class="t">והמטופל שלנו?</b>בילירובין <bdi dir="ltr">11.2</bdi> וגרד. אם השלב גבולי, יהיו כמה חודשים של טיפול לפני ניתוח. לכן כאן כן ננקז: <bdi>EUS</bdi> עם ביופסיה וסטנט מתכת באותה פעולה, אחרי <span class="nw">ה-<bdi>CT</bdi></span></div>
+   <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>מצאו במחלקה או במרפאה מטופל עם צהבת. בדקו את הלחמיות, שאלו על צבע השתן והצואה, על גרד ועל ירידה במשקל. מששו את <span class="nw">ה-<bdi dir="ltr">gallbladder</bdi></span>. הציגו לבכיר/ה: כואב או שקט? חסימה גבוהה או נמוכה?</div>
   </div>
  </div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 88 עמ׳ <bdi dir="ltr">1246</bdi> · פרק 93 עמ׳ <bdi dir="ltr">1407</bdi></span><span>מקרה 2</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 88 עמ׳ <bdi dir="ltr">1246</bdi> · פרק 93 עמ׳ <bdi dir="ltr">1407</bdi> · <bdi>DROP</bdi> · van der Gaag NA et al., N Engl J Med 2010;362:129-37 · <bdi>ESGE 2018</bdi> · Dumonceau JM et al., Endoscopy 2018;50:910-30</span><span>מקרה 2</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -370,10 +376,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <div class="case">אישה בת 52. לפני 5 חודשים כריתה לפרוסקופית של כיס המרה בדלקת חריפה, "ניתוח קשה עם הרבה דלקת". בשבועיים האחרונים צהבת, גרד ו<b>חום שבא והולך</b>.
-    <div class="vit"><span>בילירובין <bdi dir="ltr">4.0</bdi> מ״ג/ד״ל</span><span><bdi>ALP</bdi> גבוה</span><span>אולטרסאונד: צינורות רחבים בכבד, צינור משותף לא רחב</span><span><bdi>MRCP</bdi>: היצרות קצרה בצינור הכבדי, כ-<bdi dir="ltr">1.5</bdi> ס״מ מתחת לפיצול</span></div></div>
+    <div class="vit"><span>בילירובין <bdi dir="ltr">4.0</bdi> מ״ג/ד״ל</span><span><bdi>ALP</bdi> גבוה</span><span>אולטרסאונד: <bdi dir="ltr">intrahepatic ducts</bdi> רחבים, <bdi dir="ltr">CBD</bdi> לא רחב</span><span><bdi>MRCP</bdi>: היצרות קצרה <span class="nw">ב-<bdi dir="ltr">common hepatic duct</bdi></span>, <span class="nw">כ-<bdi dir="ltr">1.5</bdi></span> ס״מ מתחת לפיצול</span></div></div>
    <ol class="q"><li>מה הסיבה הסבירה?</li><li>איך מסווגים אותה?</li><li>מה הטיפול ומי עושה אותו?</li></ol>
   </div>
-  <figure><img src="img/erc-klatskin.jpg" alt="ERC של גידול בפיצול צינורות הכבד עם חוטים בשני הצדדים" style="max-height:42vh"><figcaption>האבחנה המבדלת: גידול <bdi>Klatskin</bdi> בפיצול הצינורות (<bdi>ERC</bdi>), עם חוטים בצינור הימני והשמאלי לפני הכנסת סטנטים · <bdi dir="ltr">Hellerhoff · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/erc-klatskin.jpg" alt="ERC של גידול בפיצול ה-hepatic ducts עם חוטים בשני הצדדים" style="max-height:42vh"><figcaption>האבחנה המבדלת: גידול <bdi>Klatskin</bdi> בפיצול הצינורות (<bdi>ERC</bdi>), עם חוטים בצינור הימני והשמאלי לפני הכנסת סטנטים · <bdi dir="ltr">Hellerhoff · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 88 עמ׳ <bdi dir="ltr">1229</bdi>, <bdi dir="ltr">1237</bdi>, <bdi dir="ltr">1245</bdi></span><span>מקרה 3</span></div>
 </div></section>
@@ -390,14 +396,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
      <li><b>סיווג <bdi>Strasberg</bdi> (<bdi>E1–E5</bdi>):</b> <bdi>E1</bdi> נשארים יותר מ-2 ס״מ מתחת לפיצול. <bdi>E2</bdi> פחות מ-2 ס״מ (כמו כאן). <bdi>E3</bdi> בפיצול. <bdi>E4</bdi> הורס את הפיצול</li>
      <li>ב-20% או יותר יש גם פגיעה בכלי דם שלא זוהתה. איסכמיה היא סיבה שכיחה להיצרות</li>
     </ul></details>
-   <div class="box r" style="margin-top:10px"><b class="t">אל תשכחו את האבחנה המבדלת</b>היצרות בשער הכבד יכולה להיות כולנגיוקרצינומה (<bdi>Klatskin</bdi>): צהבת שקטה, צינורות רחבים בכבד וכיס מרה ריק. ב-<bdi>PSC</bdi> הסיכון 1.5% לשנה</div>
+   <div class="box r" style="margin-top:10px"><b class="t">אל תשכחו את האבחנה המבדלת</b>היצרות <span class="nw">ב-<bdi dir="ltr">hilum</bdi></span> יכולה להיות כולנגיוקרצינומה (<bdi>Klatskin</bdi>): צהבת שקטה, <bdi dir="ltr">intrahepatic ducts</bdi> רחבים <span class="nw">ו-<bdi dir="ltr">gallbladder</bdi></span> ריק. <span class="nw">ב-<bdi>PSC</bdi></span> הסיכון 1.5% לשנה</div>
   </div>
   <div>
    <details class="rev"><summary>שלוש מטרות הטיפול</summary>
     <div class="flow sm">
      <div><b>1 · זיהום</b><span>אנטיביוטיקה וניקוז מלעורי של הצטברויות. אחרי שהזיהום בשליטה אין דחיפות לתקן</span></div>
      <div><b>2 · מפה</b><span>צילום מלא של דרכי המרה: <bdi>MRCP</bdi> או <bdi>PTC</bdi>, שגם מנקז. בלי מפה, תיקון כמעט תמיד נכשל</span></div>
-     <div><b>3 · ניקוז קבוע</b><span>חיבור של צינור המרה ללולאת מעי (<bdi>Roux-en-Y hepaticojejunostomy</bdi>), בלי מתח, רירית לרירית</span></div>
+     <div><b>3 · ניקוז קבוע</b><span>חיבור של <span class="nw">ה-<bdi dir="ltr">bile duct</bdi></span> ללולאת מעי (<bdi>Roux-en-Y hepaticojejunostomy</bdi>), בלי מתח, רירית לרירית</span></div>
     </div>
     <ul class="b sm" style="margin-top:8px"><li>בסדרות רבות יותר מ-90% חופשיים מצהבת ומזיהום אחרי התיקון. התוצאות טובות יותר במרכז מנוסה</li><li>הרחבה בבלון דרך העור מצליחה בעד 70%. כשהרצף של הצינור שמור, <bdi>ERCP</bdi> עם סטנט הוא הטיפול הראשון בהיצרות שפירה</li></ul>
    </details>
@@ -407,15 +413,15 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 </div></section>
 
 <section class="s"><div class="card">
- <div class="kick"><b>14</b>כשהחסימה בשער</div>
+ <div class="kick"><b>14</b>כשהחסימה <span class="nw">ב-<bdi dir="ltr">hilum</bdi></span></div>
  <h2>חסימה גבוהה מול חסימה נמוכה</h2>
  <div class="grid">
-  <div class="box n"><b class="t">גבוהה: בשער הכבד</b>
-   <ul class="b sm"><li>כולנגיוקרצינומה בשער (<bdi>Klatskin</bdi>), פגיעה גבוהה בניתוח, <bdi>PSC</bdi></li><li>כיס המרה והצינור המשותף ריקים</li><li>חסימה של צד אחד: לפעמים בלי צהבת, עם אטרופיה של האונה החסומה</li><li><b><bdi>CT</bdi> לא מספיק</b>: צריך צילום דרכי מרה (<bdi>MRCP</bdi>, <bdi>PTC</bdi> או <bdi>ERCP</bdi>) כדי לדעת עד כמה הגידול מגיע</li><li>ניקוז: <bdi>PTC</bdi> שימושי יותר. ניקוז של אונה מנוונת לא עוזר</li></ul></div>
-  <div class="box b"><b class="t">נמוכה: ליד הפפילה</b>
-   <ul class="b sm"><li>סרטן בראש הלבלב, גידול באמפולה או בתריסריון, כולנגיוקרצינומה רחוקה, אבן</li><li>הצינור המשותף רחב, כיס המרה מתוח</li><li>ניקוז: <bdi>ERCP</bdi> עדיף</li><li>ניתוח: כריתת לבלב ותריסריון. בכולנגיוקרצינומה רחוקה עם שוליים נקיים ובלי בלוטות: הישרדות של עד 50% ל-5 שנים</li></ul></div>
+  <div class="box n"><b class="t">גבוהה: <span class="nw">ב-<bdi dir="ltr">hilum</bdi></span></b>
+   <ul class="b sm"><li>כולנגיוקרצינומה <span class="nw">ב-<bdi dir="ltr">hilum</bdi></span> (<bdi>Klatskin</bdi>), פגיעה גבוהה בניתוח, <bdi>PSC</bdi></li><li><bdi dir="ltr">gallbladder</bdi> <span class="nw">ו-<bdi dir="ltr">CBD</bdi></span> ריקים</li><li>חסימה של צד אחד: לפעמים בלי צהבת, עם אטרופיה של האונה החסומה</li><li><b><bdi>CT</bdi> לא מספיק</b>: צריך צילום דרכי מרה (<bdi>MRCP</bdi>, <bdi>PTC</bdi> או <bdi>ERCP</bdi>) כדי לדעת עד כמה הגידול מגיע</li><li>ניקוז: <bdi>PTC</bdi> שימושי יותר. ניקוז של אונה מנוונת לא עוזר</li></ul></div>
+  <div class="box b"><b class="t">נמוכה: ליד <span class="nw">ה-<bdi dir="ltr">papilla</bdi></span></b>
+   <ul class="b sm"><li>סרטן <span class="nw">ב-<bdi dir="ltr">pancreatic head</bdi></span>, גידול <span class="nw">ב-<bdi dir="ltr">ampulla</bdi></span> או <span class="nw">ב-<bdi dir="ltr">duodenum</bdi></span>, כולנגיוקרצינומה רחוקה, אבן</li><li><bdi dir="ltr">CBD</bdi> רחב, <bdi dir="ltr">gallbladder</bdi> מתוח</li><li>ניקוז: <bdi>ERCP</bdi> עדיף</li><li>ניתוח: כריתת לבלב ותריסריון. בכולנגיוקרצינומה רחוקה עם שוליים נקיים ובלי בלוטות: הישרדות של עד 50% ל-5 שנים</li></ul></div>
  </div>
- <div class="box a" style="margin-top:10px"><b class="t">בגידול שלא ניתן לכרות</b>מטרות: להקל על הצהבת (סטנט מתכת עמיד יותר מפלסטיק), על הכאב ועל חסימת התריסריון (סטנט אנדוסקופי). ניתוח עוקף לא מאריך חיים ולכן שמור למי שנמצא לא נתיח בזמן ניתוח</div>
+ <div class="box a" style="margin-top:10px"><b class="t">בגידול שלא ניתן לכרות</b>מטרות: להקל על הצהבת (סטנט מתכת עמיד יותר מפלסטיק), על הכאב ועל חסימה של <span class="nw">ה-<bdi dir="ltr">duodenum</bdi></span> (סטנט אנדוסקופי). ניתוח עוקף לא מאריך חיים ולכן שמור למי שנמצא לא נתיח בזמן ניתוח</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 88 עמ׳ <bdi dir="ltr">1245–1247</bdi></span><span>שער מול פפילה</span></div>
 </div></section>
 
@@ -427,14 +433,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <p>ממליצים על ניקוז אנדוסקופי ולא מלעורי. הניקוז <b>תוך 48 שעות</b>. כשאפשר, להוסיף חתך בסוגר והוצאת אבנים כבר בפעולה הראשונה. במטופל לא יציב: ניקוז בלבד</p>
    <small><bdi dir="ltr">Buxbaum JL, Buitrago C, Lee A, et al. Gastrointest Endosc 2021;94(2):207-221.e14</bdi></small></div>
   <div class="study"><div class="y"><bdi>Gastroenterology</bdi> 2023 · שני מחקרים אקראיים</div><b>ניקוז בהנחיית <bdi>EUS</bdi> מול <bdi>ERCP</bdi> בחסימה ממארת נמוכה</b>
-   <p><bdi>DRA-MBO</bdi> (155 מטופלים) ו-<bdi>ELEMENT</bdi> (144): הצלחה טכנית דומה או טובה יותר ב-<bdi>EUS</bdi> (96.2% לעומת 76.3% ב-<bdi>DRA-MBO</bdi>), פעולה קצרה יותר. אין הבדל בתפקוד הסטנט אחרי שנה או בסיבוכים</p>
+   <p><bdi>DRA-MBO</bdi> (155 מטופלים) <span class="nw">ו-<bdi>ELEMENT</bdi></span> (144): הצלחה טכנית דומה או טובה יותר <span class="nw">ב-<bdi>EUS</bdi></span> (96.2% לעומת 76.3% <span class="nw">ב-<bdi>DRA-MBO</bdi></span>), פעולה קצרה יותר. אין הבדל בתפקוד הסטנט אחרי שנה או בסיבוכים</p>
    <small><bdi dir="ltr">Teoh AYB et al. Gastroenterology 2023;165(2):473-482 · Chen YI et al. Gastroenterology 2023;165(5):1249-1261</bdi></small></div>
   <div class="study"><div class="y"><bdi>J Clin Oncol</bdi> 2022 · מחקר אקראי</div><b><bdi>PREOPANC</bdi>: טיפול לפני ניתוח בסרטן לבלב</b>
    <p>246 מטופלים עם גידול נתיח או גבולי. כימו-קרינה לפני הניתוח לעומת ניתוח מיד: הישרדות ל-5 שנים 20.5% לעומת 6.5% (<bdi dir="ltr">HR 0.73</bdi>)</p>
-   <small><bdi dir="ltr">Versteijne E, van Dam JL, Suker M, et al. J Clin Oncol 2022;40(11):1220-1230</bdi> (מצוטט ב-<bdi>Sabiston 22</bdi>)</small></div>
+   <small><bdi dir="ltr">Versteijne E, van Dam JL, Suker M, et al. J Clin Oncol 2022;40(11):1220-1230</bdi> (מצוטט <span class="nw">ב-<bdi>Sabiston 22</bdi></span>)</small></div>
   <div class="study"><div class="y"><bdi>NEJM Evidence</bdi> 2022 · מחקר אקראי</div><b><bdi>TOPAZ-1</bdi>: אימונותרפיה בסרטן דרכי המרה</b>
-   <p>685 מטופלים עם מחלה מתקדמת. הוספת <bdi>durvalumab</bdi> לכימותרפיה (<bdi>gemcitabine</bdi> ו-<bdi>cisplatin</bdi>) האריכה חיים (<bdi dir="ltr">HR 0.80</bdi>). הישרדות לשנתיים 24.9% לעומת 10.4%</p>
-   <small><bdi dir="ltr">Oh DY, He AR, Qin S, et al. NEJM Evid 2022;1(8):EVIDoa2200015</bdi> (מצוטט ב-<bdi>Sabiston 22</bdi>)</small></div>
+   <p>685 מטופלים עם מחלה מתקדמת. הוספת <bdi>durvalumab</bdi> לכימותרפיה (<bdi>gemcitabine</bdi> <span class="nw">ו-<bdi>cisplatin</bdi></span>) האריכה חיים (<bdi dir="ltr">HR 0.80</bdi>). הישרדות לשנתיים 24.9% לעומת 10.4%</p>
+   <small><bdi dir="ltr">Oh DY, He AR, Qin S, et al. NEJM Evid 2022;1(8):EVIDoa2200015</bdi> (מצוטט <span class="nw">ב-<bdi>Sabiston 22</bdi></span>)</small></div>
  </div>
  <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
 </div></section>
@@ -444,13 +450,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>חמישה דברים לקחת למחלקה</h2>
  <ol class="obj">
   <li>צהבת עם כאב: לחשוב על אבן. צהבת שקטה עם ירידה במשקל: לחשוב על גידול</li>
-  <li>אולטרסאונד ממקם את החסימה: כיס מרה מתוח וצינור משותף רחב = נמוכה. כיס מרה ריק = גבוהה</li>
+  <li>אולטרסאונד ממקם את החסימה: <bdi dir="ltr">gallbladder</bdi> מתוח <span class="nw">ו-<bdi dir="ltr">CBD</bdi></span> רחב = נמוכה. <bdi dir="ltr">gallbladder</bdi> ריק = גבוהה</li>
   <li>חום, צהבת, בלבול ולחץ דם נמוך: דלקת קשה של דרכי המרה. החייאה, אנטיביוטיקה וניקוז מהיר</li>
-  <li>בחשד לגידול: <bdi>CT</bdi> לפני כל <bdi>ERCP</bdi>. רקמה ב-<bdi>EUS</bdi> וסטנט מתכת באותה פעולה</li>
+  <li>בחשד לגידול: <bdi>CT</bdi> לפני כל <bdi>ERCP</bdi>. רקמה <span class="nw">ב-<bdi>EUS</bdi></span> וסטנט מתכת באותה פעולה</li>
   <li>צהבת חודשים אחרי כריתת כיס מרה: לחשוב על היצרות מפגיעה. מפה מלאה ותיקון במרכז מנוסה</li>
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 88 <bdi>Biliary System</bdi> (עמ׳ <bdi dir="ltr">1216–1230</bdi>, <bdi dir="ltr">1237–1239</bdi>, <bdi dir="ltr">1244–1247</bdi>) · פרק 93 <bdi>Pancreatic Cancer</bdi> (עמ׳ <bdi dir="ltr">1403–1409</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906, נחלת הכלל) · <bdi>BruceBlaus</bdi> (<bdi>CC BY-SA 4.0</bdi>) · הדמיה וצילומים מ-<bdi>Wikimedia Commons</bdi> לפי הרישיון בכל איור · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906, נחלת הכלל) · <bdi>BruceBlaus</bdi> (<bdi>CC BY-SA 4.0</bdi>) · הדמיה וצילומים <span class="nw">מ-<bdi>Wikimedia Commons</bdi></span> לפי הרישיון בכל איור · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>

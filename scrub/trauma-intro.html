@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>מבוא לטראומה · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,6 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -97,6 +98,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -114,6 +116,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -138,7 +143,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>להסביר מהי מערכת טראומה ולמה טיפול במרכז טראומה מציל חיים</li>
   <li>לבצע את הסקר הראשוני <bdi>xABCDE</bdi> בסדר הנכון ולטפל בכל בעיה מסכנת חיים ברגע שמזהים אותה</li>
   <li>לזהות הלם בחולה טראומה ולחפש את מקור הדימום לפי "ארבעה ועוד הרצפה"</li>
-  <li>להכיר את עקרונות ההחייאה בשליטה על נזק: מוצרי דם מאוזנים, מעט קריסטלואידים, לחץ דם "מספיק" ו-<bdi>TXA</bdi></li>
+  <li>להכיר את עקרונות ההחייאה בשליטה על נזק: מוצרי דם מאוזנים, מעט קריסטלואידים, לחץ דם "מספיק" <span class="nw">ו-<bdi>TXA</bdi></span></li>
   <li>לבצע סקר שניוני מסודר ולהבין למה חוזרים לבדוק את המטופל למחרת</li>
  </ol>
  <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 36 (עמ׳ <bdi dir="ltr">301–326</bdi>)</span><span>Scrub In · קפלן</span></div>
@@ -187,7 +192,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div class="flow sm">
    <div><b>x · דימום חיצוני</b><span>עוצרים דימום שוטף לפני הכול</span></div>
-   <div><b>A · נתיב אוויר</b><span>עם הגבלת תנועה של עמוד השדרה הצווארי</span></div>
+   <div><b>A · נתיב אוויר</b><span>עם הגבלת תנועה של <span class="nw">ה-<bdi dir="ltr">C-spine</bdi></span></span></div>
    <div><b>B · נשימה</b><span>חזה אוויר בלחץ, חזה פתוח, חזה מתנופף</span></div>
    <div><b>C · מחזור הדם</b><span>האם יש הלם? מאיפה מדמם?</span></div>
    <div><b>D · מצב נוירולוגי</b><span>מדד <bdi>GCS</bdi>, אישונים, תנועת גפיים</span></div>
@@ -195,7 +200,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   </div>
   <div style="display:grid;gap:10px">
    <div class="box n"><b class="t">שלושה עקרונות של <bdi>ATLS</bdi></b>1. מטפלים קודם במה שהורג ראשון<br>2. לא מחכים לאבחנה מדויקת כדי לטפל<br>3. לא צריך אנמנזה מפורטת כדי להתחיל</div>
-   <div class="box a"><b class="t">מה חדש</b>מהדורה 11 של <bdi>ATLS</bdi> שינתה לראשונה מזה יותר מ-45 שנה את הסדר: מ-<bdi>ABCDE</bdi> ל-<bdi>xABCDE</bdi>, בזכות הניסיון הצבאי</div>
+   <div class="box a"><b class="t">מה חדש</b>מהדורה 11 של <bdi>ATLS</bdi> שינתה לראשונה מזה יותר מ-45 שנה את הסדר: <span class="nw">מ-<bdi>ABCDE</bdi></span> <span class="nw">ל-<bdi>xABCDE</bdi></span>, בזכות הניסיון הצבאי</div>
    <div class="box"><b class="t">חוזרים על הסקר</b>אחרי כל פעולה טיפולית ובכל שינוי במצב המטופל. מוצאים בעיה? עוצרים ומטפלים בה מיד</div>
   </div>
  </div>
@@ -239,7 +244,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    </ul>
    <div class="box a" style="margin-top:10px"><b class="t">הלקח מהצבא</b>אחרי שחוסם העורקים הפך לציוד של כל חייל, מקרי המוות מדימום מגפיים בצבא האמריקאי ירדו ב-85%</div>
   </div>
-  <figure><img src="img/trauma-tourniquet.jpg" alt="הנחת חוסם עורקים על רגל בתרגול"><figcaption>הידוק חוסם עורקים על הירך של "פצוע" בתרגול · צילום: <bdi>Sgt. Jonathan Wright, U.S. Marine Corps</bdi>, <bdi>Wikimedia Commons</bdi> (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/trauma-cat-tourniquet.jpg" alt="חוסם עורקים מסוג CAT עם מוט הידוק"><figcaption>חוסם עורקים מסוג <bdi>CAT</bdi>: רצועה עם סקוטש, מוט הידוק (<bdi>windlass</bdi>) ותופסן לנעילתו · <bdi>INDNAM</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">306–307, 316–317</bdi></span><span>x</span></div>
 </div></section>
@@ -252,14 +257,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <ul class="b sm">
     <li><b>תשובה ברורה</b> אומרת שכרגע נתיב האוויר תקין. דיבור משובש = ירידה בהכרה או חסימה</li>
     <li><b>סימני אזהרה:</b> אי-שקט, נשימה רועשת, שאיפת עשן, פגיעה בפנים, דם בלוע, ירידה בסטורציה</li>
-    <li><b>עמוד שדרה צווארי:</b> בכל מנגנון מתאים מניחים שיש פגיעה לא יציבה. צווארון קשיח או ייצוב ידני</li>
+    <li><b><bdi dir="ltr">C-spine</bdi>:</b> בכל מנגנון מתאים מניחים שיש פגיעה לא יציבה. צווארון קשיח או ייצוב ידני</li>
     <li>פצוע ער עם פגיעה בפנים שנושם טוב בישיבה: משאירים אותו כך וקוראים למומחה. נתיב סביר עדיף על אין נתיב</li>
     <li><b>מטופל בהלם:</b> צנרור לפני שנותנים דם עלול לגרום לקריסה. בסקירה של 4 מחקרים התמותה הייתה 50% כשהדם ניתן קודם, לעומת 78%</li>
     <li><b>הצנרור:</b> וידאו-לרינגוסקופ (הצלחה בניסיון הראשון 85% לעומת 71%). מאשרים מיקום עם <bdi>ETCO<sub>2</sub></bdi></li>
    </ul>
   </div>
   <div style="display:grid;gap:10px">
-   <figure><img src="img/Sobo_1906_443_larynx.jpg" alt="הגרון והקנה מלפנים" style="max-height:28vh"><figcaption>הגרון מלפנים: בין סחוס התריס לסחוס הטבעתי נמצא הקרום הקריקותירואידי · <bdi>Sobotta</bdi>, אטלס 1906, איור 443 (נחלת הכלל)</figcaption></figure>
+   <figure><img src="img/Sobo_1906_443_larynx.jpg" alt="larynx ו-trachea מלפנים" style="max-height:28vh"><figcaption><bdi dir="ltr">larynx</bdi> מלפנים: בין <span class="nw">ה-<bdi dir="ltr">thyroid cartilage</bdi></span> <span class="nw">ל-<bdi dir="ltr">cricoid cartilage</bdi></span> נמצא <span class="nw">ה-<bdi dir="ltr">cricothyroid membrane</bdi></span> · <bdi>Sobotta</bdi>, אטלס 1906, איור 443 (נחלת הכלל)</figcaption></figure>
    <div class="box r"><b class="t">לא מצנררים ולא מחמצנים</b>קריקותירואידוטומיה מיד: חתך אורכי באמצע, חתך רוחבי בקרום, טובוס מספר 6. צריך סכין, טובוס ושתי ידיים</div>
   </div>
  </div>
@@ -276,10 +281,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li>כניסת אוויר חלשה או חסרה בצד הפגוע</li>
     <li>לחץ דם נמוך (פחות דם חוזר ללב)</li>
     <li>ורידי צוואר בולטים (קשה לראות), אמפיזמה תת-עורית</li>
-    <li>סטיית קנה לצד הנגדי (עדינה, ממששים בגומה שמעל עצם החזה)</li>
+    <li>סטיית <bdi dir="ltr">trachea</bdi> לצד הנגדי (עדינה, ממששים <span class="nw">ב-<bdi dir="ltr">suprasternal notch</bdi></span>)</li>
     <li>במונשם: לחצי הנשמה עולים</li>
    </ul>
-   <div class="box r" style="margin-top:10px"><b class="t">לא מחכים לצילום</b>צילום לפני הטיפול אסור. מנקזים מיד: מחט (<bdi dir="ltr">10–16G</bdi>) ברווח הבין-צלעי החמישי בקו בית השחי הקדמי, או ברווח השני בקו האמצע של עצם הבריח. "תורקוסטומיה באצבע" אמינה יותר</div>
+   <div class="box r" style="margin-top:10px"><b class="t">לא מחכים לצילום</b>צילום לפני הטיפול אסור. מנקזים מיד: מחט (<bdi dir="ltr">10–16G</bdi>) <span class="nw">ב-<bdi dir="ltr">5th intercostal space</bdi></span> <span class="nw">ב-<bdi dir="ltr">anterior axillary line</bdi></span>, או <span class="nw">ב-<bdi dir="ltr">2nd intercostal space</bdi></span> <span class="nw">ב-<bdi dir="ltr">midclavicular line</bdi></span>. "תורקוסטומיה באצבע" אמינה יותר</div>
   </div>
   <div style="display:grid;gap:10px">
    <figure><img src="img/trauma-needle.jpg" alt="ניקוז חזה במחט על בובת תרגול" style="max-height:26vh"><figcaption>ניקוז במחט על בובת תרגול · צילום: <bdi>Cpl. Fallon Lewis, U.S. Army</bdi>, <bdi>Wikimedia Commons</bdi> (נחלת הכלל)</figcaption></figure>
@@ -304,10 +309,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <g class="hzb" style="--c:#2F6FA8"><circle cx="1835" cy="260" r="39"/><text x="1835" y="260">4</text></g>
  </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על אזור בצילום כדי לקרוא עליו</p>
-   <div class="hzi" data-hzi="air" hidden><b>1 · אוויר בלי סימני ריאה</b><p>חלל החזה השמאלי שחור ושקוף יותר, בלי כלי דם ריאתיים עד הדופן. זה האוויר שנכלא בחלל הצדר ולא יכול לצאת</p></div>
-   <div class="hzi" data-hzi="lung" hidden><b>2 · הריאה שקרסה</b><p>הריאה השמאלית נדחסה אל השער. ככל שהאוויר מצטבר, הלחץ בחזה עולה</p></div>
-   <div class="hzi" data-hzi="med" hidden><b>3 · המדיאסטינום זז ימינה</b><p>הלחץ דוחף את הלב והקנה לצד הנגדי והוורידים הגדולים מתקפלים. פחות דם חוזר ללב ולכן לחץ הדם יורד. זה ה"לחץ" בחזה אוויר בלחץ</p></div>
-   <div class="hzi" data-hzi="after" hidden><b>4 · אחרי נקז חזה</b><p>הריאה התפשטה והמדיאסטינום חזר למרכז. בטראומה הצילום הזה מגיע רק אחרי הטיפול: את האבחנה עושים ליד המיטה</p></div>
+   <div class="hzi" data-hzi="air" hidden><b>1 · אוויר בלי סימני ריאה</b><p>חלל החזה השמאלי שחור ושקוף יותר, בלי כלי דם ריאתיים עד הדופן. זה האוויר שנכלא <span class="nw">ב-<bdi dir="ltr">pleural space</bdi></span> ולא יכול לצאת</p></div>
+   <div class="hzi" data-hzi="lung" hidden><b>2 · הריאה שקרסה</b><p>הריאה השמאלית נדחסה אל <span class="nw">ה-<bdi dir="ltr">hilum</bdi></span>. ככל שהאוויר מצטבר, הלחץ בחזה עולה</p></div>
+   <div class="hzi" data-hzi="med" hidden><b>3 · <span class="nw">ה-<bdi dir="ltr">mediastinum</bdi></span> זז ימינה</b><p>הלחץ דוחף את הלב ואת <span class="nw">ה-<bdi dir="ltr">trachea</bdi></span> לצד הנגדי ומקפל את <span class="nw">ה-<bdi dir="ltr">SVC</bdi></span> <span class="nw">וה-<bdi dir="ltr">IVC</bdi></span>. פחות דם חוזר ללב ולכן לחץ הדם יורד. זה ה"לחץ" בחזה אוויר בלחץ</p></div>
+   <div class="hzi" data-hzi="after" hidden><b>4 · אחרי נקז חזה</b><p>הריאה התפשטה <span class="nw">וה-<bdi dir="ltr">mediastinum</bdi></span> חזר למרכז. בטראומה הצילום הזה מגיע רק אחרי הטיפול: את האבחנה עושים ליד המיטה</p></div>
   </div></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">309–310, 320–321</bdi> · צילום: <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></span><span>B · הדמיה</span></div>
 </div></section>
@@ -339,9 +344,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>"ארבעה ועוד הרצפה"</h2>
  <div class="grid">
   <div class="flow sm">
-   <div><b>החזה</b><span>צילום חזה ו-<bdi>eFAST</bdi>. המטותורקס גדול: נקז חזה</span></div>
+   <div><b>החזה</b><span>צילום חזה <span class="nw">ו-<bdi>eFAST</bdi></span>. המטותורקס גדול: נקז חזה</span></div>
    <div><b>הבטן</b><span>בדיקת <bdi>FAST</bdi>: נוזל בחלל הבטן בטראומה נחשב דם עד שיוכח אחרת</span></div>
-   <div><b>אגן ורטרופריטונאום</b><span>צילום אגן. שבר "ספר פתוח": חגורת אגן או סדין סביב הטרוכנטרים</span></div>
+   <div><b>אגן <span class="nw">ו-<bdi dir="ltr">retroperitoneum</bdi></span></b><span>צילום אגן. שבר "ספר פתוח": חגורת אגן או סדין סביב <span class="nw">ה-<bdi dir="ltr">greater trochanters</bdi></span></span></div>
    <div><b>שברים בעצמות ארוכות</b><span>דימום לתוך השרירים. מקבעים</span></div>
    <div><b>"הרצפה"</b><span>דימום חיצוני, שכבר טופל בשלב x</span></div>
   </div>
@@ -362,14 +367,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <ul class="b sm">
     <li><b>ההגדרה:</b> שליטה מהירה בדימום, עירוי מאוזן של מוצרי דם (או דם מלא), מינימום קריסטלואידים, לחץ סיסטולי "מספיק" של כ-90 עד שהדימום נשלט ותיקון הפרעות הקרישה והחומצה</li>
-    <li><b>למה לא קריסטלואידים:</b> מחמירים חמצת והפרעת קרישה, קשורים ל-<bdi>ARDS</bdi> ומאיצים את "שלישיית המוות": היפותרמיה, חמצת וקואגולופתיה</li>
+    <li><b>למה לא קריסטלואידים:</b> מחמירים חמצת והפרעת קרישה, קשורים <span class="nw">ל-<bdi>ARDS</bdi></span> ומאיצים את "שלישיית המוות": היפותרמיה, חמצת וקואגולופתיה</li>
     <li><b>יחס פלזמה:טסיות:כדוריות</b> של <bdi dir="ltr">1:1:1</bdi> או <bdi dir="ltr">1:1:2</bdi>, דרך פרוטוקול עירוי מסיבי (<bdi>MTP</bdi>) ומחמם נוזלים</li>
     <li><b>הפרעת קרישה של טראומה</b> מופיעה בכ-25% מהפצועים. <bdi>TEG</bdi> או <bdi>ROTEM</bdi> מכוונים את העירוי לפי מה שחסר</li>
    </ul>
   </div>
   <div style="display:grid;gap:10px">
    <div class="box n"><b class="t">מתי להפעיל עירוי מסיבי? מדד <bdi>ABC</bdi></b>נקודה לכל אחד: מנגנון חודר · <bdi>FAST</bdi> חיובי · לחץ סיסטולי 90 ומטה · דופק מעל 120. שתי נקודות ומעלה: רגישות 75% וסגוליות 86%. כל דקת עיכוב מעלה תמותה בכ-5%</div>
-   <div class="box"><b class="t">חומצה טרנקסמית (<bdi>TXA</bdi>)</b>מעכבת פירוק קרישים. ב-<bdi>CRASH-2</bdi> (יותר מ-20,000 מטופלים) הורידה תמותה, רק כשניתנה בתוך 3 שעות. מינון: 1 גרם ועוד 1 גרם ב-8 שעות, או 2 גרם בבת אחת</div>
+   <div class="box"><b class="t">חומצה טרנקסמית (<bdi>TXA</bdi>)</b>מעכבת פירוק קרישים. <span class="nw">ב-<bdi>CRASH-2</bdi></span> (יותר מ-20,000 מטופלים) הורידה תמותה, רק כשניתנה בתוך 3 שעות. מינון: 1 גרם ועוד 1 גרם ב-8 שעות, או 2 גרם בבת אחת</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">312, 321, 325–326</bdi></span><span>החייאה בשליטה על נזק</span></div>
@@ -386,7 +391,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li>מדד <bdi>GCS</bdi> (<bdi dir="ltr">3–15</bdi>): פקיחת עיניים, תגובה מילולית ותגובה מוטורית. המוטורית מנבאת הכי טוב</li>
     <li>מתעדים <bdi>GCS</bdi> ואישונים <b>לפני</b> תרופות הרדמה</li>
     <li>מדד <bdi>GCS</bdi> של 8 ומטה: מניחים פגיעת ראש קשה</li>
-    <li><b>הלם נוירוגני:</b> לחץ דם נמוך, דופק איטי ושיתוק. ב-<bdi dir="ltr">20–29%</bdi> מפגיעות צוואר, נדיר מתחת ל-<bdi>T6</bdi>. אבל קודם שוללים דימום</li>
+    <li><b>הלם נוירוגני:</b> לחץ דם נמוך, דופק איטי ושיתוק. <span class="nw">ב-<bdi dir="ltr">20–29%</bdi></span> מפגיעות צוואר, נדיר מתחת <span class="nw">ל-<bdi>T6</bdi></span>. אבל קודם שוללים דימום</li>
     <li>מטרת הטיפול בפגיעת ראש: למנוע נזק משני. בלי היפוקסיה ובלי לחץ דם נמוך</li>
    </ul>
   </div>
@@ -397,7 +402,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li>היפותרמיה מחמירה הלם ודימום: שמיכות חמות, חימום אוויר, חדר חם ונוזלים מחוממים</li>
     <li>מודדים חום ליבה</li>
    </ul>
-   <div class="box a" style="margin-top:10px"><b class="t">רק אחרי ש-<bdi>xABCDE</bdi> תקין</b>עוברים לסקר השניוני</div>
+   <div class="box a" style="margin-top:10px"><b class="t">רק אחרי <span class="nw">ש-<bdi>xABCDE</bdi></span> תקין</b>עוברים לסקר השניוני</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">305, 323, 326</bdi></span><span>D ו-E</span></div>
@@ -414,14 +419,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  </div>
  <div class="grid">
   <ul class="b sm">
-   <li><b>ארבע מטרות:</b> לשחרר טמפונדה, לתקן זמנית פצע בלב, להדק את אבי העורקים היורד ולעצור דימום בחזה</li>
-   <li><b>סימני חיים:</b> אישונים מגיבים, נשימה, דופק בקרוטיס, לחץ דם, תנועה או פעילות חשמלית בלב</li>
+   <li><b>ארבע מטרות:</b> לשחרר טמפונדה, לתקן זמנית פצע בלב, להדק את <span class="nw">ה-<bdi dir="ltr">descending aorta</bdi></span> ולעצור דימום בחזה</li>
+   <li><b>סימני חיים:</b> אישונים מגיבים, נשימה, דופק <span class="nw">ב-<bdi dir="ltr">carotid</bdi></span>, לחץ דם, תנועה או פעילות חשמלית בלב</li>
    <li>מעל גיל 57 התמותה הייתה 100% בחבלה קהה ובחודרת</li>
   </ul>
   <ul class="b sm">
    <li>לפי <bdi>EAST</bdi>: לא בחבלה קהה בלי סימני חיים. כן בפצע חודר, עם או בלי סימני חיים</li>
    <li>לפי <bdi>WTA</bdi>: לפי זמן החייאה לפני ההגעה. פחות מ-15 דקות בפצע חודר בגו, פחות מ-10 בחבלה קהה</li>
-   <li>בלון באבי העורקים (<bdi>REBOA</bdi>): אין עדיין הוכחה לתועלת. ניסוי אקראי ראשון נעצר מוקדם בגלל תוצאות גרועות יותר</li>
+   <li>בלון <span class="nw">ב-<bdi dir="ltr">aorta</bdi></span> (<bdi>REBOA</bdi>): אין עדיין הוכחה לתועלת. ניסוי אקראי ראשון נעצר מוקדם בגלל תוצאות גרועות יותר</li>
   </ul>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">323–324</bdi></span><span>החייאה</span></div>
@@ -434,12 +439,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <ul class="b sm">
     <li><b>אנמנזה <bdi>AMPLE</bdi>:</b> רגישויות, תרופות (במיוחד נוגדי קרישה), מחלות והריון, ארוחה אחרונה, אירוע ומנגנון</li>
-    <li><b>בדיקה שיטתית:</b> קרקפת, עיניים, פנים, צוואר, חזה, בטן (סימן חגורת בטיחות), אגן, פרינאום (דם בפתח השופכה), גפיים ודפקים ובסוף נוירולוגיה</li>
+    <li><b>בדיקה שיטתית:</b> קרקפת, עיניים, פנים, צוואר, חזה, בטן (סימן חגורת בטיחות), אגן, <bdi dir="ltr">perineum</bdi> (דם <span class="nw">ב-<bdi dir="ltr">urethral meatus</bdi></span>), גפיים ודפקים ובסוף נוירולוגיה</li>
     <li><b>הגב:</b> גלגול גוש (<bdi>log roll</bdi>) עם ארבעה אנשים: אחד מחזיק ראש וצוואר ומוביל, שניים מגלגלים, אחד בודק. בדיקה רקטלית לפי הצורך</li>
-    <li><b>פצע חודר:</b> סופרים את כל הפצעים, גם בבית השחי, בקפלי העור, בפרינאום ובקרקפת. מסמנים בסמן נראה בצילום</li>
+    <li><b>פצע חודר:</b> סופרים את כל הפצעים, גם בבית השחי, בקפלי העור, <span class="nw">ב-<bdi dir="ltr">perineum</bdi></span> ובקרקפת. מסמנים בסמן נראה בצילום</li>
     <li><b>מעבדה והדמיה:</b> סוג והצלבה, המוגלובין, לקטט, גזים, קרישה, שתן, <bdi>FAST</bdi> חוזר, CT לפי הצורך</li>
    </ul>
-   <div class="box r" style="margin-top:10px"><b class="t">פגיעות שמתפספסות</b>ב-1% עד 40% מהפצועים ו-<bdi dir="ltr">15–22%</bdi> מהן משמעותיות. לכן עושים <b>סקר שלישוני</b> למחרת, כשהמטופל כבר צלול</div>
+   <div class="box r" style="margin-top:10px"><b class="t">פגיעות שמתפספסות</b>ב-1% עד 40% מהפצועים <span class="nw">ו-<bdi dir="ltr">15–22%</bdi></span> מהן משמעותיות. לכן עושים <b>סקר שלישוני</b> למחרת, כשהמטופל כבר צלול</div>
   </div>
   <figure><img src="img/blunt-palpation.jpg" alt="מישוש בטן של פצוע בתרגול" style="max-height:40vh"><figcaption>מישוש הבטן של פצוע בתרגול טראומה · <bdi>Pöllö</bdi>, <bdi>CC BY 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
@@ -475,7 +480,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>דם ולא מים: עירוי מאוזן, לחץ דם "מספיק", <bdi>TXA</bdi> בתוך 3 שעות ושליטה מהירה בדימום</li>
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 36 <bdi>Management of Acute Trauma</bdi> (עמ׳ <bdi dir="ltr">301–326</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906, נחלת הכלל) · צילומים: <bdi>U.S. Marine Corps, U.S. Army</bdi> (נחלת הכלל), <bdi>Hellerhoff</bdi> ו-<bdi>Pöllö</bdi> (<bdi>Wikimedia Commons</bdi>) · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906, נחלת הכלל) · צילומים: <bdi>U.S. Marine Corps, U.S. Army</bdi> (נחלת הכלל), <bdi>Hellerhoff</bdi> <span class="nw">ו-<bdi>Pöllö</bdi></span> (<bdi>Wikimedia Commons</bdi>) · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>

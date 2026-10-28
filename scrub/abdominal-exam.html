@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>בדיקת בטן · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,6 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
+.nw{white-space:nowrap}.nw bdi{white-space:normal}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -97,6 +98,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .flow.sm div,.flow div{grid-template-columns:1fr}
  .cmp td:first-child{white-space:normal}
  .cmp{display:block;overflow-x:auto}
+ .card div:has(> table){max-width:100%;overflow-x:auto}.card table{font-size:12.5px!important}.card td,.card th{padding:5px!important;overflow-wrap:anywhere}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
@@ -114,6 +116,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
+/* rights notice on every slide */
+.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
+.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -150,14 +155,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b">
-    <li><b>צפק ויסצרלי:</b> עוטף את האיברים, עצבוב אוטונומי. כאב עמום, לא ממוקם, "התכווצויות"</li>
-    <li><b>צפק פריאטלי:</b> מצפה את דופן הבטן, עצבוב סומטי לפי הדרמטומים. כאב חד וממוקם היטב</li>
-    <li><b>הדוגמה הקלאסית:</b> בדלקת התוספתן הכאב מתחיל עמום סביב הטבור ועובר לרבע הימני התחתון כשהצפק הפריאטלי נפגע</li>
-    <li><b>כאב מוקרן:</b> אוויר חופשי שמגרה את הסרעפת יכול לגרום לכאב בכתף. ולהפך: אוטם בשריר הלב יכול להופיע ככאב בבטן העליונה</li>
+    <li><b>שכבה ויסצרלית (<bdi>visceral peritoneum</bdi>):</b> עוטף את האיברים, עצבוב אוטונומי. כאב עמום, לא ממוקם, "התכווצויות"</li>
+    <li><b>שכבה פריאטלית (<bdi>parietal peritoneum</bdi>):</b> מצפה את דופן הבטן, עצבוב סומטי לפי הדרמטומים. כאב חד וממוקם היטב</li>
+    <li><b>הדוגמה הקלאסית:</b> בדלקת התוספתן הכאב מתחיל עמום סביב הטבור ועובר לרבע הימני התחתון <span class="nw">כשה-<bdi>parietal peritoneum</bdi></span> נפגע</li>
+    <li><b>כאב מוקרן:</b> אוויר חופשי שמגרה את <span class="nw">ה-<bdi>diaphragm</bdi></span> יכול לגרום לכאב בכתף. ולהפך: אוטם בשריר הלב יכול להופיע ככאב בבטן העליונה</li>
     <li><b>"חריף":</b> בדרך כלל כאב שהתחיל לפני פחות משבוע (גבול שרירותי)</li>
    </ul>
   </div>
-  <figure><img src="img/Sobo_1906_408.jpg" alt="חלל הבטן הפתוח עם המעי הדק והמעי הגס"><figcaption>חלל הבטן הפתוח: האומנטום הגדול מורם, מתחתיו המעי הדק ומסגרת המעי הגס · <bdi>Sobotta</bdi>, אטלס האנטומיה 1906, איור 408 (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/Sobo_1906_408.jpg" alt="חלל הבטן הפתוח עם small bowel ו-colon"><figcaption>חלל הבטן הפתוח: <span class="nw">ה-<bdi>greater omentum</bdi></span> מורם, מתחתיו <span class="nw">ה-<bdi>small bowel</bdi></span> ומסגרת <span class="nw">ה-<bdi>colon</bdi></span> · <bdi>Sobotta</bdi>, אטלס האנטומיה 1906, איור 408 (נחלת הכלל)</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1155, 1157</bdi></span><span>פיזיולוגיה של הכאב</span></div>
 </div></section>
@@ -186,15 +191,15 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <g class="hzb" style="--c:#2F6FA8"><circle cx="280" cy="410" r="9"/><text x="280" y="410">9</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו (ימין המטופל בצד שמאל של הציור)</p>
-  <div class="hzi" data-hzi="rh" hidden><b>1 · תת-צלעי ימני</b><p>כבד, כיס מרה, כפיפת הכבד של המעי הגס. כאן בודקים את סימן מרפי: עצירת הנשימה בשאיפה מרמזת על כיס מרה חריף</p></div>
-  <div class="hzi" data-hzi="ep" hidden><b>2 · אפיגסטרי</b><p>קיבה, תריסריון, לבלב. כיב מנוקב ודלקת לבלב. <b style="display:inline;font-size:inherit;color:var(--red)">זכרו את הלב:</b> אוטם בשריר הלב יכול להופיע ככאב בבטן העליונה</p></div>
-  <div class="hzi" data-hzi="lh" hidden><b>3 · תת-צלעי שמאלי</b><p>טחול, כפיפת הטחול של המעי הגס. עמימות בהקשה משמאל למעלה עם עמימות משתנה בצד ימין: קרע או המטומה של הטחול (סימן <bdi>Balance</bdi>)</p></div>
-  <div class="hzi" data-hzi="rl" hidden><b>4 · מותני ימני</b><p>המעי הגס העולה, הכליה. אבנים, פיאלונפריטיס. שטף דם במותן (<bdi>Grey Turner</bdi>): דימום רטרופריטונאלי או דלקת לבלב קשה</p></div>
-  <div class="hzi" data-hzi="um" hidden><b>5 · טבורי</b><p>המעי הדק והמעי הגס הרוחבי. כאב ויסצרלי עמום, למשל בתחילת דלקת התוספתן. חסימה, איסכמיה של המעי. שטף דם סביב הטבור (<bdi>Cullen</bdi>): דימום תוך-בטני</p></div>
-  <div class="hzi" data-hzi="ll" hidden><b>6 · מותני שמאלי</b><p>המעי הגס היורד, הכליה. אבנים, פיאלונפריטיס, שטף דם במותן כמו בצד ימין</p></div>
-  <div class="hzi" data-hzi="ri" hidden><b>7 · כסלי ימני (רבע ימני תחתון)</b><p>צקום, תוספתן, שחלה ימנית. דלקת תוספתן (רובסינג, פסואס). תסביב שחלה, היריון מחוץ לרחם. כאן גם המפשעה: בקע</p></div>
-  <div class="hzi" data-hzi="hy" hidden><b>8 · היפוגסטרי</b><p>שלפוחית, רחם, חלק מהסיגמואיד. דלקת אגן, היריון מחוץ לרחם, מורסה באגן ותוספתן אגני (סימן האובטורטור). בדיקה רקטלית ואגנית לפי החשד</p></div>
-  <div class="hzi" data-hzi="li" hidden><b>9 · כסלי שמאלי</b><p>המעי הגס הסיגמואידי, שחלה שמאלית. דלקת סעיפים, תסביב (וולוולוס) של הסיגמואיד, סיבות גינקולוגיות. המפשעה השמאלית</p></div>
+  <div class="hzi" data-hzi="rh" hidden><b>1 · תת-צלעי ימני</b><p>באזור: <bdi>liver, gallbladder, hepatic flexure</bdi>. כאן בודקים את סימן מרפי: עצירת הנשימה בשאיפה מרמזת על כיס מרה חריף</p></div>
+  <div class="hzi" data-hzi="ep" hidden><b>2 · אפיגסטרי</b><p>באזור: <bdi>stomach, duodenum, pancreas</bdi>. כיב מנוקב ודלקת לבלב. <b style="display:inline;font-size:inherit;color:var(--red)">זכרו את הלב:</b> אוטם בשריר הלב יכול להופיע ככאב בבטן העליונה</p></div>
+  <div class="hzi" data-hzi="lh" hidden><b>3 · תת-צלעי שמאלי</b><p>באזור: <bdi>spleen, splenic flexure</bdi>. עמימות בהקשה משמאל למעלה עם עמימות משתנה בצד ימין: קרע או המטומה של <span class="nw">ה-<bdi>spleen</bdi></span> (סימן <bdi>Balance</bdi>)</p></div>
+  <div class="hzi" data-hzi="rl" hidden><b>4 · מותני ימני</b><p>באזור: <bdi>ascending colon, kidney</bdi>. אבנים, פיאלונפריטיס. שטף דם במותן (<bdi>Grey Turner</bdi>): דימום רטרופריטונאלי או דלקת לבלב קשה</p></div>
+  <div class="hzi" data-hzi="um" hidden><b>5 · טבורי</b><p>באזור: <bdi>small bowel, transverse colon</bdi>. כאב ויסצרלי עמום, למשל בתחילת דלקת התוספתן. חסימה, איסכמיה של המעי. שטף דם סביב הטבור (<bdi>Cullen</bdi>): דימום תוך-בטני</p></div>
+  <div class="hzi" data-hzi="ll" hidden><b>6 · מותני שמאלי</b><p>באזור: <bdi>descending colon, kidney</bdi>. אבנים, פיאלונפריטיס, שטף דם במותן כמו בצד ימין</p></div>
+  <div class="hzi" data-hzi="ri" hidden><b>7 · כסלי ימני (רבע ימני תחתון)</b><p>באזור: <bdi>cecum, appendix, right ovary</bdi>. דלקת תוספתן (רובסינג, פסואס). תסביב שחלה, היריון מחוץ לרחם. כאן גם המפשעה: בקע</p></div>
+  <div class="hzi" data-hzi="hy" hidden><b>8 · היפוגסטרי</b><p>באזור: <bdi>bladder, uterus</bdi> וחלק <span class="nw">מה-<bdi>sigmoid</bdi></span>. דלקת אגן, היריון מחוץ לרחם, מורסה באגן <span class="nw">ו-<bdi>pelvic appendix</bdi></span> (סימן האובטורטור). בדיקה רקטלית ואגנית לפי החשד</p></div>
+  <div class="hzi" data-hzi="li" hidden><b>9 · כסלי שמאלי</b><p>באזור: <bdi>sigmoid colon, left ovary</bdi>. דלקת סעיפים, תסביב (וולוולוס) של <span class="nw">ה-<bdi>sigmoid</bdi></span>, סיבות גינקולוגיות. המפשעה השמאלית</p></div>
  </div></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1155–1158, 1164</bdi> (טבלאות 85.1, 85.4)</span><span>איור: <bdi>Gray's Anatomy</bdi>, איור 1220 (נחלת הכלל)</span></div>
 </div></section>
@@ -245,7 +250,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>בדיקה מלאה:</b> גם לב וריאות. קולות לב עמומים וכאב באפיגסטריום? לחשוב על לב</li>
    </ul>
   </div>
-  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש בשתי ידיים של שפת הכבד"><figcaption>מישוש בשתי ידיים מתחת לקשת הצלעות הימנית בזמן שהמטופל נושם עמוק · <bdi>Musser</bdi>, <bdi>A Practical Treatise on Medical Diagnosis</bdi> 1904, איור 192 (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש בשתי ידיים של שפת הכבד"><figcaption>מישוש בשתי ידיים מתחת <span class="nw">ל-<bdi>costal margin</bdi></span> הימני בזמן שהמטופל נושם עמוק · <bdi>Musser</bdi>, <bdi>A Practical Treatise on Medical Diagnosis</bdi> 1904, איור 192 (נחלת הכלל)</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1158–1159</bdi> · הציוד וההסכמה: נוהג מקובל</span><span>הכנה</span></div>
 </div></section>
@@ -259,7 +264,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div><b>3 · מישוש</b><span>מתחילים רחוק מהכאב. מחפשים את <b>נקודת הרגישות המרבית</b>, רגישות בהרפיה ועמידה לא רצונית. מחפשים גושים, פגמים בדופן ופעימה של כלי דם</span></div>
   <div><b>4 · המפשעה</b><span><b>חובה בכל בדיקת בטן.</b> בקע שלא חוזר עם בטן תפוחה וטימפנית: חסימה</span></div>
   <div><b>5 · האזנה</b><span>תועלת מוגבלת: לקולות מעיים ולאוושות רגישות וסגוליות נמוכות. רק יחד עם שאר הבדיקה</span></div>
-  <div><b>6 · רקטלית, גניטלית, אגנית</b><span>לפי החשד: דימום, עצירות או גוש ברקטום. תסביב אשך או שחלה, דלקת אגן, הריון. דוחים רק כשהחשד נמוך</span></div>
+  <div><b>6 · רקטלית, גניטלית, אגנית</b><span>לפי החשד: דימום, עצירות או גוש <span class="nw">ב-<bdi>rectum</bdi></span>. תסביב אשך או שחלה, דלקת אגן, הריון. דוחים רק כשהחשד נמוך</span></div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1157–1158</bdi> · "מתחילים רחוק מהכאב": נוהג מקובל</span><span>סדר הבדיקה</span></div>
 </div></section>
@@ -273,7 +278,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <ul class="b">
     <li><b>עמידה לא רצונית (<bdi>guarding</bdi>):</b> קשה להבדיל ממתיחה רצונית של השרירים. כפיפת הברכיים עוזרת</li>
     <li><b>נוקשות של דופן הבטן</b></li>
-    <li><b>רגישות בהרפיה (<bdi>rebound</bdi>):</b> הכאב מחמיר כשמשחררים את הלחץ. מעיד על גירוי הצפק הפריאטלי</li>
+    <li><b>רגישות בהרפיה (<bdi>rebound</bdi>):</b> הכאב מחמיר כשמשחררים את הלחץ. מעיד על גירוי <span class="nw">ה-<bdi>parietal peritoneum</bdi></span></li>
     <li>רוב המטופלים עם בטן חריפה יראו לפחות חלק מהסימנים האלה</li>
     <li><b>כאב שמתמקד:</b> מי שמתלונן על כאב בכל הבטן מצביע לפעמים על נקודה אחת בבדיקה זהירה. המיקום מצמצם את האבחנה המבדלת</li>
    </ul>
@@ -291,15 +296,15 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>8</b>הסימנים בעלי השם</div>
  <h2>מרפי, רובסינג ושות׳</h2>
  <div class="grid g3">
-  <div class="box"><b class="t">מרפי · <bdi>Murphy</bdi></b>יד מתחת לקשת הצלעות הימנית, המטופל נושם עמוק ועוצר את הנשימה מכאב. <span class="tag">כיס מרה חריף</span></div>
-  <div class="box"><b class="t">רובסינג · <bdi>Rovsing</bdi></b>לחץ ברבע השמאלי התחתון גורם לכאב בימני התחתון. <span class="tag">תוספתן</span></div>
-  <div class="box"><b class="t">פסואס · <bdi>Iliopsoas</bdi></b>הרמת רגל ישרה נגד התנגדות כואבת. <span class="tag">תוספתן מאחורי הצקום</span></div>
-  <div class="box"><b class="t">אובטורטור</b>סיבוב פנימי פסיבי של הירך עם ברך כפופה כואב. <span class="tag">תוספתן אגני, מורסה באגן</span></div>
+  <div class="box"><b class="t">מרפי · <bdi>Murphy</bdi></b>יד מתחת <span class="nw">ל-<bdi>costal margin</bdi></span> הימני, המטופל נושם עמוק ועוצר את הנשימה מכאב. <span class="tag">כיס מרה חריף</span></div>
+  <div class="box"><b class="t">רובסינג · <bdi>Rovsing</bdi></b>לחץ ברבע השמאלי התחתון גורם לכאב בימני התחתון. <span class="tag"><bdi>appendix</bdi></span></div>
+  <div class="box"><b class="t">פסואס · <bdi>Iliopsoas</bdi></b>הרמת רגל ישרה נגד התנגדות כואבת. <span class="tag"><bdi>retrocecal appendix</bdi></span></div>
+  <div class="box"><b class="t">אובטורטור</b>סיבוב פנימי פסיבי של הירך עם ברך כפופה כואב. <span class="tag">מורסה באגן, <bdi>pelvic appendix</bdi></span></div>
   <div class="box"><b class="t">קרנט · <bdi>Carnett</bdi></b>הכאב נמשך או מחמיר כשמכווצים את שרירי הבטן. <span class="tag b">מקור בדופן הבטן</span></div>
   <div class="box"><b class="t">בלומברג · <bdi>Blumberg</bdi></b>כאב בשחרור הלחץ ולא בלחיצה. <span class="tag r">צפקת</span></div>
   <div class="box"><b class="t">קאלן · גריי טרנר</b>שטף דם סביב הטבור · במותניים. <span class="tag r">דימום, דלקת לבלב קשה</span></div>
   <div class="box"><b class="t">האושיפ-רומברג</b>כאב בירך הפנימית בסיבוב פנימי של הירך. <span class="tag a">בקע אובטורטורי</span></div>
-  <div class="box"><b class="t">דנפורת׳ · <bdi>Danforth</bdi></b>כאב בכתף בשאיפה. <span class="tag r">דם מתחת לסרעפת</span></div>
+  <div class="box"><b class="t">דנפורת׳ · <bdi>Danforth</bdi></b>כאב בכתף בשאיפה. <span class="tag r">דם מתחת <span class="nw">ל-<bdi>diaphragm</bdi></span></span></div>
  </div>
  <div class="box a" style="margin-top:12px"><b class="t">שימו לב</b>לרוב הסימנים האלה אין רגישות וסגוליות מספיקות כדי לקבוע אבחנה לבד. הם חלק מאנמנזה ובדיקה שלמות</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1158–1159</bdi> (טבלה 85.4)</span><span>סימנים</span></div>
@@ -346,7 +351,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li>לפספס סיבה מחוץ לבטן: לב, ריאות</li>
     <li>להירגע מבטן "רכה" אצל מבוגר או מטופל על סטרואידים</li>
    </ul>
-   <div class="box b" style="margin-top:12px"><b class="t">במחלקה השבוע</b>קחו אנמנזה ובדקו לפחות שני מטופלים שהגיעו עם כאב בטן חריף. הציגו לבכיר/ה את הממצאים ואת האבחנה המבדלת לפני שאתם רואים את ה-<bdi>CT</bdi></div>
+   <div class="box b" style="margin-top:12px"><b class="t">במחלקה השבוע</b>קחו אנמנזה ובדקו לפחות שני מטופלים שהגיעו עם כאב בטן חריף. הציגו לבכיר/ה את הממצאים ואת האבחנה המבדלת לפני שאתם רואים את <span class="nw">ה-<bdi>CT</bdi></span></div>
   </div>
   <div>
    <h3>רשימת בדיקה</h3>
@@ -372,7 +377,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>מחקרים שכדאי להכיר</h2>
  <div class="grid">
   <div class="study"><div class="y"><bdi>JAMA</bdi> 2021 · סקירה</div><b>אבחנה וטיפול בדלקת תוספתן במבוגרים</b>
-   <p>הסיפור הקלאסי (כאב סביב הטבור שנודד לימין למטה, חוסר תיאבון או בחילה וחום קל) מוביל לאבחנה הנכונה בכ-<bdi dir="ltr">90%</bdi> מהמטופלים. כ-<bdi dir="ltr">96.5–100</bdi> מקרים ל-<bdi dir="ltr">100,000</bdi> מבוגרים בשנה</p>
+   <p>הסיפור הקלאסי (כאב סביב הטבור שנודד לימין למטה, חוסר תיאבון או בחילה וחום קל) מוביל לאבחנה הנכונה <span class="nw">בכ-<bdi dir="ltr">90%</bdi></span> מהמטופלים. <span class="nw">כ-<bdi dir="ltr">96.5–100</bdi></span> מקרים <span class="nw">ל-<bdi dir="ltr">100,000</bdi></span> מבוגרים בשנה</p>
    <small>Moris D, Paulson EK, Pappas TN. JAMA 2021;326(22):2299-311</small></div>
   <div class="study"><div class="y"><bdi>BJGP Open</bdi> 2024 · סקירה שיטתית</div><b>אילו סימנים באמת מנבאים מחלה קשה?</b>
    <p>16 מחקרים ו-6,004 מטופלים. 14 סימנים ותסמינים שינו את הסבירות. הרושם הכולל של הרופא היה הטוב ביותר לאישור (למשל חסימה: <bdi dir="ltr">LR+ 24.6</bdi>). רגישות בהרפיה ועמידה לבדן לא עמדו בסף</p>
@@ -396,7 +401,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>ספירה, כימיה ולקטט כמעט לכולם. <bdi>β-HCG</bdi> לכל אישה בגיל הפוריות</li>
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 85 <bdi>The Acute Abdomen</bdi> (עמ׳ <bdi dir="ltr">1155–1165</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906), <bdi>Gray's Anatomy</bdi> (1918) ו-<bdi>Musser</bdi> (1904), נחלת הכלל · צילום סימן <bdi>Cullen</bdi>: <bdi>H.L. Fred &amp; H.A. van Dijk</bdi>, <bdi>CC BY 2.0</bdi> · <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906), <bdi>Gray's Anatomy</bdi> (1918) <span class="nw">ו-<bdi>Musser</bdi></span> (1904), נחלת הכלל · צילום סימן <bdi>Cullen</bdi>: <bdi>H.L. Fred &amp; H.A. van Dijk</bdi>, <bdi>CC BY 2.0</bdi> · <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>
