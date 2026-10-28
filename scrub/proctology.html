@@ -100,6 +100,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
 @media print{.brandbar{display:none}}
@@ -135,12 +147,17 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>2</b>אנטומיה · אינטראקטיבי</div>
  <h2>תעלת פי הטבעת</h2>
- <div class="hotw"><div class="hoti" style="max-width:360px;width:100%;justify-self:center"><img src="img/Sobo_1906_386.png" alt="החלחולת ותעלת פי הטבעת בחתך, מבט מלפנים"><svg viewBox="0 0 1280 1609" preserveAspectRatio="none">
-  <polygon class="hz" data-hz="amp" points="390,720 900,700 930,1000 380,1010" style="--c:#2F8CD6"/><text class="hzl" x="650" y="870" style="font-size:60px">1</text>
-  <polygon class="hz" data-hz="col" points="420,1060 862,1060 856,1225 410,1225" style="--c:#7A5BD6"/><text class="hzl" x="640" y="1160" style="font-size:60px">2</text>
-  <polygon class="hz" data-hz="crypt" points="400,1228 862,1228 860,1278 398,1278" style="--c:#F0961E"/><text class="hzl" x="330" y="1270" style="font-size:60px">3</text>
-  <polygon class="hz" data-hz="anod" points="405,1282 835,1282 825,1470 420,1470" style="--c:#D63C32"/><text class="hzl" x="620" y="1395" style="font-size:60px">4</text>
-  <polygon class="hz" data-hz="sph" points="838,1120 960,1118 968,1585 850,1520" style="--c:#2EAA5A"/><text class="hzl" x="905" y="1360" style="font-size:60px">5</text>
+ <div class="hotw"><div class="hoti" style="max-width:360px;width:100%;justify-self:center"><img src="img/Sobo_1906_386.png" alt="החלחולת ותעלת פי הטבעת בחתך, מבט מלפנים"><svg viewBox="0 0 1280 1609" preserveAspectRatio="none" style="--lw:14;--bf:43px">
+  <path class="hz" data-hz="amp" d="M330,660 C420,660 540,740 655,770 C730,768 790,690 860,662 C905,660 928,700 932,760 C942,850 940,960 918,1050 C760,1046 520,1046 372,1052 C342,980 326,860 325,780 C325,730 326,690 330,660 Z" style="--c:#2F8CD6"/>
+  <path class="hz" data-hz="col" d="M372,1062 C520,1052 760,1052 912,1060 C904,1130 892,1200 872,1252 C800,1244 470,1244 394,1254 C386,1190 378,1120 372,1062 Z" style="--c:#7A5BD6"/>
+  <path class="hz ln" data-hz="crypt" d="M395,1262 C470,1272 560,1270 625,1274 C700,1282 780,1298 870,1292" style="--c:#F0961E"/>
+  <path class="hz" data-hz="anod" d="M405,1290 C500,1300 620,1302 700,1304 C760,1308 820,1306 862,1300 C845,1360 822,1430 818,1490 C800,1530 760,1552 700,1548 C660,1542 630,1540 598,1540 C540,1556 470,1545 440,1500 C434,1430 422,1350 405,1290 Z" style="--c:#D63C32"/>
+  <path class="hz" data-hz="sph" d="M262,1115 C270,1200 296,1290 300,1400 C302,1480 300,1530 325,1555 C350,1572 385,1568 405,1548 C430,1525 440,1500 437,1470 C432,1420 420,1350 400,1290 C385,1240 370,1170 358,1105 Z M908,1105 C922,1112 936,1125 945,1145 C952,1230 955,1320 962,1380 C975,1450 980,1500 965,1530 C945,1560 915,1568 885,1560 C850,1550 825,1525 818,1490 C815,1440 825,1380 840,1335 C858,1270 885,1180 908,1105 Z" style="--c:#2EAA5A"/>
+  <g class="hzb" style="--c:#2F8CD6"><circle cx="245" cy="860" r="37"/><text x="245" y="860">1</text></g>
+  <g class="hzb" style="--c:#7A5BD6"><circle cx="220" cy="1050" r="37"/><text x="220" y="1050">2</text></g>
+  <g class="hzb" style="--c:#F0961E"><circle cx="215" cy="1205" r="37"/><text x="215" y="1205">3</text></g>
+  <g class="hzb" style="--c:#D63C32"><circle cx="630" cy="1380" r="37"/><text x="630" y="1380">4</text></g>
+  <g class="hzb" style="--c:#2EAA5A"><circle cx="215" cy="1420" r="37"/><text x="215" y="1420">5</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
   <div class="hzi" data-hzi="amp" hidden><b>1 · אמפולת החלחולת</b><p>מה שהאצבע מרגישה מעל לתעלה. בבדיקה רקטלית בודקים את דופן החלחולת, את עצם הזנב ושרירי הלבטור מאחור. מלפנים: את הערמונית או רקטוצלה. גוש: מיקום לפי שעון, גודל, קשה או רך, נייד או מקובע. גם המרחק מהטבעת השרירית.</p></div>

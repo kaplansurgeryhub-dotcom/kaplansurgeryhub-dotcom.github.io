@@ -104,6 +104,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
 @media print{.brandbar{display:none}}
@@ -157,14 +169,19 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>3</b>אנטומיה · איפה נחסם</div>
  <h2>מהשער של הכבד ועד הפפילה</h2>
- <div class="hotw"><div class="hoti" style="max-width:46vh;justify-self:center;width:100%"><img src="img/ill-cbd-stone-cholangitis.jpg" alt="איור של כיס מרה עם אבנים, אבן בצינור המשותף, לבלב ותריסריון"><svg viewBox="0 0 812 900" preserveAspectRatio="none">
-  <polygon class="hz" data-hz="hl" points="295,95 410,95 400,150 330,205 290,195" style="--c:#7A5BD6"/>
-  <polygon class="hz" data-hz="gb" points="25,170 90,112 200,112 285,165 250,215 200,300 30,300 18,240" style="--c:#0A6B5A"/>
-  <polygon class="hz" data-hz="st" points="236,212 288,215 280,330 242,330" style="--c:#A3402E"/>
-  <polygon class="hz" data-hz="am" points="150,440 212,398 240,336 278,338 258,425 205,478 150,478" style="--c:#C9893F"/>
-  <polygon class="hz" data-hz="ph" points="292,352 420,362 440,480 400,580 262,600 215,520 272,432" style="--c:#2F6FA8"/>
-  <polygon class="hz" data-hz="du" points="40,330 128,330 140,470 200,560 330,640 330,692 200,692 70,560" style="--c:#00967D"/>
-  <text class="hzl" x="350" y="150" style="font-size:30px">1</text><text class="hzl" x="130" y="220" style="font-size:30px">2</text><text class="hzl" x="262" y="285" style="font-size:28px">3</text><text class="hzl" x="215" y="452" style="font-size:28px">4</text><text class="hzl" x="345" y="500" style="font-size:30px">5</text><text class="hzl" x="105" y="470" style="font-size:30px">6</text>
+ <div class="hotw"><div class="hoti" style="max-width:46vh;justify-self:center;width:100%"><img src="img/ill-cbd-stone-cholangitis.jpg" alt="איור של כיס מרה עם אבנים, אבן בצינור המשותף, לבלב ותריסריון"><svg viewBox="0 0 812 900" preserveAspectRatio="none" style="--lw:20;--bf:21px">
+  <path class="hz" data-hz="gb" d="M28,239 C24,225 24,205 33,188 C40,172 46,165 51,157 C60,146 68,140 77,134 C88,126 96,121 105,118 C115,113 126,110 136,109 C146,109 153,110 161,112 C170,116 180,120 187,123 C195,127 200,131 205,134 C210,138 212,140 215,141 C223,143 231,144 238,145 C246,146 253,147 259,149 C265,151 269,154 272,157 C279,163 283,168 285,172 C287,177 288,181 287,185 C282,188 277,189 272,190 C265,190 258,190 251,190 C244,189 238,189 233,188 C227,186 222,183 218,180 C213,174 209,170 205,167 C199,163 193,160 187,159 C178,158 169,157 161,158 C155,160 151,162 149,165 C143,173 138,183 133,193 C127,204 122,214 118,224 C113,235 109,246 105,257 C102,266 99,276 95,285 C92,292 88,296 84,298 C79,300 74,300 69,300 C62,298 56,296 51,293 C45,289 39,282 35,275 C32,264 30,250 28,239 Z" style="--c:#0A6B5A"/>
+  <path class="hz" data-hz="ph" d="M190,345 C205,338 220,333 235,331 C248,331 262,333 274,336 C287,340 299,344 310,349 C322,352 334,355 345,358 C349,367 351,377 354,385 C364,393 375,400 385,407 C395,413 404,418 411,424 C418,432 425,441 429,451 C433,462 437,474 438,486 C437,501 432,516 425,530 C420,544 414,558 407,570 C397,582 387,591 376,597 C363,601 349,603 336,603 C320,603 304,602 288,601 C270,597 252,593 235,588 C225,582 216,575 208,566 C202,555 199,543 195,530 C190,518 183,506 177,495 C173,483 170,472 168,460 C169,445 171,430 173,415 C174,400 175,385 177,371 C180,362 185,353 190,345 Z" style="--c:#2F6FA8"/>
+  <path class="hz" data-hz="du" d="M149,166 C143,175 138,184 133,193 C127,204 122,214 118,224 C113,235 109,246 105,257 C102,266 99,276 95,285 C92,292 88,296 84,298 C70,302 56,300 48,304 C44,312 43,320 42,327 C36,349 32,371 31,393 C31,415 33,438 36,462 C41,484 48,504 56,522 C68,543 81,562 96,578 C110,598 125,618 140,636 C162,655 185,672 208,686 C234,697 261,703 288,705 C311,707 334,706 356,702 C378,697 401,689 424,678 C436,662 451,650 465,637 C478,622 491,607 504,592 C520,575 545,560 572,540 C586,520 588,470 575,442 C560,440 545,440 531,442 C522,445 514,448 509,451 C493,456 478,461 465,469 C453,477 444,486 438,495 C433,507 429,518 425,530 C420,545 414,560 407,575 C397,585 387,592 376,597 C363,601 349,603 336,603 C320,603 304,602 288,601 C270,597 252,593 235,588 C225,582 216,575 208,566 C202,555 197,542 190,530 C183,517 175,504 168,491 C156,483 144,474 133,464 C135,450 138,437 142,424 C148,410 156,395 164,380 C170,366 175,351 181,336 C187,322 193,309 199,296 C202,284 205,272 208,261 C214,250 220,240 226,230 C228,221 229,212 230,203 C228,194 225,185 221,177 C210,171 198,166 186,163 C173,163 160,164 149,166 Z" style="--c:#00967D"/>
+  <path class="hz" data-hz="st" d="M257,246 C266,246 273,253 273,262 C273,271 266,278 257,278 C248,278 241,271 241,262 C241,253 248,246 257,246 Z" style="--c:#A3402E"/>
+  <path class="hz ln" data-hz="hl" d="M300,232 C312,220 322,205 327,186 C331,170 332,154 330,140 C326,128 318,117 309,104 M330,140 C340,134 354,126 368,120 C378,116 388,112 398,109" style="--c:#7A5BD6"/>
+  <path class="hz ln" data-hz="am" d="M254,330 C253,345 250,358 246,371 C241,385 236,397 230,407 C224,418 218,426 212,433 C204,441 195,447 186,451 C178,456 171,460 164,464 C158,466 153,468 149,469" style="--c:#C9893F;--lw:26"/>
+  <g class="hzb" style="--c:#7A5BD6"><circle cx="366" cy="160" r="18"/><text x="366" y="160">1</text></g>
+  <g class="hzb" style="--c:#0A6B5A"><circle cx="100" cy="182" r="18"/><text x="100" y="182">2</text></g>
+  <g class="hzb" style="--c:#A3402E"><circle cx="292" cy="266" r="18"/><text x="292" y="266">3</text></g>
+  <g class="hzb" style="--c:#C9893F"><circle cx="207" cy="398" r="18"/><text x="207" y="398">4</text></g>
+  <g class="hzb" style="--c:#2F6FA8"><circle cx="320" cy="500" r="18"/><text x="320" y="500">5</text></g>
+  <g class="hzb" style="--c:#00967D"><circle cx="58" cy="420" r="18"/><text x="58" y="420">6</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
   <div class="hzi" data-hzi="hl" hidden><b>1 · השער: הצינורות הכבדיים</b><p>גידול בפיצול (<bdi>Klatskin</bdi>), היצרויות של <bdi>PSC</bdi>, פגיעה גבוהה בניתוח. החסימה גבוהה, לכן <b>כיס המרה והצינור המשותף ריקים</b> והצינורות בתוך הכבד רחבים</p></div>

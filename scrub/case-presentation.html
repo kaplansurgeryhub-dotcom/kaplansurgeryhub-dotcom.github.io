@@ -98,6 +98,18 @@ details.rev{margin-top:10px;border:1px dashed var(--g);border-radius:12px;paddin
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
 @media print{.brandbar{display:none}}
@@ -176,18 +188,26 @@ details.rev{margin-top:10px;border:1px dashed var(--g);border-radius:12px;paddin
 <section class="s"><div class="card">
  <div class="kick"><b>4</b>איפה כואב?</div>
  <h2>לתאר מיקום במילים שכולם מבינים</h2>
- <div class="hotw"><div class="hoti" style="max-width:350px;width:100%;justify-self:center"><img src="img/Gray1220.png" alt="תשעת אזורי הבטן, אטלס גריי"><svg viewBox="0 0 434 550" preserveAspectRatio="none">
-  <polygon class="hz" data-hz="rh" points="50,200 148,188 148,278 45,278" style="--c:#7A5BD6"/>
-  <polygon class="hz" data-hz="ep" points="148,188 205,175 262,188 262,278 148,278" style="--c:#00967D"/>
-  <polygon class="hz" data-hz="lh" points="262,188 318,200 318,278 262,278" style="--c:#2F6FA8"/>
-  <polygon class="hz" data-hz="rl" points="45,278 148,278 148,355 40,355" style="--c:#C9893F"/>
-  <polygon class="hz" data-hz="um" points="148,278 262,278 262,355 148,355" style="--c:#A3402E"/>
-  <polygon class="hz" data-hz="ll" points="262,278 318,278 322,355 262,355" style="--c:#0A6B5A"/>
-  <polygon class="hz" data-hz="ri" points="40,357 148,357 148,470 100,430 60,395" style="--c:#B5469B"/>
-  <polygon class="hz" data-hz="hy" points="148,357 262,357 262,478 205,498 148,478" style="--c:#4A86C5"/>
-  <polygon class="hz" data-hz="li" points="262,357 322,357 318,400 290,440 262,470" style="--c:#8A5A14"/>
-  <text class="hzl" x="97" y="240" style="font-size:16px">1</text><text class="hzl" x="205" y="240" style="font-size:16px">2</text><text class="hzl" x="290" y="240" style="font-size:16px">3</text><text class="hzl" x="95" y="322" style="font-size:16px">4</text><text class="hzl" x="205" y="322" style="font-size:16px">5</text><text class="hzl" x="292" y="322" style="font-size:16px">6</text><text class="hzl" x="100" y="405" style="font-size:16px">7</text><text class="hzl" x="205" y="420" style="font-size:16px">8</text><text class="hzl" x="290" y="405" style="font-size:16px">9</text>
- </svg></div>
+ <div class="hotw"><div class="hoti" style="max-width:350px;width:100%;justify-self:center"><img src="img/Gray1220.png" alt="תשעת אזורי הבטן, אטלס גריי"><svg viewBox="0 0 434 550" preserveAspectRatio="none" style="--lw:4;--bf:15px">
+   <path class="hz" data-hz="rh" d="M97,277 C104.8,277 136.2,277 144,277 C143.8,263.7 143.2,210.3 143,197 C139.8,196.8 130.8,197.2 124,196 C117.2,194.8 108.2,192.5 102,190 C95.8,187.5 89.5,182.5 87,181 C87.5,189.2 88.3,214 90,230 C91.7,246 95.8,269.2 97,277 Z" style="--c:#7A5BD6"/>
+   <path class="hz" data-hz="ep" d="M144,277 C163.3,277 240.7,277 260,277 C259.8,263.2 259.2,207.8 259,194 C254.5,193.2 241.8,189.5 232,189 C222.2,188.5 210.3,190.7 200,191 C189.7,191.3 179.5,190 170,191 C160.5,192 147.5,196 143,197 C143.2,210.3 143.8,263.7 144,277 Z" style="--c:#00967D"/>
+   <path class="hz" data-hz="lh" d="M260,277 C267.5,277 297.5,277 305,277 C305.5,269.2 307.2,246.2 308,230 C308.8,213.8 309.7,188.3 310,180 C307.8,181.2 302.2,184.8 297,187 C291.8,189.2 285.3,191.8 279,193 C272.7,194.2 262.3,193.8 259,194 C259.2,207.8 259.8,263.2 260,277 Z" style="--c:#2F6FA8"/>
+   <path class="hz" data-hz="rl" d="M97,277 C104.8,277 136.2,277 144,277 C144.3,290 145.7,342 146,355 C136.3,355.2 97.7,355.8 88,356 C88.3,351.8 89.2,339.3 90,331 C90.8,322.7 91.8,315 93,306 C94.2,297 96.3,281.8 97,277 Z" style="--c:#C9893F"/>
+   <path class="hz" data-hz="um" d="M144,277 C163.3,277 240.7,277 260,277 C260.2,289.8 260.8,341.2 261,354 C241.8,354.2 165.2,354.8 146,355 C145.7,342 144.3,290 144,277 Z" style="--c:#A3402E"/>
+   <path class="hz" data-hz="ll" d="M260,277 C267.5,277 297.5,277 305,277 C305.5,282.5 307.2,301.5 308,310 C308.8,318.5 308.2,320.8 310,328 C311.8,335.2 317.5,348.8 319,353 C309.3,353.2 270.7,353.8 261,354 C260.8,341.2 260.2,289.8 260,277 Z" style="--c:#0A6B5A"/>
+   <path class="hz" data-hz="ri" d="M88,356 C97.7,355.8 136.3,355.2 146,355 C146.2,372 146.8,440 147,457 C143.2,452.5 131.7,439.7 124,430 C116.3,420.3 104.8,404.2 101,399 C100.7,397.5 100.3,394.8 99,390 C97.7,385.2 94.8,375.7 93,370 C91.2,364.3 88.8,358.3 88,356 Z" style="--c:#B5469B"/>
+   <path class="hz" data-hz="hy" d="M146,355 C165.2,354.8 241.8,354.2 261,354 C261,370 261,434 261,450 C255.7,453.5 239.2,466.8 229,471 C218.8,475.2 209.3,475.3 200,475 C190.7,474.7 181.8,472 173,469 C164.2,466 151.3,459 147,457 C146.8,440 146.2,372 146,355 Z" style="--c:#4A86C5"/>
+   <path class="hz" data-hz="li" d="M261,354 C270.7,353.8 309.3,353.2 319,353 C318.2,355.8 315.8,363.8 314,370 C312.2,376.2 309,386.7 308,390 C303.2,396.2 286.8,417 279,427 C271.2,437 264,446.2 261,450 C261,434 261,370 261,354 Z" style="--c:#8A5A14"/>
+   <g class="hzb" style="--c:#7A5BD6"><circle cx="122" cy="267" r="12.8"/><text x="122" y="267">1</text></g>
+   <g class="hzb" style="--c:#00967D"><circle cx="186" cy="267" r="12.8"/><text x="186" y="267">2</text></g>
+   <g class="hzb" style="--c:#2F6FA8"><circle cx="285" cy="267" r="12.8"/><text x="285" y="267">3</text></g>
+   <g class="hzb" style="--c:#C9893F"><circle cx="118" cy="340" r="12.8"/><text x="118" y="340">4</text></g>
+   <g class="hzb" style="--c:#A3402E"><circle cx="172" cy="342" r="12.8"/><text x="172" y="342">5</text></g>
+   <g class="hzb" style="--c:#0A6B5A"><circle cx="285" cy="342" r="12.8"/><text x="285" y="342">6</text></g>
+   <g class="hzb" style="--c:#B5469B"><circle cx="131" cy="420" r="12.8"/><text x="131" y="420">7</text></g>
+   <g class="hzb" style="--c:#4A86C5"><circle cx="180" cy="377" r="12.8"/><text x="180" y="377">8</text></g>
+   <g class="hzb" style="--c:#8A5A14"><circle cx="274" cy="408" r="12.8"/><text x="274" y="408">9</text></g>
+  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
   <div class="hzi" data-hzi="rh" hidden><b>1 · היפוכונדריום ימני · <bdi>RUQ</bdi></b><p>מתחת לקשת הצלעות מימין: כבד, כיס מרה, הכפף הכבדי של המעי הגס. שימו לב: ימין של המטופל הוא <b style="display:inline;font-size:inherit">שמאל</b> הציור</p></div>
   <div class="hzi" data-hzi="ep" hidden><b>2 · אפיגסטריום</b><p>מתחת לעצם החזה: קיבה, תריסריון, לבלב, האונה השמאלית של הכבד</p></div>

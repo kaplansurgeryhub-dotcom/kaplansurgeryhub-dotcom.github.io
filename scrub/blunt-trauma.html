@@ -100,6 +100,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
 @media print{.brandbar{display:none}}
@@ -175,16 +187,16 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>4</b>חלונות <bdi>FAST</bdi> · אינטראקטיבי</div>
  <h2>ארבעה חלונות, שתי דקות, ליד המיטה</h2>
- <div class="hotw"><div class="hoti" style="max-width:340px;justify-self:center;width:100%"><img src="img/Gray1224.png" alt="איברי הבטן מלפנים"><svg viewBox="0 0 553 650" preserveAspectRatio="none">
-   <polygon class="hz" data-hz="per" points="250,130 320,130 325,185 285,205 245,185" style="--c:#A3402E"/>
-   <text class="hzl" style="font-size:28px" x="285" y="175">1</text>
-   <polygon class="hz" data-hz="ruq" points="100,215 175,205 190,280 150,320 105,300" style="--c:#7A5BD6"/>
-   <text class="hzl" style="font-size:28px" x="145" y="272">2</text>
-   <polygon class="hz" data-hz="luq" points="395,170 450,180 460,280 420,305 385,260" style="--c:#00967D"/>
-   <text class="hzl" style="font-size:28px" x="425" y="245">3</text>
-   <polygon class="hz" data-hz="pel" points="245,520 335,520 345,580 300,600 240,580" style="--c:#C9893F"/>
-   <text class="hzl" style="font-size:28px" x="292" y="570">4</text>
-  </svg></div>
+ <div class="hotw"><div class="hoti" style="max-width:340px;justify-self:center;width:100%"><img src="img/Gray1224.png" alt="איברי הבטן מלפנים"><svg viewBox="0 0 553 650" preserveAspectRatio="none" style="--lw:6;--bf:19px">
+  <path class="hz" data-hz="per" d="M267,143 C270,140 273,138 276,138 C280,145 284,155 288,164 C291,155 293,147 295,141 C300,148 303,155 306,162 C311,172 316,183 321,193 C327,205 333,217 339,229 C336,233 333,236 331,237 C319,240 307,244 295,247 C290,248 285,248 280,246 C272,250 262,254 254,257 C249,261 244,264 239,267 C230,271 221,276 213,280 C211,278 209,277 208,275 C212,265 216,255 221,244 C227,231 233,219 239,206 C244,196 249,185 254,175 C258,164 262,153 267,143 Z" style="--c:#A3402E"/>
+  <path class="hz" data-hz="ruq" d="M113,215 C120,214 135,220 150,226 C165,235 180,246 195,256 C205,262 210,270 213,280 C205,284 198,288 190,293 C183,298 178,303 172,310 C165,315 158,316 150,314 C140,309 132,300 126,288 C120,272 116,255 114,238 C113,230 113,222 113,215 Z" style="--c:#7A5BD6"/>
+  <path class="hz" data-hz="luq" d="M415,170 C432,180 448,195 456,215 C462,238 463,262 460,285 C457,305 450,322 440,333 L430,328 C437,312 442,295 444,275 C446,250 444,228 438,210 C432,195 424,182 415,170 Z" style="--c:#00967D"/>
+  <path class="hz" data-hz="pel" d="M226,552 C250,556 275,557 300,555 C325,552 345,546 358,540 C365,548 362,560 352,568 C335,576 315,580 295,582 C275,582 255,578 240,570 C232,565 227,558 226,552 Z" style="--c:#C9893F"/>
+  <g class="hzb" style="--c:#A3402E"><circle cx="318" cy="132" r="16"/><text x="318" y="132">1</text></g>
+  <g class="hzb" style="--c:#7A5BD6"><circle cx="96" cy="262" r="16"/><text x="96" y="262">2</text></g>
+  <g class="hzb" style="--c:#00967D"><circle cx="484" cy="250" r="16"/><text x="484" y="250">3</text></g>
+  <g class="hzb" style="--c:#C9893F"><circle cx="300" cy="604" r="16"/><text x="300" y="604">4</text></g>
+ </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על חלון בציור כדי לקרוא עליו</p>
    <div class="hzi" data-hzi="per" hidden><b>1 · קרום הלב (מתחת לקסיפואיד)</b><p>מחפשים נוזל סביב הלב. בטראומה נוזל כזה הוא דם וחושבים על טמפונדה</p></div>
    <div class="hzi" data-hzi="ruq" hidden><b>2 · ימין עליון: בין הכבד לכליה (<bdi>Morison</bdi>)</b><p>החלון שבו רואים הכי הרבה פעמים דם בבטן: פס שחור בין הכבד לכליה הימנית</p></div>

@@ -100,6 +100,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
 @media print{.brandbar{display:none}}
@@ -136,17 +148,16 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>2</b>הגדרה וסיווג</div>
  <h2>מה זה שוק ואיפה הבעיה?</h2>
  <p class="lead" style="margin-bottom:10px"><b>שוק</b> הוא אספקת דם לא מספקת לרקמות, שמתבטאת בפגיעה באיברי המטרה: לקטט עולה, שינוי בהכרה, פחות שתן ועלייה באנזימי הכבד. לא רק חמצן חסר: הדם מביא לתאים גם חומרי מזון, בופרים והורמונים</p>
- <div class="hotw"><div class="hoti"><img src="img/shock-cv-system.png" alt="מערכת הדם: לב, כלי דם גדולים ומיטות נימים"><svg viewBox="0 0 1280 1280" preserveAspectRatio="none">
-   <polygon class="hz" data-hz="c" points="588,760 640,732 722,740 792,792 788,906 744,938 640,902 590,852" style="--c:#A3402E"/>
-   <text class="hzl" style="font-size:72px" x="690" y="845">1</text>
-   <polygon class="hz" data-hz="h" points="596,560 702,560 702,732 596,732" style="--c:#C9893F"/>
-   <polygon class="hz" data-hz="h" points="606,906 692,906 692,1000 606,1000" style="--c:#C9893F"/>
-   <text class="hzl" style="font-size:72px" x="649" y="655">2</text>
-   <polygon class="hz" data-hz="d" points="380,1062 470,992 640,976 820,992 900,1062 882,1180 760,1250 520,1250 400,1180" style="--c:#00967D"/>
-   <text class="hzl" style="font-size:72px" x="640" y="1130">3</text>
-   <polygon class="hz" data-hz="o" points="830,470 1000,450 1110,560 1122,1160 1040,1172 870,1000 820,780" style="--c:#2F6FA8"/>
-   <text class="hzl" style="font-size:72px" x="990" y="820">4</text>
-  </svg></div>
+ <div class="hotw"><div class="hoti"><img src="img/shock-cv-system.png" alt="מערכת הדם: לב, כלי דם גדולים ומיטות נימים"><svg viewBox="0 0 1280 1280" preserveAspectRatio="none" style="--lw:24;--bf:31px">
+  <path class="hz" data-hz="o" d="M384,457 C413,452 434,451 448,466 C462,481 462,519 466,548 C470,577 474,614 475,640 C476,666 478,686 475,704 C472,722 464,733 457,750 C450,767 436,784 430,804 C424,824 418,845 420,868 C422,891 437,921 439,941 C441,961 438,976 430,987 C422,998 414,991 393,1005 C372,1019 328,1044 302,1069 C276,1094 253,1140 238,1152 C223,1164 219,1168 210,1143 C201,1118 190,1051 183,1005 C176,959 166,914 165,868 C164,822 166,778 174,731 C182,684 193,624 210,585 C227,546 245,515 274,494 C303,473 355,462 384,457 Z M877,448 C901,451 955,455 987,475 C1019,495 1048,527 1069,567 C1090,607 1104,663 1115,713 C1126,763 1132,819 1133,868 C1134,917 1130,958 1124,1005 C1118,1052 1108,1123 1097,1152 C1086,1181 1075,1188 1060,1179 C1045,1170 1029,1121 1005,1097 C981,1073 938,1048 914,1033 C890,1018 865,1022 859,1005 C853,988 876,962 877,932 C878,902 877,852 868,823 C859,794 834,779 823,759 C812,739 806,727 804,704 C802,681 810,654 813,622 C816,590 818,540 823,512 C828,484 832,468 841,457 C850,446 853,445 877,448 Z" style="--c:#2F6FA8"/>
+  <path class="hz" data-hz="d" d="M366,1099 a267,130 0 1,0 534,0 a267,130 0 1,0 -534,0 Z M470,402 a167,128 0 1,0 334,0 a167,128 0 1,0 -334,0 Z" style="--c:#00967D"/>
+  <path class="hz" data-hz="c" d="M600,748 C610,734 633,730 650,725 C667,720 683,718 700,720 C717,722 739,729 752,738 C765,747 772,761 778,775 C784,789 785,803 786,820 C787,837 789,861 786,878 C783,895 778,910 770,920 C762,930 748,936 735,938 C722,940 708,934 695,930 C682,926 670,919 658,912 C646,905 635,899 625,890 C615,881 606,873 600,860 C594,847 590,829 590,810 C590,791 590,762 600,748 Z" style="--c:#A3402E"/>
+  <path class="hz ln" data-hz="h" d="M542,519 C560,535 590,560 603,586 C610,605 611,640 611,674 C612,700 613,720 613,748 M630,895 C632,930 634,955 635,974 C630,988 600,992 565,994 M652,750 C643,730 642,712 652,698 C662,686 685,684 702,690 C715,696 722,706 724,716 M662,690 C665,660 668,640 672,620 C674,600 676,590 690,578 C705,568 720,560 740,548 C752,540 762,525 771,512 M674,935 C674,955 674,970 676,982 C690,992 720,995 758,997" style="--c:#C9893F"/>
+  <g class="hzb" style="--c:#A3402E"><circle cx="830" cy="960" r="26"/><text x="830" y="960">1</text></g>
+  <g class="hzb" style="--c:#C9893F"><circle cx="560" cy="640" r="26"/><text x="560" y="640">2</text></g>
+  <g class="hzb" style="--c:#00967D"><circle cx="330" cy="1190" r="26"/><text x="330" y="1190">3</text></g>
+  <g class="hzb" style="--c:#2F6FA8"><circle cx="1160" cy="650" r="26"/><text x="1160" y="650">4</text></g>
+ </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא על סוג השוק</p>
    <div class="hzi" data-hzi="c" hidden><b>1 · הלב: שוק קרדיוגני</b><p>כשל של המשאבה, עם כיווץ כלי דם מפצה: "שוק קר". הסיבה השכיחה: מחלת לב כלילית, אוטם חריף או השלכותיו</p></div>
    <div class="hzi" data-hzi="h" hidden><b>2 · כלי הדם הגדולים: שוק היפובולמי</b><p>אובדן נפח: דימום, או אובדן נוזלים בהקאות, שלשולים, פיסטולות ונקזים. תפוקת לב נמוכה בגלל מילוי נמוך, תנגודת כלי דם גבוהה, גפיים קרות</p></div>

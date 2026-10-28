@@ -100,6 +100,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
 @media print{.brandbar{display:none}}
@@ -135,12 +147,16 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>2</b>השד · אנטומיה · אינטראקטיבי</div>
  <h2>לאן מתנקזת הלימפה?</h2>
- <div class="hotw"><div class="hoti"><img src="img/Gray607.png" alt="כלי הלימפה של השד ובלוטות בית השחי"><svg viewBox="0 0 600 467" preserveAspectRatio="none">
-  <polygon class="hz" data-hz="sap" points="398,275 430,288 445,325 430,362 398,375 366,362 352,325 366,288" style="--c:#A3402E"/><text class="hzl" x="398" y="333">1</text>
-  <polygon class="hz" data-hz="ax" points="188,150 300,145 300,300 280,340 245,340 225,240" style="--c:#2F6FA8"/><text class="hzl" x="255" y="250">2</text>
-  <polygon class="hz" data-hz="apx" points="300,140 375,128 378,165 330,190 300,185" style="--c:#7A5BD6"/><text class="hzl" x="335" y="167">3</text>
-  <polygon class="hz" data-hz="im" points="330,385 420,382 475,415 470,445 395,442 330,412" style="--c:#C9893F"/><text class="hzl" x="400" y="420">4</text>
- </svg></div>
+ <div class="hotw"><div class="hoti"><img src="img/Gray607.png" alt="כלי הלימפה של השד ובלוטות בית השחי"><svg viewBox="0 0 600 467" preserveAspectRatio="none" style="--lw:6;--bf:15px">
+   <path class="hz" data-hz="sap" d="M427,326 C427,330.8 425.4,336.3 422.8,340.5 C420.3,344.7 416,348.7 411.5,351.1 C407,353.5 401.2,355 396,355 C390.8,355 385,353.5 380.5,351.1 C376,348.7 371.7,344.7 369.2,340.5 C366.6,336.3 365,330.8 365,326 C365,321.2 366.6,315.7 369.2,311.5 C371.7,307.3 376,303.3 380.5,300.9 C385,298.5 390.8,297 396,297 C401.2,297 407,298.5 411.5,300.9 C416,303.3 420.3,307.3 422.8,311.5 C425.4,315.7 427,321.2 427,326 Z" style="--c:#A3402E"/>
+   <path class="hz" data-hz="ax" d="M188,152 C193.2,149.2 205.5,148.3 215,148 C224.5,147.7 235,150 245,150 C255,150 266.2,148 275,148 C283.8,148 293.5,147.2 298,150 C302.5,152.8 302.3,160 302,165 C301.7,170 298.3,174.2 296,180 C293.7,185.8 289,192.5 288,200 C287,207.5 290.5,216.7 290,225 C289.5,233.3 286.7,241.7 285,250 C283.3,258.3 281.8,266.7 280,275 C278.2,283.3 275.2,290.8 274,300 C272.8,309.2 274,322 273,330 C272,338 270.8,345 268,348 C265.2,351 258.3,352.7 256,348 C253.7,343.3 253.7,328.8 254,320 C254.3,311.2 258.7,304.2 258,295 C257.3,285.8 253,274.2 250,265 C247,255.8 243.3,248.3 240,240 C236.7,231.7 233,222.5 230,215 C227,207.5 226.2,200.5 222,195 C217.8,189.5 210.3,184.8 205,182 C199.7,179.2 193.5,180.8 190,178 C186.5,175.2 184.3,169.3 184,165 C183.7,160.7 182.8,154.8 188,152 Z" style="--c:#2F6FA8"/>
+   <path class="hz" data-hz="apx" d="M300,148 C302.3,144.2 311.3,143.2 318,142 C324.7,140.8 333,140.3 340,141 C347,141.7 354.5,144 360,146 C365.5,148 370.8,149.7 373,153 C375.2,156.3 375.2,162.7 373,166 C370.8,169.3 365.5,172.2 360,173 C354.5,173.8 346.7,171.7 340,171 C333.3,170.3 326,170 320,169 C314,168 307.3,168.5 304,165 C300.7,161.5 297.7,151.8 300,148 Z" style="--c:#7A5BD6"/>
+   <path class="hz ln" data-hz="im" d="M392,422 C395,421.3 404,420.2 410,418 C416,415.8 421.7,413 428,409 C434.3,405 442,399.7 448,394 C454,388.3 459.7,381.5 464,375 C468.3,368.5 472.3,358.3 474,355" style="--c:#C9893F"/>
+   <g class="hzb" style="--c:#A3402E"><circle cx="446" cy="292" r="12.8"/><text x="446" y="292">1</text></g>
+   <g class="hzb" style="--c:#2F6FA8"><circle cx="212" cy="250" r="12.8"/><text x="212" y="250">2</text></g>
+   <g class="hzb" style="--c:#7A5BD6"><circle cx="336" cy="124" r="12.8"/><text x="336" y="124">3</text></g>
+   <g class="hzb" style="--c:#C9893F"><circle cx="492" cy="400" r="12.8"/><text x="492" y="400">4</text></g>
+  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
   <div class="hzi" data-hzi="sap" hidden><b>1 · מתחת לפטמה ולעטרה</b><p>מקלעת לימפה מתחת לפטמה (<bdi>Sappey</bdi>). הלימפה זורמת מהעור למקלעת הזו ומשם לתוך רקמת השד. לכן בודקים תמיד גם את הרקמה שמתחת לפטמה</p></div>
   <div class="hzi" data-hzi="ax" hidden><b>2 · בית השחי · רמות <bdi>I–II</bdi></b><p><bdi dir="ltr">70–80%</bdi> מהלימפה של השד מתנקזת לבית השחי. רמה <bdi>I</bdi> לטרלית לשריר החזה הקטן, רמה <bdi>II</bdi> מאחוריו (כולל בלוטות <bdi>Rotter</bdi> בין שרירי החזה). מוששים בישיבה, כשהבודק תומך בזרוע</p></div>

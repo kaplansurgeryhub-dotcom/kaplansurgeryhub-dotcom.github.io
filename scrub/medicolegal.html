@@ -98,6 +98,18 @@ details.rev{margin-top:10px;border:1px dashed var(--g);border-radius:12px;paddin
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
 @media print{.brandbar{display:none}}
@@ -133,12 +145,15 @@ details.rev{margin-top:10px;border:1px dashed var(--g);border-radius:12px;paddin
 <section class="s"><div class="card">
  <div class="kick"><b>2</b>היסטוריה · מבט על מה שהשתנה</div>
  <h2>שיעור באנטומיה, שיעור באתיקה</h2>
- <div class="hotw"><div class="hoti"><img src="img/Rembrandt_Tulp.jpg" alt="שיעור האנטומיה של ד״ר טולפ, רמברנדט 1632"><svg viewBox="0 0 1400 1054" preserveAspectRatio="none">
-  <polygon class="hz" data-hz="body" points="362,690 470,670 700,700 1000,775 1150,800 1130,950 800,935 520,900 380,820" style="--c:#7A5BD6"/>
-  <polygon class="hz" data-hz="tulp" points="790,290 1000,290 1030,450 1000,700 760,700 745,500" style="--c:#00967D"/>
-  <polygon class="hz" data-hz="guild" points="300,250 560,210 700,240 740,560 560,640 300,600 290,400" style="--c:#2F6FA8"/>
-  <polygon class="hz" data-hz="paper" points="712,410 800,402 812,520 718,525" style="--c:#A3402E"/>
-  <text class="hzl" x="760" y="830" style="font-size:64px;stroke-width:6px">1</text><text class="hzl" x="890" y="560" style="font-size:64px;stroke-width:6px">2</text><text class="hzl" x="500" y="460" style="font-size:64px;stroke-width:6px">3</text><text class="hzl" x="762" y="472" style="font-size:64px;stroke-width:6px">4</text>
+ <div class="hotw"><div class="hoti"><img src="img/Rembrandt_Tulp.jpg" alt="שיעור האנטומיה של ד״ר טולפ, רמברנדט 1632"><svg viewBox="0 0 1400 1054" preserveAspectRatio="none" style="--lw:14;--bf:34px">
+  <path class="hz" data-hz="body" d="M364,694 C372,678 395,668 424,667 C442,668 455,675 465,686 C480,694 510,692 538,691 C570,690 610,692 639,695 C660,696 690,698 711,700 C745,706 780,718 807,724 C830,727 855,723 879,730 C896,738 905,750 903,768 C915,786 960,804 999,808 C1030,810 1055,808 1070,795 C1080,778 1095,762 1115,762 C1135,764 1144,790 1142,812 C1140,840 1135,856 1125,866 C1110,878 1090,882 1060,888 C1020,894 980,897 939,897 C900,898 870,897 849,897 C825,900 805,904 789,903 C765,902 745,898 729,897 C710,895 692,892 675,891 C660,893 650,895 639,894 C620,892 608,888 600,882 C590,876 585,870 575,868 C555,866 538,864 520,862 C500,855 485,846 472,838 C458,830 446,822 436,814 C426,802 420,790 412,778 C400,770 388,765 376,760 C364,752 354,740 352,728 C352,716 356,704 364,694 Z" style="--c:#7A5BD6"/>
+  <path class="hz" data-hz="tulp" d="M788,294 C820,280 855,268 887,269 C905,266 925,268 937,273 C952,278 962,284 966,290 C980,305 995,325 1004,344 C1015,362 1028,380 1029,398 C1030,412 1026,420 1020,423 C1008,428 995,430 985,434 C995,442 1003,447 1012,452 C1030,460 1043,465 1053,472 C1070,484 1082,495 1087,506 C1093,516 1095,524 1095,530 C1100,545 1104,555 1107,564 C1114,580 1120,595 1128,605 C1145,620 1162,630 1178,638 C1195,648 1210,660 1219,672 C1230,685 1238,695 1240,705 C1243,730 1244,755 1244,779 C1200,772 1150,762 1100,756 C1050,748 1000,738 960,728 C925,718 900,710 880,705 C850,700 820,698 800,697 C790,690 785,670 780,656 C775,668 770,676 763,676 C750,678 740,678 734,676 C725,670 720,662 718,650 C716,635 717,615 721,601 C735,595 750,593 763,593 C770,590 776,582 780,572 C784,540 790,500 796,481 C802,472 807,467 813,464 C825,456 835,450 844,447 C850,430 853,418 854,406 C852,385 851,370 850,356 C840,348 828,340 817,335 C805,328 795,318 788,310 C785,304 785,298 788,294 Z" style="--c:#00967D"/>
+  <path class="hz" data-hz="guild" d="M0,452 C20,432 45,418 70,416 C100,418 120,432 130,452 C140,460 150,462 158,458 C170,440 192,426 220,424 C245,424 265,435 280,452 C284,430 278,410 272,390 C268,355 270,320 278,298 C292,282 312,270 328,250 C334,220 334,180 340,150 C350,128 372,114 400,112 C425,112 442,128 448,152 C452,178 450,205 448,225 C470,236 495,250 520,268 C540,280 560,282 580,265 C598,250 622,240 645,225 C665,214 695,212 720,224 C740,236 750,262 752,290 C752,320 748,350 742,378 C738,395 730,410 722,420 C735,440 742,460 748,480 C755,520 760,555 760,580 C745,598 728,610 718,625 C710,645 708,665 700,690 C680,694 660,694 639,694 C600,690 560,690 538,691 C510,692 480,694 465,686 C450,672 430,665 405,666 C380,670 362,684 354,705 C348,730 352,752 372,762 C400,778 420,800 438,820 C460,845 480,870 492,900 C505,950 510,1000 512,1054 C350,1054 180,1054 0,1054 Z" style="--c:#2F6FA8"/>
+  <path class="hz" data-hz="paper" d="M748,428 C765,420 790,412 812,407 C820,420 828,432 836,442 C840,458 838,476 834,490 C828,500 818,505 805,508 C780,512 755,515 730,516 C718,515 708,510 704,502 C700,488 700,472 704,460 C715,450 732,438 748,428 Z" style="--c:#A3402E"/>
+  <g class="hzb" style="--c:#7A5BD6"><circle cx="560" cy="935" r="29"/><text x="560" y="935">1</text></g>
+  <g class="hzb" style="--c:#00967D"><circle cx="1110" cy="440" r="29"/><text x="1110" y="440">2</text></g>
+  <g class="hzb" style="--c:#2F6FA8"><circle cx="230" cy="350" r="29"/><text x="230" y="350">3</text></g>
+  <g class="hzb" style="--c:#A3402E"><circle cx="680" cy="455" r="29"/><text x="680" y="455">4</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
   <div class="hzi" data-hzi="body" hidden><b>1 · האדם שעל השולחן</b><p>אף אחד לא שאל אותו. היום, על פי עיקרון הכבוד לאוטונומיה, אדם כשיר מחליט על גופו. בלי הסכמה מדעת לא מנתחים, חוץ מבמצבים מוגדרים</p></div>

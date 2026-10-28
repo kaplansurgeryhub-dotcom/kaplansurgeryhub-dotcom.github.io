@@ -100,6 +100,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
 @media print{.brandbar{display:none}}
@@ -134,12 +146,17 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>2</b>אנטומיה · אינטראקטיבי</div>
  <h2>איפה בשד נולדת כל מחלה</h2>
- <div class="hotw"><div class="hoti"><img src="img/ben-anat-lynch.png" alt="חתך אורך של השד"><svg viewBox="0 0 960 1110" preserveAspectRatio="none">
-  <polygon class="hz" data-hz="n" points="40,545 115,515 135,720 60,710" style="--c:#A3402E"/><text class="hzl" style="font-size:48px" x="88" y="635">A</text>
-  <polygon class="hz" data-hz="d" points="120,590 265,560 275,705 130,665" style="--c:#C9893F"/><text class="hzl" style="font-size:48px" x="200" y="650">B</text>
-  <polygon class="hz" data-hz="l" points="285,540 430,330 600,350 640,600 560,800 360,820 285,720" style="--c:#7A5BD6"/><text class="hzl" style="font-size:48px" x="460" y="590">C</text>
-  <polygon class="hz" data-hz="f" points="330,330 470,160 640,40 700,120 625,330 470,330" style="--c:#2F6FA8"/><text class="hzl" style="font-size:48px" x="540" y="240">D</text>
-  <polygon class="hz" data-hz="p" points="650,560 700,140 800,40 770,900 650,930" style="--c:#00967D"/><text class="hzl" style="font-size:48px" x="715" y="560">E</text>
+ <div class="hotw"><div class="hoti"><img src="img/ben-anat-lynch.png" alt="חתך אורך של השד"><svg viewBox="0 0 960 1110" preserveAspectRatio="none" style="--lw:6;--bf:23px">
+  <path class="hz" data-hz="n" d="M145,517 C135,525 120,537 112,545 C102,555 95,562 90,567 C82,575 78,580 75,585 C70,590 67,593 65,596 C60,600 57,603 57,607 C56,615 56,622 57,630 C58,637 59,642 61,647 C63,655 65,660 67,665 C70,673 73,682 77,690 C81,697 85,702 90,707 C94,712 98,717 102,725 L112,725 C111,718 111,711 110,705 C107,697 104,688 100,680 C98,672 96,666 92,660 C85,654 78,650 72,645 C70,635 69,625 68,615 C70,605 74,599 80,595 C88,589 96,583 105,577 C115,568 124,558 132,550 C138,542 144,534 150,527 Z" style="--c:#A3402E"/>
+  <path class="hz ln" data-hz="d" d="M70,608 C90,596 108,584 120,578 C135,570 150,564 165,560 M70,612 C100,604 130,596 152,591 C170,585 185,579 195,575 C210,570 222,564 232,560 M70,618 C100,612 130,607 152,604 C180,600 215,592 242,587 M70,625 C100,626 130,627 152,627 C175,629 190,634 205,636 C220,637 235,637 245,637 M72,634 C100,636 130,639 152,641 C180,644 200,648 215,651 C240,656 258,661 270,665 M74,642 C95,647 118,653 140,657 C160,665 172,672 180,676 C195,682 207,687 217,690 M76,648 C95,656 110,664 120,670 C135,678 150,686 162,692" style="--c:#C9893F"/>
+  <path class="hz" data-hz="l" d="M562,338 C575,334 584,334 589,338 C605,360 622,385 630,414 C628,460 622,505 616,552 C608,575 600,600 596,621 C600,645 607,668 610,690 C609,710 607,728 603,745 C590,760 576,770 562,779 C545,800 530,825 514,848 C490,855 465,857 438,855 C410,850 382,843 356,834 C333,826 310,817 288,807 C265,797 244,786 226,772 C215,760 208,745 205,731 C225,724 243,720 260,717 C268,705 272,694 274,683 C270,666 265,650 260,634 C257,611 255,588 253,566 C258,545 265,527 274,510 C288,495 304,481 322,469 C342,455 362,441 384,428 C405,415 428,403 452,393 C475,382 498,370 521,359 C535,351 548,344 562,338 Z" style="--c:#7A5BD6"/>
+  <path class="hz" data-hz="f" d="M150,527 C175,490 200,458 226,428 C255,397 285,370 315,345 C350,310 388,262 425,221 C462,180 505,138 548,103 C585,72 620,48 658,28 C690,15 720,7 750,2 C752,25 752,50 753,69 C738,103 725,138 712,172 C700,207 689,242 678,276 C668,313 659,350 651,386 C645,418 640,450 637,483 C635,460 633,437 630,414 C622,385 605,360 589,338 C580,334 570,334 562,338 C548,344 535,351 521,359 C498,370 475,382 452,393 C428,403 405,415 384,428 C362,441 342,455 322,469 C304,481 288,495 274,510 C265,527 258,545 253,566 C235,560 218,552 200,545 C183,538 166,532 150,527 Z M112,730 C120,755 128,775 137,793 C155,830 178,865 205,897 C235,930 270,952 308,966 C343,976 377,980 411,979 C445,978 480,975 514,972 C533,970 550,968 568,966 C580,955 592,942 603,924 C615,893 627,860 637,828 C638,795 638,763 637,731 C626,737 615,742 603,745 C590,760 576,770 562,779 C545,800 530,825 514,848 C490,855 465,857 438,855 C410,850 382,843 356,834 C333,826 310,817 288,807 C265,797 244,786 226,772 C215,760 208,745 205,731 C175,735 145,735 112,730 Z" style="--c:#2F6FA8"/>
+  <path class="hz" data-hz="p" d="M772,0 L958,0 C930,35 905,70 886,99 C862,148 845,198 830,247 C823,288 818,330 812,370 C800,412 787,453 775,494 C768,535 762,576 756,617 C750,658 744,700 738,741 C733,782 729,823 725,864 C723,905 722,946 722,988 C721,1027 720,1066 719,1108 L617,1108 C617,1088 617,1068 617,1049 C619,1008 621,967 623,926 C626,885 630,843 633,802 C635,761 637,720 639,679 C640,638 641,597 642,556 C646,515 651,473 657,432 C662,391 669,350 676,309 C686,268 696,226 707,185 C718,156 730,128 744,99 C752,66 762,33 772,0 Z" style="--c:#00967D"/>
+  <g class="hzb" style="--c:#A3402E"><circle cx="28" cy="552" r="20"/><text x="28" y="552">A</text></g>
+  <g class="hzb" style="--c:#C9893F"><circle cx="178" cy="468" r="20"/><text x="178" y="468">B</text></g>
+  <g class="hzb" style="--c:#7A5BD6"><circle cx="440" cy="600" r="20"/><text x="440" y="600">C</text></g>
+  <g class="hzb" style="--c:#2F6FA8"><circle cx="520" cy="175" r="20"/><text x="520" y="175">D</text></g>
+  <g class="hzb" style="--c:#00967D"><circle cx="700" cy="600" r="20"/><text x="700" y="600">E</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
   <div class="hzi" data-hzi="n" hidden><b>A · הפטמה והעטרה</b><p>פריחה שמתחילה בפטמה מחשידה ל-<bdi>Paget</bdi>, אקזמה מתחילה בעטרה. פטמה שנמשכה פנימה: אחרי דלקת כרונית מתחת לעטרה היא בדרך כלל דו-צדדית וקיימת שנים. סרטן גורם לשינוי חד-צדדי שמתפתח בשבועות עד חודשים.</p></div>

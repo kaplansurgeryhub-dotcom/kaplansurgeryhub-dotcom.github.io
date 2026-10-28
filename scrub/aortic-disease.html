@@ -100,6 +100,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
 @media print{.brandbar{display:none}}
@@ -169,12 +181,17 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>4</b>אנטומיה · אינטראקטיבי</div>
  <h2>אבי העורקים הבטני במבט של המנתח</h2>
- <div class="hotw"><div class="hoti"><img src="img/aorta-sobotta-retroperitoneum.jpg" alt="הרטרופריטונאום אחרי הסרת המעיים: אבי העורקים, הכליות והעורקים האיליאקיים"><svg viewBox="0 0 800 750" preserveAspectRatio="none">
-  <polygon class="hz" data-hz="vis" points="370,100 560,120 560,185 470,200 375,200" style="--c:#7A5BD6"/><text class="hzl" x="440" y="160">1</text>
-  <polygon class="hz" data-hz="infra" points="380,210 428,210 430,440 378,440" style="--c:#D63C32"/><text class="hzl" x="404" y="290">2</text>
-  <polygon class="hz" data-hz="ivc" points="320,200 365,200 360,450 320,450" style="--c:#2F8CD6"/><text class="hzl" x="342" y="330">3</text>
-  <polygon class="hz" data-hz="ili" points="380,440 430,440 500,550 450,560 405,480 355,560 310,550" style="--c:#2EAA5A"/><text class="hzl" x="404" y="520">4</text>
-  <polygon class="hz" data-hz="ima" points="396,328 427,328 427,362 396,362" style="--c:#F0961E"/><text class="hzl" x="411" y="352">5</text>
+ <div class="hotw"><div class="hoti"><img src="img/aorta-sobotta-retroperitoneum.jpg" alt="הרטרופריטונאום אחרי הסרת המעיים: אבי העורקים, הכליות והעורקים האיליאקיים"><svg viewBox="0 0 800 750" preserveAspectRatio="none" style="--lw:13;--bf:19px">
+  <path class="hz ln" data-hz="vis" d="M428,108 C450,118 465,128 480,138 C500,150 515,162 530,170 C540,174 548,176 556,178 M455,100 C470,108 488,118 505,127 C520,134 538,141 556,147" style="--c:#7A5BD6"/>
+  <path class="hz" data-hz="infra" d="M382,205 L404,205 C407,225 409,245 410,260 C413,280 415,295 417,307 C420,325 422,345 424,360 C426,375 427,388 428,398 C418,404 408,408 400,410 C390,408 380,404 372,398 C372,385 373,372 373,360 C374,340 375,322 376,307 C377,290 377,275 378,260 C379,240 380,222 382,205 Z" style="--c:#D63C32"/>
+  <path class="hz" data-hz="ivc" d="M318,205 L366,205 C367,240 368,270 368,300 C369,330 371,355 372,380 C372,400 371,420 368,440 C360,452 345,458 330,455 C328,430 327,405 326,380 C325,350 323,325 322,300 C321,270 319,240 318,205 Z" style="--c:#2F8CD6"/>
+  <path class="hz" data-hz="ili" d="M378,401 C369,404 360,424 352,437 C344,450 338,465 331,479 C325,493 319,507 314,523 C308,538 303,556 298,571 C293,587 289,600 284,615 C279,630 273,644 269,661 C264,677 259,701 255,714 C252,728 244,735 248,741 C251,747 270,752 276,749 C283,746 281,735 285,722 C288,708 293,685 297,669 C302,653 307,639 312,625 C317,610 321,596 326,581 C331,565 337,548 342,533 C348,518 353,505 359,491 C365,478 371,465 378,453 C385,441 402,427 402,419 C402,410 386,398 378,401 Z M398,417 C398,425 413,443 420,455 C427,467 435,476 440,486 C446,497 449,505 453,515 C458,525 462,538 465,549 C469,561 471,571 475,584 C479,596 483,610 487,624 C491,637 495,651 499,664 C504,678 510,691 515,705 C521,718 524,741 530,747 C537,752 554,746 556,737 C557,729 546,709 541,695 C535,682 529,669 525,656 C520,642 517,629 513,616 C509,603 505,589 501,576 C497,564 495,553 491,541 C487,529 483,516 479,505 C474,494 470,484 464,474 C458,463 451,453 444,441 C437,429 429,407 422,403 C414,399 399,408 398,417 Z" style="--c:#2EAA5A"/>
+  <path class="hz" data-hz="ima" d="M405,336 C410,336 414,340 414,345 C414,350 410,354 405,354 C400,354 396,350 396,345 C396,340 400,336 405,336 Z" style="--c:#F0961E"/>
+  <g class="hzb" style="--c:#7A5BD6"><circle cx="470" cy="190" r="16"/><text x="470" y="190">1</text></g>
+  <g class="hzb" style="--c:#D63C32"><circle cx="447" cy="250" r="16"/><text x="447" y="250">2</text></g>
+  <g class="hzb" style="--c:#2F8CD6"><circle cx="296" cy="330" r="16"/><text x="296" y="330">3</text></g>
+  <g class="hzb" style="--c:#2EAA5A"><circle cx="400" cy="470" r="16"/><text x="400" y="470">4</text></g>
+  <g class="hzb" style="--c:#F0961E"><circle cx="441" cy="345" r="16"/><text x="441" y="345">5</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על מספר בציור כדי לקרוא עליו</p>
   <div class="hzi" data-hzi="vis" hidden><b>1 · עורקי הכליה והווריד הכלייתי השמאלי</b><p>"הצוואר" של המפרצת מתחת לעורקי הכליה. שם מציבים את המלחציים או את האיטום של <bdi>EVAR</bdi>. הווריד הכלייתי השמאלי עובר לפני אבי העורקים. בניתוח מזיזים אותו. אם חותכים אותו חייבים לשמור על הוורידים של בלוטת יותרת הכליה ושל הגונדה, שינקזו את הכליה.</p></div>

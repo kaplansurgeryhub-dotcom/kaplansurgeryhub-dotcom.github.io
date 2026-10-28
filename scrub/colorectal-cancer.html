@@ -94,6 +94,18 @@ bdi{unicode-bidi:isolate}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
 @media print{.brandbar{display:none}}
@@ -247,18 +259,18 @@ bdi{unicode-bidi:isolate}
 <section class="s"><div class="card">
  <div class="kick"><b>8</b>אנטומיה כירורגית · אינטראקטיבי</div>
  <h2>איזה ניתוח לאיזה מקטע?</h2>
- <div class="hotw" style="grid-template-columns:.72fr 1.28fr"><div class="hoti"><img src="img/Sobo_1906_410.jpg" alt="המעי הגס במבט קדמי, המעי הדק מוסט"><svg viewBox="0 0 1200 1582" preserveAspectRatio="none">
-   <polygon class="hz" data-hz="r" points="202,675 272,609 328,656 375,750 394,938 412,1106 394,1200 319,1228 253,1181 216,1031 197,844" style="--c:#2F6FA8"/>
-   <text class="hzl" style="font-size:64px;stroke-width:6px" x="300" y="900">1</text>
-   <polygon class="hz" data-hz="t" points="281,581 338,488 431,417 562,366 712,333 844,333 923,366 900,441 806,422 675,422 544,450 441,497 356,572" style="--c:#00967D"/>
-   <text class="hzl" style="font-size:64px;stroke-width:6px" x="620" y="400">2</text>
-   <polygon class="hz" data-hz="s" points="923,366 975,384 1003,450 994,544 938,562 900,506 900,441" style="--c:#C9893F"/>
-   <text class="hzl" style="font-size:64px;stroke-width:6px" x="952" y="470">3</text>
-   <polygon class="hz" data-hz="d" points="900,525 975,562 966,750 947,938 923,1041 862,1041 844,891 858,703 872,562" style="--c:#7A5BD6"/>
-   <text class="hzl" style="font-size:64px;stroke-width:6px" x="905" y="790">4</text>
-   <polygon class="hz" data-hz="g" points="862,1041 923,1041 900,1144 844,1238 759,1275 675,1266 647,1209 712,1181 797,1134" style="--c:#A3402E"/>
-   <text class="hzl" style="font-size:64px;stroke-width:6px" x="790" y="1200">5</text>
-  </svg></div>
+ <div class="hotw" style="grid-template-columns:.72fr 1.28fr"><div class="hoti"><img src="img/Sobo_1906_410.jpg" alt="המעי הגס במבט קדמי, המעי הדק מוסט"><svg viewBox="0 0 1200 1582" preserveAspectRatio="none" style="--lw:80;--li:.3;--lh:.42;--lo:.4;--bf:40px">
+    <path class="hz ln" data-hz="r" d="M325,1210 C322.5,1200 314.5,1170 310,1150 C305.5,1130 302.8,1115 298,1090 C293.2,1065 286.2,1031.7 281,1000 C275.8,968.3 269.2,933.3 267,900 C264.8,866.7 265,833.3 268,800 C271,766.7 280,730 285,700 C290,670 295.3,638 298,620 C300.7,602 300.5,596.7 301,592" style="--c:#2F6FA8"/>
+    <path class="hz ln" data-hz="t" d="M320,503 C323.3,498.8 328.3,487.2 340,478 C351.7,468.8 371.7,456.3 390,448 C408.3,439.7 428.3,434.3 450,428 C471.7,421.7 495,416 520,410 C545,404 570,398.3 600,392 C630,385.7 666.7,377.3 700,372 C733.3,366.7 773.3,361.7 800,360 C826.7,358.3 846.3,360.7 860,362 C873.7,363.3 878.3,367 882,368" style="--c:#00967D"/>
+    <path class="hz ln" data-hz="s" d="M942,412 C944.2,417.5 951.7,430.3 955,445 C958.3,459.7 961.2,484.8 962,500 C962.8,515.2 960.3,530 960,536" style="--c:#C9893F"/>
+    <path class="hz ln" data-hz="d" d="M942,622 C939.7,631.7 933.7,658.7 928,680 C922.3,701.3 912.7,730 908,750 C903.3,770 900.5,775 900,800 C899.5,825 905.8,866.7 905,900 C904.2,933.3 900,975 895,1000 C890,1025 880.8,1036.7 875,1050 C869.2,1063.3 862.5,1075 860,1080" style="--c:#7A5BD6"/>
+    <path class="hz ln" data-hz="g" d="M800,1156 C794.2,1162.5 778.3,1181.8 765,1195 C751.7,1208.2 734.2,1224.5 720,1235 C705.8,1245.5 693.3,1253 680,1258 C666.7,1263 646.7,1263.8 640,1265" style="--c:#A3402E"/>
+    <g class="hzb" style="--c:#2F6FA8"><circle cx="190" cy="950" r="34"/><text x="190" y="950">1</text></g>
+    <g class="hzb" style="--c:#00967D"><circle cx="620" cy="300" r="34"/><text x="620" y="300">2</text></g>
+    <g class="hzb" style="--c:#C9893F"><circle cx="1030" cy="470" r="34"/><text x="1030" y="470">3</text></g>
+    <g class="hzb" style="--c:#7A5BD6"><circle cx="990" cy="850" r="34"/><text x="990" y="850">4</text></g>
+    <g class="hzb" style="--c:#A3402E"><circle cx="800" cy="1310" r="34"/><text x="800" y="1310">5</text></g>
+   </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על מקטע של המעי הגס כדי לקרוא על אספקת הדם ועל הניתוח</p>
    <div class="hzi" data-hzi="r" hidden><b>1 · צקום וקולון עולה</b><p>אספקה מ-<bdi>SMA</bdi>: <bdi>ileocolic</bdi>, <bdi>right colic</bdi> (כשקיים) והענף הימני של <bdi>middle colic</bdi>. <strong>כריתת מעי ימנית:</strong> קשירה גבוהה של הכלים, האילאום נחתך כ-5 ס״מ מהשסתום והקולון הרוחבי בשליש הקרוב. האומנטום יוצא יחד עם הנתיח. בדיסקציה חושפים את התריסריון ואת ראש הלבלב</p></div>
    <div class="hzi" data-hzi="t" hidden><b>2 · קולון רוחבי</b><p>רוב הגידולים כאן: <strong>כריתה ימנית מורחבת</strong>. קושרים את ה-<bdi>ileocolic</bdi> וגם את ה-<bdi>middle colic</bdi> בבסיסו. החיבור לקולון הרוחבי הרחוק</p></div>

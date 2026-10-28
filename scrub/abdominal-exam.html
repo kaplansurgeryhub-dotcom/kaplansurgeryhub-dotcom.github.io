@@ -100,6 +100,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
 @media print{.brandbar{display:none}}
@@ -153,16 +165,25 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>3</b>מפת הבטן · אינטראקטיבי</div>
  <h2>תשעת אזורי הבטן</h2>
- <div class="hotw"><div class="hoti"><img src="img/Gray1220.png" alt="חלוקת הבטן לתשעה אזורים"><svg viewBox="0 0 434 550" preserveAspectRatio="none">
-  <polygon class="hz" data-hz="rh" points="100,198 150,178 150,278 95,278" style="--c:#2F6FA8"/><text class="hzl" x="124" y="240">1</text>
-  <polygon class="hz" data-hz="ep" points="150,178 262,178 262,278 150,278" style="--c:#A3402E"/><text class="hzl" x="206" y="215">2</text>
-  <polygon class="hz" data-hz="lh" points="262,178 312,198 318,278 262,278" style="--c:#7A5BD6"/><text class="hzl" x="289" y="250">3</text>
-  <polygon class="hz" data-hz="rl" points="95,278 150,278 150,355 92,355" style="--c:#C9893F"/><text class="hzl" x="122" y="300">4</text>
-  <polygon class="hz" data-hz="um" points="150,278 262,278 262,355 150,355" style="--c:#00967D"/><text class="hzl" x="206" y="300">5</text>
-  <polygon class="hz" data-hz="ll" points="262,278 318,278 322,355 262,355" style="--c:#C9893F"/><text class="hzl" x="291" y="300">6</text>
-  <polygon class="hz" data-hz="ri" points="92,355 150,355 150,470 112,440 98,400" style="--c:#A3402E"/><text class="hzl" x="124" y="430">7</text>
-  <polygon class="hz" data-hz="hy" points="150,355 262,355 262,470 206,500 150,470" style="--c:#0A6B5A"/><text class="hzl" x="206" y="450">8</text>
-  <polygon class="hz" data-hz="li" points="262,355 322,355 314,400 300,440 262,470" style="--c:#2F6FA8"/><text class="hzl" x="289" y="430">9</text>
+ <div class="hotw"><div class="hoti"><img src="img/Gray1220.png" alt="חלוקת הבטן לתשעה אזורים"><svg viewBox="0 0 434 550" preserveAspectRatio="none" style="--lw:5;--bf:10.5px">
+  <path class="hz" data-hz="rh" d="M88,184 C104,192 124,197 144,197 L145,277 L97,277 C93,250 89,215 88,184 Z" style="--c:#2F6FA8"/>
+  <path class="hz" data-hz="ep" d="M196,192 C183,210 168,243 159,277 L259,277 C246,250 216,208 196,192 Z" style="--c:#A3402E"/>
+  <path class="hz" data-hz="lh" d="M260,197 C279,197 297,192 311,180 C311,215 310,250 306,277 L260,277 Z" style="--c:#7A5BD6"/>
+  <path class="hz" data-hz="rl" d="M97,278 L145,278 L146,355 L88,355 C94,335 98,308 97,278 Z" style="--c:#C9893F"/>
+  <path class="hz" data-hz="um" d="M145,278 L260,278 L261,355 L146,355 Z" style="--c:#00967D"/>
+  <path class="hz" data-hz="ll" d="M260,278 L306,278 C306,302 310,332 320,355 L261,355 Z" style="--c:#C9893F"/>
+  <path class="hz" data-hz="ri" d="M88,356 L146,356 L146,456 C128,442 112,422 101,402 C95,388 92,372 88,356 Z" style="--c:#A3402E"/>
+  <path class="hz" data-hz="hy" d="M146,356 L261,356 L262,451 C241,467 221,475 200,476 C180,476 161,468 146,456 Z" style="--c:#0A6B5A"/>
+  <path class="hz" data-hz="li" d="M261,356 L320,356 C316,376 310,394 300,410 C288,429 275,442 262,451 Z" style="--c:#2F6FA8"/>
+  <g class="hzb" style="--c:#2F6FA8"><circle cx="128" cy="264" r="9"/><text x="128" y="264">1</text></g>
+  <g class="hzb" style="--c:#A3402E"><circle cx="214" cy="266" r="9"/><text x="214" y="266">2</text></g>
+  <g class="hzb" style="--c:#7A5BD6"><circle cx="284" cy="264" r="9"/><text x="284" y="264">3</text></g>
+  <g class="hzb" style="--c:#C9893F"><circle cx="120" cy="338" r="9"/><text x="120" y="338">4</text></g>
+  <g class="hzb" style="--c:#00967D"><circle cx="172" cy="340" r="9"/><text x="172" y="340">5</text></g>
+  <g class="hzb" style="--c:#C9893F"><circle cx="286" cy="338" r="9"/><text x="286" y="338">6</text></g>
+  <g class="hzb" style="--c:#A3402E"><circle cx="128" cy="422" r="9"/><text x="128" y="422">7</text></g>
+  <g class="hzb" style="--c:#0A6B5A"><circle cx="203" cy="445" r="9"/><text x="203" y="445">8</text></g>
+  <g class="hzb" style="--c:#2F6FA8"><circle cx="280" cy="410" r="9"/><text x="280" y="410">9</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו (ימין המטופל בצד שמאל של הציור)</p>
   <div class="hzi" data-hzi="rh" hidden><b>1 · תת-צלעי ימני</b><p>כבד, כיס מרה, כפיפת הכבד של המעי הגס. כאן בודקים את סימן מרפי: עצירת הנשימה בשאיפה מרמזת על כיס מרה חריף</p></div>

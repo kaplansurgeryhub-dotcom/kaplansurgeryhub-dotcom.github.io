@@ -100,6 +100,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
 @media print{.brandbar{display:none}}
@@ -260,16 +272,15 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>9</b>הרטרופריטונאום · אינטראקטיבי</div>
  <h2>שלושה אזורים, החלטה אחת: בפצע חודר פותחים</h2>
- <div class="hotw"><div class="hoti" style="max-width:420px;justify-self:center;width:100%"><img src="img/Sobo_1906_413_crop.jpg" alt="הדופן האחורית של הבטן: כליות, אבי העורקים, הווריד הנבוב ואגן"><svg viewBox="0 0 1100 1210" preserveAspectRatio="none">
-   <polygon class="hz" data-hz="z1" points="399,83 646,83 653,413 619,681 454,681 413,413" style="--c:#7A5BD6"/>
-   <text class="hzl" style="font-size:56px;stroke-width:6px" x="530" y="560">1</text>
-   <polygon class="hz" data-hz="z2" points="282,316 399,296 429,454 407,605 314,613 272,468" style="--c:#00967D"/>
-   <text class="hzl" style="font-size:56px;stroke-width:6px" x="350" y="480">2</text>
-   <polygon class="hz" data-hz="z2" points="660,330 811,344 842,481 800,605 674,594 644,454" style="--c:#00967D"/>
-   <text class="hzl" style="font-size:56px;stroke-width:6px" x="745" y="490">2</text>
-   <polygon class="hz" data-hz="z3" points="344,688 715,688 770,880 715,1128 578,1183 413,1155 316,963" style="--c:#C9893F"/>
-   <text class="hzl" style="font-size:56px;stroke-width:6px" x="540" y="930">3</text>
-  </svg></div>
+ <div class="hotw"><div class="hoti" style="max-width:420px;justify-self:center;width:100%"><img src="img/Sobo_1906_413_crop.jpg" alt="הדופן האחורית של הבטן: כליות, אבי העורקים, הווריד הנבוב ואגן"><svg viewBox="0 0 1100 1170" preserveAspectRatio="none" style="--lw:20;--bf:31px">
+ <path class="hz" data-hz="z1" d="M452,75 C465,70.3 509.5,70.3 530,72 C550.5,73.7 562.5,77.8 575,85 C587.5,92.2 597.5,100.8 605,115 C612.5,129.2 616.2,150.8 620,170 C623.8,189.2 625.5,208.3 628,230 C630.5,251.7 633,281.7 635,300 C637,318.3 640.8,326.7 640,340 C639.2,353.3 635.8,365 630,380 C624.2,395 610.8,415 605,430 C599.2,445 597.2,455 595,470 C592.8,485 592.8,501.7 592,520 C591.2,538.3 590.7,560 590,580 C589.3,600 590.5,624.7 588,640 C585.5,655.3 581.7,664.3 575,672 C568.3,679.7 557.2,682.7 548,686 C538.8,689.3 529.7,690 520,692 C510.3,694 498.3,698.3 490,698 C481.7,697.7 475,699.7 470,690 C465,680.3 462.2,658.3 460,640 C457.8,621.7 457.7,600 457,580 C456.3,560 456.3,538.3 456,520 C455.7,501.7 456.2,480.8 455,470 C453.8,459.2 453.2,459 449,455 C444.8,451 435.2,449.2 430,446 C424.8,442.8 422.5,443.7 418,436 C413.5,428.3 406,414.3 403,400 C400,385.7 400,366.7 400,350 C400,333.3 402.2,315 403,300 C403.8,285 405,270.5 405,260 C405,249.5 402.2,245 403,237 C403.8,229 406.3,219.5 410,212 C413.7,204.5 420,199.3 425,192 C430,184.7 435.5,176.7 440,168 C444.5,159.3 450,151.3 452,140 C454,128.7 452,110.8 452,100 C452,89.2 439,79.7 452,75 Z" style="--c:#7A5BD6"/>
+ <path class="hz" data-hz="z2" d="M352,302 C358.7,295.7 364.8,291 372,289 C379.2,287 390,284.8 395,290 C400,295.2 401.2,304.5 402,320 C402.8,335.5 397.3,363.7 400,383 C402.7,402.3 411.3,423.5 418,436 C424.7,448.5 435.5,447.3 440,458 C444.5,468.7 445,486.3 445,500 C445,513.7 442.5,527.5 440,540 C437.5,552.5 435,565 430,575 C425,585 417.5,594.2 410,600 C402.5,605.8 393.3,608.8 385,610 C376.7,611.2 368.3,610 360,607 C351.7,604 342,599 335,592 C328,585 323,575.3 318,565 C313,554.7 308.2,542.5 305,530 C301.8,517.5 299.8,505 299,490 C298.2,475 299.2,455 300,440 C300.8,425 301.5,412.5 304,400 C306.5,387.5 310.3,377.2 315,365 C319.7,352.8 325.8,337.5 332,327 C338.2,316.5 345.3,308.3 352,302 Z M688,400 C692.7,390 691.3,382.5 700,375 C708.7,367.5 725.8,358.8 740,355 C754.2,351.2 771.7,349.8 785,352 C798.3,354.2 811.2,360 820,368 C828.8,376 834.3,388 838,400 C841.7,412 842,425 842,440 C842,455 840.3,473.3 838,490 C835.7,506.7 833,525.3 828,540 C823,554.7 816.8,568.3 808,578 C799.2,587.7 786.8,594 775,598 C763.2,602 748.7,603.3 737,602 C725.3,600.7 713.8,596.2 705,590 C696.2,583.8 690.2,576.7 684,565 C677.8,553.3 671,535.8 668,520 C665,504.2 665.3,484.2 666,470 C666.7,455.8 668.3,446.7 672,435 C675.7,423.3 683.3,410 688,400 Z" style="--c:#00967D"/>
+ <path class="hz" data-hz="z3" d="M548,686 C558,685.7 569.3,686.8 580,690 C590.7,693.2 602,693.3 612,705 C622,716.7 630.7,740.8 640,760 C649.3,779.2 658,800 668,820 C678,840 690,860 700,880 C710,900 718.8,920 728,940 C737.2,960 747.7,981.7 755,1000 C762.3,1018.3 771.2,1033.3 772,1050 C772.8,1066.7 772,1084.2 760,1100 C748,1115.8 723.3,1134.2 700,1145 C676.7,1155.8 646.7,1161.2 620,1165 C593.3,1168.8 565,1168.8 540,1168 C515,1167.2 490,1164.7 470,1160 C450,1155.3 434.2,1149.2 420,1140 C405.8,1130.8 393.3,1118.3 385,1105 C376.7,1091.7 370.8,1077.5 370,1060 C369.2,1042.5 375,1020 380,1000 C385,980 392.5,961.7 400,940 C407.5,918.3 416.7,893.3 425,870 C433.3,846.7 442.5,820 450,800 C457.5,780 463.7,764.7 470,750 C476.3,735.3 479.7,721.7 488,712 C496.3,702.3 510,696.3 520,692 C530,687.7 538,686.3 548,686 Z" style="--c:#C9893F"/>
+ <g class="hzb" style="--c:#7A5BD6"><circle cx="630" cy="612" r="26"/><text x="630" y="612">1</text></g>
+ <g class="hzb" style="--c:#00967D"><circle cx="268" cy="470" r="26"/><text x="268" y="470">2</text></g>
+ <g class="hzb" style="--c:#00967D"><circle cx="874" cy="480" r="26"/><text x="874" y="480">2</text></g>
+ <g class="hzb" style="--c:#C9893F"><circle cx="810" cy="1060" r="26"/><text x="810" y="1060">3</text></g>
+ </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
    <div class="hzi" data-hzi="z1" hidden><b>אזור 1 · מרכזי</b><p>אבי העורקים, הווריד הנבוב התחתון, תחילת כלי הדם של המעי ולידם הלבלב והתריסריון. המטומה כאן נבדקת תמיד, גם בחבלה קהה. גישה לאבי העורקים מעל הכליות ולשער הכליה השמאלית: הזזת הקרביים השמאליים למרכז (<bdi>Mattox</bdi>). לווריד הנבוב ולכלים מתחת לכליות: הזזת הקרביים הימניים (<bdi>Cattell-Braasch</bdi>)</p></div>
    <div class="hzi" data-hzi="z2" hidden><b>אזור 2 · צדדי</b><p>הכליות ובלוטות האדרנל. בפצע חודר פותחים וחוקרים את ההמטומה. בחבלה קהה הכללים שונים ונדבר עליהם בשבוע 6</p></div>

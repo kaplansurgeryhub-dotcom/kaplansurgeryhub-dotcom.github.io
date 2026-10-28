@@ -100,6 +100,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
 @media print{.brandbar{display:none}}
@@ -329,14 +341,21 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>11</b>מקרה 3 · אנטומיה</div>
  <h2>אספקת הדם של המעי הגס ואזורי קו פרשת המים</h2>
- <div class="hotw"><div class="hoti"><img src="img/Gray537.png" alt="העורק המזנטרי התחתון וענפיו"><svg viewBox="0 0 535 650" preserveAspectRatio="none">
-  <polygon class="hz" data-hz="rc" points="20,160 105,150 115,430 30,440" style="--c:#2F8CD6"/><text class="hzl" x="68" y="300">1</text>
-  <polygon class="hz" data-hz="mc" points="175,110 240,110 235,250 190,250" style="--c:#7A5BD6"/><text class="hzl" x="208" y="190">2</text>
-  <polygon class="hz" data-hz="sf" points="395,45 495,65 495,170 405,160" style="--c:#D63C32"/><text class="hzl" x="448" y="118">3</text>
-  <polygon class="hz" data-hz="ima" points="262,325 300,325 300,372 262,372" style="--c:#F0961E"/><text class="hzl" x="281" y="356">4</text>
-  <polygon class="hz" data-hz="lca" points="305,250 405,240 410,290 305,300" style="--c:#2EAA5A"/><text class="hzl" x="356" y="276">5</text>
-  <polygon class="hz" data-hz="sig" points="325,345 430,365 430,470 335,460" style="--c:#C2417F"/><text class="hzl" x="380" y="418">6</text>
-  <polygon class="hz" data-hz="rs" points="232,445 300,445 300,525 232,525" style="--c:#B8860B"/><text class="hzl" x="266" y="492">7</text>
+ <div class="hotw"><div class="hoti"><img src="img/Gray537.png" alt="העורק המזנטרי התחתון וענפיו"><svg viewBox="0 0 535 650" preserveAspectRatio="none" style="--lw:9;--bf:13px">
+  <path class="hz" data-hz="rc" d="M84,66 C70,72 64,95 62,120 C60,150 54,180 46,210 C42,240 38,265 30,290 C18,300 13,330 14,350 C8,370 4,395 12,412 C20,430 24,455 38,472 C55,478 75,465 86,435 C98,410 104,380 100,345 C104,320 108,300 106,280 C104,250 108,200 108,150 C108,110 106,85 100,64 C95,58 90,60 84,66 Z" style="--c:#2F8CD6"/>
+  <path class="hz ln" data-hz="mc" d="M212,199 C206,189 202,175 205,158 C206,152 207,148 207,146 C200,138 190,128 180,126 C170,126 160,130 148,138 M207,146 C215,142 230,135 245,130 C258,127 275,120 292,112" style="--c:#7A5BD6"/>
+  <path class="hz" data-hz="sf" d="M398,48 C410,42 425,38 440,40 C460,45 480,55 495,72 C505,90 512,108 516,125 C520,140 523,160 520,178 C500,186 455,186 433,176 C436,150 437,132 430,118 C418,108 405,98 393,92 C390,75 393,58 398,48 Z" style="--c:#D63C32"/>
+  <path class="hz ln" data-hz="ima" d="M277,218 C283,235 291,258 300,276" style="--c:#F0961E"/>
+  <path class="hz ln" data-hz="lca" d="M300,275 C315,271 340,268 365,278 C380,268 398,250 403,225 C406,200 400,170 390,150 C382,135 368,120 350,110 M365,278 C378,292 385,310 386,330 C390,350 396,375 395,400" style="--c:#2EAA5A"/>
+  <path class="hz" data-hz="sig" d="M320,476 C335,481 348,472 360,465 C372,458 385,446 400,441 C415,438 430,442 445,435 C455,431 470,427 482,432 C490,438 491,452 495,462 C505,470 512,485 507,500 C500,512 485,518 470,524 C455,530 447,538 440,546 C425,553 410,560 395,564 C375,567 355,562 342,552 C333,543 328,532 320,528 Z" style="--c:#C2417F"/>
+  <path class="hz" data-hz="rs" d="M236,494 C248,482 265,474 285,471 C300,469 312,472 320,476 C320,494 320,511 320,528 C305,524 290,522 275,524 C262,527 250,530 240,526 C232,518 230,504 236,494 Z" style="--c:#B8860B"/>
+  <g class="hzb" style="--c:#2F8CD6"><circle cx="55" cy="335" r="11"/><text x="55" y="335">1</text></g>
+  <g class="hzb" style="--c:#7A5BD6"><circle cx="224" cy="166" r="11"/><text x="224" y="166">2</text></g>
+  <g class="hzb" style="--c:#D63C32"><circle cx="468" cy="100" r="11"/><text x="468" y="100">3</text></g>
+  <g class="hzb" style="--c:#F0961E"><circle cx="314" cy="232" r="11"/><text x="314" y="232">4</text></g>
+  <g class="hzb" style="--c:#2EAA5A"><circle cx="420" cy="262" r="11"/><text x="420" y="262">5</text></g>
+  <g class="hzb" style="--c:#C2417F"><circle cx="440" cy="500" r="11"/><text x="440" y="500">6</text></g>
+  <g class="hzb" style="--c:#B8860B"><circle cx="216" cy="500" r="11"/><text x="216" y="500">7</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
   <div class="hzi" data-hzi="rc" hidden><b>1 · המעי הגס הימני (עורק מזנטרי עליון)</b><p>העורק האילאוקולי הוא ענף סופי של המזנטרי העליון. לכן הצד הימני רגיש לתסחיף ולזרימה נמוכה (אי-ספיקת לב, דימום, אלח דם). איסכמיה של צד ימין בלבד: פחות דם ויותר ניתוחים. מחייבת <bdi>CTA</bdi> לשלילת איסכמיה מזנטרית חריפה.</p></div>

@@ -94,6 +94,18 @@ bdi{unicode-bidi:isolate}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
 @media print{.brandbar{display:none}}
@@ -172,18 +184,18 @@ bdi{unicode-bidi:isolate}
 <section class="s"><div class="card">
  <div class="kick"><b>4</b>אנטומיה · אינטראקטיבי</div>
  <h2>הרקטום והשכנים שלו</h2>
- <div class="hotw"><div class="hoti"><img src="img/Sobo_1906_483.jpg" alt="חתך סגיטלי של אגן גבר"><svg viewBox="0 0 1200 905" preserveAspectRatio="none">
-   <polygon class="hz" data-hz="m" points="656,412 806,403 900,488 938,600 900,675 806,712 722,731 656,712 638,581" style="--c:#00967D"/>
-   <text class="hzl" style="font-size:44px;stroke-width:5px" x="790" y="590">1</text>
-   <polygon class="hz" data-hz="b" points="938,178 1041,159 1111,300 1106,488 1022,562 947,525 966,375" style="--c:#8A6A3A"/>
-   <text class="hzl" style="font-size:44px;stroke-width:5px" x="1030" y="370">2</text>
-   <polygon class="hz" data-hz="a" points="488,380 562,361 609,394 647,441 600,473 525,488 483,450" style="--c:#C9893F"/>
-   <text class="hzl" style="font-size:44px;stroke-width:5px" x="560" y="440">3</text>
-   <polygon class="hz" data-hz="v" points="497,220 581,192 712,202 764,262 750,347 694,370 600,368 525,349 492,281" style="--c:#3D8FC9"/>
-   <text class="hzl" style="font-size:44px;stroke-width:5px" x="625" y="300">4</text>
-   <polygon class="hz" data-hz="s" points="623,656 675,661 741,722 731,778 656,783 614,741" style="--c:#A3402E"/>
-   <text class="hzl" style="font-size:44px;stroke-width:5px" x="678" y="740">5</text>
-  </svg></div>
+ <div class="hotw"><div class="hoti"><img src="img/Sobo_1906_483.jpg" alt="חתך סגיטלי של אגן גבר"><svg viewBox="0 0 1200 905" preserveAspectRatio="none" style="--lw:8;--bf:28px">
+  <path class="hz" data-hz="m" d="M982,237 C960,270 920,300 896,309 C860,325 830,345 807,351 C770,365 740,378 700,396 C670,415 640,440 620,479 C605,520 598,560 600,605 C603,640 615,670 640,690 L700,690 C690,650 683,600 685,560 C688,520 700,485 723,455 C760,450 790,455 818,458 C835,448 860,432 880,415 C920,385 950,350 965,310 C980,280 992,255 993,241 Z" style="--c:#00967D"/>
+  <path class="hz" data-hz="b" d="M1003,105 L1105,105 C1108,160 1100,230 1080,290 C1060,340 1030,380 990,410 C950,435 900,455 850,468 C835,470 822,468 816,460 C835,440 860,425 880,405 C910,375 940,335 960,300 C985,290 1000,270 1002,240 C1004,190 1003,140 1003,105 Z" style="--c:#8A6A3A"/>
+  <path class="hz" data-hz="a" d="M500,392 C520,378 552,372 575,380 C585,395 582,410 578,420 C595,425 615,430 628,442 C636,458 632,478 620,490 C600,500 570,498 548,490 C525,482 505,465 497,448 C490,430 490,408 500,392 Z" style="--c:#C9893F"/>
+  <path class="hz" data-hz="v" d="M488,200 C520,186 580,188 620,196 C680,210 735,245 760,285 C775,315 772,350 750,375 C725,392 680,392 640,386 C615,382 600,375 590,368 C575,355 555,350 535,345 C510,335 495,300 490,260 C487,235 486,215 488,200 Z M762,342 C775,332 790,325 806,322 C800,334 790,344 776,350 C770,350 765,347 762,342 Z" style="--c:#3D8FC9"/>
+  <path class="hz" data-hz="s" d="M640,676 C660,684 696,690 722,686 C738,702 744,726 737,748 C718,764 686,770 662,766 C644,750 632,722 632,700 C632,690 635,682 640,676 Z" style="--c:#A3402E"/>
+  <g class="hzb" style="--c:#00967D"><circle cx="760" cy="520" r="24"/><text x="760" y="520">1</text></g>
+  <g class="hzb" style="--c:#8A6A3A"><circle cx="1135" cy="330" r="24"/><text x="1135" y="330">2</text></g>
+  <g class="hzb" style="--c:#C9893F"><circle cx="645" cy="505" r="24"/><text x="645" y="505">3</text></g>
+  <g class="hzb" style="--c:#3D8FC9"><circle cx="545" cy="255" r="24"/><text x="545" y="255">4</text></g>
+  <g class="hzb" style="--c:#A3402E"><circle cx="775" cy="745" r="24"/><text x="775" y="745">5</text></g>
+ </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על אזור בחתך כדי לקרוא עליו</p>
    <div class="hzi" data-hzi="m" hidden><b>1 · הרקטום והמזורקטום</b><p>המזורקטום עטוף בפציה דקה (<bdi>fascia propria</bdi>) ומכיל את ענפי ה-<bdi>IMA</bdi> ואת הלימפה. <strong>כריתת המזורקטום (<bdi>TME</bdi>)</strong> נעשית מחוץ לפציה הזו ומוציאה הכול כגוש אחד. לימפה משני השלישים העליונים עולה לבלוטות של ה-<bdi>IMA</bdi>. מהשליש התחתון גם לצדדים, לבלוטות האיליאקה הפנימית</p></div>
    <div class="hzi" data-hzi="b" hidden><b>2 · העצה והפציה הפרה-סקרלית</b><p>הדיסקציה האחורית עוברת <strong>לפני</strong> הפציה הפרה-סקרלית. מתחת לה יש מקלעת ורידים: קרע שם מדמם קשות: הכלים נסוגים לתוך החורים של העצה. מעל הפרומונטוריום עוברת המקלעת ההיפוגסטרית: פגיעה בה גורמת לשפיכה לאחור</p></div>

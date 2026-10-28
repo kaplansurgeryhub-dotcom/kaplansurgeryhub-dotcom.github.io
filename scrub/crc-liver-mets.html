@@ -94,6 +94,18 @@ bdi{unicode-bidi:isolate}
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
 @media print{.brandbar{display:none}}
@@ -188,12 +200,12 @@ bdi{unicode-bidi:isolate}
 <section class="s"><div class="card">
  <div class="kick"><b>5</b>אנטומיה · אינטראקטיבי</div>
  <h2>הסגמנטים ושמות הכריתות</h2>
- <div class="hotw" style="grid-template-columns:1fr 1fr"><div class="hoti"><img src="img/couinaud-anterior.jpg" alt="סגמנטים של הכבד לפי קוינו, מבט קדמי"><svg viewBox="0 0 1000 1000" preserveAspectRatio="none">
-   <polygon class="hz" data-hz="p" points="175,290 245,520 345,745 160,810 130,760 120,560 130,380" style="--c:#A3402E"/>
-   <polygon class="hz" data-hz="a" points="180,290 300,248 500,252 525,490 495,690 345,745 245,520" style="--c:#2F6FA8"/>
-   <polygon class="hz" data-hz="m" points="500,252 620,280 660,330 655,580 625,640 560,680 495,690 525,490" style="--c:#7A5BD6"/>
-   <polygon class="hz" data-hz="l" points="620,280 780,290 880,380 890,460 820,560 720,600 655,580 660,330" style="--c:#00967D"/>
-  </svg></div>
+ <div class="hotw" style="grid-template-columns:1fr 1fr"><div class="hoti"><img src="img/couinaud-anterior.jpg" alt="סגמנטים של הכבד לפי קוינו, מבט קדמי"><svg viewBox="0 0 1000 1000" preserveAspectRatio="none" style="--lw:10;--bf:26px">
+  <path class="hz" data-hz="p" d="M175,289 C179.2,293.2 178.5,314 182,329 C185.5,344 190.7,362.3 196,379 C201.3,395.7 208,412.3 214,429 C220,445.7 226.7,464.5 232,479 C237.3,493.5 240.7,500.7 246,516 C251.3,531.3 257.3,553.5 264,571 C270.7,588.5 277.7,601.8 286,621 C294.3,640.2 303.7,665.2 314,686 C324.3,706.8 350.3,733 348,746 C345.7,759 316.3,757.3 300,764 C283.7,770.7 265.5,778.8 250,786 C234.5,793.2 221.3,802.3 207,807 C192.7,811.7 174.7,815.2 164,814 C153.3,812.8 148,807.2 143,800 C138,792.8 135.8,785.3 134,771 C132.2,756.7 133.2,735.3 132,714 C130.8,692.7 128.8,664.3 127,643 C125.2,621.7 123.2,605 121,586 C118.8,567 115.7,548.2 114,529 C112.3,509.8 111,490.2 111,471 C111,451.8 112,431.8 114,414 C116,396.2 118.8,378.8 123,364 C127.2,349.2 133.3,335 139,325 C144.7,315 151,310 157,304 C163,298 170.8,284.8 175,289 Z" style="--c:#A3402E"/>
+  <path class="hz" data-hz="a" d="M175,289 C176.8,278.8 182.8,274.5 193,268 C203.2,261.5 218.2,254.2 236,250 C253.8,245.8 277.5,244.5 300,243 C322.5,241.5 349.5,240.5 371,241 C392.5,241.5 408.7,243.8 429,246 C449.3,248.2 479.3,245 493,254 C506.7,263 506.8,282.8 511,300 C515.2,317.2 516.3,335.5 518,357 C519.7,378.5 520.5,406.3 521,429 C521.5,451.7 521.5,471.7 521,493 C520.5,514.3 519.7,538 518,557 C516.3,576 513.3,590.3 511,607 C508.7,623.7 506,643.3 504,657 C502,670.7 506.8,680.5 499,689 C491.2,697.5 468.7,702.5 457,708 C445.3,713.5 439.7,717.3 429,722 C418.3,726.7 406.5,732 393,736 C379.5,740 361.2,754.3 348,746 C334.8,737.7 324.3,706.8 314,686 C303.7,665.2 294.3,640.2 286,621 C277.7,601.8 270.7,588.5 264,571 C257.3,553.5 251.3,531.3 246,516 C240.7,500.7 237.3,493.5 232,479 C226.7,464.5 220,445.7 214,429 C208,412.3 201.3,395.7 196,379 C190.7,362.3 185.5,344 182,329 C178.5,314 173.2,299.2 175,289 Z" style="--c:#2F6FA8"/>
+  <path class="hz" data-hz="m" d="M493,254 C498.3,248 527.5,260.5 543,264 C558.5,267.5 573.5,272.5 586,275 C598.5,277.5 608,274.8 618,279 C628,283.2 638.8,290.5 646,300 C653.2,309.5 657.7,320.5 661,336 C664.3,351.5 665.5,371.7 666,393 C666.5,414.3 665.5,443.8 664,464 C662.5,484.2 659.2,497.3 657,514 C654.8,530.7 653.3,550.8 651,564 C648.7,577.2 646.7,584.7 643,593 C639.3,601.3 635,606.8 629,614 C623,621.2 616.7,628.8 607,636 C597.3,643.2 581.7,649.8 571,657 C560.3,664.2 552.5,673.7 543,679 C533.5,684.3 521.3,687.3 514,689 C506.7,690.7 500.7,694.3 499,689 C497.3,683.7 502,670.7 504,657 C506,643.3 508.7,623.7 511,607 C513.3,590.3 516.3,576 518,557 C519.7,538 520.5,514.3 521,493 C521.5,471.7 521.5,451.7 521,429 C520.5,406.3 519.7,378.5 518,357 C516.3,335.5 515.2,317.2 511,300 C506.8,282.8 487.7,260 493,254 Z" style="--c:#7A5BD6"/>
+  <path class="hz" data-hz="l" d="M618,279 C619.8,276 643.3,282.3 657,282 C670.7,281.7 684.5,277 700,277 C715.5,277 733.3,278.2 750,282 C766.7,285.8 784.5,292.2 800,300 C815.5,307.8 829.8,317.2 843,329 C856.2,340.8 871,355.7 879,371 C887,386.3 889.8,406.7 891,421 C892.2,435.3 888.7,448 886,457 C883.3,466 881,465.5 875,475 C869,484.5 860.2,500.3 850,514 C839.8,527.7 827.2,545.7 814,557 C800.8,568.3 785.2,575.5 771,582 C756.8,588.5 742,594.2 729,596 C716,597.8 703.8,595.3 693,593 C682.2,590.7 671,586.8 664,582 C657,577.2 652.2,575.3 651,564 C649.8,552.7 654.8,530.7 657,514 C659.2,497.3 662.5,484.2 664,464 C665.5,443.8 666.5,414.3 666,393 C665.5,371.7 664.3,351.5 661,336 C657.7,320.5 653.2,309.5 646,300 C638.8,290.5 616.2,282 618,279 Z" style="--c:#00967D"/>
+ </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על חלק בכבד כדי לקרוא עליו</p>
    <div class="hzi" data-hzi="p" hidden><b>סגמנטים 6 ו-7 · הסקטור האחורי הימני</b><p>הווריד ההפטי הימני מפריד בינו לבין הסקטור הקדמי. יחד עם 5 ו-8 הם <strong>הכבד הימני</strong>. כריתת סגמנטים 5–8 נקראת כריתת כבד ימנית (<bdi>right hepatectomy</bdi>)</p></div>
    <div class="hzi" data-hzi="a" hidden><b>סגמנטים 5 ו-8 · הסקטור הקדמי הימני</b><p>בין הכבד הימני לשמאלי עובר <strong>הווריד ההפטי האמצעי</strong>, בקו של קנטלי: ממיטת כיס המרה לצד השמאלי של הווריד הנבוב. אין לגבול הזה סימן חיצוני על פני הכבד</p></div>

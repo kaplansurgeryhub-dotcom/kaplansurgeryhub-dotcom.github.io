@@ -100,6 +100,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
 @media print{.brandbar{display:none}}
@@ -274,13 +286,19 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>8</b>אנטומיה · אינטראקטיבי</div>
  <h2>הקיבה מורמת: מאיפה מדממים?</h2>
- <div class="hotw"><div class="hoti"><img src="img/Gray533.png" alt="העורק הצליאקי וענפיו, הקיבה מורמת"><svg viewBox="0 0 700 745" preserveAspectRatio="none">
-  <polygon class="hz" data-hz="gda" points="140,418 174,418 166,508 140,508" style="--c:#D63C32"/><text class="hzl" x="157" y="470">1</text>
-  <polygon class="hz" data-hz="duo" points="40,445 135,440 135,530 40,548" style="--c:#2F8CD6"/><text class="hzl" x="88" y="500">2</text>
-  <polygon class="hz" data-hz="lga" points="240,415 262,415 310,350 296,330 275,335 240,395" style="--c:#F0961E"/><text class="hzl" x="272" y="380">3</text>
-  <polygon class="hz" data-hz="pv" points="150,392 192,392 200,462 162,482" style="--c:#7A5BD6"/><text class="hzl" x="176" y="440">4</text>
-  <polygon class="hz" data-hz="sv" points="205,450 300,462 392,476 392,496 300,490 205,478" style="--c:#2EAA5A"/><text class="hzl" x="300" y="483">5</text>
-  <polygon class="hz" data-hz="sg" points="500,398 600,392 612,470 512,472" style="--c:#C2417F"/><text class="hzl" x="556" y="440">6</text>
+ <div class="hotw"><div class="hoti"><img src="img/Gray533.png" alt="העורק הצליאקי וענפיו, הקיבה מורמת"><svg viewBox="0 0 700 745" preserveAspectRatio="none" style="--lw:9;--bf:16px">
+  <path class="hz ln" data-hz="gda" d="M158,410 C158,414,160,423,160,431 C160,439,158,450,157,458 C156,466,154,473,153,479 C152,485,151,492,150,494" style="--c:#D63C32;--lw:8"/>
+  <path class="hz" data-hz="duo" d="M59,514 C53,516,49,516,47,521 C44,526,42,535,41,542 C40,550,40,558,41,566 C41,574,41,582,43,590 C44,598,47,607,51,614 C55,621,62,628,66,632 C71,637,73,636,78,641 C83,646,90,656,96,662 C103,669,110,675,117,680 C124,686,131,691,138,694 C146,697,154,699,162,699 C171,699,181,697,189,696 C198,695,206,693,213,691 C220,688,227,685,231,682 C236,678,239,675,240,670 C241,665,241,660,237,650 C233,641,223,619,216,611 C210,603,205,605,198,604 C191,602,181,603,174,602 C167,601,160,602,156,599 C152,597,150,594,149,587 C147,581,146,570,146,560 C145,551,147,539,147,530 C148,521,152,512,149,508 C146,503,136,503,129,503 C122,503,114,505,105,506 C97,507,86,508,78,509 C70,510,64,512,59,514 Z" style="--c:#2F8CD6"/>
+  <path class="hz ln" data-hz="lga" d="M231,416 C231,413,229,406,229,400 C229,394,229,388,231,382 C233,376,236,370,240,365 C244,360,248,355,252,352 C256,349,261,346,266,345 C271,344,276,344,281,344 C286,344,290,346,293,348 C296,350,300,354,301,357 C302,360,300,364,298,366 C296,368,290,367,289,367" style="--c:#F0961E;--lw:10"/>
+  <path class="hz" data-hz="pv" d="M155,391 C159,387,175,388,180,391 C185,395,181,406,183,413 C185,420,189,427,191,434 C192,441,194,448,194,455 C193,463,192,472,189,479 C187,486,182,493,179,496 C175,499,170,499,167,497 C164,495,163,488,161,482 C159,477,156,471,155,464 C153,457,151,448,151,440 C150,432,151,424,152,416 C152,408,150,396,155,391 Z" style="--c:#7A5BD6"/>
+  <path class="hz ln" data-hz="sv" d="M186,474 C188,473,192,471,198,470 C204,469,215,468,225,469 C235,470,248,472,258,474 C268,476,278,477,288,478 C298,479,308,480,318,481 C328,482,338,482,348,482 C358,482,368,483,375,484 C382,485,388,487,390,488" style="--c:#2EAA5A;--lw:13"/>
+  <path class="hz ln" data-hz="sg" d="M527,458 C527,455,527,448,527,442 C527,436,525,428,525,425 M555,442 C555,439,554,429,553,422 C552,415,552,408,551,402 C550,396,548,387,548,384 M568,428 C568,425,567,416,567,410 C567,404,566,398,566,392 C566,386,567,380,567,377 M575,420 C577,418,584,411,588,407 C592,403,596,399,600,396 C604,393,612,388,614,387" style="--c:#C2417F;--lw:7"/>
+  <g class="hzb" style="--c:#D63C32"><circle cx="135" cy="447" r="14"/><text x="135" y="447">1</text></g>
+  <g class="hzb" style="--c:#2F8CD6"><circle cx="22" cy="590" r="14"/><text x="22" y="590">2</text></g>
+  <g class="hzb" style="--c:#F0961E"><circle cx="318" cy="374" r="14"/><text x="318" y="374">3</text></g>
+  <g class="hzb" style="--c:#7A5BD6"><circle cx="200" cy="442" r="14"/><text x="200" y="442">4</text></g>
+  <g class="hzb" style="--c:#2EAA5A"><circle cx="300" cy="462" r="14"/><text x="300" y="462">5</text></g>
+  <g class="hzb" style="--c:#C2417F"><circle cx="588" cy="372" r="14"/><text x="588" y="372">6</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
   <div class="hzi" data-hzi="gda" hidden><b>1 · העורק הגסטרודואודנלי</b><p>יורד מאחורי החלק הראשון של התריסריון. כיב בדופן האחורית שוחק אותו. לכן זה העורק שמדמם ברוב הניתוחים לכיב מדמם. בניתוח: תפר מעל ומתחת לכיב ותפר <bdi>U</bdi> מדיאלי לענף הלבלבי הרוחבי.</p></div>

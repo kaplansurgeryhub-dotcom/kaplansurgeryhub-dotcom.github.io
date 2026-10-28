@@ -96,6 +96,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
 @media print{.brandbar{display:none}}
@@ -152,12 +164,15 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>3</b>תמונה אחת · ארבעה שיעורים</div>
  <h2>הרופא ליד המיטה</h2>
- <div class="hotw"><div class="hoti"><img src="img/Fildes_The_Doctor.jpg" alt="הציור הרופא של לוק פילדס: רופא יושב ליד ילדה חולה, ההורים ברקע"><svg viewBox="0 0 1280 877" preserveAspectRatio="none">
-  <polygon class="hz" data-hz="doc" points="232,335 330,300 470,310 520,350 545,520 545,770 420,775 300,700 228,560" style="--c:#7A5BD6"/>
-  <polygon class="hz" data-hz="pt" points="575,480 700,455 800,465 915,480 905,560 780,640 620,650 575,610" style="--c:#00967D"/>
-  <polygon class="hz" data-hz="fa" points="712,135 830,135 860,250 860,395 745,430 700,380 705,250" style="--c:#2F6FA8"/>
-  <polygon class="hz" data-hz="mo" points="868,355 960,345 1035,405 1000,448 895,445" style="--c:#A3402E"/>
-  <text class="hzl" x="385" y="560" style="font-size:58px;stroke-width:6px">1</text><text class="hzl" x="745" y="560" style="font-size:58px;stroke-width:6px">2</text><text class="hzl" x="780" y="290" style="font-size:58px;stroke-width:6px">3</text><text class="hzl" x="950" y="410" style="font-size:58px;stroke-width:6px">4</text>
+ <div class="hotw"><div class="hoti"><img src="img/Fildes_The_Doctor.jpg" alt="הציור הרופא של לוק פילדס: רופא יושב ליד ילדה חולה, ההורים ברקע"><svg viewBox="0 0 1280 877" preserveAspectRatio="none" style="--lw:8;--bf:31px">
+  <path class="hz" data-hz="doc" d="M457,310 C464,309 476,309 486,313 C496,317 510,325 514,333 C518,341 512,352 511,361 C510,370 510,380 509,387 C508,394 503,398 503,404 C503,410 509,414 509,424 C509,434 504,450 503,461 C502,472 500,478 500,490 C500,502 500,522 500,536 C500,550 500,560 500,576 C500,592 497,612 497,633 C497,654 497,686 500,704 C503,722 506,732 514,741 C522,750 545,754 549,759 C553,764 548,768 537,770 C526,772 499,772 486,773 C473,774 471,780 457,776 C443,772 416,761 400,747 C384,733 370,714 360,690 C350,666 352,623 337,604 C322,585 286,586 271,576 C256,566 254,555 249,541 C244,527 241,509 240,490 C239,471 236,441 243,427 C250,413 266,412 280,404 C294,396 314,384 329,376 C344,368 357,362 371,359 C385,356 403,358 414,356 C425,354 432,353 437,347 C442,341 440,327 443,321 C446,315 450,311 457,310 Z" style="--c:#7A5BD6"/>
+  <path class="hz" data-hz="pt" d="M577,614 C579,608 594,593 600,586 C606,579 607,577 612,572 C617,567 623,563 629,556 C635,549 646,538 650,530 C654,522 655,512 655,505 C655,498 647,494 648,489 C649,484 656,477 660,474 C664,471 666,471 672,470 C678,469 684,464 693,466 C702,468 714,479 723,480 C732,481 740,471 749,472 C758,473 770,479 779,486 C788,493 798,504 800,512 C802,520 799,527 792,532 C785,537 769,538 760,540 C751,542 749,542 740,543 C731,544 716,542 706,543 C696,544 689,545 680,549 C671,553 658,559 650,565 C642,571 637,578 629,584 C621,590 610,595 603,601 C596,607 592,619 588,621 C584,623 575,620 577,614 Z" style="--c:#00967D"/>
+  <path class="hz" data-hz="fa" d="M758,141 C766,139 792,141 800,146 C808,151 809,161 809,171 C809,181 800,197 800,206 C800,215 803,217 809,223 C815,229 829,228 835,240 C841,252 840,272 843,292 C846,312 847,344 852,360 C857,376 872,380 873,386 C874,392 867,397 856,399 C845,401 822,401 805,400 C788,399 768,410 757,395 C746,380 743,337 740,313 C737,289 738,264 740,249 C742,234 751,233 753,223 C755,213 753,200 753,189 C753,178 752,167 753,159 C754,151 750,143 758,141 Z" style="--c:#2F6FA8"/>
+  <path class="hz" data-hz="mo" d="M873,360 C876,354 890,358 899,356 C908,354 920,346 929,347 C938,348 948,354 955,360 C962,366 968,376 972,386 C976,396 979,411 976,420 C973,429 964,435 955,438 C946,441 931,441 921,438 C911,435 902,427 895,420 C888,413 882,405 878,395 C874,385 870,366 873,360 Z" style="--c:#A3402E"/>
+  <g class="hzb" style="--c:#7A5BD6"><circle cx="215" cy="385" r="26"/><text x="215" y="385">1</text></g>
+  <g class="hzb" style="--c:#00967D"><circle cx="560" cy="472" r="26"/><text x="560" y="472">2</text></g>
+  <g class="hzb" style="--c:#2F6FA8"><circle cx="705" cy="180" r="26"/><text x="705" y="180">3</text></g>
+  <g class="hzb" style="--c:#A3402E"><circle cx="1010" cy="338" r="26"/><text x="1010" y="338">4</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
   <div class="hzi" data-hzi="doc" hidden><b>1 · הרופא: נוכחות</b><p>יושב, בגובה המיטה, לא ממהר ולא מסתכל על השעון. בשיחה קשה הישיבה, הקשב והשתיקה אחרי הכותרת הם חלק מהטיפול ולא בזבוז זמן</p></div>

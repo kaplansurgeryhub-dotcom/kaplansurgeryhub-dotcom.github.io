@@ -97,6 +97,18 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
 @media print{.brandbar{display:none}}
@@ -159,17 +171,17 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
 <section class="s"><div class="card">
  <div class="kick"><b>3</b>אנטומיה · אינטראקטיבי</div>
  <h2>איפה בוושט?</h2>
- <div class="hotw" style="grid-template-columns:.62fr 1.38fr"><div class="hoti"><img src="img/Sobo_1906_369_esophagus.jpg" alt="הוושט ויחסיו לקנה, לקשת האאורטה ולסרעפת"><svg viewBox="0 0 820 1330" preserveAspectRatio="none">
-  <polygon class="hz" data-hz="cerv" points="250,60 380,60 380,340 250,340" style="--c:#7A5BD6"/>
-  <text class="hzl" x="315" y="210" style="font-size:52px;stroke-width:6px">1</text>
-  <polygon class="hz" data-hz="arch" points="310,340 480,340 480,640 310,640" style="--c:#C0392B"/>
-  <text class="hzl" x="395" y="500" style="font-size:52px;stroke-width:6px">2</text>
-  <polygon class="hz" data-hz="mid" points="260,640 380,640 390,940 290,940" style="--c:#2F6FA8"/>
-  <text class="hzl" x="325" y="800" style="font-size:52px;stroke-width:6px">3</text>
-  <polygon class="hz" data-hz="low" points="290,940 400,940 470,1180 380,1200" style="--c:#C9893F"/>
-  <text class="hzl" x="385" y="1080" style="font-size:52px;stroke-width:6px">4</text>
-  <polygon class="hz" data-hz="gej" points="400,1180 560,1160 560,1290 420,1310" style="--c:#187A5C"/>
-  <text class="hzl" x="485" y="1255" style="font-size:52px;stroke-width:6px">5</text>
+ <div class="hotw" style="grid-template-columns:.62fr 1.38fr"><div class="hoti"><img src="img/Sobo_1906_369_esophagus.jpg" alt="הוושט ויחסיו לקנה, לקשת האאורטה ולסרעפת"><svg viewBox="0 0 820 1330" preserveAspectRatio="none" style="--lw:10;--bf:35px">
+  <path class="hz" data-hz="cerv" d="M256,70 C266.3,62.7 295.8,66 316,66 C336.2,66 366.5,62.7 377,70 C387.5,77.3 379,96.2 379,110 C379,123.8 377.7,138 377,153 C376.3,168 375.7,185.5 375,200 C374.3,214.5 374.5,229.7 373,240 C371.5,250.3 373,261.3 366,262 C359,262.7 343.7,249.5 331,244 C318.3,238.5 302.8,230.3 290,229 C277.2,227.7 260.3,242.5 254,236 C247.7,229.5 252.3,203.8 252,190 C251.7,176.2 251.7,166.3 252,153 C252.3,139.7 253.3,123.8 254,110 C254.7,96.2 245.7,77.3 256,70 Z" style="--c:#7A5BD6"/>
+  <path class="hz" data-hz="arch" d="M244.5,236 C252.7,228.2 275.6,226.7 290,227 C304.4,227.3 317.8,232 331,238 C344.2,244 357.7,253.2 369,263 C380.3,272.8 390.8,285.7 399,297 C407.2,308.3 409.2,318.5 418,331 C426.8,343.5 442,360.8 452,372 C462,383.2 470.5,386.7 478,398 C485.5,409.3 493.2,424.2 497,440 C500.8,455.8 501,474.8 501,493 C501,511.2 498.5,531.5 497,549 C495.5,566.5 494.5,591 492,598 C489.5,605 488.7,598.5 482,591 C475.3,583.5 462,561.8 452,553 C442,544.2 433.3,541.2 422,538 C410.7,534.8 396.7,537.2 384,534 C371.3,530.8 356.7,527.2 346,519 C335.3,510.8 325,496.8 320,485 C315,473.2 315.3,460.5 316,448 C316.7,435.5 325.2,422.7 324,410 C322.8,397.3 316.7,383.3 309,372 C301.3,360.7 288.2,352 278,342 C267.8,332 254.2,323.3 248,312 C241.8,300.7 241.6,286.7 241,274 C240.4,261.3 236.3,243.8 244.5,236 Z M301,500 C313,494.3 336.3,517.5 354,527 C371.7,536.5 390.7,547.7 407,557 C423.3,566.3 438.2,572.3 452,583 C465.8,593.7 483.7,607.7 490,621 C496.3,634.3 493.2,651.7 490,663 C486.8,674.3 482.3,689 471,689 C459.7,689 439.7,673 422,663 C404.3,653 382.7,638.5 365,629 C347.3,619.5 329.2,613.7 316,606 C302.8,598.3 291.7,590.5 286,583 C280.3,575.5 279.5,574.8 282,561 C284.5,547.2 289,505.7 301,500 Z" style="--c:#C0392B"/>
+  <path class="hz" data-hz="mid" d="M263,556 C269.7,549.3 293.7,552.7 304,560 C314.3,567.3 318.2,587.5 325,600 C331.8,612.5 338.8,623.5 345,635 C351.2,646.5 358.2,656.5 362,669 C365.8,681.5 366,694.8 368,710 C370,725.2 372,743.3 374,760 C376,776.7 378,793.3 380,810 C382,826.7 384,844.2 386,860 C388,875.8 390.5,891.7 392,905 C393.5,918.3 411.8,934.2 395,940 C378.2,945.8 309.7,946.7 291,940 C272.3,933.3 285.2,915 283,900 C280.8,885 279.5,868.3 278,850 C276.5,831.7 275.3,811.7 274,790 C272.7,768.3 271.2,743.3 270,720 C268.8,696.7 268,670 267,650 C266,630 264.7,615.7 264,600 C263.3,584.3 256.3,562.7 263,556 Z" style="--c:#2F6FA8"/>
+  <path class="hz" data-hz="low" d="M291,940 C306.8,934.2 377,931.7 395,940 C413,948.3 397.5,973.3 399,990 C400.5,1006.7 401.8,1024.5 404,1040 C406.2,1055.5 409.2,1069.7 412,1083 C414.8,1096.3 418,1108.7 421,1120 C424,1131.3 427,1139.7 430,1151 C433,1162.3 443.5,1178.3 439,1188 C434.5,1197.7 416.2,1202 403,1209 C389.8,1216 369,1233.2 360,1230 C351,1226.8 352.3,1205 349,1190 C345.7,1175 343.8,1157.8 340,1140 C336.2,1122.2 330.5,1101.3 326,1083 C321.5,1064.7 317.3,1048 313,1030 C308.7,1012 303.7,990 300,975 C296.3,960 275.2,945.8 291,940 Z" style="--c:#C9893F"/>
+  <path class="hz" data-hz="gej" d="M403,1215 C412.2,1209.2 428.8,1201.7 440,1200 C451.2,1198.3 460,1202.5 470,1205 C480,1207.5 490,1210 500,1215 C510,1220 522.5,1226.7 530,1235 C537.5,1243.3 543.3,1254.2 545,1265 C546.7,1275.8 544.2,1290 540,1300 C535.8,1310 531.7,1320.3 520,1325 C508.3,1329.7 485,1329.2 470,1328 C455,1326.8 441.7,1324.3 430,1318 C418.3,1311.7 407.5,1299.7 400,1290 C392.5,1280.3 387.5,1269.2 385,1260 C382.5,1250.8 382,1242.5 385,1235 C388,1227.5 393.8,1220.8 403,1215 Z" style="--c:#187A5C"/>
+  <g class="hzb" style="--c:#7A5BD6"><circle cx="222" cy="150" r="29.8"/><text x="222" y="150">1</text></g>
+  <g class="hzb" style="--c:#C0392B"><circle cx="532" cy="470" r="29.8"/><text x="532" y="470">2</text></g>
+  <g class="hzb" style="--c:#2F6FA8"><circle cx="240" cy="760" r="29.8"/><text x="240" y="760">3</text></g>
+  <g class="hzb" style="--c:#C9893F"><circle cx="448" cy="1050" r="29.8"/><text x="448" y="1050">4</text></g>
+  <g class="hzb" style="--c:#187A5C"><circle cx="568" cy="1300" r="29.8"/><text x="568" y="1300">5</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
   <div class="hzi" data-hzi="cerv" hidden><b>1 · הוושט הצווארי (מאחורי הקנה)</b><p>מהסוגר העליון ועד פתח בית החזה. כאן, מעל הסוגר, נוצר דיברטיקולום <bdi>Zenker</bdi>, בגובה <bdi dir="ltr">C5–C6</bdi>. גידול צווארי מטופל לרוב בכימו-הקרנה מלאה</p></div>

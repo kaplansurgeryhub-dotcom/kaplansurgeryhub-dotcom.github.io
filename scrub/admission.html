@@ -100,6 +100,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
 @media print{.brandbar{display:none}}
@@ -195,13 +207,16 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>5</b>לב, ריאות ודרכי אוויר · אינטראקטיבי</div>
  <h2>מי צריך בירור נוסף?</h2>
- <div class="hotw"><div class="hoti" style="max-width:400px;justify-self:center"><img src="img/Sobo_1906_451.jpg" alt="איברי בית החזה והצוואר, מבט מלפנים"><svg viewBox="0 0 819 1100" preserveAspectRatio="none">
-   <polygon class="hz" data-hz="ht" points="360,720 430,615 510,650 585,800 580,960 520,1020 380,1040 345,950" style="--c:#A3402E"/><text class="hzl" x="465" y="860">לב</text>
-   <polygon class="hz" data-hz="lu" points="150,450 235,390 335,430 360,560 375,700 345,880 330,990 110,995 105,760 120,600" style="--c:#2F6FA8"/><text class="hzl" x="235" y="700">ריאה</text>
-   <polygon class="hz" data-hz="lu" points="465,350 560,345 640,420 680,620 690,1000 595,1005 580,940 590,800 520,650 470,520" style="--c:#2F6FA8"/><text class="hzl" x="610" y="560">ריאה</text>
-   <polygon class="hz" data-hz="th" points="275,125 340,100 450,105 478,185 455,272 380,288 300,272 268,190" style="--c:#7A5BD6"/><text class="hzl" x="372" y="200">תריס</text>
-   <polygon class="hz" data-hz="aw" points="362,290 418,290 420,440 360,440" style="--c:#00967D"/><text class="hzl" x="390" y="372">קנה</text>
-  </svg></div>
+ <div class="hotw"><div class="hoti" style="max-width:400px;justify-self:center"><img src="img/Sobo_1906_451.jpg" alt="איברי בית החזה והצוואר, מבט מלפנים"><svg viewBox="0 0 819 1100" preserveAspectRatio="none" style="--lw:10;--bf:25px">
+  <path class="hz" data-hz="ht" d="M415,768 C440,760 465,762 482,768 C505,775 520,785 530,793 C550,810 565,830 573,854 C585,880 592,900 591,915 C592,945 588,962 579,976 C570,992 560,1003 549,1012 C535,1030 520,1050 506,1075 L340,1078 C342,1040 345,1000 348,976 C352,945 356,925 360,915 C364,890 368,870 372,854 C378,830 384,808 390,793 C398,780 405,772 415,768 Z" style="--c:#A3402E"/>
+  <path class="hz" data-hz="lu" d="M250,384 C265,376 285,372 299,378 C312,392 320,408 329,421 C345,440 356,458 366,476 C382,500 392,525 396,549 C398,590 398,630 396,671 C394,710 392,740 390,762 C386,790 382,800 378,793 C374,830 370,860 366,884 C362,910 358,935 354,951 C348,962 340,968 329,970 C310,976 292,980 274,982 C250,988 230,992 213,994 C190,996 170,995 152,994 C135,993 118,991 104,988 C100,980 98,972 98,963 C100,925 103,890 107,854 C111,820 116,790 122,762 C128,720 136,680 146,640 C152,610 160,580 171,549 C180,518 190,490 201,463 C209,445 217,428 226,415 C234,402 242,392 250,384 Z M524,348 C533,345 541,345 549,348 C562,356 575,366 585,378 C600,405 612,435 622,463 C635,500 645,540 652,579 C662,620 670,660 677,701 C684,742 690,782 695,823 C699,865 701,905 701,945 C701,976 700,1006 698,1037 C689,1038 680,1038 671,1037 C650,1035 630,1033 610,1030 C598,1022 590,1015 585,1006 C579,994 575,982 573,970 C580,955 588,935 591,915 C588,885 582,860 573,841 C562,815 550,798 537,787 C520,776 503,768 488,762 C476,752 468,742 463,732 C452,690 446,650 445,610 C444,580 444,550 445,518 C446,500 448,480 451,463 C462,435 474,410 488,390 C500,374 512,360 524,348 Z" style="--c:#2F6FA8"/>
+  <path class="hz" data-hz="th" d="M293,108 C302,110 308,113 311,116 C316,128 320,140 323,152 C328,165 334,176 341,183 C352,190 365,195 378,195 C392,194 404,190 415,183 C425,174 433,163 439,152 C442,135 445,118 451,104 C460,103 470,105 476,110 C482,125 487,142 488,159 C489,180 487,200 482,220 C476,235 468,250 457,262 C446,272 434,278 421,280 C407,283 392,285 378,284 C365,284 352,283 341,280 C328,277 315,273 305,268 C294,258 285,246 280,232 C276,205 274,178 274,152 C275,132 279,118 284,110 C287,108 290,107 293,108 Z" style="--c:#7A5BD6"/>
+  <path class="hz" data-hz="aw" d="M345,287 C360,284 400,284 427,287 C425,330 423,380 421,421 C400,426 380,427 360,427 C352,380 348,330 345,287 Z" style="--c:#00967D"/>
+  <g class="hzb" style="--c:#A3402E"><circle cx="440" cy="735" r="21"/><text x="440" y="735">1</text></g>
+  <g class="hzb" style="--c:#2F6FA8"><circle cx="182" cy="430" r="21"/><text x="182" y="430">2</text></g>
+  <g class="hzb" style="--c:#7A5BD6"><circle cx="240" cy="200" r="21"/><text x="240" y="200">3</text></g>
+  <g class="hzb" style="--c:#00967D"><circle cx="466" cy="318" r="21"/><text x="466" y="318">4</text></g>
+ </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על איבר בציור כדי לקרוא מה בודקים לפני ניתוח</p>
    <div class="hzi" data-hzi="ht" hidden><b>לב</b><ul class="b sm"><li>בלי תסמינים ומגיע ל-<strong>4 מט״ים</strong> (קומה במדרגות): ממשיכים לניתוח</li><li>ניתוח בסיכון נמוך: אין צורך בבירור, גם כשהכושר נמוך</li><li><strong>אק״ג:</strong> לפני ניתוח שאינו בסיכון נמוך, במחלה כלילית, הפרעת קצב, מחלת עורקים היקפית או מחלה מוחית-וסקולרית</li><li><strong>אקו:</strong> קוצר נשימה לא מוסבר או אי ספיקת לב שמחמירה</li><li>אחרי צנתור: ניתוח מתוכנן לא לפני 14 יום מבלון, 30 יום מסטנט מתכתי. מסטנט מצופה תרופה: רצוי 6 חודשים</li></ul></div>
    <div class="hzi" data-hzi="lu" hidden><b>ריאות</b><ul class="b sm"><li>סיבוכים ריאתיים: <strong>כ-6%</strong> אחרי ניתוחי בטן גדולים. ככל שהחתך קרוב לסרעפת, הסיכון עולה</li><li>גורמי סיכון: גיל מעל 50, <bdi>ASA</bdi> 2 ומעלה, תלות תפקודית, אלבומין מתחת ל-3.5, <bdi>COPD</bdi> ואי ספיקת לב</li><li><strong>הפסקת עישון</strong> לפחות 4 שבועות לפני מורידה סיבוכים</li><li>ספירומטריה וצילום חזה לא כשגרה. רוויה בדופק לכולם</li><li>קורונה ב-4 השבועות האחרונים מעלה סיכון. אחרי 8 שבועות הסיכון חוזר לרגיל</li></ul></div>

@@ -100,6 +100,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
 @media print{.brandbar{display:none}}
@@ -155,12 +167,16 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>3</b>אנטומיה · אינטראקטיבי</div>
  <h2>מה רואים בחתך של אנדארטרקטומיה</h2>
- <div class="hotw"><div class="hoti" style="max-width:360px;width:100%;justify-self:center"><img src="img/carotid-sobotta-neck.jpg" alt="הצוואר במבט צדי אחרי הסרת השריר הסטרנוקליידומסטואיד והווריד הצווארי"><svg viewBox="0 0 700 950" preserveAspectRatio="none">
-  <polygon class="hz" data-hz="cca" points="195,370 260,370 265,830 205,830" style="--c:#D63C32"/><text class="hzl" x="232" y="620">1</text>
-  <polygon class="hz" data-hz="bulb" points="212,295 280,295 270,370 205,370" style="--c:#7A5BD6"/><text class="hzl" x="242" y="345">2</text>
-  <polygon class="hz" data-hz="vag" points="272,350 295,350 300,800 278,800" style="--c:#2EAA5A"/><text class="hzl" x="287" y="500">3</text>
-  <polygon class="hz" data-hz="xii" points="240,245 335,245 335,290 240,290" style="--c:#F0961E"/><text class="hzl" x="290" y="280">4</text>
- </svg></div>
+ <div class="hotw"><div class="hoti" style="max-width:360px;width:100%;justify-self:center"><img src="img/carotid-sobotta-neck.jpg" alt="הצוואר במבט צדי אחרי הסרת השריר הסטרנוקליידומסטואיד והווריד הצווארי"><svg viewBox="0 0 700 950" preserveAspectRatio="none" style="--lw:11;--bf:23px">
+   <path class="hz" data-hz="cca" d="M220,345 C224.7,335.5 233.7,343 240,343 C246.3,343 255.3,335.5 258,345 C260.7,354.5 257,374.2 256,400 C255,425.8 253.8,466.7 252,500 C250.2,533.3 247.5,566.7 245,600 C242.5,633.3 239.8,666.7 237,700 C234.2,733.3 230.3,769.7 228,800 C225.7,830.3 226.8,867.7 223,882 C219.2,896.3 210.8,886 205,886 C199.2,886 190.5,896.3 188,882 C185.5,867.7 188.8,830.3 190,800 C191.2,769.7 193.3,733.3 195,700 C196.7,666.7 198.3,633.3 200,600 C201.7,566.7 203,533.3 205,500 C207,466.7 209.5,425.8 212,400 C214.5,374.2 215.3,354.5 220,345 Z" style="--c:#D63C32"/>
+   <path class="hz" data-hz="bulb" d="M224,293 C227.5,287.8 234.7,288.7 240,287 C245.3,285.3 250.7,283.5 256,283 C261.3,282.5 268.7,281.2 272,284 C275.3,286.8 276.7,293.7 276,300 C275.3,306.3 271,314.5 268,322 C265,329.5 262.7,341.5 258,345 C253.3,348.5 246.3,343 240,343 C233.7,343 223.5,349.2 220,345 C216.5,340.8 218.3,326.7 219,318 C219.7,309.3 220.5,298.2 224,293 Z" style="--c:#7A5BD6"/>
+   <path class="hz ln" data-hz="vag" d="M270,325 C269,337.5 266.3,370.8 264,400 C261.7,429.2 258.7,466.7 256,500 C253.3,533.3 250.7,566.7 248,600 C245.3,633.3 243,666.7 240,700 C237,733.3 232.5,772.2 230,800 C227.5,827.8 225.8,855.8 225,867" style="--c:#2EAA5A"/>
+   <path class="hz ln" data-hz="xii" d="M232,286 C234.2,285.2 238.7,282.5 245,281 C251.3,279.5 260.8,278.8 270,277 C279.2,275.2 292.3,272 300,270 C307.7,268 313.3,265.8 316,265" style="--c:#F0961E"/>
+   <g class="hzb" style="--c:#D63C32"><circle cx="176" cy="640" r="19.6"/><text x="176" y="640">1</text></g>
+   <g class="hzb" style="--c:#7A5BD6"><circle cx="200" cy="300" r="19.6"/><text x="200" y="300">2</text></g>
+   <g class="hzb" style="--c:#2EAA5A"><circle cx="278" cy="560" r="19.6"/><text x="278" y="560">3</text></g>
+   <g class="hzb" style="--c:#F0961E"><circle cx="302" cy="246" r="19.6"/><text x="302" y="246">4</text></g>
+  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על מספר בציור כדי לקרוא עליו</p>
   <div class="hzi" data-hzi="cca" hidden><b>1 · הקרוטיס המשותף</b><p>בחלק התחתון של החתך, לאורך הגבול הקדמי של הסטרנוקליידומסטואיד. כאן קל למצוא אותו ולשלוט עליו בלולאה. בציור הווריד הצווארי הפנימי הוסר (הגדמים הכחולים): בניתוח מזיזים אותו לטרלית.</p></div>
   <div class="hzi" data-hzi="bulb" hidden><b>2 · ההתפצלות והבולבוס</b><p>כאן הזרימה סוערת וכאן נוצר הרובד. הווריד הפציאלי מסמן בדרך כלל את הגובה. לא ממשמשים את הבולבוס: תסחיף מהרובד וברדיקרדיה מהברורצפטורים (אפשר להזריק מעט לידוקאין 1%). הקרוטיס החיצוני פונה לכיוון הפנים. הפנימי ממשיך למעלה ואחורה לבסיס הגולגולת.</p></div>

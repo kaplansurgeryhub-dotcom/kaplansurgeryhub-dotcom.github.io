@@ -100,6 +100,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
 @media print{.brandbar{display:none}}
@@ -281,16 +293,16 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>9</b>קוראים צילום · אינטראקטיבי</div>
  <h2>חזה אוויר בלחץ משמאל, לפני ואחרי</h2>
- <div class="hotw"><div class="hoti"><img src="img/trauma-tension-ptx.jpg" alt="צילום חזה של חזה אוויר בלחץ משמאל ואחרי ניקוז"><svg viewBox="0 0 1920 951" preserveAspectRatio="none">
-   <polygon class="hz" data-hz="air" points="520,60 900,200 935,620 900,840 750,780 720,600 775,450 720,280 600,250 520,250" style="--c:#7A5BD6"/>
-   <text class="hzl" style="font-size:72px;stroke-width:8px" x="830" y="560">1</text>
-   <polygon class="hz" data-hz="lung" points="510,255 705,255 735,450 705,660 570,675 495,495" style="--c:#00967D"/>
-   <text class="hzl" style="font-size:72px;stroke-width:8px" x="610" y="470">2</text>
-   <polygon class="hz" data-hz="med" points="300,60 495,60 510,255 495,720 270,720 285,450" style="--c:#C9893F"/>
-   <text class="hzl" style="font-size:72px;stroke-width:8px" x="390" y="400">3</text>
-   <polygon class="hz" data-hz="after" points="975,30 1905,30 1905,930 975,930" style="--c:#2F6FA8"/>
-   <text class="hzl" style="font-size:72px;stroke-width:8px" x="1440" y="480">4</text>
-  </svg></div>
+ <div class="hotw"><div class="hoti"><img src="img/trauma-tension-ptx.jpg" alt="צילום חזה של חזה אוויר בלחץ משמאל ואחרי ניקוז"><svg viewBox="0 0 1920 951" preserveAspectRatio="none" style="--lw:20;--bf:46px">
+  <path class="hz" data-hz="air" d="M520,175 C524,153,525,122,536,106 C547,90,564,85,584,79 C604,73,631,69,653,69 C675,69,697,71,716,79 C735,87,753,100,769,116 C785,132,798,150,811,175 C824,200,837,232,848,265 C859,298,868,330,875,370 C882,410,887,459,891,503 C895,547,898,591,899,635 C900,679,898,730,896,767 C894,804,890,840,888,860 C886,880,883,890,883,890 C883,890,850,874,833,862 C816,850,796,835,780,815 C764,795,748,767,737,741 C726,715,720,678,716,661 C712,644,713,662,713,640 C713,618,714,561,716,529 C718,497,722,476,722,450 C722,424,724,388,716,370 C708,352,692,345,674,340 C656,335,629,336,610,340 C591,344,575,369,560,365 C545,361,526,338,518,317 C510,296,515,262,515,238 C515,214,516,197,520,175 Z" style="--c:#7A5BD6"/>
+  <path class="hz" data-hz="lung" d="M557,370 C567,358,590,348,610,344 C630,340,656,340,674,344 C692,348,708,352,716,370 C724,388,719,424,719,450 C719,476,717,503,716,529 C715,555,714,588,711,608 C708,628,705,641,695,651 C685,661,665,667,653,667 C641,667,630,661,621,651 C612,641,607,628,600,608 C593,588,586,553,579,529 C572,505,562,485,557,466 C552,447,552,429,552,413 C552,397,547,382,557,370 Z" style="--c:#00967D"/>
+  <path class="hz" data-hz="med" d="M372,40 C395,22,486,22,510,40 C534,58,517,113,518,150 C519,187,515,228,515,260 C515,292,514,317,520,340 C526,363,543,373,548,400 C553,427,550,467,552,500 C554,533,554,568,560,600 C566,632,589,665,590,690 C591,715,583,736,565,750 C547,764,511,769,480,772 C449,775,410,775,380,770 C350,765,318,755,300,740 C282,725,277,703,272,680 C267,657,270,630,272,600 C274,570,275,527,285,500 C295,473,316,457,330,440 C344,423,361,423,368,400 C375,377,372,342,372,300 C372,258,370,193,370,150 C370,107,349,58,372,40 Z" style="--c:#C9893F"/>
+  <path class="hz" data-hz="after" d="M1563,164 C1572,154,1589,147,1604,144 C1619,141,1636,143,1652,147 C1668,152,1684,160,1700,171 C1716,182,1734,196,1748,212 C1761,228,1773,245,1782,267 C1791,289,1797,313,1802,342 C1808,372,1812,411,1816,445 C1820,479,1823,514,1826,548 C1830,582,1834,619,1837,651 C1840,683,1843,716,1844,740 C1844,764,1840,795,1840,795 C1840,795,1811,795,1796,788 C1780,781,1764,772,1748,753 C1732,735,1713,705,1700,678 C1686,651,1677,620,1665,589 C1654,558,1642,523,1631,493 C1620,463,1612,436,1600,411 C1589,386,1571,365,1563,342 C1554,320,1551,297,1549,274 C1547,251,1547,224,1549,205 C1551,187,1554,175,1563,164 Z" style="--c:#2F6FA8"/>
+  <g class="hzb" style="--c:#7A5BD6"><circle cx="925" cy="300" r="39"/><text x="925" y="300">1</text></g>
+  <g class="hzb" style="--c:#00967D"><circle cx="770" cy="520" r="39"/><text x="770" y="520">2</text></g>
+  <g class="hzb" style="--c:#C9893F"><circle cx="325" cy="250" r="39"/><text x="325" y="250">3</text></g>
+  <g class="hzb" style="--c:#2F6FA8"><circle cx="1835" cy="260" r="39"/><text x="1835" y="260">4</text></g>
+ </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על אזור בצילום כדי לקרוא עליו</p>
    <div class="hzi" data-hzi="air" hidden><b>1 · אוויר בלי סימני ריאה</b><p>חלל החזה השמאלי שחור ושקוף יותר, בלי כלי דם ריאתיים עד הדופן. זה האוויר שנכלא בחלל הצדר ולא יכול לצאת</p></div>
    <div class="hzi" data-hzi="lung" hidden><b>2 · הריאה שקרסה</b><p>הריאה השמאלית נדחסה אל השער. ככל שהאוויר מצטבר, הלחץ בחזה עולה</p></div>

@@ -100,6 +100,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
 @media print{.brandbar{display:none}}
@@ -158,16 +170,16 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>3</b>הכליה</div>
  <h2>איפה נקבע כמה מים ומלח נשארים</h2>
- <div class="hotw"><div class="hoti"><img src="img/fluids-nephron.png" alt="אנטומיה של הנפרון: גלומרולוס, צינורית מקורבת, לולאה וצינור מאסף"><svg viewBox="0 0 1280 1280" preserveAspectRatio="none">
-   <polygon class="hz" data-hz="g" points="700,500 760,476 852,516 858,562 800,594 716,578" style="--c:#A3402E"/>
-   <text class="hzl" style="font-size:64px" x="785" y="560">1</text>
-   <polygon class="hz" data-hz="p" points="836,378 932,378 978,428 962,482 882,502 838,462" style="--c:#C9893F"/>
-   <text class="hzl" style="font-size:64px" x="905" y="460">2</text>
-   <polygon class="hz" data-hz="l" points="792,640 952,640 952,1170 800,1170" style="--c:#2F6FA8"/>
-   <text class="hzl" style="font-size:64px" x="872" y="920">3</text>
-   <polygon class="hz" data-hz="c" points="1036,496 1162,496 1172,1150 1036,1150" style="--c:#00967D"/>
-   <text class="hzl" style="font-size:64px" x="1104" y="840">4</text>
-  </svg></div>
+ <div class="hotw"><div class="hoti"><img src="img/fluids-nephron.png" alt="אנטומיה של הנפרון: גלומרולוס, צינורית מקורבת, לולאה וצינור מאסף"><svg viewBox="0 0 1280 1280" preserveAspectRatio="none" style="--lw:24;--bf:31px">
+  <path class="hz" data-hz="g" d="M712,485 C717.8,480 732,480.7 744,480 C756,479.3 772,478.3 784,481 C796,483.7 806,489.3 816,496 C826,502.7 837.2,513.7 844,521 C850.8,528.3 856.3,533.5 857,540 C857.7,546.5 854.8,553.7 848,560 C841.2,566.3 828.5,572.7 816,578 C803.5,583.3 785.5,589.3 773,592 C760.5,594.7 750,595.8 741,594 C732,592.2 724.2,589 719,581 C713.8,573 711.7,557.8 710,546 C708.3,534.2 708.7,520.2 709,510 C709.3,499.8 706.2,490 712,485 Z" style="--c:#A3402E"/>
+  <path class="hz" data-hz="p" d="M855,546 C852.7,542.3 851.5,530 848,524 C844.5,518 837,517.2 834,510 C831,502.8 828.8,487.5 830,481 C831.2,474.5 839,476.3 841,471 C843,465.7 841.8,457.3 842,449 C842.2,440.7 841.3,429.8 842,421 C842.7,412.2 842,402.5 846,396 C850,389.5 856.8,384.5 866,382 C875.2,379.5 889.2,380 901,381 C912.8,382 926.8,384 937,388 C947.2,392 955.5,397.8 962,405 C968.5,412.2 972.7,421.2 976,431 C979.3,440.8 983.2,456.2 982,464 C980.8,471.8 975.3,474.8 969,478 C962.7,481.2 952.8,480.7 944,483 C935.2,485.3 924.3,488.2 916,492 C907.7,495.8 900,500.7 894,506 C888,511.3 885.3,517.3 880,524 C874.7,530.7 866.2,542.3 862,546 C857.8,549.7 857.3,549.7 855,546 Z" style="--c:#C9893F"/>
+  <path class="hz ln" data-hz="l" d="M848,606 C848,621.7 848,667.7 848,700 C848,732.3 848,766.7 848,800 C848,833.3 848,866.7 848,900 C848,933.3 847.8,972 848,1000 C848.2,1028 847,1051.7 849,1068 C851,1084.3 854.5,1091.3 860,1098 C865.5,1104.7 874.8,1108.5 882,1108 C889.2,1107.5 898,1103 903,1095 C908,1087 910.2,1075.8 912,1060 C913.8,1044.2 913.7,1026.7 914,1000 C914.3,973.3 914,933.3 914,900 C914,866.7 914.2,833.3 914,800 C913.8,766.7 913.7,732.3 913,700 C912.3,667.7 910.5,621.7 910,606" style="--c:#2F6FA8;--lw:20"/>
+  <path class="hz ln" data-hz="c" d="M1001,539 C999.3,533 992.2,513.2 991,503 C989.8,492.8 990.5,484 994,478 C997.5,472 1005.3,468.2 1012,467 C1018.7,465.8 1027.5,466.8 1034,471 C1040.5,475.2 1047.2,484.3 1051,492 C1054.8,499.7 1052.2,513.2 1057,517 C1061.8,520.8 1072.7,514.3 1080,515 C1087.3,515.7 1095,517 1101,521 C1107,525 1112.8,531.3 1116,539 C1119.2,546.7 1119.7,556.8 1120,567 C1120.3,577.2 1118.8,587.8 1118,600 C1117.2,612.2 1116,620 1115,640 C1114,660 1113,693.3 1112,720 C1111,746.7 1109.8,773.3 1109,800 C1108.2,826.7 1107.7,848.8 1107,880 C1106.3,911.2 1105.3,954.3 1105,987 C1104.7,1019.7 1104.8,1054.7 1105,1076 C1105.2,1097.3 1105.8,1108.5 1106,1115" style="--c:#00967D"/>
+  <g class="hzb" style="--c:#A3402E"><circle cx="684" cy="520" r="26.3"/><text x="684" y="520">1</text></g>
+  <g class="hzb" style="--c:#C9893F"><circle cx="905" cy="352" r="26.3"/><text x="905" y="352">2</text></g>
+  <g class="hzb" style="--c:#2F6FA8"><circle cx="954" cy="1060" r="26.3"/><text x="954" y="1060">3</text></g>
+  <g class="hzb" style="--c:#00967D"><circle cx="1150" cy="800" r="26.3"/><text x="1150" y="800">4</text></g>
+ </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על חלק בנפרון כדי לקרוא מה קורה בו</p>
    <div class="hzi" data-hzi="g" hidden><b>1 · הגלומרולוס: סינון</b><p>הכליות מקבלות 25% מתפוקת הלב. סינון תקין: כ-120 מ״ל לדקה. הזרימה נשמרת בלחץ זילוח של <bdi dir="ltr">80–180</bdi>. כשהלחץ יורד משתחרר רנין. אנגיוטנסין 2 מכווץ את העורקיק היוצא כדי לשמור על הסינון</p></div>
    <div class="hzi" data-hzi="p" hidden><b>2 · הצינורית המקורבת</b><p>סופגת בחזרה כמעט את כל הגלוקוז וחומצות האמינו, כ-65% מהנתרן והמים וכמעט את כל הביקרבונט. באובדן נפח אלדוסטרון מגביר ספיגת ביקרבונט: זו "בססת ההתכווצות" של החולה המקיא</p></div>

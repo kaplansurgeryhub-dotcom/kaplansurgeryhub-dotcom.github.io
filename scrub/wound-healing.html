@@ -100,6 +100,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
 @media print{.brandbar{display:none}}
@@ -215,11 +227,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>6</b>לקרוא פצע · אינטראקטיבי</div>
  <h2>כל השלבים בפצע אחד</h2>
- <div class="hotw"><div class="hoti"><img src="img/heel-pressure-ulcer.jpg" alt="פצע לחץ בעקב עם גרנולציה, פיברין וכתמים כהים מסביב"><svg viewBox="0 0 960 654" preserveAspectRatio="none">
-   <polygon class="hz" data-hz="pw" points="410,200 520,185 640,215 660,330 640,440 560,500 440,480 400,420 395,300" style="--c:#7A5BD6"/>
-   <polygon class="hz" data-hz="bed" points="455,240 530,220 590,240 605,300 590,360 545,400 495,415 465,395 448,330" style="--c:#A3402E"/><text class="hzl" x="525" y="320">1</text><text class="hzl" x="430" y="460">2</text>
-   <polygon class="hz" data-hz="sp" points="310,388 348,382 370,405 364,432 332,440 308,420" style="--c:#0C2A35"/><text class="hzl" x="338" y="372">3</text>
-  </svg></div>
+ <div class="hotw"><div class="hoti"><img src="img/heel-pressure-ulcer.jpg" alt="פצע לחץ בעקב עם גרנולציה, פיברין וכתמים כהים מסביב"><svg viewBox="0 0 960 654" preserveAspectRatio="none" style="--lw:10;--bf:23px">
+  <path fill-rule="evenodd" class="hz" data-hz="pw" d="M462,203 C471,194,486,198,500,198 C514,198,531,200,545,203 C559,206,574,211,585,218 C596,225,604,233,610,243 C616,253,620,267,621,280 C622,293,621,307,619,320 C617,333,613,347,608,360 C603,373,597,385,590,396 C583,407,575,416,565,425 C555,434,542,442,530,447 C518,452,505,454,490,455 C475,456,455,453,440,452 C425,451,410,450,398,449 C386,448,376,446,370,443 C364,440,363,435,362,430 C361,425,361,418,366,414 C371,410,381,407,390,404 C399,401,412,402,420,398 C428,394,434,388,437,378 C440,368,437,353,438,340 C439,327,439,315,441,300 C443,285,444,266,448,250 C452,234,453,212,462,203 Z M470,245 C469,251,469,259,468,265 C467,271,467,278,466,283 C465,288,463,293,462,298 C461,303,459,308,458,313 C457,318,456,324,455,330 C454,336,452,344,452,350 C452,356,452,362,453,368 C454,374,454,380,456,385 C458,390,458,396,462,400 C466,404,472,408,478,410 C484,412,493,413,500,412 C507,411,513,408,520,405 C527,402,534,398,540,393 C546,388,550,381,555,375 C560,369,564,362,568,355 C572,348,576,342,580,335 C584,328,588,322,590,315 C592,308,593,298,593,290 C593,282,592,272,590,265 C588,258,586,251,580,245 C574,239,564,233,556,230 C548,227,543,226,535,225 C527,224,518,222,510,221 C502,220,496,218,490,219 C484,220,476,224,473,228 C470,232,471,239,470,245 Z" style="--c:#7A5BD6"/>
+  <path class="hz" data-hz="bed" d="M473,228 C476,224,484,220,490,219 C496,218,502,220,510,221 C518,222,527,224,535,225 C543,226,548,227,556,230 C564,233,574,239,580,245 C586,251,588,258,590,265 C592,272,593,282,593,290 C593,298,592,308,590,315 C588,322,584,328,580,335 C576,342,572,348,568,355 C564,362,560,369,555,375 C550,381,546,388,540,393 C534,398,527,402,520,405 C513,408,507,411,500,412 C493,413,484,412,478,410 C472,408,466,404,462,400 C458,396,458,390,456,385 C454,380,454,374,453,368 C452,362,452,356,452,350 C452,344,454,336,455,330 C456,324,457,318,458,313 C459,308,461,303,462,298 C463,293,465,288,466,283 C467,278,467,271,468,265 C469,259,469,251,470,245 C471,239,470,232,473,228 Z" style="--c:#A3402E"/>
+  <path class="hz" data-hz="sp" d="M328,410 C330,407,333,404,337,403 C341,402,346,402,350,403 C354,404,357,407,359,410 C361,413,361,418,360,421 C359,424,357,428,354,430 C351,432,346,433,342,433 C338,433,334,431,331,429 C328,427,326,423,326,420 C326,417,326,413,328,410 Z" style="--c:#0C2A35"/>
+  <g class="hzb" style="--c:#A3402E"><circle cx="640" cy="252" r="20"/><text x="640" y="252">1</text></g>
+  <g class="hzb" style="--c:#7A5BD6"><circle cx="432" cy="478" r="20"/><text x="432" y="478">2</text></g>
+  <g class="hzb" style="--c:#0C2A35"><circle cx="318" cy="388" r="20"/><text x="318" y="388">3</text></g>
+ </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על אזור בפצע כדי לקרוא עליו</p>
    <div class="hzi" data-hzi="bed" hidden><b>1 · בסיס הפצע</b><p>רקמה אדומה וגרעינית היא גרנולציה: שלב השגשוג. הכיסוי הצהבהב והכהה הוא פיברין, רקמה מתה ושאריות: שלב הדלקת. פצע טוב לריפוי הוא אדום, לח ונקי. רקמה מתה מסירים (הטריה)</p></div>
    <div class="hzi" data-hzi="pw" hidden><b>2 · השוליים והעור סביב</b><p>בשוליים האפיתל מתקדם והפצע מתכווץ: שלב ההבשלה. העור הסגול והמודלק מסביב מראה שהנזק מהלחץ רחב יותר מהפצע הגלוי. בודקים גם שהעור סביב לא מתרכך מהפרשות</p></div>

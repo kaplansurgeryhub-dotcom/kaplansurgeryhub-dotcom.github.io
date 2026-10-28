@@ -104,6 +104,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
 @media print{.brandbar{display:none}}
@@ -138,14 +150,19 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>2</b>אנטומיה · מי גר ברבע הימני העליון</div>
  <h2>השכנים של כיס המרה</h2>
- <div class="hotw"><div class="hoti"><img src="img/Sobo_1906_405.png" alt="איברי הבטן העליונה במבט מלפנים: כבד, כיס מרה, קיבה, פילורוס, סרעפת ואומנטום"><svg viewBox="0 0 960 655" preserveAspectRatio="none">
-  <polygon class="hz" data-hz="gb" points="150,300 200,288 290,293 305,320 285,356 200,366 152,350" style="--c:#00967D"/>
-  <polygon class="hz" data-hz="lv" points="165,365 300,365 312,430 275,590 232,590 172,470" style="--c:#7A5BD6"/>
-  <polygon class="hz" data-hz="py" points="312,350 400,343 470,378 452,428 360,432 312,402" style="--c:#A3402E"/>
-  <polygon class="hz" data-hz="st" points="480,170 640,140 760,220 752,420 600,452 475,378 432,262" style="--c:#2F6FA8"/>
-  <polygon class="hz" data-hz="di" points="788,150 832,170 845,560 806,560 798,300" style="--c:#C9893F"/>
-  <polygon class="hz" data-hz="om" points="262,470 540,452 562,600 262,600" style="--c:#0A6B5A"/>
-  <text class="hzl" x="225" y="338" style="font-size:34px">1</text><text class="hzl" x="235" y="480" style="font-size:34px">2</text><text class="hzl" x="390" y="400" style="font-size:34px">3</text><text class="hzl" x="610" y="310" style="font-size:34px">4</text><text class="hzl" x="818" y="380" style="font-size:30px">5</text><text class="hzl" x="410" y="540" style="font-size:34px">6</text>
+ <div class="hotw"><div class="hoti"><img src="img/Sobo_1906_405.png" alt="איברי הבטן העליונה במבט מלפנים: כבד, כיס מרה, קיבה, פילורוס, סרעפת ואומנטום"><svg viewBox="0 0 960 655" preserveAspectRatio="none" style="--lw:22;--bf:24px">
+  <path class="hz" data-hz="st" d="M548,160 C590,135 640,128 680,135 C720,150 750,175 765,210 C772,250 774,300 772,345 C770,385 762,420 745,448 C720,460 690,455 660,450 C620,448 580,440 548,432 C520,425 495,420 482,415 C486,395 488,378 482,362 C490,350 505,340 515,320 C522,290 527,250 530,215 C535,190 540,172 548,160 Z" style="--c:#2F6FA8"/>
+  <path class="hz" data-hz="om" d="M262,600 C270,575 285,555 300,535 C320,510 345,490 370,470 C395,452 420,442 440,436 C470,432 520,434 548,438 C590,445 630,452 670,456 C710,460 745,458 770,452 C778,480 780,540 781,600 Z" style="--c:#0A6B5A"/>
+  <path class="hz" data-hz="lv" d="M168,362 C190,366 215,360 251,348 C270,343 285,340 293,342 C310,345 330,355 340,370 C345,390 346,410 346,426 C348,440 349,450 348,453 C345,462 340,468 334,473 C320,488 305,500 293,509 C280,520 270,530 265,537 C258,555 252,580 248,598 C246,602 243,604 240,603 C232,585 228,568 223,551 C215,530 210,512 204,495 C198,475 192,450 187,426 C182,410 177,395 173,384 C170,375 168,368 168,362 Z M168,292 C164,265 164,240 170,220 C178,200 195,180 212,172 C240,175 275,190 305,210 C305,230 300,250 288,272 C280,285 272,296 265,304 C240,298 210,292 182,292 Z" style="--c:#7A5BD6"/>
+  <path class="hz" data-hz="gb" d="M148,314 C150,303 160,296 182,292 C210,292 245,300 265,306 C278,309 284,318 284,331 C280,341 265,348 237,356 C220,362 210,366 204,367 C185,368 168,362 157,351 C150,344 147,330 148,314 Z" style="--c:#00967D"/>
+  <path class="hz" data-hz="py" d="M346,352 C370,345 410,345 440,346 C460,347 475,352 482,362 C486,385 480,405 465,415 C440,425 410,430 385,432 C368,436 355,440 349,440 C345,415 344,380 346,352 Z" style="--c:#A3402E"/>
+  <path class="hz ln" data-hz="di" d="M700,98 C725,108 750,120 768,135 C785,150 795,163 801,180 C808,205 810,230 810,257 C811,285 811,310 810,334 C808,365 806,392 803,418 C800,447 799,475 797,502 C794,530 792,555 790,579 C789,592 788,602 787,611" style="--c:#C9893F"/>
+  <g class="hzb" style="--c:#00967D"><circle cx="118" cy="338" r="20"/><text x="118" y="338">1</text></g>
+  <g class="hzb" style="--c:#7A5BD6"><circle cx="180" cy="545" r="20"/><text x="180" y="545">2</text></g>
+  <g class="hzb" style="--c:#A3402E"><circle cx="425" cy="330" r="20"/><text x="425" y="330">3</text></g>
+  <g class="hzb" style="--c:#2F6FA8"><circle cx="690" cy="240" r="20"/><text x="690" y="240">4</text></g>
+  <g class="hzb" style="--c:#C9893F"><circle cx="858" cy="230" r="20"/><text x="858" y="230">5</text></g>
+  <g class="hzb" style="--c:#0A6B5A"><circle cx="600" cy="525" r="20"/><text x="600" y="525">6</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
   <div class="hzi" data-hzi="gb" hidden><b>1 · כיס המרה</b><p>הקרקעית בולטת מתחת לשפת הכבד. כאב בילארי ודלקת חריפה. במטופל קשה גם דלקת בלי אבנים. כאן בודקים סימן מרפי</p></div>

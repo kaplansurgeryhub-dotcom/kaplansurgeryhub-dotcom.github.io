@@ -104,6 +104,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
 @media print{.brandbar{display:none}}
@@ -170,12 +182,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>4</b>מקרה 1 · שקף אינטראקטיבי</div>
  <h2>למה דווקא הסיגמה מסתובבת</h2>
- <div class="hotw"><div class="hoti"><img src="img/sobotta-414-sigmoid.jpg" alt="הסיגמה והמזנטריום שלה"><svg viewBox="0 0 1280 999" preserveAspectRatio="none">
-   <polygon class="hz" data-hz="s" points="60,330 200,220 330,260 300,420 250,560 280,700 360,800 300,880 170,850 70,700" style="--c:#2F6FA8"/>
-   <polygon class="hz" data-hz="m" points="330,420 560,360 700,480 740,700 600,760 420,700 330,560" style="--c:#C9893F"/>
-   <polygon class="hz" data-hz="d" points="660,330 780,80 900,40 960,180 900,420 760,520 680,450" style="--c:#00967D"/>
-   <text class="hzl" x="170" y="560">1</text><text class="hzl" x="560" y="640">2</text><text class="hzl" x="830" y="300">3</text>
-  </svg></div>
+ <div class="hotw"><div class="hoti"><img src="img/sobotta-414-sigmoid.jpg" alt="הסיגמה והמזנטריום שלה"><svg viewBox="0 0 1280 999" preserveAspectRatio="none" style="--lw:20;--bf:31px">
+    <path class="hz" data-hz="s" d="M845,445 C837.5,443.8 814.2,440.5 800,438 C785.8,435.5 768.7,436.3 760,430 C751.3,423.7 750.5,413.3 748,400 C745.5,386.7 748.8,363.7 745,350 C741.2,336.3 733.3,325 725,318 C716.7,311 707,310.3 695,308 C683,305.7 667,303.2 653,304 C639,304.8 623.2,319.7 611,313 C598.8,306.3 595.3,281.3 580,264 C564.7,246.7 543.5,220.7 519,209 C494.5,197.3 459.7,196.5 433,194 C406.3,191.5 381.5,191.5 359,194 C336.5,196.5 316.3,203.5 298,209 C279.7,214.5 264.3,220.8 249,227 C233.7,233.2 220.3,240.8 206,246 C191.7,251.2 175.3,251.8 163,258 C150.7,264.2 140.2,268.7 132,283 C123.8,297.3 120.2,323.7 114,344 C107.8,364.3 101.2,387.7 95,405 C88.8,422.3 82.7,431.5 77,448 C71.3,464.5 64.7,485.5 61,504 C57.3,522.5 53.8,539.7 55,559 C56.2,578.3 61.3,599.7 68,620 C74.7,640.3 84.3,660.5 95,681 C105.7,701.5 118.7,725.5 132,743 C145.3,760.5 160.7,775.8 175,786 C189.3,796.2 199.7,795.8 218,804 C236.3,812.2 261.5,824.7 285,835 C308.5,845.3 333.3,856.8 359,866 C384.7,875.2 412.3,881.8 439,890 C465.7,898.2 496.5,907.8 519,915 C541.5,922.2 558.7,928 574,933 C589.3,938 597.8,944 611,945 C624.2,946 635.7,945.2 653,939 C670.3,932.8 698.5,922.3 715,908 C731.5,893.7 743.8,875.5 752,853 C760.2,830.5 763,796.5 764,773 C765,749.5 762.8,729.5 758,712 C753.2,694.5 738.8,675.3 735,668 C731.7,668.2 733.7,663.7 715,669 C696.3,674.3 645.5,694.8 623,700 C600.5,705.2 597.3,702 580,700 C562.7,698 543.5,692.2 519,688 C494.5,683.8 459.7,678.2 433,675 C406.3,671.8 381.5,671 359,669 C336.5,667 315.3,665 298,663 C280.7,661 264.3,663.2 255,657 C245.7,650.8 242,642.3 242,626 C242,609.7 249.8,579.5 255,559 C260.2,538.5 265.8,521.5 273,503 C280.2,484.5 291.8,464.3 298,448 C304.2,431.7 301.8,414.3 310,405 C318.2,395.7 332,395.3 347,392 C362,388.7 377.8,387 400,385 C422.2,383 453.3,380 480,380 C506.7,380 540,381.7 560,385 C580,388.3 588.3,390.8 600,400 C611.7,409.2 623.3,426.7 630,440 C636.7,453.3 636.7,463.3 640,480 C643.3,496.7 645,524.7 650,540 C655,555.3 660,565.8 670,572 C680,578.2 695,577.8 710,577 C725,576.2 745,570.3 760,567 C775,563.7 785.8,560.7 800,557 C814.2,553.3 837.5,547 845,545 C845,528.3 845,461.7 845,445 Z" style="--c:#2F6FA8"/>
+    <path class="hz" data-hz="m" d="M310,405 C318.2,395.7 332,395.3 347,392 C362,388.7 377.8,387 400,385 C422.2,383 453.3,380 480,380 C506.7,380 540,381.7 560,385 C580,388.3 588.3,390.8 600,400 C611.7,409.2 623.3,426.7 630,440 C636.7,453.3 636.7,463.3 640,480 C643.3,496.7 645,524.7 650,540 C655,555.3 660,565.8 670,572 C680,578.2 695,577.7 710,577 C725,576.3 754.2,562.5 760,568 C765.8,573.5 746.7,596.3 745,610 C743.3,623.7 751.7,640.3 750,650 C748.3,659.7 740.8,664.8 735,668 C729.2,671.2 733.7,663.7 715,669 C696.3,674.3 645.5,694.8 623,700 C600.5,705.2 597.3,702 580,700 C562.7,698 543.5,692.2 519,688 C494.5,683.8 459.7,678.2 433,675 C406.3,671.8 381.5,671 359,669 C336.5,667 315.3,665 298,663 C280.7,661 264.3,663.2 255,657 C245.7,650.8 242,642.3 242,626 C242,609.7 249.8,579.5 255,559 C260.2,538.5 265.8,521.5 273,503 C280.2,484.5 291.8,464.3 298,448 C304.2,431.7 301.8,414.3 310,405 Z" style="--c:#C9893F"/>
+    <path class="hz" data-hz="d" d="M805,60 C810,47.5 819.2,40.5 830,35 C840.8,29.5 858.3,26.2 870,27 C881.7,27.8 889.2,34.5 900,40 C910.8,45.5 922.5,55.3 935,60 C947.5,64.7 965.5,59.7 975,68 C984.5,76.3 989,88 992,110 C995,132 991.7,176.7 993,200 C994.3,223.3 1001.3,233.3 1000,250 C998.7,266.7 987.5,281.7 985,300 C982.5,318.3 985.8,340 985,360 C984.2,380 983.8,401.7 980,420 C976.2,438.3 967.3,453.3 962,470 C956.7,486.7 954.2,505.8 948,520 C941.8,534.2 934.7,548 925,555 C915.3,562 901.2,562.5 890,562 C878.8,561.5 864.8,562.3 858,552 C851.2,541.7 850.5,516.7 849,500 C847.5,483.3 853,462.7 849,452 C845,441.3 833.2,444.7 825,436 C816.8,427.3 804.5,422.7 800,400 C795.5,377.3 798.5,333.3 798,300 C797.5,266.7 796.7,231.7 797,200 C797.3,168.3 798.7,133.3 800,110 C801.3,86.7 800,72.5 805,60 Z" style="--c:#00967D"/>
+    <g class="hzb" style="--c:#2F6FA8"><circle cx="26" cy="470" r="26.3"/><text x="26" y="470">1</text></g>
+    <g class="hzb" style="--c:#C9893F"><circle cx="470" cy="470" r="26.3"/><text x="470" y="470">2</text></g>
+    <g class="hzb" style="--c:#00967D"><circle cx="1040" cy="190" r="26.3"/><text x="1040" y="190">3</text></g>
+   </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
    <div class="hzi" data-hzi="s" hidden><b>1 · לולאת הסיגמה</b><p>לולאה ארוכה וניידת. בוולבולוס היא מסתובבת סביב הציר של המזנטריום וחוסמת את עצמה משני הצדדים: לולאה סגורה שמתנפחת עד איסכמיה ונקב</p></div>
    <div class="hzi" data-hzi="m" hidden><b>2 · המזנטריום של הסיגמה</b><p>כל קטע במעי הגס שלא מקובע לרטרופריטונאום ויש לו מזנטריום מוארך יכול להסתובב. הלחץ על המזנטריום חוסם קודם את הוורידים ואחר כך את העורקים</p></div>

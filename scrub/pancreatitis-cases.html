@@ -96,6 +96,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
 @media print{.brandbar{display:none}}
@@ -164,19 +176,19 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>3</b>אנטומיה · תמונה אינטראקטיבית</div>
  <h2>איפה הלבלב יושב ולמה זה משנה</h2>
-<div class="hotw"><div class="hoti"><img src="img/Sobo_1906_406.png" alt="השק הקטן נפתח: הקיבה מורמת והלבלב נראה מאחוריה"><svg viewBox="0 0 1280 889" preserveAspectRatio="none">
- <polygon class="hz" data-hz="stom" points="587,440 693,320 800,253 933,267 1013,347 1000,453 907,467 747,480" style="--c:#C0392B"/>
- <text class="hzl" x="835" y="394" style="font-size:47px;stroke-width:6px">1</text>
- <polygon class="hz" data-hz="panc" points="587,493 747,487 907,473 933,520 853,553 693,560 600,547" style="--c:#2F6FA8"/>
- <text class="hzl" x="760" y="535" style="font-size:47px;stroke-width:6px">2</text>
- <polygon class="hz" data-hz="meso" points="573,567 747,567 933,533 940,573 800,613 613,620" style="--c:#187A5C"/>
- <text class="hzl" x="767" y="595" style="font-size:47px;stroke-width:6px">3</text>
- <polygon class="hz" data-hz="colon" points="560,640 800,627 960,547 1013,600 973,747 800,800 600,747" style="--c:#C9893F"/>
- <text class="hzl" x="815" y="689" style="font-size:47px;stroke-width:6px">4</text>
- <polygon class="hz" data-hz="spl" points="1007,400 1053,387 1080,467 1067,560 1027,547" style="--c:#8E44AD"/>
- <text class="hzl" x="1046" y="488" style="font-size:47px;stroke-width:6px">5</text>
- <polygon class="hz" data-hz="gb" points="173,320 267,287 360,320 347,380 240,387 180,360" style="--c:#5D6D3A"/>
- <text class="hzl" x="261" y="358" style="font-size:47px;stroke-width:6px">6</text>
+<div class="hotw"><div class="hoti"><img src="img/Sobo_1906_406.png" alt="השק הקטן נפתח: הקיבה מורמת והלבלב נראה מאחוריה"><svg viewBox="0 0 1280 889" preserveAspectRatio="none" style="--lw:20;--bf:31px">
+ <path class="hz" data-hz="stom" d="M460,637 C452.3,634.5 441.5,622.3 436,612 C430.5,601.7 427.7,587 427,575 C426.3,563 428.2,550.8 432,540 C435.8,529.2 442.3,518.3 450,510 C457.7,501.7 469.7,498.8 478,490 C486.3,481.2 491.7,467.8 500,457 C508.3,446.2 515,438.5 528,425 C541,411.5 561.8,390.5 578,376 C594.2,361.5 609.3,349.8 625,338 C640.7,326.2 656.2,315 672,305 C687.8,295 705.8,285.5 720,278 C734.2,270.5 743.7,262.3 757,260 C770.3,257.7 784.2,263.7 800,264 C815.8,264.3 831.7,261 852,262 C872.3,263 900.8,265.2 922,270 C943.2,274.8 965.5,282 979,291 C992.5,300 997.5,309 1003,324 C1008.5,339 1011.3,361.3 1012,381 C1012.7,400.7 1011,423.2 1007,442 C1003,460.8 995.8,479.8 988,494 C980.2,508.2 973.3,519.8 960,527 C946.7,534.2 926,536.2 908,537 C890,537.8 869.2,536 852,532 C834.8,528 819.2,521.5 805,513 C790.8,504.5 778.2,489.5 767,481 C755.8,472.5 747.5,466.3 738,462 C728.5,457.7 719.7,457.5 710,455 C700.3,452.5 690.2,447.8 680,447 C669.8,446.2 656.5,446.2 649,450 C641.5,453.8 643.2,462.2 635,470 C626.8,477.8 610.8,488.3 600,497 C589.2,505.7 578.3,514.8 570,522 C561.7,529.2 555.8,534.8 550,540 C544.2,545.2 540.8,546.3 535,553 C529.2,559.7 520.8,571.3 515,580 C509.2,588.7 505.5,597.2 500,605 C494.5,612.8 488.7,621.7 482,627 C475.3,632.3 467.7,639.5 460,637 Z" style="--c:#C0392B"/>
+ <path class="hz" data-hz="panc" d="M552,550 C554,540.5 563.2,534.3 570,528 C576.8,521.7 584.7,518.3 593,512 C601.3,505.7 609.8,496.5 620,490 C630.2,483.5 638.7,477.7 654,473 C669.3,468.3 695.8,461.3 712,462 C728.2,462.7 738,471.2 751,477 C764,482.8 777.2,489.8 790,497 C802.8,504.2 815.2,513.7 828,520 C840.8,526.3 854.2,532.2 867,535 C879.8,537.8 899,532.8 905,537 C911,541.2 906.2,555.2 903,560 C899.8,564.8 895.7,564.3 886,566 C876.3,567.7 857.8,568.7 845,570 C832.2,571.3 824.8,572.8 809,574 C793.2,575.2 769.3,576.3 750,577 C730.7,577.7 714.7,577.2 693,578 C671.3,578.8 642.5,580.8 620,582 C597.5,583.2 569.3,590.3 558,585 C546.7,579.7 550,559.5 552,550 Z" style="--c:#2F6FA8"/>
+ <path class="hz" data-hz="meso" d="M558,585 C568.2,578.7 597.5,583.2 620,582 C642.5,580.8 671.3,578.8 693,578 C714.7,577.2 730.7,577.7 750,577 C769.3,576.3 793.2,575.2 809,574 C824.8,572.8 832.2,571.3 845,570 C857.8,568.7 876.5,565.7 886,566 C895.5,566.3 900.5,567.2 902,572 C903.5,576.8 898.3,587.7 895,595 C891.7,602.3 887.8,610.2 882,616 C876.2,621.8 868.7,626.3 860,630 C851.3,633.7 838.5,636 830,638 C821.5,640 822.3,640 809,642 C795.7,644 769.3,647.7 750,650 C730.7,652.3 713,654.5 693,656 C673,657.5 649.3,658 630,659 C610.7,660 588.2,663.5 577,662 C565.8,660.5 566,657 563,650 C560,643 559.8,630.8 559,620 C558.2,609.2 547.8,591.3 558,585 Z" style="--c:#187A5C"/>
+ <path class="hz" data-hz="colon" d="M905,545 C908.8,537.5 915.3,530.5 925,527 C934.7,523.5 952.2,522.7 963,524 C973.8,525.3 984.2,526.5 990,535 C995.8,543.5 996.7,558.8 998,575 C999.3,591.2 1000.5,616.2 998,632 C995.5,647.8 992,655.8 983,670 C974,684.2 960.2,702.8 944,717 C927.8,731.2 908.5,744.8 886,755 C863.5,765.2 834.7,770.8 809,778 C783.3,785.2 756.5,796.7 732,798 C707.5,799.3 681.3,792.5 662,786 C642.7,779.5 630.2,768.7 616,759 C601.8,749.3 586,739.5 577,728 C568,716.5 564.2,700 562,690 C559.8,680 561.5,672.7 564,668 C566.5,663.3 566,663.5 577,662 C588,660.5 610.7,660 630,659 C649.3,658 673,657.5 693,656 C713,654.5 730.7,652.3 750,650 C769.3,647.7 790.7,645.3 809,642 C827.3,638.7 847.8,634.3 860,630 C872.2,625.7 876.2,621.8 882,616 C887.8,610.2 891.7,602.3 895,595 C898.3,587.7 900.3,580.3 902,572 C903.7,563.7 901.2,552.5 905,545 Z" style="--c:#C9893F"/>
+ <path class="hz" data-hz="spl" d="M1003,420 C1004.8,410.2 1007.5,405.5 1012,401 C1016.5,396.5 1024,393.5 1030,393 C1036,392.5 1043.3,393.5 1048,398 C1052.7,402.5 1055.8,408 1058,420 C1060.2,432 1061,453.3 1061,470 C1061,486.7 1059.5,505.8 1058,520 C1056.5,534.2 1055.8,546.3 1052,555 C1048.2,563.7 1040.7,569.8 1035,572 C1029.3,574.2 1023,572.5 1018,568 C1013,563.5 1007.8,556.3 1005,545 C1002.2,533.7 1001.7,514.2 1001,500 C1000.3,485.8 1000.7,473.3 1001,460 C1001.3,446.7 1001.2,429.8 1003,420 Z" style="--c:#8E44AD"/>
+ <path class="hz" data-hz="gb" d="M167,330 C166.3,320.3 172.5,308.2 178,300 C183.5,291.8 191,284 200,281 C209,278 220.3,280.5 232,282 C243.7,283.5 257.8,286.2 270,290 C282.2,293.8 293.3,299.2 305,305 C316.7,310.8 330.5,318.8 340,325 C349.5,331.2 356.3,335.8 362,342 C367.7,348.2 373.3,355.7 374,362 C374.7,368.3 370,375.3 366,380 C362,384.7 361,388 350,390 C339,392 316.7,392.5 300,392 C283.3,391.5 264.7,389.7 250,387 C235.3,384.3 223.3,380.8 212,376 C200.7,371.2 189.5,365.7 182,358 C174.5,350.3 167.7,339.7 167,330 Z" style="--c:#5D6D3A"/>
+ <g class="hzb" style="--c:#C0392B"><circle cx="880" cy="234" r="26"/><text x="880" y="234">1</text></g>
+ <g class="hzb" style="--c:#2F6FA8"><circle cx="538" cy="540" r="26"/><text x="538" y="540">2</text></g>
+ <g class="hzb" style="--c:#187A5C"><circle cx="540" cy="630" r="26"/><text x="540" y="630">3</text></g>
+ <g class="hzb" style="--c:#C9893F"><circle cx="770" cy="828" r="26"/><text x="770" y="828">4</text></g>
+ <g class="hzb" style="--c:#8E44AD"><circle cx="1084" cy="482" r="26"/><text x="1084" y="482">5</text></g>
+ <g class="hzb" style="--c:#5D6D3A"><circle cx="230" cy="420" r="26"/><text x="230" y="420">6</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
   <div class="hzi" data-hzi="stom" hidden><b>הדופן האחורית של הקיבה</b><p>בציור הקיבה מורמת כלפי מעלה. מאחוריה נמצא השק הקטן. ברצפת השק: הלבלב. פסאודוציסטה או נמק מוקף שצמודים לדופן האחורית (פחות מ-1 ס״מ) מנוקזים דרך הקיבה, באנדוסקופיה או בניתוח (ציסטוגסטרוסטומיה).</p></div>

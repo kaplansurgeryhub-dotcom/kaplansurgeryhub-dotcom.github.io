@@ -100,6 +100,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
 @media print{.brandbar{display:none}}
@@ -258,16 +270,15 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>8</b>איפה מאכילים</div>
  <h2>הדרכים להזנה אנטרלית</h2>
- <div class="hotw"><div class="hoti"><img src="img/nutr-digestive.png" alt="מערכת העיכול: לוע, הוושט, קיבה, מעי דק ומעי גס"><svg viewBox="0 0 1280 1280" preserveAspectRatio="none">
-   <polygon class="hz" data-hz="n" points="640,196 762,196 762,262 684,262 684,500 648,500 648,262 640,262" style="--c:#2F6FA8"/>
-   <text class="hzl" style="font-size:64px" x="720" y="380">1</text>
-   <polygon class="hz" data-hz="s" points="646,512 712,496 786,514 806,562 774,620 690,640 624,606" style="--c:#C9893F"/>
-   <text class="hzl" style="font-size:64px" x="740" y="585">2</text>
-   <polygon class="hz" data-hz="j" points="568,660 760,660 760,856 568,856" style="--c:#A3402E"/>
-   <text class="hzl" style="font-size:64px" x="664" y="780">3</text>
-   <polygon class="hz" data-hz="c" points="520,612 562,612 566,866 524,866" style="--c:#00967D"/>
-   <polygon class="hz" data-hz="c" points="756,612 784,612 784,820 756,820" style="--c:#00967D"/>
-   <text class="hzl" style="font-size:64px" x="544" y="760">4</text>
+ <div class="hotw"><div class="hoti"><img src="img/nutr-digestive.png" alt="מערכת העיכול: לוע, הוושט, קיבה, מעי דק ומעי גס"><svg viewBox="0 0 1280 1280" preserveAspectRatio="none" style="--lw:16;--bf:31px">
+   <path class="hz ln" data-hz="n" d="M764,212 C745,206 720,202 700,203 C685,205 672,210 665,222 C659,240 657,270 657,300 C657,350 657,400 657,440 C658,470 660,490 664,503 C666,510 669,514 672,517" style="--c:#2F6FA8"/>
+   <path class="hz" data-hz="s" d="M735,515 C745,512 750,514 757,516 C766,520 772,526 775,532 C780,540 784,548 784,557 C785,566 785,573 784,580 C782,590 779,597 775,602 C770,610 765,614 760,617 C752,621 746,623 740,625 C728,629 717,631 707,632 C690,634 670,634 650,633 C638,632 632,631 630,630 C620,629 610,628 605,625 C601,620 600,614 602,610 C604,605 607,602 610,600 C615,597 620,596 625,595 C632,592 638,589 645,587 C653,585 662,585 670,585 C680,583 688,580 695,577 C702,573 709,567 715,562 C722,557 730,552 735,545 C739,540 742,535 742,530 C742,524 739,518 735,515 Z" style="--c:#C9893F"/>
+   <path class="hz" data-hz="j" d="M557,660 C563,654 570,651 577,650 C585,651 594,656 602,660 C620,668 638,676 655,682 C664,680 673,678 682,677 C695,675 708,673 720,670 C724,668 728,665 732,662 C741,656 750,650 760,645 C764,644 767,644 770,645 C773,653 773,661 772,670 C771,687 771,704 770,720 C769,729 767,737 765,745 C761,754 755,762 750,770 C748,778 747,787 745,795 C743,802 740,809 737,815 C733,821 729,827 725,832 C720,837 715,841 710,845 C703,849 697,852 690,855 C683,857 677,859 670,860 C663,861 657,862 650,862 C642,861 635,859 627,857 C619,854 610,849 602,845 C596,843 590,842 585,840 C581,836 578,831 575,827 C571,820 567,812 565,805 C563,797 561,790 560,782 C558,774 556,765 555,757 C553,749 552,740 552,732 C553,723 554,715 555,707 C555,698 555,690 555,682 C555,675 556,667 557,660 Z" style="--c:#A3402E"/>
+   <path class="hz ln" data-hz="c" d="M556,836 C548,828 544,822 544,812 C541,795 540,780 540,760 C540,740 540,720 541,700 C542,680 544,658 552,642 C558,634 565,631 575,630 C590,630 600,638 610,646 C630,656 650,661 672,661 C690,662 705,660 720,655 C735,650 748,642 760,630 C766,624 771,620 774,624 C775,640 774,655 774,670 C774,690 773,705 772,722 C771,740 769,752 766,762 C762,778 758,792 754,805 C749,818 742,830 732,840 C720,852 700,862 682,866 C670,869 660,872 656,880 C654,890 654,902 654,912" style="--c:#00967D;--lw:30"/>
+   <g class="hzb" style="--c:#2F6FA8"><circle cx="610" cy="420" r="26"/><text x="610" y="420">1</text></g>
+   <g class="hzb" style="--c:#C9893F"><circle cx="815" cy="590" r="26"/><text x="815" y="590">2</text></g>
+   <g class="hzb" style="--c:#A3402E"><circle cx="598" cy="900" r="26"/><text x="598" y="900">3</text></g>
+   <g class="hzb" style="--c:#00967D"><circle cx="492" cy="745" r="26"/><text x="492" y="745">4</text></g>
   </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על אזור כדי לקרוא על דרך ההזנה</p>
    <div class="hzi" data-hzi="n" hidden><b>1 · דרך האף: צינור לקיבה או למעי</b><p>לטווח קצר. מוחדר ליד המיטה או בשיקוף. קל להחדיר ולהחליף. סיכונים: מיקום שגוי, דלקת סינוסים, דימום מהאף, נמק באף ופגיעה בוושט. צינור לתריסריון או לצם מתאים כשהקיבה לא מתרוקנת, ברפלוקס ובסיכון לשאיפה</p></div>

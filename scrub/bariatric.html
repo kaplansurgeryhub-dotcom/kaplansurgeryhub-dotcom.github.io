@@ -97,6 +97,18 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
 @media print{.brandbar{display:none}}
@@ -267,19 +279,19 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
 <section class="s"><div class="card">
  <div class="kick"><b>8</b>אנטומיה · אינטראקטיבי</div>
  <h2>הקיבה בעיני המנתח הבריאטרי</h2>
- <div class="hotw"><div class="hoti"><img src="img/Sobo_1906_405.png" alt="הקיבה במקומה, הכבד מורם"><svg viewBox="0 0 960 655" preserveAspectRatio="none">
-  <polygon class="hz" data-hz="fun" points="560,130 700,110 760,180 745,260 620,245 560,200" style="--c:#7A5BD6"/>
-  <text class="hzl" x="655" y="190" style="font-size:40px;stroke-width:5px">1</text>
-  <polygon class="hz" data-hz="body" points="520,265 745,270 760,390 640,425 520,405 500,330" style="--c:#2F6FA8"/>
-  <text class="hzl" x="630" y="370" style="font-size:40px;stroke-width:5px">2</text>
-  <polygon class="hz" data-hz="pyl" points="360,340 470,340 470,400 360,400" style="--c:#187A5C"/>
-  <text class="hzl" x="415" y="385" style="font-size:40px;stroke-width:5px">3</text>
-  <polygon class="hz" data-hz="less" points="300,200 470,180 500,245 420,300 320,290" style="--c:#C9893F"/>
-  <text class="hzl" x="400" y="255" style="font-size:40px;stroke-width:5px">4</text>
-  <polygon class="hz" data-hz="spl" points="765,245 800,245 812,400 765,405" style="--c:#C0392B"/>
-  <text class="hzl" x="788" y="335" style="font-size:40px;stroke-width:5px">5</text>
-  <polygon class="hz" data-hz="om" points="330,470 520,450 540,600 330,600" style="--c:#B5476B"/>
-  <text class="hzl" x="430" y="540" style="font-size:40px;stroke-width:5px">6</text>
+ <div class="hotw"><div class="hoti"><img src="img/Sobo_1906_405.png" alt="הקיבה במקומה, הכבד מורם"><svg viewBox="0 0 960 655" preserveAspectRatio="none" style="--lw:14;--bf:23px">
+  <path class="hz" data-hz="fun" d="M552,165 C565,150 600,138 646,134 C680,137 711,150 735,170 C755,190 766,215 771,245 C740,252 700,250 660,240 C620,230 585,218 556,208 C553,192 552,178 552,165 Z" style="--c:#7A5BD6"/>
+  <path class="hz ln" data-hz="body" d="M600,139 C650,131 711,150 749,182 C766,212 771,250 769,293 C766,336 755,370 732,409 C711,426 668,439 625,443 C582,439 526,430 475,426" style="--c:#2F6FA8"/>
+  <path class="hz" data-hz="pyl" d="M350,372 C356,362 368,356 385,352 C410,347 440,342 472,334 C476,352 478,370 479,388 C480,402 480,415 480,428 C455,431 430,432 405,431 C385,429 366,426 353,418 C344,405 344,386 350,372 Z" style="--c:#187A5C"/>
+  <path class="hz" data-hz="less" d="M296,226 C305,215 312,210 320,207 C345,203 368,201 389,199 C420,195 450,190 475,186 C500,180 520,170 540,164 C548,165 551,166 552,169 C555,182 556,195 556,207 C556,222 555,236 552,250 C548,265 542,280 535,293 C525,305 514,315 500,323 C485,331 470,336 453,340 C436,344 420,347 402,349 C388,352 375,355 363,358 C357,350 352,345 346,340 C330,333 312,325 296,315 C290,300 288,285 288,270 C288,255 291,238 296,226 Z" style="--c:#C9893F"/>
+  <path class="hz" data-hz="spl" d="M762,203 C775,208 788,216 796,229 C800,250 801,272 801,293 C800,315 799,332 796,349 C793,362 789,372 784,379 C778,381 771,379 766,375 C763,362 762,349 762,336 C765,315 769,292 771,272 C770,255 768,240 764,229 C763,220 762,211 762,203 Z" style="--c:#C0392B"/>
+  <path class="hz" data-hz="om" d="M355,422 C375,428 400,430 423,430 C440,428 460,427 475,426 C526,430 582,439 625,443 C668,439 711,426 732,409 C748,400 760,392 770,390 C776,402 777,414 774,425 C779,455 785,485 788,514 C780,540 768,565 753,589 C710,600 660,603 616,603 C550,603 480,603 411,603 C360,600 300,596 253,589 C258,565 266,540 274,520 C278,508 283,500 288,493 C298,475 310,455 322,438 C333,430 344,424 355,422 Z" style="--c:#B5476B"/>
+  <g class="hzb" style="--c:#7A5BD6"><circle cx="690" cy="108" r="20"/><text x="690" y="108">1</text></g>
+  <g class="hzb" style="--c:#2F6FA8"><circle cx="742" cy="452" r="20"/><text x="742" y="452">2</text></g>
+  <g class="hzb" style="--c:#187A5C"><circle cx="336" cy="448" r="20"/><text x="336" y="448">3</text></g>
+  <g class="hzb" style="--c:#C9893F"><circle cx="420" cy="272" r="20"/><text x="420" y="272">4</text></g>
+  <g class="hzb" style="--c:#C0392B"><circle cx="836" cy="300" r="20"/><text x="836" y="300">5</text></g>
+  <g class="hzb" style="--c:#B5476B"><circle cx="520" cy="565" r="20"/><text x="520" y="565">6</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
   <div class="hzi" data-hzi="fun" hidden><b>1 · הפונדוס וזווית <bdi>His</bdi></b><p>כאן מופרש הגרלין. בשרוול כורתים אותו עד זווית <bdi>His</bdi> וחושפים את השוק השמאלי. במעקף משאירים אותו מחוץ לכיס הקטן</p></div>

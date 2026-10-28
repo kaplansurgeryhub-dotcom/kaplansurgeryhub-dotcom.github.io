@@ -100,6 +100,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
 @media print{.brandbar{display:none}}
@@ -135,15 +147,22 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>2</b>סיור בחדר · אינטראקטיבי</div>
  <h2>מה יש בחדר הניתוח?</h2>
- <div class="hotw"><div class="hoti"><img src="img/or-theatre.jpg" alt="חדר ניתוח ריק עם שולחן, מנורות, עמדת לפרוסקופיה, מכונת הרדמה ועגלות"><svg viewBox="0 0 1100 733" preserveAspectRatio="none">
-   <polygon class="hz" data-hz="li" points="350,230 440,230 450,270 420,300 375,300 345,270" style="--c:#C9893F"/><text class="hzl" x="398" y="272">1</text>
-   <polygon class="hz" data-hz="tb" points="372,392 625,408 600,455 590,605 430,605 455,470 372,440" style="--c:#2F6FA8"/><text class="hzl" x="515" y="520">2</text>
-   <polygon class="hz" data-hz="tw" points="215,243 285,243 290,295 512,282 512,322 405,330 400,470 312,470 312,335 215,305" style="--c:#00967D"/><text class="hzl" x="356" y="410">3</text>
-   <polygon class="hz" data-hz="an" points="868,188 1030,188 1042,300 1085,330 1085,733 712,733 760,475 880,462" style="--c:#7A5BD6"/><text class="hzl" x="930" y="560">4</text>
-   <polygon class="hz" data-hz="it" points="130,420 290,420 292,540 255,545 252,600 125,600 125,540" style="--c:#A3402E"/><text class="hzl" x="210" y="490">5</text>
-   <polygon class="hz" data-hz="su" points="118,548 250,548 252,700 118,700" style="--c:#0A6B5A"/><text class="hzl" x="185" y="640">6</text>
-   <polygon class="hz" data-hz="dr" points="605,245 745,240 745,500 605,500" style="--c:#5C6F73"/><text class="hzl" x="675" y="390">7</text>
-  </svg></div>
+ <div class="hotw"><div class="hoti"><img src="img/or-theatre.jpg" alt="חדר ניתוח ריק עם שולחן, מנורות, עמדת לפרוסקופיה, מכונת הרדמה ועגלות"><svg viewBox="0 0 1100 733" preserveAspectRatio="none" style="--lw:4;--bf:26px">
+ <path class="hz" data-hz="li" d="M346,276 C346.3,271 347.8,263.3 352,259 C356.2,254.7 363.8,252 371,250 C378.2,248 386.8,247 395,247 C403.2,247 412.5,248.3 420,250 C427.5,251.7 435.8,254.2 440,257 C444.2,259.8 445.7,263 445,267 C444.3,271 441,276.7 436,281 C431,285.3 422.7,289.7 415,293 C407.3,296.3 398.2,300.2 390,301 C381.8,301.8 372.7,300 366,298 C359.3,296 353.3,292.7 350,289 C346.7,285.3 345.7,281 346,276 Z" style="--c:#C9893F"/>
+ <path class="hz" data-hz="tb" d="M373,422 C373,422 388.8,421.5 400,420 C411.2,418.5 432.2,416.7 440,413 C447.8,409.3 443.7,401.7 447,398 C450.3,394.3 454.8,392 460,391 C465.2,390 473,390.2 478,392 C483,393.8 483,399.3 490,402 C497,404.7 508.3,406.7 520,408 C531.7,409.3 546.7,409.3 560,410 C573.3,410.7 589,410.2 600,412 C611,413.8 626,421 626,421 C626,421 614.3,431.8 612,437 C609.7,442.2 612,452 612,452 C612,452 591.2,454.7 580,456 C568.8,457.3 552.5,457.7 545,460 C537.5,462.3 535,470 535,470 C535,470 533,508.3 533,520 C533,531.7 535,540 535,540 C535,540 592,543 592,543 C592,543 600,565 600,565 C600,565 594.7,574.3 578,582 C561.3,589.7 500,611 500,611 C500,611 482,602 482,602 C482,602 446.3,554.7 436,543 C425.7,531.3 420,532 420,532 C420,532 427.5,524.7 434,522 C440.5,519.3 459,516 459,516 C459,516 458,462 458,462 C458,462 413.8,449.7 400,446 C386.2,442.3 375,440 375,440 C375,440 373,422 373,422 Z" style="--c:#2F6FA8"/>
+ <path class="hz" data-hz="tw" d="M222,250 C222,250 285,261 285,261 C285,261 277,306 277,306 C277,306 216,296 216,296 C216,296 222,250 222,250 Z M256,304 C256,304 324,307 324,307 C324,307 324,318 324,318 C324,318 258,316 258,316 C258,316 256,304 256,304 Z M443,281 C443,281 512,285 512,285 C512,285 511,324 511,324 C511,324 444,320 444,320 C444,320 443,281 443,281 Z M318,325 C318,325 395,325 395,325 C395,325 396,345 396,345 C396,345 403,348 403,348 C403,348 403,368 403,368 C403,368 396,371 396,371 C396,371 397,460 397,460 C397,460 404,472 404,472 C404,472 406,489 406,489 C406,489 303,489 303,489 C303,489 305,471 305,471 C305,471 312,460 312,460 C312,460 313,372 313,372 C313,372 308,368 308,368 C308,368 308,348 308,348 C308,348 314,345 314,345 C314,345 318,325 318,325 Z" style="--c:#00967D"/>
+ <path class="hz" data-hz="an" d="M918,200 C918,200 946.7,188.7 960,186 C973.3,183.3 998,184 998,184 C998,184 1000,278 1000,278 C1000,278 1028,279.3 1035,283 C1042,286.7 1041.2,295.2 1042,300 C1042.8,304.8 1043.3,309 1040,312 C1036.7,315 1022,318 1022,318 C1022,318 1020,402 1020,402 C1020,402 1038.3,412.3 1048,416 C1057.7,419.7 1072,418 1078,424 C1084,430 1083.7,443.3 1084,452 C1084.3,460.7 1082.7,469.3 1080,476 C1077.3,482.7 1069,484.7 1068,492 C1067,499.3 1072.3,502 1074,520 C1075.7,538 1077.3,564.5 1078,600 C1078.7,635.5 1078,733 1078,733 C1078,733 715,733 715,733 C715,733 706.8,719.2 708,712 C709.2,704.8 717.5,696.7 722,690 C726.5,683.3 735,672 735,672 C735,672 774,670 774,670 C774,670 775,502 775,502 C775,502 762,486 762,486 C762,486 771.5,474.7 790,470 C808.5,465.3 873,458 873,458 C873,458 884,450 884,450 C884,450 884,310 884,310 C884,310 868,306 868,306 C868,306 868,292 868,292 C868,292 918,288 918,288 C918,288 918,200 918,200 Z" style="--c:#7A5BD6"/>
+ <path class="hz" data-hz="it" d="M130,421 C130,421 237,415 237,415 C237,415 241,444 241,444 C241,444 288,435 288,435 C288,435 291,448 291,448 C291,448 289,570 289,570 C289,570 293.3,575.3 294,580 C294.7,584.7 294.8,594.2 293,598 C291.2,601.8 287.2,603 283,603 C278.8,603 270.8,601 268,598 C265.2,595 263.8,589.3 266,585 C268.2,580.7 281,572 281,572 C281,572 281,540 281,540 C281,540 236.5,546.2 215,548 C193.5,549.8 152,551 152,551 C152,551 137.2,556.5 132,558 C126.8,559.5 123,561.7 121,560 C119,558.3 118.7,551.2 120,548 C121.3,544.8 129,541 129,541 C129,541 131,520 131,520 C131,520 130,421 130,421 Z" style="--c:#A3402E"/>
+ <path class="hz" data-hz="su" d="M127,556 C127,556 190,549 190,549 C190,549 196.3,556.8 200,556 C203.7,555.2 208,545.5 212,544 C216,542.5 220.3,544.8 224,547 C227.7,549.2 231.3,552.3 234,557 C236.7,561.7 238.3,567.8 240,575 C241.7,582.2 243.8,592.5 244,600 C244.2,607.5 240,613.3 241,620 C242,626.7 250,640 250,640 C250,640 252,652 252,652 C252,652 250.7,673.2 250,680 C249.3,686.8 250.2,690.8 248,693 C245.8,695.2 240,694.8 237,693 C234,691.2 230,682 230,682 C230,682 176.5,701.7 160,707 C143.5,712.3 131,714 131,714 C131,714 122.7,710.7 120,705 C117.3,699.3 116.2,694.2 115,680 C113.8,665.8 113.3,637.5 113,620 C112.7,602.5 111.8,583.7 113,575 C114.2,566.3 117.7,569.5 120,568 C122.3,566.5 127,566 127,566 C127,566 127,556 127,556 Z" style="--c:#0A6B5A"/>
+ <path class="hz" data-hz="dr" d="M608,252 C608,252 745,239 745,239 C745,239 746,503 746,503 C746,503 683,504.2 660,502 C637,499.8 608,490 608,490 C608,490 608,252 608,252 Z" style="--c:#5C6F73"/>
+ <g class="hzb" style="--c:#C9893F"><circle cx="470" cy="248" r="22"/><text x="470" y="248">1</text></g>
+ <g class="hzb" style="--c:#2F6FA8"><circle cx="570" cy="500" r="22"/><text x="570" y="500">2</text></g>
+ <g class="hzb" style="--c:#00967D"><circle cx="290" cy="345" r="22"/><text x="290" y="345">3</text></g>
+ <g class="hzb" style="--c:#7A5BD6"><circle cx="848" cy="250" r="22"/><text x="848" y="250">4</text></g>
+ <g class="hzb" style="--c:#A3402E"><circle cx="318" cy="532" r="22"/><text x="318" y="532">5</text></g>
+ <g class="hzb" style="--c:#0A6B5A"><circle cx="278" cy="665" r="22"/><text x="278" y="665">6</text></g>
+ <g class="hzb" style="--c:#5C6F73"><circle cx="584" cy="300" r="22"/><text x="584" y="300">7</text></g>
+ </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על פריט בתמונה כדי לקרוא עליו</p>
    <div class="hzi" data-hzi="li" hidden><b>1 · מנורות ניתוח</b><p>תאורה טובה היא חלק מהציוד הבסיסי שחייב לעבוד בכל ניתוח, יחד עם שולחן תקין, מכשירים, מסכים להדמיה, שאיבה ומכשיר צריבה</p></div>
    <div class="hzi" data-hzi="tb" hidden><b>2 · שולחן הניתוח</b><p>מקבעים את המטופל היטב ומרפדים את נקודות הלחץ. במטופל עם השמנה ובתנוחת ליתוטומיה יש סיכון לתסמונת מדור בגפיים, לפגיעה עצבית ולפצעי לחץ, במיוחד בניתוח ארוך</p></div>

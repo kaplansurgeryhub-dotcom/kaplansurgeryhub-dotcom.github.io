@@ -97,6 +97,18 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
 @media print{.brandbar{display:none}}
@@ -199,21 +211,21 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
 <section class="s"><div class="card">
  <div class="kick"><b>6</b>אנטומיה · אינטראקטיבי</div>
  <h2>מעקף <bdi>Roux-en-Y</bdi>: איפה כל סיבוך</h2>
- <div class="hotw"><div class="hoti"><img src="img/blausen-rygb-crop.png" alt="מעקף קיבה Roux-en-Y"><svg viewBox="0 0 920 680" preserveAspectRatio="none">
-  <polygon class="hz" data-hz="gj" points="100,110 185,110 185,190 100,190" style="--c:#C0392B"/>
-  <text class="hzl" x="142" y="160" style="font-size:38px;stroke-width:5px">1</text>
-  <polygon class="hz" data-hz="stp" points="245,80 285,90 230,270 185,260" style="--c:#C9893F"/>
-  <text class="hzl" x="236" y="190" style="font-size:38px;stroke-width:5px">2</text>
-  <polygon class="hz" data-hz="rem" points="560,290 700,280 700,360 560,350" style="--c:#7A5BD6"/>
-  <text class="hzl" x="630" y="330" style="font-size:38px;stroke-width:5px">3</text>
-  <polygon class="hz" data-hz="bp" points="535,350 570,350 580,435 700,445 735,535 705,545 680,485 560,465 532,410" style="--c:#B5476B"/>
-  <text class="hzl" x="560" y="420" style="font-size:38px;stroke-width:5px">4</text>
-  <polygon class="hz" data-hz="roux" points="695,220 760,230 795,460 765,530 740,525 760,440 738,275 695,262" style="--c:#2F6FA8"/>
-  <text class="hzl" x="772" y="370" style="font-size:38px;stroke-width:5px">5</text>
-  <polygon class="hz" data-hz="jj" points="705,500 765,500 765,570 705,570" style="--c:#187A5C"/>
-  <text class="hzl" x="735" y="545" style="font-size:38px;stroke-width:5px">6</text>
-  <polygon class="hz" data-hz="cc" points="515,555 695,565 685,660 520,645" style="--c:#0A6B5A"/>
-  <text class="hzl" x="600" y="620" style="font-size:38px;stroke-width:5px">7</text>
+ <div class="hotw"><div class="hoti"><img src="img/blausen-rygb-crop.png" alt="מעקף קיבה Roux-en-Y"><svg viewBox="0 0 920 680" preserveAspectRatio="none" style="--lw:26;--bf:22px">
+  <path class="hz" data-hz="gj" d="M144,126 C159,126 171,138 171,153 C171,168 159,180 144,180 C129,180 117,168 117,153 C117,138 129,126 144,126 Z" style="--c:#C0392B"/>
+  <path class="hz ln" data-hz="stp" d="M271,103 C266,113 260,128 256,141 C250,158 240,180 233,192 C226,205 214,226 204,238 C199,246 195,254 192,261" style="--c:#C9893F;--lw:13"/>
+  <path class="hz" data-hz="rem" d="M563,292 C585,287 625,285 650,278 C661,265 676,253 696,249 C716,245 739,250 750,268 C758,285 758,314 752,330 C745,346 725,356 700,360 C675,365 640,364 620,357 C602,350 592,334 580,322 C568,315 557,309 557,300 C557,295 560,293 563,292 Z" style="--c:#7A5BD6"/>
+  <path class="hz ln" data-hz="bp" d="M565,318 C560,335 550,355 547,375 C544,400 546,418 560,430 C578,444 610,447 650,452 C685,456 712,462 726,478 C738,494 737,522 726,546" style="--c:#B5476B"/>
+  <path class="hz ln" data-hz="roux" d="M621,224 C630,236 645,242 662,239 C680,236 700,230 722,238 C742,246 754,265 758,292 C762,330 770,380 774,420 C777,460 773,495 763,515 C754,532 742,546 733,553" style="--c:#2F6FA8"/>
+  <path class="hz" data-hz="jj" d="M712,538 C720,530 735,524 748,527 C758,530 759,544 753,555 C746,566 732,571 720,569 C709,566 704,550 712,538 Z" style="--c:#187A5C"/>
+  <path class="hz ln" data-hz="cc" d="M726,556 C714,574 702,588 682,588 C660,588 645,574 615,569 C585,565 545,568 528,575 C515,582 515,598 532,600 C555,602 590,592 615,590 C640,589 660,605 660,622 C660,640 645,648 625,647 C605,646 590,636 575,627 C568,623 560,620 553,617" style="--c:#0A6B5A"/>
+  <g class="hzb" style="--c:#C0392B"><circle cx="106" cy="117" r="19"/><text x="106" y="117">1</text></g>
+  <g class="hzb" style="--c:#C9893F"><circle cx="300" cy="96" r="19"/><text x="300" y="96">2</text></g>
+  <g class="hzb" style="--c:#7A5BD6"><circle cx="700" cy="318" r="19"/><text x="700" y="318">3</text></g>
+  <g class="hzb" style="--c:#B5476B"><circle cx="512" cy="400" r="19"/><text x="512" y="400">4</text></g>
+  <g class="hzb" style="--c:#2F6FA8"><circle cx="808" cy="400" r="19"/><text x="808" y="400">5</text></g>
+  <g class="hzb" style="--c:#187A5C"><circle cx="694" cy="528" r="19"/><text x="694" y="528">6</text></g>
+  <g class="hzb" style="--c:#0A6B5A"><circle cx="490" cy="598" r="19"/><text x="490" y="598">7</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
   <div class="hzi" data-hzi="gj" hidden><b>1 · החיבור קיבה-ג׳חונום</b><p>כאן רוב הדליפות במעקף (היום מתחת ל-<bdi dir="ltr">1%</bdi>). היצרות ב-<bdi dir="ltr">2–7%</bdi>, <bdi dir="ltr">4–6</bdi> שבועות אחרי. כיב בחיבור ב-<bdi dir="ltr">2–14%</bdi>, יותר כשהכיס גדול</p></div>

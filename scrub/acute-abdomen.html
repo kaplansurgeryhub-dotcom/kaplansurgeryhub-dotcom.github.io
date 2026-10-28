@@ -102,6 +102,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
 @media print{.brandbar{display:none}}
@@ -179,20 +191,20 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>4</b>מפת הבטן · אינטראקטיבי</div>
  <h2>איפה כואב ומה מתחת?</h2>
- <div class="hotw"><div class="hoti"><img src="img/Sobo_1906_407.jpg" alt="הבטן הפתוחה: כבד, קיבה, כיס מרה והאומנטום הגדול"><svg viewBox="0 0 1100 1290" preserveAspectRatio="none">
-   <polygon class="hz" data-hz="ruq" points="140,640 165,440 300,290 520,245 545,430 420,500 260,600" style="--c:#A3402E"/>
-   <text class="hzl" style="font-size:54px" x="330" y="440">1</text>
-   <polygon class="hz" data-hz="epi" points="550,430 565,330 720,320 830,360 800,500 640,530 530,505" style="--c:#C9893F"/>
-   <text class="hzl" style="font-size:54px" x="680" y="440">2</text>
-   <polygon class="hz" data-hz="mid" points="290,600 520,540 800,520 860,700 820,890 300,890 245,720" style="--c:#2F6FA8"/>
-   <text class="hzl" style="font-size:54px" x="550" y="740">3</text>
-   <polygon class="hz" data-hz="rlq" points="220,905 525,905 525,1180 320,1180 210,1040" style="--c:#00967D"/>
-   <text class="hzl" style="font-size:54px" x="380" y="1050">4</text>
-   <polygon class="hz" data-hz="llq" points="575,905 880,905 900,1040 800,1180 575,1180" style="--c:#7A5BD6"/>
-   <text class="hzl" style="font-size:54px" x="720" y="1050">5</text>
-   <polygon class="hz" data-hz="pel" points="200,1195 900,1195 960,1280 140,1280" style="--c:#0C2A35"/>
-   <text class="hzl" style="font-size:54px" x="550" y="1258">6</text>
-  </svg></div>
+ <div class="hotw"><div class="hoti"><img src="img/Sobo_1906_407.jpg" alt="הבטן הפתוחה: כבד, קיבה, כיס מרה והאומנטום הגדול"><svg viewBox="0 0 1100 1290" preserveAspectRatio="none" style="--lw:12;--bf:27px">
+  <path class="hz" data-hz="ruq" d="M303,549 C318,500 340,430 378,340 C405,295 440,262 475,244 C500,226 520,205 539,196 C555,194 570,196 582,200 C578,230 562,280 550,330 C540,380 534,415 531,445 C510,447 490,442 466,448 C440,456 410,468 389,479 C375,486 362,494 354,506 C345,520 330,540 303,549 Z" style="--c:#A3402E"/>
+  <path class="hz" data-hz="epi" d="M434,472 C450,460 465,450 490,444 C510,440 525,448 541,447 C550,435 556,422 565,415 C590,404 605,398 624,394 C650,388 665,382 678,378 C700,372 715,366 731,362 C755,355 778,345 795,335 C805,348 812,360 817,372 C826,390 832,402 838,415 C848,432 855,448 860,463 C852,480 846,492 838,501 C820,515 805,525 785,533 C765,541 748,546 731,549 C705,556 680,561 656,562 C625,560 597,555 571,549 C553,545 535,539 517,533 C500,526 485,520 469,512 C455,503 442,492 434,479 Z" style="--c:#C9893F"/>
+  <path class="hz" data-hz="mid" d="M262,600 C285,572 322,548 358,520 C395,498 430,486 469,512 C517,533 571,549 656,562 C731,549 785,533 838,501 C870,525 905,580 935,630 C952,665 962,700 966,740 C970,790 970,840 966,885 C830,902 720,908 600,908 C480,908 360,902 236,885 C236,840 242,800 246,776 C248,730 250,690 253,648 C255,630 258,612 262,600 Z" style="--c:#2F6FA8"/>
+  <path class="hz" data-hz="rlq" d="M236,890 C360,905 480,912 590,912 L590,1256 C550,1252 515,1245 483,1238 C445,1222 415,1206 394,1193 C368,1172 346,1152 329,1135 C308,1104 296,1075 285,1046 C270,1015 260,992 253,969 C244,940 237,915 236,890 Z" style="--c:#00967D"/>
+  <path class="hz" data-hz="llq" d="M590,912 C700,912 830,906 966,890 C962,925 955,955 945,982 C932,1025 920,1058 906,1084 C892,1112 878,1138 862,1161 C840,1190 818,1208 791,1225 C760,1244 722,1258 682,1264 C650,1267 620,1263 590,1256 Z" style="--c:#7A5BD6"/>
+  <path class="hz" data-hz="pel" d="M190,1050 C235,1075 275,1110 329,1135 C355,1162 380,1182 394,1193 C420,1212 450,1228 483,1238 C540,1258 610,1268 682,1264 C730,1258 760,1244 791,1225 C820,1208 840,1185 862,1161 C895,1125 945,1085 1000,1062 C1008,1130 1012,1210 1008,1282 L182,1282 C184,1200 186,1120 190,1050 Z" style="--c:#0C2A35"/>
+  <g class="hzb" style="--c:#A3402E"><circle cx="318" cy="462" r="23"/><text x="318" y="462">1</text></g>
+  <g class="hzb" style="--c:#C9893F"><circle cx="884" cy="440" r="23"/><text x="884" y="440">2</text></g>
+  <g class="hzb" style="--c:#2F6FA8"><circle cx="470" cy="760" r="23"/><text x="470" y="760">3</text></g>
+  <g class="hzb" style="--c:#00967D"><circle cx="430" cy="1030" r="23"/><text x="430" y="1030">4</text></g>
+  <g class="hzb" style="--c:#7A5BD6"><circle cx="770" cy="1040" r="23"/><text x="770" y="1040">5</text></g>
+  <g class="hzb" style="--c:#0C2A35"><circle cx="235" cy="1240" r="23"/><text x="235" y="1240">6</text></g>
+ </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
    <div class="hzi" data-hzi="ruq" hidden><b>1 · כבד וכיס מרה (ימין עליון)</b><p>דלקת כיס המרה (סימן מרפי), אבצס בכבד. באולטרסאונד: דופן כיס מרה מעובה ואבנים. דם או אוויר מתחת לסרעפת יכולים לגרום לכאב בכתף. לחשוב גם על דלקת ריאות שמחקה כאב בטן</p></div>
    <div class="hzi" data-hzi="epi" hidden><b>2 · קיבה ותריסריון (אפיגסטריום)</b><p>כיב מנוקב: אוויר חופשי מתחת לסרעפת בצילום בעמידה. דלקת לבלב (מאחורי הקיבה, רטרופריטונאלית): ליפאז. לעיתים סימן גריי טרנר. לחשוב גם על אוטם שריר הלב שמופיע ככאב בבטן העליונה</p></div>

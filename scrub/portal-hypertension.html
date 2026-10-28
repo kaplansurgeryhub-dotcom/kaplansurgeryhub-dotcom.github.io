@@ -96,6 +96,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  .num{grid-template-columns:1fr 1fr}
  .hzl{font-size:18px}
 }
+/* interactive plates, one look everywhere: precise shapes on the structure itself, a small numbered badge, a cue on top */
+.hoti{position:relative}
+.hoti::before{content:'👆 לחצו על אזור מודגש';position:absolute;top:8px;inset-inline-start:50%;transform:translateX(50%);z-index:3;background:rgba(12,42,53,.88);color:#fff;font:800 12.5px Heebo,sans-serif;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.18);pointer-events:none;transition:opacity .25s}
+.hoti:has(.hz.on)::before{opacity:0}
+.hz{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.6;stroke-opacity:.9;stroke-linejoin:round;cursor:pointer;transition:fill-opacity .2s,stroke-width .2s,opacity .2s;vector-effect:non-scaling-stroke}
+.hz.ln{fill:none;stroke-width:var(--lw,9);stroke-opacity:var(--li,.55);stroke-linecap:round;vector-effect:none}
+.hz:hover{fill-opacity:.38}.hz.ln:hover{stroke-opacity:var(--lh,.8)}
+.hz.on{fill-opacity:.45;stroke-width:2.6;filter:drop-shadow(0 0 4px var(--c))}.hz.ln.on{stroke-opacity:var(--lo,.62);stroke-width:calc(var(--lw,9) * 1.3)}
+.hoti svg:has(.hz.on) .hz:not(.on){opacity:.3}
+.hzb{pointer-events:none}.hzb circle{fill:var(--c);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}.hzb text{font:900 var(--bf,13px) Heebo,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.hotp .hint{display:none}
+/* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
 @media print{.brandbar{display:none}}
@@ -156,25 +168,25 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>3</b>אנטומיה · תמונה אינטראקטיבית</div>
  <h2>הווריד השערי ומסלולי המעקף</h2>
-<div class="hotw"><div class="hoti" style="max-width:min(100%,46vh);margin:0 auto"><img src="img/Gray591.png" alt="הווריד השערי ויובליו"><svg viewBox="0 0 491 750" preserveAspectRatio="none">
- <polygon class="hz" data-hz="pv" points="178,185 205,175 225,215 205,265 180,270 168,230" style="--c:#1F4E79"/>
- <text class="hzl" x="193" y="229" style="font-size:18px;stroke-width:3px">1</text>
- <polygon class="hz" data-hz="lgv" points="215,170 250,120 300,75 330,70 335,95 290,130 250,175 225,195" style="--c:#A3402E"/>
- <text class="hzl" x="274" y="135" style="font-size:18px;stroke-width:3px">2</text>
- <polygon class="hz" data-hz="sg" points="395,140 440,135 450,215 415,225 395,190" style="--c:#C9893F"/>
- <text class="hzl" x="419" y="187" style="font-size:18px;stroke-width:3px">3</text>
- <polygon class="hz" data-hz="spv" points="225,250 300,245 380,240 420,250 420,290 330,285 240,280" style="--c:#187A5C"/>
- <text class="hzl" x="330" y="269" style="font-size:18px;stroke-width:3px">4</text>
- <polygon class="hz" data-hz="sp" points="425,225 460,235 470,300 440,320 420,290" style="--c:#8E44AD"/>
- <text class="hzl" x="443" y="280" style="font-size:18px;stroke-width:3px">5</text>
- <polygon class="hz" data-hz="smv" points="215,300 245,300 245,420 225,560 205,640 180,630 200,520 215,410" style="--c:#2F6FA8"/>
- <text class="hzl" x="216" y="478" style="font-size:18px;stroke-width:3px">6</text>
- <polygon class="hz" data-hz="imv" points="305,295 330,300 365,420 372,560 365,650 340,650 345,560 330,420" style="--c:#B5A21C"/>
- <text class="hzl" x="344" y="488" style="font-size:18px;stroke-width:3px">7</text>
- <polygon class="hz" data-hz="rect" points="300,650 360,650 400,690 380,730 310,720" style="--c:#00967D"/>
- <text class="hzl" x="350" y="694" style="font-size:18px;stroke-width:3px">8</text>
- <polygon class="hz" data-hz="liver" points="30,60 120,20 230,40 240,120 170,175 150,260 60,270 20,200" style="--c:#7A5BD6"/>
- <text class="hzl" x="127" y="149" style="font-size:18px;stroke-width:3px">9</text>
+<div class="hotw"><div class="hoti" style="max-width:min(100%,46vh);margin:0 auto"><img src="img/Gray591.png" alt="הווריד השערי ויובליו"><svg viewBox="0 0 491 750" preserveAspectRatio="none" style="--lw:9;--bf:13px">
+ <path class="hz ln" data-hz="pv" d="M166,163 C167,166.2 169.7,175.8 172,182 C174.3,188.2 177.2,193.3 180,200 C182.8,206.7 186.2,215.3 189,222 C191.8,228.7 194.5,234.3 197,240 C199.5,245.7 202.8,253.3 204,256" style="--c:#1F4E79;--lw:16"/>
+ <path class="hz ln" data-hz="lgv" d="M206,214 C210,211.2 222,202.2 230,197 C238,191.8 245.7,186.5 254,183 C262.3,179.5 272.3,178.8 280,176 C287.7,173.2 293.7,170.2 300,166 C306.3,161.8 313.3,156.8 318,151 C322.7,145.2 326,138.2 328,131 C330,123.8 330.2,115.7 330,108 C329.8,100.3 329,92 327,85 C325,78 322.2,70.8 318,66 C313.8,61.2 304.7,57.7 302,56" style="--c:#A3402E"/>
+ <path class="hz ln" data-hz="sg" d="M432,227 C430.8,224.5 426.8,217.2 425,212 C423.2,206.8 422.2,201.2 421,196 C419.8,190.8 419.5,185.7 418,181 C416.5,176.3 413,170.2 412,168 M421,196 C421.7,193.7 424,186.2 425,182 C426,177.8 426.7,172.8 427,171" style="--c:#C9893F"/>
+ <path class="hz ln" data-hz="spv" d="M212,257 C216.7,257.5 232,260 240,260 C248,260 252.5,257.7 260,257 C267.5,256.3 276.7,255.5 285,256 C293.3,256.5 301.7,259 310,260 C318.3,261 326.7,261.2 335,262 C343.3,262.8 351.7,265 360,265 C368.3,265 378.3,263.7 385,262 C391.7,260.3 395,257.5 400,255 C405,252.5 410.3,249.3 415,247 C419.7,244.7 425.8,242 428,241" style="--c:#187A5C;--lw:10"/>
+ <path class="hz" data-hz="sp" d="M430,212 C432.7,208.2 440.8,210.3 445,212 C449.2,213.7 452.8,217.3 455,222 C457.2,226.7 457.7,233.3 458,240 C458.3,246.7 456.8,254.5 457,262 C457.2,269.5 459.2,278.7 459,285 C458.8,291.3 457.2,294.8 456,300 C454.8,305.2 454.3,311.3 452,316 C449.7,320.7 445.7,325.3 442,328 C438.3,330.7 432.5,336.7 430,332 C427.5,327.3 427.3,312 427,300 C426.7,288 427.7,270.8 428,260 C428.3,249.2 428.7,243 429,235 C429.3,227 427.3,215.8 430,212 Z" style="--c:#8E44AD"/>
+ <path class="hz ln" data-hz="smv" d="M205,262 C206.7,265.8 211.5,277 215,285 C218.5,293 223.5,300.8 226,310 C228.5,319.2 229.2,330 230,340 C230.8,350 231.2,360 231,370 C230.8,380 230.2,388.3 229,400 C227.8,411.7 226.2,427.5 224,440 C221.8,452.5 218.8,464.2 216,475 C213.2,485.8 209.7,495 207,505 C204.3,515 201.5,524.2 200,535 C198.5,545.8 198.7,557.5 198,570 C197.3,582.5 196.8,598.3 196,610 C195.2,621.7 193.5,635 193,640" style="--c:#2F6FA8;--lw:10"/>
+ <path class="hz ln" data-hz="imv" d="M288,265 C290,269.2 296.2,280.8 300,290 C303.8,299.2 307.3,310 311,320 C314.7,330 318.2,340 322,350 C325.8,360 330.5,370 334,380 C337.5,390 340.8,398.3 343,410 C345.2,421.7 346.3,436.7 347,450 C347.7,463.3 347.3,476.7 347,490 C346.7,503.3 345.7,516.2 345,530 C344.3,543.8 344,559.7 343,573 C342,586.3 340.3,599.7 339,610 C337.7,620.3 336.8,628.7 335,635 C333.2,641.3 329.2,645.8 328,648" style="--c:#B5A21C"/>
+ <path class="hz" data-hz="rect" d="M252,740 C249.8,735.7 252.7,716.7 255,708 C257.3,699.3 261.5,694.3 266,688 C270.5,681.7 276.3,675.2 282,670 C287.7,664.8 294,660.7 300,657 C306,653.3 310.5,649.2 318,648 C325.5,646.8 334.7,648.8 345,650 C355.3,651.2 367.5,654.7 380,655 C392.5,655.3 407.5,653.2 420,652 C432.5,650.8 447,646.7 455,648 C463,649.3 466.8,654.7 468,660 C469.2,665.3 465.8,674.3 462,680 C458.2,685.7 452.8,690.3 445,694 C437.2,697.7 427.5,699.7 415,702 C402.5,704.3 385.3,706.2 370,708 C354.7,709.8 336.3,710.7 323,713 C309.7,715.3 299.2,718.5 290,722 C280.8,725.5 274.3,731 268,734 C261.7,737 254.2,744.3 252,740 Z" style="--c:#00967D"/>
+ <path class="hz" data-hz="liver" d="M46,63 C57.7,50.8 74,38.8 88,32 C102,25.2 116.7,25.5 130,22 C143.3,18.5 151.7,12.3 168,11 C184.3,9.7 210.3,10 228,14 C245.7,18 262.3,27.3 274,35 C285.7,42.7 292.8,48.3 298,60 C303.2,71.7 304.3,91.7 305,105 C305.7,118.3 304.8,131.2 302,140 C299.2,148.8 297.3,154.5 288,158 C278.7,161.5 258.2,161.5 246,161 C233.8,160.5 224,156.8 215,155 C206,153.2 199.2,150.5 192,150 C184.8,149.5 177,148.7 172,152 C167,155.3 164.3,162 162,170 C159.7,178 159.2,190.3 158,200 C156.8,209.7 156.7,218.8 155,228 C153.3,237.2 152.5,247.2 148,255 C143.5,262.8 136.8,270.3 128,275 C119.2,279.7 107,282 95,283 C83,284 67.2,287.2 56,281 C44.8,274.8 34.3,263.7 28,246 C21.7,228.3 19.7,198.5 18,175 C16.3,151.5 13.3,123.7 18,105 C22.7,86.3 34.3,75.2 46,63 Z" style="--c:#7A5BD6"/>
+ <g class="hzb" style="--c:#1F4E79"><circle cx="226" cy="232" r="11"/><text x="226" y="232">1</text></g>
+ <g class="hzb" style="--c:#A3402E"><circle cx="348" cy="98" r="11"/><text x="348" y="98">2</text></g>
+ <g class="hzb" style="--c:#C9893F"><circle cx="443" cy="180" r="11"/><text x="443" y="180">3</text></g>
+ <g class="hzb" style="--c:#187A5C"><circle cx="300" cy="282" r="11"/><text x="300" y="282">4</text></g>
+ <g class="hzb" style="--c:#8E44AD"><circle cx="474" cy="270" r="11"/><text x="474" y="270">5</text></g>
+ <g class="hzb" style="--c:#2F6FA8"><circle cx="176" cy="470" r="11"/><text x="176" y="470">6</text></g>
+ <g class="hzb" style="--c:#B5A21C"><circle cx="366" cy="470" r="11"/><text x="366" y="470">7</text></g>
+ <g class="hzb" style="--c:#00967D"><circle cx="482" cy="700" r="11"/><text x="482" y="700">8</text></g>
+ <g class="hzb" style="--c:#7A5BD6"><circle cx="25" cy="42" r="11"/><text x="25" y="42">9</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
   <div class="hzi" data-hzi="pv" hidden><b>הווריד השערי</b><p>נוצר מאחורי צוואר הלבלב מהמזנטרי העליון ומווריד הטחול. אורכו 5.5–8 ס״מ וקוטרו כ-1 ס״מ. מביא כ-75% מהדם לכבד. אין בו מסתמים. לכן הלחץ בו זהה לאורך כל המערכת. יתר לחץ דם פורטלי: מפל לחצים של יותר מ-5 מ״מ כספית בין הווריד השערי לוורידי הכבד.</p></div>
