@@ -70,7 +70,11 @@ bdi{unicode-bidi:isolate}
 .cover .brandbar{display:none}
 @media (max-width:760px){.brandbar{left:10px;gap:7px;padding:4px 9px 4px 4px}.brandbar img{height:20px}.brandbar img.em{width:22px;height:22px}.s{padding-top:48px}.cvhead img.em{width:56px;height:56px}.cvlogos img{height:34px}.cvlogos small{display:none}}
 /* numbered lists: a bold word inside an item stays inline */
-.obj li,.steps li{display:block;position:relative;padding-inline-start:42px;min-height:30px}.obj li::before,.steps li::before{position:absolute;inset-inline-start:0;top:0}.obj.sm li{padding-inline-start:36px}
+.obj li,.steps li{display:block;position:relative;padding-inline-start:42px;min-height:30px}.obj li::before,.steps li::before{position:absolute;inset-inline-start:0;top:-2px;width:30px;height:30px;line-height:1;font-size:15px}.obj.sm li{padding-inline-start:36px}.obj.sm li::before{width:26px;height:26px;font-size:13px;top:-1px}
+/* bold inside a study's text stays in the sentence (only the study title is a block) */
+.study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
+/* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
+.card bdi{display:inline-block;max-width:100%}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
