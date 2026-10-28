@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>יתר לחץ דם פורטלי · Scrub In</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../emblem.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Frank+Ruhl+Libre:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0C2A35;--navy2:#123845;--g:#00967D;--g2:#3DC08C;--g3:#0A6B5A;--lime:#B5D96B;--red:#A3402E;--amber:#C9893F;--blue:#2F6FA8;--bg:#EDF2F0;--soft:#F3F7F5;--ink:#16262C;--muted:#5C6F73;--line:#DCE6E2}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--navy);color:var(--ink);font-family:Heebo,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.deck{position:fixed;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.deck::-webkit-scrollbar{display:none}
+.s{flex:0 0 100%;height:100%;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;padding:18px 16px 84px;overflow-y:auto;position:relative}
+.s::after{content:'';position:absolute;inset:0;background:url(../ops/art/organs.webp) no-repeat 6% 40%/auto 115%;opacity:.05;filter:invert(1);pointer-events:none}
+.card{width:min(980px,100%);background:#fff;border-radius:22px;box-shadow:0 18px 50px rgba(0,0,0,.35);padding:30px 32px 22px;position:relative;overflow:hidden;z-index:1}
+.card::before{content:'';position:absolute;inset:0 0 auto 0;height:6px;background:linear-gradient(90deg,var(--g3),var(--g),var(--g2),var(--lime))}
+.kick{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--g);letter-spacing:.3px;margin-bottom:6px}
+.kick b{background:var(--navy);color:#fff;border-radius:999px;min-width:26px;height:26px;display:grid;place-items:center;font-size:13px;padding:0 8px}
+h1,h2{font-family:'Frank Ruhl Libre',serif;color:var(--navy);margin:0 0 10px;line-height:1.15}
+h1{font-size:clamp(34px,6.4vw,60px)}h2{font-size:clamp(25px,4.4vw,36px)}
+h3{margin:0 0 6px;font-size:17px;color:var(--navy)}
+.lead{font-size:clamp(15.5px,2.3vw,18.5px);color:var(--muted);margin:0 0 16px;line-height:1.5}
+ul.b{margin:0;padding:0;list-style:none;display:grid;gap:8px}ul.b li{position:relative;padding-inline-start:20px;font-size:16.5px;line-height:1.45}ul.b li::before{content:'';position:absolute;inset-inline-start:2px;top:.62em;width:8px;height:8px;border-radius:2px;background:var(--g);transform:rotate(45deg)}
+ul.b li b{color:var(--navy)}ul.b.sm li{font-size:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.grid.g3{grid-template-columns:repeat(3,1fr)}.grid.f{grid-template-columns:1.05fr .95fr;align-items:center}
+.box{background:var(--soft);border-radius:14px;padding:13px 15px;border-inline-start:4px solid var(--g);font-size:15.5px;line-height:1.45}
+.box.r{border-color:var(--red);background:#FBEDEA}.box.a{border-color:var(--amber);background:#FFF6EA}.box.n{border-color:var(--navy)}.box.b{border-color:var(--blue);background:#EEF4FB}
+.box b.t{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}
+.num{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:4px 0 14px}.num div{background:var(--soft);border-radius:14px;padding:12px 10px;text-align:center}
+.num b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(26px,4vw,38px);color:var(--g3);line-height:1.05}.num span{font-size:13px;color:var(--muted);line-height:1.3;display:block;margin-top:4px}
+figure{margin:0;background:#FBFCFB;border:1px solid var(--line);border-radius:16px;padding:10px;text-align:center}figure img{max-width:100%;max-height:46vh;display:block;margin:0 auto;mix-blend-mode:multiply}
+figcaption{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.35}
+.ill svg{width:100%;height:auto;max-height:50vh}
+.src{margin-top:16px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.src b{color:var(--g3)}
+.tag{display:inline-block;font-size:12px;font-weight:800;border-radius:999px;padding:2px 10px;background:#E3F4EC;color:var(--g3);margin-inline-end:4px}
+.tag.r{background:#F8E3DE;color:var(--red)}.tag.a{background:#FFF3DF;color:#8A5A14}.tag.b{background:#E8F0FA;color:var(--blue)}
+.flow{display:grid;gap:8px}.flow div{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;background:var(--soft);border-radius:12px;padding:9px 12px;font-size:15.5px}.flow div b{color:var(--navy)}
+.study{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#fff}.study .y{font-size:12px;font-weight:800;color:var(--g);letter-spacing:.3px}.study b{display:block;font-size:16px;color:var(--navy);margin:2px 0}.study p{margin:4px 0 0;font-size:14.5px;line-height:1.45}.study small{display:block;margin-top:6px;font-size:11.5px;color:var(--muted)}
+.cover{background:radial-gradient(120% 90% at 85% 0%,#164B54 0%,var(--navy) 58%)}
+.cover::after{opacity:.16;background-position:2% 50%}
+.cover .card{background:transparent;box-shadow:none;color:#fff}.cover .card::before{display:none}.cover h1{color:#fff}.cover .lead{color:#C9D6DA}.cover .kick{color:var(--g2)}
+.pill{display:inline-flex;gap:6px;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px;color:#fff;margin:4px}
+.logo{display:flex;align-items:center;gap:10px;margin-bottom:26px}.logo img{width:48px;height:48px;border-radius:50%;background:#fff}.logo b{color:#fff;font-weight:900}.logo small{display:block;color:#A9C9C0;font-size:12px}
+.obj{counter-reset:o;list-style:none;margin:0;padding:0;display:grid;gap:10px}.obj li{counter-increment:o;display:flex;gap:12px;align-items:flex-start;font-size:16.5px;line-height:1.45}.obj li::before{content:counter(o);flex:0 0 30px;height:30px;border-radius:50%;background:var(--g);color:#fff;font-weight:800;display:grid;place-items:center}
+.nav{position:fixed;inset:auto 0 0 0;display:flex;align-items:center;justify-content:center;gap:14px;padding:12px 16px calc(14px + env(safe-area-inset-bottom));background:linear-gradient(transparent,rgba(6,20,26,.85) 40%);z-index:5}
+.nav button{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;font-size:22px;cursor:pointer}.nav button:disabled{opacity:.3}
+.dots{display:flex;gap:5px;flex-wrap:wrap;max-width:60vw;justify-content:center}.dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer}.dots i.on{background:var(--g2);width:20px;border-radius:5px}
+.count{color:#C9D6D9;font-size:13px;font-weight:700;min-width:44px;text-align:center}
+bdi{unicode-bidi:isolate}
+.hotw{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;align-items:start}.hoti{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#FBFCFB}.hoti img{display:block;width:100%;mix-blend-mode:multiply}.hoti svg{position:absolute;inset:0;width:100%;height:100%}
+.hz{fill:var(--c);fill-opacity:.38;stroke:var(--c);stroke-width:2;cursor:pointer;transition:fill-opacity .2s}.hz:hover,.hz.on{fill-opacity:.62}.hzl{font:900 22px Heebo,sans-serif;fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;pointer-events:none;text-anchor:middle}
+.hotp .hint{background:var(--soft);border-radius:12px;padding:10px 12px;font-weight:700;color:var(--g3);margin:0}.hzi{background:#fff;border:1px solid var(--line);border-inline-start:5px solid var(--c,var(--g));border-radius:14px;padding:12px 14px;margin-top:8px;font-size:15.5px;line-height:1.45}.hzi>b{display:block;font-size:17px;color:var(--navy);margin-bottom:4px}.hzi p{margin:0}
+figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-size:15px}.obj.sm li::before{flex-basis:26px;height:26px;font-size:13px}.flow.sm div{grid-template-columns:130px 1fr;padding:7px 10px;font-size:14.5px}
+@media (max-width:760px){.hotw{grid-template-columns:1fr}}
+
+@media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
+@media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+/*BRAND*/
+.brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
+.brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
+.s{padding-top:58px}
+.cover .card{display:flex;flex-direction:column;gap:6px;max-width:980px}
+.cvhead{display:flex;align-items:center;gap:16px;margin-bottom:30px}.cvhead img.em{width:74px;height:74px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(61,192,140,.55)}
+.cvhead b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(24px,3.4vw,34px);color:#fff;line-height:1.1}.cvhead span{display:block;font-size:clamp(15px,2vw,19px);color:#A9D9C8;font-weight:700;margin-top:4px}
+.cover h1{font-size:clamp(38px,6.6vw,66px);margin:6px 0 8px}.cover .kick{font-size:14px;letter-spacing:.06em}
+.cvmeta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.cvlogos{display:flex;align-items:center;gap:18px;margin-top:34px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14)}.cvlogos img{height:44px;width:auto}.cvlogos small{margin-inline-start:auto;color:#8FB3AA;font-size:12.5px;font-weight:700;letter-spacing:.08em}
+.cover .brandbar{display:none}
+@media (max-width:760px){.brandbar{left:10px;gap:7px;padding:4px 9px 4px 4px}.brandbar img{height:20px}.brandbar img.em{width:22px;height:22px}.s{padding-top:48px}.cvhead img.em{width:56px;height:56px}.cvlogos img{height:34px}.cvlogos small{display:none}}
+/* numbered lists: a bold word inside an item stays inline */
+.obj li,.steps li{display:block;position:relative;padding-inline-start:42px;min-height:30px}.obj li::before,.steps li::before{position:absolute;inset-inline-start:0;top:0}.obj.sm li{padding-inline-start:36px}
+.grid.tight figure img{max-height:24vh}
+@media print{.brandbar{display:none}}
+/*/BRAND*/
+</style>
+</head>
+<body>
+<div class="brandbar" aria-hidden="true"><img class="em" src="brand/emblem.jpg" alt=""><i></i><img src="brand/logo_k.webp" alt=""><img src="brand/logo_c.webp" alt=""></div>
+<main class="deck" id="deck">
+
+<section class="s cover"><div class="card">
+ <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
+ <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 5</div>
+ <h1>יתר לחץ דם פורטלי</h1>
+ <p class="lead">מהשחמת אל הדליות: סיבות, מיימת, דימום מדליות, <bdi>TIPS</bdi> ושאנטים. ומה הכירורג צריך לדעת על מטופל עם שחמת</p>
+ <div class="cvmeta"><span class="pill">מבוסס על <bdi>Sabiston</bdi>, מהדורה 22, פרק 89 (ופרקים 46, 51 ו-80)</span></div>
+ <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>1</b>מטרות הלמידה</div>
+ <h2>בסוף המפגש תדעו</h2>
+ <ol class="obj">
+  <li>להגדיר יתר לחץ דם פורטלי ולמיין את הסיבות: לפני הכבד, בתוך הכבד ואחריו</li>
+  <li>להכיר את מסלולי המעקף בין המערכת הפורטלית לסיסטמית ואת הסימנים בבדיקה</li>
+  <li>להעריך את מצב הכבד לפי <bdi>Child-Pugh</bdi> ולהכיר את מדד <bdi>MELD</bdi></li>
+  <li>לנהל דימום חריף מדליות לפי הסדר: החייאה, תרופות, אנדוסקופיה ו-<bdi>TIPS</bdi></li>
+  <li>להסביר את הטיפול במיימת ואת המקום של <bdi>TIPS</bdi>, שאנטים והשתלת כבד</li>
+ </ol>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 89 (עמ׳ <bdi dir="ltr">1255, 1267–1274</bdi>) · פרק 46 (עמ׳ <bdi dir="ltr">541–542</bdi>) · פרק 51 (עמ׳ <bdi dir="ltr">619–620</bdi>)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>2</b>הגדרה</div>
+ <h2>יתר לחץ דם פורטלי במספרים</h2>
+ <div class="num">
+  <div><b dir="ltr">&gt;5</b><span>מ״מ כספית: מפל לחצים בין הווריד השערי לוורידי הכבד. זו ההגדרה</span></div>
+  <div><b dir="ltr">8–10</b><span>מ״מ כספית: מתחילים להיווצר כלי דם עוקפים</span></div>
+  <div><b dir="ltr">&gt;12</b><span>מ״מ כספית: הזרימה מתהפכת ונוצרות דליות</span></div>
+  <div><b dir="ltr">1/3</b><span>ממקרי המוות בשחמת נגרמים מדימום מדליות</span></div>
+ </div>
+ <div class="grid">
+  <div>
+   <ul class="b">
+    <li><b>שחמת:</b> צלקות ופקעיות התחדשות בכבד. אין לה טיפול יעיל. לכן מטפלים בעיקר ביתר הלחץ ובסיבוכיו</li>
+    <li><b>מפוצה:</b> בלי אירוע של דימום מדליות, אנצפלופתיה או מיימת. חציון הישרדות <b>מעל 12 שנה</b></li>
+    <li><b>לא מפוצה:</b> אחרי אירוע כזה. חציון הישרדות <b>1.8 שנים</b> בלבד</li>
+   </ul>
+  </div>
+  <div style="display:grid;gap:10px">
+   <div class="box"><b class="t">איך מודדים</b>צנתור של וריד הכבד עם בלון (לחץ חסום). בהערכה לפני כריתת כבד: לחץ חסום מעל 10 מ״מ כספית הוא העדות הטובה ביותר ליתר לחץ דם פורטלי. הוא גם מנבא אי-ספיקת כבד אחרי הניתוח</div>
+   <div class="box a"><b class="t">שתי סיבות לעלייה בלחץ</b>התנגדות מוגברת בכבד (צלקות וכיווץ כלי דם) וזרימה מוגברת מהמעי (מחזור דם היפרדינמי והרחבת כלי הדם בבטן)</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 89 עמ׳ <bdi dir="ltr">1267–1268</bdi> · פרק 46 עמ׳ <bdi dir="ltr">542</bdi></span><span>הגדרה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>3</b>אנטומיה · תמונה אינטראקטיבית</div>
+ <h2>הווריד השערי ומסלולי המעקף</h2>
+<div class="hotw"><div class="hoti" style="max-width:min(100%,46vh);margin:0 auto"><img src="img/Gray591.png" alt="הווריד השערי ויובליו"><svg viewBox="0 0 491 750" preserveAspectRatio="none">
+ <polygon class="hz" data-hz="pv" points="178,185 205,175 225,215 205,265 180,270 168,230" style="--c:#1F4E79"/>
+ <text class="hzl" x="193" y="229" style="font-size:18px;stroke-width:3px">1</text>
+ <polygon class="hz" data-hz="lgv" points="215,170 250,120 300,75 330,70 335,95 290,130 250,175 225,195" style="--c:#A3402E"/>
+ <text class="hzl" x="274" y="135" style="font-size:18px;stroke-width:3px">2</text>
+ <polygon class="hz" data-hz="sg" points="395,140 440,135 450,215 415,225 395,190" style="--c:#C9893F"/>
+ <text class="hzl" x="419" y="187" style="font-size:18px;stroke-width:3px">3</text>
+ <polygon class="hz" data-hz="spv" points="225,250 300,245 380,240 420,250 420,290 330,285 240,280" style="--c:#187A5C"/>
+ <text class="hzl" x="330" y="269" style="font-size:18px;stroke-width:3px">4</text>
+ <polygon class="hz" data-hz="sp" points="425,225 460,235 470,300 440,320 420,290" style="--c:#8E44AD"/>
+ <text class="hzl" x="443" y="280" style="font-size:18px;stroke-width:3px">5</text>
+ <polygon class="hz" data-hz="smv" points="215,300 245,300 245,420 225,560 205,640 180,630 200,520 215,410" style="--c:#2F6FA8"/>
+ <text class="hzl" x="216" y="478" style="font-size:18px;stroke-width:3px">6</text>
+ <polygon class="hz" data-hz="imv" points="305,295 330,300 365,420 372,560 365,650 340,650 345,560 330,420" style="--c:#B5A21C"/>
+ <text class="hzl" x="344" y="488" style="font-size:18px;stroke-width:3px">7</text>
+ <polygon class="hz" data-hz="rect" points="300,650 360,650 400,690 380,730 310,720" style="--c:#00967D"/>
+ <text class="hzl" x="350" y="694" style="font-size:18px;stroke-width:3px">8</text>
+ <polygon class="hz" data-hz="liver" points="30,60 120,20 230,40 240,120 170,175 150,260 60,270 20,200" style="--c:#7A5BD6"/>
+ <text class="hzl" x="127" y="149" style="font-size:18px;stroke-width:3px">9</text>
+ </svg></div>
+ <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
+  <div class="hzi" data-hzi="pv" hidden><b>הווריד השערי</b><p>נוצר מאחורי צוואר הלבלב מהמזנטרי העליון ומווריד הטחול. אורכו 5.5–8 ס״מ וקוטרו כ-1 ס״מ. מביא כ-75% מהדם לכבד. אין בו מסתמים. לכן הלחץ בו זהה לאורך כל המערכת. יתר לחץ דם פורטלי: מפל לחצים של יותר מ-5 מ״מ כספית בין הווריד השערי לוורידי הכבד.</p></div>
+  <div class="hzi" data-hzi="lgv" hidden><b>הווריד הקורונרי (הקיבתי השמאלי)</b><p>יחד עם הוורידים הקיבתיים הקצרים הוא מזרים דם לוורידים שמתחת לרירית בקיבה העליונה ובוושט התחתון. משם הדם עובר לווריד האזיגוס. זה המעקף החשוב ביותר: כך נוצרים <b>דליות בוושט ובקיבה</b>.</p></div>
+  <div class="hzi" data-hzi="sg" hidden><b>הוורידים הקיבתיים הקצרים</b><p>מחברים את הטחול לפונדוס של הקיבה. בפקקת של וריד הטחול (״יתר לחץ דם פורטלי שמאלי״, לרוב מפנקריאטיטיס או מגידול) הדם עוקף דרך ורידי הקיבה, בעיקר הגסטרו-אפיפלואי השמאלי. כך נוצרות דליות בקיבה. כריתת טחול לבדה פותרת את הבעיה.</p></div>
+  <div class="hzi" data-hzi="spv" hidden><b>וריד הטחול</b><p>עובר מאחורי הלבלב אל הווריד השערי. בשאנט ספלנו-רנלי דיסטלי מחברים את הקצה הדיסטלי שלו לווריד הכליה השמאלי: הדליות מתנקזות דרך הטחול. הכבד ממשיך לקבל דם מהמזנטרי העליון.</p></div>
+  <div class="hzi" data-hzi="sp" hidden><b>הטחול</b><p>ביתר לחץ דם פורטלי הטחול מוגדל ויש מיעוט טסיות. לרוב אלה לא בעיה קלינית. לכן כריתת טחול בגללן בדרך כלל מיותרת.</p></div>
+  <div class="hzi" data-hzi="smv" hidden><b>הווריד המזנטרי העליון</b><p>מנקז את המעי הדק ואת חצי המעי הגס הימני. בשאנטים לא סלקטיביים (פורטו-קבלי, מזו-קבלי) מנתבים את כל הזרימה הפורטלית למערכת הסיסטמית: הדליות נעלמות, אבל עולה הסיכון לאנצפלופתיה ולאי-ספיקת כבד.</p></div>
+  <div class="hzi" data-hzi="imv" hidden><b>הווריד המזנטרי התחתון</b><p>מתנקז לרוב לווריד הטחול. דרך הענף ההמורואידלי העליון הוא מתחבר למקלעת הוורידים של החלחולת, שם יכולים להיווצר דליות ברקטום.</p></div>
+  <div class="hzi" data-hzi="rect" hidden><b>החלחולת</b><p>אחד ממקומות המעקף בין המערכת הפורטלית לסיסטמית. ביתר לחץ דם פורטלי יכולים להופיע כאן ורידים מורחבים.</p></div>
+  <div class="hzi" data-hzi="liver" hidden><b>הכבד: איפה ההתנגדות</b><p>בשחמת מאלכוהול ההתנגדות לזרימה היא בסינוסואידים ואחריהם. מהענף השמאלי של הווריד השערי, הווריד הטבורי ברצועה העגולה נפתח מחדש ויוצר את ״ראש המדוזה״ סביב הטבור.</p></div>
+ </div></div>
+ <p style="font-size:12px;color:var(--muted);margin:6px 0 0">הווריד השערי ויובליו, מבט מלפנים · <bdi>Gray's Anatomy</bdi> (1918), איור 591 (נחלת הכלל)</p>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 89 עמ׳ <bdi dir="ltr">1255, 1267–1268, 1271–1272</bdi></span><span>אנטומיה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>4</b>מסלולי המעקף</div>
+ <h2>איפה הלחץ "בורח"</h2>
+ <div class="grid">
+  <div class="flow">
+   <div><b>קיבה ווושט</b><span>הקורונרי והקיבתיים הקצרים אל האזיגוס: <b>דליות בוושט ובקיבה</b>. החשוב ביותר קלינית</span></div>
+   <div><b>טבור</b><span>הווריד הטבורי נפתח מחדש מהענף השמאלי של הווריד השערי אל ורידי דופן הבטן: <b>ראש מדוזה</b></span></div>
+   <div><b>חלחולת</b><span>מהמזנטרי התחתון דרך הוורידים ההמורואידליים: דליות וטחורים גדולים</span></div>
+   <div><b>רטרופריטונאום</b><span>כלי דם עוקפים מאחורי הצפק. הופכים ניתוח בבטן למסוכן</span></div>
+  </div>
+  <div style="display:grid;gap:10px">
+   <div class="box n"><b class="t">גם בתוך הכבד</b>חלק מהזרימה עוקף את תאי הכבד דרך שאנטים בתוך הכבד. כשזרימת הדם הפורטלי לכבד יורדת, הזרימה בעורק הכבד עולה (תגובת חיץ)</div>
+   <div class="box a"><b class="t">למה זה חשוב לכירורג</b>כל מעקף כזה הוא כלי דם בלחץ גבוה. בניתוח במטופל עם שחמת: הדבקויות מדממות, דימום מהדופן ומהרטרופריטונאום</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 89 עמ׳ <bdi dir="ltr">1255, 1267</bdi></span><span>מעקפים</span></div>
+</div></section>
+
+
+<section class="s"><div class="card">
+ <div class="kick"><b>5</b>סיבות</div>
+ <h2>לפני, בתוך או אחרי הכבד</h2>
+ <div class="grid g3">
+  <div class="box b"><b class="t">לפני הכבד</b>
+   <ul class="b sm">
+    <li><b>פקקת בווריד השערי:</b> הסיבה השכיחה. כ-50% מהמקרים בילדים. נוצרים כלי דם עוקפים אל הכבד ("טרנספורמציה קברנוזית")</li>
+    <li><b>פקקת בווריד הטחול בלבד:</b> לרוב מפנקריאטיטיס או גידול. דליות בקיבה, לחץ פורטלי תקין. <b>כריתת טחול מרפאת</b></li>
+   </ul></div>
+  <div class="box"><b class="t">בתוך הכבד</b>
+   <ul class="b sm">
+    <li><b>לפני הסינוסואידים:</b> הסיבה השכיחה היא שיסטוזומיאזיס. גם חלק מסוגי השחמת שאינם מאלכוהול</li>
+    <li><b>בסינוסואידים ואחריהם:</b> שחמת מאלכוהול, הסיבה השכיחה בארה״ב. קולגן בחלל <bdi>Disse</bdi> ופקעיות שלוחצות על ורידי הכבד הקטנים</li>
+   </ul></div>
+  <div class="box a"><b class="t">אחרי הכבד (נדיר)</b>
+   <ul class="b sm">
+    <li>תסמונת <bdi>Budd-Chiari</bdi> (פקקת בוורידי הכבד)</li>
+    <li>פריקרדיטיס מכווצת, אי-ספיקת לב</li>
+    <li>נדיר: רק זרימה מוגברת (טחול ענק, פיסטולה עורקית-ורידית בבטן)</li>
+   </ul></div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 89 עמ׳ <bdi dir="ltr">1267–1268</bdi></span><span>סיבות</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>6</b>בדיקה גופנית</div>
+ <h2>מה רואים אצל מטופל עם שחמת</h2>
+ <div class="grid">
+  <div>
+   <h3>סימנים (בעיקר בשחמת לא מפוצה)</h3>
+   <ul class="b sm">
+    <li>צהבת בלובן העין, גינקומסטיה, אובדן מאפייני מין משניים</li>
+    <li>"עכבישים" בעור (<bdi>spider angiomata</bdi>)</li>
+    <li><b>מיימת</b> ו<b>ראש מדוזה</b> סביב הטבור</li>
+    <li>טחול מוגדל. במעבדה: מיעוט טסיות, <bdi>INR</bdi> מוארך, אלבומין נמוך, נתרן נמוך</li>
+    <li>אנצפלופתיה: בלבול, ישנוניות ורעד מכנף (<bdi>asterixis</bdi>)</li>
+   </ul>
+  </div>
+  <div>
+   <h3>דרגות המיימת</h3>
+   <div class="flow">
+    <div><b>דרגה 1</b><span>קלה: נראית רק באולטרסאונד</span></div>
+    <div><b>דרגה 2</b><span>בינונית: הבטן תפוחה</span></div>
+    <div><b>דרגה 3</b><span>קשה: בטן מתוחה עם גל נוזל</span></div>
+   </div>
+   <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>בדקו מטופל/ת עם שחמת או מיימת: חפשו את הסימנים ברשימה, הקישו על הבטן לחיפוש עמימות משתנה ובדקו גל נוזל. חשבו את ה-<bdi>Child-Pugh</bdi> והציגו לבכיר/ה</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 46 עמ׳ <bdi dir="ltr">541–542</bdi> · פרק 89 עמ׳ <bdi dir="ltr">1267</bdi></span><span>בדיקה</span></div>
+</div></section>
+<section class="s"><div class="card">
+ <div class="kick"><b>7</b>בדיקה גופנית · איך עושים</div>
+ <h2>להסתכל, למשש ולהקיש</h2>
+ <div class="grid">
+  <figure><img src="img/ascites-cirrhosis.jpg" alt="בטן תפוחה עם מיימת"><figcaption>מיימת גדולה בשחמת: בטן מתוחה, הטבור בולט ורואים ורידים מורחבים בדופן · <bdi>James Heilman, MD</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש הכבד בשתי ידיים"><figcaption>מישוש הכבד בשתי ידיים: יד אחת מאחור תומכת, השנייה ממששת מתחת לקשת הצלעות הימנית · <bdi>Musser, A Practical Treatise on Medical Diagnosis</bdi> (1904), איור 192 (נחלת הכלל)</figcaption></figure>
+ </div>
+ <div class="flow" style="margin-top:12px">
+  <div><b>הסתכלות</b><span>צהבת, בטן תפוחה, טבור בולט, כלי דם מורחבים בדופן הבטן ("ראש מדוזה"), "עכבישים" בעור, גינקומסטיה</span></div>
+  <div><b>מישוש</b><span>שולי הכבד מתחת לקשת הצלעות הימנית. טחול מוגדל בצד שמאל</span></div>
+  <div><b>הקשה</b><span>עמימות בצדדים שזזה כשהמטופל מסתובב על הצד. בבטן מתוחה: גל נוזל (מיימת דרגה 3)</span></div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 46 עמ׳ <bdi dir="ltr">541–542</bdi> · פרק 89 עמ׳ <bdi dir="ltr">1255, 1267</bdi> · טכניקת הבדיקה: כללית</span><span>בדיקה</span></div>
+</div></section>
+
+
+<section class="s"><div class="card">
+ <div class="kick"><b>8</b>מה הכבד יכול לשאת</div>
+ <h2><bdi>Child-Pugh</bdi> ו-<bdi>MELD</bdi></h2>
+ <div class="grid">
+  <div>
+   <h3><bdi>Child-Pugh</bdi> · 5 פרמטרים, 1–3 נקודות כל אחד</h3>
+   <div class="flow">
+    <div><b>בילירובין (מ״ג/ד״ל)</b><span>מתחת ל-2 · 2–3 · מעל 3</span></div>
+    <div><b>אלבומין (גר׳/ד״ל)</b><span>מעל 3.5 · 2.8–3.5 · מתחת ל-2.8</span></div>
+    <div><b>זמן פרותרומבין</b><span>הארכה של 1–3 · 4–6 · מעל 6 שניות</span></div>
+    <div><b>מיימת</b><span>אין · קלה · בינונית</span></div>
+    <div><b>אנצפלופתיה</b><span>אין · מינימלית · מתקדמת</span></div>
+   </div>
+   <p style="font-size:14.5px;margin:8px 0 0"><b>A</b>: 5–6 נקודות · <b>B</b>: 7–9 · <b>C</b>: 10–15</p>
+  </div>
+  <div style="display:grid;gap:10px">
+   <div class="box"><b class="t">מה זה אומר</b>הישרדות לשנה: 100% ב-<bdi>A</bdi>, 45% ב-<bdi>C</bdi>. תמותה אחרי ניתוח שאינו בכבד: 10% ב-<bdi>A</bdi>, 63% ב-<bdi>C</bdi></div>
+   <div class="box b"><b class="t"><bdi>MELD</bdi></b>נבנה לחזות תמותה אחרי <bdi>TIPS</bdi>. משתנים אובייקטיביים: בילירובין, <bdi>INR</bdi> וקראטינין (וב-<bdi>MELD-Na</bdi> גם נתרן). משמש להשתלות ולהערכת סיכון בניתוח. מתחת ל-16: תמותה נמוכה יותר אחרי ניתוח</div>
+   <div class="box a"><b class="t">ניתוח מתוכנן</b><bdi>Child A</bdi> בלי יתר לחץ דם פורטלי משמעותי: אפשר. <bdi>Child B</bdi> ו-<bdi>C</bdi>: בדרך כלל לא מנתחים באופן מתוכנן</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 89 עמ׳ <bdi dir="ltr">1267</bdi> (טבלה 89.2) · פרק 46 עמ׳ <bdi dir="ltr">541</bdi> · פרק 51 עמ׳ <bdi dir="ltr">619</bdi></span><span>הערכה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>9</b>מיימת</div>
+ <h2>הסיבוך השכיח ביותר</h2>
+ <div class="grid">
+  <div>
+   <ul class="b sm">
+    <li><b>המנגנון:</b> ירידה בנפח הדם האפקטיבי, הפעלה של מערכת רנין-אנגיוטנסין-אלדוסטרון, אגירת מלח ומים. הנוזל עובר לבטן</li>
+    <li><b>האבחנה:</b> מפל אלבומין בין הדם למיימת (<bdi>SAAG</bdi>) של 1.1 גר׳/ד״ל ומעלה: המקור הוא יתר לחץ דם פורטלי</li>
+    <li><b>טיפול:</b> הגבלת מלח, פורוסמיד וספירונולקטון</li>
+    <li><b>דרגה 3:</b> ניקור בנפח גדול ואחריו אלבומין 25% (6–8 גרם לכל ליטר שהוצא). מונע פגיעה כלייתית ותמותה אחרי הניקור</li>
+    <li><b>מיימת עמידה לטיפול:</b> <bdi>TIPS</bdi>. שאנט צד-לצד מוריד מיימת. שאנט ספלנו-רנלי דיסטלי מחמיר אותה</li>
+   </ul>
+  </div>
+  <div style="display:grid;gap:10px">
+   <div class="box r"><b class="t">פריטוניטיס בקטריאלית ספונטנית</b>חום, כאב בטן או רק הידרדרות. האבחנה בניקור: יותר מ-250 נויטרופילים למיקרוליטר. אנטיביוטיקה רחבת טווח לפי הרגישויות במוסד</div>
+   <div class="box a"><b class="t">מניעה (בדרך כלל ציפרופלוקסצין או <bdi>TMP-SMX</bdi>)</b>דימום פעיל ממערכת העיכול · פריטוניטיס ספונטנית בעבר · חלבון במיימת מתחת ל-1.5 גר׳/ד״ל</div>
+   <div class="box n"><b class="t">לפני ניתוח</b>מנסים לשלוט במיימת. נקזים בדרך כלל לא משאירים (זיהום). לעיתים צריך ניקורים חוזרים אחרי הניתוח</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 46 עמ׳ <bdi dir="ltr">541–542</bdi> · פרק 51 עמ׳ <bdi dir="ltr">620</bdi> · פרק 89 עמ׳ <bdi dir="ltr">1271–1272</bdi></span><span>מיימת</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>10</b>חירום</div>
+ <h2>דימום חריף מדליות</h2>
+ <div class="grid">
+  <div class="flow">
+   <div><b>1 · החייאה</b><span>נתיב אוויר (במיוחד באנצפלופתיה), שני עירויים רחבים, סוג והצלבה. <b>עירוי דם מצמצם</b>: רק מתחת להמוגלובין 7, עם הישרדות טובה יותר מסף של 9</span></div>
+   <div><b>2 · תרופות מיד</b><span><b>אנטיביוטיקה</b> מונעת (פחות זיהומים, פחות דימום חוזר, הישרדות טובה יותר) ו<b>אוקטראוטייד</b> שמכווץ את כלי הדם בבטן</span></div>
+   <div><b>3 · אנדוסקופיה</b><span>תוך 12 שעות. <b>קשירה בגומיות</b> עדיפה על סקלרותרפיה. עוצרת 80–90% מהדימומים</span></div>
+   <div><b>4 · כשלא נעצר</b><span>בלון לחץ (<bdi>Sengstaken-Blakemore</bdi>) כגשר. אחריו <bdi>TIPS</bdi></span></div>
+   <div><b>5 · ניתוח</b><span>רק כשאין <bdi>TIPS</bdi> או שנכשל. תמותה מעל 25% בניתוח דחוף</span></div>
+  </div>
+  <div style="display:grid;gap:10px">
+   <div class="box r"><b class="t">הסיכון למות</b>תלוי בעיקר בכבד: עם תפקוד כבד תקין (פקקת פורטלית) כמעט לא מתים מדימום. ב-<bdi>Child C</bdi> התמותה יכולה לעבור 50%. הסיכון לדימום חוזר גבוה בימים הראשונים ויורד עד 6 שבועות</div>
+   <div class="box a"><b class="t">בלון הלחץ</b>עוצר מיד יותר מ-85% מהדימומים, אבל עד 50% מדממים שוב כשמרוקנים אותו. מכניסים כ-50 ס״מ, מנפחים את הבלון הקיבתי ב-100 סמ״ק אוויר, מאשרים בצילום שהוא מתחת לסרעפת. אחר כך ממלאים עד הנפח המלא ומותחים. עד 24–48 שעות: סכנה לאיסכמיה ולניקוב של הוושט</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 89 עמ׳ <bdi dir="ltr">1268–1270</bdi> · פרק 46 עמ׳ <bdi dir="ltr">542</bdi></span><span>דימום חריף</span></div>
+</div></section>
+<section class="s"><div class="card">
+ <div class="kick"><b>11</b>איך זה נראה</div>
+ <h2>דליות, דימום וקשירה</h2>
+ <div class="grid g3">
+ <figure><img src="img/varices-bleeding.png" alt="דליות מדממות בוושט"><figcaption>דליות בוושט בזמן דימום פעיל, במבט אנדוסקופי · <bdi>Jeremias</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ <figure><img src="img/varices-band-ligation.jpg" alt="קשירת דליה בגומייה"><figcaption>קשירה בגומייה: הדליה נשאבת לתוך הכובע שבקצה האנדוסקופ. עליה משתחררת טבעת גומי · <bdi>J. Guntau</bdi>, שימוש חופשי, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ <figure><img src="img/caput-medusae.jpg" alt="ראש מדוזה"><figcaption>ראש מדוזה: ורידים מורחבים סביב הטבור ביתר לחץ דם פורטלי · <bdi>Pei-Ming Yang, MD</bdi> ו-<bdi>Ding-Shinn Chen, MD</bdi>, <bdi>Wikimedia Commons</bdi> (בייחוס)</figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 89 עמ׳ <bdi dir="ltr">1255, 1269–1270</bdi></span><span>תמונות</span></div>
+</div></section>
+
+
+<section class="s"><div class="card">
+ <div class="kick"><b>12</b>אחרי שהדימום נעצר</div>
+ <h2>למנוע את הדימום הבא</h2>
+ <div class="num">
+  <div><b dir="ltr">&gt;70%</b><span>ידממו שוב בלי טיפול מונע</span></div>
+  <div><b dir="ltr">~50%</b><span>דימום חוזר גם עם טיפול אנדוסקופי בלבד</span></div>
+  <div><b dir="ltr">19% · 47%</b><span>דימום חוזר אחרי <bdi>TIPS</bdi> · אחרי אנדוסקופיה</span></div>
+  <div><b dir="ltr">34%</b><span>אנצפלופתיה אחרי <bdi>TIPS</bdi> במחקרים האלה</span></div>
+ </div>
+ <div class="flow">
+  <div><b>קו ראשון</b><span><b>חוסם בטא לא סלקטיבי + קשירה בגומיות.</b> השילוב מוריד דימום חוזר ותמותה לעומת כל אחד לבד</span></div>
+  <div><b>כשלון</b><span><bdi>TIPS</bdi> או שאנט ניתוחי. גם בדימום מדליות בקיבה, ממחלת קיבה של יתר לחץ פורטלי, או במטופל שגר רחוק ממרכז רפואי</span></div>
+  <div><b>כבד שלא מתפקד</b><span><b>השתלת כבד</b>: הטיפול היחיד שמטפל גם במחלת הכבד. <bdi>TIPS</bdi> כגשר להשתלה</span></div>
+ </div>
+ <div class="box a" style="margin-top:12px"><b class="t">גם לפני הדימום הראשון</b>חוסמי בטא (במיוחד קרבדילול) מורידים את הסיכון לאירוע הראשון, בעיקר להופעת מיימת, אצל מי שיש לו יתר לחץ דם פורטלי משמעותי</div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 89 עמ׳ <bdi dir="ltr">1270, 1273–1274</bdi> · פרק 46 עמ׳ <bdi dir="ltr">541–542</bdi></span><span>מניעה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>13</b>הפחתת הלחץ</div>
+ <h2><bdi>TIPS</bdi> ושאנטים ניתוחיים</h2>
+ <div class="grid">
+  <div class="box b"><b class="t"><bdi>TIPS</bdi></b>
+   <ul class="b sm">
+    <li>דרך וריד הצוואר הימני אל וריד הכבד. משם במחט דרך רקמת הכבד אל הווריד השערי. סטנט מחבר ביניהם: שאנט צד-לצד בלי ניתוח</li>
+    <li>עוצר דימום כמעט תמיד. טוב גם למיימת עמידה</li>
+    <li>חסרונות: אנצפלופתיה. היצרות או חסימה של השאנט (עד 50% בשנה הראשונה). פחות עם סטנטים מצופים</li>
+    <li>לא מתאים: אי-ספיקת לב, <bdi>MELD</bdi> מעל 18</li>
+   </ul></div>
+  <div style="display:grid;gap:10px">
+   <div class="box n"><b class="t">שאנט לא סלקטיבי</b>פורטו-קבלי, מזו-קבלי, ספלנו-רנלי רגיל. מנקז את כל הזרימה הפורטלית: הדליות נעלמות, אבל יותר אנצפלופתיה ואי-ספיקת כבד. היום כמעט רק כש-<bdi>TIPS</bdi> לא אפשרי או נכשל</div>
+   <div class="box"><b class="t">שאנט סלקטיבי: ספלנו-רנלי דיסטלי (<bdi>Warren</bdi>)</b>וריד הטחול לווריד הכליה השמאלי, עם קשירת הקורונרי. הדליות מתנקזות. הכבד ממשיך לקבל דם מהמעי. מול <bdi>TIPS</bdi>: דימום חוזר 6% לעומת 11%, אבל התערבויות חוזרות 11% לעומת 82%</div>
+   <div class="box a"><b class="t">מגמה</b>יותר <bdi>TIPS</bdi>, אנדוסקופיה והשתלות. ניתוחי שאנט הולכים ונעלמים. כמעט אין ניתוחי חירום</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 89 עמ׳ <bdi dir="ltr">1269–1274</bdi> · פרק 46 עמ׳ <bdi dir="ltr">542</bdi></span><span>שאנטים</span></div>
+</div></section>
+<section class="s"><div class="card">
+ <div class="kick"><b>14</b><bdi>TIPS</bdi> בארבעה שלבים</div>
+ <h2>איך עושים <bdi>TIPS</bdi></h2>
+ <div class="grid f">
+ <div class="flow">
+  <div><b>1 · גישה</b><span>דרך וריד הצוואר הפנימי הימני אל הווריד הנבוב התחתון ווריד הכבד הימני</span></div>
+  <div><b>2 · מפה</b><span>צנתר נתקע בענף של וריד הכבד. מזריקים גז <bdi>CO2</bdi> כדי לראות את מערכת הפורטל</span></div>
+  <div><b>3 · ניקור</b><span>מחט עוברת מדופן וריד הכבד דרך רקמת הכבד אל הווריד השערי הימני. מוודאים שלא נפגעו צינור מרה או עורק</span></div>
+  <div><b>4 · סטנט</b><span>סטנט מחבר בין הווריד השערי לווריד הכבד: הלחץ יורד והדליות מתרוקנות</span></div>
+ </div>
+ <figure><img src="img/tips-schematic.jpg" alt="שלבי TIPS"><figcaption>שלבי <bdi>TIPS</bdi>: (<bdi>A</bdi>) דליות מהקורונרי ומהווריד הטבורי, (<bdi>B</bdi>) ניקור מווריד הכבד לווריד השערי, (<bdi>C</bdi>) הרחבה בבלון, (<bdi>D</bdi>) סטנט במקום · <bdi>R. Torrance Andrews, MD</bdi>, <bdi>CC BY 1.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 89 עמ׳ <bdi dir="ltr">1271</bdi> · פרק 46 עמ׳ <bdi dir="ltr">542</bdi></span><span>תמונות</span></div>
+</div></section>
+
+
+<section class="s"><div class="card">
+ <div class="kick"><b>15</b>הכירורג הכללי</div>
+ <h2>מטופל עם שחמת צריך ניתוח</h2>
+ <div class="grid">
+  <div>
+   <ul class="b">
+    <li>לנתח באופן מתוכנן רק כשמחלת הכבד מאוזנת. בכל מקרה: הפטולוג מוקדם, צוות מנוסה</li>
+    <li>לפני הניתוח: לשלוט במיימת, לטפל בדליות ובאנצפלופתיה</li>
+    <li>בניתוחי כבד, יתר לחץ דם פורטלי משמעותי מכפיל את התמותה ומשלש את הסיבוכים</li>
+    <li>להעריך אותו לפי לחץ חסום בוורידי הכבד או דליות, לא לפי טחול גדול או טסיות נמוכות</li>
+   </ul>
+  </div>
+  <div style="display:grid;gap:10px">
+   <div class="box a"><b class="t">דוגמה: בקע טבורי עם מיימת</b>בקעים בדופן הבטן ב-20–40% מהחולים בשחמת. ניתוח דחוף: 60% תחלואה ותמותה, 10% תמותה ב-90 יום. ניתוח מתוכנן: 27% ו-3%. לכן מציעים תיקון מתוכנן כש-<bdi>MELD</bdi> מתחת ל-20, אחרי טיפול במיימת</div>
+   <div class="box n"><b class="t"><bdi>TIPS</bdi> לפני ניתוח?</b>דווח רק בסדרות קטנות ולא מבוקרות. לא שגרה</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 51 עמ׳ <bdi dir="ltr">619–620</bdi> · פרק 80 עמ׳ <bdi dir="ltr">1080–1082</bdi></span><span>שחמת וניתוח</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>16</b>מה חדש בתחום · 2022–2025</div>
+ <h2>מחקרים שכדאי להכיר</h2>
+ <div class="grid g3">
+  <div class="study"><div class="y"><bdi>J Hepatol</bdi> 2022 · הנחיות</div><b><bdi>Baveno VII</bdi></b>
+   <p>יתר לחץ דם פורטלי משמעותי: לחץ חסום של 10 מ״מ כספית ומעלה. אפשר לאבחן בלי צנתור: קשיחות כבד באלסטוגרפיה של 25 <bdi>kPa</bdi> ומעלה מאשרת. 15 ומטה עם טסיות מעל 150 אלף שוללת. <bdi>TIPS</bdi> מוקדם תוך 72 שעות במטופלים בסיכון גבוה (<bdi>Child C</bdi> עד 13 נקודות, או <bdi>Child B</bdi> מעל 7 נקודות עם דימום פעיל באנדוסקופיה)</p>
+   <small>de Franchis R et al. J Hepatol 2022;76(4):959-74</small></div>
+  <div class="study"><div class="y"><bdi>J Hepatol</bdi> 2022 · מטה-אנליזה של נתוני מטופלים</div><b>קרבדילול מונע את הדקומפנסציה</b>
+   <p>4 מחקרים אקראיים, 352 מטופלים עם שחמת מפוצה ויתר לחץ דם פורטלי משמעותי. קרבדילול הוריד את הסיכון לדקומפנסציה בכמחצית (<bdi dir="ltr">SHR 0.51</bdi>, בעיקר מיימת) ואת התמותה (<bdi dir="ltr">SHR 0.42</bdi>)</p>
+   <small>Villanueva C et al. J Hepatol 2022;77(4):1014-25</small></div>
+  <div class="study"><div class="y"><bdi>Lancet Gastroenterol Hepatol</bdi> 2025 · מחקר אקראי</div><b><bdi>GAVAPROSEC</bdi>: דליות בקיבה</b>
+   <p>101 מטופלים אחרי דימום מדליות בפונדוס, 17 מרכזים בצרפת. <bdi>TIPS</bdi> מוקדם תוך 72 שעות מול דבק וחוסם בטא: שנה בלי מוות ובלי דימום חוזר <b>77% לעומת 37%</b>, בלי יותר אנצפלופתיה</p>
+   <small>Cervoni JP et al. Lancet Gastroenterol Hepatol 2025;10(8):726-33</small></div>
+ </div>
+ <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>17</b>לסיכום</div>
+ <h2>חמישה דברים לקחת למחלקה</h2>
+ <ol class="obj">
+  <li>יתר לחץ דם פורטלי: מפל מעל 5 מ״מ כספית. שחמת היא הסיבה השכיחה. דליות בקיבה בלבד: לחשוב על פקקת בווריד הטחול</li>
+  <li><bdi>Child-Pugh</bdi> ו-<bdi>MELD</bdi> מנבאים מי ישרוד ניתוח. <bdi>Child B</bdi> ו-<bdi>C</bdi>: לא מנתחים באופן מתוכנן</li>
+  <li>דימום מדליות: נתיב אוויר, עירוי מצמצם, אנטיביוטיקה ואוקטראוטייד. אנדוסקופיה עם גומיות תוך 12 שעות</li>
+  <li>כשלא נעצר: בלון כגשר ו-<bdi>TIPS</bdi>. ניתוח חירום הוא המוצא האחרון</li>
+  <li>מיימת: מלח, משתנים וניקור עם אלבומין. חום או הידרדרות: לנקר ולשלול פריטוניטיס ספונטנית</li>
+ </ol>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 89 <bdi>The Liver</bdi>, <bdi>Portal Hypertension</bdi> (עמ׳ <bdi dir="ltr">1267–1274</bdi>) · פרק 46 <bdi>Surgical Critical Care</bdi>, כבד (עמ׳ <bdi dir="ltr">541–543</bdi>)</div>
+ <div class="src"><span>איור: <bdi>Gray's Anatomy</bdi> (1918, נחלת הכלל, <bdi>Wikimedia Commons</bdi>) · תמונות: <bdi>Musser</bdi> (1904, נחלת הכלל), <bdi>James Heilman</bdi>, <bdi>Jeremias</bdi>, <bdi>J. Guntau</bdi>, <bdi>Pei-Ming Yang</bdi> ו-<bdi>Ding-Shinn Chen</bdi>, <bdi>R. Torrance Andrews</bdi>, <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+</main>
+<div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
+<script>
+document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz').forEach(function(z){z.addEventListener('click',function(){w.querySelectorAll('.hz').forEach(function(x){x.classList.toggle('on',x===z)});w.querySelectorAll('.hzi').forEach(function(i){i.hidden=i.dataset.hzi!==z.dataset.hz;i.style.setProperty('--c',z.style.getPropertyValue('--c'))});var h=w.querySelector('.hint');if(h)h.hidden=true;});});});
+</script>
+<script>
+(function () {
+  var deck = document.getElementById('deck'), S = [].slice.call(deck.children), dots = document.getElementById('dots'), n = S.length;
+  S.forEach(function (_, k) { var i = document.createElement('i'); i.onclick = function () { go(k); }; dots.appendChild(i); });
+  function idx() { return Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }
+  function go(k) { k = Math.max(0, Math.min(n - 1, k)); S[k].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' }); }
+  function sync() { var k = idx(); [].forEach.call(dots.children, function (d, j) { d.className = j === k ? 'on' : ''; }); document.getElementById('count').textContent = (k + 1) + '/' + n; document.getElementById('prev').disabled = k === 0; document.getElementById('next').disabled = k === n - 1; }
+  deck.addEventListener('scroll', function () { clearTimeout(sync.t); sync.t = setTimeout(sync, 60); }, { passive: true });
+  document.getElementById('next').onclick = function () { go(idx() + 1); };
+  document.getElementById('prev').onclick = function () { go(idx() - 1); };
+  addEventListener('keydown', function (e) { if (e.key === 'ArrowLeft' || e.key === ' ') go(idx() + 1); if (e.key === 'ArrowRight') go(idx() - 1); });
+  sync();
+})();
+</script>
+</body>
+</html>

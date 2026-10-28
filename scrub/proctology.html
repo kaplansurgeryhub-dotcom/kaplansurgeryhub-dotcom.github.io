@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>פרוקטולוגיה · Scrub In</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../emblem.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Frank+Ruhl+Libre:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0C2A35;--navy2:#123845;--g:#00967D;--g2:#3DC08C;--g3:#0A6B5A;--lime:#B5D96B;--red:#A3402E;--amber:#C9893F;--blue:#2F6FA8;--bg:#EDF2F0;--soft:#F3F7F5;--ink:#16262C;--muted:#5C6F73;--line:#DCE6E2}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--navy);color:var(--ink);font-family:Heebo,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.deck{position:fixed;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.deck::-webkit-scrollbar{display:none}
+.s{flex:0 0 100%;height:100%;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;padding:18px 16px 84px;overflow-y:auto;position:relative}
+.s::after{content:'';position:absolute;inset:0;background:url(../ops/art/organs.webp) no-repeat 6% 40%/auto 115%;opacity:.05;filter:invert(1);pointer-events:none}
+.card{width:min(980px,100%);background:#fff;border-radius:22px;box-shadow:0 18px 50px rgba(0,0,0,.35);padding:30px 32px 22px;position:relative;overflow:hidden;z-index:1}
+.card::before{content:'';position:absolute;inset:0 0 auto 0;height:6px;background:linear-gradient(90deg,var(--g3),var(--g),var(--g2),var(--lime))}
+.kick{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--g);letter-spacing:.3px;margin-bottom:6px}
+.kick b{background:var(--navy);color:#fff;border-radius:999px;min-width:26px;height:26px;display:grid;place-items:center;font-size:13px;padding:0 8px}
+h1,h2{font-family:'Frank Ruhl Libre',serif;color:var(--navy);margin:0 0 10px;line-height:1.15}
+h1{font-size:clamp(34px,6.4vw,60px)}h2{font-size:clamp(25px,4.4vw,36px)}
+h3{margin:0 0 6px;font-size:17px;color:var(--navy)}
+.lead{font-size:clamp(15.5px,2.3vw,18.5px);color:var(--muted);margin:0 0 16px;line-height:1.5}
+ul.b{margin:0;padding:0;list-style:none;display:grid;gap:8px}ul.b li{position:relative;padding-inline-start:20px;font-size:16.5px;line-height:1.45}ul.b li::before{content:'';position:absolute;inset-inline-start:2px;top:.62em;width:8px;height:8px;border-radius:2px;background:var(--g);transform:rotate(45deg)}
+ul.b li b{color:var(--navy)}ul.b.sm li{font-size:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.grid.g3{grid-template-columns:repeat(3,1fr)}.grid.f{grid-template-columns:1.05fr .95fr;align-items:center}
+.box{background:var(--soft);border-radius:14px;padding:13px 15px;border-inline-start:4px solid var(--g);font-size:15.5px;line-height:1.45}
+.box.r{border-color:var(--red);background:#FBEDEA}.box.a{border-color:var(--amber);background:#FFF6EA}.box.n{border-color:var(--navy)}.box.b{border-color:var(--blue);background:#EEF4FB}
+.box b.t{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}
+.num{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:4px 0 14px}.num div{background:var(--soft);border-radius:14px;padding:12px 10px;text-align:center}
+.num b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(26px,4vw,38px);color:var(--g3);line-height:1.05}.num span{font-size:13px;color:var(--muted);line-height:1.3;display:block;margin-top:4px}
+figure{margin:0;background:#FBFCFB;border:1px solid var(--line);border-radius:16px;padding:10px;text-align:center}figure img{max-width:100%;max-height:46vh;display:block;margin:0 auto;mix-blend-mode:multiply}
+figcaption{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.35}
+.ill svg{width:100%;height:auto;max-height:50vh}
+.src{margin-top:16px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.src b{color:var(--g3)}
+.tag{display:inline-block;font-size:12px;font-weight:800;border-radius:999px;padding:2px 10px;background:#E3F4EC;color:var(--g3);margin-inline-end:4px}
+.tag.r{background:#F8E3DE;color:var(--red)}.tag.a{background:#FFF3DF;color:#8A5A14}.tag.b{background:#E8F0FA;color:var(--blue)}
+.flow{display:grid;gap:8px}.flow div{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;background:var(--soft);border-radius:12px;padding:9px 12px;font-size:15.5px}.flow div b{color:var(--navy)}
+.study{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#fff}.study .y{font-size:12px;font-weight:800;color:var(--g);letter-spacing:.3px}.study b{display:block;font-size:16px;color:var(--navy);margin:2px 0}.study p{margin:4px 0 0;font-size:14.5px;line-height:1.45}.study small{display:block;margin-top:6px;font-size:11.5px;color:var(--muted)}
+.cover{background:radial-gradient(120% 90% at 85% 0%,#164B54 0%,var(--navy) 58%)}
+.cover::after{opacity:.16;background-position:2% 50%}
+.cover .card{background:transparent;box-shadow:none;color:#fff}.cover .card::before{display:none}.cover h1{color:#fff}.cover .lead{color:#C9D6DA}.cover .kick{color:var(--g2)}
+.pill{display:inline-flex;gap:6px;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px;color:#fff;margin:4px}
+.logo{display:flex;align-items:center;gap:10px;margin-bottom:26px}.logo img{width:48px;height:48px;border-radius:50%;background:#fff}.logo b{color:#fff;font-weight:900}.logo small{display:block;color:#A9C9C0;font-size:12px}
+.obj{counter-reset:o;list-style:none;margin:0;padding:0;display:grid;gap:10px}.obj li{counter-increment:o;display:flex;gap:12px;align-items:flex-start;font-size:16.5px;line-height:1.45}.obj li::before{content:counter(o);flex:0 0 30px;height:30px;border-radius:50%;background:var(--g);color:#fff;font-weight:800;display:grid;place-items:center}
+.nav{position:fixed;inset:auto 0 0 0;display:flex;align-items:center;justify-content:center;gap:14px;padding:12px 16px calc(14px + env(safe-area-inset-bottom));background:linear-gradient(transparent,rgba(6,20,26,.85) 40%);z-index:5}
+.nav button{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;font-size:22px;cursor:pointer}.nav button:disabled{opacity:.3}
+.dots{display:flex;gap:5px;flex-wrap:wrap;max-width:60vw;justify-content:center}.dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer}.dots i.on{background:var(--g2);width:20px;border-radius:5px}
+.count{color:#C9D6D9;font-size:13px;font-weight:700;min-width:44px;text-align:center}
+bdi{unicode-bidi:isolate}
+.cmp{width:100%;border-collapse:separate;border-spacing:0;font-size:14px;border:1px solid var(--line);border-radius:14px;overflow:hidden}.cmp th{background:var(--navy);color:#fff;padding:9px 10px;font-size:16px;text-align:start}.cmp th small{display:block;font-weight:500;color:#A9D9C8;font-size:12px}.cmp td{padding:8px 10px;border-top:1px solid var(--line);vertical-align:top;line-height:1.4}.cmp td:first-child{background:var(--soft);font-weight:800;color:var(--navy);white-space:nowrap}.cmp tr:nth-child(odd) td:not(:first-child){background:#FBFCFB}
+figure.vid video{width:100%;max-height:34vh;border-radius:10px;background:#000;display:block}
+@media (max-width:760px){.cmp{font-size:12.5px}.cmp td,.cmp th{padding:6px}}
+
+.hotw{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;align-items:start}.hoti{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#FBFCFB}.hoti img{display:block;width:100%;mix-blend-mode:multiply}.hoti svg{position:absolute;inset:0;width:100%;height:100%}
+.hz{fill:var(--c);fill-opacity:.38;stroke:var(--c);stroke-width:2;cursor:pointer;transition:fill-opacity .2s}.hz:hover,.hz.on{fill-opacity:.62}.hzl{font:900 22px Heebo,sans-serif;fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;pointer-events:none;text-anchor:middle}
+.hotp .hint{background:var(--soft);border-radius:12px;padding:10px 12px;font-weight:700;color:var(--g3);margin:0}.hzi{background:#fff;border:1px solid var(--line);border-inline-start:5px solid var(--c,var(--g));border-radius:14px;padding:12px 14px;margin-top:8px;font-size:15.5px;line-height:1.45}.hzi>b{display:block;font-size:17px;color:var(--navy);margin-bottom:4px}.hzi p{margin:0}
+figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-size:15px}.obj.sm li::before{flex-basis:26px;height:26px;font-size:13px}.flow.sm div{grid-template-columns:130px 1fr;padding:7px 10px;font-size:14.5px}
+@media (max-width:760px){.hotw{grid-template-columns:1fr}}
+
+@media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
+@media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+/*BRAND*/
+.brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
+.brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
+.s{padding-top:58px}
+.cover .card{display:flex;flex-direction:column;gap:6px;max-width:980px}
+.cvhead{display:flex;align-items:center;gap:16px;margin-bottom:30px}.cvhead img.em{width:74px;height:74px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(61,192,140,.55)}
+.cvhead b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(24px,3.4vw,34px);color:#fff;line-height:1.1}.cvhead span{display:block;font-size:clamp(15px,2vw,19px);color:#A9D9C8;font-weight:700;margin-top:4px}
+.cover h1{font-size:clamp(38px,6.6vw,66px);margin:6px 0 8px}.cover .kick{font-size:14px;letter-spacing:.06em}
+.cvmeta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.cvlogos{display:flex;align-items:center;gap:18px;margin-top:34px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14)}.cvlogos img{height:44px;width:auto}.cvlogos small{margin-inline-start:auto;color:#8FB3AA;font-size:12.5px;font-weight:700;letter-spacing:.08em}
+.cover .brandbar{display:none}
+@media (max-width:760px){.brandbar{left:10px;gap:7px;padding:4px 9px 4px 4px}.brandbar img{height:20px}.brandbar img.em{width:22px;height:22px}.s{padding-top:48px}.cvhead img.em{width:56px;height:56px}.cvlogos img{height:34px}.cvlogos small{display:none}}
+/* numbered lists: a bold word inside an item stays inline */
+.obj li,.steps li{display:block;position:relative;padding-inline-start:42px;min-height:30px}.obj li::before,.steps li::before{position:absolute;inset-inline-start:0;top:0}.obj.sm li{padding-inline-start:36px}
+.grid.tight figure img{max-height:24vh}
+@media print{.brandbar{display:none}}
+/*/BRAND*/
+</style>
+</head>
+<body>
+<div class="brandbar" aria-hidden="true"><img class="em" src="brand/emblem.jpg" alt=""><i></i><img src="brand/logo_k.webp" alt=""><img src="brand/logo_c.webp" alt=""></div>
+<main class="deck" id="deck">
+<section class="s cover"><div class="card">
+ <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
+ <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 4</div>
+ <h1>פרוקטולוגיה</h1>
+ <p class="lead">טחורים, פיסורה, מורסה ופיסטולה, סינוס פילונידלי וגרד: מהסיפור והבדיקה ועד הטיפול במרפאה ובחדר הניתוח</p>
+ <div class="cvmeta"><span class="pill">מבוסס על <bdi>Sabiston</bdi>, מהדורה 22, פרק 97</span></div>
+ <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>1</b>מטרות הלמידה</div>
+ <h2>בסוף המפגש תדעו</h2>
+ <ol class="obj">
+  <li>לתאר את האנטומיה של תעלת פי הטבעת: הקו המשונן, הסוגרים, כריות הטחורים והבלוטות האנאליות</li>
+  <li>לקחת אנמנזה ממוקדת ולבצע בדיקה פרוקטולוגית: מנח, הסתכלות, בדיקה רקטלית ואנוסקופיה</li>
+  <li>לדרג טחורים פנימיים ולבחור טיפול: שמרני, במרפאה או ניתוח</li>
+  <li>לאבחן פיסורה ולהכיר את סולם הטיפול בה</li>
+  <li>לטפל במורסה סביב פי הטבעת ולהבין איך היא הופכת לפיסטולה</li>
+  <li>לזהות סינוס פילונידלי ומצבים דחופים כמו גנגרנה של פורנייה</li>
+ </ol>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 97 (עמ׳ <bdi dir="ltr">1515–1534</bdi>)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>2</b>אנטומיה · אינטראקטיבי</div>
+ <h2>תעלת פי הטבעת</h2>
+ <div class="hotw"><div class="hoti" style="max-width:360px;width:100%;justify-self:center"><img src="img/Sobo_1906_386.png" alt="החלחולת ותעלת פי הטבעת בחתך, מבט מלפנים"><svg viewBox="0 0 1280 1609" preserveAspectRatio="none">
+  <polygon class="hz" data-hz="amp" points="390,720 900,700 930,1000 380,1010" style="--c:#2F8CD6"/><text class="hzl" x="650" y="870" style="font-size:60px">1</text>
+  <polygon class="hz" data-hz="col" points="420,1060 862,1060 856,1225 410,1225" style="--c:#7A5BD6"/><text class="hzl" x="640" y="1160" style="font-size:60px">2</text>
+  <polygon class="hz" data-hz="crypt" points="400,1228 862,1228 860,1278 398,1278" style="--c:#F0961E"/><text class="hzl" x="330" y="1270" style="font-size:60px">3</text>
+  <polygon class="hz" data-hz="anod" points="405,1282 835,1282 825,1470 420,1470" style="--c:#D63C32"/><text class="hzl" x="620" y="1395" style="font-size:60px">4</text>
+  <polygon class="hz" data-hz="sph" points="838,1120 960,1118 968,1585 850,1520" style="--c:#2EAA5A"/><text class="hzl" x="905" y="1360" style="font-size:60px">5</text>
+ </svg></div>
+ <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
+  <div class="hzi" data-hzi="amp" hidden><b>1 · אמפולת החלחולת</b><p>מה שהאצבע מרגישה מעל לתעלה. בבדיקה רקטלית בודקים את דופן החלחולת, את עצם הזנב ושרירי הלבטור מאחור. מלפנים: את הערמונית או רקטוצלה. גוש: מיקום לפי שעון, גודל, קשה או רך, נייד או מקובע. גם המרחק מהטבעת השרירית.</p></div>
+  <div class="hzi" data-hzi="col" hidden><b>2 · עמודות מורגני וכריות הטחורים</b><p>מעל הקו המשונן: רירית עמודית עם עצבוב אוטונומי בלבד. לכן כמעט בלי כאב. כאן יושבות כריות הטחורים הפנימיים (שמאל לטרלי, ימין קדמי וימין אחורי). כאן מניחים גומייה.</p></div>
+  <div class="hzi" data-hzi="crypt" hidden><b>3 · הקו המשונן והקריפטות</b><p>הגבול בין אנדודרם לאקטודרם, באמצע תעלה של כ-4 ס״מ. בבסיס העמודות יש קריפטות שמתנקזות אליהן <bdi dir="ltr">6–12</bdi> בלוטות אנאליות, בעיקר מאחור. בלוטה חסומה היא נקודת ההתחלה של רוב המורסות והפיסטולות.</p></div>
+  <div class="hzi" data-hzi="anod" hidden><b>4 · עור התעלה (אנודרם)</b><p>מתחת לקו המשונן: אפיתל קשקשי בלי שערות ובלוטות, עם עצבוב סומטי עשיר. לכן כאן כואב: פיסורה (בדרך כלל בקו האמצע האחורי), טחור חיצוני עם קריש או גומייה שהונחה נמוך מדי.</p></div>
+  <div class="hzi" data-hzi="sph" hidden><b>5 · הסוגרים</b><p><b>הפנימי:</b> המשך מעובה של השכבה המעגלית של החלחולת, שריר חלק עם עצבוב אוטונומי, ב-<bdi dir="ltr">2–4</bdi> ס״מ התחתונים. העווית שלו מחזיקה את הפיסורה פתוחה. אותו חותכים חלקית ב-<bdi>LIS</bdi>.<br><b>החיצוני:</b> שריר שלד שבשליטה רצונית, עצבוב מהעצב הפודנדלי. כמה ממנו נחתך קובע את הסיכון לבריחה בניתוח פיסטולה.</p></div>
+ </div></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1515–1516</bdi></span><span><bdi>Sobotta</bdi>, אטלס האנטומיה (1906), איור 386 (נחלת הכלל) · אזורים: Scrub In</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>3</b>אנמנזה</div>
+ <h2>הסיפור כמעט תמיד נותן את האבחנה</h2>
+ <div class="grid">
+  <div class="flow">
+   <div><b>כאב חד "כמו זכוכית" ביציאה ואחריו עווית שעות</b><span>פיסורה</span></div>
+   <div><b>כאב פתאומי וגוש קשה ליד פי הטבעת</b><span>טחור חיצוני עם קריש</span></div>
+   <div><b>כאב שמחמיר, חום וחולשה</b><span>מורסה</span></div>
+   <div><b>כאב גם בלי יציאה, עם דם</b><span>לחשוב על גידול</span></div>
+   <div><b>דם טרי ללא כאב ביציאה, עם או בלי בליטה</b><span>טחורים פנימיים</span></div>
+   <div><b>גרד, בעיקר בלילה</b><span>מעיר משינה</span></div>
+  </div>
+  <div style="display:grid;gap:10px">
+   <div class="box"><b class="t">לשאול על היציאות</b>כמה ביום, מאמץ, כמה זמן בשירותים, קוטר ומרקם הצואה, דליפה ובריחה</div>
+   <div class="box n"><b class="t">לשאול על הדם</b>טרי או כהה, כמה, קרישים, קשור ליציאה, מעורב בצואה או על פניה, רק בניגוב</div>
+   <div class="box a"><b class="t">לא לשכוח</b>ניתוחים קודמים בפי הטבעת, קרינה, לידות וקרעים, היסטוריה מינית (בעדינות) ומחלות מין. לפני כל פעולה: הערכה של שליטה על סוגרים</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1517, 1519</bdi></span><span>אנמנזה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>4</b>בדיקה גופנית</div>
+ <h2>איך בודקים פי טבעת</h2>
+ <div class="grid f">
+  <div>
+   <ol class="obj">
+    <li><b>הסבר ומלווה/ה בחדר</b> לכל אורך הבדיקה, בלי קשר למין המטופל והבודק</li>
+    <li><b>מנח:</b> שכיבה על הצד השמאלי, או מנח "סכין מתקפלת" על שולחן פרוקטולוגי</li>
+    <li><b>הסתכלות:</b> הפרדה עדינה של העכוזים. לבקש לכווץ ואז ללחוץ כלפי מטה (צניחה, ירידת רצפת האגן)</li>
+    <li><b>מישוש העור סביב</b> לפני הכנסת האצבע: רגישות. גם מאפשר למטופל להתכונן</li>
+    <li><b>בדיקה רקטלית עם ג׳ל:</b> אורך התעלה עד הפובורקטליס, עצם הזנב ושרירי הלבטור, ערמונית או רקטוצלה מלפנים. בסוף סריקה של התעלה עצמה עם הפלנגה הראשונה</li>
+    <li><b>לסיום:</b> לכווץ ואז <bdi>Valsalva</bdi>: הסוגרים צריכים להירפות</li>
+    <li><b>אנוסקופיה:</b> הרבה ג׳ל, מכניסים עם המוביל, מוציאים אותו ומסובבים כדי לראות את כל ההיקף</li>
+   </ol>
+  </div>
+  <div style="display:grid;gap:10px">
+   <figure class="sm"><img src="img/procto-sims-position.jpg" alt="מנח שכיבה על הצד השמאלי לבדיקה"><figcaption><b>שכיבה על הצד השמאלי</b> (מנח <bdi>Sims</bdi>): ברכיים מכופפות, המטופל מכוסה ורק האזור הנבדק חשוף · Sue Clark (נחלת הכלל), Wikimedia Commons</figcaption></figure>
+   <figure class="sm"><img src="img/dre-nci.jpg" alt="בדיקה רקטלית באצבע, חתך אורך"><figcaption><b>הבדיקה הרקטלית:</b> האצבע בתוך החלחולת, הערמונית מלפנים · <bdi>National Cancer Institute</bdi> (נחלת הכלל), Wikimedia Commons</figcaption></figure>
+  </div>
+ </div>
+ <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>הצטרפו למרפאה פרוקטולוגית או לבדיקה רקטלית במחלקה. בצעו לפחות בדיקה אחת בעצמכם, בנוכחות בכיר/ה ומלווה. תארו את הממצא לפי שעון</div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1517</bdi></span><span>בדיקה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>5</b>טחורים</div>
+ <h2>כריות שזזו ממקומן</h2>
+ <div class="grid f">
+  <div>
+   <ul class="b sm">
+    <li><b>כריות נורמליות</b> בתת-הרירית: בשמאל לטרלי, בימין קדמי ובימין אחורי. הדימום מהן <b>עורקי</b>, בגלל חיבורים ישירים בין עורקים לוורידים</li>
+    <li><b>מה מקדם אותן:</b> עצירות, מאמץ וישיבה ארוכה בשירותים. גם הזדקנות של רקמת התמיכה</li>
+    <li><b>פנימיים:</b> מעל הקו המשונן. התלונה השכיחה: דם טרי בלי כאב ביציאה, עם או בלי בליטה</li>
+    <li><b>חיצוניים:</b> מתחת לקו המשונן, מכוסים בעור עם עצבוב סומטי. כואבים כשנוצר בהם קריש</li>
+   </ul>
+   <div class="flow" style="margin-top:10px">
+    <div><b>דרגה <bdi>I</bdi></b><span>מדממים, בלי בליטה</span></div>
+    <div><b>דרגה <bdi>II</bdi></b><span>בולטים וחוזרים לבד</span></div>
+    <div><b>דרגה <bdi>III</bdi></b><span>בולטים וצריך להחזיר ביד</span></div>
+    <div><b>דרגה <bdi>IV</bdi></b><span>בולטים ולא חוזרים</span></div>
+   </div>
+  </div>
+  <figure><img src="img/procto-blausen-hemorrhoids.png" alt="טחורים פנימיים וחיצוניים, איור"><figcaption><b>טחורים פנימיים (מעל הקו המשונן) וחיצוניים (מתחתיו)</b> · <bdi>Blausen.com staff (2014). "Medical gallery of Blausen Medical 2014". WikiJournal of Medicine</bdi>, <bdi>CC BY 3.0</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1515, 1519, 1521</bdi> (טבלה 97.1)</span><span>טחורים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>6</b>טחורים · טיפול</div>
+ <h2>סולם הטיפול</h2>
+ <div class="grid g3">
+  <div class="box"><b class="t">1 · שמרני לכולם, <bdi dir="ltr">6–8</bdi> שבועות</b>
+   <ul class="b sm"><li>שתייה: לפחות 64 אונקיות ביום (כ-1.9 ליטר)</li><li>סיבים: <bdi dir="ltr">20–35</bdi> גרם ביום</li><li>לא יותר מ-<bdi dir="ltr">2–3</bdi> דקות בשירותים, בלי טלפון ובלי לקרוא</li><li>אמבטיית ישיבה חמה אחרי יציאה</li><li>משחות ופתילות: מעט ראיות</li></ul></div>
+  <div class="box n"><b class="t">2 · במרפאה · דרגות <bdi>I–II</bdi> וחלק מ-<bdi>III</bdi></b>
+   <ul class="b sm"><li><b>קשירה בגומייה:</b> השכיחה והיעילה ביותר. מעל הקו המשונן. לכן כמעט בלי כאב. כאב חזק: הגומייה נמוכה מדי, מורידים מיד</li><li>בנוטלי נוגדי קרישה וטסיות: זהירות. הכיב שנוצר אחרי ימים יכול לדמם</li><li><b>הזרקה טרשתית</b> (כ-1 מ״ל): מתאימה לנוטלי נוגדי קרישה</li><li>קרישה באינפרא-אדום</li></ul></div>
+  <div class="box b"><b class="t">3 · ניתוח · דרגות <bdi>III–IV</bdi> מעורבים</b>
+   <ul class="b sm"><li>כריתה סגורה (<bdi>Ferguson</bdi>): פחות כאב, ריפוי מהיר ופחות דימום מהפתוחה (<bdi>Milligan-Morgan</bdi>)</li><li>כורתים רק את העודף ושומרים על הסוגר הפנימי. לא כורתים שלוש כריות בלי גשרי רירית (היצרות)</li><li>בלי אנטיביוטיקה מונעת ובלי טמפון</li><li>סיכות (<bdi>stapled</bdi>): פחות כאב, יותר חזרות</li></ul></div>
+ </div>
+ <div class="grid" style="margin-top:12px">
+  <div class="box a"><b class="t">אחרי ניתוח</b>מרככי צואה, אמבטיות ישיבה ומשככי כאב משולבים. דימום ב-<bdi dir="ltr">1–2%</bdi>, אצירת שתן ב-<bdi dir="ltr">1–15%</bdi></div>
+  <div class="box r"><b class="t">דגל אדום: אלח דם באגן</b>אצירת שתן, כאב שמחמיר בפי הטבעת או באגן וחום, אחרי ניתוח או אחרי קשירה במרפאה: בדיקה בהרדמה ותחקיר מיידי</div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1519–1521</bdi></span><span>טחורים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>7</b>טחורים · כך זה נראה</div>
+ <h2>קשירה בגומייה במרפאה</h2>
+ <div class="grid">
+  <figure><img src="img/procto-band-ligation.jpg" alt="גומייה על טחור פנימי מעל הקו המשונן, איור בחתך"><figcaption><b>הגומייה יושבת על הכרית, מעל הקו המשונן.</b> רואים גם את הסוגרים, שריר הלבטור ושומן החלל האיסכיורקטלי · <bdi>www.scientificanimations.com</bdi>, <bdi>CC BY-SA 4.0</bdi>, Wikimedia Commons</figcaption></figure>
+  <figure><img src="img/procto-band-anoscopy.jpg" alt="טחור פנימי עם גומייה במבט אנוסקופי"><figcaption><b>מבט דרך האנוסקופ:</b> טחור פנימי אחרי הנחת גומייה בבסיסו · Απόστολος Σταματιάδης, <bdi>CC BY-SA 3.0</bdi>, Wikimedia Commons</figcaption></figure>
+ </div>
+ <div class="grid g3" style="margin-top:12px">
+  <div class="box"><b class="t">למה זה עובד</b>הגומייה חונקת את הרקמה. היא עוברת איסכמיה ונמק. במקומה נוצרת צלקת שמקבעת את הכרית לדופן</div>
+  <div class="box a"><b class="t">כאב חזק אחרי קשירה</b>הגומייה כנראה מתחת לקו המשונן, באזור עם עצבוב סומטי. מורידים אותה מיד</div>
+  <div class="box r"><b class="t">ימים אחרי</b>הרקמה המתה נושרת ומשאירה כיב. בנוטלי נוגדי קרישה או טסיות הוא עלול לדמם</div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1520</bdi></span><span>טחורים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>8</b>טחורים · מצבים חריפים</div>
+ <h2>קריש, כליאה ונמק</h2>
+ <div class="grid g3">
+   <div class="box"><b class="t">טחור חיצוני עם קריש</b>כאב פתאומי וחזק שמחמיר בישיבה וביציאה, גוש עגול וקשה. לעיתים אחרי עצירות, שלשול או מאמץ. רובם משתפרים בתוך <bdi dir="ltr">48–72</bdi> שעות עם אמבטיות ישיבה, משחת לידוקאין ומרככים. בכאב קשה: כריתה בהרדמה מקומית עדיפה על פינוי הקריש בלבד (מהיר יותר ופחות חזרות)</div>
+   <div class="box a"><b class="t">טחורים פנימיים כלואים</b>בדרך כלל אחרי טחורים מדרגה <bdi>III–IV</bdi>. בלי חניקה ובלי אלח דם: מנסים להחזיר. סוכר כחומר אוסמוטי, קרח וחסם מקומי. גם הזרקת היאלורונידאז</div>
+   <div class="box r"><b class="t">נמק או חניקה</b>ניתוח מהיר. שומרים כמה שיותר רירית ועור תעלה, כדי למנוע היצרות ובריחת צואה</div>
+  </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1521–1522</bdi></span><span>חירום</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>9</b>פיסורה</div>
+ <h2>סדק קטן, כאב גדול</h2>
+ <div class="grid f">
+  <div>
+   <ul class="b sm">
+    <li><b>מה זה:</b> קרע אליפטי בעור התעלה, מפי הטבעת כלפי הקו המשונן</li>
+    <li><b>למה לא נרפא:</b> הכאב גורם לעווית של הסוגר, העווית מורידה זרימת דם והקרע נשאר באיסכמיה</li>
+    <li><b>איפה:</b> בקו האמצע האחורי ב-<bdi dir="ltr">75%</bdi>. בקו האמצע הקדמי בעיקר בנשים</li>
+    <li><b>כרונית:</b> מעל <bdi dir="ltr">6–8</bdi> שבועות</li>
+    <li><b>האבחנה מהסיפור.</b> הפרדה עדינה של העכוזים מראה את הסדק. בדיקה רקטלית ואנוסקופיה לרוב נדחות בגלל הכאב</li>
+   </ul>
+   <div class="box r" style="margin-top:10px"><b class="t">פיסורה לא בקו האמצע</b>לא טיפוסית: לחשוב על קרוהן, סרטן, שחפת, <bdi>HIV</bdi>, עגבת, הרפס ולוקמיה. אבחנה לא ברורה: בדיקה בהרדמה</div>
+  </div>
+  <div style="display:grid;gap:10px">
+   <div class="box n"><b class="t">איפה לחפש</b>מסתכלים בעדינות בין העכוזים. אם לא רואים: לחץ קל עם קצה האצבע או מקלון צמר גפן בקו האמצע האחורי או הקדמי משחזר את הכאב. אפשר להיעזר באיור האינטראקטיבי בתחילת המפגש (אזור 4)</div>
+   <div class="box a"><b class="t">שלושת הסימנים של פיסורה כרונית</b>סיבי סוגר פנימי חשופים בבסיס · פפילה מוגדלת מעל · גבשושית עור ("טחור זקיף") מתחת</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1523</bdi></span><span>פיסורה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>10</b>פיסורה · טיפול</div>
+ <h2>להרפות את הסוגר</h2>
+ <div class="flow">
+  <div><b>חריפה</b><span>רוב הפיסורות החריפות נרפאות בטיפול שמרני: שתייה, סיבים ואמבטיות ישיבה, שמקלות על הכאב ביותר מ-<bdi dir="ltr">90%</bdi></span></div>
+  <div><b>משחת ניטרטים</b><span>ריפוי בכמחצית מהפיסורות הכרוניות. כאב ראש שכיח. עד <bdi dir="ltr">20%</bdi> מפסיקים בגללו</span></div>
+  <div><b>חוסמי תעלות סידן במשחה</b><span>(דילטיאזם, ניפדיפין) ריפוי דומה עם פחות כאבי ראש. הקו הראשון המועדף</span></div>
+  <div><b>בוטולינום</b><span><bdi dir="ltr">20–100</bdi> יחידות, הרפיה של כ-3 חודשים. דומה לטיפול המקומי כקו ראשון. תופעת לוואי שכיחה: בריחת גזים זמנית</span></div>
+  <div><b>חיתוך חלקי של הסוגר הפנימי בצד</b><span>(<bdi>LIS</bdi>) הטיפול המועדף בפיסורה כרונית: ריפוי <bdi dir="ltr">88–100%</bdi>. בריחה, בעיקר של גזים ובחודש הראשון, ב-<bdi dir="ltr">8–30%</bdi></span></div>
+ </div>
+ <div class="box a" style="margin-top:12px"><b class="t">לא לחתוך את הסוגר אצל</b>מי שכבר יש לו בריחה, נשים עם קרע בלידה, אחרי ניתוחים קודמים בפי הטבעת או עם פגיעה ידועה בסוגר</div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1523–1524</bdi></span><span>פיסורה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>11</b>מורסה</div>
+ <h2>מורסה סביב פי הטבעת: מאיפה ולאן</h2>
+ <div class="grid f">
+  <div>
+   <ul class="b sm">
+    <li><b>מקור:</b> בלוטה אנאלית שנחסמה בקריפטה בקו המשונן. הזיהום מתחיל בין הסוגרים ומתפשט</li>
+    <li><b>לאן:</b> כלפי מטה לעור (סביב פי הטבעת), דרך הסוגר החיצוני לחלל האיסכיורקטלי, למעלה מעל הלבטור, או בקו האמצע האחורי לחלל הפוסט-אנאלי העמוק ומשם לשני הצדדים ("פרסה")</li>
+    <li>כ-<bdi dir="ltr">10%</bdi> מסיבות אחרות: קרוהן, חבלה, <bdi>HIV</bdi>, מחלות מין, קרינה, גוף זר, ממאירות</li>
+    <li><b>הסיפור:</b> כאב קבוע ופועם שמתפתח בהדרגה, נפיחות, אודם ותנודה</li>
+   </ul>
+   <div class="box r" style="margin-top:10px"><b class="t">טעות נפוצה</b>"צלוליטיס" סביב פי הטבעת בלי תנודה היא לעיתים קרובות מורסה עמוקה. אנטיביוטיקה לבד לא תספיק. CT של האגן כשהבדיקה לא ברורה</div>
+  </div>
+  <figure><img src="img/procto-abscess-diagram.png" alt="סוגי מורסות סביב פי הטבעת, איור בחתך"><figcaption><b>סוגי המורסות לפי המיקום:</b> מעל הלבטור, בין הסוגרים, איסכיורקטלית, תת-רירית ותת-עורית · <bdi>McortNGHH</bdi> על בסיס <bdi>Armin Kübelbeck</bdi>, <bdi>CC BY-SA 4.0</bdi>, Wikimedia Commons</figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1524–1525</bdi> (איור 97.13)</span><span>מורסה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>12</b>מורסה · טיפול</div>
+ <h2>מנקזים מיד וקרוב לפי הטבעת</h2>
+ <div class="grid">
+  <div class="box"><b class="t">הניקוז</b>
+   <ul class="b sm"><li>אפשר במרפאה בהרדמה מקומית או בחדר ניתוח</li><li>במקום הכי תנודתי וקרוב ככל האפשר לפי הטבעת, כדי שהפיסטולה שאולי תיווצר תהיה קצרה</li><li>חתך צלב והסרת הפינות, כדי שלא ייסגר מוקדם</li><li>לא מפרקים מחיצות באגרסיביות: סכנה לסוגר, לעצב הפודנדלי ולדימום</li><li>חלל מעל 5 ס״מ: חתכים נוספים וגשר בנקז</li></ul></div>
+  <div style="display:grid;gap:10px">
+   <div class="box a"><b class="t">בלי תנודה מבחוץ</b>לא מנקזים דרך העור (סכנה לפיסטולה). בין הסוגרים ומעל הלבטור מנקזים לתוך התעלה. "פרסה": ניקוז החלל הפוסט-אנאלי העמוק בקו האמצע וחתכים נגדיים בשני הצדדים</div>
+   <div class="box n"><b class="t">אחרי הניקוז</b>בלי טמפון שגרתי ובלי אנטיביוטיקה שגרתית (רק בצלוליטיס, מחלה מערכתית או דיכוי חיסוני). אמבטיות ישיבה וסיבים. ריפוי ב-<bdi dir="ltr">6–8</bdi> שבועות. לא נרפא או חוזר? לחשוב על פיסטולה</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1525–1526</bdi></span><span>מורסה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>13</b>פיסטולה</div>
+ <h2>כשהמורסה משאירה מנהרה</h2>
+ <div class="grid">
+  <div>
+   <ul class="b sm">
+    <li>כמחצית מהמטופלים אחרי מורסה יפתחו פיסטולה: פתח פנימי בקריפטה ופתח חיצוני בעור</li>
+    <li><b>הסיפור:</b> הפרשה כרונית, או מחזור של כאב ונפיחות שמוקל כשהיא מתנקזת</li>
+    <li><b>חוק גודסל:</b> פתח חיצוני לפני הקו הרוחבי הולך ישר לתעלה. פתח מאחור מתעקל לקו האמצע האחורי (פתח קדמי רחוק מ-3 ס״מ יכול להיות המשך של "פרסה" אחורית)</li>
+    <li>פתחים בשני הצדדים: חלל פוסט-אנאלי עמוק. הרבה פתחים ("זילוף"): לחשוב על קרוהן</li>
+    <li>לא ברור? <bdi>MRI</bdi> של האגן בפרוטוקול פיסטולה</li>
+   </ul>
+  </div>
+  <div>
+  <figure class="sm"><img src="img/procto-fistula-diagram.png" alt="סוגי פיסטולות לפי היחס לסוגרים, איור בחתך"><figcaption><b>סוגי הפיסטולות לפי היחס לסוגרים</b> · <bdi>McortNGHH</bdi> על בסיס <bdi>Armin Kübelbeck</bdi>, <bdi>CC BY-SA 4.0</bdi>, Wikimedia Commons</figcaption></figure>
+  <div class="flow sm" style="margin-top:10px">
+   <div><b>סיווג <bdi>Parks</bdi></b><span>בין הסוגרים <bdi dir="ltr">45%</bdi> · חוצה סוגרים <bdi dir="ltr">30%</bdi> · מעל הסוגרים <bdi dir="ltr">20%</bdi> · מחוץ לסוגרים <bdi dir="ltr">5%</bdi></span></div>
+   <div><b>פיסטולה נמוכה</b><span>(פחות משליש מהסוגר החיצוני): פתיחה לכל האורך. בריחה משמעותית בפחות מ-<bdi dir="ltr">5%</bdi>, חזרה ב-<bdi dir="ltr">2–8%</bdi></span></div>
+   <div><b>מעורבות גדולה של הסוגר</b><span>סטון מנקז. אחר כך ניתוח ששומר על הסוגר: קשירה בין הסוגרים (<bdi>LIFT</bdi>) או מתלה רירית (ריפוי <bdi dir="ltr">66–87%</bdi>)</span></div>
+   <div><b>המטרות</b><span>לנקז זיהום, להבין את המסלול, להסיר אותו, לשמור על שליטה ולמנוע חזרה</span></div>
+  </div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1526–1528</bdi> (איורים <bdi dir="ltr">97.16–97.17</bdi>)</span><span>פיסטולה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>14</b>סינוס פילונידלי</div>
+ <h2>קן של שערות בקפל העכוז</h2>
+ <div class="grid f">
+  <div>
+   <ul class="b sm">
+    <li>צעירים, בדרך כלל באמצע עד סוף שנות ה-20. כ-70,000 מטופלים בשנה בארה״ב</li>
+    <li><b>המנגנון:</b> שערות נשאבות לעור דרך גומות בקו האמצע של קפל העכוז, תגובה לגוף זר וזיהום</li>
+    <li><b>הסימן:</b> גומות בקו האמצע ופתחי סינוס. מורסה רחוקה מפי הטבעת. לא בצמוד אליו כמו מורסה פרי-אנאלית</li>
+    <li><b>גורמי סיכון:</b> גברים (שיעור), השמנה, ישיבה ממושכת וחיכוך</li>
+   </ul>
+   <div class="box" style="margin-top:10px"><b class="t">הטיפול</b>
+    <ul class="b sm"><li><b>מורסה:</b> ניקוז בחתך לטרלי, מחוץ לקו האמצע וגירוד השערות. הסרת שיער מפחיתה חזרות</li><li><b>חוזר:</b> כריתת הגומות וניקוי החלל (שיטת גיפס, של ד״ר משה גיפס) או כריתה מלאה</li><li>להימנע מתפר בקו האמצע (<bdi>Bascom</bdi>). מקרים מורכבים: מתלים, למשל <bdi>Limberg</bdi> או <bdi>cleft lift</bdi></li><li>אנטיביוטיקה כתוספת: חיידקים ב-<bdi dir="ltr">50–70%</bdi></li></ul></div>
+  </div>
+  <figure><img src="img/procto-pilonidal-specimen.png" alt="סינוס פילונידלי אחרי כריתה"><figcaption><b>סינוס פילונידלי אחרי כריתה</b>, ליד סרגל בסנטימטרים · Lord Lucan, <bdi>CC BY-SA 4.0</bdi>, Wikimedia Commons</figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1533–1534</bdi></span><span>פילונידלי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>15</b>גרד וזיהומים</div>
+ <h2>גרד, מחלות מין ומצב חירום אחד</h2>
+ <div class="grid">
+  <div style="display:grid;gap:10px">
+   <div class="box"><b class="t">גרד בפי הטבעת</b>גרוע יותר בלילה ומעיר משינה. שואלים על דליפה, הפרשה ולחות סביב פי הטבעת. מסתכלים על העור. גרד מופיע גם בטחורים ובמחלות מין: קונדילומות, הרפס, זיבה וכלמידיה. אמבטיות ישיבה חמות מקלות על גרד ושריפה</div>
+   <div class="box n"><b class="t">מחלות מין בפי הטבעת</b>
+    <ul class="b sm"><li><b>קונדילומה</b> (<bdi>HPV</bdi>): טיפול מקומי או הסרה. פתולוגיה לכל נגע שהוסר, בעיקר ב-<bdi>HIV</bdi>. חזרה ב-<bdi dir="ltr">20–30%</bdi></li><li><b>הרפס:</b> שלפוחיות קטנות, כאב, טנזמוס. אציקלוביר <bdi dir="ltr">7–10</bdi> ימים</li><li><b>זיבה וכלמידיה:</b> לעיתים קרובות בלי תסמינים. בזיבה מטפלים גם בכלמידיה, בגלל זיהום משולב שכיח</li><li>מחלת מין: מציעים בדיקת <bdi>HIV</bdi></li></ul></div>
+  </div>
+  <div class="box r"><b class="t">גנגרנה של פורנייה · חירום</b>
+   <ul class="b sm">
+    <li>פסציאיטיס נמקית של הפרינאום, איברי המין או פי הטבעת. גברים, סוכרת, אלכוהול, דיכוי חיסוני</li>
+    <li>כאב ונפיחות, קרפיטציות, שלפוחיות סגולות-שחורות. המטופל חולה הרבה יותר ממה שהעור מראה</li>
+    <li>ציון <bdi>LRINEC</bdi> של 6 ומעלה: ערך מנבא חיובי <bdi dir="ltr">92%</bdi> ושלילי <bdi dir="ltr">96%</bdi></li>
+    <li>החייאה, אנטיביוטיקה רחבה ו<b>הטריה ניתוחית מוקדמת ונרחבת</b>. בממוצע <bdi dir="ltr">3–4</bdi> ניתוחים. האשכים בדרך כלל נחסכים</li>
+   </ul></div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1517, 1519, 1530–1532</bdi></span><span>זיהומים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>16</b>מה חדש בתחום · <bdi dir="ltr">2021–2026</bdi></div>
+ <h2>מחקרים שכדאי להכיר</h2>
+ <div class="grid">
+  <div class="study"><div class="y"><bdi>Dis Colon Rectum</bdi> 2025 · מחקר אקראי בהולנד</div><b><bdi>HOLLAND</bdi>: גומייה מול כריתה בטחורים מדרגה <bdi>III</bdi></b>
+   <p>79 מטופלים בניתוח הכלכלי של המחקר. אחרי 24 חודשים הכריתה נתנה איכות חיים טובה יותר ופחות חזרות (הפרש של <bdi dir="ltr">33.5%</bdi>), במחיר גבוה יותר. המסקנה: לא לוותר על כריתה רק בגלל עלות</p>
+   <small>van Oostendorp JY et al. Dis Colon Rectum 2025;68:1100-11</small></div>
+  <div class="study"><div class="y"><bdi>Surgery</bdi> 2022 · מטא-אנליזה של רשת</div><b>פיסורה: מה הכי מרפא?</b>
+   <p>69 מחקרים אקראיים. חיתוך הסוגר בצד נתן את הסיכוי הגבוה ביותר לריפוי בכל נקודות הזמן, אבל גם את הסיכון הגבוה ביותר לבריחה. בוטולינום וטיפול מקומי דומים זה לזה</p>
+   <small>Jin JZ et al. Surgery 2022;172:41-52</small></div>
+  <div class="study"><div class="y"><bdi>Dis Colon Rectum</bdi> 2024 · מחקר אקראי בישראל</div><b>אנטיביוטיקה אחרי ניקוז מורסה?</b>
+   <p>98 מטופלים, אוגמנטין שבוע מול בלי אנטיביוטיקה. פיסטולה: <bdi dir="ltr">16.3%</bdi> לעומת <bdi dir="ltr">10.2%</bdi>, מורסה חוזרת: <bdi dir="ltr">9.2%</bdi> בסך הכול, בלי הבדל מובהק. האנטיביוטיקה לא מנעה פיסטולה</p>
+   <small>Nasasra A et al. Dis Colon Rectum 2024;67:1072-6 (שמיר ורמב״ם)</small></div>
+  <div class="study"><div class="y"><bdi>BJS</bdi> 2024 · מחקר עוקבה בבריטניה</div><b><bdi>PITSTOP</bdi>: ניתוחי סינוס פילונידלי</b>
+   <p>667 משתתפים, 12 שיטות ניתוח. סיבוכים ב-<bdi dir="ltr">45.1%</bdi>. ניתוח זעיר-פולשני: איכות חיים טובה יותר, פחות כאב ופחות סיבוכים, אבל כ-<bdi dir="ltr">10%</bdi> יותר כישלונות. אחרי 6 חודשים לרבע מהמטופלים הפצע עדיין לא נסגר</p>
+   <small>Brown SR et al. Br J Surg 2024;111:znae009</small></div>
+ </div>
+ <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>17</b>לסיכום</div>
+ <h2>חמישה דברים לקחת למחלקה</h2>
+ <ol class="obj">
+  <li>הקו המשונן מפריד: מעליו אין כאב (גומייה), מתחתיו כואב (טחור חיצוני, פיסורה)</li>
+  <li>בודקים עם מלווה, בשכיבה על הצד, בהסתכלות, מישוש, בדיקה רקטלית ואנוסקופיה. בפיסורה מוותרים על בדיקה כואבת</li>
+  <li>טחורים: קודם סיבים, שתייה והרגלי שירותים. אחר כך גומייה. בדרגות <bdi>III–IV</bdi> ניתוח</li>
+  <li>פיסורה כרונית: משחה (חוסם סידן), בוטולינום. בסוף חיתוך חלקי של הסוגר. לא בקו האמצע: לחשוב אחרת</li>
+  <li>מורסה מנקזים מיד וקרוב לפי הטבעת. אחריה פיסטולה בכמחצית</li>
+ </ol>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 97 <bdi>Benign Anorectal Disorders</bdi> (עמ׳ <bdi dir="ltr">1515–1534</bdi>)</div>
+ <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906), <bdi>NCI</bdi> ו-Sue Clark (נחלת הכלל) · <bdi>Blausen Medical</bdi> (<bdi>CC BY 3.0</bdi>) · <bdi>scientificanimations.com</bdi>, <bdi>McortNGHH</bdi>, Απόστολος Σταματιάδης, Lord Lucan (<bdi>CC BY-SA</bdi>, <bdi>Wikimedia Commons</bdi>) · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+</main>
+<div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
+<script>
+document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz').forEach(function(z){z.addEventListener('click',function(){w.querySelectorAll('.hz').forEach(function(x){x.classList.toggle('on',x===z)});w.querySelectorAll('.hzi').forEach(function(i){i.hidden=i.dataset.hzi!==z.dataset.hz;i.style.setProperty('--c',z.style.getPropertyValue('--c'))});var h=w.querySelector('.hint');if(h)h.hidden=true;});});});
+</script>
+<script>
+(function () {
+  var deck = document.getElementById('deck'), S = [].slice.call(deck.children), dots = document.getElementById('dots'), n = S.length;
+  S.forEach(function (_, k) { var i = document.createElement('i'); i.onclick = function () { go(k); }; dots.appendChild(i); });
+  function idx() { return Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }
+  function go(k) { k = Math.max(0, Math.min(n - 1, k)); S[k].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' }); }
+  function sync() { var k = idx(); [].forEach.call(dots.children, function (d, j) { d.className = j === k ? 'on' : ''; }); document.getElementById('count').textContent = (k + 1) + '/' + n; document.getElementById('prev').disabled = k === 0; document.getElementById('next').disabled = k === n - 1; }
+  deck.addEventListener('scroll', function () { clearTimeout(sync.t); sync.t = setTimeout(sync, 60); }, { passive: true });
+  document.getElementById('next').onclick = function () { go(idx() + 1); };
+  document.getElementById('prev').onclick = function () { go(idx() - 1); };
+  addEventListener('keydown', function (e) { if (e.key === 'ArrowLeft' || e.key === ' ') go(idx() + 1); if (e.key === 'ArrowRight') go(idx() - 1); });
+  sync();
+})();
+</script>
+</body>
+</html>

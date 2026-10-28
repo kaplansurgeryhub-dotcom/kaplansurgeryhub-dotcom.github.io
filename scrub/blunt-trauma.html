@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>חבלת בטן קהה · Scrub In</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../emblem.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Frank+Ruhl+Libre:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0C2A35;--navy2:#123845;--g:#00967D;--g2:#3DC08C;--g3:#0A6B5A;--lime:#B5D96B;--red:#A3402E;--amber:#C9893F;--blue:#2F6FA8;--bg:#EDF2F0;--soft:#F3F7F5;--ink:#16262C;--muted:#5C6F73;--line:#DCE6E2}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--navy);color:var(--ink);font-family:Heebo,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.deck{position:fixed;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.deck::-webkit-scrollbar{display:none}
+.s{flex:0 0 100%;height:100%;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;padding:18px 16px 84px;overflow-y:auto;position:relative}
+.s::after{content:'';position:absolute;inset:0;background:url(../ops/art/organs.webp) no-repeat 6% 40%/auto 115%;opacity:.05;filter:invert(1);pointer-events:none}
+.card{width:min(980px,100%);background:#fff;border-radius:22px;box-shadow:0 18px 50px rgba(0,0,0,.35);padding:30px 32px 22px;position:relative;overflow:hidden;z-index:1}
+.card::before{content:'';position:absolute;inset:0 0 auto 0;height:6px;background:linear-gradient(90deg,var(--g3),var(--g),var(--g2),var(--lime))}
+.kick{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--g);letter-spacing:.3px;margin-bottom:6px}
+.kick b{background:var(--navy);color:#fff;border-radius:999px;min-width:26px;height:26px;display:grid;place-items:center;font-size:13px;padding:0 8px}
+h1,h2{font-family:'Frank Ruhl Libre',serif;color:var(--navy);margin:0 0 10px;line-height:1.15}
+h1{font-size:clamp(34px,6.4vw,60px)}h2{font-size:clamp(25px,4.4vw,36px)}
+h3{margin:0 0 6px;font-size:17px;color:var(--navy)}
+.lead{font-size:clamp(15.5px,2.3vw,18.5px);color:var(--muted);margin:0 0 16px;line-height:1.5}
+ul.b{margin:0;padding:0;list-style:none;display:grid;gap:8px}ul.b li{position:relative;padding-inline-start:20px;font-size:16.5px;line-height:1.45}ul.b li::before{content:'';position:absolute;inset-inline-start:2px;top:.62em;width:8px;height:8px;border-radius:2px;background:var(--g);transform:rotate(45deg)}
+ul.b li b{color:var(--navy)}ul.b.sm li{font-size:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.grid.g3{grid-template-columns:repeat(3,1fr)}.grid.f{grid-template-columns:1.05fr .95fr;align-items:center}
+.box{background:var(--soft);border-radius:14px;padding:13px 15px;border-inline-start:4px solid var(--g);font-size:15.5px;line-height:1.45}
+.box.r{border-color:var(--red);background:#FBEDEA}.box.a{border-color:var(--amber);background:#FFF6EA}.box.n{border-color:var(--navy)}.box.b{border-color:var(--blue);background:#EEF4FB}
+.box b.t{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}
+.num{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:4px 0 14px}.num div{background:var(--soft);border-radius:14px;padding:12px 10px;text-align:center}
+.num b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(26px,4vw,38px);color:var(--g3);line-height:1.05}.num span{font-size:13px;color:var(--muted);line-height:1.3;display:block;margin-top:4px}
+figure{margin:0;background:#FBFCFB;border:1px solid var(--line);border-radius:16px;padding:10px;text-align:center}figure img{max-width:100%;max-height:46vh;display:block;margin:0 auto;mix-blend-mode:multiply}
+figcaption{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.35}
+.ill svg{width:100%;height:auto;max-height:50vh}
+.src{margin-top:16px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.src b{color:var(--g3)}
+.tag{display:inline-block;font-size:12px;font-weight:800;border-radius:999px;padding:2px 10px;background:#E3F4EC;color:var(--g3);margin-inline-end:4px}
+.tag.r{background:#F8E3DE;color:var(--red)}.tag.a{background:#FFF3DF;color:#8A5A14}.tag.b{background:#E8F0FA;color:var(--blue)}
+.flow{display:grid;gap:8px}.flow div{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;background:var(--soft);border-radius:12px;padding:9px 12px;font-size:15.5px}.flow div b{color:var(--navy)}
+.study{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#fff}.study .y{font-size:12px;font-weight:800;color:var(--g);letter-spacing:.3px}.study b{display:block;font-size:16px;color:var(--navy);margin:2px 0}.study p{margin:4px 0 0;font-size:14.5px;line-height:1.45}.study small{display:block;margin-top:6px;font-size:11.5px;color:var(--muted)}
+.cover{background:radial-gradient(120% 90% at 85% 0%,#164B54 0%,var(--navy) 58%)}
+.cover::after{opacity:.16;background-position:2% 50%}
+.cover .card{background:transparent;box-shadow:none;color:#fff}.cover .card::before{display:none}.cover h1{color:#fff}.cover .lead{color:#C9D6DA}.cover .kick{color:var(--g2)}
+.pill{display:inline-flex;gap:6px;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px;color:#fff;margin:4px}
+.logo{display:flex;align-items:center;gap:10px;margin-bottom:26px}.logo img{width:48px;height:48px;border-radius:50%;background:#fff}.logo b{color:#fff;font-weight:900}.logo small{display:block;color:#A9C9C0;font-size:12px}
+.obj{counter-reset:o;list-style:none;margin:0;padding:0;display:grid;gap:10px}.obj li{counter-increment:o;display:flex;gap:12px;align-items:flex-start;font-size:16.5px;line-height:1.45}.obj li::before{content:counter(o);flex:0 0 30px;height:30px;border-radius:50%;background:var(--g);color:#fff;font-weight:800;display:grid;place-items:center}
+.nav{position:fixed;inset:auto 0 0 0;display:flex;align-items:center;justify-content:center;gap:14px;padding:12px 16px calc(14px + env(safe-area-inset-bottom));background:linear-gradient(transparent,rgba(6,20,26,.85) 40%);z-index:5}
+.nav button{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;font-size:22px;cursor:pointer}.nav button:disabled{opacity:.3}
+.dots{display:flex;gap:5px;flex-wrap:wrap;max-width:60vw;justify-content:center}.dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer}.dots i.on{background:var(--g2);width:20px;border-radius:5px}
+.count{color:#C9D6D9;font-size:13px;font-weight:700;min-width:44px;text-align:center}
+bdi{unicode-bidi:isolate}
+.cmp{width:100%;border-collapse:separate;border-spacing:0;font-size:14px;border:1px solid var(--line);border-radius:14px;overflow:hidden}.cmp th{background:var(--navy);color:#fff;padding:9px 10px;font-size:16px;text-align:start}.cmp th small{display:block;font-weight:500;color:#A9D9C8;font-size:12px}.cmp td{padding:8px 10px;border-top:1px solid var(--line);vertical-align:top;line-height:1.4}.cmp td:first-child{background:var(--soft);font-weight:800;color:var(--navy);white-space:nowrap}.cmp tr:nth-child(odd) td:not(:first-child){background:#FBFCFB}
+figure.vid video{width:100%;max-height:34vh;border-radius:10px;background:#000;display:block}
+@media (max-width:760px){.cmp{font-size:12.5px}.cmp td,.cmp th{padding:6px}}
+
+.hotw{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;align-items:start}.hoti{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#FBFCFB}.hoti img{display:block;width:100%;mix-blend-mode:multiply}.hoti svg{position:absolute;inset:0;width:100%;height:100%}
+.hz{fill:var(--c);fill-opacity:.38;stroke:var(--c);stroke-width:2;cursor:pointer;transition:fill-opacity .2s}.hz:hover,.hz.on{fill-opacity:.62}.hzl{font:900 22px Heebo,sans-serif;fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;pointer-events:none;text-anchor:middle}
+.hotp .hint{background:var(--soft);border-radius:12px;padding:10px 12px;font-weight:700;color:var(--g3);margin:0}.hzi{background:#fff;border:1px solid var(--line);border-inline-start:5px solid var(--c,var(--g));border-radius:14px;padding:12px 14px;margin-top:8px;font-size:15.5px;line-height:1.45}.hzi>b{display:block;font-size:17px;color:var(--navy);margin-bottom:4px}.hzi p{margin:0}
+figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-size:15px}.obj.sm li::before{flex-basis:26px;height:26px;font-size:13px}.flow.sm div{grid-template-columns:130px 1fr;padding:7px 10px;font-size:14.5px}
+@media (max-width:760px){.hotw{grid-template-columns:1fr}}
+
+@media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
+@media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+/*BRAND*/
+.brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
+.brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
+.s{padding-top:58px}
+.cover .card{display:flex;flex-direction:column;gap:6px;max-width:980px}
+.cvhead{display:flex;align-items:center;gap:16px;margin-bottom:30px}.cvhead img.em{width:74px;height:74px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(61,192,140,.55)}
+.cvhead b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(24px,3.4vw,34px);color:#fff;line-height:1.1}.cvhead span{display:block;font-size:clamp(15px,2vw,19px);color:#A9D9C8;font-weight:700;margin-top:4px}
+.cover h1{font-size:clamp(38px,6.6vw,66px);margin:6px 0 8px}.cover .kick{font-size:14px;letter-spacing:.06em}
+.cvmeta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.cvlogos{display:flex;align-items:center;gap:18px;margin-top:34px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14)}.cvlogos img{height:44px;width:auto}.cvlogos small{margin-inline-start:auto;color:#8FB3AA;font-size:12.5px;font-weight:700;letter-spacing:.08em}
+.cover .brandbar{display:none}
+@media (max-width:760px){.brandbar{left:10px;gap:7px;padding:4px 9px 4px 4px}.brandbar img{height:20px}.brandbar img.em{width:22px;height:22px}.s{padding-top:48px}.cvhead img.em{width:56px;height:56px}.cvlogos img{height:34px}.cvlogos small{display:none}}
+/* numbered lists: a bold word inside an item stays inline */
+.obj li,.steps li{display:block;position:relative;padding-inline-start:42px;min-height:30px}.obj li::before,.steps li::before{position:absolute;inset-inline-start:0;top:0}.obj.sm li{padding-inline-start:36px}
+.grid.tight figure img{max-height:24vh}
+@media print{.brandbar{display:none}}
+/*/BRAND*/
+</style>
+</head>
+<body>
+<div class="brandbar" aria-hidden="true"><img class="em" src="brand/emblem.jpg" alt=""><i></i><img src="brand/logo_k.webp" alt=""><img src="brand/logo_c.webp" alt=""></div>
+<main class="deck" id="deck">
+
+<section class="s cover"><div class="card">
+ <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
+ <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 6</div>
+ <h1>חבלת בטן קהה</h1>
+ <p class="lead"><bdi>FAST</bdi>, CT וההחלטה: מתי ניתוח, מתי צנתור ומתי השגחה. טחול, כבד, מעי, תריסריון ולבלב</p>
+ <div class="cvmeta"><span class="pill">מבוסס על <bdi>Sabiston</bdi>, מהדורה 22, פרקים <bdi dir="ltr">36–37</bdi></span></div>
+ <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>1</b>מטרות הלמידה</div>
+ <h2>בסוף המפגש תדעו</h2>
+ <ol class="obj">
+  <li>להסביר איך כוח קהה פוגע באיברים מוצקים, באיברים חלולים ובאיברים שמאחורי הצפק</li>
+  <li>לבדוק בטן של פצוע ולזהות סימנים מחשידים, כמו סימן חגורת הבטיחות</li>
+  <li>להכיר את ארבעת החלונות של <bdi>FAST</bdi> ואת המגבלות שלו</li>
+  <li>להחליט בין ניתוח, CT, צנתור והשגחה לפי המצב ההמודינמי</li>
+  <li>להכיר את הדירוג והטיפול בפגיעות טחול וכבד ולחשוד בפגיעה במעי, בתריסריון ובלבלב</li>
+ </ol>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 36 (עמ׳ <bdi dir="ltr">340–354</bdi>)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>2</b>מנגנונים</div>
+ <h2>איך כוח קהה פוגע</h2>
+ <div class="grid">
+  <div class="flow sm">
+   <div><b>לחיצה ישירה</b><span>שבר ברקמת הטחול או הכבד: דימום</span></div>
+   <div><b>האטה פתאומית</b><span>קרע של הקופסית במקום שבו האיבר מחובר, המטומה תת-קופסית, קרע במזנטריום</span></div>
+   <div><b>"פיצוץ"</b><span>לחץ פתאומי במקטע מעי סגור מלא נוזל ואוויר: נקב בצד שמול המזנטריום</span></div>
+   <div><b>מעיכה מול עמוד השדרה</b><span>הגה או חגורת בטיחות: לבלב, מעי דק, תריסריון. בילדים: כידון אופניים</span></div>
+   <div><b>לחץ תוך-בטני</b><span>קרע בסרעפת, ב-75% משמאל (הכבד מגן מימין)</span></div>
+  </div>
+  <div style="display:grid;gap:10px">
+   <div class="box n"><b class="t">שבר באגן</b>מקור שכיח להמטומה רטרופריטונאלית. בשבר אגן עם הלם התמותה יכולה לעבור 50%</div>
+   <div class="box a"><b class="t">הטחול והכבד</b>האיברים הנפגעים ביותר בבטן. פגיעה מבודדת בטחול היא כ-42% מפגיעות הבטן והכבד נפגע ב-22.2% מהחבלות הקהות</div>
+   <div class="box r"><b class="t">איברים חלולים: נדיר אבל מסוכן</b>מעי דק ומעי גס נפגעים רק ב-0.3% מהחבלות הקהות. בקיבה פחות מ-1%, אבל התמותה 28.2% בגלל אנרגיה גבוהה ופגיעות נלוות</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">340–341, 343–344, 348–351, 354</bdi></span><span>מנגנונים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>3</b>הבדיקה</div>
+ <h2>הבטן בסקר השניוני</h2>
+ <div class="grid f">
+  <div>
+   <ul class="b sm">
+    <li><b>הסתכלות:</b> בטן תפוחה, שטפי דם, פצעים ובמיוחד <b>סימן חגורת בטיחות</b> אחרי תאונת דרכים</li>
+    <li><b>מישוש:</b> מחפשים פריטוניטיס או רגישות ממוקדת ומבדילים בין כאב בדופן לבין פגיעה בתוך הבטן</li>
+    <li><b>אגן:</b> שטפי דם ונפיחות. <b>פרינאום:</b> המטומה בשק האשכים ודם בפתח השופכה (פגיעה בשופכה)</li>
+    <li><b>גב:</b> גלגול גוש ובדיקה רקטלית לפי הצורך</li>
+    <li><b>מגבלה:</b> תריסריון, לבלב ומעי גס עולה ויורד נמצאים מאחורי הצפק. גם נקב מלא יכול להיות בלי סימני צפק</li>
+    <li>סימן חגורה או רגישות בבדיקה, יחד עם ממצא חשוד ב-CT, מעלים את החשד לפגיעה במעי</li>
+   </ul>
+   <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>בדקו פצוע אחרי חבלה קהה שמאושפז להשגחה. בדקו את הבטן יחד עם הבכיר/ה, חפשו סימן חגורה ועקבו אחרי הבדיקות החוזרות וההמוגלובין לאורך היום</div>
+  </div>
+  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש הכבד בשתי ידיים" style="max-height:44vh"><figcaption>מישוש בשתי ידיים: יד אחת מקבעת ויד שנייה ממששת · <bdi>Musser</bdi>, ספר אבחנה, 1904 (נחלת הכלל)</figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">324, 341, 348, 351</bdi></span><span>בדיקה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>4</b>חלונות <bdi>FAST</bdi> · אינטראקטיבי</div>
+ <h2>ארבעה חלונות, שתי דקות, ליד המיטה</h2>
+ <div class="hotw"><div class="hoti" style="max-width:340px;justify-self:center;width:100%"><img src="img/Gray1224.png" alt="איברי הבטן מלפנים"><svg viewBox="0 0 553 650" preserveAspectRatio="none">
+   <polygon class="hz" data-hz="per" points="250,130 320,130 325,185 285,205 245,185" style="--c:#A3402E"/>
+   <text class="hzl" style="font-size:28px" x="285" y="175">1</text>
+   <polygon class="hz" data-hz="ruq" points="100,215 175,205 190,280 150,320 105,300" style="--c:#7A5BD6"/>
+   <text class="hzl" style="font-size:28px" x="145" y="272">2</text>
+   <polygon class="hz" data-hz="luq" points="395,170 450,180 460,280 420,305 385,260" style="--c:#00967D"/>
+   <text class="hzl" style="font-size:28px" x="425" y="245">3</text>
+   <polygon class="hz" data-hz="pel" points="245,520 335,520 345,580 300,600 240,580" style="--c:#C9893F"/>
+   <text class="hzl" style="font-size:28px" x="292" y="570">4</text>
+  </svg></div>
+  <div class="hotp"><p class="hint">👆 לחצו על חלון בציור כדי לקרוא עליו</p>
+   <div class="hzi" data-hzi="per" hidden><b>1 · קרום הלב (מתחת לקסיפואיד)</b><p>מחפשים נוזל סביב הלב. בטראומה נוזל כזה הוא דם וחושבים על טמפונדה</p></div>
+   <div class="hzi" data-hzi="ruq" hidden><b>2 · ימין עליון: בין הכבד לכליה (<bdi>Morison</bdi>)</b><p>החלון שבו רואים הכי הרבה פעמים דם בבטן: פס שחור בין הכבד לכליה הימנית</p></div>
+   <div class="hzi" data-hzi="luq" hidden><b>3 · שמאל עליון: בין הטחול לכליה</b><p>החלון לדם מהטחול. נמצא גבוה ואחורי מאחורי הצלעות ולכן קשה יותר לראות אותו</p></div>
+   <div class="hzi" data-hzi="pel" hidden><b>4 · אגן: מאחורי שלפוחית השתן</b><p>הנקודה הנמוכה של הבטן בשכיבה (כיס דאגלס באישה). קל יותר לראות דרך שלפוחית מלאה</p></div>
+  </div></div>
+ <div class="box" style="margin-top:12px"><b class="t">הגרסה המורחבת (<bdi>eFAST</bdi>)</b>מוסיף את שתי הריאות: חזה אוויר והמוטורקס. אפשר לחזור על הבדיקה בכל פעם שהמצב משתנה</div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">322, 341</bdi> · איור: <bdi>Gray's Anatomy</bdi> (1918), איור 1224 (נחלת הכלל)</span><span>אולטרסאונד</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>5</b>מה רואים ומה מפספסים</div>
+ <h2>בדיקת <bdi>FAST</bdi> ושטיפת צפק</h2>
+ <div class="grid f">
+  <div>
+   <ul class="b sm">
+    <li><b>חיובי:</b> נוזל חופשי בבטן. בטראומה מניחים שזה דם</li>
+    <li><b>בדיקה חיובית עם חוסר יציבות</b> (לא מגיב, או מגיב זמנית להחייאה): ניתוח בטן</li>
+    <li><b>מגבלות:</b> תלוי בבודק, קשה בהשמנה, באמפיזמה תת-עורית ובגזים במעי. <b>לא רואה את הרטרופריטונאום</b></li>
+    <li><b>שטיפת צפק (<bdi>DPL</bdi>)</b> כשאין אולטרסאונד: שאיבת דם או מרה = חיובי. אחרת מכניסים ליטר נוזל ובודקים: יותר מ-100,000 כדוריות אדומות או יותר מ-500 לבנות במ״ל = חיובי</li>
+    <li>היום כמעט לא עושים שטיפה. גם בשאיבה בלבד, תוכן מעי, מרה או יותר מ-10 מ״ל דם מחייבים ניתוח</li>
+   </ul>
+  </div>
+  <figure><img src="img/blunt-morison-us.jpg" alt="אולטרסאונד של כיס מוריסון עם נוזל"><figcaption>אולטרסאונד בימין העליון: הכבד למעלה, הכליה למטה ופס נוזל כהה ביניהם (כיס <bdi>Morison</bdi>) · <bdi>Drahreg01</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">322, 325, 341</bdi></span><span>אולטרסאונד</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>6</b>ההחלטה</div>
+ <h2>הפיזיולוגיה מחליטה, לא ה-CT</h2>
+ <div class="grid">
+  <div class="flow sm">
+   <div><b>פריטוניטיס, או חוסר יציבות עם <bdi>FAST</bdi> חיובי</b><span>לחדר ניתוח</span></div>
+   <div><b>יציב, בלי פריטוניטיס</b><span>בדיקת CT בטן עם חומר ניגוד לווריד</span></div>
+   <div><b>פגיעה באיבר מוצק עם דליפת חומר ניגוד או פסאודואנוריזמה</b><span>צנתור ותסחיף</span></div>
+   <div><b>פגיעה באיבר מוצק בלי דליפה</b><span>טיפול בלי ניתוח: השגחה צמודה</span></div>
+   <div><b>חשד לפגיעה במעי (כן או לא ברור)</b><span>ניתוח בטן או לפרוסקופיה</span></div>
+  </div>
+  <div style="display:grid;gap:10px">
+   <div class="box n"><b class="t">מה השתנה</b>פעם כל דם בבטן חייב ניתוח ובניתוח הדימום מהטחול או מהכבד כבר נעצר לבד. היום הדם עצמו הוא לא סיבה לנתח: המצב ההמודינמי קובע</div>
+   <div class="box r"><b class="t">לשלוח מטופל לא יציב ל-CT?</b>יש מרכזים שעושים CT לכל הגוף גם בלחץ סיסטולי מתחת ל-90, אבל זה לוקח 10 עד יותר מ-30 דקות. רק אם אפשר להמשיך להחיות בתוך ה-CT ואחרי <bdi>FAST</bdi> וצילומים חוזרים</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">341–342</bdi> (איור 36.27)</span><span>אלגוריתם</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>7</b>הדמיה בחבלה קהה</div>
+ <h2>קוראים את הטחול ב-CT</h2>
+ <div class="grid f">
+  <div>
+   <ul class="b sm">
+    <li>מצלמים בשני שלבים: <b>עורקי</b> ו<b>ורידי פורטלי</b>, כדי לראות את הזילוח של האיברים המוצקים</li>
+    <li><b>קרע:</b> קו או אזור כהה ולא סדיר ברקמה. סביבו המטומה ודם חופשי בבטן</li>
+    <li><b>דימום פעיל:</b> "כתם" לבן של חומר ניגוד שיוצא מכלי הדם, לתוך הבטן או לתוך פסאודואנוריזמה</li>
+    <li><b>המטומה תת-קופסית:</b> אוסף בצורת סהר שלוחץ על הטחול מבחוץ</li>
+    <li>ה-CT מדויק מאוד לטחול (רגישות וסגוליות <bdi dir="ltr">96–100%</bdi>), אבל חלש הרבה יותר למעי, לתריסריון ולסרעפת</li>
+   </ul>
+  </div>
+  <div style="display:grid;gap:10px">
+   <figure><img src="img/blunt-spleen-ct.jpg" alt="CT של קרע בטחול" style="max-height:26vh"><figcaption>קרע בטחול: אזור כהה ולא סדיר בקוטב התחתון ונוזל סביב (מסומן) · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+   <figure><img src="img/blunt-spleen-subcap-ct.jpg" alt="CT של המטומה תת-קופסית בטחול" style="max-height:18vh"><figcaption>קרע בטחול עם המטומה תת-קופסית · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">341, 344</bdi></span><span>הדמיה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>8</b>דירוג <bdi>AAST</bdi> (2018)</div>
+ <h2>טחול וכבד: דרגה 1 עד 5</h2>
+ <div class="grid">
+  <div class="flow sm">
+   <div><b>טחול 1</b><span>המטומה תת-קופסית מתחת ל-10% מהשטח, קרע עד 1 ס״מ עומק</span></div>
+   <div><b>טחול 2</b><span>המטומה תת-קופסית <bdi dir="ltr">10–50%</bdi>, בתוך הרקמה עד 5 ס״מ, קרע <bdi dir="ltr">1–3</bdi> ס״מ</span></div>
+   <div><b>טחול 3</b><span>המטומה מעל 50% או שנקרעה, קרע עמוק מ-3 ס״מ</span></div>
+   <div><b>טחול 4</b><span>פגיעה בכלי דם או דימום פעיל בתוך הקופסית. מעל 25% בלי אספקת דם</span></div>
+   <div><b>טחול 5</b><span>דימום פעיל אל הבטן, פגיעה בשער שמנתקת את הטחול, טחול מרוסק</span></div>
+  </div>
+  <div class="flow sm">
+   <div><b>כבד 1</b><span>המטומה תת-קופסית מתחת ל-10%, קרע עד 1 ס״מ עומק</span></div>
+   <div><b>כבד 2</b><span>המטומה <bdi dir="ltr">10–50%</bdi>, בתוך הרקמה עד 10 ס״מ, קרע <bdi dir="ltr">1–3</bdi> ס״מ עומק</span></div>
+   <div><b>כבד 3</b><span>המטומה מעל 50% או שנקרעה, קרע עמוק מ-3 ס״מ, או דימום פעיל בתוך הכבד</span></div>
+   <div><b>כבד 4</b><span>הרס של <bdi dir="ltr">25–75%</bdi> מאונה, או דימום פעיל אל הבטן</span></div>
+   <div><b>כבד 5</b><span>הרס מעל 75% מאונה, או פגיעה בווריד הנבוב מאחורי הכבד ובוורידי הכבד</span></div>
+  </div>
+ </div>
+ <div class="box a" style="margin-top:12px"><b class="t">הדרגה לא מחליטה לבד</b>הדירוג מתאר את הפגיעה ועוזר לנבא סיכון. ההחלטה על ניתוח עדיין נקבעת לפי היציבות של המטופל</div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">345–346</bdi> (טבלאות 36.9 ו-36.10)</span><span>דירוג</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>9</b>טחול</div>
+ <h2>רוב הטחולים נשמרים</h2>
+ <div class="num">
+  <div><b dir="ltr">40%→70%</b><span>שיעור הטיפול בלי ניתוח עלה בעשורים האחרונים</span></div>
+  <div><b dir="ltr">~90%</b><span>הצלחת טיפול בלי ניתוח במרכזים גדולים</span></div>
+  <div><b dir="ltr">5%</b><span>כישלון בדרגות <bdi dir="ltr">3–5</bdi> כשמשתמשים בצנתור</span></div>
+  <div><b dir="ltr">&lt;72h</b><span>רוב הדימומים המאוחרים מופיעים בשלושת הימים הראשונים</span></div>
+ </div>
+ <div class="grid">
+  <ul class="b sm">
+   <li><b>יציב עם דליפה או פסאודואנוריזמה ב-CT:</b> צנתור ותסחיף</li>
+   <li><b>דרגות <bdi dir="ltr">3–5</bdi> בלי דליפה:</b> CTA או צנתור אחרי <bdi dir="ltr">24–96</bdi> שעות. דרגות גבוהות מאושפזות בטיפול נמרץ</li>
+   <li>אין גורם סיכון (גיל, דרגה, כמות דם) שמנבא מי ייכשל ולכן לא מנתחים "ליתר ביטחון"</li>
+   <li>לא יציב או נכשל: כריתת טחול מחתך באמצע</li>
+  </ul>
+  <div class="box r"><b class="t">אחרי כריתת טחול: חיסונים</b>נגד <bdi>Streptococcus pneumoniae</bdi>, <bdi>Neisseria meningitidis</bdi> ו-<bdi>Haemophilus influenzae</bdi>. זיהום מכריע אחרי כריתת טחול מופיע ב-<bdi dir="ltr">0.5–2%</bdi> והתמותה ממנו <bdi dir="ltr">30–70%</bdi></div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">343–344</bdi></span><span>טחול</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>10</b>כבד</div>
+ <h2>גם בכבד: קודם השגחה</h2>
+ <div class="grid f">
+  <div>
+   <ul class="b sm">
+    <li><b>יציב, בכל דרגה:</b> טיפול בלי ניתוח הוא הבחירה הראשונה. רוב דרגות <bdi dir="ltr">1–3</bdi> מצליחות בלי ניתוח, שני שלישים מדרגות 4 ו-5 צריכים ניתוח</li>
+    <li><b>דימום או פסאודואנוריזמה ב-CT:</b> לשקול צנתור, אחרי שיחה בין הכירורג לרדיולוג. תסחיף "של הכול" גורם לנמק ולמורסות</li>
+    <li><b>כישלון:</b> בכ-9.5%. מנבאים: הלם וסימני צפק בהגעה, פציעה קשה ופגיעות נוספות בבטן</li>
+    <li><b>סיבוכים גם בהצלחה (<bdi dir="ltr">12–14%</bdi>):</b> בילומה, המוביליה ומורסה. ניקוז מלעורי, <bdi>ERCP</bdi> עם תומכן, או צנתור</li>
+    <li><b>בניתוח:</b> ריפוד סביב הכבד, <bdi>Pringle</bdi> (חסימת הרצועה ההפטודואודנלית) ופגיעה ליד הווריד הנבוב שלא מדממת: מרפדים ולא חוקרים</li>
+   </ul>
+  </div>
+  <figure><img src="img/blunt-liver-ct.jpg" alt="CT של קרע מרכזי בכבד"><figcaption>קרע מרכזי בכבד: אזורים כהים ולא סדירים בתוך הרקמה, בלי דם חופשי · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">344–348</bdi></span><span>כבד</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>11</b>איברים חלולים</div>
+ <h2>הפגיעה שה-CT מפספס</h2>
+ <div class="num">
+  <div><b dir="ltr">55–95%</b><span>רגישות ה-CT לפגיעה במעי</span></div>
+  <div><b dir="ltr">48–92%</b><span>סגוליות ה-CT לפגיעה במעי</span></div>
+  <div><b dir="ltr">27–54%</b><span>ניתוחים שמצאו פגיעה, כשהסיבה היחידה הייתה נוזל חופשי</span></div>
+  <div><b dir="ltr">0.3%</b><span>פגיעה במעי דק או גס בחבלה קהה</span></div>
+ </div>
+ <div class="grid">
+  <ul class="b sm">
+   <li><b>סימנים ב-CT:</b> עיבוי דופן המעי, הסננה בשומן סביב, פגם במזנטריום ונוזל חופשי בלי פגיעה באיבר מוצק</li>
+   <li>נוזל חופשי שאין לו הסבר מחייב מחשבה: לעיתים קרובות זה דם מקרע במזנטריום, אבל ייתכן שיש פגיעה במעי</li>
+   <li>אוויר חופשי לבד בחבלה קהה הוא לא סימן אמין</li>
+  </ul>
+  <ul class="b sm">
+   <li><b>מי שלא נותח:</b> בדיקות בטן חוזרות, כדי לזהות רגישות שמחמירה או סימני צפק</li>
+   <li>במטופל בלי הלם, לפרוסקופיה היא חלופה בטוחה לפתיחת הבטן</li>
+   <li><b>חשד גבוה?</b> מחליטים מהר. התמותה עולה ככל שהניתוח מתעכב</li>
+  </ul>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">341, 348, 351</bdi></span><span>מעי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>12</b>מאחורי הצפק</div>
+ <h2>תריסריון ולבלב: חושבים עליהם</h2>
+ <div class="grid">
+  <div class="box"><b class="t">תריסריון</b>
+   <ul class="b sm"><li>מכה באפיגסטריום בחפץ צר: הגה ובילדים כידון אופניים</li><li>ב-CT: דופן מעובה, אוויר ונוזל סביב. אם יש ספק: CT עם חומר ניגוד דרך הפה או שיקוף</li><li>כל סימן לנקב: ניתוח מיד</li><li><b>המטומה בדופן:</b> לרוב נספגת. אם חוסמת: זונדה, הזנה תוך-ורידית ובדיקת ניגוד אחרי <bdi dir="ltr">5–7</bdi> ימים. עדיין חסום אחרי כ-14 יום: ניתוח</li></ul></div>
+  <div class="box n"><b class="t">לבלב</b>
+   <ul class="b sm"><li>גוף הלבלב נמעך בין ההגה או החגורה לעמוד השדרה</li><li>ה-CT מפספס כ-15%. רגישות לפגיעה ברקמה <bdi dir="ltr">47–79%</bdi> ולפגיעה בצינור <bdi dir="ltr">52–54%</bdi></li><li>עמילאז שנלקח יותר מ-3 שעות אחרי הפגיעה עוזר מעט: רגיש אבל לא סגולי</li><li>חשד לפגיעה בצינור: <bdi>ERCP</bdi> או <bdi>MRCP</bdi>. פגיעה בצינור הראשי מטופלת בניתוח</li></ul></div>
+ </div>
+ <div class="box a" style="margin-top:12px"><b class="t">מטופל שנשאר "לא טוב"</b>בדיקת CT חוזרת אחרי כמה שעות יכולה להראות דלקת שעוד לא הספיקה להופיע בצילום הראשון</div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">348–350</bdi></span><span>רטרופריטונאום</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>13</b>אגן, רטרופריטונאום וסרעפת</div>
+ <h2>מה שונה בחבלה קהה</h2>
+ <div class="grid">
+  <div>
+   <h3>שבר באגן עם הלם</h3>
+   <ul class="b sm">
+    <li>צילום אגן מהר בכל מטופל לא יציב. כל שבר יכול לדמם</li>
+    <li>שבר "ספר פתוח": <b>חגורת אגן או סדין</b> בגובה הטרוכנטרים הגדולים וקושרים את הרגליים יחד</li>
+    <li>החגורה עוצרת בעיקר דימום ורידי. ממשיך להיות לא יציב: חושבים על מקור עורקי, צנתור ותסחיף</li>
+    <li>חלופות: ריפוד מחוץ לצפק בתוך האגן ובמרכזים מסוימים <bdi>REBOA</bdi></li>
+   </ul>
+  </div>
+  <div>
+   <h3>המטומה רטרופריטונאלית בניתוח</h3>
+   <div class="flow sm">
+    <div><b>אזור 1 · מרכזי</b><span>תמיד פותחים</span></div>
+    <div><b>אזור 2 · כליות</b><span>בחבלה קהה רק אם מתרחבת</span></div>
+    <div><b>אזור 3 · אגן</b><span>לא פותחים, אלא אם יש דימום מסכן חיים ברור</span></div>
+   </div>
+   <div class="box n" style="margin-top:10px"><b class="t">סרעפת בחבלה קהה</b>בדרך כלל בתאונת דרכים, 75% משמאל. בצילום חזה רואים קיבה או מעי בחזה. התמותה (19.8%) גבוהה מבפצע חודר בגלל הפגיעות הנלוות</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">340, 352, 354</bdi> (איור 36.38)</span><span>אגן</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>14</b>מה חדש בתחום · <bdi dir="ltr">2022–2026</bdi></div>
+ <h2>מחקרים שכדאי להכיר</h2>
+ <div class="grid g3">
+  <div class="study"><div class="y"><bdi>JAMA Surg</bdi> 2026 · מאגר <bdi>ACS-TQIP</bdi></div><b>פגיעת טחול קשה בפצוע רב-מערכתי</b>
+   <p>12,930 מטופלים. בהשוואה לכריתת טחול, תסחיף (סיכון למוות 0.62) והשגחה (0.61) היו קשורים לפחות תמותה ולפחות סיבוכים. גם בלחץ דם נמוך בהגעה התוצאות לא היו גרועות יותר. כישלון של טיפול בלי ניתוח היה קשור ליותר סיבוכים</p>
+   <small>Huang W et al. JAMA Surg 2026;161(4):413-23</small></div>
+  <div class="study"><div class="y"><bdi>Ann Surg</bdi> 2025 · 43 מרכזים, מחקר פרוספקטיבי</div><b>CT חוזר בטחול ובכבד?</b>
+   <p>2,341 פגיעות כבד ו-2,143 פגיעות טחול שטופלו בלי ניתוח. ב-CT החוזר נמצאו סיבוכים ב-7.1% ובכ-7.5% ורובם בתוך <bdi dir="ltr">48–72</bdi> שעות. ההמלצה: CT מתוכנן בכבד דרגה <bdi dir="ltr">4–5</bdi> ובטחול דרגה <bdi dir="ltr">3–5</bdi>, גם בלי תסמינים</p>
+   <small>Perea LL et al. Ann Surg 2025;282(4):580-91</small></div>
+  <div class="study"><div class="y"><bdi>Injury</bdi> 2022 · 15 מרכזים, מחקר פרוספקטיבי</div><b>מדד <bdi>BIPS</bdi> לפגיעה במעי</b>
+   <p>נקודה לכל אחד: לויקוציטים 17,000 ומעלה, רגישות בבטן, ממצא קשה ב-CT במזנטריום. 313 מטופלים, 38% נזקקו לניתוח. ציון 2 ומעלה: פי 10 סיכוי לניתוח, רגישות 72% וסגוליות 78%</p>
+   <small>Wandling M et al. Injury 2022;53(1):122-8</small></div>
+ </div>
+ <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>15</b>לסיכום</div>
+ <h2>חמישה דברים לקחת למחלקה</h2>
+ <ol class="obj">
+  <li>לא יציב עם <bdi>FAST</bdi> חיובי או עם פריטוניטיס: לחדר ניתוח. יציב: CT</li>
+  <li>בדיקת <bdi>FAST</bdi> בודקת ארבעה חלונות ואפשר לחזור עליה, אבל היא לא רואה את הרטרופריטונאום</li>
+  <li>רוב פגיעות הטחול והכבד במטופל יציב מטופלות בלי ניתוח: השגחה, צנתור לפי הצורך ומעקב אחרי סיבוכים</li>
+  <li>ה-CT מפספס פגיעות במעי, בתריסריון ובלבלב. סימן חגורה ונוזל בלי הסבר מחייבים בדיקות חוזרות או ניתוח</li>
+  <li>שבר באגן עם הלם: חגורת אגן מיד ואז צנתור או ריפוד</li>
+ </ol>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 36 <bdi>Management of Acute Trauma</bdi>, חבלות בטן ואגן (עמ׳ <bdi dir="ltr">340–354</bdi>)</div>
+ <div class="src"><span>איורים: <bdi>Gray's Anatomy</bdi> (1918) ו-<bdi>Musser</bdi> (1904), נחלת הכלל · הדמיה: <bdi>Hellerhoff</bdi> ו-<bdi>Drahreg01</bdi> (<bdi>Wikimedia Commons</bdi>) · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+</main>
+<div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
+<script>
+document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz').forEach(function(z){z.addEventListener('click',function(){w.querySelectorAll('.hz').forEach(function(x){x.classList.toggle('on',x===z)});w.querySelectorAll('.hzi').forEach(function(i){i.hidden=i.dataset.hzi!==z.dataset.hz;i.style.setProperty('--c',z.style.getPropertyValue('--c'))});var h=w.querySelector('.hint');if(h)h.hidden=true;});});});
+</script>
+<script>
+(function () {
+  var deck = document.getElementById('deck'), S = [].slice.call(deck.children), dots = document.getElementById('dots'), n = S.length;
+  S.forEach(function (_, k) { var i = document.createElement('i'); i.onclick = function () { go(k); }; dots.appendChild(i); });
+  function idx() { return Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }
+  function go(k) { k = Math.max(0, Math.min(n - 1, k)); S[k].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' }); }
+  function sync() { var k = idx(); [].forEach.call(dots.children, function (d, j) { d.className = j === k ? 'on' : ''; }); document.getElementById('count').textContent = (k + 1) + '/' + n; document.getElementById('prev').disabled = k === 0; document.getElementById('next').disabled = k === n - 1; }
+  deck.addEventListener('scroll', function () { clearTimeout(sync.t); sync.t = setTimeout(sync, 60); }, { passive: true });
+  document.getElementById('next').onclick = function () { go(idx() + 1); };
+  document.getElementById('prev').onclick = function () { go(idx() - 1); };
+  addEventListener('keydown', function (e) { if (e.key === 'ArrowLeft' || e.key === ' ') go(idx() + 1); if (e.key === 'ArrowRight') go(idx() - 1); });
+  sync();
+})();
+</script>
+</body>
+</html>

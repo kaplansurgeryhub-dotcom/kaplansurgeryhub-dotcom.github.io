@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>מסירת בשורה מרה · Scrub In</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../emblem.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Frank+Ruhl+Libre:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0C2A35;--navy2:#123845;--g:#00967D;--g2:#3DC08C;--g3:#0A6B5A;--lime:#B5D96B;--red:#A3402E;--amber:#C9893F;--blue:#2F6FA8;--bg:#EDF2F0;--soft:#F3F7F5;--ink:#16262C;--muted:#5C6F73;--line:#DCE6E2}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--navy);color:var(--ink);font-family:Heebo,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.deck{position:fixed;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.deck::-webkit-scrollbar{display:none}
+.s{flex:0 0 100%;height:100%;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;padding:18px 16px 84px;overflow-y:auto;position:relative}
+.s::after{content:'';position:absolute;inset:0;background:url(../ops/art/organs.webp) no-repeat 6% 40%/auto 115%;opacity:.05;filter:invert(1);pointer-events:none}
+.card{width:min(980px,100%);background:#fff;border-radius:22px;box-shadow:0 18px 50px rgba(0,0,0,.35);padding:30px 32px 22px;position:relative;overflow:hidden;z-index:1}
+.card::before{content:'';position:absolute;inset:0 0 auto 0;height:6px;background:linear-gradient(90deg,var(--g3),var(--g),var(--g2),var(--lime))}
+.kick{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--g);letter-spacing:.3px;margin-bottom:6px}
+.kick b{background:var(--navy);color:#fff;border-radius:999px;min-width:26px;height:26px;display:grid;place-items:center;font-size:13px;padding:0 8px}
+h1,h2{font-family:'Frank Ruhl Libre',serif;color:var(--navy);margin:0 0 10px;line-height:1.15}
+h1{font-size:clamp(34px,6.4vw,60px)}h2{font-size:clamp(25px,4.4vw,36px)}
+h3{margin:0 0 6px;font-size:17px;color:var(--navy)}
+.lead{font-size:clamp(15.5px,2.3vw,18.5px);color:var(--muted);margin:0 0 16px;line-height:1.5}
+ul.b{margin:0;padding:0;list-style:none;display:grid;gap:8px}ul.b li{position:relative;padding-inline-start:20px;font-size:16.5px;line-height:1.45}ul.b li::before{content:'';position:absolute;inset-inline-start:2px;top:.62em;width:8px;height:8px;border-radius:2px;background:var(--g);transform:rotate(45deg)}
+ul.b li b{color:var(--navy)}ul.b.sm li{font-size:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.grid.g3{grid-template-columns:repeat(3,1fr)}.grid.f{grid-template-columns:1.05fr .95fr;align-items:center}
+.box{background:var(--soft);border-radius:14px;padding:13px 15px;border-inline-start:4px solid var(--g);font-size:15.5px;line-height:1.45}
+.box.r{border-color:var(--red);background:#FBEDEA}.box.a{border-color:var(--amber);background:#FFF6EA}.box.n{border-color:var(--navy)}.box.b{border-color:var(--blue);background:#EEF4FB}
+.box b.t{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}
+.num{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:4px 0 14px}.num div{background:var(--soft);border-radius:14px;padding:12px 10px;text-align:center}
+.num b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(26px,4vw,38px);color:var(--g3);line-height:1.05}.num span{font-size:13px;color:var(--muted);line-height:1.3;display:block;margin-top:4px}
+figure{margin:0;background:#FBFCFB;border:1px solid var(--line);border-radius:16px;padding:10px;text-align:center}figure img{max-width:100%;max-height:46vh;display:block;margin:0 auto;mix-blend-mode:multiply}
+figcaption{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.35}
+.ill svg{width:100%;height:auto;max-height:50vh}
+.src{margin-top:16px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.src b{color:var(--g3)}
+.tag{display:inline-block;font-size:12px;font-weight:800;border-radius:999px;padding:2px 10px;background:#E3F4EC;color:var(--g3);margin-inline-end:4px}
+.tag.r{background:#F8E3DE;color:var(--red)}.tag.a{background:#FFF3DF;color:#8A5A14}.tag.b{background:#E8F0FA;color:var(--blue)}
+.flow{display:grid;gap:8px}.flow div{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;background:var(--soft);border-radius:12px;padding:9px 12px;font-size:15.5px}.flow div b{color:var(--navy)}
+.study{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#fff}.study .y{font-size:12px;font-weight:800;color:var(--g);letter-spacing:.3px}.study b{display:block;font-size:16px;color:var(--navy);margin:2px 0}.study p{margin:4px 0 0;font-size:14.5px;line-height:1.45}.study small{display:block;margin-top:6px;font-size:11.5px;color:var(--muted)}
+.cover{background:radial-gradient(120% 90% at 85% 0%,#164B54 0%,var(--navy) 58%)}
+.cover::after{opacity:.16;background-position:2% 50%}
+.cover .card{background:transparent;box-shadow:none;color:#fff}.cover .card::before{display:none}.cover h1{color:#fff}.cover .lead{color:#C9D6DA}.cover .kick{color:var(--g2)}
+.pill{display:inline-flex;gap:6px;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px;color:#fff;margin:4px}
+.logo{display:flex;align-items:center;gap:10px;margin-bottom:26px}.logo img{width:48px;height:48px;border-radius:50%;background:#fff}.logo b{color:#fff;font-weight:900}.logo small{display:block;color:#A9C9C0;font-size:12px}
+.obj{counter-reset:o;list-style:none;margin:0;padding:0;display:grid;gap:10px}.obj li{counter-increment:o;display:flex;gap:12px;align-items:flex-start;font-size:16.5px;line-height:1.45}.obj li::before{content:counter(o);flex:0 0 30px;height:30px;border-radius:50%;background:var(--g);color:#fff;font-weight:800;display:grid;place-items:center}
+.nav{position:fixed;inset:auto 0 0 0;display:flex;align-items:center;justify-content:center;gap:14px;padding:12px 16px calc(14px + env(safe-area-inset-bottom));background:linear-gradient(transparent,rgba(6,20,26,.85) 40%);z-index:5}
+.nav button{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;font-size:22px;cursor:pointer}.nav button:disabled{opacity:.3}
+.dots{display:flex;gap:5px;flex-wrap:wrap;max-width:60vw;justify-content:center}.dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer}.dots i.on{background:var(--g2);width:20px;border-radius:5px}
+.count{color:#C9D6D9;font-size:13px;font-weight:700;min-width:44px;text-align:center}
+bdi{unicode-bidi:isolate}
+.hotw{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;align-items:start}.hoti{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#FBFCFB}.hoti img{display:block;width:100%;mix-blend-mode:multiply}.hoti svg{position:absolute;inset:0;width:100%;height:100%}
+.hz{fill:var(--c);fill-opacity:.38;stroke:var(--c);stroke-width:2;cursor:pointer;transition:fill-opacity .2s}.hz:hover,.hz.on{fill-opacity:.62}.hzl{font:900 22px Heebo,sans-serif;fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;pointer-events:none;text-anchor:middle}
+.hotp .hint{background:var(--soft);border-radius:12px;padding:10px 12px;font-weight:700;color:var(--g3);margin:0}.hzi{background:#fff;border:1px solid var(--line);border-inline-start:5px solid var(--c,var(--g));border-radius:14px;padding:12px 14px;margin-top:8px;font-size:15.5px;line-height:1.45}.hzi>b{display:block;font-size:17px;color:var(--navy);margin-bottom:4px}.hzi p{margin:0}
+figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-size:15px}.obj.sm li::before{flex-basis:26px;height:26px;font-size:13px}.flow.sm div{grid-template-columns:130px 1fr;padding:7px 10px;font-size:14.5px}
+@media (max-width:760px){.hotw{grid-template-columns:1fr}}
+
+@media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
+@media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+/*BRAND*/
+.brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
+.brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
+.s{padding-top:58px}
+.cover .card{display:flex;flex-direction:column;gap:6px;max-width:980px}
+.cvhead{display:flex;align-items:center;gap:16px;margin-bottom:30px}.cvhead img.em{width:74px;height:74px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(61,192,140,.55)}
+.cvhead b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(24px,3.4vw,34px);color:#fff;line-height:1.1}.cvhead span{display:block;font-size:clamp(15px,2vw,19px);color:#A9D9C8;font-weight:700;margin-top:4px}
+.cover h1{font-size:clamp(38px,6.6vw,66px);margin:6px 0 8px}.cover .kick{font-size:14px;letter-spacing:.06em}
+.cvmeta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.cvlogos{display:flex;align-items:center;gap:18px;margin-top:34px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14)}.cvlogos img{height:44px;width:auto}.cvlogos small{margin-inline-start:auto;color:#8FB3AA;font-size:12.5px;font-weight:700;letter-spacing:.08em}
+.cover .brandbar{display:none}
+@media (max-width:760px){.brandbar{left:10px;gap:7px;padding:4px 9px 4px 4px}.brandbar img{height:20px}.brandbar img.em{width:22px;height:22px}.s{padding-top:48px}.cvhead img.em{width:56px;height:56px}.cvlogos img{height:34px}.cvlogos small{display:none}}
+/* numbered lists: a bold word inside an item stays inline */
+.obj li,.steps li{display:block;position:relative;padding-inline-start:42px;min-height:30px}.obj li::before,.steps li::before{position:absolute;inset-inline-start:0;top:0}.obj.sm li{padding-inline-start:36px}
+.grid.tight figure img{max-height:24vh}
+@media print{.brandbar{display:none}}
+/*/BRAND*/
+</style>
+</head>
+<body>
+<div class="brandbar" aria-hidden="true"><img class="em" src="brand/emblem.jpg" alt=""><i></i><img src="brand/logo_k.webp" alt=""><img src="brand/logo_c.webp" alt=""></div>
+<main class="deck" id="deck">
+
+<section class="s cover"><div class="card">
+ <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
+ <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 6</div>
+ <h1>מסירת בשורה מרה</h1>
+ <p class="lead">איך מכינים שיחה קשה, איך מוסרים את הבשורה, איך עונים לרגש ואיך עוברים ממנה למטרות הטיפול. שלושה תרחישים לתרגול</p>
+ <div class="cvmeta"><span class="pill">מבוסס על <bdi>Sabiston</bdi>, מהדורה 22, פרק 30 (ופרקים 16, 19, 27)</span></div>
+ <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>1</b>מטרות הסדנה</div>
+ <h2>בסוף המפגש תדעו</h2>
+ <ol class="obj">
+  <li>להסביר מה ההבדל בין טיפול פליאטיבי להוספיס ומה תפקידו של הצוות הכירורגי בטיפול הפליאטיבי הבסיסי</li>
+  <li>להתכונן לשיחה קשה: לאסוף מידע, ליישר קו עם הצוותים ולברר מה המטופל כבר יודע</li>
+  <li>למסור בשורה בשלבים: הכנה, כותרת ברורה ושתיקה</li>
+  <li>להגיב לרגש בעזרת <bdi>NURSE</bdi> לפני שממשיכים למידע ולהחלטות</li>
+  <li>לנהל שיחת מטרות טיפול בעזרת <bdi>REMAP</bdi> ולזהות מתי לפנות לצוות הפליאטיבי ולעבודה הסוציאלית</li>
+ </ol>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 30 (עמ׳ <bdi dir="ltr">189–200</bdi>) · פרק 27 עמ׳ <bdi dir="ltr">149</bdi></span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>2</b>רקע</div>
+ <h2>טיפול פליאטיבי הוא לא רק סוף החיים</h2>
+ <div class="grid">
+  <div>
+   <ul class="b">
+    <li><b>טיפול פליאטיבי:</b> גישה שמטרתה איכות חיים למטופל ולמשפחה במחלה מסכנת חיים. מתחיל <b>מהאבחנה</b> ויכול לרוץ יחד עם טיפול שמטרתו ריפוי</li>
+    <li><b>הוספיס:</b> טיפול ממוקד תסמינים בסוף החיים. בדרך כלל כשתוחלת החיים המוערכת היא <b>6 חודשים או פחות</b> והמטופל בוחר לוותר על טיפול במחלה עצמה</li>
+    <li>"כאב טוטאלי" (<bdi>Cicely Saunders</bdi>): לסבל יש רכיב גופני, רגשי, חברתי ורוחני</li>
+    <li>יש מחסור במומחים לטיפול פליאטיבי. לכן כל צוות שמטפל בחולים קשים צריך לדעת את <b>הבסיס</b></li>
+   </ul>
+  </div>
+  <div style="display:grid;gap:10px">
+   <div class="box"><b class="t">טיפול פליאטיבי בסיסי · הצוות הכירורגי</b>שיחה על פרוגנוזה, מטרות והעדפות. טיפול בסיסי בתסמינים. תיאום בין הצוותים ותכנון השחרור</div>
+   <div class="box n"><b class="t">טיפול פליאטיבי מומחה</b>תסמינים קשים לשליטה, תקשורת מורכבת, סכסוך בין המשפחה לצוות, מצוקה נפשית ורוחנית מורכבת ואבל</div>
+   <div class="box b"><b class="t">מי בצוות הפליאטיבי</b>רופאים, אחיות, <b>עובדים סוציאליים</b>, אנשי דת או ליווי רוחני ורוקחים. חלק מהצרכים (רגשיים, חברתיים, כלכליים) נענים הכי טוב על ידי מי שאינו רופא</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 30 עמ׳ <bdi dir="ltr">189–192, 198</bdi></span><span>רקע</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>3</b>תמונה אחת · ארבעה שיעורים</div>
+ <h2>הרופא ליד המיטה</h2>
+ <div class="hotw"><div class="hoti"><img src="img/Fildes_The_Doctor.jpg" alt="הציור הרופא של לוק פילדס: רופא יושב ליד ילדה חולה, ההורים ברקע"><svg viewBox="0 0 1280 877" preserveAspectRatio="none">
+  <polygon class="hz" data-hz="doc" points="232,335 330,300 470,310 520,350 545,520 545,770 420,775 300,700 228,560" style="--c:#7A5BD6"/>
+  <polygon class="hz" data-hz="pt" points="575,480 700,455 800,465 915,480 905,560 780,640 620,650 575,610" style="--c:#00967D"/>
+  <polygon class="hz" data-hz="fa" points="712,135 830,135 860,250 860,395 745,430 700,380 705,250" style="--c:#2F6FA8"/>
+  <polygon class="hz" data-hz="mo" points="868,355 960,345 1035,405 1000,448 895,445" style="--c:#A3402E"/>
+  <text class="hzl" x="385" y="560" style="font-size:58px;stroke-width:6px">1</text><text class="hzl" x="745" y="560" style="font-size:58px;stroke-width:6px">2</text><text class="hzl" x="780" y="290" style="font-size:58px;stroke-width:6px">3</text><text class="hzl" x="950" y="410" style="font-size:58px;stroke-width:6px">4</text>
+ </svg></div>
+ <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
+  <div class="hzi" data-hzi="doc" hidden><b>1 · הרופא: נוכחות</b><p>יושב, בגובה המיטה, לא ממהר ולא מסתכל על השעון. בשיחה קשה הישיבה, הקשב והשתיקה אחרי הכותרת הם חלק מהטיפול ולא בזבוז זמן</p></div>
+  <div class="hzi" data-hzi="pt" hidden><b>2 · המטופל במרכז</b><p>השיחה היא על המטופל: מה הוא מבין, מה הוא רוצה לדעת ומה הכי חשוב לו. כשהמטופל לא מסוגל להחליט, שואלים מה <b style="display:inline;font-size:inherit">הוא</b> היה רוצה</p></div>
+  <div class="hzi" data-hzi="fa" hidden><b>3 · המשפחה קוראת את הפנים שלנו</b><p>המשפחה מבינה הרבה עוד לפני שאמרנו מילה. מסר אחד ועקבי מכל הצוותים בונה אמון. מסרים סותרים מפרקים אותו</p></div>
+  <div class="hzi" data-hzi="mo" hidden><b>4 · הרגש בחדר</b><p>הצער והפחד של בני המשפחה הם חלק מהשיחה. מזהים, נותנים להם שם ומקום (<bdi>NURSE</bdi>). תמיכה במשפחה ובמטפלים היא חלק מהטיפול הפליאטיבי. העבודה הסוציאלית היא שותפה מרכזית</p></div>
+ </div></div>
+ <div class="src"><span><bdi>The Doctor</bdi> · לוק פילדס (<bdi>Luke Fildes</bdi>), 1891 · <bdi>Wikimedia Commons</bdi> (נחלת הכלל) · הלקחים: <b>Sabiston 22</b> · פרק 30 עמ׳ <bdi dir="ltr">192, 196–198</bdi> · פרק 16 עמ׳ <bdi dir="ltr">e216</bdi></span><span>אינטראקטיבי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>4</b>לפני השיחה</div>
+ <h2>הכנה: חצי מהעבודה</h2>
+ <div class="grid">
+  <div>
+   <h3>לאסוף ולתאם</h3>
+   <ul class="b sm">
+    <li>לאסוף את כל המידע הרלוונטי: תוצאות, פענוחים, דעת היועצים</li>
+    <li><b>ליישר קו עם כל הצוותים</b> (כירורגיה, אונקולוגיה, טיפול נמרץ). מסרים סותרים מצוותים שונים יוצרים תסכול וחוסר אמון</li>
+    <li>להבין את מטרת הניתוח או הטיפול: מניעה, שליטה במחלה או הקלה על תסמינים. בלי זה אין הסכמה מדעת אמיתית</li>
+   </ul>
+   <h3 style="margin-top:12px">להכין את המקום</h3>
+   <ul class="b sm">
+    <li>חדר שקט, ישיבה בגובה העיניים, טלפון בשקט, זמן מוקצה</li>
+    <li>לשאול את המטופל מי ירצה שיהיה איתו בשיחה</li>
+    <li>לתאם מראש מי מהצוות נוכח: הבכיר/ה, האחות, העובד/ת הסוציאלי/ת</li>
+   </ul>
+  </div>
+  <div style="display:grid;gap:10px;align-content:start">
+   <div class="box a"><b class="t">פותחים בשאלה, לא בהרצאה</b>"מה הבנת עד עכשיו על המצב?" כך מגלים פערים בהבנה ונמנעים מדקלום עובדות מיותר בתחילת השיחה</div>
+   <div class="box"><b class="t">לבדוק כמה המטופל רוצה לדעת</b>האחריות היא לתת למטופל <b>הזדמנות</b> לקבל מידע, לא לכפות עליו פרטים שהוא לא רוצה לשמוע</div>
+   <div class="box n"><b class="t">שפה פשוטה</b>בלי ז׳רגון מקצועי. מה שהמטופל לא הבין לא נמסר באמת</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 30 עמ׳ <bdi dir="ltr">196–197</bdi> · פרק 19 עמ׳ <bdi dir="ltr">2–3, 5–6</bdi> · פרק 16 עמ׳ <bdi dir="ltr">e215</bdi></span><span>ההכנה לחדר עצמו היא נוהג מקובל</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>5</b>מבנה השיחה</div>
+ <h2>שישה צעדים בשיחה קשה</h2>
+ <div class="flow">
+  <div><b>1 · מה ידוע לך?</b><span>לברר מה המטופל או המשפחה מבינים ומה הם רוצים לדעת</span></div>
+  <div><b>2 · יריית אזהרה</b><span>"לצערי, יש לי חדשות קשות לספר לך"</span></div>
+  <div><b>3 · כותרת ברורה</b><span>משפט אחד, פשוט ובלי עיגול פינות: "ה-<bdi>CT</bdi> הראה שאי אפשר לכרות את הגידול"</span></div>
+  <div><b>4 · שתיקה</b><span>עוצרים ומחכים לתגובה. לא ממלאים את השקט בנתונים</span></div>
+  <div><b>5 · מענה לרגש</b><span>כשעולה רגש מכירים בו ומגיבים לו <b>לפני</b> שממשיכים (<bdi>NURSE</bdi>)</span></div>
+  <div><b>6 · מה עכשיו?</b><span>מעבר לשיחה על מטרות הטיפול ועל התוכנית (<bdi>REMAP</bdi>). סיכום, צעד הבא ומי זמין</span></div>
+ </div>
+ <div class="box a" style="margin-top:12px"><b class="t">למה לא לדלג על הרגש?</b>זה לא חוסך זמן. מטופל מוצף לא קולט מידע, יחזור עם יותר שאלות ולא יהיה מוכן לדבר על אפשרויות טיפול. ומעבר לזה, זו ההזדמנות לבנות אמון</div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 30 עמ׳ <bdi dir="ltr">196–198</bdi></span><span>מבנה השיחה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>6</b>מענה לרגש</div>
+ <h2><bdi>NURSE</bdi>: חמש תגובות אמפתיות</h2>
+ <div class="flow">
+  <div><b><bdi>N</bdi> · לשיים</b><span>"נשמע שזה מתסכל אותך מאוד". כדאי לנקוב ברגש בעוצמה מעט נמוכה ממה שנראה</span></div>
+  <div><b><bdi>U</bdi> · להבין</b><span>"זה עוזר לי להבין מה עובר עליך". בלי לטעון שאנחנו מבינים הכול</span></div>
+  <div><b><bdi>R</bdi> · לכבד</b><span>"אני רואה כמה השקעת כדי לעמוד בכל ההנחיות". גם מחמאה נכנסת כאן</span></div>
+  <div><b><bdi>S</bdi> · לתמוך</b><span>"נעשה הכול כדי שיהיה לך מה שצריך". התחייבות כזו היא משפט חזק</span></div>
+  <div><b><bdi>E</bdi> · לחקור</b><span>"תוכל/י לספר לי עוד מה התכוונת כש..." שאלה ממוקדת, לא כללית</span></div>
+ </div>
+ <div class="grid" style="margin-top:12px">
+  <div class="box"><b class="t">נסו לזהות</b>בכל תרחיש: מתי עלה רגש? איזו תגובה בחרתם? מה קרה לשיחה אחריה?</div>
+  <div class="box r"><b class="t">לא עכשיו</b>הרגעה מהירה ("יהיה בסדר"), מעבר מיידי לנתונים ולסטטיסטיקה, או הצעת טיפול לפני שהרגש קיבל מקום</div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 30 עמ׳ <bdi dir="ltr">197</bdi> (טבלה 30.4)</span><span>המשפטים בעברית הם ניסוח שלנו</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>7</b>אחרי הבשורה</div>
+ <h2><bdi>REMAP</bdi>: משיחה קשה למטרות הטיפול</h2>
+ <div class="grid">
+  <div class="flow">
+   <div><b><bdi>R</bdi> · מסגור מחדש</b><span>"בעקבות התוצאה אנחנו במקום אחר. זה זמן טוב לדבר על מה עושים עכשיו"</span></div>
+   <div><b><bdi>E</bdi> · לצפות לרגש</b><span>"קשה להתמודד עם כל זה". "ממה הכי חששת?"</span></div>
+   <div><b><bdi>M</bdi> · מיפוי העתיד</b><span>"במצב הזה, מה הכי חשוב לך?" "מה מדאיג אותך?"</span></div>
+   <div><b><bdi>A</bdi> · התאמה לערכים</b><span>"אם הבנתי נכון, הכי חשוב לך X, Y ו-Z"</span></div>
+   <div><b><bdi>P</bdi> · תוכנית</b><span>"זה מה שאפשר לעשות כדי לעזור לך להגיע לדברים האלה. מה דעתך?"</span></div>
+  </div>
+  <div style="display:grid;gap:10px;align-content:start">
+   <div class="box a"><b class="t">לשאול גם מה <u>לא</u> מקובל</b>יש מטופלים שלא יסכימו לתוצאות מסוימות: מגורים קבועים במוסד, אשפוז ארוך או טיפול נמרץ, הנשמה, דיאליזה, הזנה בצינור, תלות מלאה, כאב שלא נשלט, מוות רחוק מהבית</div>
+   <div class="box n"><b class="t">"המקרה הטוב · המקרה הרע"</b>כלי שמתאר למטופל המבוגר איך עשויה להיראות התקופה שאחרי הניתוח, בתרחיש הטוב ובתרחיש הרע. שיפר את איכות השיחות האלה</div>
+   <div class="box"><b class="t">לא אומרים "חסר תוחלת"</b>אין לזה הגדרה אובייקטיבית. עדיף: "הטיפול הזה כנראה לא יביא למטרה שלך. לכן אני לא ממליץ/ה עליו"</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 30 עמ׳ <bdi dir="ltr">196, 198</bdi> · פרק 27 עמ׳ <bdi dir="ltr">149</bdi> · פרק 16 עמ׳ <bdi dir="ltr">e216</bdi></span><span>מטרות הטיפול</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>8</b>מצבים מיוחדים</div>
+ <h2>תקווה לנס, אמונה ומשפחה</h2>
+ <div class="grid">
+  <div>
+   <h3>"אנחנו מחכים לנס"</h3>
+   <ul class="b sm">
+    <li><b>תמימה:</b> מקווים לתוצאה אפשרית אבל לא סבירה</li>
+    <li><b>מעורערת:</b> כעס או עצב על כך שהנס לא קרה</li>
+    <li><b>משולבת:</b> התקווה נובעת מאמונה דתית</li>
+    <li><b>אסטרטגית:</b> עמדה לעומתית, דרישה לזכויות וסירוב לדון בבסיס התקווה</li>
+    <li>כל סוג דורש תגובה אחרת. קודם מבררים מה עומד מאחורי המשפט</li>
+   </ul>
+   <h3 style="margin-top:12px">רוחניות</h3>
+   <ul class="b sm"><li>שאלה פשוטה: "במה את/ה נאחז/ת בתקופות קשות?" או "האם אמונה או דת חשובות לך?" (שאלות <bdi>HOPE</bdi>)</li><li>מזהים את הצורך ומפנים לליווי רוחני. לא חייבים לטפל בזה בעצמנו</li></ul>
+  </div>
+  <div style="display:grid;gap:10px;align-content:start">
+   <div class="box n"><b class="t">כשהמטופל לא יכול להחליט</b>פונים למקבל החלטות חלופי. אם המטופל הביע בעבר את רצונו: מחליטים לפי <b>מה שהוא היה רוצה</b>. אם לא: לפי <b>טובתו</b></div>
+   <div class="box a"><b class="t">פחד מהניתוח</b>פחד כזה קשור ליותר כאב, לריפוי איטי של הפצע ולאשפוז ארוך יותר. זיהוי שלו פותח את הדלת לעבודה סוציאלית, פסיכולוגיה וליווי רוחני</div>
+   <div class="box b"><b class="t">מתי לערב צוות מומחה</b>אי ודאות לגבי הפרוגנוזה או לגבי התאמת הטיפול, בקשה לטיפול חסר תועלת, מחלוקת על החייאה, תמיכה חברתית מועטה, מצוקה נפשית או רוחנית של המטופל או המשפחה</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 30 עמ׳ <bdi dir="ltr">195–196, 198–199</bdi> · פרק 16 עמ׳ <bdi dir="ltr">e216</bdi></span><span>מצבים מיוחדים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>9</b>טעויות נפוצות</div>
+ <h2>מה משבש שיחה קשה</h2>
+ <div class="grid">
+  <div class="box r"><b class="t">לא לעשות</b>
+   <ul class="b sm">
+    <li>להיכנס לשיחה בלי לדבר קודם עם הצוותים האחרים</li>
+    <li>לפתוח בדקלום של כל התוצאות</li>
+    <li>"להרפד" את הבשורה עד שהכותרת נעלמת</li>
+    <li>למלא את השתיקה בנתונים</li>
+    <li>להמשיך למספרים ולהחלטות כשהמטופל בוכה או כועס</li>
+    <li>להבטיח מה שאי אפשר לקיים</li>
+    <li>לסיים בלי צעד הבא ובלי לומר מי זמין</li>
+   </ul></div>
+  <div class="box"><b class="t">כן לעשות</b>
+   <ul class="b sm">
+    <li>ליישר קו ולתאם מי נוכח</li>
+    <li>לשאול מה ידוע ומה רוצים לדעת</li>
+    <li>יריית אזהרה, כותרת אחת ושתיקה</li>
+    <li>לשיים את הרגש ולתת לו מקום</li>
+    <li>לשאול מה הכי חשוב ומה לא מקובל</li>
+    <li>להמליץ על טיפול שתואם את המטרות. לומר בכנות כשטיפול לא יעזור</li>
+    <li>להבטיח רצף טיפול. המטופל לא ננטש כשהריפוי כבר לא אפשרי</li>
+   </ul></div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 30 עמ׳ <bdi dir="ltr">191, 196–198</bdi></span><span>טעויות נפוצות</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>10</b>הסימולציה</div>
+ <h2>איך מתרגלים</h2>
+ <div class="grid">
+  <div>
+   <div class="flow">
+    <div><b>שלישיות</b><span>רופא/ה, מטופל/ת או בן/בת משפחה, צופה</span></div>
+    <div><b>2 דקות</b><span>הרופא/ה קורא/ת את התרחיש ומתכונן/ת. השחקן/ית מקבל/ת כרטיס דמות נפרד</span></div>
+    <div><b>8 דקות</b><span>השיחה עצמה. לא עוצרים באמצע</span></div>
+    <div><b>5 דקות</b><span>משוב: קודם הרופא/ה, אחר כך השחקן/ית ("איך הרגשתי"). בסוף: הצופה לפי הרשימה</span></div>
+    <div><b>סבב</b><span>מחליפים תפקידים בכל תרחיש</span></div>
+   </div>
+  </div>
+  <div style="display:grid;gap:10px;align-content:start">
+   <div class="box"><b class="t">רשימה לצופה</b>
+    <ul class="b sm"><li>שאל/ה מה ידוע?</li><li>יריית אזהרה וכותרת ברורה?</li><li>שתק/ה אחרי הכותרת?</li><li>זיהה/תה רגש והגיב/ה לו? באיזו תגובה?</li><li>שאל/ה מה הכי חשוב ומה לא מקובל?</li><li>סיכום וצעד הבא?</li><li>ז׳רגון? משפט אחד שהיה כדאי לשנות</li></ul></div>
+   <div class="box b"><b class="t">במחלקה השבוע</b>הצטרפו לשיחה עם משפחה, עם בכיר/ה או עם העובדת הסוציאלית של המחלקה. רשמו אילו מששת הצעדים זיהיתם ומה הייתם עושים אחרת</div>
+  </div>
+ </div>
+ <div class="src"><span>מבנה התרגול: נוהג מקובל בסדנאות תקשורת · הצעדים: <b>Sabiston 22</b> · פרק 30 עמ׳ <bdi dir="ltr">196–198</bdi></span><span>סימולציה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>11</b>תרחיש 1 · אבחנה חדשה</div>
+ <h2>"מתי אני יכול לחזור לעבודה?"</h2>
+ <div class="grid">
+  <div>
+   <div class="box n"><b class="t">לרופא/ה</b>אבי, בן 68, נהג אוטובוס, אושפז בגלל צהבת. <bdi>CT</bdi> הראה גידול בראש הלבלב שעוטף את כלי הדם הראשיים. ישיבת הצוות הרב-תחומי קבעה: <b>לא ניתן לכריתה</b>. הוא מחכה לך בחדר עם אשתו. ההמשך: ניקוז דרכי המרה וטיפול אונקולוגי</div>
+   <h3 style="margin-top:12px">המטרות שלך</h3>
+   <ul class="b sm"><li>לברר מה הוא כבר יודע ומה הוא רוצה לדעת</li><li>יריית אזהרה, כותרת אחת ושתיקה</li><li>להגיב לרגש ולסיים בצעד הבא ברור</li></ul>
+  </div>
+  <div style="display:grid;gap:10px;align-content:start">
+   <div class="box a"><b class="t">כרטיס דמות · אבי</b>חושב ש"זה אבן בכיס המרה". שואל מתי יחזור לעבודה. אחרי הכותרת שותק ארוכות ואז אומר: "אז זהו, אני הולך למות?"</div>
+   <div class="box a"><b class="t">כרטיס דמות · אשתו</b>מנסה להגן עליו ומבקשת מהרופא/ה בפרוזדור "לא לספר לו הכול"</div>
+   <div class="box"><b class="t">לדיון אחרי התרגול</b>איך עונים לבקשה להסתיר מידע ממטופל שמסוגל להחליט? איך שואלים את אבי עצמו כמה הוא רוצה לדעת?</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 30 עמ׳ <bdi dir="ltr">196–197</bdi> · פרק 16 עמ׳ <bdi dir="ltr">e215</bdi></span><span>תרחיש בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>12</b>תרחיש 2 · סיבוך אחרי ניתוח</div>
+ <h2>"אמרתם שזה ניתוח פשוט"</h2>
+ <div class="grid">
+  <div>
+   <div class="box n"><b class="t">לרופא/ה</b>רחל, בת 59, עברה לפני 4 ימים כריתה של המעי הגס בגלל גידול. הלילה התדרדרה עם חום וכאבי בטן ונלקחה לניתוח חוזר בגלל דליפה מהחיבור. כעת מונשמת בטיפול נמרץ. את הבת שלה, נועה, פוגשים בחדר המשפחות</div>
+   <h3 style="margin-top:12px">המטרות שלך</h3>
+   <ul class="b sm"><li>לאסוף מידע מהצוות המנתח ומטיפול נמרץ לפני השיחה</li><li>לומר בפשטות מה קרה, מה נעשה ומה המצב עכשיו</li><li>לתת מקום לכעס בלי להתגונן</li><li>לסכם מתי יהיה עדכון הבא וממי</li></ul>
+  </div>
+  <div style="display:grid;gap:10px;align-content:start">
+   <div class="box a"><b class="t">כרטיס דמות · נועה</b>כועסת: "אמרתם שזה ניתוח פשוט. מישהו פה טעה". אחרי שהכעס מקבל מקום, מתגלה פחד: "היא תתעורר?"</div>
+   <div class="box"><b class="t">לדיון אחרי התרגול</b>איזו תגובת <bdi>NURSE</bdi> הורידה את המתח? מה קורה כשצוות טיפול נמרץ והצוות הכירורגי אומרים דברים שונים?</div>
+   <div class="box b"><b class="t">שימו לב</b>שאלות על טעות, על אחריות ועל דיווח הן נושא המפגש על דילמות מדיקו-לגליות. כאן מתרגלים את השיחה עצמה</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 30 עמ׳ <bdi dir="ltr">196–197</bdi></span><span>תרחיש בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>13</b>תרחיש 3 · מטרות טיפול במצב חירום</div>
+ <h2>"תעשו הכול"</h2>
+ <div class="grid">
+  <div>
+   <div class="box n"><b class="t">לרופא/ה</b>משה, בן 88, גר בבית אבות, תלוי בעזרה ברוב פעולות היום-יום, עם שיטיון מתקדם. הגיע עם חשד לאיסכמיה של המעי. הבכיר/ה מעריך/ה שגם אם ינותח, הסיכוי לחזור למצבו הקודם נמוך מאוד. משה לא מסוגל להחליט. שני בניו בחדר</div>
+   <h3 style="margin-top:12px">המטרות שלך</h3>
+   <ul class="b sm"><li>למקם את המצב החריף בתוך מחלת הרקע שלו</li><li>לשאול "מה אבא שלכם היה אומר?" ולא רק "מה אתם רוצים?"</li><li>להשתמש ב-<bdi>REMAP</bdi>: מה חשוב, מה לא מקובל</li><li>להמליץ על דרך שתואמת את המטרות, כולל טיפול ממוקד נוחות</li></ul>
+  </div>
+  <div style="display:grid;gap:10px;align-content:start">
+   <div class="box a"><b class="t">כרטיס דמות · הבן הבכור</b>"תעשו הכול. אנחנו מאמינים בנסים". בהמשך מספר שאבא אמר פעם שלא היה רוצה "לחיות מחובר למכונות"</div>
+   <div class="box a"><b class="t">כרטיס דמות · הבן הצעיר</b>שקט, מסתכל על הרצפה. בסוף שואל: "הוא סובל עכשיו?"</div>
+   <div class="box"><b class="t">לדיון אחרי התרגול</b>איזה סוג תקווה לנס זה היה? מתי נכון לערב את הצוות הפליאטיבי, את העבודה הסוציאלית או ליווי רוחני?</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 30 עמ׳ <bdi dir="ltr">196, 198–199</bdi> · פרק 27 עמ׳ <bdi dir="ltr">149</bdi> · פרק 16 עמ׳ <bdi dir="ltr">e216</bdi></span><span>תרחיש בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>14</b>מה חדש בתחום · 2023–2026</div>
+ <h2>מחקרים שכדאי להכיר</h2>
+ <div class="grid">
+  <div class="study"><div class="y"><bdi>JAMA Surg</bdi> 2023 · מחקר אקראי</div><b><bdi>SCOPE</bdi>: צוות פליאטיבי לפני ניתוח סרטן</b>
+   <p>235 מטופלים לפני ניתוח בטן גדול לסרטן, בכוונת ריפוי. ייעוץ פליאטיבי לפני הניתוח ומעקב 90 יום לא שיפר את איכות החיים, את הימים בבית או את ההישרדות בשנה</p>
+   <small>Shinall MC Jr et al. JAMA Surg 2023;158(7):747-55 (מצוטט ב-Sabiston 22)</small></div>
+  <div class="study"><div class="y"><bdi>JAMA Netw Open</bdi> 2023 · 5 מרכזים</div><b><bdi>PERIOP-PC</bdi>: ניהול משותף עם הצוות הפליאטיבי</b>
+   <p>359 מטופלים לפני ניתוח לסרטן במערכת העיכול העליונה (רובם לבלב). בלי הבדל באיכות החיים אחרי 3 חודשים. המסקנה: הצוות הכירורגי יכול לתת את הבסיס בעצמו</p>
+   <small>Aslakson RA et al. JAMA Netw Open 2023;6(5):e2314660 (מצוטט ב-Sabiston 22)</small></div>
+  <div class="study"><div class="y"><bdi>JAMA Surg</bdi> 2025 · 8 מרכזי טראומה</div><b>"המקרה הטוב · המקרה הרע" בטיפול נמרץ</b>
+   <p>208 רופאים הודרכו להשתמש בכלי בסבב היומי ובשיחות עם המשפחות. הוא עזר למסר אחיד על הפרוגנוזה, אבל אחרי שנה רוב המרכזים הפסיקו להשתמש בו</p>
+   <small>Fritz ML et al. JAMA Surg 2025;160(11):1250-9</small></div>
+  <div class="study"><div class="y"><bdi>J Am Geriatr Soc</bdi> 2026 · מחקר אקראי</div><b>אותו כלי, בלי שינוי בתוצאות</b>
+   <p>268 מטופלים מבוגרים עם מחלת כליות מתקדמת. הדרכת הרופאים בכלי לא הגדילה את הפנייה לטיפול פליאטיבי. כלי לבדו לא מחליף שיחה טובה</p>
+   <small>Stalter LN et al. J Am Geriatr Soc 2026 (פורסם מקוון, <bdi>PMID 42698358</bdi>)</small></div>
+ </div>
+ <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>15</b>לסיכום</div>
+ <h2>חמישה דברים לקחת למחלקה</h2>
+ <ol class="obj">
+  <li>טיפול פליאטיבי בסיסי הוא חלק מהעבודה של הצוות הכירורגי, מהאבחנה ולא רק בסוף החיים</li>
+  <li>לפני שיחה: ליישר קו עם כל הצוותים. בתחילתה: לשאול מה ידוע</li>
+  <li>יריית אזהרה, כותרת אחת ברורה ושתיקה</li>
+  <li>רגש קודם למידע: <bdi>NURSE</bdi></li>
+  <li>מטרות הטיפול לפני הטיפול: מה הכי חשוב, מה לא מקובל ואיזו תוכנית מתאימה להם (<bdi>REMAP</bdi>)</li>
+ </ol>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 30 <bdi>Surgical Palliative Care</bdi> (עמ׳ <bdi dir="ltr">189–200</bdi>) · פרק 27 <bdi>Surgery in the Geriatric Patient</bdi> (עמ׳ <bdi dir="ltr">149–151</bdi>) · פרק 16 <bdi>Ethics and Professionalism in Surgery</bdi> (עמ׳ <bdi dir="ltr">e214–e216</bdi>)</div>
+ <div class="src"><span>ציורים: לוק פילדס, <bdi>The Doctor</bdi> (1891) · לאונרדו דה וינצ׳י ברקע (נחלת הכלל, <bdi>Wikimedia Commons</bdi>) · כל התרחישים בדויים</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+</main>
+<div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
+<script>
+document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz').forEach(function(z){z.addEventListener('click',function(){w.querySelectorAll('.hz').forEach(function(x){x.classList.toggle('on',x===z)});w.querySelectorAll('.hzi').forEach(function(i){i.hidden=i.dataset.hzi!==z.dataset.hz;i.style.setProperty('--c',z.style.getPropertyValue('--c'))});var h=w.querySelector('.hint');if(h)h.hidden=true;});});});
+</script>
+<script>
+(function () {
+  var deck = document.getElementById('deck'), S = [].slice.call(deck.children), dots = document.getElementById('dots'), n = S.length;
+  S.forEach(function (_, k) { var i = document.createElement('i'); i.onclick = function () { go(k); }; dots.appendChild(i); });
+  function idx() { return Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }
+  function go(k) { k = Math.max(0, Math.min(n - 1, k)); S[k].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' }); }
+  function sync() { var k = idx(); [].forEach.call(dots.children, function (d, j) { d.className = j === k ? 'on' : ''; }); document.getElementById('count').textContent = (k + 1) + '/' + n; document.getElementById('prev').disabled = k === 0; document.getElementById('next').disabled = k === n - 1; }
+  deck.addEventListener('scroll', function () { clearTimeout(sync.t); sync.t = setTimeout(sync, 60); }, { passive: true });
+  document.getElementById('next').onclick = function () { go(idx() + 1); };
+  document.getElementById('prev').onclick = function () { go(idx() - 1); };
+  addEventListener('keydown', function (e) { if (e.key === 'ArrowLeft' || e.key === ' ') go(idx() + 1); if (e.key === 'ArrowRight') go(idx() - 1); });
+  sync();
+})();
+</script>
+</body>
+</html>

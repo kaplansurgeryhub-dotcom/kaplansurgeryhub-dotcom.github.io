@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>הגישה לחולה עם רפלוקס · Scrub In</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../emblem.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Frank+Ruhl+Libre:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0C2A35;--navy2:#123845;--g:#00967D;--g2:#3DC08C;--g3:#0A6B5A;--lime:#B5D96B;--red:#A3402E;--amber:#C9893F;--blue:#2F6FA8;--bg:#EDF2F0;--soft:#F3F7F5;--ink:#16262C;--muted:#5C6F73;--line:#DCE6E2}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--navy);color:var(--ink);font-family:Heebo,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.deck{position:fixed;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.deck::-webkit-scrollbar{display:none}
+.s{flex:0 0 100%;height:100%;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;padding:18px 16px 84px;overflow-y:auto;position:relative}
+.s::after{content:'';position:absolute;inset:0;background:url(../ops/art/organs.webp) no-repeat 6% 40%/auto 115%;opacity:.05;filter:invert(1);pointer-events:none}
+.card{width:min(980px,100%);background:#fff;border-radius:22px;box-shadow:0 18px 50px rgba(0,0,0,.35);padding:30px 32px 22px;position:relative;overflow:hidden;z-index:1}
+.card::before{content:'';position:absolute;inset:0 0 auto 0;height:6px;background:linear-gradient(90deg,var(--g3),var(--g),var(--g2),var(--lime))}
+.kick{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--g);letter-spacing:.3px;margin-bottom:6px}
+.kick b{background:var(--navy);color:#fff;border-radius:999px;min-width:26px;height:26px;display:grid;place-items:center;font-size:13px;padding:0 8px}
+h1,h2{font-family:'Frank Ruhl Libre',serif;color:var(--navy);margin:0 0 10px;line-height:1.15}
+h1{font-size:clamp(34px,6.4vw,60px)}h2{font-size:clamp(25px,4.4vw,36px)}
+h3{margin:0 0 6px;font-size:17px;color:var(--navy)}
+.lead{font-size:clamp(15.5px,2.3vw,18.5px);color:var(--muted);margin:0 0 16px;line-height:1.5}
+ul.b{margin:0;padding:0;list-style:none;display:grid;gap:8px}ul.b li{position:relative;padding-inline-start:20px;font-size:16.5px;line-height:1.45}ul.b li::before{content:'';position:absolute;inset-inline-start:2px;top:.62em;width:8px;height:8px;border-radius:2px;background:var(--g);transform:rotate(45deg)}
+ul.b li b{color:var(--navy)}ul.b.sm li{font-size:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.grid.g3{grid-template-columns:repeat(3,1fr)}.grid.f{grid-template-columns:1.05fr .95fr;align-items:center}
+.box{background:var(--soft);border-radius:14px;padding:13px 15px;border-inline-start:4px solid var(--g);font-size:15.5px;line-height:1.45}
+.box.r{border-color:var(--red);background:#FBEDEA}.box.a{border-color:var(--amber);background:#FFF6EA}.box.n{border-color:var(--navy)}.box.b{border-color:var(--blue);background:#EEF4FB}
+.box b.t{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}
+.num{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:4px 0 14px}.num div{background:var(--soft);border-radius:14px;padding:12px 10px;text-align:center}
+.num b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(26px,4vw,38px);color:var(--g3);line-height:1.05}.num span{font-size:13px;color:var(--muted);line-height:1.3;display:block;margin-top:4px}
+figure{margin:0;background:#FBFCFB;border:1px solid var(--line);border-radius:16px;padding:10px;text-align:center}figure img{max-width:100%;max-height:46vh;display:block;margin:0 auto;mix-blend-mode:multiply}
+figcaption{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.35}
+.ill svg{width:100%;height:auto;max-height:50vh}
+.src{margin-top:16px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.src b{color:var(--g3)}
+.tag{display:inline-block;font-size:12px;font-weight:800;border-radius:999px;padding:2px 10px;background:#E3F4EC;color:var(--g3);margin-inline-end:4px}
+.tag.r{background:#F8E3DE;color:var(--red)}.tag.a{background:#FFF3DF;color:#8A5A14}.tag.b{background:#E8F0FA;color:var(--blue)}
+.flow{display:grid;gap:8px}.flow div{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;background:var(--soft);border-radius:12px;padding:9px 12px;font-size:15.5px}.flow div b{color:var(--navy)}
+.study{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#fff}.study .y{font-size:12px;font-weight:800;color:var(--g);letter-spacing:.3px}.study b{display:block;font-size:16px;color:var(--navy);margin:2px 0}.study p{margin:4px 0 0;font-size:14.5px;line-height:1.45}.study small{display:block;margin-top:6px;font-size:11.5px;color:var(--muted)}
+.cover{background:radial-gradient(120% 90% at 85% 0%,#164B54 0%,var(--navy) 58%)}
+.cover::after{opacity:.16;background-position:2% 50%}
+.cover .card{background:transparent;box-shadow:none;color:#fff}.cover .card::before{display:none}.cover h1{color:#fff}.cover .lead{color:#C9D6DA}.cover .kick{color:var(--g2)}
+.pill{display:inline-flex;gap:6px;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px;color:#fff;margin:4px}
+.logo{display:flex;align-items:center;gap:10px;margin-bottom:26px}.logo img{width:48px;height:48px;border-radius:50%;background:#fff}.logo b{color:#fff;font-weight:900}.logo small{display:block;color:#A9C9C0;font-size:12px}
+.obj{counter-reset:o;list-style:none;margin:0;padding:0;display:grid;gap:10px}.obj li{counter-increment:o;display:flex;gap:12px;align-items:flex-start;font-size:16.5px;line-height:1.45}.obj li::before{content:counter(o);flex:0 0 30px;height:30px;border-radius:50%;background:var(--g);color:#fff;font-weight:800;display:grid;place-items:center}
+.nav{position:fixed;inset:auto 0 0 0;display:flex;align-items:center;justify-content:center;gap:14px;padding:12px 16px calc(14px + env(safe-area-inset-bottom));background:linear-gradient(transparent,rgba(6,20,26,.85) 40%);z-index:5}
+.nav button{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;font-size:22px;cursor:pointer}.nav button:disabled{opacity:.3}
+.dots{display:flex;gap:5px;flex-wrap:wrap;max-width:60vw;justify-content:center}.dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer}.dots i.on{background:var(--g2);width:20px;border-radius:5px}
+.count{color:#C9D6D9;font-size:13px;font-weight:700;min-width:44px;text-align:center}
+bdi{unicode-bidi:isolate}
+@media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
+@media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+.hotw{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;align-items:start}.hoti{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#FBFCFB}.hoti img{display:block;width:100%;mix-blend-mode:multiply}.hoti svg{position:absolute;inset:0;width:100%;height:100%}
+.hz{fill:var(--c);fill-opacity:.38;stroke:var(--c);stroke-width:2;cursor:pointer;transition:fill-opacity .2s}.hz:hover,.hz.on{fill-opacity:.62}.hzl{font:900 22px Heebo,sans-serif;fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;pointer-events:none;text-anchor:middle}
+.hotp .hint{background:var(--soft);border-radius:12px;padding:10px 12px;font-weight:700;color:var(--g3)}.hzi{border-inline-start:5px solid var(--c,var(--g));background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-top:8px;font-size:15.5px;line-height:1.45}.hzi b{display:block;font-size:17px;color:var(--navy);margin-bottom:4px}
+@media (max-width:760px){.hotw{grid-template-columns:1fr}}
+bdi[dir=ltr]{white-space:nowrap}
+details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;background:#fff}details.rev summary{cursor:pointer;list-style:none;padding:10px 14px;font-weight:800;color:#fff;background:var(--g3);border-radius:13px}details.rev summary::-webkit-details-marker{display:none}details.rev[open] summary{border-radius:13px 13px 0 0}details.rev>div{padding:12px 14px}
+.case{background:#0C2A35;color:#fff;border-radius:16px;padding:14px 16px;font-size:16px;line-height:1.55}.case b{color:#B5D96B}
+/*BRAND*/
+.brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
+.brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
+.s{padding-top:58px}
+.cover .card{display:flex;flex-direction:column;gap:6px;max-width:980px}
+.cvhead{display:flex;align-items:center;gap:16px;margin-bottom:30px}.cvhead img.em{width:74px;height:74px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(61,192,140,.55)}
+.cvhead b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(24px,3.4vw,34px);color:#fff;line-height:1.1}.cvhead span{display:block;font-size:clamp(15px,2vw,19px);color:#A9D9C8;font-weight:700;margin-top:4px}
+.cover h1{font-size:clamp(38px,6.6vw,66px);margin:6px 0 8px}.cover .kick{font-size:14px;letter-spacing:.06em}
+.cvmeta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.cvlogos{display:flex;align-items:center;gap:18px;margin-top:34px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14)}.cvlogos img{height:44px;width:auto}.cvlogos small{margin-inline-start:auto;color:#8FB3AA;font-size:12.5px;font-weight:700;letter-spacing:.08em}
+.cover .brandbar{display:none}
+@media (max-width:760px){.brandbar{left:10px;gap:7px;padding:4px 9px 4px 4px}.brandbar img{height:20px}.brandbar img.em{width:22px;height:22px}.s{padding-top:48px}.cvhead img.em{width:56px;height:56px}.cvlogos img{height:34px}.cvlogos small{display:none}}
+/* numbered lists: a bold word inside an item stays inline */
+.obj li,.steps li{display:block;position:relative;padding-inline-start:42px;min-height:30px}.obj li::before,.steps li::before{position:absolute;inset-inline-start:0;top:0}.obj.sm li{padding-inline-start:36px}
+.grid.tight figure img{max-height:24vh}
+@media print{.brandbar{display:none}}
+/*/BRAND*/
+</style>
+</head>
+<body>
+<div class="brandbar" aria-hidden="true"><img class="em" src="brand/emblem.jpg" alt=""><i></i><img src="brand/logo_k.webp" alt=""><img src="brand/logo_c.webp" alt=""></div>
+<main class="deck" id="deck">
+
+<section class="s cover"><div class="card">
+ <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
+ <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 4</div>
+ <h1>הגישה לחולה עם רפלוקס</h1>
+ <p class="lead">GERD ובקע סרעפתי: מנגנון, בירור, טיפול תרופתי, פונדופליקציה ובקע פרא-וושטי</p>
+ <div class="cvmeta"><span class="pill">מבוסס על <bdi>Sabiston</bdi>, מהדורה 22, פרק 83</span></div>
+ <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>1</b>מטרות הלמידה</div>
+ <h2>בסוף המפגש תדעו</h2>
+ <ol class="obj">
+  <li>להסביר את מנגנון המחסום נגד רפלוקס ומה שובר אותו</li>
+  <li>לקחת אנמנזה של רפלוקס ולזהות תסמינים לא טיפוסיים ותסמיני אזהרה</li>
+  <li>לבחור בדיקות לפני ניתוח: גסטרוסקופיה, ניטור pH, מנומטריה ובליעת בריום</li>
+  <li>לדעת מתי מפנים לניתוח ולהבדיל בין <bdi>Nissen</bdi>, <bdi>Toupet</bdi> ו-<bdi>Dor</bdi></li>
+  <li>לסווג בקע סרעפתי (סוגים <bdi>I–IV</bdi>) ולזהות וולוולוס חריף של הקיבה</li>
+  <li>להבין את הקשר בין השמנה, רפלוקס וניתוחי ירידה במשקל</li>
+ </ol>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 83 (עמ׳ <bdi dir="ltr">1108–1113, 1121–1133</bdi>)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>2</b>במספרים</div>
+ <h2>המחלה השפירה השכיחה ביותר של הוושט והקיבה</h2>
+ <div class="num">
+  <div><b dir="ltr">10–15%</b><span>מהמבוגרים עם בקע סרעפתי בהדמיה</span></div>
+  <div><b dir="ltr">≤75%</b><span>מחולי GERD מוכח עם בקע סרעפתי</span></div>
+  <div><b dir="ltr">~90%</b><span>שביעות רצון אחרי <bdi>Nissen</bdi> או <bdi>Toupet</bdi></span></div>
+  <div><b dir="ltr">~0.1%</b><span>תמותה סביב הניתוח בפונדופליקציה</span></div>
+ </div>
+ <ul class="b">
+  <li>רוב החולים מסתדרים בטיפול תרופתי. לניתוח יש מקום כשהטיפול התרופתי לא מספיק</li>
+  <li>GERD קשור לאדנוקרצינומה של הוושט, למחלות ריאה ולהשמנה</li>
+  <li><b>GERD זו אבחנה, לא תסמין.</b> "יש לי רפלוקס" צריך לתרגם לתסמינים מדויקים</li>
+ </ul>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 83 עמ׳ <bdi dir="ltr">1121, 1124, 1130</bdi></span><span>מספרים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>3</b>פתופיזיולוגיה</div>
+ <h2>לחץ מול שסתום</h2>
+ <div class="grid">
+  <div>
+   <p style="margin:0 0 8px;line-height:1.5">בחזה הלחץ שלילי, בבטן חיובי. ההפרש "מושך" תוכן קיבה למעלה. רפלוקס מופיע כשההפרש גובר על השסתום בצומת</p>
+   <h3>מה בונה את השסתום</h3>
+   <ul class="b sm">
+    <li><b>הסוגר התחתון:</b> 3–4 ס״מ של שריר חלק. אצל רוב החולים פגום, אבל אצל חלק גדול הלחץ שלו תקין</li>
+    <li><b>שוקי הסרעפת</b> לוחצים מבחוץ</li>
+    <li><b>זווית <bdi>His</bdi></b> החדה</li>
+    <li>קפל רירית בצומת (<bdi>Gubaroff</bdi>)</li>
+    <li><b>וושט בטני</b>: הלחץ בבטן סוגר אותו</li>
+   </ul>
+  </div>
+  <div style="display:grid;gap:10px">
+   <div class="box a"><b class="t">לחץ בטני גבוה</b>השמנה (במיוחד מרכזית), היריון, אימוני בטן מוגזמים</div>
+   <div class="box n"><b class="t">לחץ חזה שלילי יותר</b>מחלת ריאות חסימתית. גם מנפחי זכוכית וזמרים</div>
+   <div class="box r"><b class="t">שסתום פגום: בקע סרעפתי</b>אין וושט בטני, הזווית נפתחת, הסוגר נמצא בלחץ שלילי, השקים לוחצים על הקיבה במקום על הוושט. גם יותר הרפיות חולפות של הסוגר</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 83 עמ׳ <bdi dir="ltr">1108–1109, 1121</bdi></span><span>פתופיזיולוגיה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>4</b>אנטומיה · אינטראקטיבי</div>
+ <h2>צומת הוושט והקיבה</h2>
+ <div class="hotw"><div class="hoti"><img src="img/Sobo_1906_369_gej.jpg" alt="הוושט עובר בסרעפת ונכנס לקיבה בקרדיה"><svg viewBox="0 0 860 740" preserveAspectRatio="none">
+  <polygon class="hz" data-hz="dia" points="380,210 470,190 600,195 605,212 470,228 390,242" style="--c:#C0392B"/>
+  <text class="hzl" x="490" y="182" style="font-size:44px;stroke-width:5px">1</text>
+  <polygon class="hz" data-hz="les" points="400,250 480,232 520,285 500,400 430,410 405,330" style="--c:#7A5BD6"/>
+  <text class="hzl" x="455" y="335" style="font-size:44px;stroke-width:5px">2</text>
+  <polygon class="hz" data-hz="his" points="510,218 565,218 565,265 522,272" style="--c:#C9893F"/>
+  <text class="hzl" x="540" y="258" style="font-size:44px;stroke-width:5px">3</text>
+  <polygon class="hz" data-hz="fun" points="580,232 720,250 800,330 810,420 640,430 565,330" style="--c:#2F6FA8"/>
+  <text class="hzl" x="690" y="345" style="font-size:44px;stroke-width:5px">4</text>
+ </svg></div>
+ <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
+  <div class="hzi" data-hzi="dia" hidden><b>1 · הסרעפת ושוקיה</b><p>המרכיב החיצוני של המחסום: השקים "צובטים" את הוושט כשהלחץ בבטן עולה. בניתוח סוגרים אותם מאחורי הוושט בתפרים לא נספגים, בלי להצר את הוושט</p></div>
+  <div class="hzi" data-hzi="les" hidden><b>2 · הוושט הבטני והסוגר התחתון</b><p>הלחץ בבטן סוגר את הוושט הבטני. בניתוח מוודאים לפחות 2–3 ס״מ של וושט בבטן בלי מתח. אם אין, משחררים עוד במיצר. רק ב-<bdi dir="ltr">1–4%</bdi> צריך הארכה (<bdi>Collis</bdi>)</p></div>
+  <div class="hzi" data-hzi="his" hidden><b>3 · זווית <bdi>His</bdi></b><p>הזווית החדה בין הוושט לפונדוס מרחיקה את המזון מהצומת. בבקע סרעפתי ואחרי שרוול היא נפתחת ולכן יש יותר רפלוקס</p></div>
+  <div class="hzi" data-hzi="fun" hidden><b>4 · הפונדוס</b><p>החומר של הפונדופליקציה. משחררים אותו (כלי הדם הגסטריים הקצרים) ועוטפים את הוושט מאחור: 360° ב-<bdi>Nissen</bdi>, <bdi dir="ltr">240–270°</bdi> ב-<bdi>Toupet</bdi>. אחרי שרוול אין פונדוס ולכן אין פונדופליקציה</p></div>
+ </div></div>
+ <figcaption>הוושט עובר בסרעפת (×) ונכנס לקיבה בקרדיה · <bdi>Sobotta</bdi>, <bdi>Atlas and Text-book of Human Anatomy</bdi> (1906), איור 369, חלק תחתון (נחלת הכלל)</figcaption>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 83 עמ׳ <bdi dir="ltr">1108–1109, 1122–1123, 1128, 1133</bdi></span><span>אנטומיה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>5</b>אנמנזה ובדיקה</div>
+ <h2>מה בדיוק "רפלוקס"?</h2>
+ <div class="grid">
+  <div>
+   <h3>תסמינים טיפוסיים</h3>
+   <ul class="b sm">
+    <li><b>צרבת ורגורגיטציה</b>: השכיחים. רגורגיטציה מעידה על מחלה קשה יותר</li>
+    <li>ריור יתר בתגובה לחומצה (<bdi>waterbrash</bdi>)</li>
+    <li><b>דיספאגיה</b>: לחשוב על הפרעת תנועה או חסימה</li>
+    <li>נפיחות: לחשוב על התרוקנות קיבה איטית</li>
+   </ul>
+   <h3 style="margin-top:10px">לא טיפוסיים (מחוץ לוושט)</h3>
+   <ul class="b sm"><li>שיעול, קוצר נשימה, תחושת גוש בגרון, כחכוח</li><li>צריך לשלול גם מחלות ריאה, דרכי אוויר ולוע</li></ul>
+  </div>
+  <div style="display:grid;gap:10px">
+   <div class="box r"><b class="t">כאב בחזה עם גורמי סיכון לבביים</b>תמיד לשלול קודם סיבה לבבית</div>
+   <div class="box"><b class="t">תגובה ל-PPI</b>מי שהשתפר עם PPI יגיב טוב גם לפונדופליקציה. בלי תגובה בכלל: לחשוב על אבחנה אחרת</div>
+   <div class="box n"><b class="t">בדיקה גופנית</b>לרוב תקינה. לפעמים שינויים בשיניים, כחכוח או שיעול. <b>לחשב BMI</b>: השמנה מרכזית היא גורם סיכון מרכזי</div>
+   <div class="box b"><b class="t">במחלקה השבוע</b>במרפאה או במחלקה: קחו אנמנזה מלאה של רפלוקס ממטופל לפני פונדופליקציה או תיקון בקע סרעפתי. פרטו תסמינים, תגובה ל-PPI ו-BMI והציגו לבכיר/ה</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 83 עמ׳ <bdi dir="ltr">1121</bdi></span><span>אנמנזה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>6</b>בירור לפני ניתוח</div>
+ <h2>ארבע בדיקות</h2>
+ <div class="grid f">
+  <div>
+   <div class="flow">
+    <div><b>גסטרוסקופיה</b><span>חובה לפני ניתוח. <b>דלקת ושט <bdi>LA C–D</bdi>, היצרות פפטית וברט מאשרים GERD</b>. שוללת גידול. ברטרופלקסיה רואים בקע סרעפתי</span></div>
+    <div><b>ניטור pH (תקן הזהב)</b><span>חשיפה לחומצה (pH מתחת ל-4) מעל <bdi dir="ltr">6%</bdi> מהזמן, או ציון <bdi>DeMeester</bdi>. מדד תסמינים חיובי מעל <bdi dir="ltr">50%</bdi>. לאבחנה: בלי PPI</span></div>
+    <div><b>מנומטריה</b><span>שוללת אכלזיה והפרעות תנועה. <b>לא מאבחנת GERD</b>. לא צריך בבקע פרא-וושטי גדול</span></div>
+    <div><b>בליעת בריום</b><span>אנטומיה של הבקע, היצרויות. לא מספיקה לאבחנת GERD</span></div>
+   </div>
+  </div>
+  <figure><img src="img/ph-gerd.jpg" alt="ניטור pH של 24 שעות בחולה עם GERD"><figcaption>ניטור pH בוושט אצל חולה עם GERD: ירידות חוזרות של ה-pH מתחת ל-4 לאורך היממה · <bdi>Miheev</bdi>, <bdi>Wikimedia Commons</bdi> (נחלת הכלל)</figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 83 עמ׳ <bdi dir="ltr">1110–1113, 1121–1122</bdi></span><span>בירור</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>7</b>טיפול תרופתי</div>
+ <h2>מאורח חיים ועד PPI</h2>
+ <div class="grid">
+  <div>
+   <div class="flow">
+    <div><b>אורח חיים</b><span>ירידה במשקל, הימנעות ממזונות מעוררים, הגבהת ראש המיטה, הפסקת עישון ואלכוהול, בלי ארוחות מאוחרות</span></div>
+    <div><b>נוגדי חומצה</b><span>הקלה זמנית. לא מרפאים דלקת ושט</span></div>
+    <div><b>חוסמי H2</b><span>לתסמינים מזדמנים. סבילות שמתפתחת</span></div>
+    <div><b>PPI</b><span>החזקים ביותר: הכי הרבה שליטה בתסמינים וריפוי דלקת</span></div>
+   </div>
+  </div>
+  <div style="display:grid;gap:10px">
+   <div class="box n"><b class="t">ניסיון PPI</b>ב-GERD לא מסובך: <bdi dir="ltr">4–8</bdi> שבועות, פעם ביום ואפשר להעלות לפעמיים ביום בתגובה חלקית. בלי תגובה מספקת: בירור לפני שמעלים מינון</div>
+   <div class="box a"><b class="t">PPI לטווח ארוך</b>הראיות הטובות ביותר: עלייה קלה בסיכון להחמרת מחלת כליות כרונית, <bdi>C. difficile</bdi> ודלקת ריאות. אוסטאופורוזיס ודמנציה: ראיות חלשות</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 83 עמ׳ <bdi dir="ltr">1122</bdi></span><span>טיפול תרופתי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>8</b>ההחלטה על ניתוח</div>
+ <h2>מי מתאים ולאיזה ניתוח</h2>
+ <div class="grid f">
+  <div>
+   <ul class="b sm">
+    <li><b>מתי:</b> לא סובל PPI, לא מגיב, או לא רוצה טיפול לכל החיים</li>
+    <li><b>שתי שאלות ראשונות:</b> האם יש <b>השמנה</b> (BMI מעל 35)? האם יש <b>בקע סרעפתי</b>?</li>
+   </ul>
+   <div class="flow" style="margin-top:8px">
+    <div><b>BMI מתחת ל-35</b><span>פונדופליקציה. או טבעת מגנטית (<bdi>LINX</bdi>) במטופל מתאים</span></div>
+    <div><b>BMI מעל 35</b><span>לבחור בין פונדופליקציה למעקף קיבה (<bdi>Roux-en-Y</bdi>)</span></div>
+    <div><b>BMI מעל 50</b><span>רק מעקף קיבה</span></div>
+    <div><b>אחרי שרוול</b><span>אין פונדוס. הטיפול בתקן הזהב: המרה למעקף</span></div>
+   </div>
+   <div class="box" style="margin-top:8px"><b class="t">למה מעקף בהשמנה?</b>כיס קטן עם מעט תאים מפרישי חומצה, לולאה ארוכה שמונעת רפלוקס מרה וירידה במשקל שמורידה את הלחץ בבטן</div>
+  </div>
+  <figure><img src="img/nissen.png" alt="פונדופליקציה לפי Nissen"><figcaption>פונדופליקציה לפי <bdi>Nissen</bdi>: הפונדוס מועבר מאחורי הוושט (משמאל) ונתפר סביבו מלפנים (מימין) · <bdi>James P. Gray, MD</bdi>, <bdi>Wikimedia Commons</bdi> (נחלת הכלל)</figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 83 עמ׳ <bdi dir="ltr">1122, 1124–1125, 1128</bdi></span><span>החלטה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>9</b>הניתוח</div>
+ <h2>פונדופליקציה לפרוסקופית צעד אחר צעד</h2>
+ <div class="grid">
+  <div class="flow">
+   <div><b>1. תנוחה</b><span>טרנדלנבורג הפוך חד, מרחיק כבד, 4 פורטים לפחות. אנטיביוטיקה ומניעת קרישים</span></div>
+   <div><b>2. צד ימין</b><span>פתיחת החלק הדק של הליגמנט הגסטרו-הפטי, זהירות מעורק כבדי חריג, פתיחת הממברנה מעל השוק הימני</span></div>
+   <div><b>3. צד שמאל</b><span>חלוקת כלי הדם הגסטריים הקצרים, שחרור הפונדוס עד זווית <bdi>His</bdi></span></div>
+   <div><b>4. מאחורי הוושט</b><span>חלון אחורי, פנרוז סביב הוושט, ניקוי 360°. לפחות 3 ס״מ של וושט בבטן</span></div>
+   <div><b>5. סגירת השקים</b><span>מאחור, בתפרים לא נספגים, בלי להצר</span></div>
+   <div><b>6. העטיפה</b><span>"<bdi>shoeshine</bdi>" לבדיקת מתח. ב-<bdi>Nissen</bdi>: 2–3 ס״מ סביב בוז׳י 56 Fr</span></div>
+  </div>
+  <div>
+   <table style="width:100%;border-collapse:collapse;font-size:14.5px;line-height:1.4">
+    <tr style="background:var(--navy);color:#fff"><th style="padding:7px;text-align:start">סוג</th><th style="padding:7px;text-align:start">מה</th><th style="padding:7px;text-align:start">מתי</th></tr>
+    <tr style="background:var(--soft)"><td style="padding:7px"><b><bdi>Nissen</bdi></b></td><td style="padding:7px">360°</td><td style="padding:7px">מעט יותר שליטה ברפלוקס לאורך שנים</td></tr>
+    <tr><td style="padding:7px"><b><bdi>Toupet</bdi></b></td><td style="padding:7px">אחורית, <bdi dir="ltr">240–270°</bdi></td><td style="padding:7px">דיספאגיה מעט פחות. הפרעת תנועה, בקע פרא-וושטי</td></tr>
+    <tr style="background:var(--soft)"><td style="padding:7px"><b><bdi>Dor</bdi></b></td><td style="padding:7px">קדמית</td><td style="padding:7px">בלי דיסקציה אחורית. אחרי מיוטומיה באכלזיה</td></tr>
+   </table>
+   <div class="box n" style="margin-top:10px"><b class="t">ההנחיות הרב-חברתיות (2023)</b>מעדיפות <b>פונדופליקציה חלקית</b>: פחות חזרת בקע, פחות דיספאגיה, פחות חוסר יכולת לגהק. ההבדל בשליטה ברפלוקס צנוע. המלצה מותנית</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 83 עמ׳ <bdi dir="ltr">1122–1125</bdi></span><span>ניתוח</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>10</b>אחרי הניתוח</div>
+ <h2>תוצאות וסיבוכים</h2>
+ <div class="num">
+  <div><b dir="ltr">~1%</b><span>כל אחד: דימום, זיהום, ניקוב קיבה או ושט</span></div>
+  <div><b dir="ltr">≤50%</b><span>דיספאגיה בחודשים הראשונים, לרוב חולפת</span></div>
+  <div><b dir="ltr">20–40%</b><span>חוזרים ל-PPI אחרי <bdi dir="ltr">15–20</bdi> שנה</span></div>
+  <div><b dir="ltr">5–7%</b><span>ניתוח חוזר לאורך שנים</span></div>
+ </div>
+ <ul class="b sm">
+  <li><b>אחרי הניתוח:</b> דיאטה נוזלית מלאה לפחות שבוע, אחר כך מחית ואז רכה</li>
+  <li><b>דיספאגיה קשה, לא בולע רוק:</b> תיקון ניתוחי מיידי. דיספאגיה מעבר ל-3 חודשים: בליעת בריום</li>
+  <li><b>נפיחות גזים (<bdi>gas bloat</bdi>):</b> קושי לגהק, יותר אחרי <bdi>Nissen</bdi>. משקאות בלי גז, לאכול לאט</li>
+  <li><b>כשל העטיפה:</b> השכיח הוא בקע של העטיפה דרך ההיאטוס</li>
+  <li><b>שביעות רצון יורדת עם כל ניתוח:</b> <bdi dir="ltr">91%</bdi> בראשון, <bdi dir="ltr">76%</bdi> בניתוח החוזר הראשון, <bdi dir="ltr">49%</bdi> בשני. לנתח שוב רק אחרי בירור מלא</li>
+ </ul>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 83 עמ׳ <bdi dir="ltr">1124</bdi></span><span>תוצאות</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>11</b>חלופות</div>
+ <h2>טבעת מגנטית וטיפולים אנדוסקופיים</h2>
+ <div class="grid g3">
+  <div class="box n"><b class="t">טבעת מגנטית (<bdi>LINX</bdi>)</b>
+   <ul class="b sm"><li>מתאים: דלקת <bdi>LA A–B</bdi>, בקע עד 3 ס״מ, BMI מתחת ל-35, תנועתיות תקינה</li><li>לא מתאים: בקע פרא-וושטי, דלקת <bdi>C–D</bdi>, ברט, דיספאגיה, צורך ב-MRI מעל 1.5 טסלה</li><li>פחות נפיחות מ-<bdi>Nissen</bdi>. הוצאה בגלל סיבוכים ב-<bdi dir="ltr">3.3%</bdi>. חדירה לוושט ב-<bdi dir="ltr">0.3–1%</bdi></li></ul></div>
+  <div class="box"><b class="t">פונדופליקציה דרך הפה (<bdi>TIF 2.0</bdi>)</b>
+   <ul class="b sm"><li>עטיפה של 270° ו-3 ס״מ מתוך הקיבה</li><li>עדיפה על PPI במחקרים אקראיים</li><li>סיבוכים קשים ב-<bdi dir="ltr">2.4%</bdi></li><li>ההנחיות עדיין מעדיפות ניתוח</li></ul></div>
+  <div class="box a"><b class="t">מתי לא אנדוסקופי</b>
+   <ul class="b sm"><li>דלקת ושט <bdi>LA C–D</bdi></li><li>בקע סרעפתי מעל 2 ס״מ</li><li>השמנה</li><li>תסמינים קשים</li><li><bdi>Stretta</bdi> לא מומלץ ב-GERD עמיד ל-PPI</li></ul></div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 83 עמ׳ <bdi dir="ltr">1125–1127</bdi></span><span>חלופות</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>12</b>בקע סרעפתי</div>
+ <h2>ארבעה סוגים</h2>
+ <div class="grid f">
+  <div>
+   <div class="flow">
+    <div><b>סוג <bdi>I</bdi> · מחליק</b><span>הצומת עולה לבית החזה. <bdi dir="ltr">70–90%</bdi> מהבקעים. מנתחים רק אם יש התוויה לניתוח רפלוקס</span></div>
+    <div><b>סוג <bdi>II</bdi></b><span>הפונדוס עולה, הצומת נשארת בבטן. נדיר</span></div>
+    <div><b>סוג <bdi>III</bdi></b><span>הצומת וחלק מהקיבה. הבקע הפרא-וושטי השכיח</span></div>
+    <div><b>סוג <bdi>IV</bdi></b><span>הקיבה ואיבר נוסף: מעי גס, לבלב, אומנטום, טחול</span></div>
+   </div>
+   <ul class="b sm" style="margin-top:10px">
+    <li>שכיח יותר בנשים, עם הגיל, בהשמנה ובמחלות ריאה</li>
+    <li><b>בקע פרא-וושטי:</b> שובע מוקדם, כאב, רגורגיטציה, קוצר נשימה. <b>אנמיה ב-<bdi dir="ltr">30–40%</bdi></b> מכיבי <bdi>Cameron</bdi></li>
+   </ul>
+  </div>
+  <figure><img src="img/peh-xray-ct.jpg" alt="בקע פרא-וושטי בבליעת בריום וב-CT"><figcaption>בקע פרא-וושטי: רוב הקיבה מעל הסרעפת, בבליעת חומר ניגוד (משמאל) וב-CT (מימין) · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 83 עמ׳ <bdi dir="ltr">1130</bdi> · פרק 86 עמ׳ <bdi dir="ltr">1189</bdi></span><span>בקע סרעפתי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>13</b>בקע פרא-וושטי</div>
+ <h2>מתי לתקן ואיך</h2>
+ <div class="grid">
+  <div>
+   <ul class="b sm">
+    <li><b>סיכון לוולוולוס חריף:</b> כ-<bdi dir="ltr">1%</bdi> בשנה. תמותה בתיקון דחוף <bdi dir="ltr">5.4%</bdi>. לכן מנתחים <b>כשיש תסמינים או סיבוכים</b>. עד <bdi dir="ltr">90%</bdi> מספרים על תסמינים כששואלים בעיון</li>
+    <li><b>בירור:</b> CT או בליעת בריום וגסטרוסקופיה לפני ניתוח. מנומטריה לא אמינה בבקע גדול</li>
+    <li><b>הניתוח:</b> החזרת התוכן, כריתת השק, שחרור הוושט עד 2–3 ס״מ בבטן, סגירה אחורית של השקים ופונדופליקציה חלקית</li>
+    <li><b>רשת:</b> במחקר הראשון ירדו החזרות ב-6 חודשים (<bdi dir="ltr">24%</bdi> ל-<bdi dir="ltr">9%</bdi>), אבל אחרי 5 שנים אין הבדל (<bdi dir="ltr">54%</bdi> לעומת <bdi dir="ltr">59%</bdi>). רשת קבועה ליד הוושט: סכנת חדירה</li>
+    <li><b>חזרה בהדמיה:</b> כ-<bdi dir="ltr">30%</bdi>, לרוב קטנה ובלי צורך בניתוח. תמותה בניתוח לפרוסקופי <bdi dir="ltr">0.5%</bdi></li>
+   </ul>
+  </div>
+  <div class="box r"><b class="t">וולוולוס חריף של הקיבה</b>
+   <p style="margin:0 0 6px"><b>שלישיית <bdi>Borchardt</bdi>:</b> כאב פתאומי בחזה או באפיגסטריום, הקאה "יבשה" (ניסיונות להקיא בלי תוכן), אי אפשר להעביר זונדה</p>
+   <ul class="b sm">
+    <li>צעד ראשון: <b>זונדה לפירוק לחץ</b>. אם לא עוברת ליד המיטה: אנדוסקופית</li>
+    <li>הצליח: החייאה, תיקון אלקטרוליטים וניתוח באותו אשפוז תוך <bdi dir="ltr">24–48</bdi> שעות</li>
+    <li>לא הצליח, ניקוב או ספסיס: לחדר ניתוח מיד</li>
+    <li>שני שלישים סביב הציר הארוך (אורגנואקסיאלי)</li>
+   </ul></div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 83 עמ׳ <bdi dir="ltr">1130–1133</bdi> · פרק 86 עמ׳ <bdi dir="ltr">1190</bdi></span><span>בקע פרא-וושטי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>14</b>השמנה ורפלוקס</div>
+ <h2>שרוול, מעקף ו-GERD</h2>
+ <div class="grid">
+  <ul class="b">
+   <li><b><bdi dir="ltr">20–40%</bdi></b> מהמועמדים לניתוח בריאטרי סובלים מ-GERD. <bdi dir="ltr">20%</bdi> מאלה בלי תסמינים יש להם דלקת ושט "שקטה"</li>
+   <li><b>פונדופליקציה בהשמנה</b> מוסיפה רק <bdi dir="ltr">3–10</bdi> מ״מ כספית והלחץ בבטן גבוה ב-<bdi dir="ltr">15–20</bdi>. לכן יותר כשלונות</li>
+   <li><b>שרוול:</b> GERD חדש או מחמיר בעד <bdi dir="ltr">30%</bdi>. זה הגורם החשוב ביותר לשביעות הרצון</li>
+   <li>במעקף קיבה: <bdi dir="ltr">10–30%</bdi> ממשיכים עם תסמינים או תרופות</li>
+  </ul>
+  <div style="display:grid;gap:10px">
+   <div class="box n"><b class="t">המלצות</b>GERD עמיד לטיפול ומועמד לניתוח בריאטרי: <b>מעקף קיבה</b>. גסטרוסקופיה <bdi dir="ltr">3–5</bdi> שנים אחרי שרוול לחיפוש ברט, גם בלי תסמינים</div>
+   <div class="box a"><b class="t">בשרוול עצמו</b>לבדוק את ההיאטוס, לתקן בקע מאחור ולא להשאיר פונדוס. היצרות באינציזורה מעלה את הלחץ ואת הרפלוקס</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 83 עמ׳ <bdi dir="ltr">1128–1129</bdi></span><span>השמנה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>15</b>מה חדש בתחום · 2021–2026</div>
+ <h2>הנחיות ומחקרים שכדאי להכיר</h2>
+ <div class="grid">
+  <div class="study"><div class="y"><bdi>Surg Endosc</bdi> 2023 · הנחיות רב-חברתיות</div><b>טיפול ניתוחי ואנדוסקופי ב-GERD</b>
+   <p>13 המלצות לפי <bdi>GRADE</bdi>. לפני ניתוח: גסטרוסקופיה, מנומטריה ו-pH. פונדופליקציה חלקית גם כשהמנומטריה תקינה. בהשמנה: מעקף או פונדופליקציה וב-BMI מעל 50 מעקף</p>
+   <small>Slater BJ et al. Surg Endosc 2023;37:781-806</small></div>
+  <div class="study"><div class="y"><bdi>Gut</bdi> 2024 · קונצנזוס בינלאומי</div><b><bdi>Lyon 2.0</bdi>: איך מאבחנים GERD</b>
+   <p>דלקת ושט <bdi>LA</bdi> דרגה B נחשבת עכשיו ראיה ודאית ל-GERD. בלי הוכחה קודמת: ניטור pH בלי טיפול. עם GERD מוכח ותסמינים: pH-אימפדנס תחת PPI</p>
+   <small>Gyawali CP et al. Gut 2024;73:361-71</small></div>
+  <div class="study"><div class="y"><bdi>Surg Endosc</bdi> 2023 · מטא-אנליזת רשת</div><b><bdi>Nissen</bdi>, <bdi>Toupet</bdi> ו-<bdi>Dor</bdi> לטווח ארוך</b>
+   <p>13 מחקרים אקראיים, 2,063 מטופלים, מעקב מעל 5 שנים. <bdi>Toupet</bdi> עם פחות דיספאגיה מ-<bdi>Nissen</bdi> (<bdi>OR</bdi> 0.29). בשאר התוצאות אין הבדל</p>
+   <small>Lee Y et al. Surg Endosc 2023;37:5052-64</small></div>
+  <div class="study"><div class="y"><bdi>Surg Endosc</bdi> 2023 · הנחיות <bdi>EAES</bdi></div><b>בקע פרא-וושטי גדול</b>
+   <p>מציעות ניתוח גם בבקע עם תסמינים מעטים, אבל לא במטופל שברירי. מעדיפות פונדופליקציה על גסטרופקסיה בניתוח מתוכנן וגסטרופקסיה בחולה לא יציב בחירום. מציעות רשת (המלצה מותנית)</p>
+   <small>Markar SR et al. Surg Endosc 2023;37:9013-29</small></div>
+ </div>
+ <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>16</b>לסיכום</div>
+ <h2>חמישה דברים לקחת למחלקה</h2>
+ <ol class="obj">
+  <li>רפלוקס = לחץ בטני שגובר על שסתום. השמנה ובקע סרעפתי שוברים את השסתום</li>
+  <li>לפני ניתוח: גסטרוסקופיה, ניטור pH (תקן הזהב), מנומטריה ובליעת בריום</li>
+  <li>מי שהגיב ל-PPI יגיב לניתוח. מי שלא הגיב: לחשוב על אבחנה אחרת</li>
+  <li>פונדופליקציה חלקית היא היום הבחירה המועדפת. BMI מעל 35: לשקול מעקף קיבה</li>
+  <li>כאב פתאומי, ניסיונות הקאה וזונדה שלא עוברת: וולוולוס של הקיבה. זונדה ואז חדר ניתוח</li>
+ </ol>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 83 <bdi>Benign Esophageal Disorders</bdi>, חלקי GERD ובקע סרעפתי (עמ׳ <bdi dir="ltr">1108–1113, 1121–1133</bdi>)</div>
+ <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906, נחלת הכלל) · תמונות והדמיה: <bdi>Wikimedia Commons</bdi>, הקרדיט בכל תמונה · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+</main>
+<div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
+<script>
+document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz').forEach(function(z){z.addEventListener('click',function(){w.querySelectorAll('.hz').forEach(function(x){x.classList.toggle('on',x===z)});w.querySelectorAll('.hzi').forEach(function(i){i.hidden=i.dataset.hzi!==z.dataset.hz;i.style.setProperty('--c',z.style.getPropertyValue('--c'))});var h=w.querySelector('.hint');if(h)h.hidden=true;});});});
+</script>
+<script>
+(function () {
+  var deck = document.getElementById('deck'), S = [].slice.call(deck.children), dots = document.getElementById('dots'), n = S.length;
+  S.forEach(function (_, k) { var i = document.createElement('i'); i.onclick = function () { go(k); }; dots.appendChild(i); });
+  function idx() { return Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }
+  function go(k) { k = Math.max(0, Math.min(n - 1, k)); S[k].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' }); }
+  function sync() { var k = idx(); [].forEach.call(dots.children, function (d, j) { d.className = j === k ? 'on' : ''; }); document.getElementById('count').textContent = (k + 1) + '/' + n; document.getElementById('prev').disabled = k === 0; document.getElementById('next').disabled = k === n - 1; }
+  deck.addEventListener('scroll', function () { clearTimeout(sync.t); sync.t = setTimeout(sync, 60); }, { passive: true });
+  document.getElementById('next').onclick = function () { go(idx() + 1); };
+  document.getElementById('prev').onclick = function () { go(idx() - 1); };
+  addEventListener('keydown', function (e) { if (e.key === 'ArrowLeft' || e.key === ' ') go(idx() + 1); if (e.key === 'ArrowRight') go(idx() - 1); });
+  sync();
+})();
+</script>
+</body>
+</html>

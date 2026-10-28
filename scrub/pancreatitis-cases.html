@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>דיון מקרים: פנקריאטיטיס · Scrub In</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../emblem.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Frank+Ruhl+Libre:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0C2A35;--navy2:#123845;--g:#00967D;--g2:#3DC08C;--g3:#0A6B5A;--lime:#B5D96B;--red:#A3402E;--amber:#C9893F;--blue:#2F6FA8;--bg:#EDF2F0;--soft:#F3F7F5;--ink:#16262C;--muted:#5C6F73;--line:#DCE6E2}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--navy);color:var(--ink);font-family:Heebo,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.deck{position:fixed;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.deck::-webkit-scrollbar{display:none}
+.s{flex:0 0 100%;height:100%;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;padding:18px 16px 84px;overflow-y:auto;position:relative}
+.s::after{content:'';position:absolute;inset:0;background:url(../ops/art/organs.webp) no-repeat 6% 40%/auto 115%;opacity:.05;filter:invert(1);pointer-events:none}
+.card{width:min(980px,100%);background:#fff;border-radius:22px;box-shadow:0 18px 50px rgba(0,0,0,.35);padding:30px 32px 22px;position:relative;overflow:hidden;z-index:1}
+.card::before{content:'';position:absolute;inset:0 0 auto 0;height:6px;background:linear-gradient(90deg,var(--g3),var(--g),var(--g2),var(--lime))}
+.kick{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--g);letter-spacing:.3px;margin-bottom:6px}
+.kick b{background:var(--navy);color:#fff;border-radius:999px;min-width:26px;height:26px;display:grid;place-items:center;font-size:13px;padding:0 8px}
+h1,h2{font-family:'Frank Ruhl Libre',serif;color:var(--navy);margin:0 0 10px;line-height:1.15}
+h1{font-size:clamp(34px,6.4vw,60px)}h2{font-size:clamp(25px,4.4vw,36px)}
+h3{margin:0 0 6px;font-size:17px;color:var(--navy)}
+.lead{font-size:clamp(15.5px,2.3vw,18.5px);color:var(--muted);margin:0 0 16px;line-height:1.5}
+ul.b{margin:0;padding:0;list-style:none;display:grid;gap:8px}ul.b li{position:relative;padding-inline-start:20px;font-size:16.5px;line-height:1.45}ul.b li::before{content:'';position:absolute;inset-inline-start:2px;top:.62em;width:8px;height:8px;border-radius:2px;background:var(--g);transform:rotate(45deg)}
+ul.b li b{color:var(--navy)}ul.b.sm li{font-size:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.grid.g3{grid-template-columns:repeat(3,1fr)}.grid.f{grid-template-columns:1.05fr .95fr;align-items:center}
+.box{background:var(--soft);border-radius:14px;padding:13px 15px;border-inline-start:4px solid var(--g);font-size:15.5px;line-height:1.45}
+.box.r{border-color:var(--red);background:#FBEDEA}.box.a{border-color:var(--amber);background:#FFF6EA}.box.n{border-color:var(--navy)}.box.b{border-color:var(--blue);background:#EEF4FB}
+.box b.t{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}
+.num{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:4px 0 14px}.num div{background:var(--soft);border-radius:14px;padding:12px 10px;text-align:center}
+.num b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(26px,4vw,38px);color:var(--g3);line-height:1.05}.num span{font-size:13px;color:var(--muted);line-height:1.3;display:block;margin-top:4px}
+figure{margin:0;background:#FBFCFB;border:1px solid var(--line);border-radius:16px;padding:10px;text-align:center}figure img{max-width:100%;max-height:46vh;display:block;margin:0 auto;mix-blend-mode:multiply}
+figcaption{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.35}
+.ill svg{width:100%;height:auto;max-height:50vh}
+.src{margin-top:16px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.src b{color:var(--g3)}
+.tag{display:inline-block;font-size:12px;font-weight:800;border-radius:999px;padding:2px 10px;background:#E3F4EC;color:var(--g3);margin-inline-end:4px}
+.tag.r{background:#F8E3DE;color:var(--red)}.tag.a{background:#FFF3DF;color:#8A5A14}.tag.b{background:#E8F0FA;color:var(--blue)}
+.flow{display:grid;gap:8px}.flow div{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;background:var(--soft);border-radius:12px;padding:9px 12px;font-size:15.5px}.flow div b{color:var(--navy)}
+.study{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#fff}.study .y{font-size:12px;font-weight:800;color:var(--g);letter-spacing:.3px}.study b{display:block;font-size:16px;color:var(--navy);margin:2px 0}.study p{margin:4px 0 0;font-size:14.5px;line-height:1.45}.study small{display:block;margin-top:6px;font-size:11.5px;color:var(--muted)}
+.cover{background:radial-gradient(120% 90% at 85% 0%,#164B54 0%,var(--navy) 58%)}
+.cover::after{opacity:.16;background-position:2% 50%}
+.cover .card{background:transparent;box-shadow:none;color:#fff}.cover .card::before{display:none}.cover h1{color:#fff}.cover .lead{color:#C9D6DA}.cover .kick{color:var(--g2)}
+.pill{display:inline-flex;gap:6px;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px;color:#fff;margin:4px}
+.logo{display:flex;align-items:center;gap:10px;margin-bottom:26px}.logo img{width:48px;height:48px;border-radius:50%;background:#fff}.logo b{color:#fff;font-weight:900}.logo small{display:block;color:#A9C9C0;font-size:12px}
+.obj{counter-reset:o;list-style:none;margin:0;padding:0;display:grid;gap:10px}.obj li{counter-increment:o;display:flex;gap:12px;align-items:flex-start;font-size:16.5px;line-height:1.45}.obj li::before{content:counter(o);flex:0 0 30px;height:30px;border-radius:50%;background:var(--g);color:#fff;font-weight:800;display:grid;place-items:center}
+.nav{position:fixed;inset:auto 0 0 0;display:flex;align-items:center;justify-content:center;gap:14px;padding:12px 16px calc(14px + env(safe-area-inset-bottom));background:linear-gradient(transparent,rgba(6,20,26,.85) 40%);z-index:5}
+.nav button{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;font-size:22px;cursor:pointer}.nav button:disabled{opacity:.3}
+.dots{display:flex;gap:5px;flex-wrap:wrap;max-width:60vw;justify-content:center}.dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer}.dots i.on{background:var(--g2);width:20px;border-radius:5px}
+.count{color:#C9D6D9;font-size:13px;font-weight:700;min-width:44px;text-align:center}
+bdi{unicode-bidi:isolate}
+.hotw{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;align-items:start}.hoti{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#FBFCFB}.hoti img{display:block;width:100%;mix-blend-mode:multiply}.hoti svg{position:absolute;inset:0;width:100%;height:100%}
+.hz{fill:var(--c);fill-opacity:.38;stroke:var(--c);stroke-width:2;cursor:pointer;transition:fill-opacity .2s}.hz:hover,.hz.on{fill-opacity:.62}.hzl{font:900 22px Heebo,sans-serif;fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;pointer-events:none;text-anchor:middle}
+.hotp .hint{background:var(--soft);border-radius:12px;padding:10px 12px;font-weight:700;color:var(--g3);margin:0}.hzi{background:#fff;border:1px solid var(--line);border-inline-start:5px solid var(--c,var(--g));border-radius:14px;padding:12px 14px;margin-top:8px;font-size:15.5px;line-height:1.45}.hzi>b{display:block;font-size:17px;color:var(--navy);margin-bottom:4px}.hzi p{margin:0}
+figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-size:15px}.obj.sm li::before{flex-basis:26px;height:26px;font-size:13px}.flow.sm div{grid-template-columns:130px 1fr;padding:7px 10px;font-size:14.5px}
+@media (max-width:760px){.hotw{grid-template-columns:1fr}}
+
+@media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
+@media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+/*BRAND*/
+.brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
+.brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
+.s{padding-top:58px}
+.cover .card{display:flex;flex-direction:column;gap:6px;max-width:980px}
+.cvhead{display:flex;align-items:center;gap:16px;margin-bottom:30px}.cvhead img.em{width:74px;height:74px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(61,192,140,.55)}
+.cvhead b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(24px,3.4vw,34px);color:#fff;line-height:1.1}.cvhead span{display:block;font-size:clamp(15px,2vw,19px);color:#A9D9C8;font-weight:700;margin-top:4px}
+.cover h1{font-size:clamp(38px,6.6vw,66px);margin:6px 0 8px}.cover .kick{font-size:14px;letter-spacing:.06em}
+.cvmeta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.cvlogos{display:flex;align-items:center;gap:18px;margin-top:34px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14)}.cvlogos img{height:44px;width:auto}.cvlogos small{margin-inline-start:auto;color:#8FB3AA;font-size:12.5px;font-weight:700;letter-spacing:.08em}
+.cover .brandbar{display:none}
+@media (max-width:760px){.brandbar{left:10px;gap:7px;padding:4px 9px 4px 4px}.brandbar img{height:20px}.brandbar img.em{width:22px;height:22px}.s{padding-top:48px}.cvhead img.em{width:56px;height:56px}.cvlogos img{height:34px}.cvlogos small{display:none}}
+/* numbered lists: a bold word inside an item stays inline */
+.obj li,.steps li{display:block;position:relative;padding-inline-start:42px;min-height:30px}.obj li::before,.steps li::before{position:absolute;inset-inline-start:0;top:0}.obj.sm li{padding-inline-start:36px}
+.grid.tight figure img{max-height:24vh}
+@media print{.brandbar{display:none}}
+/*/BRAND*/
+</style>
+</head>
+<body>
+<div class="brandbar" aria-hidden="true"><img class="em" src="brand/emblem.jpg" alt=""><i></i><img src="brand/logo_k.webp" alt=""><img src="brand/logo_c.webp" alt=""></div>
+<main class="deck" id="deck">
+
+<section class="s cover"><div class="card">
+ <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
+ <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 4</div>
+ <h1>דיון מקרים: פנקריאטיטיס</h1>
+ <p class="lead">שלושה מטופלים בדויים: מאבחנה וחומרה דרך נוזלים ותזונה ועד נמק נגוע ופסאודוציסטה</p>
+ <div class="cvmeta"><span class="pill">מבוסס על <bdi>Sabiston</bdi>, מהדורה 22, פרק 92</span></div>
+ <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>1</b>מטרות הלמידה</div>
+ <h2>בסוף המפגש תדעו</h2>
+ <ol class="obj">
+  <li>לאבחן פנקריאטיטיס חריפה לפי שניים משלושה קריטריונים ולדעת מתי באמת צריך CT</li>
+  <li>להעריך חומרה (קלה, בינונית או קשה) ולהכיר את הכלים לחיזוי (<bdi>SIRS</bdi>, <bdi>BISAP</bdi>, <bdi>Ranson</bdi>)</li>
+  <li>לרשום טיפול ראשוני: נוזלים במינון סביר, משככי כאבים, הזנה מוקדמת ובלי אנטיביוטיקה מונעת</li>
+  <li>לתזמן ERCP וכריתת כיס מרה בפנקריאטיטיס ביליארית</li>
+  <li>לסווג אוספים סביב הלבלב ולהסביר את גישת ה״צעד אחר צעד״ בנמק נגוע</li>
+ </ol>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 92 (עמ׳ <bdi dir="ltr">1379–1388</bdi>)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>2</b>רקע</div>
+ <h2>פנקריאטיטיס חריפה במספרים</h2>
+ <div class="num">
+  <div><b dir="ltr">300K+</b><span>אשפוזים בשנה בארה״ב</span></div>
+  <div><b dir="ltr">10–20%</b><span>מפתחים מהלך קשה עם תגובה דלקתית מתקדמת</span></div>
+  <div><b dir="ltr">&lt;1% · 10–50%</b><span>תמותה במחלה קלה · במחלה קשה</span></div>
+  <div><b dir="ltr">70–80%</b><span>מהמקרים: אבנים או אלכוהול</span></div>
+ </div>
+ <div class="grid">
+  <div>
+   <h3>תמותה בשני שלבים</h3>
+   <ul class="b sm">
+    <li><b>שבועיים ראשונים:</b> כשל רב-מערכתי מהתגובה הדלקתית</li>
+    <li><b>אחרי שבועיים:</b> בעיקר סיבוכים זיהומיים, למשל נמק נגוע</li>
+   </ul>
+   <h3 style="margin-top:12px">המנגנון בקצרה</h3>
+   <ul class="b sm"><li>הפעלה מוקדמת של טריפסין בתוך תאי האצינוס, עיכול עצמי של הבלוטה ושחרור ציטוקינים</li></ul>
+  </div>
+  <div>
+   <h3>סיבות שכדאי לזכור</h3>
+   <ul class="b sm">
+    <li><b>אבנים:</b> השכיחה במערב (40% בארה״ב). נשים בגיל 50–70</li>
+    <li><b>אלכוהול:</b> השנייה (35%). גברים צעירים</li>
+    <li><b>אחרי ERCP:</b> הסיבוך השכיח שלה, עד 5%</li>
+    <li><b>טריגליצרידים</b> מעל 1000 מ״ג/ד״ל, <b>היפרקלצמיה</b>, תרופות (עד 2%), חבלה</li>
+    <li>גידול בלבלב יכול לחסום את הצינור, אבל לרוב לא גורם לפנקריאטיטיס</li>
+   </ul>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1379–1381</bdi></span><span>רקע</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>3</b>אנטומיה · תמונה אינטראקטיבית</div>
+ <h2>איפה הלבלב יושב ולמה זה משנה</h2>
+<div class="hotw"><div class="hoti"><img src="img/Sobo_1906_406.png" alt="השק הקטן נפתח: הקיבה מורמת והלבלב נראה מאחוריה"><svg viewBox="0 0 1280 889" preserveAspectRatio="none">
+ <polygon class="hz" data-hz="stom" points="587,440 693,320 800,253 933,267 1013,347 1000,453 907,467 747,480" style="--c:#C0392B"/>
+ <text class="hzl" x="835" y="394" style="font-size:47px;stroke-width:6px">1</text>
+ <polygon class="hz" data-hz="panc" points="587,493 747,487 907,473 933,520 853,553 693,560 600,547" style="--c:#2F6FA8"/>
+ <text class="hzl" x="760" y="535" style="font-size:47px;stroke-width:6px">2</text>
+ <polygon class="hz" data-hz="meso" points="573,567 747,567 933,533 940,573 800,613 613,620" style="--c:#187A5C"/>
+ <text class="hzl" x="767" y="595" style="font-size:47px;stroke-width:6px">3</text>
+ <polygon class="hz" data-hz="colon" points="560,640 800,627 960,547 1013,600 973,747 800,800 600,747" style="--c:#C9893F"/>
+ <text class="hzl" x="815" y="689" style="font-size:47px;stroke-width:6px">4</text>
+ <polygon class="hz" data-hz="spl" points="1007,400 1053,387 1080,467 1067,560 1027,547" style="--c:#8E44AD"/>
+ <text class="hzl" x="1046" y="488" style="font-size:47px;stroke-width:6px">5</text>
+ <polygon class="hz" data-hz="gb" points="173,320 267,287 360,320 347,380 240,387 180,360" style="--c:#5D6D3A"/>
+ <text class="hzl" x="261" y="358" style="font-size:47px;stroke-width:6px">6</text>
+ </svg></div>
+ <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
+  <div class="hzi" data-hzi="stom" hidden><b>הדופן האחורית של הקיבה</b><p>בציור הקיבה מורמת כלפי מעלה. מאחוריה נמצא השק הקטן. ברצפת השק: הלבלב. פסאודוציסטה או נמק מוקף שצמודים לדופן האחורית (פחות מ-1 ס״מ) מנוקזים דרך הקיבה, באנדוסקופיה או בניתוח (ציסטוגסטרוסטומיה).</p></div>
+  <div class="hzi" data-hzi="panc" hidden><b>הלבלב ברצפת השק הקטן</b><p>הלבלב רטרופריטונאלי ושוכב מאחורי הקיבה, לפני החוליה המותנית הראשונה. כשהוא מודלק, נוצרים סביבו אוספי נוזל ונמק. חלקם צמודים לדופן האחורית של הקיבה. זה מה שמאפשר לנקז אותם דרכה.</p></div>
+  <div class="hzi" data-hzi="meso" hidden><b>המזוקולון הרוחבי</b><p>יוצא מהגבול התחתון של הלבלב. בצילום בטן בפנקריאטיטיס אפשר לראות ״קטיעה״ של הגז במעי הגס בכפף הטחולי, בגלל עווית של המעי.</p></div>
+  <div class="hzi" data-hzi="colon" hidden><b>המעי הגס הרוחבי</b><p>קרוב מאוד ללבלב. בצילום בטן בפנקריאטיטיס רואים לעיתים מפלסי נוזל-אוויר של אילאוס. צילום לא עוזר לאבחנה, אבל עוזר לשלול ניקוב של כיב.</p></div>
+  <div class="hzi" data-hzi="spl" hidden><b>הטחול ועורק הטחול</b><p>זנב הלבלב מגיע עד שער הטחול. הדלקת יכולה לפגוע בעורק הטחול (פסאודואנוריזמה מדממת) או לגרום לפקקת בווריד הטחול, עם דליות בקיבה. דימום חוזר מהדליות האלה מטופל בכריתת טחול.</p></div>
+  <div class="hzi" data-hzi="gb" hidden><b>כיס המרה</b><p>אבנים בכיס המרה הן הסיבה השכיחה ביותר לפנקריאטיטיס במערב (כ-40% בארה״ב). אחרי פנקריאטיטיס ביליארית קלה מוציאים את כיס המרה עוד באותו אשפוז.</p></div>
+ </div></div>
+ <p style="font-size:12px;color:var(--muted);margin:6px 0 0">השק הקטן (<bdi>omental bursa</bdi>) נפתח: הקיבה מורמת כלפי מעלה, הלבלב נראה מאחוריה ומתחתיו המעי הגס הרוחבי · <bdi>Sobotta</bdi>, <bdi>Atlas and Text-book of Human Anatomy</bdi> (1906), איור 406 (נחלת הכלל)</p>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1374, 1380, 1382, 1385, 1387–1388</bdi></span><span>אנטומיה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>4</b>מקרה 1</div>
+ <h2>רחל, 62, כאב באפיגסטריום</h2>
+ <div class="grid">
+  <div class="box n"><b class="t">הסיפור (מקרה בדוי)</b>
+   <ul class="b sm">
+    <li>כאב חזק ומתמשך באפיגסטריום שמקרין לגב, החל לפני 8 שעות אחרי ארוחה</li>
+    <li>הקאות שלא מקלות על הכאב</li>
+    <li>ידועה עם אבנים בכיס המרה, לא שותה אלכוהול</li>
+    <li>דופק 104, לחץ דם 128/76, חום 37.6, סטורציה 97%</li>
+    <li>בבדיקה: רגישות באפיגסטריום, בלי סימני גירוי צפקי</li>
+   </ul></div>
+  <div class="box"><b class="t">במעבדה</b>
+   <ul class="b sm">
+    <li>ליפאז פי 8 מהערך העליון</li>
+    <li><bdi>ALT</bdi> מוגבר, בילירובין מעט מוגבר</li>
+    <li>לויקוציטוזיס, סוכר מוגבר</li>
+    <li>המוגלובין והמטוקריט גבוהים (התייבשות)</li>
+   </ul></div>
+ </div>
+ <div class="box a" style="margin-top:12px"><b class="t">שאלות לדיון</b>1. האם זו פנקריאטיטיס? צריך CT? · 2. כמה היא קשה? · 3. מה רושמים בהוראות הקבלה? · 4. מה עושים עם כיס המרה ומתי?</div>
+ <div class="src"><span>מקרה בדוי למטרות הוראה · <b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1381–1382</bdi></span><span>מקרה 1</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>5</b>מקרה 1 · אבחנה</div>
+ <h2>שניים משלושה מספיקים</h2>
+ <div class="grid">
+  <div>
+   <div class="flow">
+    <div><b>1 · כאב אופייני</b><span>כאב חד וממושך באפיגסטריום, לרוב מקרין לגב</span></div>
+    <div><b>2 · אנזימים</b><span>עמילאז או ליפאז פי 3 ומעלה מהערך העליון</span></div>
+    <div><b>3 · הדמיה</b><span>ממצאים אופייניים ב-CT, אולטרסאונד או MRI</span></div>
+   </div>
+   <div class="box" style="margin-top:10px"><b class="t">לרחל יש שניים: אין צורך ב-CT לאבחנה</b>ליפאז עדיף: ספציפי יותר ונשאר מוגבר יותר זמן (8–14 יום מול 3–5 לעמילאז). חשוב במי שמגיע אחרי 24–48 שעות</div>
+  </div>
+  <div style="display:grid;gap:10px">
+   <div class="box b"><b class="t">אולטרסאונד לכל מטופל</b>רגישות של 95% לאבנים בכיס המרה. אנזימי כבד מוגברים, ליפאז גבוה ואבנים: רגישות 97% וסגוליות 100% לפנקריאטיטיס ביליארית. <bdi>ALT</bdi> מוגבר לבד: ערך מנבא חיובי של 95%</div>
+   <div class="box a"><b class="t">מתי CT עם חומר ניגוד</b>אבחנה לא ברורה, אישור חומרה לפי מדדים קליניים, חוסר שיפור בטיפול שמרני או הידרדרות. שלב ורידי פורטלי (65–70 שניות) מראה הכי טוב נמק</div>
+   <div class="box n"><b class="t">בבדיקה הגופנית</b>בפנקריאטיטיס קלה הבטן יכולה להיות כמעט תקינה. סימנים נדירים של מחלה קשה: שטף דם במותניים (<bdi>Grey Turner</bdi>) או סביב הטבור (<bdi>Cullen</bdi>)</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1381–1382</bdi></span><span>אבחנה</span></div>
+</div></section>
+<section class="s"><div class="card">
+ <div class="kick"><b>6</b>בדיקה גופנית · מה מחפשים</div>
+ <h2>הבטן בפנקריאטיטיס</h2>
+ <div class="grid f">
+ <div>
+  <div class="flow">
+   <div><b>הסתכלות</b><span>מטופל מיובש, טכיקרדי, לעיתים מבולבל (במבוגרים). בטן תפוחה במחלה קשה. שטפי דם במותניים או סביב הטבור: נדירים, סימן לדימום רטרופריטונאלי</span></div>
+   <div><b>מישוש</b><span>במחלה קלה: רגישות קלה באפיגסטריום בלבד. במחלה קשה: רגישות מפושטת, ריבאונד וקשיחות</span></div>
+   <div><b>חזה</b><span>עמימות בהקשה וירידה בכניסת אוויר בבסיס השמאלי: תפליט פלאורלי</span></div>
+   <div><b>עור ועיניים</b><span>צהבת: אבן בצינור המרה או בצקת בראש הלבלב</span></div>
+  </div>
+  <div class="box a" style="margin-top:10px"><b class="t">שימו לב</b>עוצמת הכאב לא תמיד מתאימה לממצאים בבדיקה או לחומרת הדלקת</div>
+ </div>
+ <figure><img src="img/grey-turner-sign.jpg" alt="שטפי דם במותן"><figcaption>סימן <bdi>Grey Turner</bdi>: שטפי דם במותן ובדופן הצדדית בפנקריאטיטיס דמממית · <bdi>Herbert L. Fred, MD</bdi> ו-<bdi>Hendrik A. van Dijk</bdi>, <bdi>CC BY 2.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1381–1382</bdi></span><span>תמונות</span></div>
+</div></section>
+
+
+<section class="s"><div class="card">
+ <div class="kick"><b>7</b>מקרה 1 · חומרה</div>
+ <h2>כמה היא חולה?</h2>
+ <div class="grid">
+  <div>
+   <h3>ההגדרה המעודכנת (2012)</h3>
+   <div class="flow">
+    <div><b>קלה</b><span>בלי אי-ספיקת איברים ובלי סיבוכים מקומיים או מערכתיים</span></div>
+    <div><b>בינונית</b><span>אי-ספיקת איברים שחולפת תוך פחות מ-48 שעות, או סיבוכים מקומיים</span></div>
+    <div><b>קשה</b><span>אי-ספיקת איברים שנמשכת יותר מ-48 שעות</span></div>
+   </div>
+   <div class="box n" style="margin-top:10px"><b class="t">אי-ספיקת איברים (אטלנטה)</b>לחץ סיסטולי מתחת ל-90 · <bdi>PaO2</bdi> מתחת ל-60 · קראטינין מעל 2 אחרי נוזלים · דימום ממערכת העיכול מעל 500 מ״ל ביממה</div>
+  </div>
+  <div>
+   <h3>כלים לחיזוי</h3>
+   <ul class="b sm">
+    <li><b>SIRS:</b> פשוט וזול. מומלץ על ידי אגודות רבות. תמותה של 25% ב-SIRS מתמשך, 8% בחולף, 0% בלי SIRS</li>
+    <li><b>BISAP:</b> חמישה פרמטרים ב-24 השעות הראשונות (אוריאה, מצב הכרה, SIRS, גיל מעל 60, תפליט פלאורלי). מתחת ל-1% עד מעל 20% תמותה</li>
+    <li><b>Ranson:</b> 11 פרמטרים, שישה מהם רק אחרי 48 שעות. 3 ומעלה: קשה. טוב בעיקר לשלילה</li>
+    <li><b>CRP</b> של 150 ומעלה אחרי 48–72 שעות · <bdi>APACHE II</bdi> של 8 ומעלה</li>
+   </ul>
+   <div class="box" style="margin-top:10px"><b class="t">רחל</b>דופק 104 ולויקוציטוזיס: מתקרבת ל-SIRS. בלי אי-ספיקת איברים. כרגע: קלה, אבל עוקבים</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1382–1384</bdi></span><span>חומרה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>8</b>מקרה 1 · הוראות קבלה</div>
+ <h2>נוזלים, כאב ואוכל</h2>
+ <div class="grid g3">
+  <div class="box b"><b class="t">נוזלים</b>
+   <ul class="b sm"><li>קריסטלואידים איזוטוניים. רינגר לקטט עשוי להיות עדיף על סליין (פחות SIRS ב-24 שעות)</li><li>לא "כמה שיותר": מתאימים לגיל, למחלות הרקע, לסימנים החיוניים ולתפוקת השתן</li><li>ב-<bdi>WATERFALL</bdi> טיפול אגרסיבי גרם לעומס נוזלים ב-21% לעומת 6%, בלי תועלת</li></ul></div>
+  <div class="box"><b class="t">כאב וחמצן</b>
+   <ul class="b sm"><li>אופיואידים, בעיקר מורפין. אין הוכחה שהם מזיקים במחלה</li><li>מד סטורציה רציף. חמצן לשמירה על סטורציה מעל 95%</li></ul></div>
+  <div class="box a"><b class="t">אוכל</b>
+   <ul class="b sm"><li>הזנה מוקדמת, תוך 24–72 שעות</li><li>מחקר ספרדי: דיאטה מוצקה דלת שומן מיד בקבלה. פחות סיבוכים (4.2% לעומת 18.3%) ואשפוז קצר יותר (3.4 לעומת 8.8 ימים)</li></ul></div>
+ </div>
+ <div class="box r" style="margin-top:12px"><b class="t">מה לא רושמים: אנטיביוטיקה מונעת</b>לא מורידה ניתוחים, נמק נגוע או תמותה. מעלה זיהומים בחיידקים גרם חיוביים ובפטריות. נותנים רק כשיש זיהום מוכח או חשד בהדמיה לאוסף נגוע (גז באוסף)</div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1383–1384</bdi></span><span>טיפול</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>9</b>מקרה 1 · כיס המרה</div>
+ <h2><bdi>ERCP</bdi> או ניתוח? ומתי?</h2>
+ <div class="grid">
+  <div>
+   <h3><bdi>ERCP</bdi>: רק כשיש סיבה</h3>
+   <ul class="b sm">
+    <li>שגרתית ומוקדמת: <b>לא</b>, בשום דרגת חומרה. החסימה בדרך כלל חולפת תוך 48 שעות</li>
+    <li>כן: <b>כולנגיטיס</b>, או חסימה מתמשכת שהוכחה בהדמיה</li>
+    <li>לבירור אבן בצינור: <bdi>EUS</bdi> או <bdi>MRCP</bdi>, בלי סיכון להחמיר את הדלקת</li>
+    <li>מבוגר שלא מתאים לניתוח: <bdi>ERCP</bdi> עם ספינקטרוטומיה למניעת התקף חוזר</li>
+   </ul>
+  </div>
+  <div>
+   <h3>כריתת כיס מרה</h3>
+   <ul class="b sm">
+    <li>בלי טיפול: <b>30%</b> יחזרו עם פנקריאטיטיס ביליארית</li>
+    <li><b>מחלה קלה:</b> כריתה לפרוסקופית <b>באותו אשפוז</b>. בטוח ומוריד חזרות</li>
+    <li><b>מחלה קשה:</b> טיפול שמרני <b>6 שבועות לפחות</b> לפני הניתוח</li>
+    <li>אבן בצינור שוללים בצילום מרה בניתוח, <bdi>EUS</bdi> או <bdi>MRCP</bdi></li>
+   </ul>
+  </div>
+ </div>
+ <div class="box b" style="margin-top:12px"><b class="t">במחלקה השבוע</b>מצאו מטופל/ת עם פנקריאטיטיס. בדקו את הבטן, חשבו <bdi>BISAP</bdi> ו-SIRS, עברו על מאזן הנוזלים והתזונה. שאלו את הצוות מתי מתוכננת כריתת כיס המרה. הציגו בביקור</div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1382, 1384–1385</bdi></span><span>תזמון</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>10</b>מקרה 2</div>
+ <h2>דני, 45, אלכוהול ונשימה מהירה</h2>
+ <div class="grid">
+  <div class="box n"><b class="t">הסיפור (מקרה בדוי)</b>
+   <ul class="b sm">
+    <li>שותה כבד שנים רבות. יומיים של כאב קשה באפיגסטריום והקאות</li>
+    <li>ביום השני באשפוז: נשימה מהירה, <bdi>PaO2</bdi> של 56, קראטינין 2.6 אחרי נוזלים</li>
+    <li>הבטן תפוחה ורגישה. בדיקת חזה: עמימות בבסיס השמאלי</li>
+    <li>ב-72 שעות: עדיין אי-ספיקה נשימתית וכלייתית</li>
+   </ul></div>
+  <div style="display:grid;gap:10px">
+   <div class="box r"><b class="t">שאלה 1</b>מה דרגת החומרה? איפה הוא צריך להיות מאושפז?</div>
+   <div class="box a"><b class="t">שאלה 2</b>מתי עושים CT? מה מחפשים בו?</div>
+   <div class="box"><b class="t">שאלה 3</b>איך מאכילים אותו? צריך אנטיביוטיקה?</div>
+  </div>
+ </div>
+ <div class="src"><span>מקרה בדוי למטרות הוראה · <b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1381–1383</bdi></span><span>מקרה 2</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>11</b>מקרה 2 · תשובות</div>
+ <h2>פנקריאטיטיס קשה</h2>
+ <div class="grid">
+  <div>
+   <ul class="b sm">
+    <li><b>חומרה:</b> אי-ספיקת איברים מעל 48 שעות היא <b>קשה</b>. נשימה וכליות: מעקב צמוד, לעיתים עם צנתר מרכזי וקטטר. לרוב בטיפול נמרץ</li>
+    <li><b>חמצן:</b> פגיעה ריאתית חריפה היא מהסיבוכים המערכתיים השכיחים. תפליט פלאורלי משמאל מתאים לפנקריאטיטיס</li>
+    <li><b>CT:</b> כאן יש אינדיקציה, כי המטופל לא משתפר. מחפשים <b>נמק</b>: אזורים שלא נצבעים (מתחת ל-40–50 יחידות, לעומת 100–150 ברקמה תקינה)</li>
+   </ul>
+   <div class="box a" style="margin-top:10px"><b class="t">תזונה</b>הזנה אנטרלית עדיפה על הזנה תוך-ורידית: פחות מוות, פחות אי-ספיקת איברים ופחות זיהומים. לא אוכל דרך הפה תוך 72 שעות? זונדה לקיבה או לג׳ג׳ונום. הזנה תוך-ורידית רק כשאי אפשר (אילאוס, חסימה)</div>
+  </div>
+  <div>
+   <h3>מדד החומרה ב-CT (<bdi>CTSI</bdi>)</h3>
+   <div class="flow">
+    <div><b>דלקת: 0–4 נק׳</b><span>מלבלב תקין ועד שני אוספים או יותר או גז</span></div>
+    <div><b>נמק: 0–6 נק׳</b><span>אין · עד 30% · 30–50% · מעל 50%</span></div>
+    <div><b>0–3 נקודות</b><span>תמותה 3%, תחלואה 8%</span></div>
+    <div><b>4–6 נקודות</b><span>תמותה 6%, תחלואה 35%</span></div>
+    <div><b>7–10 נקודות</b><span>תמותה 17%, תחלואה 92%</span></div>
+   </div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1382–1385</bdi></span><span>מקרה 2</span></div>
+</div></section>
+<section class="s"><div class="card">
+ <div class="kick"><b>12</b>מקרה 2 · ההדמיה</div>
+ <h2>מה רואים ב-CT</h2>
+ <div class="grid">
+ <figure><img src="img/ap-ct-exudative.jpg" alt="CT של פנקריאטיטיס חריפה"><figcaption>בשבוע הראשון: לבלב נפוח ונוזל רב סביבו, בלי דופן. אין אזור שלא נצבע (אין נמק) · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ <figure><img src="img/pseudocyst-ct-stomach.jpg" alt="פסאודוציסטה צמודה לקיבה"><figcaption>אחרי שבועות: אוסף אחיד עם דופן, צמוד לדופן האחורית של הקיבה. נוקז דרך הקיבה · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="box n" style="margin-top:12px"><b class="t">איך קוראים</b>מחפשים: נוזל סביב הלבלב, אזורים בלבלב שלא נצבעים (נמק), גז באוסף, דופן מוגדרת. את הנמק מעריכים הכי טוב בשלב הוורידי הפורטלי</div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1382, 1385, 1387</bdi></span><span>תמונות</span></div>
+</div></section>
+
+
+<section class="s"><div class="card">
+ <div class="kick"><b>13</b>אוספים סביב הלבלב</div>
+ <h2>ארבעה שמות, שני צירים</h2>
+ <p class="lead" style="margin-bottom:10px">ציר אחד: נוזל בלבד או נמק. ציר שני: פחות או יותר מ-4 שבועות</p>
+ <div class="grid">
+  <div class="box b"><b class="t">אוסף נוזל חריף · עד 4 שבועות</b>אחיד, נוזלי, בלי דופן. ב-30–57% מההתקפים. רובם נספגים לבד</div>
+  <div class="box"><b class="t">פסאודוציסטה · אחרי 4 שבועות</b>נוזל אחיד בתוך דופן מוגדרת של קולגן ורקמה גרנולציונית, בלי אפיתל</div>
+  <div class="box a"><b class="t">אוסף נמקי חריף · עד 4 שבועות</b>תערובת של נוזל ורקמה מתה, בלי דופן, בתוך הלבלב או סביבו</div>
+  <div class="box r"><b class="t">נמק מוקף דופן (<bdi>WON</bdi>) · אחרי 4 שבועות</b>נוזל ונמק בתוך דופן מוגדרת. זה השלב שבו נוח ובטוח יותר להתערב</div>
+ </div>
+ <div class="box n" style="margin-top:12px"><b class="t">כל אחד מהם יכול להזדהם</b>גז באוסף בלי התערבות קודמת הוא אבחנתי. חום, לויקוציטוזיס וכאב יכולים להופיע גם בלי זיהום. לכן הידרדרות או חוסר שיפור אחרי 10–14 יום מעלים חשד</div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1385</bdi></span><span>סיווג</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>14</b>מקרה 2 · יום 24</div>
+ <h2>חום, ירידה בלחץ דם וגז בנמק</h2>
+ <div class="grid">
+  <div>
+   <div class="num" style="grid-template-columns:repeat(3,1fr)">
+    <div><b>22%</b><span>סיכון לזיהום כשהנמק מתחת ל-30%</span></div>
+    <div><b>37%</b><span>נמק של 30–50%</span></div>
+    <div><b>46%</b><span>נמק של יותר מ-70%</span></div>
+   </div>
+   <ul class="b sm">
+    <li><b>האבחנה:</b> חשד קליני (חום ממושך, הידרדרות, אי-ספיקה מאוחרת אחרי יום 7). גז ב-CT מאשר. כשלא ברור: דגימה במחט לצביעת גרם ותרבית</li>
+    <li><b>חיידקים:</b> בעיקר מהמעי (<bdi>E. coli</bdi>, <bdi>Klebsiella</bdi>, אנטרוקוקים)</li>
+    <li><b>אנטיביוטיקה:</b> קרבפנמים קודם, בגלל החדירה ללבלב. חלופות: קווינולונים, מטרונידזול, צפלוספורינים מדור 3, פיפרצילין</li>
+   </ul>
+  </div>
+  <div>
+   <h3>גישת "צעד אחר צעד"</h3>
+   <div class="flow">
+    <div><b>1 · לחכות</b><span>אנטיביוטיקה ותמיכה. לדחות התערבות ככל האפשר, עד שהנמק מוקף דופן</span></div>
+    <div><b>2 · לנקז</b><span>ניקוז מלעורי או אנדוסקופי דרך הקיבה, עם סטנט רחב</span></div>
+    <div><b>3 · לנקות</b><span>נקרוזקטומיה אנדוסקופית, או ניתוח זעיר-פולשני מאחורי הצפק</span></div>
+    <div><b>4 · ניתוח פתוח</b><span>רק כשכל השאר נכשל</span></div>
+   </div>
+   <div class="box r" style="margin-top:10px"><b class="t">למה לחכות?</b>תמותה אחרי נקרוזקטומיה פתוחה: 75% בשבועיים הראשונים, 45% בימים 15–29 ו-8% אחרי 30 יום</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1385–1387</bdi></span><span>נמק נגוע</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>15</b>הראיות שבספר</div>
+ <h2>שלושה מחקרים הולנדיים ששינו את הטיפול</h2>
+ <div class="grid g3">
+  <div class="study"><div class="y">2010 · מחקר אקראי</div><b>צעד אחר צעד מול ניתוח פתוח</b><p>ניקוז מלעורי ואחריו ניקוי זעיר-פולשני, מול נקרוזקטומיה פתוחה מוקדמת. בגישה ההדרגתית: פחות תמותה ופחות אי-ספיקה אקסוקרינית ואנדוקרינית בטווח הארוך</p><small>כפי שמסוכם ב-<bdi>Sabiston 22</bdi>, פרק 92 עמ׳ <bdi dir="ltr">1386</bdi></small></div>
+  <div class="study"><div class="y">2018 · מחקר אקראי</div><b>אנדוסקופי מול כירורגי</b><p>הגישה האנדוסקופית לא עדיפה בתמותה, אבל עם פחות פיסטולות, אשפוז קצר יותר ועלות נמוכה יותר</p><small>כפי שמסוכם ב-<bdi>Sabiston 22</bdi>, פרק 92 עמ׳ <bdi dir="ltr">1386</bdi></small></div>
+  <div class="study"><div class="y"><bdi>POINTER</bdi> · מחקר אקראי</div><b>לנקז מיד או לדחות?</b><p>104 מטופלים עם נמק נגוע. אותם סיבוכים ואותה תמותה. בדחייה: פחות התערבויות (2.6 לעומת 4.4). חלק מהמטופלים לא נזקקו לניקוז בכלל</p><small>כפי שמסוכם ב-<bdi>Sabiston 22</bdi>, פרק 92 עמ׳ <bdi dir="ltr">1386–1387</bdi></small></div>
+ </div>
+ <div class="box" style="margin-top:12px"><b class="t">היום</b>ניקוז אנדוסקופי עם סטנט רחב, לפעמים עם ניקוי אנדוסקופי או ניקוז מלעורי, חוסך ניתוח מרוב המטופלים. אם נכשל, ניתוח זעיר-פולשני פשוט יותר. דיון רב-תחומי ומרכז מנוסה</div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1386–1387</bdi></span><span>ראיות</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>16</b>מקרה 3</div>
+ <h2>שמונה שבועות אחרי: שובע מוקדם</h2>
+ <div class="grid">
+  <div>
+   <div class="box n"><b class="t">הסיפור (מקרה בדוי)</b>אורי, 51, שוחרר אחרי פנקריאטיטיס בינונית. חוזר עם שובע מוקדם, בחילות וירידה במשקל. ב-CT: אוסף נוזלי אחיד של 9 ס״מ עם דופן עבה, צמוד לדופן האחורית של הקיבה</div>
+   <ul class="b sm" style="margin-top:10px">
+    <li><b>אבחנה:</b> פסאודוציסטה. מופיעה ב-5–15% מהאוספים אחרי פנקריאטיטיס חריפה. הדופן נבנית במשך 4–8 שבועות לפחות</li>
+    <li><b>כשלא ברור</b> אם זו ציסטה ניאופלסטית: <bdi>EUS</bdi> עם דגימה. בפסאודוציסטה: עמילאז גבוה, <bdi>CEA</bdi> נמוך ובלי מוצין</li>
+   </ul>
+  </div>
+  <div>
+   <div class="flow">
+    <div><b>בלי תסמינים</b><span>מעקב. עד 70% נעלמות לבד, במיוחד מתחת ל-4 ס״מ, בזנב ובלי קשר לצינור הראשי</span></div>
+    <div><b>עם תסמינים · צמודה לקיבה</b><span>ניקוז אנדוסקופי דרך הקיבה (או התריסריון), כשהמרחק פחות מ-1 ס״מ</span></div>
+    <div><b>אנדוסקופיה לא אפשרית</b><span>ניתוח: ציסטוגסטרוסטומיה, ציסטודואודנוסטומיה או ציסטוג׳ג׳ונוסטומיה. הצלחה מעל 90%, חזרה עד 12%</span></div>
+    <div><b>ניקוז מלעורי</b><span>רק בציסטה נגועה עם ספסיס: סיכון גבוה לפיסטולה לעור</span></div>
+   </div>
+  </div>
+ </div>
+ <div class="src"><span>מקרה בדוי למטרות הוראה · <b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1387</bdi></span><span>מקרה 3</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>17</b>מקרה 3 · שבוע אחרי</div>
+ <h2>כאב פתאומי, דופק 130 ולחץ דם 80</h2>
+ <div class="grid">
+  <div class="box r"><b class="t">פסאודואנוריזמה שנקרעה</b>
+   <ul class="b sm">
+    <li>אלסטאז מהלבלב פוגע בדופן העורק. השכיח ביותר: <b>עורק הטחול</b>. גם הגסטרודואודנלי, המזנטרי העליון ועורק כיס המרה</li>
+    <li>כאב בטן פתאומי, טכיקרדיה ותת-לחץ דם</li>
+    <li><b>טיפול:</b> החייאה וצנתור לתסחיף. כשלא מצליח: קשירת העורק בניתוח</li>
+    <li>תמותה: 28–56%</li>
+   </ul></div>
+  <div class="box a"><b class="t">פקקת בווריד הטחול</b>
+   <ul class="b sm">
+    <li>הדלקת גורמת לפקקת, לעיתים עד מערכת הפורטל</li>
+    <li>בהדמיה: טחול מוגדל ו<b>דליות בקיבה</b></li>
+    <li>רוב המטופלים: טיפול שמרני. נוגדי קרישה לא שיפרו את הפתיחה מחדש של הווריד</li>
+    <li>דימום חוזר מהדליות בקיבה: <b>כריתת טחול</b></li>
+   </ul></div>
+ </div>
+ <div class="box n" style="margin-top:12px"><b class="t">סיבוכים נדירים נוספים</b>מיימת לבלבית ופיסטולה לבלבית-פלאורלית (קרע בצינור הלבלב: עמילאז גבוה בנוזל, מעל 50,000 בנוזל הפלאורלי). טיפול: ניקוז, סטנט בצינור הלבלב ותמיכה תזונתית</div>
+ <div class="src"><span>מקרה בדוי למטרות הוראה · <b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1387–1388</bdi></span><span>מקרה 3</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>18</b>מה חדש בתחום · 2021–2022</div>
+ <h2>מחקרים שכדאי להכיר</h2>
+ <div class="grid g3">
+  <div class="study"><div class="y"><bdi>NEJM</bdi> 2022 · מחקר אקראי</div><b><bdi>WATERFALL</bdi>: כמה נוזלים?</b>
+   <p>249 מטופלים, 18 מרכזים. רינגר לקטט אגרסיבי (בולוס 20 מ״ל/ק״ג ואחריו 3 מ״ל/ק״ג/שעה) מול מתון. עומס נוזלים: <b>20.5% לעומת 6.3%</b>, בלי שיפור בחומרה. המחקר נעצר מוקדם</p>
+   <small>de-Madaria E et al. N Engl J Med 2022;387:989-1000</small></div>
+  <div class="study"><div class="y"><bdi>NEJM</bdi> 2021 · מחקר אקראי</div><b><bdi>POINTER</bdi>: לנקז מיד?</b>
+   <p>104 מטופלים עם נמק נגוע. ניקוז מיידי מול ניקוז אחרי שהנמק מוקף דופן: אותם סיבוכים. התערבויות: <b>4.4 לעומת 2.6</b>. ב-39% מקבוצת הדחייה הספיקה אנטיביוטיקה בלי ניקוז</p>
+   <small>Boxhoorn L et al. N Engl J Med 2021;385:1372-81</small></div>
+  <div class="study"><div class="y"><bdi>Gastroenterology</bdi> 2022 · מעקב ארוך</div><b><bdi>ExTENSION</bdi>: 7 שנים אחרי</b>
+   <p>אנדוסקופי מול כירורגי בנמק נגוע: אותו שיעור מוות וסיבוכים קשים (53% לעומת 57%). באנדוסקופי פחות פיסטולות לעור (<b>8% לעומת 34%</b>) ופחות התערבויות חוזרות</p>
+   <small>Onnekink AM et al. Gastroenterology 2022;163:712-22</small></div>
+ </div>
+ <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>19</b>לסיכום</div>
+ <h2>חמישה דברים לקחת למחלקה</h2>
+ <ol class="obj">
+  <li>שניים משלושה (כאב, אנזימים פי 3, הדמיה) הם האבחנה. אולטרסאונד לכל אחד, CT רק כשיש סיבה</li>
+  <li>החומרה נקבעת לפי אי-ספיקת איברים ומשכה. SIRS מתמשך הוא סימן אזהרה</li>
+  <li>נוזלים במינון מותאם (לא אגרסיבי), אוכל מוקדם, בלי אנטיביוטיקה מונעת</li>
+  <li>ביליארית קלה: כריתת כיס מרה באותו אשפוז. ERCP רק בכולנגיטיס או בחסימה מוכחת</li>
+  <li>נמק נגוע: אנטיביוטיקה ולחכות לדופן. אחר כך צעד אחר צעד. ניתוח פתוח מוקדם הורג</li>
+ </ol>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 92 <bdi>Exocrine Pancreas</bdi>, החלק על פנקריאטיטיס חריפה (עמ׳ <bdi dir="ltr">1379–1388</bdi>)</div>
+ <div class="src"><span>איור: <bdi>Sobotta, Atlas and Text-book of Human Anatomy</bdi> (1906, נחלת הכלל, <bdi>Wikimedia Commons</bdi>) · תמונות: <bdi>Herbert L. Fred</bdi> ו-<bdi>Hendrik A. van Dijk</bdi> (<bdi>CC BY 2.0</bdi>), <bdi>Hellerhoff</bdi> (<bdi>CC BY-SA</bdi>), <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+</main>
+<div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
+<script>
+document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz').forEach(function(z){z.addEventListener('click',function(){w.querySelectorAll('.hz').forEach(function(x){x.classList.toggle('on',x===z)});w.querySelectorAll('.hzi').forEach(function(i){i.hidden=i.dataset.hzi!==z.dataset.hz;i.style.setProperty('--c',z.style.getPropertyValue('--c'))});var h=w.querySelector('.hint');if(h)h.hidden=true;});});});
+</script>
+<script>
+(function () {
+  var deck = document.getElementById('deck'), S = [].slice.call(deck.children), dots = document.getElementById('dots'), n = S.length;
+  S.forEach(function (_, k) { var i = document.createElement('i'); i.onclick = function () { go(k); }; dots.appendChild(i); });
+  function idx() { return Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }
+  function go(k) { k = Math.max(0, Math.min(n - 1, k)); S[k].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' }); }
+  function sync() { var k = idx(); [].forEach.call(dots.children, function (d, j) { d.className = j === k ? 'on' : ''; }); document.getElementById('count').textContent = (k + 1) + '/' + n; document.getElementById('prev').disabled = k === 0; document.getElementById('next').disabled = k === n - 1; }
+  deck.addEventListener('scroll', function () { clearTimeout(sync.t); sync.t = setTimeout(sync, 60); }, { passive: true });
+  document.getElementById('next').onclick = function () { go(idx() + 1); };
+  document.getElementById('prev').onclick = function () { go(idx() - 1); };
+  addEventListener('keydown', function (e) { if (e.key === 'ArrowLeft' || e.key === ' ') go(idx() + 1); if (e.key === 'ArrowRight') go(idx() - 1); });
+  sync();
+})();
+</script>
+</body>
+</html>

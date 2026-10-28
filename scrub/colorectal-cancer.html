@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>קרצינומה של הקולון והרקטום · Scrub In</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../emblem.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Frank+Ruhl+Libre:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0C2A35;--navy2:#123845;--g:#00967D;--g2:#3DC08C;--g3:#0A6B5A;--lime:#B5D96B;--red:#A3402E;--amber:#C9893F;--blue:#2F6FA8;--bg:#EDF2F0;--soft:#F3F7F5;--ink:#16262C;--muted:#5C6F73;--line:#DCE6E2}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--navy);color:var(--ink);font-family:Heebo,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.deck{position:fixed;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.deck::-webkit-scrollbar{display:none}
+.s{flex:0 0 100%;height:100%;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;padding:18px 16px 84px;overflow-y:auto;position:relative}
+.s::after{content:'';position:absolute;inset:0;background:url(../ops/art/organs.webp) no-repeat 6% 40%/auto 115%;opacity:.05;filter:invert(1);pointer-events:none}
+.card{width:min(980px,100%);background:#fff;border-radius:22px;box-shadow:0 18px 50px rgba(0,0,0,.35);padding:30px 32px 22px;position:relative;overflow:hidden;z-index:1}
+.card::before{content:'';position:absolute;inset:0 0 auto 0;height:6px;background:linear-gradient(90deg,var(--g3),var(--g),var(--g2),var(--lime))}
+.kick{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--g);letter-spacing:.3px;margin-bottom:6px}
+.kick b{background:var(--navy);color:#fff;border-radius:999px;min-width:26px;height:26px;display:grid;place-items:center;font-size:13px;padding:0 8px}
+h1,h2{font-family:'Frank Ruhl Libre',serif;color:var(--navy);margin:0 0 10px;line-height:1.15}
+h1{font-size:clamp(34px,6.4vw,60px)}h2{font-size:clamp(25px,4.4vw,36px)}
+h3{margin:0 0 6px;font-size:17px;color:var(--navy)}
+.lead{font-size:clamp(15.5px,2.3vw,18.5px);color:var(--muted);margin:0 0 16px;line-height:1.5}
+ul.b{margin:0;padding:0;list-style:none;display:grid;gap:8px}ul.b li{position:relative;padding-inline-start:20px;font-size:16.5px;line-height:1.45}ul.b li::before{content:'';position:absolute;inset-inline-start:2px;top:.62em;width:8px;height:8px;border-radius:2px;background:var(--g);transform:rotate(45deg)}
+ul.b li b{color:var(--navy)}ul.b.sm li{font-size:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.grid.g3{grid-template-columns:repeat(3,1fr)}.grid.f{grid-template-columns:1.05fr .95fr;align-items:center}
+.box{background:var(--soft);border-radius:14px;padding:13px 15px;border-inline-start:4px solid var(--g);font-size:15.5px;line-height:1.45}
+.box.r{border-color:var(--red);background:#FBEDEA}.box.a{border-color:var(--amber);background:#FFF6EA}.box.n{border-color:var(--navy)}.box.b{border-color:var(--blue);background:#EEF4FB}
+.box b.t{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}
+.num{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:4px 0 14px}.num div{background:var(--soft);border-radius:14px;padding:12px 10px;text-align:center}
+.num b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(26px,4vw,38px);color:var(--g3);line-height:1.05}.num span{font-size:13px;color:var(--muted);line-height:1.3;display:block;margin-top:4px}
+figure{margin:0;background:#FBFCFB;border:1px solid var(--line);border-radius:16px;padding:10px;text-align:center}figure img{max-width:100%;max-height:46vh;display:block;margin:0 auto;mix-blend-mode:multiply}
+figcaption{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.35}
+.ill svg{width:100%;height:auto;max-height:50vh}
+.src{margin-top:16px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.src b{color:var(--g3)}
+.tag{display:inline-block;font-size:12px;font-weight:800;border-radius:999px;padding:2px 10px;background:#E3F4EC;color:var(--g3);margin-inline-end:4px}
+.tag.r{background:#F8E3DE;color:var(--red)}.tag.a{background:#FFF3DF;color:#8A5A14}.tag.b{background:#E8F0FA;color:var(--blue)}
+.flow{display:grid;gap:8px}.flow div{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;background:var(--soft);border-radius:12px;padding:9px 12px;font-size:15.5px}.flow div b{color:var(--navy)}
+.study{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#fff}.study .y{font-size:12px;font-weight:800;color:var(--g);letter-spacing:.3px}.study b{display:block;font-size:16px;color:var(--navy);margin:2px 0}.study p{margin:4px 0 0;font-size:14.5px;line-height:1.45}.study small{display:block;margin-top:6px;font-size:11.5px;color:var(--muted)}
+.cover{background:radial-gradient(120% 90% at 85% 0%,#164B54 0%,var(--navy) 58%)}
+.cover::after{opacity:.16;background-position:2% 50%}
+.cover .card{background:transparent;box-shadow:none;color:#fff}.cover .card::before{display:none}.cover h1{color:#fff}.cover .lead{color:#C9D6DA}.cover .kick{color:var(--g2)}
+.pill{display:inline-flex;gap:6px;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px;color:#fff;margin:4px}
+.logo{display:flex;align-items:center;gap:10px;margin-bottom:26px}.logo img{width:48px;height:48px;border-radius:50%;background:#fff}.logo b{color:#fff;font-weight:900}.logo small{display:block;color:#A9C9C0;font-size:12px}
+.obj{counter-reset:o;list-style:none;margin:0;padding:0;display:grid;gap:10px}.obj li{counter-increment:o;display:flex;gap:12px;align-items:flex-start;font-size:16.5px;line-height:1.45}.obj li::before{content:counter(o);flex:0 0 30px;height:30px;border-radius:50%;background:var(--g);color:#fff;font-weight:800;display:grid;place-items:center}
+.nav{position:fixed;inset:auto 0 0 0;display:flex;align-items:center;justify-content:center;gap:14px;padding:12px 16px calc(14px + env(safe-area-inset-bottom));background:linear-gradient(transparent,rgba(6,20,26,.85) 40%);z-index:5}
+.nav button{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;font-size:22px;cursor:pointer}.nav button:disabled{opacity:.3}
+.dots{display:flex;gap:5px;flex-wrap:wrap;max-width:60vw;justify-content:center}.dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer}.dots i.on{background:var(--g2);width:20px;border-radius:5px}
+.count{color:#C9D6D9;font-size:13px;font-weight:700;min-width:44px;text-align:center}
+bdi{unicode-bidi:isolate}
+@media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
+@media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+.hotw{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;align-items:start}.hoti{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#FBFCFB}.hoti img{display:block;width:100%;mix-blend-mode:multiply}.hoti svg{position:absolute;inset:0;width:100%;height:100%}
+.hz{fill:var(--c);fill-opacity:.38;stroke:var(--c);stroke-width:2;cursor:pointer;transition:fill-opacity .2s}.hz:hover,.hz.on{fill-opacity:.62}.hzl{font:900 22px Heebo,sans-serif;fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;pointer-events:none;text-anchor:middle}
+.hotp .hint{background:var(--soft);border-radius:12px;padding:10px 12px;font-weight:700;color:var(--g3)}.hzi{border-inline-start:5px solid var(--c,var(--g));background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-top:8px;font-size:15.5px;line-height:1.45}.hzi b{display:block;font-size:17px;color:var(--navy);margin-bottom:4px}
+@media (max-width:760px){.hotw{grid-template-columns:1fr}}
+/*BRAND*/
+.brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
+.brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
+.s{padding-top:58px}
+.cover .card{display:flex;flex-direction:column;gap:6px;max-width:980px}
+.cvhead{display:flex;align-items:center;gap:16px;margin-bottom:30px}.cvhead img.em{width:74px;height:74px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(61,192,140,.55)}
+.cvhead b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(24px,3.4vw,34px);color:#fff;line-height:1.1}.cvhead span{display:block;font-size:clamp(15px,2vw,19px);color:#A9D9C8;font-weight:700;margin-top:4px}
+.cover h1{font-size:clamp(38px,6.6vw,66px);margin:6px 0 8px}.cover .kick{font-size:14px;letter-spacing:.06em}
+.cvmeta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.cvlogos{display:flex;align-items:center;gap:18px;margin-top:34px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14)}.cvlogos img{height:44px;width:auto}.cvlogos small{margin-inline-start:auto;color:#8FB3AA;font-size:12.5px;font-weight:700;letter-spacing:.08em}
+.cover .brandbar{display:none}
+@media (max-width:760px){.brandbar{left:10px;gap:7px;padding:4px 9px 4px 4px}.brandbar img{height:20px}.brandbar img.em{width:22px;height:22px}.s{padding-top:48px}.cvhead img.em{width:56px;height:56px}.cvlogos img{height:34px}.cvlogos small{display:none}}
+/* numbered lists: a bold word inside an item stays inline */
+.obj li,.steps li{display:block;position:relative;padding-inline-start:42px;min-height:30px}.obj li::before,.steps li::before{position:absolute;inset-inline-start:0;top:0}.obj.sm li{padding-inline-start:36px}
+.grid.tight figure img{max-height:24vh}
+@media print{.brandbar{display:none}}
+/*/BRAND*/
+</style>
+</head>
+<body>
+<div class="brandbar" aria-hidden="true"><img class="em" src="brand/emblem.jpg" alt=""><i></i><img src="brand/logo_k.webp" alt=""><img src="brand/logo_c.webp" alt=""></div>
+<main class="deck" id="deck">
+
+<section class="s cover"><div class="card">
+ <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
+ <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 1</div>
+ <h1>קרצינומה של הקולון והרקטום</h1>
+ <p class="lead">מהפוליפ לסרטן: אפידמיולוגיה, תסמונות תורשתיות, בירור, שלבים, ניתוח לפי אספקת הדם וטיפול משלים. המיקוד במפגש הזה הוא הקולון</p>
+ <div class="cvmeta"><span class="pill">מבוסס על <bdi>Sabiston</bdi>, מהדורה 22, פרק 96</span></div>
+ <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>1</b>מטרות הלמידה</div>
+ <h2>בסוף המפגש תדעו</h2>
+ <ol class="obj">
+  <li><span>לתאר את שלושת המסלולים מפוליפ לסרטן ולזהות פוליפ בסיכון גבוה</span></li>
+  <li><span>לזהות מטופל עם סיכון תורשתי (תסמונת לינץ׳, <bdi>FAP</bdi>) ולהבין מה זה משנה בטיפול</span></li>
+  <li><span>לבנות בירור מלא לחולה חדש: קולונוסקופיה, ביופסיה עם בדיקת <bdi>MMR</bdi>, מעבדה ו-<bdi>CT</bdi></span></li>
+  <li><span>להסביר את שלבי <bdi>TNM</bdi> ולמה צריך לפחות 12 בלוטות בפתולוגיה</span></li>
+  <li><span>להתאים את הניתוח למיקום הגידול ולאספקת הדם ולדעת מי מקבל טיפול משלים</span></li>
+  <li><span>לנהל גידול חוסם של המעי הגס בחדר המיון</span></li>
+ </ol>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 96 (עמ׳ <bdi dir="ltr">1491–1503</bdi>)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>2</b>אפידמיולוגיה</div>
+ <h2>סרטן המעי הגס במספרים</h2>
+ <div class="num">
+  <div><b dir="ltr">~100,000</b><span>מקרים חדשים של סרטן הקולון בשנה בארה״ב</span></div>
+  <div><b dir="ltr">20%</b><span>מהחולים מתחת לגיל 50 עם נטייה תורשתית (<bdi dir="ltr">6–10%</bdi> מעל גיל 50)</span></div>
+  <div><b dir="ltr">2.4%</b><span>עלייה בשנה בהיארעות בגילי <bdi dir="ltr">20–29</bdi> (אמצע שנות ה-80 עד 2013)</span></div>
+  <div><b dir="ltr">63%</b><span>הישרדות ל-5 שנים בכל השלבים יחד (<bdi>SEER</bdi>)</span></div>
+ </div>
+ <div class="grid">
+  <ul class="b">
+   <li>ההיארעות הכללית <b>יורדת</b> בזכות בדיקות הסקר. בצעירים מתחת לגיל 50 היא <b>עולה</b></li>
+   <li>חולה מתחת לגיל 50: עד 10% עם תסמונת לינץ׳. מתחת לגיל 35: <bdi dir="ltr">23%</bdi></li>
+   <li><b>גורמי סיכון:</b> מחלת מעי דלקתית, השמנה, סוכרת ותנגודת לאינסולין, עישון, אלכוהול, בשר אדום ומעובד וחוסר פעילות גופנית</li>
+  </ul>
+  <div style="display:grid;gap:10px">
+   <div class="box"><b class="t">סקר באוכלוסייה בסיכון רגיל</b>קולונוסקופיה לכל מי שמעל גיל 45. גורמי הסיכון של אורח החיים לא משנים את גיל ההתחלה או את התדירות</div>
+   <div class="box a"><b class="t">סרטן "בין בדיקות"</b>רובם כנראה נובעים מנגעים משוננים שטוחים ועדינים שלא זוהו בקולונוסקופיה</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1492, 1497, 1502</bdi> · פרק 52 עמ׳ <bdi dir="ltr">625</bdi> (גיל הסקר)</span><span>אפידמיולוגיה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>3</b>פתוגנזה</div>
+ <h2>מפוליפ לסרטן</h2>
+ <div class="grid f">
+  <div>
+   <div class="flow">
+    <div><b>אי-יציבות כרומוזומלית · <bdi dir="ltr">65–70%</bdi></b><span>המסלול השכיח. <bdi>APC</bdi>, אחר כך <bdi>KRAS</bdi> ואז <bdi>TP53</bdi> או <bdi>SMAD4</bdi>: רצף אדנומה-קרצינומה הקלאסי. בעיקר קולון שמאלי ורקטום</span></div>
+    <div><b>המסלול המשונן · <bdi dir="ltr">15–20%</bdi></b><span>מתחיל לרוב ב-<bdi>BRAF</bdi> ובמתילציה של פרומוטורים (<bdi>CIMP</bdi>). מבוגרים, קולון ימני, נשים</span></div>
+    <div><b>אי-יציבות מיקרוסטליטית · <bdi dir="ltr">12–15%</bdi></b><span>אובדן תיקון שגיאות (<bdi>dMMR</bdi>): לינץ׳, מתילציה של <bdi>MLH1</bdi> או שתי מוטציות סומטיות. ריר, תסנין לימפוציטים</span></div>
+   </div>
+   <h3 style="margin-top:14px">איזה פוליפ מסוכן?</h3>
+   <ul class="b sm">
+    <li><b>לא ניאופלסטיים:</b> המרטומה, פוליפ דלקתי (פסאודופוליפ). בלי פוטנציאל ממאיר עצמי</li>
+    <li><b>אדנומה מתקדמת:</b> 1 ס״מ ומעלה, דיספלזיה בדרגה גבוהה או מבנה וילוזי. מסירים באנדוסקופיה</li>
+    <li><b>משונן:</b> פוליפ היפרפלסטי בלי סיכון. אדנומה משוננת יושבת יכולה לפתח דיספלזיה וסרטן</li>
+   </ul>
+  </div>
+  <figure><img src="img/colon-polyp-endo.jpg" alt="פוליפ בסיגמואיד בקולונוסקופיה"><figcaption>פוליפ בסיגמואיד לפני כריתה, כך הוא נראה בקולונוסקופיה · <bdi>J. Guntau, Wikimedia Commons</bdi> (נחלת הכלל)</figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1491–1493</bdi></span><span>פתוגנזה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>4</b>סיכון תורשתי</div>
+ <h2>תסמונות שהכירורג חייב לזהות</h2>
+ <div class="grid g3">
+  <div class="box n"><b class="t">תסמונת לינץ׳</b>
+   <ul class="b sm"><li>אוטוזומלית דומיננטית: <bdi>MLH1</bdi>, <bdi>MSH2</bdi>, <bdi>MSH6</bdi>, <bdi>PMS2</bdi>, <bdi>EPCAM</bdi></li><li>1 ל-279 באוכלוסייה, כ-3% מכלל הסרטנים במעי הגס</li><li>קריטריוני אמסטרדם II: שלושה קרובים, שני דורות, אחד לפני גיל 50</li><li>קולונוסקופיה כל שנה מגיל <bdi dir="ltr">20–25</bdi></li><li>סרטן בקולון: כריתת <b>כל</b> הקולון ולא כריתה מקטעית</li></ul></div>
+  <div class="box"><b class="t"><bdi>FAP</bdi></b>
+   <ul class="b sm"><li>מוטציה ב-<bdi>APC</bdi>, 1 ל-10,000. כ-20% מוטציה חדשה: היעדר סיפור משפחתי לא שולל</li><li>סיכון לסרטן כמעט 100% בלי כריתה מונעת</li><li>קולונוסקופיה כל שנה מגיל <bdi dir="ltr">10–12</bdi>. ניתוח בסוף גיל ההתבגרות</li><li>עד 20 פוליפים ברקטום: כריתת הקולון וחיבור אילאום לרקטום. יותר מ-20: כריתת קולון ורקטום עם כיס אילאלי</li></ul></div>
+  <div style="display:grid;gap:10px">
+   <figure><img src="img/fap-sigmoidoscopy.jpg" alt="פוליפוזיס משפחתית בסיגמואידוסקופיה"><figcaption>אינספור פוליפים ב-<bdi>FAP</bdi> בסיגמואידוסקופיה · <bdi>Samir, Wikimedia Commons, CC BY-SA 3.0</bdi></figcaption></figure>
+   <div class="box a"><b class="t">בכל ביופסיה של סרטן</b>בודקים <bdi>MMR</bdi> (צביעה או <bdi>MSI</bdi>). חוסר ללא מתילציה של <bdi>MLH1</bdi>: ייעוץ גנטי</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1494–1497</bdi></span><span>תסמונות תורשתיות</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>5</b>הסיפור הקליני</div>
+ <h2>איך זה מגיע אלינו</h2>
+ <div class="grid f">
+  <div>
+   <ul class="b">
+    <li><b>התסמינים השכיחים:</b> שינוי בהרגלי היציאות, דם מהרקטום, כאבי בטן</li>
+    <li><b>גידול בצד ימין:</b> אנמיה מחוסר ברזל</li>
+    <li><b>גידול בצד שמאל:</b> שינוי בקוטר הצואה או דם טרי</li>
+    <li><b>הרבה גידולים בלי תסמינים בכלל.</b> לכן סקר בזמן ובמרווחים הנכונים</li>
+    <li><b>חסימה משמעותית:</b> מסבכת <bdi dir="ltr">8–29%</bdi> מסרטני הקולון. רוב ההופעות הדחופות</li>
+   </ul>
+   <div class="box b" style="margin-top:12px"><b class="t">במחלקה השבוע</b>מצאו חולה לפני כריתת מעי. קראו את דו״ח הקולונוסקופיה (מיקום, קעקוע, בדיקה שלמה, ביופסיה ו-<bdi>MMR</bdi>), את ה-<bdi>CEA</bdi> ואת ה-<bdi>CT</bdi>. הציגו את השלב הקליני לבכיר/ה</div>
+  </div>
+  <figure><img src="img/rectosigmoid-cancer-endo.jpg" alt="גידול כיבי במעבר רקטו-סיגמואידי בקולונוסקופיה"><figcaption>קרצינומה כיבית עם שוליים מורמים באזור הרקטו-סיגמואיד, מבט אנדוסקופי · <bdi>藤澤孝志, Wikimedia Commons, CC BY-SA 3.0</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1497, 1501</bdi></span><span>הסתמנות</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>6</b>בירור ושלב קליני</div>
+ <h2>הבירור של חולה חדש</h2>
+ <div class="flow">
+  <div><b>קולונוסקופיה</b><span>מיקום מול סימנים אנטומיים, <b>קעקוע</b> של הנגע, תיעוד שכל הקולון נבדק (נגעים נוספים) וביופסיה. האבחנה היא היסטולוגית</span></div>
+  <div><b>הביופסיה</b><span>בדיקת <bdi>MMR</bdi>: מזהה מועמדים לייעוץ גנטי ולטיפול אימונולוגי</span></div>
+  <div><b>מעבדה</b><span>ספירת דם, כימיה ו-<bdi>CEA</bdi></span></div>
+  <div><b>גרורות</b><span><bdi>CT</bdi> חזה, בטן ואגן עם חומר ניגוד לווריד ולפה</span></div>
+  <div><b><bdi>PET-CT</bdi></b><span>לא בשגרה. רק לממצא לא חד-משמעי ב-<bdi>CT</bdi></span></div>
+  <div><b>חסימה מונעת קולונוסקופיה מלאה</b><span>קולונוגרפיה ב-<bdi>CT</bdi> לקולון הקרוב, או קולונוסקופיה מלאה בתקופה שאחרי הניתוח</span></div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1497, 1503</bdi></span><span>בירור</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>7</b>שלבים</div>
+ <h2>שלבי <bdi>TNM</bdi> בקיצור</h2>
+ <div class="grid">
+  <div class="flow">
+   <div><b><bdi>T1</bdi></b><span>דרך השריר הרירי לתת-רירית</span></div>
+   <div><b><bdi>T2</bdi></b><span>לשכבת השריר העצמית (<bdi>muscularis propria</bdi>)</span></div>
+   <div><b><bdi>T3</bdi></b><span>לשכבות החיצוניות של הדופן, בלי לעבור אותן</span></div>
+   <div><b><bdi>T4a · T4b</bdi></b><span>דרך הצפק הוויסצרלי · חודר לאיבר שכן או נצמד אליו</span></div>
+   <div><b><bdi>N1 · N2a · N2b</bdi></b><span>1–3 בלוטות · 4–6 · 7 ומעלה. <bdi>N1c</bdi>: משקעי גידול בשומן בלי בלוטה</span></div>
+   <div><b><bdi>M1a · M1b · M1c</bdi></b><span>איבר מרוחק אחד · יותר מאחד · צפק</span></div>
+  </div>
+  <div style="display:grid;gap:10px">
+   <div class="box"><b class="t">שלב <bdi>I</bdi></b><bdi>T1–T2 N0</bdi></div>
+   <div class="box n"><b class="t">שלב <bdi>II</bdi> (<bdi>A · B · C</bdi>)</b><bdi>T3 · T4a · T4b</bdi>, בלי בלוטות</div>
+   <div class="box a"><b class="t">שלב <bdi>III</bdi></b>כל <bdi>T</bdi> עם בלוטות חיוביות (<bdi>N1–N2</bdi>), בלי גרורות</div>
+   <div class="box r"><b class="t">שלב <bdi>IV</bdi> (<bdi>A · B · C</bdi>)</b>גרורות מרוחקות. צפק הוא <bdi>IVC</bdi></div>
+   <div class="box b"><b class="t">הישרדות ל-5 שנים</b>ממוקם <bdi dir="ltr">91%</bdi> · אזורי <bdi dir="ltr">72%</bdi> · מרוחק <bdi dir="ltr">13%</bdi></div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1501–1502</bdi> (טבלה <bdi>96.3</bdi>)</span><span>שלבים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>8</b>אנטומיה כירורגית · אינטראקטיבי</div>
+ <h2>איזה ניתוח לאיזה מקטע?</h2>
+ <div class="hotw" style="grid-template-columns:.72fr 1.28fr"><div class="hoti"><img src="img/Sobo_1906_410.jpg" alt="המעי הגס במבט קדמי, המעי הדק מוסט"><svg viewBox="0 0 1200 1582" preserveAspectRatio="none">
+   <polygon class="hz" data-hz="r" points="202,675 272,609 328,656 375,750 394,938 412,1106 394,1200 319,1228 253,1181 216,1031 197,844" style="--c:#2F6FA8"/>
+   <text class="hzl" style="font-size:64px;stroke-width:6px" x="300" y="900">1</text>
+   <polygon class="hz" data-hz="t" points="281,581 338,488 431,417 562,366 712,333 844,333 923,366 900,441 806,422 675,422 544,450 441,497 356,572" style="--c:#00967D"/>
+   <text class="hzl" style="font-size:64px;stroke-width:6px" x="620" y="400">2</text>
+   <polygon class="hz" data-hz="s" points="923,366 975,384 1003,450 994,544 938,562 900,506 900,441" style="--c:#C9893F"/>
+   <text class="hzl" style="font-size:64px;stroke-width:6px" x="952" y="470">3</text>
+   <polygon class="hz" data-hz="d" points="900,525 975,562 966,750 947,938 923,1041 862,1041 844,891 858,703 872,562" style="--c:#7A5BD6"/>
+   <text class="hzl" style="font-size:64px;stroke-width:6px" x="905" y="790">4</text>
+   <polygon class="hz" data-hz="g" points="862,1041 923,1041 900,1144 844,1238 759,1275 675,1266 647,1209 712,1181 797,1134" style="--c:#A3402E"/>
+   <text class="hzl" style="font-size:64px;stroke-width:6px" x="790" y="1200">5</text>
+  </svg></div>
+  <div class="hotp"><p class="hint">👆 לחצו על מקטע של המעי הגס כדי לקרוא על אספקת הדם ועל הניתוח</p>
+   <div class="hzi" data-hzi="r" hidden><b>1 · צקום וקולון עולה</b><p>אספקה מ-<bdi>SMA</bdi>: <bdi>ileocolic</bdi>, <bdi>right colic</bdi> (כשקיים) והענף הימני של <bdi>middle colic</bdi>. <strong>כריתת מעי ימנית:</strong> קשירה גבוהה של הכלים, האילאום נחתך כ-5 ס״מ מהשסתום והקולון הרוחבי בשליש הקרוב. האומנטום יוצא יחד עם הנתיח. בדיסקציה חושפים את התריסריון ואת ראש הלבלב</p></div>
+   <div class="hzi" data-hzi="t" hidden><b>2 · קולון רוחבי</b><p>רוב הגידולים כאן: <strong>כריתה ימנית מורחבת</strong>. קושרים את ה-<bdi>ileocolic</bdi> וגם את ה-<bdi>middle colic</bdi> בבסיסו. החיבור לקולון הרוחבי הרחוק</p></div>
+   <div class="hzi" data-hzi="s" hidden><b>3 · כפיף הטחול</b><p>אין הסכמה. אפשרויות: כריתה ימנית מורחבת, כריתה כמעט מלאה עם חיבור אילאום-קולון יורד, או כריתה מקטעית: קושרים את <bdi>left colic</bdi> במוצאו מה-<bdi>IMA</bdi> ואת הווריד <bdi>IMV</bdi> בגבול התחתון של הלבלב. נתונים חדשים: תוצאות אונקולוגיות דומות לכריתה מורחבת. זרימת הדם לחיבור תלויה בעורק השולי</p></div>
+   <div class="hzi" data-hzi="d" hidden><b>4 · קולון יורד</b><p>אספקה מ-<bdi>IMA</bdi> (<bdi>left colic</bdi>). <strong>כריתה שמאלית</strong> עם קשירה גבוהה של ה-<bdi>IMA</bdi>, תוך הימנעות מהמקלעת העצבית שסביב מוצאו. את ה-<bdi>IMV</bdi> קושרים לטרלית לרצועת טרייץ. משחררים את כפיף הטחול במלואו כדי לחבר בלי מתח. החיבור בדרך כלל בשדכנים מקצה לקצה</p></div>
+   <div class="hzi" data-hzi="g" hidden><b>5 · סיגמואיד</b><p>ענפי הסיגמואיד של ה-<bdi>IMA</bdi>. <strong>כריתה מקטעית</strong> לפי עקרונות אונקולוגיים: החיתוך הרחוק ברקטום העליון והקרוב בקולון היורד הרחוק</p></div>
+   <div class="box" style="margin-top:10px"><b class="t">העורק השולי</b>קשת של כלי דם עוקפים שרצה במקביל לדופן הקולון וקרוב אליה. שומרים עליו כדי שהחיבור לא יהיה איסכמי</div>
+  </div></div>
+ <figcaption>המעי הגס במבט קדמי, המעי הדק מוסט והמזנטריום חשוף · <bdi>Sobotta, Atlas and Text-book of Human Anatomy</bdi> 1906, איור 410 (נחלת הכלל)</figcaption>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1497–1500</bdi></span><span>אנטומיה כירורגית</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>9</b>עקרונות הניתוח</div>
+ <h2>ניתוח אונקולוגי טוב</h2>
+ <div class="grid">
+  <div>
+   <ul class="b">
+    <li><b>שוליים:</b> <bdi dir="ltr">5–7</bdi> ס״מ מהגידול בכל צד</li>
+    <li><b>בלוטות:</b> יותר מ-12 בלוטות קשורות להישרדות טובה יותר בשלבים <bdi>II–III</bdi>. פחות מ-12: יותר חזרות. קשירה גבוהה של כלי הדם עוזרת להגיע לזה</li>
+    <li><b>החיבור:</b> בלי מתח, מקטעים בריאים עם אספקת דם טובה, שמירה על העורק השולי</li>
+    <li><b>לפרוסקופיה ורובוט:</b> פחות כאב, אשפוז קצר יותר, חזרה מהירה של תפקוד המעי ופחות זיהומי פצע. במחקר <bdi>COST</bdi> ההישרדות בלי מחלה ל-5 שנים לא נפלה מניתוח פתוח</li>
+   </ul>
+  </div>
+  <div style="display:grid;gap:10px">
+   <figure><img style="max-height:24vh" src="img/lap-sigmoid-cancer.jpg" alt="גידול בסיגמואיד בלפרוסקופיה"><figcaption>גידול ממאיר בסיגמואיד, מבט לפרוסקופי בזמן ניתוח · <bdi>Anpol42, Wikimedia Commons, CC BY-SA 4.0</bdi></figcaption></figure>
+   <figure><img style="max-height:22vh" src="img/colectomy-specimen-cancer.jpg" alt="נתיח כריתת קולון פתוח עם גידול ושני פוליפים"><figcaption>נתיח פתוח: קרצינומה חודרנית ושני פוליפים אדנומטוטיים · <bdi>Emmanuelm, Wikimedia Commons, CC BY 3.0</bdi></figcaption></figure>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1497, 1500</bdi></span><span>ניתוח</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>10</b>חירום · מה עושים במיון</div>
+ <h2>גידול חוסם</h2>
+ <div class="grid f">
+  <div>
+   <ul class="b sm">
+    <li><b>לאט:</b> צואה דקה, עצירות מחמירה, בטן שהולכת ומתנפחת. <b>בחדות:</b> חסימה מלאה, כאב והקאות (לעיתים צואתיות)</li>
+    <li><b>האבחנה:</b> צילום בטן או <bdi>CT</bdi>. המטרה: לשחרר את החסימה, לכרות מעי לא חיוני ולכרות את הגידול כשאפשר</li>
+   </ul>
+   <div class="flow" style="margin-top:10px">
+    <div><b>חסימה בצד ימין</b><span>כריתה מקטעית אונקולוגית. ברוב המקרים חיבור ראשוני בטוח. בסיכון גבוה לדליפה: סטומה זמנית</span></div>
+    <div><b>חסימה בסיגמואיד ובצד שמאל</b><span>ניתוח דחוף וכריתה מקטעית. מעי קרוב מנוקב או איסכמי: כריתה כמעט מלאה של הקולון</span></div>
+    <div><b>חיבור ראשוני?</b><span>פעם סגרו את הגדם והוציאו סטומה. היום אפשר לחבר בחולה יציב, בלי מתח ועם אספקת דם טובה</span></div>
+    <div><b>סטנט אנדוסקופי</b><span>גשר לניתוח מתוכנן: יותר חיבורים ראשוניים, פחות זיהומי פצע, יותר ניתוחים לפרוסקופיים. <b>אסור</b> בחשד לאיסכמיה או לניקוב</span></div>
+   </div>
+  </div>
+  <figure><img src="img/colon-cancer-obstruction-ct.jpg" alt="חסימת מעי גס מגידול בקולון היורד בצילום וב-CT"><figcaption>חסימת מעי גס מגידול מצר בקולון היורד: מעי גס מורחב בצילום. ב-<bdi>CT</bdi> קפיצה בקוטר אחרי הגידול · <bdi>Hellerhoff, Wikimedia Commons, CC BY-SA 4.0</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1501</bdi></span><span>חירום</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>11</b>גרורות באבחנה</div>
+ <h2>גידול ראשוני עם גרורות סינכרוניות</h2>
+ <div class="grid">
+  <ul class="b">
+   <li><b>הגידול הראשוני עושה תסמינים</b> (דימום, חסימה): מטפלים בו קודם. אחר כך במחלה המרוחקת</li>
+   <li><b>הגידול הראשוני שקט:</b> טיפול סיסטמי קודם</li>
+   <li><b>גרורות בכבד שניתן לכרות:</b> כימותרפיה לפני הניתוח משפרת הישרדות בלי התקדמות. ניתוח משולב כשהמורכבות נמוכה, בשלבים כשהיא גבוהה</li>
+   <li><b>גרורות בריאה שניתן לכרות:</b> הכריתה משפרת הישרדות</li>
+   <li><b>גרורות בצפק:</b> דיון רב-תחומי. בחולים נבחרים: ניתוח הקטנת גידול עם <bdi>HIPEC</bdi></li>
+  </ul>
+  <div class="box b"><b class="t">בשבוע 5</b>הרצאה נפרדת על גרורות לכבד מסרטן המעי הגס: מי מתאים לכריתה, נפח הכבד שנשאר והסדר בין הכבד לגידול הראשוני</div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1501</bdi></span><span>מחלה גרורתית</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>12</b>אחרי הפתולוגיה</div>
+ <h2>מי מקבל טיפול משלים?</h2>
+ <div class="grid">
+  <div>
+   <div class="flow">
+    <div><b>שלב <bdi>III</bdi></b><span>כימותרפיה. <bdi>CAPEOX</bdi> או <bdi>FOLFOX</bdi> עדיפים על <bdi>5-FU</bdi> עם לויקובורין</span></div>
+    <div><b>סיכון נמוך <bdi>T1–3 N1</bdi></b><span>3 חודשי <bdi>CAPEOX</bdi> לא נופלים מ-6, עם פחות רעילות</span></div>
+    <div><b>סיכון גבוה <bdi>T4</bdi> או <bdi>N2</bdi></b><span>3 חודשי <bdi>FOLFOX</bdi> נחותים מ-6</span></div>
+    <div><b>שלב <bdi>II</bdi> בסיכון גבוה</b><span>מומלצת כימותרפיה. הוספת אוקסליפלטין לא שיפרה הישרדות כאן או מעל גיל 70</span></div>
+    <div><b><bdi>dMMR</bdi> בשלב <bdi>I–II</bdi></b><span>מעקב בלי טיפול משלים</span></div>
+   </div>
+  </div>
+  <div style="display:grid;gap:10px">
+   <div class="box a"><b class="t">שלב <bdi>II</bdi> בסיכון גבוה, מה מחפשים בדו״ח</b>התמיינות ירודה, חדירה לכלי לימפה ודם, חדירה פרינוירלית, חסימה, פחות מ-12 בלוטות, ניקוב מקומי, שוליים קרובים או חיוביים, "ניצנוץ" גידולי גבוה</div>
+   <div class="box n"><b class="t">גורמי פרוגנוזה נוספים</b><bdi>CEA</bdi> מעל 5 לפני ואחרי הניתוח, היסטולוגיה רירית, תאי טבעת חותם (הישרדות ל-5 שנים <bdi dir="ltr">9–36%</bdi>), <bdi>BRAF</bdi> ו-<bdi>KRAS</bdi> רעים. <bdi>MSI</bdi> משפר הישרדות</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1501</bdi></span><span>טיפול משלים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>13</b>מעקב</div>
+ <h2>המעקב אחרי ניתוח מרפא</h2>
+ <div class="num">
+  <div><b dir="ltr">1</b><span>שנה אחרי הניתוח: קולונוסקופיה מלאה לכולם</span></div>
+  <div><b dir="ltr">1 · 3</b><span>שנים לקולונוסקופיה הבאה: עם אדנומה מתקדמת · בלי</span></div>
+  <div><b dir="ltr">3–6</b><span>חודשים: בדיקה ו-<bdi>CEA</bdi> בשנתיים הראשונות (שלבים <bdi>II–III</bdi>)</span></div>
+  <div><b dir="ltr">6–12</b><span>חודשים: <bdi>CT</bdi> חזה, בטן ואגן במשך 5 שנים</span></div>
+ </div>
+ <ul class="b">
+  <li>אחרי השנתיים הראשונות: בדיקה ו-<bdi>CEA</bdi> כל חצי שנה, עד 5 שנים</li>
+  <li><b>שלב <bdi>I</bdi>:</b> בלי הדמיה ובלי סמנים, רק קולונוסקופיה</li>
+  <li><b>שלב <bdi>IV</bdi> אחרי כריתה מרפאת:</b> הדמיה כל <bdi dir="ltr">3–6</bdi> חודשים בשנתיים הראשונות, אחר כך כל <bdi dir="ltr">6–12</bdi> חודשים עד 5 שנים</li>
+ </ul>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1502–1503</bdi></span><span>מעקב</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>14</b>מה חדש בתחום · 2022–2026</div>
+ <h2>מחקרים שכדאי להכיר</h2>
+ <div class="grid">
+  <div class="study"><div class="y"><bdi>NEJM</bdi> 2022 · <bdi>Lancet</bdi> 2026 · מחקר אקראי</div><b><bdi>NordICC</bdi>: הזמנה לקולונוסקופיה אחת</b>
+   <p>84,585 בני <bdi dir="ltr">55–64</bdi> בפולין, נורווגיה ושוודיה. אחרי 10 שנים: סרטן ב-<bdi dir="ltr">0.98%</bdi> מהמוזמנים לעומת <bdi dir="ltr">1.20%</bdi> (ירידה של 18%). רק 42% הגיעו לבדיקה. אחרי 13 שנים: ירידה בהיארעות (<bdi dir="ltr">RR 0.81</bdi>) אבל לא בתמותה מהמחלה</p>
+   <small>Bretthauer M et al. N Engl J Med 2022;387:1547-56 · Kaminski MF et al. Lancet 2026;407:1787-95</small></div>
+  <div class="study"><div class="y"><bdi>J Clin Oncol</bdi> 2023 · מחקר אקראי</div><b><bdi>FOxTROT</bdi>: כימותרפיה לפני ניתוח בקולון</b>
+   <p>1,053 חולים עם <bdi>T3–4</bdi> בהדמיה. 6 שבועות אוקסליפלטין לפני הניתוח: יותר כריתות שלמות (94% לעומת 89%) ופחות מחלה שארית או חוזרת בשנתיים (<bdi dir="ltr">16.9%</bdi> לעומת <bdi dir="ltr">21.5%</bdi>). מעט תועלת בגידולי <bdi>dMMR</bdi></p>
+   <small>Morton D et al. J Clin Oncol 2023;41:1541-52</small></div>
+  <div class="study"><div class="y"><bdi>NEJM</bdi> 2024 · שלב 2</div><b><bdi>NICHE-2</bdi>: אימונותרפיה לפני ניתוח ב-<bdi>dMMR</bdi></b>
+   <p>115 חולים עם סרטן קולון מקומי מתקדם <bdi>dMMR</bdi>, ניבולומאב ואיפילימומאב. 98% נותחו בזמן. תגובה פתולוגית משמעותית ב-95% ותגובה מלאה ב-68%. אף חזרה במעקב חציוני של 26 חודשים</p>
+   <small>Chalabi M et al. N Engl J Med 2024;390:1949-58</small></div>
+  <div class="study"><div class="y"><bdi>NEJM</bdi> 2025 · מחקר אקראי שלב 3</div><b><bdi>CHALLENGE</bdi>: פעילות גופנית אחרי כימותרפיה</b>
+   <p>889 חולים אחרי כריתה וכימותרפיה משלימה. תוכנית אימון מובנית ל-3 שנים: הישרדות בלי מחלה ל-5 שנים <bdi dir="ltr">80.3%</bdi> לעומת <bdi dir="ltr">73.9%</bdi>. הישרדות ל-8 שנים <bdi dir="ltr">90.3%</bdi> לעומת <bdi dir="ltr">83.2%</bdi></p>
+   <small>Courneya KS et al. N Engl J Med 2025;393:13-25</small></div>
+ </div>
+ <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>15</b>לסיכום</div>
+ <h2>חמישה דברים לקחת למחלקה</h2>
+ <ol class="obj">
+  <li><span>רוב סרטני המעי הגס מתחילים בפוליפ. אדנומה מתקדמת (1 ס״מ ומעלה, דיספלזיה גבוהה או מבנה וילוזי) מסירים</span></li>
+  <li><span>חולה צעיר או סיפור משפחתי: לחשוב על לינץ׳. בכל ביופסיה של סרטן בודקים <bdi>MMR</bdi></span></li>
+  <li><span>בירור: קולונוסקופיה מלאה עם קעקוע וביופסיה, <bdi>CEA</bdi> ו-<bdi>CT</bdi> חזה, בטן ואגן</span></li>
+  <li><span>הניתוח נקבע לפי אספקת הדם: שוליים של <bdi dir="ltr">5–7</bdi> ס״מ, יותר מ-12 בלוטות, חיבור בלי מתח</span></li>
+  <li><span>שלב <bdi>III</bdi> מקבל כימותרפיה. גידול חוסם: ניתוח דחוף או סטנט כגשר, אף פעם לא סטנט במעי איסכמי</span></li>
+ </ol>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 96 <bdi>Cancers of the Colon, Rectum, and Anus</bdi> (עמ׳ <bdi dir="ltr">1491–1503</bdi>)</div>
+ <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906, נחלת הכלל) · תמונות קליניות מ-<bdi>Wikimedia Commons</bdi> לפי הרישיון שבכל כיתוב · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+</main>
+<div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
+<script>
+document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz').forEach(function(z){z.addEventListener('click',function(){w.querySelectorAll('.hz').forEach(function(x){x.classList.toggle('on',x===z)});w.querySelectorAll('.hzi').forEach(function(i){i.hidden=i.dataset.hzi!==z.dataset.hz;i.style.setProperty('--c',z.style.getPropertyValue('--c'))});var h=w.querySelector('.hint');if(h)h.hidden=true;});});});
+</script>
+<script>
+(function () {
+  var deck = document.getElementById('deck'), S = [].slice.call(deck.children), dots = document.getElementById('dots'), n = S.length;
+  S.forEach(function (_, k) { var i = document.createElement('i'); i.onclick = function () { go(k); }; dots.appendChild(i); });
+  function idx() { return Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }
+  function go(k) { k = Math.max(0, Math.min(n - 1, k)); S[k].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' }); }
+  function sync() { var k = idx(); [].forEach.call(dots.children, function (d, j) { d.className = j === k ? 'on' : ''; }); document.getElementById('count').textContent = (k + 1) + '/' + n; document.getElementById('prev').disabled = k === 0; document.getElementById('next').disabled = k === n - 1; }
+  deck.addEventListener('scroll', function () { clearTimeout(sync.t); sync.t = setTimeout(sync, 60); }, { passive: true });
+  document.getElementById('next').onclick = function () { go(idx() + 1); };
+  document.getElementById('prev').onclick = function () { go(idx() - 1); };
+  addEventListener('keydown', function (e) { if (e.key === 'ArrowLeft' || e.key === ' ') go(idx() + 1); if (e.key === 'ArrowRight') go(idx() - 1); });
+  sync();
+})();
+</script>
+</body>
+</html>

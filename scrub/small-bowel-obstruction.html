@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>חסימת מעי דק · Scrub In</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../emblem.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Frank+Ruhl+Libre:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0C2A35;--navy2:#123845;--g:#00967D;--g2:#3DC08C;--g3:#0A6B5A;--lime:#B5D96B;--red:#A3402E;--amber:#C9893F;--blue:#2F6FA8;--bg:#EDF2F0;--soft:#F3F7F5;--ink:#16262C;--muted:#5C6F73;--line:#DCE6E2}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--navy);color:var(--ink);font-family:Heebo,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.deck{position:fixed;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.deck::-webkit-scrollbar{display:none}
+.s{flex:0 0 100%;height:100%;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;padding:18px 16px 84px;overflow-y:auto;position:relative}
+.s::after{content:'';position:absolute;inset:0;background:url(../ops/art/organs.webp) no-repeat 6% 40%/auto 115%;opacity:.05;filter:invert(1);pointer-events:none}
+.card{width:min(980px,100%);background:#fff;border-radius:22px;box-shadow:0 18px 50px rgba(0,0,0,.35);padding:30px 32px 22px;position:relative;overflow:hidden;z-index:1}
+.card::before{content:'';position:absolute;inset:0 0 auto 0;height:6px;background:linear-gradient(90deg,var(--g3),var(--g),var(--g2),var(--lime))}
+.kick{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--g);letter-spacing:.3px;margin-bottom:6px}
+.kick b{background:var(--navy);color:#fff;border-radius:999px;min-width:26px;height:26px;display:grid;place-items:center;font-size:13px;padding:0 8px}
+h1,h2{font-family:'Frank Ruhl Libre',serif;color:var(--navy);margin:0 0 10px;line-height:1.15}
+h1{font-size:clamp(34px,6.4vw,60px)}h2{font-size:clamp(25px,4.4vw,36px)}
+h3{margin:0 0 6px;font-size:17px;color:var(--navy)}
+.lead{font-size:clamp(15.5px,2.3vw,18.5px);color:var(--muted);margin:0 0 16px;line-height:1.5}
+ul.b{margin:0;padding:0;list-style:none;display:grid;gap:8px}ul.b li{position:relative;padding-inline-start:20px;font-size:16.5px;line-height:1.45}ul.b li::before{content:'';position:absolute;inset-inline-start:2px;top:.62em;width:8px;height:8px;border-radius:2px;background:var(--g);transform:rotate(45deg)}
+ul.b li b{color:var(--navy)}ul.b.sm li{font-size:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.grid.g3{grid-template-columns:repeat(3,1fr)}.grid.f{grid-template-columns:1.05fr .95fr;align-items:center}
+.box{background:var(--soft);border-radius:14px;padding:13px 15px;border-inline-start:4px solid var(--g);font-size:15.5px;line-height:1.45}
+.box.r{border-color:var(--red);background:#FBEDEA}.box.a{border-color:var(--amber);background:#FFF6EA}.box.n{border-color:var(--navy)}.box.b{border-color:var(--blue);background:#EEF4FB}
+.box b.t{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}
+.num{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:4px 0 14px}.num div{background:var(--soft);border-radius:14px;padding:12px 10px;text-align:center}
+.num b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(26px,4vw,38px);color:var(--g3);line-height:1.05}.num span{font-size:13px;color:var(--muted);line-height:1.3;display:block;margin-top:4px}
+figure{margin:0;background:#FBFCFB;border:1px solid var(--line);border-radius:16px;padding:10px;text-align:center}figure img{max-width:100%;max-height:46vh;display:block;margin:0 auto;mix-blend-mode:multiply}
+figcaption{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.35}
+.ill svg{width:100%;height:auto;max-height:50vh}
+.src{margin-top:16px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.src b{color:var(--g3)}
+.tag{display:inline-block;font-size:12px;font-weight:800;border-radius:999px;padding:2px 10px;background:#E3F4EC;color:var(--g3);margin-inline-end:4px}
+.tag.r{background:#F8E3DE;color:var(--red)}.tag.a{background:#FFF3DF;color:#8A5A14}.tag.b{background:#E8F0FA;color:var(--blue)}
+.flow{display:grid;gap:8px}.flow div{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;background:var(--soft);border-radius:12px;padding:9px 12px;font-size:15.5px}.flow div b{color:var(--navy)}
+.study{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#fff}.study .y{font-size:12px;font-weight:800;color:var(--g);letter-spacing:.3px}.study b{display:block;font-size:16px;color:var(--navy);margin:2px 0}.study p{margin:4px 0 0;font-size:14.5px;line-height:1.45}.study small{display:block;margin-top:6px;font-size:11.5px;color:var(--muted)}
+.cover{background:radial-gradient(120% 90% at 85% 0%,#164B54 0%,var(--navy) 58%)}
+.cover::after{opacity:.16;background-position:2% 50%}
+.cover .card{background:transparent;box-shadow:none;color:#fff}.cover .card::before{display:none}.cover h1{color:#fff}.cover .lead{color:#C9D6DA}.cover .kick{color:var(--g2)}
+.pill{display:inline-flex;gap:6px;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px;color:#fff;margin:4px}
+.logo{display:flex;align-items:center;gap:10px;margin-bottom:26px}.logo img{width:48px;height:48px;border-radius:50%;background:#fff}.logo b{color:#fff;font-weight:900}.logo small{display:block;color:#A9C9C0;font-size:12px}
+.obj{counter-reset:o;list-style:none;margin:0;padding:0;display:grid;gap:10px}.obj li{counter-increment:o;display:flex;gap:12px;align-items:flex-start;font-size:16.5px;line-height:1.45}.obj li::before{content:counter(o);flex:0 0 30px;height:30px;border-radius:50%;background:var(--g);color:#fff;font-weight:800;display:grid;place-items:center}
+.nav{position:fixed;inset:auto 0 0 0;display:flex;align-items:center;justify-content:center;gap:14px;padding:12px 16px calc(14px + env(safe-area-inset-bottom));background:linear-gradient(transparent,rgba(6,20,26,.85) 40%);z-index:5}
+.nav button{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;font-size:22px;cursor:pointer}.nav button:disabled{opacity:.3}
+.dots{display:flex;gap:5px;flex-wrap:wrap;max-width:60vw;justify-content:center}.dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer}.dots i.on{background:var(--g2);width:20px;border-radius:5px}
+.count{color:#C9D6D9;font-size:13px;font-weight:700;min-width:44px;text-align:center}
+bdi{unicode-bidi:isolate}
+.cmp{width:100%;border-collapse:separate;border-spacing:0;font-size:14px;border:1px solid var(--line);border-radius:14px;overflow:hidden}.cmp th{background:var(--navy);color:#fff;padding:9px 10px;font-size:16px;text-align:start}.cmp th small{display:block;font-weight:500;color:#A9D9C8;font-size:12px}.cmp td{padding:8px 10px;border-top:1px solid var(--line);vertical-align:top;line-height:1.4}.cmp td:first-child{background:var(--soft);font-weight:800;color:var(--navy);white-space:nowrap}.cmp tr:nth-child(odd) td:not(:first-child){background:#FBFCFB}
+figure.vid video{width:100%;max-height:34vh;border-radius:10px;background:#000;display:block}
+@media (max-width:760px){.cmp{font-size:12.5px}.cmp td,.cmp th{padding:6px}}
+
+.hotw{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;align-items:start}.hoti{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#FBFCFB}.hoti img{display:block;width:100%;mix-blend-mode:multiply}.hoti svg{position:absolute;inset:0;width:100%;height:100%}
+.hz{fill:var(--c);fill-opacity:.38;stroke:var(--c);stroke-width:2;cursor:pointer;transition:fill-opacity .2s}.hz:hover,.hz.on{fill-opacity:.62}.hzl{font:900 22px Heebo,sans-serif;fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;pointer-events:none;text-anchor:middle}
+.hotp .hint{background:var(--soft);border-radius:12px;padding:10px 12px;font-weight:700;color:var(--g3);margin:0}.hzi{background:#fff;border:1px solid var(--line);border-inline-start:5px solid var(--c,var(--g));border-radius:14px;padding:12px 14px;margin-top:8px;font-size:15.5px;line-height:1.45}.hzi>b{display:block;font-size:17px;color:var(--navy);margin-bottom:4px}.hzi p{margin:0}
+figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-size:15px}.obj.sm li::before{flex-basis:26px;height:26px;font-size:13px}.flow.sm div{grid-template-columns:130px 1fr;padding:7px 10px;font-size:14.5px}
+@media (max-width:760px){.hotw{grid-template-columns:1fr}}
+
+@media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
+@media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+.num.n3{grid-template-columns:repeat(3,1fr)}@media (max-width:760px){.num.n3{grid-template-columns:1fr 1fr}}
+.rev{margin-top:10px;border:1px dashed var(--g);border-radius:14px;padding:8px 12px;background:#F6FBF9}.rev summary{display:block;cursor:pointer;font-weight:800;color:var(--g3);list-style:none}.rev summary::-webkit-details-marker{display:none}.rev summary::before{content:"👁 "}.rev[open] summary{margin-bottom:8px}
+/*BRAND*/
+.brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
+.brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
+.s{padding-top:58px}
+.cover .card{display:flex;flex-direction:column;gap:6px;max-width:980px}
+.cvhead{display:flex;align-items:center;gap:16px;margin-bottom:30px}.cvhead img.em{width:74px;height:74px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(61,192,140,.55)}
+.cvhead b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(24px,3.4vw,34px);color:#fff;line-height:1.1}.cvhead span{display:block;font-size:clamp(15px,2vw,19px);color:#A9D9C8;font-weight:700;margin-top:4px}
+.cover h1{font-size:clamp(38px,6.6vw,66px);margin:6px 0 8px}.cover .kick{font-size:14px;letter-spacing:.06em}
+.cvmeta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.cvlogos{display:flex;align-items:center;gap:18px;margin-top:34px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14)}.cvlogos img{height:44px;width:auto}.cvlogos small{margin-inline-start:auto;color:#8FB3AA;font-size:12.5px;font-weight:700;letter-spacing:.08em}
+.cover .brandbar{display:none}
+@media (max-width:760px){.brandbar{left:10px;gap:7px;padding:4px 9px 4px 4px}.brandbar img{height:20px}.brandbar img.em{width:22px;height:22px}.s{padding-top:48px}.cvhead img.em{width:56px;height:56px}.cvlogos img{height:34px}.cvlogos small{display:none}}
+/* numbered lists: a bold word inside an item stays inline */
+.obj li,.steps li{display:block;position:relative;padding-inline-start:42px;min-height:30px}.obj li::before,.steps li::before{position:absolute;inset-inline-start:0;top:0}.obj.sm li{padding-inline-start:36px}
+.grid.tight figure img{max-height:24vh}
+@media print{.brandbar{display:none}}
+/*/BRAND*/
+</style>
+</head>
+<body>
+<div class="brandbar" aria-hidden="true"><img class="em" src="brand/emblem.jpg" alt=""><i></i><img src="brand/logo_k.webp" alt=""><img src="brand/logo_c.webp" alt=""></div>
+<main class="deck" id="deck">
+
+<section class="s cover"><div class="card">
+ <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
+ <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 3</div>
+ <h1>חסימת מעי דק</h1>
+ <p class="lead">סיבות, פיזיולוגיה, אבחנה והדמיה, חסימה פשוטה מול חנוקה, טיפול שמרני ומתי לנתח</p>
+ <div class="cvmeta"><span class="pill">מבוסס על <bdi>Sabiston</bdi>, מהדורה 22, פרק <bdi dir="ltr">91</bdi></span></div>
+ <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>1</b>מטרות הלמידה</div>
+ <h2>בסוף המפגש תדעו</h2>
+ <ol class="obj">
+  <li>למנות את הסיבות השכיחות לחסימת מעי דק ולהסביר את הפיזיולוגיה שלה</li>
+  <li>לזהות את התסמינים והסימנים, כולל ההבדל בין חסימה גבוהה לנמוכה</li>
+  <li>לקרוא צילום בטן ולהכיר את מקומו של <bdi>CT</bdi> ושל חומר ניגוד מסיס במים</li>
+  <li>לחשוד בחסימה חנוקה ובלולאה סגורה ולהבין למה אי אפשר לשלול אותן בוודאות</li>
+  <li>לנהל טיפול שמרני ולדעת מתי צריך ניתוח ואיך בודקים חיות של מעי</li>
+  <li>להבדיל בין חסימה מכנית לאילאוס</li>
+ </ol>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 91 <bdi>Small Intestine</bdi> (עמ׳ <bdi dir="ltr">1321–1322, 1331–1338</bdi>)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>2</b>אנטומיה · אינטראקטיבי</div>
+ <h2>המעי הדק במקומו</h2>
+ <div class="hotw"><div class="hoti"><img src="img/Sobo_1906_408_sbo.jpg" alt="הבטן הפתוחה: האומנטום מורם, המעי הדק במקומו ומסגרת המעי הגס"><svg viewBox="0 0 1000 1110" preserveAspectRatio="none">
+   <polygon class="hz" data-hz="om" points="100,160 300,40 700,40 870,160 860,360 700,440 300,450 110,360" style="--c:#C9893F"/>
+   <text class="hzl" style="font-size:52px" x="490" y="260">1</text>
+   <polygon class="hz" data-hz="col" points="230,470 760,455 790,560 600,590 240,600" style="--c:#7A5BD6"/>
+   <polygon class="hz" data-hz="col" points="185,740 300,760 315,1000 240,1010 185,900" style="--c:#7A5BD6"/>
+   <text class="hzl" style="font-size:52px" x="500" y="545">2</text>
+   <polygon class="hz" data-hz="jej" points="220,610 560,600 720,615 730,720 560,770 330,775 220,700" style="--c:#2F6FA8"/>
+   <text class="hzl" style="font-size:52px" x="470" y="705">3</text>
+   <polygon class="hz" data-hz="ile" points="330,860 620,830 710,930 650,1035 380,1035 300,960" style="--c:#00967D"/>
+   <text class="hzl" style="font-size:52px" x="510" y="955">4</text>
+   <polygon class="hz" data-hz="pel" points="380,1045 660,1045 720,1100 330,1100" style="--c:#0C2A35"/>
+   <text class="hzl" style="font-size:44px" x="525" y="1092">5</text>
+   <polygon class="hz" data-hz="gr" points="95,1000 200,1020 220,1105 90,1105" style="--c:#A3402E"/>
+   <polygon class="hz" data-hz="gr" points="800,1020 905,1000 910,1105 780,1105" style="--c:#A3402E"/>
+   <text class="hzl" style="font-size:44px" x="150" y="1080">6</text>
+  </svg></div>
+  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
+   <div class="hzi" data-hzi="om" hidden><b>1 · האומנטום הגדול</b><p>בסוף ניתוח מניחים אותו על אזור הניתוח או על אגן חשוף כחלק מטכניקה שמפחיתה הדבקויות. טכניקה טובה היא עדיין הדרך היעילה ביותר למנוע הדבקויות</p></div>
+   <div class="hzi" data-hzi="col" hidden><b>2 · מסגרת המעי הגס</b><p>בחסימת מעי דק המעי הגס ריק: בצילום המעי הדק מורחב ביחס למעי הגס ואין גז ברקטום. סרטן בצקום או במעי הגס העולה יכול להופיע כחסימת מעי דק</p></div>
+   <div class="hzi" data-hzi="jej" hidden><b>3 · ג׳ג׳ונום (שתי החמישיות העליונות)</b><p>מתחיל בזווית הדואודנו-ג׳ג׳ונלית (רצועת טרייץ), כ-<bdi dir="ltr">100–110</bdi> ס״מ. דופן עבה, 1–2 קשתות עם כלים ישרים ארוכים. <b>חסימה גבוהה:</b> בחילות והקאות בולטות. לעיתים הן התסמין היחיד. איבוד מיצי קיבה: חוסר כלור ואשלגן ובססת מטבולית</p></div>
+   <div class="hzi" data-hzi="ile" hidden><b>4 · אילאום (שלוש החמישיות התחתונות)</b><p>כ-<bdi dir="ltr">150–160</bdi> ס״מ, 4–5 קשתות עם כלים קצרים. <b>חסימה נמוכה:</b> כאב התכווצותי הוא התסמין הראשון והבולט, פחות הקאות ויותר תפיחות. הפרעות האלקטרוליטים פחות דרמטיות</p></div>
+   <div class="hzi" data-hzi="pel" hidden><b>5 · האגן</b><p>הדבקויות אחרי ניתוחים באגן (גינקולוגיה, תוספתן, מעי גס) הן יותר מ-60% מהחסימות. המעי נייד יותר באגן וקשור יותר בבטן העליונה</p></div>
+   <div class="hzi" data-hzi="gr" hidden><b>6 · המפשעות</b><p>בקע הוא הסיבה השנייה בשכיחותה, כ-10%: מפשעתי, פמורלי, בטני. בכל חולה עם חסימה בודקים מפשעות, משולש הירך ואזור האובטורטור</p></div>
+  </div></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 91 עמ׳ <bdi dir="ltr">1321–1322, 1332–1333, 1337</bdi> · הציור: <bdi dir="ltr">Sobotta (1906)</bdi>, איור 408 (נחלת הכלל)</span><span>אנטומיה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>3</b>סיבות</div>
+ <h2>מה חוסם את המעי?</h2>
+ <div class="num">
+  <div><b dir="ltr">&gt;60%</b><span>הדבקויות, בעיקר אחרי ניתוחים באגן</span></div>
+  <div><b dir="ltr">~10%</b><span>בקעים: הסיבה השנייה בשכיחותה</span></div>
+  <div><b dir="ltr">~5%</b><span>גידולים ממאירים, רובם גרורות בצפק</span></div>
+  <div><b dir="ltr">~5%</b><span>מחלת קרוהן: הסיבה הרביעית</span></div>
+ </div>
+ <div class="grid f">
+  <div>
+   <div class="flow">
+    <div><b>מחוץ לדופן</b><span>הדבקויות, בקע חיצוני או פנימי, קרצינומטוזיס, אבצס</span></div>
+    <div><b>בתוך הדופן</b><span>קרוהן, גידול, הצרות מקרינה או מאיסכמיה, אינטוסוספציה</span></div>
+    <div><b>בתוך החלל</b><span>אבן מרה, בזואר, גוף זר, אנטרוליט</span></div>
+   </div>
+   <ul class="b sm" style="margin-top:10px">
+    <li><b>אבצס</b> (תוספתן, דיברטיקול, דליפה מהשקה) יכול לגרום לחסימה ולא תמיד חושבים עליו</li>
+    <li><b>אינטוסוספציה במבוגר:</b> לרוב יש נקודת הובלה, פוליפ או גידול</li>
+    <li><b>אבן מרה</b> עוברת למעי דרך פיסטולה בין כיס המרה למעי</li>
+   </ul>
+  </div>
+  <figure><img src="img/gallstone-ileus.jpg" alt="אילאוס מאבן מרה בצילום וב-CT"><figcaption>חסימה מאבן מרה: אבן מסוידת בצילום וב-<bdi>CT</bdi> (בעיגול) · <bdi dir="ltr">Hellerhoff · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 91 עמ׳ <bdi dir="ltr">1331–1332</bdi></span><span>סיבות</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>4</b>פתופיזיולוגיה</div>
+ <h2>מה קורה למעלה מהחסימה</h2>
+ <div class="grid">
+  <div class="flow">
+   <div><b>בהתחלה</b><span>פריסטלטיקה מוגברת, מעל ומתחת לחסימה. לכן <b>שלשול לא שולל חסימה</b></span></div>
+   <div><b>אחר כך</b><span>המעי מתעייף ומתרחב. ההתכווצויות נחלשות</span></div>
+   <div><b>מדור שלישי</b><span>מים ומלחים נאגרים בחלל ובדופן: התייבשות, מיעוט שתן, אזוטמיה, ריכוז הדם</span></div>
+   <div><b>לחץ בבטן</b><span>החזר ורידי יורד, הסרעפת עולה והנשימה נפגעת</span></div>
+   <div><b>זרימת דם</b><span>הלחץ בחלל מוריד את זרימת הדם לרירית</span></div>
+  </div>
+  <div style="display:grid;gap:10px">
+   <div class="box r"><b class="t">לולאה סגורה</b>שני הקצוות חסומים (רצועה, בקע פנימי), לעיתים עם סיבוב (וולוולוס). הלחץ גבוה במיוחד: חסימה עורקית, איסכמיה, ניקוב ופריטוניטיס</div>
+   <div class="box a"><b class="t">חיידקים</b>בג׳ג׳ונום התקין <bdi dir="ltr">10³–10⁵ CFU/mL</bdi>. בחסימה עד <bdi dir="ltr">10⁹–10¹⁰</bdi>, בעיקר <bdi>E. coli</bdi>, סטרפטוקוקוס פקליס וקלבסיאלה. מעבר חיידקים לבלוטות ולמחזור הדם: דלקת מערכתית, אלח דם וכשל רב-מערכתי</div>
+   <div class="box n"><b class="t">ההקאות בחסימה גבוהה</b>חוסר כלור, חוסר אשלגן ובססת מטבולית</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 91 עמ׳ <bdi dir="ltr">1332–1333</bdi></span><span>פתופיזיולוגיה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>5</b>אנמנזה</div>
+ <h2>ארבעת התסמינים</h2>
+ <div class="grid g3">
+  <div class="box n"><b class="t">כאב התכווצותי</b>בהתקפים כל 4–5 דקות. בחסימה נמוכה ההתקפים נדירים יותר</div>
+  <div class="box"><b class="t">בחילה והקאות</b>בולטות בחסימה גבוהה. הקאה צואתית: חסימה מבוססת ומאוחרת עם ריבוי חיידקים</div>
+  <div class="box"><b class="t">תפיחות ועצירות</b>התפיחות גדלה ככל שהמעי מתרחב. עצירת צואה וגזים מופיעה מאוחר</div>
+ </div>
+ <div class="grid" style="margin-top:12px">
+  <ul class="b sm">
+   <li><b>ניתוחים קודמים:</b> במיוחד באגן (הדבקויות)</li>
+   <li><b>בקע ידוע</b>, גידול ממאיר, קרוהן, הקרנות לאגן</li>
+   <li>שלשול בתחילת המחלה לא שולל חסימה מלאה</li>
+  </ul>
+  <div class="box r"><b class="t">כאב קבוע ולא התכווצותי</b>עם חום ודופק מהיר: חשד לחנק. אבל אין סימן או בדיקה ששוללים חנק בוודאות</div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 91 עמ׳ <bdi dir="ltr">1333, 1335</bdi></span><span>אנמנזה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>6</b>בדיקה גופנית</div>
+ <h2>תפיחות, צלקות ושערי בקע</h2>
+ <div class="grid f">
+  <div>
+   <ul class="b sm">
+    <li><b>מצב כללי:</b> דופק מהיר ולחץ דם נמוך (התייבשות). <b>חום</b> מרמז על חנק</li>
+    <li><b>הסתכלות:</b> בטן תפוחה, צלקות ניתוח. בחולה רזה רואים לעיתים גלי פריסטלטיקה</li>
+    <li><b>האזנה:</b> בהתחלה קולות מוגברים ו״שאגות״. מאוחר יותר שקט</li>
+    <li><b>מישוש:</b> רגישות קלה, לעיתים גוש. רגישות ממוקדת, רגישות בהרפיה והתגוננות: פריטוניטיס וחשד לחנק</li>
+    <li><b>שערי בקע:</b> מפשעות, משולש הירך, אזור האובטורטור</li>
+    <li><b>בדיקה רקטלית תמיד:</b> גוש חוסם או דם סמוי (גידול, אינטוסוספציה, אוטם)</li>
+   </ul>
+   <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>בדקו חולה מאושפז עם חסימת מעי דק: ספרו את הצלקות ובדקו את שערי הבקע. בדקו גם את הזונדה: כמה הפרישה ומה צבע התוכן. עקבו אחרי מאזן הנוזלים והאלקטרוליטים</div>
+  </div>
+  <figure><img src="img/exam-ring-crop.jpg" alt="בדיקת הטבעת המפשעתית החיצונית באצבע" style="max-height:44vh"><figcaption>בדיקת שער הבקע במפשעה: אצבע דרך העור אל הטבעת המפשעתית החיצונית · <bdi dir="ltr">Herych H.I. · CC BY 3.0 · Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 91 עמ׳ <bdi dir="ltr">1333</bdi></span><span>בדיקה גופנית</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>7</b>מעבדה וצילום בטן</div>
+ <h2>הצילום עדיין מלמד</h2>
+ <div class="grid f">
+  <div>
+   <ul class="b sm">
+    <li><b>מעבדה לא מאבחנת חסימה</b>, אבל מראה כמה החולה מיובש: נתרן, כלור, אשלגן, ביקרבונט, קריאטינין, שוב ושוב בזמן ההחייאה</li>
+    <li>המטוקריט עולה מריכוז הדם ויורד עם הנוזלים. לויקוציטוזיס לא מוכיחה חנק. ספירה תקינה לא שוללת אותו</li>
+    <li><b>לקטט גבוה</b>: חשד לאיסכמיה או לנמק</li>
+   </ul>
+   <h3 style="margin-top:12px">סימנים בצילום</h3>
+   <div class="flow">
+    <div><b>בשכיבה</b><span>מעי דק מורחב (מעל 3 ס״מ), מורחב ביחס למעי הגס, אין גז ברקטום, בטן חסרת גז</span></div>
+    <div><b>בעמידה</b><span>רמות נוזל-אוויר מרובות ״במדרגות״, ארוכות מ-2.5 ס״מ, בגבהים שונים באותה לולאה</span></div>
+    <div><b>מדאיג</b><span>מעט גז בשכיבה ו״מחרוזת חרוזים״ בעמידה: חסימה גבוהה או לולאה סגורה</span></div>
+    <div><b>לפעמים הסיבה</b><span>אבן מרה, גוף זר</span></div>
+   </div>
+  </div>
+  <figure><img src="img/xray-sbo-upright.jpg" alt="צילום בטן בעמידה עם רמות נוזל-אוויר" style="max-height:52vh"><figcaption>צילום בטן בעמידה: לולאות מעי דק מורחבות עם רמות נוזל-אוויר מרובות · <bdi dir="ltr">James Heilman, MD · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 91 עמ׳ <bdi dir="ltr">1333–1334</bdi> (תיבה <bdi dir="ltr">91.2</bdi>)</span><span>מעבדה וצילום</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>8</b>הדמיה</div>
+ <h2><bdi>CT</bdi> הוא בדיקת הבחירה</h2>
+ <div class="grid f">
+  <div>
+   <ul class="b sm">
+    <li><b>רגיש וסגולי</b> לחסימה מלאה או גבוהה. מראה את המקום ואת הסיבה. פחות רגיש בחסימה חלקית</li>
+    <li>לולאה מורחבת מעל 2.5 ס״מ: חשד חזק לחסימה גבוהה</li>
+    <li><b>אזור המעבר:</b> מעי מורחב לפני, מעי קרוס אחרי. מראה גם גידול, דלקת או אבצס</li>
+    <li><b>חומר ניגוד מסיס במים</b> (<bdi>Gastrografin</bdi>) דרך זונדה או בפה: מראה את מקום החסימה ולעיתים מזרז את הפתרון (אוסמוטי, מוריד בצקת בדופן)</li>
+    <li><b>אולטרסאונד</b> בהיריון. <bdi>MRI</bdi> לא חלק מהבירור הרגיל</li>
+   </ul>
+   <div class="box r" style="margin-top:10px"><b class="t">לא מעכבים</b>חולה רעיל עם חסימה ברורה מהאנמנזה ומהבדיקה הולך לניתוח. לא מחכים לבדיקות מיותרות. גם בבטן חריפה: קודם צילום וזונדה, כדי למנוע אספירציה בשכיבה ל-<bdi>CT</bdi></div>
+  </div>
+  <figure><img src="img/ct-sbo-adhesive.jpg" alt="CT של חסימה מהדבקויות עם מעבר חד בקוטר"><figcaption>חסימה מהדבקות ב-<bdi>CT</bdi>: לולאות מורחבות בבטן העליונה ומעבר חד למעי קרוס (מסומן באדום) · <bdi dir="ltr">Hellerhoff · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 91 עמ׳ <bdi dir="ltr">1334–1335</bdi> · פרק 85 עמ׳ <bdi dir="ltr">1160</bdi></span><span>הדמיה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>9</b>החשש הגדול</div>
+ <h2>חסימה פשוטה או חנוקה?</h2>
+ <div class="grid f">
+  <div>
+   <ul class="b sm">
+    <li><b>פשוטה:</b> חסימה מכנית, דופן המעי חיה. רוב המקרים</li>
+    <li><b>חנוקה:</b> לרוב לולאה סגורה עם פגיעה באספקת הדם. אוטם המעי, יותר תחלואה ותמותה</li>
+    <li><b>הסימנים הקלאסיים:</b> דופק מהיר, חום, לויקוציטוזיס, חמצת לקטית וכאב קבוע. <b>אף אחד מהם לא מזהה או שולל חנק בכל המקרים. גם לא שילוב שלהם</b></li>
+   </ul>
+   <h3 style="margin-top:10px">ב-<bdi>CT</bdi></h3>
+   <div class="flow">
+    <div><b>לולאה סגורה</b><span>לולאה בצורת <bdi>U</bdi> או ״פול קפה״, עם התחדדות בשני הקצוות. מערבולת במזנטריום (וולוולוס)</span></div>
+    <div><b>איסכמיה</b><span>דופן מעובה (מעל 3 מ״מ), בצקת במזנטריום, נוזל בין הלולאות, האדרה ירודה של הדופן, אוויר בדופן, גז בוורידים המזנטריים או בפורטה</span></div>
+   </div>
+  </div>
+  <figure><img src="img/op-sbo-gangrene.jpg" alt="ניתוח: לולאת ג'ג'ונום נמקית מחסימה מהדבקות"><figcaption>כך זה נראה בניתוח: חסימה מרצועת הדבקות עם נמק של חלק מהג׳ג׳ונום · <bdi dir="ltr">Thomas Zimmermann (THWZ) · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 91 עמ׳ <bdi dir="ltr">1333, 1335</bdi></span><span>חנק</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>10</b>טיפול שמרני</div>
+ <h2>נוזלים, זונדה ומעקב צמוד</h2>
+ <div class="grid">
+  <div>
+   <ul class="b sm">
+    <li><b>מי מטפל?</b> צוות כירורגי. כך האשפוז קצר יותר, זול יותר, עם פחות אשפוזים חוזרים ופחות תמותה</li>
+    <li><b>נוזלים:</b> החייאה אגרסיבית בתמיסה איזוטונית (רינגר לקטט או סליין). אשלגן רק אחרי שיש שתן</li>
+    <li><b>מעקב:</b> תפוקת שתן (קטטר או איסוף חיצוני), אלקטרוליטים, המטוקריט ולויקוציטים שוב ושוב</li>
+    <li><b>אנטיביוטיקה:</b> אין הוכחה לתועלת בחולה לא רעיל. נותנים לפני ניתוח</li>
+    <li><b>זונדה:</b> מרוקנת את הקיבה, מקטינה סיכון לאספירציה ואת התפיחות מאוויר שנבלע. מקובלת, אבל ההוכחות לא חד-משמעיות: החלטה לכל חולה. צנתר ארוך למעי לא עדיף</li>
+   </ul>
+  </div>
+  <div style="display:grid;gap:10px">
+   <div class="num" style="grid-template-columns:1fr 1fr;margin:0">
+    <div><b dir="ltr">85%</b><span>עד כ-85% מהחסימות החלקיות חולפות בלי ניתוח</span></div>
+    <div><b dir="ltr">12–24 h</b><span>עיכוב שנראה בטוח. אחר כך עולים החנק והסיבוכים</span></div>
+   </div>
+   <div class="box r"><b class="t">מתי עוצרים ומנתחים</b>החמרה קלינית, או מעי שממשיך להתרחב בצילומים למרות הזונדה. ההחלטה להמשיך בשמרני דורשת הערכה חוזרת כל הזמן</div>
+   <div class="box n"><b class="t">חסימה מלאה</b>יש שמטפלים בשמרני כשאין חום, דופק מהיר, רגישות או לויקוציטוזיס. צריך לשקול מול הסיכון לפספס חנק</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 91 עמ׳ <bdi dir="ltr">1335–1336</bdi></span><span>טיפול שמרני</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>11</b>מבחן חומר הניגוד</div>
+ <h2>האם החסימה תיפתח לבד?</h2>
+ <div class="flow">
+  <div><b>מתי</b><span>בחסימה מהדבקויות, בדרך כלל <bdi dir="ltr">24–48</bdi> שעות אחרי ניקוז טוב בזונדה</span></div>
+  <div><b>מה נותנים</b><span><bdi dir="ltr">100 mL</bdi> חומר ניגוד מסיס במים, דרך הזונדה או בפה</span></div>
+  <div><b>צילומים</b><span>בזמנים קבועים, למשל אחרי 8 ואחרי 24 שעות</span></div>
+  <div><b>חומר הניגוד במעי הגס</b><span>החסימה כנראה תיפתח. ממשיכים בשמרני</span></div>
+  <div><b>לא הגיע למעי הגס אחרי 24 שעות</b><span>הטיפול השמרני כנראה ייכשל. סביר שצריך ניתוח</span></div>
+ </div>
+ <div class="box a" style="margin-top:12px"><b class="t">שימו לב</b>התועלת הוכחה בחסימה מהדבקויות. אין הוכחה דומה בחסימות מסיבות אחרות</div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 91 עמ׳ <bdi dir="ltr">1335–1336</bdi></span><span>מבחן חומר ניגוד</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>12</b>ניתוח</div>
+ <h2>מתי ואיך מנתחים</h2>
+ <div class="grid">
+  <div>
+   <h3>ההוריות</h3>
+   <ul class="b sm"><li>כישלון של טיפול שמרני</li><li>פגיעה באספקת הדם, חנק או ניקוב</li></ul>
+   <h3 style="margin-top:10px">לפי הסיבה</h3>
+   <ul class="b sm">
+    <li><b>רצועה:</b> שחרור הדבקויות בעדינות. לא לפגוע בסרוזה ולא לפתוח את המעי</li>
+    <li><b>בקע כלוא:</b> החזרת המעי וסגירת הפגם</li>
+    <li><b>גידול מפושט:</b> אם השמרני לא מצליח, לרוב עקיפה (<bdi>bypass</bdi>) ולא ניתוח ארוך עם כריתות</li>
+    <li><b>קרוהן:</b> חריף נפתח לרוב בשמרני. היצרות פיברוטית: כריתה או הרחבה (<bdi>strictureplasty</bdi>)</li>
+    <li><b>אבצס:</b> ניקוז מלעורי, לפרוסקופי, או לפרוטומיה ושטיפה</li>
+   </ul>
+  </div>
+  <div style="display:grid;gap:10px">
+   <div class="box n"><b class="t">האם המעי חי?</b>
+    <ul class="b sm">
+     <li>משחררים, עוטפים בפד חם ולח <bdi dir="ltr">15–20</bdi> דקות ובודקים שוב: צבע ופריסטלטיקה</li>
+     <li>דופלר, פלואורסצאין או <bdi>ICG</bdi> במקרים גבוליים</li>
+     <li>עדיין לא בטוח: סגירה זמנית ו״מבט שני״ אחרי <bdi dir="ltr">18–24</bdi> שעות. מחליטים כבר בניתוח הראשון</li>
+    </ul></div>
+   <div class="box"><b class="t">לפרוסקופיה</b>פחות תחלואה ותמותה, אשפוז קצר. מתאימה לתפיחות קלה, חסימה גבוהה או חלקית, רצועה אחת צפויה וסיכון נמוך לחנק. הדבקויות רבות, קרצינומטוזיס או תפיחות שלא ירדה עם הזונדה: לפרוטומיה</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 91 עמ׳ <bdi dir="ltr">1336–1337</bdi></span><span>ניתוח</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>13</b>מצבים מיוחדים</div>
+ <h2>אחרי ניתוח, אילאוס וחסימה חוזרת</h2>
+ <div class="grid">
+  <div style="display:grid;gap:10px">
+   <div class="box b"><b class="t">חסימה מוקדמת אחרי ניתוח</b>קשה להבדיל מאילאוס. יותר מ-90% חלקיות וחולפות עם זמן, צום, נוזלים ותיקון אלקטרוליטים. חסימה מלאה או סימני חנק: ניתוח חוזר. <b>אחרי לפרוסקופיה</b> לחשוד בנקודה ממשית: בקע בפתח טרוקר או בקע פנימי</div>
+   <div class="box n"><b class="t">חסימה חוזרת ו״בטן קפואה״</b>מתחילים בשמרני. הניתוח ארוך וזהיר. תפירת המעי בלולאות וצנתרים ארוכים כמעט נזנחו. ממברנה מבוססת היאלורונט מורידה חסימות, אבל אולי מעלה סיכון לדליפה מהשקה</div>
+  </div>
+  <div>
+   <h3>אילאוס: אין חסימה מכנית</h3>
+   <div class="flow">
+    <div><b>הסיבות</b><span>אחרי לפרוטומיה, אופיאטים ותרופות אנטיכולינרגיות, חוסר אשלגן, נתרן או מגנזיום, דלקת בבטן, דימום רטרופריטונאלי, אלח דם</span></div>
+    <div><b>התמונה</b><span>תפיחות בלי כאב התכווצותי. לעיתים עוברים גזים או שלשול</span></div>
+    <div><b>בצילום</b><span>גם מעי דק וגם מעי גס מורחבים. כשלא ברור: <bdi>CT</bdi></span></div>
+    <div><b>הטיפול</b><span>תומך: זונדה, נוזלים, טיפול באלח הדם, תיקון אלקטרוליטים, הפסקת התרופות. מסטיק עשוי לעזור</span></div>
+   </div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 91 עמ׳ <bdi dir="ltr">1337–1338</bdi> (תיבה <bdi dir="ltr">91.3</bdi>)</span><span>מצבים מיוחדים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>14</b>מה חדש בתחום · 2021–2026</div>
+ <h2>מחקרים שכדאי להכיר</h2>
+ <div class="grid">
+  <div class="study"><div class="y"><bdi>BJS</bdi> 2025 · מחקר עוקבה בינלאומי</div><b><bdi>SnapSBO</bdi>: הנחיות בולוניה בפועל</b>
+   <p>982 חולים עם חסימה מהדבקויות. 57.1% נפתחו בשמרני, 22.8% נותחו אחרי ניסיון שמרני ו-20.1% נותחו ישר. אשפוז ממוצע: 5.3, 12.9 ו-7.7 ימים. היענות מלאה להנחיות הייתה נמוכה. מי שטופל לפיהן השתחרר מהר יותר</p>
+   <small>Kaplan LJ et al. Br J Surg 2025;112(4):znaf080</small></div>
+  <div class="study"><div class="y"><bdi>JAMA Surg</bdi> 2026 · מחקר אקראי, 5 שנים</div><b><bdi>LASSO</bdi>: לפרוסקופיה מול פתוח</b>
+   <p>100 חולים עם חסימה מהדבקויות שלא נפתחה. חסימה חוזרת תוך 5 שנים: 12.5% בלפרוסקופיה, 9.7% בפתוח. בקע בחתך: כ-6% בשתי הקבוצות. היתרון של הלפרוסקופיה קטן וקצר טווח</p>
+   <small>Räty P et al. JAMA Surg 2026;161:381-8</small></div>
+  <div class="study"><div class="y"><bdi>Lancet Gastroenterol Hepatol</bdi> 2023</div><b><bdi>S1316</bdi>: חסימה ממאירה, ניתוח או לא</b>
+   <p>221 חולים עם סרטן בבטן וחסימה. ״ימים טובים״ (בחיים ומחוץ לבית החולים) ב-91 יום: בלי הבדל בין ניתוח לטיפול לא ניתוחי (42.6 מול 43.9 בזרוע האקראית)</p>
+   <small>Krouse RS et al. Lancet Gastroenterol Hepatol 2023;8:908-18</small></div>
+  <div class="study"><div class="y"><bdi>World J Emerg Surg</bdi> 2023 · הנחיות</div><b>הנחיות צ׳זנה: לפרוסקופיה קודם</b>
+   <p>הסכמה של 54 מומחים על בסיס 323 מחקרים: בחולה <b>יציב</b> הגישה הלפרוסקופית בטוחה ויעילה בניתוחי חירום בבטן. בחירת המטופל היא המפתח</p>
+   <small>Sermonesi G et al. World J Emerg Surg 2023;18:57</small></div>
+ </div>
+ <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>15</b>לסיכום</div>
+ <h2>חמישה דברים לקחת למחלקה</h2>
+ <ol class="obj">
+  <li>הדבקויות ובקעים הם רוב החסימות. בכל חולה: צלקות, שערי בקע ובדיקה רקטלית</li>
+  <li>חסימה גבוהה מקיאה, חסימה נמוכה כואבת ותפוחה. שלשול לא שולל חסימה</li>
+  <li><bdi>CT</bdi> מאבחן את המקום ואת הסיבה. אף סימן לא שולל חנק בוודאות</li>
+  <li>רוב החולים: נוזלים, זונדה, אלקטרוליטים וחומר ניגוד מסיס במים. החמרה: ניתוח</li>
+  <li>חום, כאב קבוע, פריטוניטיס או לולאה סגורה: לא מחכים</li>
+ </ol>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 91 <bdi>Small Intestine</bdi>, החלק על חסימה (עמ׳ <bdi dir="ltr">1331–1338</bdi>)</div>
+ <div class="src"><span>איורים: <bdi dir="ltr">Sobotta (1906)</bdi>, נחלת הכלל · צילומים: <bdi dir="ltr">Hellerhoff, James Heilman, Thomas Zimmermann (CC BY-SA), Herych H.I. (CC BY 3.0), Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+</main>
+<div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
+<script>
+document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz').forEach(function(z){z.addEventListener('click',function(){w.querySelectorAll('.hz').forEach(function(x){x.classList.toggle('on',x===z)});w.querySelectorAll('.hzi').forEach(function(i){i.hidden=i.dataset.hzi!==z.dataset.hz;i.style.setProperty('--c',z.style.getPropertyValue('--c'))});var h=w.querySelector('.hint');if(h)h.hidden=true;});});});
+</script>
+<script>
+(function () {
+  var deck = document.getElementById('deck'), S = [].slice.call(deck.children), dots = document.getElementById('dots'), n = S.length;
+  S.forEach(function (_, k) { var i = document.createElement('i'); i.onclick = function () { go(k); }; dots.appendChild(i); });
+  function idx() { return Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }
+  function go(k) { k = Math.max(0, Math.min(n - 1, k)); S[k].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' }); }
+  function sync() { var k = idx(); [].forEach.call(dots.children, function (d, j) { d.className = j === k ? 'on' : ''; }); document.getElementById('count').textContent = (k + 1) + '/' + n; document.getElementById('prev').disabled = k === 0; document.getElementById('next').disabled = k === n - 1; }
+  deck.addEventListener('scroll', function () { clearTimeout(sync.t); sync.t = setTimeout(sync, 60); }, { passive: true });
+  document.getElementById('next').onclick = function () { go(idx() + 1); };
+  document.getElementById('prev').onclick = function () { go(idx() - 1); };
+  addEventListener('keydown', function (e) { if (e.key === 'ArrowLeft' || e.key === ' ') go(idx() + 1); if (e.key === 'ArrowRight') go(idx() - 1); });
+  sync();
+})();
+</script>
+</body>
+</html>

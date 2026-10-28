@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>סיבוכי ניתוחי קיבה · Scrub In</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../emblem.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Frank+Ruhl+Libre:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0C2A35;--navy2:#123845;--g:#00967D;--g2:#3DC08C;--g3:#0A6B5A;--lime:#B5D96B;--red:#A3402E;--amber:#C9893F;--blue:#2F6FA8;--bg:#EDF2F0;--soft:#F3F7F5;--ink:#16262C;--muted:#5C6F73;--line:#DCE6E2}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--navy);color:var(--ink);font-family:Heebo,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.deck{position:fixed;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.deck::-webkit-scrollbar{display:none}
+.s{flex:0 0 100%;height:100%;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;padding:18px 16px 84px;overflow-y:auto;position:relative}
+.s::after{content:'';position:absolute;inset:0;background:url(../ops/art/organs.webp) no-repeat 6% 40%/auto 115%;opacity:.05;filter:invert(1);pointer-events:none}
+.card{width:min(980px,100%);background:#fff;border-radius:22px;box-shadow:0 18px 50px rgba(0,0,0,.35);padding:30px 32px 22px;position:relative;overflow:hidden;z-index:1}
+.card::before{content:'';position:absolute;inset:0 0 auto 0;height:6px;background:linear-gradient(90deg,var(--g3),var(--g),var(--g2),var(--lime))}
+.kick{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--g);letter-spacing:.3px;margin-bottom:6px}
+.kick b{background:var(--navy);color:#fff;border-radius:999px;min-width:26px;height:26px;display:grid;place-items:center;font-size:13px;padding:0 8px}
+h1,h2{font-family:'Frank Ruhl Libre',serif;color:var(--navy);margin:0 0 10px;line-height:1.15}
+h1{font-size:clamp(34px,6.4vw,60px)}h2{font-size:clamp(25px,4.4vw,36px)}
+h3{margin:0 0 6px;font-size:17px;color:var(--navy)}
+.lead{font-size:clamp(15.5px,2.3vw,18.5px);color:var(--muted);margin:0 0 16px;line-height:1.5}
+ul.b{margin:0;padding:0;list-style:none;display:grid;gap:8px}ul.b li{position:relative;padding-inline-start:20px;font-size:16.5px;line-height:1.45}ul.b li::before{content:'';position:absolute;inset-inline-start:2px;top:.62em;width:8px;height:8px;border-radius:2px;background:var(--g);transform:rotate(45deg)}
+ul.b li b{color:var(--navy)}ul.b.sm li{font-size:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.grid.g3{grid-template-columns:repeat(3,1fr)}.grid.f{grid-template-columns:1.05fr .95fr;align-items:center}
+.box{background:var(--soft);border-radius:14px;padding:13px 15px;border-inline-start:4px solid var(--g);font-size:15.5px;line-height:1.45}
+.box.r{border-color:var(--red);background:#FBEDEA}.box.a{border-color:var(--amber);background:#FFF6EA}.box.n{border-color:var(--navy)}.box.b{border-color:var(--blue);background:#EEF4FB}
+.box b.t{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}
+.num{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:4px 0 14px}.num div{background:var(--soft);border-radius:14px;padding:12px 10px;text-align:center}
+.num b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(26px,4vw,38px);color:var(--g3);line-height:1.05}.num span{font-size:13px;color:var(--muted);line-height:1.3;display:block;margin-top:4px}
+figure{margin:0;background:#FBFCFB;border:1px solid var(--line);border-radius:16px;padding:10px;text-align:center}figure img{max-width:100%;max-height:46vh;display:block;margin:0 auto;mix-blend-mode:multiply}
+figcaption{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.35}
+.ill svg{width:100%;height:auto;max-height:50vh}
+.src{margin-top:16px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.src b{color:var(--g3)}
+.tag{display:inline-block;font-size:12px;font-weight:800;border-radius:999px;padding:2px 10px;background:#E3F4EC;color:var(--g3);margin-inline-end:4px}
+.tag.r{background:#F8E3DE;color:var(--red)}.tag.a{background:#FFF3DF;color:#8A5A14}.tag.b{background:#E8F0FA;color:var(--blue)}
+.flow{display:grid;gap:8px}.flow div{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;background:var(--soft);border-radius:12px;padding:9px 12px;font-size:15.5px}.flow div b{color:var(--navy)}
+.study{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#fff}.study .y{font-size:12px;font-weight:800;color:var(--g);letter-spacing:.3px}.study b{display:block;font-size:16px;color:var(--navy);margin:2px 0}.study p{margin:4px 0 0;font-size:14.5px;line-height:1.45}.study small{display:block;margin-top:6px;font-size:11.5px;color:var(--muted)}
+.cover{background:radial-gradient(120% 90% at 85% 0%,#164B54 0%,var(--navy) 58%)}
+.cover::after{opacity:.16;background-position:2% 50%}
+.cover .card{background:transparent;box-shadow:none;color:#fff}.cover .card::before{display:none}.cover h1{color:#fff}.cover .lead{color:#C9D6DA}.cover .kick{color:var(--g2)}
+.pill{display:inline-flex;gap:6px;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px;color:#fff;margin:4px}
+.logo{display:flex;align-items:center;gap:10px;margin-bottom:26px}.logo img{width:48px;height:48px;border-radius:50%;background:#fff}.logo b{color:#fff;font-weight:900}.logo small{display:block;color:#A9C9C0;font-size:12px}
+.obj{counter-reset:o;list-style:none;margin:0;padding:0;display:grid;gap:10px}.obj li{counter-increment:o;display:flex;gap:12px;align-items:flex-start;font-size:16.5px;line-height:1.45}.obj li::before{content:counter(o);flex:0 0 30px;height:30px;border-radius:50%;background:var(--g);color:#fff;font-weight:800;display:grid;place-items:center}
+.nav{position:fixed;inset:auto 0 0 0;display:flex;align-items:center;justify-content:center;gap:14px;padding:12px 16px calc(14px + env(safe-area-inset-bottom));background:linear-gradient(transparent,rgba(6,20,26,.85) 40%);z-index:5}
+.nav button{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;font-size:22px;cursor:pointer}.nav button:disabled{opacity:.3}
+.dots{display:flex;gap:5px;flex-wrap:wrap;max-width:60vw;justify-content:center}.dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer}.dots i.on{background:var(--g2);width:20px;border-radius:5px}
+.count{color:#C9D6D9;font-size:13px;font-weight:700;min-width:44px;text-align:center}
+bdi{unicode-bidi:isolate}
+@media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
+@media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+.hotw{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;align-items:start}.hoti{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#FBFCFB}.hoti img{display:block;width:100%;mix-blend-mode:multiply}.hoti svg{position:absolute;inset:0;width:100%;height:100%}
+.hz{fill:var(--c);fill-opacity:.38;stroke:var(--c);stroke-width:2;cursor:pointer;transition:fill-opacity .2s}.hz:hover,.hz.on{fill-opacity:.62}.hzl{font:900 22px Heebo,sans-serif;fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;pointer-events:none;text-anchor:middle}
+.hotp .hint{background:var(--soft);border-radius:12px;padding:10px 12px;font-weight:700;color:var(--g3)}.hzi{border-inline-start:5px solid var(--c,var(--g));background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-top:8px;font-size:15.5px;line-height:1.45}.hzi b{display:block;font-size:17px;color:var(--navy);margin-bottom:4px}
+@media (max-width:760px){.hotw{grid-template-columns:1fr}}
+bdi[dir=ltr]{white-space:nowrap}
+details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;background:#fff}details.rev summary{cursor:pointer;list-style:none;padding:10px 14px;font-weight:800;color:#fff;background:var(--g3);border-radius:13px}details.rev summary::-webkit-details-marker{display:none}details.rev[open] summary{border-radius:13px 13px 0 0}details.rev>div{padding:12px 14px}
+.case{background:#0C2A35;color:#fff;border-radius:16px;padding:14px 16px;font-size:16px;line-height:1.55}.case b{color:#B5D96B}
+/*BRAND*/
+.brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
+.brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
+.s{padding-top:58px}
+.cover .card{display:flex;flex-direction:column;gap:6px;max-width:980px}
+.cvhead{display:flex;align-items:center;gap:16px;margin-bottom:30px}.cvhead img.em{width:74px;height:74px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(61,192,140,.55)}
+.cvhead b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(24px,3.4vw,34px);color:#fff;line-height:1.1}.cvhead span{display:block;font-size:clamp(15px,2vw,19px);color:#A9D9C8;font-weight:700;margin-top:4px}
+.cover h1{font-size:clamp(38px,6.6vw,66px);margin:6px 0 8px}.cover .kick{font-size:14px;letter-spacing:.06em}
+.cvmeta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.cvlogos{display:flex;align-items:center;gap:18px;margin-top:34px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14)}.cvlogos img{height:44px;width:auto}.cvlogos small{margin-inline-start:auto;color:#8FB3AA;font-size:12.5px;font-weight:700;letter-spacing:.08em}
+.cover .brandbar{display:none}
+@media (max-width:760px){.brandbar{left:10px;gap:7px;padding:4px 9px 4px 4px}.brandbar img{height:20px}.brandbar img.em{width:22px;height:22px}.s{padding-top:48px}.cvhead img.em{width:56px;height:56px}.cvlogos img{height:34px}.cvlogos small{display:none}}
+/* numbered lists: a bold word inside an item stays inline */
+.obj li,.steps li{display:block;position:relative;padding-inline-start:42px;min-height:30px}.obj li::before,.steps li::before{position:absolute;inset-inline-start:0;top:0}.obj.sm li{padding-inline-start:36px}
+.grid.tight figure img{max-height:24vh}
+@media print{.brandbar{display:none}}
+/*/BRAND*/
+</style>
+</head>
+<body>
+<div class="brandbar" aria-hidden="true"><img class="em" src="brand/emblem.jpg" alt=""><i></i><img src="brand/logo_k.webp" alt=""><img src="brand/logo_c.webp" alt=""></div>
+<main class="deck" id="deck">
+
+<section class="s cover"><div class="card">
+ <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
+ <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 4</div>
+ <h1>סיבוכי ניתוחי קיבה</h1>
+ <p class="lead">תסמונות אחרי כריתת קיבה וסיבוכי ניתוחים בריאטריים: דמפינג, לולאות, דליפה, היצרות, כיב, בקע פנימי וחוסרים תזונתיים</p>
+ <div class="cvmeta"><span class="pill">מבוסס על <bdi>Sabiston</bdi>, מהדורה 22, פרקים 86 ו-99</span></div>
+ <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>1</b>מטרות הלמידה</div>
+ <h2>בסוף המפגש תדעו</h2>
+ <ol class="obj">
+  <li>להבדיל בין דמפינג מוקדם למאוחר, לאבחן ולטפל</li>
+  <li>לזהות תסמונת הלולאה המובילה, חסימת הלולאה היוצאת וגסטריטיס מרה</li>
+  <li>לחשוד בדליפה אחרי ניתוח בריאטרי ולדעת את עקרונות הטיפול</li>
+  <li>לאבחן היצרות, כיב בחיבור ובקע פנימי אחרי מעקף קיבה</li>
+  <li>למנות את החוסרים התזונתיים אחרי ניתוחי קיבה ואיך מונעים אותם</li>
+ </ol>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 86 (עמ׳ <bdi dir="ltr">1186–1191</bdi>) · פרק 99 (עמ׳ <bdi dir="ltr">1570–1577</bdi>)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>2</b>למה זה קורה</div>
+ <h2>שלושה דברים שהניתוח לוקח</h2>
+ <div class="grid g3">
+  <div class="box n"><b class="t">המאגר</b>הקיבה כבר לא מחזיקה ומעכלת בהדרגה. מזון מגיע מהר למעי הדק</div>
+  <div class="box"><b class="t">הפילורוס</b>אין יותר "שער" שמווסת את ההתרוקנות ומונע חזרה של מרה</div>
+  <div class="box a"><b class="t">העצב הוואגוס</b>אחרי וגוטומיה: התרוקנות מוצקים איטית, נוזלים מהירים, שלשול</div>
+ </div>
+ <div class="grid f" style="margin-top:12px">
+  <ul class="b">
+  <li>התסמונות לא תלויות בסיבה לניתוח: כיב, סרטן או השמנה</li>
+  <li><b><bdi dir="ltr">1–5%</bdi></b> מהמטופלים נשארים עם נכות קבועה מהתסמינים</li>
+  <li><b>שחזורים:</b> <bdi>Billroth I</bdi> (קיבה לתריסריון), <bdi>Billroth II</bdi> (לולאת ג׳חונום לקיבה, נשארת לולאה מובילה עם מרה), <bdi>Roux-en-Y</bdi> (לולאה מבודדת, המרה נכנסת רחוק מהקיבה)</li>
+  <li>רוב התסמונות שכיחות אחרי <bdi>Billroth II</bdi>. הפתרון הניתוחי השכיח: <b>המרה ל-<bdi>Roux-en-Y</bdi></b></li>
+ </ul>
+  <figure><img src="img/billroth2.png" alt="כריתת קיבה דיסטלית עם שחזור Billroth II" style="max-height:34vh"><figcaption><bdi>Billroth II</bdi>: גדם התריסריון סגור. הלולאה המובילה מביאה מרה ומיצי לבלב אל החיבור עם הקיבה. הלולאה היוצאת ממשיכה למטה · <bdi>ignis</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 86 עמ׳ <bdi dir="ltr">1186–1188</bdi></span><span>רקע</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>3</b>דמפינג</div>
+ <h2>מוקדם או מאוחר?</h2>
+ <table style="width:100%;border-collapse:collapse;font-size:15px;line-height:1.4">
+  <tr style="background:var(--navy);color:#fff"><th style="padding:7px;text-align:start"></th><th style="padding:7px;text-align:start">דמפינג מוקדם</th><th style="padding:7px;text-align:start">דמפינג מאוחר</th></tr>
+  <tr style="background:var(--soft)"><td style="padding:7px"><b>מתי</b></td><td style="padding:7px">תוך שעה מהארוחה, רוב התסמינים תוך 30 דקות</td><td style="padding:7px"><bdi dir="ltr">1–3</bdi> שעות אחרי. פחות שכיח</td></tr>
+  <tr><td style="padding:7px"><b>מנגנון</b></td><td style="padding:7px">מזון היפר-אוסמולרי במעי, נוזל עובר ללומן, הורמונים</td><td style="padding:7px">פחמימות נספגות מהר, אינסולין מוגזם (<bdi>GLP-1</bdi>), <b>היפוגליקמיה</b></td></tr>
+  <tr style="background:var(--soft)"><td style="padding:7px"><b>תסמינים</b></td><td style="padding:7px">כאב, בחילה, שלשול, נפיחות. הזעה, דופק מהיר, כאב ראש, עילפון</td><td style="padding:7px">הזעה, רעד, סחרחורת, דופק מהיר, בלבול</td></tr>
+  <tr><td style="padding:7px"><b>העמסת סוכר 75 גרם</b></td><td style="padding:7px">אחרי 30 דקות: המטוקריט עולה ב-<bdi dir="ltr">3%</bdi> לפחות, או דופק ב-10 לפחות</td><td style="padding:7px">סוכר מתחת ל-50 מ״ג/ד״ל בין שעה לשלוש</td></tr>
+ </table>
+ <div class="grid" style="margin-top:12px">
+  <div class="box"><b class="t">הטיפול</b>קודם כול תזונה: בלי סוכר מרוכז, ארוחות קטנות ותכופות עשירות בחלבון וסיבים, שתייה בנפרד מהאוכל. אקרבוז להיפוגליקמיה. <b>אוקטראוטיד</b> למי שלא הגיב</div>
+  <div class="box a"><b class="t">ניתוח (נדיר)</b>אחרי <bdi>Billroth II</bdi>: המרה ל-<bdi>Roux-en-Y</bdi>. שכיח יותר אחרי <bdi>Billroth II</bdi>, פחות אחרי <bdi>Billroth I</bdi> ו-<bdi>Roux-en-Y</bdi></div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 86 עמ׳ <bdi dir="ltr">1187</bdi></span><span>דמפינג</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>4</b>אחרי <bdi>Billroth II</bdi></div>
+ <h2>הלולאות והמרה</h2>
+ <div class="grid g3">
+  <div class="box r"><b class="t">תסמונת הלולאה המובילה</b>
+   <ul class="b sm"><li>חסימה של הלולאה התריסריונית, לרוב כשהיא ארוכה</li><li>מרה ומיצי לבלב מצטברים: כאב ונפיחות ואז <b>הקאה פורצת של מרה שמקלה מיד</b></li><li>כרוני: צמיחת חיידקים, חוסר <bdi>B12</bdi>, תת-ספיגת שומן</li><li>CT: לולאה מובילה מורחבת</li><li>מוקדם אחרי הניתוח: לתקן מהר, סכנת נמק ופיצוץ גדם התריסריון</li></ul></div>
+  <div class="box n"><b class="t">חסימת הלולאה היוצאת</b>
+   <ul class="b sm"><li>נדירה. רובה בחודש הראשון</li><li>כאב קוליקי בשמאל העליון, הקאות מרה, נפיחות</li><li>צילום או CT עם חומר ניגוד: החומר לא נכנס ללולאה היוצאת</li><li>הידבקויות, היצרות, אינטוסוספציה, בקע מאחורי החיבור</li><li>כמעט תמיד ניתוח</li></ul></div>
+  <div class="box a"><b class="t">גסטריטיס מרה (<bdi>alkaline reflux</bdi>)</b>
+   <ul class="b sm"><li>כאב אפיגסטרי קשה, הקאות מרה, ירידה במשקל</li><li>רירית שבירה ואדומה "כמו בשר"</li><li>אבחנה של שלילה. מיפוי מרה מראה חזרה לקיבה</li><li>תרופות לא עוזרות באופן עקבי</li><li>ניתוח: <bdi>Roux-en-Y</bdi> עם לולאה של <bdi dir="ltr">45–60</bdi> ס״מ</li></ul></div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 86 עמ׳ <bdi dir="ltr">1187–1188</bdi></span><span>לולאות</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>5</b>תנועתיות ומה שנתקע</div>
+ <h2>אטוניה, <bdi>Roux stasis</bdi>, שלשול ובזואר</h2>
+ <div class="grid">
+  <div style="display:grid;gap:10px">
+   <div class="box"><b class="t">אטוניה של הקיבה</b>אחרי וגוטומיה טרונקלית או סלקטיבית: התרוקנות מוצקים איטית. מאשרים במיפוי התרוקנות ושוללים קודם חסימה מכנית (הידבקויות, לולאות, בקע פנימי). מטוקלופרמיד או אריתרומיצין. לעיתים נדירות כריתה משלימה</div>
+   <div class="box n"><b class="t"><bdi>Roux stasis</bdi></b>תנועה לא תקינה של לולאת <bdi>Roux</bdi>: הקאות, כאב, ירידה במשקל. בהדמיה: לולאה מורחבת. אותן תרופות. שארית קיבה גדולה: להקטין</div>
+  </div>
+  <div style="display:grid;gap:10px">
+   <div class="box a"><b class="t">שלשול אחרי וגוטומיה</b>בעיקר אחרי וגוטומיה טרונקלית. מלחי מרה מגיעים מהר למעי הגס. סיבים, כולסטיראמין או נוגדי שלשול</div>
+   <div class="box b"><b class="t">בזואר</b>גוש של חומר לא מעוכל, בעיקר אחרי ניתוח קיבה או בגסטרופרזיס. מתחילים בהמסה כימית (למשל קוקה קולה), אחר כך פירוק אנדוסקופי. בזואר שיער עמיד להמסה. ניתוח רק כשהכול נכשל או בסיבוך</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 86 עמ׳ <bdi dir="ltr">1188, 1191</bdi></span><span>תנועתיות</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>6</b>אנטומיה · אינטראקטיבי</div>
+ <h2>מעקף <bdi>Roux-en-Y</bdi>: איפה כל סיבוך</h2>
+ <div class="hotw"><div class="hoti"><img src="img/blausen-rygb-crop.png" alt="מעקף קיבה Roux-en-Y"><svg viewBox="0 0 920 680" preserveAspectRatio="none">
+  <polygon class="hz" data-hz="gj" points="100,110 185,110 185,190 100,190" style="--c:#C0392B"/>
+  <text class="hzl" x="142" y="160" style="font-size:38px;stroke-width:5px">1</text>
+  <polygon class="hz" data-hz="stp" points="245,80 285,90 230,270 185,260" style="--c:#C9893F"/>
+  <text class="hzl" x="236" y="190" style="font-size:38px;stroke-width:5px">2</text>
+  <polygon class="hz" data-hz="rem" points="560,290 700,280 700,360 560,350" style="--c:#7A5BD6"/>
+  <text class="hzl" x="630" y="330" style="font-size:38px;stroke-width:5px">3</text>
+  <polygon class="hz" data-hz="bp" points="535,350 570,350 580,435 700,445 735,535 705,545 680,485 560,465 532,410" style="--c:#B5476B"/>
+  <text class="hzl" x="560" y="420" style="font-size:38px;stroke-width:5px">4</text>
+  <polygon class="hz" data-hz="roux" points="695,220 760,230 795,460 765,530 740,525 760,440 738,275 695,262" style="--c:#2F6FA8"/>
+  <text class="hzl" x="772" y="370" style="font-size:38px;stroke-width:5px">5</text>
+  <polygon class="hz" data-hz="jj" points="705,500 765,500 765,570 705,570" style="--c:#187A5C"/>
+  <text class="hzl" x="735" y="545" style="font-size:38px;stroke-width:5px">6</text>
+  <polygon class="hz" data-hz="cc" points="515,555 695,565 685,660 520,645" style="--c:#0A6B5A"/>
+  <text class="hzl" x="600" y="620" style="font-size:38px;stroke-width:5px">7</text>
+ </svg></div>
+ <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
+  <div class="hzi" data-hzi="gj" hidden><b>1 · החיבור קיבה-ג׳חונום</b><p>כאן רוב הדליפות במעקף (היום מתחת ל-<bdi dir="ltr">1%</bdi>). היצרות ב-<bdi dir="ltr">2–7%</bdi>, <bdi dir="ltr">4–6</bdi> שבועות אחרי. כיב בחיבור ב-<bdi dir="ltr">2–14%</bdi>, יותר כשהכיס גדול</p></div>
+  <div class="hzi" data-hzi="stp" hidden><b>2 · קו השדכנים בין הכיס לקיבה המנותקת</b><p>דימום מקו השדכנים. אם נפתח חיבור (פיסטולה) לקיבה המנותקת, חומצה מגיעה לחיבור והכיב לא נרפא. הטיפול: ניתוח</p></div>
+  <div class="hzi" data-hzi="rem" hidden><b>3 · הקיבה המנותקת</b><p>לא רואים אותה בגסטרוסקופיה רגילה. בחסימה מתחת, היא והלולאה הביליופנקריאטית מתרחבות לאחור עד פיצוץ קו השדכנים. ב-CT מחפשים קיבה מנותקת מורחבת</p></div>
+  <div class="hzi" data-hzi="bp" hidden><b>4 · הלולאה הביליופנקריאטית</b><p>התריסריון והג׳חונום הקרוב, כ-50 ס״מ מ-<bdi>Treitz</bdi>. מובילה מרה ומיצי לבלב. כאן נספג ברזל ולכן אחרי מעקף יש חוסר ברזל ב-<bdi dir="ltr">15–40%</bdi></p></div>
+  <div class="hzi" data-hzi="roux" hidden><b>5 · לולאת <bdi>Roux</bdi></b><p>100–150 ס״מ, עולה לפני המעי הגס. בין המזנטריום שלה למזוקולון נמצא מרווח <bdi>Petersen</bdi>, מקום של בקע פנימי. גם <bdi>Roux stasis</bdi>: הקאות ולולאה מורחבת</p></div>
+  <div class="hzi" data-hzi="jj" hidden><b>6 · החיבור ג׳חונום-ג׳חונום</b><p>הפתח במזנטריום מתחתיו נסגר בתפר לא נספג, כדי למנוע בקע פנימי. חסימה כאן חוסמת גם את הלולאה הביליופנקריאטית</p></div>
+  <div class="hzi" data-hzi="cc" hidden><b>7 · התעלה המשותפת</b><p>רק מכאן המזון פוגש מרה ומיצי לבלב ונספג כרגיל. ככל שהיא קצרה יותר (כמו ב-<bdi>BPD-DS</bdi>), יותר תת-ספיגה וחוסרים</p></div>
+ </div></div>
+ <figcaption>מעקף קיבה <bdi>Roux-en-Y</bdi> · <bdi>Blausen.com staff (2014)</bdi>, "<bdi>Medical gallery of Blausen Medical 2014</bdi>", <bdi>WikiJournal of Medicine</bdi>, <bdi>CC BY 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 99 עמ׳ <bdi dir="ltr">1565–1567, 1574–1575</bdi></span><span>אנטומיה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>7</b>דליפה</div>
+ <h2>הסיבוך המסוכן ביותר</h2>
+ <div class="grid">
+  <div>
+   <div class="num" style="grid-template-columns:1fr 1fr">
+    <div><b dir="ltr">&lt;1%</b><span>דליפה אחרי מעקף לפרוסקופי היום (בעבר <bdi dir="ltr">2.2%</bdi>)</span></div>
+    <div><b dir="ltr">0.3–0.5%</b><span>דליפה אחרי שרוול</span></div>
+   </div>
+   <ul class="b sm">
+    <li><b>מעקף:</b> בעיקר מהחיבור קיבה-ג׳חונום. מוקדמת, עם סימני הלם: טכיקרדיה, טכיפנאה, כאב</li>
+    <li><b>שרוול:</b> לרוב <bdi dir="ltr">1–4</bdi> שבועות אחרי, לפעמים בשקט: זיהום ומורסה בלי הלם. בדרך כלל ליד הקצה העליון, מעל היצרות באינציזורה</li>
+    <li><b>מוקדמת (עד 48 שעות):</b> כשל שדכן או פגיעה ברקמה. <b>מאוחרת:</b> איסכמיה ולחץ גבוה בשרוול</li>
+    <li><b>אבחנה:</b> CT עם חומר ניגוד בשתייה, צילום בליעה ולפעמים לפרוסקופיה</li>
+   </ul>
+  </div>
+  <div style="display:grid;gap:10px">
+   <div class="box r"><b class="t">הטיפול</b>שליטה בזיהום: <b>ניקוז ואנטיביוטיקה</b>, צום והזנה חלופית. דליפה מוקדמת אחרי מעקף: לרוב ניתוח. דליפה מאוחרת במטופל יציב: אפשר בלי ניתוח</div>
+   <div class="box n"><b class="t">כלים אנדוסקופיים</b><ul class="b sm"><li>סטנט מכוסה <bdi dir="ltr">4–6</bdi> שבועות. הבעיה: נדידה. בשרוול לעיתים שניים</li><li>ואקום אנדוסקופי בחלל: <bdi dir="ltr">8–12</bdi> טיפולים</li><li>קליפס גדול: בעיקר לפיסטולה כרונית מתחת ל-1 ס״מ</li><li>פיגטייל לניקוז פנימי, או ספטוטומיה</li></ul></div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 99 עמ׳ <bdi dir="ltr">1570, 1574–1576</bdi></span><span>דליפה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>8</b>היצרות וכיב</div>
+ <h2>כשהאוכל לא עובר וכשכואב</h2>
+ <div class="grid">
+  <div class="box n"><b class="t">היצרות</b>
+   <ul class="b sm">
+    <li><b>מעקף:</b> בחיבור קיבה-ג׳חונום ב-<bdi dir="ltr">2–7%</bdi>. יותר עם שדכן מעגלי. מופיעה <bdi dir="ltr">4–6</bdi> שבועות אחרי: קודם מוצקים ואז נוזלים</li>
+    <li>הרחבה בבלון. לא יותר מ-<bdi dir="ltr">3–5</bdi> מ״מ בכל פעם, לעיתים כמה פעמים. לחפש סיבה: עישון ו-NSAIDs</li>
+    <li><b>שרוול:</b> פחות מ-<bdi dir="ltr">1%</bdi>, באינציזורה. הרחבה או סטנט. לפעמים המרה למעקף</li>
+   </ul></div>
+  <div class="box r"><b class="t">כיב בחיבור (<bdi>marginal ulcer</bdi>)</b>
+   <ul class="b sm">
+    <li><bdi dir="ltr">2–14%</bdi> מהמעקפים. כאב אפיגסטרי קבוע ו"קודח"</li>
+    <li>כיס גדול יותר = יותר תאים מפרישי חומצה. כל 5 סמ״ק נוספים: סיכוי גבוה פי 2.4</li>
+    <li>מניעה: טיפול ב-<bdi>H. pylori</bdi> לפני הניתוח</li>
+    <li>טיפול: PPI, בלי NSAIDs ובלי עישון. רוב הכיבים נרפאים</li>
+    <li>לא נרפא: לחפש <b>פיסטולה לקיבה המנותקת</b> (מקור חומצה). צריך ניתוח</li>
+   </ul></div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 99 עמ׳ <bdi dir="ltr">1574–1577</bdi></span><span>היצרות וכיב</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>9</b>חסימה אחרי מעקף</div>
+ <h2>בקע פנימי: לא לחכות</h2>
+ <div class="grid">
+  <div>
+   <ul class="b">
+    <li>חסימת מעי אחרי מעקף, קלינית או בהדמיה: <b>ניתוח</b>. בגלל בקעים פנימיים, חניקה שכיחה</li>
+    <li><b>CT עם חומר ניגוד בשתייה ובווריד</b>: לראות את הקיבה המנותקת, הלולאות וסיבוב של המזנטריום</li>
+    <li>הסכנה: התרחבות לאחור של הלולאה הביליופנקריאטית ושל הקיבה המנותקת, עד <b>פיצוץ קו השדכנים</b> וצפקת</li>
+    <li>חוסר תאבון וכאב לסירוגין אחרי ירידה גדולה במשקל: גם זה יכול להיות בקע פנימי</li>
+   </ul>
+  </div>
+  <div style="display:grid;gap:10px">
+   <div class="box n"><b class="t">מניעה: סגירת הפתחים</b>סגירת הפתח מתחת לחיבור ג׳חונום-ג׳חונום ומרווח <bdi>Petersen</bdi> (בין המזנטריום של לולאת <bdi>Roux</bdi> למזוקולון) בתפר לא נספג. מורידה בקעים פנימיים מ-<bdi dir="ltr">4–17%</bdi> ל-<bdi dir="ltr">0–7%</bdi>, כ-<bdi dir="ltr">70%</bdi> פחות</div>
+   <div class="box"><b class="t">מעבר לפני המעי הגס</b><bdi>Antecolic</bdi> מוריד את מספר הפתחים משלושה לאחד</div>
+   <div class="box b"><b class="t">במחלקה השבוע</b>אצל מטופל במיון אחרי ניתוח בריאטרי: ברר איזה ניתוח, מתי ואיפה, אם יש טכיקרדיה ומה ה-CT הראה. הציגו לבכיר/ה את האבחנה המבדלת</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 99 עמ׳ <bdi dir="ltr">1565–1567, 1574</bdi></span><span>בקע פנימי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>10</b>שרוול ורפלוקס</div>
+ <h2>הסיבוך הארוך של השרוול</h2>
+ <div class="grid">
+  <ul class="b">
+   <li>GERD חדש או מחמיר בעד <b><bdi dir="ltr">30%</bdi></b>. קובע את שביעות הרצון</li>
+   <li>מנגנון: שינוי בזווית <bdi>His</bdi> ובסיבי הסוגר ולחץ גבוה בקיבה צינורית צרה. היצרות באינציזורה מחמירה</li>
+   <li><bdi>SLEEVEPASS</bdi> אחרי 10 שנים: <bdi dir="ltr">11.6%</bdi> עברו המרה למעקף בגלל רפלוקס. ב-<bdi dir="ltr">49%</bdi> מהנבדקים התסמינים החמירו</li>
+   <li><b>אין פונדוס, אין פונדופליקציה.</b> תקן הזהב: <b>המרה למעקף</b>. לפעמים תיקון בקע סרעפתי או טבעת מגנטית</li>
+  </ul>
+  <div style="display:grid;gap:10px">
+   <div class="box a"><b class="t">ברט אחרי שרוול</b>ה-<bdi>ASMBS</bdi> ממליצה (המלצה מותנית) על גסטרוסקופיה <bdi dir="ltr">3–5</bdi> שנים אחרי שרוול, גם בלי תסמינים</div>
+   <div class="box"><b class="t">לפני הניתוח</b>מטופל עם רפלוקס עמיד: מעקף ולא שרוול. בשרוול: לבדוק את ההיאטוס ולתקן בקע</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 99 עמ׳ <bdi dir="ltr">1575</bdi> · פרק 83 עמ׳ <bdi dir="ltr">1128–1129</bdi></span><span>רפלוקס</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>11</b>תזונה</div>
+ <h2>חוסרים: מה, למה ואיך מונעים</h2>
+ <div class="grid">
+  <div>
+   <table style="width:100%;border-collapse:collapse;font-size:14.5px;line-height:1.4">
+    <tr style="background:var(--navy);color:#fff"><th style="padding:7px;text-align:start">חוסר</th><th style="padding:7px;text-align:start">למה</th><th style="padding:7px;text-align:start">מה עושים</th></tr>
+    <tr style="background:var(--soft)"><td style="padding:7px"><b>ברזל</b></td><td style="padding:7px">נספג בתריסריון ובג׳חונום הקרוב, שנעקפים. במעקף: חוסר ב-<bdi dir="ltr">15–40%</bdi>, אנמיה עד <bdi dir="ltr">20%</bdi></td><td style="padding:7px">ברזל בפה (גלוקונאט נספג טוב בלי חומצה)</td></tr>
+    <tr><td style="padding:7px"><b><bdi>B12</bdi></b></td><td style="padding:7px">אין פקטור פנימי. במעקף <bdi dir="ltr">15–20%</bdi>, רק לעיתים אנמיה</td><td style="padding:7px">לכל החיים אחרי כריתת קיבה. תת-לשוני, תרסיס לאף או זריקות</td></tr>
+    <tr style="background:var(--soft)"><td style="padding:7px"><b>סידן ו-D</b></td><td style="padding:7px">תת-ספיגה. מחלת עצם כ-5 שנים אחרי</td><td style="padding:7px">סידן עם ויטמין D</td></tr>
+    <tr><td style="padding:7px"><b>A, D, E, K</b></td><td style="padding:7px">עקיפת התריסריון, תת-ספיגת שומן</td><td style="padding:7px">תוספים, בעיקר אחרי <bdi>BPD-DS</bdi></td></tr>
+    <tr style="background:var(--soft)"><td style="padding:7px"><b>חלבון</b></td><td style="padding:7px"><bdi dir="ltr">8%</bdi> אחרי <bdi>BPD-DS</bdi> (תעלה משותפת קצרה)</td><td style="padding:7px">אשפוז, הזנה תוך-ורידית <bdi dir="ltr">2–3</bdi> שבועות, לפעמים הארכת התעלה</td></tr>
+    <tr><td style="padding:7px"><b>תיאמין (<bdi>B1</bdi>)</b></td><td style="padding:7px">הקאות ממושכות</td><td style="padding:7px">תיאמין בווריד לפני <bdi>Wernicke</bdi></td></tr>
+   </table>
+  </div>
+  <div class="box n"><b class="t"><bdi>BPD-DS</bdi> מול <bdi>SADI-S</bdi></b>במחקר אחד: חוסר ויטמין A ‏<bdi dir="ltr">36.4%</bdi> לעומת <bdi dir="ltr">13.5%</bdi> ויטמין D ‏<bdi dir="ltr">55.3%</bdi> לעומת <bdi dir="ltr">36.5%</bdi>, ברזל <bdi dir="ltr">41.1%</bdi> לעומת <bdi dir="ltr">19.1%</bdi>. לכן <bdi>SADI-S</bdi> עם תעלה משותפת ארוכה יותר</div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 86 עמ׳ <bdi dir="ltr">1187</bdi> · פרק 99 עמ׳ <bdi dir="ltr">1574–1575</bdi></span><span>תזונה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>12</b>הטבעת ושאר הסיבוכים</div>
+ <h2>טבעת, קרישים ואבני מרה</h2>
+ <div class="grid g3">
+  <div class="box a"><b class="t">טבעת מתכווננת</b>
+   <ul class="b sm"><li><b>החלקה:</b> דיספאגיה, רגורגיטציה, צרבת, אספירציה. נדיר: חניקת הקיבה בחירום</li><li>בצילום: הטבעת לא בזווית הרגילה (בין 7 ל-2 לפי השעון) אלא אנכית או אופקית</li><li>חדירה לקיבה, הרחבת ושט. בשלושה רבעים מהמוצאים יש הפרעת תנועה בוושט</li><li>מסירים או ממירים</li></ul></div>
+  <div class="box r"><b class="t">תרומבואמבוליזם</b>
+   <ul class="b sm"><li><bdi dir="ltr">17%</bdi> ממקרי המוות</li><li>עד <bdi dir="ltr">80%</bdi> מהנפטרים עם עדות לקרישים</li><li>עם מגפי לחץ, הליכה מוקדמת והפרין: <bdi dir="ltr">0.23%</bdi></li></ul></div>
+  <div class="box"><b class="t">אבני מרה ועוד</b>
+   <ul class="b sm"><li>אבנים או בוצה בכ-<bdi dir="ltr">30%</bdi> אחרי מעקף. אורסודיאול 6 חודשים: <bdi dir="ltr">3%</bdi></li><li>דיכאון והפסקת אכילה</li><li>התייבשות מהקאות: נוזלים בווריד כשיש ספק</li></ul></div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 99 עמ׳ <bdi dir="ltr">1563, 1570, 1573–1574</bdi></span><span>סיבוכים נוספים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>13</b>במיון</div>
+ <h2>מטופל אחרי ניתוח קיבה עם כאב בטן</h2>
+ <div class="flow">
+  <div><b>1. איזה ניתוח ומתי?</b><span>שרוול, מעקף, <bdi>Billroth II</bdi>, טבעת. ימים, שבועות או שנים. האנטומיה קובעת את האבחנה המבדלת</span></div>
+  <div><b>2. סימנים חיוניים</b><span><b>טכיקרדיה מתמשכת = דליפה</b> עד שהוכח אחרת. אצל מטופל עם השמנה הבטן "שקטה"</span></div>
+  <div><b>3. ימים עד שבועות</b><span>דליפה, דימום, היצרות (<bdi dir="ltr">4–6</bdi> שבועות), חסימה מוקדמת, תרומבואמבוליזם</span></div>
+  <div><b>4. חודשים עד שנים</b><span>בקע פנימי, כיב בחיבור, היצרות, אבני מרה, רפלוקס אחרי שרוול, חוסרים</span></div>
+  <div><b>5. בירור</b><span>CT עם חומר ניגוד בשתייה ובווריד. גסטרוסקופיה לכיב ולהיצרות</span></div>
+  <div><b>6. ספק?</b><span>סף נמוך ללפרוסקופיה אבחנתית. נוזלים ותיאמין למי שמקיא</span></div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 99 עמ׳ <bdi dir="ltr">1570, 1574–1575</bdi> · פרק 86 עמ׳ <bdi dir="ltr">1187–1188</bdi></span><span>גישה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>14</b>מה חדש בתחום · 2021–2026</div>
+ <h2>מחקרים שכדאי להכיר</h2>
+ <div class="grid">
+  <div class="study"><div class="y"><bdi>JAMA Surg</bdi> 2023 · אקראי, 10 שנים</div><b>סגירת הפתחים במעקף</b>
+   <p>2,507 מטופלים ב-12 מרכזים בשבדיה. ניתוח חוזר בגלל חסימת מעי דק תוך 10 שנים: <bdi dir="ltr">7.8%</bdi> עם סגירה לעומת <bdi dir="ltr">14.9%</bdi> בלי (<bdi>SHR</bdi> 0.42)</p>
+   <small>Stenberg E et al. JAMA Surg 2023;158:709-17</small></div>
+  <div class="study"><div class="y"><bdi>JAMA Surg</bdi> 2022 · <bdi>SLEEVEPASS</bdi>, 10 שנים</div><b>שרוול מול מעקף: רפלוקס</b>
+   <p>240 מטופלים. דלקת ושט <bdi dir="ltr">31%</bdi> אחרי שרוול לעומת <bdi dir="ltr">7%</bdi> אחרי מעקף. ברט <bdi dir="ltr">4%</bdi> בשתי הקבוצות. ניתוח חוזר <bdi dir="ltr">15.7%</bdi> לעומת <bdi dir="ltr">18.5%</bdi></p>
+   <small>Salminen P et al. JAMA Surg 2022;157:656-66</small></div>
+  <div class="study"><div class="y"><bdi>JAMA Surg</bdi> 2025 · <bdi>SM-BOSS</bdi>, 10 שנים ומעלה</div><b>המרות אחרי שרוול</b>
+   <p>217 מטופלים. המרה לניתוח אחר בגלל ירידה לא מספקת או רפלוקס: <bdi dir="ltr">29.9%</bdi> אחרי שרוול לעומת <bdi dir="ltr">5.5%</bdi> אחרי מעקף. יותר רפלוקס חדש אחרי שרוול</p>
+   <small>Kraljević M et al. JAMA Surg 2025;160:369-77</small></div>
+  <div class="study"><div class="y"><bdi>Gastrointest Endosc</bdi> 2021 · מטא-אנליזה</div><b>ושט ברט אחרי שרוול</b>
+   <p>10 מחקרים, 680 מטופלים בגסטרוסקופיה אחרי שרוול. ברט ב-<bdi dir="ltr">11.6%</bdi>, בלי קשר לתסמיני רפלוקס. הסיכון לדלקת ושט עלה ב-<bdi dir="ltr">13%</bdi> בכל שנה</p>
+   <small>Qumseya BJ et al. Gastrointest Endosc 2021;93:343-52</small></div>
+ </div>
+ <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>15</b>לסיכום</div>
+ <h2>חמישה דברים לקחת למחלקה</h2>
+ <ol class="obj">
+  <li>דמפינג מוקדם: תוך שעה, נוזלים ואוסמולריות. מאוחר: <bdi dir="ltr">1–3</bdi> שעות, היפוגליקמיה. קודם כול תזונה</li>
+  <li>הקאה פורצת של מרה שמקלה: לולאה מובילה. הפתרון הניתוחי לרוב המרה ל-<bdi>Roux-en-Y</bdi></li>
+  <li>אחרי ניתוח בריאטרי: טכיקרדיה היא דליפה עד שהוכח אחרת</li>
+  <li>חסימה אחרי מעקף היא בקע פנימי עד שהוכח אחרת: CT וחדר ניתוח</li>
+  <li>ברזל, <bdi>B12</bdi>, סידן ויטמין D ותיאמין למי שמקיא. מעקב לכל החיים</li>
+ </ol>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 86 <bdi>Stomach</bdi>, <bdi>Postgastrectomy Syndromes</bdi> (עמ׳ <bdi dir="ltr">1186–1188</bdi>) · פרק 99 <bdi>Morbid Obesity</bdi>, סיבוכים (עמ׳ <bdi dir="ltr">1570–1577</bdi>)</div>
+ <div class="src"><span>איורים: <bdi>Blausen Medical</bdi> (<bdi>CC BY 3.0</bdi>) ותרשימי שחזור מ-<bdi>Wikimedia Commons</bdi>, הקרדיט בכל תמונה · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+</main>
+<div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
+<script>
+document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz').forEach(function(z){z.addEventListener('click',function(){w.querySelectorAll('.hz').forEach(function(x){x.classList.toggle('on',x===z)});w.querySelectorAll('.hzi').forEach(function(i){i.hidden=i.dataset.hzi!==z.dataset.hz;i.style.setProperty('--c',z.style.getPropertyValue('--c'))});var h=w.querySelector('.hint');if(h)h.hidden=true;});});});
+</script>
+<script>
+(function () {
+  var deck = document.getElementById('deck'), S = [].slice.call(deck.children), dots = document.getElementById('dots'), n = S.length;
+  S.forEach(function (_, k) { var i = document.createElement('i'); i.onclick = function () { go(k); }; dots.appendChild(i); });
+  function idx() { return Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }
+  function go(k) { k = Math.max(0, Math.min(n - 1, k)); S[k].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' }); }
+  function sync() { var k = idx(); [].forEach.call(dots.children, function (d, j) { d.className = j === k ? 'on' : ''; }); document.getElementById('count').textContent = (k + 1) + '/' + n; document.getElementById('prev').disabled = k === 0; document.getElementById('next').disabled = k === n - 1; }
+  deck.addEventListener('scroll', function () { clearTimeout(sync.t); sync.t = setTimeout(sync, 60); }, { passive: true });
+  document.getElementById('next').onclick = function () { go(idx() + 1); };
+  document.getElementById('prev').onclick = function () { go(idx() - 1); };
+  addEventListener('keydown', function (e) { if (e.key === 'ArrowLeft' || e.key === ' ') go(idx() + 1); if (e.key === 'ArrowRight') go(idx() - 1); });
+  sync();
+})();
+</script>
+</body>
+</html>

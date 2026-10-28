@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>בדיקת בטן · Scrub In</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../emblem.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Frank+Ruhl+Libre:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0C2A35;--navy2:#123845;--g:#00967D;--g2:#3DC08C;--g3:#0A6B5A;--lime:#B5D96B;--red:#A3402E;--amber:#C9893F;--blue:#2F6FA8;--bg:#EDF2F0;--soft:#F3F7F5;--ink:#16262C;--muted:#5C6F73;--line:#DCE6E2}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--navy);color:var(--ink);font-family:Heebo,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.deck{position:fixed;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.deck::-webkit-scrollbar{display:none}
+.s{flex:0 0 100%;height:100%;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;padding:18px 16px 84px;overflow-y:auto;position:relative}
+.s::after{content:'';position:absolute;inset:0;background:url(../ops/art/organs.webp) no-repeat 6% 40%/auto 115%;opacity:.05;filter:invert(1);pointer-events:none}
+.card{width:min(980px,100%);background:#fff;border-radius:22px;box-shadow:0 18px 50px rgba(0,0,0,.35);padding:30px 32px 22px;position:relative;overflow:hidden;z-index:1}
+.card::before{content:'';position:absolute;inset:0 0 auto 0;height:6px;background:linear-gradient(90deg,var(--g3),var(--g),var(--g2),var(--lime))}
+.kick{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--g);letter-spacing:.3px;margin-bottom:6px}
+.kick b{background:var(--navy);color:#fff;border-radius:999px;min-width:26px;height:26px;display:grid;place-items:center;font-size:13px;padding:0 8px}
+h1,h2{font-family:'Frank Ruhl Libre',serif;color:var(--navy);margin:0 0 10px;line-height:1.15}
+h1{font-size:clamp(34px,6.4vw,60px)}h2{font-size:clamp(25px,4.4vw,36px)}
+h3{margin:0 0 6px;font-size:17px;color:var(--navy)}
+.lead{font-size:clamp(15.5px,2.3vw,18.5px);color:var(--muted);margin:0 0 16px;line-height:1.5}
+ul.b{margin:0;padding:0;list-style:none;display:grid;gap:8px}ul.b li{position:relative;padding-inline-start:20px;font-size:16.5px;line-height:1.45}ul.b li::before{content:'';position:absolute;inset-inline-start:2px;top:.62em;width:8px;height:8px;border-radius:2px;background:var(--g);transform:rotate(45deg)}
+ul.b li b{color:var(--navy)}ul.b.sm li{font-size:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.grid.g3{grid-template-columns:repeat(3,1fr)}.grid.f{grid-template-columns:1.05fr .95fr;align-items:center}
+.box{background:var(--soft);border-radius:14px;padding:13px 15px;border-inline-start:4px solid var(--g);font-size:15.5px;line-height:1.45}
+.box.r{border-color:var(--red);background:#FBEDEA}.box.a{border-color:var(--amber);background:#FFF6EA}.box.n{border-color:var(--navy)}.box.b{border-color:var(--blue);background:#EEF4FB}
+.box b.t{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}
+.num{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:4px 0 14px}.num div{background:var(--soft);border-radius:14px;padding:12px 10px;text-align:center}
+.num b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(26px,4vw,38px);color:var(--g3);line-height:1.05}.num span{font-size:13px;color:var(--muted);line-height:1.3;display:block;margin-top:4px}
+figure{margin:0;background:#FBFCFB;border:1px solid var(--line);border-radius:16px;padding:10px;text-align:center}figure img{max-width:100%;max-height:46vh;display:block;margin:0 auto;mix-blend-mode:multiply}
+figcaption{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.35}
+.ill svg{width:100%;height:auto;max-height:50vh}
+.src{margin-top:16px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.src b{color:var(--g3)}
+.tag{display:inline-block;font-size:12px;font-weight:800;border-radius:999px;padding:2px 10px;background:#E3F4EC;color:var(--g3);margin-inline-end:4px}
+.tag.r{background:#F8E3DE;color:var(--red)}.tag.a{background:#FFF3DF;color:#8A5A14}.tag.b{background:#E8F0FA;color:var(--blue)}
+.flow{display:grid;gap:8px}.flow div{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;background:var(--soft);border-radius:12px;padding:9px 12px;font-size:15.5px}.flow div b{color:var(--navy)}
+.study{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#fff}.study .y{font-size:12px;font-weight:800;color:var(--g);letter-spacing:.3px}.study b{display:block;font-size:16px;color:var(--navy);margin:2px 0}.study p{margin:4px 0 0;font-size:14.5px;line-height:1.45}.study small{display:block;margin-top:6px;font-size:11.5px;color:var(--muted)}
+.cover{background:radial-gradient(120% 90% at 85% 0%,#164B54 0%,var(--navy) 58%)}
+.cover::after{opacity:.16;background-position:2% 50%}
+.cover .card{background:transparent;box-shadow:none;color:#fff}.cover .card::before{display:none}.cover h1{color:#fff}.cover .lead{color:#C9D6DA}.cover .kick{color:var(--g2)}
+.pill{display:inline-flex;gap:6px;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px;color:#fff;margin:4px}
+.logo{display:flex;align-items:center;gap:10px;margin-bottom:26px}.logo img{width:48px;height:48px;border-radius:50%;background:#fff}.logo b{color:#fff;font-weight:900}.logo small{display:block;color:#A9C9C0;font-size:12px}
+.obj{counter-reset:o;list-style:none;margin:0;padding:0;display:grid;gap:10px}.obj li{counter-increment:o;display:flex;gap:12px;align-items:flex-start;font-size:16.5px;line-height:1.45}.obj li::before{content:counter(o);flex:0 0 30px;height:30px;border-radius:50%;background:var(--g);color:#fff;font-weight:800;display:grid;place-items:center}
+.nav{position:fixed;inset:auto 0 0 0;display:flex;align-items:center;justify-content:center;gap:14px;padding:12px 16px calc(14px + env(safe-area-inset-bottom));background:linear-gradient(transparent,rgba(6,20,26,.85) 40%);z-index:5}
+.nav button{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;font-size:22px;cursor:pointer}.nav button:disabled{opacity:.3}
+.dots{display:flex;gap:5px;flex-wrap:wrap;max-width:60vw;justify-content:center}.dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer}.dots i.on{background:var(--g2);width:20px;border-radius:5px}
+.count{color:#C9D6D9;font-size:13px;font-weight:700;min-width:44px;text-align:center}
+bdi{unicode-bidi:isolate}
+.cmp{width:100%;border-collapse:separate;border-spacing:0;font-size:14px;border:1px solid var(--line);border-radius:14px;overflow:hidden}.cmp th{background:var(--navy);color:#fff;padding:9px 10px;font-size:16px;text-align:start}.cmp th small{display:block;font-weight:500;color:#A9D9C8;font-size:12px}.cmp td{padding:8px 10px;border-top:1px solid var(--line);vertical-align:top;line-height:1.4}.cmp td:first-child{background:var(--soft);font-weight:800;color:var(--navy);white-space:nowrap}.cmp tr:nth-child(odd) td:not(:first-child){background:#FBFCFB}
+figure.vid video{width:100%;max-height:34vh;border-radius:10px;background:#000;display:block}
+@media (max-width:760px){.cmp{font-size:12.5px}.cmp td,.cmp th{padding:6px}}
+
+.hotw{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;align-items:start}.hoti{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#FBFCFB}.hoti img{display:block;width:100%;mix-blend-mode:multiply}.hoti svg{position:absolute;inset:0;width:100%;height:100%}
+.hz{fill:var(--c);fill-opacity:.38;stroke:var(--c);stroke-width:2;cursor:pointer;transition:fill-opacity .2s}.hz:hover,.hz.on{fill-opacity:.62}.hzl{font:900 22px Heebo,sans-serif;fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;pointer-events:none;text-anchor:middle}
+.hotp .hint{background:var(--soft);border-radius:12px;padding:10px 12px;font-weight:700;color:var(--g3);margin:0}.hzi{background:#fff;border:1px solid var(--line);border-inline-start:5px solid var(--c,var(--g));border-radius:14px;padding:12px 14px;margin-top:8px;font-size:15.5px;line-height:1.45}.hzi>b{display:block;font-size:17px;color:var(--navy);margin-bottom:4px}.hzi p{margin:0}
+figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-size:15px}.obj.sm li::before{flex-basis:26px;height:26px;font-size:13px}.flow.sm div{grid-template-columns:130px 1fr;padding:7px 10px;font-size:14.5px}
+@media (max-width:760px){.hotw{grid-template-columns:1fr}}
+
+@media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
+@media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+/*BRAND*/
+.brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
+.brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
+.s{padding-top:58px}
+.cover .card{display:flex;flex-direction:column;gap:6px;max-width:980px}
+.cvhead{display:flex;align-items:center;gap:16px;margin-bottom:30px}.cvhead img.em{width:74px;height:74px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(61,192,140,.55)}
+.cvhead b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(24px,3.4vw,34px);color:#fff;line-height:1.1}.cvhead span{display:block;font-size:clamp(15px,2vw,19px);color:#A9D9C8;font-weight:700;margin-top:4px}
+.cover h1{font-size:clamp(38px,6.6vw,66px);margin:6px 0 8px}.cover .kick{font-size:14px;letter-spacing:.06em}
+.cvmeta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.cvlogos{display:flex;align-items:center;gap:18px;margin-top:34px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14)}.cvlogos img{height:44px;width:auto}.cvlogos small{margin-inline-start:auto;color:#8FB3AA;font-size:12.5px;font-weight:700;letter-spacing:.08em}
+.cover .brandbar{display:none}
+@media (max-width:760px){.brandbar{left:10px;gap:7px;padding:4px 9px 4px 4px}.brandbar img{height:20px}.brandbar img.em{width:22px;height:22px}.s{padding-top:48px}.cvhead img.em{width:56px;height:56px}.cvlogos img{height:34px}.cvlogos small{display:none}}
+/* numbered lists: a bold word inside an item stays inline */
+.obj li,.steps li{display:block;position:relative;padding-inline-start:42px;min-height:30px}.obj li::before,.steps li::before{position:absolute;inset-inline-start:0;top:0}.obj.sm li{padding-inline-start:36px}
+.grid.tight figure img{max-height:24vh}
+@media print{.brandbar{display:none}}
+/*/BRAND*/
+</style>
+</head>
+<body>
+<div class="brandbar" aria-hidden="true"><img class="em" src="brand/emblem.jpg" alt=""><i></i><img src="brand/logo_k.webp" alt=""><img src="brand/logo_c.webp" alt=""></div>
+<main class="deck" id="deck">
+<section class="s cover"><div class="card">
+ <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
+ <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 1</div>
+ <h1>בדיקת בטן</h1>
+ <p class="lead">אנמנזה ובדיקה גופנית של מטופל עם כאב בטן חריף: מה שואלים, איך בודקים ומה מחפשים</p>
+ <div class="cvmeta"><span class="pill">מבוסס על <bdi>Sabiston</bdi>, מהדורה 22, פרק 85</span></div>
+ <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>1</b>מטרות הלמידה</div>
+ <h2>בסוף הסדנה תדעו</h2>
+ <ol class="obj">
+  <li>להסביר את ההבדל בין כאב ויסצרלי לכאב פריאטלי ולמה כאב יכול להיות מוקרן</li>
+  <li>לקחת אנמנזה ממוקדת של כאב בטן חריף, כולל רקע, תרופות ושאלות גינקולוגיות</li>
+  <li>לבצע בדיקת בטן מסודרת: הסתכלות, הקשה, מישוש ובדיקת המפשעה</li>
+  <li>לזהות סימני צפקת ו"כאב שאינו תואם לבדיקה"</li>
+  <li>להכיר את הסימנים הקלאסיים (מרפי, רובסינג, פסואס ועוד) ואת המגבלות שלהם</li>
+  <li>לדעת אילו בדיקות מעבדה לשלוח אחרי הבדיקה</li>
+ </ol>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 85 (עמ׳ <bdi dir="ltr">1155–1165</bdi>)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>2</b>הבסיס</div>
+ <h2>למה הכאב נראה כך?</h2>
+ <div class="grid f">
+  <div>
+   <ul class="b">
+    <li><b>צפק ויסצרלי:</b> עוטף את האיברים, עצבוב אוטונומי. כאב עמום, לא ממוקם, "התכווצויות"</li>
+    <li><b>צפק פריאטלי:</b> מצפה את דופן הבטן, עצבוב סומטי לפי הדרמטומים. כאב חד וממוקם היטב</li>
+    <li><b>הדוגמה הקלאסית:</b> בדלקת התוספתן הכאב מתחיל עמום סביב הטבור ועובר לרבע הימני התחתון כשהצפק הפריאטלי נפגע</li>
+    <li><b>כאב מוקרן:</b> אוויר חופשי שמגרה את הסרעפת יכול לגרום לכאב בכתף. ולהפך: אוטם בשריר הלב יכול להופיע ככאב בבטן העליונה</li>
+    <li><b>"חריף":</b> בדרך כלל כאב שהתחיל לפני פחות משבוע (גבול שרירותי)</li>
+   </ul>
+  </div>
+  <figure><img src="img/Sobo_1906_408.jpg" alt="חלל הבטן הפתוח עם המעי הדק והמעי הגס"><figcaption>חלל הבטן הפתוח: האומנטום הגדול מורם, מתחתיו המעי הדק ומסגרת המעי הגס · <bdi>Sobotta</bdi>, אטלס האנטומיה 1906, איור 408 (נחלת הכלל)</figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1155, 1157</bdi></span><span>פיזיולוגיה של הכאב</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>3</b>מפת הבטן · אינטראקטיבי</div>
+ <h2>תשעת אזורי הבטן</h2>
+ <div class="hotw"><div class="hoti"><img src="img/Gray1220.png" alt="חלוקת הבטן לתשעה אזורים"><svg viewBox="0 0 434 550" preserveAspectRatio="none">
+  <polygon class="hz" data-hz="rh" points="100,198 150,178 150,278 95,278" style="--c:#2F6FA8"/><text class="hzl" x="124" y="240">1</text>
+  <polygon class="hz" data-hz="ep" points="150,178 262,178 262,278 150,278" style="--c:#A3402E"/><text class="hzl" x="206" y="215">2</text>
+  <polygon class="hz" data-hz="lh" points="262,178 312,198 318,278 262,278" style="--c:#7A5BD6"/><text class="hzl" x="289" y="250">3</text>
+  <polygon class="hz" data-hz="rl" points="95,278 150,278 150,355 92,355" style="--c:#C9893F"/><text class="hzl" x="122" y="300">4</text>
+  <polygon class="hz" data-hz="um" points="150,278 262,278 262,355 150,355" style="--c:#00967D"/><text class="hzl" x="206" y="300">5</text>
+  <polygon class="hz" data-hz="ll" points="262,278 318,278 322,355 262,355" style="--c:#C9893F"/><text class="hzl" x="291" y="300">6</text>
+  <polygon class="hz" data-hz="ri" points="92,355 150,355 150,470 112,440 98,400" style="--c:#A3402E"/><text class="hzl" x="124" y="430">7</text>
+  <polygon class="hz" data-hz="hy" points="150,355 262,355 262,470 206,500 150,470" style="--c:#0A6B5A"/><text class="hzl" x="206" y="450">8</text>
+  <polygon class="hz" data-hz="li" points="262,355 322,355 314,400 300,440 262,470" style="--c:#2F6FA8"/><text class="hzl" x="289" y="430">9</text>
+ </svg></div>
+ <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו (ימין המטופל בצד שמאל של הציור)</p>
+  <div class="hzi" data-hzi="rh" hidden><b>1 · תת-צלעי ימני</b><p>כבד, כיס מרה, כפיפת הכבד של המעי הגס. כאן בודקים את סימן מרפי: עצירת הנשימה בשאיפה מרמזת על כיס מרה חריף</p></div>
+  <div class="hzi" data-hzi="ep" hidden><b>2 · אפיגסטרי</b><p>קיבה, תריסריון, לבלב. כיב מנוקב ודלקת לבלב. <b style="display:inline;font-size:inherit;color:var(--red)">זכרו את הלב:</b> אוטם בשריר הלב יכול להופיע ככאב בבטן העליונה</p></div>
+  <div class="hzi" data-hzi="lh" hidden><b>3 · תת-צלעי שמאלי</b><p>טחול, כפיפת הטחול של המעי הגס. עמימות בהקשה משמאל למעלה עם עמימות משתנה בצד ימין: קרע או המטומה של הטחול (סימן <bdi>Balance</bdi>)</p></div>
+  <div class="hzi" data-hzi="rl" hidden><b>4 · מותני ימני</b><p>המעי הגס העולה, הכליה. אבנים, פיאלונפריטיס. שטף דם במותן (<bdi>Grey Turner</bdi>): דימום רטרופריטונאלי או דלקת לבלב קשה</p></div>
+  <div class="hzi" data-hzi="um" hidden><b>5 · טבורי</b><p>המעי הדק והמעי הגס הרוחבי. כאב ויסצרלי עמום, למשל בתחילת דלקת התוספתן. חסימה, איסכמיה של המעי. שטף דם סביב הטבור (<bdi>Cullen</bdi>): דימום תוך-בטני</p></div>
+  <div class="hzi" data-hzi="ll" hidden><b>6 · מותני שמאלי</b><p>המעי הגס היורד, הכליה. אבנים, פיאלונפריטיס, שטף דם במותן כמו בצד ימין</p></div>
+  <div class="hzi" data-hzi="ri" hidden><b>7 · כסלי ימני (רבע ימני תחתון)</b><p>צקום, תוספתן, שחלה ימנית. דלקת תוספתן (רובסינג, פסואס). תסביב שחלה, היריון מחוץ לרחם. כאן גם המפשעה: בקע</p></div>
+  <div class="hzi" data-hzi="hy" hidden><b>8 · היפוגסטרי</b><p>שלפוחית, רחם, חלק מהסיגמואיד. דלקת אגן, היריון מחוץ לרחם, מורסה באגן ותוספתן אגני (סימן האובטורטור). בדיקה רקטלית ואגנית לפי החשד</p></div>
+  <div class="hzi" data-hzi="li" hidden><b>9 · כסלי שמאלי</b><p>המעי הגס הסיגמואידי, שחלה שמאלית. דלקת סעיפים, תסביב (וולוולוס) של הסיגמואיד, סיבות גינקולוגיות. המפשעה השמאלית</p></div>
+ </div></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1155–1158, 1164</bdi> (טבלאות 85.1, 85.4)</span><span>איור: <bdi>Gray's Anatomy</bdi>, איור 1220 (נחלת הכלל)</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>4</b>אנמנזה</div>
+ <h2>הסיפור קודם לכל בדיקה</h2>
+ <div class="grid">
+  <div>
+   <h3>הכאב</h3>
+   <ul class="b sm">
+    <li>מתי התחיל ואיך (פתאומי או הדרגתי)</li>
+    <li>אופי, מיקום, איכות ומשך. האם נדד או מוקרן (כתף, גב)</li>
+    <li>כאב מחוץ לבטן: לא לשכוח לשאול</li>
+   </ul>
+   <h3 style="margin-top:12px">תסמינים נלווים</h3>
+   <ul class="b sm">
+    <li>בחילות, הקאות, שלשול, היעדר יציאות וגזים</li>
+    <li>חום, צמרמורות, מגע עם חולים</li>
+   </ul>
+  </div>
+  <div>
+   <h3>הרקע</h3>
+   <ul class="b sm">
+    <li><b>גיל ומין:</b> מחלת סעיפים, דרכי מרה וכיב פפטי שכיחים במבוגרים ולא בצעירים</li>
+    <li><b>מחלות רקע:</b> מעשן עם מחלת כלי דם? לחשוב על מפרצת וחסימה של כלי דם המעי</li>
+    <li><b>ניתוחים קודמים:</b> הדבקויות, בקע בחתך. מיד אחרי ניתוח: דליפה מהחיבור</li>
+    <li><b>תרופות:</b> סטרואידים ומדכאי חיסון מטשטשים כאב וחום. הפסקת נוגדי קרישה בפרפור פרוזדורים: תסחיף</li>
+    <li><b>נשים:</b> וסת אחרונה, הריונות, מחלות מין, אמצעי מניעה, אנדומטריוזיס</li>
+    <li>אלרגיות, עישון, אלכוהול וסמים</li>
+   </ul>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1155–1157</bdi></span><span>אנמנזה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>5</b>הכנה</div>
+ <h2>לפני שנוגעים בבטן</h2>
+ <div class="grid f">
+  <div>
+   <ul class="b">
+    <li><b>הציוד:</b> סטטוסקופ, כפפות וחומר סיכה (לבדיקה רקטלית), סדין לכיסוי. בבדיקה אינטימית: מלווה בחדר</li>
+    <li><b>הסבר והסכמה:</b> מציגים את עצמכם ומסבירים מה תעשו</li>
+    <li><b>המבט הכללי:</b> דופק מהיר, הזעה וחיוורון הם סימני רעילות מערכתית</li>
+    <li><b>הנשימה:</b> מאמץ נשימתי בלי צפצופים או חרחורים יכול להיות פיצוי על חמצת מאלח בבטן</li>
+    <li><b>תנוחה:</b> שכיבה על הגב, הברכיים כפופות וכפות הרגליים על המיטה. כך שרירי הבטן רפויים</li>
+    <li><b>בדיקה מלאה:</b> גם לב וריאות. קולות לב עמומים וכאב באפיגסטריום? לחשוב על לב</li>
+   </ul>
+  </div>
+  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש בשתי ידיים של שפת הכבד"><figcaption>מישוש בשתי ידיים מתחת לקשת הצלעות הימנית בזמן שהמטופל נושם עמוק · <bdi>Musser</bdi>, <bdi>A Practical Treatise on Medical Diagnosis</bdi> 1904, איור 192 (נחלת הכלל)</figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1158–1159</bdi> · הציוד וההסכמה: נוהג מקובל</span><span>הכנה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>6</b>צעד אחר צעד</div>
+ <h2>סדר הבדיקה</h2>
+ <div class="flow">
+  <div><b>1 · הסתכלות</b><span>תפיחות, צלקות ושינויים בעור, גושים ובקעים, סימני מתיחה וורידים בולטים. שטף דם סביב הטבור (<bdi>Cullen</bdi>) או במותן (<bdi>Grey Turner</bdi>): דימום תוך-בטני או רטרופריטונאלי</span></div>
+  <div><b>2 · הקשה</b><span>קודם הקשה, אחר כך מישוש. טימפני מעל לולאות מלאות גז, עמימות משתנה בנוזל חופשי</span></div>
+  <div><b>3 · מישוש</b><span>מתחילים רחוק מהכאב. מחפשים את <b>נקודת הרגישות המרבית</b>, רגישות בהרפיה ועמידה לא רצונית. מחפשים גושים, פגמים בדופן ופעימה של כלי דם</span></div>
+  <div><b>4 · המפשעה</b><span><b>חובה בכל בדיקת בטן.</b> בקע שלא חוזר עם בטן תפוחה וטימפנית: חסימה</span></div>
+  <div><b>5 · האזנה</b><span>תועלת מוגבלת: לקולות מעיים ולאוושות רגישות וסגוליות נמוכות. רק יחד עם שאר הבדיקה</span></div>
+  <div><b>6 · רקטלית, גניטלית, אגנית</b><span>לפי החשד: דימום, עצירות או גוש ברקטום. תסביב אשך או שחלה, דלקת אגן, הריון. דוחים רק כשהחשד נמוך</span></div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1157–1158</bdi> · "מתחילים רחוק מהכאב": נוהג מקובל</span><span>סדר הבדיקה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>7</b>מה מחפשים</div>
+ <h2>צפקת וסימני אזהרה</h2>
+ <div class="grid">
+  <div>
+   <h3>סימני הצפקת הקלאסיים</h3>
+   <ul class="b">
+    <li><b>עמידה לא רצונית (<bdi>guarding</bdi>):</b> קשה להבדיל ממתיחה רצונית של השרירים. כפיפת הברכיים עוזרת</li>
+    <li><b>נוקשות של דופן הבטן</b></li>
+    <li><b>רגישות בהרפיה (<bdi>rebound</bdi>):</b> הכאב מחמיר כשמשחררים את הלחץ. מעיד על גירוי הצפק הפריאטלי</li>
+    <li>רוב המטופלים עם בטן חריפה יראו לפחות חלק מהסימנים האלה</li>
+    <li><b>כאב שמתמקד:</b> מי שמתלונן על כאב בכל הבטן מצביע לפעמים על נקודה אחת בבדיקה זהירה. המיקום מצמצם את האבחנה המבדלת</li>
+   </ul>
+  </div>
+  <div style="display:grid;gap:10px">
+   <div class="box r"><b class="t">כאב שאינו תואם לבדיקה</b>כאב קשה עם בטן כמעט לא רגישה: לחשוב על איסכמיה של המעי, לא על ניקוב. לשאול על גורמי סיכון לכלי דם</div>
+   <div class="box a"><b class="t">בטן תפוחה וטימפנית עם בקע שלא חוזר</b>חסימת מעיים עד שיוכח אחרת</div>
+   <figure><img src="img/cullen-sign.jpg" alt="שטף דם בדופן הבטן ליד הטבור" style="max-height:24vh"><figcaption>סימן <bdi>Cullen</bdi>: שטף דם בדופן הבטן התחתונה ליד הטבור, בדלקת לבלב חריפה · <bdi>Herbert L. Fred, MD &amp; Hendrik A. van Dijk</bdi>, <bdi>CC BY 2.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1158</bdi></span><span>צפקת</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>8</b>הסימנים בעלי השם</div>
+ <h2>מרפי, רובסינג ושות׳</h2>
+ <div class="grid g3">
+  <div class="box"><b class="t">מרפי · <bdi>Murphy</bdi></b>יד מתחת לקשת הצלעות הימנית, המטופל נושם עמוק ועוצר את הנשימה מכאב. <span class="tag">כיס מרה חריף</span></div>
+  <div class="box"><b class="t">רובסינג · <bdi>Rovsing</bdi></b>לחץ ברבע השמאלי התחתון גורם לכאב בימני התחתון. <span class="tag">תוספתן</span></div>
+  <div class="box"><b class="t">פסואס · <bdi>Iliopsoas</bdi></b>הרמת רגל ישרה נגד התנגדות כואבת. <span class="tag">תוספתן מאחורי הצקום</span></div>
+  <div class="box"><b class="t">אובטורטור</b>סיבוב פנימי פסיבי של הירך עם ברך כפופה כואב. <span class="tag">תוספתן אגני, מורסה באגן</span></div>
+  <div class="box"><b class="t">קרנט · <bdi>Carnett</bdi></b>הכאב נמשך או מחמיר כשמכווצים את שרירי הבטן. <span class="tag b">מקור בדופן הבטן</span></div>
+  <div class="box"><b class="t">בלומברג · <bdi>Blumberg</bdi></b>כאב בשחרור הלחץ ולא בלחיצה. <span class="tag r">צפקת</span></div>
+  <div class="box"><b class="t">קאלן · גריי טרנר</b>שטף דם סביב הטבור · במותניים. <span class="tag r">דימום, דלקת לבלב קשה</span></div>
+  <div class="box"><b class="t">האושיפ-רומברג</b>כאב בירך הפנימית בסיבוב פנימי של הירך. <span class="tag a">בקע אובטורטורי</span></div>
+  <div class="box"><b class="t">דנפורת׳ · <bdi>Danforth</bdi></b>כאב בכתף בשאיפה. <span class="tag r">דם מתחת לסרעפת</span></div>
+ </div>
+ <div class="box a" style="margin-top:12px"><b class="t">שימו לב</b>לרוב הסימנים האלה אין רגישות וסגוליות מספיקות כדי לקבוע אבחנה לבד. הם חלק מאנמנזה ובדיקה שלמות</div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1158–1159</bdi> (טבלה 85.4)</span><span>סימנים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>9</b>אחרי הבדיקה</div>
+ <h2>מעבדה ואוכלוסיות מיוחדות</h2>
+ <div class="grid">
+  <div>
+   <h3>כמעט לכולם</h3>
+   <ul class="b sm">
+    <li><b>ספירת דם:</b> לויקוציטים גבוהים או נמוכים, "סטייה שמאלה". המוגלובין נמוך: דימום. גבוה: התייבשות</li>
+    <li><b>כימיה ולקטט:</b> חמצת או לקטט גבוה: התייבשות, אלח מתפתח או איסכמיה. גזים בדם כשיש חמצת לקטית</li>
+   </ul>
+   <h3 style="margin-top:12px">לפי החשד</h3>
+   <ul class="b sm">
+    <li>תפקודי כבד, עמילאז וליפאז · בדיקת שתן</li>
+    <li><b><bdi>β-HCG</bdi> לכל אישה בגיל הפוריות</b></li>
+    <li>לפני ניתוח: סוג והצלבה, תפקודי קרישה</li>
+   </ul>
+  </div>
+  <div style="display:grid;gap:10px">
+   <div class="box n"><b class="t">מבוגרים</b>יותר מחלות רקע ותרופות. הסתמנות לא טיפוסית. שבריריות מנבאת יותר מהגיל עצמו</div>
+   <div class="box a"><b class="t">מדוכאי חיסון וסטרואידים</b>הצפקת יכולה להיות מוסווית. רף חשד נמוך</div>
+   <div class="box n"><b class="t">חולים קשים ומונשמים</b>אין אנמנזה אמינה. לחשוב על כיס מרה חריף ללא אבנים, איסכמיה מתרופות לחץ דם, אוגילבי</div>
+   <div class="box b"><b class="t">אחרי ניתוח בריאטרי</b>דליפה, בקע פנימי, כיב בחיבור. הבדיקה יכולה להטעות</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1159, 1164–1165</bdi></span><span>מעבדה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>10</b>תרגול</div>
+ <h2>טעויות נפוצות ורשימת בדיקה</h2>
+ <div class="grid">
+  <div>
+   <h3>טעויות נפוצות</h3>
+   <ul class="b sm">
+    <li>בדיקה בלי לבדוק את המפשעה</li>
+    <li>להתחיל למשש בדיוק במקום הכואב</li>
+    <li>לסמוך על קולות מעיים כדי לשלול חסימה</li>
+    <li>לשכוח <bdi>β-HCG</bdi> באישה צעירה</li>
+    <li>לפספס סיבה מחוץ לבטן: לב, ריאות</li>
+    <li>להירגע מבטן "רכה" אצל מבוגר או מטופל על סטרואידים</li>
+   </ul>
+   <div class="box b" style="margin-top:12px"><b class="t">במחלקה השבוע</b>קחו אנמנזה ובדקו לפחות שני מטופלים שהגיעו עם כאב בטן חריף. הציגו לבכיר/ה את הממצאים ואת האבחנה המבדלת לפני שאתם רואים את ה-<bdi>CT</bdi></div>
+  </div>
+  <div>
+   <h3>רשימת בדיקה</h3>
+   <ul class="b sm">
+    <li>☐ הצגה עצמית, הסבר, פרטיות</li>
+    <li>☐ סימנים חיוניים ומבט כללי</li>
+    <li>☐ תנוחה: ברכיים כפופות, בטן חשופה מהפטמות עד המפשעה</li>
+    <li>☐ הסתכלות: תפיחות, צלקות, שטפי דם, בקעים</li>
+    <li>☐ הקשה, אחר כך מישוש: שטחי ועמוק</li>
+    <li>☐ נקודת רגישות מרבית, עמידה, רגישות בהרפיה</li>
+    <li>☐ מפשעות משני הצדדים</li>
+    <li>☐ רקטלית / גניטלית לפי הצורך</li>
+    <li>☐ לב וריאות</li>
+    <li>☐ סיכום: ממצאים ואבחנה מבדלת</li>
+   </ul>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1157–1159</bdi> · סדר הרשימה: נוהג מקובל</span><span>תרגול</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>11</b>מה חדש בתחום · <bdi dir="ltr">2021–2026</bdi></div>
+ <h2>מחקרים שכדאי להכיר</h2>
+ <div class="grid">
+  <div class="study"><div class="y"><bdi>JAMA</bdi> 2021 · סקירה</div><b>אבחנה וטיפול בדלקת תוספתן במבוגרים</b>
+   <p>הסיפור הקלאסי (כאב סביב הטבור שנודד לימין למטה, חוסר תיאבון או בחילה וחום קל) מוביל לאבחנה הנכונה בכ-<bdi dir="ltr">90%</bdi> מהמטופלים. כ-<bdi dir="ltr">96.5–100</bdi> מקרים ל-<bdi dir="ltr">100,000</bdi> מבוגרים בשנה</p>
+   <small>Moris D, Paulson EK, Pappas TN. JAMA 2021;326(22):2299-311</small></div>
+  <div class="study"><div class="y"><bdi>BJGP Open</bdi> 2024 · סקירה שיטתית</div><b>אילו סימנים באמת מנבאים מחלה קשה?</b>
+   <p>16 מחקרים ו-6,004 מטופלים. 14 סימנים ותסמינים שינו את הסבירות. הרושם הכולל של הרופא היה הטוב ביותר לאישור (למשל חסימה: <bdi dir="ltr">LR+ 24.6</bdi>). רגישות בהרפיה ועמידה לבדן לא עמדו בסף</p>
+   <small>Tans A et al. BJGP Open 2024;8(3):BJGPO.2023.0245</small></div>
+  <div class="study"><div class="y"><bdi>Scand J Trauma Resusc Emerg Med</bdi> 2024 · מחקר אקראי</div><b>אולטרסאונד ליד המיטה לכולם?</b>
+   <p>251 מבוגרים עם כאב בטן חריף במיון. אולטרסאונד שגרתי לא שיפר את דיוק האבחנה הראשונית (<bdi dir="ltr">56%</bdi> לעומת <bdi dir="ltr">62%</bdi>) ולא קיצר את השהות. ההדמיה לא מחליפה את הבדיקה</p>
+   <small>Brau F et al. Scand J Trauma Resusc Emerg Med 2024;32:15</small></div>
+  <div class="box n"><b class="t">השורה התחתונה</b>אנמנזה ובדיקה טובות הן עדיין הכלי המרכזי. הסימנים הבודדים חלשים, התמונה השלמה חזקה</div>
+ </div>
+ <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>12</b>לסיכום</div>
+ <h2>חמישה דברים לקחת למחלקה</h2>
+ <ol class="obj">
+  <li>כאב עמום ולא ממוקם הוא ויסצרלי. כאב חד וממוקם הוא פריאטלי. המעבר ביניהם מספר סיפור</li>
+  <li>אנמנזה מלאה: גיל, מין, ניתוחים, תרופות ושאלות גינקולוגיות</li>
+  <li>בודקים בשכיבה עם ברכיים כפופות: הסתכלות, הקשה, מישוש. תמיד גם המפשעה</li>
+  <li>כאב קשה עם בטן רכה: לחשוב על איסכמיה</li>
+  <li>ספירה, כימיה ולקטט כמעט לכולם. <bdi>β-HCG</bdi> לכל אישה בגיל הפוריות</li>
+ </ol>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 85 <bdi>The Acute Abdomen</bdi> (עמ׳ <bdi dir="ltr">1155–1165</bdi>)</div>
+ <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906), <bdi>Gray's Anatomy</bdi> (1918) ו-<bdi>Musser</bdi> (1904), נחלת הכלל · צילום סימן <bdi>Cullen</bdi>: <bdi>H.L. Fred &amp; H.A. van Dijk</bdi>, <bdi>CC BY 2.0</bdi> · <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+</main>
+<div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
+<script>
+document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz').forEach(function(z){z.addEventListener('click',function(){w.querySelectorAll('.hz').forEach(function(x){x.classList.toggle('on',x===z)});w.querySelectorAll('.hzi').forEach(function(i){i.hidden=i.dataset.hzi!==z.dataset.hz;i.style.setProperty('--c',z.style.getPropertyValue('--c'))});var h=w.querySelector('.hint');if(h)h.hidden=true;});});});
+</script>
+<script>
+(function () {
+  var deck = document.getElementById('deck'), S = [].slice.call(deck.children), dots = document.getElementById('dots'), n = S.length;
+  S.forEach(function (_, k) { var i = document.createElement('i'); i.onclick = function () { go(k); }; dots.appendChild(i); });
+  function idx() { return Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }
+  function go(k) { k = Math.max(0, Math.min(n - 1, k)); S[k].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' }); }
+  function sync() { var k = idx(); [].forEach.call(dots.children, function (d, j) { d.className = j === k ? 'on' : ''; }); document.getElementById('count').textContent = (k + 1) + '/' + n; document.getElementById('prev').disabled = k === 0; document.getElementById('next').disabled = k === n - 1; }
+  deck.addEventListener('scroll', function () { clearTimeout(sync.t); sync.t = setTimeout(sync, 60); }, { passive: true });
+  document.getElementById('next').onclick = function () { go(idx() + 1); };
+  document.getElementById('prev').onclick = function () { go(idx() - 1); };
+  addEventListener('keydown', function (e) { if (e.key === 'ArrowLeft' || e.key === ' ') go(idx() + 1); if (e.key === 'ArrowRight') go(idx() - 1); });
+  sync();
+})();
+</script>
+</body>
+</html>

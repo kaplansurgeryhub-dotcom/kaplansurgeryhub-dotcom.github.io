@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>עקרונות קבלת חולים בכירורגיה · Scrub In</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../emblem.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Frank+Ruhl+Libre:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0C2A35;--navy2:#123845;--g:#00967D;--g2:#3DC08C;--g3:#0A6B5A;--lime:#B5D96B;--red:#A3402E;--amber:#C9893F;--blue:#2F6FA8;--bg:#EDF2F0;--soft:#F3F7F5;--ink:#16262C;--muted:#5C6F73;--line:#DCE6E2}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--navy);color:var(--ink);font-family:Heebo,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.deck{position:fixed;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.deck::-webkit-scrollbar{display:none}
+.s{flex:0 0 100%;height:100%;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;padding:18px 16px 84px;overflow-y:auto;position:relative}
+.s::after{content:'';position:absolute;inset:0;background:url(../ops/art/organs.webp) no-repeat 6% 40%/auto 115%;opacity:.05;filter:invert(1);pointer-events:none}
+.card{width:min(980px,100%);background:#fff;border-radius:22px;box-shadow:0 18px 50px rgba(0,0,0,.35);padding:30px 32px 22px;position:relative;overflow:hidden;z-index:1}
+.card::before{content:'';position:absolute;inset:0 0 auto 0;height:6px;background:linear-gradient(90deg,var(--g3),var(--g),var(--g2),var(--lime))}
+.kick{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--g);letter-spacing:.3px;margin-bottom:6px}
+.kick b{background:var(--navy);color:#fff;border-radius:999px;min-width:26px;height:26px;display:grid;place-items:center;font-size:13px;padding:0 8px}
+h1,h2{font-family:'Frank Ruhl Libre',serif;color:var(--navy);margin:0 0 10px;line-height:1.15}
+h1{font-size:clamp(34px,6.4vw,60px)}h2{font-size:clamp(25px,4.4vw,36px)}
+h3{margin:0 0 6px;font-size:17px;color:var(--navy)}
+.lead{font-size:clamp(15.5px,2.3vw,18.5px);color:var(--muted);margin:0 0 16px;line-height:1.5}
+ul.b{margin:0;padding:0;list-style:none;display:grid;gap:8px}ul.b li{position:relative;padding-inline-start:20px;font-size:16.5px;line-height:1.45}ul.b li::before{content:'';position:absolute;inset-inline-start:2px;top:.62em;width:8px;height:8px;border-radius:2px;background:var(--g);transform:rotate(45deg)}
+ul.b li b{color:var(--navy)}ul.b.sm li{font-size:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.grid.g3{grid-template-columns:repeat(3,1fr)}.grid.f{grid-template-columns:1.05fr .95fr;align-items:center}
+.box{background:var(--soft);border-radius:14px;padding:13px 15px;border-inline-start:4px solid var(--g);font-size:15.5px;line-height:1.45}
+.box.r{border-color:var(--red);background:#FBEDEA}.box.a{border-color:var(--amber);background:#FFF6EA}.box.n{border-color:var(--navy)}.box.b{border-color:var(--blue);background:#EEF4FB}
+.box b.t{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}
+.num{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:4px 0 14px}.num div{background:var(--soft);border-radius:14px;padding:12px 10px;text-align:center}
+.num b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(26px,4vw,38px);color:var(--g3);line-height:1.05}.num span{font-size:13px;color:var(--muted);line-height:1.3;display:block;margin-top:4px}
+figure{margin:0;background:#FBFCFB;border:1px solid var(--line);border-radius:16px;padding:10px;text-align:center}figure img{max-width:100%;max-height:46vh;display:block;margin:0 auto;mix-blend-mode:multiply}
+figcaption{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.35}
+.ill svg{width:100%;height:auto;max-height:50vh}
+.src{margin-top:16px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.src b{color:var(--g3)}
+.tag{display:inline-block;font-size:12px;font-weight:800;border-radius:999px;padding:2px 10px;background:#E3F4EC;color:var(--g3);margin-inline-end:4px}
+.tag.r{background:#F8E3DE;color:var(--red)}.tag.a{background:#FFF3DF;color:#8A5A14}.tag.b{background:#E8F0FA;color:var(--blue)}
+.flow{display:grid;gap:8px}.flow div{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;background:var(--soft);border-radius:12px;padding:9px 12px;font-size:15.5px}.flow div b{color:var(--navy)}
+.study{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#fff}.study .y{font-size:12px;font-weight:800;color:var(--g);letter-spacing:.3px}.study b{display:block;font-size:16px;color:var(--navy);margin:2px 0}.study p{margin:4px 0 0;font-size:14.5px;line-height:1.45}.study small{display:block;margin-top:6px;font-size:11.5px;color:var(--muted)}
+.cover{background:radial-gradient(120% 90% at 85% 0%,#164B54 0%,var(--navy) 58%)}
+.cover::after{opacity:.16;background-position:2% 50%}
+.cover .card{background:transparent;box-shadow:none;color:#fff}.cover .card::before{display:none}.cover h1{color:#fff}.cover .lead{color:#C9D6DA}.cover .kick{color:var(--g2)}
+.pill{display:inline-flex;gap:6px;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px;color:#fff;margin:4px}
+.logo{display:flex;align-items:center;gap:10px;margin-bottom:26px}.logo img{width:48px;height:48px;border-radius:50%;background:#fff}.logo b{color:#fff;font-weight:900}.logo small{display:block;color:#A9C9C0;font-size:12px}
+.obj{counter-reset:o;list-style:none;margin:0;padding:0;display:grid;gap:10px}.obj li{counter-increment:o;display:flex;gap:12px;align-items:flex-start;font-size:16.5px;line-height:1.45}.obj li::before{content:counter(o);flex:0 0 30px;height:30px;border-radius:50%;background:var(--g);color:#fff;font-weight:800;display:grid;place-items:center}
+.nav{position:fixed;inset:auto 0 0 0;display:flex;align-items:center;justify-content:center;gap:14px;padding:12px 16px calc(14px + env(safe-area-inset-bottom));background:linear-gradient(transparent,rgba(6,20,26,.85) 40%);z-index:5}
+.nav button{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;font-size:22px;cursor:pointer}.nav button:disabled{opacity:.3}
+.dots{display:flex;gap:5px;flex-wrap:wrap;max-width:60vw;justify-content:center}.dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer}.dots i.on{background:var(--g2);width:20px;border-radius:5px}
+.count{color:#C9D6D9;font-size:13px;font-weight:700;min-width:44px;text-align:center}
+bdi{unicode-bidi:isolate}
+.cmp{width:100%;border-collapse:separate;border-spacing:0;font-size:14px;border:1px solid var(--line);border-radius:14px;overflow:hidden}.cmp th{background:var(--navy);color:#fff;padding:9px 10px;font-size:16px;text-align:start}.cmp th small{display:block;font-weight:500;color:#A9D9C8;font-size:12px}.cmp td{padding:8px 10px;border-top:1px solid var(--line);vertical-align:top;line-height:1.4}.cmp td:first-child{background:var(--soft);font-weight:800;color:var(--navy);white-space:nowrap}.cmp tr:nth-child(odd) td:not(:first-child){background:#FBFCFB}
+figure.vid video{width:100%;max-height:34vh;border-radius:10px;background:#000;display:block}
+@media (max-width:760px){.cmp{font-size:12.5px}.cmp td,.cmp th{padding:6px}}
+
+.hotw{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;align-items:start}.hoti{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#FBFCFB}.hoti img{display:block;width:100%;mix-blend-mode:multiply}.hoti svg{position:absolute;inset:0;width:100%;height:100%}
+.hz{fill:var(--c);fill-opacity:.38;stroke:var(--c);stroke-width:2;cursor:pointer;transition:fill-opacity .2s}.hz:hover,.hz.on{fill-opacity:.62}.hzl{font:900 22px Heebo,sans-serif;fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;pointer-events:none;text-anchor:middle}
+.hotp .hint{background:var(--soft);border-radius:12px;padding:10px 12px;font-weight:700;color:var(--g3);margin:0}.hzi{background:#fff;border:1px solid var(--line);border-inline-start:5px solid var(--c,var(--g));border-radius:14px;padding:12px 14px;margin-top:8px;font-size:15.5px;line-height:1.45}.hzi>b{display:block;font-size:17px;color:var(--navy);margin-bottom:4px}.hzi p{margin:0}
+figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-size:15px}.obj.sm li::before{flex-basis:26px;height:26px;font-size:13px}.flow.sm div{grid-template-columns:130px 1fr;padding:7px 10px;font-size:14.5px}
+@media (max-width:760px){.hotw{grid-template-columns:1fr}}
+
+@media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
+@media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+/*BRAND*/
+.brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
+.brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
+.s{padding-top:58px}
+.cover .card{display:flex;flex-direction:column;gap:6px;max-width:980px}
+.cvhead{display:flex;align-items:center;gap:16px;margin-bottom:30px}.cvhead img.em{width:74px;height:74px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(61,192,140,.55)}
+.cvhead b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(24px,3.4vw,34px);color:#fff;line-height:1.1}.cvhead span{display:block;font-size:clamp(15px,2vw,19px);color:#A9D9C8;font-weight:700;margin-top:4px}
+.cover h1{font-size:clamp(38px,6.6vw,66px);margin:6px 0 8px}.cover .kick{font-size:14px;letter-spacing:.06em}
+.cvmeta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.cvlogos{display:flex;align-items:center;gap:18px;margin-top:34px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14)}.cvlogos img{height:44px;width:auto}.cvlogos small{margin-inline-start:auto;color:#8FB3AA;font-size:12.5px;font-weight:700;letter-spacing:.08em}
+.cover .brandbar{display:none}
+@media (max-width:760px){.brandbar{left:10px;gap:7px;padding:4px 9px 4px 4px}.brandbar img{height:20px}.brandbar img.em{width:22px;height:22px}.s{padding-top:48px}.cvhead img.em{width:56px;height:56px}.cvlogos img{height:34px}.cvlogos small{display:none}}
+/* numbered lists: a bold word inside an item stays inline */
+.obj li,.steps li{display:block;position:relative;padding-inline-start:42px;min-height:30px}.obj li::before,.steps li::before{position:absolute;inset-inline-start:0;top:0}.obj.sm li{padding-inline-start:36px}
+.grid.tight figure img{max-height:24vh}
+@media print{.brandbar{display:none}}
+/*/BRAND*/
+</style>
+</head>
+<body>
+<div class="brandbar" aria-hidden="true"><img class="em" src="brand/emblem.jpg" alt=""><i></i><img src="brand/logo_k.webp" alt=""><img src="brand/logo_c.webp" alt=""></div>
+<main class="deck" id="deck">
+
+<section class="s cover"><div class="card">
+ <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
+ <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 1</div>
+ <h1>עקרונות קבלת חולים בכירורגיה</h1>
+ <p class="lead">מהשיחה הראשונה ועד בוקר הניתוח: אבחנה, דחיפות, מעבר לפי מערכות, תרופות והסכמה מדעת</p>
+ <div class="cvmeta"><span class="pill">מבוסס על <bdi>Sabiston</bdi>, מהדורה 22, פרק 19</span></div>
+ <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>1</b>מטרות הלמידה</div>
+ <h2>בסוף המפגש תדעו</h2>
+ <ol class="obj">
+  <li>לבנות קבלה כירורגית ממוקדת: לאשר או לשלול את האבחנה ולהזמין רק בדיקות שישנו את הטיפול</li>
+  <li>לסווג ניתוח לפי המטרה שלו ולפי הדחיפות</li>
+  <li>לעבור על המטופל לפי מערכות ולזהות מה מחייב הערכה נוספת לפני ניתוח</li>
+  <li>לתכנן מה עושים עם התרופות לפני ניתוח: נוגדי קרישה, נוגדי טסיות, סוכרת וסטרואידים</li>
+  <li>להכין מטופל מבוגר לניתוח: קוגניציה, דליריום, תפקוד ושבריריות</li>
+  <li>להכיר את מרכיבי ההסכמה מדעת ואת ההזמנות לבוקר הניתוח</li>
+ </ol>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 19 (עמ׳ <bdi dir="ltr">2–30</bdi>)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>2</b>המפגש הראשון</div>
+ <h2>קודם כול: מה האבחנה?</h2>
+ <div class="grid">
+  <ul class="b">
+   <li>האנמנזה והבדיקה נועדו קודם כול <b>לאשר או לשלול את האבחנה החשודה</b></li>
+   <li>עוברים על כל המעבדה וההדמיה שכבר נעשו. המטרה: לשחזר את הסיפור הקליני שקדם לפנייה</li>
+   <li>בירור נוסף רק כשבאבחנה המבדלת נשארו אפשרויות שמחייבות <b>טיפול שונה</b></li>
+   <li><b>התער של אוקאם:</b> לא מזמינים בדיקה שהתשובה שלה כמעט ידועה מראש או שלא תשנה את הטיפול</li>
+   <li>שאלו גם על המשפחה, העבודה והקהילה. הקשר הזה בונה אמון</li>
+  </ul>
+  <div style="display:grid;gap:10px">
+   <div class="box n"><b class="t">מטרת הניתוח: מניעה</b>להקדים מחלה. למשל כריתה מונעת בתסמונת סרטן תורשתית, אנדארטרקטומיה בהיצרות א-תסמינית של הקרוטיס</div>
+   <div class="box"><b class="t">מטרת הניתוח: שליטה במחלה</b>מחלה פעילה. למשל כריתת גידול, כריתת כיס מרה בדלקת חריפה, שחרור הידבקויות בחסימת מעי</div>
+   <div class="box a"><b class="t">מטרת הניתוח: הקלה (פליאציה)</b>איכות חיים ולא ריפוי. למשל עקיפה בחסימה ממאירה של הקיבה</div>
+  </div>
+ </div>
+ <div class="box b" style="margin-top:12px"><b class="t">למה זה חשוב</b>בלי הסבר ברור של מטרת הניתוח אין הסכמה מדעת אמיתית</div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">2–3</bdi></span><span>המפגש הראשון</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>3</b>דחיפות</div>
+ <h2>מתוכנן, דחוף או חירום</h2>
+ <div class="flow">
+  <div><b>מתוכנן <bdi>(elective)</bdi></b><span>ההערכה נעשתה בביקור נפרד ואז נקבע מועד. מאושפז או מטופל שהגיע מהמיון לא נחשב "מתוכנן"</span></div>
+  <div><b>דחוף <bdi>(urgent)</bdi></b><span>באמצע. לפי סיווג <bdi>TACS</bdi> המעודכן (2023): הזמן האידיאלי לניתוח נע בין מיידי לעד 4 ימים מהאבחנה</span></div>
+  <div><b>חירום <bdi>(emergent)</bdi></b><span>תהליך חריף שעלול להידרדר מהר. כל עיכוב מיותר מסכן את התוצאה</span></div>
+ </div>
+ <ul class="b" style="margin-top:14px">
+  <li>קובעים דחיפות <b>בהתחלה</b>: היא קובעת אילו בדיקות, אילו ייעוצים וכמה זמן יש לאופטימיזציה</li>
+  <li>בסיווג <bdi>ASA</bdi> מוסיפים את האות <b>E</b> לניתוח חירום: עיכוב בטיפול יגדיל משמעותית את הסכנה לחיים או לאיבר</li>
+  <li>ניתוח חירום ממשיך לחדר הניתוח. גורמי הסיכון של המטופל קובעים רק את הניטור והטיפול סביב הניתוח</li>
+ </ul>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">3, 9</bdi></span><span>דחיפות</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>4</b>מבנה הקבלה</div>
+ <h2>מעבר לפי מערכות</h2>
+ <div class="grid">
+  <div class="flow">
+   <div><b>לב</b><span>מחלה כלילית, אי ספיקת לב, מסתמים, סטנטים. כושר תפקודי במט״ים</span></div>
+   <div><b>ריאות</b><span>עישון, <bdi>COPD</bdi>, דום נשימה בשינה, זיהום נשימתי בחודש האחרון</span></div>
+   <div><b>כליות</b><span>אי ספיקה כרונית, דיאליזה, אשלגן</span></div>
+   <div><b>כבד</b><span>סימני שחמת: צהבת, מיימת, טחול מוגדל, כוכבי עכביש</span></div>
+   <div><b>דם</b><span>היסטוריית דימום, אנמיה, נוגדי קרישה וטסיות</span></div>
+   <div><b>אנדוקריני</b><span>סוכרת, בלוטת התריס, סטרואידים, גידולים מפרישים</span></div>
+   <div><b>תזונה</b><span>ירידה במשקל, <bdi>BMI</bdi>, אלבומין</span></div>
+  </div>
+  <div style="display:grid;gap:10px;align-content:start">
+   <div class="box n"><b class="t">העיקרון</b>כל בדיקה לפני ניתוח צריכה סיכוי סביר לשנות משהו: לדחות ניתוח, לשפר מצב רפואי, לשנות ניטור או להפנות למרכז מתמחה</div>
+   <div class="box a"><b class="t">אין "אישור" מקרדיולוג</b>הייעוץ לא נותן אישור. הוא נותן מידע על הסיכון ועל הדרכים להתמודד איתו</div>
+   <div class="box b"><b class="t">במחלקה השבוע</b>קבלו מטופל אחד לניתוח מתוכנן: אנמנזה לפי המערכות כאן ורשימת תרופות מלאה כולל צמחי מרפא. לכל תרופה: מה עושים איתה לפני הניתוח. הציגו לבכיר/ה</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">9, 11–16, 20–22</bdi></span><span>מבנה הקבלה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>5</b>לב, ריאות ודרכי אוויר · אינטראקטיבי</div>
+ <h2>מי צריך בירור נוסף?</h2>
+ <div class="hotw"><div class="hoti" style="max-width:400px;justify-self:center"><img src="img/Sobo_1906_451.jpg" alt="איברי בית החזה והצוואר, מבט מלפנים"><svg viewBox="0 0 819 1100" preserveAspectRatio="none">
+   <polygon class="hz" data-hz="ht" points="360,720 430,615 510,650 585,800 580,960 520,1020 380,1040 345,950" style="--c:#A3402E"/><text class="hzl" x="465" y="860">לב</text>
+   <polygon class="hz" data-hz="lu" points="150,450 235,390 335,430 360,560 375,700 345,880 330,990 110,995 105,760 120,600" style="--c:#2F6FA8"/><text class="hzl" x="235" y="700">ריאה</text>
+   <polygon class="hz" data-hz="lu" points="465,350 560,345 640,420 680,620 690,1000 595,1005 580,940 590,800 520,650 470,520" style="--c:#2F6FA8"/><text class="hzl" x="610" y="560">ריאה</text>
+   <polygon class="hz" data-hz="th" points="275,125 340,100 450,105 478,185 455,272 380,288 300,272 268,190" style="--c:#7A5BD6"/><text class="hzl" x="372" y="200">תריס</text>
+   <polygon class="hz" data-hz="aw" points="362,290 418,290 420,440 360,440" style="--c:#00967D"/><text class="hzl" x="390" y="372">קנה</text>
+  </svg></div>
+  <div class="hotp"><p class="hint">👆 לחצו על איבר בציור כדי לקרוא מה בודקים לפני ניתוח</p>
+   <div class="hzi" data-hzi="ht" hidden><b>לב</b><ul class="b sm"><li>בלי תסמינים ומגיע ל-<strong>4 מט״ים</strong> (קומה במדרגות): ממשיכים לניתוח</li><li>ניתוח בסיכון נמוך: אין צורך בבירור, גם כשהכושר נמוך</li><li><strong>אק״ג:</strong> לפני ניתוח שאינו בסיכון נמוך, במחלה כלילית, הפרעת קצב, מחלת עורקים היקפית או מחלה מוחית-וסקולרית</li><li><strong>אקו:</strong> קוצר נשימה לא מוסבר או אי ספיקת לב שמחמירה</li><li>אחרי צנתור: ניתוח מתוכנן לא לפני 14 יום מבלון, 30 יום מסטנט מתכתי. מסטנט מצופה תרופה: רצוי 6 חודשים</li></ul></div>
+   <div class="hzi" data-hzi="lu" hidden><b>ריאות</b><ul class="b sm"><li>סיבוכים ריאתיים: <strong>כ-6%</strong> אחרי ניתוחי בטן גדולים. ככל שהחתך קרוב לסרעפת, הסיכון עולה</li><li>גורמי סיכון: גיל מעל 50, <bdi>ASA</bdi> 2 ומעלה, תלות תפקודית, אלבומין מתחת ל-3.5, <bdi>COPD</bdi> ואי ספיקת לב</li><li><strong>הפסקת עישון</strong> לפחות 4 שבועות לפני מורידה סיבוכים</li><li>ספירומטריה וצילום חזה לא כשגרה. רוויה בדופק לכולם</li><li>קורונה ב-4 השבועות האחרונים מעלה סיכון. אחרי 8 שבועות הסיכון חוזר לרגיל</li></ul></div>
+   <div class="hzi" data-hzi="th" hidden><b>בלוטת התריס</b><ul class="b sm"><li>בדיקת <bdi>TSH</bdi> ותפקודי תריס מזהים את הבעיה</li><li><strong>יתר פעילות:</strong> דוחים ניתוח מתוכנן עד לאיזון</li><li><strong>תת-פעילות עם תסמינים</strong> (עייפות, עלייה במשקל): דוחים. בלי תסמינים: אפשר להתחיל טיפול בכל שלב</li></ul></div>
+   <div class="hzi" data-hzi="aw" hidden><b>דרכי אוויר ודום נשימה בשינה</b><ul class="b sm"><li><bdi>STOP-BANG</bdi>: נחירות, עייפות, הפסקות נשימה, לחץ דם, <bdi>BMI</bdi> מעל 35, גיל מעל 50, היקף צוואר מעל 40 ס״מ, גבר</li><li>5 ומעלה: סיכון גבוה. לפני ניתוח מתוכנן: בדיקת שינה והתאמת <bdi>CPAP</bdi></li><li>ניתוח דחוף: מטפלים בדום הנשימה אחרי הניתוח</li></ul></div>
+  </div></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">9, 11–13, 20–21</bdi></span><span>איור: <bdi>Sobotta</bdi>, 1906, איור 451 (נחלת הכלל)</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>6</b>כליות ודם</div>
+ <h2>שתי מערכות שמשנות את התוכנית</h2>
+ <div class="grid">
+  <div class="box n"><b class="t">כליות</b>
+   <ul class="b sm"><li><b>אשלגן תקין</b> הוא תנאי לניתוח מתוכנן או דחוף באי ספיקת כליות. היפרקלמיה יכולה להרוג על שולחן הניתוחים</li><li>דיאליזה ביום שלפני הניתוח או ביום הניתוח, קרוב ל"משקל יבש"</li><li>אי ספיקה דרגה <bdi dir="ltr">3–5</bdi> או ניתוח בסיכון גבוה: אק״ג, ספירה, כימיה ושתן</li><li>להימנע מ-<bdi>NSAIDs</bdi>, אמינוגליקוזידים וחומר ניגוד כשיש תפקוד כלייתי שארי</li><li>דימום מטסיות אורמיות: דסמופרסין</li></ul></div>
+  <div class="box r"><b class="t">דם</b>
+   <ul class="b sm"><li>לא שולחים תפקודי קרישה כשגרה. <b>שואלים</b>: דימומי אף, דימום וסתי מרובה, דימום למפרקים, דימום בניתוחים ובפעולות קודמות</li><li>בבדיקה: דימום מהחניכיים ונקודות דימום בעור (טסיות), שטפי דם עמוקים ודימום למפרק (גורמי קרישה)</li><li>חשד: ספירה, <bdi>PT/INR</bdi>, <bdi>aPTT</bdi>, קריאטינין ותפקודי כבד. הפניה להמטולוג</li><li>עירוי דם במטופל יציב: כשההמוגלובין 7 או פחות (8 במחלת לב)</li></ul></div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">13–16</bdi></span><span>כליות ודם</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>7</b>כבד · בדיקה גופנית</div>
+ <h2>לחפש שחמת לפני שהיא מפתיעה בחדר הניתוח</h2>
+ <div class="grid g3">
+  <div>
+   <ul class="b sm">
+    <li><b>בשאלות:</b> הזרקת סמים, אלכוהול, קעקועים, השמנה ממושכת, מחלת כבד במשפחה. גרד וצהבת</li>
+    <li><b>בבדיקה:</b> צהבת בלובן העין, כוכבי עכביש, הרחבת ורידים סביב הטבור, טחול מוגדל, מיימת (גל נוזל), גינקומסטיה</li>
+    <li>בלי חשד: לא בודקים תפקודי כבד כשגרה</li>
+    <li>דלקת כבד חריפה או אלכוהולית: לא מנתחים ניתוח מתוכנן</li>
+    <li>שחמת: תמותה בניתוחי בטן <b>כ-10%, 20%, 60%</b> ב-<bdi>Child A, B, C</bdi>. <bdi>INR</bdi> מוארך לא משקף סיכון דימום</li>
+    <li>מיימת: לטפל לפני הניתוח (משתנים או ניקוז)</li>
+   </ul>
+  </div>
+  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש הכבד בשתי ידיים"><figcaption>מישוש הכבד: יד אחת מרימה מאחור, השנייה ממששת מתחת לקשת הצלעות בזמן שאיפה · <bdi>Musser, Medical Diagnosis</bdi> (1904), איור 192 (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/spider-nevus-cirrhosis.jpg" alt="כוכבי עכביש על עור צהוב"><figcaption>כוכבי עכביש ענקיים בחולה עם שחמת, צהבת ומיימת · <bdi>Herbert L. Fred, Hendrik A. van Dijk</bdi>, <bdi>CC BY 2.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">14–15</bdi></span><span>כבד</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>8</b>תרופות · קרישה</div>
+ <h2>נוגדי קרישה ונוגדי טסיות</h2>
+ <div class="flow">
+  <div><b>וורפרין</b><span>מפסיקים 5 ימים לפני. INR מעל 1.5 ביום שלפני: ויטמין K או פלזמה</span></div>
+  <div><b>דביגטרן</b><span>48 שעות לפני ניתוח גדול או בתפקוד כליות ירוד. נוגדן ייעודי לביטול: <bdi>idarucizumab</bdi></span></div>
+  <div><b>מעכבי <bdi>Xa</bdi></b><span>ריברוקסבן, אפיקסבן: 48 שעות לפני ניתוח בסיכון גבוה לדימום, 24 שעות בסיכון נמוך. חוזרים <bdi dir="ltr">1–2</bdi> ימים אחרי</span></div>
+  <div><b>גישור בהפרין</b><span>רק בסיכון גבוה מאוד לקריש: שבץ טרי, תסחיף עורקי חריף, מסתם מכני. בפרפור פרוזדורים, לפי <bdi>BRIDGE</bdi>, בלי גישור אין יותר תסחיפים ויש פחות דימום. הפרין רגיל: עוצרים <bdi dir="ltr">4–6</bdi> שעות לפני, הפרין במשקל מולקולרי נמוך: 24 שעות</span></div>
+  <div><b>אספירין לבד</b><span>בטוח להמשיך ברוב הניתוחים. <b>לא מתחילים</b> אספירין לפני ניתוח כדי להגן על הלב (<bdi>POISE-2</bdi>: בלי תועלת, יותר דימום)</span></div>
+  <div><b>טיפול כפול אחרי סטנט</b><span>לא ניתוח מתוכנן שמחייב הפסקה ב-30 הימים אחרי סטנט מתכתי וב-6 החודשים אחרי סטנט מצופה. אם חייבים להפסיק את מעכב <bdi>P2Y12</bdi>: ממשיכים אספירין וחוזרים מהר. מחליטים יחד עם הקרדיולוג</span></div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">11, 17–20</bdi></span><span>נוגדי קרישה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>9</b>תרופות · אנדוקריני ועוד</div>
+ <h2>סוכרת, סטרואידים וכל השאר</h2>
+ <div class="grid">
+  <div>
+   <h3>סוכרת</h3>
+   <ul class="b sm">
+    <li>לפני: המוגלובין <bdi>A1c</bdi>, אק״ג ואלקטרוליטים</li>
+    <li><b>אינסולין ארוך טווח:</b> כרגיל. <b>ביניים <bdi>(NPH)</bdi>:</b> חצי מינון בבוקר הניתוח. <b>קצר טווח:</b> לא בבוקר הניתוח</li>
+    <li>תערובות מוכנות: מינוס 20% בערב ומינוס 50% בבוקר. משאבה: קצב בסיסי בלבד</li>
+    <li><b>מטפורמין וסולפונילאוריאה:</b> לא ביום הניתוח. מעכבי <bdi>DPP-4</bdi>: כן</li>
+    <li><b>מעכבי <bdi>SGLT2</bdi>:</b> עוצרים <bdi dir="ltr">3–4</bdi> ימים לפני (חמצת קטוטית עם סוכר תקין)</li>
+    <li><b>אגוניסטים ל-<bdi>GLP-1</bdi>:</b> עוצרים שבוע לפני (לפי הספר. ראו "מה חדש")</li>
+   </ul>
+  </div>
+  <div>
+   <h3>סטרואידים ותרופות נוספות</h3>
+   <ul class="b sm">
+    <li>פרדניזון 5 מ״ג ביום או פחות: ממשיכים כרגיל</li>
+    <li>מינון גבוה יותר 3 שבועות ומעלה: קורטיזול בוקר. מתחת ל-5 צריך תחליף, מעל 10 ממשיכים כרגיל. ביניהם: מבחן גירוי</li>
+    <li>בלוטת התריס: יתר פעילות או תת-פעילות עם תסמינים דוחים ניתוח מתוכנן</li>
+    <li><b>חוסמי בטא וסטטינים:</b> מי שנוטל ממשיך. תרופות לב ומשאפים ניתנים גם בבוקר הניתוח</li>
+    <li>אסטרוגן וטמוקסיפן: עוצרים 4 שבועות לפני (קרישיות)</li>
+    <li>שאלו על <b>צמחי מרפא</b>: שום וג׳ינסנג עוצרים שבוע לפני, ג׳ינקו 36 שעות (דימום)</li>
+   </ul>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">11, 20–21, 24, 29</bdi></span><span>תרופות</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>10</b>ציר זמן</div>
+ <h2>מה עוצרים ומתי</h2>
+ <div class="grid f">
+  <div>
+   <ul class="b">
+    <li>תרופות שמשפיעות על דימום עוצרים <b>לפי זמן מחצית החיים</b> שלהן</li>
+    <li>בבוקר הניתוח בודקים שוב <b>מתי נלקחה המנה האחרונה</b> של כל נוגד קרישה וטסיות</li>
+    <li>אחרי הניתוח: תחליף בעירוי למי שלא יכול לבלוע, כדי למנוע תסמיני גמילה (למשל לחץ דם גבוה בהפסקת תרופות)</li>
+    <li>נוזלים צלולים עד שעתיים לפני הניתוח. אין צורך שגרתי בנוגדי חומצה או בנוגדי הקאה רק כדי לקצר צום</li>
+   </ul>
+  </div>
+  <div class="ill"><svg viewBox="0 0 420 560" xmlns="http://www.w3.org/2000/svg" font-family="Heebo,sans-serif">
+   <rect x="0" y="0" width="420" height="560" rx="18" fill="#F3F7F5"/>
+   <text x="210" y="28" text-anchor="middle" font-size="14" font-weight="800" fill="#0C2A35">לפני ניתוח מתוכנן</text>
+   <line x1="300" y1="50" x2="300" y2="538" stroke="#0A6B5A" stroke-width="3"/>
+   <g font-size="12.5">
+    <circle cx="300" cy="66" r="7" fill="#00967D"/><text x="362" y="71" text-anchor="middle" font-weight="800" fill="#0A6B5A">4 שבועות</text><text x="150" y="71" text-anchor="middle" fill="#16262C">הפסקת עישון · אסטרוגן וטמוקסיפן</text>
+    <circle cx="300" cy="116" r="7" fill="#00967D"/><text x="362" y="121" text-anchor="middle" font-weight="800" fill="#0A6B5A">שבוע</text><text x="150" y="114" text-anchor="middle" fill="#16262C">אגוניסט <tspan>GLP-1</tspan> (לפי הספר)</text><text x="150" y="130" text-anchor="middle" fill="#16262C">שום וג׳ינסנג</text>
+    <circle cx="300" cy="166" r="7" fill="#00967D"/><text x="362" y="171" text-anchor="middle" font-weight="800" fill="#0A6B5A">5 ימים</text><text x="150" y="171" text-anchor="middle" fill="#16262C">וורפרין</text>
+    <circle cx="300" cy="216" r="7" fill="#00967D"/><text x="362" y="221" text-anchor="middle" font-weight="800" fill="#0A6B5A">3 עד 4 ימים</text><text x="150" y="221" text-anchor="middle" fill="#16262C">מעכבי <tspan>SGLT2</tspan></text>
+    <circle cx="300" cy="266" r="7" fill="#C9893F"/><text x="362" y="271" text-anchor="middle" font-weight="800" fill="#8A5A14">48 שעות</text><text x="150" y="264" text-anchor="middle" fill="#16262C">דביגטרן</text><text x="150" y="280" text-anchor="middle" fill="#16262C">מעכבי <tspan>Xa</tspan> בסיכון דימום גבוה</text>
+    <circle cx="300" cy="316" r="7" fill="#C9893F"/><text x="362" y="321" text-anchor="middle" font-weight="800" fill="#8A5A14">24 שעות</text><text x="150" y="314" text-anchor="middle" fill="#16262C">מעכבי <tspan>Xa</tspan> בסיכון נמוך</text><text x="150" y="330" text-anchor="middle" fill="#16262C">הפרין במשקל מולקולרי נמוך</text>
+    <circle cx="300" cy="366" r="7" fill="#C9893F"/><text x="362" y="371" text-anchor="middle" font-weight="800" fill="#8A5A14">הבוקר</text><text x="150" y="364" text-anchor="middle" fill="#16262C">בלי מטפורמין וסולפונילאוריאה</text><text x="150" y="380" text-anchor="middle" fill="#16262C">חצי מינון אינסולין ביניים</text>
+    <circle cx="300" cy="416" r="7" fill="#A3402E"/><text x="362" y="421" text-anchor="middle" font-weight="800" fill="#A3402E">6 שעות</text><text x="150" y="414" text-anchor="middle" fill="#16262C">ארוחה קלה אחרונה</text><text x="150" y="430" text-anchor="middle" fill="#16262C">(מטוגן או בשר: 8 שעות ויותר)</text>
+    <circle cx="300" cy="466" r="7" fill="#A3402E"/><text x="362" y="471" text-anchor="middle" font-weight="800" fill="#A3402E">שעתיים</text><text x="150" y="471" text-anchor="middle" fill="#16262C">נוזלים צלולים אחרונים</text>
+    <circle cx="300" cy="516" r="9" fill="#0C2A35"/><text x="362" y="521" text-anchor="middle" font-weight="800" fill="#0C2A35">60 דקות</text><text x="150" y="521" text-anchor="middle" fill="#16262C">אנטיביוטיקה מונעת לפני החתך</text>
+   </g>
+  </svg></div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">12, 18–20, 24, 29–30</bdi></span><span>ציר זמן · Scrub In</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>11</b>תזונה</div>
+ <h2>מטופל רעב לא מחלים</h2>
+ <div class="grid">
+  <div>
+   <ul class="b sm">
+    <li>שואלים על <b>ירידה במשקל</b>, מחלה כרונית ותוספי תזונה. בודקים <bdi>BMI</bdi>, דלדול שרירי הרקה, בצקות ופצעי לחץ</li>
+    <li>כלי סינון נפוץ: <bdi>NRS-2002</bdi>. ציון 3 ומעלה: מתחילים תוכנית תזונתית</li>
+    <li><b>אלבומין מתחת ל-3.5</b> מנבא תחלואה ותמותה אחרי ניתוח. זמן מחצית החיים שלו 20 יום. לכן הוא משקף מצב כרוני. פרה-אלבומין: יומיים</li>
+    <li>שניהם יורדים גם בדלקת חריפה. לכן הם פחות אמינים סביב הניתוח</li>
+    <li><b>השמנה:</b> <bdi>BMI</bdi> 30 ומעלה. מעל 40 עם גורם סיכון לאי ספיקת לב: אק״ג וצילום חזה</li>
+   </ul>
+  </div>
+  <div style="display:grid;gap:10px;align-content:start">
+   <div class="box r"><b class="t">תת-תזונה קשה</b>לשקול הזנה לפני הניתוח, דרך מערכת העיכול או בעירוי</div>
+   <div class="box"><b class="t">תת-תזונה קלה</b>לא דוחים את הניתוח בשביל תוספי תזונה</div>
+   <div class="box n"><b class="t">אחרי הניתוח</b>הזנה דרך מערכת העיכול <b>בתוך 24 שעות</b>, בלי לחכות לגזים או ליציאה. הזנה בעירוי רק אם צפויים יותר מ-7 ימים בלי מערכת עיכול תקינה</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">22–23</bdi></span><span>תזונה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>12</b>המטופל המבוגר</div>
+ <h2>לא רק הגיל: ראש, רגליים ותמיכה</h2>
+ <div class="num">
+  <div><b>1 מ-5</b><span>מבוגרים עם דמנציה או פגיעה קוגניטיבית</span></div>
+  <div><b dir="ltr">~50%</b><span>שכיחות דליריום אחרי ניתוח בגיל המבוגר</span></div>
+  <div><b>3 דק׳</b><span>זמן ביצוע <bdi>Mini-Cog</bdi></span></div>
+  <div><b dir="ltr">50% · 14%</b><span>סיבוכים קשים בבני 70 ומעלה כשמבחן <bdi>TUG</bdi> מעל 20 שניות · עד 20</span></div>
+ </div>
+ <ul class="b sm">
+  <li><b><bdi>Mini-Cog</bdi>:</b> שלוש מילים לזכור וציור שעון. ציון <bdi dir="ltr">0–2</bdi> מרמז על פגיעה. ממצא חיובי: הפניה לרופא המשפחה, לגריאטר או לבריאות הנפש</li>
+  <li><b>דליריום:</b> מזהים גורמי סיכון מראש. מכשירי שמיעה, שינה בלילה, משפחה ליד המיטה, בלי בנזודיאזפינים</li>
+  <li><b>דיכאון:</b> שאלון <bdi>PHQ-2</bdi>. <b>תפקוד:</b> פעולות יום-יום ונפילות</li>
+  <li><b>שבריריות</b> מנבאת תוצאות טוב יותר מהגיל. <bdi>Timed Up &amp; Go</bdi>: לקום מכיסא, ללכת 3 מטרים, להסתובב ולשבת</li>
+  <li>לפני ניתוח מתוכנן: <b>הנחיות מקדימות</b> ומיופה כוח, מתועדים בתיק</li>
+ </ul>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">6–9</bdi></span><span>המטופל המבוגר</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>13</b>הסכמה מדעת</div>
+ <h2>שיחה, לא רק חתימה</h2>
+ <div class="grid">
+  <div>
+   <h3>ששת הרכיבים בשיחה</h3>
+   <ol class="obj">
+    <li>האבחנה</li>
+    <li>הניתוח המוצע</li>
+    <li>הסיכונים של הניתוח</li>
+    <li>הסיכוי להצלחה</li>
+    <li>הכשירות של המטופל להחליט</li>
+    <li>החלופות</li>
+   </ol>
+  </div>
+  <div style="display:grid;gap:10px;align-content:start">
+   <div class="box"><b class="t">איך</b>בלי ז׳רגון. מבררים מה חשוב למטופל ומחליטים יחד, עם המשפחה. דפי מידע, איורים ומחשבוני סיכון משפרים הבנה ושביעות רצון</div>
+   <div class="box a"><b class="t">כשירות</b>המטופל מסוגל לבחור, מבין את המידע, מבין את המצב ואת ההשלכות ושוקל את האפשרויות. ספק? לזהות מקבל החלטות חלופי</div>
+   <div class="box n"><b class="t">בבוקר הניתוח</b>מה השתנה מאז הביקור? מתי נלקחו התרופות האחרונות? מאשרים שוב את ההסכמה, עוברים על ההוראות ובודקים מניעת זיהום ומניעת קרישים</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">5–6, 23</bdi> · פרק 27 עמ׳ <bdi dir="ltr">151</bdi></span><span>הסכמה מדעת</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>14</b>הוראות לפני ניתוח</div>
+ <h2>צום, אנטיביוטיקה ומסלול החלמה</h2>
+ <div class="grid g3">
+  <div class="box n"><b class="t">צום</b>
+   <ul class="b sm"><li>נוזלים צלולים: עד שעתיים לפני, כולל משקה פחמימות</li><li>ארוחה קלה: 6 שעות</li><li>מטוגן ובשר: 8 שעות ויותר</li><li>חלב אם: 4 שעות</li></ul></div>
+  <div class="box"><b class="t">אנטיביוטיקה מונעת</b>
+   <ul class="b sm"><li>בתוך <b>60 דקות</b> לפני החתך (ונקומיצין: 120)</li><li>ברוב הניתוחים: צפזולין 2 גרם, 3 גרם ממשקל 120 ק״ג</li><li>מנה חוזרת אחרי שני זמני מחצית חיים (צפזולין: 4 שעות) או אובדן דם מעל 1,500 מ״ל</li><li>לא יותר מ-24 שעות אחרי רוב הניתוחים</li></ul></div>
+  <div class="box b"><b class="t">מסלול החלמה <bdi>(ERAS)</bdi></b>
+   <ul class="b sm"><li>לפני: הדרכה, צום קצר, מניעת בחילות, משככי כאב בלי אופיואידים כשאפשר</li><li>במהלך: חום גוף תקין, בלי עודף נוזלים</li><li>אחרי: הליכה ואכילה מוקדמות, מניעת קרישים</li></ul></div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">23–24, 28–30</bdi></span><span>הוראות</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>15</b>מה חדש בתחום · <bdi dir="ltr">2021–2026</bdi></div>
+ <h2>מחקרים והנחיות שכדאי להכיר</h2>
+ <div class="grid">
+  <div class="study"><div class="y"><bdi>Anesthesiology</bdi> 2023 · הנחיה</div><b>צום לפני ניתוח: עדכון <bdi>ASA</bdi></b>
+   <p>המלצה חזקה: מבוגרים בריאים שותים משקה פחמימות צלול עד שעתיים לפני ניתוח מתוכנן (עד כ-400 מ״ל). מסטיק: מוציאים מהפה ולא דוחים את הניתוח. ההמלצה לא חלה על סוכרת, השמנה, חסימה, הריון וניתוחי חירום</p>
+   <small>Joshi GP et al. Anesthesiology 2023;138:132-51</small></div>
+  <div class="study"><div class="y">2024 · הנחיה של חמש אגודות</div><b>אגוניסטים ל-<bdi>GLP-1</bdi> סביב הניתוח</b>
+   <p>אפשר להמשיך את הטיפול ברוב המטופלים. סיכון גבוה לשאריות בקיבה: שלב העלאת המינון, מינון גבוה, זריקה שבועית ותסמיני עיכול. בסיכון כזה: דיאטה נוזלית 24 שעות לפני. אם מחליטים להפסיק: שבוע לזריקה שבועית ויום הניתוח לתכשיר יומי</p>
+   <small>Kindel TL et al. Surg Obes Relat Dis 2024;20:1183-6 (פורסם גם ב-Surg Endosc 2025;39:180-3)</small></div>
+  <div class="study"><div class="y"><bdi>JAMA Surg</bdi> 2023 · מחקר אקראי</div><b><bdi>PREHAB</bdi>: הכנה גופנית לפני ניתוח מעי גס</b>
+   <p>251 מטופלים עם סרטן המעי הגס. 4 שבועות של אימון בעצימות גבוהה, תזונה, תמיכה נפשית וגמילה מעישון. פחות סיבוכים קשים (17.1% לעומת 29.7%) ופחות סיבוכים רפואיים (15.4% לעומת 27.3%)</p>
+   <small>Molenaar CJL et al. JAMA Surg 2023;158:572-81</small></div>
+ </div>
+ <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>16</b>לסיכום</div>
+ <h2>חמישה דברים לקחת למחלקה</h2>
+ <ol class="obj">
+  <li>קודם אבחנה ודחיפות. בדיקה נוספת רק אם התשובה תשנה משהו</li>
+  <li>מעבר לפי מערכות. 4 מט״ים בלי תסמינים: אפשר לנתח בלי בירור לבבי נוסף</li>
+  <li>רשימת תרופות מלאה, כולל צמחי מרפא. לכל נוגד קרישה: מתי נלקח ומתי עוצרים</li>
+  <li>במבוגר: קוגניציה, דליריום, תפקוד ושבריריות חשובים יותר מהגיל</li>
+  <li>הסכמה מדעת היא שיחה: אבחנה, ניתוח, סיכונים, סיכוי, כשירות וחלופות</li>
+ </ol>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 19 <bdi>Principles of Preoperative and Operative Surgery</bdi> (עמ׳ <bdi dir="ltr">2–30</bdi>)</div>
+ <div class="src"><span>איורים: <bdi>Sobotta</bdi> 1906 ו-<bdi>Musser</bdi> 1904 (נחלת הכלל) · צילום: <bdi>H.L. Fred, H.A. van Dijk</bdi> (<bdi>CC BY 2.0</bdi>, <bdi>Wikimedia Commons</bdi>) · ציר הזמן: <bdi>Scrub In</bdi> לפי הספר · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+</main>
+<div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
+<script>
+document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz').forEach(function(z){z.addEventListener('click',function(){w.querySelectorAll('.hz').forEach(function(x){x.classList.toggle('on',x===z)});w.querySelectorAll('.hzi').forEach(function(i){i.hidden=i.dataset.hzi!==z.dataset.hz;i.style.setProperty('--c',z.style.getPropertyValue('--c'))});var h=w.querySelector('.hint');if(h)h.hidden=true;});});});
+</script>
+<script>
+(function () {
+  var deck = document.getElementById('deck'), S = [].slice.call(deck.children), dots = document.getElementById('dots'), n = S.length;
+  S.forEach(function (_, k) { var i = document.createElement('i'); i.onclick = function () { go(k); }; dots.appendChild(i); });
+  function idx() { return Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }
+  function go(k) { k = Math.max(0, Math.min(n - 1, k)); S[k].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' }); }
+  function sync() { var k = idx(); [].forEach.call(dots.children, function (d, j) { d.className = j === k ? 'on' : ''; }); document.getElementById('count').textContent = (k + 1) + '/' + n; document.getElementById('prev').disabled = k === 0; document.getElementById('next').disabled = k === n - 1; }
+  deck.addEventListener('scroll', function () { clearTimeout(sync.t); sync.t = setTimeout(sync, 60); }, { passive: true });
+  document.getElementById('next').onclick = function () { go(idx() + 1); };
+  document.getElementById('prev').onclick = function () { go(idx() - 1); };
+  addEventListener('keydown', function (e) { if (e.key === 'ArrowLeft' || e.key === ' ') go(idx() + 1); if (e.key === 'ArrowRight') go(idx() - 1); });
+  sync();
+})();
+</script>
+</body>
+</html>

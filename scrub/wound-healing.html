@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ריפוי פצע · Scrub In</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../emblem.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Frank+Ruhl+Libre:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0C2A35;--navy2:#123845;--g:#00967D;--g2:#3DC08C;--g3:#0A6B5A;--lime:#B5D96B;--red:#A3402E;--amber:#C9893F;--blue:#2F6FA8;--bg:#EDF2F0;--soft:#F3F7F5;--ink:#16262C;--muted:#5C6F73;--line:#DCE6E2}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--navy);color:var(--ink);font-family:Heebo,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.deck{position:fixed;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.deck::-webkit-scrollbar{display:none}
+.s{flex:0 0 100%;height:100%;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;padding:18px 16px 84px;overflow-y:auto;position:relative}
+.s::after{content:'';position:absolute;inset:0;background:url(../ops/art/organs.webp) no-repeat 6% 40%/auto 115%;opacity:.05;filter:invert(1);pointer-events:none}
+.card{width:min(980px,100%);background:#fff;border-radius:22px;box-shadow:0 18px 50px rgba(0,0,0,.35);padding:30px 32px 22px;position:relative;overflow:hidden;z-index:1}
+.card::before{content:'';position:absolute;inset:0 0 auto 0;height:6px;background:linear-gradient(90deg,var(--g3),var(--g),var(--g2),var(--lime))}
+.kick{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--g);letter-spacing:.3px;margin-bottom:6px}
+.kick b{background:var(--navy);color:#fff;border-radius:999px;min-width:26px;height:26px;display:grid;place-items:center;font-size:13px;padding:0 8px}
+h1,h2{font-family:'Frank Ruhl Libre',serif;color:var(--navy);margin:0 0 10px;line-height:1.15}
+h1{font-size:clamp(34px,6.4vw,60px)}h2{font-size:clamp(25px,4.4vw,36px)}
+h3{margin:0 0 6px;font-size:17px;color:var(--navy)}
+.lead{font-size:clamp(15.5px,2.3vw,18.5px);color:var(--muted);margin:0 0 16px;line-height:1.5}
+ul.b{margin:0;padding:0;list-style:none;display:grid;gap:8px}ul.b li{position:relative;padding-inline-start:20px;font-size:16.5px;line-height:1.45}ul.b li::before{content:'';position:absolute;inset-inline-start:2px;top:.62em;width:8px;height:8px;border-radius:2px;background:var(--g);transform:rotate(45deg)}
+ul.b li b{color:var(--navy)}ul.b.sm li{font-size:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.grid.g3{grid-template-columns:repeat(3,1fr)}.grid.f{grid-template-columns:1.05fr .95fr;align-items:center}
+.box{background:var(--soft);border-radius:14px;padding:13px 15px;border-inline-start:4px solid var(--g);font-size:15.5px;line-height:1.45}
+.box.r{border-color:var(--red);background:#FBEDEA}.box.a{border-color:var(--amber);background:#FFF6EA}.box.n{border-color:var(--navy)}.box.b{border-color:var(--blue);background:#EEF4FB}
+.box b.t{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}
+.num{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:4px 0 14px}.num div{background:var(--soft);border-radius:14px;padding:12px 10px;text-align:center}
+.num b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(26px,4vw,38px);color:var(--g3);line-height:1.05}.num span{font-size:13px;color:var(--muted);line-height:1.3;display:block;margin-top:4px}
+figure{margin:0;background:#FBFCFB;border:1px solid var(--line);border-radius:16px;padding:10px;text-align:center}figure img{max-width:100%;max-height:46vh;display:block;margin:0 auto;mix-blend-mode:multiply}
+figcaption{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.35}
+.ill svg{width:100%;height:auto;max-height:50vh}
+.src{margin-top:16px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.src b{color:var(--g3)}
+.tag{display:inline-block;font-size:12px;font-weight:800;border-radius:999px;padding:2px 10px;background:#E3F4EC;color:var(--g3);margin-inline-end:4px}
+.tag.r{background:#F8E3DE;color:var(--red)}.tag.a{background:#FFF3DF;color:#8A5A14}.tag.b{background:#E8F0FA;color:var(--blue)}
+.flow{display:grid;gap:8px}.flow div{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;background:var(--soft);border-radius:12px;padding:9px 12px;font-size:15.5px}.flow div b{color:var(--navy)}
+.study{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#fff}.study .y{font-size:12px;font-weight:800;color:var(--g);letter-spacing:.3px}.study b{display:block;font-size:16px;color:var(--navy);margin:2px 0}.study p{margin:4px 0 0;font-size:14.5px;line-height:1.45}.study small{display:block;margin-top:6px;font-size:11.5px;color:var(--muted)}
+.cover{background:radial-gradient(120% 90% at 85% 0%,#164B54 0%,var(--navy) 58%)}
+.cover::after{opacity:.16;background-position:2% 50%}
+.cover .card{background:transparent;box-shadow:none;color:#fff}.cover .card::before{display:none}.cover h1{color:#fff}.cover .lead{color:#C9D6DA}.cover .kick{color:var(--g2)}
+.pill{display:inline-flex;gap:6px;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px;color:#fff;margin:4px}
+.logo{display:flex;align-items:center;gap:10px;margin-bottom:26px}.logo img{width:48px;height:48px;border-radius:50%;background:#fff}.logo b{color:#fff;font-weight:900}.logo small{display:block;color:#A9C9C0;font-size:12px}
+.obj{counter-reset:o;list-style:none;margin:0;padding:0;display:grid;gap:10px}.obj li{counter-increment:o;display:flex;gap:12px;align-items:flex-start;font-size:16.5px;line-height:1.45}.obj li::before{content:counter(o);flex:0 0 30px;height:30px;border-radius:50%;background:var(--g);color:#fff;font-weight:800;display:grid;place-items:center}
+.nav{position:fixed;inset:auto 0 0 0;display:flex;align-items:center;justify-content:center;gap:14px;padding:12px 16px calc(14px + env(safe-area-inset-bottom));background:linear-gradient(transparent,rgba(6,20,26,.85) 40%);z-index:5}
+.nav button{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;font-size:22px;cursor:pointer}.nav button:disabled{opacity:.3}
+.dots{display:flex;gap:5px;flex-wrap:wrap;max-width:60vw;justify-content:center}.dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer}.dots i.on{background:var(--g2);width:20px;border-radius:5px}
+.count{color:#C9D6D9;font-size:13px;font-weight:700;min-width:44px;text-align:center}
+bdi{unicode-bidi:isolate}
+.cmp{width:100%;border-collapse:separate;border-spacing:0;font-size:14px;border:1px solid var(--line);border-radius:14px;overflow:hidden}.cmp th{background:var(--navy);color:#fff;padding:9px 10px;font-size:16px;text-align:start}.cmp th small{display:block;font-weight:500;color:#A9D9C8;font-size:12px}.cmp td{padding:8px 10px;border-top:1px solid var(--line);vertical-align:top;line-height:1.4}.cmp td:first-child{background:var(--soft);font-weight:800;color:var(--navy);white-space:nowrap}.cmp tr:nth-child(odd) td:not(:first-child){background:#FBFCFB}
+figure.vid video{width:100%;max-height:34vh;border-radius:10px;background:#000;display:block}
+@media (max-width:760px){.cmp{font-size:12.5px}.cmp td,.cmp th{padding:6px}}
+
+.hotw{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;align-items:start}.hoti{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#FBFCFB}.hoti img{display:block;width:100%;mix-blend-mode:multiply}.hoti svg{position:absolute;inset:0;width:100%;height:100%}
+.hz{fill:var(--c);fill-opacity:.38;stroke:var(--c);stroke-width:2;cursor:pointer;transition:fill-opacity .2s}.hz:hover,.hz.on{fill-opacity:.62}.hzl{font:900 22px Heebo,sans-serif;fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;pointer-events:none;text-anchor:middle}
+.hotp .hint{background:var(--soft);border-radius:12px;padding:10px 12px;font-weight:700;color:var(--g3);margin:0}.hzi{background:#fff;border:1px solid var(--line);border-inline-start:5px solid var(--c,var(--g));border-radius:14px;padding:12px 14px;margin-top:8px;font-size:15.5px;line-height:1.45}.hzi>b{display:block;font-size:17px;color:var(--navy);margin-bottom:4px}.hzi p{margin:0}
+figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-size:15px}.obj.sm li::before{flex-basis:26px;height:26px;font-size:13px}.flow.sm div{grid-template-columns:130px 1fr;padding:7px 10px;font-size:14.5px}
+@media (max-width:760px){.hotw{grid-template-columns:1fr}}
+
+@media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
+@media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+/*BRAND*/
+.brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
+.brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
+.s{padding-top:58px}
+.cover .card{display:flex;flex-direction:column;gap:6px;max-width:980px}
+.cvhead{display:flex;align-items:center;gap:16px;margin-bottom:30px}.cvhead img.em{width:74px;height:74px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(61,192,140,.55)}
+.cvhead b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(24px,3.4vw,34px);color:#fff;line-height:1.1}.cvhead span{display:block;font-size:clamp(15px,2vw,19px);color:#A9D9C8;font-weight:700;margin-top:4px}
+.cover h1{font-size:clamp(38px,6.6vw,66px);margin:6px 0 8px}.cover .kick{font-size:14px;letter-spacing:.06em}
+.cvmeta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.cvlogos{display:flex;align-items:center;gap:18px;margin-top:34px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14)}.cvlogos img{height:44px;width:auto}.cvlogos small{margin-inline-start:auto;color:#8FB3AA;font-size:12.5px;font-weight:700;letter-spacing:.08em}
+.cover .brandbar{display:none}
+@media (max-width:760px){.brandbar{left:10px;gap:7px;padding:4px 9px 4px 4px}.brandbar img{height:20px}.brandbar img.em{width:22px;height:22px}.s{padding-top:48px}.cvhead img.em{width:56px;height:56px}.cvlogos img{height:34px}.cvlogos small{display:none}}
+/* numbered lists: a bold word inside an item stays inline */
+.obj li,.steps li{display:block;position:relative;padding-inline-start:42px;min-height:30px}.obj li::before,.steps li::before{position:absolute;inset-inline-start:0;top:0}.obj.sm li{padding-inline-start:36px}
+.grid.tight figure img{max-height:24vh}
+@media print{.brandbar{display:none}}
+/*/BRAND*/
+</style>
+</head>
+<body>
+<div class="brandbar" aria-hidden="true"><img class="em" src="brand/emblem.jpg" alt=""><i></i><img src="brand/logo_k.webp" alt=""><img src="brand/logo_c.webp" alt=""></div>
+<main class="deck" id="deck">
+
+<section class="s cover"><div class="card">
+ <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
+ <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 1</div>
+ <h1>ריפוי פצע</h1>
+ <p class="lead">ארבעת שלבי הריפוי, מה עוצר אותו, פצעים כרוניים וצלקות חריגות. ובסוף: טיפול בפצע ליד המיטה</p>
+ <div class="cvmeta"><span class="pill">מבוסס על <bdi>Sabiston</bdi>, מהדורה 22, פרקים 23 ו-45</span></div>
+ <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>1</b>מטרות הלמידה</div>
+ <h2>בסוף המפגש תדעו</h2>
+ <ol class="obj">
+  <li>לתאר את ארבעת שלבי ריפוי הפצע, את התאים המובילים בכל שלב ואת לוח הזמנים</li>
+  <li>לזהות בפצע אמיתי רקמת גרנולציה, פיברין ונמק ולקשר אותם לשלבי הריפוי</li>
+  <li>למנות את הגורמים שמעכבים ריפוי ולדעת מה אפשר לתקן</li>
+  <li>להבחין בין פצע לחץ, כיב ורידי וכיב עורקי</li>
+  <li>להבדיל בין צלקת היפרטרופית לקלואיד ולהכיר את הטיפול</li>
+  <li>לבחור חבישה ולהכיר את מקומם של ואקום וחמצן בלחץ</li>
+ </ol>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 23 (עמ׳ <bdi dir="ltr">88–110</bdi>) · פרק 45 (עמ׳ <bdi dir="ltr">503–526</bdi>)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>2</b>התמונה הגדולה</div>
+ <h2>ארבעה שלבים שחופפים</h2>
+ <div class="grid f">
+  <div>
+   <ul class="b">
+    <li><b>תיקון ולא התחדשות:</b> במבוגר הפצע נסגר בצלקת. התחדשות מלאה יש רק בעובר ובחלק מהרקמות, כמו כבד ועצם</li>
+    <li>השלבים: <b>עצירת דימום, דלקת, שגשוג והבשלה</b>. הם חופפים. בפצע גדול אפשר לראות את כולם יחד</li>
+    <li>פצע חריף עובר את כל השלבים בזמן. <b>פצע כרוני נתקע בשלב הדלקת</b></li>
+    <li>סדר התאים: נויטרופילים בשיא ביום 2, מקרופאגים ביום 3, לימפוציטים ביום 7. אחר כך הפיברובלסטים שולטים</li>
+   </ul>
+  </div>
+  <div class="ill"><svg viewBox="0 0 420 360" xmlns="http://www.w3.org/2000/svg" font-family="Heebo,sans-serif">
+   <rect x="0" y="0" width="420" height="360" rx="18" fill="#F3F7F5"/>
+   <text x="210" y="28" text-anchor="middle" font-size="14" font-weight="800" fill="#0C2A35">ציר הזמן של פצע ניתוחי</text>
+   <g font-size="12.5">
+    <rect x="300" y="50" width="100" height="56" rx="10" fill="#A3402E"/><text x="350" y="74" text-anchor="middle" fill="#fff" font-weight="800">עצירת דימום</text><text x="350" y="94" text-anchor="middle" fill="#fff" font-size="11.5">מיד</text>
+    <rect x="200" y="114" width="190" height="56" rx="10" fill="#C9893F"/><text x="295" y="138" text-anchor="middle" fill="#fff" font-weight="800">דלקת</text><text x="295" y="158" text-anchor="middle" fill="#fff" font-size="11.5">הימים הראשונים</text>
+    <rect x="80" y="178" width="250" height="56" rx="10" fill="#00967D"/><text x="205" y="202" text-anchor="middle" fill="#fff" font-weight="800">שגשוג</text><text x="205" y="222" text-anchor="middle" fill="#fff" font-size="11.5">גרנולציה, כלי דם, קולגן, אפיתל</text>
+    <rect x="20" y="242" width="270" height="56" rx="10" fill="#0C2A35"/><text x="155" y="266" text-anchor="middle" fill="#fff" font-weight="800">הבשלה ועיצוב</text><text x="155" y="286" text-anchor="middle" fill="#fff" font-size="11.5">מהשבוע הרביעי, חודשים ושנים</text>
+    <line x1="20" y1="320" x2="400" y2="320" stroke="#5C6F73" stroke-width="2"/>
+    <text x="390" y="342" text-anchor="middle" fill="#5C6F73" font-size="11.5">פציעה</text>
+    <text x="290" y="342" text-anchor="middle" fill="#5C6F73" font-size="11.5">שבוע</text>
+    <text x="190" y="342" text-anchor="middle" fill="#5C6F73" font-size="11.5">חודש</text>
+    <text x="50" y="342" text-anchor="middle" fill="#5C6F73" font-size="11.5">שנה</text>
+   </g>
+  </svg></div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 23 עמ׳ <bdi dir="ltr">88–89, 93, 98</bdi> · פרק 45 עמ׳ <bdi dir="ltr">503–504</bdi></span><span>ציר זמן סכמטי · Scrub In</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>3</b>עצירת דימום ודלקת</div>
+ <h2>הימים הראשונים</h2>
+ <div class="grid">
+  <div class="box r"><b class="t">עצירת דימום</b>
+   <ul class="b sm"><li>כיווץ כלי דם. אחריו הרחבה וחדירות</li><li>טסיות נצמדות לקולגן החשוף ומשחררות גורמי גדילה (<bdi>PDGF</bdi>, <bdi>TGF-β</bdi>)</li><li>הפיברין יוצר קריש שהוא גם פיגום לתאים שיגיעו</li></ul></div>
+  <div class="box a"><b class="t">דלקת</b>
+   <ul class="b sm"><li>אודם, נפיחות, חום וכאב: הרחבת כלי דם וחדירות</li><li><b>נויטרופילים</b> מנקים חיידקים ורקמה מתה. חיים עד 24 שעות. חתך סטרילי מחלים גם בלעדיהם</li><li><b>מקרופאגים</b> מגיעים תוך 48 שעות והם המנצחים על הריפוי. עוברים מצורה דלקתית לצורה מתקנת</li><li>זיהום או לכלוך בפצע מאריכים את הדלקת ומעכבים ריפוי</li></ul></div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 23 עמ׳ <bdi dir="ltr">88–92</bdi></span><span>דלקת</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>4</b>שגשוג</div>
+ <h2>גרנולציה, כלי דם חדשים ועור חדש</h2>
+ <div class="grid f">
+  <div>
+   <ul class="b sm">
+    <li><b>רקמת גרנולציה:</b> רשת נימים, פיברובלסטים, מקרופאגים וקולגן רופף. אדומה, לחה ומדממת בקלות</li>
+    <li><b>כלי דם חדשים:</b> <bdi>FGF-2</bdi> בשלושת הימים הראשונים. אחריו <bdi>VEGF</bdi> בימים <bdi dir="ltr">4–7</bdi>. חוסר חמצן הוא הגירוי</li>
+    <li><b>פיברובלסטים</b> מייצרים קולגן. ההשהיה עד שהקולגן מופיע: <bdi dir="ltr">3–5</bdi> ימים</li>
+    <li><b>אפיתל:</b> מתחיל לנדוד תוך שעות, מהשוליים וממבני העור (זקיקי שערה). מהיר יותר כשקרום הבסיס שלם</li>
+    <li><b>כיווץ הפצע:</b> מיופיברובלסטים מושכים את השוליים פנימה. האקטין מופיע ביום 6 ונעלם אחרי כ-4 שבועות. כיווץ יתר מעל מפרק = התכווצות שמגבילה תנועה</li>
+   </ul>
+  </div>
+  <figure><img src="img/granulation-finger.jpg" alt="רקמת גרנולציה אדומה בפצע באצבע"><figcaption>רקמת גרנולציה אדומה בפצע חתך באצבע · <bdi>Linuxfox00</bdi>, נחלת הכלל, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 23 עמ׳ <bdi dir="ltr">92–95, 98</bdi></span><span>שגשוג</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>5</b>הבשלה</div>
+ <h2>מצלקת אדומה לצלקת חזקה</h2>
+ <div class="num">
+  <div><b dir="ltr">80 : 20</b><span>קולגן סוג <bdi>I</bdi> מול סוג <bdi>III</bdi> בעור בוגר. בפצע מוקדם יותר סוג <bdi>III</bdi></span></div>
+  <div><b dir="ltr">1–6</b><span>שבועות: החוזק עולה מהר</span></div>
+  <div><b dir="ltr">~21</b><span>ימים: החוזק עולה בעיקר בזכות קישורים בין סיבי הקולגן</span></div>
+  <div><b dir="ltr">1</b><span>שנה: החוזק מגיע לרמה יציבה</span></div>
+ </div>
+ <ul class="b sm">
+  <li>אחרי 4 שבועות קצב ייצור הקולגן יורד ומתאזן עם הפירוק. כלי הדם החדשים נסוגים והצלקת מחווירה</li>
+  <li>הצלקת קשיחה ופחות גמישה מעור רגיל. אין בה את הבליטות שמעגנות את האפידרמיס. לכן העור החדש נקרע בקלות</li>
+  <li><b>ויטמין <bdi>C</bdi></b> נחוץ לבניית סליל הקולגן. בחסר שלו (צפדינה) כלי הדם שבירים והשיניים מתנדנדות. גם חמצן נחוץ לשלב הזה</li>
+  <li>סטרואידים מעכבים ייצור קולגן</li>
+ </ul>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 23 עמ׳ <bdi dir="ltr">93, 95–98</bdi></span><span>הבשלה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>6</b>לקרוא פצע · אינטראקטיבי</div>
+ <h2>כל השלבים בפצע אחד</h2>
+ <div class="hotw"><div class="hoti"><img src="img/heel-pressure-ulcer.jpg" alt="פצע לחץ בעקב עם גרנולציה, פיברין וכתמים כהים מסביב"><svg viewBox="0 0 960 654" preserveAspectRatio="none">
+   <polygon class="hz" data-hz="pw" points="410,200 520,185 640,215 660,330 640,440 560,500 440,480 400,420 395,300" style="--c:#7A5BD6"/>
+   <polygon class="hz" data-hz="bed" points="455,240 530,220 590,240 605,300 590,360 545,400 495,415 465,395 448,330" style="--c:#A3402E"/><text class="hzl" x="525" y="320">1</text><text class="hzl" x="430" y="460">2</text>
+   <polygon class="hz" data-hz="sp" points="310,388 348,382 370,405 364,432 332,440 308,420" style="--c:#0C2A35"/><text class="hzl" x="338" y="372">3</text>
+  </svg></div>
+  <div class="hotp"><p class="hint">👆 לחצו על אזור בפצע כדי לקרוא עליו</p>
+   <div class="hzi" data-hzi="bed" hidden><b>1 · בסיס הפצע</b><p>רקמה אדומה וגרעינית היא גרנולציה: שלב השגשוג. הכיסוי הצהבהב והכהה הוא פיברין, רקמה מתה ושאריות: שלב הדלקת. פצע טוב לריפוי הוא אדום, לח ונקי. רקמה מתה מסירים (הטריה)</p></div>
+   <div class="hzi" data-hzi="pw" hidden><b>2 · השוליים והעור סביב</b><p>בשוליים האפיתל מתקדם והפצע מתכווץ: שלב ההבשלה. העור הסגול והמודלק מסביב מראה שהנזק מהלחץ רחב יותר מהפצע הגלוי. בודקים גם שהעור סביב לא מתרכך מהפרשות</p></div>
+   <div class="hzi" data-hzi="sp" hidden><b>3 · נקודת לחץ נוספת</b><p>כתם כהה על בליטה גרמית נוספת: התחלה של פצע לחץ חדש. פצעי לחץ נוצרים מעל עצם (עצה, ישבן, עקבים) כשהלחץ ברקמה עולה מעל לחץ הזילוח בנימים (32 מ״מ כספית). מניעה: זיהוי מטופלים בסיכון, שינויי תנוחה קבועים, תזונה והפחתת לחץ</p></div>
+  </div></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 23 עמ׳ <bdi dir="ltr">88</bdi> · פרק 45 עמ׳ <bdi dir="ltr">503, 526</bdi></span><span>צילום: <bdi>Ahmed Shawky Mohammedin, MD</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>7</b>מה מעכב ריפוי</div>
+ <h2>לחפש ולתקן</h2>
+ <div class="grid">
+  <div class="flow">
+   <div><b>חמצן ודם</b><span>ייצור קולגן נפגע כשהחמצן ברקמה יורד מתחת ל-40 מ״מ כספית. בפצע כרוני: <bdi dir="ltr">5–20</bdi>, לעומת <bdi dir="ltr">35–50</bdi> ברקמה בריאה</span></div>
+   <div><b>עישון</b><span>מוריד את זרימת הדם לפצע ב-<bdi dir="ltr">30–40%</bdi>. ממליצים להפסיק <bdi dir="ltr">4–6</bdi> שבועות לפני ניתוח מתוכנן</span></div>
+   <div><b>סוכרת</b><span>מחלת כלי דם, נוירופתיה שגורמת לפגיעות חוזרות, חיסון חלש וקולגן שביר</span></div>
+   <div><b>זיהום</b><span>מאריך את הדלקת</span></div>
+   <div><b>קרינה</b><span>פוגעת בתאים מתחלקים ובכלי דם קטנים: עור דק, פיברוטי ופצעים שלא נסגרים</span></div>
+  </div>
+  <div class="flow">
+   <div><b>גיל</b><span>תחלופת תאי העור איטית ב-<bdi dir="ltr">50%</bdi>, פחות קולגן וכלי דם. יותר פתיחת פצעים</span></div>
+   <div><b>תזונה</b><span>אלבומין מתחת ל-2: פתיחת פצעים. חסר ויטמין <bdi>C</bdi>, <bdi>A</bdi> ואבץ</span></div>
+   <div><b>סטרואידים</b><span>פחות גרנולציה וקולגן. ויטמין <bdi>A</bdi> מבטל חלק מההשפעה</span></div>
+   <div><b>כימותרפיה</b><span>במיוחד כשניתנת לפני הניתוח. גם טמוקסיפן</span></div>
+   <div><b><bdi>NSAIDs</bdi></b><span>רק במינונים גבוהים. במינון טיפולי כנראה לא</span></div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 23 עמ׳ <bdi dir="ltr">99, 103–105</bdi> · פרק 45 עמ׳ <bdi dir="ltr">511–512</bdi></span><span>גורמים מעכבים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>8</b>פצע כרוני</div>
+ <h2>פצע שנתקע</h2>
+ <div class="grid">
+  <div>
+   <ul class="b">
+    <li><b>הגדרה:</b> פצע שלא נסגר תוך 3 חודשים</li>
+    <li>בתוך הפצע: יותר מדי דלקת (<bdi>IL-1</bdi>, <bdi>IL-6</bdi>, <bdi>TNF-α</bdi>), עודף אנזימים שמפרקים רקמה וגורמי גדילה, רדיקלים חופשיים</li>
+    <li>חיידקים רבים, לרוב כמה סוגים יחד. לעיתים קרובות הם בתוך <b>ביופילם</b> שנדבק לפצע</li>
+    <li>גורמי גדילה שמורחים על הפצע כמעט תמיד נכשלו: האנזימים בפצע מפרקים אותם</li>
+    <li>בכל המקרים: מטפלים בסיבה (לחץ, מחלת ורידים או עורקים, סוכר), מנקים רקמה מתה ושומרים על פצע לח</li>
+   </ul>
+  </div>
+  <div style="display:grid;gap:10px;align-content:start">
+   <div class="box r"><b class="t">כיב <bdi>Marjolin</bdi></b>סרטן תאי קשקש שמתפתח בפצע כרוני, בצלקת כוויה, בפצע לחץ או בכיב ורידי. פצע כרוני שנראה לא רגיל: ביופסיה</div>
+   <div class="box a"><b class="t">רגל סוכרתית</b>כ-<bdi dir="ltr">15%</bdi> מחולי הסוכרת יפתחו כיב ברגל. הכיב קודם ליותר מ-<bdi dir="ltr">80%</bdi> מהקטיעות שקשורות לסוכרת</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 23 עמ׳ <bdi dir="ltr">100–103, 105</bdi> · פרק 45 עמ׳ <bdi dir="ltr">509–515</bdi></span><span>פצע כרוני</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>9</b>שלושה כיבים</div>
+ <h2>לחץ, מחלת ורידים או מחלת עורקים?</h2>
+ <div class="grid f">
+  <div class="flow">
+   <div><b>פצע לחץ</b><span>מעל בליטה גרמית: עצה, עצם הישיבה, עקבים. מבוגרים ומרותקים. גם חיכוך, גזירה, לחות ותת-תזונה. טיפול: הורדת לחץ, תזונה, ניידות. בסוף אפשר לסגור בכיסוי ממקום אחר (מתלה)</span></div>
+   <div><b>כיב ורידי</b><span>הכיב השכיח ברגל. מסתמים שלא נסגרים ומשאבת שוק שנכשלה. דליות, דלקת עור ושינוי צבע חום. גרבי לחץ והרמת רגל. טיפול בדליות עם מומחה כלי דם</span></div>
+   <div><b>כיב עורקי</b><span>בהונות, צד כף הרגל, קרסול ושוק. חד-גבולות, עמוק וחיוור, עור דק בלי שיער, מילוי נימי איטי ויחס לחץ קרסול-זרוע נמוך. הפניה דחופה למנתח כלי דם: בלי זרימה הוא לא ייסגר</span></div>
+  </div>
+  <figure><img src="img/venous-ulcer-riehl1925.jpg" alt="ציור אטלס צבעוני של רגל עם דליות וכיב מעל הקרסול הפנימי"><figcaption>כיב ורידי מעל הקרסול הפנימי ודליות בשוק · <bdi>Riehl &amp; Zumbusch, Atlas der Hautkrankheiten</bdi> (1925), לוח 60, <bdi>Licence Ouverte</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 45 עמ׳ <bdi dir="ltr">526</bdi></span><span>כיבים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>10</b>צלקות חריגות</div>
+ <h2>היפרטרופית או קלואיד?</h2>
+ <div class="grid f">
+  <div>
+   <div class="flow">
+    <div><b>גבולות</b><span>היפרטרופית: בתוך גבולות הפצע. קלואיד: יוצא מהם</span></div>
+    <div><b>מהלך</b><span>היפרטרופית: לרוב נסוגה. קלואיד: נשאר</span></div>
+    <div><b>איפה</b><span>היפרטרופית: אזורי מתח (גב, חזה, כתפיים, מפרקים). קלואיד: תנוך האוזן, כתפיים, חזה, גב, לחיים</span></div>
+    <div><b>מי</b><span>קלואיד: נטייה גנטית, <bdi dir="ltr">15–20%</bdi> בעור כהה</span></div>
+    <div><b>טיפול</b><span>סיליקון ולחץ. זריקות סטרואיד לתוך הצלקת כל <bdi dir="ltr">2–4</bdi> שבועות: <bdi dir="ltr">50–100%</bdi> מגיבים, עד <bdi dir="ltr">50%</bdi> חוזרים. כריתת קלואיד לבד: חזרה ב-<bdi dir="ltr">50–100%</bdi>. קרינה מיד אחרי הכריתה מורידה חזרה ב-<bdi dir="ltr">50–95%</bdi></span></div>
+   </div>
+  </div>
+  <figure><img src="img/keloid-post-surgical.jpg" alt="קלואיד עבה בצלקת ניתוח בבטן"><figcaption>קלואיד גדול בצלקת של ניתוח בטן · <bdi>Htirgan</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi> (חתוך)</figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 23 עמ׳ <bdi dir="ltr">98–100</bdi> · פרק 45 עמ׳ <bdi dir="ltr">507–509</bdi></span><span>צלקות</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>11</b>חבישות</div>
+ <h2>לח, נקי וחם</h2>
+ <div class="grid">
+  <div>
+   <ul class="b sm">
+    <li>מתחת לחבישה סוגרת ולחה האפיתל מכסה <b>פי 2 מהר יותר</b> מפצע שמתייבש</li>
+    <li><b>חבישה סוגרת</b> (סרט שקוף, הידרוקולואיד, הידרוג׳ל): שומרת לחות ומגינה. לא לפצע עם הרבה הפרשה או זיהום</li>
+    <li><b>חבישה סופגת</b> (גזה, קצף, אלגינט): לפצע מפריש. מונעת ריכוך של העור מסביב</li>
+    <li><b>גזה רטובה שמתייבשת:</b> מסירה רקמה מתה, אבל גם גרנולציה חדשה. גם כואבת</li>
+    <li>חומרי חיטוי כמו תמיסת <bdi>Dakin</bdi> ויוד פוגעים גם בפיברובלסטים. נותנים אותם כשיש סימני זיהום או יותר מ-<bdi dir="ltr">10<sup>5</sup></bdi> חיידקים בגרם רקמה</li>
+   </ul>
+  </div>
+  <div style="display:grid;gap:10px;align-content:start">
+   <div class="box n"><b class="t">חבישה אידיאלית</b>שומרת לחות, סופגת עודף הפרשה, מאפשרת חילוף גזים, חוסמת חיידקים, שומרת חום, לא דביקה לפצע, זולה ונוחה</div>
+   <div class="box"><b class="t">חתך ניתוחי נקי</b>חבישה שכבתית, משחה או חבישה שקופה סוגרת</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 23 עמ׳ <bdi dir="ltr">106–109</bdi></span><span>חבישות</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>12</b>טיפולים מתקדמים</div>
+ <h2>ואקום וחמצן בלחץ</h2>
+ <div class="grid">
+  <div class="box n"><b class="t">ואקום (<bdi>NPWT</bdi>)</b>
+   <ul class="b sm"><li>ספוג ולחץ שלילי מעל הפצע</li><li>מוציא בצקת והפרשות, מגדיל את זרימת הדם לעור פי 5 ומעודד גרנולציה</li><li>משמש בפצעים פתוחים, ברגל סוכרתית, בכיבים, בפצעי בטן מורכבים ומעל חתכים סגורים</li><li>מקצר אשפוז ומוזיל טיפול</li></ul></div>
+  <div class="box b"><b class="t">חמצן בלחץ (<bdi>HBO</bdi>)</b>
+   <ul class="b sm"><li>חמצן 100% בלחץ של <bdi dir="ltr">1.9–2.5</bdi> אטמוספרות, <bdi dir="ltr">90–120</bdi> דקות, 5 עד 6 פעמים בשבוע</li><li>מתאים לרגל סוכרתית ולנזקי קרינה, כתוספת לטיפול. רואים שיפור אחרי <bdi dir="ltr">15–20</bdi> טיפולים</li><li>קודם פותחים את העורק החסום. חמצן מתחת לעור מתחת ל-35 מ״מ כספית = פצע חסר חמצן</li><li>סיבוך שכיח: פגיעה באוזן התיכונה. נדיר: חזה אוויר</li></ul></div>
+ </div>
+ <div class="box b" style="margin-top:12px"><b class="t">במחלקה השבוע</b>השתתפו בהחלפת חבישה של פצע פתוח או של ואקום. תארו בכתב: מיקום, גודל, בסיס (גרנולציה, פיברין, נמק), הפרשה, שוליים ועור מסביב. הציגו לבכיר/ה</div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 23 עמ׳ <bdi dir="ltr">109–110</bdi></span><span>טיפולים מתקדמים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>13</b>מה חדש בתחום · <bdi dir="ltr">2021–2026</bdi></div>
+ <h2>מחקרים שכדאי להכיר</h2>
+ <div class="grid">
+  <div class="study"><div class="y"><bdi>JAMA Surg</bdi> 2026 · מטא-אנליזה</div><b>ואקום על חתך סגור: למי?</b>
+   <p>85 מחקרים אקראיים, 16,980 מטופלים. פחות זיהום פצע (יחס סיכון 0.64), פחות פתיחה וסרומה. אבל יותר שלפוחיות ותקלות במכשיר. צריך לטפל ב-21 מטופלים כדי למנוע זיהום אחד. המסקנה: לשימוש נבחר במטופלים בסיכון, לא לכולם</p>
+   <small>Patel S et al. JAMA Surg 2026;161:1024-32</small></div>
+  <div class="study"><div class="y"><bdi>NEJM</bdi> 2022 · מחקר אקראי</div><b><bdi>BEST-CLI</bdi>: איך פותחים עורק לכיב עורקי?</b>
+   <p>1,830 מטופלים עם איסכמיה שמסכנת את הרגל. כשיש וריד ספינוס טוב: מעקף ניתוחי עדיף על צנתור (קטיעה, ניתוח חוזר או מוות: <bdi dir="ltr">42.6%</bdi> לעומת <bdi dir="ltr">57.4%</bdi>). בלי וריד טוב: אין הבדל</p>
+   <small>Farber A et al. N Engl J Med 2022;387:2305-16</small></div>
+  <div class="study"><div class="y"><bdi>JAMA</bdi> 2025 · מחקר אקראי</div><b><bdi>SUNRRISE</bdi>: ואקום בלפרוטומיה דחופה</b>
+   <p>840 מטופלים. זיהום פצע <bdi dir="ltr">28.4%</bdi> עם ואקום ו-<bdi dir="ltr">27.4%</bdi> עם חבישה רגילה. בניתוח חירום הוואקום לא מנע זיהום</p>
+   <small>Atherton K et al. JAMA 2025;333:853-63</small></div>
+ </div>
+ <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>14</b>לסיכום</div>
+ <h2>חמישה דברים לקחת למחלקה</h2>
+ <ol class="obj">
+  <li>עצירת דימום, דלקת, שגשוג והבשלה. החוזק עולה בשבועות ומבשיל במשך שנה</li>
+  <li>פצע אדום, לח ונקי מחלים. פיברין ונמק מסירים</li>
+  <li>חמצן, דם, סוכר, תזונה ועישון: הדברים שאפשר לתקן</li>
+  <li>כיב ברגל: לבדוק דופק לפני כל דבר. כיב עורקי לא ייסגר בלי זרימה</li>
+  <li>קלואיד יוצא מגבולות הצלקת וחוזר אחרי כריתה. היפרטרופית נשארת בגבולות ולרוב נסוגה</li>
+ </ol>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 23 <bdi>Wound Healing</bdi> (עמ׳ <bdi dir="ltr">88–110</bdi>) · פרק 45 <bdi>Management of Chronic Wounds</bdi> (עמ׳ <bdi dir="ltr">503–526</bdi>)</div>
+ <div class="src"><span>צילומים: <bdi>Ahmed Shawky Mohammedin, MD</bdi> (<bdi>CC BY-SA 4.0</bdi>), <bdi>Htirgan</bdi> (<bdi>CC BY-SA 3.0</bdi>), <bdi>Linuxfox00</bdi> (נחלת הכלל), <bdi>Wikimedia Commons</bdi> · איור: <bdi>Riehl &amp; Zumbusch</bdi> 1925 · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+</main>
+<div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
+<script>
+document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz').forEach(function(z){z.addEventListener('click',function(){w.querySelectorAll('.hz').forEach(function(x){x.classList.toggle('on',x===z)});w.querySelectorAll('.hzi').forEach(function(i){i.hidden=i.dataset.hzi!==z.dataset.hz;i.style.setProperty('--c',z.style.getPropertyValue('--c'))});var h=w.querySelector('.hint');if(h)h.hidden=true;});});});
+</script>
+<script>
+(function () {
+  var deck = document.getElementById('deck'), S = [].slice.call(deck.children), dots = document.getElementById('dots'), n = S.length;
+  S.forEach(function (_, k) { var i = document.createElement('i'); i.onclick = function () { go(k); }; dots.appendChild(i); });
+  function idx() { return Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }
+  function go(k) { k = Math.max(0, Math.min(n - 1, k)); S[k].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' }); }
+  function sync() { var k = idx(); [].forEach.call(dots.children, function (d, j) { d.className = j === k ? 'on' : ''; }); document.getElementById('count').textContent = (k + 1) + '/' + n; document.getElementById('prev').disabled = k === 0; document.getElementById('next').disabled = k === n - 1; }
+  deck.addEventListener('scroll', function () { clearTimeout(sync.t); sync.t = setTimeout(sync, 60); }, { passive: true });
+  document.getElementById('next').onclick = function () { go(idx() + 1); };
+  document.getElementById('prev').onclick = function () { go(idx() - 1); };
+  addEventListener('keydown', function (e) { if (e.key === 'ArrowLeft' || e.key === ' ') go(idx() + 1); if (e.key === 'ArrowRight') go(idx() - 1); });
+  sync();
+})();
+</script>
+</body>
+</html>

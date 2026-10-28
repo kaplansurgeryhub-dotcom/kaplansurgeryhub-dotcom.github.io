@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>חסימות קולוניות · Scrub In</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../emblem.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Frank+Ruhl+Libre:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0C2A35;--navy2:#123845;--g:#00967D;--g2:#3DC08C;--g3:#0A6B5A;--lime:#B5D96B;--red:#A3402E;--amber:#C9893F;--blue:#2F6FA8;--bg:#EDF2F0;--soft:#F3F7F5;--ink:#16262C;--muted:#5C6F73;--line:#DCE6E2}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--navy);color:var(--ink);font-family:Heebo,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.deck{position:fixed;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.deck::-webkit-scrollbar{display:none}
+.s{flex:0 0 100%;height:100%;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;padding:18px 16px 84px;overflow-y:auto;position:relative}
+.s::after{content:'';position:absolute;inset:0;background:url(../ops/art/organs.webp) no-repeat 6% 40%/auto 115%;opacity:.05;filter:invert(1);pointer-events:none}
+.card{width:min(980px,100%);background:#fff;border-radius:22px;box-shadow:0 18px 50px rgba(0,0,0,.35);padding:30px 32px 22px;position:relative;overflow:hidden;z-index:1}
+.card::before{content:'';position:absolute;inset:0 0 auto 0;height:6px;background:linear-gradient(90deg,var(--g3),var(--g),var(--g2),var(--lime))}
+.kick{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--g);letter-spacing:.3px;margin-bottom:6px}
+.kick b{background:var(--navy);color:#fff;border-radius:999px;min-width:26px;height:26px;display:grid;place-items:center;font-size:13px;padding:0 8px}
+h1,h2{font-family:'Frank Ruhl Libre',serif;color:var(--navy);margin:0 0 10px;line-height:1.15}
+h1{font-size:clamp(34px,6.4vw,60px)}h2{font-size:clamp(25px,4.4vw,36px)}
+h3{margin:0 0 6px;font-size:17px;color:var(--navy)}
+.lead{font-size:clamp(15.5px,2.3vw,18.5px);color:var(--muted);margin:0 0 16px;line-height:1.5}
+ul.b{margin:0;padding:0;list-style:none;display:grid;gap:8px}ul.b li{position:relative;padding-inline-start:20px;font-size:16.5px;line-height:1.45}ul.b li::before{content:'';position:absolute;inset-inline-start:2px;top:.62em;width:8px;height:8px;border-radius:2px;background:var(--g);transform:rotate(45deg)}
+ul.b li b{color:var(--navy)}ul.b.sm li{font-size:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.grid.g3{grid-template-columns:repeat(3,1fr)}.grid.f{grid-template-columns:1.05fr .95fr;align-items:center}
+.box{background:var(--soft);border-radius:14px;padding:13px 15px;border-inline-start:4px solid var(--g);font-size:15.5px;line-height:1.45}
+.box.r{border-color:var(--red);background:#FBEDEA}.box.a{border-color:var(--amber);background:#FFF6EA}.box.n{border-color:var(--navy)}.box.b{border-color:var(--blue);background:#EEF4FB}
+.box b.t{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}
+.num{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:4px 0 14px}.num div{background:var(--soft);border-radius:14px;padding:12px 10px;text-align:center}
+.num b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(26px,4vw,38px);color:var(--g3);line-height:1.05}.num span{font-size:13px;color:var(--muted);line-height:1.3;display:block;margin-top:4px}
+figure{margin:0;background:#FBFCFB;border:1px solid var(--line);border-radius:16px;padding:10px;text-align:center}figure img{max-width:100%;max-height:46vh;display:block;margin:0 auto;mix-blend-mode:multiply}
+figcaption{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.35}
+.ill svg{width:100%;height:auto;max-height:50vh}
+.src{margin-top:16px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.src b{color:var(--g3)}
+.tag{display:inline-block;font-size:12px;font-weight:800;border-radius:999px;padding:2px 10px;background:#E3F4EC;color:var(--g3);margin-inline-end:4px}
+.tag.r{background:#F8E3DE;color:var(--red)}.tag.a{background:#FFF3DF;color:#8A5A14}.tag.b{background:#E8F0FA;color:var(--blue)}
+.flow{display:grid;gap:8px}.flow div{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;background:var(--soft);border-radius:12px;padding:9px 12px;font-size:15.5px}.flow div b{color:var(--navy)}
+.study{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#fff}.study .y{font-size:12px;font-weight:800;color:var(--g);letter-spacing:.3px}.study b{display:block;font-size:16px;color:var(--navy);margin:2px 0}.study p{margin:4px 0 0;font-size:14.5px;line-height:1.45}.study small{display:block;margin-top:6px;font-size:11.5px;color:var(--muted)}
+.cover{background:radial-gradient(120% 90% at 85% 0%,#164B54 0%,var(--navy) 58%)}
+.cover::after{opacity:.16;background-position:2% 50%}
+.cover .card{background:transparent;box-shadow:none;color:#fff}.cover .card::before{display:none}.cover h1{color:#fff}.cover .lead{color:#C9D6DA}.cover .kick{color:var(--g2)}
+.pill{display:inline-flex;gap:6px;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px;color:#fff;margin:4px}
+.logo{display:flex;align-items:center;gap:10px;margin-bottom:26px}.logo img{width:48px;height:48px;border-radius:50%;background:#fff}.logo b{color:#fff;font-weight:900}.logo small{display:block;color:#A9C9C0;font-size:12px}
+.obj{counter-reset:o;list-style:none;margin:0;padding:0;display:grid;gap:10px}.obj li{counter-increment:o;display:flex;gap:12px;align-items:flex-start;font-size:16.5px;line-height:1.45}.obj li::before{content:counter(o);flex:0 0 30px;height:30px;border-radius:50%;background:var(--g);color:#fff;font-weight:800;display:grid;place-items:center}
+.nav{position:fixed;inset:auto 0 0 0;display:flex;align-items:center;justify-content:center;gap:14px;padding:12px 16px calc(14px + env(safe-area-inset-bottom));background:linear-gradient(transparent,rgba(6,20,26,.85) 40%);z-index:5}
+.nav button{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;font-size:22px;cursor:pointer}.nav button:disabled{opacity:.3}
+.dots{display:flex;gap:5px;flex-wrap:wrap;max-width:60vw;justify-content:center}.dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer}.dots i.on{background:var(--g2);width:20px;border-radius:5px}
+.count{color:#C9D6D9;font-size:13px;font-weight:700;min-width:44px;text-align:center}
+bdi{unicode-bidi:isolate}
+.cmp{width:100%;border-collapse:separate;border-spacing:0;font-size:14px;border:1px solid var(--line);border-radius:14px;overflow:hidden}.cmp th{background:var(--navy);color:#fff;padding:9px 10px;font-size:16px;text-align:start}.cmp th small{display:block;font-weight:500;color:#A9D9C8;font-size:12px}.cmp td{padding:8px 10px;border-top:1px solid var(--line);vertical-align:top;line-height:1.4}.cmp td:first-child{background:var(--soft);font-weight:800;color:var(--navy);white-space:nowrap}.cmp tr:nth-child(odd) td:not(:first-child){background:#FBFCFB}
+figure.vid video{width:100%;max-height:34vh;border-radius:10px;background:#000;display:block}
+@media (max-width:760px){.cmp{font-size:12.5px}.cmp td,.cmp th{padding:6px}}
+
+.hotw{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;align-items:start}.hoti{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#FBFCFB}.hoti img{display:block;width:100%;mix-blend-mode:multiply}.hoti svg{position:absolute;inset:0;width:100%;height:100%}
+.hz{fill:var(--c);fill-opacity:.38;stroke:var(--c);stroke-width:2;cursor:pointer;transition:fill-opacity .2s}.hz:hover,.hz.on{fill-opacity:.62}.hzl{font:900 22px Heebo,sans-serif;fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;pointer-events:none;text-anchor:middle}
+.hotp .hint{background:var(--soft);border-radius:12px;padding:10px 12px;font-weight:700;color:var(--g3);margin:0}.hzi{background:#fff;border:1px solid var(--line);border-inline-start:5px solid var(--c,var(--g));border-radius:14px;padding:12px 14px;margin-top:8px;font-size:15.5px;line-height:1.45}.hzi>b{display:block;font-size:17px;color:var(--navy);margin-bottom:4px}.hzi p{margin:0}
+figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-size:15px}.obj.sm li::before{flex-basis:26px;height:26px;font-size:13px}.flow.sm div{grid-template-columns:130px 1fr;padding:7px 10px;font-size:14.5px}
+@media (max-width:760px){.hotw{grid-template-columns:1fr}}
+
+@media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
+@media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+.hotw{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;align-items:start}.hoti{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#FBFCFB}.hoti img{display:block;width:100%;mix-blend-mode:multiply}.hoti svg{position:absolute;inset:0;width:100%;height:100%}
+.hz{fill:var(--c);fill-opacity:.38;stroke:var(--c);stroke-width:2;cursor:pointer;transition:fill-opacity .2s}.hz:hover,.hz.on{fill-opacity:.62}.hzl{font:900 22px Heebo,sans-serif;fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;pointer-events:none;text-anchor:middle}
+.hotp .hint{background:var(--soft);border-radius:12px;padding:10px 12px;font-weight:700;color:var(--g3)}.hzi{border-inline-start:5px solid var(--c,var(--g));background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-top:8px;font-size:15.5px;line-height:1.45}.hzi b{display:block;font-size:17px;color:var(--navy);margin-bottom:4px}
+@media (max-width:760px){.hotw{grid-template-columns:1fr}}
+/*BRAND*/
+.brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
+.brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
+.s{padding-top:58px}
+.cover .card{display:flex;flex-direction:column;gap:6px;max-width:980px}
+.cvhead{display:flex;align-items:center;gap:16px;margin-bottom:30px}.cvhead img.em{width:74px;height:74px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(61,192,140,.55)}
+.cvhead b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(24px,3.4vw,34px);color:#fff;line-height:1.1}.cvhead span{display:block;font-size:clamp(15px,2vw,19px);color:#A9D9C8;font-weight:700;margin-top:4px}
+.cover h1{font-size:clamp(38px,6.6vw,66px);margin:6px 0 8px}.cover .kick{font-size:14px;letter-spacing:.06em}
+.cvmeta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.cvlogos{display:flex;align-items:center;gap:18px;margin-top:34px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14)}.cvlogos img{height:44px;width:auto}.cvlogos small{margin-inline-start:auto;color:#8FB3AA;font-size:12.5px;font-weight:700;letter-spacing:.08em}
+.cover .brandbar{display:none}
+@media (max-width:760px){.brandbar{left:10px;gap:7px;padding:4px 9px 4px 4px}.brandbar img{height:20px}.brandbar img.em{width:22px;height:22px}.s{padding-top:48px}.cvhead img.em{width:56px;height:56px}.cvlogos img{height:34px}.cvlogos small{display:none}}
+/* numbered lists: a bold word inside an item stays inline */
+.obj li,.steps li{display:block;position:relative;padding-inline-start:42px;min-height:30px}.obj li::before,.steps li::before{position:absolute;inset-inline-start:0;top:0}.obj.sm li{padding-inline-start:36px}
+.grid.tight figure img{max-height:24vh}
+@media print{.brandbar{display:none}}
+/*/BRAND*/
+</style>
+</head>
+<body>
+<div class="brandbar" aria-hidden="true"><img class="em" src="brand/emblem.jpg" alt=""><i></i><img src="brand/logo_k.webp" alt=""><img src="brand/logo_c.webp" alt=""></div>
+<main class="deck" id="deck">
+<section class="s cover"><div class="card">
+ <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
+ <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 1</div>
+ <h1>חסימות קולוניות</h1>
+ <p class="lead">וולבולוס, גידול חוסם ופסאודו-חסימה (אוגילבי): איך מזהים, מה בודקים ומתי רצים לחדר ניתוח</p>
+ <div class="cvmeta"><span class="pill">מבוסס על <bdi>Sabiston</bdi>, מהדורה 22, פרקים 95, 96 ו-85</span></div>
+ <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>1</b>מטרות הלמידה</div>
+ <h2>בסוף המפגש תדעו</h2>
+ <ol class="obj">
+  <li>להגדיר חסימה של המעי הגס ולמיין את הסיבות: מכנית (בתוך החלל, בדופן, מבחוץ) או תפקודית</li>
+  <li>להסביר חסימה בלולאה סגורה, את תפקיד המסתם האילאו-צקאלי ולמה דווקא הצקום מתנקב</li>
+  <li>לבצע בירור מסודר: אנמנזה, בדיקה כולל מפשעות ובדיקה רקטלית, מעבדה, צילום בטן ו-CT</li>
+  <li>לזהות וולבולוס של הסיגמה ושל הצקום ולדעת את סדר הטיפול בכל אחד</li>
+  <li>להכיר את עקרונות הטיפול בגידול חוסם: ימין מול שמאל, סטנט כגשר לניתוח ומתי מוציאים סטומה</li>
+  <li>לזהות תסמונת אוגילבי ולטפל בה בשלבים, משמירה ועד ניתוח</li>
+ </ol>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 95 (עמ׳ <bdi dir="ltr">1454–1459</bdi>) · פרק 96 (עמ׳ <bdi dir="ltr">1501</bdi>) · פרק 85 (עמ׳ <bdi dir="ltr">1158–1163</bdi>)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>2</b>מושגים</div>
+ <h2>מה חוסם את המעי הגס?</h2>
+ <p class="lead">חסימה של המעי הגס היא חסימה <b>דיסטלית למסתם האילאו-צקאלי</b>. שתי משפחות גדולות: מכנית ותפקודית</p>
+ <div class="grid g3">
+  <div class="box n"><b class="t">בתוך החלל</b>
+   <ul class="b sm"><li>גידול (הסיבה השכיחה במערב)</li><li>גוף זר, בזואר</li><li>צואה דחוסה</li></ul></div>
+  <div class="box"><b class="t">בדופן המעי</b>
+   <ul class="b sm"><li>היצרות על רקע מחלת סעיפים</li><li>היצרות בקרוהן, איסכמיה או אחרי קרינה</li><li>זיהומים, הירשפרונג</li></ul></div>
+  <div class="box b"><b class="t">מחוץ למעי</b>
+   <ul class="b sm"><li>וולבולוס של הסיגמה או הצקום</li><li>בקע (מפשעתי, בטני, פנימי)</li><li>גידול גרורתי, מורסה, פיברוזיס רטרופריטונאלי</li><li>הידבקויות: נדיר במעי הגס</li></ul></div>
+ </div>
+ <div class="box a" style="margin-top:12px"><b class="t">חסימה תפקודית: אין שום דבר שחוסם</b>פסאודו-חסימה (אוגילבי), מגה-קולון טוקסי, איליאוס שיתוקי</div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1454–1455</bdi> (תיבה 95.3)</span><span>מושגים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>3</b>במספרים</div>
+ <h2>מי חוסם את מי</h2>
+ <div class="num">
+  <div><b dir="ltr">~1/3</b><span>מהחסימות של המעי הגס בעולם נגרמות מוולבולוס</span></div>
+  <div><b dir="ltr">8–29%</b><span>מסרטני המעי הגס מסתבכים בחסימה משמעותית</span></div>
+  <div><b dir="ltr">7.5</b><span>ס״מ: הקוטר הממוצע של הצקום, הרחב ביותר במעי הגס</span></div>
+  <div><b dir="ltr">100</b><span>מקרי אוגילבי לכל 100,000 אשפוזים</span></div>
+ </div>
+ <ul class="b">
+  <li>בארה״ב הסיבה המכנית השכיחה היא <b>סרטן המעי הגס</b>. וולבולוס שכיח יותר במזרח אירופה, באפריקה, בהודו <b>ובמזרח התיכון</b></li>
+  <li>האתר השכיח של וולבולוס הוא <b>הסיגמה</b>. גם הצקום יכול להסתובב</li>
+  <li>חסימה היא הסיבה לרוב ההופעות הדחופות של סרטן המעי הגס</li>
+ </ul>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1430, 1454–1455, 1457</bdi> · פרק 96 עמ׳ <bdi dir="ltr">1501</bdi></span><span>אפידמיולוגיה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>4</b>אנטומיה · שקף אינטראקטיבי</div>
+ <h2>מסגרת המעי הגס: איפה זה קורה</h2>
+ <div class="hotw"><div class="hoti"><img src="img/sobotta-409-colon.jpg" alt="המעי הגס בבטן פתוחה, המעי הדק מוסט ימינה"><svg viewBox="0 0 1280 1663" preserveAspectRatio="none">
+   <polygon class="hz" data-hz="c" points="320,1080 430,1060 480,1130 470,1260 400,1290 320,1240" style="--c:#7A5BD6"/>
+   <polygon class="hz" data-hz="t" points="335,700 390,470 560,370 780,315 950,335 1080,395 1115,520 1060,545 1000,455 850,400 700,390 560,430 445,520 405,705" style="--c:#00967D"/>
+   <polygon class="hz" data-hz="d" points="1040,560 1110,600 1118,850 1095,1050 1035,1200 965,1262 925,1222 990,1120 1035,950 1035,700" style="--c:#C9893F"/>
+   <polygon class="hz" data-hz="s" points="640,1200 760,1190 800,1270 880,1250 940,1235 975,1300 900,1385 780,1405 690,1375 640,1300" style="--c:#2F6FA8"/>
+   <text class="hzl" x="400" y="1180">1</text><text class="hzl" x="700" y="370">2</text><text class="hzl" x="1075" y="830">3</text><text class="hzl" x="830" y="1340">4</text>
+  </svg></div>
+  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
+   <div class="hzi" data-hzi="c" hidden><b>1 · הצקום</b><p>הקוטר הרחב ביותר (בממוצע 7.5 ס״מ) והדופן הדקה ביותר. לפי חוק לפלס הוא נמתח ראשון ולכן <b>מתנקב בצקום</b> גם כשהגידול בסיגמה. צקום ניע במיוחד יכול להסתובב (וולבולוס) או להתקפל קדימה (<bdi>bascule</bdi>). באוגילבי קוטר מעל 12 ס״מ הוא סימן אזהרה</p></div>
+   <div class="hzi" data-hzi="t" hidden><b>2 · הקולון הרוחבי</b><p>בפסאודו-חסימה ההרחבה יכולה להיות מסיבית גם כאן. גידול בכפיפה הכבדית הוא חסימה ימנית: כריתה אונקולוגית של צד ימין, בדרך כלל עם השקה ראשונית</p></div>
+   <div class="hzi" data-hzi="d" hidden><b>3 · הקולון היורד</b><p>קבוע לרטרופריטונאום ולכן לא מסתובב. רוב החסימות הממאירות הן <b>בצד שמאל</b>, כי שם הגידולים צומחים מסביב לחלל (בצד ימין הם בדרך כלל פוליפואידיים)</p></div>
+   <div class="hzi" data-hzi="s" hidden><b>4 · הסיגמה</b><p>לולאה ניידת על מזנטריום ארוך: האתר השכיח של וולבולוס. סיבוב סביב המזנטריום יוצר לולאה סגורה. מתחתיה הרקטום: גידול חוסם ברקטום הנמוך והאמצעי מקבל קודם סטומה מסיטה ואז כימו-קרינה</p></div>
+  </div></div>
+ <figure style="margin-top:8px;border:0;padding:0"><figcaption>הקולון כמסגרת סביב המעי הדק · <bdi>Sobotta, Atlas and Text-book of Human Anatomy</bdi> 1906, איור 409 (נחלת הכלל)</figcaption></figure>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1430, 1455–1458</bdi> · פרק 96 עמ׳ <bdi dir="ltr">1501</bdi></span><span>אנטומיה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>5</b>פתופיזיולוגיה</div>
+ <h2>למה חסימה במעי הגס מסוכנת</h2>
+ <div class="grid">
+  <div class="flow">
+   <div><b>גז וצואה מצטברים</b><span>כשני שלישים מהגז הוא אוויר שנבלע, השאר מתסיסה של חיידקים</span></div>
+   <div><b>הלחץ בדופן עולה</b><span>מעל לחץ הנימים: פחות חמצן לדופן</span></div>
+   <div><b>איסכמיה</b><span>נמק ונקב. בצקום קודם, כי הוא הרחב ביותר</span></div>
+   <div><b>בוולבולוס ובבקע כלוא</b><span>לחץ על המזנטריום: קודם נחסם הניקוז הוורידי ואחר כך העורקי</span></div>
+  </div>
+  <div style="display:grid;gap:10px">
+   <div class="box r"><b class="t">לולאה סגורה = חירום</b>קטע מעי חסום משני צדדיו. מתרחב מהר, נעשה איסכמי ומתנקב. דוגמאות: וולבולוס, בקע חנוק וגידול שמאלי עם מסתם אילאו-צקאלי שלם</div>
+   <div class="box"><b class="t">מסתם אילאו-צקאלי שלם</b>לא מאפשר זרימה חזרה למעי הדק. ההופעה חריפה יותר והסיכון לנקב גבוה</div>
+   <div class="box n"><b class="t">מסתם שלא סוגר</b>התוכן חוזר למעי הדק: בטן שהולכת ומתנפחת, הקאות צואתיות, פחות סיכון לנקב</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1455–1456</bdi></span><span>פתופיזיולוגיה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>6</b>הסיפור</div>
+ <h2>איך זה נראה בחדר המיון</h2>
+ <div class="grid">
+  <div>
+   <h3>חסימה מכנית</h3>
+   <ul class="b sm">
+    <li>כאב קוליקי, פריסטלטיקה מוגברת. בחסימה ממושכת: קולות מעיים מעטים</li>
+    <li>לא יוצאים גזים וצואה, הבטן הולכת ומתנפחת</li>
+    <li><b>חריפה:</b> כאב, תפיחות ורגישות שמתפתחים מהר</li>
+    <li><b>מתקדמת לאט:</b> עצירות שמחמירה, צואה דקה כעיפרון, כאב לסירוגין. זה הסיפור הקלאסי של גידול שמאלי</li>
+   </ul>
+   <h3 style="margin-top:12px">חסימה תפקודית</h3>
+   <ul class="b sm"><li>תפיחות, כאב עמום, קולות מעיים חלשים או חסרים</li></ul>
+  </div>
+  <div style="display:grid;gap:10px">
+   <div class="box n"><b class="t">רמזים לפי מיקום הגידול</b>ימני: אנמיה מחוסר ברזל. שמאלי: שינוי בקוטר הצואה או דם טרי</div>
+   <div class="box a"><b class="t">לשאול תמיד</b>מתי התחיל ואיך התקדם, מחלות רקע, תרופות (אופיאטים, אנטיכולינרגיות), קולונוסקופיה אחרונה, ניתוחים קודמים</div>
+   <div class="box r"><b class="t">דגלים אדומים</b>חום, טכיקרדיה, רגישות ממוקדת או פריטוניטיס: חשד לאיסכמיה או לנקב</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1455–1457</bdi> · פרק 96 עמ׳ <bdi dir="ltr">1497, 1501</bdi></span><span>הסיפור</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>7</b>בדיקה גופנית</div>
+ <h2>הבדיקה: בטן, מפשעות ואצבע</h2>
+ <div class="grid f">
+  <div>
+   <ul class="b">
+    <li><b>הסתכלות:</b> תפיחות, צלקות (מפה של ניתוחים קודמים), בקעים</li>
+    <li><b>ניקוש ומישוש:</b> טימפני? גוש? הרגישות המקסימלית איפה? שומרים על ברכיים כפופות כדי שהשרירים ירפו</li>
+    <li><b>פריטוניטיס:</b> התגוננות לא רצונית, קשיחות, כאב בשחרור</li>
+    <li><b>מפשעות: חובה.</b> בקע כלוא הוא סיבה לחסימה של המעי הגס</li>
+    <li><b>בדיקה רקטלית:</b> גידול? צואה דחוסה? דם?</li>
+    <li>שמיעה: רגישות וסגוליות נמוכות. לא מחליטים לפיה</li>
+   </ul>
+   <div class="box b" style="margin-top:12px"><b class="t">במחלקה השבוע</b>בדקו מטופל עם בטן תפוחה או עם חסימה. נקשו את כל הבטן, בדקו מפשעות וצלקות וצפו בבדיקה רקטלית עם בכיר/ה. הציגו את הממצאים בביקור</div>
+  </div>
+  <figure><img src="img/dre-nci-cropped.jpg" alt="בדיקה רקטלית: אצבע בכפפה בתוך הרקטום"><figcaption>בדיקה רקטלית באצבע, מבט מהצד (חתוך) · <bdi>National Cancer Institute</bdi>, <bdi>NCI Visuals Online</bdi> (נחלת הכלל)</figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1456</bdi> · פרק 85 עמ׳ <bdi dir="ltr">1158</bdi></span><span>בדיקה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>8</b>בירור</div>
+ <h2>מעבדה והדמיה</h2>
+ <div class="grid">
+  <div class="flow">
+   <div><b>מעבדה</b><span>ספירה, אלקטרוליטים, כליות. לויקוציטוזיס, <bdi>CRP</bdi>, לקטט, <bdi>BE</bdi> שלילי ו-<bdi>pH</bdi> נמוך: מצב קשה יותר</span></div>
+   <div><b>צילום בטן</b><span>איפה החסימה, כמה המעי מורחב, האם המסתם האילאו-צקאלי שלם. לפעמים נותן את האבחנה (וולבולוס)</span></div>
+   <div><b>CT עם ניגוד</b><span>מיקום וסיבה, סימני איסכמיה ונקב מתקרב. בחשד לחסימה קולונית מעדיפים גם ניגוד רקטלי</span></div>
+   <div><b>חוקן ניגוד מסיס במים</b><span>לאבחנה ולפעמים גם לטיפול</span></div>
+   <div><b>אנדוסקופיה גמישה</b><span>אבחנה וביופסיות. גם טיפול: התרת וולבולוס, סטנט</span></div>
+  </div>
+  <div style="display:grid;gap:10px">
+   <div class="box a"><b class="t">אלקטרוליטים זה לא רק מעבדה</b>הפרעות אלקטרוליטים הן גם סיבה לחסימה תפקודית וגם חשובות להרדמה</div>
+   <figure><img src="img/endo-cancer-stenosis.jpg" alt="היצרות של המעי בגלל גידול בקולונוסקופיה"><figcaption>גידול שמצר את החלל, כפי שנראה בקולונוסקופיה · <bdi>J. Guntau</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1456–1457</bdi></span><span>בירור</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>9</b>ההחלטה</div>
+ <h2>חדר ניתוח עכשיו, או טיפול לפי הסיבה?</h2>
+ <div class="grid">
+  <div style="display:grid;gap:10px">
+   <div class="box r"><b class="t">לחדר ניתוח מיד</b>פריטוניטיס, סימני נקב או מעי איסכמי</div>
+   <div class="box a"><b class="t">לשחרר מהר</b>חסימה מלאה ולולאה סגורה: משחררים לפני שאספקת הדם נפגעת</div>
+   <div class="box"><b class="t">כל השאר</b>מטפלים לפי הסיבה (בטבלה)</div>
+  </div>
+  <div class="flow">
+   <div><b>וולבולוס של הסיגמה</b><span>התרה אנדוסקופית ושרוול רקטלי</span></div>
+   <div><b>מחלת מעי דלקתית פעילה</b><span>בדרך כלל מגיבה בהתחלה לסטרואידים</span></div>
+   <div><b>מורסה ליד המעי</b><span>ניקוז מלעורי</span></div>
+   <div><b>גוף זר</b><span>הוצאה אנדוסקופית</span></div>
+   <div><b>צואה דחוסה</b><span>מרככים ומשלשלים מלמעלה, הוצאה ידנית ליד המיטה או בהרדמה</span></div>
+   <div><b>בקע</b><span>בדרך כלל ניתוח</span></div>
+   <div><b>אינוואגינציה במבוגר</b><span>כמעט תמיד יש נקודה מובילה. כ-37% (איליאו-קולי) עד 47% (קולי) ממאירים. כורתים לפי עקרונות אונקולוגיים, בלי להחזיר</span></div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1457</bdi></span><span>החלטה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>10</b>וולבולוס</div>
+ <h2>הסיגמה מול הצקום</h2>
+ <div class="grid f">
+  <div>
+   <div class="grid">
+    <div class="box b"><b class="t">וולבולוס של הסיגמה</b>
+     <ul class="b sm"><li>סיבוב של הלולאה סביב המזנטריום: לולאה סגורה</li><li>צילום: "צינור פנימי מקופל", "פולי קפה"</li><li>CT: מערבולת במזנטריום</li><li><b>אין איסכמיה:</b> התרה בסיגמואידוסקופ קשיח או גמיש ושרוול רקטלי מעל הפיתול</li><li><b>הצליח:</b> כריתה מתוכננת של הסיגמה עם השקה ראשונית, כי החזרה שכיחה</li><li><b>נכשל:</b> ניתוח, כריתה וקולוסטומיה (הרטמן)</li></ul></div>
+    <div class="box n"><b class="t">וולבולוס של הצקום</b>
+     <ul class="b sm"><li>צקום וקולון עולה ניידים באופן לא תקין</li><li>הטיפול: כריתה והשקה ראשונית</li><li>השקה נדחית כשהסיכון לדליפה גבוה: מעי לא חיוני, אלח דם, תת-לחץ דם</li></ul></div>
+   </div>
+  </div>
+  <figure><img src="img/xray-sigmoid-volvulus.jpg" alt="צילום בטן בוולבולוס של הסיגמה"><figcaption>וולבולוס של הסיגמה: לולאות מורחבות מאוד ורקטום בלי גז · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1430, 1455, 1457</bdi> · פרק 85 עמ׳ <bdi dir="ltr">1160</bdi></span><span>וולבולוס</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>11</b>גידול חוסם</div>
+ <h2>סרטן חוסם: ימין ושמאל</h2>
+ <div class="grid">
+  <div style="display:grid;gap:10px">
+   <div class="box"><b class="t">חסימה ימנית</b>כריתה אונקולוגית של הקטע (המי-קולקטומיה ימנית). ברוב המקרים השקה איליאו-קולית ראשונית בטוחה. בסיכון גבוה לדליפה: סטומה זמנית</div>
+   <div class="box n"><b class="t">חסימה בסיגמה ובצד שמאל</b>בדרך כלל ניתוח דחוף וכריתה של הקטע. אפשרויות: הרטמן (קולוסטומיה וגדם רקטלי סגור) או השקה ראשונית, עם או בלי סטומה מסיטה. השקה רק במטופל יציב, בלי מתח ועם אספקת דם טובה</div>
+   <div class="box r"><b class="t">הצקום איסכמי או מנוקב</b>קולקטומיה תת-טוטלית</div>
+   <div class="box a"><b class="t">רקטום נמוך ואמצעי</b>קודם סטומה מסיטה, אחר כך כימו-קרינה ורק אז הניתוח הסופי</div>
+  </div>
+  <div>
+   <h3>סטנט כגשר לניתוח</h3>
+   <ul class="b sm">
+    <li>משחרר את החסימה ונותן זמן: לאזן את המטופל ולעיתים לתת כימותרפיה לפני ניתוח</li>
+    <li>יותר השקות ראשוניות, פחות זיהומי פצע, יותר ניתוחים לפרוסקופיים</li>
+    <li>מתאים במיוחד למטופלים בסיכון ניתוחי גבוה ולפליאציה</li>
+    <li>סיבוכים: תזוזה, נקב, חסימה חוזרת</li>
+    <li><b>אסור</b> בחשד לאיסכמיה או לנקב</li>
+   </ul>
+   <div class="box" style="margin-top:10px"><b class="t">מטופל לא יציב</b>סטומה מסיטה זמנית, או הוצאת ההשקה החוצה כאילאוסטומיה לולאתית</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1457</bdi> · פרק 96 עמ׳ <bdi dir="ltr">1501</bdi></span><span>גידול חוסם</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>12</b>פסאודו-חסימה</div>
+ <h2>תסמונת אוגילבי</h2>
+ <div class="grid f">
+  <div>
+   <ul class="b sm">
+    <li><b>מה זה:</b> הרחבה חריפה של המעי הגס <b>בלי חסימה מכנית</b>. כנראה חוסר איזון אוטונומי (יותר סימפתטי)</li>
+    <li><b>מי:</b> מבוגר עם מחלות רקע, מאושפז בגלל מחלה חריפה או אחרי ניתוח (אורתופדי, עמוד שדרה, לב, השתלה), אחרי לידה או קיסרי, נוירולוגי (פרקינסון, שבץ), אי ספיקת לב, <bdi>COPD</bdi>, חבלה קשה וכוויות</li>
+    <li><b>תרופות:</b> אופיאטים, אנטיכולינרגיות, נגד פרקינסון, אנטי-פסיכוטיות, קלונידין</li>
+    <li><b>צילום:</b> קולון מורחב, הכי רחב בצקום ובצד ימין (עד 10–12 ס״מ). <b>גז עד הרקטום</b> תומך באוגילבי. בחסימה מכנית אין כמעט גז מעבר לחסימה</li>
+    <li><b>CT:</b> הבדיקה המאשרת. מבדיל ממכני ומחפש איסכמיה</li>
+    <li><b>אבחנה מבדלת:</b> חסימה מכנית, מגה-קולון טוקסי מ-<bdi>C. difficile</bdi></li>
+   </ul>
+   <div class="box r" style="margin-top:10px"><b class="t">סימני סכנה</b>רגישות בבטן, לויקוציטוזיס, חום, צקום מעל 12 ס״מ</div>
+  </div>
+  <figure><img src="img/ct-ogilvie-coronal.jpg" alt="CT של קולון מורחב מאוד באוגילבי"><figcaption>CT (חתך קורונלי) של מטופלת מבוגרת עם אוגילבי: כל הקולון מורחב · <bdi>Milliways</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1457–1458</bdi> (טבלה 95.2) · פרק 85 עמ׳ <bdi dir="ltr">1165</bdi></span><span>אוגילבי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>13</b>אוגילבי · טיפול</div>
+ <h2>סולם הטיפול</h2>
+ <div class="flow">
+  <div><b>1 · שמרני</b><span>צקום מתחת ל-12 ס״מ בלי איסכמיה: צום, תיקון אלקטרוליטים, הפסקת תרופות אשמות, זונדה ושרוול רקטלי, הליכה ושכיבה על הבטן או ברכיים-חזה. <b>בלי משלשלים</b>. בדיקה וצילום חוזרים</span></div>
+  <div><b>2 · ניאוסטיגמין</b><span>אם אין שיפור או הצקום מעל 12 ס״מ (בלי טוקסיות): <bdi dir="ltr">2–2.5</bdi> מ״ג בווריד במשך <bdi dir="ltr">3–5</bdi> דקות, במוניטור ועם אטרופין מוכן. הצלחה <bdi dir="ltr">60–94%</bdi>, חזרה עד 31%</span></div>
+  <div><b>3 · קולונוסקופיה</b><span>כשיש התוויית נגד לניאוסטיגמין או שלא עבד: הכנסת צינור הנקזה. הצלחה ראשונית <bdi dir="ltr">61–95%</bdi>, נקב <bdi dir="ltr">1–3%</bdi></span></div>
+  <div><b>4 · ניתוח</b><span>אין תגובה, טוקסיות, איסכמיה או נקב. מעי חיוני: צקוסטומיה. איסכמיה או נקב: כריתה, בדרך כלל עם סטומה</span></div>
+ </div>
+ <div class="grid" style="margin-top:12px">
+  <div class="box r"><b class="t">למה לא מחכים יותר מדי</b>איסכמיה או נקב ב-<bdi dir="ltr">3–15%</bdi> ואז תמותה קרובה ל-50%</div>
+  <div class="box a"><b class="t">ניאוסטיגמין: מתי לא</b>חסימה מכנית, איסכמיה או נקב. זהירות: אסתמה, <bdi>COPD</bdi>, ברדיקרדיה, תסמונת כלילית חריפה, אי ספיקת כליות</div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1458–1459</bdi></span><span>אוגילבי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>14</b>לפני ניתוח דחוף</div>
+ <h2>מה מכינים בזמן שמזמינים חדר</h2>
+ <div class="grid">
+  <div>
+   <ul class="b">
+    <li>שני עירויים טובים, נוזלים או דם לפי הצורך, תיקון אלקטרוליטים</li>
+    <li>סוג והצלבה, תפקודי קרישה, תרביות דם, לקטט</li>
+    <li>אנטיביוטיקה רחבת טווח: גרם-שליליים של המעי ואנאירובים</li>
+    <li>זונדה, קטטר שתן וקווים לפי המצב. א.ק.ג וצילום חזה לא מעכבים</li>
+    <li>לתאם מראש מיטה בטיפול נמרץ אם צריך</li>
+   </ul>
+  </div>
+  <div class="box n"><b class="t">שיחת ההסכמה</b>לא תמיד יודעים מראש מה יימצא. מדברים על פתוח או לפרוסקופי, כריתת מעי, <b>אפשרות של סטומה</b>, בטן פתוחה וניתוח חוזר, טיפול נמרץ והנשמה. שואלים על רצונות המטופל ומי מחליט בשמו</div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1163–1164</bdi></span><span>הכנה לניתוח</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>15</b>מה חדש בתחום · 2021–2026</div>
+ <h2>מחקרים שכדאי להכיר</h2>
+ <div class="grid g3">
+  <div class="study"><div class="y"><bdi>Br J Surg</bdi> 2022 · מחקר אקראי</div><b><bdi>CReST</bdi>: סטנט כגשר מול ניתוח דחוף</b>
+   <p>245 מטופלים עם גידול חוסם בצד שמאל. אין הבדל בתמותה ב-30 יום (3.6% לעומת 5.6%) ובאורך האשפוז. בכוונה מרפאת: <b>פחות סטומות</b> עם סטנט (47.5% לעומת 67.9%). אין הבדל בחזרת הגידול אחרי 3 שנים</p>
+   <small>CReST Collaborative Group. Br J Surg 2022;109(11):1073-80</small></div>
+  <div class="study"><div class="y"><bdi>Dis Colon Rectum</bdi> 2024 · מטא-אנליזה ברשת</div><b>סטנט, סטומה מסיטה או כריתה דחופה?</b>
+   <p>19 מחקרים (אקראיים ומותאמים). סטנט כגשר: פחות סטומות קבועות, יותר השקות ראשוניות ויותר ניתוחים זעיר-פולשניים, פחות סיבוכים ותמותה ב-90 יום. אין הבדל בהישרדות</p>
+   <small>McHugh FT et al. Dis Colon Rectum 2024;67(7):878-94</small></div>
+  <div class="study"><div class="y"><bdi>World J Crit Care Med</bdi> 2025 · מטא-אנליזה</div><b>קולונוסקופיה להנקזה באוגילבי</b>
+   <p>16 מחקרים. הצלחה בפעולה הראשונה 78.8%, הצלחה כוללת 91.5%, נקב 0.9%, חזרה 17.1%. הפעולה הראשונה הצליחה יותר ממנה ראשונה של ניאוסטיגמין. רוב המחקרים לא אקראיים</p>
+   <small>Giri S et al. World J Crit Care Med 2025;14(3):102733</small></div>
+ </div>
+ <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>16</b>לסיכום</div>
+ <h2>חמישה דברים לקחת למחלקה</h2>
+ <ol class="obj">
+  <li>בטן תפוחה בלי גזים: קודם לשלול לולאה סגורה, איסכמיה ונקב. פריטוניטיס = חדר ניתוח</li>
+  <li>תמיד לבדוק מפשעות ולעשות בדיקה רקטלית</li>
+  <li>הצקום הוא שמתנקב, גם כשהחסימה בסיגמה. צקום מעל 12 ס״מ מדאיג</li>
+  <li>וולבולוס של הסיגמה בלי איסכמיה: התרה אנדוסקופית ואחר כך כריתה מתוכננת. בצקום: כריתה</li>
+  <li>אוגילבי: שמרני, ניאוסטיגמין, קולונוסקופיה ורק אז ניתוח. בלי משלשלים</li>
+ </ol>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 95 <bdi>Colon and Rectum</bdi> (עמ׳ <bdi dir="ltr">1454–1459</bdi>) · פרק 96 <bdi>Cancers of the Colon, Rectum, and Anus</bdi> (עמ׳ <bdi dir="ltr">1501</bdi>)</div>
+ <div class="src"><span>איורים: <bdi>Sobotta</bdi> 1906 (נחלת הכלל) · צילומים: <bdi>Hellerhoff</bdi>, <bdi>J. Guntau</bdi>, <bdi>Milliways</bdi> (<bdi>CC BY-SA</bdi>, <bdi>Wikimedia Commons</bdi>) · <bdi>NCI</bdi> (נחלת הכלל) · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+</main>
+<div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
+<script>
+document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz').forEach(function(z){z.addEventListener('click',function(){w.querySelectorAll('.hz').forEach(function(x){x.classList.toggle('on',x===z)});w.querySelectorAll('.hzi').forEach(function(i){i.hidden=i.dataset.hzi!==z.dataset.hz;i.style.setProperty('--c',z.style.getPropertyValue('--c'))});var h=w.querySelector('.hint');if(h)h.hidden=true;});});});
+</script>
+<script>
+document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz').forEach(function(z){z.addEventListener('click',function(){w.querySelectorAll('.hz').forEach(function(x){x.classList.toggle('on',x===z)});w.querySelectorAll('.hzi').forEach(function(i){i.hidden=i.dataset.hzi!==z.dataset.hz;i.style.setProperty('--c',z.style.getPropertyValue('--c'))});var h=w.querySelector('.hint');if(h)h.hidden=true;});});});
+</script>
+<script>
+(function () {
+  var deck = document.getElementById('deck'), S = [].slice.call(deck.children), dots = document.getElementById('dots'), n = S.length;
+  S.forEach(function (_, k) { var i = document.createElement('i'); i.onclick = function () { go(k); }; dots.appendChild(i); });
+  function idx() { return Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }
+  function go(k) { k = Math.max(0, Math.min(n - 1, k)); S[k].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' }); }
+  function sync() { var k = idx(); [].forEach.call(dots.children, function (d, j) { d.className = j === k ? 'on' : ''; }); document.getElementById('count').textContent = (k + 1) + '/' + n; document.getElementById('prev').disabled = k === 0; document.getElementById('next').disabled = k === n - 1; }
+  deck.addEventListener('scroll', function () { clearTimeout(sync.t); sync.t = setTimeout(sync, 60); }, { passive: true });
+  document.getElementById('next').onclick = function () { go(idx() + 1); };
+  document.getElementById('prev').onclick = function () { go(idx() - 1); };
+  addEventListener('keydown', function (e) { if (e.key === 'ArrowLeft' || e.key === ' ') go(idx() + 1); if (e.key === 'ArrowRight') go(idx() - 1); });
+  sync();
+})();
+</script>
+</body>
+</html>

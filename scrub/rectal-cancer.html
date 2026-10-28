@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>קרצינומה של הרקטום · Scrub In</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../emblem.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Frank+Ruhl+Libre:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0C2A35;--navy2:#123845;--g:#00967D;--g2:#3DC08C;--g3:#0A6B5A;--lime:#B5D96B;--red:#A3402E;--amber:#C9893F;--blue:#2F6FA8;--bg:#EDF2F0;--soft:#F3F7F5;--ink:#16262C;--muted:#5C6F73;--line:#DCE6E2}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--navy);color:var(--ink);font-family:Heebo,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.deck{position:fixed;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.deck::-webkit-scrollbar{display:none}
+.s{flex:0 0 100%;height:100%;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;padding:18px 16px 84px;overflow-y:auto;position:relative}
+.s::after{content:'';position:absolute;inset:0;background:url(../ops/art/organs.webp) no-repeat 6% 40%/auto 115%;opacity:.05;filter:invert(1);pointer-events:none}
+.card{width:min(980px,100%);background:#fff;border-radius:22px;box-shadow:0 18px 50px rgba(0,0,0,.35);padding:30px 32px 22px;position:relative;overflow:hidden;z-index:1}
+.card::before{content:'';position:absolute;inset:0 0 auto 0;height:6px;background:linear-gradient(90deg,var(--g3),var(--g),var(--g2),var(--lime))}
+.kick{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--g);letter-spacing:.3px;margin-bottom:6px}
+.kick b{background:var(--navy);color:#fff;border-radius:999px;min-width:26px;height:26px;display:grid;place-items:center;font-size:13px;padding:0 8px}
+h1,h2{font-family:'Frank Ruhl Libre',serif;color:var(--navy);margin:0 0 10px;line-height:1.15}
+h1{font-size:clamp(34px,6.4vw,60px)}h2{font-size:clamp(25px,4.4vw,36px)}
+h3{margin:0 0 6px;font-size:17px;color:var(--navy)}
+.lead{font-size:clamp(15.5px,2.3vw,18.5px);color:var(--muted);margin:0 0 16px;line-height:1.5}
+ul.b{margin:0;padding:0;list-style:none;display:grid;gap:8px}ul.b li{position:relative;padding-inline-start:20px;font-size:16.5px;line-height:1.45}ul.b li::before{content:'';position:absolute;inset-inline-start:2px;top:.62em;width:8px;height:8px;border-radius:2px;background:var(--g);transform:rotate(45deg)}
+ul.b li b{color:var(--navy)}ul.b.sm li{font-size:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.grid.g3{grid-template-columns:repeat(3,1fr)}.grid.f{grid-template-columns:1.05fr .95fr;align-items:center}
+.box{background:var(--soft);border-radius:14px;padding:13px 15px;border-inline-start:4px solid var(--g);font-size:15.5px;line-height:1.45}
+.box.r{border-color:var(--red);background:#FBEDEA}.box.a{border-color:var(--amber);background:#FFF6EA}.box.n{border-color:var(--navy)}.box.b{border-color:var(--blue);background:#EEF4FB}
+.box b.t{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}
+.num{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:4px 0 14px}.num div{background:var(--soft);border-radius:14px;padding:12px 10px;text-align:center}
+.num b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(26px,4vw,38px);color:var(--g3);line-height:1.05}.num span{font-size:13px;color:var(--muted);line-height:1.3;display:block;margin-top:4px}
+figure{margin:0;background:#FBFCFB;border:1px solid var(--line);border-radius:16px;padding:10px;text-align:center}figure img{max-width:100%;max-height:46vh;display:block;margin:0 auto;mix-blend-mode:multiply}
+figcaption{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.35}
+.ill svg{width:100%;height:auto;max-height:50vh}
+.src{margin-top:16px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.src b{color:var(--g3)}
+.tag{display:inline-block;font-size:12px;font-weight:800;border-radius:999px;padding:2px 10px;background:#E3F4EC;color:var(--g3);margin-inline-end:4px}
+.tag.r{background:#F8E3DE;color:var(--red)}.tag.a{background:#FFF3DF;color:#8A5A14}.tag.b{background:#E8F0FA;color:var(--blue)}
+.flow{display:grid;gap:8px}.flow div{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;background:var(--soft);border-radius:12px;padding:9px 12px;font-size:15.5px}.flow div b{color:var(--navy)}
+.study{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#fff}.study .y{font-size:12px;font-weight:800;color:var(--g);letter-spacing:.3px}.study b{display:block;font-size:16px;color:var(--navy);margin:2px 0}.study p{margin:4px 0 0;font-size:14.5px;line-height:1.45}.study small{display:block;margin-top:6px;font-size:11.5px;color:var(--muted)}
+.cover{background:radial-gradient(120% 90% at 85% 0%,#164B54 0%,var(--navy) 58%)}
+.cover::after{opacity:.16;background-position:2% 50%}
+.cover .card{background:transparent;box-shadow:none;color:#fff}.cover .card::before{display:none}.cover h1{color:#fff}.cover .lead{color:#C9D6DA}.cover .kick{color:var(--g2)}
+.pill{display:inline-flex;gap:6px;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px;color:#fff;margin:4px}
+.logo{display:flex;align-items:center;gap:10px;margin-bottom:26px}.logo img{width:48px;height:48px;border-radius:50%;background:#fff}.logo b{color:#fff;font-weight:900}.logo small{display:block;color:#A9C9C0;font-size:12px}
+.obj{counter-reset:o;list-style:none;margin:0;padding:0;display:grid;gap:10px}.obj li{counter-increment:o;display:flex;gap:12px;align-items:flex-start;font-size:16.5px;line-height:1.45}.obj li::before{content:counter(o);flex:0 0 30px;height:30px;border-radius:50%;background:var(--g);color:#fff;font-weight:800;display:grid;place-items:center}
+.nav{position:fixed;inset:auto 0 0 0;display:flex;align-items:center;justify-content:center;gap:14px;padding:12px 16px calc(14px + env(safe-area-inset-bottom));background:linear-gradient(transparent,rgba(6,20,26,.85) 40%);z-index:5}
+.nav button{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;font-size:22px;cursor:pointer}.nav button:disabled{opacity:.3}
+.dots{display:flex;gap:5px;flex-wrap:wrap;max-width:60vw;justify-content:center}.dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer}.dots i.on{background:var(--g2);width:20px;border-radius:5px}
+.count{color:#C9D6D9;font-size:13px;font-weight:700;min-width:44px;text-align:center}
+bdi{unicode-bidi:isolate}
+@media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
+@media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+.hotw{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;align-items:start}.hoti{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#FBFCFB}.hoti img{display:block;width:100%;mix-blend-mode:multiply}.hoti svg{position:absolute;inset:0;width:100%;height:100%}
+.hz{fill:var(--c);fill-opacity:.38;stroke:var(--c);stroke-width:2;cursor:pointer;transition:fill-opacity .2s}.hz:hover,.hz.on{fill-opacity:.62}.hzl{font:900 22px Heebo,sans-serif;fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;pointer-events:none;text-anchor:middle}
+.hotp .hint{background:var(--soft);border-radius:12px;padding:10px 12px;font-weight:700;color:var(--g3)}.hzi{border-inline-start:5px solid var(--c,var(--g));background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-top:8px;font-size:15.5px;line-height:1.45}.hzi b{display:block;font-size:17px;color:var(--navy);margin-bottom:4px}
+@media (max-width:760px){.hotw{grid-template-columns:1fr}}
+/*BRAND*/
+.brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
+.brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
+.s{padding-top:58px}
+.cover .card{display:flex;flex-direction:column;gap:6px;max-width:980px}
+.cvhead{display:flex;align-items:center;gap:16px;margin-bottom:30px}.cvhead img.em{width:74px;height:74px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(61,192,140,.55)}
+.cvhead b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(24px,3.4vw,34px);color:#fff;line-height:1.1}.cvhead span{display:block;font-size:clamp(15px,2vw,19px);color:#A9D9C8;font-weight:700;margin-top:4px}
+.cover h1{font-size:clamp(38px,6.6vw,66px);margin:6px 0 8px}.cover .kick{font-size:14px;letter-spacing:.06em}
+.cvmeta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.cvlogos{display:flex;align-items:center;gap:18px;margin-top:34px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14)}.cvlogos img{height:44px;width:auto}.cvlogos small{margin-inline-start:auto;color:#8FB3AA;font-size:12.5px;font-weight:700;letter-spacing:.08em}
+.cover .brandbar{display:none}
+@media (max-width:760px){.brandbar{left:10px;gap:7px;padding:4px 9px 4px 4px}.brandbar img{height:20px}.brandbar img.em{width:22px;height:22px}.s{padding-top:48px}.cvhead img.em{width:56px;height:56px}.cvlogos img{height:34px}.cvlogos small{display:none}}
+/* numbered lists: a bold word inside an item stays inline */
+.obj li,.steps li{display:block;position:relative;padding-inline-start:42px;min-height:30px}.obj li::before,.steps li::before{position:absolute;inset-inline-start:0;top:0}.obj.sm li{padding-inline-start:36px}
+.grid.tight figure img{max-height:24vh}
+@media print{.brandbar{display:none}}
+/*/BRAND*/
+</style>
+</head>
+<body>
+<div class="brandbar" aria-hidden="true"><img class="em" src="brand/emblem.jpg" alt=""><i></i><img src="brand/logo_k.webp" alt=""><img src="brand/logo_c.webp" alt=""></div>
+<main class="deck" id="deck">
+
+<section class="s cover"><div class="card">
+ <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
+ <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 4</div>
+ <h1>קרצינומה של הרקטום</h1>
+ <p class="lead">בדיקה רקטלית ו-<bdi>MRI</bdi> של האגן, טיפול לפני ניתוח, כריתה מלאה של המזורקטום, שימור סוגרים וגישת "המתנה ומעקב"</p>
+ <div class="cvmeta"><span class="pill">מבוסס על <bdi>Sabiston</bdi>, מהדורה 22, פרק 96</span></div>
+ <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>1</b>מטרות הלמידה</div>
+ <h2>בסוף המפגש תדעו</h2>
+ <ol class="obj">
+  <li><span>לבצע ולתעד בדיקה רקטלית: מרחק מהשוליים ומהקו המשונן, ניידות וקשר לסוגר ולאיברים השכנים</span></li>
+  <li><span>להסביר מה <bdi>MRI</bdi> של האגן נותן: שלב <bdi>T</bdi> ו-<bdi>N</bdi>, השוליים ההיקפיים והקפל הצפקי הקדמי</span></li>
+  <li><span>להכיר את הטיפול לפני הניתוח (קרינה-כימותרפיה, <bdi>TNT</bdi>) ולדעת למי הוא מיועד</span></li>
+  <li><span>לתאר את המישור של כריתת המזורקטום (<bdi>TME</bdi>) ואת העצבים שבסכנה</span></li>
+  <li><span>להחליט בין כריתה קדמית נמוכה, כריתה בטנית-פרינאלית, כריתה מקומית ו"המתנה ומעקב"</span></li>
+ </ol>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 96 (עמ׳ <bdi dir="ltr">1503–1512</bdi>)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>2</b>אפידמיולוגיה והסיפור</div>
+ <h2>סרטן הרקטום במספרים</h2>
+ <div class="num">
+  <div><b dir="ltr">46,050</b><span>מקרים חדשים בארה״ב ב-2023 (הערכה)</span></div>
+  <div><b dir="ltr">27% → 31%</b><span>חלק הרקטום מכלל סרטני המעי הגס, 1995 עד 2019</span></div>
+  <div><b dir="ltr">~2%</b><span>עלייה בשנה מתחת לגיל 50 בעשור האחרון</span></div>
+  <div><b dir="ltr">~20%</b><span>עם גרורות כבר באבחנה</span></div>
+ </div>
+ <div class="grid">
+  <ul class="b sm">
+   <li><b>בחילות, נפיחות, עצירות:</b> חסימה מתקרבת. אולי צריך להתערב מהר</li>
+   <li><b>כאב נוירופתי:</b> גידול שחודר לשורשי העצבים הסקרליים</li>
+   <li><b>טנזמוס וכאב רקטלי:</b> לרוב גידול נמוך שחודר לסוגר</li>
+  </ul>
+  <ul class="b sm">
+   <li><b>תפקוד בסיסי:</b> שתן, מין ויציאות. שליטה לא מושלמת לפני הניתוח מנבאת תפקוד גרוע אחרי כריתה קדמית נמוכה</li>
+   <li><b>כושר ושבריריות:</b> קובעים אם יעמוד בטיפול מקדים ובניתוח</li>
+   <li><b>סיפור משפחתי:</b> תסמונת תורשתית משנה טיפול ומעקב</li>
+  </ul>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1503, 1511</bdi></span><span>אפידמיולוגיה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>3</b>בדיקה גופנית</div>
+ <h2>הבדיקה הרקטלית של הכירורג</h2>
+ <div class="grid f">
+  <div>
+   <ul class="b">
+    <li>בדיקה רקטלית <b>ופרוקטוסקופיה</b> (גמישה או קשיחה) בידי הכירורג המטפל: היא קובעת את המשך הבירור והטיפול</li>
+    <li><b>מתעדים:</b> המרחק של הגידול משולי פי הטבעת ומהקו המשונן</li>
+    <li><b>גידול בתעלה הכירורגית:</b> בודקים ניידות מול הערמונית או הנרתיק ומול הסוגרים</li>
+    <li><b>נגע מוקדם או פוליפ ממאיר:</b> צורה ודגם הבלוטות באנדוסקופיה עוזרים להחליט על כריתה מקומית</li>
+    <li>אם עוד אין אבחנה: ביופסיה, כולל צביעה לחלבוני <bdi>MMR</bdi></li>
+   </ul>
+   <div class="box b" style="margin-top:12px"><b class="t">במחלקה השבוע</b>היו בבדיקה רקטלית של חולה עם גידול ברקטום, בהשגחת בכיר/ה. תארו בקול: כמה ס״מ מהשוליים, באיזה קיר, נייד או מקובע ואם הוא מגיע לסוגר</div>
+  </div>
+  <figure><img src="img/dre-nci.jpg" alt="בדיקה רקטלית באצבע, חתך צדי של האגן בגבר"><figcaption>בדיקה רקטלית באצבע: אצבע עם כפפה וחומר סיכה, מבט צדי על הרקטום, הערמונית והשלפוחית · <bdi>Alan Hoofring, National Cancer Institute</bdi> (נחלת הכלל)</figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1503</bdi></span><span>בדיקה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>4</b>אנטומיה · אינטראקטיבי</div>
+ <h2>הרקטום והשכנים שלו</h2>
+ <div class="hotw"><div class="hoti"><img src="img/Sobo_1906_483.jpg" alt="חתך סגיטלי של אגן גבר"><svg viewBox="0 0 1200 905" preserveAspectRatio="none">
+   <polygon class="hz" data-hz="m" points="656,412 806,403 900,488 938,600 900,675 806,712 722,731 656,712 638,581" style="--c:#00967D"/>
+   <text class="hzl" style="font-size:44px;stroke-width:5px" x="790" y="590">1</text>
+   <polygon class="hz" data-hz="b" points="938,178 1041,159 1111,300 1106,488 1022,562 947,525 966,375" style="--c:#8A6A3A"/>
+   <text class="hzl" style="font-size:44px;stroke-width:5px" x="1030" y="370">2</text>
+   <polygon class="hz" data-hz="a" points="488,380 562,361 609,394 647,441 600,473 525,488 483,450" style="--c:#C9893F"/>
+   <text class="hzl" style="font-size:44px;stroke-width:5px" x="560" y="440">3</text>
+   <polygon class="hz" data-hz="v" points="497,220 581,192 712,202 764,262 750,347 694,370 600,368 525,349 492,281" style="--c:#3D8FC9"/>
+   <text class="hzl" style="font-size:44px;stroke-width:5px" x="625" y="300">4</text>
+   <polygon class="hz" data-hz="s" points="623,656 675,661 741,722 731,778 656,783 614,741" style="--c:#A3402E"/>
+   <text class="hzl" style="font-size:44px;stroke-width:5px" x="678" y="740">5</text>
+  </svg></div>
+  <div class="hotp"><p class="hint">👆 לחצו על אזור בחתך כדי לקרוא עליו</p>
+   <div class="hzi" data-hzi="m" hidden><b>1 · הרקטום והמזורקטום</b><p>המזורקטום עטוף בפציה דקה (<bdi>fascia propria</bdi>) ומכיל את ענפי ה-<bdi>IMA</bdi> ואת הלימפה. <strong>כריתת המזורקטום (<bdi>TME</bdi>)</strong> נעשית מחוץ לפציה הזו ומוציאה הכול כגוש אחד. לימפה משני השלישים העליונים עולה לבלוטות של ה-<bdi>IMA</bdi>. מהשליש התחתון גם לצדדים, לבלוטות האיליאקה הפנימית</p></div>
+   <div class="hzi" data-hzi="b" hidden><b>2 · העצה והפציה הפרה-סקרלית</b><p>הדיסקציה האחורית עוברת <strong>לפני</strong> הפציה הפרה-סקרלית. מתחת לה יש מקלעת ורידים: קרע שם מדמם קשות: הכלים נסוגים לתוך החורים של העצה. מעל הפרומונטוריום עוברת המקלעת ההיפוגסטרית: פגיעה בה גורמת לשפיכה לאחור</p></div>
+   <div class="hzi" data-hzi="a" hidden><b>3 · הערמונית והקיר הקדמי</b><p>בקיר הקדמי השוליים ההיקפיים (<bdi>CRM</bdi>) צרים. כשהשוליים מאוימים גם אחרי טיפול מקדים, יוצאים מחוץ למישור ה-<bdi>TME</bdi> וכורתים יחד את האיבר המעורב (ערמונית, נרתיק). פגיעה במקלעת שליד הערמונית: הפרעה בתפקוד המיני ובשלפוחית</p></div>
+   <div class="hzi" data-hzi="v" hidden><b>4 · השלפוחית והקפל הצפקי</b><p>הצפק יורד מעל השלפוחית ויוצר כיס בינה לבין הרקטום. <strong>הקפל הצפקי הקדמי</strong> נראה ב-<bdi>MRI</bdi> ומשמש גבול: גידול <strong>מתחתיו</strong> (רקטום חוץ-צפקי) בשלב מתקדם הוא המועמד לטיפול לפני ניתוח. הרקטום שמעליו נחשב תוך-צפקי</p></div>
+   <div class="hzi" data-hzi="s" hidden><b>5 · תעלת פי הטבעת והסוגרים</b><p>הגבול התחתון של הרקטום הוא <strong>הטבעת האנורקטלית</strong>: הגבול העליון של הסוגרים ושל ה-<bdi>puborectalis</bdi>, מורגש בבדיקה. מעורבות של הלבטור או של הסוגר החיצוני: אין שימור סוגרים. רק הסוגר הפנימי: אפשר כריתה בין הסוגרים בחולים נבחרים</p></div>
+  </div></div>
+ <figcaption>חתך סגיטלי של אגן גבר: רקטום, ערמונית, שלפוחית ועצה · <bdi>Sobotta, Atlas and Text-book of Human Anatomy</bdi> 1906, איור 483 (נחלת הכלל)</figcaption>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1503, 1506–1510</bdi></span><span>אנטומיה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>5</b>שלב קליני</div>
+ <h2>הבירור לפני שמחליטים</h2>
+ <div class="grid">
+  <div class="flow">
+   <div><b>מעבדה</b><span><bdi>CEA</bdi> בסיסי</span></div>
+   <div><b>קולונוסקופיה מלאה</b><span>סרטן נוסף בכ-3%, נגעים טרום-ממאירים בכ-30%. גידול חוסם: קולונוגרפיה ב-<bdi>CT</bdi>, אחרי הטיפול המקדים או בתקופה שאחרי הניתוח</span></div>
+   <div><b><bdi>CT</bdi> חזה, בטן ואגן</b><span>עם חומר ניגוד, לחיפוש גרורות</span></div>
+   <div><b><bdi>MRI</bdi> של האגן</b><span>הבדיקה המועדפת לשלב <bdi>T</bdi> ו-<bdi>N</bdi>, למרחק מהקפל הצפקי הקדמי, לשוליים ההיקפיים ולחדירה לאיברים שכנים. האולטרסאונד הרקטלי היה בעבר הכלי המרכזי</span></div>
+   <div><b>ועדה רב-תחומית</b><span>כירורג, אונקולוג, קרינה, פתולוג ורדיולוג. מדד איכות מרכזי. הדיון משנה לעיתים קרובות את התוכנית</span></div>
+  </div>
+  <div style="display:grid;gap:10px">
+   <figure><img src="img/rectal-cancer-stenosis-endo.jpg" alt="היצרות של הרקטום מגידול באנדוסקופיה"><figcaption>היצרות של חלל המעי מקרצינומה, מבט אנדוסקופי · <bdi>J. Guntau, Wikimedia Commons, CC BY-SA 3.0</bdi></figcaption></figure>
+   <div class="box a"><b class="t">השאלה המרכזית בוועדה</b>ניתוח קודם, או טיפול לפני הניתוח?</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1503–1504</bdi></span><span>בירור</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>6</b>טיפול לפני ניתוח</div>
+ <h2>קרינה-כימותרפיה ו-<bdi>TNT</bdi></h2>
+ <div class="box n" style="margin-bottom:12px"><b class="t">למי?</b>גידול מתקדם מקומית (<bdi>T3–4</bdi> או <bdi>N1</bdi>) <b>ברקטום החוץ-צפקי</b>, כי שם שיעור החזרה המקומית היה גבוה</div>
+ <div class="grid g3">
+  <div class="study"><div class="y">המחקר הגרמני · מחקר אקראי</div><b>לפני מול אחרי הניתוח</b>
+   <p>823 חולים. חזרה מקומית ב-5 שנים <bdi dir="ltr">6%</bdi> לעומת <bdi dir="ltr">13%</bdi>. בלי הבדל בהישרדות ובגרורות. רעילות קשה <bdi dir="ltr">27%</bdi> לעומת <bdi dir="ltr">40%</bdi></p><small>כפי שמסוכם ב-<bdi>Sabiston 22</bdi>, עמ׳ <bdi dir="ltr">1504</bdi></small></div>
+  <div class="study"><div class="y"><bdi>PRODIGE-23</bdi></div><b><bdi>FOLFIRINOX</bdi> ואז קרינה-כימו</b>
+   <p>הישרדות בלי מחלה ב-3 שנים טובה יותר (<bdi dir="ltr">HR 0.69</bdi>). תגובה פתולוגית מלאה <bdi dir="ltr">27.8%</bdi> לעומת <bdi dir="ltr">12.1%</bdi>. 81% השלימו את הכימותרפיה לעומת 75%</p><small>כפי שמסוכם ב-<bdi>Sabiston 22</bdi>, עמ׳ <bdi dir="ltr">1504</bdi></small></div>
+  <div class="study"><div class="y"><bdi>RAPIDO</bdi></div><b>קרינה קצרה ואז כימותרפיה</b>
+   <p>קרינה <bdi dir="ltr">5×5 Gy</bdi>, אחריה <bdi>CAPEOX</bdi> או <bdi>FOLFOX4</bdi> ורק אז <bdi>TME</bdi>. כישלון טיפול ב-3 שנים <bdi dir="ltr">23.7%</bdi> לעומת <bdi dir="ltr">30.4%</bdi>, בעיקר פחות גרורות. תגובה מלאה <bdi dir="ltr">28%</bdi> לעומת <bdi dir="ltr">14%</bdi></p><small>כפי שמסוכם ב-<bdi>Sabiston 22</bdi>, עמ׳ <bdi dir="ltr">1504</bdi></small></div>
+ </div>
+ <div class="box" style="margin-top:12px"><b class="t"><bdi>TNT</bdi> · טיפול מקדים מלא</b>כל הכימותרפיה וכל הקרינה ניתנות לפני הניתוח. לפי <bdi>NCCN</bdi> זה טיפול סטנדרטי לגידול מתקדם מקומית</div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1504</bdi></span><span>טיפול מקדים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>7</b>שימור האיבר</div>
+ <h2>"המתנה ומעקב"</h2>
+ <div class="grid">
+  <div>
+   <ul class="b sm">
+    <li>אחרי קרינה-כימותרפיה, ב-<bdi dir="ltr">20–25%</bdi> מהמנותחים לא נמצא גידול בנתיח. מכאן הרעיון לא לנתח מי שהגיב באופן מלא</li>
+    <li><b><bdi>Habr-Gama</bdi> 2004:</b> 71 חולים עם תגובה קלינית מלאה במעקב צמוד. הישרדות ל-5 שנים 100%, בלי מחלה 92%</li>
+    <li><b>היום:</b> גישה סלקטיבית, רק בצוות מנוסה ולפי פרוטוקול מוגדר</li>
+    <li><b><bdi>OPRA</bdi>:</b> הישרדות בלי מחלה ב-3 שנים 76% בשתי הזרועות. כשהכימותרפיה ניתנת אחרי הקרינה, יותר שימור רקטום ב-3 שנים: <bdi dir="ltr">53%</bdi> לעומת <bdi dir="ltr">41%</bdi>. מי שהגידול חזר נותח, בלי פגיעה בהישרדות</li>
+   </ul>
+  </div>
+  <div style="display:grid;gap:10px">
+   <div class="box"><b class="t">מה נחשב תגובה קלינית מלאה</b>בבדיקה רקטלית: אין גוש או אי-סדירות · באנדוסקופיה: צלקת לבנה וחלקה, אולי עם טלנגיאקטזיות, בלי כיב או היצרות · ב-<bdi>MRI</bdi>: צלקת כהה ב-<bdi>T2</bdi>, בלי הגבלת דיפוזיה ובלי בלוטות</div>
+   <div class="box a"><b class="t">המעקב בשנתיים הראשונות</b>בדיקה רקטלית, אנדוסקופיה גמישה ו-<bdi>CEA</bdi> כל <bdi dir="ltr">3–6</bdi> חודשים · <bdi>MRI</bdi> כל חצי שנה · <bdi>CT</bdi> כל <bdi dir="ltr">6–12</bdi> חודשים. אחר כך במרווחים ארוכים יותר, לפחות 5 שנים</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1504–1505</bdi></span><span>שימור איבר</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>8</b>הניתוח</div>
+ <h2>כריתת המזורקטום · "המישור הקדוש"</h2>
+ <div class="num">
+  <div><b dir="ltr">25%</b><span>שוליים היקפיים חיוביים בדיסקציה בוטה מסורתית</span></div>
+  <div><b dir="ltr">12% → 6%</b><span>חזרה מקומית אחרי הכנסת <bdi>TME</bdi> בנורווגיה (3,319 חולים)</span></div>
+  <div><b dir="ltr">60% → 73%</b><span>הישרדות באותו מחקר</span></div>
+  <div><b dir="ltr">5</b><span>ס״מ מזורקטום מתחת לגידול ברקטום העליון</span></div>
+ </div>
+ <ul class="b">
+  <li><b><bdi>Heald</bdi>:</b> דיסקציה חדה מחוץ ל-<bdi>fascia propria</bdi> ולפני הפציה הפרה-סקרלית. הרקטום יוצא יחד עם המזורקטום, הכלים והבלוטות</li>
+  <li><b>גידול ברקטום העליון:</b> אין צורך לרדת עד הסוגרים. כריתה חלקית של המזורקטום, לפחות 5 ס״מ מתחת לגידול, בלי לפגוע בפציה ליד הגידול</li>
+  <li><b>קשירה גבוהה של ה-<bdi>IMA</bdi></b> מקובלת, אבל לא הוכחה עדיפה על קשירה מתחת ל-<bdi>left colic</bdi>, שחוסכת עצבים</li>
+  <li><b>בלוטות לטרליות</b> חשודות ב-<bdi>MRI</bdi> בגידול נמוך: שוקלים דיסקציה של דופן האגן</li>
+ </ul>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1506–1509</bdi></span><span>ניתוח</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>9</b>עצבים ותפקוד</div>
+ <h2>איפה העצבים בסכנה</h2>
+ <div class="grid">
+  <div class="flow">
+   <div><b>סימפתטי · <bdi>L1–L3</bdi></b><span>המקלעת ההיפוגסטרית, שני גזעים מאחורי הרקטום</span></div>
+   <div><b>פרסימפתטי · <bdi>S2–S4</bdi></b><span><bdi>nervi erigentes</bdi>, מצטרפים למקלעת האגנית</span></div>
+  </div>
+  <div class="flow">
+   <div><b>קשירה גבוהה ודיסקציה מעל הפרומונטוריום</b><span>פגיעה סימפתטית: שפיכה לאחור</span></div>
+   <div><b>חיתוך הגבעולים הלטרליים קרוב לדופן האגן</b><span>אין-אונות ושלפוחית אטונית</span></div>
+   <div><b>דיסקציה קדמית ליד הערמונית</b><span>הפרעה מינית ובשלפוחית</span></div>
+  </div>
+ </div>
+ <div class="box b" style="margin-top:12px"><b class="t">למה זה חשוב</b>דיסקציה חדה במישור ה-<bdi>TME</bdi> הנכון נותנת גם כריתה אונקולוגית טובה וגם שמירה על תפקוד השתן והתפקוד המיני</div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1508–1509</bdi></span><span>עצבים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>10</b>ההחלטה</div>
+ <h2>לשמר את הסוגר או סטומה קבועה?</h2>
+ <div class="grid f">
+  <div>
+   <div class="flow">
+    <div><b>שוליים רחוקים</b><span>המטרה 2 ס״מ. בגידול נמוך, במיוחד אחרי קרינה-כימו, פחות מ-1 ס״מ נקי יכול להספיק</span></div>
+    <div><b>סוגר מעורב באבחנה</b><span>אחרי הטיפול קשה להבדיל בין פיברוזיס לגידול. בחשד לשארית מניחים שהסוגר עדיין מעורב</span></div>
+    <div><b>לבטור או סוגר חיצוני</b><span>אין שימור. כריתה בטנית-פרינאלית (<bdi>APR</bdi>) עם קולוסטומיה קבועה</span></div>
+    <div><b>רק הסוגר הפנימי</b><span>כריתה בין הסוגרים וחיבור קולו-אנאלי ביד, בחולה מתאים ומיודע</span></div>
+    <div><b>שליטה גרועה מראש, מבוגר</b><span>קולוסטומיה קבועה נותנת איכות חיים טובה יותר מחיבור נמוך מאוד</span></div>
+   </div>
+  </div>
+  <figure><img src="img/blausen-colostomy.jpg" alt="סוגי קולוסטומיה"><figcaption>סוגי קולוסטומיה לפי מיקום · <bdi>Blausen.com staff (2014), "Medical gallery of Blausen Medical 2014", WikiJournal of Medicine, CC BY 3.0</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1509–1510</bdi></span><span>שימור סוגרים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>11</b>אחרי כריתה קדמית נמוכה</div>
+ <h2>חיבור, סטומה מגינה ותפקוד</h2>
+ <div class="grid">
+  <div style="display:grid;gap:10px">
+   <div class="box"><b class="t">תסמונת הכריתה הקדמית הנמוכה (<bdi>LARS</bdi>)</b>יציאות תכופות, דחיפות והתקבצות. מופיעה במידה כלשהי אצל רוב המנותחים. גורמי סיכון לצורה קשה: אישה, טיפול מקדים, <bdi>TME</bdi>, גידול נמוך</div>
+   <div class="box n"><b class="t">מאגר</b>בכריתה נמוכה מאוד: כיס <bdi>J</bdi> מהקולון או חיבור צד-לקצה משפרים את התפקוד בשנה-שנתיים הראשונות, בלי יותר סיבוכי חיבור</div>
+  </div>
+  <div style="display:grid;gap:10px">
+   <div class="box a"><b class="t">אילאוסטומיה מגינה</b>מורידה דליפות קליניות וניתוחים חוזרים. המחיר: סיבוכי סטומה, בעיקר התייבשות. מתאימה במיוחד בחיבור נמוך, בגבר ואחרי קרינה</div>
+   <div class="box b"><b class="t">לפני הניתוח</b>שיחה עם המטופל על אפשרות של סטומה. סימון מקום הסטומה בידי אחות סטומה מוסמכת</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1510</bdi></span><span>תפקוד</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>12</b>עוד אפשרויות ניתוח</div>
+ <h2>כריתה מקומית, <bdi>APR</bdi> וגישה זעיר-פולשנית</h2>
+ <div class="grid g3">
+  <div class="box"><b class="t">כריתה מקומית (<bdi>TEM</bdi>, <bdi>TAMIS</bdi>)</b>
+   <ul class="b sm"><li>לא מוציאה בלוטות ולא נותנת להן שלב</li><li>רק <bdi>cT1</bdi> בלי סימני סיכון: חדירה עמוקה לתת-רירית (יותר מ-1 מ״מ, <bdi>SM3</bdi>), התמיינות ירודה, חדירה ללימפה, לכלי דם ולעצבים, ניצנוץ, שוליים חיוביים</li><li>נמצאו סימני סיכון בנתיח: <bdi>TME</bdi> פורמלי בחולה כשיר</li></ul></div>
+  <div class="box n"><b class="t">כריתה בטנית-פרינאלית</b>
+   <ul class="b sm"><li>הרקטום, פי הטבעת והסוגרים יוצאים כגוש אחד. קולוסטומיה קבועה</li><li>להימנע מ"חרוט" בנתיח ליד הלבטורים: יותר שוליים חיוביים וחזרות. עדיף נתיח גלילי</li><li>אומנטום למילוי האגן. מתלה שריר מקטין סיבוכי פצע בפרינאום, בעיקר אחרי קרינה</li></ul></div>
+  <div class="box b"><b class="t">לפרוסקופיה, רובוט, <bdi>taTME</bdi></b>
+   <ul class="b sm"><li>מקצרים התאוששות ומשפרים תוצאות קצרות טווח</li><li>מחקרים אקראיים <b>לא הוכיחו</b> שלפרוסקופיה לא נופלת מניתוח פתוח מבחינה אונקולוגית</li><li>לכן: רק בידי מנתחים מנוסים</li></ul></div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1509–1511</bdi></span><span>אפשרויות ניתוח</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>13</b>אחרי הניתוח ומקרים מיוחדים</div>
+ <h2>פתולוגיה, טיפול משלים, <bdi>dMMR</bdi> וגרורות</h2>
+ <div class="grid">
+  <div>
+   <ul class="b sm">
+    <li><b>דו״ח פתולוגיה סינופטי:</b> שלמות המזורקטום, הקשר לקפל הצפקי ודרגת התגובה לטיפול (<bdi>TRG</bdi> מ-0, תגובה מלאה, עד 3, בלי תגובה). תגובה מלאה: הישרדות ל-5 שנים כ-90%</li>
+    <li><b>קיבל <bdi>TNT</bdi>:</b> לא נותנים כימותרפיה משלימה. <b>לא קיבל כימותרפיה מלאה לפני:</b> בדרך כלל כן, <bdi>FOLFOX</bdi> ב-8 מחזורים</li>
+    <li><b>מעקב:</b> כמו בקולון. בסיכון גבוה לחזרה מקומית מוסיפים רקטוסיגמואידוסקופיה כל חצי שנה לפחות שנתיים</li>
+   </ul>
+  </div>
+  <div style="display:grid;gap:10px">
+   <div class="box"><b class="t"><bdi>dMMR</bdi> · רק <bdi dir="ltr">3–7%</bdi> מסרטני הרקטום</b>במחקר של 12 חולים: תגובה קלינית מלאה ב-100% לאימונותרפיה לפני ניתוח, בלי קרינה ובלי ניתוח</div>
+   <div class="box a"><b class="t">גרורות באבחנה</b>הכבד הוא האתר השכיח. גרורה בודדת בכבד: הישרדות ל-5 שנים עד 71% עם כימותרפיה וניתוח. נכרת רק אם אפשר <bdi>R0</bdi> עם עתודה מספקת. בלי תסמינים, אין תועלת בכריתה חלקית</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1511–1512</bdi></span><span>אחרי הניתוח</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>14</b>מה חדש בתחום · 2022–2025</div>
+ <h2>מחקרים שכדאי להכיר</h2>
+ <div class="grid">
+  <div class="study"><div class="y"><bdi>NEJM</bdi> 2023 · מחקר אקראי</div><b><bdi>PROSPECT</bdi>: <bdi>FOLFOX</bdi> במקום קרינה</b>
+   <p>1,194 חולים (<bdi>T2N+</bdi>, <bdi>T3</bdi>) שמתאימים לשימור סוגר. <bdi>FOLFOX</bdi> לפני הניתוח (קרינה רק אם הגידול לא הצטמק) לא היה נחות. הישרדות בלי מחלה ל-5 שנים <bdi dir="ltr">80.8%</bdi> לעומת <bdi dir="ltr">78.6%</bdi>. רק 9% בזרוע הכימותרפיה קיבלו קרינה לפני הניתוח</p>
+   <small>Schrag D et al. N Engl J Med 2023;389:322-34</small></div>
+  <div class="study"><div class="y"><bdi>NEJM</bdi> 2022 · 2025</div><b>דוסטרלימאב ב-<bdi>dMMR</bdi>: בלי ניתוח</b>
+   <p>2022: כל 12 החולים הראשונים הגיעו לתגובה קלינית מלאה. 2025: כל 49 חולי הרקטום שהשלימו טיפול הגיעו לתגובה מלאה ובחרו מעקב בלי ניתוח. הישרדות בלי חזרה ב-2 שנים <bdi dir="ltr">92%</bdi> בכל הקבוצה</p>
+   <small>Cercek A et al. N Engl J Med 2022;386:2363-76 · N Engl J Med 2025;392:2297-308</small></div>
+  <div class="study"><div class="y"><bdi>Ann Surg</bdi> 2023 · מעקב ל-5 שנים</div><b><bdi>RAPIDO</bdi>: המחיר המקומי</b>
+   <p>920 חולים. בזרוע הקרינה הקצרה עם כימותרפיה הייתה יותר חזרה מקומית אחרי כריתה: <bdi dir="ltr">10%</bdi> לעומת <bdi dir="ltr">6%</bdi>. בחזרות האלה המזורקטום נפגע בניתוח לעיתים קרובות יותר. הירידה בגרורות נשמרה</p>
+   <small>Dijkstra EA et al. Ann Surg 2023;278:e766-72</small></div>
+  <div class="study"><div class="y"><bdi>J Clin Oncol</bdi> 2024 · מעקב ארוך</div><b><bdi>OPRA</bdi>: חצי שומרים את הרקטום</b>
+   <p>324 חולים, מעקב חציוני 5.1 שנים. הישרדות בלי <bdi>TME</bdi>: <bdi dir="ltr">54%</bdi> כשהכימותרפיה אחרי הקרינה לעומת <bdi dir="ltr">39%</bdi>. 94% מהחזרות בשנתיים הראשונות. הישרדות בלי מחלה דומה בשתי הזרועות</p>
+   <small>Verheij FS et al. J Clin Oncol 2024;42:500-6 (מצוטט ב-<bdi>Sabiston 22</bdi>)</small></div>
+ </div>
+ <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>15</b>לסיכום</div>
+ <h2>חמישה דברים לקחת למחלקה</h2>
+ <ol class="obj">
+  <li><span>הבדיקה הרקטלית של הכירורג היא הבסיס: מרחק, ניידות וקשר לסוגר. תמיד מתעדים</span></li>
+  <li><span><bdi>MRI</bdi> של האגן קובע <bdi>T</bdi>, <bdi>N</bdi>, שוליים היקפיים ומיקום ביחס לקפל הצפקי. כל חולה עובר ועדה רב-תחומית</span></li>
+  <li><span>גידול מתקדם ברקטום החוץ-צפקי מקבל טיפול לפני הניתוח. היום לרוב <bdi>TNT</bdi></span></li>
+  <li><span><bdi>TME</bdi> במישור הנכון מוריד חזרה מקומית ושומר על העצבים</span></li>
+  <li><span>תגובה קלינית מלאה: אפשר "המתנה ומעקב" בצוות מנוסה. גידול <bdi>dMMR</bdi>: לחשוב על אימונותרפיה</span></li>
+ </ol>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 96 <bdi>Cancers of the Colon, Rectum, and Anus</bdi>, החלק על הרקטום (עמ׳ <bdi dir="ltr">1503–1512</bdi>)</div>
+ <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906, נחלת הכלל) · <bdi>National Cancer Institute</bdi> (נחלת הכלל) · <bdi>Blausen Medical</bdi> (<bdi>CC BY 3.0</bdi>) · תמונה אנדוסקופית מ-<bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+</main>
+<div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
+<script>
+document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz').forEach(function(z){z.addEventListener('click',function(){w.querySelectorAll('.hz').forEach(function(x){x.classList.toggle('on',x===z)});w.querySelectorAll('.hzi').forEach(function(i){i.hidden=i.dataset.hzi!==z.dataset.hz;i.style.setProperty('--c',z.style.getPropertyValue('--c'))});var h=w.querySelector('.hint');if(h)h.hidden=true;});});});
+</script>
+<script>
+(function () {
+  var deck = document.getElementById('deck'), S = [].slice.call(deck.children), dots = document.getElementById('dots'), n = S.length;
+  S.forEach(function (_, k) { var i = document.createElement('i'); i.onclick = function () { go(k); }; dots.appendChild(i); });
+  function idx() { return Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }
+  function go(k) { k = Math.max(0, Math.min(n - 1, k)); S[k].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' }); }
+  function sync() { var k = idx(); [].forEach.call(dots.children, function (d, j) { d.className = j === k ? 'on' : ''; }); document.getElementById('count').textContent = (k + 1) + '/' + n; document.getElementById('prev').disabled = k === 0; document.getElementById('next').disabled = k === n - 1; }
+  deck.addEventListener('scroll', function () { clearTimeout(sync.t); sync.t = setTimeout(sync, 60); }, { passive: true });
+  document.getElementById('next').onclick = function () { go(idx() + 1); };
+  document.getElementById('prev').onclick = function () { go(idx() - 1); };
+  addEventListener('keydown', function (e) { if (e.key === 'ArrowLeft' || e.key === ' ') go(idx() + 1); if (e.key === 'ArrowRight') go(idx() - 1); });
+  sync();
+})();
+</script>
+</body>
+</html>

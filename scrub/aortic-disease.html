@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>מחלות האאורטה · Scrub In</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../emblem.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Frank+Ruhl+Libre:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0C2A35;--navy2:#123845;--g:#00967D;--g2:#3DC08C;--g3:#0A6B5A;--lime:#B5D96B;--red:#A3402E;--amber:#C9893F;--blue:#2F6FA8;--bg:#EDF2F0;--soft:#F3F7F5;--ink:#16262C;--muted:#5C6F73;--line:#DCE6E2}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--navy);color:var(--ink);font-family:Heebo,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.deck{position:fixed;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.deck::-webkit-scrollbar{display:none}
+.s{flex:0 0 100%;height:100%;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;padding:18px 16px 84px;overflow-y:auto;position:relative}
+.s::after{content:'';position:absolute;inset:0;background:url(../ops/art/organs.webp) no-repeat 6% 40%/auto 115%;opacity:.05;filter:invert(1);pointer-events:none}
+.card{width:min(980px,100%);background:#fff;border-radius:22px;box-shadow:0 18px 50px rgba(0,0,0,.35);padding:30px 32px 22px;position:relative;overflow:hidden;z-index:1}
+.card::before{content:'';position:absolute;inset:0 0 auto 0;height:6px;background:linear-gradient(90deg,var(--g3),var(--g),var(--g2),var(--lime))}
+.kick{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--g);letter-spacing:.3px;margin-bottom:6px}
+.kick b{background:var(--navy);color:#fff;border-radius:999px;min-width:26px;height:26px;display:grid;place-items:center;font-size:13px;padding:0 8px}
+h1,h2{font-family:'Frank Ruhl Libre',serif;color:var(--navy);margin:0 0 10px;line-height:1.15}
+h1{font-size:clamp(34px,6.4vw,60px)}h2{font-size:clamp(25px,4.4vw,36px)}
+h3{margin:0 0 6px;font-size:17px;color:var(--navy)}
+.lead{font-size:clamp(15.5px,2.3vw,18.5px);color:var(--muted);margin:0 0 16px;line-height:1.5}
+ul.b{margin:0;padding:0;list-style:none;display:grid;gap:8px}ul.b li{position:relative;padding-inline-start:20px;font-size:16.5px;line-height:1.45}ul.b li::before{content:'';position:absolute;inset-inline-start:2px;top:.62em;width:8px;height:8px;border-radius:2px;background:var(--g);transform:rotate(45deg)}
+ul.b li b{color:var(--navy)}ul.b.sm li{font-size:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.grid.g3{grid-template-columns:repeat(3,1fr)}.grid.f{grid-template-columns:1.05fr .95fr;align-items:center}
+.box{background:var(--soft);border-radius:14px;padding:13px 15px;border-inline-start:4px solid var(--g);font-size:15.5px;line-height:1.45}
+.box.r{border-color:var(--red);background:#FBEDEA}.box.a{border-color:var(--amber);background:#FFF6EA}.box.n{border-color:var(--navy)}.box.b{border-color:var(--blue);background:#EEF4FB}
+.box b.t{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}
+.num{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:4px 0 14px}.num div{background:var(--soft);border-radius:14px;padding:12px 10px;text-align:center}
+.num b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(26px,4vw,38px);color:var(--g3);line-height:1.05}.num span{font-size:13px;color:var(--muted);line-height:1.3;display:block;margin-top:4px}
+figure{margin:0;background:#FBFCFB;border:1px solid var(--line);border-radius:16px;padding:10px;text-align:center}figure img{max-width:100%;max-height:46vh;display:block;margin:0 auto;mix-blend-mode:multiply}
+figcaption{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.35}
+.ill svg{width:100%;height:auto;max-height:50vh}
+.src{margin-top:16px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.src b{color:var(--g3)}
+.tag{display:inline-block;font-size:12px;font-weight:800;border-radius:999px;padding:2px 10px;background:#E3F4EC;color:var(--g3);margin-inline-end:4px}
+.tag.r{background:#F8E3DE;color:var(--red)}.tag.a{background:#FFF3DF;color:#8A5A14}.tag.b{background:#E8F0FA;color:var(--blue)}
+.flow{display:grid;gap:8px}.flow div{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;background:var(--soft);border-radius:12px;padding:9px 12px;font-size:15.5px}.flow div b{color:var(--navy)}
+.study{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#fff}.study .y{font-size:12px;font-weight:800;color:var(--g);letter-spacing:.3px}.study b{display:block;font-size:16px;color:var(--navy);margin:2px 0}.study p{margin:4px 0 0;font-size:14.5px;line-height:1.45}.study small{display:block;margin-top:6px;font-size:11.5px;color:var(--muted)}
+.cover{background:radial-gradient(120% 90% at 85% 0%,#164B54 0%,var(--navy) 58%)}
+.cover::after{opacity:.16;background-position:2% 50%}
+.cover .card{background:transparent;box-shadow:none;color:#fff}.cover .card::before{display:none}.cover h1{color:#fff}.cover .lead{color:#C9D6DA}.cover .kick{color:var(--g2)}
+.pill{display:inline-flex;gap:6px;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px;color:#fff;margin:4px}
+.logo{display:flex;align-items:center;gap:10px;margin-bottom:26px}.logo img{width:48px;height:48px;border-radius:50%;background:#fff}.logo b{color:#fff;font-weight:900}.logo small{display:block;color:#A9C9C0;font-size:12px}
+.obj{counter-reset:o;list-style:none;margin:0;padding:0;display:grid;gap:10px}.obj li{counter-increment:o;display:flex;gap:12px;align-items:flex-start;font-size:16.5px;line-height:1.45}.obj li::before{content:counter(o);flex:0 0 30px;height:30px;border-radius:50%;background:var(--g);color:#fff;font-weight:800;display:grid;place-items:center}
+.nav{position:fixed;inset:auto 0 0 0;display:flex;align-items:center;justify-content:center;gap:14px;padding:12px 16px calc(14px + env(safe-area-inset-bottom));background:linear-gradient(transparent,rgba(6,20,26,.85) 40%);z-index:5}
+.nav button{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;font-size:22px;cursor:pointer}.nav button:disabled{opacity:.3}
+.dots{display:flex;gap:5px;flex-wrap:wrap;max-width:60vw;justify-content:center}.dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer}.dots i.on{background:var(--g2);width:20px;border-radius:5px}
+.count{color:#C9D6D9;font-size:13px;font-weight:700;min-width:44px;text-align:center}
+bdi{unicode-bidi:isolate}
+.cmp{width:100%;border-collapse:separate;border-spacing:0;font-size:14px;border:1px solid var(--line);border-radius:14px;overflow:hidden}.cmp th{background:var(--navy);color:#fff;padding:9px 10px;font-size:16px;text-align:start}.cmp th small{display:block;font-weight:500;color:#A9D9C8;font-size:12px}.cmp td{padding:8px 10px;border-top:1px solid var(--line);vertical-align:top;line-height:1.4}.cmp td:first-child{background:var(--soft);font-weight:800;color:var(--navy);white-space:nowrap}.cmp tr:nth-child(odd) td:not(:first-child){background:#FBFCFB}
+figure.vid video{width:100%;max-height:34vh;border-radius:10px;background:#000;display:block}
+@media (max-width:760px){.cmp{font-size:12.5px}.cmp td,.cmp th{padding:6px}}
+
+.hotw{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;align-items:start}.hoti{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#FBFCFB}.hoti img{display:block;width:100%;mix-blend-mode:multiply}.hoti svg{position:absolute;inset:0;width:100%;height:100%}
+.hz{fill:var(--c);fill-opacity:.38;stroke:var(--c);stroke-width:2;cursor:pointer;transition:fill-opacity .2s}.hz:hover,.hz.on{fill-opacity:.62}.hzl{font:900 22px Heebo,sans-serif;fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;pointer-events:none;text-anchor:middle}
+.hotp .hint{background:var(--soft);border-radius:12px;padding:10px 12px;font-weight:700;color:var(--g3);margin:0}.hzi{background:#fff;border:1px solid var(--line);border-inline-start:5px solid var(--c,var(--g));border-radius:14px;padding:12px 14px;margin-top:8px;font-size:15.5px;line-height:1.45}.hzi>b{display:block;font-size:17px;color:var(--navy);margin-bottom:4px}.hzi p{margin:0}
+figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-size:15px}.obj.sm li::before{flex-basis:26px;height:26px;font-size:13px}.flow.sm div{grid-template-columns:130px 1fr;padding:7px 10px;font-size:14.5px}
+@media (max-width:760px){.hotw{grid-template-columns:1fr}}
+
+@media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
+@media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+/*BRAND*/
+.brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
+.brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
+.s{padding-top:58px}
+.cover .card{display:flex;flex-direction:column;gap:6px;max-width:980px}
+.cvhead{display:flex;align-items:center;gap:16px;margin-bottom:30px}.cvhead img.em{width:74px;height:74px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(61,192,140,.55)}
+.cvhead b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(24px,3.4vw,34px);color:#fff;line-height:1.1}.cvhead span{display:block;font-size:clamp(15px,2vw,19px);color:#A9D9C8;font-weight:700;margin-top:4px}
+.cover h1{font-size:clamp(38px,6.6vw,66px);margin:6px 0 8px}.cover .kick{font-size:14px;letter-spacing:.06em}
+.cvmeta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.cvlogos{display:flex;align-items:center;gap:18px;margin-top:34px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14)}.cvlogos img{height:44px;width:auto}.cvlogos small{margin-inline-start:auto;color:#8FB3AA;font-size:12.5px;font-weight:700;letter-spacing:.08em}
+.cover .brandbar{display:none}
+@media (max-width:760px){.brandbar{left:10px;gap:7px;padding:4px 9px 4px 4px}.brandbar img{height:20px}.brandbar img.em{width:22px;height:22px}.s{padding-top:48px}.cvhead img.em{width:56px;height:56px}.cvlogos img{height:34px}.cvlogos small{display:none}}
+/* numbered lists: a bold word inside an item stays inline */
+.obj li,.steps li{display:block;position:relative;padding-inline-start:42px;min-height:30px}.obj li::before,.steps li::before{position:absolute;inset-inline-start:0;top:0}.obj.sm li{padding-inline-start:36px}
+.grid.tight figure img{max-height:24vh}
+@media print{.brandbar{display:none}}
+/*/BRAND*/
+</style>
+</head>
+<body>
+<div class="brandbar" aria-hidden="true"><img class="em" src="brand/emblem.jpg" alt=""><i></i><img src="brand/logo_k.webp" alt=""><img src="brand/logo_c.webp" alt=""></div>
+<main class="deck" id="deck">
+<section class="s cover"><div class="card">
+ <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
+ <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 3</div>
+ <h1>מחלות אבי העורקים</h1>
+ <p class="lead">מפרצת של אבי העורקים הבטני: סקר, מעקב, ספי ניתוח וקרע. ודיסקציה: סיווג ומי הולך לחדר ניתוח</p>
+ <div class="cvmeta"><span class="pill">מבוסס על <bdi>Sabiston</bdi>, מהדורה 22, פרק 102</span></div>
+ <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>1</b>מטרות הלמידה</div>
+ <h2>בסוף המפגש תדעו</h2>
+ <ol class="obj">
+  <li>להגדיר מפרצת ולהכיר את גורמי הסיכון להיווצרות, להתרחבות ולקרע</li>
+  <li>להכיר את ההמלצות לסקר ולמעקב במפרצת של אבי העורקים הבטני (<bdi>AAA</bdi>)</li>
+  <li>לדעת את ספי הקוטר לתיקון ולהכיר את התיקון הפתוח ואת <bdi>EVAR</bdi>, כולל סוגי הדליפות</li>
+  <li>לזהות מפרצת שנקרעה ולהבין את עקרונות הטיפול בה</li>
+  <li>לסווג דיסקציה של אבי העורקים ולדעת מי צריך ניתוח דחוף ומי טיפול תרופתי</li>
+ </ol>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 102 (עמ׳ <bdi dir="ltr">1620–1633</bdi>)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>2</b>מושגים ומספרים</div>
+ <h2>מה זו מפרצת?</h2>
+ <div class="num">
+  <div><b dir="ltr">&gt;50%</b><span>הרחבה מעבר לקוטר התקין: ההגדרה של מפרצת</span></div>
+  <div><b dir="ltr">5–7%</b><span>שכיחות <bdi>AAA</bdi> בסקר של בני <bdi dir="ltr">65–89</bdi> בסיכון</span></div>
+  <div><b dir="ltr">4:1</b><span>יחס גברים לנשים</span></div>
+  <div><b dir="ltr">~15,000</b><span>מקרי מוות בשנה מקרע של <bdi>AAA</bdi> בארה״ב</span></div>
+ </div>
+ <div class="grid">
+  <ul class="b">
+   <li><b>פוזיפורמית:</b> הרחבה אחידה של כל ההיקף. <b>סקולרית:</b> בליטה מקומית של הדופן</li>
+   <li><b>מפרצת אמיתית:</b> כל שלוש שכבות הדופן. <b>מפרצת כוזבת</b> (<bdi>pseudoaneurysm</bdi>): חור בעורק עם דם שנחסם ברקמה שמסביב. למשל בהשקה ניתוחית או אחרי חבלה</li>
+   <li>רוב המפרצות <b>ניווניות</b>. פחות שכיח: זיהום, דלקת, מחלת רקמת חיבור (<bdi>Marfan</bdi>, <bdi>Ehlers-Danlos</bdi> וסקולרי)</li>
+  </ul>
+  <div class="box n"><b class="t">הקוטר התקין שונה בכל מקטע</b>אבי העורקים העולה, היורד והבטני שונים בקוטר. לכן גם הסף שבו קוראים לו "מפרצת" שונה. הוא תלוי גם בגיל, במין ובשיטת המדידה</div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 102 עמ׳ <bdi dir="ltr">1624–1625, 1632, 1639</bdi></span><span>מושגים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>3</b>גורמי סיכון</div>
+ <h2>מי מפתח, אצל מי זה גדל ומי נקרע</h2>
+ <div class="grid g3">
+  <div class="box"><b class="t">היווצרות</b><ul class="b sm"><li>עישון</li><li>היפרכולסטרולמיה</li><li>יתר לחץ דם</li><li>מין זכר, גיל, גובה</li><li>סיפור משפחתי</li><li>מפרצות נוספות</li></ul></div>
+  <div class="box a"><b class="t">התרחבות</b><ul class="b sm"><li>גיל מבוגר</li><li>מחלת לב קשה</li><li>שבץ בעבר</li><li>עישון</li><li>השתלת לב או כליה</li></ul></div>
+  <div class="box r"><b class="t">קרע</b><ul class="b sm"><li><b>מין נקבה</b></li><li><b>קוטר התחלתי גדול</b></li><li>לחץ דם ממוצע גבוה</li><li>עישון פעיל</li><li><bdi>FEV1</bdi> נמוך</li><li>השתלת לב או כליה</li></ul></div>
+ </div>
+ <div class="grid" style="margin-top:12px">
+  <div class="box b"><b class="t">גורמים "מגינים"</b>מין נקבה, מוצא אפריקאי וסוכרת קשורים לפחות מפרצות. השכיחות יורדת במדינות מפותחות, כנראה בגלל ירידה בעישון</div>
+  <div class="box n"><b class="t">הבדלים בין המינים</b>בגברים יש יותר מפרצות נוספות באגן ובעורקי הרגל. נשים מפתחות פחות מפרצות, אבל נקרעות יותר ומגיעות לתוצאות פחות טובות אחרי תיקון</div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 102 עמ׳ <bdi dir="ltr">1625–1626</bdi> (טבלה <bdi>102.2</bdi>)</span><span>גורמי סיכון</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>4</b>אנטומיה · אינטראקטיבי</div>
+ <h2>אבי העורקים הבטני במבט של המנתח</h2>
+ <div class="hotw"><div class="hoti"><img src="img/aorta-sobotta-retroperitoneum.jpg" alt="הרטרופריטונאום אחרי הסרת המעיים: אבי העורקים, הכליות והעורקים האיליאקיים"><svg viewBox="0 0 800 750" preserveAspectRatio="none">
+  <polygon class="hz" data-hz="vis" points="370,100 560,120 560,185 470,200 375,200" style="--c:#7A5BD6"/><text class="hzl" x="440" y="160">1</text>
+  <polygon class="hz" data-hz="infra" points="380,210 428,210 430,440 378,440" style="--c:#D63C32"/><text class="hzl" x="404" y="290">2</text>
+  <polygon class="hz" data-hz="ivc" points="320,200 365,200 360,450 320,450" style="--c:#2F8CD6"/><text class="hzl" x="342" y="330">3</text>
+  <polygon class="hz" data-hz="ili" points="380,440 430,440 500,550 450,560 405,480 355,560 310,550" style="--c:#2EAA5A"/><text class="hzl" x="404" y="520">4</text>
+  <polygon class="hz" data-hz="ima" points="396,328 427,328 427,362 396,362" style="--c:#F0961E"/><text class="hzl" x="411" y="352">5</text>
+ </svg></div>
+ <div class="hotp"><p class="hint">👆 לחצו על מספר בציור כדי לקרוא עליו</p>
+  <div class="hzi" data-hzi="vis" hidden><b>1 · עורקי הכליה והווריד הכלייתי השמאלי</b><p>"הצוואר" של המפרצת מתחת לעורקי הכליה. שם מציבים את המלחציים או את האיטום של <bdi>EVAR</bdi>. הווריד הכלייתי השמאלי עובר לפני אבי העורקים. בניתוח מזיזים אותו. אם חותכים אותו חייבים לשמור על הוורידים של בלוטת יותרת הכליה ושל הגונדה, שינקזו את הכליה.</p></div>
+  <div class="hzi" data-hzi="infra" hidden><b>2 · אבי העורקים מתחת לכליות</b><p>כאן נמצאות רוב המפרצות הבטניות. כאן מודדים בסקר ובמעקב. בניתוח פותחים את השק, מוציאים את הקריש ותופרים את העורקים המותניים שמדממים מהדופן האחורית.</p></div>
+  <div class="hzi" data-hzi="ivc" hidden><b>3 · הווריד הנבוב התחתון</b><p>מימין לאבי העורקים. הוורידים האיליאקיים עוברים <b>מאחורי</b> העורקים וצמודים אליהם ליד ההתפצלות. לכן בתיקון בצינור ישר שולטים על העורקים האיליאקיים הקרובים בזהירות, בלי לנתח מאחוריהם.</p></div>
+  <div class="hzi" data-hzi="ili" hidden><b>4 · ההתפצלות והעורקים האיליאקיים</b><p>בגברים עם <bdi>AAA</bdi> שכיחות גם מפרצות איליאקיות. השופכנים חוצים את העורקים מלפנים בגובה ההתפצלות: נזהרים בניתוח. ב-<bdi>EVAR</bdi> זה אזור האיטום התחתון (דליפה <bdi>1B</bdi>) ודרך הגישה מהמפשעה.</p></div>
+  <div class="hzi" data-hzi="ima" hidden><b>5 · העורק המזנטרי התחתון</b><p>יוצא מהחזית של אבי העורקים. בניתוח פתוח בודקים כמה הוא מדמם לאחור: מעט דימום, שומרים אותו להשתלה. בסוף בודקים את הסיגמואיד. אם יש איסכמיה משתילים אותו מחדש. אחרי <bdi>EVAR</bdi> הוא מקור לדליפה מסוג 2.</p></div>
+ </div></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 102 עמ׳ <bdi dir="ltr">1625, 1629–1631</bdi></span><span>הרטרופריטונאום · <bdi>Sobotta</bdi>, 1906, איור 413 (נחלת הכלל), חתוך · אזורים: Scrub In</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>5</b>קליניקה ובדיקה</div>
+ <h2>בדרך כלל שקטה עד שהיא לא</h2>
+ <div class="grid f">
+  <div>
+   <ul class="b sm">
+    <li><b>רוב המפרצות בלי תסמינים.</b> רבות מתגלות במקרה בהדמיה שנעשתה מסיבה אחרת</li>
+    <li><b>כאב:</b> מפרצת שגדלה מהר או מודלקת</li>
+    <li><b>מפרצת בטנית גדולה:</b> תחושת מלאות ושובע מוקדם</li>
+    <li><b>מפרצת בחזה:</b> צרידות מלחץ על העצב הלרינגאלי החוזר השמאלי (<bdi>Ortner</bdi>), לחץ על הסימפון השמאלי, תסמונת הווריד הנבוב העליון</li>
+    <li><b>בבדיקה:</b> דופק בולט בבטן, במפשעה או מאחורי הברך מעלה חשד למפרצת. בגבר עם <bdi>AAA</bdi> ממששים גם את העורקים הפופליטאליים</li>
+   </ul>
+   <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>מצאו מטופל עם <bdi>AAA</bdi> (במעקב או אחרי תיקון). ממששו את הבטן ואת הדפקים ברגליים, קראו יחד עם הבכיר/ה את ה-<bdi>CT</bdi> ומדדו את הקוטר המרבי</div>
+  </div>
+  <figure><img src="img/aorta-us-aaa.jpg" alt="אולטרסאונד של מפרצת באבי העורקים הבטני"><figcaption>אולטרסאונד בחתך אורך של מפרצת באבי העורקים הבטני. הקו האדום: הקוטר הקדמי-אחורי. הקו הצהוב: הקוטר המרבי · <bdi>Mikael Häggström, M.D.</bdi>, CC0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 102 עמ׳ <bdi dir="ltr">1625–1626</bdi> · פרק 103 עמ׳ <bdi dir="ltr">1647</bdi></span><span>קליניקה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>6</b>הדמיה</div>
+ <h2>אולטרסאונד לסקר, <bdi>CT</bdi> לתכנון</h2>
+ <div class="grid f">
+  <div>
+   <div class="flow sm">
+    <div><b>צילום חזה</b><span>יכול לגלות במקרה מפרצת בחזה (קו מתאר, הסתיידות). לא כלי סקר</span></div>
+    <div><b>אולטרסאונד</b><span>מדויק, לא פולשני וזול. הבדיקה לסקר ולמעקב של <bdi>AAA</bdi>. עם חומר ניגוד: מאתר דליפות אחרי <bdi>EVAR</bdi></span></div>
+    <div><b><bdi>CT</bdi> עם חומר ניגוד (<bdi>CTA</bdi>)</b><span>אנטומיה מלאה: הסתיידות, קריש, מחלה חוסמת, שחזור תלת-ממדי לתכנון. החסרונות: קרינה וחומר ניגוד בחולים עם מחלת כליות</span></div>
+    <div><b><bdi>MRI</bdi></b><span>בלי קרינה ובלי יוד. לא מראה הסתיידות. לא אחרי חלק מהשתלים המתכתיים</span></div>
+    <div><b>אקו לב (<bdi>TTE</bdi>, <bdi>TEE</bdi>)</b><span>לשורש ולאבי העורקים העולה ולמסתם. <bdi>TEE</bdi> רואה את רוב אבי העורקים בחזה</span></div>
+   </div>
+  </div>
+  <figure><img src="img/aorta-ct-aaa.jpg" alt="CT עם חומר ניגוד של מפרצת באבי העורקים הבטני"><figcaption><bdi>CT</bdi> עם חומר ניגוד: מפרצת של <bdi dir="ltr">4.8 × 3.8</bdi> ס״מ באבי העורקים הבטני, עם קריש בדופן · <bdi>James Heilman, MD</bdi>, CC BY-SA 3.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 102 עמ׳ <bdi dir="ltr">1626–1627</bdi></span><span>הדמיה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>7</b>סקר ומעקב</div>
+ <h2>את מי סורקים וכל כמה זמן</h2>
+ <div class="grid">
+  <div>
+   <h3>סקר חד-פעמי באולטרסאונד</h3>
+   <ul class="b sm">
+    <li><b>ההמלצות המקובלות:</b> כל הגברים מגיל 65. גברים מגיל 55 עם סיפור משפחתי של <bdi>AAA</bdi></li>
+    <li><b>כוח המשימה האמריקאי (<bdi>USPSTF</bdi>):</b> גברים בני <bdi dir="ltr">65–75</bdi> שעישנו אי פעם</li>
+    <li><b>נשים:</b> שנוי במחלוקת. מעט נשים השתתפו במחקרי הסקר</li>
+    <li>מצאו <bdi>AAA</bdi>? בודקים גם את אבי העורקים בחזה</li>
+    <li>מפרצת ידועה בלי מעקב: סיכון לקרע גבוה עד פי 6</li>
+   </ul>
+  </div>
+  <div>
+   <h3>מעקב לפי הקוטר (<bdi>SVS</bdi>)</h3>
+   <div class="flow sm">
+    <div><b dir="ltr">&lt;2.6 cm</b><span>אין צורך במעקב</span></div>
+    <div><b dir="ltr">2.6–2.9 cm</b><span>בדיקה חוזרת בעוד 5 שנים</span></div>
+    <div><b dir="ltr">3.0–3.4 cm</b><span>בעוד 3 שנים</span></div>
+    <div><b dir="ltr">3.5–4.4 cm</b><span>בעוד 12 חודשים</span></div>
+    <div><b dir="ltr">4.5–5.4 cm</b><span>בעוד 6 חודשים</span></div>
+   </div>
+  </div>
+ </div>
+ <div class="box a" style="margin-top:12px"><b class="t">"תקין" בגיל 65 זה לא לתמיד</b>13.8% מהגברים בני 65 עם קוטר של <bdi dir="ltr">2.6–2.9</bdi> ס״מ הגיעו לקוטר של מעל 5.5 ס״מ תוך 10 שנים</div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 102 עמ׳ <bdi dir="ltr">1627–1628</bdi></span><span>סקר ומעקב</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>8</b>טיפול תרופתי וספי ניתוח</div>
+ <h2>מתי מתקנים?</h2>
+ <div class="grid">
+  <div>
+   <h3>עד שמגיעים לסף</h3>
+   <ul class="b sm">
+    <li><b>הפסקת עישון:</b> עישון מאיץ את קצב ההתרחבות</li>
+    <li><b>לחץ דם:</b> להוריד את הלחץ הסיסטולי ואת לחץ הדופק. חוסמי בטא מתאימים לשתי המטרות</li>
+    <li><b>סטטין:</b> קשור להתרחבות איטית יותר, משפר הישרדות אחרי תיקון ומוריד אירועים לבביים. <b>אספירין</b> למניעה שניונית</li>
+    <li>פעילות מתונה כן. מאמץ עצים וספורט מגע: לא</li>
+    <li>ניתוח כשהסיכון של המשך מעקב גבוה מהסיכון של התיקון</li>
+   </ul>
+  </div>
+  <div>
+   <h3>קוטר לתיקון מפרצת בלי תסמינים</h3>
+   <div class="flow sm">
+    <div><b>אבי העורקים הבטני</b><span><b dir="ltr">≥55 mm</b> בכל המטופלים</span></div>
+    <div><b>עולה ושורש</b><span><b dir="ltr">≥55 mm</b>. <bdi>Marfan</bdi>: <bdi dir="ltr">≥50 mm</bdi> (ובחלק מהמקרים 45)</span></div>
+    <div><b>הקשת</b><span><b dir="ltr">≥55 mm</b>, או בכל קוטר עם תסמיני לחץ</span></div>
+    <div><b>יורד</b><span><b dir="ltr">≥55 mm</b> כשאפשר <bdi>TEVAR</bdi>. <bdi dir="ltr">≥60 mm</bdi> לניתוח פתוח</span></div>
+   </div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 102 עמ׳ <bdi dir="ltr">1627–1628</bdi> (טבלה <bdi>102.3</bdi>)</span><span>ספי ניתוח</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>9</b>תיקון פתוח</div>
+ <h2>תיקון פתוח של מפרצת בטנית</h2>
+ <div class="grid f">
+  <div>
+   <ul class="b sm">
+    <li><b>גישה:</b> דרך הבטן (בדיקה של הבטן, שליטה מעל הצליאק, חשיפה טובה של האגן) או רטרופריטונאלית מצד שמאל</li>
+    <li>חושפים את צוואר המפרצת. בדרך: וריד המזנטרי התחתון והווריד הכלייתי השמאלי, שעובר מעל אבי העורקים</li>
+    <li>הפרין לפני הצבת המלחציים. פותחים את השק, מוציאים את הקריש ותופרים את העורקים המותניים שמדממים לאחור</li>
+    <li>תופרים שתל סינתטי: קודם השקה עליונה ואחר כך תחתונה. משחררים את המלחציים לאט, בתיאום עם המרדים</li>
+    <li><b>בסוף בודקים את הסיגמואיד:</b> איסכמיה? משתילים מחדש את העורק המזנטרי התחתון</li>
+    <li>סוגרים את שק המפרצת ואת הצפק האחורי מעל השתל, כדי להפריד אותו מהמעי</li>
+   </ul>
+  </div>
+  <figure><img src="img/aorta-open-repair.jpg" alt="תיקון פתוח של מפרצת אבי העורקים הבטני"><figcaption>תיקון פתוח של מפרצת בטנית: השדה הניתוחי בבטן הפתוחה · <bdi>D.G.S.V.D. Gajasinghe</bdi>, CC BY-SA 3.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="box a" style="margin-top:12px"><b class="t">התוצאות</b>תמותה של <bdi dir="ltr">1–4%</bdi> במרכזים מצוינים ו-<bdi dir="ltr">4–8%</bdi> במאגרים לאומיים. סיבוכים ב-<bdi dir="ltr">15–30%</bdi> מהמטופלים</div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 102 עמ׳ <bdi dir="ltr">1629–1631</bdi></span><span>תיקון פתוח</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>10</b>תיקון אנדווסקולרי</div>
+ <h2><bdi>EVAR</bdi> ודליפות (<bdi>endoleaks</bdi>)</h2>
+ <div class="grid f">
+  <div>
+   <ul class="b sm">
+    <li>שתל-סטנט בצורת <bdi>Y</bdi> שמוחדר דרך העורקים הפמורליים. הצלחתו תלויה באזור האיטום והקיבוע באבי העורקים</li>
+    <li>מעקב הדמיה לכל החיים: חודש, 6 חודשים, שנה ואחר כך כל שנה. מי שלא יכול להתמיד במעקב אולי לא מתאים ל-<bdi>EVAR</bdi></li>
+    <li><bdi>EVAR</bdi> בבריטניה (1,252 מטופלים, מפרצת מעל 5.5 ס״מ): תמותה ב-30 יום 1.8% לעומת 4.3% בניתוח פתוח. היתרון נעלם בהמשך. היו יותר ניתוחים חוזרים</li>
+    <li>לאורך זמן: עלייה בתמותה הקשורה למפרצת אחרי <bdi>EVAR</bdi>, חלקית בגלל קרעים מאוחרים</li>
+   </ul>
+   <div class="flow sm" style="margin-top:10px">
+    <div><b><span class="tag r">1A · 1B</span></b><span>דליפה באזור האיטום העליון או התחתון. <b>מתקנים</b></span></div>
+    <div><b><span class="tag a">2</span></b><span>זרימה לאחור מהעורקים המותניים או מהמזנטרי התחתון. רובן נעלמות. עוקבים כל עוד השק לא גדל</span></div>
+    <div><b><span class="tag r">3</span></b><span>היפרדות בין רכיבי השתל. <b>מתקנים</b></span></div>
+    <div><b><span class="tag">4 · 5</span></b><span>דופן השתל חדירה · שק שגדל בלי זרימה שנראית</span></div>
+   </div>
+  </div>
+  <figure><img src="img/aorta-evar-ct.jpg" alt="CT של שתל-סטנט בצורת Y באבי העורקים הבטני"><figcaption><bdi>CT</bdi>, שחזור קורונלי: שתל-סטנט בצורת <bdi>Y</bdi> אחרי <bdi>EVAR</bdi>. העיגול הכחול: שק המפרצת סביב השתל · <bdi>Dr Haudebourg</bdi>, נחלת הכלל, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 102 עמ׳ <bdi dir="ltr">1630–1631</bdi></span><span><bdi>EVAR</bdi></span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>11</b>חירום</div>
+ <h2>מפרצת שנקרעה</h2>
+ <div class="grid f">
+  <div>
+   <ul class="b sm">
+    <li>בניסויים: <b>אין הבדל בתמותה המוקדמת</b> בין תיקון פתוח ל-<bdi>EVAR</bdi> (בניסוי אירופי: 39% לעומת 35% תמותה ניתוחית)</li>
+    <li><bdi>IMPROVE</bdi>: אין הבדל ב-30 וב-90 יום. יתרון ל-<bdi>EVAR</bdi> אחרי 4 שנים, שנעלם אחרי 7 שנים</li>
+    <li>מי שהתאים ל-<bdi>EVAR</bdi> הגיע לתוצאות טובות יותר. לכן רבים ממליצים על גישה של <b><bdi>EVAR</bdi> קודם</b></li>
+    <li><b>מה צריך:</b> צוות מיומן, ציוד אנדווסקולרי זמין ופרוטוקול מוסכם: מעבר מהיר לחדר ניתוח שבו אפשר גם פתוח וגם אנדווסקולרי, מינימום בדיקות לפני</li>
+    <li><b>בלון חוסם באבי העורקים</b> לפני ההרדמה: יכול לתמוך בלחץ הדם בכל סוג תיקון. ב-<bdi>EVAR</bdi>, הרדמה מקומית עדיפה על כללית</li>
+    <li><b>העברה לבית חולים אחר:</b> אחד מכל 7 מועברים לא מגיע לניתוח. כשיש אפשרות לטפל במקום, זה עדיף</li>
+   </ul>
+  </div>
+  <figure><img src="img/aorta-ct-rupture.jpg" alt="CT של מפרצת בטנית שנקרעת"><figcaption><bdi>CT</bdi> בחתכים רוחביים ובחתך קורונלי: מפרצת בטנית שנקרעת עם דימום רטרופריטונאלי · <bdi>Hellerhoff</bdi>, CC BY-SA 4.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 102 עמ׳ <bdi dir="ltr">1632–1633</bdi></span><span>קרע</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>12</b>תסמונת אאורטלית חריפה</div>
+ <h2>דיסקציה: מגדירים לפי אבי העורקים העולה</h2>
+ <div class="grid f">
+  <div>
+   <ul class="b sm">
+    <li><b>דיסקציה:</b> קרע באינטימה ודם שמפצל את שכבת המדיה. <b>המצב החריף השכיח ביותר</b> של אבי העורקים</li>
+    <li>היארעות <bdi dir="ltr">3.5–16.3</bdi> ל-100,000 בשנה. גברים 16 לעומת נשים 7.9 ל-100,000. נשים מגיעות מאוחר יותר ובתמותה גבוהה יותר</li>
+    <li><b>Stanford A:</b> כל מעורבות של אבי העורקים העולה. <b>Stanford B:</b> רק דיסטלית לעורק התת-בריחי השמאלי. סוג <bdi>A</bdi> שכיח פי 2</li>
+    <li><b>DeBakey:</b> <bdi>I</bdi> עולה, קשת ויורד · <bdi>II</bdi> רק עולה · <bdi>III</bdi> רק יורד (<bdi>IIIa</bdi> בחזה, <bdi>IIIb</bdi> מתחת לסרעפת)</li>
+    <li>שני שיאי גיל: מבוגרים עם יתר לחץ דם וטרשת. צעירים עם מחלת רקמת חיבור, מסתם דו-צניפי או שימוש בקוקאין</li>
+    <li>חריף עד שבועיים. כיום גם חלוקה מפורטת: עד 24 שעות, <bdi dir="ltr">2–7</bdi> ימים, <bdi dir="ltr">8–30</bdi> ימים, מעל 30</li>
+   </ul>
+  </div>
+  <figure><img src="img/aorta-dissection-types.jpg" alt="סוגי דיסקציה של אבי העורקים"><figcaption><bdi>A</bdi> · <bdi>DeBakey I</bdi> &nbsp; <bdi>B</bdi> · <bdi>DeBakey II</bdi> (שתיהן <bdi>Stanford A</bdi>) &nbsp; <bdi>C</bdi> · <bdi>DeBakey III</bdi> (<bdi>Stanford B</bdi>). החיצים: מקום הקרע באינטימה · <bdi>J. Heuser</bdi>, CC BY-SA 3.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 102 עמ׳ <bdi dir="ltr">1620–1621</bdi></span><span>דיסקציה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>13</b>דיסקציה · אבחנה</div>
+ <h2>המתחזה הגדולה</h2>
+ <div class="grid f">
+  <div>
+   <ul class="b sm">
+    <li>הדיסקציה חוסמת ענפים (<b><bdi>malperfusion</bdi></b>) ולכן נראית כמו מחלות אחרות: תסמונת כלילית חריפה, שבץ, שיתוק ברגליים, איסכמיה של גפה, אי ספיקת כליות או בטן חריפה</li>
+    <li>ב-526 חולים עם סוג <bdi>A</bdi>: ל-90% היה כאב, אבל אצל יותר מ-20% <b>הכאב היה בבטן</b></li>
+    <li>הבדל או חסר בדפקים: רק ב-139 מתוך 526. א.ק.ג תקין רק ב-31%. ביותר מרבע: סימני איסכמיה או אוטם שמטעים לכיוון הלב</li>
+    <li><b><bdi>CT</bdi> או <bdi>MRI</bdi>:</b> רגישות וסגוליות עד 100%. פרוטוקול <bdi>CT</bdi> משולב יכול לשלול גם תסחיף ריאתי ומחלה כלילית</li>
+    <li><b>אקו דרך החזה</b> לא שולל. <bdi>TEE</bdi>: רגישות 98%</li>
+   </ul>
+   <div class="box r" style="margin-top:10px"><b class="t">למה מפספסים</b>דיסקציה נדירה בהרבה מתסמונת כלילית חריפה (16 לעומת 440 ל-100,000) ומתסחיף ריאתי (69 ל-100,000), שנראים דומה. לפני שהיה <bdi>CT</bdi>, ביותר מרבע מהחולים האבחנה נעשתה רק בנתיחה</div>
+  </div>
+  <figure><img src="img/aorta-dissection-ct.jpg" alt="CT של דיסקציה של אבי העורקים"><figcaption><bdi>CT</bdi> עם חומר ניגוד, חתך רוחבי בחזה: דיסקציה מסוג <bdi>A</bdi>. החיצים האדומים: הדש באבי העורקים העולה והיורד. החץ הכחול: תפליט בקרום הלב · <bdi>James Heilman, MD</bdi>, CC BY-SA 4.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 102 עמ׳ <bdi dir="ltr">1621</bdi></span><span>דיסקציה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>14</b>דיסקציה · טיפול</div>
+ <h2><bdi>A</bdi> לחדר ניתוח, <bdi>B</bdi> לתרופות (בדרך כלל)</h2>
+ <div class="grid">
+  <div class="box r"><b class="t">Stanford A: ניתוח חירום</b>
+   <ul class="b sm"><li>תמותה של <bdi dir="ltr">1–2%</bdi> לשעה ב-24 השעות הראשונות בלי טיפול</li><li>ניתוח פתוח בלב-ריאה, לרוב בעצירת מחזור בקירור: סוגרים את הקרע ומחליפים את אבי העורקים העולה</li><li>תמותה ניתוחית <bdi dir="ltr">15–25%</bdi>. במרכזים מתמחים: ספרה אחת</li><li>טיפול תרופתי רק כגשר או כשהמטופל לא מועמד לניתוח</li></ul></div>
+  <div class="box b"><b class="t">Stanford B: טיפול תרופתי</b>
+   <ul class="b sm"><li><b>חוסמי בטא</b> קודם: מורידים את לחץ הדם ואת הכוח של כל פעימה על הדופן</li><li><b>מסובכת</b> (קרע או <bdi>malperfusion</bdi>): <bdi>TEVAR</bdi>, סטנט-שתל שמכסה את הקרע</li><li>לא מסובכת: טיפול תרופתי ומעקב. <bdi>TEVAR</bdi> אפשרי כשיש סימנים בסיכון גבוה</li><li><bdi>INSTEAD-XL</bdi>: פחות תמותה הקשורה לאבי העורקים אחרי 5 שנים עם <bdi>TEVAR</bdi></li></ul></div>
+ </div>
+ <div class="grid" style="margin-top:12px">
+  <div class="box"><b class="t">המטומה תוך-דופנית (<bdi>IMH</bdi>)</b>כ-10% מהתסמונות החריפות. דופן מעובה מעל 5 מ״מ בלי זרימה. מטפלים כמו בדיסקציה: סוג <bdi>A</bdi> בדרך כלל ניתוח, סוג <bdi>B</bdi> בדרך כלל תרופות</div>
+  <div class="box"><b class="t">כיב חודר (<bdi>PAU</bdi>)</b><bdi dir="ltr">2–7%</bdi> מהתסמונות החריפות. 87% בלי תסמינים. התערבות מוקדמת כשהכיב מעל 20 מ״מ או הצוואר מעל 10 מ״מ</div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 102 עמ׳ <bdi dir="ltr">1621–1624</bdi></span><span>דיסקציה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>15</b>מה חדש בתחום · <bdi dir="ltr">2022–2025</bdi></div>
+ <h2>מחקרים והנחיות שכדאי להכיר</h2>
+ <div class="grid">
+  <div class="study"><div class="y"><bdi>NEJM</bdi> 2022 · מחקר אקראי בדנמרק</div><b><bdi>DANCAVAS</bdi>: סקר קרדיווסקולרי מקיף</b>
+   <p>46,611 גברים בני <bdi dir="ltr">65–74</bdi>. הסקר כלל <bdi>CT</bdi> (סידן בעורקים הכליליים ומפרצות), <bdi>ABI</bdi> ובדיקות דם. אחרי 5.6 שנים: תמותה 12.6% בקבוצת ההזמנה לעומת 13.1% בביקורת (יחס סיכון 0.95, לא מובהק)</p>
+   <small><bdi dir="ltr">Lindholt JS et al. N Engl J Med 2022;387:1385-94</bdi></small></div>
+  <div class="study"><div class="y"><bdi>EJVES</bdi> 2024 · הנחיות אירופיות</div><b>הנחיות <bdi>ESVS</bdi> למפרצות בבטן ובאגן</b>
+   <p>160 המלצות: סקר, מעקב, תיקון מתוכנן. במפרצת שנקרעה גם <b>יתר לחץ דם מתירני</b> ובלון חוסם באבי העורקים. כוללות קבלת החלטות משותפת עם המטופל</p>
+   <small><bdi dir="ltr">Wanhainen A et al. Eur J Vasc Endovasc Surg 2024;67:192-331</bdi></small></div>
+  <div class="study"><div class="y"><bdi>Circulation</bdi> 2022 · הנחיות אמריקאיות</div><b>הנחיות <bdi>ACC/AHA</bdi> למחלות אבי העורקים</b>
+   <p>מאחדות לראשונה את ההמלצות לכל אבי העורקים: אבחנה, בדיקה גנטית וסקר משפחה, טיפול ומעקב. מדגישות קבלת החלטות משותפת והיריון. וגם את נפח הניתוחים וצוות אאורטה רב-תחומי במוסד</p>
+   <small><bdi dir="ltr">Isselbacher EM et al. Circulation 2022;146:e334-e482</bdi></small></div>
+  <div class="study"><div class="y"><bdi>EJVES</bdi> 2025 · מחקר אקראי</div><b>מטפורמין להאטת מפרצת קטנה?</b>
+   <p>58 מטופלים בלי סוכרת עם מפרצת של <bdi dir="ltr">3.0–4.9</bdi> ס״מ, 2 גרם מטפורמין לעומת אינבו. אחרי 12 ו-18 חודשים לא היה הבדל בקוטר או בנפח המפרצת. המחקר קטן מהמתוכנן (נעצר בגלל הקורונה)</p>
+   <small><bdi dir="ltr">Eilenberg W et al. Eur J Vasc Endovasc Surg 2025;70:417-25</bdi></small></div>
+ </div>
+ <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>16</b>לסיכום</div>
+ <h2>חמישה דברים לקחת למחלקה</h2>
+ <ol class="obj">
+  <li>מפרצת היא הרחבה של יותר מ-50%. רובן שקטות ומתגלות במקרה. עישון הוא גורם הסיכון החשוב שאפשר לשנות</li>
+  <li>סקר באולטרסאונד לגברים מגיל 65. המעקב מתקצר ככל שהמפרצת גדולה יותר</li>
+  <li>מפרצת בטנית מתקנים מ-5.5 ס״מ. פתוח או <bdi>EVAR</bdi>. אחרי <bdi>EVAR</bdi>: מעקב לכל החיים</li>
+  <li>מפרצת שנקרעה: מעבר מהיר לחדר ניתוח עם פרוטוקול מוכן. רבים מעדיפים <bdi>EVAR</bdi> קודם</li>
+  <li>כאב חד בחזה, בגב או בבטן עם חסר בדפקים: חושבים על דיסקציה. <bdi>A</bdi> לניתוח, <bdi>B</bdi> לחוסמי בטא</li>
+ </ol>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 102 <bdi>Aortic Disease</bdi> (עמ׳ <bdi dir="ltr">1620–1633</bdi>)</div>
+ <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906, נחלת הכלל) · תמונות קליניות והדמיה מ-<bdi>Wikimedia Commons</bdi> לפי הרישיון בכל כיתוב · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+</main>
+<div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
+<script>
+document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz').forEach(function(z){z.addEventListener('click',function(){w.querySelectorAll('.hz').forEach(function(x){x.classList.toggle('on',x===z)});w.querySelectorAll('.hzi').forEach(function(i){i.hidden=i.dataset.hzi!==z.dataset.hz;i.style.setProperty('--c',z.style.getPropertyValue('--c'))});var h=w.querySelector('.hint');if(h)h.hidden=true;});});});
+</script>
+<script>
+(function () {
+  var deck = document.getElementById('deck'), S = [].slice.call(deck.children), dots = document.getElementById('dots'), n = S.length;
+  S.forEach(function (_, k) { var i = document.createElement('i'); i.onclick = function () { go(k); }; dots.appendChild(i); });
+  function idx() { return Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }
+  function go(k) { k = Math.max(0, Math.min(n - 1, k)); S[k].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' }); }
+  function sync() { var k = idx(); [].forEach.call(dots.children, function (d, j) { d.className = j === k ? 'on' : ''; }); document.getElementById('count').textContent = (k + 1) + '/' + n; document.getElementById('prev').disabled = k === 0; document.getElementById('next').disabled = k === n - 1; }
+  deck.addEventListener('scroll', function () { clearTimeout(sync.t); sync.t = setTimeout(sync, 60); }, { passive: true });
+  document.getElementById('next').onclick = function () { go(idx() + 1); };
+  document.getElementById('prev').onclick = function () { go(idx() - 1); };
+  addEventListener('keydown', function (e) { if (e.key === 'ArrowLeft' || e.key === ' ') go(idx() + 1); if (e.key === 'ArrowRight') go(idx() - 1); });
+  sync();
+})();
+</script>
+</body>
+</html>

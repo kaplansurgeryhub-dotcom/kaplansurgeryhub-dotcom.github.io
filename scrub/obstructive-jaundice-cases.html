@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>דיון מקרים: צהבת חסימתית · Scrub In</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../emblem.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Frank+Ruhl+Libre:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0C2A35;--navy2:#123845;--g:#00967D;--g2:#3DC08C;--g3:#0A6B5A;--lime:#B5D96B;--red:#A3402E;--amber:#C9893F;--blue:#2F6FA8;--bg:#EDF2F0;--soft:#F3F7F5;--ink:#16262C;--muted:#5C6F73;--line:#DCE6E2}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--navy);color:var(--ink);font-family:Heebo,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.deck{position:fixed;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.deck::-webkit-scrollbar{display:none}
+.s{flex:0 0 100%;height:100%;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;padding:18px 16px 84px;overflow-y:auto;position:relative}
+.s::after{content:'';position:absolute;inset:0;background:url(../ops/art/organs.webp) no-repeat 6% 40%/auto 115%;opacity:.05;filter:invert(1);pointer-events:none}
+.card{width:min(980px,100%);background:#fff;border-radius:22px;box-shadow:0 18px 50px rgba(0,0,0,.35);padding:30px 32px 22px;position:relative;overflow:hidden;z-index:1}
+.card::before{content:'';position:absolute;inset:0 0 auto 0;height:6px;background:linear-gradient(90deg,var(--g3),var(--g),var(--g2),var(--lime))}
+.kick{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--g);letter-spacing:.3px;margin-bottom:6px}
+.kick b{background:var(--navy);color:#fff;border-radius:999px;min-width:26px;height:26px;display:grid;place-items:center;font-size:13px;padding:0 8px}
+h1,h2{font-family:'Frank Ruhl Libre',serif;color:var(--navy);margin:0 0 10px;line-height:1.15}
+h1{font-size:clamp(34px,6.4vw,60px)}h2{font-size:clamp(25px,4.4vw,36px)}
+h3{margin:0 0 6px;font-size:17px;color:var(--navy)}
+.lead{font-size:clamp(15.5px,2.3vw,18.5px);color:var(--muted);margin:0 0 16px;line-height:1.5}
+ul.b{margin:0;padding:0;list-style:none;display:grid;gap:8px}ul.b li{position:relative;padding-inline-start:20px;font-size:16.5px;line-height:1.45}ul.b li::before{content:'';position:absolute;inset-inline-start:2px;top:.62em;width:8px;height:8px;border-radius:2px;background:var(--g);transform:rotate(45deg)}
+ul.b li b{color:var(--navy)}ul.b.sm li{font-size:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.grid.g3{grid-template-columns:repeat(3,1fr)}.grid.f{grid-template-columns:1.05fr .95fr;align-items:center}
+.box{background:var(--soft);border-radius:14px;padding:13px 15px;border-inline-start:4px solid var(--g);font-size:15.5px;line-height:1.45}
+.box.r{border-color:var(--red);background:#FBEDEA}.box.a{border-color:var(--amber);background:#FFF6EA}.box.n{border-color:var(--navy)}.box.b{border-color:var(--blue);background:#EEF4FB}
+.box b.t{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}
+.num{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:4px 0 14px}.num div{background:var(--soft);border-radius:14px;padding:12px 10px;text-align:center}
+.num b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(26px,4vw,38px);color:var(--g3);line-height:1.05}.num span{font-size:13px;color:var(--muted);line-height:1.3;display:block;margin-top:4px}
+figure{margin:0;background:#FBFCFB;border:1px solid var(--line);border-radius:16px;padding:10px;text-align:center}figure img{max-width:100%;max-height:46vh;display:block;margin:0 auto;mix-blend-mode:multiply}
+figcaption{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.35}
+.ill svg{width:100%;height:auto;max-height:50vh}
+.src{margin-top:16px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.src b{color:var(--g3)}
+.tag{display:inline-block;font-size:12px;font-weight:800;border-radius:999px;padding:2px 10px;background:#E3F4EC;color:var(--g3);margin-inline-end:4px}
+.tag.r{background:#F8E3DE;color:var(--red)}.tag.a{background:#FFF3DF;color:#8A5A14}.tag.b{background:#E8F0FA;color:var(--blue)}
+.flow{display:grid;gap:8px}.flow div{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;background:var(--soft);border-radius:12px;padding:9px 12px;font-size:15.5px}.flow div b{color:var(--navy)}
+.study{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#fff}.study .y{font-size:12px;font-weight:800;color:var(--g);letter-spacing:.3px}.study b{display:block;font-size:16px;color:var(--navy);margin:2px 0}.study p{margin:4px 0 0;font-size:14.5px;line-height:1.45}.study small{display:block;margin-top:6px;font-size:11.5px;color:var(--muted)}
+.cover{background:radial-gradient(120% 90% at 85% 0%,#164B54 0%,var(--navy) 58%)}
+.cover::after{opacity:.16;background-position:2% 50%}
+.cover .card{background:transparent;box-shadow:none;color:#fff}.cover .card::before{display:none}.cover h1{color:#fff}.cover .lead{color:#C9D6DA}.cover .kick{color:var(--g2)}
+.pill{display:inline-flex;gap:6px;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px;color:#fff;margin:4px}
+.logo{display:flex;align-items:center;gap:10px;margin-bottom:26px}.logo img{width:48px;height:48px;border-radius:50%;background:#fff}.logo b{color:#fff;font-weight:900}.logo small{display:block;color:#A9C9C0;font-size:12px}
+.obj{counter-reset:o;list-style:none;margin:0;padding:0;display:grid;gap:10px}.obj li{counter-increment:o;display:flex;gap:12px;align-items:flex-start;font-size:16.5px;line-height:1.45}.obj li::before{content:counter(o);flex:0 0 30px;height:30px;border-radius:50%;background:var(--g);color:#fff;font-weight:800;display:grid;place-items:center}
+.nav{position:fixed;inset:auto 0 0 0;display:flex;align-items:center;justify-content:center;gap:14px;padding:12px 16px calc(14px + env(safe-area-inset-bottom));background:linear-gradient(transparent,rgba(6,20,26,.85) 40%);z-index:5}
+.nav button{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;font-size:22px;cursor:pointer}.nav button:disabled{opacity:.3}
+.dots{display:flex;gap:5px;flex-wrap:wrap;max-width:60vw;justify-content:center}.dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer}.dots i.on{background:var(--g2);width:20px;border-radius:5px}
+.count{color:#C9D6D9;font-size:13px;font-weight:700;min-width:44px;text-align:center}
+bdi{unicode-bidi:isolate}
+.cmp{width:100%;border-collapse:separate;border-spacing:0;font-size:14px;border:1px solid var(--line);border-radius:14px;overflow:hidden}.cmp th{background:var(--navy);color:#fff;padding:9px 10px;font-size:16px;text-align:start}.cmp th small{display:block;font-weight:500;color:#A9D9C8;font-size:12px}.cmp td{padding:8px 10px;border-top:1px solid var(--line);vertical-align:top;line-height:1.4}.cmp td:first-child{background:var(--soft);font-weight:800;color:var(--navy);white-space:nowrap}.cmp tr:nth-child(odd) td:not(:first-child){background:#FBFCFB}
+figure.vid video{width:100%;max-height:34vh;border-radius:10px;background:#000;display:block}
+@media (max-width:760px){.cmp{font-size:12.5px}.cmp td,.cmp th{padding:6px}}
+
+.hotw{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;align-items:start}.hoti{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#FBFCFB}.hoti img{display:block;width:100%;mix-blend-mode:multiply}.hoti svg{position:absolute;inset:0;width:100%;height:100%}
+.hz{fill:var(--c);fill-opacity:.38;stroke:var(--c);stroke-width:2;cursor:pointer;transition:fill-opacity .2s}.hz:hover,.hz.on{fill-opacity:.62}.hzl{font:900 22px Heebo,sans-serif;fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;pointer-events:none;text-anchor:middle}
+.hotp .hint{background:var(--soft);border-radius:12px;padding:10px 12px;font-weight:700;color:var(--g3);margin:0}.hzi{background:#fff;border:1px solid var(--line);border-inline-start:5px solid var(--c,var(--g));border-radius:14px;padding:12px 14px;margin-top:8px;font-size:15.5px;line-height:1.45}.hzi>b{display:block;font-size:17px;color:var(--navy);margin-bottom:4px}.hzi p{margin:0}
+figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-size:15px}.obj.sm li::before{flex-basis:26px;height:26px;font-size:13px}.flow.sm div{grid-template-columns:130px 1fr;padding:7px 10px;font-size:14.5px}
+@media (max-width:760px){.hotw{grid-template-columns:1fr}}
+
+@media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
+@media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+.num.n3{grid-template-columns:repeat(3,1fr)}@media (max-width:760px){.num.n3{grid-template-columns:1fr 1fr}}
+.rev{margin-top:10px;border:1px dashed var(--g);border-radius:14px;padding:8px 12px;background:#F6FBF9}.rev summary{display:block;cursor:pointer;font-weight:800;color:var(--g3);list-style:none}.rev summary::-webkit-details-marker{display:none}.rev summary::before{content:"👁 "}.rev[open] summary{margin-bottom:8px}
+.case{background:var(--navy);color:#fff;border-radius:16px;padding:14px 16px;font-size:16px;line-height:1.5}.case b{color:var(--g2)}.case .vit{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.case .vit span{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:2px 10px;font-size:13.5px;font-weight:700}
+.q{counter-reset:q;list-style:none;margin:10px 0 0;padding:0;display:grid;gap:6px}.q li{counter-increment:q;font-size:15.5px;font-weight:700;color:var(--navy)}.q li::before{content:"שאלה " counter(q) ": ";color:var(--g)}
+/*BRAND*/
+.brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
+.brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
+.s{padding-top:58px}
+.cover .card{display:flex;flex-direction:column;gap:6px;max-width:980px}
+.cvhead{display:flex;align-items:center;gap:16px;margin-bottom:30px}.cvhead img.em{width:74px;height:74px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(61,192,140,.55)}
+.cvhead b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(24px,3.4vw,34px);color:#fff;line-height:1.1}.cvhead span{display:block;font-size:clamp(15px,2vw,19px);color:#A9D9C8;font-weight:700;margin-top:4px}
+.cover h1{font-size:clamp(38px,6.6vw,66px);margin:6px 0 8px}.cover .kick{font-size:14px;letter-spacing:.06em}
+.cvmeta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.cvlogos{display:flex;align-items:center;gap:18px;margin-top:34px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14)}.cvlogos img{height:44px;width:auto}.cvlogos small{margin-inline-start:auto;color:#8FB3AA;font-size:12.5px;font-weight:700;letter-spacing:.08em}
+.cover .brandbar{display:none}
+@media (max-width:760px){.brandbar{left:10px;gap:7px;padding:4px 9px 4px 4px}.brandbar img{height:20px}.brandbar img.em{width:22px;height:22px}.s{padding-top:48px}.cvhead img.em{width:56px;height:56px}.cvlogos img{height:34px}.cvlogos small{display:none}}
+/* numbered lists: a bold word inside an item stays inline */
+.obj li,.steps li{display:block;position:relative;padding-inline-start:42px;min-height:30px}.obj li::before,.steps li::before{position:absolute;inset-inline-start:0;top:0}.obj.sm li{padding-inline-start:36px}
+.grid.tight figure img{max-height:24vh}
+@media print{.brandbar{display:none}}
+/*/BRAND*/
+</style>
+</head>
+<body>
+<div class="brandbar" aria-hidden="true"><img class="em" src="brand/emblem.jpg" alt=""><i></i><img src="brand/logo_k.webp" alt=""><img src="brand/logo_c.webp" alt=""></div>
+<main class="deck" id="deck">
+<section class="s cover"><div class="card">
+ <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
+ <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 5</div>
+ <h1>דיון מקרים: צהבת חסימתית</h1>
+ <p class="lead">שלושה מטופלים בדויים: דלקת של דרכי המרה עם ספסיס, צהבת שקטה מגידול באזור הפפילה והיצרות של צינור המרה אחרי ניתוח</p>
+ <div class="cvmeta"><span class="pill">מבוסס על <bdi>Sabiston</bdi>, מהדורה 22, פרקים <bdi dir="ltr">88, 93</bdi></span></div>
+ <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>1</b>מטרות הלמידה</div>
+ <h2>בסוף המפגש תדעו</h2>
+ <ol class="obj">
+  <li>לזהות צהבת חסימתית בבדיקה ובמעבדה ולמקם את החסימה לפי האולטרסאונד</li>
+  <li>להבדיל בין חסימה מאבן (כואבת וחדה) לחסימה ממארת (שקטה והדרגתית)</li>
+  <li>לזהות דלקת של דרכי המרה, להעריך את חומרתה ולדעת מתי ואיך מנקזים</li>
+  <li>לבנות בירור לצהבת שקטה: <bdi>CT</bdi> לפני כל פעולה פולשנית, <bdi>EUS</bdi> עם ביופסיה וסטנט</li>
+  <li>להכיר היצרות שפירה אחרי כריתת כיס מרה ואת העקרונות של התיקון</li>
+ </ol>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 88 (עמ׳ <bdi dir="ltr">1216–1230</bdi>, <bdi dir="ltr">1237–1239</bdi>, <bdi dir="ltr">1244–1247</bdi>) · פרק 93 (עמ׳ <bdi dir="ltr">1401–1409</bdi>)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>2</b>יסודות</div>
+ <h2>איך נראית צהבת חסימתית</h2>
+ <div class="grid f">
+  <div>
+   <ul class="b sm">
+    <li><b>בילירובין ישיר (מצומד)</b> עולה בחסימה. בילירובין עקיף עולה בבעיה עד שלב הצימוד (פירוק מוגבר, קליטה או צימוד פגומים)</li>
+    <li><b>איפה רואים קודם:</b> מתחת ללשון, אחר כך בלחמיות (מבילירובין של <bdi dir="ltr">2.5</bdi> מ״ג/ד״ל) ורק אחר כך בעור (מ-5 מ״ג/ד״ל)</li>
+    <li><b>הסיפור:</b> שתן כהה, צואה בהירה, גרד</li>
+    <li><b>דפוס כולסטטי:</b> <bdi>ALP</bdi> ו-<bdi>GGT</bdi> גבוהים, טרנסאמינזות כמעט תקינות. באבן חדה <bdi>ALT</bdi> יכול לעלות מאוד</li>
+    <li><b><bdi>CA 19-9</bdi>:</b> סמן לגידולי לבלב ודרכי מרה, אבל עולה גם בחסימה שפירה</li>
+    <li><b>הסיבה השכיחה:</b> אבן בצינור המשותף. ברשימה גם <bdi>Mirizzi</bdi>, היצרויות וגידולים</li>
+   </ul>
+  </div>
+  <figure><img src="img/jaundice-sclera.jpg" alt="צהבת בלחמיות" style="max-height:30vh"><figcaption>צהבת בלחמיות: המקום הראשון שבו רואים אותה בבדיקה רגילה · <bdi dir="ltr">Bobjgalindo · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 88 עמ׳ <bdi dir="ltr">1216–1217</bdi>, <bdi dir="ltr">1245</bdi></span><span>יסודות</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>3</b>אנטומיה · איפה נחסם</div>
+ <h2>מהשער של הכבד ועד הפפילה</h2>
+ <div class="hotw"><div class="hoti" style="max-width:46vh;justify-self:center;width:100%"><img src="img/ill-cbd-stone-cholangitis.jpg" alt="איור של כיס מרה עם אבנים, אבן בצינור המשותף, לבלב ותריסריון"><svg viewBox="0 0 812 900" preserveAspectRatio="none">
+  <polygon class="hz" data-hz="hl" points="295,95 410,95 400,150 330,205 290,195" style="--c:#7A5BD6"/>
+  <polygon class="hz" data-hz="gb" points="25,170 90,112 200,112 285,165 250,215 200,300 30,300 18,240" style="--c:#0A6B5A"/>
+  <polygon class="hz" data-hz="st" points="236,212 288,215 280,330 242,330" style="--c:#A3402E"/>
+  <polygon class="hz" data-hz="am" points="150,440 212,398 240,336 278,338 258,425 205,478 150,478" style="--c:#C9893F"/>
+  <polygon class="hz" data-hz="ph" points="292,352 420,362 440,480 400,580 262,600 215,520 272,432" style="--c:#2F6FA8"/>
+  <polygon class="hz" data-hz="du" points="40,330 128,330 140,470 200,560 330,640 330,692 200,692 70,560" style="--c:#00967D"/>
+  <text class="hzl" x="350" y="150" style="font-size:30px">1</text><text class="hzl" x="130" y="220" style="font-size:30px">2</text><text class="hzl" x="262" y="285" style="font-size:28px">3</text><text class="hzl" x="215" y="452" style="font-size:28px">4</text><text class="hzl" x="345" y="500" style="font-size:30px">5</text><text class="hzl" x="105" y="470" style="font-size:30px">6</text>
+ </svg></div>
+ <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
+  <div class="hzi" data-hzi="hl" hidden><b>1 · השער: הצינורות הכבדיים</b><p>גידול בפיצול (<bdi>Klatskin</bdi>), היצרויות של <bdi>PSC</bdi>, פגיעה גבוהה בניתוח. החסימה גבוהה, לכן <b>כיס המרה והצינור המשותף ריקים</b> והצינורות בתוך הכבד רחבים</p></div>
+  <div class="hzi" data-hzi="gb" hidden><b>2 · כיס המרה</b><p>תסמונת <bdi>Mirizzi</bdi>: אבן גדולה בכיס הרטמן לוחצת על הצינור הכבדי וגורמת לצהבת, לפעמים עם פיסטולה. בחסימה נמוכה (גידול בפפילה) כיס המרה <b>מתוח</b></p></div>
+  <div class="hzi" data-hzi="st" hidden><b>3 · אבן בצינור המשותף</b><p>הסיבה השכיחה לחסימה. החסימה חדה, הצינור נמתח מהר ולכן <b>כואב</b>. חסימה עם חיידקים: דלקת של דרכי המרה</p></div>
+  <div class="hzi" data-hzi="am" hidden><b>4 · הצינור הרחוק והפפילה</b><p>כאן יושבים גידולי האמפולה וכולנגיוקרצינומה רחוקה. הם חוסמים את צינור המרה <b>בלי</b> לחסום את צינור הלבלב. אבן קטנה באמפולה עלולה להתפספס ב-<bdi>MRCP</bdi></p></div>
+  <div class="hzi" data-hzi="ph" hidden><b>5 · ראש הלבלב</b><p>רוב סרטני הלבלב בראש הלבלב. רוב הגידולים באזור הפפילה הם מהלבלב. סימן אופייני ב-<bdi>CT</bdi>: מסה, הרחבה של צינור המרה <b>וגם</b> של צינור הלבלב ונסיגה של הלבלב שמעבר לגידול</p></div>
+  <div class="hzi" data-hzi="du" hidden><b>6 · התריסריון</b><p>דרכו עובר ה-<bdi>ERCP</bdi> אל הפפילה. גידול בתריסריון יכול לחסום את דרכי המרה. גידול מתקדם בראש הלבלב יכול לחסום את התריסריון (הקאות, קיבה מתוחה)</p></div>
+ </div></div>
+ <p style="font-size:12px;color:var(--muted);margin:8px 0 0">כיס מרה עם אבנים, אבן בצינור המשותף עם דלקת, לבלב ותריסריון · <bdi dir="ltr">BruceBlaus · CC BY-SA 4.0 · Wikimedia Commons</bdi></p>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 88 עמ׳ <bdi dir="ltr">1225–1226</bdi>, <bdi dir="ltr">1229</bdi>, <bdi dir="ltr">1245</bdi> · פרק 93 עמ׳ <bdi dir="ltr">1403–1404</bdi></span><span>אנטומיה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>4</b>הגישה</div>
+ <h2>כואב או שקט? ואז הדמיה</h2>
+ <div class="grid">
+  <table class="cmp"><tr><th></th><th>אבן<small>חסימה חדה</small></th><th>גידול<small>חסימה הדרגתית</small></th></tr>
+   <tr><td>כאב</td><td>כואב: הצינור נמתח מהר</td><td><b>צהבת שקטה</b>. כאב קבוע מרמז על מחלה מתקדמת</td></tr>
+   <tr><td>דלקת של דרכי המרה</td><td>שכיחה</td><td>לא שכיחה</td></tr>
+   <tr><td>כיס המרה</td><td>לרוב עם אבנים</td><td>חסימה נמוכה: כיס מרה מתוח. חסימה בשער: כיס מרה ריק</td></tr>
+   <tr><td>עוד</td><td>היסטוריה של כאב בילארי</td><td>ירידה במשקל, סוכרת חדשה, גרד</td></tr>
+  </table>
+  <div class="flow sm">
+   <div><b>1 · אולטרסאונד</b><span>הבדיקה הראשונה בצהבת. רואה צינורות רחבים. לא תמיד רואה את מקום החסימה</span></div>
+   <div><b>2 · <bdi>CT</bdi></b><span>בחשד לגידול: לפני כל פעולה פולשנית. רב-שלבי לתכנון ניתוח</span></div>
+   <div><b>3 · <bdi>MRCP</bdi></b><span>מפה של דרכי המרה בלי קרינה ובלי פעולה פולשנית</span></div>
+   <div><b>4 · <bdi>EUS</bdi></b><span>הצינור הרחוק והאמפולה. ביופסיה בהנחיה</span></div>
+   <div><b>5 · <bdi>ERCP</bdi> או <bdi>PTC</bdi></b><span>מאבחנים <b>ומטפלים</b>: ניקוי אבנים, סטנט, ניקוז</span></div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 88 עמ׳ <bdi dir="ltr">1217–1220</bdi>, <bdi dir="ltr">1225</bdi>, <bdi dir="ltr">1245</bdi> · פרק 93 עמ׳ <bdi dir="ltr">1403–1404</bdi></span><span>הגישה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>5</b>מקרה 1 · המיון, 23:00</div>
+ <h2>חום, צהבת ובלבול</h2>
+ <div class="grid f">
+  <div>
+   <div class="case">אישה בת 78 מבית אבות, עם אבנים ידועות בכיס המרה. מאתמול <b>צמרמורות</b>, היום <b>מבולבלת</b>. צהובה, רגישה ברבע הימני העליון.
+    <div class="vit"><span>חום 39.2</span><span>ל״ד <b>84/50</b></span><span>דופק 122</span><span>לויקוציטים <bdi dir="ltr">22,000</bdi></span><span>בילירובין <bdi dir="ltr">5.8</bdi> מ״ג/ד״ל</span><span><bdi>ALP</bdi> ו-<bdi>AST</bdi> גבוהים</span></div></div>
+   <ol class="q"><li>מה האבחנה וכמה היא חמורה?</li><li>מה עושים בשעה הראשונה?</li><li>איך ומתי מנקזים?</li></ol>
+  </div>
+  <figure><img src="img/us-cbd-dilated.jpg" alt="אולטרסאונד: צינור מרה משותף רחב עם אבן ודרכי מרה רחבות בכבד" style="max-height:40vh"><figcaption>האולטרסאונד (להמחשה): צינור משותף רחב עם אבן וצינורות רחבים בכבד · <bdi dir="ltr">Cerevisae · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 88 עמ׳ <bdi dir="ltr">1226</bdi></span><span>מקרה 1</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>6</b>מקרה 1 · תשובות</div>
+ <h2>דלקת של דרכי המרה</h2>
+ <div class="grid">
+  <div>
+   <details class="rev"><summary>האבחנה</summary>
+    <ul class="b sm">
+     <li>זיהום עולה בצינור המשותף בגלל חסימה ולחץ גבוה. הסיבה השכיחה: אבן</li>
+     <li><b>שלישיית <bdi>Charcot</bdi></b> (חום, צהבת, כאב ברבע הימני העליון) מופיעה בפחות ממחצית. הצהבת היא הסימן הכי פחות שכיח. לויקוציטוזיס ותפקודי כבד לא תקינים שכיחים יותר</li>
+     <li><b>מחומש <bdi>Reynolds</bdi>:</b> גם בלבול ותת-לחץ דם. סימן רע. בלי טיפול מהיר התמותה קרובה ל-100%</li>
+     <li>אצלה: <b>דלקת קשה</b> עם הלם ספטי</li>
+    </ul></details>
+   <details class="rev"><summary>החיידקים</summary>
+    <ul class="b sm"><li>באבן חוסמת, חיידקים במרה עד 90%. <bdi>Klebsiella</bdi>, <bdi>E. coli</bdi>, <bdi>Enterobacter</bdi>, <bdi>Pseudomonas</bdi>, <bdi>Citrobacter</bdi>. בין הגראם חיוביים: אנטרוקוק</li></ul></details>
+  </div>
+  <div>
+   <details class="rev"><summary>הטיפול לפי חומרה</summary>
+    <div class="flow sm">
+     <div><b>לכולם, מיד</b><span>נוזלים ואנטיביוטיקה לווריד</span></div>
+     <div><b>קלה</b><span>לרוב אנטיביוטיקה מספיקה. אם אין שיפור: ניקוז מיד</span></div>
+     <div><b>בינונית</b><span>ניקוי מוקדם של הצינור, אנדוסקופי או מלעורי</span></div>
+     <div><b>קשה (כמו כאן)</b><span>ייצוב המודינמי ונשימתי ואז <b>ניקוז מהיר</b></span></div>
+     <div><b>אם אין <bdi>ERCP</bdi> ואין <bdi>PTC</bdi></b><span>חקירת הצינור בניתוח והשארת נקז <bdi>T</bdi></span></div>
+    </div>
+    <p style="font-size:14.5px;margin:8px 0 0">הטיפול המלא (כריתת כיס המרה) נדחה עד שהמטופלת יציבה והזיהום טופל</p>
+   </details>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 88 עמ׳ <bdi dir="ltr">1220</bdi>, <bdi dir="ltr">1226</bdi></span><span>מקרה 1</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>7</b>מקרה 1 · הניקוז</div>
+ <h2>קודם <bdi>ERCP</bdi>. אם לא, <bdi>PTC</bdi></h2>
+ <div class="grid f">
+  <div>
+   <ul class="b sm">
+    <li><b><bdi>ERCP</bdi>:</b> חתך בסוגר (<bdi>sphincterotomy</bdi>) והוצאת אבנים בבלון. מנקה ביותר מ-75% בפעם הראשונה וב-90% עם חזרה. סיבוכים, כולל דלקת לבלב: עד 10%</li>
+    <li><b>לא הצליחו לנקות הכול?</b> משאירים סטנט ומנסים שוב</li>
+    <li><b>למה <bdi>ERCP</bdi> נכשל:</b> אבן מעל <bdi dir="ltr">2.5</bdi> ס״מ, <bdi>Roux-en-Y</bdi>, אבן תקועה, אבנים בתוך הכבד, הרבה אבנים</li>
+    <li><b><bdi>PTC</bdi>:</b> מחט דרך הכבד לצינורות, בהנחיית אולטרסאונד. משאירים צנתר לניקוז. יעיל כמו <bdi>ERCP</bdi> כשהצינורות רחבים. כשהם צרים הוא קשה יותר</li>
+    <li><b>מיפוי <bdi>HIDA</bdi></b> פחות אמין בדלקת של דרכי המרה</li>
+   </ul>
+   <div class="box a" style="margin-top:10px"><b class="t">ואחרי שהיא מתאוששת?</b>יותר ממחצית מהמטופלים אחרי <bdi>ERCP</bdi> בלי כריתה יחזרו עם תסמינים. כורתים את כיס המרה כשהמצב מאפשר</div>
+  </div>
+  <figure><img src="img/ercp-cbd-stone.jpg" alt="ERCP: אבן תקועה בצינור המשותף הרחוק" style="max-height:30vh"><figcaption><bdi>ERCP</bdi>: חומר ניגוד ממלא את דרכי המרה. אבן תקועה בחלק הרחוק של הצינור המשותף · <bdi dir="ltr">Samir · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption>
+   <img src="img/ptc-cholangiogram.jpg" alt="צילום דרכי מרה דרך הכבד" style="max-height:22vh;margin-top:8px"><figcaption><bdi>PTC</bdi>: הזרקה דרך הכבד ממלאת את דרכי המרה מלמעלה · <bdi dir="ltr">J. Guntau · Public domain · Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 88 עמ׳ <bdi dir="ltr">1219–1220</bdi>, <bdi dir="ltr">1225–1226</bdi></span><span>מקרה 1</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>8</b>מקרה 2 · המרפאה</div>
+ <h2>"אשתי אמרה שאני צהוב"</h2>
+ <div class="grid f">
+  <div>
+   <div class="case">גבר בן 66. שלושה שבועות של צהבת <b>שהולכת ומחמירה, בלי כאב</b>. גרד, שתן כהה, צואה בהירה. ירד <b>6 ק״ג</b>. לפני חודשיים אובחנה <b>סוכרת חדשה</b>. בבדיקה: צהוב, בטן לא רגישה, כיס מרה מתוח שאפשר למשש.
+    <div class="vit"><span>חום 36.7</span><span>בילירובין <bdi dir="ltr">11.2</bdi> מ״ג/ד״ל</span><span><bdi>ALP</bdi> גבוה</span><span><bdi>CA 19-9</bdi> גבוה</span><span>אולטרסאונד: צינור משותף וצינורות בכבד רחבים, בלי אבנים</span></div></div>
+   <ol class="q"><li>איפה החסימה ומה הסיבות האפשריות?</li><li>לשלוח מחר ל-<bdi>ERCP</bdi>?</li><li>איך מגיעים לאבחנה רקמתית?</li></ol>
+  </div>
+  <figure><img src="img/Sobo1906-392-duodenum-pancreas.png" alt="התריסריון פתוח עם הפפילה וצינורות הלבלב" style="max-height:34vh"><figcaption>האזור "הפריאמפולרי": התריסריון פתוח עם הפפילה, ראש הלבלב וצינור הלבלב · <bdi>Sobotta, Atlas and Text-book of Human Anatomy</bdi> (1906), איור 392 (נחלת הכלל)</figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 93 עמ׳ <bdi dir="ltr">1403–1404</bdi> · פרק 88 עמ׳ <bdi dir="ltr">1245</bdi></span><span>מקרה 2</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>9</b>מקרה 2 · תשובות</div>
+ <h2>צהבת שקטה: קודם <bdi>CT</bdi></h2>
+ <div class="grid f">
+  <div>
+   <details class="rev"><summary>איפה ומה</summary>
+    <ul class="b sm">
+     <li>צינור משותף רחב וכיס מרה מתוח: <b>חסימה נמוכה</b>, באזור הפפילה</li>
+     <li>אפשרויות: <b>סרטן בראש הלבלב</b> (הכי שכיח), גידול באמפולה, בתריסריון, כולנגיוקרצינומה רחוקה</li>
+     <li>סרטן לבלב: צהבת, כאב בבטן העליונה או בגב וירידה במשקל. כ-40% עם סוכרת חדשה וירידה במשקל</li>
+     <li>בלוטה מעל עצם הבריח השמאלית או ליד הטבור: חשד לגרורות</li>
+    </ul></details>
+   <details class="rev"><summary>למה לא <bdi>ERCP</bdi> מחר בבוקר</summary>
+    <ul class="b sm">
+     <li>בגידול בלבלב החסימה הדרגתית ולרוב בלי דלקת של דרכי המרה. ניקוז דחוף כמעט אף פעם לא נחוץ</li>
+     <li>אחרי <bdi>ERCP</bdi> יש דלקת לבלב בכ-4%. הדלקת מטשטשת את הקשר בין הגידול לכלי הדם ב-<bdi>CT</bdi> ופוגעת בהערכת השלב</li>
+     <li><b>קודם <bdi>CT</bdi> בפרוטוקול לבלב</b> (פרוסות של 1 מ״מ, שלב עורקי מאוחר ושלב ורידי) עם צילום חזה ב-<bdi>CT</bdi></li>
+    </ul></details>
+  </div>
+  <figure><img src="img/pdac-ct.png" alt="CT של סרטן לבלב" style="max-height:30vh"><figcaption>סרטן לבלב ב-<bdi>CT</bdi>: מסה היפודנסית בלבלב · <bdi dir="ltr">Hellerhoff · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption>
+   <img src="img/ct-biliary-dilation.png" alt="CT עטרתי עם דרכי מרה רחבות" style="max-height:24vh;margin-top:8px"><figcaption>הרחבה של דרכי המרה מחסימה (<bdi>CT</bdi> בחתך עטרתי) · <bdi dir="ltr">James Heilman, MD · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 93 עמ׳ <bdi dir="ltr">1403–1404</bdi></span><span>מקרה 2</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>10</b>מקרה 2 · מה רואים ב-<bdi>CT</bdi></div>
+ <h2>ממצאים, רקמה וסטנט</h2>
+ <div class="grid">
+  <div>
+   <h3>שלושה סימנים של סרטן בלבלב</h3>
+   <ol class="obj sm"><li>מסה בראש הלבלב</li><li><b>"צינור כפול":</b> הרחבה של צינור המרה וגם של צינור הלבלב</li><li>נסיגה (אטרופיה) של הלבלב שמעבר לגידול</li></ol>
+   <p style="font-size:14.5px;margin:8px 0 0">אין צינור כפול ואין מסה? לחשוב על גידול באמפולה, בתריסריון או כולנגיוקרצינומה רחוקה</p>
+   <h3 style="margin-top:12px">השלב קובע את הדרך</h3>
+   <ul class="b sm">
+    <li><b>נתיח:</b> אין מגע עם העורקים (<bdi>SMA</bdi>, צליאק, עורק הכבד)</li>
+    <li><b>גבולי:</b> מגע של עד 180 מעלות עם עורק, או וריד שאפשר לשחזר. מקבלים טיפול לפני הניתוח</li>
+    <li><b>מתקדם מקומית:</b> עטיפה של יותר מ-180 מעלות. <b>גרורות:</b> לא מנתחים</li>
+    <li>יותר מ-80% מגיעים עם גרורות</li>
+   </ul>
+  </div>
+  <div>
+   <div class="box n"><b class="t">רקמה: <bdi>EUS</bdi> עם ביופסיה</b>עדיף על ביופסיה מלעורית בהנחיית <bdi>CT</bdi>, שגרמה לפיזור בצפק בעד 16%. באותה הרדמה שמים סטנט מתכת</div>
+   <div class="box" style="margin-top:10px"><b class="t">איזה סטנט</b>סטנט מתכת לא מצופה עדיף על פלסטיק: פתוח יותר זמן (104 לעומת 83 ימים) ופחות סיבוכים (12% לעומת 35%). מתכת מצופה זזה יותר וחוסמת את הצינור הציסטי (דלקת בכיס המרה), אבל אפשר להוציא אותה</div>
+   <div class="box a" style="margin-top:10px"><b class="t"><bdi>CA 19-9</bdi> בצהבת</b>גבוה בכ-75% מסרטני הלבלב, אבל צהבת מעלה אותו בטעות. אפשר להסתמך עליו רק כשבילירובין מתחת ל-2 מ״ג/ד״ל</div>
+   <div class="box b" style="margin-top:10px"><b class="t">והניתוח</b>כריתת לבלב ותריסריון (<bdi>Whipple</bdi>). לפני החתך: לפרוסקופיה, כי בעד 10% מוצאים גרורות קטנות שלא נראו בהדמיה</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 93 עמ׳ <bdi dir="ltr">1401</bdi>, <bdi dir="ltr">1404–1409</bdi></span><span>מקרה 2</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>11</b>מקרה 2 · ניקוז לפני ניתוח?</div>
+ <h2>לא תמיד צריך סטנט לפני הניתוח</h2>
+ <div class="grid">
+  <ul class="b">
+   <li>במטופל שמתאים לניתוח <b>לא חייבים אבחנה רקמתית</b> לפני הכריתה. ציטולוגיה ממברשת לא אמינה. תשובה שלילית לא שוללת סרטן</li>
+   <li>בעד 15% ממי שנותח בחשד לגידול בדרכי המרה מתברר שהמחלה שפירה</li>
+   <li><b>ניקוז לפני ניתוח</b> בכולנגיוקרצינומה רחוקה מעלה את שיעור הזיהומים אחרי הניתוח (<bdi>Sabiston</bdi> מפרט זאת בפרק דרכי המרה)</li>
+   <li>ובכל זאת מנקזים כשהבילירובין <b>מעל 10 מ״ג/ד״ל</b>, או כשהניתוח יתעכב (למשל טיפול כימי לפני הניתוח)</li>
+  </ul>
+  <div>
+   <div class="box"><b class="t">והמטופל שלנו?</b>בילירובין <bdi dir="ltr">11.2</bdi> וגרד. אם השלב גבולי, יהיו כמה חודשים של טיפול לפני ניתוח. לכן כאן כן ננקז: <bdi>EUS</bdi> עם ביופסיה וסטנט מתכת באותה פעולה, אחרי ה-<bdi>CT</bdi></div>
+   <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>מצאו במחלקה או במרפאה מטופל עם צהבת. בדקו את הלחמיות, שאלו על צבע השתן והצואה, על גרד ועל ירידה במשקל. מששו את כיס המרה. הציגו לבכיר/ה: כואב או שקט? חסימה גבוהה או נמוכה?</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 88 עמ׳ <bdi dir="ltr">1246</bdi> · פרק 93 עמ׳ <bdi dir="ltr">1407</bdi></span><span>מקרה 2</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>12</b>מקרה 3 · המרפאה</div>
+ <h2>חמישה חודשים אחרי ניתוח "קשה"</h2>
+ <div class="grid f">
+  <div>
+   <div class="case">אישה בת 52. לפני 5 חודשים כריתה לפרוסקופית של כיס המרה בדלקת חריפה, "ניתוח קשה עם הרבה דלקת". בשבועיים האחרונים צהבת, גרד ו<b>חום שבא והולך</b>.
+    <div class="vit"><span>בילירובין <bdi dir="ltr">4.0</bdi> מ״ג/ד״ל</span><span><bdi>ALP</bdi> גבוה</span><span>אולטרסאונד: צינורות רחבים בכבד, צינור משותף לא רחב</span><span><bdi>MRCP</bdi>: היצרות קצרה בצינור הכבדי, כ-<bdi dir="ltr">1.5</bdi> ס״מ מתחת לפיצול</span></div></div>
+   <ol class="q"><li>מה הסיבה הסבירה?</li><li>איך מסווגים אותה?</li><li>מה הטיפול ומי עושה אותו?</li></ol>
+  </div>
+  <figure><img src="img/erc-klatskin.jpg" alt="ERC של גידול בפיצול צינורות הכבד עם חוטים בשני הצדדים" style="max-height:42vh"><figcaption>האבחנה המבדלת: גידול <bdi>Klatskin</bdi> בפיצול הצינורות (<bdi>ERC</bdi>), עם חוטים בצינור הימני והשמאלי לפני הכנסת סטנטים · <bdi dir="ltr">Hellerhoff · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 88 עמ׳ <bdi dir="ltr">1229</bdi>, <bdi dir="ltr">1237</bdi>, <bdi dir="ltr">1245</bdi></span><span>מקרה 3</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>13</b>מקרה 3 · תשובות</div>
+ <h2>היצרות אחרי פגיעה בצינור</h2>
+ <div class="grid">
+  <div>
+   <details class="rev"><summary>הסיבה והסיווג</summary>
+    <ul class="b sm">
+     <li>הסיבה השכיחה להיצרות באמצע הצינור: <b>פגיעה בכריתת כיס מרה</b> (עד 1% מהכריתות). יותר מ-80% מהפגיעות בצינור קורות בניתוח הזה</li>
+     <li>פגיעה שלא דולפת מתבטאת בצהבת, עם או בלי כאב. פחות מ-10% מההיצרויות מתגלות בשבוע הראשון, יותר מ-70% תוך חצי שנה</li>
+     <li><b>סיווג <bdi>Strasberg</bdi> (<bdi>E1–E5</bdi>):</b> <bdi>E1</bdi> נשארים יותר מ-2 ס״מ מתחת לפיצול. <bdi>E2</bdi> פחות מ-2 ס״מ (כמו כאן). <bdi>E3</bdi> בפיצול. <bdi>E4</bdi> הורס את הפיצול</li>
+     <li>ב-20% או יותר יש גם פגיעה בכלי דם שלא זוהתה. איסכמיה היא סיבה שכיחה להיצרות</li>
+    </ul></details>
+   <div class="box r" style="margin-top:10px"><b class="t">אל תשכחו את האבחנה המבדלת</b>היצרות בשער הכבד יכולה להיות כולנגיוקרצינומה (<bdi>Klatskin</bdi>): צהבת שקטה, צינורות רחבים בכבד וכיס מרה ריק. ב-<bdi>PSC</bdi> הסיכון 1.5% לשנה</div>
+  </div>
+  <div>
+   <details class="rev"><summary>שלוש מטרות הטיפול</summary>
+    <div class="flow sm">
+     <div><b>1 · זיהום</b><span>אנטיביוטיקה וניקוז מלעורי של הצטברויות. אחרי שהזיהום בשליטה אין דחיפות לתקן</span></div>
+     <div><b>2 · מפה</b><span>צילום מלא של דרכי המרה: <bdi>MRCP</bdi> או <bdi>PTC</bdi>, שגם מנקז. בלי מפה, תיקון כמעט תמיד נכשל</span></div>
+     <div><b>3 · ניקוז קבוע</b><span>חיבור של צינור המרה ללולאת מעי (<bdi>Roux-en-Y hepaticojejunostomy</bdi>), בלי מתח, רירית לרירית</span></div>
+    </div>
+    <ul class="b sm" style="margin-top:8px"><li>בסדרות רבות יותר מ-90% חופשיים מצהבת ומזיהום אחרי התיקון. התוצאות טובות יותר במרכז מנוסה</li><li>הרחבה בבלון דרך העור מצליחה בעד 70%. כשהרצף של הצינור שמור, <bdi>ERCP</bdi> עם סטנט הוא הטיפול הראשון בהיצרות שפירה</li></ul>
+   </details>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 88 עמ׳ <bdi dir="ltr">1229–1230</bdi>, <bdi dir="ltr">1237–1239</bdi>, <bdi dir="ltr">1245</bdi></span><span>מקרה 3</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>14</b>כשהחסימה בשער</div>
+ <h2>חסימה גבוהה מול חסימה נמוכה</h2>
+ <div class="grid">
+  <div class="box n"><b class="t">גבוהה: בשער הכבד</b>
+   <ul class="b sm"><li>כולנגיוקרצינומה בשער (<bdi>Klatskin</bdi>), פגיעה גבוהה בניתוח, <bdi>PSC</bdi></li><li>כיס המרה והצינור המשותף ריקים</li><li>חסימה של צד אחד: לפעמים בלי צהבת, עם אטרופיה של האונה החסומה</li><li><b><bdi>CT</bdi> לא מספיק</b>: צריך צילום דרכי מרה (<bdi>MRCP</bdi>, <bdi>PTC</bdi> או <bdi>ERCP</bdi>) כדי לדעת עד כמה הגידול מגיע</li><li>ניקוז: <bdi>PTC</bdi> שימושי יותר. ניקוז של אונה מנוונת לא עוזר</li></ul></div>
+  <div class="box b"><b class="t">נמוכה: ליד הפפילה</b>
+   <ul class="b sm"><li>סרטן בראש הלבלב, גידול באמפולה או בתריסריון, כולנגיוקרצינומה רחוקה, אבן</li><li>הצינור המשותף רחב, כיס המרה מתוח</li><li>ניקוז: <bdi>ERCP</bdi> עדיף</li><li>ניתוח: כריתת לבלב ותריסריון. בכולנגיוקרצינומה רחוקה עם שוליים נקיים ובלי בלוטות: הישרדות של עד 50% ל-5 שנים</li></ul></div>
+ </div>
+ <div class="box a" style="margin-top:10px"><b class="t">בגידול שלא ניתן לכרות</b>מטרות: להקל על הצהבת (סטנט מתכת עמיד יותר מפלסטיק), על הכאב ועל חסימת התריסריון (סטנט אנדוסקופי). ניתוח עוקף לא מאריך חיים ולכן שמור למי שנמצא לא נתיח בזמן ניתוח</div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 88 עמ׳ <bdi dir="ltr">1245–1247</bdi></span><span>שער מול פפילה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>15</b>מה חדש בתחום · <bdi dir="ltr">2021–2026</bdi></div>
+ <h2>מחקרים שכדאי להכיר</h2>
+ <div class="grid">
+  <div class="study"><div class="y"><bdi>Gastrointest Endosc</bdi> 2021 · הנחיות</div><b>הנחיות <bdi>ASGE</bdi> לדלקת של דרכי המרה</b>
+   <p>ממליצים על ניקוז אנדוסקופי ולא מלעורי. הניקוז <b>תוך 48 שעות</b>. כשאפשר, להוסיף חתך בסוגר והוצאת אבנים כבר בפעולה הראשונה. במטופל לא יציב: ניקוז בלבד</p>
+   <small><bdi dir="ltr">Buxbaum JL, Buitrago C, Lee A, et al. Gastrointest Endosc 2021;94(2):207-221.e14</bdi></small></div>
+  <div class="study"><div class="y"><bdi>Gastroenterology</bdi> 2023 · שני מחקרים אקראיים</div><b>ניקוז בהנחיית <bdi>EUS</bdi> מול <bdi>ERCP</bdi> בחסימה ממארת נמוכה</b>
+   <p><bdi>DRA-MBO</bdi> (155 מטופלים) ו-<bdi>ELEMENT</bdi> (144): הצלחה טכנית דומה או טובה יותר ב-<bdi>EUS</bdi> (96.2% לעומת 76.3% ב-<bdi>DRA-MBO</bdi>), פעולה קצרה יותר. אין הבדל בתפקוד הסטנט אחרי שנה או בסיבוכים</p>
+   <small><bdi dir="ltr">Teoh AYB et al. Gastroenterology 2023;165(2):473-482 · Chen YI et al. Gastroenterology 2023;165(5):1249-1261</bdi></small></div>
+  <div class="study"><div class="y"><bdi>J Clin Oncol</bdi> 2022 · מחקר אקראי</div><b><bdi>PREOPANC</bdi>: טיפול לפני ניתוח בסרטן לבלב</b>
+   <p>246 מטופלים עם גידול נתיח או גבולי. כימו-קרינה לפני הניתוח לעומת ניתוח מיד: הישרדות ל-5 שנים 20.5% לעומת 6.5% (<bdi dir="ltr">HR 0.73</bdi>)</p>
+   <small><bdi dir="ltr">Versteijne E, van Dam JL, Suker M, et al. J Clin Oncol 2022;40(11):1220-1230</bdi> (מצוטט ב-<bdi>Sabiston 22</bdi>)</small></div>
+  <div class="study"><div class="y"><bdi>NEJM Evidence</bdi> 2022 · מחקר אקראי</div><b><bdi>TOPAZ-1</bdi>: אימונותרפיה בסרטן דרכי המרה</b>
+   <p>685 מטופלים עם מחלה מתקדמת. הוספת <bdi>durvalumab</bdi> לכימותרפיה (<bdi>gemcitabine</bdi> ו-<bdi>cisplatin</bdi>) האריכה חיים (<bdi dir="ltr">HR 0.80</bdi>). הישרדות לשנתיים 24.9% לעומת 10.4%</p>
+   <small><bdi dir="ltr">Oh DY, He AR, Qin S, et al. NEJM Evid 2022;1(8):EVIDoa2200015</bdi> (מצוטט ב-<bdi>Sabiston 22</bdi>)</small></div>
+ </div>
+ <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>16</b>לסיכום</div>
+ <h2>חמישה דברים לקחת למחלקה</h2>
+ <ol class="obj">
+  <li>צהבת עם כאב: לחשוב על אבן. צהבת שקטה עם ירידה במשקל: לחשוב על גידול</li>
+  <li>אולטרסאונד ממקם את החסימה: כיס מרה מתוח וצינור משותף רחב = נמוכה. כיס מרה ריק = גבוהה</li>
+  <li>חום, צהבת, בלבול ולחץ דם נמוך: דלקת קשה של דרכי המרה. החייאה, אנטיביוטיקה וניקוז מהיר</li>
+  <li>בחשד לגידול: <bdi>CT</bdi> לפני כל <bdi>ERCP</bdi>. רקמה ב-<bdi>EUS</bdi> וסטנט מתכת באותה פעולה</li>
+  <li>צהבת חודשים אחרי כריתת כיס מרה: לחשוב על היצרות מפגיעה. מפה מלאה ותיקון במרכז מנוסה</li>
+ </ol>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 88 <bdi>Biliary System</bdi> (עמ׳ <bdi dir="ltr">1216–1230</bdi>, <bdi dir="ltr">1237–1239</bdi>, <bdi dir="ltr">1244–1247</bdi>) · פרק 93 <bdi>Pancreatic Cancer</bdi> (עמ׳ <bdi dir="ltr">1403–1409</bdi>)</div>
+ <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906, נחלת הכלל) · <bdi>BruceBlaus</bdi> (<bdi>CC BY-SA 4.0</bdi>) · הדמיה וצילומים מ-<bdi>Wikimedia Commons</bdi> לפי הרישיון בכל איור · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+</main>
+<div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
+<script>
+document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz').forEach(function(z){z.addEventListener('click',function(){w.querySelectorAll('.hz').forEach(function(x){x.classList.toggle('on',x===z)});w.querySelectorAll('.hzi').forEach(function(i){i.hidden=i.dataset.hzi!==z.dataset.hz;i.style.setProperty('--c',z.style.getPropertyValue('--c'))});var h=w.querySelector('.hint');if(h)h.hidden=true;});});});
+</script>
+<script>
+(function () {
+  var deck = document.getElementById('deck'), S = [].slice.call(deck.children), dots = document.getElementById('dots'), n = S.length;
+  S.forEach(function (_, k) { var i = document.createElement('i'); i.onclick = function () { go(k); }; dots.appendChild(i); });
+  function idx() { return Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }
+  function go(k) { k = Math.max(0, Math.min(n - 1, k)); S[k].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' }); }
+  function sync() { var k = idx(); [].forEach.call(dots.children, function (d, j) { d.className = j === k ? 'on' : ''; }); document.getElementById('count').textContent = (k + 1) + '/' + n; document.getElementById('prev').disabled = k === 0; document.getElementById('next').disabled = k === n - 1; }
+  deck.addEventListener('scroll', function () { clearTimeout(sync.t); sync.t = setTimeout(sync, 60); }, { passive: true });
+  document.getElementById('next').onclick = function () { go(idx() + 1); };
+  document.getElementById('prev').onclick = function () { go(idx() - 1); };
+  addEventListener('keydown', function (e) { if (e.key === 'ArrowLeft' || e.key === ' ') go(idx() + 1); if (e.key === 'ArrowRight') go(idx() - 1); });
+  sync();
+})();
+</script>
+</body>
+</html>

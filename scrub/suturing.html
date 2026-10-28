@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>סדנת תפירה · Scrub In</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../emblem.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Frank+Ruhl+Libre:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0C2A35;--navy2:#123845;--g:#00967D;--g2:#3DC08C;--g3:#0A6B5A;--lime:#B5D96B;--red:#A3402E;--amber:#C9893F;--blue:#2F6FA8;--bg:#EDF2F0;--soft:#F3F7F5;--ink:#16262C;--muted:#5C6F73;--line:#DCE6E2}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--navy);color:var(--ink);font-family:Heebo,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.deck{position:fixed;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.deck::-webkit-scrollbar{display:none}
+.s{flex:0 0 100%;height:100%;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;padding:18px 16px 84px;overflow-y:auto;position:relative}
+.s::after{content:'';position:absolute;inset:0;background:url(../ops/art/organs.webp) no-repeat 6% 40%/auto 115%;opacity:.05;filter:invert(1);pointer-events:none}
+.card{width:min(980px,100%);background:#fff;border-radius:22px;box-shadow:0 18px 50px rgba(0,0,0,.35);padding:30px 32px 22px;position:relative;overflow:hidden;z-index:1}
+.card::before{content:'';position:absolute;inset:0 0 auto 0;height:6px;background:linear-gradient(90deg,var(--g3),var(--g),var(--g2),var(--lime))}
+.kick{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--g);letter-spacing:.3px;margin-bottom:6px}
+.kick b{background:var(--navy);color:#fff;border-radius:999px;min-width:26px;height:26px;display:grid;place-items:center;font-size:13px;padding:0 8px}
+h1,h2{font-family:'Frank Ruhl Libre',serif;color:var(--navy);margin:0 0 10px;line-height:1.15}
+h1{font-size:clamp(34px,6.4vw,60px)}h2{font-size:clamp(25px,4.4vw,36px)}
+h3{margin:0 0 6px;font-size:17px;color:var(--navy)}
+.lead{font-size:clamp(15.5px,2.3vw,18.5px);color:var(--muted);margin:0 0 16px;line-height:1.5}
+ul.b{margin:0;padding:0;list-style:none;display:grid;gap:8px}ul.b li{position:relative;padding-inline-start:20px;font-size:16.5px;line-height:1.45}ul.b li::before{content:'';position:absolute;inset-inline-start:2px;top:.62em;width:8px;height:8px;border-radius:2px;background:var(--g);transform:rotate(45deg)}
+ul.b li b{color:var(--navy)}ul.b.sm li{font-size:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.grid.g3{grid-template-columns:repeat(3,1fr)}.grid.f{grid-template-columns:1.05fr .95fr;align-items:center}
+.box{background:var(--soft);border-radius:14px;padding:13px 15px;border-inline-start:4px solid var(--g);font-size:15.5px;line-height:1.45}
+.box.r{border-color:var(--red);background:#FBEDEA}.box.a{border-color:var(--amber);background:#FFF6EA}.box.n{border-color:var(--navy)}.box.b{border-color:var(--blue);background:#EEF4FB}
+.box b.t{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}
+.num{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:4px 0 14px}.num div{background:var(--soft);border-radius:14px;padding:12px 10px;text-align:center}
+.num b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(26px,4vw,38px);color:var(--g3);line-height:1.05}.num span{font-size:13px;color:var(--muted);line-height:1.3;display:block;margin-top:4px}
+figure{margin:0;background:#FBFCFB;border:1px solid var(--line);border-radius:16px;padding:10px;text-align:center}figure img{max-width:100%;max-height:46vh;display:block;margin:0 auto;mix-blend-mode:multiply}
+figcaption{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.35}
+.ill svg{width:100%;height:auto;max-height:50vh}
+.src{margin-top:16px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.src b{color:var(--g3)}
+.tag{display:inline-block;font-size:12px;font-weight:800;border-radius:999px;padding:2px 10px;background:#E3F4EC;color:var(--g3);margin-inline-end:4px}
+.tag.r{background:#F8E3DE;color:var(--red)}.tag.a{background:#FFF3DF;color:#8A5A14}.tag.b{background:#E8F0FA;color:var(--blue)}
+.flow{display:grid;gap:8px}.flow div{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;background:var(--soft);border-radius:12px;padding:9px 12px;font-size:15.5px}.flow div b{color:var(--navy)}
+.study{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#fff}.study .y{font-size:12px;font-weight:800;color:var(--g);letter-spacing:.3px}.study b{display:block;font-size:16px;color:var(--navy);margin:2px 0}.study p{margin:4px 0 0;font-size:14.5px;line-height:1.45}.study small{display:block;margin-top:6px;font-size:11.5px;color:var(--muted)}
+.cover{background:radial-gradient(120% 90% at 85% 0%,#164B54 0%,var(--navy) 58%)}
+.cover::after{opacity:.16;background-position:2% 50%}
+.cover .card{background:transparent;box-shadow:none;color:#fff}.cover .card::before{display:none}.cover h1{color:#fff}.cover .lead{color:#C9D6DA}.cover .kick{color:var(--g2)}
+.pill{display:inline-flex;gap:6px;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px;color:#fff;margin:4px}
+.logo{display:flex;align-items:center;gap:10px;margin-bottom:26px}.logo img{width:48px;height:48px;border-radius:50%;background:#fff}.logo b{color:#fff;font-weight:900}.logo small{display:block;color:#A9C9C0;font-size:12px}
+.obj{counter-reset:o;list-style:none;margin:0;padding:0;display:grid;gap:10px}.obj li{counter-increment:o;display:flex;gap:12px;align-items:flex-start;font-size:16.5px;line-height:1.45}.obj li::before{content:counter(o);flex:0 0 30px;height:30px;border-radius:50%;background:var(--g);color:#fff;font-weight:800;display:grid;place-items:center}
+.nav{position:fixed;inset:auto 0 0 0;display:flex;align-items:center;justify-content:center;gap:14px;padding:12px 16px calc(14px + env(safe-area-inset-bottom));background:linear-gradient(transparent,rgba(6,20,26,.85) 40%);z-index:5}
+.nav button{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;font-size:22px;cursor:pointer}.nav button:disabled{opacity:.3}
+.dots{display:flex;gap:5px;flex-wrap:wrap;max-width:60vw;justify-content:center}.dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer}.dots i.on{background:var(--g2);width:20px;border-radius:5px}
+.count{color:#C9D6D9;font-size:13px;font-weight:700;min-width:44px;text-align:center}
+bdi{unicode-bidi:isolate}
+.cmp{width:100%;border-collapse:separate;border-spacing:0;font-size:14px;border:1px solid var(--line);border-radius:14px;overflow:hidden}.cmp th{background:var(--navy);color:#fff;padding:9px 10px;font-size:16px;text-align:start}.cmp th small{display:block;font-weight:500;color:#A9D9C8;font-size:12px}.cmp td{padding:8px 10px;border-top:1px solid var(--line);vertical-align:top;line-height:1.4}.cmp td:first-child{background:var(--soft);font-weight:800;color:var(--navy);white-space:nowrap}.cmp tr:nth-child(odd) td:not(:first-child){background:#FBFCFB}
+figure.vid video{width:100%;max-height:34vh;border-radius:10px;background:#000;display:block}
+@media (max-width:760px){.cmp{font-size:12.5px}.cmp td,.cmp th{padding:6px}}
+
+.hotw{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;align-items:start}.hoti{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#FBFCFB}.hoti img{display:block;width:100%;mix-blend-mode:multiply}.hoti svg{position:absolute;inset:0;width:100%;height:100%}
+.hz{fill:var(--c);fill-opacity:.38;stroke:var(--c);stroke-width:2;cursor:pointer;transition:fill-opacity .2s}.hz:hover,.hz.on{fill-opacity:.62}.hzl{font:900 22px Heebo,sans-serif;fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;pointer-events:none;text-anchor:middle}
+.hotp .hint{background:var(--soft);border-radius:12px;padding:10px 12px;font-weight:700;color:var(--g3);margin:0}.hzi{background:#fff;border:1px solid var(--line);border-inline-start:5px solid var(--c,var(--g));border-radius:14px;padding:12px 14px;margin-top:8px;font-size:15.5px;line-height:1.45}.hzi>b{display:block;font-size:17px;color:var(--navy);margin-bottom:4px}.hzi p{margin:0}
+figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-size:15px}.obj.sm li::before{flex-basis:26px;height:26px;font-size:13px}.flow.sm div{grid-template-columns:130px 1fr;padding:7px 10px;font-size:14.5px}
+@media (max-width:760px){.hotw{grid-template-columns:1fr}}
+
+@media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
+@media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+/*BRAND*/
+.brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
+.brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
+.s{padding-top:58px}
+.cover .card{display:flex;flex-direction:column;gap:6px;max-width:980px}
+.cvhead{display:flex;align-items:center;gap:16px;margin-bottom:30px}.cvhead img.em{width:74px;height:74px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(61,192,140,.55)}
+.cvhead b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(24px,3.4vw,34px);color:#fff;line-height:1.1}.cvhead span{display:block;font-size:clamp(15px,2vw,19px);color:#A9D9C8;font-weight:700;margin-top:4px}
+.cover h1{font-size:clamp(38px,6.6vw,66px);margin:6px 0 8px}.cover .kick{font-size:14px;letter-spacing:.06em}
+.cvmeta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.cvlogos{display:flex;align-items:center;gap:18px;margin-top:34px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14)}.cvlogos img{height:44px;width:auto}.cvlogos small{margin-inline-start:auto;color:#8FB3AA;font-size:12.5px;font-weight:700;letter-spacing:.08em}
+.cover .brandbar{display:none}
+@media (max-width:760px){.brandbar{left:10px;gap:7px;padding:4px 9px 4px 4px}.brandbar img{height:20px}.brandbar img.em{width:22px;height:22px}.s{padding-top:48px}.cvhead img.em{width:56px;height:56px}.cvlogos img{height:34px}.cvlogos small{display:none}}
+/* numbered lists: a bold word inside an item stays inline */
+.obj li,.steps li{display:block;position:relative;padding-inline-start:42px;min-height:30px}.obj li::before,.steps li::before{position:absolute;inset-inline-start:0;top:0}.obj.sm li{padding-inline-start:36px}
+.grid.tight figure img{max-height:24vh}
+@media print{.brandbar{display:none}}
+/*/BRAND*/
+</style>
+</head>
+<body>
+<div class="brandbar" aria-hidden="true"><img class="em" src="brand/emblem.jpg" alt=""><i></i><img src="brand/logo_k.webp" alt=""><img src="brand/logo_c.webp" alt=""></div>
+<main class="deck" id="deck">
+
+<section class="s cover"><div class="card">
+ <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
+ <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 1</div>
+ <h1>סדנת תפירה</h1>
+ <p class="lead">איך פצע נסגר, באיזו שכבה תופרים, איזה חוט ואיזה תפר. ואיך מקבלים צלקת טובה</p>
+ <div class="cvmeta"><span class="pill">מבוסס על <bdi>Sabiston</bdi>, מהדורה 22, פרקים 19 ו-23</span></div>
+ <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>1</b>מטרות הסדנה</div>
+ <h2>בסוף הסדנה תדעו</h2>
+ <ol class="obj">
+  <li>להחליט אם לסגור פצע מיד, באיחור או להשאיר אותו פתוח</li>
+  <li>לזהות את שכבות העור ולדעת באיזו שכבה כל תפר אוחז</li>
+  <li>לבחור חוט ותפר מתאימים: בודד, רציף, מזרן אנכי ותוך-עורי</li>
+  <li>לתפור תפר בודד ולקשור קשר במכשיר, בטכניקה בטוחה</li>
+  <li>לצמצם מתח וצלקת ולטפל בפצע אחרי הסגירה</li>
+ </ol>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 19 (עמ׳ <bdi dir="ltr">31–32</bdi>) · פרק 23 (עמ׳ <bdi dir="ltr">93, 98–99, 106–109</bdi>) · פרק 80 (עמ׳ <bdi dir="ltr">1067</bdi>)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>2</b>לפני שתופרים</div>
+ <h2>לסגור עכשיו, אחר כך, או לא בכלל?</h2>
+ <div class="flow">
+  <div><b>סגירה ראשונית</b><span>ניתוח נקי ונקי-מזוהם: סוגרים בסוף הניתוח</span></div>
+  <div><b>סגירה ראשונית מאוחרת</b><span>אחרי ניתוח מזוהם, במטופלים נבחרים: משאירים פתוח וסוגרים אחרי <bdi dir="ltr">2–5</bdi> ימים</span></div>
+  <div><b>החלמה משנית</b><span>פצע מלוכלך מאוד: משאירים פתוח, עם החלפות חבישה (ריפוד), לעיתים בוואקום. הפצע נסגר מלמטה למעלה</span></div>
+ </div>
+ <div class="grid" style="margin-top:12px">
+  <div class="box n"><b class="t">מה קורה בפצע שנתפר</b>הקולגן מתחיל להופיע רק אחרי <bdi dir="ltr">3–5</bdi> ימים ("שלב ההשהיה"). החוזק עולה מהר בין שבוע ל-6 שבועות. אחרי כ-21 יום החוזק עולה בעיקר בזכות קישורי הקולגן. עד אז, התפר הוא שמחזיק</div>
+  <div class="box a"><b class="t">מה מעכב החלמה</b>זיהום, חוסר דם וחמצן, מתח, סוכרת, קרינה, גיל, תת-תזונה, חסר ויטמין <bdi>C</bdi> או <bdi>A</bdi>, אבץ, סטרואידים וכימותרפיה</div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">32</bdi> · פרק 23 עמ׳ <bdi dir="ltr">93, 98–99</bdi></span><span>סוגי סגירה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>3</b>שכבות העור · אינטראקטיבי</div>
+ <h2>באיזו שכבה התפר אוחז?</h2>
+ <div class="hotw"><div class="hoti"><img src="img/skin-blausen.jpg" alt="חתך תלת-ממדי של העור: אפידרמיס, דרמיס ורקמה תת-עורית"><svg viewBox="0 0 1100 911" preserveAspectRatio="none">
+   <polygon class="hz" data-hz="ep" points="196,247 485,236 696,219 696,262 490,314 196,348" style="--c:#C9893F"/><text class="hzl" x="420" y="290">1</text>
+   <polygon class="hz" data-hz="de" points="196,350 490,315 696,264 773,266 777,438 490,472 196,447" style="--c:#7A5BD6"/><text class="hzl" x="560" y="400">2</text>
+   <polygon class="hz" data-hz="hy" points="206,451 490,474 777,440 885,430 893,524 773,790 481,713 228,640" style="--c:#00967D"/><text class="hzl" x="560" y="620">3</text>
+  </svg></div>
+  <div class="hotp"><p class="hint">👆 לחצו על שכבה כדי לראות איזה תפר עובר בה</p>
+   <div class="hzi" data-hzi="ep" hidden><b>1 · אפידרמיס</b><p>השכבה החיצונית, המחסום נגד איבוד נוזלים וחיידקים. התאים שלה מתחילים לנדוד ולכסות את החתך כבר בשעות הראשונות. המטרה: שולי העור נוגעים זה בזה, מעט כלפי חוץ, בלי לחנוק. שם הקשר יושב על העור</p></div>
+   <div class="hzi" data-hzi="de" hidden><b>2 · דרמיס</b><p>השכבה שמחזיקה את התפר: כאן הקולגן. התפר התוך-עורי עובר כולו בדרמיס בחוט נספג. התוצאה אסתטית, בלי צורך להוציא תפרים. תפר מזרן אנכי אוחז בשני עומקים ומפזר מתח. לכן הוא מתאים לפצע במתח</p></div>
+   <div class="hzi" data-hzi="hy" hidden><b>3 · רקמה תת-עורית</b><p>שומן עם מעט כלי דם. לכן הוא פגיע לזיהום. מתחתיה הפאציה, השכבה החזקה שסוגרים בבטן. הפאציה מגיעה לכחצי מהחוזק המקורי בין היום ה-8 לחודש השני. לכן סוגרים אותה בחוט שנספג לאט</p></div>
+  </div></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">32</bdi> · פרק 23 עמ׳ <bdi dir="ltr">94–95</bdi> · פרק 25 עמ׳ <bdi dir="ltr">120</bdi> · פרק 80 עמ׳ <bdi dir="ltr">1067</bdi></span><span>איור: <bdi>Blausen.com staff (2014)</bdi>, <bdi>WikiJournal of Medicine</bdi>, <bdi>CC BY 3.0</bdi></span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>4</b>חוטים ומכשירים</div>
+ <h2>איזה חוט?</h2>
+ <div class="grid">
+  <div>
+   <div class="flow">
+    <div><b>נספג</b><span>מתפרק בגוף. בשכבה התוך-עורית: סגירה יפה בלי הוצאת תפרים</span></div>
+    <div><b>נספג לאט</b><span>לפאציה של הבטן: מחזיק עד שהפאציה חוזרת לחוזק. חוט שנספג מהר עלול "להיגמר" לפני כן</span></div>
+    <div><b>קבוע</b><span>לפאציה במטופל מתת-תזונה או חלש, או כשהמעקב מוקדם. חיסרון: תחושת גוף זר וגרנולומות</span></div>
+    <div><b>מצופה טריקלוזן</b><span>חוט נספג עם חומר נגד חיידקים. מופיע בחלק מההנחיות, אבל הראיות מעורבות</span></div>
+   </div>
+  </div>
+  <div style="display:grid;gap:10px;align-content:start">
+   <div class="box n"><b class="t">סגירת בטן בקו האמצע</b>"ביסים קטנים": 0.5 על 0.5 ס״מ, חוט באורך פי 4 מהחתך, חוט שנספג לאט. מקטין בקע בחתך</div>
+   <div class="box"><b class="t">בסדנה (נוהג מקובל)</b>מחזיק מחט, פינצטה עם שיניים קטנות ומספריים. לעור: מחט חותכת וחוט חד-סיבי דק. למעי ולרקמות רכות: מחט עגולה</div>
+   <div class="box a"><b class="t">דבק רקמות</b>לחתכים קטנים לבד, או מעל תפר תוך-עורי כשכבה אטומה למים. לא נמצא הבדל מתפרים בפתיחת פצע, בזיהום ובמראה</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">32</bdi> · פרק 80 עמ׳ <bdi dir="ltr">1067</bdi> · פרק 25 עמ׳ <bdi dir="ltr">122</bdi></span><span>המכשירים והמחטים לפי הנוהג המקובל</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>5</b>סוגי תפרים</div>
+ <h2>איזה תפר מתי?</h2>
+ <div class="grid f">
+  <div class="flow">
+   <div><b>תפר בודד</b><span>כל תפר עומד לבד. אם צריך, פותחים חלק מהפצע לניקוז או לריפוד בלי לפתוח את כולו. טוב לפצע בסיכון לזיהום</span></div>
+   <div><b>תפר רציף</b><span>חוט אחד לכל האורך, מהיר. רציף בכמה שכבות אוטם טוב יותר, למשל כשיש מיימת</span></div>
+   <div><b>מזרן אנכי</b><span>נכנס רחוק ועמוק, חוזר קרוב ושטחי. מפזר את המתח על שני עומקים ומקרב היטב את הדרמיס. לפצע במתח</span></div>
+   <div><b>תוך-עורי</b><span>רציף בתוך הדרמיס, בחוט נספג. התוצאה האסתטית הטובה ביותר, בלי הוצאת תפרים</span></div>
+   <div><b>שדכן לעור (סיכות)</b><span>מהיר לחתכים ארוכים. מוציאים במחלקה או במרפאה (נוהג מקובל)</span></div>
+  </div>
+  <figure><img src="img/stitches-wellcome.jpg" alt="ציור עפרון צבעוני של תפרים לסגירת פצעים"><figcaption>תפרים לסגירת פצעים: בודדים (למעלה) ורציפים (למטה), ציור עפרון צבעוני · <bdi>Wellcome Collection V0016824</bdi>, <bdi>CC BY 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">32</bdi></span><span>סוגי תפרים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>6</b>שלב אחר שלב · וידאו</div>
+ <h2>תפר בודד וקשר במכשיר</h2>
+ <div class="grid">
+  <div>
+   <ol class="obj">
+    <li>אוחזים את המחט במחזיק בשליש האחורי שלה, בניצב למחזיק</li>
+    <li>נכנסים לעור בזווית ישרה, כ-5 מ״מ מהשוליים. מסובבים את פרק היד לפי קשת המחט</li>
+    <li>יוצאים בצד השני באותו מרחק ובאותו עומק. מחזיקים את העור בעדינות בפינצטה, לא מועכים</li>
+    <li>קשר במכשיר: לולאה כפולה ראשונה. אחריה לולאות בודדות בכיוונים מתחלפים</li>
+    <li>מקרבים ולא חונקים: הרקמה מתנפחת אחרי הניתוח. הקשר בצד אחד של החתך</li>
+    <li>חותכים את הקצוות ומשאירים כמה מילימטרים</li>
+   </ol>
+  </div>
+  <div style="display:grid;gap:10px;align-content:start">
+   <figure><video controls preload="metadata" playsinline style="width:100%;max-height:40vh;border-radius:12px;background:#000"><source src="img/suture-simple-interrupted.webm" type="video/webm">הדפדפן לא מציג את הסרטון</video><figcaption>הדגמה של תפר בודד (2 דקות) · <bdi>Arif Alper Çevik</bdi>, <bdi>CC BY 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+   <figure><img src="img/knots-wellcome.jpg" alt="ציור של ידיים קושרות קשר כירורגי" style="max-height:24vh"><figcaption>קשירה ביד, ציור עפרון צבעוני · <bdi>Wellcome Collection V0016822</bdi>, <bdi>CC BY 4.0</bdi></figcaption></figure>
+  </div>
+ </div>
+ <div class="src"><span>השלבים לפי הנוהג המקובל בהוראת תפירה בסיסית · <b>Sabiston 22</b> · פרק 23 עמ׳ <bdi dir="ltr">98–99</bdi> (מתח ונפיחות)</span><span>טכניקה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>7</b>מתח וצלקת</div>
+ <h2>צלקת טובה מתחילה בתכנון</h2>
+ <div class="grid">
+  <div>
+   <ul class="b">
+    <li><b>מתח</b> מפעיל את הפיברובלסטים ומוביל לעודף קולגן. פצע בניצב לקווי <bdi>Langer</bdi> נמצא במתח גדול יותר</li>
+    <li>חתך <b>בניצב לסיבי השריר</b> מתחתיו נוטה להיות שטוח וצר. חתך מקביל להם נפתח כשהשריר מתכווץ</li>
+    <li>אזורים בסיכון לצלקת רעה: הכתף (הדלתואיד) והסטרנום</li>
+    <li><b>אחרי הסגירה:</b> הדבקת סטריפים על הצלקת 3 חודשים, לחות וסיליקון, הגנה מהשמש (מקדם 50 ומעלה) שנה</li>
+   </ul>
+  </div>
+  <div style="display:grid;gap:10px;align-content:start">
+   <div class="box a"><b class="t">צלקת היפרטרופית</b>מורמת אבל בתוך גבולות הפצע. לרוב נסוגה לבד. אפשר למנוע: פחות מתח ופחות דלקת</div>
+   <div class="box r"><b class="t">קלואיד</b>גדל מעבר לגבולות הפצע ולא נסוג. נטייה גנטית, <bdi dir="ltr">15–20%</bdi> בעור כהה. כריתה לבד חוזרת ב-<bdi dir="ltr">50–100%</bdi></div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 23 עמ׳ <bdi dir="ltr">98–100</bdi></span><span>צלקת</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>8</b>אחרי הסגירה</div>
+ <h2>חבישה ומעקב</h2>
+ <div class="grid">
+  <div>
+   <ul class="b">
+    <li>פצע מחלים הכי טוב <b>לח, נקי וחם</b>. מתחת לחבישה סוגרת שמשמרת לחות, האפיתל מכסה פי 2 מהר יותר מפצע שמתייבש</li>
+    <li>לחתך ניתוחי נקי: חבישה רגילה, משחה או חבישה שקופה סוגרת</li>
+    <li>חבישת ואקום מעל חתך סגור: הספר ממליץ לשקול. מחקר חדש בניתוחי חירום לא מצא תועלת (ראו "מה חדש")</li>
+    <li>זיהום בחתך מופיע בממוצע כ-10 ימים אחרי לפרוטומיה. יותר מ-<bdi dir="ltr">60%</bdi> מתגלים אחרי השחרור. לכן מסבירים למטופל על מה לשים לב</li>
+   </ul>
+  </div>
+  <div style="display:grid;gap:10px;align-content:start">
+   <div class="box r"><b class="t">סימני זיהום</b>אודם, חום מקומי, נפיחות, הפרשה, כאב וחום. מסירים את כל החבישה ובודקים. זיהום שטחי: פותחים כמה תפרים ומנקזים</div>
+   <div class="box b"><b class="t">במחלקה השבוע</b>הסירו תפרים או סיכות לפחות פעם אחת, תחת השגחה. בדקו חתך ביום השני אחרי ניתוח ותארו אותו בכתב: שוליים, הפרשה, אודם</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 23 עמ׳ <bdi dir="ltr">106, 109</bdi> · פרק 25 עמ׳ <bdi dir="ltr">122–124</bdi></span><span>אחרי הסגירה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>9</b>בטיחות וטעויות</div>
+ <h2>מה לא לעשות</h2>
+ <div class="grid">
+  <div class="box r"><b class="t">טעויות נפוצות</b>
+   <ul class="b sm"><li>קשר חזק מדי: הרקמה נחנקת ומתנפחת</li><li>ביסים לא שווים: מדרגה בעור</li><li>שוליים שפונים פנימה</li><li>תפרים צפופים מדי או רחוקים מדי</li><li>סגירה במתח במקום לשחרר או לבחור תפר מתאים</li><li>תפירת פצע מזוהם מאוד</li></ul></div>
+  <div class="box n"><b class="t">בטיחות (נוהג מקובל)</b>
+   <ul class="b sm"><li>לא נוגעים במחט באצבעות. מעבירים אותה במחזיק</li><li>מחט על השולחן תמיד בתוך המחזיק או במקום ייעודי</li><li>מודיעים כשמעבירים חד: "חד"</li><li>מחטים וסכינים לפח חדים</li><li>דקירה: מדווחים מיד לפי נוהל בית החולים</li><li>בחדר ניתוח: כל המחטים נספרות לפני הסגירה</li></ul></div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 23 עמ׳ <bdi dir="ltr">98–99</bdi> · פרק 9 עמ׳ <bdi dir="ltr">e106, e108</bdi></span><span>כללי הבטיחות לפי הנוהג המקובל</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>10</b>מה חדש בתחום · <bdi dir="ltr">2021–2026</bdi></div>
+ <h2>מחקרים שכדאי להכיר</h2>
+ <div class="grid">
+  <div class="study"><div class="y"><bdi>Ann Surg Open</bdi> 2025 · מטא-אנליזה</div><b>איך סוגרים לפרוטומיה?</b>
+   <p>41 מחקרים אקראיים ו-9 מחקרי עוקבה. ביסים קטנים בחוט שנספג לאט הורידו בקע בחתך (יחס סיכויים 0.44) וזיהום (0.70) לעומת ביסים גדולים. אין הבדל בין תפר רציף לבודד</p>
+   <small>van den Berg R et al. Ann Surg Open 2025;6:e548</small></div>
+  <div class="study"><div class="y"><bdi>BJS</bdi> 2022 · מחקר אקראי</div><b><bdi>HART</bdi>: סגירת <bdi>Hughes</bdi> מול סגירה רגילה</b>
+   <p>802 מטופלים אחרי ניתוח לסרטן המעי הגס. בקע בחתך אחרי שנה: <bdi dir="ltr">14.8%</bdi> לעומת <bdi dir="ltr">17.1%</bdi>, בלי הבדל מובהק. יותר זיהום פצע בשיטה החדשה (<bdi dir="ltr">13.2%</bdi> לעומת <bdi dir="ltr">7.7%</bdi>)</p>
+   <small>HART Collaborative. Br J Surg 2022;109:943-50</small></div>
+  <div class="study"><div class="y"><bdi>JAMA</bdi> 2025 · מחקר אקראי</div><b><bdi>SUNRRISE</bdi>: ואקום על חתך סגור בלפרוטומיה דחופה</b>
+   <p>840 מטופלים בבריטניה ובאוסטרליה. זיהום פצע: <bdi dir="ltr">28.4%</bdi> עם ואקום ו-<bdi dir="ltr">27.4%</bdi> עם חבישה רגילה. בלי תועלת</p>
+   <small>Atherton K et al. JAMA 2025;333:853-63</small></div>
+ </div>
+ <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>11</b>לסיכום</div>
+ <h2>חמישה דברים לקחת למחלקה</h2>
+ <ol class="obj">
+  <li>פצע נקי סוגרים. פצע מלוכלך מאוד משאירים פתוח</li>
+  <li>הדרמיס מחזיק את התפר. מקרבים ולא חונקים</li>
+  <li>בודד כשחושבים שאולי נצטרך לפתוח. מזרן אנכי למתח. תוך-עורי ליופי</li>
+  <li>הבטן: ביסים קטנים וחוט שנספג לאט</li>
+  <li>פחות מתח, הגנה מהשמש ומעקב: צלקת טובה יותר וזיהום שמתגלה בזמן</li>
+ </ol>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 19 <bdi>Wound Closure</bdi> (עמ׳ <bdi dir="ltr">32</bdi>) · פרק 23 <bdi>Wound Healing</bdi> (עמ׳ <bdi dir="ltr">88–109</bdi>)</div>
+ <div class="src"><span>איורים: <bdi>Blausen.com staff</bdi> (<bdi>CC BY 3.0</bdi>) · <bdi>Wellcome Collection</bdi> (<bdi>CC BY 4.0</bdi>) · וידאו: <bdi>Arif Alper Çevik</bdi> (<bdi>CC BY 3.0</bdi>) · <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+</main>
+<div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
+<script>
+document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz').forEach(function(z){z.addEventListener('click',function(){w.querySelectorAll('.hz').forEach(function(x){x.classList.toggle('on',x===z)});w.querySelectorAll('.hzi').forEach(function(i){i.hidden=i.dataset.hzi!==z.dataset.hz;i.style.setProperty('--c',z.style.getPropertyValue('--c'))});var h=w.querySelector('.hint');if(h)h.hidden=true;});});});
+</script>
+<script>
+(function () {
+  var deck = document.getElementById('deck'), S = [].slice.call(deck.children), dots = document.getElementById('dots'), n = S.length;
+  S.forEach(function (_, k) { var i = document.createElement('i'); i.onclick = function () { go(k); }; dots.appendChild(i); });
+  function idx() { return Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }
+  function go(k) { k = Math.max(0, Math.min(n - 1, k)); S[k].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' }); }
+  function sync() { var k = idx(); [].forEach.call(dots.children, function (d, j) { d.className = j === k ? 'on' : ''; }); document.getElementById('count').textContent = (k + 1) + '/' + n; document.getElementById('prev').disabled = k === 0; document.getElementById('next').disabled = k === n - 1; }
+  deck.addEventListener('scroll', function () { clearTimeout(sync.t); sync.t = setTimeout(sync, 60); }, { passive: true });
+  document.getElementById('next').onclick = function () { go(idx() + 1); };
+  document.getElementById('prev').onclick = function () { go(idx() - 1); };
+  addEventListener('keydown', function (e) { if (e.key === 'ArrowLeft' || e.key === ' ') go(idx() + 1); if (e.key === 'ArrowRight') go(idx() - 1); });
+  sync();
+})();
+</script>
+</body>
+</html>

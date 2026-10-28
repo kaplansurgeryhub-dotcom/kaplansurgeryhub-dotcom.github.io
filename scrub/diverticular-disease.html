@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>מחלות סעיפים של המעי הגס · Scrub In</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../emblem.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Frank+Ruhl+Libre:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0C2A35;--navy2:#123845;--g:#00967D;--g2:#3DC08C;--g3:#0A6B5A;--lime:#B5D96B;--red:#A3402E;--amber:#C9893F;--blue:#2F6FA8;--bg:#EDF2F0;--soft:#F3F7F5;--ink:#16262C;--muted:#5C6F73;--line:#DCE6E2}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--navy);color:var(--ink);font-family:Heebo,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.deck{position:fixed;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.deck::-webkit-scrollbar{display:none}
+.s{flex:0 0 100%;height:100%;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;padding:18px 16px 84px;overflow-y:auto;position:relative}
+.s::after{content:'';position:absolute;inset:0;background:url(../ops/art/organs.webp) no-repeat 6% 40%/auto 115%;opacity:.05;filter:invert(1);pointer-events:none}
+.card{width:min(980px,100%);background:#fff;border-radius:22px;box-shadow:0 18px 50px rgba(0,0,0,.35);padding:30px 32px 22px;position:relative;overflow:hidden;z-index:1}
+.card::before{content:'';position:absolute;inset:0 0 auto 0;height:6px;background:linear-gradient(90deg,var(--g3),var(--g),var(--g2),var(--lime))}
+.kick{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--g);letter-spacing:.3px;margin-bottom:6px}
+.kick b{background:var(--navy);color:#fff;border-radius:999px;min-width:26px;height:26px;display:grid;place-items:center;font-size:13px;padding:0 8px}
+h1,h2{font-family:'Frank Ruhl Libre',serif;color:var(--navy);margin:0 0 10px;line-height:1.15}
+h1{font-size:clamp(34px,6.4vw,60px)}h2{font-size:clamp(25px,4.4vw,36px)}
+h3{margin:0 0 6px;font-size:17px;color:var(--navy)}
+.lead{font-size:clamp(15.5px,2.3vw,18.5px);color:var(--muted);margin:0 0 16px;line-height:1.5}
+ul.b{margin:0;padding:0;list-style:none;display:grid;gap:8px}ul.b li{position:relative;padding-inline-start:20px;font-size:16.5px;line-height:1.45}ul.b li::before{content:'';position:absolute;inset-inline-start:2px;top:.62em;width:8px;height:8px;border-radius:2px;background:var(--g);transform:rotate(45deg)}
+ul.b li b{color:var(--navy)}ul.b.sm li{font-size:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.grid.g3{grid-template-columns:repeat(3,1fr)}.grid.f{grid-template-columns:1.05fr .95fr;align-items:center}
+.box{background:var(--soft);border-radius:14px;padding:13px 15px;border-inline-start:4px solid var(--g);font-size:15.5px;line-height:1.45}
+.box.r{border-color:var(--red);background:#FBEDEA}.box.a{border-color:var(--amber);background:#FFF6EA}.box.n{border-color:var(--navy)}.box.b{border-color:var(--blue);background:#EEF4FB}
+.box b.t{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}
+.num{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:4px 0 14px}.num div{background:var(--soft);border-radius:14px;padding:12px 10px;text-align:center}
+.num b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(26px,4vw,38px);color:var(--g3);line-height:1.05}.num span{font-size:13px;color:var(--muted);line-height:1.3;display:block;margin-top:4px}
+figure{margin:0;background:#FBFCFB;border:1px solid var(--line);border-radius:16px;padding:10px;text-align:center}figure img{max-width:100%;max-height:46vh;display:block;margin:0 auto;mix-blend-mode:multiply}
+figcaption{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.35}
+.ill svg{width:100%;height:auto;max-height:50vh}
+.src{margin-top:16px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.src b{color:var(--g3)}
+.tag{display:inline-block;font-size:12px;font-weight:800;border-radius:999px;padding:2px 10px;background:#E3F4EC;color:var(--g3);margin-inline-end:4px}
+.tag.r{background:#F8E3DE;color:var(--red)}.tag.a{background:#FFF3DF;color:#8A5A14}.tag.b{background:#E8F0FA;color:var(--blue)}
+.flow{display:grid;gap:8px}.flow div{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;background:var(--soft);border-radius:12px;padding:9px 12px;font-size:15.5px}.flow div b{color:var(--navy)}
+.study{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#fff}.study .y{font-size:12px;font-weight:800;color:var(--g);letter-spacing:.3px}.study b{display:block;font-size:16px;color:var(--navy);margin:2px 0}.study p{margin:4px 0 0;font-size:14.5px;line-height:1.45}.study small{display:block;margin-top:6px;font-size:11.5px;color:var(--muted)}
+.cover{background:radial-gradient(120% 90% at 85% 0%,#164B54 0%,var(--navy) 58%)}
+.cover::after{opacity:.16;background-position:2% 50%}
+.cover .card{background:transparent;box-shadow:none;color:#fff}.cover .card::before{display:none}.cover h1{color:#fff}.cover .lead{color:#C9D6DA}.cover .kick{color:var(--g2)}
+.pill{display:inline-flex;gap:6px;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px;color:#fff;margin:4px}
+.logo{display:flex;align-items:center;gap:10px;margin-bottom:26px}.logo img{width:48px;height:48px;border-radius:50%;background:#fff}.logo b{color:#fff;font-weight:900}.logo small{display:block;color:#A9C9C0;font-size:12px}
+.obj{counter-reset:o;list-style:none;margin:0;padding:0;display:grid;gap:10px}.obj li{counter-increment:o;display:flex;gap:12px;align-items:flex-start;font-size:16.5px;line-height:1.45}.obj li::before{content:counter(o);flex:0 0 30px;height:30px;border-radius:50%;background:var(--g);color:#fff;font-weight:800;display:grid;place-items:center}
+.nav{position:fixed;inset:auto 0 0 0;display:flex;align-items:center;justify-content:center;gap:14px;padding:12px 16px calc(14px + env(safe-area-inset-bottom));background:linear-gradient(transparent,rgba(6,20,26,.85) 40%);z-index:5}
+.nav button{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;font-size:22px;cursor:pointer}.nav button:disabled{opacity:.3}
+.dots{display:flex;gap:5px;flex-wrap:wrap;max-width:60vw;justify-content:center}.dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer}.dots i.on{background:var(--g2);width:20px;border-radius:5px}
+.count{color:#C9D6D9;font-size:13px;font-weight:700;min-width:44px;text-align:center}
+bdi{unicode-bidi:isolate}
+.cmp{width:100%;border-collapse:separate;border-spacing:0;font-size:14px;border:1px solid var(--line);border-radius:14px;overflow:hidden}.cmp th{background:var(--navy);color:#fff;padding:9px 10px;font-size:16px;text-align:start}.cmp th small{display:block;font-weight:500;color:#A9D9C8;font-size:12px}.cmp td{padding:8px 10px;border-top:1px solid var(--line);vertical-align:top;line-height:1.4}.cmp td:first-child{background:var(--soft);font-weight:800;color:var(--navy);white-space:nowrap}.cmp tr:nth-child(odd) td:not(:first-child){background:#FBFCFB}
+figure.vid video{width:100%;max-height:34vh;border-radius:10px;background:#000;display:block}
+@media (max-width:760px){.cmp{font-size:12.5px}.cmp td,.cmp th{padding:6px}}
+
+.hotw{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;align-items:start}.hoti{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#FBFCFB}.hoti img{display:block;width:100%;mix-blend-mode:multiply}.hoti svg{position:absolute;inset:0;width:100%;height:100%}
+.hz{fill:var(--c);fill-opacity:.38;stroke:var(--c);stroke-width:2;cursor:pointer;transition:fill-opacity .2s}.hz:hover,.hz.on{fill-opacity:.62}.hzl{font:900 22px Heebo,sans-serif;fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;pointer-events:none;text-anchor:middle}
+.hotp .hint{background:var(--soft);border-radius:12px;padding:10px 12px;font-weight:700;color:var(--g3);margin:0}.hzi{background:#fff;border:1px solid var(--line);border-inline-start:5px solid var(--c,var(--g));border-radius:14px;padding:12px 14px;margin-top:8px;font-size:15.5px;line-height:1.45}.hzi>b{display:block;font-size:17px;color:var(--navy);margin-bottom:4px}.hzi p{margin:0}
+figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-size:15px}.obj.sm li::before{flex-basis:26px;height:26px;font-size:13px}.flow.sm div{grid-template-columns:130px 1fr;padding:7px 10px;font-size:14.5px}
+@media (max-width:760px){.hotw{grid-template-columns:1fr}}
+
+@media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
+@media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+.hotw{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;align-items:start}.hoti{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#FBFCFB}.hoti img{display:block;width:100%;mix-blend-mode:multiply}.hoti svg{position:absolute;inset:0;width:100%;height:100%}
+.hz{fill:var(--c);fill-opacity:.38;stroke:var(--c);stroke-width:2;cursor:pointer;transition:fill-opacity .2s}.hz:hover,.hz.on{fill-opacity:.62}.hzl{font:900 22px Heebo,sans-serif;fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;pointer-events:none;text-anchor:middle}
+.hotp .hint{background:var(--soft);border-radius:12px;padding:10px 12px;font-weight:700;color:var(--g3)}.hzi{border-inline-start:5px solid var(--c,var(--g));background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-top:8px;font-size:15.5px;line-height:1.45}.hzi b{display:block;font-size:17px;color:var(--navy);margin-bottom:4px}
+@media (max-width:760px){.hotw{grid-template-columns:1fr}}
+/*BRAND*/
+.brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
+.brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
+.s{padding-top:58px}
+.cover .card{display:flex;flex-direction:column;gap:6px;max-width:980px}
+.cvhead{display:flex;align-items:center;gap:16px;margin-bottom:30px}.cvhead img.em{width:74px;height:74px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(61,192,140,.55)}
+.cvhead b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(24px,3.4vw,34px);color:#fff;line-height:1.1}.cvhead span{display:block;font-size:clamp(15px,2vw,19px);color:#A9D9C8;font-weight:700;margin-top:4px}
+.cover h1{font-size:clamp(38px,6.6vw,66px);margin:6px 0 8px}.cover .kick{font-size:14px;letter-spacing:.06em}
+.cvmeta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.cvlogos{display:flex;align-items:center;gap:18px;margin-top:34px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14)}.cvlogos img{height:44px;width:auto}.cvlogos small{margin-inline-start:auto;color:#8FB3AA;font-size:12.5px;font-weight:700;letter-spacing:.08em}
+.cover .brandbar{display:none}
+@media (max-width:760px){.brandbar{left:10px;gap:7px;padding:4px 9px 4px 4px}.brandbar img{height:20px}.brandbar img.em{width:22px;height:22px}.s{padding-top:48px}.cvhead img.em{width:56px;height:56px}.cvlogos img{height:34px}.cvlogos small{display:none}}
+/* numbered lists: a bold word inside an item stays inline */
+.obj li,.steps li{display:block;position:relative;padding-inline-start:42px;min-height:30px}.obj li::before,.steps li::before{position:absolute;inset-inline-start:0;top:0}.obj.sm li{padding-inline-start:36px}
+.grid.tight figure img{max-height:24vh}
+@media print{.brandbar{display:none}}
+/*/BRAND*/
+</style>
+</head>
+<body>
+<div class="brandbar" aria-hidden="true"><img class="em" src="brand/emblem.jpg" alt=""><i></i><img src="brand/logo_k.webp" alt=""><img src="brand/logo_c.webp" alt=""></div>
+<main class="deck" id="deck">
+<section class="s cover"><div class="card">
+ <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
+ <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 3</div>
+ <h1>מחלות סעיפים של המעי הגס</h1>
+ <p class="lead">מסעיפים שקטים ועד נקב ודימום: מיון לפי חומרה, טיפול לא ניתוחי, מתי מנתחים ואיך</p>
+ <div class="cvmeta"><span class="pill">מבוסס על <bdi>Sabiston</bdi>, מהדורה 22, פרקים 95, 98 ו-85</span></div>
+ <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>1</b>מטרות הלמידה</div>
+ <h2>בסוף המפגש תדעו</h2>
+ <ol class="obj">
+  <li>להבדיל בין סעיפים (<bdi>diverticulosis</bdi>), דלקת סעיפים ודימום מסעיף ולהסביר איך נוצרים סעיפים</li>
+  <li>לאבחן דלקת סעיפים ולמיין אותה לפי <bdi>Hinchey</bdi> המתוקן</li>
+  <li>לטפל בדלקת לא מסובכת: בבית, אנטיביוטיקה רק כשצריך ומתי קולונוסקופיה</li>
+  <li>להכיר את הסיבוכים: מורסה, פיסטולה, היצרות ונקב ואת אפשרויות הניתוח בכל אחד</li>
+  <li>להחליט עם המטופל על ניתוח מתוכנן לפי איכות החיים ולא לפי מספר ההתקפים</li>
+  <li>לגשת לדימום מסיבי מסעיף: קולונוסקופיה, <bdi>CTA</bdi>, אמבוליזציה ומתי ניתוח</li>
+ </ol>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 95 (עמ׳ <bdi dir="ltr">1449–1454</bdi>) · פרק 98 (עמ׳ <bdi dir="ltr">1549–1551</bdi>) · פרק 85 (עמ׳ <bdi dir="ltr">1164</bdi>)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>2</b>מושגים</div>
+ <h2>מה זה סעיף ומה זו "מחלת סעיפים"</h2>
+ <div class="grid">
+  <ul class="b">
+   <li><b>סעיף:</b> כיס קטן שבולט מדופן המעי</li>
+   <li><b>סעיף אמיתי:</b> כל שכבות הדופן. נדיר ובדרך כלל מולד</li>
+   <li><b>סעיף "כוזב" (פסאודו-סעיף):</b> רק רירית ושריר הרירית שבולטים החוצה. כמעט כל הסעיפים במעי הגס הם כאלה</li>
+   <li><b>מחלת סעיפים:</b> כל הקשת של מה שסעיפים עושים: דלקת, סיבוכים ודימום</li>
+  </ul>
+  <div style="display:grid;gap:10px">
+   <div class="box"><b class="t">סעיפים (<bdi>diverticulosis</bdi>)</b>יש סעיפים, אין תסמינים. ממצא שכיח בקולונוסקופיה וב-CT</div>
+   <div class="box a"><b class="t">דלקת סעיפים (<bdi>diverticulitis</bdi>)</b>דלקת ונקב קטן של סעיף. לא מסובכת או מסובכת</div>
+   <div class="box r"><b class="t">דימום מסעיף</b>הסיבה השכיחה ביותר לדימום מסיבי ממערכת העיכול התחתונה</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1449–1450</bdi></span><span>מושגים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>3</b>במספרים</div>
+ <h2>שכיח מאוד ובדרך כלל שקט</h2>
+ <div class="num">
+  <div><b dir="ltr">~40%</b><span>יש סעיפים בגילאי <bdi dir="ltr">50–60</bdi></span></div>
+  <div><b dir="ltr">60%+</b><span>יש סעיפים מעל גיל 80</span></div>
+  <div><b dir="ltr">&lt;5%</b><span>מבעלי הסעיפים יפתחו דלקת</span></div>
+  <div><b dir="ltr">10–35%</b><span>יחוו התקף נוסף אחרי התקף ראשון לא מסובך</span></div>
+ </div>
+ <ul class="b">
+  <li><b>מזיק:</b> תזונה מערבית (בשר אדום, שומן, דגנים מעובדים), השמנה מרכזית, עישון</li>
+  <li><b>מגן:</b> סיבים, פירות, ירקות ודגנים מלאים, פעילות גופנית כמו ריצה</li>
+  <li><b>לא מזיק:</b> אגוזים, גרעינים ופופקורן. אין צורך לאסור</li>
+  <li>מחקר <bdi>EPIC</bdi>: בצמחונים סיכון נמוך ב-31% לאשפוז או מוות מהמחלה ובצריכה הגבוהה של סיבים נמוך ב-41%</li>
+ </ul>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1450–1451</bdi></span><span>אפידמיולוגיה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>4</b>אנטומיה · שקף אינטראקטיבי</div>
+ <h2>איפה נוצרים סעיפים ולמה זה חשוב בניתוח</h2>
+ <div class="hotw"><div class="hoti"><img src="img/Gray1076.png" alt="הסיגמה, הקולון היורד והרקטום, מבט מלפנים"><svg viewBox="0 0 600 503" preserveAspectRatio="none">
+   <polygon class="hz" data-hz="d" points="335,72 419,24 503,48 491,156 419,216 347,180" style="--c:#C9893F"/>
+   <polygon class="hz" data-hz="s" points="204,120 287,84 371,132 383,251 311,299 228,287 198,216" style="--c:#2F6FA8"/>
+   <polygon class="hz" data-hz="r" points="243,325 350,325 325,440 290,490 262,450" style="--c:#A3402E"/>
+   <text class="hzl" x="420" y="130">1</text><text class="hzl" x="290" y="200">2</text><text class="hzl" x="295" y="400">3</text>
+  </svg></div>
+  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
+   <div class="hzi" data-hzi="d" hidden><b>1 · הקולון היורד</b><p>יחד עם הסיגמה, המקום הטיפוסי לסעיפים. לא צריך לכרות את כל הסעיפים: השוליים הקרובים נקבעים במעי רך וגמיש</p></div>
+   <div class="hzi" data-hzi="s" hidden><b>2 · הסיגמה</b><p>האתר השכיח. שריר מעובה, חלל צר ולחץ גבוה. הסעיפים יוצאים בצד המזנטרי, במקום שבו כלי הדם חוצים את השריר. לכן רוב הנקבים נתחמים במזנטריום</p></div>
+   <div class="hzi" data-hzi="r" hidden><b>3 · הרקטום</b><p>שכבת שריר נוספת ולכן כמעט אין בו סעיפים. <b>ההשקה הרחוקה תמיד לרקטום העליון</b>: שארית סיגמה מעלה את הסיכון לחזרה</p></div>
+  </div></div>
+ <figure style="margin-top:8px;border:0;padding:0"><figcaption>הקולון היורד, הסיגמה והרקטום, מבט מלפנים · <bdi>Gray's Anatomy</bdi> 1918, איור 1076 (נחלת הכלל)</figcaption></figure>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1449–1450, 1452</bdi></span><span>אנטומיה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>5</b>פתופיזיולוגיה</div>
+ <h2>מסעיף שקט לדלקת</h2>
+ <div class="grid">
+  <div class="flow">
+   <div><b>שריר מעובה</b><span>חלל צר ותנועתיות לא מתואמת: אזורים של לחץ גבוה</span></div>
+   <div><b>נקודות חולשה</b><span>הרירית בולטת במקום שבו כלי הדם (<bdi>vasa recta</bdi>) חוצים את השריר, בצד המזנטרי</span></div>
+   <div><b>פתח הסעיף נחסם</b><span>קיפאון, שגשוג חיידקים, לחץ בתוך הסעיף, איסכמיה</span></div>
+   <div><b>נקב זעיר</b><span>זיהום ודלקת מקומית סביב המעי</span></div>
+  </div>
+  <div style="display:grid;gap:10px">
+   <div class="box"><b class="t">המזנטריום מגן</b>רוב הנקבים בצד המזנטרי והמזנטריום תוחם אותם. לכן רוב המקרים ממוקדים: פלגמון או מורסה ולא פריטוניטיס</div>
+   <div class="box r"><b class="t">כשהגבול נפרץ</b>הזיהום מתפשט לחלל הבטן: פריטוניטיס מוגלתית או צואתית ואלח דם</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1449–1450</bdi></span><span>פתופיזיולוגיה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>6</b>קליניקה ובדיקה</div>
+ <h2>"אפנדיציט של צד שמאל"</h2>
+ <div class="grid f">
+  <div>
+   <ul class="b">
+    <li><b>כאב בבטן שמאלית תחתונה</b>, שם נמצאת הסיגמה</li>
+    <li>חום, שינוי ביציאות, חוסר תיאבון. דחיפות במתן שתן כשהשלפוחית מגורה</li>
+    <li><b>בבדיקה:</b> רגישות ממוקדת, לעיתים תפיחות קלה. פלגמון גדול: <b>גוש רגיש</b> במישוש</li>
+    <li><b>מעבדה:</b> לויקוציטוזיס ומדדי דלקת מוגברים</li>
+   </ul>
+   <div class="box r" style="margin-top:12px"><b class="t">דימום רקטלי? לחשוב שוב</b>נדיר בדלקת סעיפים חריפה. מכוון לאבחנה אחרת: קוליטיס איסכמית או מחלת מעי דלקתית</div>
+   <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>בדקו מטופל עם דלקת סעיפים: מקום הרגישות, גוש, סימני פריטוניטיס. השוו לממצאי ה-CT וקבעו לבד את דרגת <bdi>Hinchey</bdi> לפני שאתם שואלים את המתמחה</div>
+  </div>
+  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש בטן בשתי ידיים"><figcaption>מישוש הבטן בשתי ידיים, מטופל שוכב והרופא לצידו (כאן מישוש הכבד) · <bdi>Musser</bdi>, 1904, איור 192 (נחלת הכלל)</figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1450</bdi></span><span>קליניקה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>7</b>הדמיה</div>
+ <h2>CT: לאשר, לשלול ולמיין</h2>
+ <div class="grid f">
+  <div>
+   <ul class="b">
+    <li>צילום בטן בעמידה ובשכיבה: חסימה או אוויר חופשי, אבל לא ספציפי</li>
+    <li>אולטרסאונד, <bdi>MRI</bdi> וחוקן ניגוד שימשו, אבל <b>CT הוא הכלי העיקרי</b>: מאשר, שולל אבחנות אחרות וקובע חומרה</li>
+    <li><b>סימנים ב-CT:</b> סעיפים, עיבוי דופן המעי, הסננה של השומן סביב המעי, מורסה</li>
+    <li>CT גם מאתר מורסות ופיסטולות ומראה את היקף המחלה</li>
+    <li><b>קולונוסקופיה בזמן ההתקף:</b> בזהירות. ניפוח המעי עלול להחמיר נקב</li>
+   </ul>
+  </div>
+  <figure><img src="img/ct-diverticulitis-perforation.jpg" alt="CT של דלקת סעיפים מנוקבת"><figcaption>CT רוחבי: דלקת סעיפים של הסיגמה עם נקב ואוויר מחוץ למעי (בעיגול) · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1450–1451</bdi></span><span>הדמיה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>8</b>מיון</div>
+ <h2><bdi>Hinchey</bdi> המתוקן</h2>
+ <div class="flow">
+  <div><b>0</b><span>דלקת קלינית קלה. ב-CT אפשר לראות עיבוי דופן בלי הסננה סביב</span></div>
+  <div><b><bdi>Ia</bdi></b><span>דלקת תחומה סביב המעי: פלגמון</span></div>
+  <div><b><bdi>Ib</bdi></b><span>מורסה תחומה ליד המעי או במזנטריום של הסיגמה</span></div>
+  <div><b><bdi>II</bdi></b><span>מורסה באגן או רחוקה בבטן</span></div>
+  <div><b><bdi>III</bdi></b><span>פריטוניטיס מוגלתית מפושטת</span></div>
+  <div><b><bdi>IV</bdi></b><span>פריטוניטיס צואתית</span></div>
+ </div>
+ <div class="grid" style="margin-top:12px">
+  <div class="box"><b class="t">לא מסובכת מול מסובכת</b>מסובכת = מורסה, פיסטולה, חסימה או נקב חופשי</div>
+  <div class="box a"><b class="t">גבול של ה-CT</b>קשה להבדיל ב-CT בין <bdi>III</bdi> ל-<bdi>IV</bdi>. האבחנה המדויקת היא בדרך כלל בחדר הניתוח</div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1450–1452</bdi> (טבלה 95.1)</span><span>מיון</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>9</b>דלקת לא מסובכת</div>
+ <h2>רוב המטופלים הולכים הביתה</h2>
+ <div class="grid">
+  <div>
+   <ul class="b">
+    <li>הטיפול מותאם לחומרה. <b>רובם מטופלים במרפאה</b>: בטוח וחוסך, עם מעט אשפוזים חוזרים</li>
+    <li>משככי כאבים, נוזלים צלולים ואחר כך דיאטה דלת שאריות עד שהדלקת שוככת</li>
+    <li><b>אנטיביוטיקה:</b> סקירה ומטא-אנליזה לא הראו שהיא מקצרת החלמה או מונעת סיבוכים וניתוח. חלק מהרופאים כבר לא נותנים</li>
+    <li>לעומת זאת, ניתוח דחוף בדלקת סעיפים מגיע לשיעור סיבוכים של עד 40%. לכן מתחילים בלי ניתוח</li>
+   </ul>
+  </div>
+  <div style="display:grid;gap:10px">
+   <div class="box a"><b class="t">האם זה בכלל סעיף?</b>כ-<bdi dir="ltr">1–3%</bdi> מהמאובחנים עם דלקת סעיפים מתגלים כגידול, יותר במחלה מסובכת. לכן קולונוסקופיה <bdi dir="ltr">4–8</bdi> שבועות אחרי ההחלמה</div>
+   <div class="box n"><b class="t">גישה חדשה יותר</b>אחרי דלקת לא מסובכת שאובחנה ב-CT, הסיכון לסרטן דומה לאוכלוסייה. ההחלטה על קולונוסקופיה אישית: ודאות האבחנה, תסמינים שנמשכים, גורמי סיכון וסיכוני הפעולה</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1451</bdi> · פרק 85 עמ׳ <bdi dir="ltr">1164</bdi></span><span>לא מסובכת</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>10</b>ניתוח מתוכנן</div>
+ <h2>לא סופרים התקפים</h2>
+ <div class="grid">
+  <div>
+   <ul class="b">
+    <li>פעם המליצו לנתח לפי מספר ההתקפים. היום: ההתקפים החוזרים <b>בדרך כלל דומים בחומרתם להתקף הראשון</b> ולכן המספר לבד אינו סיבה לנתח</li>
+    <li><b>גיל צעיר (מתחת ל-50) אינו סיבה:</b> יותר חזרות, אבל לא יותר ניתוחים דחופים. ההנחיות לא מבדילות</li>
+    <li>ניתוח מתוכנן הוא לא בלי מחיר: זיהום, דימום, פגיעה באיברים סמוכים ואפילו סטומה קבועה</li>
+    <li><b>מחקר <bdi>DIRECT</bdi>:</b> כריתת סיגמה שיפרה את איכות החיים במי שסובל מהתקפים חוזרים או מתלונות מתמשכות. כמעט חצי מהמטופלים השמרניים נותחו בסוף</li>
+   </ul>
+  </div>
+  <div class="box n"><b class="t">ההחלטה אישית</b>מה שמכריע: כמה התקפים, האם יש תלונות בין ההתקפים, כמה זה פוגע באיכות החיים, מול הגיל, המצב הרפואי והסיכון הניתוחי. <b>בעיקר לניתוח: מחלה מסובכת או מחלה שלא מגיבה לטיפול</b></div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1451–1452, 1454</bdi></span><span>ניתוח מתוכנן</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>11</b>דלקת מסובכת</div>
+ <h2>מורסה, פיסטולה, היצרות</h2>
+ <div class="grid g3">
+  <div class="box"><b class="t">מורסה</b>
+   <ul class="b sm"><li>קטנה: אנטיביוטיקה לבד בדרך כלל מספיקה</li><li>גדולה: ניקוז מלעורי</li><li>אחרי ההחלמה: יותר חזרות וסיבוכים. ההנחיות האמריקאיות (<bdi>ASCRS</bdi>): לשקול כריתה מתוכננת</li><li>לא מתנקזת ולא משתפרת: ניתוח דחוף</li></ul></div>
+  <div class="box b"><b class="t">פיסטולה</b>
+   <ul class="b sm"><li>השכיחה: <b>לשלפוחית</b>, בעיקר בגברים. דלקות שתן חוזרות, אוויר וצואה בשתן</li><li>לנרתיק: כמעט רק אחרי כריתת רחם</li><li>לעור: במקום ניקוז קודם</li><li>בדרך כלל לא דחוף: אנטיביוטיקה, קולונוסקופיה וציסטוסקופיה (לשלול גידול וקרוהן), אחר כך כריתה והשקה. שלפוחית: קטטר <bdi dir="ltr">7–10</bdi> ימים</li></ul></div>
+  <div class="box n"><b class="t">היצרות וחסימה</b>
+   <ul class="b sm"><li>פיברוזיס אחרי התקפים חוזרים: חסימה חלקית ותסמינים מתגנבים</li><li>זונדה, אנטיביוטיקה, נוזלים וצום. אם נפתר: כריתה מתוכננת</li><li>לפני כן: קולונוסקופיה לשלול גידול. לא עוברים? קולונוגרפיה וירטואלית או חוקן ניגוד</li><li>חסימה מלאה שלא מגיבה: ניתוח דחוף</li></ul></div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1452</bdi></span><span>מסובכת</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>12</b>נקב</div>
+ <h2>פריטוניטיס: מה עושים בחדר הניתוח</h2>
+ <div class="grid">
+  <div>
+   <ul class="b sm">
+    <li><bdi>Hinchey III</bdi> ו-<bdi>IV</bdi> הם חירום: החייאה ואז ניתוח לשליטה במקור ולשטיפה</li>
+    <li><b><bdi>Hartmann</bdi>:</b> כריתה וקולוסטומיה. החזרת הרציפות היא ניתוח גדול נוסף ועד 50% לא עוברים אותו לעולם</li>
+    <li><b>כריתה והשקה ראשונית</b> (עם או בלי אילאוסטומיה מסיטה): ב-<bdi>DIVERTI</bdi> וב-<bdi>LADIES-DIVA</bdi> פחות סטומות קבועות, פחות סיבוכים וניתוחים חוזרים ופחות בקעים</li>
+    <li><b>שטיפה לפרוסקופית</b> בלי כריתה (בעיקר <bdi>III</bdi>): פחות סטומות, אבל חזרה של המחלה פי 6 בערך. <bdi>LOLA</bdi> נעצר מוקדם בגלל סיבוכים</li>
+    <li><b>בקרת נזקים:</b> כריתה, בטן פתוחה וחזרה אחרי <bdi dir="ltr">24–48</bdi> שעות להחליט על השקה</li>
+   </ul>
+  </div>
+  <div class="flow">
+   <div><b><bdi>III</bdi> · יציב וכשיר</b><span>כריתה והשקה ראשונית, או שטיפה לפרוסקופית</span></div>
+   <div><b><bdi>IV</bdi> · יציב וכשיר</b><span>כריתה והשקה ראשונית עם אילאוסטומיה מסיטה</span></div>
+   <div><b>לא יציב</b><span><bdi>Hartmann</bdi>, או בקרת נזקים</span></div>
+   <div><b>מרותק למיטה או עם אי שליטה</b><span><bdi>Hartmann</bdi>: קולוסטומיה יכולה לשפר את איכות החיים</span></div>
+  </div>
+ </div>
+ <div class="box a" style="margin-top:10px"><b class="t">בלי ניתוח?</b>במעטים מאוד, יציבים לגמרי, עם אוויר חופשי רחוק: אנטיביוטיקה, צום ואולי ניקוז, במעקב צמוד. נקב תחום בלי פריטוניטיס: הצלחה של <bdi dir="ltr">71.4–94%</bdi> בטיפול לא ניתוחי</div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1452–1454</bdi> (איור 95.26) · פרק 85 עמ׳ <bdi dir="ltr">1164</bdi></span><span>נקב</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>13</b>הניתוח עצמו</div>
+ <h2>כריתת סיגמה: שלושה כללים</h2>
+ <div class="grid f">
+  <div>
+   <ol class="obj">
+    <li><b>שוליים קרובים:</b> במעי רך וגמיש. לא צריך לכרות את כל הסעיפים</li>
+    <li><b>שוליים רחוקים: ברקטום העליון.</b> שארית סיגמה מעלה את הסיכון לחזרה</li>
+    <li><b>השקה ראשונית</b> של מעי בריא. הגישה: פתוחה, לפרוסקופית, בסיוע יד או רובוטית</li>
+   </ol>
+   <ul class="b sm" style="margin-top:12px">
+    <li>זעיר-פולשני: חזרה מהירה יותר של פעילות המעי, פחות כאב, אשפוז קצר</li>
+    <li>סטנטים בשופכנים: לפי המקרה, כמדריך בתוך רקמה דלקתית</li>
+   </ul>
+  </div>
+  <figure><img src="img/lap-sigmoid-diverticulosis.jpg" alt="סעיף בסיגמה במבט לפרוסקופי"><figcaption>סעיף בדופן הסיגמה, כפי שנראה בלפרוסקופיה · <bdi>Hic et nunc</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1450, 1452</bdi></span><span>ניתוח</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>14</b>אוכלוסיות מיוחדות</div>
+ <h2>ימין, מדוכאי חיסון וצעירים</h2>
+ <div class="grid g3">
+  <div class="box"><b class="t">דלקת סעיפים בצד ימין</b>שכיחה באסיה, נדירה במערב, בצעירים. נראית בדיוק כמו אפנדיציט. אבחנה מבדלת: סעיף מקל, כיס מרה, קוליטיס איסכמית, דלקת בלוטות במזנטריום, פיאלונפריטיס, <bdi>PID</bdi>. אותה גישה כמו בצד שמאל</div>
+  <div class="box a"><b class="t">מדוכאי חיסון</b>השתלה, סוכרת, אי ספיקת כליות, שחמת, סטרואידים, כימותרפיה. ניתוח מתוכנן אחרי התקף לא מסובך: החלטה אישית. אותה תמותה, אבל יותר סיבוכים קשים ופתיחת פצע</div>
+  <div class="box n"><b class="t">מתחת לגיל 50</b>פעם נותחו אחרי התקף אחד. היום: יותר חזרות, אבל לא יותר ניתוחים דחופים. מטפלים בהם כמו בכל אחד</div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1453–1454</bdi></span><span>אוכלוסיות מיוחדות</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>15</b>דימום מסעיף</div>
+ <h2>דם טרי רב, בלי כאב</h2>
+ <div class="grid f">
+  <div>
+   <div class="flow">
+    <div><b>קודם כול</b><span>החייאה, ניטור, מנות דם. ייעוץ גסטרו, כירורגיה ורדיולוגיה פולשנית בדימום גדול</span></div>
+    <div><b>יציב</b><span>קולונוסקופיה אחרי הכנה: מאתרת, לוקחת ביופסיה ומטפלת</span></div>
+    <div><b>לא יציב או ממשיך לדמם</b><span><bdi>CTA</bdi> (מזהה דימום של <bdi dir="ltr">0.3–0.5</bdi> מ״ל לדקה) ואז צנתור עם אמבוליזציה סלקטיבית, אידיאלית תוך 90 דקות</span></div>
+    <div><b>ניתוח</b><span>אי יציבות עם דימום פעיל, דימום חוזר, או יותר מ-4 מנות דם ב-24 שעות</span></div>
+   </div>
+   <div class="box" style="margin-top:10px"><b class="t">איזה ניתוח</b>מקור ידוע: כריתה של הקטע. מקור לא ידוע ודימום פעיל: קולקטומיה תת-טוטלית (תחלואה כ-37%, תמותה <bdi dir="ltr">11–33%</bdi>). לכן מנסים לאתר לפני הניתוח</div>
+  </div>
+  <figure><img src="img/ct-diverticular-bleed.jpg" alt="CT של דימום פעיל מסעיף בסיגמה"><figcaption>דימום פעיל מסעיף בסיגמה: חומר הניגוד בתוך המעי (חצים) גדל מהשלב העורקי (משמאל) לשלב הוורידי · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1450</bdi> · פרק 98 עמ׳ <bdi dir="ltr">1549–1551</bdi></span><span>דימום</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>16</b>מה חדש בתחום · 2021–2026</div>
+ <h2>מחקרים שכדאי להכיר</h2>
+ <div class="grid">
+  <div class="study"><div class="y"><bdi>JAMA Surg</bdi> 2021 · מחקר אקראי</div><b><bdi>LASER</bdi>: כריתה מתוכננת מול טיפול שמרני</b>
+   <p>90 מטופלים בפינלנד עם דלקת חוזרת, מסובכת או כאב מתמשך. אחרי 6 חודשים איכות החיים טובה יותר בניתוח (12 נקודות במדד <bdi>GIQLI</bdi>), אבל 10% סיבוכים קשים</p>
+   <small>Santos A et al. JAMA Surg 2021;156(2):129-36</small></div>
+  <div class="study"><div class="y"><bdi>JAMA Surg</bdi> 2025 · <bdi>LASER</bdi> אחרי 4 שנים</div><b>ההבדל באיכות החיים נעלם</b>
+   <p>32% מהקבוצה השמרנית נותחו. חזרה: 16% בקבוצת הניתוח לעומת 92% בשמרנית. סיבוכים קשים דומים (10% לעומת 11%). מסקנה: איכות חיים נמוכה, לנתח. כמעט תקינה, אפשר להתחיל בשמרני</p>
+   <small>Santos A et al. JAMA Surg 2025;160(6):615-22</small></div>
+  <div class="study"><div class="y"><bdi>Ann Surg</bdi> 2023 · מטא-אנליזה</div><b>נקב: מה קורה בטווח הארוך</b>
+   <p>5 מעקבים ארוכים של מחקרים אקראיים, 499 מטופלים. שטיפה: פחות סטומה קבועה וניתוחים חוזרים, אבל יותר חזרות. בפריטוניטיס צואתית: השקה ראשונית עדיפה על <bdi>Hartmann</bdi> (פחות סטומות, סיבוכים ובקעים). אין הבדל בתמותה</p>
+   <small>Horesh N et al. Ann Surg 2023;278(5):e966-72</small></div>
+  <div class="study"><div class="y"><bdi>Ann Surg</bdi> 2026 · מחקר עוקבה רב-מרכזי</div><b>מה המטופלים בוחרים</b>
+   <p>113 מטופלים עם דלקת חוזרת לא מסובכת. 37% בחרו ניתוח. אחרי שנה: איכות חיים טובה יותר וחזרה ב-17% לעומת 45% במי שבחר מעקב. לא אקראי</p>
+   <small>Hawkins AT et al. Ann Surg 2026 (online ahead of print), doi:10.1097/SLA.0000000000007217</small></div>
+ </div>
+ <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>17</b>לסיכום</div>
+ <h2>חמישה דברים לקחת למחלקה</h2>
+ <ol class="obj">
+  <li>כאב בבטן שמאלית תחתונה, חום ורגישות: לחשוב על דלקת סעיפים. דם ברקטום מכוון לאבחנה אחרת</li>
+  <li>CT מאשר ומדרג. <bdi>Hinchey III–IV</bdi> הם חירום</li>
+  <li>דלקת לא מסובכת: רובם בבית ואנטיביוטיקה לא לכולם</li>
+  <li>ניתוח מתוכנן לפי איכות החיים והסיבוכים, לא לפי מספר ההתקפים או הגיל. השוליים הרחוקים ברקטום</li>
+  <li>בנקב: <bdi>Hartmann</bdi> כבר אינו הבחירה היחידה. השקה ראשונית מתאימה למטופל יציב</li>
+ </ol>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 95 <bdi>Colon and Rectum</bdi> (עמ׳ <bdi dir="ltr">1449–1454</bdi>) · פרק 98 <bdi>Acute Gastrointestinal Hemorrhage</bdi> (עמ׳ <bdi dir="ltr">1549–1551</bdi>)</div>
+ <div class="src"><span>איורים: <bdi>Gray's Anatomy</bdi> 1918, <bdi>Musser</bdi> 1904 (נחלת הכלל) · צילומים: <bdi>Hellerhoff</bdi>, <bdi>Hic et nunc</bdi> (<bdi>CC BY-SA</bdi>, <bdi>Wikimedia Commons</bdi>) · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+</main>
+<div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
+<script>
+document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz').forEach(function(z){z.addEventListener('click',function(){w.querySelectorAll('.hz').forEach(function(x){x.classList.toggle('on',x===z)});w.querySelectorAll('.hzi').forEach(function(i){i.hidden=i.dataset.hzi!==z.dataset.hz;i.style.setProperty('--c',z.style.getPropertyValue('--c'))});var h=w.querySelector('.hint');if(h)h.hidden=true;});});});
+</script>
+<script>
+document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz').forEach(function(z){z.addEventListener('click',function(){w.querySelectorAll('.hz').forEach(function(x){x.classList.toggle('on',x===z)});w.querySelectorAll('.hzi').forEach(function(i){i.hidden=i.dataset.hzi!==z.dataset.hz;i.style.setProperty('--c',z.style.getPropertyValue('--c'))});var h=w.querySelector('.hint');if(h)h.hidden=true;});});});
+</script>
+<script>
+(function () {
+  var deck = document.getElementById('deck'), S = [].slice.call(deck.children), dots = document.getElementById('dots'), n = S.length;
+  S.forEach(function (_, k) { var i = document.createElement('i'); i.onclick = function () { go(k); }; dots.appendChild(i); });
+  function idx() { return Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }
+  function go(k) { k = Math.max(0, Math.min(n - 1, k)); S[k].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' }); }
+  function sync() { var k = idx(); [].forEach.call(dots.children, function (d, j) { d.className = j === k ? 'on' : ''; }); document.getElementById('count').textContent = (k + 1) + '/' + n; document.getElementById('prev').disabled = k === 0; document.getElementById('next').disabled = k === n - 1; }
+  deck.addEventListener('scroll', function () { clearTimeout(sync.t); sync.t = setTimeout(sync, 60); }, { passive: true });
+  document.getElementById('next').onclick = function () { go(idx() + 1); };
+  document.getElementById('prev').onclick = function () { go(idx() - 1); };
+  addEventListener('keydown', function (e) { if (e.key === 'ArrowLeft' || e.key === ' ') go(idx() + 1); if (e.key === 'ArrowRight') go(idx() - 1); });
+  sync();
+})();
+</script>
+</body>
+</html>

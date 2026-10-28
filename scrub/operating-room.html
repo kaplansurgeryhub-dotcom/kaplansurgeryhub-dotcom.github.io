@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>הכרת חדר הניתוח · Scrub In</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../emblem.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Frank+Ruhl+Libre:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0C2A35;--navy2:#123845;--g:#00967D;--g2:#3DC08C;--g3:#0A6B5A;--lime:#B5D96B;--red:#A3402E;--amber:#C9893F;--blue:#2F6FA8;--bg:#EDF2F0;--soft:#F3F7F5;--ink:#16262C;--muted:#5C6F73;--line:#DCE6E2}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--navy);color:var(--ink);font-family:Heebo,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.deck{position:fixed;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.deck::-webkit-scrollbar{display:none}
+.s{flex:0 0 100%;height:100%;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;padding:18px 16px 84px;overflow-y:auto;position:relative}
+.s::after{content:'';position:absolute;inset:0;background:url(../ops/art/organs.webp) no-repeat 6% 40%/auto 115%;opacity:.05;filter:invert(1);pointer-events:none}
+.card{width:min(980px,100%);background:#fff;border-radius:22px;box-shadow:0 18px 50px rgba(0,0,0,.35);padding:30px 32px 22px;position:relative;overflow:hidden;z-index:1}
+.card::before{content:'';position:absolute;inset:0 0 auto 0;height:6px;background:linear-gradient(90deg,var(--g3),var(--g),var(--g2),var(--lime))}
+.kick{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--g);letter-spacing:.3px;margin-bottom:6px}
+.kick b{background:var(--navy);color:#fff;border-radius:999px;min-width:26px;height:26px;display:grid;place-items:center;font-size:13px;padding:0 8px}
+h1,h2{font-family:'Frank Ruhl Libre',serif;color:var(--navy);margin:0 0 10px;line-height:1.15}
+h1{font-size:clamp(34px,6.4vw,60px)}h2{font-size:clamp(25px,4.4vw,36px)}
+h3{margin:0 0 6px;font-size:17px;color:var(--navy)}
+.lead{font-size:clamp(15.5px,2.3vw,18.5px);color:var(--muted);margin:0 0 16px;line-height:1.5}
+ul.b{margin:0;padding:0;list-style:none;display:grid;gap:8px}ul.b li{position:relative;padding-inline-start:20px;font-size:16.5px;line-height:1.45}ul.b li::before{content:'';position:absolute;inset-inline-start:2px;top:.62em;width:8px;height:8px;border-radius:2px;background:var(--g);transform:rotate(45deg)}
+ul.b li b{color:var(--navy)}ul.b.sm li{font-size:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.grid.g3{grid-template-columns:repeat(3,1fr)}.grid.f{grid-template-columns:1.05fr .95fr;align-items:center}
+.box{background:var(--soft);border-radius:14px;padding:13px 15px;border-inline-start:4px solid var(--g);font-size:15.5px;line-height:1.45}
+.box.r{border-color:var(--red);background:#FBEDEA}.box.a{border-color:var(--amber);background:#FFF6EA}.box.n{border-color:var(--navy)}.box.b{border-color:var(--blue);background:#EEF4FB}
+.box b.t{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}
+.num{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:4px 0 14px}.num div{background:var(--soft);border-radius:14px;padding:12px 10px;text-align:center}
+.num b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(26px,4vw,38px);color:var(--g3);line-height:1.05}.num span{font-size:13px;color:var(--muted);line-height:1.3;display:block;margin-top:4px}
+figure{margin:0;background:#FBFCFB;border:1px solid var(--line);border-radius:16px;padding:10px;text-align:center}figure img{max-width:100%;max-height:46vh;display:block;margin:0 auto;mix-blend-mode:multiply}
+figcaption{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.35}
+.ill svg{width:100%;height:auto;max-height:50vh}
+.src{margin-top:16px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.src b{color:var(--g3)}
+.tag{display:inline-block;font-size:12px;font-weight:800;border-radius:999px;padding:2px 10px;background:#E3F4EC;color:var(--g3);margin-inline-end:4px}
+.tag.r{background:#F8E3DE;color:var(--red)}.tag.a{background:#FFF3DF;color:#8A5A14}.tag.b{background:#E8F0FA;color:var(--blue)}
+.flow{display:grid;gap:8px}.flow div{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;background:var(--soft);border-radius:12px;padding:9px 12px;font-size:15.5px}.flow div b{color:var(--navy)}
+.study{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#fff}.study .y{font-size:12px;font-weight:800;color:var(--g);letter-spacing:.3px}.study b{display:block;font-size:16px;color:var(--navy);margin:2px 0}.study p{margin:4px 0 0;font-size:14.5px;line-height:1.45}.study small{display:block;margin-top:6px;font-size:11.5px;color:var(--muted)}
+.cover{background:radial-gradient(120% 90% at 85% 0%,#164B54 0%,var(--navy) 58%)}
+.cover::after{opacity:.16;background-position:2% 50%}
+.cover .card{background:transparent;box-shadow:none;color:#fff}.cover .card::before{display:none}.cover h1{color:#fff}.cover .lead{color:#C9D6DA}.cover .kick{color:var(--g2)}
+.pill{display:inline-flex;gap:6px;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px;color:#fff;margin:4px}
+.logo{display:flex;align-items:center;gap:10px;margin-bottom:26px}.logo img{width:48px;height:48px;border-radius:50%;background:#fff}.logo b{color:#fff;font-weight:900}.logo small{display:block;color:#A9C9C0;font-size:12px}
+.obj{counter-reset:o;list-style:none;margin:0;padding:0;display:grid;gap:10px}.obj li{counter-increment:o;display:flex;gap:12px;align-items:flex-start;font-size:16.5px;line-height:1.45}.obj li::before{content:counter(o);flex:0 0 30px;height:30px;border-radius:50%;background:var(--g);color:#fff;font-weight:800;display:grid;place-items:center}
+.nav{position:fixed;inset:auto 0 0 0;display:flex;align-items:center;justify-content:center;gap:14px;padding:12px 16px calc(14px + env(safe-area-inset-bottom));background:linear-gradient(transparent,rgba(6,20,26,.85) 40%);z-index:5}
+.nav button{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;font-size:22px;cursor:pointer}.nav button:disabled{opacity:.3}
+.dots{display:flex;gap:5px;flex-wrap:wrap;max-width:60vw;justify-content:center}.dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer}.dots i.on{background:var(--g2);width:20px;border-radius:5px}
+.count{color:#C9D6D9;font-size:13px;font-weight:700;min-width:44px;text-align:center}
+bdi{unicode-bidi:isolate}
+.cmp{width:100%;border-collapse:separate;border-spacing:0;font-size:14px;border:1px solid var(--line);border-radius:14px;overflow:hidden}.cmp th{background:var(--navy);color:#fff;padding:9px 10px;font-size:16px;text-align:start}.cmp th small{display:block;font-weight:500;color:#A9D9C8;font-size:12px}.cmp td{padding:8px 10px;border-top:1px solid var(--line);vertical-align:top;line-height:1.4}.cmp td:first-child{background:var(--soft);font-weight:800;color:var(--navy);white-space:nowrap}.cmp tr:nth-child(odd) td:not(:first-child){background:#FBFCFB}
+figure.vid video{width:100%;max-height:34vh;border-radius:10px;background:#000;display:block}
+@media (max-width:760px){.cmp{font-size:12.5px}.cmp td,.cmp th{padding:6px}}
+
+.hotw{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;align-items:start}.hoti{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#FBFCFB}.hoti img{display:block;width:100%;mix-blend-mode:multiply}.hoti svg{position:absolute;inset:0;width:100%;height:100%}
+.hz{fill:var(--c);fill-opacity:.38;stroke:var(--c);stroke-width:2;cursor:pointer;transition:fill-opacity .2s}.hz:hover,.hz.on{fill-opacity:.62}.hzl{font:900 22px Heebo,sans-serif;fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;pointer-events:none;text-anchor:middle}
+.hotp .hint{background:var(--soft);border-radius:12px;padding:10px 12px;font-weight:700;color:var(--g3);margin:0}.hzi{background:#fff;border:1px solid var(--line);border-inline-start:5px solid var(--c,var(--g));border-radius:14px;padding:12px 14px;margin-top:8px;font-size:15.5px;line-height:1.45}.hzi>b{display:block;font-size:17px;color:var(--navy);margin-bottom:4px}.hzi p{margin:0}
+figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-size:15px}.obj.sm li::before{flex-basis:26px;height:26px;font-size:13px}.flow.sm div{grid-template-columns:130px 1fr;padding:7px 10px;font-size:14.5px}
+@media (max-width:760px){.hotw{grid-template-columns:1fr}}
+
+@media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
+@media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+/*BRAND*/
+.brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
+.brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
+.s{padding-top:58px}
+.cover .card{display:flex;flex-direction:column;gap:6px;max-width:980px}
+.cvhead{display:flex;align-items:center;gap:16px;margin-bottom:30px}.cvhead img.em{width:74px;height:74px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(61,192,140,.55)}
+.cvhead b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:clamp(24px,3.4vw,34px);color:#fff;line-height:1.1}.cvhead span{display:block;font-size:clamp(15px,2vw,19px);color:#A9D9C8;font-weight:700;margin-top:4px}
+.cover h1{font-size:clamp(38px,6.6vw,66px);margin:6px 0 8px}.cover .kick{font-size:14px;letter-spacing:.06em}
+.cvmeta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.cvlogos{display:flex;align-items:center;gap:18px;margin-top:34px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14)}.cvlogos img{height:44px;width:auto}.cvlogos small{margin-inline-start:auto;color:#8FB3AA;font-size:12.5px;font-weight:700;letter-spacing:.08em}
+.cover .brandbar{display:none}
+@media (max-width:760px){.brandbar{left:10px;gap:7px;padding:4px 9px 4px 4px}.brandbar img{height:20px}.brandbar img.em{width:22px;height:22px}.s{padding-top:48px}.cvhead img.em{width:56px;height:56px}.cvlogos img{height:34px}.cvlogos small{display:none}}
+/* numbered lists: a bold word inside an item stays inline */
+.obj li,.steps li{display:block;position:relative;padding-inline-start:42px;min-height:30px}.obj li::before,.steps li::before{position:absolute;inset-inline-start:0;top:0}.obj.sm li{padding-inline-start:36px}
+.grid.tight figure img{max-height:24vh}
+@media print{.brandbar{display:none}}
+/*/BRAND*/
+</style>
+</head>
+<body>
+<div class="brandbar" aria-hidden="true"><img class="em" src="brand/emblem.jpg" alt=""><i></i><img src="brand/logo_k.webp" alt=""><img src="brand/logo_c.webp" alt=""></div>
+<main class="deck" id="deck">
+
+<section class="s cover"><div class="card">
+ <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
+ <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 1</div>
+ <h1>הכרת חדר הניתוח</h1>
+ <p class="lead">מגיעים עם מדי חדר ניתוח. סיור בחדר, הצוות, הכנה סטרילית, רשימת הבטיחות. ומה עושה סטודנט כשמשהו משתבש</p>
+ <div class="cvmeta"><span class="pill">מבוסס על <bdi>Sabiston</bdi>, מהדורה 22, פרקים 9, 19 ו-25</span></div>
+ <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>1</b>מטרות הסדנה</div>
+ <h2>בסוף הסדנה תדעו</h2>
+ <ol class="obj">
+  <li>להתמצא בחדר הניתוח: הציוד, מי עומד איפה ומה התפקיד של כל אחד</li>
+  <li>להכין את עצמכם ואת המטופל: לבוש, רחיצה, חלוק וכפפות, הכנת עור וכיסוי</li>
+  <li>לשמור על השדה הסטרילי ולדווח מיד כשנפגע</li>
+  <li>להכיר את רשימת הבטיחות של ארגון הבריאות העולמי ולהשתתף בעצירה שלפני החתך</li>
+  <li>להכיר סיכונים בחדר: חום גוף, שכחת פריטים, שריפה, כוויות מחשמל ומצבי חירום</li>
+ </ol>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 19 (עמ׳ <bdi dir="ltr">29–36</bdi>) · פרק 9 (מקוון, עמ׳ <bdi dir="ltr">e102–e109</bdi>) · פרק 25 (עמ׳ <bdi dir="ltr">121–123</bdi>)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>2</b>סיור בחדר · אינטראקטיבי</div>
+ <h2>מה יש בחדר הניתוח?</h2>
+ <div class="hotw"><div class="hoti"><img src="img/or-theatre.jpg" alt="חדר ניתוח ריק עם שולחן, מנורות, עמדת לפרוסקופיה, מכונת הרדמה ועגלות"><svg viewBox="0 0 1100 733" preserveAspectRatio="none">
+   <polygon class="hz" data-hz="li" points="350,230 440,230 450,270 420,300 375,300 345,270" style="--c:#C9893F"/><text class="hzl" x="398" y="272">1</text>
+   <polygon class="hz" data-hz="tb" points="372,392 625,408 600,455 590,605 430,605 455,470 372,440" style="--c:#2F6FA8"/><text class="hzl" x="515" y="520">2</text>
+   <polygon class="hz" data-hz="tw" points="215,243 285,243 290,295 512,282 512,322 405,330 400,470 312,470 312,335 215,305" style="--c:#00967D"/><text class="hzl" x="356" y="410">3</text>
+   <polygon class="hz" data-hz="an" points="868,188 1030,188 1042,300 1085,330 1085,733 712,733 760,475 880,462" style="--c:#7A5BD6"/><text class="hzl" x="930" y="560">4</text>
+   <polygon class="hz" data-hz="it" points="130,420 290,420 292,540 255,545 252,600 125,600 125,540" style="--c:#A3402E"/><text class="hzl" x="210" y="490">5</text>
+   <polygon class="hz" data-hz="su" points="118,548 250,548 252,700 118,700" style="--c:#0A6B5A"/><text class="hzl" x="185" y="640">6</text>
+   <polygon class="hz" data-hz="dr" points="605,245 745,240 745,500 605,500" style="--c:#5C6F73"/><text class="hzl" x="675" y="390">7</text>
+  </svg></div>
+  <div class="hotp"><p class="hint">👆 לחצו על פריט בתמונה כדי לקרוא עליו</p>
+   <div class="hzi" data-hzi="li" hidden><b>1 · מנורות ניתוח</b><p>תאורה טובה היא חלק מהציוד הבסיסי שחייב לעבוד בכל ניתוח, יחד עם שולחן תקין, מכשירים, מסכים להדמיה, שאיבה ומכשיר צריבה</p></div>
+   <div class="hzi" data-hzi="tb" hidden><b>2 · שולחן הניתוח</b><p>מקבעים את המטופל היטב ומרפדים את נקודות הלחץ. במטופל עם השמנה ובתנוחת ליתוטומיה יש סיכון לתסמונת מדור בגפיים, לפגיעה עצבית ולפצעי לחץ, במיוחד בניתוח ארוך</p></div>
+   <div class="hzi" data-hzi="tw" hidden><b>3 · עמדת לפרוסקופיה</b><p>מצלמה, מסכים ומנפח גז. מוודאים לפני הניתוח שהכול עובד. תקלה בציוד קורית בעד <bdi dir="ltr">38%</bdi> מהניתוחים עם ציוד זעיר-פולשני. בחצי מהמקרים יש גם טעות אנושית. גז שנכנס לווריד (תסחיף <bdi>CO<sub>2</sub></bdi>) גורם לירידה פתאומית ב-<bdi>CO<sub>2</sub></bdi> בנשיפה ולקריסה</p></div>
+   <div class="hzi" data-hzi="an" hidden><b>4 · מכונת ההרדמה</b><p>האזור של צוות ההרדמה. בהרדמה (אינדוקציה) ובהתעוררות המטופל בלי רפלקסים מגינים של דרכי האוויר: שקט בחדר וקשב לצוות ההרדמה. בהתעוררות יכולה להופיע עווית של מיתרי הקול. הניטור כולל <bdi>CO<sub>2</sub></bdi> בנשיפה: עלייה מתמשכת מעוררת חשד להיפרתרמיה ממאירה</p></div>
+   <div class="hzi" data-hzi="it" hidden><b>5 · שולחן המכשירים</b><p>סטרילי. רק מי שלבוש סטרילית נוגע. לפני סגירה סופרים מחטים, פדים ומכשירים. פריט שנשכח בגוף קורה בעד 1 מכל 700 ניתוחים בסיכון גבוה</p></div>
+   <div class="hzi" data-hzi="su" hidden><b>6 · שאיבה</b><p>חלק מהציוד הבסיסי של כל חדר. בדימום פתאומי השדה מתמלא בדם. לכן השאיבה צריכה להיות מוכנה ועובדת לפני החתך</p></div>
+   <div class="hzi" data-hzi="dr" hidden><b>7 · הדלת והאוויר</b><p>בחדר לחץ אוויר חיובי שדוחף אוויר החוצה ומסננים שמורידים חלקיקים באוויר. אבק, בלגן וחפצים אישיים בחדר הם סיכון לשדה הסטרילי</p></div>
+  </div></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">29–30, 34</bdi> · פרק 9 עמ׳ <bdi dir="ltr">e106–e109</bdi></span><span>צילום: <bdi>Dr. Jayesh Amin</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>3</b>הצוות והלבוש</div>
+ <h2>מי בחדר ואיך מתלבשים</h2>
+ <div class="grid f">
+  <div>
+   <div class="flow">
+    <div><b>מנתח ועוזרים</b><span>לבושים סטרילית. אחראים לשלבי הניתוח, לדימום ולסגירה</span></div>
+    <div><b>אחות מכשירה</b><span>לבושה סטרילית. מכינה ומעבירה מכשירים, אחראית לספירות</span></div>
+    <div><b>אחות מסובבת</b><span>לא סטרילית. מביאה ציוד, מתעדת ומובילה את רשימת הבטיחות</span></div>
+    <div><b>צוות ההרדמה</b><span>הרדמה, דרכי אוויר, נוזלים, דם וניטור</span></div>
+   </div>
+   <ul class="b sm" style="margin-top:12px">
+    <li><b>כיסוי ראש:</b> כל השיער והזקן מכוסים בחדר. השיער נושא חיידקים</li>
+    <li><b>מדים מלוכלכים</b> מחליפים מיד</li>
+    <li>בזמן חיטוי העור: מומלץ שרוול ארוך, כי קשקשים מהעור מתפזרים באוויר</li>
+   </ul>
+  </div>
+  <figure><img src="img/or-team.jpg" alt="צוות בניתוח לב: מנתחים, אחיות ומרדים, כולם עם כובע ומסכה"><figcaption>צוות בניתוח: כובע, מסכה, חלוק סטרילי ומסכי ניטור · <bdi>Pfree2014</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 25 עמ׳ <bdi dir="ltr">122</bdi> · פרק 9 עמ׳ <bdi dir="ltr">e103–e104</bdi> · פרק 19 עמ׳ <bdi dir="ltr">30</bdi></span><span>חלוקת התפקידים לפי הנוהג המקובל</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>4</b>שלב אחר שלב</div>
+ <h2>מהכיור לחתך</h2>
+ <div class="grid f">
+  <div class="flow">
+   <div><b>1. רחיצה</b><span>ידיים ואמות, ידיים מעל המרפקים כדי שהמים יזרמו מהאצבעות למרפק. בכיור עם ברז שלא נוגעים בו בידיים</span></div>
+   <div><b>2. חלוק וכפפות</b><span>האחות המכשירה מלבישה. מרגע זה הידיים נשארות מלפנים, בין החזה למותניים</span></div>
+   <div><b>3. הסרת שיער</b><span>רק אם צריך. רק בקוצץ שיער חשמלי: סכין גילוח מעלה זיהום</span></div>
+   <div><b>4. חיטוי העור</b><span>תמיסה עם אלכוהול (כלורהקסידין ואלכוהול). שטח רחב שכולל כל חתך אפשרי, בתנועות מעגליות, במוליך ייעודי. מחכים שיתייבש. לא אלכוהול על ריריות</span></div>
+   <div><b>5. כיסוי</b><span>סדינים ושכמיות שלא מעבירים נוזלים. אם צריך כיסוי דביק: עם יוד</span></div>
+   <div><b>6. עצירה לפני החתך</b><span>כל הצוות עוצר ומאשר: מטופל, צד, ניתוח, אנטיביוטיקה</span></div>
+  </div>
+  <figure><img src="img/scrub-sink-1916.jpg" alt="ציור של מנתח רוחץ ידיים בכיור עם ברז שמופעל ברגל"><figcaption>רחיצת ידיים לפני ניתוח בכיור עם ברז שמופעל ברגל · <bdi>Hunter Robb, Aseptic Surgical Technique</bdi> (1916), איור 6 (נחלת הכלל)</figcaption></figure>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">30–31</bdi> · פרק 25 עמ׳ <bdi dir="ltr">121–122</bdi> · פרק 9 עמ׳ <bdi dir="ltr">e104</bdi></span><span>השלבים 1–2 לפי הנוהג המקובל</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>5</b>השדה הסטרילי</div>
+ <h2>טעות אחת מספיקה</h2>
+ <div class="grid">
+  <div>
+   <ul class="b">
+    <li>טכניקה סטרילית היא שיטה שנועדה למנוע כל זיהום מחיידקים. <b>טעות אחת</b> בתהליך יכולה להכניס זיהום לפצע</li>
+    <li>היסטוריה: <bdi>Semmelweis</bdi> הראה שרחיצת ידיים מצילה יולדות. <bdi>Halsted</bdi> הזמין כפפות גומי לכל הצוות</li>
+    <li>פגיעה בסטריליות מדורגת לפי מתי שמו לב אליה: מיד (סוג 1) ועד רק אחרי שהמטופל יצא מהחדר (סוג 4)</li>
+    <li>רוב זיהומי הפצע (<bdi dir="ltr">70–95%</bdi>) נגרמים מהחיידקים של המטופל עצמו. לכן גם הכנת העור חשובה</li>
+   </ul>
+  </div>
+  <div style="display:grid;gap:10px;align-content:start">
+   <div class="box r"><b class="t">טעויות נפוצות של סטודנטים</b>ידיים שיורדות מתחת למותניים או נשלחות לסדר משקפיים. הסתובבות עם הגב לשדה. נגיעה במנורה או במסך. מעבר בין שני אנשים סטריליים</div>
+   <div class="box n"><b class="t">נגעתם? אומרים מיד</b>"נגעתי" זה משפט מקצועי ולא בושה. מחליפים כפפה או חלוק וממשיכים. מה שגורם נזק הוא השתיקה</div>
+   <div class="box b"><b class="t">במחלקה השבוע</b>היכנסו לפחות לניתוח אחד כ"מתרחצים": רחיצה, חלוק וכפפות, עמידה ליד השולחן. בקשו מהאחות המכשירה משוב על הטכניקה</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 9 עמ׳ <bdi dir="ltr">e106</bdi> · פרק 25 עמ׳ <bdi dir="ltr">121</bdi></span><span>הטעויות הנפוצות לפי הנוהג המקובל</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>6</b>רשימת הבטיחות</div>
+ <h2>שלוש עצירות שמצילות חיים</h2>
+ <div class="grid g3">
+  <div class="box n"><b class="t">לפני ההרדמה</b>
+   <ul class="b sm"><li>המטופל מאשר שם, צד, ניתוח והסכמה</li><li>הצד מסומן</li><li>מד רוויה עובד</li><li>אלרגיות</li><li>דרכי אוויר וסיכון לשאיפה</li><li>אובדן דם צפוי של 500 מ״ל ומעלה: עירויים ונוזלים מוכנים</li></ul></div>
+  <div class="box"><b class="t">לפני החתך</b>
+   <ul class="b sm"><li><b>כל אחד מציג את עצמו בשם ובתפקיד</b>, גם הסטודנט</li><li>מטופל, צד וניתוח</li><li>המנתח: שלבים קריטיים, משך ואובדן דם צפוי</li><li>הרדמה: חששות לגבי המטופל</li><li>אחיות: סטריליות וציוד</li><li>אנטיביוטיקה ב-60 הדקות האחרונות</li><li>ההדמיה מוצגת</li></ul></div>
+  <div class="box a"><b class="t">לפני היציאה</b>
+   <ul class="b sm"><li>שם הניתוח כפי שבוצע</li><li>ספירות מחטים, פדים ומכשירים</li><li>תיוג הדגימות בקול, כולל שם המטופל</li><li>תקלות בציוד</li><li>מה חשוב להתאוששות</li></ul></div>
+ </div>
+ <div class="num" style="margin-top:12px">
+  <div><b dir="ltr">7%</b><span>סיבוכים אחרי הכנסת הרשימה, לעומת <bdi dir="ltr">11%</bdi> לפני (8 בתי חולים בעולם)</span></div>
+  <div><b dir="ltr">0.8%</b><span>תמותה אחרי הכנסת הרשימה, לעומת <bdi dir="ltr">1.5%</bdi> לפני</span></div>
+  <div><b dir="ltr">83.8%</b><span>מניתוחים בצד הלא נכון: לא פעלו לפי הנוהל</span></div>
+  <div><b dir="ltr">4.3 / 1000</b><span>טעויות בזיהוי דגימות</span></div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 9 עמ׳ <bdi dir="ltr">e104–e108</bdi> · פרק 19 עמ׳ <bdi dir="ltr">30–31</bdi></span><span>רשימת הבטיחות</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>7</b>בטיחות המטופל</div>
+ <h2>ארבע סכנות שקטות</h2>
+ <div class="grid">
+  <div class="box b"><b class="t">קור</b>
+   <ul class="b sm"><li>ההרדמה פוגעת בוויסות החום. הירידה החדה ביותר בשעה הראשונה</li><li>היפותרמיה: כ-<bdi dir="ltr">20%</bdi> יותר דימום, יותר זיהום פצע, תרופות פועלות זמן רב יותר</li><li>מודדים חום ליבה (בוושט במונשם). חום בעור, במצח, באוזן או בפי הטבעת לא מדויק</li><li>חימום באוויר חם. עירוי של יותר מ-1 ליטר בשעה מחממים</li></ul></div>
+  <div class="box a"><b class="t">פריט שנשכח</b>
+   <ul class="b sm"><li>עד 1 מכל 700 ניתוחים בסיכון גבוה</li><li>זו לא רק טעות של אדם: גם תקשורת ונהלים</li><li>ספירות, עצירה לפני סגירה ותחקיר בסוף הניתוח</li></ul></div>
+  <div class="box r"><b class="t">שריפה</b>
+   <ul class="b sm"><li>משולש האש: חומר בוער, חמצן ומקור הצתה</li><li>יותר מ-600 שריפות בחדרי ניתוח בשנה</li><li>מקור ההצתה העיקרי: מכשיר הצריבה החשמלי</li></ul></div>
+  <div class="box n"><b class="t">דגימות</b>
+   <ul class="b sm"><li>דגימה שאבדה, מיכל ריק או תווית שגויה</li><li>התוצאה: עיכוב באבחנה, אבחנה שגויה או טיפול בצד הלא נכון</li><li>קוראים את התווית בקול</li></ul></div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">30–31</bdi> · פרק 9 עמ׳ <bdi dir="ltr">e108</bdi> · פרק 25 עמ׳ <bdi dir="ltr">121</bdi></span><span>בטיחות המטופל</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>8</b>אנרגיה ומכשירים</div>
+ <h2>מה עושה ה"בובי"?</h2>
+ <div class="grid">
+  <div class="flow">
+   <div><b>חד-קוטבי</b><span>זרם עובר מהעט, דרך המטופל, אל משטח הארקה גדול על העור. "חיתוך": זרם רציף, מעט נזק סביב. "קרישה": זרם לסירוגין (פחות מ-<bdi dir="ltr">10%</bdi> מהזמן), יותר פיזור חום</span></div>
+   <div><b>דו-קוטבי</b><span>הזרם עובר רק בין שתי הלסתות. בלי משטח הארקה. בטוח ליד קוצב או מכשיר מושתל</span></div>
+   <div><b>מכשירי איטום</b><span>לוחצים, מודדים את הרקמה ואוטמים כלי דם עד 7 מ״מ. אחר כך להב חותך</span></div>
+   <div><b>מכשיר על-קולי</b><span>להב רוטט שחותך וקורש בלי זרם חשמלי</span></div>
+   <div><b>שדכנים (סטפלרים)</b><span>קוויים וחותכים, קוויים בלי חיתוך ומעגליים להשקה. גובה הסיכה לפי עובי הרקמה</span></div>
+  </div>
+  <div style="display:grid;gap:10px;align-content:start">
+   <div class="box"><b class="t">כלי דם</b>נימים וורידים קטנים: צריבה. כלי דם מעל 1 מ״מ וכל כלי דם עם שם: קשירה, קליפס, סטפלר או מכשיר איטום</div>
+   <div class="box a"><b class="t">תקלות</b>שני שלישים מהמנתחים הזעיר-פולשניים נתקלו בתקלת סטפלר. יותר מ-100 מקרי מוות דווחו</div>
+   <div class="box r"><b class="t">קרישה בגז ארגון</b>טובה לשטח של כבד או טחול. אסור לכוון לוורידים גדולים: תסחיף גז ודום לב</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">31, 33–34</bdi> · פרק 9 עמ׳ <bdi dir="ltr">e109</bdi></span><span>אנרגיה</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>9</b>כשמשהו משתבש</div>
+ <h2>מצבי חירום בחדר ומה התפקיד שלכם</h2>
+ <div class="grid">
+  <div class="flow">
+   <div><b>היפרתרמיה ממאירה</b><span>תגובה לגזי הרדמה ולסוקסינילכולין. חום, דופק מהיר, עלייה ב-<bdi>CO<sub>2</sub></bdi> בנשיפה, נוקשות שרירים, אשלגן גבוה. מפסיקים את הגז, דנטרולן 2.5 מ״ג לק״ג וקירור. התמותה ירדה מ-<bdi dir="ltr">60–80%</bdi> לפחות מ-<bdi dir="ltr">5%</bdi></span></div>
+   <div><b>תסחיף גז</b><span>ירידה פתאומית ב-<bdi>CO<sub>2</sub></bdi> בנשיפה וקריסה. עוצרים את כניסת הגז, החייאה. תמותה כ-<bdi dir="ltr">20%</bdi></span></div>
+   <div><b>חזה אוויר</b><span>אין קולות נשימה או סרעפת בולטת: נקז בית חזה</span></div>
+   <div><b>דימום מסיבי</b><span>לחיצה ושליטה בכלי הדם מעליו. מנות דם ולא נוזלים צלולים. לפעמים ריפוד הבטן וסיום מאוחר יותר</span></div>
+  </div>
+  <div style="display:grid;gap:10px;align-content:start">
+   <div class="box n"><b class="t">התפקיד של הסטודנט</b>שקט. להמשיך להחזיק מה שביקשו. לא לעזוב את השדה בלי לשאול. לבצע בדיוק מה שמבקשים ולאשר בקול</div>
+   <div class="box"><b class="t">תקשורת בלולאה סגורה</b>מבקשים בשם, מקבלים חזרה בקול, מאשרים שבוצע. בחירום התקשורת נשברת ראשונה</div>
+   <div class="box a"><b class="t">מותר לדבר</b>היררכיה שטוחה יותר משפרת תקשורת. אם ראיתם משהו לא תקין, אומרים</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">30, 34–36</bdi> · פרק 9 עמ׳ <bdi dir="ltr">e105–e107</bdi></span><span>חירום</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>10</b>מה חדש בתחום · <bdi dir="ltr">2021–2026</bdi></div>
+ <h2>מחקרים שכדאי להכיר</h2>
+ <div class="grid">
+  <div class="study"><div class="y"><bdi>Lancet</bdi> 2022 · מחקר אקראי באשכולות</div><b><bdi>ChEETAh</bdi>: החלפת כפפות ומכשירים לפני סגירה</b>
+   <p>13,301 מטופלים בניתוחי בטן מזוהמים בשבע מדינות. כל הצוות המתרחץ החליף כפפות ומכשירים לפני סגירת הבטן. זיהום פצע ירד מ-<bdi dir="ltr">18.9%</bdi> ל-<bdi dir="ltr">16.0%</bdi></p>
+   <small>NIHR Global Research Health Unit on Global Surgery. Lancet 2022;400:1767-76</small></div>
+  <div class="study"><div class="y"><bdi>Lancet</bdi> 2021 · מחקר אקראי</div><b><bdi>FALCON</bdi>: כלורהקסידין ותפרים עם טריקלוזן</b>
+   <p>5,788 מטופלים בניתוחי בטן במדינות בהכנסה נמוכה ובינונית. לא נמצא הבדל בזיהום בין כלורהקסידין באלכוהול ליוד במים. גם לא בין תפר עם טריקלוזן לתפר רגיל</p>
+   <small>NIHR Global Research Health Unit on Global Surgery. Lancet 2021;398:1687-99</small></div>
+  <div class="study"><div class="y"><bdi>NEJM</bdi> 2024 · 25 בתי חולים</div><b><bdi>PREPARE</bdi>: איזה חומר חיטוי לעור?</b>
+   <p>8,485 ניתוחי שברים בגפיים. בשברים סגורים: פחות זיהום עם יוד באלכוהול מאשר עם כלורהקסידין באלכוהול (<bdi dir="ltr">2.4%</bdi> לעומת <bdi dir="ltr">3.3%</bdi>). בשברים פתוחים: אין הבדל. שני החומרים מכילים אלכוהול</p>
+   <small>Sprague S et al. N Engl J Med 2024;390:409-20</small></div>
+ </div>
+ <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>11</b>לסיכום · צ׳קליסט לסטודנט</div>
+ <h2>לפני שנכנסים לניתוח</h2>
+ <ol class="obj">
+  <li>מדים נקיים, כל השיער מכוסה, מסכה. אכלתם ושתיתם לפני</li>
+  <li>הצגתם את עצמכם לאחות המסובבת ולמנתח. בעצירה לפני החתך: שם ותפקיד</li>
+  <li>קראתם את התיק: מה הניתוח, איזה צד, מה הבעיות של המטופל</li>
+  <li>אחרי שהתלבשתם סטרילית: ידיים מלפנים, גב לא לשדה. נגעתם? אומרים מיד</li>
+  <li>בחירום: שקט, מקשיבים, מבצעים ומאשרים בקול</li>
+ </ol>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 19 <bdi>Operating Room</bdi> (עמ׳ <bdi dir="ltr">29–36</bdi>) · פרק 9 <bdi>Safety in the Surgical Environment</bdi> (מקוון, עמ׳ <bdi dir="ltr">e102–e109</bdi>) · פרק 25 <bdi>Surgical Site Infections</bdi> (עמ׳ <bdi dir="ltr">121–123</bdi>)</div>
+ <div class="src"><span>צילומים: <bdi>Dr. Jayesh Amin</bdi> (<bdi>CC BY-SA 3.0</bdi>), <bdi>Pfree2014</bdi> (<bdi>CC BY-SA 4.0</bdi>), <bdi>Wikimedia Commons</bdi> · איור: <bdi>Hunter Robb</bdi> 1916 (נחלת הכלל) · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+</main>
+<div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
+<script>
+document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz').forEach(function(z){z.addEventListener('click',function(){w.querySelectorAll('.hz').forEach(function(x){x.classList.toggle('on',x===z)});w.querySelectorAll('.hzi').forEach(function(i){i.hidden=i.dataset.hzi!==z.dataset.hz;i.style.setProperty('--c',z.style.getPropertyValue('--c'))});var h=w.querySelector('.hint');if(h)h.hidden=true;});});});
+</script>
+<script>
+(function () {
+  var deck = document.getElementById('deck'), S = [].slice.call(deck.children), dots = document.getElementById('dots'), n = S.length;
+  S.forEach(function (_, k) { var i = document.createElement('i'); i.onclick = function () { go(k); }; dots.appendChild(i); });
+  function idx() { return Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }
+  function go(k) { k = Math.max(0, Math.min(n - 1, k)); S[k].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' }); }
+  function sync() { var k = idx(); [].forEach.call(dots.children, function (d, j) { d.className = j === k ? 'on' : ''; }); document.getElementById('count').textContent = (k + 1) + '/' + n; document.getElementById('prev').disabled = k === 0; document.getElementById('next').disabled = k === n - 1; }
+  deck.addEventListener('scroll', function () { clearTimeout(sync.t); sync.t = setTimeout(sync, 60); }, { passive: true });
+  document.getElementById('next').onclick = function () { go(idx() + 1); };
+  document.getElementById('prev').onclick = function () { go(idx() - 1); };
+  addEventListener('keydown', function (e) { if (e.key === 'ArrowLeft' || e.key === ' ') go(idx() + 1); if (e.key === 'ArrowRight') go(idx() - 1); });
+  sync();
+})();
+</script>
+</body>
+</html>
