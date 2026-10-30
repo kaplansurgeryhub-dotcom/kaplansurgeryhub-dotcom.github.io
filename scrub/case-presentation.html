@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>איך מציגים מטופל כירורגי · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -84,7 +84,7 @@ details.rev{margin-top:10px;border:1px dashed var(--g);border-radius:12px;paddin
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -114,9 +114,56 @@ details.rev{margin-top:10px;border:1px dashed var(--g);border-radius:12px;paddin
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -129,7 +176,7 @@ details.rev{margin-top:10px;border:1px dashed var(--g);border-radius:12px;paddin
  <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
  <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 5</div>
  <h1>איך מציגים מטופל כירורגי</h1>
- <p class="lead">הצגת מקרה חדש, רשומה יומית במבנה <bdi>SOAP</bdi>, קריאה לבכיר/ה ומסירת משמרת. שני תרגילים קצרים מהמחלקה</p>
+ <p class="lead">הצגת מקרה חדש, רשומה יומית במבנה <span class="nw"><bdi>SOAP</bdi>,</span> קריאה לבכיר/ה ומסירת משמרת. שני תרגילים קצרים מהמחלקה</p>
  <div class="cvsrc" data-ch="9,19,26,30,36" data-note=""><small>מבוסס על</small><b><bdi dir="ltr">Sabiston Textbook of Surgery</bdi> · מהדורה 22</b><div class="cvch"><span>פרק <bdi dir="ltr">9</bdi></span><span>פרק <bdi dir="ltr">19</bdi></span><span>פרק <bdi dir="ltr">26</bdi></span><span>פרק <bdi dir="ltr">30</bdi></span><span>פרק <bdi dir="ltr">36</bdi></span></div></div>
  <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
 </div></section>
@@ -174,7 +221,7 @@ details.rev{margin-top:10px;border:1px dashed var(--g);border-radius:12px;paddin
  <div class="grid">
   <div class="flow">
    <div><b>שורת פתיחה</b><span>גיל, מין, רקע רלוונטי בקצרה והתלונה העיקרית. "בן 68, סוכרתי, עם כאב בבטן ימנית תחתונה מזה יומיים"</span></div>
-   <div><b>המחלה הנוכחית</b><span>לפי הסדר בזמן. בכאב: התחלה, מה מחמיר ומקל, אופי, מיקום והקרנה, עוצמה, זמן והשפעה על המטופל (<bdi>OPQRSTU</bdi>)</span></div>
+   <div><b>המחלה הנוכחית</b><span>לפי הסדר בזמן. בכאב: התחלה, מה מחמיר ומקל, אופי, מיקום והקרנה, עוצמה, זמן והשפעה על המטופל <span class="nw">(<bdi>OPQRSTU</bdi>)</span></span></div>
    <div><b>רקע</b><span>מחלות, ניתוחים קודמים, תרופות (כולל נוגדי קרישה), רגישויות, עישון</span></div>
    <div><b>תפקוד ומצב חברתי</b><span>במבוגרים: קוגניציה, תפקוד ונפילות, תמיכה בבית ומה המטרות של המטופל</span></div>
    <div><b>בדיקה</b><span>סימנים חיוניים קודם. אחר כך הממצאים הרלוונטיים, חיוביים ושליליים</span></div>
@@ -187,7 +234,7 @@ details.rev{margin-top:10px;border:1px dashed var(--g);border-radius:12px;paddin
    <div class="box b"><b class="t">במחלקה השבוע</b>הציגו מטופל חדש אחד בישיבת הבוקר. עד 3 דקות ובסדר הזה. סיימו בהערכה ובתוכנית</div>
   </div>
  </div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">2–4, 6</bdi> · פרק 30 עמ׳ <bdi dir="ltr">193</bdi> (<bdi>OPQRSTU</bdi>)</span><span>הסדר עצמו הוא נוהג מקובל</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">2–4, 6</bdi> · פרק 30 עמ׳ <bdi dir="ltr">193</bdi> <span class="nw">(<bdi>OPQRSTU</bdi>)</span></span><span>הסדר עצמו הוא נוהג מקובל</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -214,15 +261,15 @@ details.rev{margin-top:10px;border:1px dashed var(--g);border-radius:12px;paddin
    <g class="hzb" style="--c:#8A5A14"><circle cx="274" cy="408" r="12.8"/><text x="274" y="408">9</text></g>
   </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="rh" hidden><b>1 · היפוכונדריום ימני · <bdi>RUQ</bdi></b><p>מתחת <span class="nw">ל-<bdi>costal margin</bdi></span> מימין: <bdi>liver, gallbladder, hepatic flexure</bdi>. שימו לב: ימין של המטופל הוא <b style="display:inline;font-size:inherit">שמאל</b> הציור</p></div>
-  <div class="hzi" data-hzi="ep" hidden><b>2 · אפיגסטריום</b><p>מתחת <span class="nw">ל-<bdi>sternum</bdi></span>: <bdi>stomach, duodenum, pancreas, left lobe of the liver</bdi></p></div>
+  <div class="hzi" data-hzi="rh" hidden><b>1 · היפוכונדריום ימני · <bdi>RUQ</bdi></b><p>מתחת <span class="nw">ל-<bdi>costal margin</bdi></span> מימין: <span class="nw"><bdi>liver, gallbladder, hepatic flexure</bdi>.</span> שימו לב: ימין של המטופל הוא <b style="display:inline;font-size:inherit">שמאל</b> הציור</p></div>
+  <div class="hzi" data-hzi="ep" hidden><b>2 · אפיגסטריום</b><p>מתחת <span class="nw">ל-<bdi>sternum</bdi>:</span> <bdi>stomach, duodenum, pancreas, left lobe of the liver</bdi></p></div>
   <div class="hzi" data-hzi="lh" hidden><b>3 · היפוכונדריום שמאלי · <bdi>LUQ</bdi></b><p>באזור: <bdi>spleen, stomach, splenic flexure</bdi></p></div>
   <div class="hzi" data-hzi="rl" hidden><b>4 · מותני ימני</b><p>באזור: <bdi>ascending colon, right kidney</bdi></p></div>
-  <div class="hzi" data-hzi="um" hidden><b>5 · טבורי (פרי-אומביליקלי)</b><p>באזור: <bdi>small bowel loops, transverse colon, aorta</bdi>. כאב שמתחיל כאן ונודד: תארו את <b style="display:inline;font-size:inherit">הנדידה</b> ואת הזמן</p></div>
+  <div class="hzi" data-hzi="um" hidden><b>5 · טבורי (פרי-אומביליקלי)</b><p>באזור: <span class="nw"><bdi>small bowel loops, transverse colon, aorta</bdi>.</span> כאב שמתחיל כאן ונודד: תארו את <b style="display:inline;font-size:inherit">הנדידה</b> ואת הזמן</p></div>
   <div class="hzi" data-hzi="ll" hidden><b>6 · מותני שמאלי</b><p>באזור: <bdi>descending colon, left kidney</bdi></p></div>
-  <div class="hzi" data-hzi="ri" hidden><b>7 · איליאק ימני · <bdi>RLQ</bdi></b><p>באזור: <bdi>cecum, appendix</bdi>. בנשים גם <bdi>right ovary & fallopian tube</bdi></p></div>
+  <div class="hzi" data-hzi="ri" hidden><b>7 · איליאק ימני · <bdi>RLQ</bdi></b><p>באזור: <span class="nw"><bdi>cecum, appendix</bdi>.</span> בנשים גם <bdi>right ovary & fallopian tube</bdi></p></div>
   <div class="hzi" data-hzi="hy" hidden><b>8 · היפוגסטריום (סופרה-פובי)</b><p>באזור: <bdi>bladder, uterus</bdi> וחלק <span class="nw">מה-<bdi>sigmoid</bdi></span></p></div>
-  <div class="hzi" data-hzi="li" hidden><b>9 · איליאק שמאלי · <bdi>LLQ</bdi></b><p>באזור: <bdi>sigmoid colon</bdi>. בנשים גם <bdi>left ovary & fallopian tube</bdi></p></div>
+  <div class="hzi" data-hzi="li" hidden><b>9 · איליאק שמאלי · <bdi>LLQ</bdi></b><p>באזור: <span class="nw"><bdi>sigmoid colon</bdi>.</span> בנשים גם <bdi>left ovary & fallopian tube</bdi></p></div>
   <div class="box" style="margin-top:10px"><b class="t">בהצגה</b>אומרים איפה הכאב <b>התחיל</b>, איפה הוא <b>עכשיו</b>, לאן הוא <b>מקרין</b> ואיפה הרגישות בבדיקה. "רגישות באיליאק הימני" מדויק יותר מ"כואב לו בבטן"</div>
  </div></div>
  <div class="src"><span>תשעת אזורי הבטן · <bdi>Gray's Anatomy</bdi> (1918), איור 1220 · <bdi>Wikimedia Commons</bdi> (נחלת הכלל) · <b>Sabiston 22</b> · פרק 30 עמ׳ <bdi dir="ltr">193</bdi> (אזור והקרנה בתיאור כאב)</span><span>אינטראקטיבי</span></div>
@@ -262,7 +309,7 @@ details.rev{margin-top:10px;border:1px dashed var(--g);border-radius:12px;paddin
     <li>בהצגה: "חום של 38.2 ביום הראשון אחרי הניתוח" אומר משהו אחר מאשר אותו חום ביום החמישי</li>
    </ul>
   </div>
-  <figure><img src="img/Hellerhoff_atelectasis_lower_lobes.jpg" alt="צילום חזה עם תמט ב-lower lobes"><figcaption>תמט <span class="nw">ב-<bdi>lower lobes</bdi></span> משני הצדדים בצילום חזה: הצללה בבסיסים וטשטוש קווי <span class="nw">ה-<bdi>diaphragm</bdi></span> · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/Hellerhoff_atelectasis_lower_lobes.jpg" alt="צילום חזה עם תמט ב-lower lobes"><figcaption>תמט <span class="nw">ב-<bdi>lower lobes</bdi></span> משני הצדדים בצילום חזה: הצללה בבסיסים וטשטוש קווי <span class="nw">ה-<bdi>diaphragm</bdi></span> · <span class="nw"><bdi>Hellerhoff</bdi>,</span> <span class="nw"><bdi>CC BY-SA 3.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 26 עמ׳ <bdi dir="ltr">129–130</bdi></span><span>חום אחרי ניתוח</span></div>
 </div></section>
@@ -280,8 +327,8 @@ details.rev{margin-top:10px;border:1px dashed var(--g);border-radius:12px;paddin
   </div>
   <div style="display:grid;gap:10px;align-content:start">
    <div class="box"><b class="t">שלוש דוגמאות מהספר</b>
-    <ul class="b sm"><li>אבן בדרכי המרה אחרי כריתת כיס מרה, הוצאה <span class="nw">ב-<bdi>ERCP</bdi></span>: <b><bdi>IIIa</bdi></b></li><li>פקקת ורידים ברגל, נוגדי קרישה במחלקה: <b><bdi>II</bdi></b></li><li>מורסה אחרי כריתת סיגמואיד, ניתוח חוזר: <b><bdi>IIIb</bdi></b></li></ul></div>
-   <div class="box n"><b class="t">למה זה חשוב לכם</b>זו השפה של ישיבת התחלואה והתמותה. במקום "היה לו סיבוך קטן" אומרים "סיבוך דרגה <bdi>II</bdi>: זיהום בדרכי השתן שטופל באנטיביוטיקה"</div>
+    <ul class="b sm"><li>אבן בדרכי המרה אחרי כריתת כיס מרה, הוצאה <span class="nw">ב-<bdi>ERCP</bdi>:</span> <b><bdi>IIIa</bdi></b></li><li>פקקת ורידים ברגל, נוגדי קרישה במחלקה: <b><bdi>II</bdi></b></li><li>מורסה אחרי כריתת סיגמואיד, ניתוח חוזר: <b><bdi>IIIb</bdi></b></li></ul></div>
+   <div class="box n"><b class="t">למה זה חשוב לכם</b>זו השפה של ישיבת התחלואה והתמותה. במקום "היה לו סיבוך קטן" אומרים "סיבוך דרגה <span class="nw"><bdi>II</bdi>:</span> זיהום בדרכי השתן שטופל באנטיביוטיקה"</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 26 עמ׳ <bdi dir="ltr">127–128</bdi> (טבלה 26.1, תיבה 26.1)</span><span>דירוג סיבוכים</span></div>
@@ -289,7 +336,7 @@ details.rev{margin-top:10px;border:1px dashed var(--g);border-radius:12px;paddin
 
 <section class="s"><div class="card">
  <div class="kick"><b>8</b>קריאה לבכיר/ה</div>
- <h2><bdi>SBAR</bdi>: שיחה של דקה</h2>
+ <h2><span class="nw"><bdi>SBAR</bdi>:</span> שיחה של דקה</h2>
  <div class="grid">
   <div class="flow">
    <div><b><bdi>S</bdi> · מצב</b><span>מי אני ועל איזה מטופל. מה הבעיה עכשיו. "אני הסטודנט/ית במחלקה ב׳. על מר כהן בחדר 4: חום 38.9 ודופק 118"</span></div>
@@ -334,14 +381,14 @@ details.rev{margin-top:10px;border:1px dashed var(--g);border-radius:12px;paddin
  <div class="grid">
   <div>
    <div class="box n"><b class="t">המקרה</b>בת 71, יום ראשון אחרי כריתת המעי הגס הימני בגישה פתוחה בגלל גידול. מתלוננת על כאב בפצע, לא קמה מהמיטה. לא היו גזים. חום 38.1, דופק 96, נשימות 22, רוויה 93% באוויר החדר. קולות נשימה מוחלשים בבסיסים. בטן רכה, רגישה סביב החתך. הפצע נקי. תפוקת שתן תקינה</div>
-   <div class="box b" style="margin-top:10px"><b class="t">המשימה (3 דקות)</b>הציגו את המטופלת לבכיר/ה במבנה <bdi>SOAP</bdi>. סיימו בהערכה ובתוכנית</div>
+   <div class="box b" style="margin-top:10px"><b class="t">המשימה (3 דקות)</b>הציגו את המטופלת לבכיר/ה במבנה <span class="nw"><bdi>SOAP</bdi>.</span> סיימו בהערכה ובתוכנית</div>
   </div>
   <div class="box">
    <b class="t">שאלות לדיון</b>
    <ul class="b sm"><li>מה הסיבה הסבירה לחום?</li><li>מה התוכנית?</li><li>מה הייתם אומרים במשפט אחד?</li></ul>
    <details class="rev"><summary>הצגת תשובה</summary>
-    <p><b><bdi>A</bdi>:</b> יום ראשון אחרי כריתת מעי ימני פתוחה. חום מוקדם (פחות מ-48 שעות) עם נשימה מהירה, ירידה ברוויה וקולות נשימה מוחלשים: מתאים לתמט, הסיבה השכיחה לחום מוקדם. הבטן והפצע לא מחשידים</p>
-    <p><b><bdi>P</bdi>:</b> שליטה טובה בכאב כדי שתוכל לנשום ולהשתעל, ניוד היום, נשימות עמוקות וספירומטר עידוד. מעקב חום ורוויה. אם החום יופיע או יימשך אחרי 72 שעות: לחפש זיהום</p>
+    <p><b><span class="nw"><bdi>A</bdi>:</span></b> יום ראשון אחרי כריתת מעי ימני פתוחה. חום מוקדם (פחות מ-48 שעות) עם נשימה מהירה, ירידה ברוויה וקולות נשימה מוחלשים: מתאים לתמט, הסיבה השכיחה לחום מוקדם. הבטן והפצע לא מחשידים</p>
+    <p><b><span class="nw"><bdi>P</bdi>:</span></b> שליטה טובה בכאב כדי שתוכל לנשום ולהשתעל, ניוד היום, נשימות עמוקות וספירומטר עידוד. מעקב חום ורוויה. אם החום יופיע או יימשך אחרי 72 שעות: לחפש זיהום</p>
     <p><b>משפט אחד:</b> "בת 71, יום ראשון אחרי כריתת מעי גס ימני, עם חום נמוך ורוויה 93%, כנראה תמט. התוכנית: כאב, ניוד ופיזיותרפיה נשימתית"</p>
    </details>
   </div>
@@ -355,14 +402,14 @@ details.rev{margin-top:10px;border:1px dashed var(--g);border-radius:12px;paddin
  <div class="grid">
   <div>
    <div class="box n"><b class="t">המקרה</b>בן 56, יום רביעי אחרי כריתת סיגמואיד בגלל דיברטיקוליטיס חריפה. בערב: חום 38.7, דופק 112, לחץ דם 118/70. כאב בטן שהולך ומחמיר, רגישות בבטן התחתונה. האחות מבקשת שתבדקו אותו. הבכיר/ה בבית</div>
-   <div class="box b" style="margin-top:10px"><b class="t">המשימה (דקה אחת)</b>התקשרו לבכיר/ה במבנה <bdi>SBAR</bdi>. אחד/ת מכם משחק/ת את הבכיר/ה. בסוף סגרו את המעגל</div>
+   <div class="box b" style="margin-top:10px"><b class="t">המשימה (דקה אחת)</b>התקשרו לבכיר/ה במבנה <span class="nw"><bdi>SBAR</bdi>.</span> אחד/ת מכם משחק/ת את הבכיר/ה. בסוף סגרו את המעגל</div>
   </div>
   <div class="box">
    <b class="t">שאלות לדיון</b>
    <ul class="b sm"><li>מה שונה בחום הזה מהחום בתרגיל 1?</li><li>מה האבחנה המבדלת?</li><li>איך היה מדורג הסיבוך אם יידרש ניתוח חוזר?</li></ul>
    <details class="rev"><summary>הצגת תשובה</summary>
     <p><b>התזמון:</b> חום ביום הרביעי, אחרי 72 שעות: זיהום סביר יותר. מחפשים פצע, שתן, ריאות וצנתרים. עם כאב בטן מחמיר חושבים קודם על מורסה או דליפה בבטן</p>
-    <p><b><bdi>SBAR</bdi>:</b> "<bdi>S</bdi> חום 38.7 ודופק 112 עם כאב בטן מחמיר. <bdi>B</bdi> יום רביעי אחרי כריתת סיגמואיד. <bdi>A</bdi> אני מודאג/ת ממורסה או מדליפה. <bdi>R</bdi> אני מבקש/ת שתבוא/י. בינתיים אקח תרביות ומעבדה. אולי <bdi>CT</bdi>?"</p>
+    <p><b><span class="nw"><bdi>SBAR</bdi>:</span></b> "<bdi>S</bdi> חום 38.7 ודופק 112 עם כאב בטן מחמיר. <bdi>B</bdi> יום רביעי אחרי כריתת סיגמואיד. <bdi>A</bdi> אני מודאג/ת ממורסה או מדליפה. <bdi>R</bdi> אני מבקש/ת שתבוא/י. בינתיים אקח תרביות ומעבדה. אולי <bdi>CT</bdi>?"</p>
     <p><b>הדירוג:</b> בדוגמה בספר, מורסה שטופלה בניתוח חוזר היא סיבוך דרגה <bdi>IIIb</bdi></p>
    </details>
   </div>
@@ -374,7 +421,7 @@ details.rev{margin-top:10px;border:1px dashed var(--g);border-radius:12px;paddin
  <div class="kick"><b>12</b>מה חדש בתחום · 2022</div>
  <h2>מחקרים שכדאי להכיר</h2>
  <div class="grid g3">
-  <div class="study"><div class="y"><bdi>JAMA</bdi> 2022 · מחקר אקראי</div><b><bdi>HandiCAP</bdi>: החלפת מרדים באמצע ניתוח</b>
+  <div class="study"><div class="y"><bdi>JAMA</bdi> 2022 · מחקר אקראי</div><b><span class="nw"><bdi>HandiCAP</bdi>:</span> החלפת מרדים באמצע ניתוח</b>
    <p>1,817 מטופלים בסיכון גבוה, 12 מרכזים בגרמניה. מסירה מלאה למרדים אחר לא שינתה את התמותה, האשפוזים החוזרים או הסיבוכים החמורים תוך 30 יום (30% לעומת 33%)</p>
    <small>Meersch M et al. JAMA 2022;327(24):2403-12</small></div>
   <div class="study"><div class="y"><bdi>JAMA Netw Open</bdi> 2022 · 104 מיליון רשומות</div><b>חצי מהטקסט ברשומה מועתק</b>
@@ -393,13 +440,13 @@ details.rev{margin-top:10px;border:1px dashed var(--g);border-radius:12px;paddin
  <h2>חמישה דברים לקחת למחלקה</h2>
  <ol class="obj">
   <li>מציגים בסדר קבוע ומסיימים בהערכה: משפט סיכום, אבחנה מבדלת, דחיפות ותוכנית</li>
-  <li>רשומה יומית <span class="nw">ב-<bdi>SOAP</bdi></span>: מה שנבדק היום, כולל נקזים, פצע, שתן ומה המטופל מספר</li>
+  <li>רשומה יומית <span class="nw">ב-<bdi>SOAP</bdi>:</span> מה שנבדק היום, כולל נקזים, פצע, שתן ומה המטופל מספר</li>
   <li>חום אחרי ניתוח: קודם שואלים מתי. מוקדם לרוב דלקתי או תמט. אחרי 72 שעות לחפש זיהום</li>
-  <li>קריאה לבכיר/ה <span class="nw">ב-<bdi>SBAR</bdi></span>. בסוף סוגרים את המעגל</li>
+  <li>קריאה לבכיר/ה <span class="nw">ב-<bdi>SBAR</bdi>.</span> בסוף סוגרים את המעגל</li>
   <li>מסירת משמרת: מבנה אחיד, בלי הפרעות, עם "מה עושים אם"</li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 19 (עמ׳ <bdi dir="ltr">2–6</bdi>) · פרק 26 <bdi>Surgical Complications</bdi> (עמ׳ <bdi dir="ltr">126–131</bdi>) · פרק 36 (עמ׳ <bdi dir="ltr">314–315</bdi>) · פרק 9 <bdi>Safety in the Surgical Environment</bdi> (עמ׳ <bdi dir="ltr">e105</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Gray's Anatomy</bdi> (1918, נחלת הכלל) · צילום חזה: <bdi>Hellerhoff</bdi> (<bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi>) · לאונרדו דה וינצ׳י ברקע (נחלת הכלל) · כל התרחישים בדויים</span><span>Scrub In · קפלן</span></div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 19 (עמ׳ <span class="nw"><bdi dir="ltr">2–6</bdi>)</span> · פרק 26 <bdi>Surgical Complications</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">126–131</bdi>)</span> · פרק 36 (עמ׳ <span class="nw"><bdi dir="ltr">314–315</bdi>)</span> · פרק 9 <bdi>Safety in the Surgical Environment</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">e105</bdi>)</span></div>
+ <div class="src"><span>איורים: <bdi>Gray's Anatomy</bdi> (1918, נחלת הכלל) · צילום חזה: <bdi>Hellerhoff</bdi> <span class="nw">(<bdi>CC BY-SA 3.0</bdi>,</span> <span class="nw"><bdi>Wikimedia Commons</bdi>)</span> · לאונרדו דה וינצ׳י ברקע (נחלת הכלל) · כל התרחישים בדויים</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>
@@ -421,5 +468,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>

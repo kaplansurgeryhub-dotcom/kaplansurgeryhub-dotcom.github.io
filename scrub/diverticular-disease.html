@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>מחלות סעיפים של המעי הגס · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -90,7 +90,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -120,9 +120,56 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -143,14 +190,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>1</b>מטרות הלמידה</div>
  <h2>בסוף המפגש תדעו</h2>
  <ol class="obj">
-  <li>להבדיל בין סעיפים (<bdi>diverticulosis</bdi>), דלקת סעיפים ודימום מסעיף ולהסביר איך נוצרים סעיפים</li>
+  <li>להבדיל בין סעיפים <span class="nw">(<bdi>diverticulosis</bdi>),</span> דלקת סעיפים ודימום מסעיף ולהסביר איך נוצרים סעיפים</li>
   <li>לאבחן דלקת סעיפים ולמיין אותה לפי <bdi>Hinchey</bdi> המתוקן</li>
   <li>לטפל בדלקת לא מסובכת: בבית, אנטיביוטיקה רק כשצריך ומתי קולונוסקופיה</li>
   <li>להכיר את הסיבוכים: מורסה, פיסטולה, היצרות ונקב ואת אפשרויות הניתוח בכל אחד</li>
   <li>להחליט עם המטופל על ניתוח מתוכנן לפי איכות החיים ולא לפי מספר ההתקפים</li>
-  <li>לגשת לדימום מסיבי מסעיף: קולונוסקופיה, <bdi>CTA</bdi>, אמבוליזציה ומתי ניתוח</li>
+  <li>לגשת לדימום מסיבי מסעיף: קולונוסקופיה, <span class="nw"><bdi>CTA</bdi>,</span> אמבוליזציה ומתי ניתוח</li>
  </ol>
- <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 95 (עמ׳ <bdi dir="ltr">1449–1454</bdi>) · פרק 98 (עמ׳ <bdi dir="ltr">1549–1551</bdi>) · פרק 85 (עמ׳ <bdi dir="ltr">1164</bdi>)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 95 (עמ׳ <span class="nw"><bdi dir="ltr">1449–1454</bdi>)</span> · פרק 98 (עמ׳ <span class="nw"><bdi dir="ltr">1549–1551</bdi>)</span> · פרק 85 (עמ׳ <span class="nw"><bdi dir="ltr">1164</bdi>)</span></span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -164,8 +211,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <li><b>מחלת סעיפים:</b> כל הקשת של מה שסעיפים עושים: דלקת, סיבוכים ודימום</li>
   </ul>
   <div style="display:grid;gap:10px">
-   <div class="box"><b class="t">סעיפים (<bdi>diverticulosis</bdi>)</b>יש סעיפים, אין תסמינים. ממצא שכיח בקולונוסקופיה וב-CT</div>
-   <div class="box a"><b class="t">דלקת סעיפים (<bdi>diverticulitis</bdi>)</b>דלקת ונקב קטן של סעיף. לא מסובכת או מסובכת</div>
+   <div class="box"><b class="t">סעיפים <span class="nw">(<bdi>diverticulosis</bdi>)</span></b>יש סעיפים, אין תסמינים. ממצא שכיח בקולונוסקופיה וב-CT</div>
+   <div class="box a"><b class="t">דלקת סעיפים <span class="nw">(<bdi>diverticulitis</bdi>)</span></b>דלקת ונקב קטן של סעיף. לא מסובכת או מסובכת</div>
    <div class="box r"><b class="t">דימום מסעיף</b>הסיבה השכיחה ביותר לדימום מסיבי ממערכת העיכול התחתונה</div>
   </div>
  </div>
@@ -185,7 +232,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li><b>מזיק:</b> תזונה מערבית (בשר אדום, שומן, דגנים מעובדים), השמנה מרכזית, עישון</li>
   <li><b>מגן:</b> סיבים, פירות, ירקות ודגנים מלאים, פעילות גופנית כמו ריצה</li>
   <li><b>לא מזיק:</b> אגוזים, גרעינים ופופקורן. אין צורך לאסור</li>
-  <li>מחקר <bdi>EPIC</bdi>: בצמחונים סיכון נמוך ב-31% לאשפוז או מוות מהמחלה ובצריכה הגבוהה של סיבים נמוך ב-41%</li>
+  <li>מחקר <span class="nw"><bdi>EPIC</bdi>:</span> בצמחונים סיכון נמוך ב-31% לאשפוז או מוות מהמחלה ובצריכה הגבוהה של סיבים נמוך ב-41%</li>
  </ul>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1450–1451</bdi></span><span>אפידמיולוגיה</span></div>
 </div></section>
@@ -202,11 +249,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <g class="hzb" style="--c:#A3402E"><circle cx="392" cy="380" r="12.3"/><text x="392" y="380">3</text></g>
  </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-   <div class="hzi" data-hzi="d" hidden><b>1 · <bdi>Descending colon</bdi></b><p>יחד עם <span class="nw">ה-<bdi>sigmoid</bdi></span>, המקום הטיפוסי לסעיפים. לא צריך לכרות את כל הסעיפים: השוליים הקרובים נקבעים במעי רך וגמיש</p></div>
+   <div class="hzi" data-hzi="d" hidden><b>1 · <bdi>Descending colon</bdi></b><p>יחד עם <span class="nw">ה-<bdi>sigmoid</bdi>,</span> המקום הטיפוסי לסעיפים. לא צריך לכרות את כל הסעיפים: השוליים הקרובים נקבעים במעי רך וגמיש</p></div>
    <div class="hzi" data-hzi="s" hidden><b>2 · <bdi>Sigmoid colon</bdi></b><p>האתר השכיח. שריר מעובה, חלל צר ולחץ גבוה. הסעיפים יוצאים בצד המזנטרי, במקום שבו כלי הדם חוצים את השריר. לכן רוב הנקבים נתחמים <span class="nw">ב-<bdi>mesentery</bdi></span></p></div>
    <div class="hzi" data-hzi="r" hidden><b>3 · <bdi>Rectum</bdi></b><p>שכבת שריר נוספת ולכן כמעט אין בו סעיפים. <b>ההשקה הרחוקה תמיד <span class="nw">ל-<bdi>upper rectum</bdi></span></b>: שארית <bdi>sigmoid</bdi> מעלה את הסיכון לחזרה</p></div>
   </div></div>
- <figure style="margin-top:8px;border:0;padding:0"><figcaption><span class="nw">ה-<bdi>descending colon</bdi></span>, <span class="nw">ה-<bdi>sigmoid</bdi></span> <span class="nw">וה-<bdi>rectum</bdi></span>, מבט מלפנים · <bdi>Gray's Anatomy</bdi> 1918, איור 1076 (נחלת הכלל)</figcaption></figure>
+ <figure style="margin-top:8px;border:0;padding:0"><figcaption><span class="nw">ה-<bdi>descending colon</bdi>,</span> <span class="nw">ה-<bdi>sigmoid</bdi></span> <span class="nw">וה-<bdi>rectum</bdi>,</span> מבט מלפנים · <bdi>Gray's Anatomy</bdi> 1918, איור 1076 (נחלת הכלל)</figcaption></figure>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1449–1450, 1452</bdi></span><span>אנטומיה</span></div>
 </div></section>
 
@@ -216,7 +263,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div class="flow">
    <div><b>שריר מעובה</b><span>חלל צר ותנועתיות לא מתואמת: אזורים של לחץ גבוה</span></div>
-   <div><b>נקודות חולשה</b><span><span class="nw">ה-<bdi>mucosa</bdi></span> בולטת במקום שבו כלי הדם (<bdi>vasa recta</bdi>) חוצים את השריר, בצד המזנטרי</span></div>
+   <div><b>נקודות חולשה</b><span><span class="nw">ה-<bdi>mucosa</bdi></span> בולטת במקום שבו כלי הדם <span class="nw">(<bdi>vasa recta</bdi>)</span> חוצים את השריר, בצד המזנטרי</span></div>
    <div><b>פתח הסעיף נחסם</b><span>קיפאון, שגשוג חיידקים, לחץ בתוך הסעיף, איסכמיה</span></div>
    <div><b>נקב זעיר</b><span>זיהום ודלקת מקומית סביב המעי</span></div>
   </div>
@@ -242,25 +289,25 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div class="box r" style="margin-top:12px"><b class="t">דימום רקטלי? לחשוב שוב</b>נדיר בדלקת סעיפים חריפה. מכוון לאבחנה אחרת: קוליטיס איסכמית או מחלת מעי דלקתית</div>
    <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>בדקו מטופל עם דלקת סעיפים: מקום הרגישות, גוש, סימני פריטוניטיס. השוו לממצאי ה-CT וקבעו לבד את דרגת <bdi>Hinchey</bdi> לפני שאתם שואלים את המתמחה</div>
   </div>
-  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש בטן בשתי ידיים"><figcaption>מישוש הבטן בשתי ידיים, מטופל שוכב והרופא לצידו (כאן מישוש <span class="nw">ה-<bdi>liver</bdi></span>) · <bdi>Musser</bdi>, 1904, איור 192 (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש בטן בשתי ידיים"><figcaption>מישוש הבטן בשתי ידיים, מטופל שוכב והרופא לצידו (כאן מישוש <span class="nw">ה-<bdi>liver</bdi>)</span> · <span class="nw"><bdi>Musser</bdi>,</span> 1904, איור 192 (נחלת הכלל)</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1450</bdi></span><span>קליניקה</span></div>
 </div></section>
 
 <section class="s"><div class="card">
  <div class="kick"><b>7</b>הדמיה</div>
- <h2>CT: לאשר, לשלול ולמיין</h2>
+ <h2><span class="nw"><bdi dir="ltr">CT</bdi>:</span> לאשר, לשלול ולמיין</h2>
  <div class="grid f">
   <div>
    <ul class="b">
     <li>צילום בטן בעמידה ובשכיבה: חסימה או אוויר חופשי, אבל לא ספציפי</li>
     <li>אולטרסאונד, <bdi>MRI</bdi> וחוקן ניגוד שימשו, אבל <b>CT הוא הכלי העיקרי</b>: מאשר, שולל אבחנות אחרות וקובע חומרה</li>
     <li><b>סימנים ב-CT:</b> סעיפים, עיבוי דופן המעי, הסננה של השומן סביב המעי, מורסה</li>
-    <li>CT גם מאתר מורסות ופיסטולות ומראה את היקף המחלה</li>
+    <li><bdi dir="ltr">CT</bdi> גם מאתר מורסות ופיסטולות ומראה את היקף המחלה</li>
     <li><b>קולונוסקופיה בזמן ההתקף:</b> בזהירות. ניפוח המעי עלול להחמיר נקב</li>
    </ul>
   </div>
-  <figure><img src="img/ct-diverticulitis-perforation.jpg" alt="CT של דלקת סעיפים מנוקבת"><figcaption>CT רוחבי: דלקת סעיפים של <span class="nw">ה-<bdi>sigmoid</bdi></span> עם נקב ואוויר מחוץ למעי (בעיגול) · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/ct-diverticulitis-perforation.jpg" alt="CT של דלקת סעיפים מנוקבת"><figcaption>CT רוחבי: דלקת סעיפים של <span class="nw">ה-<bdi>sigmoid</bdi></span> עם נקב ואוויר מחוץ למעי (בעיגול) · <span class="nw"><bdi>Hellerhoff</bdi>,</span> <span class="nw"><bdi>CC BY-SA 3.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1450–1451</bdi></span><span>הדמיה</span></div>
 </div></section>
@@ -278,7 +325,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  </div>
  <div class="grid" style="margin-top:12px">
   <div class="box"><b class="t">לא מסובכת מול מסובכת</b>מסובכת = מורסה, פיסטולה, חסימה או נקב חופשי</div>
-  <div class="box a"><b class="t">גבול של ה-CT</b>קשה להבדיל ב-CT בין <bdi>III</bdi> <span class="nw">ל-<bdi>IV</bdi></span>. האבחנה המדויקת היא בדרך כלל בחדר הניתוח</div>
+  <div class="box a"><b class="t">גבול של ה-CT</b>קשה להבדיל ב-CT בין <bdi>III</bdi> <span class="nw">ל-<bdi>IV</bdi>.</span> האבחנה המדויקת היא בדרך כלל בחדר הניתוח</div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1450–1452</bdi> (טבלה 95.1)</span><span>מיון</span></div>
 </div></section>
@@ -312,7 +359,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li>פעם המליצו לנתח לפי מספר ההתקפים. היום: ההתקפים החוזרים <b>בדרך כלל דומים בחומרתם להתקף הראשון</b> ולכן המספר לבד אינו סיבה לנתח</li>
     <li><b>גיל צעיר (מתחת ל-50) אינו סיבה:</b> יותר חזרות, אבל לא יותר ניתוחים דחופים. ההנחיות לא מבדילות</li>
     <li>ניתוח מתוכנן הוא לא בלי מחיר: זיהום, דימום, פגיעה באיברים סמוכים ואפילו סטומה קבועה</li>
-    <li><b>מחקר <bdi>DIRECT</bdi>:</b> כריתת סיגמה שיפרה את איכות החיים במי שסובל מהתקפים חוזרים או מתלונות מתמשכות. כמעט חצי מהמטופלים השמרניים נותחו בסוף</li>
+    <li><b>מחקר <span class="nw"><bdi>DIRECT</bdi>:</span></b> כריתת סיגמה שיפרה את איכות החיים במי שסובל מהתקפים חוזרים או מתלונות מתמשכות. כמעט חצי מהמטופלים השמרניים נותחו בסוף</li>
    </ul>
   </div>
   <div class="box n"><b class="t">ההחלטה אישית</b>מה שמכריע: כמה התקפים, האם יש תלונות בין ההתקפים, כמה זה פוגע באיכות החיים, מול הגיל, המצב הרפואי והסיכון הניתוחי. <b>בעיקר לניתוח: מחלה מסובכת או מחלה שלא מגיבה לטיפול</b></div>
@@ -325,9 +372,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>מורסה, פיסטולה, היצרות</h2>
  <div class="grid g3">
   <div class="box"><b class="t">מורסה</b>
-   <ul class="b sm"><li>קטנה: אנטיביוטיקה לבד בדרך כלל מספיקה</li><li>גדולה: ניקוז מלעורי</li><li>אחרי ההחלמה: יותר חזרות וסיבוכים. ההנחיות האמריקאיות (<bdi>ASCRS</bdi>): לשקול כריתה מתוכננת</li><li>לא מתנקזת ולא משתפרת: ניתוח דחוף</li></ul></div>
+   <ul class="b sm"><li>קטנה: אנטיביוטיקה לבד בדרך כלל מספיקה</li><li>גדולה: ניקוז מלעורי</li><li>אחרי ההחלמה: יותר חזרות וסיבוכים. ההנחיות האמריקאיות <span class="nw">(<bdi>ASCRS</bdi>):</span> לשקול כריתה מתוכננת</li><li>לא מתנקזת ולא משתפרת: ניתוח דחוף</li></ul></div>
   <div class="box b"><b class="t">פיסטולה</b>
-   <ul class="b sm"><li>השכיחה: <b><span class="nw">ל-<bdi>bladder</bdi></span></b>, בעיקר בגברים. דלקות שתן חוזרות, אוויר וצואה בשתן</li><li><span class="nw">ל-<bdi>vagina</bdi></span>: כמעט רק אחרי כריתת רחם</li><li>לעור: במקום ניקוז קודם</li><li>בדרך כלל לא דחוף: אנטיביוטיקה, קולונוסקופיה וציסטוסקופיה (לשלול גידול וקרוהן), אחר כך כריתה והשקה. פיסטולה <span class="nw">ל-<bdi>bladder</bdi></span>: קטטר <bdi dir="ltr">7–10</bdi> ימים</li></ul></div>
+   <ul class="b sm"><li>השכיחה: <b><span class="nw">ל-<bdi>bladder</bdi></span></b>, בעיקר בגברים. דלקות שתן חוזרות, אוויר וצואה בשתן</li><li><span class="nw">ל-<bdi>vagina</bdi>:</span> כמעט רק אחרי כריתת רחם</li><li>לעור: במקום ניקוז קודם</li><li>בדרך כלל לא דחוף: אנטיביוטיקה, קולונוסקופיה וציסטוסקופיה (לשלול גידול וקרוהן), אחר כך כריתה והשקה. פיסטולה <span class="nw">ל-<bdi>bladder</bdi>:</span> קטטר <bdi dir="ltr">7–10</bdi> ימים</li></ul></div>
   <div class="box n"><b class="t">היצרות וחסימה</b>
    <ul class="b sm"><li>פיברוזיס אחרי התקפים חוזרים: חסימה חלקית ותסמינים מתגנבים</li><li>זונדה, אנטיביוטיקה, נוזלים וצום. אם נפתר: כריתה מתוכננת</li><li>לפני כן: קולונוסקופיה לשלול גידול. לא עוברים? קולונוגרפיה וירטואלית או חוקן ניגוד</li><li>חסימה מלאה שלא מגיבה: ניתוח דחוף</li></ul></div>
  </div>
@@ -341,17 +388,17 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <ul class="b sm">
     <li><bdi>Hinchey III</bdi> <span class="nw">ו-<bdi>IV</bdi></span> הם חירום: החייאה ואז ניתוח לשליטה במקור ולשטיפה</li>
-    <li><b><bdi>Hartmann</bdi>:</b> כריתה וקולוסטומיה. החזרת הרציפות היא ניתוח גדול נוסף ועד 50% לא עוברים אותו לעולם</li>
+    <li><b><span class="nw"><bdi>Hartmann</bdi>:</span></b> כריתה וקולוסטומיה. החזרת הרציפות היא ניתוח גדול נוסף ועד 50% לא עוברים אותו לעולם</li>
     <li><b>כריתה והשקה ראשונית</b> (עם או בלי אילאוסטומיה מסיטה): <span class="nw">ב-<bdi>DIVERTI</bdi></span> <span class="nw">וב-<bdi>LADIES-DIVA</bdi></span> פחות סטומות קבועות, פחות סיבוכים וניתוחים חוזרים ופחות בקעים</li>
-    <li><b>שטיפה לפרוסקופית</b> בלי כריתה (בעיקר <bdi>III</bdi>): פחות סטומות, אבל חזרה של המחלה פי 6 בערך. <bdi>LOLA</bdi> נעצר מוקדם בגלל סיבוכים</li>
+    <li><b>שטיפה לפרוסקופית</b> בלי כריתה (בעיקר <span class="nw"><bdi>III</bdi>):</span> פחות סטומות, אבל חזרה של המחלה פי 6 בערך. <bdi>LOLA</bdi> נעצר מוקדם בגלל סיבוכים</li>
     <li><b>בקרת נזקים:</b> כריתה, בטן פתוחה וחזרה אחרי <bdi dir="ltr">24–48</bdi> שעות להחליט על השקה</li>
    </ul>
   </div>
   <div class="flow">
    <div><b><bdi>III</bdi> · יציב וכשיר</b><span>כריתה והשקה ראשונית, או שטיפה לפרוסקופית</span></div>
    <div><b><bdi>IV</bdi> · יציב וכשיר</b><span>כריתה והשקה ראשונית עם אילאוסטומיה מסיטה</span></div>
-   <div><b>לא יציב</b><span><bdi>Hartmann</bdi>, או בקרת נזקים</span></div>
-   <div><b>מרותק למיטה או עם אי שליטה</b><span><bdi>Hartmann</bdi>: קולוסטומיה יכולה לשפר את איכות החיים</span></div>
+   <div><b>לא יציב</b><span><span class="nw"><bdi>Hartmann</bdi>,</span> או בקרת נזקים</span></div>
+   <div><b>מרותק למיטה או עם אי שליטה</b><span><span class="nw"><bdi>Hartmann</bdi>:</span> קולוסטומיה יכולה לשפר את איכות החיים</span></div>
   </div>
  </div>
  <div class="box a" style="margin-top:10px"><b class="t">בלי ניתוח?</b>במעטים מאוד, יציבים לגמרי, עם אוויר חופשי רחוק: אנטיביוטיקה, צום ואולי ניקוז, במעקב צמוד. נקב תחום בלי פריטוניטיס: הצלחה של <bdi dir="ltr">71.4–94%</bdi> בטיפול לא ניתוחי</div>
@@ -365,15 +412,15 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <ol class="obj">
     <li><b>שוליים קרובים:</b> במעי רך וגמיש. לא צריך לכרות את כל הסעיפים</li>
-    <li><b>שוליים רחוקים: <span class="nw">ב-<bdi>upper rectum</bdi></span>.</b> שארית <bdi>sigmoid</bdi> מעלה את הסיכון לחזרה</li>
+    <li><b>שוליים רחוקים: <span class="nw">ב-<bdi>upper rectum</bdi>.</span></b> שארית <bdi>sigmoid</bdi> מעלה את הסיכון לחזרה</li>
     <li><b>השקה ראשונית</b> של מעי בריא. הגישה: פתוחה, לפרוסקופית, בסיוע יד או רובוטית</li>
    </ol>
    <ul class="b sm" style="margin-top:12px">
     <li>זעיר-פולשני: חזרה מהירה יותר של פעילות המעי, פחות כאב, אשפוז קצר</li>
-    <li>סטנטים <span class="nw">ב-<bdi>ureters</bdi></span>: לפי המקרה, כמדריך בתוך רקמה דלקתית</li>
+    <li>סטנטים <span class="nw">ב-<bdi>ureters</bdi>:</span> לפי המקרה, כמדריך בתוך רקמה דלקתית</li>
    </ul>
   </div>
-  <figure><img src="img/lap-sigmoid-diverticulosis.jpg" alt="סעיף ב-sigmoid במבט לפרוסקופי"><figcaption>סעיף בדופן <span class="nw">ה-<bdi>sigmoid</bdi></span>, כפי שנראה בלפרוסקופיה · <bdi>Hic et nunc</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/lap-sigmoid-diverticulosis.jpg" alt="סעיף ב-sigmoid במבט לפרוסקופי"><figcaption>סעיף בדופן <span class="nw">ה-<bdi>sigmoid</bdi>,</span> כפי שנראה בלפרוסקופיה · <span class="nw"><bdi>Hic et nunc</bdi>,</span> <span class="nw"><bdi>CC BY-SA 3.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1450, 1452</bdi></span><span>ניתוח</span></div>
 </div></section>
@@ -382,7 +429,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>14</b>אוכלוסיות מיוחדות</div>
  <h2>ימין, מדוכאי חיסון וצעירים</h2>
  <div class="grid g3">
-  <div class="box"><b class="t">דלקת סעיפים בצד ימין</b>שכיחה באסיה, נדירה במערב, בצעירים. נראית בדיוק כמו אפנדיציט. אבחנה מבדלת: סעיף מקל, <bdi>gallbladder</bdi>, קוליטיס איסכמית, דלקת בלוטות במזנטריום, פיאלונפריטיס, <bdi>PID</bdi>. אותה גישה כמו בצד שמאל</div>
+  <div class="box"><b class="t">דלקת סעיפים בצד ימין</b>שכיחה באסיה, נדירה במערב, בצעירים. נראית בדיוק כמו אפנדיציט. אבחנה מבדלת: סעיף מקל, <span class="nw"><bdi>gallbladder</bdi>,</span> קוליטיס איסכמית, דלקת בלוטות במזנטריום, פיאלונפריטיס, <span class="nw"><bdi>PID</bdi>.</span> אותה גישה כמו בצד שמאל</div>
   <div class="box a"><b class="t">מדוכאי חיסון</b>השתלה, סוכרת, אי ספיקת כליות, שחמת, סטרואידים, כימותרפיה. ניתוח מתוכנן אחרי התקף לא מסובך: החלטה אישית. אותה תמותה, אבל יותר סיבוכים קשים ופתיחת פצע</div>
   <div class="box n"><b class="t">מתחת לגיל 50</b>פעם נותחו אחרי התקף אחד. היום: יותר חזרות, אבל לא יותר ניתוחים דחופים. מטפלים בהם כמו בכל אחד</div>
  </div>
@@ -400,9 +447,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <div><b>לא יציב או ממשיך לדמם</b><span><bdi>CTA</bdi> (מזהה דימום של <bdi dir="ltr">0.3–0.5</bdi> מ״ל לדקה) ואז צנתור עם אמבוליזציה סלקטיבית, אידיאלית תוך 90 דקות</span></div>
     <div><b>ניתוח</b><span>אי יציבות עם דימום פעיל, דימום חוזר, או יותר מ-4 מנות דם ב-24 שעות</span></div>
    </div>
-   <div class="box" style="margin-top:10px"><b class="t">איזה ניתוח</b>מקור ידוע: כריתה של הקטע. מקור לא ידוע ודימום פעיל: קולקטומיה תת-טוטלית (תחלואה כ-37%, תמותה <bdi dir="ltr">11–33%</bdi>). לכן מנסים לאתר לפני הניתוח</div>
+   <div class="box" style="margin-top:10px"><b class="t">איזה ניתוח</b>מקור ידוע: כריתה של הקטע. מקור לא ידוע ודימום פעיל: קולקטומיה תת-טוטלית (תחלואה כ-37%, תמותה <span class="nw"><bdi dir="ltr">11–33%</bdi>).</span> לכן מנסים לאתר לפני הניתוח</div>
   </div>
-  <figure><img src="img/ct-diverticular-bleed.jpg" alt="CT של דימום פעיל מסעיף ב-sigmoid"><figcaption>דימום פעיל מסעיף <span class="nw">ב-<bdi>sigmoid</bdi></span>: חומר הניגוד בתוך המעי (חצים) גדל מהשלב העורקי (משמאל) לשלב הוורידי · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/ct-diverticular-bleed.jpg" alt="CT של דימום פעיל מסעיף ב-sigmoid"><figcaption>דימום פעיל מסעיף <span class="nw">ב-<bdi>sigmoid</bdi>:</span> חומר הניגוד בתוך המעי (חצים) גדל מהשלב העורקי (משמאל) לשלב הוורידי · <span class="nw"><bdi>Hellerhoff</bdi>,</span> <span class="nw"><bdi>CC BY-SA 4.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1450</bdi> · פרק 98 עמ׳ <bdi dir="ltr">1549–1551</bdi></span><span>דימום</span></div>
 </div></section>
@@ -411,8 +458,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>16</b>מה חדש בתחום · 2021–2026</div>
  <h2>מחקרים שכדאי להכיר</h2>
  <div class="grid">
-  <div class="study"><div class="y"><bdi>JAMA Surg</bdi> 2021 · מחקר אקראי</div><b><bdi>LASER</bdi>: כריתה מתוכננת מול טיפול שמרני</b>
-   <p>90 מטופלים בפינלנד עם דלקת חוזרת, מסובכת או כאב מתמשך. אחרי 6 חודשים איכות החיים טובה יותר בניתוח (12 נקודות במדד <bdi>GIQLI</bdi>), אבל 10% סיבוכים קשים</p>
+  <div class="study"><div class="y"><bdi>JAMA Surg</bdi> 2021 · מחקר אקראי</div><b><span class="nw"><bdi>LASER</bdi>:</span> כריתה מתוכננת מול טיפול שמרני</b>
+   <p>90 מטופלים בפינלנד עם דלקת חוזרת, מסובכת או כאב מתמשך. אחרי 6 חודשים איכות החיים טובה יותר בניתוח (12 נקודות במדד <span class="nw"><bdi>GIQLI</bdi>),</span> אבל 10% סיבוכים קשים</p>
    <small>Santos A et al. JAMA Surg 2021;156(2):129-36</small></div>
   <div class="study"><div class="y"><bdi>JAMA Surg</bdi> 2025 · <bdi>LASER</bdi> אחרי 4 שנים</div><b>ההבדל באיכות החיים נעלם</b>
    <p>32% מהקבוצה השמרנית נותחו. חזרה: 16% בקבוצת הניתוח לעומת 92% בשמרנית. סיבוכים קשים דומים (10% לעומת 11%). מסקנה: איכות חיים נמוכה, לנתח. כמעט תקינה, אפשר להתחיל בשמרני</p>
@@ -432,13 +479,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>חמישה דברים לקחת למחלקה</h2>
  <ol class="obj">
   <li>כאב בבטן שמאלית תחתונה, חום ורגישות: לחשוב על דלקת סעיפים. דם ברקטום מכוון לאבחנה אחרת</li>
-  <li>CT מאשר ומדרג. <bdi>Hinchey III–IV</bdi> הם חירום</li>
+  <li><bdi dir="ltr">CT</bdi> מאשר ומדרג. <bdi>Hinchey III–IV</bdi> הם חירום</li>
   <li>דלקת לא מסובכת: רובם בבית ואנטיביוטיקה לא לכולם</li>
   <li>ניתוח מתוכנן לפי איכות החיים והסיבוכים, לא לפי מספר ההתקפים או הגיל. השוליים הרחוקים <span class="nw">ב-<bdi>rectum</bdi></span></li>
   <li>בנקב: <bdi>Hartmann</bdi> כבר אינו הבחירה היחידה. השקה ראשונית מתאימה למטופל יציב</li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 95 <bdi>Colon and Rectum</bdi> (עמ׳ <bdi dir="ltr">1449–1454</bdi>) · פרק 98 <bdi>Acute Gastrointestinal Hemorrhage</bdi> (עמ׳ <bdi dir="ltr">1549–1551</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Gray's Anatomy</bdi> 1918, <bdi>Musser</bdi> 1904 (נחלת הכלל) · צילומים: <bdi>Hellerhoff</bdi>, <bdi>Hic et nunc</bdi> (<bdi>CC BY-SA</bdi>, <bdi>Wikimedia Commons</bdi>) · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 95 <bdi>Colon and Rectum</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1449–1454</bdi>)</span> · פרק 98 <bdi>Acute Gastrointestinal Hemorrhage</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1549–1551</bdi>)</span></div>
+ <div class="src"><span>איורים: <bdi>Gray's Anatomy</bdi> 1918, <bdi>Musser</bdi> 1904 (נחלת הכלל) · צילומים: <span class="nw"><bdi>Hellerhoff</bdi>,</span> <bdi>Hic et nunc</bdi> <span class="nw">(<bdi>CC BY-SA</bdi>,</span> <span class="nw"><bdi>Wikimedia Commons</bdi>)</span> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>
@@ -463,5 +510,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>

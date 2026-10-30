@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>מבוא לטראומה · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,7 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -116,9 +116,56 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -131,7 +178,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
  <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 1</div>
  <h1>מבוא לטראומה</h1>
- <p class="lead">מערכת טראומה, הסקר הראשוני <bdi>xABCDE</bdi>, הלם דימומי והחייאה בשליטה על נזק</p>
+ <p class="lead">מערכת טראומה, הסקר הראשוני <span class="nw"><bdi>xABCDE</bdi>,</span> הלם דימומי והחייאה בשליטה על נזק</p>
  <div class="cvsrc" data-ch="36" data-note=""><small>מבוסס על</small><b><bdi dir="ltr">Sabiston Textbook of Surgery</bdi> · מהדורה 22</b><div class="cvch"><span>פרק <bdi dir="ltr">36</bdi></span></div></div>
  <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
 </div></section>
@@ -146,7 +193,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>להכיר את עקרונות ההחייאה בשליטה על נזק: מוצרי דם מאוזנים, מעט קריסטלואידים, לחץ דם "מספיק" <span class="nw">ו-<bdi>TXA</bdi></span></li>
   <li>לבצע סקר שניוני מסודר ולהבין למה חוזרים לבדוק את המטופל למחרת</li>
  </ol>
- <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 36 (עמ׳ <bdi dir="ltr">301–326</bdi>)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 36 (עמ׳ <span class="nw"><bdi dir="ltr">301–326</bdi>)</span></span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -159,8 +206,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div><b dir="ltr">~50%</b><span>ממקרי המוות מדימום שניתנים למניעה קורים לפני בית החולים</span></div>
  </div>
  <ul class="b">
-  <li><b>מרכז טראומה מול בית חולים רגיל</b> (מחקר <bdi>NSCOT</bdi>, יותר מ-5,000 מטופלים): תמותה בבית החולים נמוכה ב-20% ותמותה בשנה נמוכה ב-25%</li>
-  <li><b>הקמת מערכת טראומה</b> (<bdi>Nathens</bdi>, כ-400,000 מטופלים ב-17 שנה): ירידה של 8% בתמותה</li>
+  <li><b>מרכז טראומה מול בית חולים רגיל</b> (מחקר <span class="nw"><bdi>NSCOT</bdi>,</span> יותר מ-5,000 מטופלים): תמותה בבית החולים נמוכה ב-20% ותמותה בשנה נמוכה ב-25%</li>
+  <li><b>הקמת מערכת טראומה</b> <span class="nw">(<bdi>Nathens</bdi>,</span> כ-400,000 מטופלים ב-17 שנה): ירידה של 8% בתמותה</li>
   <li>40% מההרוגים בתאונות דרכים עוד היו בחיים כשהגיע הצוות הראשון</li>
   <li>רוב הפצועים צעירים ולכן המחיר לחברה עצום</li>
  </ul>
@@ -172,7 +219,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>המטופל הנכון, למקום הנכון, בזמן הנכון</h2>
  <div class="grid">
   <ul class="b">
-   <li><b>מערכת "כוללת":</b> כל בתי החולים שותפים, כל אחד לפי רמתו (<bdi dir="ltr">1–4</bdi>), עם כללי מיון בשטח והסכמי העברה</li>
+   <li><b>מערכת "כוללת":</b> כל בתי החולים שותפים, כל אחד לפי רמתו <span class="nw">(<bdi dir="ltr">1–4</bdi>),</span> עם כללי מיון בשטח והסכמי העברה</li>
    <li>מערכת "בלעדית" שלחה כמעט את כולם למרכז אחד: טוב לפצועים קשה, אבל הרבה העברות מיותרות של פצועים קל</li>
    <li><b>רצף אחד:</b> מניעה, טיפול בשטח, בית חולים, שיקום, רישום ושיפור איכות</li>
    <li><b>בשטח:</b> בטיחות הזירה, הערכה מהירה, החלטה לאן מפנים, טיפול תוך כדי נסיעה ("לטעון ולנסוע"). שואפים לפחות מ-15 דקות בזירה</li>
@@ -195,12 +242,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div><b>A · נתיב אוויר</b><span>עם הגבלת תנועה של <span class="nw">ה-<bdi dir="ltr">C-spine</bdi></span></span></div>
    <div><b>B · נשימה</b><span>חזה אוויר בלחץ, חזה פתוח, חזה מתנופף</span></div>
    <div><b>C · מחזור הדם</b><span>האם יש הלם? מאיפה מדמם?</span></div>
-   <div><b>D · מצב נוירולוגי</b><span>מדד <bdi>GCS</bdi>, אישונים, תנועת גפיים</span></div>
+   <div><b>D · מצב נוירולוגי</b><span>מדד <span class="nw"><bdi>GCS</bdi>,</span> אישונים, תנועת גפיים</span></div>
    <div><b>E · חשיפה וסביבה</b><span>מפשיטים לגמרי ושומרים על חום</span></div>
   </div>
   <div style="display:grid;gap:10px">
    <div class="box n"><b class="t">שלושה עקרונות של <bdi>ATLS</bdi></b>1. מטפלים קודם במה שהורג ראשון<br>2. לא מחכים לאבחנה מדויקת כדי לטפל<br>3. לא צריך אנמנזה מפורטת כדי להתחיל</div>
-   <div class="box a"><b class="t">מה חדש</b>מהדורה 11 של <bdi>ATLS</bdi> שינתה לראשונה מזה יותר מ-45 שנה את הסדר: <span class="nw">מ-<bdi>ABCDE</bdi></span> <span class="nw">ל-<bdi>xABCDE</bdi></span>, בזכות הניסיון הצבאי</div>
+   <div class="box a"><b class="t">מה חדש</b>מהדורה 11 של <bdi>ATLS</bdi> שינתה לראשונה מזה יותר מ-45 שנה את הסדר: <span class="nw">מ-<bdi>ABCDE</bdi></span> <span class="nw">ל-<bdi>xABCDE</bdi>,</span> בזכות הניסיון הצבאי</div>
    <div class="box"><b class="t">חוזרים על הסקר</b>אחרי כל פעולה טיפולית ובכל שינוי במצב המטופל. מוצאים בעיה? עוצרים ומטפלים בה מיד</div>
   </div>
  </div>
@@ -235,7 +282,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b sm">
-    <li><b>חושפים</b> את כל האזור ומפעילים <b>לחץ ישיר</b> ומילוי הפצע בגזה (<bdi>packing</bdi>)</li>
+    <li><b>חושפים</b> את כל האזור ומפעילים <b>לחץ ישיר</b> ומילוי הפצע בגזה <span class="nw">(<bdi>packing</bdi>)</span></li>
     <li><b>חוסם עורקים:</b> כשהלחץ לא עוצר את הדימום, בדימום עורקי פועם, או בקטיעה מלאה או כמעט מלאה</li>
     <li>שמים <bdi dir="ltr">5–8</bdi> ס״מ מעל מקום הדימום, על העור, לא על בגד ולא על מפרק. מהדקים עד שאין דופק מתחת לחוסם</li>
     <li>עדיין מדמם? חוסם שני <bdi dir="ltr">5–8</bdi> ס״מ מעל הראשון. <b>רושמים את השעה</b> על החוסם</li>
@@ -244,7 +291,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    </ul>
    <div class="box a" style="margin-top:10px"><b class="t">הלקח מהצבא</b>אחרי שחוסם העורקים הפך לציוד של כל חייל, מקרי המוות מדימום מגפיים בצבא האמריקאי ירדו ב-85%</div>
   </div>
-  <figure><img src="img/trauma-cat-tourniquet.jpg" alt="חוסם עורקים מסוג CAT עם מוט הידוק"><figcaption>חוסם עורקים מסוג <bdi>CAT</bdi>: רצועה עם סקוטש, מוט הידוק (<bdi>windlass</bdi>) ותופסן לנעילתו · <bdi>INDNAM</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/trauma-cat-tourniquet.jpg" alt="חוסם עורקים מסוג CAT עם מוט הידוק"><figcaption>חוסם עורקים מסוג <span class="nw"><bdi>CAT</bdi>:</span> רצועה עם סקוטש, מוט הידוק <span class="nw">(<bdi>windlass</bdi>)</span> ותופסן לנעילתו · <span class="nw"><bdi>INDNAM</bdi>,</span> <span class="nw"><bdi>CC BY-SA 3.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">306–307, 316–317</bdi></span><span>x</span></div>
 </div></section>
@@ -257,14 +304,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <ul class="b sm">
     <li><b>תשובה ברורה</b> אומרת שכרגע נתיב האוויר תקין. דיבור משובש = ירידה בהכרה או חסימה</li>
     <li><b>סימני אזהרה:</b> אי-שקט, נשימה רועשת, שאיפת עשן, פגיעה בפנים, דם בלוע, ירידה בסטורציה</li>
-    <li><b><bdi dir="ltr">C-spine</bdi>:</b> בכל מנגנון מתאים מניחים שיש פגיעה לא יציבה. צווארון קשיח או ייצוב ידני</li>
+    <li><b><span class="nw"><bdi dir="ltr">C-spine</bdi>:</span></b> בכל מנגנון מתאים מניחים שיש פגיעה לא יציבה. צווארון קשיח או ייצוב ידני</li>
     <li>פצוע ער עם פגיעה בפנים שנושם טוב בישיבה: משאירים אותו כך וקוראים למומחה. נתיב סביר עדיף על אין נתיב</li>
     <li><b>מטופל בהלם:</b> צנרור לפני שנותנים דם עלול לגרום לקריסה. בסקירה של 4 מחקרים התמותה הייתה 50% כשהדם ניתן קודם, לעומת 78%</li>
     <li><b>הצנרור:</b> וידאו-לרינגוסקופ (הצלחה בניסיון הראשון 85% לעומת 71%). מאשרים מיקום עם <bdi>ETCO<sub>2</sub></bdi></li>
    </ul>
   </div>
   <div style="display:grid;gap:10px">
-   <figure><img src="img/Sobo_1906_443_larynx.jpg" alt="larynx ו-trachea מלפנים" style="max-height:28vh"><figcaption><bdi dir="ltr">larynx</bdi> מלפנים: בין <span class="nw">ה-<bdi dir="ltr">thyroid cartilage</bdi></span> <span class="nw">ל-<bdi dir="ltr">cricoid cartilage</bdi></span> נמצא <span class="nw">ה-<bdi dir="ltr">cricothyroid membrane</bdi></span> · <bdi>Sobotta</bdi>, אטלס 1906, איור 443 (נחלת הכלל)</figcaption></figure>
+   <figure><img src="img/Sobo_1906_443_larynx.jpg" alt="larynx ו-trachea מלפנים" style="max-height:28vh"><figcaption><bdi dir="ltr">larynx</bdi> מלפנים: בין <span class="nw">ה-<bdi dir="ltr">thyroid cartilage</bdi></span> <span class="nw">ל-<bdi dir="ltr">cricoid cartilage</bdi></span> נמצא <span class="nw">ה-<bdi dir="ltr">cricothyroid membrane</bdi></span> · <span class="nw"><bdi>Sobotta</bdi>,</span> אטלס 1906, איור 443 (נחלת הכלל)</figcaption></figure>
    <div class="box r"><b class="t">לא מצנררים ולא מחמצנים</b>קריקותירואידוטומיה מיד: חתך אורכי באמצע, חתך רוחבי בקרום, טובוס מספר 6. צריך סכין, טובוס ושתי ידיים</div>
   </div>
  </div>
@@ -281,14 +328,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li>כניסת אוויר חלשה או חסרה בצד הפגוע</li>
     <li>לחץ דם נמוך (פחות דם חוזר ללב)</li>
     <li>ורידי צוואר בולטים (קשה לראות), אמפיזמה תת-עורית</li>
-    <li>סטיית <bdi dir="ltr">trachea</bdi> לצד הנגדי (עדינה, ממששים <span class="nw">ב-<bdi dir="ltr">suprasternal notch</bdi></span>)</li>
+    <li>סטיית <bdi dir="ltr">trachea</bdi> לצד הנגדי (עדינה, ממששים <span class="nw">ב-<bdi dir="ltr">suprasternal notch</bdi>)</span></li>
     <li>במונשם: לחצי הנשמה עולים</li>
    </ul>
-   <div class="box r" style="margin-top:10px"><b class="t">לא מחכים לצילום</b>צילום לפני הטיפול אסור. מנקזים מיד: מחט (<bdi dir="ltr">10–16G</bdi>) <span class="nw">ב-<bdi dir="ltr">5th intercostal space</bdi></span> <span class="nw">ב-<bdi dir="ltr">anterior axillary line</bdi></span>, או <span class="nw">ב-<bdi dir="ltr">2nd intercostal space</bdi></span> <span class="nw">ב-<bdi dir="ltr">midclavicular line</bdi></span>. "תורקוסטומיה באצבע" אמינה יותר</div>
+   <div class="box r" style="margin-top:10px"><b class="t">לא מחכים לצילום</b>צילום לפני הטיפול אסור. מנקזים מיד: מחט <span class="nw">(<bdi dir="ltr">10–16G</bdi>)</span> <span class="nw">ב-<bdi dir="ltr">5th intercostal space</bdi></span> <span class="nw">ב-<bdi dir="ltr">anterior axillary line</bdi>,</span> או <span class="nw">ב-<bdi dir="ltr">2nd intercostal space</bdi></span> <span class="nw">ב-<bdi dir="ltr">midclavicular line</bdi>.</span> "תורקוסטומיה באצבע" אמינה יותר</div>
   </div>
   <div style="display:grid;gap:10px">
-   <figure><img src="img/trauma-needle.jpg" alt="ניקוז חזה במחט על בובת תרגול" style="max-height:26vh"><figcaption>ניקוז במחט על בובת תרגול · צילום: <bdi>Cpl. Fallon Lewis, U.S. Army</bdi>, <bdi>Wikimedia Commons</bdi> (נחלת הכלל)</figcaption></figure>
-   <div class="box"><b class="t">ואחר כך</b>נקז חזה כמעט תמיד, גם אם המחט הצליחה. נקז דק (<bdi dir="ltr">12–20Fr</bdi>) מספיק</div>
+   <figure><img src="img/trauma-needle.jpg" alt="ניקוז חזה במחט על בובת תרגול" style="max-height:26vh"><figcaption>ניקוז במחט על בובת תרגול · צילום: <span class="nw"><bdi>Cpl. Fallon Lewis, U.S. Army</bdi>,</span> <bdi>Wikimedia Commons</bdi> (נחלת הכלל)</figcaption></figure>
+   <div class="box"><b class="t">ואחר כך</b>נקז חזה כמעט תמיד, גם אם המחט הצליחה. נקז דק <span class="nw">(<bdi dir="ltr">12–20Fr</bdi>)</span> מספיק</div>
    <div class="box a"><b class="t">חזה פתוח</b>חבישה אטומה בשלושה צדדים (אוויר יוצא ולא נכנס) ואז נקז וחבישה אטומה</div>
   </div>
  </div>
@@ -310,11 +357,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על אזור בצילום כדי לקרוא עליו</p>
    <div class="hzi" data-hzi="air" hidden><b>1 · אוויר בלי סימני ריאה</b><p>חלל החזה השמאלי שחור ושקוף יותר, בלי כלי דם ריאתיים עד הדופן. זה האוויר שנכלא <span class="nw">ב-<bdi dir="ltr">pleural space</bdi></span> ולא יכול לצאת</p></div>
-   <div class="hzi" data-hzi="lung" hidden><b>2 · הריאה שקרסה</b><p>הריאה השמאלית נדחסה אל <span class="nw">ה-<bdi dir="ltr">hilum</bdi></span>. ככל שהאוויר מצטבר, הלחץ בחזה עולה</p></div>
-   <div class="hzi" data-hzi="med" hidden><b>3 · <span class="nw">ה-<bdi dir="ltr">mediastinum</bdi></span> זז ימינה</b><p>הלחץ דוחף את הלב ואת <span class="nw">ה-<bdi dir="ltr">trachea</bdi></span> לצד הנגדי ומקפל את <span class="nw">ה-<bdi dir="ltr">SVC</bdi></span> <span class="nw">וה-<bdi dir="ltr">IVC</bdi></span>. פחות דם חוזר ללב ולכן לחץ הדם יורד. זה ה"לחץ" בחזה אוויר בלחץ</p></div>
+   <div class="hzi" data-hzi="lung" hidden><b>2 · הריאה שקרסה</b><p>הריאה השמאלית נדחסה אל <span class="nw">ה-<bdi dir="ltr">hilum</bdi>.</span> ככל שהאוויר מצטבר, הלחץ בחזה עולה</p></div>
+   <div class="hzi" data-hzi="med" hidden><b>3 · <span class="nw">ה-<bdi dir="ltr">mediastinum</bdi></span> זז ימינה</b><p>הלחץ דוחף את הלב ואת <span class="nw">ה-<bdi dir="ltr">trachea</bdi></span> לצד הנגדי ומקפל את <span class="nw">ה-<bdi dir="ltr">SVC</bdi></span> <span class="nw">וה-<bdi dir="ltr">IVC</bdi>.</span> פחות דם חוזר ללב ולכן לחץ הדם יורד. זה ה"לחץ" בחזה אוויר בלחץ</p></div>
    <div class="hzi" data-hzi="after" hidden><b>4 · אחרי נקז חזה</b><p>הריאה התפשטה <span class="nw">וה-<bdi dir="ltr">mediastinum</bdi></span> חזר למרכז. בטראומה הצילום הזה מגיע רק אחרי הטיפול: את האבחנה עושים ליד המיטה</p></div>
   </div></div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">309–310, 320–321</bdi> · צילום: <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></span><span>B · הדמיה</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">309–310, 320–321</bdi> · צילום: <span class="nw"><bdi>Hellerhoff</bdi>,</span> <span class="nw"><bdi>CC BY-SA 4.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></span><span>B · הדמיה</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -333,7 +380,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   </div>
   <div>
    <h3>לא כל הלם הוא דימום</h3>
-   <ul class="b sm"><li><b>דימום</b> הוא הסיבה השכיחה ביותר ושוללים אותו ראשון</li><li><b>חזה אוויר בלחץ</b> · <b>טמפונדה</b> (ורידי צוואר בולטים, פצע חודר בחזה, <bdi>eFAST</bdi>)</li><li><b>הלם נוירוגני:</b> לחץ דם נמוך עם דופק איטי ושיתוק גפיים</li><li><b>חבלת לב</b> (הפרעות קצב), אלח דם מאוחר, או אירוע רפואי שגרם לתאונה</li></ul>
+   <ul class="b sm"><li><b>דימום</b> הוא הסיבה השכיחה ביותר ושוללים אותו ראשון</li><li><b>חזה אוויר בלחץ</b> · <b>טמפונדה</b> (ורידי צוואר בולטים, פצע חודר בחזה, <span class="nw"><bdi>eFAST</bdi>)</span></li><li><b>הלם נוירוגני:</b> לחץ דם נמוך עם דופק איטי ושיתוק גפיים</li><li><b>חבלת לב</b> (הפרעות קצב), אלח דם מאוחר, או אירוע רפואי שגרם לתאונה</li></ul>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">310, 321–323</bdi></span><span>C</span></div>
@@ -344,8 +391,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>"ארבעה ועוד הרצפה"</h2>
  <div class="grid">
   <div class="flow sm">
-   <div><b>החזה</b><span>צילום חזה <span class="nw">ו-<bdi>eFAST</bdi></span>. המטותורקס גדול: נקז חזה</span></div>
-   <div><b>הבטן</b><span>בדיקת <bdi>FAST</bdi>: נוזל בחלל הבטן בטראומה נחשב דם עד שיוכח אחרת</span></div>
+   <div><b>החזה</b><span>צילום חזה <span class="nw">ו-<bdi>eFAST</bdi>.</span> המטותורקס גדול: נקז חזה</span></div>
+   <div><b>הבטן</b><span>בדיקת <span class="nw"><bdi>FAST</bdi>:</span> נוזל בחלל הבטן בטראומה נחשב דם עד שיוכח אחרת</span></div>
    <div><b>אגן <span class="nw">ו-<bdi dir="ltr">retroperitoneum</bdi></span></b><span>צילום אגן. שבר "ספר פתוח": חגורת אגן או סדין סביב <span class="nw">ה-<bdi dir="ltr">greater trochanters</bdi></span></span></div>
    <div><b>שברים בעצמות ארוכות</b><span>דימום לתוך השרירים. מקבעים</span></div>
    <div><b>"הרצפה"</b><span>דימום חיצוני, שכבר טופל בשלב x</span></div>
@@ -353,7 +400,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div style="display:grid;gap:10px">
    <div class="box"><b class="t">מגיב להחייאה</b>"דימם והפסיק". אפשר להמשיך לבירור מלא</div>
    <div class="box a"><b class="t">מגיב זמנית</b>משתפר ואז חוזר לחוסר יציבות: ממשיך לדמם</div>
-   <div class="box r"><b class="t">לא מגיב</b>דימום פעיל שדורש התערבות מיד: ניתוח בטן, ניתוח חזה כשהנקז ממשיך לנקז דם ובאגן ריפוד (<bdi>packing</bdi>) או צנתור</div>
+   <div class="box r"><b class="t">לא מגיב</b>דימום פעיל שדורש התערבות מיד: ניתוח בטן, ניתוח חזה כשהנקז ממשיך לנקז דם ובאגן ריפוד <span class="nw">(<bdi>packing</bdi>)</span> או צנתור</div>
    <div class="box n"><b class="t">מלכודת</b>מתן נוזלים מהיר ומתמשך יכול להסתיר דימום שממשיך</div>
   </div>
  </div>
@@ -368,13 +415,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <ul class="b sm">
     <li><b>ההגדרה:</b> שליטה מהירה בדימום, עירוי מאוזן של מוצרי דם (או דם מלא), מינימום קריסטלואידים, לחץ סיסטולי "מספיק" של כ-90 עד שהדימום נשלט ותיקון הפרעות הקרישה והחומצה</li>
     <li><b>למה לא קריסטלואידים:</b> מחמירים חמצת והפרעת קרישה, קשורים <span class="nw">ל-<bdi>ARDS</bdi></span> ומאיצים את "שלישיית המוות": היפותרמיה, חמצת וקואגולופתיה</li>
-    <li><b>יחס פלזמה:טסיות:כדוריות</b> של <bdi dir="ltr">1:1:1</bdi> או <bdi dir="ltr">1:1:2</bdi>, דרך פרוטוקול עירוי מסיבי (<bdi>MTP</bdi>) ומחמם נוזלים</li>
+    <li><b>יחס פלזמה:טסיות:כדוריות</b> של <bdi dir="ltr">1:1:1</bdi> או <span class="nw"><bdi dir="ltr">1:1:2</bdi>,</span> דרך פרוטוקול עירוי מסיבי <span class="nw">(<bdi>MTP</bdi>)</span> ומחמם נוזלים</li>
     <li><b>הפרעת קרישה של טראומה</b> מופיעה בכ-25% מהפצועים. <bdi>TEG</bdi> או <bdi>ROTEM</bdi> מכוונים את העירוי לפי מה שחסר</li>
    </ul>
   </div>
   <div style="display:grid;gap:10px">
    <div class="box n"><b class="t">מתי להפעיל עירוי מסיבי? מדד <bdi>ABC</bdi></b>נקודה לכל אחד: מנגנון חודר · <bdi>FAST</bdi> חיובי · לחץ סיסטולי 90 ומטה · דופק מעל 120. שתי נקודות ומעלה: רגישות 75% וסגוליות 86%. כל דקת עיכוב מעלה תמותה בכ-5%</div>
-   <div class="box"><b class="t">חומצה טרנקסמית (<bdi>TXA</bdi>)</b>מעכבת פירוק קרישים. <span class="nw">ב-<bdi>CRASH-2</bdi></span> (יותר מ-20,000 מטופלים) הורידה תמותה, רק כשניתנה בתוך 3 שעות. מינון: 1 גרם ועוד 1 גרם ב-8 שעות, או 2 גרם בבת אחת</div>
+   <div class="box"><b class="t">חומצה טרנקסמית <span class="nw">(<bdi>TXA</bdi>)</span></b>מעכבת פירוק קרישים. <span class="nw">ב-<bdi>CRASH-2</bdi></span> (יותר מ-20,000 מטופלים) הורידה תמותה, רק כשניתנה בתוך 3 שעות. מינון: 1 גרם ועוד 1 גרם ב-8 שעות, או 2 גרם בבת אחת</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">312, 321, 325–326</bdi></span><span>החייאה בשליטה על נזק</span></div>
@@ -385,18 +432,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>מוח, חוט שדרה וחום גוף</h2>
  <div class="grid">
   <div>
-   <h3>D · מצב נוירולוגי</h3>
+   <h3><bdi dir="ltr">D</bdi> · מצב נוירולוגי</h3>
    <ul class="b sm">
     <li>"מה שמך?" ו"תזיז ידיים ורגליים" בודקים מוח וחוט שדרה בשתי שאלות</li>
-    <li>מדד <bdi>GCS</bdi> (<bdi dir="ltr">3–15</bdi>): פקיחת עיניים, תגובה מילולית ותגובה מוטורית. המוטורית מנבאת הכי טוב</li>
+    <li>מדד <bdi>GCS</bdi> <span class="nw">(<bdi dir="ltr">3–15</bdi>):</span> פקיחת עיניים, תגובה מילולית ותגובה מוטורית. המוטורית מנבאת הכי טוב</li>
     <li>מתעדים <bdi>GCS</bdi> ואישונים <b>לפני</b> תרופות הרדמה</li>
     <li>מדד <bdi>GCS</bdi> של 8 ומטה: מניחים פגיעת ראש קשה</li>
-    <li><b>הלם נוירוגני:</b> לחץ דם נמוך, דופק איטי ושיתוק. <span class="nw">ב-<bdi dir="ltr">20–29%</bdi></span> מפגיעות צוואר, נדיר מתחת <span class="nw">ל-<bdi>T6</bdi></span>. אבל קודם שוללים דימום</li>
+    <li><b>הלם נוירוגני:</b> לחץ דם נמוך, דופק איטי ושיתוק. <span class="nw">ב-<bdi dir="ltr">20–29%</bdi></span> מפגיעות צוואר, נדיר מתחת <span class="nw">ל-<bdi>T6</bdi>.</span> אבל קודם שוללים דימום</li>
     <li>מטרת הטיפול בפגיעת ראש: למנוע נזק משני. בלי היפוקסיה ובלי לחץ דם נמוך</li>
    </ul>
   </div>
   <div>
-   <h3>E · חשיפה וסביבה</h3>
+   <h3><bdi dir="ltr">E</bdi> · חשיפה וסביבה</h3>
    <ul class="b sm">
     <li>מפשיטים לגמרי כדי לא לפספס פצע ושומרים על כבוד המטופל</li>
     <li>היפותרמיה מחמירה הלם ודימום: שמיכות חמות, חימום אוויר, חדר חם ונוזלים מחוממים</li>
@@ -420,13 +467,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <ul class="b sm">
    <li><b>ארבע מטרות:</b> לשחרר טמפונדה, לתקן זמנית פצע בלב, להדק את <span class="nw">ה-<bdi dir="ltr">descending aorta</bdi></span> ולעצור דימום בחזה</li>
-   <li><b>סימני חיים:</b> אישונים מגיבים, נשימה, דופק <span class="nw">ב-<bdi dir="ltr">carotid</bdi></span>, לחץ דם, תנועה או פעילות חשמלית בלב</li>
+   <li><b>סימני חיים:</b> אישונים מגיבים, נשימה, דופק <span class="nw">ב-<bdi dir="ltr">carotid</bdi>,</span> לחץ דם, תנועה או פעילות חשמלית בלב</li>
    <li>מעל גיל 57 התמותה הייתה 100% בחבלה קהה ובחודרת</li>
   </ul>
   <ul class="b sm">
-   <li>לפי <bdi>EAST</bdi>: לא בחבלה קהה בלי סימני חיים. כן בפצע חודר, עם או בלי סימני חיים</li>
-   <li>לפי <bdi>WTA</bdi>: לפי זמן החייאה לפני ההגעה. פחות מ-15 דקות בפצע חודר בגו, פחות מ-10 בחבלה קהה</li>
-   <li>בלון <span class="nw">ב-<bdi dir="ltr">aorta</bdi></span> (<bdi>REBOA</bdi>): אין עדיין הוכחה לתועלת. ניסוי אקראי ראשון נעצר מוקדם בגלל תוצאות גרועות יותר</li>
+   <li>לפי <span class="nw"><bdi>EAST</bdi>:</span> לא בחבלה קהה בלי סימני חיים. כן בפצע חודר, עם או בלי סימני חיים</li>
+   <li>לפי <span class="nw"><bdi>WTA</bdi>:</span> לפי זמן החייאה לפני ההגעה. פחות מ-15 דקות בפצע חודר בגו, פחות מ-10 בחבלה קהה</li>
+   <li>בלון <span class="nw">ב-<bdi dir="ltr">aorta</bdi></span> <span class="nw">(<bdi>REBOA</bdi>):</span> אין עדיין הוכחה לתועלת. ניסוי אקראי ראשון נעצר מוקדם בגלל תוצאות גרועות יותר</li>
   </ul>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">323–324</bdi></span><span>החייאה</span></div>
@@ -438,15 +485,15 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b sm">
-    <li><b>אנמנזה <bdi>AMPLE</bdi>:</b> רגישויות, תרופות (במיוחד נוגדי קרישה), מחלות והריון, ארוחה אחרונה, אירוע ומנגנון</li>
-    <li><b>בדיקה שיטתית:</b> קרקפת, עיניים, פנים, צוואר, חזה, בטן (סימן חגורת בטיחות), אגן, <bdi dir="ltr">perineum</bdi> (דם <span class="nw">ב-<bdi dir="ltr">urethral meatus</bdi></span>), גפיים ודפקים ובסוף נוירולוגיה</li>
-    <li><b>הגב:</b> גלגול גוש (<bdi>log roll</bdi>) עם ארבעה אנשים: אחד מחזיק ראש וצוואר ומוביל, שניים מגלגלים, אחד בודק. בדיקה רקטלית לפי הצורך</li>
+    <li><b>אנמנזה <span class="nw"><bdi>AMPLE</bdi>:</span></b> רגישויות, תרופות (במיוחד נוגדי קרישה), מחלות והריון, ארוחה אחרונה, אירוע ומנגנון</li>
+    <li><b>בדיקה שיטתית:</b> קרקפת, עיניים, פנים, צוואר, חזה, בטן (סימן חגורת בטיחות), אגן, <bdi dir="ltr">perineum</bdi> (דם <span class="nw">ב-<bdi dir="ltr">urethral meatus</bdi>),</span> גפיים ודפקים ובסוף נוירולוגיה</li>
+    <li><b>הגב:</b> גלגול גוש <span class="nw">(<bdi>log roll</bdi>)</span> עם ארבעה אנשים: אחד מחזיק ראש וצוואר ומוביל, שניים מגלגלים, אחד בודק. בדיקה רקטלית לפי הצורך</li>
     <li><b>פצע חודר:</b> סופרים את כל הפצעים, גם בבית השחי, בקפלי העור, <span class="nw">ב-<bdi dir="ltr">perineum</bdi></span> ובקרקפת. מסמנים בסמן נראה בצילום</li>
     <li><b>מעבדה והדמיה:</b> סוג והצלבה, המוגלובין, לקטט, גזים, קרישה, שתן, <bdi>FAST</bdi> חוזר, CT לפי הצורך</li>
    </ul>
    <div class="box r" style="margin-top:10px"><b class="t">פגיעות שמתפספסות</b>ב-1% עד 40% מהפצועים <span class="nw">ו-<bdi dir="ltr">15–22%</bdi></span> מהן משמעותיות. לכן עושים <b>סקר שלישוני</b> למחרת, כשהמטופל כבר צלול</div>
   </div>
-  <figure><img src="img/blunt-palpation.jpg" alt="מישוש בטן של פצוע בתרגול" style="max-height:40vh"><figcaption>מישוש הבטן של פצוע בתרגול טראומה · <bdi>Pöllö</bdi>, <bdi>CC BY 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/blunt-palpation.jpg" alt="מישוש בטן של פצוע בתרגול" style="max-height:40vh"><figcaption>מישוש הבטן של פצוע בתרגול טראומה · <span class="nw"><bdi>Pöllö</bdi>,</span> <span class="nw"><bdi>CC BY 3.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">324–325</bdi></span><span>סקר שניוני</span></div>
 </div></section>
@@ -479,8 +526,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>הלם בטראומה הוא דימום עד שיוכח אחרת: מחפשים בחזה, בבטן, באגן, בעצמות ארוכות ועל הרצפה</li>
   <li>דם ולא מים: עירוי מאוזן, לחץ דם "מספיק", <bdi>TXA</bdi> בתוך 3 שעות ושליטה מהירה בדימום</li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 36 <bdi>Management of Acute Trauma</bdi> (עמ׳ <bdi dir="ltr">301–326</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906, נחלת הכלל) · צילומים: <bdi>U.S. Marine Corps, U.S. Army</bdi> (נחלת הכלל), <bdi>Hellerhoff</bdi> <span class="nw">ו-<bdi>Pöllö</bdi></span> (<bdi>Wikimedia Commons</bdi>) · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 36 <bdi>Management of Acute Trauma</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">301–326</bdi>)</span></div>
+ <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906, נחלת הכלל) · צילומים: <bdi>U.S. Marine Corps, U.S. Army</bdi> (נחלת הכלל), <bdi>Hellerhoff</bdi> <span class="nw">ו-<bdi>Pöllö</bdi></span> <span class="nw">(<bdi>Wikimedia Commons</bdi>)</span> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>
@@ -502,5 +549,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>

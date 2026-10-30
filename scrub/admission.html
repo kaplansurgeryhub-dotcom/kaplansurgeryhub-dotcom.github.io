@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>עקרונות קבלת חולים בכירורגיה · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,7 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -116,9 +116,56 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -147,7 +194,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>להכין מטופל מבוגר לניתוח: קוגניציה, דליריום, תפקוד ושבריריות</li>
   <li>להכיר את מרכיבי ההסכמה מדעת ואת ההזמנות לבוקר הניתוח</li>
  </ol>
- <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 19 (עמ׳ <bdi dir="ltr">2–30</bdi>)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 19 (עמ׳ <span class="nw"><bdi dir="ltr">2–30</bdi>)</span></span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -193,12 +240,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div class="flow">
    <div><b>לב</b><span>מחלה כלילית, אי ספיקת לב, מסתמים, סטנטים. כושר תפקודי במט״ים</span></div>
-   <div><b>ריאות</b><span>עישון, <bdi>COPD</bdi>, דום נשימה בשינה, זיהום נשימתי בחודש האחרון</span></div>
+   <div><b>ריאות</b><span>עישון, <span class="nw"><bdi>COPD</bdi>,</span> דום נשימה בשינה, זיהום נשימתי בחודש האחרון</span></div>
    <div><b>כליות</b><span>אי ספיקה כרונית, דיאליזה, אשלגן</span></div>
    <div><b>כבד</b><span>סימני שחמת: צהבת, מיימת, <bdi>spleen</bdi> מוגדל, כוכבי עכביש</span></div>
    <div><b>דם</b><span>היסטוריית דימום, אנמיה, נוגדי קרישה וטסיות</span></div>
    <div><b>אנדוקריני</b><span>סוכרת, בלוטת התריס, סטרואידים, גידולים מפרישים</span></div>
-   <div><b>תזונה</b><span>ירידה במשקל, <bdi>BMI</bdi>, אלבומין</span></div>
+   <div><b>תזונה</b><span>ירידה במשקל, <span class="nw"><bdi>BMI</bdi>,</span> אלבומין</span></div>
   </div>
   <div style="display:grid;gap:10px;align-content:start">
    <div class="box n"><b class="t">העיקרון</b>כל בדיקה לפני ניתוח צריכה סיכוי סביר לשנות משהו: לדחות ניתוח, לשפר מצב רפואי, לשנות ניטור או להפנות למרכז מתמחה</div>
@@ -224,11 +271,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על איבר בציור כדי לקרוא מה בודקים לפני ניתוח</p>
    <div class="hzi" data-hzi="ht" hidden><b>לב</b><ul class="b sm"><li>בלי תסמינים ומגיע ל-<strong>4 מט״ים</strong> (קומה במדרגות): ממשיכים לניתוח</li><li>ניתוח בסיכון נמוך: אין צורך בבירור, גם כשהכושר נמוך</li><li><strong>אק״ג:</strong> לפני ניתוח שאינו בסיכון נמוך, במחלה כלילית, הפרעת קצב, מחלת עורקים היקפית או מחלה מוחית-וסקולרית</li><li><strong>אקו:</strong> קוצר נשימה לא מוסבר או אי ספיקת לב שמחמירה</li><li>אחרי צנתור: ניתוח מתוכנן לא לפני 14 יום מבלון, 30 יום מסטנט מתכתי. מסטנט מצופה תרופה: רצוי 6 חודשים</li></ul></div>
-   <div class="hzi" data-hzi="lu" hidden><b>ריאות</b><ul class="b sm"><li>סיבוכים ריאתיים: <strong>כ-6%</strong> אחרי ניתוחי בטן גדולים. ככל שהחתך קרוב <span class="nw">ל-<bdi>diaphragm</bdi></span>, הסיכון עולה</li><li>גורמי סיכון: גיל מעל 50, <bdi>ASA</bdi> 2 ומעלה, תלות תפקודית, אלבומין מתחת ל-3.5, <bdi>COPD</bdi> ואי ספיקת לב</li><li><strong>הפסקת עישון</strong> לפחות 4 שבועות לפני מורידה סיבוכים</li><li>ספירומטריה וצילום חזה לא כשגרה. רוויה בדופק לכולם</li><li>קורונה ב-4 השבועות האחרונים מעלה סיכון. אחרי 8 שבועות הסיכון חוזר לרגיל</li></ul></div>
+   <div class="hzi" data-hzi="lu" hidden><b>ריאות</b><ul class="b sm"><li>סיבוכים ריאתיים: <strong>כ-6%</strong> אחרי ניתוחי בטן גדולים. ככל שהחתך קרוב <span class="nw">ל-<bdi>diaphragm</bdi>,</span> הסיכון עולה</li><li>גורמי סיכון: גיל מעל 50, <bdi>ASA</bdi> 2 ומעלה, תלות תפקודית, אלבומין מתחת ל-3.5, <bdi>COPD</bdi> ואי ספיקת לב</li><li><strong>הפסקת עישון</strong> לפחות 4 שבועות לפני מורידה סיבוכים</li><li>ספירומטריה וצילום חזה לא כשגרה. רוויה בדופק לכולם</li><li>קורונה ב-4 השבועות האחרונים מעלה סיכון. אחרי 8 שבועות הסיכון חוזר לרגיל</li></ul></div>
    <div class="hzi" data-hzi="th" hidden><b>בלוטת התריס</b><ul class="b sm"><li>בדיקת <bdi>TSH</bdi> ותפקודי תריס מזהים את הבעיה</li><li><strong>יתר פעילות:</strong> דוחים ניתוח מתוכנן עד לאיזון</li><li><strong>תת-פעילות עם תסמינים</strong> (עייפות, עלייה במשקל): דוחים. בלי תסמינים: אפשר להתחיל טיפול בכל שלב</li></ul></div>
-   <div class="hzi" data-hzi="aw" hidden><b>דרכי אוויר ודום נשימה בשינה</b><ul class="b sm"><li><bdi>STOP-BANG</bdi>: נחירות, עייפות, הפסקות נשימה, לחץ דם, <bdi>BMI</bdi> מעל 35, גיל מעל 50, היקף צוואר מעל 40 ס״מ, גבר</li><li>5 ומעלה: סיכון גבוה. לפני ניתוח מתוכנן: בדיקת שינה והתאמת <bdi>CPAP</bdi></li><li>ניתוח דחוף: מטפלים בדום הנשימה אחרי הניתוח</li></ul></div>
+   <div class="hzi" data-hzi="aw" hidden><b>דרכי אוויר ודום נשימה בשינה</b><ul class="b sm"><li><span class="nw"><bdi>STOP-BANG</bdi>:</span> נחירות, עייפות, הפסקות נשימה, לחץ דם, <bdi>BMI</bdi> מעל 35, גיל מעל 50, היקף צוואר מעל 40 ס״מ, גבר</li><li>5 ומעלה: סיכון גבוה. לפני ניתוח מתוכנן: בדיקת שינה והתאמת <bdi>CPAP</bdi></li><li>ניתוח דחוף: מטפלים בדום הנשימה אחרי הניתוח</li></ul></div>
   </div></div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">9, 11–13, 20–21</bdi></span><span>איור: <bdi>Sobotta</bdi>, 1906, איור 451 (נחלת הכלל)</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">9, 11–13, 20–21</bdi></span><span>איור: <span class="nw"><bdi>Sobotta</bdi>,</span> 1906, איור 451 (נחלת הכלל)</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -236,9 +283,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>שתי מערכות שמשנות את התוכנית</h2>
  <div class="grid">
   <div class="box n"><b class="t">כליות</b>
-   <ul class="b sm"><li><b>אשלגן תקין</b> הוא תנאי לניתוח מתוכנן או דחוף באי ספיקת כליות. היפרקלמיה יכולה להרוג על שולחן הניתוחים</li><li>דיאליזה ביום שלפני הניתוח או ביום הניתוח, קרוב ל"משקל יבש"</li><li>אי ספיקה דרגה <bdi dir="ltr">3–5</bdi> או ניתוח בסיכון גבוה: אק״ג, ספירה, כימיה ושתן</li><li>להימנע <span class="nw">מ-<bdi>NSAIDs</bdi></span>, אמינוגליקוזידים וחומר ניגוד כשיש תפקוד כלייתי שארי</li><li>דימום מטסיות אורמיות: דסמופרסין</li></ul></div>
+   <ul class="b sm"><li><b>אשלגן תקין</b> הוא תנאי לניתוח מתוכנן או דחוף באי ספיקת כליות. היפרקלמיה יכולה להרוג על שולחן הניתוחים</li><li>דיאליזה ביום שלפני הניתוח או ביום הניתוח, קרוב ל"משקל יבש"</li><li>אי ספיקה דרגה <bdi dir="ltr">3–5</bdi> או ניתוח בסיכון גבוה: אק״ג, ספירה, כימיה ושתן</li><li>להימנע <span class="nw">מ-<bdi>NSAIDs</bdi>,</span> אמינוגליקוזידים וחומר ניגוד כשיש תפקוד כלייתי שארי</li><li>דימום מטסיות אורמיות: דסמופרסין</li></ul></div>
   <div class="box r"><b class="t">דם</b>
-   <ul class="b sm"><li>לא שולחים תפקודי קרישה כשגרה. <b>שואלים</b>: דימומי אף, דימום וסתי מרובה, דימום למפרקים, דימום בניתוחים ובפעולות קודמות</li><li>בבדיקה: דימום מהחניכיים ונקודות דימום בעור (טסיות), שטפי דם עמוקים ודימום למפרק (גורמי קרישה)</li><li>חשד: ספירה, <bdi>PT/INR</bdi>, <bdi>aPTT</bdi>, קריאטינין ותפקודי כבד. הפניה להמטולוג</li><li>עירוי דם במטופל יציב: כשההמוגלובין 7 או פחות (8 במחלת לב)</li></ul></div>
+   <ul class="b sm"><li>לא שולחים תפקודי קרישה כשגרה. <b>שואלים</b>: דימומי אף, דימום וסתי מרובה, דימום למפרקים, דימום בניתוחים ובפעולות קודמות</li><li>בבדיקה: דימום מהחניכיים ונקודות דימום בעור (טסיות), שטפי דם עמוקים ודימום למפרק (גורמי קרישה)</li><li>חשד: ספירה, <span class="nw"><bdi>PT/INR</bdi>,</span> <span class="nw"><bdi>aPTT</bdi>,</span> קריאטינין ותפקודי כבד. הפניה להמטולוג</li><li>עירוי דם במטופל יציב: כשההמוגלובין 7 או פחות (8 במחלת לב)</li></ul></div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">13–16</bdi></span><span>כליות ודם</span></div>
 </div></section>
@@ -250,15 +297,15 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <ul class="b sm">
     <li><b>בשאלות:</b> הזרקת סמים, אלכוהול, קעקועים, השמנה ממושכת, מחלת כבד במשפחה. גרד וצהבת</li>
-    <li><b>בבדיקה:</b> צהבת <span class="nw">ב-<bdi>sclera</bdi></span>, כוכבי עכביש, הרחבת ורידים סביב הטבור, <bdi>spleen</bdi> מוגדל, מיימת (גל נוזל), גינקומסטיה</li>
+    <li><b>בבדיקה:</b> צהבת <span class="nw">ב-<bdi>sclera</bdi>,</span> כוכבי עכביש, הרחבת ורידים סביב הטבור, <bdi>spleen</bdi> מוגדל, מיימת (גל נוזל), גינקומסטיה</li>
     <li>בלי חשד: לא בודקים תפקודי כבד כשגרה</li>
     <li>דלקת כבד חריפה או אלכוהולית: לא מנתחים ניתוח מתוכנן</li>
-    <li>שחמת: תמותה בניתוחי בטן <b>כ-10%, 20%, 60%</b> <span class="nw">ב-<bdi>Child A, B, C</bdi></span>. <bdi>INR</bdi> מוארך לא משקף סיכון דימום</li>
+    <li>שחמת: תמותה בניתוחי בטן <b>כ-10%, 20%, 60%</b> <span class="nw">ב-<bdi>Child A, B, C</bdi>.</span> <bdi>INR</bdi> מוארך לא משקף סיכון דימום</li>
     <li>מיימת: לטפל לפני הניתוח (משתנים או ניקוז)</li>
    </ul>
   </div>
-  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש ה-liver בשתי ידיים"><figcaption>מישוש <span class="nw">ה-<bdi>liver</bdi></span>: יד אחת מרימה מאחור, השנייה ממששת מתחת <span class="nw">ל-<bdi>costal margin</bdi></span> בזמן שאיפה · <bdi>Musser, Medical Diagnosis</bdi> (1904), איור 192 (נחלת הכלל)</figcaption></figure>
-  <figure><img src="img/spider-nevus-cirrhosis.jpg" alt="כוכבי עכביש על עור צהוב"><figcaption>כוכבי עכביש ענקיים בחולה עם שחמת, צהבת ומיימת · <bdi>Herbert L. Fred, Hendrik A. van Dijk</bdi>, <bdi>CC BY 2.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש ה-liver בשתי ידיים"><figcaption>מישוש <span class="nw">ה-<bdi>liver</bdi>:</span> יד אחת מרימה מאחור, השנייה ממששת מתחת <span class="nw">ל-<bdi>costal margin</bdi></span> בזמן שאיפה · <bdi>Musser, Medical Diagnosis</bdi> (1904), איור 192 (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/spider-nevus-cirrhosis.jpg" alt="כוכבי עכביש על עור צהוב"><figcaption>כוכבי עכביש ענקיים בחולה עם שחמת, צהבת ומיימת · <span class="nw"><bdi>Herbert L. Fred, Hendrik A. van Dijk</bdi>,</span> <span class="nw"><bdi>CC BY 2.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">14–15</bdi></span><span>כבד</span></div>
 </div></section>
@@ -270,9 +317,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div><b>וורפרין</b><span>מפסיקים 5 ימים לפני. INR מעל 1.5 ביום שלפני: ויטמין K או פלזמה</span></div>
   <div><b>דביגטרן</b><span>48 שעות לפני ניתוח גדול או בתפקוד כליות ירוד. נוגדן ייעודי לביטול: <bdi>idarucizumab</bdi></span></div>
   <div><b>מעכבי <bdi>Xa</bdi></b><span>ריברוקסבן, אפיקסבן: 48 שעות לפני ניתוח בסיכון גבוה לדימום, 24 שעות בסיכון נמוך. חוזרים <bdi dir="ltr">1–2</bdi> ימים אחרי</span></div>
-  <div><b>גישור בהפרין</b><span>רק בסיכון גבוה מאוד לקריש: שבץ טרי, תסחיף עורקי חריף, מסתם מכני. בפרפור פרוזדורים, לפי <bdi>BRIDGE</bdi>, בלי גישור אין יותר תסחיפים ויש פחות דימום. הפרין רגיל: עוצרים <bdi dir="ltr">4–6</bdi> שעות לפני, הפרין במשקל מולקולרי נמוך: 24 שעות</span></div>
-  <div><b>אספירין לבד</b><span>בטוח להמשיך ברוב הניתוחים. <b>לא מתחילים</b> אספירין לפני ניתוח כדי להגן על הלב (<bdi>POISE-2</bdi>: בלי תועלת, יותר דימום)</span></div>
-  <div><b>טיפול כפול אחרי סטנט</b><span>לא ניתוח מתוכנן שמחייב הפסקה ב-30 הימים אחרי סטנט מתכתי וב-6 החודשים אחרי סטנט מצופה. אם חייבים להפסיק את מעכב <bdi>P2Y12</bdi>: ממשיכים אספירין וחוזרים מהר. מחליטים יחד עם הקרדיולוג</span></div>
+  <div><b>גישור בהפרין</b><span>רק בסיכון גבוה מאוד לקריש: שבץ טרי, תסחיף עורקי חריף, מסתם מכני. בפרפור פרוזדורים, לפי <span class="nw"><bdi>BRIDGE</bdi>,</span> בלי גישור אין יותר תסחיפים ויש פחות דימום. הפרין רגיל: עוצרים <bdi dir="ltr">4–6</bdi> שעות לפני, הפרין במשקל מולקולרי נמוך: 24 שעות</span></div>
+  <div><b>אספירין לבד</b><span>בטוח להמשיך ברוב הניתוחים. <b>לא מתחילים</b> אספירין לפני ניתוח כדי להגן על הלב <span class="nw">(<bdi>POISE-2</bdi>:</span> בלי תועלת, יותר דימום)</span></div>
+  <div><b>טיפול כפול אחרי סטנט</b><span>לא ניתוח מתוכנן שמחייב הפסקה ב-30 הימים אחרי סטנט מתכתי וב-6 החודשים אחרי סטנט מצופה. אם חייבים להפסיק את מעכב <span class="nw"><bdi>P2Y12</bdi>:</span> ממשיכים אספירין וחוזרים מהר. מחליטים יחד עם הקרדיולוג</span></div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">11, 17–20</bdi></span><span>נוגדי קרישה</span></div>
 </div></section>
@@ -284,12 +331,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <h3>סוכרת</h3>
    <ul class="b sm">
-    <li>לפני: המוגלובין <bdi>A1c</bdi>, אק״ג ואלקטרוליטים</li>
-    <li><b>אינסולין ארוך טווח:</b> כרגיל. <b>ביניים <bdi>(NPH)</bdi>:</b> חצי מינון בבוקר הניתוח. <b>קצר טווח:</b> לא בבוקר הניתוח</li>
+    <li>לפני: המוגלובין <span class="nw"><bdi>A1c</bdi>,</span> אק״ג ואלקטרוליטים</li>
+    <li><b>אינסולין ארוך טווח:</b> כרגיל. <b>ביניים <span class="nw"><bdi>(NPH)</bdi>:</span></b> חצי מינון בבוקר הניתוח. <b>קצר טווח:</b> לא בבוקר הניתוח</li>
     <li>תערובות מוכנות: מינוס 20% בערב ומינוס 50% בבוקר. משאבה: קצב בסיסי בלבד</li>
-    <li><b>מטפורמין וסולפונילאוריאה:</b> לא ביום הניתוח. מעכבי <bdi>DPP-4</bdi>: כן</li>
-    <li><b>מעכבי <bdi>SGLT2</bdi>:</b> עוצרים <bdi dir="ltr">3–4</bdi> ימים לפני (חמצת קטוטית עם סוכר תקין)</li>
-    <li><b>אגוניסטים <span class="nw">ל-<bdi>GLP-1</bdi></span>:</b> זריקה שבועית עוצרים שבוע לפני. תכשיר יומי רק ביום הניתוח. היום אפשר גם להמשיך ברוב המטופלים (ראו "מה חדש")</li>
+    <li><b>מטפורמין וסולפונילאוריאה:</b> לא ביום הניתוח. מעכבי <span class="nw"><bdi>DPP-4</bdi>:</span> כן</li>
+    <li><b>מעכבי <span class="nw"><bdi>SGLT2</bdi>:</span></b> עוצרים <bdi dir="ltr">3–4</bdi> ימים לפני (חמצת קטוטית עם סוכר תקין)</li>
+    <li><b>אגוניסטים <span class="nw">ל-<bdi>GLP-1</bdi>:</span></b> זריקה שבועית עוצרים שבוע לפני. תכשיר יומי רק ביום הניתוח. היום אפשר גם להמשיך ברוב המטופלים (ראו "מה חדש")</li>
    </ul>
   </div>
   <div>
@@ -346,8 +393,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div>
    <ul class="b sm">
-    <li>שואלים על <b>ירידה במשקל</b>, מחלה כרונית ותוספי תזונה. בודקים <bdi>BMI</bdi>, דלדול <bdi>temporalis</bdi>, בצקות ופצעי לחץ</li>
-    <li>כלי סינון נפוץ: <bdi>NRS-2002</bdi>. ציון 3 ומעלה: מתחילים תוכנית תזונתית</li>
+    <li>שואלים על <b>ירידה במשקל</b>, מחלה כרונית ותוספי תזונה. בודקים <span class="nw"><bdi>BMI</bdi>,</span> דלדול <span class="nw"><bdi>temporalis</bdi>,</span> בצקות ופצעי לחץ</li>
+    <li>כלי סינון נפוץ: <span class="nw"><bdi>NRS-2002</bdi>.</span> ציון 3 ומעלה: מתחילים תוכנית תזונתית</li>
     <li><b>אלבומין מתחת ל-3.5</b> מנבא תחלואה ותמותה אחרי ניתוח. זמן מחצית החיים שלו 20 יום. לכן הוא משקף מצב כרוני. פרה-אלבומין: יומיים</li>
     <li>שניהם יורדים גם בדלקת חריפה. לכן הם פחות אמינים סביב הניתוח</li>
     <li><b>השמנה:</b> <bdi>BMI</bdi> 30 ומעלה. מעל 40 עם גורם סיכון לאי ספיקת לב: אק״ג וצילום חזה</li>
@@ -372,10 +419,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div><b dir="ltr">50% · 14%</b><span>סיבוכים קשים בבני 70 ומעלה כשמבחן <bdi>TUG</bdi> מעל 20 שניות · עד 20</span></div>
  </div>
  <ul class="b sm">
-  <li><b><bdi>Mini-Cog</bdi>:</b> שלוש מילים לזכור וציור שעון. ציון <bdi dir="ltr">0–2</bdi> מרמז על פגיעה. ממצא חיובי: הפניה לרופא המשפחה, לגריאטר או לבריאות הנפש</li>
+  <li><b><span class="nw"><bdi>Mini-Cog</bdi>:</span></b> שלוש מילים לזכור וציור שעון. ציון <bdi dir="ltr">0–2</bdi> מרמז על פגיעה. ממצא חיובי: הפניה לרופא המשפחה, לגריאטר או לבריאות הנפש</li>
   <li><b>דליריום:</b> מזהים גורמי סיכון מראש. מכשירי שמיעה, שינה בלילה, משפחה ליד המיטה, בלי בנזודיאזפינים</li>
-  <li><b>דיכאון:</b> שאלון <bdi>PHQ-2</bdi>. <b>תפקוד:</b> פעולות יום-יום ונפילות</li>
-  <li><b>שבריריות</b> מנבאת תוצאות טוב יותר מהגיל. <bdi>Timed Up &amp; Go</bdi>: לקום מכיסא, ללכת 3 מטרים, להסתובב ולשבת</li>
+  <li><b>דיכאון:</b> שאלון <span class="nw"><bdi>PHQ-2</bdi>.</span> <b>תפקוד:</b> פעולות יום-יום ונפילות</li>
+  <li><b>שבריריות</b> מנבאת תוצאות טוב יותר מהגיל. <span class="nw"><bdi>Timed Up &amp; Go</bdi>:</span> לקום מכיסא, ללכת 3 מטרים, להסתובב ולשבת</li>
   <li>לפני ניתוח מתוכנן: <b>הנחיות מקדימות</b> ומיופה כוח, מתועדים בתיק</li>
  </ul>
  <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">6–9</bdi></span><span>המטופל המבוגר</span></div>
@@ -427,9 +474,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <p>המלצה חזקה: מבוגרים בריאים שותים משקה פחמימות צלול עד שעתיים לפני ניתוח מתוכנן (עד כ-400 מ״ל). מסטיק: מוציאים מהפה ולא דוחים את הניתוח. ההמלצה לא חלה על סוכרת, השמנה, חסימה, הריון וניתוחי חירום</p>
    <small>Joshi GP et al. Anesthesiology 2023;138:132-51</small></div>
   <div class="study"><div class="y">2024 · הנחיה של חמש אגודות</div><b>אגוניסטים <span class="nw">ל-<bdi>GLP-1</bdi></span> סביב הניתוח</b>
-   <p>אפשר להמשיך את הטיפול ברוב המטופלים. סיכון גבוה לשאריות <span class="nw">ב-<bdi>stomach</bdi></span>: שלב העלאת המינון, מינון גבוה, זריקה שבועית ותסמיני עיכול. בסיכון כזה: דיאטה נוזלית 24 שעות לפני. אם מחליטים להפסיק: שבוע לזריקה שבועית ויום הניתוח לתכשיר יומי</p>
+   <p>אפשר להמשיך את הטיפול ברוב המטופלים. סיכון גבוה לשאריות <span class="nw">ב-<bdi>stomach</bdi>:</span> שלב העלאת המינון, מינון גבוה, זריקה שבועית ותסמיני עיכול. בסיכון כזה: דיאטה נוזלית 24 שעות לפני. אם מחליטים להפסיק: שבוע לזריקה שבועית ויום הניתוח לתכשיר יומי</p>
    <small>Kindel TL et al. Surg Obes Relat Dis 2024;20:1183-6 (פורסם גם ב-Surg Endosc 2025;39:180-3)</small></div>
-  <div class="study"><div class="y"><bdi>JAMA Surg</bdi> 2023 · מחקר אקראי</div><b><bdi>PREHAB</bdi>: הכנה גופנית לפני ניתוח מעי גס</b>
+  <div class="study"><div class="y"><bdi>JAMA Surg</bdi> 2023 · מחקר אקראי</div><b><span class="nw"><bdi>PREHAB</bdi>:</span> הכנה גופנית לפני ניתוח מעי גס</b>
    <p>251 מטופלים עם סרטן המעי הגס. 4 שבועות של אימון בעצימות גבוהה, תזונה, תמיכה נפשית וגמילה מעישון. פחות סיבוכים קשים (17.1% לעומת 29.7%) ופחות סיבוכים רפואיים (15.4% לעומת 27.3%)</p>
    <small>Molenaar CJL et al. JAMA Surg 2023;158:572-81</small></div>
  </div>
@@ -446,8 +493,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>במבוגר: קוגניציה, דליריום, תפקוד ושבריריות חשובים יותר מהגיל</li>
   <li>הסכמה מדעת היא שיחה: אבחנה, ניתוח, סיכונים, סיכוי, כשירות וחלופות</li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 19 <bdi>Principles of Preoperative and Operative Surgery</bdi> (עמ׳ <bdi dir="ltr">2–30</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Sobotta</bdi> 1906 <span class="nw">ו-<bdi>Musser</bdi></span> 1904 (נחלת הכלל) · צילום: <bdi>H.L. Fred, H.A. van Dijk</bdi> (<bdi>CC BY 2.0</bdi>, <bdi>Wikimedia Commons</bdi>) · ציר הזמן: <bdi>Scrub In</bdi> לפי הספר · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 19 <bdi>Principles of Preoperative and Operative Surgery</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">2–30</bdi>)</span></div>
+ <div class="src"><span>איורים: <bdi>Sobotta</bdi> 1906 <span class="nw">ו-<bdi>Musser</bdi></span> 1904 (נחלת הכלל) · צילום: <bdi>H.L. Fred, H.A. van Dijk</bdi> <span class="nw">(<bdi>CC BY 2.0</bdi>,</span> <span class="nw"><bdi>Wikimedia Commons</bdi>)</span> · ציר הזמן: <bdi>Scrub In</bdi> לפי הספר · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>
@@ -469,5 +516,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>

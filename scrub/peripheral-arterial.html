@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>מחלות כלי דם פריפריים · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,7 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -116,9 +116,56 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -130,7 +177,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
  <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 2</div>
  <h1>מחלות כלי דם פריפריים</h1>
- <p class="lead">צליעה לסירוגין, איסכמיה כרונית מאיימת על הגפה ואיסכמיה חריפה: בדיקה, <bdi>ABI</bdi>, טיפול ועקרונות הרה-וסקולריזציה</p>
+ <p class="lead">צליעה לסירוגין, איסכמיה כרונית מאיימת על הגפה ואיסכמיה חריפה: בדיקה, <span class="nw"><bdi>ABI</bdi>,</span> טיפול ועקרונות הרה-וסקולריזציה</p>
  <div class="cvsrc" data-ch="103" data-note=""><small>מבוסס על</small><b><bdi dir="ltr">Sabiston Textbook of Surgery</bdi> · מהדורה 22</b><div class="cvch"><span>פרק <bdi dir="ltr">103</bdi></span></div></div>
  <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
 </div></section>
@@ -139,13 +186,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>1</b>מטרות הלמידה</div>
  <h2>בסוף המפגש תדעו</h2>
  <ol class="obj">
-  <li>לתאר את הספקטרום של מחלת עורקים פריפרית: בלי תסמינים, צליעה לסירוגין, איסכמיה כרונית מאיימת (<bdi>CLTI</bdi>) ואיסכמיה חריפה</li>
-  <li>לבצע בדיקה וסקולרית של הרגל ולחשב ולפרש מדד קרסול-זרוע (<bdi>ABI</bdi>)</li>
+  <li>לתאר את הספקטרום של מחלת עורקים פריפרית: בלי תסמינים, צליעה לסירוגין, איסכמיה כרונית מאיימת <span class="nw">(<bdi>CLTI</bdi>)</span> ואיסכמיה חריפה</li>
+  <li>לבצע בדיקה וסקולרית של הרגל ולחשב ולפרש מדד קרסול-זרוע <span class="nw">(<bdi>ABI</bdi>)</span></li>
   <li>להכיר את הטיפול התרופתי ושינוי אורח החיים שכל מטופל צריך לקבל</li>
-  <li>לדעת מתי מטפלים פולשנית בצליעה ומתי <span class="nw">ב-<bdi>CLTI</bdi></span>. להכיר את עקרונות המעקף והטיפול האנדווסקולרי</li>
+  <li>לדעת מתי מטפלים פולשנית בצליעה ומתי <span class="nw">ב-<bdi>CLTI</bdi>.</span> להכיר את עקרונות המעקף והטיפול האנדווסקולרי</li>
   <li>לזהות איסכמיה חריפה של הגפה, לסווג את חומרתה ולדעת מה עושים מיד</li>
  </ol>
- <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 103 (עמ׳ <bdi dir="ltr">1643–1675</bdi>)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 103 (עמ׳ <span class="nw"><bdi dir="ltr">1643–1675</bdi>)</span></span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -182,13 +229,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <g class="hzb" style="--c:#D63C32"><circle cx="410" cy="810" r="19"/><text x="410" y="810">4</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על מספר בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="il" hidden><b>1 · <bdi dir="ltr">aorta</bdi> <span class="nw">ו-<bdi dir="ltr">iliac arteries</bdi></span> (<bdi>inflow</bdi>)</b><p>מחלה אאורטו-איליאקית: צליעה בישבנים ובירכיים. שכיחה במעשנים. דופק פמורלי חלש או חסר. <bdi>Leriche</bdi>: צליעה, היעדר דופק פמורלי ואין-אונות. טיפול: אנדווסקולרי או מעקף אאורטו-פמורלי.</p></div>
-  <div class="hzi" data-hzi="cfa" hidden><b>2 · <bdi dir="ltr">common femoral artery</bdi> (<bdi>CFA</bdi>)</b><p>מתחת <span class="nw">ל-<bdi dir="ltr">inguinal ligament</bdi></span>. כאן ממששים את הדופק הפמורלי. מחלה מקומית כאן מטופלת בניתוח פתוח: אנדארטרקטומיה וטלאי, שעדיפים על טיפול אנדווסקולרי. זה גם אתר הדקירה השכיח לצנתור.</p></div>
-  <div class="hzi" data-hzi="sfa" hidden><b>3 · <bdi dir="ltr">superficial femoral artery</bdi> (<bdi>SFA</bdi>)</b><p>מחלה פמורו-פופליטאלית: צליעה בשוק. רוב החולים עם צליעה סובלים ממחלה במקטע אחד. הקולטרלים <span class="nw">מה-<bdi dir="ltr">profunda femoris</bdi></span> יכולים לפצות על חסימה.</p></div>
-  <div class="hzi" data-hzi="hun" hidden><b>4 · <bdi dir="ltr">adductor canal</bdi> (<bdi>Hunter</bdi>)</b><p><b>המקום השכיח ביותר</b> לטרשת ברגל: <span class="nw">ה-<bdi>SFA</bdi></span> הדיסטלי ביציאה מהתעלה. הגיד של <span class="nw">ה-<bdi dir="ltr">adductor magnus</bdi></span> לוחץ על העורק ומונע ממנו להתרחב.</p></div>
-  <div class="box a" style="margin-top:10px"><b class="t">ומה בשוק?</b>סוכרת, מחלת כליות וגיל מבוגר: מחלה דיסטלית <span class="nw">ב-<bdi dir="ltr">tibial arteries</bdi></span>. <span class="nw">ה-<bdi dir="ltr">pedal arteries</bdi></span> נשמרים לעיתים קרובות. לכן אפשר לעשות אליהם מעקף</div>
+  <div class="hzi" data-hzi="il" hidden><b>1 · <bdi dir="ltr">aorta</bdi> <span class="nw">ו-<bdi dir="ltr">iliac arteries</bdi></span> <span class="nw">(<bdi>inflow</bdi>)</span></b><p>מחלה אאורטו-איליאקית: צליעה בישבנים ובירכיים. שכיחה במעשנים. דופק פמורלי חלש או חסר. <span class="nw"><bdi>Leriche</bdi>:</span> צליעה, היעדר דופק פמורלי ואין-אונות. טיפול: אנדווסקולרי או מעקף אאורטו-פמורלי.</p></div>
+  <div class="hzi" data-hzi="cfa" hidden><b>2 · <bdi dir="ltr">common femoral artery</bdi> <span class="nw">(<bdi>CFA</bdi>)</span></b><p>מתחת <span class="nw">ל-<bdi dir="ltr">inguinal ligament</bdi>.</span> כאן ממששים את הדופק הפמורלי. מחלה מקומית כאן מטופלת בניתוח פתוח: אנדארטרקטומיה וטלאי, שעדיפים על טיפול אנדווסקולרי. זה גם אתר הדקירה השכיח לצנתור.</p></div>
+  <div class="hzi" data-hzi="sfa" hidden><b>3 · <bdi dir="ltr">superficial femoral artery</bdi> <span class="nw">(<bdi>SFA</bdi>)</span></b><p>מחלה פמורו-פופליטאלית: צליעה בשוק. רוב החולים עם צליעה סובלים ממחלה במקטע אחד. הקולטרלים <span class="nw">מה-<bdi dir="ltr">profunda femoris</bdi></span> יכולים לפצות על חסימה.</p></div>
+  <div class="hzi" data-hzi="hun" hidden><b>4 · <bdi dir="ltr">adductor canal</bdi> <span class="nw">(<bdi>Hunter</bdi>)</span></b><p><b>המקום השכיח ביותר</b> לטרשת ברגל: <span class="nw">ה-<bdi>SFA</bdi></span> הדיסטלי ביציאה מהתעלה. הגיד של <span class="nw">ה-<bdi dir="ltr">adductor magnus</bdi></span> לוחץ על העורק ומונע ממנו להתרחב.</p></div>
+  <div class="box a" style="margin-top:10px"><b class="t">ומה בשוק?</b>סוכרת, מחלת כליות וגיל מבוגר: מחלה דיסטלית <span class="nw">ב-<bdi dir="ltr">tibial arteries</bdi>.</span> <span class="nw">ה-<bdi dir="ltr">pedal arteries</bdi></span> נשמרים לעיתים קרובות. לכן אפשר לעשות אליהם מעקף</div>
  </div></div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 103 עמ׳ <bdi dir="ltr">1644–1646, 1649, 1652, 1664, 1668</bdi></span><span>עורקי הירך · <bdi>Sobotta</bdi>, 1909, איור 574 (נחלת הכלל) · אזורים: Scrub In</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 103 עמ׳ <bdi dir="ltr">1644–1646, 1649, 1652, 1664, 1668</bdi></span><span>עורקי הירך · <span class="nw"><bdi>Sobotta</bdi>,</span> 1909, איור 574 (נחלת הכלל) · אזורים: Scrub In</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -201,7 +248,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div><b>אובדן רקמה</b><span>כיב או נמק בשוק או בכף הרגל יותר משבועיים, עם עדות לאיסכמיה שמונעת ריפוי</span></div>
  </div>
  <div class="grid" style="margin-top:12px">
-  <div class="box"><b class="t">רמת הכאב מרמזת על רמת החסימה</b>ישבנים וירכיים: <bdi dir="ltr">aorta</bdi> <span class="nw">ו-<bdi dir="ltr">iliac arteries</bdi></span>. שוק: <bdi dir="ltr">femoral artery</bdi> <span class="nw">ו-<bdi dir="ltr">popliteal artery</bdi></span>. קבוצת שרירים אחת, דיסטלית לחסימה</div>
+  <div class="box"><b class="t">רמת הכאב מרמזת על רמת החסימה</b>ישבנים וירכיים: <bdi dir="ltr">aorta</bdi> <span class="nw">ו-<bdi dir="ltr">iliac arteries</bdi>.</span> שוק: <bdi dir="ltr">femoral artery</bdi> <span class="nw">ו-<bdi dir="ltr">popliteal artery</bdi>.</span> קבוצת שרירים אחת, דיסטלית לחסימה</div>
   <div class="box a"><b class="t">מה עוד יכול לגרום כאב בהליכה</b>היצרות של תעלת עמוד השדרה, לחץ על שורש עצבי, דלקת פרקים, תסמונת מדור כרונית. כאב עצבי משתנה יותר, יכול להופיע בעמידה בלבד ומוקל בשינוי תנוחה</div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 103 עמ׳ <bdi dir="ltr">1643, 1646–1647</bdi></span><span>קליניקה</span></div>
@@ -215,21 +262,21 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <h3>הסתכלות</h3>
    <ul class="b sm">
     <li>חום העור וצבעו, נשירת שיער, עור יבש, דלדול שרירים</li>
-    <li><b>אודם בהורדה</b> (<bdi>dependent rubor</bdi>) <b>וחיוורון בהרמה</b></li>
+    <li><b>אודם בהורדה</b> <span class="nw">(<bdi>dependent rubor</bdi>)</span> <b>וחיוורון בהרמה</b></li>
     <li>כיבים ונמק (גנגרנה)</li>
    </ul>
    <h3 style="margin-top:10px">מישוש והאזנה</h3>
    <ul class="b sm">
-    <li>דפקים: <bdi dir="ltr">femoral</bdi>, <bdi dir="ltr">popliteal</bdi>, <bdi>dorsalis pedis</bdi> <span class="nw">ו-<bdi dir="ltr">posterior tibial</bdi></span>. השוו בין הצדדים</li>
+    <li>דפקים: <span class="nw"><bdi dir="ltr">femoral</bdi>,</span> <span class="nw"><bdi dir="ltr">popliteal</bdi>,</span> <bdi>dorsalis pedis</bdi> <span class="nw">ו-<bdi dir="ltr">posterior tibial</bdi>.</span> השוו בין הצדדים</li>
     <li>דופק בולט בבטן, במפשעה או בברך: חשד למפרצת</li>
     <li>האזנה לאוושה בצוואר, בבטן ובמפשעה</li>
-    <li>נוירופתיה: מונופילמנט. בכיב: האם מגיעים לעצם (<bdi>probe-to-bone</bdi>)</li>
+    <li>נוירופתיה: מונופילמנט. בכיב: האם מגיעים לעצם <span class="nw">(<bdi>probe-to-bone</bdi>)</span></li>
    </ul>
    <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>בדקו את הדפקים בשתי הרגליים בשני מטופלים עם מחלה וסקולרית. השתמשו בדופלר ידני כשלא ממששים. הציגו לבכיר/ה ונסו לקבוע את רמת החסימה</div>
   </div>
   <div style="display:grid;gap:10px">
-   <figure class="sm"><img src="img/pad-pulse-femoral.jpg" alt="מישוש הדופק הפמורלי"><figcaption>מישוש הדופק הפמורלי במפשעה · <bdi>Silentplanetart</bdi>, CC BY-SA 4.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
-   <figure class="sm"><img src="img/pad-pulse-pedal.jpg" alt="מישוש הדופק בגב כף הרגל"><figcaption>דופק <bdi>dorsalis pedis</bdi> בגב כף הרגל · <bdi>Silentplanetart</bdi>, CC BY-SA 4.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+   <figure class="sm"><img src="img/pad-pulse-femoral.jpg" alt="מישוש הדופק הפמורלי"><figcaption>מישוש הדופק הפמורלי במפשעה · <span class="nw"><bdi>Silentplanetart</bdi>,</span> CC BY-SA 4.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+   <figure class="sm"><img src="img/pad-pulse-pedal.jpg" alt="מישוש הדופק בגב כף הרגל"><figcaption>דופק <bdi>dorsalis pedis</bdi> בגב כף הרגל · <span class="nw"><bdi>Silentplanetart</bdi>,</span> CC BY-SA 4.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 103 עמ׳ <bdi dir="ltr">1647</bdi></span><span>בדיקה</span></div>
@@ -237,19 +284,19 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>6</b>הבדיקה הראשונה</div>
- <h2>מדד קרסול-זרוע (<bdi>ABI</bdi>)</h2>
+ <h2>מדד קרסול-זרוע <span class="nw">(<bdi>ABI</bdi>)</span></h2>
  <div class="grid f">
   <div>
    <ul class="b sm">
-    <li><b>איך:</b> שרוול לחץ דם ודופלר ידני. הלחץ הסיסטולי הגבוה בקרסול (<bdi>DP</bdi> או <bdi>PT</bdi>) חלקי הלחץ הסיסטולי הגבוה בזרוע</li>
+    <li><b>איך:</b> שרוול לחץ דם ודופלר ידני. הלחץ הסיסטולי הגבוה בקרסול <span class="nw">(<bdi>DP</bdi></span> או <span class="nw"><bdi>PT</bdi>)</span> חלקי הלחץ הסיסטולי הגבוה בזרוע</li>
     <li><b>תקין:</b> <bdi dir="ltr">0.9–1.2</bdi></li>
-    <li><b>מתחת ל-0.9:</b> אבחנה של מחלה פריפרית. רגישות <bdi dir="ltr">79–95%</bdi>, סגוליות מעל 95%</li>
-    <li><b>מתאים <span class="nw">ל-<bdi>CLTI</bdi></span>:</b> <bdi>ABI</bdi> מתחת ל-0.5, לחץ בקרסול מתחת ל-50 ממ״כ בכאב במנוחה או מתחת ל-70 ממ״כ באובדן רקמה</li>
+    <li><b>מתחת ל-0.9:</b> אבחנה של מחלה פריפרית. רגישות <span class="nw"><bdi dir="ltr">79–95%</bdi>,</span> סגוליות מעל 95%</li>
+    <li><b>מתאים <span class="nw">ל-<bdi>CLTI</bdi>:</span></b> <bdi>ABI</bdi> מתחת ל-0.5, לחץ בקרסול מתחת ל-50 ממ״כ בכאב במנוחה או מתחת ל-70 ממ״כ באובדן רקמה</li>
     <li><b>מעל 1.3:</b> עורקים מסוידים שלא נלחצים (סוכרת, כליות, גיל). התוצאה תקינה באופן כוזב. מודדים <b>לחץ באצבע</b>: מתחת ל-30 ממ״כ ריפוי לא סביר, מעל 60 ריפוי סביר</li>
     <li><b>צליעה עם <bdi>ABI</bdi> תקין:</b> <bdi>ABI</bdi> אחרי מאמץ. ירידה של 20 ממ״כ או 20% בלחץ בקרסול תומכת באבחנה</li>
    </ul>
   </div>
-  <figure><img src="img/pad-abi-nhlbi.jpg" alt="מדידת מדד קרסול-זרוע"><figcaption>מדידת <bdi>ABI</bdi>: לחץ סיסטולי בזרוע ובקרסול בעזרת שרוול ודופלר · <bdi>NHLBI (NIH)</bdi>, נחלת הכלל</figcaption></figure>
+  <figure><img src="img/pad-abi-nhlbi.jpg" alt="מדידת מדד קרסול-זרוע"><figcaption>מדידת <span class="nw"><bdi>ABI</bdi>:</span> לחץ סיסטולי בזרוע ובקרסול בעזרת שרוול ודופלר · <span class="nw"><bdi>NHLBI (NIH)</bdi>,</span> נחלת הכלל</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 103 עמ׳ <bdi dir="ltr">1647–1648</bdi></span><span><bdi>ABI</bdi></span></div>
 </div></section>
@@ -270,14 +317,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <h3>הדמיה לפני התערבות</h3>
    <div class="flow sm">
-    <div><b>דופלקס עורקי</b><span>זמין ולא פולשני. מהירות שיא פי 2 מהמקטע הקודם: היצרות <bdi dir="ltr">50–74%</bdi>. פי 4: מעל 75%</span></div>
+    <div><b>דופלקס עורקי</b><span>זמין ולא פולשני. מהירות שיא פי 2 מהמקטע הקודם: היצרות <span class="nw"><bdi dir="ltr">50–74%</bdi>.</span> פי 4: מעל 75%</span></div>
     <div><b><bdi>CTA</bdi></b><span>טוב <span class="nw">ל-<bdi dir="ltr">aorta</bdi></span> <span class="nw">ול-<bdi dir="ltr">iliac arteries</bdi></span> (למשל דופק פמורלי חסר). מוגבל <span class="nw">ב-<bdi dir="ltr">tibial arteries</bdi></span> קטנים ומסוידים</span></div>
     <div><b><bdi>MRA</bdi></b><span>בלי קרינה. מדויק בהיצרות מעל 50% <span class="nw">וב-<bdi dir="ltr">tibial arteries</bdi></span></span></div>
-    <div><b>אנגיוגרפיה (<bdi>DSA</bdi>)</b><span>פולשנית, אבל מאפשרת טיפול באותה פעולה</span></div>
+    <div><b>אנגיוגרפיה <span class="nw">(<bdi>DSA</bdi>)</span></b><span>פולשנית, אבל מאפשרת טיפול באותה פעולה</span></div>
    </div>
   </div>
  </div>
- <div class="box a" style="margin-top:12px"><b class="t">הדמיה רק למי שמועמד להתערבות</b>האבחנה קלינית ומבוססת על <bdi>ABI</bdi>. מצלמים את העורקים כשמתכננים רה-וסקולריזציה</div>
+ <div class="box a" style="margin-top:12px"><b class="t">הדמיה רק למי שמועמד להתערבות</b>האבחנה קלינית ומבוססת על <span class="nw"><bdi>ABI</bdi>.</span> מצלמים את העורקים כשמתכננים רה-וסקולריזציה</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 103 עמ׳ <bdi dir="ltr">1647–1649</bdi></span><span>בירור</span></div>
 </div></section>
 
@@ -285,10 +332,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>8</b>כל מטופל, בלי יוצא מן הכלל</div>
  <h2>טיפול תרופתי ואורח חיים</h2>
  <div class="grid">
-  <div class="box"><b class="t">נוגדי טסיות</b>אספירין <bdi dir="ltr">75–325</bdi> מ״ג או קלופידוגרל 75 מ״ג ביום בכל מחלה פריפרית עם תסמינים. בחולים בלי סיכון דימום מוגבר: ריברוקסבן 2.5 מ״ג פעמיים ביום עם אספירין (<bdi>COMPASS</bdi>: פחות אירועים לבביים ופחות אירועים בגפה). נוגדי קרישה במינון מלא: לא באופן שגרתי</div>
+  <div class="box"><b class="t">נוגדי טסיות</b>אספירין <bdi dir="ltr">75–325</bdi> מ״ג או קלופידוגרל 75 מ״ג ביום בכל מחלה פריפרית עם תסמינים. בחולים בלי סיכון דימום מוגבר: ריברוקסבן 2.5 מ״ג פעמיים ביום עם אספירין <span class="nw">(<bdi>COMPASS</bdi>:</span> פחות אירועים לבביים ופחות אירועים בגפה). נוגדי קרישה במינון מלא: לא באופן שגרתי</div>
   <div class="box"><b class="t">סטטין בעוצמה גבוהה</b>לכל חולה. יעד <bdi>LDL</bdi> מתחת ל-70 מ״ג/ד״ל. אם לא מגיעים: אזטימיב ואחר כך מעכבי <bdi>PCSK9</bdi></div>
-  <div class="box n"><b class="t">לחץ דם וסוכרת</b>מעכבי <bdi>ACE</bdi> או חוסמי קולטן לאנגיוטנסין מורידים אירועים קרדיווסקולריים. <bdi>HbA1c</bdi>: יעד מתחת ל-7% לפי ההנחיות <span class="nw">ל-<bdi>CLTI</bdi></span>, או מתחת ל-8% בגלל סכנת היפוגליקמיה. מתאימים אישית</div>
-  <div class="box r"><b class="t">הפסקת עישון</b>שואלים בכל ביקור. תמותה ב-5 שנים: 14% במי שהפסיק לעומת 31% במי שממשיך (<span class="nw">ב-<bdi>CLTI</bdi></span>: 18% לעומת 43%). ורניקלין, בופרופיון ותחליפי ניקוטין עוזרים</div>
+  <div class="box n"><b class="t">לחץ דם וסוכרת</b>מעכבי <bdi>ACE</bdi> או חוסמי קולטן לאנגיוטנסין מורידים אירועים קרדיווסקולריים. <span class="nw"><bdi>HbA1c</bdi>:</span> יעד מתחת ל-7% לפי ההנחיות <span class="nw">ל-<bdi>CLTI</bdi>,</span> או מתחת ל-8% בגלל סכנת היפוגליקמיה. מתאימים אישית</div>
+  <div class="box r"><b class="t">הפסקת עישון</b>שואלים בכל ביקור. תמותה ב-5 שנים: 14% במי שהפסיק לעומת 31% במי שממשיך (<span class="nw">ב-<bdi>CLTI</bdi>:</span> 18% לעומת 43%). ורניקלין, בופרופיון ותחליפי ניקוטין עוזרים</div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 103 עמ׳ <bdi dir="ltr">1646, 1650–1651</bdi></span><span>טיפול רפואי</span></div>
 </div></section>
@@ -315,21 +362,21 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>10</b>איסכמיה כרונית מאיימת על הגפה</div>
- <h2><bdi>CLTI</bdi>: הזמן הוא רקמה</h2>
+ <h2><span class="nw"><bdi>CLTI</bdi>:</span> הזמן הוא רקמה</h2>
  <div class="grid">
   <div>
    <ul class="b sm">
     <li>תמותה של <b>50% ב-5 שנים</b> וסיכון גבוה לקטיעה</li>
-    <li><b><bdi>WIfI</bdi></b>: מדרגים פצע (<bdi>W</bdi>), איסכמיה (<bdi>I</bdi>) וזיהום בכף הרגל (<bdi>fI</bdi>), כל אחד בציון 0–3. השילוב נותן שלב קליני <bdi dir="ltr">I–IV</bdi></li>
-    <li>סיכון לקטיעה בשנה לפי שלב: <b>0%</b> בשלב <bdi>I</bdi>, <b>8%</b> <span class="nw">ב-<bdi>II</bdi></span>, <b>11%</b> <span class="nw">ב-<bdi>III</bdi></span>, <b>38%</b> <span class="nw">ב-<bdi>IV</bdi></span></li>
-    <li><b><bdi>PLAN</bdi></b>: מחליטים לפי המטופל (סיכון ותוחלת חיים), הגפה (<bdi>WIfI</bdi>) והאנטומיה (<bdi>GLASS</bdi>)</li>
+    <li><b><bdi>WIfI</bdi></b>: מדרגים פצע <span class="nw">(<bdi>W</bdi>),</span> איסכמיה <span class="nw">(<bdi>I</bdi>)</span> וזיהום בכף הרגל <span class="nw">(<bdi>fI</bdi>),</span> כל אחד בציון 0–3. השילוב נותן שלב קליני <bdi dir="ltr">I–IV</bdi></li>
+    <li>סיכון לקטיעה בשנה לפי שלב: <b>0%</b> בשלב <span class="nw"><bdi>I</bdi>,</span> <b>8%</b> <span class="nw">ב-<bdi>II</bdi>,</span> <b>11%</b> <span class="nw">ב-<bdi>III</bdi>,</span> <b>38%</b> <span class="nw">ב-<bdi>IV</bdi></span></li>
+    <li><b><bdi>PLAN</bdi></b>: מחליטים לפי המטופל (סיכון ותוחלת חיים), הגפה <span class="nw">(<bdi>WIfI</bdi>)</span> והאנטומיה <span class="nw">(<bdi>GLASS</bdi>)</span></li>
     <li>פצע יציב: יש זמן לשפר את המצב הרפואי. כאב במנוחה או פצע שמתקדם: לא מחכים, אלא בתעוקה לא יציבה או אי ספיקת לב לא מאוזנת</li>
     <li>תוחלת חיים קצרה או מטופל מרותק: לשקול טיפול פליאטיבי או קטיעה ראשונית</li>
    </ul>
   </div>
   <div style="display:grid;gap:10px">
-   <figure class="sm"><img src="img/pad-toe-necrosis.jpg" alt="נמק של אצבעות כף הרגל במחלה פריפרית"><figcaption>נמק של כמה אצבעות במחלה פריפרית · <bdi>Karl-Christian Münter</bdi>, CC BY 4.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
-   <figure class="sm"><img src="img/pad-arterial-ulcer.jpg" alt="כיב עורקי בגב כף הרגל"><figcaption>כיב עורקי בגב כף הרגל, פתוח כשנתיים, בחולה סוכרתי מעשן · <bdi>Jonathan Moore</bdi>, CC BY 3.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+   <figure class="sm"><img src="img/pad-toe-necrosis.jpg" alt="נמק של אצבעות כף הרגל במחלה פריפרית"><figcaption>נמק של כמה אצבעות במחלה פריפרית · <span class="nw"><bdi>Karl-Christian Münter</bdi>,</span> CC BY 4.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+   <figure class="sm"><img src="img/pad-arterial-ulcer.jpg" alt="כיב עורקי בגב כף הרגל"><figcaption>כיב עורקי בגב כף הרגל, פתוח כשנתיים, בחולה סוכרתי מעשן · <span class="nw"><bdi>Jonathan Moore</bdi>,</span> CC BY 3.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 103 עמ׳ <bdi dir="ltr">1652, 1654–1657</bdi></span><span><bdi>CLTI</bdi></span></div>
@@ -340,10 +387,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>מעקף או טיפול אנדווסקולרי?</h2>
  <div class="grid g3">
   <div class="box b"><b class="t">אנדווסקולרי</b><ul class="b sm"><li>בלון, סטנט או אתרקטומיה דרך דקירה בעורק</li><li>הרדמה מקומית, מעט דימום ומעט עומס פיזיולוגי</li><li>פחות עמיד: היצרות חוזרת שכיחה, בעיקר בנגעים ארוכים ומסוידים</li></ul></div>
-  <div class="box"><b class="t">מעקף פתוח</b><ul class="b sm"><li>הצינור הטוב ביותר: <b><bdi dir="ltr">great saphenous vein</bdi></b> מקטע אחד</li><li>פתיחות ב-5 שנים: כ-75% <span class="nw">ל-<bdi dir="ltr">popliteal artery</bdi></span> מעל הברך, 69% <span class="nw">ל-<bdi dir="ltr">tibial arteries</bdi></span>, 59% לכף הרגל</li><li><bdi dir="ltr">20–45%</bdi> מהחולים בלי וריד מתאים</li></ul></div>
-  <div class="box n"><b class="t">אגן ומפשעה</b><ul class="b sm"><li>מעקף אאורטו-פמורלי: תחלואה כ-30%, תמותה <bdi dir="ltr">0.8–2.3%</bdi></li><li>חולה בסיכון גבוה: מעקף אקסילו-פמורלי או פמורו-פמורלי. פחות עמיד, פחות מסוכן</li><li><bdi dir="ltr">common femoral artery</bdi>: אנדארטרקטומיה וטלאי</li></ul></div>
+  <div class="box"><b class="t">מעקף פתוח</b><ul class="b sm"><li>הצינור הטוב ביותר: <b><bdi dir="ltr">great saphenous vein</bdi></b> מקטע אחד</li><li>פתיחות ב-5 שנים: כ-75% <span class="nw">ל-<bdi dir="ltr">popliteal artery</bdi></span> מעל הברך, 69% <span class="nw">ל-<bdi dir="ltr">tibial arteries</bdi>,</span> 59% לכף הרגל</li><li><bdi dir="ltr">20–45%</bdi> מהחולים בלי וריד מתאים</li></ul></div>
+  <div class="box n"><b class="t">אגן ומפשעה</b><ul class="b sm"><li>מעקף אאורטו-פמורלי: תחלואה כ-30%, תמותה <bdi dir="ltr">0.8–2.3%</bdi></li><li>חולה בסיכון גבוה: מעקף אקסילו-פמורלי או פמורו-פמורלי. פחות עמיד, פחות מסוכן</li><li><span class="nw"><bdi dir="ltr">common femoral artery</bdi>:</span> אנדארטרקטומיה וטלאי</li></ul></div>
  </div>
- <div class="box a" style="margin-top:12px"><b class="t">מה אומרים המחקרים</b><bdi>BEST-CLI</bdi>: בחולים עם <bdi dir="ltr">great saphenous vein</bdi> מתאים, מעקף הוריד את שיעור האירועים בגפה או המוות (42.6% לעומת 57.4%). בלי וריד מתאים לא היה הבדל. <bdi>BASIL-2</bdi> (מחלה מתחת לברך): יותר מוות בזרוע המעקף. לכן ההחלטה אישית: סיכון, אנטומיה ווריד זמין</div>
+ <div class="box a" style="margin-top:12px"><b class="t">מה אומרים המחקרים</b><span class="nw"><bdi>BEST-CLI</bdi>:</span> בחולים עם <bdi dir="ltr">great saphenous vein</bdi> מתאים, מעקף הוריד את שיעור האירועים בגפה או המוות (42.6% לעומת 57.4%). בלי וריד מתאים לא היה הבדל. <bdi>BASIL-2</bdi> (מחלה מתחת לברך): יותר מוות בזרוע המעקף. לכן ההחלטה אישית: סיכון, אנטומיה ווריד זמין</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 103 עמ׳ <bdi dir="ltr">1651–1652, 1654–1657, 1664–1665</bdi></span><span>רה-וסקולריזציה</span></div>
 </div></section>
 
@@ -354,8 +401,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <ul class="b sm">
     <li>הפסקה פתאומית של זרימת הדם. <b>אחרי 6 שעות</b> של איסכמיה קשה יכול להיגרם נזק בלתי הפיך לשריר ולעצב</li>
-    <li>תמותה סביב הניתוח <bdi dir="ltr">20–40%</bdi>, אובדן גפה <bdi dir="ltr">12–50%</bdi></li>
-    <li><b>ששת <span class="nw">ה-<bdi>P</bdi></span>:</b> כאב, היעדר דופק, קור, נימול, חיוורון ושיתוק</li>
+    <li>תמותה סביב הניתוח <span class="nw"><bdi dir="ltr">20–40%</bdi>,</span> אובדן גפה <bdi dir="ltr">12–50%</bdi></li>
+    <li><b>ששת <span class="nw">ה-<bdi>P</bdi>:</span></b> כאב, היעדר דופק, קור, נימול, חיוורון ושיתוק</li>
     <li>גבול הקור ודפקים שנשמרו מעליו מראים איפה החסימה. משווים לרגל השנייה ובודקים בדופלר עורקי <b>וורידי</b></li>
    </ul>
    <div class="grid" style="margin-top:10px">
@@ -363,7 +410,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <div class="box a"><b class="t">פקקת במקום</b>על רקע מחלה פריפרית קיימת. הקולטרלים מרככים את התמונה, אבל התיקון קשה יותר</div>
    </div>
   </div>
-  <figure><img src="img/pad-ali-foot.jpg" alt="כף רגל ימין כחלחלה באיסכמיה חריפה"><figcaption>כף רגל ימין (משמאל בתמונה) כחלחלה וחיוורת, דיסטלית לפקקת עורקית חריפה · <bdi>James Heilman, MD</bdi>, CC BY-SA 3.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/pad-ali-foot.jpg" alt="כף רגל ימין כחלחלה באיסכמיה חריפה"><figcaption>כף רגל ימין (משמאל בתמונה) כחלחלה וחיוורת, דיסטלית לפקקת עורקית חריפה · <span class="nw"><bdi>James Heilman, MD</bdi>,</span> CC BY-SA 3.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 103 עמ׳ <bdi dir="ltr">1671–1672</bdi></span><span>איסכמיה חריפה</span></div>
 </div></section>
@@ -378,7 +425,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div><b><span class="tag r">III</span> בלתי הפיכה</b><span>הרדמה מלאה, שיתוק, נוקשות. אין דופלר עורקי ואין ורידי. <b>קטיעה ראשונית</b>: החזרת זרימה עלולה לגרום לאי ספיקה רב-מערכתית ולמוות</span></div>
  </div>
  <div class="box r" style="margin-top:12px"><b class="t">ברגע שחושדים: הפרין</b>בולוס תוך-ורידי <bdi dir="ltr">75–100</bdi> יח׳/ק״ג. אחריו עירוי רציף עד לטיפול המוחלט. כך מונעים התפשטות של הקריש ושומרים על הקולטרלים</div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 103 עמ׳ <bdi dir="ltr">1671–1673</bdi> (טבלה <bdi>103.4</bdi>)</span><span>איסכמיה חריפה</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 103 עמ׳ <bdi dir="ltr">1671–1673</bdi> (טבלה <span class="nw"><bdi>103.4</bdi>)</span></span><span>איסכמיה חריפה</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -395,7 +442,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>מחפשים את המקור:</b> א.ק.ג, אקו לב, <bdi>CTA</bdi> של החזה, הבטן והאגן</li>
    </ul>
   </div>
-  <figure><img src="img/pad-fasciotomy.jpg" alt="שוק אחרי פסיוטומיה"><figcaption>שוק אחרי פסיוטומיה לתסמונת מדור · <bdi>Sarte</bdi> (<bdi>English Wikipedia</bdi>), CC BY-SA 3.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/pad-fasciotomy.jpg" alt="שוק אחרי פסיוטומיה"><figcaption>שוק אחרי פסיוטומיה לתסמונת מדור · <bdi>Sarte</bdi> <span class="nw">(<bdi>English Wikipedia</bdi>),</span> CC BY-SA 3.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 103 עמ׳ <bdi dir="ltr">1673–1674</bdi></span><span>איסכמיה חריפה</span></div>
 </div></section>
@@ -404,17 +451,17 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>15</b>מה חדש בתחום · <bdi dir="ltr">2022–2025</bdi></div>
  <h2>מחקרים שכדאי להכיר</h2>
  <div class="grid">
-  <div class="study"><div class="y"><bdi>NEJM</bdi> 2022 · מחקר אקראי</div><b><bdi>BEST-CLI</bdi>: מעקף מול טיפול אנדווסקולרי</b>
-   <p>1,830 חולי <bdi>CLTI</bdi>. כשיש <bdi dir="ltr">great saphenous vein</bdi> מתאים: אירוע מז׳ורי בגפה או מוות ב-42.6% אחרי מעקף לעומת 57.4% אחרי טיפול אנדווסקולרי. בלי וריד מתאים: 42.8% לעומת 47.7%, בלי הבדל מובהק</p>
+  <div class="study"><div class="y"><bdi>NEJM</bdi> 2022 · מחקר אקראי</div><b><span class="nw"><bdi>BEST-CLI</bdi>:</span> מעקף מול טיפול אנדווסקולרי</b>
+   <p>1,830 חולי <span class="nw"><bdi>CLTI</bdi>.</span> כשיש <bdi dir="ltr">great saphenous vein</bdi> מתאים: אירוע מז׳ורי בגפה או מוות ב-42.6% אחרי מעקף לעומת 57.4% אחרי טיפול אנדווסקולרי. בלי וריד מתאים: 42.8% לעומת 47.7%, בלי הבדל מובהק</p>
    <small><bdi dir="ltr">Farber A et al. N Engl J Med 2022;387:2305-16</bdi></small></div>
-  <div class="study"><div class="y"><bdi>BMJ</bdi> 2025 · מחקר אקראי</div><b><bdi>BASIL-3</bdi>: בלון ותומכן עם תרופה</b>
+  <div class="study"><div class="y"><bdi>BMJ</bdi> 2025 · מחקר אקראי</div><b><span class="nw"><bdi>BASIL-3</bdi>:</span> בלון ותומכן עם תרופה</b>
    <p>481 חולי <bdi>CLTI</bdi> עם מחלה פמורו-פופליטאלית. קטיעה גדולה או מוות: 66% בבלון רגיל, 60% בבלון מצופה תרופה, 58% בתומכן מצופה. ההבדלים לא מובהקים: אין יתרון קליני לטכנולוגיה היקרה</p>
    <small><bdi dir="ltr">Bradbury AW et al. BMJ 2025;388:e080881</bdi></small></div>
-  <div class="study"><div class="y"><bdi>Lancet</bdi> 2025 · מחקר אקראי</div><b><bdi>STRIDE</bdi>: סמגלוטייד בצליעה</b>
+  <div class="study"><div class="y"><bdi>Lancet</bdi> 2025 · מחקר אקראי</div><b><span class="nw"><bdi>STRIDE</bdi>:</span> סמגלוטייד בצליעה</b>
    <p>792 חולים עם סוכרת סוג 2 וצליעה. סמגלוטייד 1 מ״ג בשבוע במשך 52 שבועות שיפר את מרחק ההליכה המרבי לעומת אינבו (יחס טיפול 1.13). עד היום מעט טיפולים שיפרו את התפקוד בחולים האלה</p>
    <small><bdi dir="ltr">Bonaca MP et al. Lancet 2025;405:1580-93</bdi></small></div>
   <div class="study"><div class="y"><bdi>Circulation</bdi> 2024 · הנחיות</div><b>הנחיות <bdi>ACC/AHA</bdi> 2024 למחלה פריפרית</b>
-   <p>עדכון ראשון מאז 2016, בהשתתפות 11 איגודים, כולל איגוד כלי הדם (<bdi>SVS</bdi>). ההמלצות מכסות את כל הספקטרום: בלי תסמינים, צליעה, <bdi>CLTI</bdi> ואיסכמיה חריפה. נוסף פרק על טיפול מקיף בחולה</p>
+   <p>עדכון ראשון מאז 2016, בהשתתפות 11 איגודים, כולל איגוד כלי הדם <span class="nw">(<bdi>SVS</bdi>).</span> ההמלצות מכסות את כל הספקטרום: בלי תסמינים, צליעה, <bdi>CLTI</bdi> ואיסכמיה חריפה. נוסף פרק על טיפול מקיף בחולה</p>
    <small><bdi dir="ltr">Gornik HL et al. Circulation 2024;149:e1313-e1410</bdi></small></div>
  </div>
  <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
@@ -425,12 +472,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>חמישה דברים לקחת למחלקה</h2>
  <ol class="obj">
   <li>מחלה פריפרית היא מחלה מערכתית: הסכנה הגדולה היא אוטם ושבץ. סטטין, נוגד טסיות והפסקת עישון לכולם</li>
-  <li>בודקים דפקים בשתי הרגליים ומודדים <bdi>ABI</bdi>. מתחת ל-0.9: מחלה. מעל 1.3: עורקים מסוידים, מודדים באצבע</li>
+  <li>בודקים דפקים בשתי הרגליים ומודדים <span class="nw"><bdi>ABI</bdi>.</span> מתחת ל-0.9: מחלה. מעל 1.3: עורקים מסוידים, מודדים באצבע</li>
   <li>צליעה: אימון הליכה ותרופות. התערבות רק כשהחיים משתבשים</li>
-  <li>כאב במנוחה או פצע שלא נרפא: <bdi>CLTI</bdi>. מעריכים לפי <bdi>WIfI</bdi> ולא מחכים</li>
+  <li>כאב במנוחה או פצע שלא נרפא: <span class="nw"><bdi>CLTI</bdi>.</span> מעריכים לפי <bdi>WIfI</bdi> ולא מחכים</li>
   <li>רגל קרה, חיוורת ובלי דופק: הפרין מיד, סיווג <bdi>Rutherford</bdi> ופנייה דחופה לכירורג כלי דם</li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 103 <bdi>Peripheral Occlusive Disease</bdi> (עמ׳ <bdi dir="ltr">1643–1657, 1671–1674</bdi>)</div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 103 <bdi>Peripheral Occlusive Disease</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1643–1657, 1671–1674</bdi>)</span></div>
  <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1909, נחלת הכלל) · <bdi>NHLBI</bdi> (נחלת הכלל) · תמונות קליניות <span class="nw">מ-<bdi>Wikimedia Commons</bdi></span> לפי הרישיון בכל כיתוב · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 </main>
@@ -452,5 +499,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>

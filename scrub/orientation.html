@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>מבוא לסבב · Scrub In</title>
+<title>מבוא לסבב ואדמיניסטרציה · Scrub In</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="../emblem.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Frank+Ruhl+Libre:wght@700;900&display=swap" rel="stylesheet">
@@ -148,7 +148,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -178,9 +178,56 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -192,8 +239,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s cover"><div class="card">
  <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
  <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 1</div>
- <h1>ברוכים הבאים לכירורגיה</h1>
- <p class="lead">מבוא לסבב ואדמיניסטרציה: איך בנוי המערך, איך נראה השבוע, איפה תהיו ואיך עובדים נכון ובטוח</p>
+ <h1>מבוא לסבב ואדמיניסטרציה</h1>
+ <p class="lead">ברוכים הבאים לכירורגיה: איך בנוי המערך, איך נראה השבוע, איפה תהיו ואיך עובדים נכון ובטוח</p>
  <div class="cvsrc" data-own="ספרון המערך · המצגת &quot;עבודה נכונה במערך&quot; · תוכנית הסבב"><small>מבוסס על</small><b>ספרון המערך · המצגת &quot;עבודה נכונה במערך&quot; · תוכנית הסבב</b></div>
  <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
 </div></section>
@@ -206,7 +253,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>להתמצא בזמן: יום טיפוסי, השבוע הקבוע ו<b>ששת השבועות</b> של הסבב</li>
   <li>מה עושים בכל עמדה: מחלקה, מרפאות, חדר ניתוח, טרום ניתוח ומיון</li>
   <li>לעבוד בטוח: היגיינת ידיים, זיהוי מטופל, חדים ודיווח מסודר <bdi>(SBAR)</bdi></li>
-  <li>להשתמש באפליקציה בכיס: לו״ז, משוב יומי, פנקס ניתוחים וקשר עם הצוות</li>
+  <li>להשתמש באפליקציה בכיס: לו״ז, פנקס ניתוחים, סקר שבועי וקשר עם הצוות</li>
  </ol>
  <div class="src"><span>קריאה: <b>ספרון המערך</b> · המצגת <b>עבודה נכונה במערך</b></span><span>Scrub In · קפלן</span></div>
 </div></section>
@@ -237,14 +284,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div class="org">
    <div class="top2">
-    <div class="rk"><small>בראש המערך</small><b>מנהל המערך</b></div>
-    <div class="rk l"><small>לצידו</small><b>סגן מנהל המערך</b></div>
+    <div class="rk"><small>מנהל המערך</small><b>ד״ר ברק בר זכאי</b></div>
+    <div class="rk l"><small>סגן מנהל המערך</small><b>ד״ר רפאל מילר</b></div>
    </div>
    <div class="top2">
-    <div class="wing" style="background:#4A86C5">🛏️<div>אגף צפון<small>אגף אשפוז</small></div></div>
-    <div class="wing" style="background:#C9893F">🛏️<div>אגף דרום<small>אגף אשפוז</small></div></div>
+    <div class="wing" style="background:#4A86C5">🛏️<div>אגף צפון<small>אחות אחראית: אינה משה</small></div></div>
+    <div class="wing" style="background:#C9893F">🛏️<div>אגף דרום<small>אחות אחראית: מילה ____</small></div></div>
    </div>
-   <div class="box n" style="font-size:14.5px"><b class="t">בכל אגף</b>רופאים בכירים, מתמחים, סטאז׳רים והצוות הסיעודי עם האחות האחראית. בלו״ז שלכם האגפים מופיעים כ<b>אגף א</b> ו<b>אגף ב</b> (כירורגית א, כירורגית ב)</div>
+   <div class="box n" style="font-size:14.5px"><b class="t">בכל אגף</b>רופאים בכירים, מתמחים, סטאז׳רים והצוות הסיעודי עם האחות האחראית. בלו״ז ובאפליקציה האגפים מופיעים בשמם: <b>אגף צפון</b> ו<b>אגף דרום</b></div>
   </div>
   <div>
    <h3>חמש יחידות המערך</h3>
@@ -265,17 +312,17 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>4</b>עמדות העבודה</div>
  <h2>איפה תהיו בסבב</h2>
  <div class="sts">
-  <div class="st" style="--c:#00967D"><div class="hd"><span class="ic">🛏️</span><h3>המחלקה<small>אגף א ואגף ב</small></h3></div>
+  <div class="st" style="--c:#00967D"><div class="hd"><span class="ic">🛏️</span><h3>המחלקה<small>אגף צפון ואגף דרום</small></h3></div>
    <p>ביקור בוקר אחרי הישיבה, בראשות רופא בכיר ויחד עם אחות המחלקה. קבלות ומעקב אחרי המטופלים באגף</p>
    <div class="you"><b>אתם:</b> מכירים את המטופלים באגף, בודקים, כותבים קבלה ומציגים</div></div>
   <div class="st" style="--c:#2F6FA8"><div class="hd"><span class="ic">🩺</span><h3>מרפאות<small>כל יום מרפאה אחרת</small></h3></div>
-   <p>א׳ שד · ב׳ כללית, <bdi>HPB</bdi>, שד וחזה · ג׳ קולורקטלית · ד׳ כללית, שד וחזה · ה׳ קולורקטלית ושד</p>
+   <p>א׳ שד · ב׳ כללית, <span class="nw"><bdi>HPB</bdi>,</span> שד וחזה · ג׳ קולורקטלית · ד׳ כללית, שד וחזה · ה׳ קולורקטלית ושד</p>
    <div class="you"><b>אתם:</b> אנמנזה ובדיקה ממוקדת. רואים איך מחליטים על ניתוח</div></div>
   <div class="st" style="--c:#0C2A35"><div class="hd"><span class="ic">✂️</span><h3>חדר הניתוח<small>לפי השיבוץ</small></h3></div>
    <p>ניתוחים מתוכננים ודחופים בכל תחומי המערך, פתוחים ולפרוסקופיים</p>
    <div class="you"><b>אתם:</b> צפייה, עזרה וביצוע בהדרכה. כל ניתוח נרשם בפנקס</div></div>
   <div class="st" style="--c:#7A5BD6"><div class="hd"><span class="ic">📋</span><h3>טרום ניתוח<small>מרפאת טרום ניתוח</small></h3></div>
-   <p>ג׳ <bdi dir="ltr">12:30–14:00</bdi> · כירורגית ב<br>ד׳ <bdi dir="ltr">13:00–14:30</bdi> · כירורגית א</p>
+   <p>ג׳ <bdi dir="ltr">12:30–14:00</bdi> · אגף צפון<br>ד׳ <bdi dir="ltr">13:00–14:30</bdi> · אגף דרום</p>
    <div class="you"><b>אתם:</b> קבלה מלאה למטופל לפני ניתוח מתוכנן: מחלות רקע, תרופות ובדיקות</div></div>
   <div class="st" style="--c:#A3402E"><div class="hd"><span class="ic">🚑</span><h3>מיון<small>מטופלים דחופים</small></h3></div>
    <p>כאן מתחיל המטופל הכירורגי הדחוף. ממנו מגיעות הקבלות למחלקה, לפי האגף שמקבל באותו יום</p>
@@ -290,7 +337,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>5</b>חדר הניתוח</div>
  <h2>הצעד הראשון אל השולחן</h2>
  <div class="grid f">
-  <figure><img src="img/or-theatre.jpg" alt="חדר ניתוח לפרוסקופי ריק: שולחן, מנורות ומסכים"><figcaption>חדר ניתוח לפרוסקופי: שולחן, מנורות, מסכים, עגלת הרדמה ושאיבה · <bdi>Dr. Jayesh Amin</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/or-theatre.jpg" alt="חדר ניתוח לפרוסקופי ריק: שולחן, מנורות ומסכים"><figcaption>חדר ניתוח לפרוסקופי: שולחן, מנורות, מסכים, עגלת הרדמה ושאיבה · <span class="nw"><bdi>Dr. Jayesh Amin</bdi>,</span> <span class="nw"><bdi>CC BY-SA 3.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
   <div>
    <ul class="b">
     <li>בשבוע הראשון: מפגש <b>הכרת חדר הניתוח</b>. מגיעים אליו עם מדי חדר ניתוח</li>
@@ -314,28 +361,27 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div><h4><i>א</i>ראשון</h4>
    <div class="ev m"><b><bdi dir="ltr">07:15</bdi></b>ישיבת בוקר</div>
    <div class="ev"><b><bdi dir="ltr">08:00</bdi></b>ביקור · מרפאות · חדר ניתוח</div>
-   <div class="ev c"><b><bdi dir="ltr">10:30</bdi></b>ישיבת רנטגן · כירורגית ב</div>
    <div class="ev k"><b>מרפאה</b>שד</div></div>
   <div><h4><i>ב</i>שני</h4>
    <div class="ev m"><b><bdi dir="ltr">07:30</bdi></b>ישיבת בוקר</div>
    <div class="ev"><b><bdi dir="ltr">08:00</bdi></b>ביקור · מרפאות · חדר ניתוח</div>
    <div class="ev c"><b><bdi dir="ltr">13:45–15:00</bdi></b><bdi>Tumor board</bdi> · חדר ישיבות רנטגן, קומה 1</div>
-   <div class="ev k"><b>מרפאות</b>כללית, <bdi>HPB</bdi>, שד וחזה</div></div>
+   <div class="ev k"><b>מרפאות</b>כללית, <span class="nw"><bdi>HPB</bdi>,</span> שד וחזה</div></div>
   <div><h4><i>ג</i>שלישי</h4>
    <div class="ev m"><b><bdi dir="ltr">07:00</bdi></b>ישיבה אקדמית: ג׳ורנל קלאב, <bdi>M&amp;M</bdi></div>
    <div class="ev"><b><bdi dir="ltr">08:00</bdi></b>ביקור · מרפאות · חדר ניתוח</div>
-   <div class="ev p"><b><bdi dir="ltr">12:30–14:00</bdi></b>טרום ניתוח · כירורגית ב</div>
+   <div class="ev p"><b><bdi dir="ltr">12:30–14:00</bdi></b>טרום ניתוח · אגף צפון</div>
    <div class="ev k"><b>מרפאה</b>קולורקטלית</div></div>
   <div><h4><i>ד</i>רביעי</h4>
    <div class="ev m"><b><bdi dir="ltr">07:30</bdi></b>ישיבת צוות</div>
    <div class="ev"><b><bdi dir="ltr">08:00</bdi></b>ביקור · מרפאות · חדר ניתוח</div>
-   <div class="ev p"><b><bdi dir="ltr">13:00–14:30</bdi></b>טרום ניתוח · כירורגית א</div>
+   <div class="ev c"><b><bdi dir="ltr">10:45</bdi></b>ישיבת רנטגן של המערך</div>
+   <div class="ev p"><b><bdi dir="ltr">13:00–14:30</bdi></b>טרום ניתוח · אגף דרום</div>
    <div class="ev k"><b>מרפאות</b>כללית, שד וחזה</div></div>
   <div><h4><i>ה</i>חמישי</h4>
    <div class="ev m"><b><bdi dir="ltr">07:00</bdi></b>ישיבת צוות ומעבר על ניתוחי השבוע הבא</div>
    <div class="ev"><b><bdi dir="ltr">08:00</bdi></b>ביקור · מרפאות · חדר ניתוח</div>
-   <div class="ev c"><b><bdi dir="ltr">11:00</bdi></b>ישיבת רנטגן · כירורגית א</div>
-   <div class="ev a"><b><bdi dir="ltr">15:00</bdi></b>סיכום שבועי של הסבב</div></div>
+   <div class="ev a"><b><bdi dir="ltr">15:00</bdi></b>סיכום שבועי של הסבב וסקר שבועי באפליקציה</div></div>
  </div>
  <div class="box" style="margin-top:12px"><b class="t">בין לבין</b>הרצאות, סדנאות, דיוני מקרים וביקורים מודרכים. השעות המדויקות לכל יום נמצאות בלו״ז שבאפליקציה. כל מפגש בלו״ז מתחיל בזמן. הנוכחות נרשמת בכל יום</div>
  <div class="src"><span>מקור: <b>ספרון המערך</b> (ישיבות) · <b>תוכנית הסבב</b> (מרפאות, ישיבות דימות, טרום ניתוח)</span><span>השבוע במערך</span></div>
@@ -352,8 +398,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <div><b>אמצע היום</b><span>הרצאות, סדנאות ודיוני מקרים</span></div>
     <div><b><bdi dir="ltr">12:30</bdi> צהריים</b><span>טרום ניתוח או ישיבה של המערך, לפי היום</span></div>
     <div><b>אחר הצהריים</b><span>ביקור מודרך ליד המיטה, <bdi dir="ltr">2–3</bdi> פעמים בשבוע</span></div>
-    <div><b><bdi dir="ltr">16:00</bdi> סוף היום</b><span>משוב יומי באפליקציה: שתי לחיצות ומשפט</span></div>
-    <div><b>חמישי <bdi dir="ltr">15:00</bdi></b><span>סיכום שבועי עם צוות הסבב</span></div>
+    <div><b><bdi dir="ltr">16:00</bdi> סוף היום</b><span>רישום ניתוחים ופרוצדורות בפנקס שבאפליקציה</span></div>
+    <div><b>חמישי <bdi dir="ltr">15:00</bdi></b><span>סיכום שבועי עם צוות הסבב וסקר שבועי קצר באפליקציה</span></div>
    </div>
   </div>
   <div class="dk">
@@ -378,9 +424,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div style="--c:#0A6B5A"><div class="n">1<small>שבוע</small></div><h4>היסודות</h4><ul><li>קבלת חולים והערכת סיכון</li><li>בדיקת בטן</li><li>הכרת חדר הניתוח</li><li>סדנאות תפירה וורידים</li><li>בקעים, <bdi dir="ltr">gallbladder</bdi></li></ul></div>
   <div style="--c:#00967D"><div class="n">2<small>שבוע</small></div><h4>החולה הדחוף</h4><ul><li>שוק וספסיס</li><li>בטן חריפה</li><li>מבוא לטראומה</li><li>צילומי חזה ובטן</li><li>סרטן השד</li></ul></div>
   <div style="--c:#2F6FA8"><div class="n">3<small>שבוע</small></div><h4>מערכת העיכול</h4><ul><li>סרטן <span class="nw">ה-<bdi dir="ltr">stomach</bdi></span></li><li>דימום תחתון</li><li>סעיפים, חסימת <bdi dir="ltr">small bowel</bdi></li><li><bdi dir="ltr">aorta</bdi></li><li>אולטרסאונד בטן</li></ul></div>
-  <div style="--c:#7A5BD6"><div class="n">4<small>שבוע</small></div><h4><bdi dir="ltr">pancreas</bdi> <span class="nw">ו-<bdi dir="ltr">rectum</bdi></span></h4><ul><li>פנקריאטיטיס</li><li>השמנת יתר חולנית</li><li>סרטן <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span>, פרוקטולוגיה</li><li>סיבוכים כירורגיים</li><li><bdi>CT</bdi> בטן</li></ul></div>
-  <div style="--c:#C9893F"><div class="n">5<small>שבוע</small></div><h4><bdi dir="ltr">liver</bdi>, כלי דם ונוזלים</h4><ul><li><bdi dir="ltr">portal hypertension</bdi></li><li>צהבת חסימתית</li><li>איסכמיה של המעי</li><li>נוזלים ותזונה</li><li><bdi dir="ltr">carotid</bdi></li></ul></div>
-  <div style="--c:#A3402E"><div class="n">6<small>שבוע</small></div><h4>סיכום</h4><ul><li>חבלת בטן קהה</li><li>מסירת בשורה מרה</li><li>דילמות מדיקו-לגליות</li><li>בחינה מסכמת</li><li>משובים ושיחת סיכום</li></ul></div>
+  <div style="--c:#7A5BD6"><div class="n">4<small>שבוע</small></div><h4><bdi dir="ltr">pancreas</bdi> <span class="nw">ו-<bdi dir="ltr">rectum</bdi></span></h4><ul><li>פנקריאטיטיס</li><li>השמנת יתר חולנית</li><li>סרטן <span class="nw">ה-<bdi dir="ltr">rectum</bdi>,</span> פרוקטולוגיה</li><li>סיבוכים כירורגיים</li><li><bdi>CT</bdi> בטן</li></ul></div>
+  <div style="--c:#C9893F"><div class="n">5<small>שבוע</small></div><h4><span class="nw"><bdi dir="ltr">liver</bdi>,</span> כלי דם ונוזלים</h4><ul><li><bdi dir="ltr">portal hypertension</bdi></li><li>צהבת חסימתית</li><li>איסכמיה של המעי</li><li>נוזלים ותזונה</li><li><bdi dir="ltr">carotid</bdi></li></ul></div>
+  <div style="--c:#A3402E"><div class="n">6<small>שבוע</small></div><h4>סיכום</h4><ul><li>חבלת בטן קהה</li><li>מסירת בשורה מרה</li><li>דילמות מדיקו-לגליות</li><li>בחינה מסכמת</li><li>שאלון מסכם ושיחת סיכום</li></ul></div>
  </div>
  <div class="grid" style="margin-top:12px">
   <div class="box b"><b class="t">לכל מפגש: חומר מראש</b>מטרות, קריאה ומצגת מחכים ליד המפגש באפליקציה, תחת "חומר למפגש". מומלץ לעבור עליהם לפני</div>
@@ -398,9 +444,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div><b><span>🧩</span>דיון מקרים</b>מקרה קליני שאתם מובילים: אבחנה מבדלת, בירור, החלטה וטיפול<small>למשל: כאבי בטן ימנית עליונה, חסימה קולונית</small></div>
   <div><b><span>🩻</span>דימות</b>עם מכון הדימות: צילומי חזה ובטן, אולטרסאונד וטומוגרפיה ממוחשבת. לומדים לקרוא בשיטה<small>בשבועות 2 עד 4</small></div>
   <div><b><span>🛏️</span>ביקור מודרך</b>ליד המיטה, בקבוצה קטנה. מציגים מטופל ובודקים יחד עם המלמד/ת<small><bdi dir="ltr">2–3</bdi> פעמים בשבוע, אחר הצהריים</small></div>
-  <div><b><span>🗂️</span>ישיבות המערך</b>ישיבות הרנטגן והישיבה האונקולוגית <bdi>(Tumor board)</bdi>. רואים איך הצוות מחליט על מטופלים<small>וסיכום שבועי בכל חמישי</small></div>
+  <div><b><span>🗂️</span>ישיבות המערך</b>ישיבות הרנטגן והישיבה האונקולוגית <span class="nw"><bdi>(Tumor board)</bdi>.</span> רואים איך הצוות מחליט על מטופלים<small>וסיכום שבועי בכל חמישי</small></div>
  </div>
- <div class="box" style="margin-top:12px"><b class="t">⭐ אחרי כל מפגש</b>מדרגים אותו באפליקציה. כך אנחנו יודעים מה עבד ומה צריך לשפר</div>
+ <div class="box" style="margin-top:12px"><b class="t">📝 סקר שבועי ושאלון מסכם</b>בכל חמישי ממלאים באפליקציה סקר קצר על השבוע כולו: ההוראה, הצוות והארגון. בסוף הסבב ממלאים שאלון מסכם. כך אנחנו יודעים מה עבד ומה צריך לשפר</div>
  <div class="src"><span>מקור: <b>תוכנית הסבב</b></span><span>מפגשי ההוראה</span></div>
 </div></section>
 
@@ -416,7 +462,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li>היכרות עם המטופלים באגף שלכם</li>
     <li>אחריות על המשימות שקיבלתם, עד הסוף</li>
     <li>דיווח מיידי על כל שינוי במצב מטופל</li>
-    <li>משוב יומי קצר ורישום בפנקס</li>
+    <li>סקר שבועי בכל חמישי ורישום בפנקס</li>
+    <li><b>שיתוף פעולה מלא</b> עם המערכת הטכנולוגית של המערך</li>
    </ul>
   </div>
   <div class="dk">
@@ -426,7 +473,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li>תוכנית הוראה מסודרת לשישה שבועות</li>
     <li>חומר לכל מפגש: מטרות, קריאה ומצגת</li>
     <li>חשיפה לחדר הניתוח, למרפאות ולמחלקה</li>
-    <li>הקשבה: תשובה לכל הודעה ושינוי לפי המשוב שלכם</li>
+    <li>הקשבה: תשובה לכל הודעה ושינוי לפי הסקרים שלכם</li>
    </ul>
   </div>
  </div>
@@ -457,7 +504,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  </div>
  <h3 style="margin-top:14px">תבנית הקבלה בעשר שורות</h3>
  <div class="chips"><span><i>01</i>פרטים</span><span><i>02</i>רקע רפואי</span><span><i>03</i>נוגדי קרישה</span><span><i>04</i>רקע ניתוחי</span><span><i>05</i>אנדוסקופיות</span><span class="hi"><i>06</i>מחלה נוכחית</span><span><i>07</i>במיון</span><span><i>08</i>בדיקות עזר</span><span><i>09</i>במחלקה</span><span><i>10</i>תכנית</span></div>
- <div class="box b" style="margin-top:12px"><b class="t">בסיום</b>עוברים על הקבלה עם הרופא האחראי. התוכנית נקבעת על ידי רופא בלבד. בשבוע 1 יש מפגש שלם על עקרונות קבלת חולים</div>
+ <div class="grid" style="margin-top:12px">
+  <div class="box b"><b class="t">בסיום</b>עוברים על הקבלה עם הרופא האחראי. התוכנית נקבעת על ידי רופא בלבד. בשבוע 1 יש מפגש שלם על עקרונות קבלת חולים</div>
+  <div class="box n"><b class="t">📎 קבלות לדוגמה</b>הסבר ושלוש קבלות לדוגמה של המערך: <a href="https://kaplansurgeryhub-dotcom.github.io/academy/preop.pdf" target="_blank" rel="noopener">קובץ הקבלות לדוגמה <bdi dir="ltr">(PDF)</bdi></a>. הוא נמצא גם באפליקציה שלכם, תחת <b>נספחים וקבצים</b></div>
+ </div>
  <div class="src"><span>מקור: <b>ספרון המערך</b> · קבלה למחלקה ותבנית הקבלה</span><span>קבלה למחלקה</span></div>
 </div></section>
 
@@ -619,16 +669,17 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
      <div class="row"><span>הכרת חדר הניתוח</span><bdi dir="ltr">12:30</bdi></div>
      <div class="row"><span>דיון מקרים</span><bdi dir="ltr">14:00</bdi></div>
      <div class="row"><span>סדנה</span><bdi dir="ltr">15:00</bdi></div></div>
-    <div class="cd"><h5>איך היה היום?</h5><div class="stars">★★★★☆</div><span class="btn">שליחת משוב</span></div>
+    <div class="cd"><h5>יום חמישי · סקר שבועי</h5><div style="color:var(--muted)">כמה שאלות על השבוע שעבר</div><span class="btn">מילוי הסקר</span></div>
    </div>
-   <div class="tabs"><span class="on"><i>☀️</i>היום</span><span><i>🗓️</i>לו״ז</span><span><i>💬</i>משוב</span><span><i>📒</i>פנקס</span><span><i>📞</i>קשר</span></div>
+   <div class="tabs"><span class="on"><i>☀️</i>היום</span><span><i>🗓️</i>לו״ז</span><span><i>💬</i>סקר</span><span><i>📒</i>פנקס</span><span><i>📞</i>קשר</span></div>
   </div></div>
   <div>
    <p class="lead" style="margin-bottom:10px">קישור אישי לכל סטודנט/ית. פותחים בטלפון ומוסיפים למסך הבית</p>
    <div class="apl">
     <div><i>☀️</i><span><b>היום:</b> מה עכשיו ומה הבא, הלו״ז של היום והנוכחות שלכם</span></div>
-    <div><i>🗓️</i><span><b>לו״ז:</b> כל ששת השבועות, יום אחרי יום. ליד כל מפגש: חומר למפגש 📖 ודירוג ⭐</span></div>
-    <div><i>💬</i><span><b>משוב:</b> משוב יומי קצר ומשוב שבועי. רק אחראי הסבב רואים אותו</span></div>
+    <div><i>🗓️</i><span><b>לו״ז:</b> כל ששת השבועות, יום אחרי יום. ליד כל מפגש: חומר למפגש 📖</span></div>
+    <div><i>💬</i><span><b>סקר:</b> סקר שבועי בכל חמישי ושאלון בסוף הסבב. רק אחראי הסבב רואים אותם</span></div>
+    <div><i>📎</i><span><b>נספחים וקבצים:</b> הספרון, קבלות לדוגמה ועוד קבצים שימושיים לסבב</span></div>
     <div><i>📒</i><span><b>פנקס:</b> ניתוחים ופרוצדורות: צפייה, עזרה או ביצוע בהדרכה. בלי פרטי מטופלים</span></div>
     <div><i>📞</i><span><b>קשר:</b> הצוות, הודעות עם תשובות, מרפאות וישיבות</span></div>
    </div>
@@ -646,7 +697,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div style="--c:#7A5BD6"><small>במפגש</small><b>המלמד/ת</b>שאלות על החומר: במפגש עצמו או בביקור המודרך</div>
   <div style="--c:#C9893F"><small>באגף</small><b>האחות האחראית</b>סדר העבודה באגף והנהלים המחייבים של בית החולים</div>
   <div style="--c:#0C2A35"><small>הסבב כולו</small><b>צוות ניהול הסבב</b>פותח את הסבב, מסכם כל חמישי ומקיים את שיחת הסיכום בשבוע 6</div>
-  <div style="--c:#A3402E"><small>משהו לא בסדר?</small><b>משוב באפליקציה</b>המשוב היומי והשבועי מגיע לאחראי הסבב בלבד. כתבו בכנות, זה משנה את הסבב</div>
+  <div style="--c:#A3402E"><small>משהו לא בסדר?</small><b>הסקר השבועי</b>הסקר השבועי והשאלון בסוף הסבב מגיעים לאחראי הסבב בלבד. כתבו בכנות, זה משנה את הסבב</div>
  </div>
  <div class="box b" style="margin-top:12px"><b class="t">הודעה באפליקציה</b>כתבתם בלשונית "קשר"? התשובה חוזרת לאותו מקום</div>
  <div class="src"><span>מקור: <b>תוכנית הסבב</b> · <b>ספרון המערך</b> (אנשי הקשר)</span><span>למי פונים</span></div>
@@ -669,7 +720,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <li>מביאים מדי חדר ניתוח ליום של הכרת חדר הניתוח</li>
    <li>עוברים על החומר של כל מפגש לפני שמגיעים</li>
    <li>מכירים את המטופלים ואת האחיות באגף שלכם</li>
-   <li>שולחים משוב יומי בסוף כל יום</li>
+   <li>ממלאים את הסקר השבועי בכל חמישי</li>
   </ul></div>
  <p style="font-size:12.5px;color:var(--muted);margin:12px 0 0">המצגת "עבודה נכונה במערך" היא מסמך הכוונה של המערך ולא נוהל רשמי. הנהלים המחייבים של בית החולים זמינים אצל האחות האחראית</p>
  <div class="src"><span>מקור: <b>עבודה נכונה במערך</b> · <b>ספרון המערך</b> · <b>תוכנית הסבב</b></span><span>ציורי רקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span></div>
@@ -694,5 +745,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>

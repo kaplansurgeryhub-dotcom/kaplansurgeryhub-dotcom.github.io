@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>דימום ממערכת העיכול העליונה · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -63,6 +63,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 @media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
 @media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+.flow b small.ml{display:block;font-weight:600;font-size:13px;color:var(--muted);margin-top:2px}
 /*BRAND*/
 .brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
 .brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
@@ -86,7 +87,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -116,9 +117,56 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -145,7 +193,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>להכיר את הצעדים כשהאנדוסקופיה נכשלת: אנדוסקופיה חוזרת, אמבוליזציה וניתוח</li>
   <li>לזהות דימום מדליות ולדעת במה הטיפול בו שונה</li>
  </ol>
- <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 98 (עמ׳ <bdi dir="ltr">1544–1551</bdi>) · פרק 86 (עמ׳ <bdi dir="ltr">1175–1181, 1189</bdi>)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 98 (עמ׳ <span class="nw"><bdi dir="ltr">1544–1551</bdi>)</span> · פרק 86 (עמ׳ <span class="nw"><bdi dir="ltr">1175–1181, 1189</bdi>)</span></span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -158,7 +206,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div><b dir="ltr">10%</b><span>תמותה בבית החולים בדימום עליון</span></div>
  </div>
  <ul class="b">
-  <li><b>דימום עליון:</b> מקורו <span class="nw">ב-<bdi dir="ltr">esophagus</bdi></span>, <span class="nw">ב-<bdi dir="ltr">stomach</bdi></span> או <span class="nw">ב-<bdi dir="ltr">duodenum</bdi></span>, כלומר מעל <span class="nw">ל-<bdi dir="ltr">ligament of Treitz</bdi></span></li>
+  <li><b>דימום עליון:</b> מקורו <span class="nw">ב-<bdi dir="ltr">esophagus</bdi>,</span> <span class="nw">ב-<bdi dir="ltr">stomach</bdi></span> או <span class="nw">ב-<bdi dir="ltr">duodenum</bdi>,</span> כלומר מעל <span class="nw">ל-<bdi dir="ltr">ligament of Treitz</bdi></span></li>
   <li><b>הקאה דמית אדומה:</b> דימום בינוני עד קשה שאולי עדיין פעיל. <b>"גרגרי קפה":</b> דימום מוגבל שאולי כבר נעצר</li>
   <li><b>מלנה</b> (צואה שחורה כזפת): <span class="nw">ב-<bdi dir="ltr">90%</bdi></span> מקורה מעל <span class="nw">ל-<bdi dir="ltr">ligament of Treitz</bdi></span></li>
   <li><b>דם אדום <span class="nw">מה-<bdi dir="ltr">rectum</bdi></span></b> הוא בדרך כלל דימום תחתון, אבל <span class="nw">ב-<bdi dir="ltr">10–15%</bdi></span> מהמקרים המקור עליון ומסיבי</li>
@@ -174,7 +222,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    גבר בן 68, מטופל באספירין אחרי צנתור. בחודש האחרון הוא נוטל איבופרופן לכאבי ברכיים. יומיים צואה שחורה ודביקה. הבוקר התעלף בשירותים.
    <ul class="b sm" style="margin-top:8px">
     <li>דופק 112, לחץ דם 98/60, מבולבל מעט, גפיים קרות ולחות</li>
-    <li>בטן רכה, רגישות קלה <span class="nw">ב-<bdi dir="ltr">epigastrium</bdi></span>, בלי סימני צפקת</li>
+    <li>בטן רכה, רגישות קלה <span class="nw">ב-<bdi dir="ltr">epigastrium</bdi>,</span> בלי סימני צפקת</li>
     <li>בבדיקה רקטלית: צואה שחורה כזפת</li>
     <li>המוגלובין 10.8 (לפני חצי שנה 14). אוריאה גבוהה, קראטינין תקין</li>
    </ul>
@@ -199,19 +247,19 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <h3>מה מכוון למקור עליון</h3>
    <ul class="b sm">
     <li><b>מלנה בבדיקה רקטלית:</b> יחס סבירות 25. מלנה שהמטופל מדווח עליה: <bdi dir="ltr">5.1–5.9</bdi></li>
-    <li><b>יחס אוריאה לקראטינין גבוה</b> (מעל 30 ביחידות <bdi>BUN</bdi>): יחס סבירות 7.5. הדם נספג <span class="nw">ב-<bdi dir="ltr">small bowel</bdi></span></li>
+    <li><b>יחס אוריאה לקראטינין גבוה</b> (מעל 30 ביחידות <span class="nw"><bdi>BUN</bdi>):</span> יחס סבירות 7.5. הדם נספג <span class="nw">ב-<bdi dir="ltr">small bowel</bdi></span></li>
     <li><b>קרישי דם בצואה</b> מרחיקים ממקור עליון (יחס סבירות 0.05)</li>
-    <li><b>גורמי סיכון לכיב:</b> נוגדי דלקת שאינם סטרואידים, אספירין, <bdi>H. pylori</bdi>, גיל, נוגדי קרישה</li>
+    <li><b>גורמי סיכון לכיב:</b> נוגדי דלקת שאינם סטרואידים, אספירין, <span class="nw"><bdi>H. pylori</bdi>,</span> גיל, נוגדי קרישה</li>
    </ul>
    <div class="box a" style="margin-top:10px"><b class="t">למה ההמוגלובין עוד לא צנח?</b>הוא מאבד דם מלא. ההמוגלובין יורד רק כשנוזל נכנס לכלי הדם ועם הנוזלים שנותנים. בודקים שוב כל <bdi dir="ltr">2–8</bdi> שעות. <bdi>MCV</bdi> נמוך רומז על דימום כרוני</div>
   </div>
   <div>
    <h3>כמה דם אבד</h3>
    <div class="flow">
-    <div><b>עד <bdi dir="ltr">15%</bdi> (עד 750 מ״ל)</b><span>סימנים חיוניים יכולים להיות תקינים</span></div>
-    <div><b><bdi dir="ltr">15–30%</bdi> (<bdi dir="ltr">750–1500</bdi>)</b><span>דופק מעל 100, פער לחצים רחב, שתן מתחת ל-30 מ״ל לשעה</span></div>
-    <div><b><bdi dir="ltr">30–40%</bdi> (<bdi dir="ltr">1500–2000</bdi>)</b><span>תת-לחץ דם, דופק עד 120, בלבול, שתן מתחת ל-20 מ״ל לשעה</span></div>
-    <div><b>מעל <bdi dir="ltr">40%</bdi> (מעל 2000)</b><span>דופק עד 140, נשימה מהירה, ישנוניות, כמעט בלי שתן</span></div>
+    <div><b>עד <bdi dir="ltr">15%</bdi><small class="ml">עד 750 מ״ל</small></b><span>סימנים חיוניים יכולים להיות תקינים</span></div>
+    <div><b><bdi dir="ltr">15–30%</bdi><small class="ml"><bdi dir="ltr">750–1500</bdi> מ״ל</small></b><span>דופק מעל 100, פער לחצים רחב, שתן מתחת ל-30 מ״ל לשעה</span></div>
+    <div><b><bdi dir="ltr">30–40%</bdi><small class="ml"><bdi dir="ltr">1500–2000</bdi> מ״ל</small></b><span>תת-לחץ דם, דופק עד 120, בלבול, שתן מתחת ל-20 מ״ל לשעה</span></div>
+    <div><b>מעל <bdi dir="ltr">40%</bdi><small class="ml">מעל 2000 מ״ל</small></b><span>דופק עד 140, נשימה מהירה, ישנוניות, כמעט בלי שתן</span></div>
    </div>
    <p class="lead" style="margin-top:10px;font-size:15px">המטופל שלנו: דופק 112, לחץ דם גבולי ובלבול. כנראה <bdi dir="ltr">30%</bdi> ויותר מנפח הדם</p>
   </div>
@@ -243,11 +291,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>6</b>מקרה 1 · אנדוסקופיה</div>
- <h2>כיב בדופן האחורית של <span class="nw">ה-<bdi dir="ltr">duodenum</bdi></span>, עם כלי דם גלוי</h2>
+ <h2>כיב בדופן האחורית של <span class="nw">ה-<bdi dir="ltr">duodenum</bdi>,</span> עם כלי דם גלוי</h2>
  <p class="lead">אנדוסקופיה בתוך 24 שעות היא הבדיקה והטיפול. מה שרואים בבסיס הכיב מנבא דימום חוזר בלי טיפול אנדוסקופי (סיווג פורסט)</p>
  <div class="grid">
   <div class="flow">
-   <div><b><bdi>Ia</bdi> · דימום פועם</b><span>דימום חוזר <bdi dir="ltr">55%</bdi> (כולל <bdi>Ib</bdi>)</span></div>
+   <div><b><bdi>Ia</bdi> · דימום פועם</b><span>דימום חוזר <bdi dir="ltr">55%</bdi> (כולל <span class="nw"><bdi>Ib</bdi>)</span></span></div>
    <div><b><bdi>Ib</bdi> · דימום מחלחל</b><span>בחלחול לבד הסיכון נמוך בהרבה</span></div>
    <div><b><bdi>IIa</bdi> · כלי דם גלוי</b><span><bdi dir="ltr">43%</bdi></span></div>
    <div><b><bdi>IIb</bdi> · קריש צמוד</b><span><bdi dir="ltr">22%</bdi></span></div>
@@ -255,13 +303,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div><b><bdi>III</bdi> · בסיס נקי</b><span><bdi dir="ltr">5%</bdi></span></div>
   </div>
   <div class="grid tight">
-   <figure><img src="img/ugib-ulcer-spurting.png" alt="כיב ב-stomach עם דימום עורקי פועם"><figcaption><b>דימום פועם (<bdi>Ia</bdi>)</b> · Jeremias, <bdi>CC BY-SA 3.0</bdi>, Wikimedia Commons</figcaption></figure>
-   <figure><img src="img/ugib-ulcer-visible-vessel.jpg" alt="כיב ב-stomach עם כלי דם גלוי בבסיס"><figcaption><b>כלי דם גלוי (<bdi>IIa</bdi>)</b> · Jeremias, <bdi>CC BY-SA 3.0</bdi>, Wikimedia Commons</figcaption></figure>
+   <figure><img src="img/ugib-ulcer-spurting.png" alt="כיב ב-stomach עם דימום עורקי פועם"><figcaption><b>דימום פועם <span class="nw">(<bdi>Ia</bdi>)</span></b> · Jeremias, <span class="nw"><bdi>CC BY-SA 3.0</bdi>,</span> Wikimedia Commons</figcaption></figure>
+   <figure><img src="img/ugib-ulcer-visible-vessel.jpg" alt="כיב ב-stomach עם כלי דם גלוי בבסיס"><figcaption><b>כלי דם גלוי <span class="nw">(<bdi>IIa</bdi>)</span></b> · Jeremias, <span class="nw"><bdi>CC BY-SA 3.0</bdi>,</span> Wikimedia Commons</figcaption></figure>
   </div>
  </div>
  <div class="grid g3" style="margin-top:12px">
   <div class="box"><b class="t">מי מקבל טיפול אנדוסקופי</b>דימום פעיל או כלי דם גלוי. בסיס נקי בלי כלי דם: סיכון נמוך, אין צורך בהתערבות. בקריש שלא נשטף אין הסכמה</div>
-  <div class="box n"><b class="t">איך</b>קליפסים, צריבה חשמלית או תרמית, <bdi>APC</bdi>, הזרקת אתנול. אדרנלין רק בשילוב עם שיטה נוספת, לא לבד</div>
+  <div class="box n"><b class="t">איך</b>קליפסים, צריבה חשמלית או תרמית, <span class="nw"><bdi>APC</bdi>,</span> הזרקת אתנול. אדרנלין רק בשילוב עם שיטה נוספת, לא לבד</div>
   <div class="box a"><b class="t">אחרי האנדוסקופיה</b>מעכב משאבה לווריד 3 ימים ואחר כך בפה לפחות שבועיים. בדיקת <bdi>H. pylori</bdi> לכולם</div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 86 עמ׳ <bdi dir="ltr">1180</bdi> (טבלה 86.4) · פרק 98 עמ׳ <bdi dir="ltr">1546–1547</bdi> · Laine L, Peterson WL, N Engl J Med 1994;331:717-27 · Alali AA, Barkun AN, Gastroenterol Rep 2023;11:goad011</span><span>מקרה 1</span></div>
@@ -281,7 +329,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    </ul>
   </div>
   <div style="display:grid;gap:10px">
-   <div class="box r"><b class="t">העורק שמדמם</b>כיב בדופן האחורית של <span class="nw">ה-<bdi dir="ltr">duodenum</bdi></span> חודר <span class="nw">ל-<bdi dir="ltr">gastroduodenal artery</bdi></span> (<bdi dir="ltr">GDA</bdi>). זה כלי הדם השכיח ביותר בדימום שמגיע לניתוח</div>
+   <div class="box r"><b class="t">העורק שמדמם</b>כיב בדופן האחורית של <span class="nw">ה-<bdi dir="ltr">duodenum</bdi></span> חודר <span class="nw">ל-<bdi dir="ltr">gastroduodenal artery</bdi></span> <span class="nw">(<bdi dir="ltr">GDA</bdi>).</span> זה כלי הדם השכיח ביותר בדימום שמגיע לניתוח</div>
    <div class="box b"><b class="t">בשקופית הבאה</b>לחצו על האנטומיה וראו איפה בדיוק עובר העורק ואילו ורידים אחראים לדליות</div>
   </div>
  </div>
@@ -306,14 +354,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <g class="hzb" style="--c:#C2417F"><circle cx="588" cy="372" r="14"/><text x="588" y="372">6</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="gda" hidden><b>1 · <bdi dir="ltr">gastroduodenal artery</bdi> (<bdi dir="ltr">GDA</bdi>)</b><p>יורד מאחורי החלק הראשון של <span class="nw">ה-<bdi dir="ltr">duodenum</bdi></span>. כיב בדופן האחורית שוחק אותו. לכן זה העורק שמדמם ברוב הניתוחים לכיב מדמם. בניתוח: תפר מעל ומתחת לכיב ותפר <bdi>U</bdi> מדיאלי <span class="nw">ל-<bdi dir="ltr">transverse pancreatic artery</bdi></span>.</p></div>
-  <div class="hzi" data-hzi="duo" hidden><b>2 · <span class="nw">ה-<bdi dir="ltr">duodenum</bdi></span></b><p><bdi>H. pylori</bdi> קשור <span class="nw">ל-<bdi dir="ltr">90%</bdi></span> מהכיבים כאן. בניתוח מזיזים את <span class="nw">ה-<bdi dir="ltr">duodenum</bdi></span> (<bdi>Kocher</bdi>), פותחים את הדופן הקדמית לאורך ונזהרים <span class="nw">מה-<bdi dir="ltr">common bile duct</bdi></span> שעובר קרוב לתפר.</p></div>
-  <div class="hzi" data-hzi="lga" hidden><b>3 · <bdi dir="ltr">left gastric artery</bdi></b><p>מספק את <span class="nw">ה-<bdi dir="ltr">lesser curvature</bdi></span>. נגע <bdi>Dieulafoy</bdi> נמצא בדרך כלל ליד <span class="nw">ה-<bdi dir="ltr">GE junction</bdi></span> <span class="nw">ב-<bdi dir="ltr">lesser curvature</bdi></span>. באנגיוגרפיה רואים עורק מפותל באזור של העורק הזה. לצידו עובר <span class="nw">ה-<bdi dir="ltr">coronary vein</bdi></span> (<bdi dir="ltr">left gastric vein</bdi>), שמעביר את הלחץ <span class="nw">מה-<bdi dir="ltr">portal vein</bdi></span> לדליות <span class="nw">ב-<bdi dir="ltr">esophagus</bdi></span>.</p></div>
+  <div class="hzi" data-hzi="gda" hidden><b>1 · <bdi dir="ltr">gastroduodenal artery</bdi> <span class="nw">(<bdi dir="ltr">GDA</bdi>)</span></b><p>יורד מאחורי החלק הראשון של <span class="nw">ה-<bdi dir="ltr">duodenum</bdi>.</span> כיב בדופן האחורית שוחק אותו. לכן זה העורק שמדמם ברוב הניתוחים לכיב מדמם. בניתוח: תפר מעל ומתחת לכיב ותפר <bdi>U</bdi> מדיאלי <span class="nw">ל-<bdi dir="ltr">transverse pancreatic artery</bdi>.</span></p></div>
+  <div class="hzi" data-hzi="duo" hidden><b>2 · <span class="nw">ה-<bdi dir="ltr">duodenum</bdi></span></b><p><bdi>H. pylori</bdi> קשור <span class="nw">ל-<bdi dir="ltr">90%</bdi></span> מהכיבים כאן. בניתוח מזיזים את <span class="nw">ה-<bdi dir="ltr">duodenum</bdi></span> <span class="nw">(<bdi>Kocher</bdi>),</span> פותחים את הדופן הקדמית לאורך ונזהרים <span class="nw">מה-<bdi dir="ltr">common bile duct</bdi></span> שעובר קרוב לתפר.</p></div>
+  <div class="hzi" data-hzi="lga" hidden><b>3 · <bdi dir="ltr">left gastric artery</bdi></b><p>מספק את <span class="nw">ה-<bdi dir="ltr">lesser curvature</bdi>.</span> נגע <bdi>Dieulafoy</bdi> נמצא בדרך כלל ליד <span class="nw">ה-<bdi dir="ltr">GE junction</bdi></span> <span class="nw">ב-<bdi dir="ltr">lesser curvature</bdi>.</span> באנגיוגרפיה רואים עורק מפותל באזור של העורק הזה. לצידו עובר <span class="nw">ה-<bdi dir="ltr">coronary vein</bdi></span> <span class="nw">(<bdi dir="ltr">left gastric vein</bdi>),</span> שמעביר את הלחץ <span class="nw">מה-<bdi dir="ltr">portal vein</bdi></span> לדליות <span class="nw">ב-<bdi dir="ltr">esophagus</bdi>.</span></p></div>
   <div class="hzi" data-hzi="pv" hidden><b>4 · <bdi dir="ltr">portal vein</bdi></b><p><span class="nw">ב-<bdi dir="ltr">portal hypertension</bdi></span> הדם מוצא דרכים עוקפות. דליות <span class="nw">ב-<bdi dir="ltr">esophagus</bdi></span> <span class="nw">וב-<bdi dir="ltr">stomach</bdi></span> הן אחת מהן. <bdi>TIPS</bdi> יוצר חיבור בתוך <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> בין <span class="nw">ה-<bdi dir="ltr">portal vein</bdi></span> למערכת הוורידים הכללית ומוריד את הלחץ.</p></div>
-  <div class="hzi" data-hzi="sv" hidden><b>5 · <bdi dir="ltr">splenic vein</bdi></b><p>פקקת <span class="nw">ב-<bdi dir="ltr">splenic vein</bdi></span>, בדרך כלל אחרי <bdi dir="ltr">pancreatitis</bdi>, גורמת לדליות מבודדות <span class="nw">ב-<bdi dir="ltr">stomach</bdi></span>. כאן <bdi dir="ltr">splenectomy</bdi> מרפאת, אבל קודם מוכיחים את הפקקת בהדמיה, כי רוב הדליות <span class="nw">ב-<bdi dir="ltr">stomach</bdi></span> הן <span class="nw">מ-<bdi dir="ltr">portal hypertension</bdi></span> כללי.</p></div>
-  <div class="hzi" data-hzi="sg" hidden><b>6 · <bdi dir="ltr">short gastric vessels</bdi></b><p>מקשרים בין <span class="nw">ה-<bdi dir="ltr">spleen</bdi></span> <span class="nw">ל-<bdi dir="ltr">fundus</bdi></span>. <span class="nw">ב-<bdi dir="ltr">portal hypertension</bdi></span> הלחץ עובר דרך <span class="nw">ה-<bdi dir="ltr">short gastric veins</bdi></span> <span class="nw">וה-<bdi dir="ltr">posterior gastric veins</bdi></span> <span class="nw">ל-<bdi dir="ltr">fundus</bdi></span>. דליות מבודדות <span class="nw">ב-<bdi dir="ltr">stomach</bdi></span> נוטות יותר לדמם מדליות שממשיכות <span class="nw">מה-<bdi dir="ltr">esophagus</bdi></span>.</p></div>
+  <div class="hzi" data-hzi="sv" hidden><b>5 · <bdi dir="ltr">splenic vein</bdi></b><p>פקקת <span class="nw">ב-<bdi dir="ltr">splenic vein</bdi>,</span> בדרך כלל אחרי <span class="nw"><bdi dir="ltr">pancreatitis</bdi>,</span> גורמת לדליות מבודדות <span class="nw">ב-<bdi dir="ltr">stomach</bdi>.</span> כאן <bdi dir="ltr">splenectomy</bdi> מרפאת, אבל קודם מוכיחים את הפקקת בהדמיה, כי רוב הדליות <span class="nw">ב-<bdi dir="ltr">stomach</bdi></span> הן <span class="nw">מ-<bdi dir="ltr">portal hypertension</bdi></span> כללי.</p></div>
+  <div class="hzi" data-hzi="sg" hidden><b>6 · <bdi dir="ltr">short gastric vessels</bdi></b><p>מקשרים בין <span class="nw">ה-<bdi dir="ltr">spleen</bdi></span> <span class="nw">ל-<bdi dir="ltr">fundus</bdi>.</span> <span class="nw">ב-<bdi dir="ltr">portal hypertension</bdi></span> הלחץ עובר דרך <span class="nw">ה-<bdi dir="ltr">short gastric veins</bdi></span> <span class="nw">וה-<bdi dir="ltr">posterior gastric veins</bdi></span> <span class="nw">ל-<bdi dir="ltr">fundus</bdi>.</span> דליות מבודדות <span class="nw">ב-<bdi dir="ltr">stomach</bdi></span> נוטות יותר לדמם מדליות שממשיכות <span class="nw">מה-<bdi dir="ltr">esophagus</bdi>.</span></p></div>
  </div></div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 86 עמ׳ <bdi dir="ltr">1175, 1181, 1189</bdi> · פרק 89 עמ׳ <bdi dir="ltr">1269</bdi></span><span><bdi>Gray's Anatomy</bdi>, איור 533 (נחלת הכלל) · אזורים: Scrub In</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 86 עמ׳ <bdi dir="ltr">1175, 1181, 1189</bdi> · פרק 89 עמ׳ <bdi dir="ltr">1269</bdi></span><span><span class="nw"><bdi>Gray's Anatomy</bdi>,</span> איור 533 (נחלת הכלל) · אזורים: Scrub In</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -323,8 +371,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div class="box n"><b class="t">כיב <span class="nw">ב-<bdi dir="ltr">duodenum</bdi></span></b>
    <ul class="b sm">
     <li>לרוב חתך באמצע הבטן העליונה, בעיקר במטופל לא יציב</li>
-    <li>מוביליזציה של <span class="nw">ה-<bdi dir="ltr">duodenum</bdi></span> (<bdi>Kocher</bdi>) ופתיחה לאורך של הדופן הקדמית, עד מעבר <span class="nw">ל-<bdi dir="ltr">pylorus</bdi></span> אם צריך</li>
-    <li><b>תפר בשלוש נקודות</b> בבסיס הכיב: מעל ומתחת <span class="nw">ל-<bdi dir="ltr">GDA</bdi></span>. תפר <bdi>U</bdi> מדיאלי <span class="nw">ל-<bdi dir="ltr">transverse pancreatic artery</bdi></span></li>
+    <li>מוביליזציה של <span class="nw">ה-<bdi dir="ltr">duodenum</bdi></span> <span class="nw">(<bdi>Kocher</bdi>)</span> ופתיחה לאורך של הדופן הקדמית, עד מעבר <span class="nw">ל-<bdi dir="ltr">pylorus</bdi></span> אם צריך</li>
+    <li><b>תפר בשלוש נקודות</b> בבסיס הכיב: מעל ומתחת <span class="nw">ל-<bdi dir="ltr">GDA</bdi>.</span> תפר <bdi>U</bdi> מדיאלי <span class="nw">ל-<bdi dir="ltr">transverse pancreatic artery</bdi></span></li>
     <li>זהירות <span class="nw">מה-<bdi dir="ltr">common bile duct</bdi></span> בתוך התפר</li>
     <li>סגירה לרוחב, כדי לא להצר (פילורופלסטיקה)</li>
     <li><bdi dir="ltr">vagotomy</bdi> רק במטופל יציב</li>
@@ -332,12 +380,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div class="box"><b class="t">כיב <span class="nw">ב-<bdi dir="ltr">stomach</bdi></span></b>
    <ul class="b sm">
     <li><bdi dir="ltr">4–5%</bdi> מהכיבים שנראים שפירים הם ממאירים. לכן כורתים את הכיב או לוקחים ביופסיה</li>
-    <li><bdi dir="ltr">greater curvature</bdi>, <bdi dir="ltr">antrum</bdi>, <bdi dir="ltr">body</bdi> של <span class="nw">ה-<bdi dir="ltr">stomach</bdi></span>: כריתת טריז וסגירה</li>
-    <li><bdi dir="ltr">lesser curvature</bdi> ליד <span class="nw">ה-<bdi dir="ltr">incisura</bdi></span>: <bdi dir="ltr">distal gastrectomy</bdi> ושחזור (<bdi>Billroth I</bdi>, <bdi>Billroth II</bdi> או <bdi>Roux-en-Y</bdi>)</li>
-    <li>ליד <span class="nw">ה-<bdi dir="ltr">GE junction</bdi></span>: פתיחת <span class="nw">ה-<bdi dir="ltr">stomach</bdi></span> מלפנים ותפירת הכיב מבפנים</li>
+    <li><span class="nw"><bdi dir="ltr">greater curvature</bdi>,</span> <span class="nw"><bdi dir="ltr">antrum</bdi>,</span> <bdi dir="ltr">body</bdi> של <span class="nw">ה-<bdi dir="ltr">stomach</bdi>:</span> כריתת טריז וסגירה</li>
+    <li><bdi dir="ltr">lesser curvature</bdi> ליד <span class="nw">ה-<bdi dir="ltr">incisura</bdi>:</span> <bdi dir="ltr">distal gastrectomy</bdi> ושחזור <span class="nw">(<bdi>Billroth I</bdi>,</span> <bdi>Billroth II</bdi> או <span class="nw"><bdi>Roux-en-Y</bdi>)</span></li>
+    <li>ליד <span class="nw">ה-<bdi dir="ltr">GE junction</bdi>:</span> פתיחת <span class="nw">ה-<bdi dir="ltr">stomach</bdi></span> מלפנים ותפירת הכיב מבפנים</li>
    </ul></div>
  </div>
- <div class="box a" style="margin-top:12px"><b class="t">הפשרה</b>ניתוח רחב יותר עם <bdi dir="ltr">gastrectomy</bdi> הוריד דימום חוזר, בלי הבדל בתמותה, אבל עם יותר סיבוכים (בעיקר דליפה <span class="nw">מה-<bdi dir="ltr">duodenum</bdi></span>)</div>
+ <div class="box a" style="margin-top:12px"><b class="t">הפשרה</b>ניתוח רחב יותר עם <bdi dir="ltr">gastrectomy</bdi> הוריד דימום חוזר, בלי הבדל בתמותה, אבל עם יותר סיבוכים (בעיקר דליפה <span class="nw">מה-<bdi dir="ltr">duodenum</bdi>)</span></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 86 עמ׳ <bdi dir="ltr">1180–1181</bdi> · פרק 98 עמ׳ <bdi dir="ltr">1549</bdi></span><span>מקרה 1</span></div>
 </div></section>
 
@@ -388,7 +436,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>12</b>מקרה 2 · תשובות</div>
- <h2>דליות <span class="nw">ב-<bdi dir="ltr">esophagus</bdi></span>: טיפול אחר מכיב</h2>
+ <h2>דליות <span class="nw">ב-<bdi dir="ltr">esophagus</bdi>:</span> טיפול אחר מכיב</h2>
  <div class="grid f">
   <div>
    <ul class="b sm">
@@ -397,11 +445,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>אוקטראוטיד:</b> בולוס <bdi dir="ltr">50</bdi> מק״ג לווריד ואחריו <bdi dir="ltr">50</bdi> מק״ג לשעה בעירוי רציף, למשך <bdi dir="ltr">2–5</bdi> ימים</li>
     <li><b>אנטיביוטיקה לכולם</b> (למשל צפטריאקסון): עד <bdi dir="ltr">20%</bdi> מגיעים עם זיהום ועוד עד <bdi dir="ltr">50%</bdi> מפתחים זיהום באשפוז</li>
     <li><b>אנדוסקופיה בתוך 12 שעות</b> עם קשירה בגומיות. עוצרת <bdi dir="ltr">80–90%</bdi> מהדימומים. טובה יותר מטרשה</li>
-    <li><b>דימום שלא נשלט:</b> בלון לחץ (<bdi>Sengstaken-Blakemore</bdi>) כגשר. עוצר מעל <bdi dir="ltr">85%</bdi>, אבל עד <bdi dir="ltr">50%</bdi> מדממים שוב אחרי ריקון. רק אחרי אינטובציה ואחרי וידוא מיקום</li>
-    <li><b>כישלון</b> (<bdi dir="ltr">10–20%</bdi>): <bdi>TIPS</bdi>. ניתוח שנט בחירום: תמותה מעל <bdi dir="ltr">25%</bdi></li>
+    <li><b>דימום שלא נשלט:</b> בלון לחץ <span class="nw">(<bdi>Sengstaken-Blakemore</bdi>)</span> כגשר. עוצר מעל <span class="nw"><bdi dir="ltr">85%</bdi>,</span> אבל עד <bdi dir="ltr">50%</bdi> מדממים שוב אחרי ריקון. רק אחרי אינטובציה ואחרי וידוא מיקום</li>
+    <li><b>כישלון</b> <span class="nw">(<bdi dir="ltr">10–20%</bdi>):</span> <span class="nw"><bdi>TIPS</bdi>.</span> ניתוח שנט בחירום: תמותה מעל <bdi dir="ltr">25%</bdi></li>
    </ul>
   </div>
-  <figure><img src="img/varices-bleeding.png" alt="דימום פעיל מדליות ב-esophagus באנדוסקופיה"><figcaption><b>דימום פעיל מדליות <span class="nw">ב-<bdi dir="ltr">esophagus</bdi></span> באנדוסקופיה</b> (מקור הדימום בפינה הימנית העליונה) · Jeremias, <bdi>CC BY-SA 4.0</bdi>, Wikimedia Commons</figcaption></figure>
+  <figure><img src="img/varices-bleeding.png" alt="דימום פעיל מדליות ב-esophagus באנדוסקופיה"><figcaption><b>דימום פעיל מדליות <span class="nw">ב-<bdi dir="ltr">esophagus</bdi></span> באנדוסקופיה</b> (מקור הדימום בפינה הימנית העליונה) · Jeremias, <span class="nw"><bdi>CC BY-SA 4.0</bdi>,</span> Wikimedia Commons</figcaption></figure>
  </div>
  <div class="box r" style="margin-top:10px"><b class="t">למה זה חשוב</b>דימום מדליות אחראי לכשליש ממקרי המוות בשחמת. בחולה <bdi>Child-Pugh C</bdi> התמותה יכולה לעבור <bdi dir="ltr">50%</bdi></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 98 עמ׳ <bdi dir="ltr">1545–1548</bdi> · פרק 89 עמ׳ <bdi dir="ltr">1268–1270</bdi> · פרק 86 עמ׳ <bdi dir="ltr">1189</bdi> · <bdi>AASLD</bdi> · Garcia-Tsao G et al., Hepatology 2017;65:310-35 · <bdi>Baveno VII</bdi> 2022</span><span>מקרה 2</span></div>
@@ -414,11 +462,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <div class="box n"><b class="t">הסיפור (מקרה בדוי)</b>סטודנט בן 24, אחרי לילה של שתייה. הקיא שוב ושוב. בהקאה האחרונה פסים של דם אדום. דופק 92, לחץ דם 124/78, המוגלובין תקין</div>
    <div class="box b" style="margin-top:10px"><b class="t">שאלות לדיון</b>מה האבחנה הסבירה? מה הטיפול? מתי בכלל צריך כירורג?</div>
-   <figure style="margin-top:10px"><img src="img/ugib-mallory-weiss-endo.jpg" alt="קרע Mallory-Weiss באנדוסקופיה" style="max-height:30vh"><figcaption><b>קרע <bdi>Mallory-Weiss</bdi> באנדוסקופיה:</b> קרעים אורכיים ברירית <span class="nw">ב-<bdi dir="ltr">GE junction</bdi></span> · <bdi>Samir</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+   <figure style="margin-top:10px"><img src="img/ugib-mallory-weiss-endo.jpg" alt="קרע Mallory-Weiss באנדוסקופיה" style="max-height:30vh"><figcaption><b>קרע <bdi>Mallory-Weiss</bdi> באנדוסקופיה:</b> קרעים אורכיים ברירית <span class="nw">ב-<bdi dir="ltr">GE junction</bdi></span> · <span class="nw"><bdi>Samir</bdi>,</span> <span class="nw"><bdi>CC BY-SA 3.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
   </div>
   <div style="display:grid;gap:10px">
-   <div class="box"><b class="t">קרע <bdi>Mallory-Weiss</bdi></b>קרע ברירית אחרי הקאות, עיצור, שיעול או מאמץ. גורם הסיכון השכיח: אלכוהול. דימום מסיבי שכיח יותר <span class="nw">ב-<bdi dir="ltr">portal hypertension</bdi></span>. טיפול: מעכב משאבה ונוגד הקאה. אנדוסקופיה מאבחנת ומטפלת. אמבוליזציה אם הדימום חוזר. ניתוח (פתיחת <span class="nw">ה-<bdi dir="ltr">stomach</bdi></span> ותפירה) נדיר מאוד</div>
-   <div class="box a"><b class="t">אבחנה מבדלת: נגע <bdi>Dieulafoy</bdi></b>עורק רחב (<bdi dir="ltr">1–3</bdi> מ״מ) מתחת לרירית, בלי כיב, בדרך כלל ליד <span class="nw">ה-<bdi dir="ltr">GE junction</bdi></span> <span class="nw">ב-<bdi dir="ltr">lesser curvature</bdi></span>. הקאה דמית מסיבית ופתאומית בלי כאב. לעיתים צריך כמה אנדוסקופיות. בניתוח: כריתת טריז, אחרי סימון בקעקוע</div>
+   <div class="box"><b class="t">קרע <bdi>Mallory-Weiss</bdi></b>קרע ברירית אחרי הקאות, עיצור, שיעול או מאמץ. גורם הסיכון השכיח: אלכוהול. דימום מסיבי שכיח יותר <span class="nw">ב-<bdi dir="ltr">portal hypertension</bdi>.</span> טיפול: מעכב משאבה ונוגד הקאה. אנדוסקופיה מאבחנת ומטפלת. אמבוליזציה אם הדימום חוזר. ניתוח (פתיחת <span class="nw">ה-<bdi dir="ltr">stomach</bdi></span> ותפירה) נדיר מאוד</div>
+   <div class="box a"><b class="t">אבחנה מבדלת: נגע <bdi>Dieulafoy</bdi></b>עורק רחב <span class="nw">(<bdi dir="ltr">1–3</bdi></span> מ״מ) מתחת לרירית, בלי כיב, בדרך כלל ליד <span class="nw">ה-<bdi dir="ltr">GE junction</bdi></span> <span class="nw">ב-<bdi dir="ltr">lesser curvature</bdi>.</span> הקאה דמית מסיבית ופתאומית בלי כאב. לעיתים צריך כמה אנדוסקופיות. בניתוח: כריתת טריז, אחרי סימון בקעקוע</div>
    <div class="box r"><b class="t">לא לשכוח</b>מטופל אחרי ניתוח מפרצת <span class="nw">ב-<bdi dir="ltr">aorta</bdi></span> עם דימום עליון: לחשוב על פיסטולה בין <span class="nw">ה-<bdi dir="ltr">aorta</bdi></span> למעי ולערב כירורג מוקדם</div>
   </div>
  </div>
@@ -432,7 +480,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div><b>לא יציב</b><span>החייאה וטיפול נמרץ. אנדוסקופיה כשהמטופל מתייצב</span></div>
   <div><b>יציב</b><span>אנדוסקופיה בתוך 24 שעות (בחשד לדליות: בתוך 12 שעות)</span></div>
   <div><b>נמצא מקור</b><span>טיפול ממוקד: אנדוסקופי, צנתורי או ניתוחי</span></div>
-  <div><b>לא נמצא מקור</b><span>קולונוסקופיה (נגע בצד ימין יכול לתת מלנה), אנדוסקופיה עמוקה של <span class="nw">ה-<bdi dir="ltr">small bowel</bdi></span>, <bdi>CTA</bdi>, אנגיוגרפיה, קפסולה</span></div>
+  <div><b>לא נמצא מקור</b><span>קולונוסקופיה (נגע בצד ימין יכול לתת מלנה), אנדוסקופיה עמוקה של <span class="nw">ה-<bdi dir="ltr">small bowel</bdi>,</span> <span class="nw"><bdi>CTA</bdi>,</span> אנגיוגרפיה, קפסולה</span></div>
   <div><b>עדיין לא נמצא</b><span>לפרוטומיה עם אנדוסקופיה בזמן הניתוח</span></div>
  </div>
  <div class="box a" style="margin-top:12px"><b class="t">לא עושים</b>צילום בליעת בריום בדימום חריף: הוא מפריע לאנדוסקופיה, לאנגיוגרפיה ולניתוח. אנדוסקופיה חוזרת "ליתר ביטחון" לא מומלצת באופן שגרתי</div>
@@ -444,15 +492,15 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>מחקרים שכדאי להכיר</h2>
  <div class="grid">
   <div class="study"><div class="y"><bdi>Am J Gastroenterol</bdi> 2021 · הנחיות</div><b>הנחיות <bdi>ACG</bdi> לדימום עליון ומכיב</b>
-   <p>מטופלים בסיכון נמוך מאוד (<bdi>Glasgow-Blatchford</bdi> <bdi dir="ltr">0–1</bdi>) אפשר לשחרר עם מעקב. סף לעירוי 7 גר׳/ד״ל. אריתרומיצין לפני האנדוסקופיה ואנדוסקופיה בתוך 24 שעות. אחרי טיפול: מינון גבוה של מעכב משאבה 3 ימים ואז פעמיים ביום בפה שבועיים</p>
+   <p>מטופלים בסיכון נמוך מאוד <span class="nw">(<bdi>Glasgow-Blatchford</bdi></span> <span class="nw"><bdi dir="ltr">0–1</bdi>)</span> אפשר לשחרר עם מעקב. סף לעירוי 7 גר׳/ד״ל. אריתרומיצין לפני האנדוסקופיה ואנדוסקופיה בתוך 24 שעות. אחרי טיפול: מינון גבוה של מעכב משאבה 3 ימים ואז פעמיים ביום בפה שבועיים</p>
    <small>Laine L et al. Am J Gastroenterol 2021;116:899-917</small></div>
   <div class="study"><div class="y"><bdi>Ann Intern Med</bdi> 2022 · מחקר אקראי</div><b>אבקה המוסטטית מול טיפול רגיל</b>
-   <p>224 מטופלים עם דימום עליון פעיל שאינו מדליות. שליטה בדימום ב-30 יום: <bdi dir="ltr">90.1%</bdi> עם האבקה (<bdi>TC-325</bdi>) לעומת <bdi dir="ltr">81.4%</bdi>. פחות כישלונות באנדוסקופיה הראשונה (<bdi dir="ltr">2.7%</bdi> לעומת <bdi dir="ltr">9.7%</bdi>). דימום חוזר ותמותה דומים</p>
+   <p>224 מטופלים עם דימום עליון פעיל שאינו מדליות. שליטה בדימום ב-30 יום: <bdi dir="ltr">90.1%</bdi> עם האבקה <span class="nw">(<bdi>TC-325</bdi>)</span> לעומת <span class="nw"><bdi dir="ltr">81.4%</bdi>.</span> פחות כישלונות באנדוסקופיה הראשונה <span class="nw">(<bdi dir="ltr">2.7%</bdi></span> לעומת <span class="nw"><bdi dir="ltr">9.7%</bdi>).</span> דימום חוזר ותמותה דומים</p>
    <small>Lau JYW et al. Ann Intern Med 2022;175:171-8</small></div>
-  <div class="study"><div class="y"><bdi>Endoscopy</bdi> 2024 · מחקר אקראי</div><b><bdi>TOP</bdi>: קליפס גדול מעל המכשיר מול קליפס רגיל</b>
-   <p>112 מטופלים עם כיב <bdi>Forrest Ia–IIb</bdi>. עצירה ראשונית של הדימום: <bdi dir="ltr">98.4%</bdi> לעומת <bdi dir="ltr">78.4%</bdi>. דימום חוזר ב-30 יום נמוך בשתי הקבוצות (<bdi dir="ltr">1.6%</bdi> <span class="nw">ו-<bdi dir="ltr">3.9%</bdi></span>)</p>
+  <div class="study"><div class="y"><bdi>Endoscopy</bdi> 2024 · מחקר אקראי</div><b><span class="nw"><bdi>TOP</bdi>:</span> קליפס גדול מעל המכשיר מול קליפס רגיל</b>
+   <p>112 מטופלים עם כיב <span class="nw"><bdi>Forrest Ia–IIb</bdi>.</span> עצירה ראשונית של הדימום: <bdi dir="ltr">98.4%</bdi> לעומת <span class="nw"><bdi dir="ltr">78.4%</bdi>.</span> דימום חוזר ב-30 יום נמוך בשתי הקבוצות <span class="nw">(<bdi dir="ltr">1.6%</bdi></span> <span class="nw">ו-<bdi dir="ltr">3.9%</bdi>)</span></p>
    <small>Soriani P et al. Endoscopy 2024;56:665-73</small></div>
-  <div class="study"><div class="y"><bdi>J Hepatol</bdi> 2022 · הסכמה בינלאומית</div><b><bdi>Baveno VII</bdi>: דימום מדליות</b>
+  <div class="study"><div class="y"><bdi>J Hepatol</bdi> 2022 · הסכמה בינלאומית</div><b><span class="nw"><bdi>Baveno VII</bdi>:</span> דימום מדליות</b>
    <p>תרופה וזו-אקטיבית מוקדם ולמשך <bdi dir="ltr">2–5</bdi> ימים, אנטיביוטיקה מהקבלה, אנדוסקופיה בתוך 12 שעות. <bdi>TIPS</bdi> מוקדם (בתוך 72 שעות, רצוי 24) למטופלים בסיכון גבוה: <bdi>Child-Pugh C</bdi> מתחת ל-14 נקודות, או <bdi>B</bdi> מעל 7 עם דימום פעיל באנדוסקופיה</p>
    <small>de Franchis R et al. J Hepatol 2022;76:959-74</small></div>
  </div>
@@ -469,8 +517,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>דימום חוזר: אנדוסקופיה שוב, אחר כך אמבוליזציה. ניתוח כשהמטופל לא יציב או כשהכול נכשל</li>
   <li>חשד לדליות: אוקטראוטיד, אנטיביוטיקה ואנדוסקופיה בתוך 12 שעות עם קשירה. כישלון: <bdi>TIPS</bdi></li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 98 <bdi>Acute Gastrointestinal Hemorrhage</bdi> (עמ׳ <bdi dir="ltr">1544–1551</bdi>) · פרק 86 <bdi>Stomach</bdi> (עמ׳ <bdi dir="ltr">1175–1181, 1189</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Gray's Anatomy</bdi> (1918, נחלת הכלל) · תמונות אנדוסקופיה: Jeremias (<bdi>CC BY-SA</bdi>, <bdi>Wikimedia Commons</bdi>) · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 98 <bdi>Acute Gastrointestinal Hemorrhage</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1544–1551</bdi>)</span> · פרק 86 <bdi>Stomach</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1175–1181, 1189</bdi>)</span></div>
+ <div class="src"><span>איורים: <bdi>Gray's Anatomy</bdi> (1918, נחלת הכלל) · תמונות אנדוסקופיה: Jeremias <span class="nw">(<bdi>CC BY-SA</bdi>,</span> <span class="nw"><bdi>Wikimedia Commons</bdi>)</span> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
@@ -491,5 +539,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>

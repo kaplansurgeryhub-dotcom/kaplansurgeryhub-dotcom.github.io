@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>חזה אוויר · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,7 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -116,9 +116,56 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -129,8 +176,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s cover"><div class="card">
  <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
  <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 1</div>
- <h1>חזה אוויר (<bdi>Pneumothorax</bdi>)</h1>
- <p class="lead"><bdi dir="ltr">pleura</bdi>, חזה אוויר ספונטני וחבלתי, חזה אוויר בלחץ, נקז חזה. ובקצרה: תפליט ואמפיאמה</p>
+ <h1>חזה אוויר <span class="nw">(<bdi>Pneumothorax</bdi>)</span></h1>
+ <p class="lead"><span class="nw"><bdi dir="ltr">pleura</bdi>,</span> חזה אוויר ספונטני וחבלתי, חזה אוויר בלחץ, נקז חזה. ובקצרה: תפליט ואמפיאמה</p>
  <div class="cvsrc" data-ch="110,36" data-note=""><small>מבוסס על</small><b><bdi dir="ltr">Sabiston Textbook of Surgery</bdi> · מהדורה 22</b><div class="cvch"><span>פרק <bdi dir="ltr">110</bdi></span><span>פרק <bdi dir="ltr">36</bdi></span></div></div>
  <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
 </div></section>
@@ -139,13 +186,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>1</b>מטרות הלמידה</div>
  <h2>בסוף המפגש תדעו</h2>
  <ol class="obj">
-  <li>לתאר את <span class="nw">ה-<bdi dir="ltr">pleura</bdi></span> ואת <span class="nw">ה-<bdi dir="ltr">pleural space</bdi></span>. להבין למה מכניסים נקז מעל הצלע</li>
+  <li>לתאר את <span class="nw">ה-<bdi dir="ltr">pleura</bdi></span> ואת <span class="nw">ה-<bdi dir="ltr">pleural space</bdi>.</span> להבין למה מכניסים נקז מעל הצלע</li>
   <li>לסווג חזה אוויר: ספונטני ראשוני ומשני, חבלתי ויאטרוגני</li>
   <li>לזהות חזה אוויר בלחץ לפי הקליניקה בלבד ולדעת איפה מנקזים במחט ובאצבע</li>
   <li>לבחור בין מעקב, שאיבה, נקז וניתוח בחזה אוויר ספונטני</li>
   <li>להבחין בין טרנסודט לאקסודט ולהכיר את שלבי האמפיאמה והטיפול בה</li>
  </ol>
- <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 110 (עמ׳ <bdi dir="ltr">1762–1763, 1796–1799</bdi>) · פרק 36 (עמ׳ <bdi dir="ltr">309, 319–322</bdi>)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 110 (עמ׳ <span class="nw"><bdi dir="ltr">1762–1763, 1796–1799</bdi>)</span> · פרק 36 (עמ׳ <span class="nw"><bdi dir="ltr">309, 319–322</bdi>)</span></span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -164,13 +211,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <g class="hzb" style="--c:#F0961E"><circle cx="662" cy="1074" r="20"/><text x="662" y="1074">5</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על מספר בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="wall" hidden><b>1 · דופן החזה <span class="nw">ו-<bdi dir="ltr">parietal pleura</bdi></span></b><p><span class="nw">ה-<bdi dir="ltr">parietal pleura</bdi></span> מצפה את דופן החזה, את <span class="nw">ה-<bdi dir="ltr">mediastinum</bdi></span> ואת <span class="nw">ה-<bdi dir="ltr">diaphragm</bdi></span>. היא מעוצבבת בעושר <span class="nw">מה-<bdi dir="ltr">intercostal nerves</bdi></span>. לכן נותנים <b>הרדמה מקומית נדיבה</b> לפני נקז. <span class="nw">ה-<bdi dir="ltr">neurovascular bundle</bdi></span> (וריד, עורק ועצב) עובר לאורך השפה התחתונה של כל צלע מלפנים: <b>נכנסים מעל הצלע</b>.</p></div>
+  <div class="hzi" data-hzi="wall" hidden><b>1 · דופן החזה <span class="nw">ו-<bdi dir="ltr">parietal pleura</bdi></span></b><p><span class="nw">ה-<bdi dir="ltr">parietal pleura</bdi></span> מצפה את דופן החזה, את <span class="nw">ה-<bdi dir="ltr">mediastinum</bdi></span> ואת <span class="nw">ה-<bdi dir="ltr">diaphragm</bdi>.</span> היא מעוצבבת בעושר <span class="nw">מה-<bdi dir="ltr">intercostal nerves</bdi>.</span> לכן נותנים <b>הרדמה מקומית נדיבה</b> לפני נקז. <span class="nw">ה-<bdi dir="ltr">neurovascular bundle</bdi></span> (וריד, עורק ועצב) עובר לאורך השפה התחתונה של כל צלע מלפנים: <b>נכנסים מעל הצלע</b>.</p></div>
   <div class="hzi" data-hzi="lung" hidden><b>2 · הריאה <span class="nw">ו-<bdi dir="ltr">visceral pleura</bdi></span></b><p><span class="nw">ה-<bdi dir="ltr">visceral pleura</bdi></span> עוטפת את הריאה ומפרידה בין האונות. היא מעוצבבת <span class="nw">מה-<bdi dir="ltr">vagus nerve</bdi></span> ומהמערכת הסימפתטית. בין שתי שכבות <span class="nw">ה-<bdi dir="ltr">pleura</bdi></span> יש רק מעט נוזל, שמאפשר לריאה לגלוש כמעט בלי חיכוך. אוויר, נוזל, גידול או זיהום במרווח הזה לוחצים על הריאה.</p></div>
-  <div class="hzi" data-hzi="apex" hidden><b>3 · <bdi dir="ltr">apex</bdi> של הריאה</b><p>כאן נמצאות הבועות הקטנות מתחת <span class="nw">ל-<bdi dir="ltr">pleura</bdi></span> (<bdi>blebs</bdi>). כשהן נקרעות נוצר <b>חזה אוויר ספונטני ראשוני</b>. בניתוח (<bdi>VATS</bdi>) כורתים אותן. חזה אוויר קטן נמדד כאן: עד 3 ס״מ <span class="nw">ב-<bdi dir="ltr">apex</bdi></span>.</p></div>
-  <div class="hzi" data-hzi="rec" hidden><b>4 · <bdi dir="ltr">costophrenic angle</bdi> <span class="nw">ו-<bdi dir="ltr">diaphragm</bdi></span></b><p>כאן מתקבץ נוזל. בצילום בעמידה רואים תפליט מ-300 מ״ל, כקהות של הזווית. מתחת <span class="nw">ל-<bdi dir="ltr">diaphragm</bdi></span>: <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> <span class="nw">וה-<bdi dir="ltr">spleen</bdi></span>. לכן נקז נכנס במרווח החמישי. חתך גבוה יותר מקטין את הסיכון להיכנס לבטן.</p></div>
-  <div class="hzi" data-hzi="med" hidden><b>5 · <bdi dir="ltr">mediastinum</bdi> והלב</b><p>ב<b>חזה אוויר בלחץ</b> <span class="nw">ה-<bdi dir="ltr">mediastinum</bdi></span> נדחק לצד השני וההחזר הוורידי ללב יורד: תת לחץ דם. אתרי הניקוז במחט (המרווח החמישי <span class="nw">ב-<bdi dir="ltr">axillary line</bdi></span>, או המרווח השני <span class="nw">ב-<bdi dir="ltr">midclavicular line</bdi></span>) נבחרו כדי להתרחק מהלב ומהכלים הגדולים.</p></div>
+  <div class="hzi" data-hzi="apex" hidden><b>3 · <bdi dir="ltr">apex</bdi> של הריאה</b><p>כאן נמצאות הבועות הקטנות מתחת <span class="nw">ל-<bdi dir="ltr">pleura</bdi></span> <span class="nw">(<bdi>blebs</bdi>).</span> כשהן נקרעות נוצר <b>חזה אוויר ספונטני ראשוני</b>. בניתוח <span class="nw">(<bdi>VATS</bdi>)</span> כורתים אותן. חזה אוויר קטן נמדד כאן: עד 3 ס״מ <span class="nw">ב-<bdi dir="ltr">apex</bdi>.</span></p></div>
+  <div class="hzi" data-hzi="rec" hidden><b>4 · <bdi dir="ltr">costophrenic angle</bdi> <span class="nw">ו-<bdi dir="ltr">diaphragm</bdi></span></b><p>כאן מתקבץ נוזל. בצילום בעמידה רואים תפליט מ-300 מ״ל, כקהות של הזווית. מתחת <span class="nw">ל-<bdi dir="ltr">diaphragm</bdi>:</span> <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> <span class="nw">וה-<bdi dir="ltr">spleen</bdi>.</span> לכן נקז נכנס במרווח החמישי. חתך גבוה יותר מקטין את הסיכון להיכנס לבטן.</p></div>
+  <div class="hzi" data-hzi="med" hidden><b>5 · <bdi dir="ltr">mediastinum</bdi> והלב</b><p>ב<b>חזה אוויר בלחץ</b> <span class="nw">ה-<bdi dir="ltr">mediastinum</bdi></span> נדחק לצד השני וההחזר הוורידי ללב יורד: תת לחץ דם. אתרי הניקוז במחט (המרווח החמישי <span class="nw">ב-<bdi dir="ltr">axillary line</bdi>,</span> או המרווח השני <span class="nw">ב-<bdi dir="ltr">midclavicular line</bdi>)</span> נבחרו כדי להתרחק מהלב ומהכלים הגדולים.</p></div>
  </div></div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 110 עמ׳ <bdi dir="ltr">1762–1763, 1796, 1799</bdi> · פרק 36 עמ׳ <bdi dir="ltr">320</bdi></span><span>הריאות במקומן · <bdi>Sobotta</bdi>, 1906, איור 451 (נחלת הכלל) · אזורים: Scrub In</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 110 עמ׳ <bdi dir="ltr">1762–1763, 1796, 1799</bdi> · פרק 36 עמ׳ <bdi dir="ltr">320</bdi></span><span>הריאות במקומן · <span class="nw"><bdi>Sobotta</bdi>,</span> 1906, איור 451 (נחלת הכלל) · אזורים: Scrub In</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -179,16 +226,16 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b">
-    <li><b>חזה אוויר:</b> אוויר שהצטבר <span class="nw">ב-<bdi dir="ltr">pleural space</bdi></span>. הריאה קורסת לכיוון <span class="nw">ה-<bdi dir="ltr">hilum</bdi></span></li>
-    <li><b>ספונטני ראשוני:</b> בלי מחלת ריאה ידועה. בועות קטנות (<bdi>blebs</bdi>) מתחת <span class="nw">ל-<bdi dir="ltr">pleura</bdi></span> <span class="nw">ב-<bdi dir="ltr">apex</bdi></span> של הריאה נקרעות. <b>גבר צעיר, גבוה ורזה</b>. עישון מעלה את הסיכון</li>
-    <li><b>ספונטני משני:</b> על רקע מחלת ריאה: <bdi>COPD</bdi> ובולות, סיסטיק פיברוזיס, <bdi>Pneumocystis</bdi>, פיברוזיס ריאתי. גם קטמניאלי (בקשר למחזור)</li>
+    <li><b>חזה אוויר:</b> אוויר שהצטבר <span class="nw">ב-<bdi dir="ltr">pleural space</bdi>.</span> הריאה קורסת לכיוון <span class="nw">ה-<bdi dir="ltr">hilum</bdi></span></li>
+    <li><b>ספונטני ראשוני:</b> בלי מחלת ריאה ידועה. בועות קטנות <span class="nw">(<bdi>blebs</bdi>)</span> מתחת <span class="nw">ל-<bdi dir="ltr">pleura</bdi></span> <span class="nw">ב-<bdi dir="ltr">apex</bdi></span> של הריאה נקרעות. <b>גבר צעיר, גבוה ורזה</b>. עישון מעלה את הסיכון</li>
+    <li><b>ספונטני משני:</b> על רקע מחלת ריאה: <bdi>COPD</bdi> ובולות, סיסטיק פיברוזיס, <span class="nw"><bdi>Pneumocystis</bdi>,</span> פיברוזיס ריאתי. גם קטמניאלי (בקשר למחזור)</li>
     <li><b>חבלתי:</b> חודר או קהה</li>
     <li><b>יאטרוגני:</b> הנשמה במכונה, ניקור פלאורלי, ביופסיה בריאה, <b>הכנסת קו מרכזי</b>, אחרי ניתוח</li>
    </ul>
   </div>
-  <figure><img src="img/xr-pneumothorax-left.jpg" alt="צילום חזה עם חזה אוויר משמאל"><figcaption>צילום חזה: חזה אוויר משמאל. הריאה השמאלית קרסה לכיוון <span class="nw">ה-<bdi dir="ltr">hilum</bdi></span> ואין בה סימני ריאה בהיקף · <bdi>Clinical Cases</bdi>, CC BY-SA 2.5, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/xr-pneumothorax-left.jpg" alt="צילום חזה עם חזה אוויר משמאל"><figcaption>צילום חזה: חזה אוויר משמאל. הריאה השמאלית קרסה לכיוון <span class="nw">ה-<bdi dir="ltr">hilum</bdi></span> ואין בה סימני ריאה בהיקף · <span class="nw"><bdi>Clinical Cases</bdi>,</span> CC BY-SA 2.5, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 110 עמ׳ <bdi dir="ltr">1799</bdi> (<bdi>Box 110.5</bdi>)</span><span>מושגים</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 110 עמ׳ <bdi dir="ltr">1799</bdi> <span class="nw">(<bdi>Box 110.5</bdi>)</span></span><span>מושגים</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -210,10 +257,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <h3>הדמיה</h3>
    <div class="flow sm">
     <div><b>צילום חזה</b><span>הבדיקה הבסיסית. אחרי נקז: צילום כל יום עד שהריאה מתפשטת</span></div>
-    <div><b>אולטרסאונד</b><span>אין החלקה של הריאה. <span class="nw">ב-<bdi>M-mode</bdi></span>: "ברקוד" במקום "חוף ים". רגיש יותר מצילום בחבלה, ספציפיות 91% אצל בודק מנוסה</span></div>
+    <div><b>אולטרסאונד</b><span>אין החלקה של הריאה. <span class="nw">ב-<bdi>M-mode</bdi>:</span> "ברקוד" במקום "חוף ים". רגיש יותר מצילום בחבלה, ספציפיות 91% אצל בודק מנוסה</span></div>
     <div><b><bdi>CT</bdi></b><span>מחפש את הסיבה ומחלת ריאה נסתרת</span></div>
    </div>
-   <figure class="sm" style="margin-top:10px"><img src="img/trauma-needle.jpg" alt="תרגול ניקוז במחט על בובה"><figcaption>תרגול ניקוז במחט על בובה · <bdi>Cpl. Fallon Lewis, U.S. Army</bdi>, נחלת הכלל</figcaption></figure>
+   <figure class="sm" style="margin-top:10px"><img src="img/trauma-needle.jpg" alt="תרגול ניקוז במחט על בובה"><figcaption>תרגול ניקוז במחט על בובה · <span class="nw"><bdi>Cpl. Fallon Lewis, U.S. Army</bdi>,</span> נחלת הכלל</figcaption></figure>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 110 עמ׳ <bdi dir="ltr">1799</bdi> · פרק 36 עמ׳ <bdi dir="ltr">319–320</bdi></span><span>אבחנה</span></div>
@@ -237,23 +284,23 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li>סטייה של <span class="nw">ה-<bdi dir="ltr">trachea</bdi></span> לצד השני, לרוב עדינה ונמששת <span class="nw">ב-<bdi dir="ltr">sternal notch</bdi></span></li>
    </ul>
   </div>
-  <figure><img src="img/trauma-tension-ptx.jpg" alt="חזה אוויר בלחץ משמאל לפני ואחרי נקז"><figcaption>משמאל בתמונה: חזה אוויר בלחץ משמאל, <span class="nw">ה-<bdi dir="ltr">mediastinum</bdi></span> נדחק ימינה. מימין: אחרי נקז חזה · <bdi>Hellerhoff</bdi>, CC BY-SA 4.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/trauma-tension-ptx.jpg" alt="חזה אוויר בלחץ משמאל לפני ואחרי נקז"><figcaption>משמאל בתמונה: חזה אוויר בלחץ משמאל, <span class="nw">ה-<bdi dir="ltr">mediastinum</bdi></span> נדחק ימינה. מימין: אחרי נקז חזה · <span class="nw"><bdi>Hellerhoff</bdi>,</span> CC BY-SA 4.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
- <div class="box r" style="margin-top:12px"><b class="t">מה עושים מיד</b>ניקוז במחט (<bdi dir="ltr">10–16G</bdi>) ב<b>מרווח הבין-צלעי החמישי</b>, בגובה הקפל מתחת לשד או מעליו, <span class="nw">ב-<bdi dir="ltr">anterior axillary line</bdi></span> או בין <span class="nw">ה-<bdi dir="ltr">anterior axillary line</bdi></span> <span class="nw">ל-<bdi dir="ltr">mid-axillary line</bdi></span>. חלופה: <b>מרווח שני <span class="nw">ב-<bdi dir="ltr">midclavicular line</bdi></span></b> (למשל במטופל עם <bdi>BMI</bdi> גבוה). אמין יותר: <b>"תורקוסטומיה באצבע"</b> באותו מקום. אחריה נקז חזה. גם אם המחט הצליחה, הטיפול הבא הוא נקז</div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 110 עמ׳ <bdi dir="ltr">1799</bdi> · פרק 36 עמ׳ <bdi dir="ltr">309, 320–321</bdi> (<bdi>Box 36.3</bdi>)</span><span>חזה אוויר בלחץ</span></div>
+ <div class="box r" style="margin-top:12px"><b class="t">מה עושים מיד</b>ניקוז במחט <span class="nw">(<bdi dir="ltr">10–16G</bdi>)</span> ב<b>מרווח הבין-צלעי החמישי</b>, בגובה הקפל מתחת לשד או מעליו, <span class="nw">ב-<bdi dir="ltr">anterior axillary line</bdi></span> או בין <span class="nw">ה-<bdi dir="ltr">anterior axillary line</bdi></span> <span class="nw">ל-<bdi dir="ltr">mid-axillary line</bdi>.</span> חלופה: <b>מרווח שני <span class="nw">ב-<bdi dir="ltr">midclavicular line</bdi></span></b> (למשל במטופל עם <bdi>BMI</bdi> גבוה). אמין יותר: <b>"תורקוסטומיה באצבע"</b> באותו מקום. אחריה נקז חזה. גם אם המחט הצליחה, הטיפול הבא הוא נקז</div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 110 עמ׳ <bdi dir="ltr">1799</bdi> · פרק 36 עמ׳ <bdi dir="ltr">309, 320–321</bdi> <span class="nw">(<bdi>Box 36.3</bdi>)</span></span><span>חזה אוויר בלחץ</span></div>
 </div></section>
 
 <section class="s"><div class="card">
  <div class="kick"><b>6</b>חזה אוויר ספונטני</div>
  <h2>מעקב, שאיבה, נקז או ניתוח?</h2>
  <div class="flow">
-  <div><b>קטן ובלי תסמינים</b><span>עד 3 ס״מ <span class="nw">ב-<bdi dir="ltr">apex</bdi></span> או 2 ס״מ <span class="nw">ב-<bdi dir="ltr">hilum</bdi></span>: אפשר מעקב. הוא נספג לבד</span></div>
+  <div><b>קטן ובלי תסמינים</b><span>עד 3 ס״מ <span class="nw">ב-<bdi dir="ltr">apex</bdi></span> או 2 ס״מ <span class="nw">ב-<bdi dir="ltr">hilum</bdi>:</span> אפשר מעקב. הוא נספג לבד</span></div>
   <div><b>גדול או גדל</b><span>שאיבה במחט או נקז חזה</span></div>
   <div><b>אחרי הנקז</b><span>צילום חזה כל יום עד שהריאה מתפשטת והדליפה נעצרת</span></div>
   <div><b>דליפה מתמשכת</b><span>יותר מ-2 ימים, או ריאה שלא מתפשטת עד הסוף: לשקול ניתוח</span></div>
   <div><b>מי הולך לניתוח</b><span>דליפה מתמשכת, חזרה או אפיזודה שנייה. וגם מקצועות בסיכון (צוללנים, טייסים)</span></div>
  </div>
- <div class="box" style="margin-top:12px"><b class="t">הניתוח</b>ניתוח בית חזה זעיר-פולשני (<bdi>VATS</bdi>): כריתה של הבועות <span class="nw">ב-<bdi dir="ltr">apex</bdi></span> ופלאורודזיס, הדבקה של שתי שכבות <span class="nw">ה-<bdi dir="ltr">pleura</bdi></span> זו לזו כדי שהריאה לא תקרוס שוב</div>
+ <div class="box" style="margin-top:12px"><b class="t">הניתוח</b>ניתוח בית חזה זעיר-פולשני <span class="nw">(<bdi>VATS</bdi>):</span> כריתה של הבועות <span class="nw">ב-<bdi dir="ltr">apex</bdi></span> ופלאורודזיס, הדבקה של שתי שכבות <span class="nw">ה-<bdi dir="ltr">pleura</bdi></span> זו לזו כדי שהריאה לא תקרוס שוב</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 110 עמ׳ <bdi dir="ltr">1799</bdi></span><span>טיפול</span></div>
 </div></section>
 
@@ -264,15 +311,15 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <ul class="b sm">
     <li><b>מה הנקז עושה:</b> מנקז אוויר ודם, מוריד לחץ ומאפשר לריאה להתפשט. בחבלה זה הטיפול הראשון ברוב פגיעות החזה</li>
-    <li><b>איפה:</b> מרווח בין-צלעי חמישי, בין <span class="nw">ה-<bdi dir="ltr">anterior axillary line</bdi></span> <span class="nw">ל-<bdi dir="ltr">mid-axillary line</bdi></span>. חתך גבוה יותר מקטין את הסיכון להיכנס לבטן, <span class="nw">ל-<bdi dir="ltr">liver</bdi></span> או <span class="nw">ל-<bdi dir="ltr">spleen</bdi></span></li>
+    <li><b>איפה:</b> מרווח בין-צלעי חמישי, בין <span class="nw">ה-<bdi dir="ltr">anterior axillary line</bdi></span> <span class="nw">ל-<bdi dir="ltr">mid-axillary line</bdi>.</span> חתך גבוה יותר מקטין את הסיכון להיכנס לבטן, <span class="nw">ל-<bdi dir="ltr">liver</bdi></span> או <span class="nw">ל-<bdi dir="ltr">spleen</bdi></span></li>
     <li><b>מעל הצלע:</b> <span class="nw">ה-<bdi dir="ltr">neurovascular bundle</bdi></span> (וריד, עורק ועצב) עובר לאורך השפה התחתונה של כל צלע מלפנים</li>
-    <li><b>הרדמה מקומית נדיבה:</b> <span class="nw">ה-<bdi dir="ltr">parietal pleura</bdi></span> מעוצבבת בעושר <span class="nw">מה-<bdi dir="ltr">intercostal nerves</bdi></span>. <span class="nw">ה-<bdi dir="ltr">visceral pleura</bdi></span> לא כואבת</li>
+    <li><b>הרדמה מקומית נדיבה:</b> <span class="nw">ה-<bdi dir="ltr">parietal pleura</bdi></span> מעוצבבת בעושר <span class="nw">מה-<bdi dir="ltr">intercostal nerves</bdi>.</span> <span class="nw">ה-<bdi dir="ltr">visceral pleura</bdi></span> לא כואבת</li>
     <li><b>גודל:</b> כבר לא נחשב קריטי. נקזים של <bdi dir="ltr">12–20 Fr</bdi> יעילים. במטופל במצב קיצוני: טכניקה פתוחה, כי הזמן חשוב</li>
    </ul>
   </div>
   <div style="display:grid;gap:10px">
    <div class="box a"><b class="t">חזה אוויר פתוח</b>פצע שהאוויר נכנס דרכו <span class="nw">ל-<bdi dir="ltr">pleura</bdi></span> בשאיפה. מכניסים נקז ואז חבישה אטומה. אם מנשימים בלחץ חיובי, הנקז בא לפני החבישה, כדי שלא ייווצר חזה אוויר בלחץ</div>
-   <div class="box r"><b class="t">המוטורקס</b>המוטורקס גדול בצילום או <span class="nw">ב-<bdi>eFAST</bdi></span>: נקז. דימום שממשיך אחרי הנקז: לשקול תורקוטומיה</div>
+   <div class="box r"><b class="t">המוטורקס</b>המוטורקס גדול בצילום או <span class="nw">ב-<bdi>eFAST</bdi>:</span> נקז. דימום שממשיך אחרי הנקז: לשקול תורקוטומיה</div>
    <div class="box n"><b class="t">מתי מוציאים (באמפיאמה)</b>ניקוז יומי מתחת <span class="nw">ל-<bdi dir="ltr">100–200</bdi></span> מ״ל, ההדמיה משתפרת והזיהום חולף</div>
   </div>
  </div>
@@ -287,23 +334,23 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <ul class="b sm">
     <li>בצילום בעמידה רואים תפליט מ-<b>300 מ״ל</b>: קהות של הזווית הקוסטופרנית</li>
     <li><b>טרנסודט</b> (מעט חלבון, לחץ הידרוסטטי או אונקוטי): אי ספיקת לב, שחמת, תסמונת נפרוטית, היפואלבומינמיה</li>
-    <li><b>אקסודט</b> (עשיר בחלבון, דלקת מקומית): זיהום, ממאירות, שחפת, מחלות קולגן, <bdi dir="ltr">pancreas</bdi>, פרפורציה של <span class="nw">ה-<bdi dir="ltr">esophagus</bdi></span></li>
+    <li><b>אקסודט</b> (עשיר בחלבון, דלקת מקומית): זיהום, ממאירות, שחפת, מחלות קולגן, <span class="nw"><bdi dir="ltr">pancreas</bdi>,</span> פרפורציה של <span class="nw">ה-<bdi dir="ltr">esophagus</bdi></span></li>
     <li><b>תפליט ממאיר:</b> כ-15% מחולי הסרטן. חציון הישרדות 5 חודשים. טיפול פליאטיבי: ניקוז, צנתר פלאורלי קבוע או פלאורודזיס</li>
     <li>תפליט בלי תסמינים לרוב לא מנקזים. מטפלים בסיבה</li>
    </ul>
   </div>
   <div>
-   <div class="box n"><b class="t">קריטריונים של <bdi>Light</bdi>: אקסודט אם יש לפחות אחד</b>
+   <div class="box n"><b class="t">קריטריונים של <span class="nw"><bdi>Light</bdi>:</span> אקסודט אם יש לפחות אחד</b>
     <div class="flow sm" style="margin-top:6px">
      <div><b>חלבון</b><span>יחס נוזל לסרום מעל 0.5</span></div>
      <div><b><bdi>LDH</bdi></b><span>יחס נוזל לסרום מעל 0.6</span></div>
      <div><b><bdi>LDH</bdi> בנוזל</b><span>מעל 2/3 מהגבול העליון של התקין בסרום</span></div>
     </div></div>
-   <div class="box" style="margin-top:10px"><b class="t">מה שולחים מהנוזל</b>מראה, ספירת תאים, חלבון, <bdi>pH</bdi>, <bdi>LDH</bdi>, גלוקוז, כולסטרול. בחשד לזיהום או ממאירות: תרביות, צביעת גראם וציטולוגיה</div>
-   <div class="box a" style="margin-top:10px"><b class="t">כילותורקס</b>נוזל חלבי <span class="nw">מה-<bdi dir="ltr">thoracic duct</bdi></span>. טריגליצרידים מעל 110 מ״ג/ד״ל</div>
+   <div class="box" style="margin-top:10px"><b class="t">מה שולחים מהנוזל</b>מראה, ספירת תאים, חלבון, <span class="nw"><bdi>pH</bdi>,</span> <span class="nw"><bdi>LDH</bdi>,</span> גלוקוז, כולסטרול. בחשד לזיהום או ממאירות: תרביות, צביעת גראם וציטולוגיה</div>
+   <div class="box a" style="margin-top:10px"><b class="t">כילותורקס</b>נוזל חלבי <span class="nw">מה-<bdi dir="ltr">thoracic duct</bdi>.</span> טריגליצרידים מעל 110 מ״ג/ד״ל</div>
   </div>
  </div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 110 עמ׳ <bdi dir="ltr">1796–1798</bdi> (<bdi>Box 110.3</bdi>)</span><span>תפליט</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 110 עמ׳ <bdi dir="ltr">1796–1798</bdi> <span class="nw">(<bdi>Box 110.3</bdi>)</span></span><span>תפליט</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -335,7 +382,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div class="study"><div class="y"><bdi>World J Emerg Surg</bdi> 2025 · מטא-אנליזה</div><b>איפה ובאיזו מחט מנקזים חזה אוויר בלחץ</b>
    <p>51 מחקרים. לפי מדידות הדמיה (24 מחקרים, 8,046 מטופלים) המחט לא הגיעה <span class="nw">ל-<bdi dir="ltr">pleura</bdi></span> ב-32.8%. כל ס״מ של אורך הוריד את הכישלון ב-7.8%. דופן החזה דקה יותר במרווח החמישי מאשר בשני. המחברים מציעים מחט של 7 ס״מ</p>
    <small><bdi dir="ltr">Ahmad SJS et al. World J Emerg Surg 2025;20:39</bdi></small></div>
-  <div class="study"><div class="y"><bdi>J Am Coll Surg</bdi> 2026 · מחקר אקראי באשכולות</div><b><bdi>SEAL IT</bdi>: יניקה או חותם מים?</b>
+  <div class="study"><div class="y"><bdi>J Am Coll Surg</bdi> 2026 · מחקר אקראי באשכולות</div><b><span class="nw"><bdi>SEAL IT</bdi>:</span> יניקה או חותם מים?</b>
    <p>72 מטופלים עם חזה אוויר חבלתי ונקז. התחלה בחותם מים (בלי יניקה) קיצרה את משך הנקז (41 לעומת 51 שעות) בלי יותר סיבוכים. מחקר ממרכז אחד, דרוש אישור במחקר גדול</p>
    <small><bdi dir="ltr">Yeates EO et al. J Am Coll Surg 2026 (online ahead of print), PMID 42678774</bdi></small></div>
  </div>
@@ -348,11 +395,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <ol class="obj">
   <li>חזה אוויר ספונטני ראשוני: גבר צעיר, גבוה ורזה, לרוב מעשן. כאב פתאומי וקוצר נשימה</li>
   <li>חזה אוויר בלחץ הוא אבחנה קלינית: תת לחץ דם וקולות נשימה חסרים. מנקזים לפני צילום</li>
-  <li>ניקוז במחט או באצבע במרווח החמישי <span class="nw">ב-<bdi dir="ltr">axillary line</bdi></span>, או במרווח השני <span class="nw">ב-<bdi dir="ltr">midclavicular line</bdi></span>. אחר כך נקז</li>
+  <li>ניקוז במחט או באצבע במרווח החמישי <span class="nw">ב-<bdi dir="ltr">axillary line</bdi>,</span> או במרווח השני <span class="nw">ב-<bdi dir="ltr">midclavicular line</bdi>.</span> אחר כך נקז</li>
   <li>נקז נכנס מעל הצלע, עם הרדמה מקומית נדיבה. חזה אוויר קטן ויציב אפשר לעקוב</li>
   <li>תפליט: <bdi>Light</bdi> מבדיל בין טרנסודט לאקסודט. אמפיאמה: ניקוז ואנטיביוטיקה. בשלב מתקדם: ניתוח</li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 110 <bdi>Lung, Chest Wall, Pleura, and Mediastinum</bdi> (עמ׳ <bdi dir="ltr">1762–1763, 1796–1799</bdi>) · פרק 36 <bdi>Management of Acute Trauma</bdi> (עמ׳ <bdi dir="ltr">319–322</bdi>)</div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 110 <bdi>Lung, Chest Wall, Pleura, and Mediastinum</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1762–1763, 1796–1799</bdi>)</span> · פרק 36 <bdi>Management of Acute Trauma</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">319–322</bdi>)</span></div>
  <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906, נחלת הכלל) · צילומים <span class="nw">מ-<bdi>Wikimedia Commons</bdi></span> לפי הרישיון בכל כיתוב · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 </main>
@@ -374,5 +421,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>

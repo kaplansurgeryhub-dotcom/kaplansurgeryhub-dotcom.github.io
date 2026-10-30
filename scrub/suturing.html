@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>סדנת תפירה · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,7 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -116,9 +116,56 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -146,7 +193,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>לתפור תפר בודד ולקשור קשר במכשיר, בטכניקה בטוחה</li>
   <li>לצמצם מתח וצלקת ולטפל בפצע אחרי הסגירה</li>
  </ol>
- <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 19 (עמ׳ <bdi dir="ltr">31–32</bdi>) · פרק 23 (עמ׳ <bdi dir="ltr">93, 98–99, 106–109</bdi>) · פרק 80 (עמ׳ <bdi dir="ltr">1067</bdi>)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 19 (עמ׳ <span class="nw"><bdi dir="ltr">31–32</bdi>)</span> · פרק 23 (עמ׳ <span class="nw"><bdi dir="ltr">93, 98–99, 106–109</bdi>)</span> · פרק 80 (עמ׳ <span class="nw"><bdi dir="ltr">1067</bdi>)</span></span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -159,7 +206,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  </div>
  <div class="grid" style="margin-top:12px">
   <div class="box n"><b class="t">מה קורה בפצע שנתפר</b>הקולגן מתחיל להופיע רק אחרי <bdi dir="ltr">3–5</bdi> ימים ("שלב ההשהיה"). החוזק עולה מהר בין שבוע ל-6 שבועות. אחרי כ-21 יום החוזק עולה בעיקר בזכות קישורי הקולגן. עד אז, התפר הוא שמחזיק</div>
-  <div class="box a"><b class="t">מה מעכב החלמה</b>זיהום, חוסר דם וחמצן, מתח, סוכרת, קרינה, גיל, תת-תזונה, חסר ויטמין <bdi>C</bdi> או <bdi>A</bdi>, אבץ, סטרואידים וכימותרפיה</div>
+  <div class="box a"><b class="t">מה מעכב החלמה</b>זיהום, חוסר דם וחמצן, מתח, סוכרת, קרינה, גיל, תת-תזונה, חסר ויטמין <bdi>C</bdi> או <span class="nw"><bdi>A</bdi>,</span> אבץ, סטרואידים וכימותרפיה</div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">32</bdi> · פרק 23 עמ׳ <bdi dir="ltr">93, 98–99</bdi></span><span>סוגי סגירה</span></div>
 </div></section>
@@ -178,9 +225,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div class="hotp"><p class="hint">👆 לחצו על שכבה כדי לראות איזה תפר עובר בה</p>
    <div class="hzi" data-hzi="ep" hidden><b>1 · <bdi dir="ltr">Epidermis</bdi></b><p>השכבה החיצונית, המחסום נגד איבוד נוזלים וחיידקים. התאים שלה מתחילים לנדוד ולכסות את החתך כבר בשעות הראשונות. המטרה: שולי העור נוגעים זה בזה, מעט כלפי חוץ, בלי לחנוק. שם הקשר יושב על העור</p></div>
    <div class="hzi" data-hzi="de" hidden><b>2 · <bdi dir="ltr">Dermis</bdi></b><p>השכבה שמחזיקה את התפר: כאן הקולגן. התפר התוך-עורי עובר כולו <span class="nw">ב-<bdi dir="ltr">dermis</bdi></span> בחוט נספג. התוצאה אסתטית, בלי צורך להוציא תפרים. תפר מזרן אנכי אוחז בשני עומקים ומפזר מתח. לכן הוא מתאים לפצע במתח</p></div>
-   <div class="hzi" data-hzi="hy" hidden><b>3 · <bdi dir="ltr">Subcutaneous tissue</bdi></b><p>שומן עם מעט כלי דם. לכן הוא פגיע לזיהום. מתחתיה <span class="nw">ה-<bdi dir="ltr">fascia</bdi></span>, השכבה החזקה שסוגרים בבטן. <span class="nw">ה-<bdi dir="ltr">fascia</bdi></span> מגיעה לכחצי מהחוזק המקורי בין היום ה-8 לחודש השני. לכן סוגרים אותה בחוט שנספג לאט</p></div>
+   <div class="hzi" data-hzi="hy" hidden><b>3 · <bdi dir="ltr">Subcutaneous tissue</bdi></b><p>שומן עם מעט כלי דם. לכן הוא פגיע לזיהום. מתחתיה <span class="nw">ה-<bdi dir="ltr">fascia</bdi>,</span> השכבה החזקה שסוגרים בבטן. <span class="nw">ה-<bdi dir="ltr">fascia</bdi></span> מגיעה לכחצי מהחוזק המקורי בין היום ה-8 לחודש השני. לכן סוגרים אותה בחוט שנספג לאט</p></div>
   </div></div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">32</bdi> · פרק 23 עמ׳ <bdi dir="ltr">94–95</bdi> · פרק 25 עמ׳ <bdi dir="ltr">120</bdi> · פרק 80 עמ׳ <bdi dir="ltr">1067</bdi></span><span>איור: <bdi>Blausen.com staff (2014)</bdi>, <bdi>WikiJournal of Medicine</bdi>, <bdi>CC BY 3.0</bdi></span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">32</bdi> · פרק 23 עמ׳ <bdi dir="ltr">94–95</bdi> · פרק 25 עמ׳ <bdi dir="ltr">120</bdi> · פרק 80 עמ׳ <bdi dir="ltr">1067</bdi></span><span>איור: <span class="nw"><bdi>Blausen.com staff (2014)</bdi>,</span> <span class="nw"><bdi>WikiJournal of Medicine</bdi>,</span> <bdi>CC BY 3.0</bdi></span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -190,7 +237,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <div class="flow">
     <div><b>נספג</b><span>מתפרק בגוף. בשכבה התוך-עורית: סגירה יפה בלי הוצאת תפרים</span></div>
-    <div><b>נספג לאט</b><span><span class="nw">ל-<bdi dir="ltr">abdominal fascia</bdi></span>: מחזיק עד <span class="nw">שה-<bdi dir="ltr">fascia</bdi></span> חוזרת לחוזק. חוט שנספג מהר עלול "להיגמר" לפני כן</span></div>
+    <div><b>נספג לאט</b><span><span class="nw">ל-<bdi dir="ltr">abdominal fascia</bdi>:</span> מחזיק עד <span class="nw">שה-<bdi dir="ltr">fascia</bdi></span> חוזרת לחוזק. חוט שנספג מהר עלול "להיגמר" לפני כן</span></div>
     <div><b>קבוע</b><span><span class="nw">ל-<bdi dir="ltr">fascia</bdi></span> במטופל מתת-תזונה או חלש, או כשהמעקב מוקדם. חיסרון: תחושת גוף זר וגרנולומות</span></div>
     <div><b>מצופה טריקלוזן</b><span>חוט נספג עם חומר נגד חיידקים. מופיע בחלק מההנחיות, אבל הראיות מעורבות</span></div>
    </div>
@@ -211,11 +258,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div class="flow">
    <div><b>תפר בודד</b><span>כל תפר עומד לבד. אם צריך, פותחים חלק מהפצע לניקוז או לריפוד בלי לפתוח את כולו. טוב לפצע בסיכון לזיהום</span></div>
    <div><b>תפר רציף</b><span>חוט אחד לכל האורך, מהיר. רציף בכמה שכבות אוטם טוב יותר, למשל כשיש מיימת</span></div>
-   <div><b>מזרן אנכי</b><span>נכנס רחוק ועמוק, חוזר קרוב ושטחי. מפזר את המתח על שני עומקים ומקרב היטב את <span class="nw">ה-<bdi dir="ltr">dermis</bdi></span>. לפצע במתח</span></div>
-   <div><b>תוך-עורי</b><span>רציף בתוך <span class="nw">ה-<bdi dir="ltr">dermis</bdi></span>, בחוט נספג. התוצאה האסתטית הטובה ביותר, בלי הוצאת תפרים</span></div>
+   <div><b>מזרן אנכי</b><span>נכנס רחוק ועמוק, חוזר קרוב ושטחי. מפזר את המתח על שני עומקים ומקרב היטב את <span class="nw">ה-<bdi dir="ltr">dermis</bdi>.</span> לפצע במתח</span></div>
+   <div><b>תוך-עורי</b><span>רציף בתוך <span class="nw">ה-<bdi dir="ltr">dermis</bdi>,</span> בחוט נספג. התוצאה האסתטית הטובה ביותר, בלי הוצאת תפרים</span></div>
    <div><b>שדכן לעור (סיכות)</b><span>מהיר לחתכים ארוכים. מוציאים במחלקה או במרפאה (נוהג מקובל)</span></div>
   </div>
-  <figure><img src="img/stitches-wellcome.jpg" alt="ציור עפרון צבעוני של תפרים לסגירת פצעים"><figcaption>תפרים לסגירת פצעים: בודדים (למעלה) ורציפים (למטה), ציור עפרון צבעוני · <bdi>Wellcome Collection V0016824</bdi>, <bdi>CC BY 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/stitches-wellcome.jpg" alt="ציור עפרון צבעוני של תפרים לסגירת פצעים"><figcaption>תפרים לסגירת פצעים: בודדים (למעלה) ורציפים (למטה), ציור עפרון צבעוני · <span class="nw"><bdi>Wellcome Collection V0016824</bdi>,</span> <span class="nw"><bdi>CC BY 4.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">32</bdi></span><span>סוגי תפרים</span></div>
 </div></section>
@@ -235,8 +282,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    </ol>
   </div>
   <div style="display:grid;gap:10px;align-content:start">
-   <figure><video controls preload="metadata" playsinline style="width:100%;max-height:40vh;border-radius:12px;background:#000"><source src="img/suture-simple-interrupted.webm" type="video/webm">הדפדפן לא מציג את הסרטון</video><figcaption>הדגמה של תפר בודד (2 דקות) · <bdi>Arif Alper Çevik</bdi>, <bdi>CC BY 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
-   <figure><img src="img/knots-wellcome.jpg" alt="ציור של ידיים קושרות קשר כירורגי" style="max-height:24vh"><figcaption>קשירה ביד, ציור עפרון צבעוני · <bdi>Wellcome Collection V0016822</bdi>, <bdi>CC BY 4.0</bdi></figcaption></figure>
+   <figure><video controls preload="metadata" playsinline style="width:100%;max-height:40vh;border-radius:12px;background:#000"><source src="img/suture-simple-interrupted.webm" type="video/webm">הדפדפן לא מציג את הסרטון</video><figcaption>הדגמה של תפר בודד (2 דקות) · <span class="nw"><bdi>Arif Alper Çevik</bdi>,</span> <span class="nw"><bdi>CC BY 3.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
+   <figure><img src="img/knots-wellcome.jpg" alt="ציור של ידיים קושרות קשר כירורגי" style="max-height:24vh"><figcaption>קשירה ביד, ציור עפרון צבעוני · <span class="nw"><bdi>Wellcome Collection V0016822</bdi>,</span> <bdi>CC BY 4.0</bdi></figcaption></figure>
   </div>
  </div>
  <div class="src"><span>השלבים לפי הנוהג המקובל בהוראת תפירה בסיסית · <b>Sabiston 22</b> · פרק 23 עמ׳ <bdi dir="ltr">98–99</bdi> (מתח ונפיחות)</span><span>טכניקה</span></div>
@@ -250,7 +297,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <ul class="b">
     <li><b>מתח</b> מפעיל את הפיברובלסטים ומוביל לעודף קולגן. פצע בניצב <span class="nw">ל-<bdi dir="ltr">Langer's lines</bdi></span> נמצא במתח גדול יותר</li>
     <li>חתך <b>בניצב לסיבי השריר</b> מתחתיו נוטה להיות שטוח וצר. חתך מקביל להם נפתח כשהשריר מתכווץ</li>
-    <li>אזורים בסיכון לצלקת רעה: הכתף (<span class="nw">ה-<bdi dir="ltr">deltoid</bdi></span>) <span class="nw">וה-<bdi dir="ltr">sternum</bdi></span></li>
+    <li>אזורים בסיכון לצלקת רעה: הכתף (<span class="nw">ה-<bdi dir="ltr">deltoid</bdi>)</span> <span class="nw">וה-<bdi dir="ltr">sternum</bdi></span></li>
     <li><b>אחרי הסגירה:</b> הדבקת סטריפים על הצלקת 3 חודשים, לחות וסיליקון, הגנה מהשמש (מקדם 50 ומעלה) שנה</li>
    </ul>
   </div>
@@ -301,10 +348,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div class="study"><div class="y"><bdi>Ann Surg Open</bdi> 2025 · מטא-אנליזה</div><b>איך סוגרים לפרוטומיה?</b>
    <p>41 מחקרים אקראיים ו-9 מחקרי עוקבה. ביסים קטנים בחוט שנספג לאט הורידו בקע בחתך (יחס סיכויים 0.44) וזיהום (0.70) לעומת ביסים גדולים. אין הבדל בין תפר רציף לבודד</p>
    <small>van den Berg R et al. Ann Surg Open 2025;6:e548</small></div>
-  <div class="study"><div class="y"><bdi>BJS</bdi> 2022 · מחקר אקראי</div><b><bdi>HART</bdi>: סגירת <bdi>Hughes</bdi> מול סגירה רגילה</b>
-   <p>802 מטופלים אחרי ניתוח לסרטן המעי הגס. בקע בחתך אחרי שנה: <bdi dir="ltr">14.8%</bdi> לעומת <bdi dir="ltr">17.1%</bdi>, בלי הבדל מובהק. יותר זיהום פצע בשיטה החדשה (<bdi dir="ltr">13.2%</bdi> לעומת <bdi dir="ltr">7.7%</bdi>)</p>
+  <div class="study"><div class="y"><bdi>BJS</bdi> 2022 · מחקר אקראי</div><b><span class="nw"><bdi>HART</bdi>:</span> סגירת <bdi>Hughes</bdi> מול סגירה רגילה</b>
+   <p>802 מטופלים אחרי ניתוח לסרטן המעי הגס. בקע בחתך אחרי שנה: <bdi dir="ltr">14.8%</bdi> לעומת <span class="nw"><bdi dir="ltr">17.1%</bdi>,</span> בלי הבדל מובהק. יותר זיהום פצע בשיטה החדשה <span class="nw">(<bdi dir="ltr">13.2%</bdi></span> לעומת <span class="nw"><bdi dir="ltr">7.7%</bdi>)</span></p>
    <small>HART Collaborative. Br J Surg 2022;109:943-50</small></div>
-  <div class="study"><div class="y"><bdi>JAMA</bdi> 2025 · מחקר אקראי</div><b><bdi>SUNRRISE</bdi>: ואקום על חתך סגור בלפרוטומיה דחופה</b>
+  <div class="study"><div class="y"><bdi>JAMA</bdi> 2025 · מחקר אקראי</div><b><span class="nw"><bdi>SUNRRISE</bdi>:</span> ואקום על חתך סגור בלפרוטומיה דחופה</b>
    <p>840 מטופלים בבריטניה ובאוסטרליה. זיהום פצע: <bdi dir="ltr">28.4%</bdi> עם ואקום <span class="nw">ו-<bdi dir="ltr">27.4%</bdi></span> עם חבישה רגילה. בלי תועלת</p>
    <small>Atherton K et al. JAMA 2025;333:853-63</small></div>
  </div>
@@ -321,8 +368,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>הבטן: ביסים קטנים וחוט שנספג לאט</li>
   <li>פחות מתח, הגנה מהשמש ומעקב: צלקת טובה יותר וזיהום שמתגלה בזמן</li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 19 <bdi>Wound Closure</bdi> (עמ׳ <bdi dir="ltr">32</bdi>) · פרק 23 <bdi>Wound Healing</bdi> (עמ׳ <bdi dir="ltr">88–109</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Blausen.com staff</bdi> (<bdi>CC BY 3.0</bdi>) · <bdi>Wellcome Collection</bdi> (<bdi>CC BY 4.0</bdi>) · וידאו: <bdi>Arif Alper Çevik</bdi> (<bdi>CC BY 3.0</bdi>) · <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 19 <bdi>Wound Closure</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">32</bdi>)</span> · פרק 23 <bdi>Wound Healing</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">88–109</bdi>)</span></div>
+ <div class="src"><span>איורים: <bdi>Blausen.com staff</bdi> <span class="nw">(<bdi>CC BY 3.0</bdi>)</span> · <bdi>Wellcome Collection</bdi> <span class="nw">(<bdi>CC BY 4.0</bdi>)</span> · וידאו: <bdi>Arif Alper Çevik</bdi> <span class="nw">(<bdi>CC BY 3.0</bdi>)</span> · <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>
@@ -344,5 +391,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>

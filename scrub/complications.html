@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>סיבוכים כירורגיים · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,7 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -116,9 +116,56 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -147,7 +194,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>להבחין בין חסימת מעיים שיתוקית למכנית. לחשוד בדליפה מהשקה ובזיהום <bdi>C. difficile</bdi></li>
   <li>לסווג זיהום באתר הניתוח, למנוע אותו ולטפל בו. לזהות דליריום</li>
  </ol>
- <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 26 (עמ׳ <bdi dir="ltr">126–142</bdi>) · פרק 25 (עמ׳ <bdi dir="ltr">118–124</bdi>)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 26 (עמ׳ <span class="nw"><bdi dir="ltr">126–142</bdi>)</span> · פרק 25 (עמ׳ <span class="nw"><bdi dir="ltr">118–124</bdi>)</span></span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -161,19 +208,19 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <ul class="b" style="margin-top:14px">
   <li>בלי הגדרה אחידה אי אפשר להשוות בין ניתוחים, בין מנתחים ובין בתי חולים. גם עיתונים מובילים מדווחים לעיתים קרובות באופן חלקי</li>
   <li>השוואה בין מרכזים חייבת להתחשב בחומרת המטופלים. אחרת מנתחים "בוחרים" מטופלים קלים ונמנעים מהקשים</li>
-  <li><b>מדד ייחוס (<bdi>benchmark</bdi>):</b> התוצאה הטובה ביותר שאפשר להשיג בניתוח מסוים, במטופלים בסיכון נמוך, במרכזים מובילים</li>
+  <li><b>מדד ייחוס <span class="nw">(<bdi>benchmark</bdi>):</span></b> התוצאה הטובה ביותר שאפשר להשיג בניתוח מסוים, במטופלים בסיכון נמוך, במרכזים מובילים</li>
  </ul>
  <div class="src"><span><b>Sabiston 22</b> · פרק 26 עמ׳ <bdi dir="ltr">126</bdi></span><span>הגדרות</span></div>
 </div></section>
 
 <section class="s"><div class="card">
  <div class="kick"><b>3</b>דירוג</div>
- <h2>סיווג <bdi>Clavien-Dindo</bdi>: לפי הטיפול שהסיבוך דרש</h2>
+ <h2>סיווג <span class="nw"><bdi>Clavien-Dindo</bdi>:</span> לפי הטיפול שהסיבוך דרש</h2>
  <div class="flow">
   <div><b>דרגה <bdi>I</bdi></b><span>סטייה מהמהלך התקין בלי תרופות מיוחדות ובלי פעולה. מותר: נגד בחילות, נגד חום, משככי כאב, משתנים, אלקטרוליטים, פיזיותרפיה. גם פצע מזוהם שנפתח ליד המיטה</span></div>
   <div><b>דרגה <bdi>II</bdi></b><span>צריך תרופות אחרות (למשל אנטיביוטיקה), עירוי דם או הזנה בווריד</span></div>
-  <div><b>דרגה <bdi>III</bdi></b><span>צריך ניתוח, אנדוסקופיה או צנתור. <bdi>IIIa</bdi>: בלי הרדמה כללית. <bdi>IIIb</bdi>: בהרדמה כללית</span></div>
-  <div><b>דרגה <bdi>IV</bdi></b><span>מסכן חיים ודורש טיפול נמרץ (כולל שבץ ודימום מוחי). <bdi>IVa</bdi>: איבר אחד (כולל דיאליזה). <bdi>IVb</bdi>: כמה איברים</span></div>
+  <div><b>דרגה <bdi>III</bdi></b><span>צריך ניתוח, אנדוסקופיה או צנתור. <span class="nw"><bdi>IIIa</bdi>:</span> בלי הרדמה כללית. <span class="nw"><bdi>IIIb</bdi>:</span> בהרדמה כללית</span></div>
+  <div><b>דרגה <bdi>IV</bdi></b><span>מסכן חיים ודורש טיפול נמרץ (כולל שבץ ודימום מוחי). <span class="nw"><bdi>IVa</bdi>:</span> איבר אחד (כולל דיאליזה). <span class="nw"><bdi>IVb</bdi>:</span> כמה איברים</span></div>
   <div><b>דרגה <bdi>V</bdi></b><span>מוות</span></div>
  </div>
  <div class="box n" style="margin-top:12px"><b class="t">מדד <bdi>CCI</bdi></b>מסכם את כל הסיבוכים של המטופל, לפי מספרם וחומרתם, בסולם אחד מ-0 (בלי סיבוך) עד 100 (מוות). מתאם עם עלויות. משמש כנקודת סיום רגישה במחקרים</div>
@@ -185,7 +232,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>איזו דרגה?</h2>
  <div class="grid">
   <details class="box"><summary><b>בת 45, כאב בטן יום אחרי כריתת כיס מרה.</b> תפקודי כבד ואנזימי לבלב עולים. אבן <span class="nw">ב-<bdi>common bile duct</bdi></span> מוצאת <span class="nw">ב-<bdi>ERCP</bdi></span></summary><p style="margin:8px 0 0"><span class="tag b">IIIa</span> פעולה אנדוסקופית בלי הרדמה כללית. <bdi>CCI</bdi> כ-26</p></details>
-  <details class="box"><summary><b>בן 56 אחרי כריתת סיגמואיד לדיברטיקוליטיס.</b> חום וכאב ביום 4. <bdi>CT</bdi>: מורסה בבטן, טופלה בלפרוטומיה חוזרת</summary><p style="margin:8px 0 0"><span class="tag r">IIIb</span> ניתוח בהרדמה כללית. <bdi>CCI</bdi> כ-34</p></details>
+  <details class="box"><summary><b>בן 56 אחרי כריתת סיגמואיד לדיברטיקוליטיס.</b> חום וכאב ביום 4. <span class="nw"><bdi>CT</bdi>:</span> מורסה בבטן, טופלה בלפרוטומיה חוזרת</summary><p style="margin:8px 0 0"><span class="tag r">IIIb</span> ניתוח בהרדמה כללית. <bdi>CCI</bdi> כ-34</p></details>
   <details class="box"><summary><b>בת 25 אחרי כריתת תוספתן מנוקב.</b> פקקת ורידים ברגל, טופלה בנוגדי קרישה. גם חסימת מעיים שיתוקית שטופלה בתרופות והזנה בווריד</summary><p style="margin:8px 0 0"><span class="tag a">II</span> ועוד <span class="tag a">II</span>: שני סיבוכים, כל אחד דרש תרופות. <bdi>CCI</bdi> כ-30</p></details>
   <details class="box"><summary><b>בן 62 אחרי כריתת כבד ימנית.</b> אי ספיקת כבד, בלבול ותת-לחץ דם בטיפול נמרץ, דיאליזה זמנית. בנוסף זיהום בדרכי השתן שטופל באנטיביוטיקה</summary><p style="margin:8px 0 0"><span class="tag r">IVb</span> כשל של כמה איברים. ועוד <span class="tag a">II</span>. <bdi>CCI</bdi> כ-51</p></details>
  </div>
@@ -198,7 +245,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div>
    <div class="flow">
-    <div><b>48 השעות הראשונות</b><span>לרוב תגובה דלקתית לניתוח עצמו (<bdi>SIRS</bdi>). תמט ריאה הוא הסיבה השכיחה לחום מוקדם</span></div>
+    <div><b>48 השעות הראשונות</b><span>לרוב תגובה דלקתית לניתוח עצמו <span class="nw">(<bdi>SIRS</bdi>).</span> תמט ריאה הוא הסיבה השכיחה לחום מוקדם</span></div>
     <div><b>72 שעות ואילך</b><span>יותר סביר זיהום: פצע, דרכי שתן, דלקת ריאות. אחר כך: מורסה, דליפה מהשקה</span></div>
     <div><b>קטטר בווריד</b><span>המקור השכיח לבקטרמיה בבית חולים. מוציאים קטטר עם סימני דלקת מקומית או מערכתית</span></div>
    </div>
@@ -220,12 +267,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>תמט ריאה</b> הוא הסיבוך הנשימתי השכיח ביותר. בעיקר אחרי ניתוח בבטן העליונה או בבית החזה</li>
     <li>חום מוקדם, נשימה מהירה, ירידה ברוויה, קולות נשימה מופחתים</li>
     <li>מתהפך <span class="nw">ב-<bdi dir="ltr">24–48</bdi></span> השעות הראשונות: הליכה מוקדמת, נשימות עמוקות, מכשיר לתרגול נשימה (ספירומטר), שיעול, פיזיותרפיה ושיכוך כאב טוב</li>
-    <li><b>תוכנית <bdi>ICOUGH</bdi>:</b> ספירומטר, שיעול ונשימות עמוקות, היגיינת פה, הרמת ראש המיטה, יציאה מהמיטה 3 פעמים ביום</li>
-    <li><b>שאיפת תוכן <span class="nw">מה-<bdi>stomach</bdi></span>:</b> חוסר חמצן הוא הסימן המוקדם והאמין. דלקת כימית (<bdi>Mendelson</bdi>) נרפאת לרוב תוך 48 שעות בלי אנטיביוטיקה. דלקת ריאות מחיידקים כן צריכה אנטיביוטיקה</li>
+    <li><b>תוכנית <span class="nw"><bdi>ICOUGH</bdi>:</span></b> ספירומטר, שיעול ונשימות עמוקות, היגיינת פה, הרמת ראש המיטה, יציאה מהמיטה 3 פעמים ביום</li>
+    <li><b>שאיפת תוכן <span class="nw">מה-<bdi>stomach</bdi>:</span></b> חוסר חמצן הוא הסימן המוקדם והאמין. דלקת כימית <span class="nw">(<bdi>Mendelson</bdi>)</span> נרפאת לרוב תוך 48 שעות בלי אנטיביוטיקה. דלקת ריאות מחיידקים כן צריכה אנטיביוטיקה</li>
     <li>אגוניסטים <span class="nw">ל-<bdi>GLP-1</bdi></span> מעכבים התרוקנות קיבה ומעלים סיכון לשאיפה</li>
    </ul>
   </div>
-  <figure><img src="img/cxr-atelectasis-hellerhoff.jpg" alt="צילום חזה עם תמט ב-lower lobes משני הצדדים"><figcaption>תמט <span class="nw">ב-<bdi>lower lobes</bdi></span> משני הצדדים בצילום חזה · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/cxr-atelectasis-hellerhoff.jpg" alt="צילום חזה עם תמט ב-lower lobes משני הצדדים"><figcaption>תמט <span class="nw">ב-<bdi>lower lobes</bdi></span> משני הצדדים בצילום חזה · <span class="nw"><bdi>Hellerhoff</bdi>,</span> <span class="nw"><bdi>CC BY-SA 3.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 26 עמ׳ <bdi dir="ltr">130–131</bdi></span><span>ריאות</span></div>
 </div></section>
@@ -239,7 +286,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li>גורמי סיכון: גיל, השמנה, שבריריות, סרטן, חוסר תנועה, פקקת בעבר, נטייה תורשתית, הריון, גלולות, חבלה, קטטר בווריד</li>
     <li><b>פקקת:</b> נפיחות ברגל, חום ורגישות. לעיתים בלי תסמינים</li>
     <li><b>תסחיף:</b> קוצר נשימה. בתסחיף גדול: תת-לחץ דם, אובדן הכרה, דום לב</li>
-    <li><b>D-dimer</b> לא עוזר אחרי ניתוח או חבלה. מאבחנים בהדמיה: דופלר ורידים לפקקת, <bdi>CT</bdi> אנגיוגרפיה לתסחיף</li>
+    <li><b><bdi dir="ltr">D-dimer</bdi></b> לא עוזר אחרי ניתוח או חבלה. מאבחנים בהדמיה: דופלר ורידים לפקקת, <bdi>CT</bdi> אנגיוגרפיה לתסחיף</li>
     <li>טיפול: נוגדי קרישה, בדרך כלל 6 חודשים. ממסי קריש רק בחוסר יציבות שמחמיר למרות טיפול</li>
    </ul>
   </div>
@@ -255,7 +302,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>8</b>לב</div>
  <h2>אוטם שקט והפרעות קצב</h2>
  <div class="num">
-  <div><b dir="ltr">65%</b><span>מהאוטמים אחרי ניתוח בלי תסמינים (מחקר <bdi>POISE</bdi>)</span></div>
+  <div><b dir="ltr">65%</b><span>מהאוטמים אחרי ניתוח בלי תסמינים (מחקר <span class="nw"><bdi>POISE</bdi>)</span></span></div>
   <div><b dir="ltr">48</b><span>שעות: רוב האירועים קורים בהן</span></div>
   <div><b dir="ltr">~12</b><span>ימים: חציון מאוטם עד מוות</span></div>
   <div><b dir="ltr">3</b><span>ימים: בהם מופיעים רוב פרפורי הפרוזדורים אחרי ניתוח</span></div>
@@ -273,10 +320,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>פגיעה חריפה בכליה ואצירת שתן</h2>
  <div class="grid">
   <div>
-   <div class="box n"><b class="t">הגדרה (<bdi>KDIGO</bdi>)</b>קריאטינין עולה ב-0.3 תוך 48 שעות, <b>או</b> פי 1.5 מהבסיס תוך 7 ימים, <b>או</b> שתן מתחת ל-0.5 מ״ל לק״ג לשעה במשך 6 שעות</div>
+   <div class="box n"><b class="t">הגדרה <span class="nw">(<bdi>KDIGO</bdi>)</span></b>קריאטינין עולה ב-0.3 תוך 48 שעות, <b>או</b> פי 1.5 מהבסיס תוך 7 ימים, <b>או</b> שתן מתחת ל-0.5 מ״ל לק״ג לשעה במשך 6 שעות</div>
    <ul class="b sm" style="margin-top:10px">
     <li><b>טרום-כלייתי:</b> דימום, התייבשות, תרופות, הרחבת כלי דם. הסיבה החשובה בחולה הכירורגי</li>
-    <li><b>כלייתי:</b> <bdi>NSAIDs</bdi>, אמינוגליקוזידים, חומר ניגוד, פירוק שריר</li>
+    <li><b>כלייתי:</b> <span class="nw"><bdi>NSAIDs</bdi>,</span> אמינוגליקוזידים, חומר ניגוד, פירוק שריר</li>
     <li><b>בתר-כלייתי:</b> חסימה</li>
     <li>מניעה: לחץ דם ממוצע מעל 65 בניתוח, שתן 0.5 מ״ל לק״ג לשעה, איזון נוזלים, התאמת תרופות</li>
    </ul>
@@ -296,9 +343,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div class="box"><b class="t">שיתוק מעי</b>
    <ul class="b sm"><li><span class="nw">ה-<bdi>small bowel</bdi></span> חוזר תוך שעות, <span class="nw">ה-<bdi>stomach</bdi></span> תוך <bdi dir="ltr">24–48</bdi> שעות <span class="nw">וה-<bdi>colon</bdi></span> תוך <bdi dir="ltr">3–5</bdi> ימים</li><li>בטן תפוחה, בלי גזים ובלי יציאות</li><li>נוזלים, תיקון אלקטרוליטים, הליכה, פחות אופיואידים, לפעמים זונדה</li><li>רגישות או גירוי צפק: לחפש סיבה אחרת</li></ul></div>
   <div class="box a"><b class="t">חסימה מכנית מוקדמת</b>
-   <ul class="b sm"><li>ב-6 השבועות הראשונים. הידבקויות: יותר <span class="nw">מ-<bdi dir="ltr">90%</bdi></span></li><li>כאב גלי, הקאות. <bdi>CT</bdi>: נקודת מעבר</li><li>חסימה חלקית: זונדה, נוזלים וחומר ניגוד במים. הגיע <span class="nw">ל-<bdi>colon</bdi></span> ב-8 שעות: מתחילים לאכול. לא הגיע ב-24: ניתוח</li><li>חשד לחניקה, לולאה סגורה או ניקוב: ניתוח</li></ul></div>
+   <ul class="b sm"><li>ב-6 השבועות הראשונים. הידבקויות: יותר <span class="nw">מ-<bdi dir="ltr">90%</bdi></span></li><li>כאב גלי, הקאות. <span class="nw"><bdi>CT</bdi>:</span> נקודת מעבר</li><li>חסימה חלקית: זונדה, נוזלים וחומר ניגוד במים. הגיע <span class="nw">ל-<bdi>colon</bdi></span> ב-8 שעות: מתחילים לאכול. לא הגיע ב-24: ניתוח</li><li>חשד לחניקה, לולאה סגורה או ניקוב: ניתוח</li></ul></div>
   <div class="box r"><b class="t"><bdi>C. difficile</bdi></b>
-   <ul class="b sm"><li>הסיבה השכיחה לשלשול בבית חולים. כמעט כל אנטיביוטיקה</li><li>3 יציאות רכות ומעלה ב-24 שעות: בדיקה</li><li>עוצרים את האנטיביוטיקה המעוררת. ונקומיצין 125 מ״ג 4 פעמים ביום, או פידקסומיצין, 10 ימים</li><li><b>רוחצים ידיים במים וסבון:</b> הנבגים עמידים לאלכוהול</li><li>פרפורציה, מגה-קולון רעלני, הלם: ניתוח</li></ul><figure style="margin-top:8px"><img src="img/pseudomembranous-colitis-endo.jpg" alt="קולונוסקופיה: פסאודוממברנות צהובות על רירית המעי" style="max-height:18vh"><figcaption>פסאודוממברנות בקולונוסקופיה · <bdi>Samir</bdi>, <bdi>CC BY 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure></div>
+   <ul class="b sm"><li>הסיבה השכיחה לשלשול בבית חולים. כמעט כל אנטיביוטיקה</li><li>3 יציאות רכות ומעלה ב-24 שעות: בדיקה</li><li>עוצרים את האנטיביוטיקה המעוררת. ונקומיצין 125 מ״ג 4 פעמים ביום, או פידקסומיצין, 10 ימים</li><li><b>רוחצים ידיים במים וסבון:</b> הנבגים עמידים לאלכוהול</li><li>פרפורציה, מגה-קולון רעלני, הלם: ניתוח</li></ul><figure style="margin-top:8px"><img src="img/pseudomembranous-colitis-endo.jpg" alt="קולונוסקופיה: פסאודוממברנות צהובות על רירית המעי" style="max-height:18vh"><figcaption>פסאודוממברנות בקולונוסקופיה · <span class="nw"><bdi>Samir</bdi>,</span> <span class="nw"><bdi>CC BY 3.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure></div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 26 עמ׳ <bdi dir="ltr">135–138</bdi></span><span>מעי</span></div>
 </div></section>
@@ -310,10 +357,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <ul class="b sm">
     <li>השקה טובה צריכה: טכניקה, אספקת דם טובה ובלי מתח</li>
-    <li>גורמי סיכון: השקה נמוכה <span class="nw">ב-<bdi>rectum</bdi></span>, השקה <span class="nw">ל-<bdi>pancreas</bdi></span>, אלח, הלם, ניתוח חירום, עירויי דם, תת-תזונה, עישון, סטרואידים, קרינה</li>
+    <li>גורמי סיכון: השקה נמוכה <span class="nw">ב-<bdi>rectum</bdi>,</span> השקה <span class="nw">ל-<bdi>pancreas</bdi>,</span> אלח, הלם, ניתוח חירום, עירויי דם, תת-תזונה, עישון, סטרואידים, קרינה</li>
     <li><b>סימנים:</b> חום, דופק מהיר, כאב בטן שמחמיר, שתן מועט, קוצר נשימה. לפעמים רק שיתוק מעי שלא חולף, או תוכן מעי בנקז או בפצע</li>
     <li>הסימנים לא ספציפיים. <b>חושדים מוקדם ובודקים:</b> עיכוב באבחנה מחמיר את התוצאה</li>
-    <li><bdi>CT</bdi>: נוזל ליד ההשקה (מעל 300 מ״ל), אוויר חופשי, עיבוי. לא תמיד רואים את חומר הניגוד יוצא</li>
+    <li><span class="nw"><bdi>CT</bdi>:</span> נוזל ליד ההשקה (מעל 300 מ״ל), אוויר חופשי, עיבוי. לא תמיד רואים את חומר הניגוד יוצא</li>
    </ul>
   </div>
   <div class="flow">
@@ -344,14 +391,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <g class="hzb" style="--c:#00967D"><circle cx="372" cy="1092" r="26.3"/><text x="372" y="1092">6</text></g>
  </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על איבר כדי לראות את הסיבוך שקשור אליו</p>
-   <div class="hzi" data-hzi="pa" hidden><b>1 · <bdi>Pancreas</bdi>: פיסטולה לבלבית</b><p>אחרי ניתוח <bdi>Whipple</bdi>: <bdi dir="ltr">10–15%</bdi>. אחרי כריתת זנב: <bdi dir="ltr">20–30%</bdi>. גורם הסיכון העקבי: <bdi>pancreas</bdi> רך. הסכנה הגדולה: דימום, עם תמותה של <bdi dir="ltr">20–50%</bdi>. דרגות <bdi>A</bdi>, <bdi>B</bdi> <span class="nw">ו-<bdi>C</bdi></span>. רובן מטופלות בניקוז, תזונה ואנטיביוטיקה</p></div>
-   <div class="hzi" data-hzi="du" hidden><b>2 · <bdi>Duodenum</bdi> ודרכי מרה</b><p>פגיעה <span class="nw">ב-<bdi>bile duct</bdi></span> בכריתת כיס מרה: כ-3 מכל 1,000. בלפרוסקופיה <bdi dir="ltr">0.2–0.8%</bdi>. הסיבה השכיחה: בלבול בין <span class="nw">ה-<bdi>common bile duct</bdi></span> <span class="nw">ל-<bdi>cystic duct</bdi></span>. מניעה: "המבט הקריטי של הבטיחות". פחות משליש מתגלות בזמן הניתוח</p></div>
-   <div class="hzi" data-hzi="kd" hidden><b>3 · <bdi>Kidneys</bdi>: פגיעה חריפה</b><p>שתן מתחת ל-0.5 מ״ל לק״ג לשעה או עלייה בקריאטינין. בחולה הכירורגי בעיקר מחוסר נפח. מאזן נוזלים, לחץ דם ממוצע מעל 65. בלי תרופות שפוגעות בכליה</p></div>
-   <div class="hzi" data-hzi="ivc" hidden><b>4 · <bdi>IVC</bdi>: הדרך לריאה</b><p>קריש מוורידי הרגל או האגן עולה <span class="nw">ב-<bdi>inferior vena cava (IVC)</bdi></span> <span class="nw">ל-<bdi>right heart</bdi></span> ולריאות. מניעה לפי סיכון, הליכה מוקדמת. קוצר נשימה פתאומי אחרי ניתוח: לחשוב על תסחיף</p></div>
-   <div class="hzi" data-hzi="sg" hidden><b>5 · <bdi>Colon</bdi>: דליפה מהשקה</b><p>חום, דופק מהיר וכאב שמחמיר אחרי כריתה עם השקה. <bdi>CT</bdi> מוקדם. ככל שההשקה נמוכה יותר <span class="nw">ב-<bdi>rectum</bdi></span>, הסיכון גבוה יותר</p></div>
-   <div class="hzi" data-hzi="bl" hidden><b>6 · <bdi>Bladder</bdi>: אצירת שתן</b><p>שכיחה אחרי ניתוחי בקע ומעי גס. אין הטלת שתן תוך <bdi dir="ltr">6–8</bdi> שעות: אולטרסאונד. 500 מ״ל ומעלה: צנתור</p></div>
+   <div class="hzi" data-hzi="pa" hidden><b>1 · <span class="nw"><bdi>Pancreas</bdi>:</span> פיסטולה לבלבית</b><p>אחרי ניתוח <span class="nw"><bdi>Whipple</bdi>:</span> <span class="nw"><bdi dir="ltr">10–15%</bdi>.</span> אחרי כריתת זנב: <span class="nw"><bdi dir="ltr">20–30%</bdi>.</span> גורם הסיכון העקבי: <bdi>pancreas</bdi> רך. הסכנה הגדולה: דימום, עם תמותה של <span class="nw"><bdi dir="ltr">20–50%</bdi>.</span> דרגות <span class="nw"><bdi>A</bdi>,</span> <bdi>B</bdi> <span class="nw">ו-<bdi>C</bdi>.</span> רובן מטופלות בניקוז, תזונה ואנטיביוטיקה</p></div>
+   <div class="hzi" data-hzi="du" hidden><b>2 · <bdi>Duodenum</bdi> ודרכי מרה</b><p>פגיעה <span class="nw">ב-<bdi>bile duct</bdi></span> בכריתת כיס מרה: כ-3 מכל 1,000. בלפרוסקופיה <span class="nw"><bdi dir="ltr">0.2–0.8%</bdi>.</span> הסיבה השכיחה: בלבול בין <span class="nw">ה-<bdi>common bile duct</bdi></span> <span class="nw">ל-<bdi>cystic duct</bdi>.</span> מניעה: "המבט הקריטי של הבטיחות". פחות משליש מתגלות בזמן הניתוח</p></div>
+   <div class="hzi" data-hzi="kd" hidden><b>3 · <span class="nw"><bdi>Kidneys</bdi>:</span> פגיעה חריפה</b><p>שתן מתחת ל-0.5 מ״ל לק״ג לשעה או עלייה בקריאטינין. בחולה הכירורגי בעיקר מחוסר נפח. מאזן נוזלים, לחץ דם ממוצע מעל 65. בלי תרופות שפוגעות בכליה</p></div>
+   <div class="hzi" data-hzi="ivc" hidden><b>4 · <span class="nw"><bdi>IVC</bdi>:</span> הדרך לריאה</b><p>קריש מוורידי הרגל או האגן עולה <span class="nw">ב-<bdi>inferior vena cava (IVC)</bdi></span> <span class="nw">ל-<bdi>right heart</bdi></span> ולריאות. מניעה לפי סיכון, הליכה מוקדמת. קוצר נשימה פתאומי אחרי ניתוח: לחשוב על תסחיף</p></div>
+   <div class="hzi" data-hzi="sg" hidden><b>5 · <span class="nw"><bdi>Colon</bdi>:</span> דליפה מהשקה</b><p>חום, דופק מהיר וכאב שמחמיר אחרי כריתה עם השקה. <bdi>CT</bdi> מוקדם. ככל שההשקה נמוכה יותר <span class="nw">ב-<bdi>rectum</bdi>,</span> הסיכון גבוה יותר</p></div>
+   <div class="hzi" data-hzi="bl" hidden><b>6 · <span class="nw"><bdi>Bladder</bdi>:</span> אצירת שתן</b><p>שכיחה אחרי ניתוחי בקע ומעי גס. אין הטלת שתן תוך <bdi dir="ltr">6–8</bdi> שעות: אולטרסאונד. 500 מ״ל ומעלה: צנתור</p></div>
   </div></div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 26 עמ׳ <bdi dir="ltr">131, 134–135, 138, 140–141</bdi></span><span>איור: <bdi>Sobotta</bdi>, 1906, איור 413 (נחלת הכלל, חתוך)</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 26 עמ׳ <bdi dir="ltr">131, 134–135, 138, 140–141</bdi></span><span>איור: <span class="nw"><bdi>Sobotta</bdi>,</span> 1906, איור 413 (נחלת הכלל, חתוך)</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -367,7 +414,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <ul class="b sm">
     <li><b>הגדרה:</b> 30 יום אחרי הניתוח, 90 אם הושתל שתל. שטחי (עור ושומן), עמוק (פאציה ושריר), או בחלל ובאיבר</li>
-    <li><b>לפי סוג הפצע:</b> נקי <bdi dir="ltr">1–5%</bdi>, נקי-מזוהם <bdi dir="ltr">3–11%</bdi>, מזוהם <bdi dir="ltr">10–17%</bdi>, מלוכלך מעל <bdi dir="ltr">27%</bdi></li>
+    <li><b>לפי סוג הפצע:</b> נקי <span class="nw"><bdi dir="ltr">1–5%</bdi>,</span> נקי-מזוהם <span class="nw"><bdi dir="ltr">3–11%</bdi>,</span> מזוהם <span class="nw"><bdi dir="ltr">10–17%</bdi>,</span> מלוכלך מעל <bdi dir="ltr">27%</bdi></li>
     <li><b>מניעה:</b> אנטיביוטיקה בתוך 60 דקות לפני החתך ועוצרים בסגירה, כלורהקסידין עם אלכוהול, קוצץ ולא סכין גילוח, חום גוף מעל 36, סוכר מאוזן, גמילה מעישון, מגן פצע, החלפת כפפות ומכשירים לפני סגירה</li>
    </ul>
   </div>
@@ -406,11 +453,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div class="study"><div class="y"><bdi>Ann Surg</bdi> 2024 · קונצנזוס</div><b><bdi>Clavien-Dindo</bdi> בגיל 20</b>
    <p>1,327 מחקרים אקראיים כבר השתמשו בסיווג, אבל רק שליש דיווחו את כל הדרגות. 89 מנתחים דירגו 20 מקרים קשים. ההמלצה: סופרים בנפרד כל התערבות חוזרת, כל סיבוך שגורר סיבוך וכל סיבוך צפוי או לא קשור. פעולה אבחנתית שלא מצאה כלום אינה סיבוך</p>
    <small>Abbassi F et al. Ann Surg 2024;280:763-71</small></div>
-  <div class="study"><div class="y"><bdi>Lancet Gastroenterol Hepatol</bdi> 2025 · מחקר אקראי</div><b><bdi>IntAct</bdi>: צבע פלואורסצנטי נגד דליפה</b>
-   <p>766 מטופלים בניתוחי רקטום. בדיקת אספקת הדם להשקה <span class="nw">ב-<bdi>ICG</bdi></span>: דליפה קלינית <span class="nw">ב-<bdi dir="ltr">10%</bdi></span> לעומת <bdi dir="ltr">15%</bdi>, אבל ההבדל לא מובהק</p>
+  <div class="study"><div class="y"><bdi>Lancet Gastroenterol Hepatol</bdi> 2025 · מחקר אקראי</div><b><span class="nw"><bdi>IntAct</bdi>:</span> צבע פלואורסצנטי נגד דליפה</b>
+   <p>766 מטופלים בניתוחי רקטום. בדיקת אספקת הדם להשקה <span class="nw">ב-<bdi>ICG</bdi>:</span> דליפה קלינית <span class="nw">ב-<bdi dir="ltr">10%</bdi></span> לעומת <span class="nw"><bdi dir="ltr">15%</bdi>,</span> אבל ההבדל לא מובהק</p>
    <small>Jayne D et al. Lancet Gastroenterol Hepatol 2025;10:806-17</small></div>
-  <div class="study"><div class="y"><bdi>Clin Infect Dis</bdi> 2021 · הנחיה</div><b><bdi>IDSA/SHEA</bdi>: טיפול <span class="nw">ב-<bdi>C. difficile</bdi></span></b>
-   <p>בהתקף הראשון ובהתקף חוזר מציעים פידקסומיצין על פני ונקומיצין (המלצה מותנית). בסיכון גבוה לחזרה: אפשר להוסיף נוגדן (<bdi>bezlotoxumab</bdi>)</p>
+  <div class="study"><div class="y"><bdi>Clin Infect Dis</bdi> 2021 · הנחיה</div><b><span class="nw"><bdi>IDSA/SHEA</bdi>:</span> טיפול <span class="nw">ב-<bdi>C. difficile</bdi></span></b>
+   <p>בהתקף הראשון ובהתקף חוזר מציעים פידקסומיצין על פני ונקומיצין (המלצה מותנית). בסיכון גבוה לחזרה: אפשר להוסיף נוגדן <span class="nw">(<bdi>bezlotoxumab</bdi>)</span></p>
    <small>Johnson S et al. Clin Infect Dis 2021;73:e1029-44</small></div>
  </div>
  <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
@@ -426,8 +473,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>שתן, ריאות, רגליים ובלבול: לבדוק כל יום בכל מטופל</li>
   <li>רוב הסיבוכים אפשר למנוע או לתפוס מוקדם: הליכה, נשימות, מניעת קרישים ואנטיביוטיקה בזמן</li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 26 <bdi>Surgical Complications: Overview and Grading</bdi> (עמ׳ <bdi dir="ltr">126–142</bdi>) · פרק 25 <bdi>Surgical Site Infections</bdi> (עמ׳ <bdi dir="ltr">118–124</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Sobotta</bdi> 1906 (נחלת הכלל) · צילום חזה: <bdi>Hellerhoff</bdi> (<bdi>CC BY-SA 3.0</bdi>) · אנדוסקופיה: <bdi>Samir</bdi> (<bdi>CC BY 3.0</bdi>) · <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 26 <bdi>Surgical Complications: Overview and Grading</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">126–142</bdi>)</span> · פרק 25 <bdi>Surgical Site Infections</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">118–124</bdi>)</span></div>
+ <div class="src"><span>איורים: <bdi>Sobotta</bdi> 1906 (נחלת הכלל) · צילום חזה: <bdi>Hellerhoff</bdi> <span class="nw">(<bdi>CC BY-SA 3.0</bdi>)</span> · אנדוסקופיה: <bdi>Samir</bdi> <span class="nw">(<bdi>CC BY 3.0</bdi>)</span> · <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>
@@ -449,5 +496,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>

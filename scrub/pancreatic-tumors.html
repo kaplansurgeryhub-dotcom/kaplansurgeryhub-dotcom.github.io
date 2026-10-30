@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>גידולי לבלב · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -82,7 +82,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -112,9 +112,56 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -143,7 +190,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>לתאר את ניתוח וויפל ואת כריתת הלבלב הדיסטלית. להכיר את הסיבוכים העיקריים אחריהם</li>
   <li>להכיר בקצרה את הגידולים הנוירואנדוקריניים של הלבלב ומתי מנתחים אותם</li>
  </ol>
- <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 93 (עמ׳ <bdi dir="ltr">1401–1413</bdi>) · פרק 76 (עמ׳ <bdi dir="ltr">1019–1034</bdi>)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 93 (עמ׳ <span class="nw"><bdi dir="ltr">1401–1413</bdi>)</span> · פרק 76 (עמ׳ <span class="nw"><bdi dir="ltr">1019–1034</bdi>)</span></span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -160,15 +207,15 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <h3>גורמי סיכון נרכשים</h3>
    <ul class="b sm">
     <li><b>עישון:</b> סיכוי גבוה פי 1.74</li>
-    <li><b>השמנה</b> (<bdi>BMI</bdi> מעל 30): פי 1.72. גם שתייה כבדה של אלכוהול</li>
+    <li><b>השמנה</b> <span class="nw">(<bdi>BMI</bdi></span> מעל 30): פי 1.72. גם שתייה כבדה של אלכוהול</li>
     <li><b>סוכרת חדשה עם ירידה במשקל:</b> סיכון גבוה פי 6.75. סימן אזהרה במבוגר</li>
    </ul>
   </div>
   <div>
    <h3>סיכון תורשתי</h3>
    <ul class="b sm">
-    <li>תסמונות שד-שחלה (<bdi>BRCA1</bdi>, <bdi>BRCA2</bdi>, <bdi>PALB2</bdi>), מלנומה משפחתית (<bdi>CDKN2A</bdi>), פויץ-ייגרס</li>
-    <li>דלקת לבלב תורשתית (<bdi>PRSS1</bdi>): סיכון של 50% עד גיל 75</li>
+    <li>תסמונות שד-שחלה <span class="nw">(<bdi>BRCA1</bdi>,</span> <span class="nw"><bdi>BRCA2</bdi>,</span> <span class="nw"><bdi>PALB2</bdi>),</span> מלנומה משפחתית <span class="nw">(<bdi>CDKN2A</bdi>),</span> פויץ-ייגרס</li>
+    <li>דלקת לבלב תורשתית <span class="nw">(<bdi>PRSS1</bdi>):</span> סיכון של 50% עד גיל 75</li>
     <li>לכל חולה: היסטוריה משפחתית מלאה וייעוץ גנטי, בכל גיל ובכל שלב</li>
    </ul>
   </div>
@@ -200,18 +247,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <g class="hzb" style="--c:#8E44AD"><circle cx="1242" cy="912" r="26"/><text x="1242" y="912">9</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="head" hidden><b><bdi dir="ltr">pancreatic head</bdi></b><p>יושב בתוך לולאת ה-C של <span class="nw">ה-<bdi dir="ltr">duodenum</bdi></span>. כאן נמצאים רוב הגידולים. לכן הסימן הראשון הוא לעיתים קרובות צהבת: הגידול לוחץ על <span class="nw">ה-<bdi dir="ltr">CBD</bdi></span> שעובר בתוך <span class="nw">ה-<bdi dir="ltr">head</bdi></span>. הניתוח: וויפל.</p></div>
-  <div class="hzi" data-hzi="body" hidden><b><bdi dir="ltr">neck</bdi> <span class="nw">ו-<bdi dir="ltr">body</bdi></span></b><p><span class="nw">ה-<bdi dir="ltr">neck</bdi></span> מונח ישירות מעל <span class="nw">ה-<bdi dir="ltr">SMV</bdi></span>. בוויפל חותכים את <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span> בגובה הזה. <span class="nw">ה-<bdi dir="ltr">body</bdi></span> חוצה את קו האמצע לפני <span class="nw">ה-<bdi dir="ltr">aorta</bdi></span>, קרוב <span class="nw">ל-<bdi dir="ltr">celiac trunk</bdi></span> <span class="nw">ול-<bdi dir="ltr">common hepatic artery</bdi></span>. לכן גידול <span class="nw">ב-<bdi dir="ltr">body</bdi></span> הוא לעיתים קרובות מתקדם מקומית.</p></div>
-  <div class="hzi" data-hzi="tail" hidden><b><bdi dir="ltr">tail</bdi></b><p>מסתיים <span class="nw">ב-<bdi dir="ltr">splenic hilum</bdi></span>. גידול <span class="nw">ב-<bdi dir="ltr">tail</bdi></span> או <span class="nw">ב-<bdi dir="ltr">distal body</bdi></span> מטופל בכריתה דיסטלית, לרוב יחד עם <span class="nw">ה-<bdi dir="ltr">spleen</bdi></span>.</p></div>
-  <div class="hzi" data-hzi="duod" hidden><b><bdi dir="ltr">duodenum</bdi></b><p>לולאת ה-C שעוטפת את <span class="nw">ה-<bdi dir="ltr">head</bdi></span>. בוויפל מוציאים אותו יחד עם <span class="nw">ה-<bdi dir="ltr">pancreatic head</bdi></span>. גידול גדול <span class="nw">ב-<bdi dir="ltr">head</bdi></span> יכול לחסום אותו ולגרום להקאות קשות.</p></div>
-  <div class="hzi" data-hzi="cbd" hidden><b><bdi dir="ltr">common bile duct</bdi> (<bdi dir="ltr">CBD</bdi>)</b><p>יורד מאחורי <span class="nw">ה-<bdi dir="ltr">duodenum</bdi></span> אל תוך <span class="nw">ה-<bdi dir="ltr">pancreatic head</bdi></span>. חסימה שלו בגידול גורמת לצהבת שקטה והדרגתית. בוויפל חותכים אותו מעל <span class="nw">ה-<bdi dir="ltr">cystic duct</bdi></span>. <span class="nw">ה-<bdi dir="ltr">gallbladder</bdi></span> יוצא עם הדגימה.</p></div>
-  <div class="hzi" data-hzi="smv" hidden><b><bdi dir="ltr">superior mesenteric vein</bdi> (<bdi dir="ltr">SMV</bdi>)</b><p>עובר מאחורי <span class="nw">ה-<bdi dir="ltr">pancreatic neck</bdi></span> ומצטרף <span class="nw">ל-<bdi dir="ltr">splenic vein</bdi></span> ליצירת <span class="nw">ה-<bdi dir="ltr">portal vein</bdi></span>. מגע של הגידול בווריד עדיין מאפשר ניתוח אם אפשר לכרות ולשחזר אותו.</p></div>
-  <div class="hzi" data-hzi="sma" hidden><b><bdi dir="ltr">superior mesenteric artery</bdi> (<bdi dir="ltr">SMA</bdi>)</b><p>מגע של עד 180 מעלות מהיקף העורק: מחלה גבולית. עטיפה של יותר מ-180 מעלות: מתקדמת מקומית. בשלב האחרון של הוויפל מפרידים את הדגימה מהדופן הימנית שלו.</p></div>
-  <div class="hzi" data-hzi="cel" hidden><b><bdi dir="ltr">celiac trunk</bdi> <span class="nw">ו-<bdi dir="ltr">common hepatic artery</bdi></span></b><p><span class="nw">ה-<bdi dir="ltr">common hepatic artery</bdi></span> נותן את <span class="nw">ה-<bdi dir="ltr">gastroduodenal artery</bdi></span> (<bdi dir="ltr">GDA</bdi>), שמספק את <span class="nw">ה-<bdi dir="ltr">pancreatic head</bdi></span>. בוויפל קושרים את <span class="nw">ה-<bdi dir="ltr">GDA</bdi></span> ומכסים את הגדם. עטיפה של <span class="nw">ה-<bdi dir="ltr">celiac trunk</bdi></span> ביותר מ-180 מעלות: מחלה מתקדמת מקומית.</p></div>
-  <div class="hzi" data-hzi="spl" hidden><b><bdi dir="ltr">spleen</bdi></b><p>בכריתה דיסטלית אפשר לפעמים לשמר אותו: מפרידים את <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span> <span class="nw">מה-<bdi dir="ltr">splenic vessels</bdi></span>, או חותכים את <span class="nw">ה-<bdi dir="ltr">splenic vessels</bdi></span> ומשאירים את <span class="nw">ה-<bdi dir="ltr">short gastric vessels</bdi></span>.</p></div>
+  <div class="hzi" data-hzi="head" hidden><b><bdi dir="ltr">pancreatic head</bdi></b><p>יושב בתוך לולאת ה-C של <span class="nw">ה-<bdi dir="ltr">duodenum</bdi>.</span> כאן נמצאים רוב הגידולים. לכן הסימן הראשון הוא לעיתים קרובות צהבת: הגידול לוחץ על <span class="nw">ה-<bdi dir="ltr">CBD</bdi></span> שעובר בתוך <span class="nw">ה-<bdi dir="ltr">head</bdi>.</span> הניתוח: וויפל.</p></div>
+  <div class="hzi" data-hzi="body" hidden><b><bdi dir="ltr">neck</bdi> <span class="nw">ו-<bdi dir="ltr">body</bdi></span></b><p><span class="nw">ה-<bdi dir="ltr">neck</bdi></span> מונח ישירות מעל <span class="nw">ה-<bdi dir="ltr">SMV</bdi>.</span> בוויפל חותכים את <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span> בגובה הזה. <span class="nw">ה-<bdi dir="ltr">body</bdi></span> חוצה את קו האמצע לפני <span class="nw">ה-<bdi dir="ltr">aorta</bdi>,</span> קרוב <span class="nw">ל-<bdi dir="ltr">celiac trunk</bdi></span> <span class="nw">ול-<bdi dir="ltr">common hepatic artery</bdi>.</span> לכן גידול <span class="nw">ב-<bdi dir="ltr">body</bdi></span> הוא לעיתים קרובות מתקדם מקומית.</p></div>
+  <div class="hzi" data-hzi="tail" hidden><b><bdi dir="ltr">tail</bdi></b><p>מסתיים <span class="nw">ב-<bdi dir="ltr">splenic hilum</bdi>.</span> גידול <span class="nw">ב-<bdi dir="ltr">tail</bdi></span> או <span class="nw">ב-<bdi dir="ltr">distal body</bdi></span> מטופל בכריתה דיסטלית, לרוב יחד עם <span class="nw">ה-<bdi dir="ltr">spleen</bdi>.</span></p></div>
+  <div class="hzi" data-hzi="duod" hidden><b><bdi dir="ltr">duodenum</bdi></b><p>לולאת ה-C שעוטפת את <span class="nw">ה-<bdi dir="ltr">head</bdi>.</span> בוויפל מוציאים אותו יחד עם <span class="nw">ה-<bdi dir="ltr">pancreatic head</bdi>.</span> גידול גדול <span class="nw">ב-<bdi dir="ltr">head</bdi></span> יכול לחסום אותו ולגרום להקאות קשות.</p></div>
+  <div class="hzi" data-hzi="cbd" hidden><b><bdi dir="ltr">common bile duct</bdi> <span class="nw">(<bdi dir="ltr">CBD</bdi>)</span></b><p>יורד מאחורי <span class="nw">ה-<bdi dir="ltr">duodenum</bdi></span> אל תוך <span class="nw">ה-<bdi dir="ltr">pancreatic head</bdi>.</span> חסימה שלו בגידול גורמת לצהבת שקטה והדרגתית. בוויפל חותכים אותו מעל <span class="nw">ה-<bdi dir="ltr">cystic duct</bdi>.</span> <span class="nw">ה-<bdi dir="ltr">gallbladder</bdi></span> יוצא עם הדגימה.</p></div>
+  <div class="hzi" data-hzi="smv" hidden><b><bdi dir="ltr">superior mesenteric vein</bdi> <span class="nw">(<bdi dir="ltr">SMV</bdi>)</span></b><p>עובר מאחורי <span class="nw">ה-<bdi dir="ltr">pancreatic neck</bdi></span> ומצטרף <span class="nw">ל-<bdi dir="ltr">splenic vein</bdi></span> ליצירת <span class="nw">ה-<bdi dir="ltr">portal vein</bdi>.</span> מגע של הגידול בווריד עדיין מאפשר ניתוח אם אפשר לכרות ולשחזר אותו.</p></div>
+  <div class="hzi" data-hzi="sma" hidden><b><bdi dir="ltr">superior mesenteric artery</bdi> <span class="nw">(<bdi dir="ltr">SMA</bdi>)</span></b><p>מגע של עד 180 מעלות מהיקף העורק: מחלה גבולית. עטיפה של יותר מ-180 מעלות: מתקדמת מקומית. בשלב האחרון של הוויפל מפרידים את הדגימה מהדופן הימנית שלו.</p></div>
+  <div class="hzi" data-hzi="cel" hidden><b><bdi dir="ltr">celiac trunk</bdi> <span class="nw">ו-<bdi dir="ltr">common hepatic artery</bdi></span></b><p><span class="nw">ה-<bdi dir="ltr">common hepatic artery</bdi></span> נותן את <span class="nw">ה-<bdi dir="ltr">gastroduodenal artery</bdi></span> <span class="nw">(<bdi dir="ltr">GDA</bdi>),</span> שמספק את <span class="nw">ה-<bdi dir="ltr">pancreatic head</bdi>.</span> בוויפל קושרים את <span class="nw">ה-<bdi dir="ltr">GDA</bdi></span> ומכסים את הגדם. עטיפה של <span class="nw">ה-<bdi dir="ltr">celiac trunk</bdi></span> ביותר מ-180 מעלות: מחלה מתקדמת מקומית.</p></div>
+  <div class="hzi" data-hzi="spl" hidden><b><bdi dir="ltr">spleen</bdi></b><p>בכריתה דיסטלית אפשר לפעמים לשמר אותו: מפרידים את <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span> <span class="nw">מה-<bdi dir="ltr">splenic vessels</bdi>,</span> או חותכים את <span class="nw">ה-<bdi dir="ltr">splenic vessels</bdi></span> ומשאירים את <span class="nw">ה-<bdi dir="ltr">short gastric vessels</bdi>.</span></p></div>
  </div></div>
 
- <p style="font-size:12px;color:var(--muted);margin:6px 0 0"><bdi dir="ltr">pancreas</bdi>, <bdi dir="ltr">duodenum</bdi> והעורקים והוורידים שסביבם, מבט מלפנים · <bdi>Sobotta</bdi>, <bdi>Atlas and Text-book of Human Anatomy</bdi> (1906), איור 393 (נחלת הכלל)</p>
+ <p style="font-size:12px;color:var(--muted);margin:6px 0 0"><span class="nw"><bdi dir="ltr">pancreas</bdi>,</span> <bdi dir="ltr">duodenum</bdi> והעורקים והוורידים שסביבם, מבט מלפנים · <span class="nw"><bdi>Sobotta</bdi>,</span> <bdi>Atlas and Text-book of Human Anatomy</bdi> (1906), איור 393 (נחלת הכלל)</p>
  <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1374</bdi> · פרק 93 עמ׳ <bdi dir="ltr">1404–1406, 1408–1412</bdi> · פרק 76 עמ׳ <bdi dir="ltr">1028</bdi></span><span>אנטומיה</span></div>
 </div></section>
 
@@ -222,9 +269,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <h3>נגעים מקדימים</h3>
    <ul class="b sm">
-    <li><b>PanIN</b> (נגע תוך-אפיתליאלי מיקרוסקופי בצינורות): המקור לרוב הגידולים. נמצא <span class="nw">ב-<bdi dir="ltr">pancreas</bdi></span> ביותר מ-75% מהנתיחות. רובם לא יתקדמו</li>
-    <li><b>IPMN:</b> פחות מ-10% מהגידולים. ציסטה שמחוברת לצינורות</li>
-    <li><b>MCN:</b> הנדיר ביותר. בנשים, <span class="nw">ב-<bdi dir="ltr">body</bdi></span> <span class="nw">וב-<bdi dir="ltr">tail</bdi></span>, עם סטרומה דמוית שחלה</li>
+    <li><b><bdi dir="ltr">PanIN</bdi></b> (נגע תוך-אפיתליאלי מיקרוסקופי בצינורות): המקור לרוב הגידולים. נמצא <span class="nw">ב-<bdi dir="ltr">pancreas</bdi></span> ביותר מ-75% מהנתיחות. רובם לא יתקדמו</li>
+    <li><b><span class="nw"><bdi dir="ltr">IPMN</bdi>:</span></b> פחות מ-10% מהגידולים. ציסטה שמחוברת לצינורות</li>
+    <li><b><span class="nw"><bdi dir="ltr">MCN</bdi>:</span></b> הנדיר ביותר. בנשים, <span class="nw">ב-<bdi dir="ltr">body</bdi></span> <span class="nw">וב-<bdi dir="ltr">tail</bdi>,</span> עם סטרומה דמוית שחלה</li>
    </ul>
   </div>
   <div>
@@ -232,7 +279,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <ul class="b sm">
     <li>מוטציה <span class="nw">ב-<bdi>KRAS</bdi></span> ביותר מ-90%. גם <bdi>TP53</bdi> (50–70%), <bdi>CDKN2A</bdi> (40–60%) <span class="nw">ו-<bdi>SMAD4</bdi></span> (כשליש)</li>
     <li>סטרומה דסמופלסטית צפופה: פחות מ-10% מהתאים בגידול ממאירים</li>
-    <li>גרורות בעיקר <span class="nw">ל-<bdi dir="ltr">liver</bdi></span> <span class="nw">ול-<bdi dir="ltr">peritoneum</bdi></span>. גרורות בריאות בלבד: פרוגנוזה טובה יותר</li>
+    <li>גרורות בעיקר <span class="nw">ל-<bdi dir="ltr">liver</bdi></span> <span class="nw">ול-<bdi dir="ltr">peritoneum</bdi>.</span> גרורות בריאות בלבד: פרוגנוזה טובה יותר</li>
    </ul>
   </div>
  </div>
@@ -246,8 +293,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div>
    <ul class="b">
-    <li>רוב הגידולים <span class="nw">ב-<bdi dir="ltr">pancreatic head</bdi></span>. השלישייה: <b>צהבת, כאב באפיגסטריום או בגב וירידה במשקל</b></li>
-    <li>הצהבת <b>הדרגתית ובלי כאב</b>, לרוב בלי כולנגיטיס. שונה מאבן <span class="nw">ב-<bdi dir="ltr">CBD</bdi></span>: חדה, כואבת ולעיתים עם חום</li>
+    <li>רוב הגידולים <span class="nw">ב-<bdi dir="ltr">pancreatic head</bdi>.</span> השלישייה: <b>צהבת, כאב באפיגסטריום או בגב וירידה במשקל</b></li>
+    <li>הצהבת <b>הדרגתית ובלי כאב</b>, לרוב בלי כולנגיטיס. שונה מאבן <span class="nw">ב-<bdi dir="ltr">CBD</bdi>:</span> חדה, כואבת ולעיתים עם חום</li>
     <li>שלשול שומני (אי-ספיקה אקסוקרינית), גרד</li>
     <li>בחילות והקאות קשות: חסימה של מוצא הקיבה</li>
     <li>כ-40% מגיעים עם <b>סוכרת חדשה</b> וירידה במשקל</li>
@@ -256,7 +303,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div style="display:grid;gap:10px">
    <div class="box n"><b class="t">בבדיקה הגופנית</b>לרוב תקינה. בלוטה מוגדלת סביב <span class="nw">ה-<bdi dir="ltr">umbilicus</bdi></span> או בלוטה <bdi dir="ltr">supraclavicular</bdi> משמאל מרמזת על גרורות</div>
    <div class="box"><b class="t">באנמנזה</b>תמיד היסטוריה משפחתית: סרטן לבלב, שד, שחלה, מעי גס או מלנומה</div>
-   <div class="box b"><b class="t">במחלקה השבוע</b>מצאו מטופל עם צהבת או גוש <span class="nw">ב-<bdi dir="ltr">pancreas</bdi></span>. קחו אנמנזה ממוקדת (משקל, סוכרת, צואה, משפחה), עברו איתו על ה-CT והציגו לבכיר/ה את השלב לפי היחס לכלי הדם</div>
+   <div class="box b"><b class="t">במחלקה השבוע</b>מצאו מטופל עם צהבת או גוש <span class="nw">ב-<bdi dir="ltr">pancreas</bdi>.</span> קחו אנמנזה ממוקדת (משקל, סוכרת, צואה, משפחה), עברו איתו על ה-CT והציגו לבכיר/ה את השלב לפי היחס לכלי הדם</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 93 עמ׳ <bdi dir="ltr">1403–1404</bdi></span><span>הופעה קלינית</span></div>
@@ -266,9 +313,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>6</b>איך זה נראה</div>
  <h2>מה רואים ב-CT, בחדר הניתוח ובפתולוגיה</h2>
  <div class="grid g3">
-  <figure><img src="img/pdac-ct.png" alt="CT של גידול ב-pancreas"><figcaption>CT עם חומר ניגוד: גוש היפודנסי (כהה <span class="nw">מה-<bdi dir="ltr">pancreas</bdi></span> התקין) <span class="nw">ב-<bdi dir="ltr">pancreatic body</bdi></span>, סביב כלי הדם · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/pdac-ct.png" alt="CT של גידול ב-pancreas"><figcaption>CT עם חומר ניגוד: גוש היפודנסי (כהה <span class="nw">מה-<bdi dir="ltr">pancreas</bdi></span> התקין) <span class="nw">ב-<bdi dir="ltr">pancreatic body</bdi>,</span> סביב כלי הדם · <span class="nw"><bdi>Hellerhoff</bdi>,</span> <span class="nw"><bdi>CC BY-SA 3.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
   <figure><img src="img/pdac-whipple-specimen.jpg" alt="דגימת וויפל עם גידול ב-pancreatic head"><figcaption>דגימת וויפל: <bdi dir="ltr">duodenum</bdi> (משמאל, עם קפלי הרירית) וגידול לבן וקשה <span class="nw">ב-<bdi dir="ltr">pancreatic head</bdi></span> · <bdi>AFIP</bdi> (נחלת הכלל)</figcaption></figure>
-  <figure><img src="img/pdac-liver-mets.jpg" alt="גרורות ב-liver"><figcaption>גרורות מסרטן לבלב <span class="nw">ב-<bdi dir="ltr">liver</bdi></span>, כפי שהמנתח רואה אותן בפתיחת הבטן. בגלל זה עושים לפרוסקופיה לפני וויפל · <bdi>AFIP</bdi> (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/pdac-liver-mets.jpg" alt="גרורות ב-liver"><figcaption>גרורות מסרטן לבלב <span class="nw">ב-<bdi dir="ltr">liver</bdi>,</span> כפי שהמנתח רואה אותן בפתיחת הבטן. בגלל זה עושים לפרוסקופיה לפני וויפל · <bdi>AFIP</bdi> (נחלת הכלל)</figcaption></figure>
  </div>
  <div class="box a" style="margin-top:12px"><b class="t">שימו לב בצילום</b>הגידול נראה כהה (נצבע פחות) לעומת <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span> התקין. השלב העורקי המאוחר מראה אותו הכי טוב. השלב הוורידי מראה את הוורידים ואת הגרורות <span class="nw">ב-<bdi dir="ltr">liver</bdi></span></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 93 עמ׳ <bdi dir="ltr">1403–1404, 1408</bdi></span><span>תמונות</span></div>
@@ -279,10 +326,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>הסדר חשוב: קודם CT</h2>
  <div class="flow">
   <div><b>1 · CT בפרוטוקול לבלב</b><span>חתכים של 1 מ״מ, שלב עורקי מאוחר ושלב ורידי, יחד עם CT חזה. <b>לפני כל ERCP או סטנט</b>: דלקת אחרי ERCP (כ-4%) מטשטשת את היחס בין הגידול לכלי הדם ומשבשת את השלב</span></div>
-  <div><b>מה מחפשים</b><span>גוש <span class="nw">ב-<bdi dir="ltr">pancreatic head</bdi></span>, <b>סימן שני הצינורות</b> (<bdi dir="ltr">bile duct</bdi> <span class="nw">ו-<bdi dir="ltr">pancreatic duct</bdi></span> מורחבים) ואטרופיה של <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span> הדיסטלי. בלעדיהם לחשוב על גידול אחר באזור <span class="nw">ה-<bdi dir="ltr">papilla</bdi></span></span></div>
+  <div><b>מה מחפשים</b><span>גוש <span class="nw">ב-<bdi dir="ltr">pancreatic head</bdi>,</span> <b>סימן שני הצינורות</b> <span class="nw">(<bdi dir="ltr">bile duct</bdi></span> <span class="nw">ו-<bdi dir="ltr">pancreatic duct</bdi></span> מורחבים) ואטרופיה של <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span> הדיסטלי. בלעדיהם לחשוב על גידול אחר באזור <span class="nw">ה-<bdi dir="ltr">papilla</bdi></span></span></div>
   <div><b>2 · אבחנה רקמתית</b><span><bdi>EUS</bdi> עם דגימה במחט. עדיף על ביופסיה מלעורית בהכוונת CT, שאחריה דווח על פיזור <span class="nw">ל-<bdi dir="ltr">peritoneum</bdi></span> בעד 16%</span></div>
   <div><b>3 · ניקוז המרה</b><span>באותה בדיקה: סטנט <b>מתכתי לא מצופה</b>. נשאר פתוח יותר זמן (104 לעומת 83 יום) ועם פחות סיבוכים (12% לעומת 35%) מסטנט פלסטיק</span></div>
-  <div><b>4 · מעבדה</b><span>ספירה, כימיה, אלבומין, <bdi>HbA1c</bdi>, <bdi>CA 19-9</bdi>, <bdi>CEA</bdi> <span class="nw">ו-<bdi>CA 125</bdi></span></span></div>
+  <div><b>4 · מעבדה</b><span>ספירה, כימיה, אלבומין, <span class="nw"><bdi>HbA1c</bdi>,</span> <span class="nw"><bdi>CA 19-9</bdi>,</span> <bdi>CEA</bdi> <span class="nw">ו-<bdi>CA 125</bdi></span></span></div>
  </div>
  <div class="box a" style="margin-top:12px"><b class="t"><bdi>CA 19-9</bdi></b>מוגבר בכ-75% מהחולים. בצהבת הוא מוגבר באופן כוזב. לכן מפרשים אותו רק כשהבילירובין מתחת ל-2 מ״ג/ד״ל. המגמה לאורך הטיפול חשובה יותר מערך בודד</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 93 עמ׳ <bdi dir="ltr">1404, 1406–1407</bdi></span><span>בירור</span></div>
@@ -291,11 +338,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>8</b>שלב קליני</div>
  <h2>הכול תלוי בכלי הדם</h2>
- <p class="lead" style="margin-bottom:10px"><b>מגע (<bdi>abutment</bdi>):</b> הגידול נוגע בעד 180 מעלות מהיקף כלי הדם. <b>עטיפה (<bdi>encasement</bdi>):</b> יותר מ-180 מעלות</p>
+ <p class="lead" style="margin-bottom:10px"><b>מגע <span class="nw">(<bdi>abutment</bdi>):</span></b> הגידול נוגע בעד 180 מעלות מהיקף כלי הדם. <b>עטיפה <span class="nw">(<bdi>encasement</bdi>):</span></b> יותר מ-180 מעלות</p>
  <div class="grid">
-  <div class="box"><b class="t">נתיח</b>אין מגע <span class="nw">ב-<bdi dir="ltr">SMA</bdi></span>, <span class="nw">ב-<bdi dir="ltr">celiac trunk</bdi></span> או <span class="nw">ב-<bdi dir="ltr">common hepatic artery</bdi></span> (שכבת שומן שמורה). מגע מוגבל בלבד <span class="nw">ב-<bdi dir="ltr">SMV</bdi></span> <span class="nw">וב-<bdi dir="ltr">portal vein</bdi></span></div>
-  <div class="box a"><b class="t">נתיח גבולית</b>מגע של עד 180 מעלות <span class="nw">ב-<bdi dir="ltr">SMA</bdi></span> או <span class="nw">ב-<bdi dir="ltr">celiac trunk</bdi></span>. מגע או עטיפה של קטע קצר <span class="nw">ב-<bdi dir="ltr">common hepatic artery</bdi></span>, בדרך כלל ביציאת <span class="nw">ה-<bdi dir="ltr">GDA</bdi></span>. חסימה של הווריד שאפשר לשחזר</div>
-  <div class="box r"><b class="t">מתקדם מקומית</b>עטיפה של יותר מ-180 מעלות של <span class="nw">ה-<bdi dir="ltr">SMA</bdi></span> או של <span class="nw">ה-<bdi dir="ltr">celiac trunk</bdi></span>. חסימה של הווריד בלי אפשרות לשחזר</div>
+  <div class="box"><b class="t">נתיח</b>אין מגע <span class="nw">ב-<bdi dir="ltr">SMA</bdi>,</span> <span class="nw">ב-<bdi dir="ltr">celiac trunk</bdi></span> או <span class="nw">ב-<bdi dir="ltr">common hepatic artery</bdi></span> (שכבת שומן שמורה). מגע מוגבל בלבד <span class="nw">ב-<bdi dir="ltr">SMV</bdi></span> <span class="nw">וב-<bdi dir="ltr">portal vein</bdi></span></div>
+  <div class="box a"><b class="t">נתיח גבולית</b>מגע של עד 180 מעלות <span class="nw">ב-<bdi dir="ltr">SMA</bdi></span> או <span class="nw">ב-<bdi dir="ltr">celiac trunk</bdi>.</span> מגע או עטיפה של קטע קצר <span class="nw">ב-<bdi dir="ltr">common hepatic artery</bdi>,</span> בדרך כלל ביציאת <span class="nw">ה-<bdi dir="ltr">GDA</bdi>.</span> חסימה של הווריד שאפשר לשחזר</div>
+  <div class="box r"><b class="t">מתקדם מקומית</b>עטיפה של יותר מ-180 מעלות של <span class="nw">ה-<bdi dir="ltr">SMA</bdi></span> או של <span class="nw">ה-<bdi dir="ltr">celiac trunk</bdi>.</span> חסימה של הווריד בלי אפשרות לשחזר</div>
   <div class="box n"><b class="t">גרורתי</b>גרורות מחוץ <span class="nw">ל-<bdi dir="ltr">pancreas</bdi></span></div>
  </div>
  <div class="box b" style="margin-top:12px"><b class="t">שתי קבוצות גדולות</b>כל ההנחיות מסכימות על החלוקה: <b>ניתן לניתוח</b> (נתיח וגבולי) מול <b>כנראה לא ניתן לניתוח</b> (מתקדם מקומית וגרורתי). ההגדרות המדויקות שונות מעט בין המרכזים</div>
@@ -317,7 +364,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <ul class="b sm">
     <li>טיפול מוקדם במיקרו-גרורות, שקיימות כנראה ברוב החולים</li>
     <li>חושף ביולוגיה אגרסיבית לפני ניתוח גדול</li>
-    <li>אפשר לראות תגובה בגידול עצמו (גם <span class="nw">ב-<bdi>CA 19-9</bdi></span>)</li>
+    <li>אפשר לראות תגובה בגידול עצמו (גם <span class="nw">ב-<bdi>CA 19-9</bdi>)</span></li>
     <li>בחירה טובה יותר של מי שירוויח מניתוח</li>
    </ul>
   </div>
@@ -338,29 +385,29 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>10</b>הראיות שבספר</div>
  <h2>מחקרים שעיצבו את הגישה</h2>
  <div class="grid">
-  <div class="study"><div class="y">מחקר אקראי · שלב 3</div><b><bdi>PREOPANC</bdi></b><p>טיפול לפני ואחרי הניתוח מול ניתוח ראשון, במחלה נתיחה וגבולית. הישרדות ל-5 שנים: <b>20.5% לעומת 6.5%</b></p><p>בזרוע הניתוח הראשון רק 51% (65 מתוך 128) קיבלו טיפול משלים כלשהו</p><small>כפי שמסוכם <span class="nw">ב-<bdi>Sabiston 22</bdi></span>, פרק 93 עמ׳ <bdi dir="ltr">1407–1408</bdi></small></div>
-  <div class="study"><div class="y">מחקר אקראי · סקנדינביה</div><b><bdi>NORPACT-1</bdi></b><p>130 חולים עם גידול נתיח <span class="nw">ב-<bdi dir="ltr">pancreatic head</bdi></span>. <bdi>FOLFIRINOX</bdi> לפני הניתוח מול ניתוח ראשון. לא נמצא הבדל בהישרדות</p><p>אבל: 21% לא הגיעו לניקוז מרה וטופלו בניתוח מיד. רק 46% קיבלו את כל הטיפול המתוכנן</p><small>כפי שמסוכם <span class="nw">ב-<bdi>Sabiston 22</bdi></span>, פרק 93 עמ׳ <bdi dir="ltr">1408</bdi></small></div>
-  <div class="study"><div class="y">מחקר אקראי · <bdi>SWOG S1505</bdi></div><b>איזו כימותרפיה לפני הניתוח?</b><p>102 חולים. <bdi>mFOLFIRINOX</bdi> מול גמציטבין ונאב-פקליטקסל: שניהם בטוחים, בלי הבדל ביעילות (הישרדות לשנתיים 42% לעומת 49%)</p><small>כפי שמסוכם <span class="nw">ב-<bdi>Sabiston 22</bdi></span>, פרק 93 עמ׳ <bdi dir="ltr">1408</bdi></small></div>
-  <div class="study"><div class="y">טיפול משלים · <bdi>PRODIGE-24</bdi></div><b>שלוש תרופות אחרי הניתוח</b><p>חציון הישרדות של 54 חודשים עם <bdi>mFOLFIRINOX</bdi> אחרי ניתוח. אבל במחקר נכללו רק מי שהחלימו היטב מהניתוח. לכן קשה להכליל</p><small>כפי שמסוכם <span class="nw">ב-<bdi>Sabiston 22</bdi></span>, פרק 93 עמ׳ <bdi dir="ltr">1407</bdi></small></div>
+  <div class="study"><div class="y">מחקר אקראי · שלב 3</div><b><bdi>PREOPANC</bdi></b><p>טיפול לפני ואחרי הניתוח מול ניתוח ראשון, במחלה נתיחה וגבולית. הישרדות ל-5 שנים: <b>20.5% לעומת 6.5%</b></p><p>בזרוע הניתוח הראשון רק 51% (65 מתוך 128) קיבלו טיפול משלים כלשהו</p><small>כפי שמסוכם <span class="nw">ב-<bdi>Sabiston 22</bdi>,</span> פרק 93 עמ׳ <bdi dir="ltr">1407–1408</bdi></small></div>
+  <div class="study"><div class="y">מחקר אקראי · סקנדינביה</div><b><bdi>NORPACT-1</bdi></b><p>130 חולים עם גידול נתיח <span class="nw">ב-<bdi dir="ltr">pancreatic head</bdi>.</span> <bdi>FOLFIRINOX</bdi> לפני הניתוח מול ניתוח ראשון. לא נמצא הבדל בהישרדות</p><p>אבל: 21% לא הגיעו לניקוז מרה וטופלו בניתוח מיד. רק 46% קיבלו את כל הטיפול המתוכנן</p><small>כפי שמסוכם <span class="nw">ב-<bdi>Sabiston 22</bdi>,</span> פרק 93 עמ׳ <bdi dir="ltr">1408</bdi></small></div>
+  <div class="study"><div class="y">מחקר אקראי · <bdi>SWOG S1505</bdi></div><b>איזו כימותרפיה לפני הניתוח?</b><p>102 חולים. <bdi>mFOLFIRINOX</bdi> מול גמציטבין ונאב-פקליטקסל: שניהם בטוחים, בלי הבדל ביעילות (הישרדות לשנתיים 42% לעומת 49%)</p><small>כפי שמסוכם <span class="nw">ב-<bdi>Sabiston 22</bdi>,</span> פרק 93 עמ׳ <bdi dir="ltr">1408</bdi></small></div>
+  <div class="study"><div class="y">טיפול משלים · <bdi>PRODIGE-24</bdi></div><b>שלוש תרופות אחרי הניתוח</b><p>חציון הישרדות של 54 חודשים עם <bdi>mFOLFIRINOX</bdi> אחרי ניתוח. אבל במחקר נכללו רק מי שהחלימו היטב מהניתוח. לכן קשה להכליל</p><small>כפי שמסוכם <span class="nw">ב-<bdi>Sabiston 22</bdi>,</span> פרק 93 עמ׳ <bdi dir="ltr">1407</bdi></small></div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 93 עמ׳ <bdi dir="ltr">1407–1408</bdi></span><span>ראיות</span></div>
 </div></section>
 
 <section class="s"><div class="card">
  <div class="kick"><b>11</b>ניתוח</div>
- <h2>ניתוח וויפל (<bdi>pancreaticoduodenectomy</bdi>)</h2>
+ <h2>ניתוח וויפל <span class="nw">(<bdi>pancreaticoduodenectomy</bdi>)</span></h2>
  <div class="grid">
   <div>
    <h3>מה מוציאים</h3>
    <ul class="b sm">
-    <li><bdi dir="ltr">pancreatic head</bdi>, <bdi dir="ltr">duodenum</bdi>, <bdi dir="ltr">gallbladder</bdi> <span class="nw">ו-<bdi dir="ltr">CBD</bdi></span>, עם או בלי <span class="nw">ה-<bdi dir="ltr">gastric antrum</bdi></span></li>
+    <li><span class="nw"><bdi dir="ltr">pancreatic head</bdi>,</span> <span class="nw"><bdi dir="ltr">duodenum</bdi>,</span> <bdi dir="ltr">gallbladder</bdi> <span class="nw">ו-<bdi dir="ltr">CBD</bdi>,</span> עם או בלי <span class="nw">ה-<bdi dir="ltr">gastric antrum</bdi></span></li>
     <li>לפני החתך: <b>לפרוסקופיה אבחנתית</b>. בעד 10% מוצאים גרורות קטנות שלא נראו בהדמיה</li>
    </ul>
    <h3 style="margin-top:12px">שישה שלבים</h3>
    <div class="flow">
     <div><b>1</b><span>חשיפת <span class="nw">ה-<bdi dir="ltr">SMV</bdi></span> מתחת <span class="nw">ל-<bdi dir="ltr">pancreas</bdi></span></span></div>
-    <div><b>2</b><span>מוביליזציה של <span class="nw">ה-<bdi dir="ltr">duodenum</bdi></span> <span class="nw">וה-<bdi dir="ltr">head</bdi></span> (<bdi>Kocher</bdi>)</span></div>
-    <div><b>3</b><span>דיסקציה <span class="nw">ב-<bdi dir="ltr">porta hepatis</bdi></span>: כריתת כיס המרה, חיתוך <span class="nw">ה-<bdi dir="ltr">CBD</bdi></span> וקשירת <span class="nw">ה-<bdi dir="ltr">GDA</bdi></span></span></div>
+    <div><b>2</b><span>מוביליזציה של <span class="nw">ה-<bdi dir="ltr">duodenum</bdi></span> <span class="nw">וה-<bdi dir="ltr">head</bdi></span> <span class="nw">(<bdi>Kocher</bdi>)</span></span></div>
+    <div><b>3</b><span>דיסקציה <span class="nw">ב-<bdi dir="ltr">porta hepatis</bdi>:</span> כריתת כיס המרה, חיתוך <span class="nw">ה-<bdi dir="ltr">CBD</bdi></span> וקשירת <span class="nw">ה-<bdi dir="ltr">GDA</bdi></span></span></div>
     <div><b>4</b><span>חיתוך <span class="nw">ה-<bdi dir="ltr">duodenum</bdi></span> או הקיבה</span></div>
     <div><b>5</b><span>חיתוך <span class="nw">ה-<bdi dir="ltr">jejunum</bdi></span> כ-10 ס״מ אחרי <span class="nw">ה-<bdi dir="ltr">ligament of Treitz</bdi></span></span></div>
     <div><b>6</b><span>חיתוך <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span> מעל <span class="nw">ה-<bdi dir="ltr">portal vein</bdi></span> והפרדת <span class="nw">ה-<bdi dir="ltr">head</bdi></span> מהווריד <span class="nw">ומה-<bdi dir="ltr">SMA</bdi></span></span></div>
@@ -369,12 +416,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <h3>השחזור: שלושה חיבורים</h3>
    <ul class="b sm">
-    <li><b>לבלב-מעי:</b> <span class="nw">ה-<bdi dir="ltr">pancreatic duct</bdi></span> לרירית <span class="nw">ה-<bdi dir="ltr">jejunum</bdi></span>. <span class="nw">ב-<bdi dir="ltr">pancreas</bdi></span> רך: שתי שכבות</li>
+    <li><b>לבלב-מעי:</b> <span class="nw">ה-<bdi dir="ltr">pancreatic duct</bdi></span> לרירית <span class="nw">ה-<bdi dir="ltr">jejunum</bdi>.</span> <span class="nw">ב-<bdi dir="ltr">pancreas</bdi></span> רך: שתי שכבות</li>
     <li><b>מרה-מעי:</b> כ-10 ס״מ אחריו</li>
     <li><b>קיבה-מעי:</b> לפני המעי הגס, לפחות 50 ס״מ אחרי חיבור המרה (פחות ריפלוקס של מרה)</li>
-    <li>בסוף מכסים את גדם <span class="nw">ה-<bdi dir="ltr">GDA</bdi></span> <span class="nw">ב-<bdi dir="ltr">ligamentum teres</bdi></span>: הגנה מפני מפרצת מדממת אם יש דליפה <span class="nw">מה-<bdi dir="ltr">pancreas</bdi></span></li>
+    <li>בסוף מכסים את גדם <span class="nw">ה-<bdi dir="ltr">GDA</bdi></span> <span class="nw">ב-<bdi dir="ltr">ligamentum teres</bdi>:</span> הגנה מפני מפרצת מדממת אם יש דליפה <span class="nw">מה-<bdi dir="ltr">pancreas</bdi></span></li>
    </ul>
-   <div class="box a" style="margin-top:10px"><b class="t">כלי דם</b>מעורבות של הווריד צפויה מראש לפי ה-CT. כורתים ומשחזרים, לעיתים עם שתל ורידי עצמי (<bdi dir="ltr">internal jugular vein</bdi>). כריתת עורקים: רק במקרים נבחרים ובמרכזים מנוסים</div>
+   <div class="box a" style="margin-top:10px"><b class="t">כלי דם</b>מעורבות של הווריד צפויה מראש לפי ה-CT. כורתים ומשחזרים, לעיתים עם שתל ורידי עצמי <span class="nw">(<bdi dir="ltr">internal jugular vein</bdi>).</span> כריתת עורקים: רק במקרים נבחרים ובמרכזים מנוסים</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 93 עמ׳ <bdi dir="ltr">1408–1412</bdi></span><span>ניתוח וויפל</span></div>
@@ -384,8 +431,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>12</b>ניתוח וויפל · בתמונות</div>
  <h2>מה יוצא ומה מחברים</h2>
  <div class="grid">
-  <figure><img src="img/whipple-removed.png" alt="החלקים שמוצאים בוויפל"><figcaption>בכחול: מה שמוציאים. <bdi dir="ltr">pancreatic head</bdi>, <bdi dir="ltr">duodenum</bdi>, <bdi dir="ltr">gallbladder</bdi> <span class="nw">ו-<bdi dir="ltr">distal CBD</bdi></span>. בניתוח הקלאסי גם <span class="nw">ה-<bdi dir="ltr">gastric antrum</bdi></span> · <bdi>Cancer Research UK</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
-  <figure><img src="img/whipple-reconstruction.png" alt="השחזור אחרי וויפל"><figcaption>השחזור: <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span>, <span class="nw">ה-<bdi dir="ltr">bile duct</bdi></span> והקיבה מחוברים ללולאת מעי דק אחת (סכמה) · <bdi>Cancer Research UK</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/whipple-removed.png" alt="החלקים שמוצאים בוויפל"><figcaption>בכחול: מה שמוציאים. <span class="nw"><bdi dir="ltr">pancreatic head</bdi>,</span> <span class="nw"><bdi dir="ltr">duodenum</bdi>,</span> <bdi dir="ltr">gallbladder</bdi> <span class="nw">ו-<bdi dir="ltr">distal CBD</bdi>.</span> בניתוח הקלאסי גם <span class="nw">ה-<bdi dir="ltr">gastric antrum</bdi></span> · <span class="nw"><bdi>Cancer Research UK</bdi>,</span> <span class="nw"><bdi>CC BY-SA 4.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/whipple-reconstruction.png" alt="השחזור אחרי וויפל"><figcaption>השחזור: <span class="nw">ה-<bdi dir="ltr">pancreas</bdi>,</span> <span class="nw">ה-<bdi dir="ltr">bile duct</bdi></span> והקיבה מחוברים ללולאת מעי דק אחת (סכמה) · <span class="nw"><bdi>Cancer Research UK</bdi>,</span> <span class="nw"><bdi>CC BY-SA 4.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="box n" style="margin-top:12px"><b class="t">הסדר בשחזור</b>קודם לבלב-מעי, כ-10 ס״מ אחריו מרה-מעי. לפחות 50 ס״מ אחריו קיבה-מעי</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 93 עמ׳ <bdi dir="ltr">1408, 1411–1412</bdi></span><span>תמונות</span></div>
@@ -395,8 +442,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>13</b>בחירת הניתוח</div>
  <h2>איזה ניתוח, לפי מיקום הגידול</h2>
  <div class="flow">
-  <div><b><bdi dir="ltr">head</bdi> או <bdi dir="ltr">uncinate process</bdi></b><span><b>וויפל</b>, קלאסי (עם <span class="nw">ה-<bdi dir="ltr">antrum</bdi></span>) או עם שימור <span class="nw">ה-<bdi dir="ltr">pylorus</bdi></span>. שימור <span class="nw">ה-<bdi dir="ltr">pylorus</bdi></span> לא בגידול גדול <span class="nw">ב-<bdi dir="ltr">head</bdi></span> או בגידול בחלק הראשון והשני של <span class="nw">ה-<bdi dir="ltr">duodenum</bdi></span></span></div>
-  <div><b><bdi dir="ltr">tail</bdi> או <bdi dir="ltr">distal body</bdi></b><span><b>כריתה דיסטלית</b>, לרוב עם <span class="nw">ה-<bdi dir="ltr">spleen</bdi></span>. בגידול קטן ומוגבל <span class="nw">ל-<bdi dir="ltr">pancreas</bdi></span>: לפרוסקופית, עם אותו שיעור סיבוכים והחלמה מהירה יותר. לפעמים אפשר לשמר את <span class="nw">ה-<bdi dir="ltr">spleen</bdi></span></span></div>
+  <div><b><bdi dir="ltr">head</bdi> או <bdi dir="ltr">uncinate process</bdi></b><span><b>וויפל</b>, קלאסי (עם <span class="nw">ה-<bdi dir="ltr">antrum</bdi>)</span> או עם שימור <span class="nw">ה-<bdi dir="ltr">pylorus</bdi>.</span> שימור <span class="nw">ה-<bdi dir="ltr">pylorus</bdi></span> לא בגידול גדול <span class="nw">ב-<bdi dir="ltr">head</bdi></span> או בגידול בחלק הראשון והשני של <span class="nw">ה-<bdi dir="ltr">duodenum</bdi></span></span></div>
+  <div><b><bdi dir="ltr">tail</bdi> או <bdi dir="ltr">distal body</bdi></b><span><b>כריתה דיסטלית</b>, לרוב עם <span class="nw">ה-<bdi dir="ltr">spleen</bdi>.</span> בגידול קטן ומוגבל <span class="nw">ל-<bdi dir="ltr">pancreas</bdi>:</span> לפרוסקופית, עם אותו שיעור סיבוכים והחלמה מהירה יותר. לפעמים אפשר לשמר את <span class="nw">ה-<bdi dir="ltr">spleen</bdi></span></span></div>
   <div><b>צוואר או גוף, גידול קטן</b><span><b>כריתה מרכזית</b> בגידולים לא אגרסיביים. שומרת יותר רקמה, במחיר של יותר דליפות</span></div>
   <div><b>גידול קטן ושפיר בשולי הבלוטה</b><span><b>אנוקלאציה</b> (קילוף), למשל אינסולינומה, אם הגידול רחוק לפחות 3 מ״מ <span class="nw">מה-<bdi dir="ltr">main pancreatic duct</bdi></span></span></div>
  </div>
@@ -417,7 +464,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div><b dir="ltr">×3</b><span>עמילאז בנקז פי 3 מהערך העליון בדם: הגדרת פיסטולה</span></div>
  </div>
  <div class="grid g3">
-  <div class="box"><b class="t">פיסטולה</b>תלויה במרקם <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span>, בקוטר הצינור ובאיבוד הדם. דליפה ביוכימית בלבד אינה פיסטולה. דרגה <bdi>B</bdi>: ניקוז, אנטיביוטיקה ואנלוגים של סומטוסטטין. ניתוח חוזר נדיר</div>
+  <div class="box"><b class="t">פיסטולה</b>תלויה במרקם <span class="nw">ה-<bdi dir="ltr">pancreas</bdi>,</span> בקוטר הצינור ובאיבוד הדם. דליפה ביוכימית בלבד אינה פיסטולה. דרגה <span class="nw"><bdi>B</bdi>:</span> ניקוז, אנטיביוטיקה ואנלוגים של סומטוסטטין. ניתוח חוזר נדיר</div>
   <div class="box a"><b class="t">עיכוב בהתרוקנות הקיבה</b>שוללים פיסטולה סמויה או מורסה ב-CT. טיפול: זונדה ותרופות פרוקינטיות (אריתרומיצין, מטוקלופרמיד). לרוב חולף</div>
   <div class="box r"><b class="t">דימום</b><b>מוקדם</b> (24 שעות ראשונות): כשל טכני, חזרה לחדר ניתוח. <b>מאוחר</b> (יום 7–14): מפרצת על רקע דליפה. דימום קטן "מבשר" ואחריו דימום מסיבי. צנתור דחוף לתסחיף או סטנט</div>
  </div>
@@ -437,9 +484,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div>
    <ul class="b sm">
-    <li>גדלים לאט. אין בהם את המוטציות של אדנוקרצינומה (<bdi>KRAS</bdi>, <bdi>TP53</bdi>)</li>
+    <li>גדלים לאט. אין בהם את המוטציות של אדנוקרצינומה <span class="nw">(<bdi>KRAS</bdi>,</span> <span class="nw"><bdi>TP53</bdi>)</span></li>
     <li><b>ב-CT:</b> נצבעים חזק בשלב העורקי. לכן צריך CT דו-שלבי. גידול לא תפקודי מתגלה לרוב במקרה או כשהוא כבר גדול ומתקדם</li>
-    <li><b>DOTA-PET:</b> מנצל את קולטני הסומטוסטטין שיש לרוב הגידולים</li>
+    <li><b><span class="nw"><bdi dir="ltr">DOTA-PET</bdi>:</span></b> מנצל את קולטני הסומטוסטטין שיש לרוב הגידולים</li>
     <li><bdi>EUS</bdi> עם ביופסיה לקביעת <bdi>Ki-67</bdi></li>
    </ul>
   </div>
@@ -447,8 +494,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <h3>מי תפקודי</h3>
    <ul class="b sm">
     <li><b>אינסולינומה:</b> השכיח מהתפקודיים. שלישיית וויפל: תסמיני היפוגליקמיה בצום, סוכר נמוך ושיפור עם מתן סוכר. ביותר מ-90%: בודד, מקומי וקטן מ-2 ס״מ</li>
-    <li><b>גסטרינומה:</b> כיבים חוזרים, ריפלוקס ושלשול (זולינגר-אליסון). רובם <span class="nw">ב-<bdi dir="ltr">duodenum</bdi></span>, בתוך "<bdi dir="ltr">gastrinoma triangle</bdi>". 20–30% עם <bdi>MEN1</bdi></li>
-    <li>נדירים: גלוקגונומה, <bdi>VIPoma</bdi>, סומטוסטטינומה</li>
+    <li><b>גסטרינומה:</b> כיבים חוזרים, ריפלוקס ושלשול (זולינגר-אליסון). רובם <span class="nw">ב-<bdi dir="ltr">duodenum</bdi>,</span> בתוך "<bdi dir="ltr">gastrinoma triangle</bdi>". 20–30% עם <bdi>MEN1</bdi></li>
+    <li>נדירים: גלוקגונומה, <span class="nw"><bdi>VIPoma</bdi>,</span> סומטוסטטינומה</li>
    </ul>
   </div>
  </div>
@@ -473,14 +520,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>17</b>מה חדש בתחום · 2023–2025</div>
  <h2>מחקרים שכדאי להכיר</h2>
  <div class="grid g3">
-  <div class="study"><div class="y"><bdi>Lancet Oncol</bdi> 2025 · מחקר אקראי שלב 3</div><b><bdi>PREOPANC-2</bdi>: איזה טיפול לפני הניתוח?</b>
+  <div class="study"><div class="y"><bdi>Lancet Oncol</bdi> 2025 · מחקר אקראי שלב 3</div><b><span class="nw"><bdi>PREOPANC-2</bdi>:</span> איזה טיפול לפני הניתוח?</b>
    <p>375 חולים עם מחלה נתיחה או גבולית ב-19 מרכזים בהולנד. 8 מחזורי <bdi>FOLFIRINOX</bdi> מול כימו-רדיותרפיה על בסיס גמציטבין. חציון הישרדות: <b>21.9 לעומת 21.3 חודשים</b>, בלי הבדל מובהק</p>
    <small>Janssen QP, van Dam JL, et al. Lancet Oncol 2025;26(10):1346-56</small></div>
-  <div class="study"><div class="y"><bdi>Lancet</bdi> 2023 · מחקר אקראי שלב 3</div><b><bdi>NAPOLI 3</bdi>: מחלה גרורתית</b>
-   <p>770 חולים. <bdi>NALIRIFOX</bdi> מול גמציטבין ונאב-פקליטקסל כקו ראשון: חציון הישרדות <b>11.1 לעומת 9.2 חודשים</b> (<bdi dir="ltr">HR 0.83</bdi>)</p>
+  <div class="study"><div class="y"><bdi>Lancet</bdi> 2023 · מחקר אקראי שלב 3</div><b><span class="nw"><bdi>NAPOLI 3</bdi>:</span> מחלה גרורתית</b>
+   <p>770 חולים. <bdi>NALIRIFOX</bdi> מול גמציטבין ונאב-פקליטקסל כקו ראשון: חציון הישרדות <b>11.1 לעומת 9.2 חודשים</b> <span class="nw">(<bdi dir="ltr">HR 0.83</bdi>)</span></p>
    <small>Wainberg ZA et al. Lancet 2023;402:1272-81</small></div>
-  <div class="study"><div class="y"><bdi>Lancet Reg Health Eur</bdi> 2023 · מחקר אקראי</div><b><bdi>DIPLOMA</bdi>: כריתה דיסטלית זעיר-פולשנית</b>
-   <p>258 חולים עם סרטן נתיח <span class="nw">ב-<bdi dir="ltr">body</bdi></span> או <span class="nw">ב-<bdi dir="ltr">tail</bdi></span>, 35 מרכזים. כריתה בשוליים נקיים: <b>73% לעומת 69%</b> בניתוח הפתוח (לא נחות). אותו מספר בלוטות ואותה הישרדות</p>
+  <div class="study"><div class="y"><bdi>Lancet Reg Health Eur</bdi> 2023 · מחקר אקראי</div><b><span class="nw"><bdi>DIPLOMA</bdi>:</span> כריתה דיסטלית זעיר-פולשנית</b>
+   <p>258 חולים עם סרטן נתיח <span class="nw">ב-<bdi dir="ltr">body</bdi></span> או <span class="nw">ב-<bdi dir="ltr">tail</bdi>,</span> 35 מרכזים. כריתה בשוליים נקיים: <b>73% לעומת 69%</b> בניתוח הפתוח (לא נחות). אותו מספר בלוטות ואותה הישרדות</p>
    <small>Korrel M et al. Lancet Reg Health Eur 2023;31:100673</small></div>
  </div>
  <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
@@ -496,8 +543,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>רוב החולים חולים במחלה מערכתית: טיפול מוקדם לפני הניתוח הוא חלק מרכזי מהתוכנית</li>
   <li>אחרי וויפל: לחפש פיסטולה, עיכוב בהתרוקנות הקיבה ודימום. דימום קטן מהנקז או מהפה ביום 7–14 הוא מבשר</li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 93 <bdi>Pancreatic Cancer</bdi> (עמ׳ <bdi dir="ltr">1401–1413</bdi>) · פרק 76 <bdi>Pancreatic Neuroendocrine Tumors</bdi> (עמ׳ <bdi dir="ltr">1019–1034</bdi>)</div>
- <div class="src"><span>איורים ותמונות: <bdi>Sobotta, Atlas and Text-book of Human Anatomy</bdi> (1906) <span class="nw">ו-<bdi>AFIP</bdi></span> (נחלת הכלל) · <bdi>Hellerhoff</bdi> (<bdi>CC BY-SA 3.0</bdi>) · <bdi>Cancer Research UK</bdi> (<bdi>CC BY-SA 4.0</bdi>) · כולם <span class="nw">מ-<bdi>Wikimedia Commons</bdi></span> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 93 <bdi>Pancreatic Cancer</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1401–1413</bdi>)</span> · פרק 76 <bdi>Pancreatic Neuroendocrine Tumors</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1019–1034</bdi>)</span></div>
+ <div class="src"><span>איורים ותמונות: <bdi>Sobotta, Atlas and Text-book of Human Anatomy</bdi> (1906) <span class="nw">ו-<bdi>AFIP</bdi></span> (נחלת הכלל) · <bdi>Hellerhoff</bdi> <span class="nw">(<bdi>CC BY-SA 3.0</bdi>)</span> · <bdi>Cancer Research UK</bdi> <span class="nw">(<bdi>CC BY-SA 4.0</bdi>)</span> · כולם <span class="nw">מ-<bdi>Wikimedia Commons</bdi></span> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>
@@ -519,5 +566,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>

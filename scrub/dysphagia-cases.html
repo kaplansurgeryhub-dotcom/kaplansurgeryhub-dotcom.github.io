@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>דיון מקרים: דיספאגיה וגידולי ושט · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -83,7 +83,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -113,9 +113,56 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -143,7 +190,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   <li>לבנות בירור ושלבים לסרטן הוושט ולהכיר את הטיפול המשולב ואת סוגי כריתת הוושט</li>
   <li>לנהל ושט ברט לפי דרגת הדיספלזיה</li>
  </ol>
- <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 83 (עמ׳ <bdi dir="ltr">1108–1121</bdi>) · פרק 84 (עמ׳ <bdi dir="ltr">1136–1154</bdi>)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 83 (עמ׳ <span class="nw"><bdi dir="ltr">1108–1121</bdi>)</span> · פרק 84 (עמ׳ <span class="nw"><bdi dir="ltr">1136–1154</bdi>)</span></span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -163,7 +210,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
    <h3>סדר הבדיקות</h3>
    <ul class="b sm">
     <li><b>גסטרוסקופיה ראשונה</b> לכל מטופל עם דיספאגיה, גם אם בליעת בריום רומזת על הפרעת תנועה</li>
-    <li><b>בליעת בריום:</b> אנטומיה, היצרות, צירי <span class="nw">ה-<bdi>esophagus</bdi></span>, דיברטיקולום</li>
+    <li><b>בליעת בריום:</b> אנטומיה, היצרות, צירי <span class="nw">ה-<bdi>esophagus</bdi>,</span> דיברטיקולום</li>
     <li><b>מנומטריה ברזולוציה גבוהה:</b> תקן הזהב להפרעות תנועה (סיווג שיקגו). לא מאבחנת GERD</li>
     <li><b>ניטור pH:</b> למי שיש לו צרבת, כדי להבדיל בין GERD לאכלזיה</li>
    </ul>
@@ -189,13 +236,13 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   <g class="hzb" style="--c:#187A5C"><circle cx="568" cy="1300" r="29.8"/><text x="568" y="1300">5</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="cerv" hidden><b>1 · <bdi>Cervical esophagus</bdi> (מאחורי <span class="nw">ה-<bdi>trachea</bdi></span>)</b><p><span class="nw">מה-<bdi>upper esophageal sphincter (UES)</bdi></span> ועד <span class="nw">ה-<bdi>thoracic inlet</bdi></span>. כאן, מעל <span class="nw">ה-<bdi>UES</bdi></span>, נוצר דיברטיקולום <bdi>Zenker</bdi>, בגובה <bdi dir="ltr">C5–C6</bdi>. גידול צווארי מטופל לרוב בכימו-הקרנה מלאה</p></div>
-  <div class="hzi" data-hzi="arch" hidden><b>2 · <bdi>Aortic arch</bdi> <span class="nw">ו-<bdi>left main bronchus</bdi></span></b><p><span class="nw">ה-<bdi>upper thoracic esophagus</bdi></span> עובר צמוד <span class="nw">ל-<bdi>trachea</bdi></span> <span class="nw">ול-<bdi>left main bronchus</bdi></span>. בגידול בשליש העליון או האמצעי עושים <b>ברונכוסקופיה</b> כדי לשלול חדירה <span class="nw">ל-<bdi>trachea</bdi></span>. חדירה <span class="nw">ל-<bdi>trachea</bdi></span> או <span class="nw">ל-<bdi>aorta</bdi></span> היא <bdi>T4b</bdi>: לא נתיח</p></div>
-  <div class="hzi" data-hzi="mid" hidden><b>3 · השליש האמצעי</b><p>מתחת <span class="nw">ל-<bdi>azygos vein</bdi></span> ועד <span class="nw">ה-<bdi>inferior pulmonary vein</bdi></span>. כאן נמצאים <span class="nw">כ-<bdi dir="ltr">50%</bdi></span> מגידולי הקשקש (<bdi>SCC</bdi>). דיברטיקולום משיכה באמצע <span class="nw">ה-<bdi>esophagus</bdi></span> קשור לדלקת <span class="nw">ב-<bdi>subcarinal lymph nodes</bdi></span></p></div>
-  <div class="hzi" data-hzi="low" hidden><b>4 · <bdi>Lower esophagus</bdi> ומעבר <span class="nw">ה-<bdi>diaphragm</bdi></span></b><p><span class="nw">כ-<bdi dir="ltr">40%</bdi></span> מגידולי הקשקש <span class="nw">וכ-<bdi dir="ltr">80%</bdi></span> מהאדנוקרצינומות (יחד עם <span class="nw">ה-<bdi>GEJ</bdi></span>). כאן נוצרים ושט ברט ודיברטיקולום אפיפרני</p></div>
-  <div class="hzi" data-hzi="gej" hidden><b>5 · <bdi>Cardia</bdi> <span class="nw">ו-<bdi>gastroesophageal junction (GEJ)</bdi></span></b><p><span class="nw">ה-<bdi>lower esophageal sphincter (LES)</bdi></span>: 3–4 ס״מ של שריר חלק. באכלזיה הוא לא נרפה. גידול שמרכזו עד 2 ס״מ לתוך <span class="nw">ה-<bdi>cardia</bdi></span> מטופל כמו סרטן ושט ומעבר לזה כמו סרטן קיבה</p></div>
+  <div class="hzi" data-hzi="cerv" hidden><b>1 · <bdi>Cervical esophagus</bdi> (מאחורי <span class="nw">ה-<bdi>trachea</bdi>)</span></b><p><span class="nw">מה-<bdi>upper esophageal sphincter (UES)</bdi></span> ועד <span class="nw">ה-<bdi>thoracic inlet</bdi>.</span> כאן, מעל <span class="nw">ה-<bdi>UES</bdi>,</span> נוצר דיברטיקולום <span class="nw"><bdi>Zenker</bdi>,</span> בגובה <span class="nw"><bdi dir="ltr">C5–C6</bdi>.</span> גידול צווארי מטופל לרוב בכימו-הקרנה מלאה</p></div>
+  <div class="hzi" data-hzi="arch" hidden><b>2 · <bdi>Aortic arch</bdi> <span class="nw">ו-<bdi>left main bronchus</bdi></span></b><p><span class="nw">ה-<bdi>upper thoracic esophagus</bdi></span> עובר צמוד <span class="nw">ל-<bdi>trachea</bdi></span> <span class="nw">ול-<bdi>left main bronchus</bdi>.</span> בגידול בשליש העליון או האמצעי עושים <b>ברונכוסקופיה</b> כדי לשלול חדירה <span class="nw">ל-<bdi>trachea</bdi>.</span> חדירה <span class="nw">ל-<bdi>trachea</bdi></span> או <span class="nw">ל-<bdi>aorta</bdi></span> היא <span class="nw"><bdi>T4b</bdi>:</span> לא נתיח</p></div>
+  <div class="hzi" data-hzi="mid" hidden><b>3 · השליש האמצעי</b><p>מתחת <span class="nw">ל-<bdi>azygos vein</bdi></span> ועד <span class="nw">ה-<bdi>inferior pulmonary vein</bdi>.</span> כאן נמצאים <span class="nw">כ-<bdi dir="ltr">50%</bdi></span> מגידולי הקשקש <span class="nw">(<bdi>SCC</bdi>).</span> דיברטיקולום משיכה באמצע <span class="nw">ה-<bdi>esophagus</bdi></span> קשור לדלקת <span class="nw">ב-<bdi>subcarinal lymph nodes</bdi></span></p></div>
+  <div class="hzi" data-hzi="low" hidden><b>4 · <bdi>Lower esophagus</bdi> ומעבר <span class="nw">ה-<bdi>diaphragm</bdi></span></b><p><span class="nw">כ-<bdi dir="ltr">40%</bdi></span> מגידולי הקשקש <span class="nw">וכ-<bdi dir="ltr">80%</bdi></span> מהאדנוקרצינומות (יחד עם <span class="nw">ה-<bdi>GEJ</bdi>).</span> כאן נוצרים ושט ברט ודיברטיקולום אפיפרני</p></div>
+  <div class="hzi" data-hzi="gej" hidden><b>5 · <bdi>Cardia</bdi> <span class="nw">ו-<bdi>gastroesophageal junction (GEJ)</bdi></span></b><p><span class="nw">ה-<bdi>lower esophageal sphincter (LES)</bdi>:</span> 3–4 ס״מ של שריר חלק. באכלזיה הוא לא נרפה. גידול שמרכזו עד 2 ס״מ לתוך <span class="nw">ה-<bdi>cardia</bdi></span> מטופל כמו סרטן ושט ומעבר לזה כמו סרטן קיבה</p></div>
  </div></div>
- <figcaption><span class="nw">ה-<bdi>esophagus</bdi></span>, <span class="nw">ה-<bdi>trachea</bdi></span>, <span class="nw">ה-<bdi>aortic arch</bdi></span> <span class="nw">וה-<bdi>stomach</bdi></span>, מבט מלפנים · <bdi>Sobotta</bdi>, <bdi>Atlas and Text-book of Human Anatomy</bdi> (1906), איור 369 (נחלת הכלל)</figcaption>
+ <figcaption><span class="nw">ה-<bdi>esophagus</bdi>,</span> <span class="nw">ה-<bdi>trachea</bdi>,</span> <span class="nw">ה-<bdi>aortic arch</bdi></span> <span class="nw">וה-<bdi>stomach</bdi>,</span> מבט מלפנים · <span class="nw"><bdi>Sobotta</bdi>,</span> <bdi>Atlas and Text-book of Human Anatomy</bdi> (1906), איור 369 (נחלת הכלל)</figcaption>
  <div class="src"><span><b>Sabiston 22</b> · פרק 84 עמ׳ <bdi dir="ltr">1137–1141</bdi> · פרק 83 עמ׳ <bdi dir="ltr">1108, 1118–1120</bdi></span><span>אנטומיה</span></div>
 </div></section>
 
@@ -213,8 +260,8 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <details class="rev"><summary>👁 הצגת התשובות</summary><div>
   <ul class="b sm">
    <li><b>אבחנה מבדלת:</b> אכלזיה (מוצקים ונוזלים, רגורגיטציה), היצרות פפטית, גידול, הפרעות תנועה אחרות</li>
-   <li><b>ראשונה גסטרוסקופיה:</b> תקינה <span class="nw">בכ-<bdi dir="ltr">40%</bdi></span>. אחרת מזון ורוק שנשארו, או דלקת מקנדידה. <b>מנומטריה</b> מאשרת: <bdi>LES</bdi> שלא נרפה ואין פריסטלטיקה</li>
-   <li><b>הצרבת</b> נובעת מתסיסה של מזון שנתקע <span class="nw">ב-<bdi>esophagus</bdi></span>, לא מרפלוקס של חומצה</li>
+   <li><b>ראשונה גסטרוסקופיה:</b> תקינה <span class="nw">בכ-<bdi dir="ltr">40%</bdi>.</span> אחרת מזון ורוק שנשארו, או דלקת מקנדידה. <b>מנומטריה</b> מאשרת: <bdi>LES</bdi> שלא נרפה ואין פריסטלטיקה</li>
+   <li><b>הצרבת</b> נובעת מתסיסה של מזון שנתקע <span class="nw">ב-<bdi>esophagus</bdi>,</span> לא מרפלוקס של חומצה</li>
    <li><b>מבוגרת עם תסמינים קצרים וירידה במשקל:</b> לשלול <b>פסאודו-אכלזיה</b> מגידול (EUS ו-CT)</li>
   </ul></div></details>
  <div class="src"><span><b>Sabiston 22</b> · פרק 83 עמ׳ <bdi dir="ltr">1114–1115</bdi></span><span>מקרה 1</span></div>
@@ -226,7 +273,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <div class="grid f">
   <div>
    <ul class="b sm">
-    <li><b>מנגנון:</b> הרס של הנוירונים המעכבים <span class="nw">ב-<bdi>myenteric (Auerbach) plexus</bdi></span> (<bdi>NO</bdi>, <bdi>VIP</bdi>). <span class="nw">ה-<bdi>LES</bdi></span> לא נרפה ולעיתים קרובות לחצו גבוה</li>
+    <li><b>מנגנון:</b> הרס של הנוירונים המעכבים <span class="nw">ב-<bdi>myenteric (Auerbach) plexus</bdi></span> <span class="nw">(<bdi>NO</bdi>,</span> <span class="nw"><bdi>VIP</bdi>).</span> <span class="nw">ה-<bdi>LES</bdi></span> לא נרפה ולעיתים קרובות לחצו גבוה</li>
     <li><b>שכיחות:</b> כ-1 ל-100,000. גברים ונשים באותה מידה. גיל ממוצע כ-50, עם שיאים סביב 30 ו-60</li>
     <li><b>בליעת בריום:</b> היצרות דיסטלית, מפלס אוויר-נוזל, התרוקנות איטית. בשלב מוקדם תקינה <span class="nw">בכ-<bdi dir="ltr">30%</bdi></span></li>
     <li><b><span class="nw">ה-<bdi>esophagus</bdi></span> מורחב ופיתולי:</b> חשוב לתכנון הטיפול</li>
@@ -238,7 +285,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
     <div><b>סוג <bdi>III</bdi></b><span>התכווצויות עוויתיות <span class="nw">ב-<bdi dir="ltr">20%</bdi></span> מהבליעות לפחות</span></div>
    </div>
   </div>
-  <figure><img src="img/achalasia-endo-barium-hrm.jpg" alt="אכלזיה: גסטרוסקופיה, בליעת בריום ומנומטריה"><figcaption>אכלזיה סוג <bdi>II</bdi>: <bdi>esophagus</bdi> שנראה תקין בגסטרוסקופיה (משמאל), היצרות דיסטלית עם שארית בריום (באמצע) ומנומטריה עם לחץ בכל <span class="nw">ה-<bdi>esophagus</bdi></span> <span class="nw">ו-<bdi>LES</bdi></span> שלא נרפה (מימין) · <bdi>Sato H et al.</bdi>, <bdi>CC BY 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/achalasia-endo-barium-hrm.jpg" alt="אכלזיה: גסטרוסקופיה, בליעת בריום ומנומטריה"><figcaption>אכלזיה סוג <span class="nw"><bdi>II</bdi>:</span> <bdi>esophagus</bdi> שנראה תקין בגסטרוסקופיה (משמאל), היצרות דיסטלית עם שארית בריום (באמצע) ומנומטריה עם לחץ בכל <span class="nw">ה-<bdi>esophagus</bdi></span> <span class="nw">ו-<bdi>LES</bdi></span> שלא נרפה (מימין) · <span class="nw"><bdi>Sato H et al.</bdi>,</span> <span class="nw"><bdi>CC BY 4.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 83 עמ׳ <bdi dir="ltr">1111, 1114–1115</bdi></span><span>מקרה 1</span></div>
 </div></section>
@@ -249,11 +296,11 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <p class="lead" style="margin-bottom:10px">הטיפול לא מרפא את המחלה. המטרה: לפתוח את המעבר <span class="nw">ל-<bdi>stomach</bdi></span></p>
  <div class="grid g3">
   <div class="box"><b class="t">הרחבה פנאומטית</b>
-   <ul class="b sm"><li>מדורגת: מתחילים בבלון 30 מ״מ</li><li>הצלחה דומה למיוטומיה ב-5 שנים (<bdi dir="ltr">82%</bdi> לעומת <bdi dir="ltr">84%</bdi>)</li><li>כרבע צריכים הרחבה נוספת</li><li>פחות טובה בצעירים מגיל 40, בגברים ובסוגים <bdi>I</bdi> <span class="nw">ו-<bdi>III</bdi></span></li></ul></div>
-  <div class="box n"><b class="t">מיוטומיה לפרוסקופית (<bdi>Heller</bdi>)</b>
-   <ul class="b sm"><li>כ-8.5 ס״מ: 6 ס״מ <span class="nw">ב-<bdi>esophagus</bdi></span> ו-2.5 ס״מ <span class="nw">ב-<bdi>stomach</bdi></span></li><li>עם פונדופליקציה חלקית: <bdi>Dor</bdi> או <bdi>Toupet</bdi></li><li>בלי פונדופליקציה: רפלוקס <span class="nw">ב-<bdi dir="ltr">48%</bdi></span>. עם <bdi>Dor</bdi>: <bdi dir="ltr">9%</bdi></li><li>הצלחה של <bdi dir="ltr">90%</bdi> <span class="nw">וכ-<bdi dir="ltr">87%</bdi></span> ב-5 שנים</li></ul></div>
+   <ul class="b sm"><li>מדורגת: מתחילים בבלון 30 מ״מ</li><li>הצלחה דומה למיוטומיה ב-5 שנים <span class="nw">(<bdi dir="ltr">82%</bdi></span> לעומת <span class="nw"><bdi dir="ltr">84%</bdi>)</span></li><li>כרבע צריכים הרחבה נוספת</li><li>פחות טובה בצעירים מגיל 40, בגברים ובסוגים <bdi>I</bdi> <span class="nw">ו-<bdi>III</bdi></span></li></ul></div>
+  <div class="box n"><b class="t">מיוטומיה לפרוסקופית <span class="nw">(<bdi>Heller</bdi>)</span></b>
+   <ul class="b sm"><li>כ-8.5 ס״מ: 6 ס״מ <span class="nw">ב-<bdi>esophagus</bdi></span> ו-2.5 ס״מ <span class="nw">ב-<bdi>stomach</bdi></span></li><li>עם פונדופליקציה חלקית: <bdi>Dor</bdi> או <bdi>Toupet</bdi></li><li>בלי פונדופליקציה: רפלוקס <span class="nw">ב-<bdi dir="ltr">48%</bdi>.</span> עם <span class="nw"><bdi>Dor</bdi>:</span> <bdi dir="ltr">9%</bdi></li><li>הצלחה של <bdi dir="ltr">90%</bdi> <span class="nw">וכ-<bdi dir="ltr">87%</bdi></span> ב-5 שנים</li></ul></div>
   <div class="box b"><b class="t">POEM (מיוטומיה דרך הפה)</b>
-   <ul class="b sm"><li>מנהרה <span class="nw">ב-<bdi>submucosa</bdi></span> ומיוטומיה של <span class="nw">ה-<bdi>circular muscle layer</bdi></span></li><li>מקל על התסמינים ביותר <span class="nw">מ-<bdi dir="ltr">90%</bdi></span></li><li>החיסרון: <b>רפלוקס <span class="nw">בכ-<bdi dir="ltr">50%</bdi></span></b>, כי אין פונדופליקציה</li><li>עדיף בסוג <bdi>III</bdi>: אפשר מיוטומיה ארוכה יותר</li></ul></div>
+   <ul class="b sm"><li>מנהרה <span class="nw">ב-<bdi>submucosa</bdi></span> ומיוטומיה של <span class="nw">ה-<bdi>circular muscle layer</bdi></span></li><li>מקל על התסמינים ביותר <span class="nw">מ-<bdi dir="ltr">90%</bdi></span></li><li>החיסרון: <b>רפלוקס <span class="nw">בכ-<bdi dir="ltr">50%</bdi></span></b>, כי אין פונדופליקציה</li><li>עדיף בסוג <span class="nw"><bdi>III</bdi>:</span> אפשר מיוטומיה ארוכה יותר</li></ul></div>
  </div>
  <div class="grid" style="margin-top:12px">
   <div class="box a"><b class="t">בוטוקס</b>שיפור <span class="nw">בכ-<bdi dir="ltr">80%</bdi></span> בחודש הראשון, רק <bdi dir="ltr">40%</bdi> אחרי שנה. מקשה על ניתוח אחר כך. רק למי שלא מתאים לטיפול אחר</div>
@@ -275,10 +322,10 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  </ol>
  <details class="rev"><summary>👁 הצגת התשובות</summary><div>
   <ul class="b sm">
-   <li><b>סרטן הוושט.</b> רפלוקס ממושך, השמנה ועישון: <b>אדנוקרצינומה</b> על רקע ושט ברט, <bdi dir="ltr">80%</bdi> מהן <span class="nw">ב-<bdi>distal esophagus</bdi></span> או <span class="nw">ב-<bdi>GEJ</bdi></span>. בגידול קשקש גורמי הסיכון הם עישון ואלכוהול</li>
+   <li><b>סרטן הוושט.</b> רפלוקס ממושך, השמנה ועישון: <b>אדנוקרצינומה</b> על רקע ושט ברט, <bdi dir="ltr">80%</bdi> מהן <span class="nw">ב-<bdi>distal esophagus</bdi></span> או <span class="nw">ב-<bdi>GEJ</bdi>.</span> בגידול קשקש גורמי הסיכון הם עישון ואלכוהול</li>
    <li><b>גסטרוסקופיה עם ביופסיות מרובות.</b> לתעד מרחק מהשיניים, יחס לצומת, אורך הגידול ומידת החסימה</li>
-   <li><b>דיספאגיה = בדרך כלל לפחות <bdi>T3</bdi>,</b> עם סיכוי של <span class="nw">כ-<bdi dir="ltr">80%</bdi></span> לבלוטות חיוביות</li>
-   <li><b>PET-CT</b> לגרורות רחוקות. אם אין: <b>EUS</b> עם דגימה מבלוטות חשודות. בגידול בשליש העליון או האמצעי: ברונכוסקופיה</li>
+   <li><b>דיספאגיה = בדרך כלל לפחות <span class="nw"><bdi>T3</bdi>,</span></b> עם סיכוי של <span class="nw">כ-<bdi dir="ltr">80%</bdi></span> לבלוטות חיוביות</li>
+   <li><b><bdi dir="ltr">PET-CT</bdi></b> לגרורות רחוקות. אם אין: <b>EUS</b> עם דגימה מבלוטות חשודות. בגידול בשליש העליון או האמצעי: ברונכוסקופיה</li>
   </ul></div></details>
  <div class="src"><span><b>Sabiston 22</b> · פרק 84 עמ׳ <bdi dir="ltr">1136–1140, 1144</bdi></span><span>מקרה 2</span></div>
 </div></section>
@@ -294,16 +341,16 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
     <div><b dir="ltr">&gt;80%</b><span>בלוטות חיוביות <span class="nw">ב-<bdi>T3–T4</bdi></span></span></div>
    </div>
    <ul class="b sm">
-    <li><b>T:</b> <bdi>T1a</bdi> <bdi>mucosa</bdi> · <bdi>T1b</bdi> <bdi>submucosa</bdi> · <bdi>T2</bdi> <bdi>muscularis propria</bdi> · <bdi>T3</bdi> <bdi>adventitia</bdi> · <bdi>T4a</bdi> <bdi>diaphragm, pleura, pericardium</bdi> · <bdi>T4b</bdi> <bdi>aorta, vertebral body, trachea</bdi></li>
-    <li><b>N</b> לפי מספר: <bdi dir="ltr">1–2</bdi>, <bdi dir="ltr">3–6</bdi>, 7 ומעלה</li>
-    <li><span class="nw">ב-<bdi>EUS</bdi></span> השכבה הרביעית היא קו הגבול: לא נחדרה <bdi>T1</bdi>, נחדרה <bdi>T2</bdi>, נחצתה <bdi>T3</bdi></li>
-    <li>בגידול שטחי (<bdi>T1a–T2</bdi>) EUS פחות מדויק. <b>כריתה אנדוסקופית</b> נותנת את השלב המדויק</li>
+    <li><b><span class="nw"><bdi dir="ltr">T</bdi>:</span></b> <bdi>T1a</bdi> <bdi>mucosa</bdi> · <bdi>T1b</bdi> <bdi>submucosa</bdi> · <bdi>T2</bdi> <bdi>muscularis propria</bdi> · <bdi>T3</bdi> <bdi>adventitia</bdi> · <bdi>T4a</bdi> <bdi>diaphragm, pleura, pericardium</bdi> · <bdi>T4b</bdi> <bdi>aorta, vertebral body, trachea</bdi></li>
+    <li><b><bdi dir="ltr">N</bdi></b> לפי מספר: <span class="nw"><bdi dir="ltr">1–2</bdi>,</span> <span class="nw"><bdi dir="ltr">3–6</bdi>,</span> 7 ומעלה</li>
+    <li><span class="nw">ב-<bdi>EUS</bdi></span> השכבה הרביעית היא קו הגבול: לא נחדרה <span class="nw"><bdi>T1</bdi>,</span> נחדרה <span class="nw"><bdi>T2</bdi>,</span> נחצתה <bdi>T3</bdi></li>
+    <li>בגידול שטחי <span class="nw">(<bdi>T1a–T2</bdi>)</span> EUS פחות מדויק. <b>כריתה אנדוסקופית</b> נותנת את השלב המדויק</li>
    </ul>
-   <div class="box n" style="margin-top:8px"><b class="t">אצל המטופל שלנו</b><bdi>cT3 N1 M0</bdi> אדנוקרצינומה <span class="nw">ב-<bdi>lower esophagus</bdi></span>: מחלה מתקדמת מקומית ונתיחה</div>
+   <div class="box n" style="margin-top:8px"><b class="t">אצל המטופל שלנו</b><bdi>cT3 N1 M0</bdi> אדנוקרצינומה <span class="nw">ב-<bdi>lower esophagus</bdi>:</span> מחלה מתקדמת מקומית ונתיחה</div>
   </div>
   <div style="display:grid;gap:10px">
-   <figure><img src="img/esophageal-adenoca-endo.jpg" alt="אדנוקרצינומה של ה-esophagus בגסטרוסקופיה" style="max-height:26vh"><figcaption>אדנוקרצינומה <span class="nw">ב-<bdi>distal esophagus</bdi></span>: גוש שבריר שמצר את הלומן · <bdi>Samir</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
-   <figure><img src="img/esophageal-ca-ct.png" alt="גידול ב-esophagus ב-CT" style="max-height:24vh"><figcaption>CT חזה: גוש <span class="nw">ב-<bdi>esophagus</bdi></span> באמצע בית החזה (חץ) · <bdi>James Heilman, MD</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+   <figure><img src="img/esophageal-adenoca-endo.jpg" alt="אדנוקרצינומה של ה-esophagus בגסטרוסקופיה" style="max-height:26vh"><figcaption>אדנוקרצינומה <span class="nw">ב-<bdi>distal esophagus</bdi>:</span> גוש שבריר שמצר את הלומן · <span class="nw"><bdi>Samir</bdi>,</span> <span class="nw"><bdi>CC BY-SA 3.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
+   <figure><img src="img/esophageal-ca-ct.png" alt="גידול ב-esophagus ב-CT" style="max-height:24vh"><figcaption>CT חזה: גוש <span class="nw">ב-<bdi>esophagus</bdi></span> באמצע בית החזה (חץ) · <span class="nw"><bdi>James Heilman, MD</bdi>,</span> <span class="nw"><bdi>CC BY-SA 4.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 84 עמ׳ <bdi dir="ltr">1136–1142</bdi></span><span>מקרה 2</span></div>
@@ -320,20 +367,20 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
     <div><b><bdi>FLOT</bdi></b><span>כימותרפיה לפני הניתוח ואחריו. <span class="nw">ב-<bdi>ESOPEC</bdi></span> עדיף על <bdi>CROSS</bdi> באדנוקרצינומה</span></div>
    </div>
    <ul class="b sm" style="margin-top:8px">
-    <li><b>PET-CT חוזר</b> <bdi dir="ltr">5–8</bdi> שבועות אחרי הטיפול, לפני הניתוח</li>
+    <li><b><bdi dir="ltr">PET-CT</bdi> חוזר</b> <bdi dir="ltr">5–8</bdi> שבועות אחרי הטיפול, לפני הניתוח</li>
     <li>דיספאגיה קשה וירידה במשקל: <b>הזנה בג׳חונוסטומיה</b>, לא בגסטרוסטומיה. שומרים על <span class="nw">ה-<bdi>stomach</bdi></span> לשחזור</li>
-    <li>שארית גידול אחרי <bdi>CROSS</bdi> וניתוח: ניבולומאב משלים (<bdi>CheckMate 577</bdi>)</li>
+    <li>שארית גידול אחרי <bdi>CROSS</bdi> וניתוח: ניבולומאב משלים <span class="nw">(<bdi>CheckMate 577</bdi>)</span></li>
    </ul>
   </div>
   <div>
    <h3>כריתת ושט</h3>
    <ul class="b sm">
-    <li><b><bdi>Ivor Lewis</bdi>:</b> בטן ואז בית חזה ימין, חיבור בבית החזה. מתאים לגידול דיסטלי</li>
-    <li><b><bdi>McKeown</bdi>:</b> שלושה חתכים, חיבור בצוואר. לגידול גבוה יותר</li>
-    <li><b>דרך <span class="nw">ה-<bdi>hiatus</bdi></span>:</b> בלי לפתוח את בית החזה. פחות סיבוכי ריאה, פחות בלוטות</li>
+    <li><b><span class="nw"><bdi>Ivor Lewis</bdi>:</span></b> בטן ואז בית חזה ימין, חיבור בבית החזה. מתאים לגידול דיסטלי</li>
+    <li><b><span class="nw"><bdi>McKeown</bdi>:</span></b> שלושה חתכים, חיבור בצוואר. לגידול גבוה יותר</li>
+    <li><b>דרך <span class="nw">ה-<bdi>hiatus</bdi>:</span></b> בלי לפתוח את בית החזה. פחות סיבוכי ריאה, פחות בלוטות</li>
     <li>שחזור בצינור <span class="nw">מה-<bdi>stomach</bdi></span> על <b><span class="nw">ה-<bdi>right gastroepiploic artery</bdi></span></b>. לפחות 15 בלוטות</li>
    </ul>
-   <div class="box r" style="margin-top:8px"><b class="t">סיבוכים</b>תחלואה משמעותית <span class="nw">ב-<bdi dir="ltr">30–40%</bdi></span>. תמותה היום <bdi dir="ltr">2–4%</bdi>. השכיח: פרפור פרוזדורים. גם דלקת ריאות, דליפה מהחיבור וכילותורקס. מרכזים עם נפח גבוה</div>
+   <div class="box r" style="margin-top:8px"><b class="t">סיבוכים</b>תחלואה משמעותית <span class="nw">ב-<bdi dir="ltr">30–40%</bdi>.</span> תמותה היום <span class="nw"><bdi dir="ltr">2–4%</bdi>.</span> השכיח: פרפור פרוזדורים. גם דלקת ריאות, דליפה מהחיבור וכילותורקס. מרכזים עם נפח גבוה</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 84 עמ׳ <bdi dir="ltr">1144–1153</bdi></span><span>מקרה 2</span></div>
@@ -352,9 +399,9 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  </ol>
  <details class="rev"><summary>👁 הצגת התשובות</summary><div>
   <ul class="b sm">
-   <li><b>ברט:</b> אפיתל עמודי עם תאי גביע (מטאפלזיה מעיית) במקום אפיתל קשקש, בגלל חשיפה לחומצה. "לשונות" בצבע סלמון מעל <span class="nw">ה-<bdi>GEJ</bdi></span>. מתעדים לפי <bdi>Prague C&amp;M</bdi> ולוקחים ביופסיות לפי <bdi>Seattle</bdi>: 4 רבעים כל 2 ס״מ</li>
+   <li><b>ברט:</b> אפיתל עמודי עם תאי גביע (מטאפלזיה מעיית) במקום אפיתל קשקש, בגלל חשיפה לחומצה. "לשונות" בצבע סלמון מעל <span class="nw">ה-<bdi>GEJ</bdi>.</span> מתעדים לפי <bdi>Prague C&amp;M</bdi> ולוקחים ביופסיות לפי <span class="nw"><bdi>Seattle</bdi>:</span> 4 רבעים כל 2 ס״מ</li>
    <li><b>נגע בולט:</b> <b>כריתה אנדוסקופית</b>, לא צריבה. רק כך יודעים את עומק החדירה. דיספלזיה צריכה אישור של פתולוג שני</li>
-   <li><b>דיספלזיה גבוהה או <bdi>T1a</bdi>:</b> כריתה אנדוסקופית של כל נגע נראה ואז צריבה (RFA) של שאר הברט. עדיף על מעקב ועל ניתוח. מעקב אחרי 3, 6 ו-12 חודשים ואז פעם בשנה</li>
+   <li><b>דיספלזיה גבוהה או <span class="nw"><bdi>T1a</bdi>:</span></b> כריתה אנדוסקופית של כל נגע נראה ואז צריבה (RFA) של שאר הברט. עדיף על מעקב ועל ניתוח. מעקב אחרי 3, 6 ו-12 חודשים ואז פעם בשנה</li>
    <li><b>ניתוח נגד רפלוקס</b> לא הוכח כמונע סרטן. מנתחים בגלל תסמינים או סיבוכים של רפלוקס</li>
   </ul></div></details>
  <div class="src"><span><b>Sabiston 22</b> · פרק 84 עמ׳ <bdi dir="ltr">1145–1147</bdi></span><span>מקרה 3</span></div>
@@ -373,7 +420,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
    </div>
    <div class="box" style="margin-top:10px"><b class="t">PPI</b>לפחות פעם ביום לכל חולה ברט. פעמיים ביום בזמן הטיפול האנדוסקופי</div>
   </div>
-  <figure><img src="img/barrett-endo.jpg" alt="ושט ברט בגסטרוסקופיה"><figcaption>ושט ברט: "לשונות" של <bdi>mucosa</bdi> בצבע סלמון שעולות <span class="nw">מה-<bdi>GEJ</bdi></span> אל תוך <span class="nw">ה-<bdi>mucosa</bdi></span> הוורודה-חיוורת של <span class="nw">ה-<bdi>esophagus</bdi></span> · <bdi>Samir</bdi>, <bdi>Wikimedia Commons</bdi> (שימוש חופשי)</figcaption></figure>
+  <figure><img src="img/barrett-endo.jpg" alt="ושט ברט בגסטרוסקופיה"><figcaption>ושט ברט: "לשונות" של <bdi>mucosa</bdi> בצבע סלמון שעולות <span class="nw">מה-<bdi>GEJ</bdi></span> אל תוך <span class="nw">ה-<bdi>mucosa</bdi></span> הוורודה-חיוורת של <span class="nw">ה-<bdi>esophagus</bdi></span> · <span class="nw"><bdi>Samir</bdi>,</span> <bdi>Wikimedia Commons</bdi> (שימוש חופשי)</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 84 עמ׳ <bdi dir="ltr">1144–1147</bdi></span><span>מקרה 3</span></div>
 </div></section>
@@ -385,13 +432,13 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   <div>
    <table style="width:100%;border-collapse:collapse;font-size:14.5px;line-height:1.4">
     <tr style="background:var(--navy);color:#fff"><th style="padding:7px;text-align:start">מצב</th><th style="padding:7px;text-align:start">מה מאפיין</th><th style="padding:7px;text-align:start">טיפול</th></tr>
-    <tr style="background:var(--soft)"><td style="padding:7px"><b>דיברטיקולום <bdi>Zenker</bdi></b></td><td style="padding:7px">מעל גיל 60, גברים. דיספאגיה <span class="nw">ב-<bdi dir="ltr">80–90%</bdi></span>, רגורגיטציה, ריח רע, קרקורים בצוואר. דיברטיקולום מדומה <span class="nw">ב-<bdi>Killian's triangle</bdi></span></td><td style="padding:7px">מיוטומיה של <span class="nw">ה-<bdi>cricopharyngeus</bdi></span>. מתחת ל-2 ס״מ לא כורתים. היום גם אנדוסקופית</td></tr>
+    <tr style="background:var(--soft)"><td style="padding:7px"><b>דיברטיקולום <bdi>Zenker</bdi></b></td><td style="padding:7px">מעל גיל 60, גברים. דיספאגיה <span class="nw">ב-<bdi dir="ltr">80–90%</bdi>,</span> רגורגיטציה, ריח רע, קרקורים בצוואר. דיברטיקולום מדומה <span class="nw">ב-<bdi>Killian's triangle</bdi></span></td><td style="padding:7px">מיוטומיה של <span class="nw">ה-<bdi>cricopharyngeus</bdi>.</span> מתחת ל-2 ס״מ לא כורתים. היום גם אנדוסקופית</td></tr>
     <tr><td style="padding:7px"><b>דיברטיקולום אפיפרני</b></td><td style="padding:7px">ב-10 ס״מ התחתונים, משני להפרעת תנועה</td><td style="padding:7px">רק עם תסמינים: כריתה, מיוטומיה ופונדופליקציה חלקית</td></tr>
     <tr style="background:var(--soft)"><td style="padding:7px"><b>עווית ושט דיסטלית</b></td><td style="padding:7px">כאב חזה שמחקה התקף לב, דיספאגיה לא מתקדמת. לשלול GERD</td><td style="padding:7px">שמרני. במקרים נבחרים מיוטומיה או POEM</td></tr>
     <tr><td style="padding:7px"><b>ושט היפר-קונטרקטילי</b></td><td style="padding:7px">כאב חזה ודיספאגיה. לשלול ושט אאוזינופילי</td><td style="padding:7px">רבים בלי טיפול. POEM במקרים קשים</td></tr>
    </table>
   </div>
-  <figure><img src="img/zenker-barium.jpg" alt="דיברטיקולום Zenker בבליעת בריום" style="max-height:44vh"><figcaption>דיברטיקולום <bdi>Zenker</bdi> בבליעת בריום, מבט מלפנים: כיס מלא בריום בצוואר (חץ) <span class="nw">וה-<bdi>esophagus</bdi></span> ממשיך מתחתיו · <bdi>James Heilman, MD</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/zenker-barium.jpg" alt="דיברטיקולום Zenker בבליעת בריום" style="max-height:44vh"><figcaption>דיברטיקולום <bdi>Zenker</bdi> בבליעת בריום, מבט מלפנים: כיס מלא בריום בצוואר (חץ) <span class="nw">וה-<bdi>esophagus</bdi></span> ממשיך מתחתיו · <span class="nw"><bdi>James Heilman, MD</bdi>,</span> <span class="nw"><bdi>CC BY-SA 4.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 83 עמ׳ <bdi dir="ltr">1118–1121</bdi></span><span>אבחנה מבדלת</span></div>
 </div></section>
@@ -400,16 +447,16 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <div class="kick"><b>13</b>מה חדש בתחום · 2021–2026</div>
  <h2>מחקרים שכדאי להכיר</h2>
  <div class="grid">
-  <div class="study"><div class="y"><bdi>NEJM</bdi> 2025 · מחקר אקראי שלב 3</div><b><bdi>ESOPEC</bdi>: <bdi>FLOT</bdi> מול <bdi>CROSS</bdi></b>
-   <p>438 מטופלים עם אדנוקרצינומה נתיחה של הוושט. הישרדות ל-3 שנים <bdi dir="ltr">57.4%</bdi> עם <bdi>FLOT</bdi> לעומת <bdi dir="ltr">50.7%</bdi> עם כימו-הקרנה (<bdi>HR</bdi> 0.70). תמותה ב-90 יום אחרי ניתוח <bdi dir="ltr">3.1%</bdi> לעומת <bdi dir="ltr">5.6%</bdi></p>
+  <div class="study"><div class="y"><bdi>NEJM</bdi> 2025 · מחקר אקראי שלב 3</div><b><span class="nw"><bdi>ESOPEC</bdi>:</span> <bdi>FLOT</bdi> מול <bdi>CROSS</bdi></b>
+   <p>438 מטופלים עם אדנוקרצינומה נתיחה של הוושט. הישרדות ל-3 שנים <bdi dir="ltr">57.4%</bdi> עם <bdi>FLOT</bdi> לעומת <bdi dir="ltr">50.7%</bdi> עם כימו-הקרנה <span class="nw">(<bdi>HR</bdi></span> 0.70). תמותה ב-90 יום אחרי ניתוח <bdi dir="ltr">3.1%</bdi> לעומת <bdi dir="ltr">5.6%</bdi></p>
    <small>Hoeppner J et al. N Engl J Med 2025;392:323-35</small></div>
-  <div class="study"><div class="y"><bdi>Lancet Oncol</bdi> 2025 · שלב 3</div><b><bdi>SANO</bdi>: מעקב פעיל במקום ניתוח</b>
+  <div class="study"><div class="y"><bdi>Lancet Oncol</bdi> 2025 · שלב 3</div><b><span class="nw"><bdi>SANO</bdi>:</span> מעקב פעיל במקום ניתוח</b>
    <p>309 מטופלים בלי גידול נראה אחרי כימו-הקרנה. מעקב צמוד וניתוח רק בחזרה לא היה נחות בהישרדות לשנתיים: <bdi dir="ltr">74%</bdi> לעומת <bdi dir="ltr">71%</bdi> בניתוח מיידי</p>
    <small>van der Wilk BJ et al. Lancet Oncol 2025;26:425-36</small></div>
-  <div class="study"><div class="y"><bdi>NEJM</bdi> 2021 · מחקר אקראי שלב 3</div><b><bdi>CheckMate 577</bdi>: ניבולומאב אחרי הניתוח</b>
+  <div class="study"><div class="y"><bdi>NEJM</bdi> 2021 · מחקר אקראי שלב 3</div><b><span class="nw"><bdi>CheckMate 577</bdi>:</span> ניבולומאב אחרי הניתוח</b>
    <p>794 מטופלים עם שארית גידול אחרי כימו-הקרנה וכריתה. הישרדות ללא מחלה חציונית 22.4 חודשים עם ניבולומאב לעומת 11.0 עם פלצבו</p>
    <small>Kelly RJ et al. N Engl J Med 2021;384:1191-203</small></div>
-  <div class="study"><div class="y"><bdi>Lancet Gastroenterol Hepatol</bdi> 2025</div><b>POEM מול מיוטומיה עם <bdi>Dor</bdi>: 5 שנים</b>
+  <div class="study"><div class="y"><bdi>Lancet Gastroenterol Hepatol</bdi> 2025</div><b>POEM מול מיוטומיה עם <span class="nw"><bdi>Dor</bdi>:</span> 5 שנים</b>
    <p>221 מטופלים עם אכלזיה. הצלחה קלינית <bdi dir="ltr">75.0%</bdi> אחרי POEM <span class="nw">ו-<bdi dir="ltr">70.8%</bdi></span> אחרי ניתוח. חשיפה לחומצה חריגה <span class="nw">ב-<bdi dir="ltr">62%</bdi></span> אחרי POEM לעומת <bdi dir="ltr">31%</bdi> אחרי ניתוח</p>
    <small>Hugova K et al. Lancet Gastroenterol Hepatol 2025;10:431-41</small></div>
  </div>
@@ -423,11 +470,11 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   <li>דיספאגיה = גסטרוסקופיה. גם כשבליעת הבריום נראית כמו הפרעת תנועה</li>
   <li>מוצקים ונוזלים יחד ורגורגיטציה: אכלזיה. המנומטריה מאשרת. במבוגר לשלול פסאודו-אכלזיה</li>
   <li>מיוטומיה עם פונדופליקציה חלקית או POEM: הצלחה דומה. אחרי POEM יותר רפלוקס</li>
-  <li>דיספאגיה מתקדמת עם ירידה במשקל בגבר מעשן עם רפלוקס: סרטן ושט, כנראה כבר <bdi>T3</bdi>. טיפול מקדים ואז כריתת ושט</li>
+  <li>דיספאגיה מתקדמת עם ירידה במשקל בגבר מעשן עם רפלוקס: סרטן ושט, כנראה כבר <span class="nw"><bdi>T3</bdi>.</span> טיפול מקדים ואז כריתת ושט</li>
   <li>ושט ברט: הדרגה של הדיספלזיה קובעת. נגע בולט כורתים אנדוסקופית</li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 83 <bdi>Benign Esophageal Disorders</bdi> (עמ׳ <bdi dir="ltr">1108–1121</bdi>) · פרק 84 <bdi>Esophageal Cancer</bdi> (עמ׳ <bdi dir="ltr">1136–1154</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906, נחלת הכלל) · תמונות והדמיה: <bdi>Wikimedia Commons</bdi>, הקרדיט בכל תמונה · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 83 <bdi>Benign Esophageal Disorders</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1108–1121</bdi>)</span> · פרק 84 <bdi>Esophageal Cancer</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1136–1154</bdi>)</span></div>
+ <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906, נחלת הכלל) · תמונות והדמיה: <span class="nw"><bdi>Wikimedia Commons</bdi>,</span> הקרדיט בכל תמונה · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>
@@ -449,5 +496,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>

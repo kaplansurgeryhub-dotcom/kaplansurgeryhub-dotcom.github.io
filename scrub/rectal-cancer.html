@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>קרצינומה של ה-rectum · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -80,7 +80,7 @@ bdi{unicode-bidi:isolate}
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -110,9 +110,56 @@ bdi{unicode-bidi:isolate}
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -125,7 +172,7 @@ bdi{unicode-bidi:isolate}
  <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
  <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 4</div>
  <h1>קרצינומה של <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span></h1>
- <p class="lead">בדיקה רקטלית <span class="nw">ו-<bdi>MRI</bdi></span> של האגן, טיפול לפני ניתוח, כריתה מלאה של <span class="nw">ה-<bdi dir="ltr">mesorectum</bdi></span>, שימור <bdi dir="ltr">sphincters</bdi> וגישת "המתנה ומעקב"</p>
+ <p class="lead">בדיקה רקטלית <span class="nw">ו-<bdi>MRI</bdi></span> של האגן, טיפול לפני ניתוח, כריתה מלאה של <span class="nw">ה-<bdi dir="ltr">mesorectum</bdi>,</span> שימור <bdi dir="ltr">sphincters</bdi> וגישת "המתנה ומעקב"</p>
  <div class="cvsrc" data-ch="96" data-note=""><small>מבוסס על</small><b><bdi dir="ltr">Sabiston Textbook of Surgery</bdi> · מהדורה 22</b><div class="cvch"><span>פרק <bdi dir="ltr">96</bdi></span></div></div>
  <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
 </div></section>
@@ -134,13 +181,13 @@ bdi{unicode-bidi:isolate}
  <div class="kick"><b>1</b>מטרות הלמידה</div>
  <h2>בסוף המפגש תדעו</h2>
  <ol class="obj">
-  <li><span>לבצע ולתעד בדיקה רקטלית: מרחק מהשוליים <span class="nw">ומה-<bdi dir="ltr">dentate line</bdi></span>, ניידות וקשר <span class="nw">ל-<bdi dir="ltr">sphincter</bdi></span> ולאיברים השכנים</span></li>
-  <li><span>להסביר מה <bdi>MRI</bdi> של האגן נותן: שלב <bdi>T</bdi> <span class="nw">ו-<bdi>N</bdi></span>, השוליים ההיקפיים <span class="nw">וה-<bdi dir="ltr">anterior peritoneal reflection</bdi></span></span></li>
-  <li><span>להכיר את הטיפול לפני הניתוח (קרינה-כימותרפיה, <bdi>TNT</bdi>) ולדעת למי הוא מיועד</span></li>
-  <li><span>לתאר את המישור של כריתת <span class="nw">ה-<bdi dir="ltr">mesorectum</bdi></span> (<bdi>TME</bdi>) ואת העצבים שבסכנה</span></li>
+  <li><span>לבצע ולתעד בדיקה רקטלית: מרחק מהשוליים <span class="nw">ומה-<bdi dir="ltr">dentate line</bdi>,</span> ניידות וקשר <span class="nw">ל-<bdi dir="ltr">sphincter</bdi></span> ולאיברים השכנים</span></li>
+  <li><span>להסביר מה <bdi>MRI</bdi> של האגן נותן: שלב <bdi>T</bdi> <span class="nw">ו-<bdi>N</bdi>,</span> השוליים ההיקפיים <span class="nw">וה-<bdi dir="ltr">anterior peritoneal reflection</bdi></span></span></li>
+  <li><span>להכיר את הטיפול לפני הניתוח (קרינה-כימותרפיה, <span class="nw"><bdi>TNT</bdi>)</span> ולדעת למי הוא מיועד</span></li>
+  <li><span>לתאר את המישור של כריתת <span class="nw">ה-<bdi dir="ltr">mesorectum</bdi></span> <span class="nw">(<bdi>TME</bdi>)</span> ואת העצבים שבסכנה</span></li>
   <li><span>להחליט בין כריתה קדמית נמוכה, כריתה בטנית-פרינאלית, כריתה מקומית ו"המתנה ומעקב"</span></li>
  </ol>
- <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 96 (עמ׳ <bdi dir="ltr">1503–1512</bdi>)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 96 (עמ׳ <span class="nw"><bdi dir="ltr">1503–1512</bdi>)</span></span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -148,7 +195,7 @@ bdi{unicode-bidi:isolate}
  <h2>סרטן <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span> במספרים</h2>
  <div class="num">
   <div><b dir="ltr">46,050</b><span>מקרים חדשים בארה״ב ב-2023 (הערכה)</span></div>
-  <div><b dir="ltr">27% → 31%</b><span>חלק <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span> מכלל סרטני <span class="nw">ה-<bdi dir="ltr">colon</bdi></span>, 1995 עד 2019</span></div>
+  <div><b dir="ltr">27% → 31%</b><span>חלק <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span> מכלל סרטני <span class="nw">ה-<bdi dir="ltr">colon</bdi>,</span> 1995 עד 2019</span></div>
   <div><b dir="ltr">~2%</b><span>עלייה בשנה מתחת לגיל 50 בעשור האחרון</span></div>
   <div><b dir="ltr">~20%</b><span>עם גרורות כבר באבחנה</span></div>
  </div>
@@ -175,13 +222,13 @@ bdi{unicode-bidi:isolate}
    <ul class="b">
     <li>בדיקה רקטלית <b>ופרוקטוסקופיה</b> (גמישה או קשיחה) בידי הכירורג המטפל: היא קובעת את המשך הבירור והטיפול</li>
     <li><b>מתעדים:</b> המרחק של הגידול <span class="nw">מה-<bdi dir="ltr">anal verge</bdi></span> <span class="nw">ומה-<bdi dir="ltr">dentate line</bdi></span></li>
-    <li><b>גידול <span class="nw">ב-<bdi dir="ltr">surgical anal canal</bdi></span>:</b> בודקים ניידות מול <span class="nw">ה-<bdi dir="ltr">prostate</bdi></span> או <span class="nw">ה-<bdi dir="ltr">vagina</bdi></span> ומול <span class="nw">ה-<bdi dir="ltr">sphincters</bdi></span></li>
+    <li><b>גידול <span class="nw">ב-<bdi dir="ltr">surgical anal canal</bdi>:</span></b> בודקים ניידות מול <span class="nw">ה-<bdi dir="ltr">prostate</bdi></span> או <span class="nw">ה-<bdi dir="ltr">vagina</bdi></span> ומול <span class="nw">ה-<bdi dir="ltr">sphincters</bdi></span></li>
     <li><b>נגע מוקדם או פוליפ ממאיר:</b> צורה ודגם הבלוטות באנדוסקופיה עוזרים להחליט על כריתה מקומית</li>
     <li>אם עוד אין אבחנה: ביופסיה, כולל צביעה לחלבוני <bdi>MMR</bdi></li>
    </ul>
-   <div class="box b" style="margin-top:12px"><b class="t">במחלקה השבוע</b>היו בבדיקה רקטלית של חולה עם גידול <span class="nw">ב-<bdi dir="ltr">rectum</bdi></span>, בהשגחת בכיר/ה. תארו בקול: כמה ס״מ מהשוליים, באיזה קיר, נייד או מקובע ואם הוא מגיע <span class="nw">ל-<bdi dir="ltr">sphincter</bdi></span></div>
+   <div class="box b" style="margin-top:12px"><b class="t">במחלקה השבוע</b>היו בבדיקה רקטלית של חולה עם גידול <span class="nw">ב-<bdi dir="ltr">rectum</bdi>,</span> בהשגחת בכיר/ה. תארו בקול: כמה ס״מ מהשוליים, באיזה קיר, נייד או מקובע ואם הוא מגיע <span class="nw">ל-<bdi dir="ltr">sphincter</bdi></span></div>
   </div>
-  <figure><img src="img/dre-nci.jpg" alt="בדיקה רקטלית באצבע, חתך צדי של האגן בגבר"><figcaption>בדיקה רקטלית באצבע: אצבע עם כפפה וחומר סיכה, מבט צדי על <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span>, <span class="nw">ה-<bdi dir="ltr">prostate</bdi></span> <span class="nw">וה-<bdi dir="ltr">bladder</bdi></span> · <bdi>Alan Hoofring, National Cancer Institute</bdi> (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/dre-nci.jpg" alt="בדיקה רקטלית באצבע, חתך צדי של האגן בגבר"><figcaption>בדיקה רקטלית באצבע: אצבע עם כפפה וחומר סיכה, מבט צדי על <span class="nw">ה-<bdi dir="ltr">rectum</bdi>,</span> <span class="nw">ה-<bdi dir="ltr">prostate</bdi></span> <span class="nw">וה-<bdi dir="ltr">bladder</bdi></span> · <bdi>Alan Hoofring, National Cancer Institute</bdi> (נחלת הכלל)</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1503</bdi></span><span>בדיקה</span></div>
 </div></section>
@@ -202,13 +249,13 @@ bdi{unicode-bidi:isolate}
   <g class="hzb" style="--c:#A3402E"><circle cx="775" cy="745" r="24"/><text x="775" y="745">5</text></g>
  </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על אזור בחתך כדי לקרוא עליו</p>
-   <div class="hzi" data-hzi="m" hidden><b>1 · <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span> <span class="nw">וה-<bdi dir="ltr">mesorectum</bdi></span></b><p><span class="nw">ה-<bdi dir="ltr">mesorectum</bdi></span> עטוף בפציה דקה (<bdi>fascia propria</bdi>) ומכיל את ענפי <span class="nw">ה-<bdi>IMA</bdi></span> ואת הלימפה. <strong>כריתת <span class="nw">ה-<bdi dir="ltr">mesorectum</bdi></span> (<bdi>TME</bdi>)</strong> נעשית מחוץ לפציה הזו ומוציאה הכול כגוש אחד. לימפה משני השלישים העליונים עולה לבלוטות של <span class="nw">ה-<bdi>IMA</bdi></span>. מהשליש התחתון גם לצדדים, לבלוטות <span class="nw">ה-<bdi dir="ltr">internal iliac</bdi></span></p></div>
-   <div class="hzi" data-hzi="b" hidden><b>2 · <bdi dir="ltr">sacrum</bdi> <span class="nw">ו-<bdi dir="ltr">presacral fascia</bdi></span></b><p>הדיסקציה האחורית עוברת <strong>לפני</strong> <span class="nw">ה-<bdi dir="ltr">presacral fascia</bdi></span>. מתחת לה יש <bdi dir="ltr">presacral venous plexus</bdi>: קרע שם מדמם קשות: הכלים נסוגים לתוך <span class="nw">ה-<bdi dir="ltr">sacral foramina</bdi></span>. מעל <span class="nw">ה-<bdi dir="ltr">sacral promontory</bdi></span> עובר <span class="nw">ה-<bdi dir="ltr">superior hypogastric plexus</bdi></span>: פגיעה בו גורמת לשפיכה לאחור</p></div>
-   <div class="hzi" data-hzi="a" hidden><b>3 · <span class="nw">ה-<bdi dir="ltr">prostate</bdi></span> והקיר הקדמי</b><p>בקיר הקדמי השוליים ההיקפיים (<bdi>CRM</bdi>) צרים. כשהשוליים מאוימים גם אחרי טיפול מקדים, יוצאים מחוץ למישור <span class="nw">ה-<bdi>TME</bdi></span> וכורתים יחד את האיבר המעורב (<bdi dir="ltr">prostate</bdi>, <bdi dir="ltr">vagina</bdi>). פגיעה <span class="nw">ב-<bdi dir="ltr">neurovascular bundles</bdi></span> שליד <span class="nw">ה-<bdi dir="ltr">prostate</bdi></span>: הפרעה בתפקוד המיני ובתפקוד <span class="nw">ה-<bdi dir="ltr">bladder</bdi></span></p></div>
-   <div class="hzi" data-hzi="v" hidden><b>4 · <span class="nw">ה-<bdi dir="ltr">bladder</bdi></span> <span class="nw">וה-<bdi dir="ltr">peritoneal reflection</bdi></span></b><p><span class="nw">ה-<bdi dir="ltr">peritoneum</bdi></span> יורד מעל <span class="nw">ה-<bdi dir="ltr">bladder</bdi></span> ויוצר את <span class="nw">ה-<bdi dir="ltr">rectovesical pouch</bdi></span> בינו לבין <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span>. <strong><span class="nw">ה-<bdi dir="ltr">anterior peritoneal reflection</bdi></span></strong> נראה <span class="nw">ב-<bdi>MRI</bdi></span> ומשמש גבול: גידול <strong>מתחתיו</strong> (<bdi dir="ltr">rectum</bdi> חוץ-צפקי) בשלב מתקדם הוא המועמד לטיפול לפני ניתוח. <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span> שמעליו נחשב תוך-צפקי</p></div>
-   <div class="hzi" data-hzi="s" hidden><b>5 · <bdi dir="ltr">anal canal</bdi> <span class="nw">וה-<bdi dir="ltr">sphincters</bdi></span></b><p>הגבול התחתון של <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span> הוא <strong><span class="nw">ה-<bdi dir="ltr">anorectal ring</bdi></span></strong>: הגבול העליון של <span class="nw">ה-<bdi dir="ltr">sphincters</bdi></span> ושל <span class="nw">ה-<bdi>puborectalis</bdi></span>, מורגש בבדיקה. מעורבות של <span class="nw">ה-<bdi dir="ltr">levator ani</bdi></span> או של <span class="nw">ה-<bdi dir="ltr">external sphincter</bdi></span>: אין שימור <bdi dir="ltr">sphincters</bdi>. רק <span class="nw">ה-<bdi dir="ltr">internal sphincter</bdi></span>: אפשר <bdi dir="ltr">intersphincteric resection</bdi> בחולים נבחרים</p></div>
+   <div class="hzi" data-hzi="m" hidden><b>1 · <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span> <span class="nw">וה-<bdi dir="ltr">mesorectum</bdi></span></b><p><span class="nw">ה-<bdi dir="ltr">mesorectum</bdi></span> עטוף בפציה דקה <span class="nw">(<bdi>fascia propria</bdi>)</span> ומכיל את ענפי <span class="nw">ה-<bdi>IMA</bdi></span> ואת הלימפה. <strong>כריתת <span class="nw">ה-<bdi dir="ltr">mesorectum</bdi></span> <span class="nw">(<bdi>TME</bdi>)</span></strong> נעשית מחוץ לפציה הזו ומוציאה הכול כגוש אחד. לימפה משני השלישים העליונים עולה לבלוטות של <span class="nw">ה-<bdi>IMA</bdi>.</span> מהשליש התחתון גם לצדדים, לבלוטות <span class="nw">ה-<bdi dir="ltr">internal iliac</bdi></span></p></div>
+   <div class="hzi" data-hzi="b" hidden><b>2 · <bdi dir="ltr">sacrum</bdi> <span class="nw">ו-<bdi dir="ltr">presacral fascia</bdi></span></b><p>הדיסקציה האחורית עוברת <strong>לפני</strong> <span class="nw">ה-<bdi dir="ltr">presacral fascia</bdi>.</span> מתחת לה יש <span class="nw"><bdi dir="ltr">presacral venous plexus</bdi>:</span> קרע שם מדמם קשות: הכלים נסוגים לתוך <span class="nw">ה-<bdi dir="ltr">sacral foramina</bdi>.</span> מעל <span class="nw">ה-<bdi dir="ltr">sacral promontory</bdi></span> עובר <span class="nw">ה-<bdi dir="ltr">superior hypogastric plexus</bdi>:</span> פגיעה בו גורמת לשפיכה לאחור</p></div>
+   <div class="hzi" data-hzi="a" hidden><b>3 · <span class="nw">ה-<bdi dir="ltr">prostate</bdi></span> והקיר הקדמי</b><p>בקיר הקדמי השוליים ההיקפיים <span class="nw">(<bdi>CRM</bdi>)</span> צרים. כשהשוליים מאוימים גם אחרי טיפול מקדים, יוצאים מחוץ למישור <span class="nw">ה-<bdi>TME</bdi></span> וכורתים יחד את האיבר המעורב <span class="nw">(<bdi dir="ltr">prostate</bdi>,</span> <span class="nw"><bdi dir="ltr">vagina</bdi>).</span> פגיעה <span class="nw">ב-<bdi dir="ltr">neurovascular bundles</bdi></span> שליד <span class="nw">ה-<bdi dir="ltr">prostate</bdi>:</span> הפרעה בתפקוד המיני ובתפקוד <span class="nw">ה-<bdi dir="ltr">bladder</bdi></span></p></div>
+   <div class="hzi" data-hzi="v" hidden><b>4 · <span class="nw">ה-<bdi dir="ltr">bladder</bdi></span> <span class="nw">וה-<bdi dir="ltr">peritoneal reflection</bdi></span></b><p><span class="nw">ה-<bdi dir="ltr">peritoneum</bdi></span> יורד מעל <span class="nw">ה-<bdi dir="ltr">bladder</bdi></span> ויוצר את <span class="nw">ה-<bdi dir="ltr">rectovesical pouch</bdi></span> בינו לבין <span class="nw">ה-<bdi dir="ltr">rectum</bdi>.</span> <strong><span class="nw">ה-<bdi dir="ltr">anterior peritoneal reflection</bdi></span></strong> נראה <span class="nw">ב-<bdi>MRI</bdi></span> ומשמש גבול: גידול <strong>מתחתיו</strong> <span class="nw">(<bdi dir="ltr">rectum</bdi></span> חוץ-צפקי) בשלב מתקדם הוא המועמד לטיפול לפני ניתוח. <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span> שמעליו נחשב תוך-צפקי</p></div>
+   <div class="hzi" data-hzi="s" hidden><b>5 · <bdi dir="ltr">anal canal</bdi> <span class="nw">וה-<bdi dir="ltr">sphincters</bdi></span></b><p>הגבול התחתון של <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span> הוא <strong><span class="nw">ה-<bdi dir="ltr">anorectal ring</bdi></span></strong>: הגבול העליון של <span class="nw">ה-<bdi dir="ltr">sphincters</bdi></span> ושל <span class="nw">ה-<bdi>puborectalis</bdi>,</span> מורגש בבדיקה. מעורבות של <span class="nw">ה-<bdi dir="ltr">levator ani</bdi></span> או של <span class="nw">ה-<bdi dir="ltr">external sphincter</bdi>:</span> אין שימור <span class="nw"><bdi dir="ltr">sphincters</bdi>.</span> רק <span class="nw">ה-<bdi dir="ltr">internal sphincter</bdi>:</span> אפשר <bdi dir="ltr">intersphincteric resection</bdi> בחולים נבחרים</p></div>
   </div></div>
- <figcaption>חתך סגיטלי של אגן גבר: <bdi dir="ltr">rectum</bdi>, <bdi dir="ltr">prostate</bdi>, <bdi dir="ltr">bladder</bdi> <span class="nw">ו-<bdi dir="ltr">sacrum</bdi></span> · <bdi>Sobotta, Atlas and Text-book of Human Anatomy</bdi> 1906, איור 483 (נחלת הכלל)</figcaption>
+ <figcaption>חתך סגיטלי של אגן גבר: <span class="nw"><bdi dir="ltr">rectum</bdi>,</span> <span class="nw"><bdi dir="ltr">prostate</bdi>,</span> <bdi dir="ltr">bladder</bdi> <span class="nw">ו-<bdi dir="ltr">sacrum</bdi></span> · <bdi>Sobotta, Atlas and Text-book of Human Anatomy</bdi> 1906, איור 483 (נחלת הכלל)</figcaption>
  <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1503, 1506–1510</bdi></span><span>אנטומיה</span></div>
 </div></section>
 
@@ -218,14 +265,14 @@ bdi{unicode-bidi:isolate}
  <div class="grid">
   <div class="flow">
    <div><b>מעבדה</b><span><bdi>CEA</bdi> בסיסי</span></div>
-   <div><b>קולונוסקופיה מלאה</b><span>סרטן נוסף בכ-3%, נגעים טרום-ממאירים בכ-30%. גידול חוסם: קולונוגרפיה <span class="nw">ב-<bdi>CT</bdi></span>, אחרי הטיפול המקדים או בתקופה שאחרי הניתוח</span></div>
+   <div><b>קולונוסקופיה מלאה</b><span>סרטן נוסף בכ-3%, נגעים טרום-ממאירים בכ-30%. גידול חוסם: קולונוגרפיה <span class="nw">ב-<bdi>CT</bdi>,</span> אחרי הטיפול המקדים או בתקופה שאחרי הניתוח</span></div>
    <div><b><bdi>CT</bdi> חזה, בטן ואגן</b><span>עם חומר ניגוד, לחיפוש גרורות</span></div>
-   <div><b><bdi>MRI</bdi> של האגן</b><span>הבדיקה המועדפת לשלב <bdi>T</bdi> <span class="nw">ו-<bdi>N</bdi></span>, למרחק <span class="nw">מה-<bdi dir="ltr">anterior peritoneal reflection</bdi></span>, לשוליים ההיקפיים ולחדירה לאיברים שכנים. האולטרסאונד הרקטלי היה בעבר הכלי המרכזי</span></div>
+   <div><b><bdi>MRI</bdi> של האגן</b><span>הבדיקה המועדפת לשלב <bdi>T</bdi> <span class="nw">ו-<bdi>N</bdi>,</span> למרחק <span class="nw">מה-<bdi dir="ltr">anterior peritoneal reflection</bdi>,</span> לשוליים ההיקפיים ולחדירה לאיברים שכנים. האולטרסאונד הרקטלי היה בעבר הכלי המרכזי</span></div>
    <div><b>ועדה רב-תחומית</b><span>כירורג, אונקולוג, קרינה, פתולוג ורדיולוג. מדד איכות מרכזי. הדיון משנה לעיתים קרובות את התוכנית</span></div>
   </div>
   <div style="display:grid;gap:10px">
    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-    <figure><img src="img/rectal-mri-mrf-involved.jpg" alt="MRI של האגן בחתך רוחב: גידול ב-rectum שחודר ל-mesorectal fascia משמאל" style="max-height:30vh"><figcaption><b><bdi>MRI</bdi> (<bdi>T2</bdi>):</b> גידול <bdi>T3d</bdi> חודר <span class="nw">ל-<bdi dir="ltr">mesorectal fascia</bdi></span> משמאל (חץ). השוליים ההיקפיים מעורבים · <bdi dir="ltr">Santiago I et al., Insights Imaging 2020;11:100 · CC BY 4.0</bdi></figcaption></figure>
+    <figure><img src="img/rectal-mri-mrf-involved.jpg" alt="MRI של האגן בחתך רוחב: גידול ב-rectum שחודר ל-mesorectal fascia משמאל" style="max-height:30vh"><figcaption><b><bdi>MRI</bdi> <span class="nw">(<bdi>T2</bdi>):</span></b> גידול <bdi>T3d</bdi> חודר <span class="nw">ל-<bdi dir="ltr">mesorectal fascia</bdi></span> משמאל (חץ). השוליים ההיקפיים מעורבים · <bdi dir="ltr">Santiago I et al., Insights Imaging 2020;11:100 · CC BY 4.0</bdi></figcaption></figure>
     <figure><img src="img/rectal-cancer-stenosis-endo.jpg" alt="היצרות של ה-rectum מגידול באנדוסקופיה" style="max-height:30vh"><figcaption>היצרות של חלל המעי מקרצינומה, מבט אנדוסקופי · <bdi>J. Guntau, Wikimedia Commons, CC BY-SA 3.0</bdi></figcaption></figure>
    </div>
    <div class="box a"><b class="t">השאלה המרכזית בוועדה</b>ניתוח קודם, או טיפול לפני הניתוח?</div>
@@ -237,14 +284,14 @@ bdi{unicode-bidi:isolate}
 <section class="s"><div class="card">
  <div class="kick"><b>6</b>טיפול לפני ניתוח</div>
  <h2>קרינה-כימותרפיה <span class="nw">ו-<bdi>TNT</bdi></span></h2>
- <div class="box n" style="margin-bottom:12px"><b class="t">למי?</b>גידול מתקדם מקומית (<bdi>T3–4</bdi> או <bdi>N1</bdi>) <b><span class="nw">ב-<bdi dir="ltr">rectum</bdi></span> החוץ-צפקי</b>, כי שם שיעור החזרה המקומית היה גבוה</div>
+ <div class="box n" style="margin-bottom:12px"><b class="t">למי?</b>גידול מתקדם מקומית <span class="nw">(<bdi>T3–4</bdi></span> או <span class="nw"><bdi>N1</bdi>)</span> <b><span class="nw">ב-<bdi dir="ltr">rectum</bdi></span> החוץ-צפקי</b>, כי שם שיעור החזרה המקומית היה גבוה</div>
  <div class="grid g3">
   <div class="study"><div class="y">המחקר הגרמני · מחקר אקראי</div><b>לפני מול אחרי הניתוח</b>
-   <p>823 חולים. חזרה מקומית ב-5 שנים <bdi dir="ltr">6%</bdi> לעומת <bdi dir="ltr">13%</bdi>. בלי הבדל בהישרדות ובגרורות. רעילות קשה <bdi dir="ltr">27%</bdi> לעומת <bdi dir="ltr">40%</bdi></p><small>כפי שמסוכם <span class="nw">ב-<bdi>Sabiston 22</bdi></span>, עמ׳ <bdi dir="ltr">1504</bdi></small></div>
+   <p>823 חולים. חזרה מקומית ב-5 שנים <bdi dir="ltr">6%</bdi> לעומת <span class="nw"><bdi dir="ltr">13%</bdi>.</span> בלי הבדל בהישרדות ובגרורות. רעילות קשה <bdi dir="ltr">27%</bdi> לעומת <bdi dir="ltr">40%</bdi></p><small>כפי שמסוכם <span class="nw">ב-<bdi>Sabiston 22</bdi>,</span> עמ׳ <bdi dir="ltr">1504</bdi></small></div>
   <div class="study"><div class="y"><bdi>PRODIGE-23</bdi></div><b><bdi>FOLFIRINOX</bdi> ואז קרינה-כימו</b>
-   <p>הישרדות בלי מחלה ב-3 שנים טובה יותר (<bdi dir="ltr">HR 0.69</bdi>). תגובה פתולוגית מלאה <bdi dir="ltr">27.8%</bdi> לעומת <bdi dir="ltr">12.1%</bdi>. 81% השלימו את הכימותרפיה לעומת 75%</p><small>כפי שמסוכם <span class="nw">ב-<bdi>Sabiston 22</bdi></span>, עמ׳ <bdi dir="ltr">1504</bdi></small></div>
+   <p>הישרדות בלי מחלה ב-3 שנים טובה יותר <span class="nw">(<bdi dir="ltr">HR 0.69</bdi>).</span> תגובה פתולוגית מלאה <bdi dir="ltr">27.8%</bdi> לעומת <span class="nw"><bdi dir="ltr">12.1%</bdi>.</span> 81% השלימו את הכימותרפיה לעומת 75%</p><small>כפי שמסוכם <span class="nw">ב-<bdi>Sabiston 22</bdi>,</span> עמ׳ <bdi dir="ltr">1504</bdi></small></div>
   <div class="study"><div class="y"><bdi>RAPIDO</bdi></div><b>קרינה קצרה ואז כימותרפיה</b>
-   <p>קרינה <bdi dir="ltr">5×5 Gy</bdi>, אחריה <bdi>CAPEOX</bdi> או <bdi>FOLFOX4</bdi> ורק אז <bdi>TME</bdi>. כישלון טיפול ב-3 שנים <bdi dir="ltr">23.7%</bdi> לעומת <bdi dir="ltr">30.4%</bdi>, בעיקר פחות גרורות. תגובה מלאה <bdi dir="ltr">28%</bdi> לעומת <bdi dir="ltr">14%</bdi></p><small>כפי שמסוכם <span class="nw">ב-<bdi>Sabiston 22</bdi></span>, עמ׳ <bdi dir="ltr">1504</bdi></small></div>
+   <p>קרינה <span class="nw"><bdi dir="ltr">5×5 Gy</bdi>,</span> אחריה <bdi>CAPEOX</bdi> או <bdi>FOLFOX4</bdi> ורק אז <span class="nw"><bdi>TME</bdi>.</span> כישלון טיפול ב-3 שנים <bdi dir="ltr">23.7%</bdi> לעומת <span class="nw"><bdi dir="ltr">30.4%</bdi>,</span> בעיקר פחות גרורות. תגובה מלאה <bdi dir="ltr">28%</bdi> לעומת <bdi dir="ltr">14%</bdi></p><small>כפי שמסוכם <span class="nw">ב-<bdi>Sabiston 22</bdi>,</span> עמ׳ <bdi dir="ltr">1504</bdi></small></div>
  </div>
  <div class="box" style="margin-top:12px"><b class="t"><bdi>TNT</bdi> · טיפול מקדים מלא</b>כל הכימותרפיה וכל הקרינה ניתנות לפני הניתוח. לפי <bdi>NCCN</bdi> זה טיפול סטנדרטי לגידול מתקדם מקומית</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1504</bdi></span><span>טיפול מקדים</span></div>
@@ -259,11 +306,11 @@ bdi{unicode-bidi:isolate}
     <li>אחרי קרינה-כימותרפיה, <span class="nw">ב-<bdi dir="ltr">20–25%</bdi></span> מהמנותחים לא נמצא גידול בנתיח. מכאן הרעיון לא לנתח מי שהגיב באופן מלא</li>
     <li><b><bdi>Habr-Gama</bdi> 2004:</b> 71 חולים עם תגובה קלינית מלאה במעקב צמוד. הישרדות ל-5 שנים 100%, בלי מחלה 92%</li>
     <li><b>היום:</b> גישה סלקטיבית, רק בצוות מנוסה ולפי פרוטוקול מוגדר</li>
-    <li><b><bdi>OPRA</bdi>:</b> הישרדות בלי מחלה ב-3 שנים 76% בשתי הזרועות. כשהכימותרפיה ניתנת אחרי הקרינה, יותר שימור <bdi dir="ltr">rectum</bdi> ב-3 שנים: <bdi dir="ltr">53%</bdi> לעומת <bdi dir="ltr">41%</bdi>. מי שהגידול חזר נותח, בלי פגיעה בהישרדות</li>
+    <li><b><span class="nw"><bdi>OPRA</bdi>:</span></b> הישרדות בלי מחלה ב-3 שנים 76% בשתי הזרועות. כשהכימותרפיה ניתנת אחרי הקרינה, יותר שימור <bdi dir="ltr">rectum</bdi> ב-3 שנים: <bdi dir="ltr">53%</bdi> לעומת <span class="nw"><bdi dir="ltr">41%</bdi>.</span> מי שהגידול חזר נותח, בלי פגיעה בהישרדות</li>
    </ul>
   </div>
   <div style="display:grid;gap:10px">
-   <div class="box"><b class="t">מה נחשב תגובה קלינית מלאה</b>בבדיקה רקטלית: אין גוש או אי-סדירות · באנדוסקופיה: צלקת לבנה וחלקה, אולי עם טלנגיאקטזיות, בלי כיב או היצרות · <span class="nw">ב-<bdi>MRI</bdi></span>: צלקת כהה <span class="nw">ב-<bdi>T2</bdi></span>, בלי הגבלת דיפוזיה ובלי בלוטות</div>
+   <div class="box"><b class="t">מה נחשב תגובה קלינית מלאה</b>בבדיקה רקטלית: אין גוש או אי-סדירות · באנדוסקופיה: צלקת לבנה וחלקה, אולי עם טלנגיאקטזיות, בלי כיב או היצרות · <span class="nw">ב-<bdi>MRI</bdi>:</span> צלקת כהה <span class="nw">ב-<bdi>T2</bdi>,</span> בלי הגבלת דיפוזיה ובלי בלוטות</div>
    <div class="box a"><b class="t">המעקב בשנתיים הראשונות</b>בדיקה רקטלית, אנדוסקופיה גמישה <span class="nw">ו-<bdi>CEA</bdi></span> כל <bdi dir="ltr">3–6</bdi> חודשים · <bdi>MRI</bdi> כל חצי שנה · <bdi>CT</bdi> כל <bdi dir="ltr">6–12</bdi> חודשים. אחר כך במרווחים ארוכים יותר, לפחות 5 שנים</div>
   </div>
  </div>
@@ -280,9 +327,9 @@ bdi{unicode-bidi:isolate}
   <div><b dir="ltr">5</b><span>ס״מ <bdi dir="ltr">mesorectum</bdi> מתחת לגידול <span class="nw">ב-<bdi dir="ltr">rectum</bdi></span> העליון</span></div>
  </div>
  <ul class="b">
-  <li><b><bdi>Heald</bdi>:</b> דיסקציה חדה מחוץ <span class="nw">ל-<bdi>fascia propria</bdi></span> ולפני <span class="nw">ה-<bdi dir="ltr">presacral fascia</bdi></span>. <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span> יוצא יחד עם <span class="nw">ה-<bdi dir="ltr">mesorectum</bdi></span>, הכלים והבלוטות</li>
-  <li><b>גידול <span class="nw">ב-<bdi dir="ltr">rectum</bdi></span> העליון:</b> אין צורך לרדת עד <span class="nw">ה-<bdi dir="ltr">sphincters</bdi></span>. כריתה חלקית של <span class="nw">ה-<bdi dir="ltr">mesorectum</bdi></span>, לפחות 5 ס״מ מתחת לגידול, בלי לפגוע בפציה ליד הגידול</li>
-  <li><b>קשירה גבוהה של <span class="nw">ה-<bdi>IMA</bdi></span></b> מקובלת, אבל לא הוכחה עדיפה על קשירה מתחת <span class="nw">ל-<bdi>left colic</bdi></span>, שחוסכת עצבים</li>
+  <li><b><span class="nw"><bdi>Heald</bdi>:</span></b> דיסקציה חדה מחוץ <span class="nw">ל-<bdi>fascia propria</bdi></span> ולפני <span class="nw">ה-<bdi dir="ltr">presacral fascia</bdi>.</span> <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span> יוצא יחד עם <span class="nw">ה-<bdi dir="ltr">mesorectum</bdi>,</span> הכלים והבלוטות</li>
+  <li><b>גידול <span class="nw">ב-<bdi dir="ltr">rectum</bdi></span> העליון:</b> אין צורך לרדת עד <span class="nw">ה-<bdi dir="ltr">sphincters</bdi>.</span> כריתה חלקית של <span class="nw">ה-<bdi dir="ltr">mesorectum</bdi>,</span> לפחות 5 ס״מ מתחת לגידול, בלי לפגוע בפציה ליד הגידול</li>
+  <li><b>קשירה גבוהה של <span class="nw">ה-<bdi>IMA</bdi></span></b> מקובלת, אבל לא הוכחה עדיפה על קשירה מתחת <span class="nw">ל-<bdi>left colic</bdi>,</span> שחוסכת עצבים</li>
   <li><b>בלוטות לטרליות</b> חשודות <span class="nw">ב-<bdi>MRI</bdi></span> בגידול נמוך: שוקלים דיסקציה של <span class="nw">ה-<bdi dir="ltr">pelvic sidewall</bdi></span></li>
  </ul>
  <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1506–1509</bdi></span><span>ניתוח</span></div>
@@ -294,7 +341,7 @@ bdi{unicode-bidi:isolate}
  <div class="grid">
   <div class="flow">
    <div><b>סימפתטי · <bdi>L1–L3</bdi></b><span><span class="nw">ה-<bdi dir="ltr">superior hypogastric plexus</bdi></span> ושני <span class="nw">ה-<bdi dir="ltr">hypogastric nerves</bdi></span> מאחורי <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span></span></div>
-   <div><b>פרסימפתטי · <bdi>S2–S4</bdi></b><span><bdi>nervi erigentes</bdi>, מצטרפים <span class="nw">ל-<bdi dir="ltr">pelvic plexus</bdi></span></span></div>
+   <div><b>פרסימפתטי · <bdi>S2–S4</bdi></b><span><span class="nw"><bdi>nervi erigentes</bdi>,</span> מצטרפים <span class="nw">ל-<bdi dir="ltr">pelvic plexus</bdi></span></span></div>
   </div>
   <div class="flow">
    <div><b>קשירה גבוהה ודיסקציה מעל <span class="nw">ה-<bdi dir="ltr">sacral promontory</bdi></span></b><span>פגיעה סימפתטית: שפיכה לאחור</span></div>
@@ -314,7 +361,7 @@ bdi{unicode-bidi:isolate}
    <div class="flow">
     <div><b>שוליים רחוקים</b><span>המטרה 2 ס״מ. בגידול נמוך, במיוחד אחרי קרינה-כימו, פחות מ-1 ס״מ נקי יכול להספיק</span></div>
     <div><b><bdi dir="ltr">sphincter</bdi> מעורב באבחנה</b><span>אחרי הטיפול קשה להבדיל בין פיברוזיס לגידול. בחשד לשארית מניחים <span class="nw">שה-<bdi dir="ltr">sphincter</bdi></span> עדיין מעורב</span></div>
-    <div><b><bdi dir="ltr">levator ani</bdi> או <bdi dir="ltr">external sphincter</bdi></b><span>אין שימור. כריתה בטנית-פרינאלית (<bdi>APR</bdi>) עם קולוסטומיה קבועה</span></div>
+    <div><b><bdi dir="ltr">levator ani</bdi> או <bdi dir="ltr">external sphincter</bdi></b><span>אין שימור. כריתה בטנית-פרינאלית <span class="nw">(<bdi>APR</bdi>)</span> עם קולוסטומיה קבועה</span></div>
     <div><b>רק <span class="nw">ה-<bdi dir="ltr">internal sphincter</bdi></span></b><span><bdi dir="ltr">intersphincteric resection</bdi> וחיבור קולו-אנאלי ביד, בחולה מתאים ומיודע</span></div>
     <div><b>שליטה גרועה מראש, מבוגר</b><span>קולוסטומיה קבועה נותנת איכות חיים טובה יותר מחיבור נמוך מאוד</span></div>
    </div>
@@ -329,7 +376,7 @@ bdi{unicode-bidi:isolate}
  <h2>חיבור, סטומה מגינה ותפקוד</h2>
  <div class="grid">
   <div style="display:grid;gap:10px">
-   <div class="box"><b class="t">תסמונת הכריתה הקדמית הנמוכה (<bdi>LARS</bdi>)</b>יציאות תכופות, דחיפות והתקבצות. מופיעה במידה כלשהי אצל רוב המנותחים. גורמי סיכון לצורה קשה: אישה, טיפול מקדים, <bdi>TME</bdi>, גידול נמוך</div>
+   <div class="box"><b class="t">תסמונת הכריתה הקדמית הנמוכה <span class="nw">(<bdi>LARS</bdi>)</span></b>יציאות תכופות, דחיפות והתקבצות. מופיעה במידה כלשהי אצל רוב המנותחים. גורמי סיכון לצורה קשה: אישה, טיפול מקדים, <span class="nw"><bdi>TME</bdi>,</span> גידול נמוך</div>
    <div class="box n"><b class="t">מאגר</b>בכריתה נמוכה מאוד: כיס <bdi>J</bdi> <span class="nw">מה-<bdi dir="ltr">colon</bdi></span> או חיבור צד-לקצה משפרים את התפקוד בשנה-שנתיים הראשונות, בלי יותר סיבוכי חיבור</div>
   </div>
   <div style="display:grid;gap:10px">
@@ -344,10 +391,10 @@ bdi{unicode-bidi:isolate}
  <div class="kick"><b>12</b>עוד אפשרויות ניתוח</div>
  <h2>כריתה מקומית, <bdi>APR</bdi> וגישה זעיר-פולשנית</h2>
  <div class="grid g3">
-  <div class="box"><b class="t">כריתה מקומית (<bdi>TEM</bdi>, <bdi>TAMIS</bdi>)</b>
-   <ul class="b sm"><li>לא מוציאה בלוטות ולא נותנת להן שלב</li><li>רק <bdi>cT1</bdi> בלי סימני סיכון: חדירה עמוקה לתת-רירית (יותר מ-1 מ״מ, <bdi>SM3</bdi>), התמיינות ירודה, חדירה ללימפה, לכלי דם ולעצבים, ניצנוץ, שוליים חיוביים</li><li>נמצאו סימני סיכון בנתיח: <bdi>TME</bdi> פורמלי בחולה כשיר</li></ul></div>
+  <div class="box"><b class="t">כריתה מקומית <span class="nw">(<bdi>TEM</bdi>,</span> <span class="nw"><bdi>TAMIS</bdi>)</span></b>
+   <ul class="b sm"><li>לא מוציאה בלוטות ולא נותנת להן שלב</li><li>רק <bdi>cT1</bdi> בלי סימני סיכון: חדירה עמוקה לתת-רירית (יותר מ-1 מ״מ, <span class="nw"><bdi>SM3</bdi>),</span> התמיינות ירודה, חדירה ללימפה, לכלי דם ולעצבים, ניצנוץ, שוליים חיוביים</li><li>נמצאו סימני סיכון בנתיח: <bdi>TME</bdi> פורמלי בחולה כשיר</li></ul></div>
   <div class="box n"><b class="t">כריתה בטנית-פרינאלית</b>
-   <ul class="b sm"><li><span class="nw">ה-<bdi dir="ltr">rectum</bdi></span>, <span class="nw">ה-<bdi dir="ltr">anus</bdi></span> <span class="nw">וה-<bdi dir="ltr">sphincters</bdi></span> יוצאים כגוש אחד. קולוסטומיה קבועה</li><li>להימנע מ"חרוט" בנתיח ליד <span class="nw">ה-<bdi dir="ltr">levators</bdi></span>: יותר שוליים חיוביים וחזרות. עדיף נתיח גלילי</li><li><bdi dir="ltr">omentum</bdi> למילוי האגן. מתלה שריר מקטין סיבוכי פצע <span class="nw">ב-<bdi dir="ltr">perineum</bdi></span>, בעיקר אחרי קרינה</li></ul></div>
+   <ul class="b sm"><li><span class="nw">ה-<bdi dir="ltr">rectum</bdi>,</span> <span class="nw">ה-<bdi dir="ltr">anus</bdi></span> <span class="nw">וה-<bdi dir="ltr">sphincters</bdi></span> יוצאים כגוש אחד. קולוסטומיה קבועה</li><li>להימנע מ"חרוט" בנתיח ליד <span class="nw">ה-<bdi dir="ltr">levators</bdi>:</span> יותר שוליים חיוביים וחזרות. עדיף נתיח גלילי</li><li><bdi dir="ltr">omentum</bdi> למילוי האגן. מתלה שריר מקטין סיבוכי פצע <span class="nw">ב-<bdi dir="ltr">perineum</bdi>,</span> בעיקר אחרי קרינה</li></ul></div>
   <div class="box b"><b class="t">לפרוסקופיה, רובוט, <bdi>taTME</bdi></b>
    <ul class="b sm"><li>מקצרים התאוששות ומשפרים תוצאות קצרות טווח</li><li>מחקרים אקראיים <b>לא הוכיחו</b> שלפרוסקופיה לא נופלת מניתוח פתוח מבחינה אונקולוגית</li><li>לכן: רק בידי מנתחים מנוסים</li></ul></div>
  </div>
@@ -360,14 +407,14 @@ bdi{unicode-bidi:isolate}
  <div class="grid">
   <div>
    <ul class="b sm">
-    <li><b>דו״ח פתולוגיה סינופטי:</b> שלמות <span class="nw">ה-<bdi dir="ltr">mesorectum</bdi></span>, הקשר <span class="nw">ל-<bdi dir="ltr">peritoneal reflection</bdi></span> ודרגת התגובה לטיפול (<bdi>TRG</bdi> מ-0, תגובה מלאה, עד 3, בלי תגובה). תגובה מלאה: הישרדות ל-5 שנים כ-90%</li>
-    <li><b>קיבל <bdi>TNT</bdi>:</b> לא נותנים כימותרפיה משלימה. <b>לא קיבל כימותרפיה מלאה לפני:</b> בדרך כלל כן, <bdi>FOLFOX</bdi> ב-8 מחזורים</li>
-    <li><b>מעקב:</b> כמו <span class="nw">ב-<bdi dir="ltr">colon</bdi></span>. בסיכון גבוה לחזרה מקומית מוסיפים רקטוסיגמואידוסקופיה כל חצי שנה לפחות שנתיים</li>
+    <li><b>דו״ח פתולוגיה סינופטי:</b> שלמות <span class="nw">ה-<bdi dir="ltr">mesorectum</bdi>,</span> הקשר <span class="nw">ל-<bdi dir="ltr">peritoneal reflection</bdi></span> ודרגת התגובה לטיפול <span class="nw">(<bdi>TRG</bdi></span> מ-0, תגובה מלאה, עד 3, בלי תגובה). תגובה מלאה: הישרדות ל-5 שנים כ-90%</li>
+    <li><b>קיבל <span class="nw"><bdi>TNT</bdi>:</span></b> לא נותנים כימותרפיה משלימה. <b>לא קיבל כימותרפיה מלאה לפני:</b> בדרך כלל כן, <bdi>FOLFOX</bdi> ב-8 מחזורים</li>
+    <li><b>מעקב:</b> כמו <span class="nw">ב-<bdi dir="ltr">colon</bdi>.</span> בסיכון גבוה לחזרה מקומית מוסיפים רקטוסיגמואידוסקופיה כל חצי שנה לפחות שנתיים</li>
    </ul>
   </div>
   <div style="display:grid;gap:10px">
    <div class="box"><b class="t"><bdi>dMMR</bdi> · רק <bdi dir="ltr">3–7%</bdi> מסרטני <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span></b>במחקר של 12 חולים: תגובה קלינית מלאה ב-100% לאימונותרפיה לפני ניתוח, בלי קרינה ובלי ניתוח</div>
-   <div class="box a"><b class="t">גרורות באבחנה</b><span class="nw">ה-<bdi dir="ltr">liver</bdi></span> הוא האתר השכיח. גרורה בודדת <span class="nw">ב-<bdi dir="ltr">liver</bdi></span>: הישרדות ל-5 שנים עד 71% עם כימותרפיה וניתוח. נכרת רק אם אפשר <bdi>R0</bdi> עם עתודה מספקת. בלי תסמינים, אין תועלת בכריתה חלקית</div>
+   <div class="box a"><b class="t">גרורות באבחנה</b><span class="nw">ה-<bdi dir="ltr">liver</bdi></span> הוא האתר השכיח. גרורה בודדת <span class="nw">ב-<bdi dir="ltr">liver</bdi>:</span> הישרדות ל-5 שנים עד 71% עם כימותרפיה וניתוח. נכרת רק אם אפשר <bdi>R0</bdi> עם עתודה מספקת. בלי תסמינים, אין תועלת בכריתה חלקית</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1511–1512</bdi></span><span>אחרי הניתוח</span></div>
@@ -377,18 +424,18 @@ bdi{unicode-bidi:isolate}
  <div class="kick"><b>14</b>מה חדש בתחום · 2022–2025</div>
  <h2>מחקרים שכדאי להכיר</h2>
  <div class="grid">
-  <div class="study"><div class="y"><bdi>NEJM</bdi> 2023 · מחקר אקראי</div><b><bdi>PROSPECT</bdi>: <bdi>FOLFOX</bdi> במקום קרינה</b>
-   <p>1,194 חולים (<bdi>T2N+</bdi>, <bdi>T3</bdi>) שמתאימים לשימור <bdi dir="ltr">sphincter</bdi>. <bdi>FOLFOX</bdi> לפני הניתוח (קרינה רק אם הגידול לא הצטמק) לא היה נחות. הישרדות בלי מחלה ל-5 שנים <bdi dir="ltr">80.8%</bdi> לעומת <bdi dir="ltr">78.6%</bdi>. רק 9% בזרוע הכימותרפיה קיבלו קרינה לפני הניתוח</p>
+  <div class="study"><div class="y"><bdi>NEJM</bdi> 2023 · מחקר אקראי</div><b><span class="nw"><bdi>PROSPECT</bdi>:</span> <bdi>FOLFOX</bdi> במקום קרינה</b>
+   <p>1,194 חולים <span class="nw">(<bdi>T2N+</bdi>,</span> <span class="nw"><bdi>T3</bdi>)</span> שמתאימים לשימור <span class="nw"><bdi dir="ltr">sphincter</bdi>.</span> <bdi>FOLFOX</bdi> לפני הניתוח (קרינה רק אם הגידול לא הצטמק) לא היה נחות. הישרדות בלי מחלה ל-5 שנים <bdi dir="ltr">80.8%</bdi> לעומת <span class="nw"><bdi dir="ltr">78.6%</bdi>.</span> רק 9% בזרוע הכימותרפיה קיבלו קרינה לפני הניתוח</p>
    <small>Schrag D et al. N Engl J Med 2023;389:322-34</small></div>
-  <div class="study"><div class="y"><bdi>NEJM</bdi> 2022 · 2025</div><b>דוסטרלימאב <span class="nw">ב-<bdi>dMMR</bdi></span>: בלי ניתוח</b>
+  <div class="study"><div class="y"><bdi>NEJM</bdi> 2022 · 2025</div><b>דוסטרלימאב <span class="nw">ב-<bdi>dMMR</bdi>:</span> בלי ניתוח</b>
    <p>2022: כל 12 החולים הראשונים הגיעו לתגובה קלינית מלאה. 2025: כל 49 חולי <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span> שהשלימו טיפול הגיעו לתגובה מלאה ובחרו מעקב בלי ניתוח. הישרדות בלי חזרה ב-2 שנים <bdi dir="ltr">92%</bdi> בכל הקבוצה</p>
    <small>Cercek A et al. N Engl J Med 2022;386:2363-76 · N Engl J Med 2025;392:2297-308</small></div>
-  <div class="study"><div class="y"><bdi>Ann Surg</bdi> 2023 · מעקב ל-5 שנים</div><b><bdi>RAPIDO</bdi>: המחיר המקומי</b>
-   <p>920 חולים. בזרוע הקרינה הקצרה עם כימותרפיה הייתה יותר חזרה מקומית אחרי כריתה: <bdi dir="ltr">10%</bdi> לעומת <bdi dir="ltr">6%</bdi>. בחזרות האלה <span class="nw">ה-<bdi dir="ltr">mesorectum</bdi></span> נפגע בניתוח לעיתים קרובות יותר. הירידה בגרורות נשמרה</p>
+  <div class="study"><div class="y"><bdi>Ann Surg</bdi> 2023 · מעקב ל-5 שנים</div><b><span class="nw"><bdi>RAPIDO</bdi>:</span> המחיר המקומי</b>
+   <p>920 חולים. בזרוע הקרינה הקצרה עם כימותרפיה הייתה יותר חזרה מקומית אחרי כריתה: <bdi dir="ltr">10%</bdi> לעומת <span class="nw"><bdi dir="ltr">6%</bdi>.</span> בחזרות האלה <span class="nw">ה-<bdi dir="ltr">mesorectum</bdi></span> נפגע בניתוח לעיתים קרובות יותר. הירידה בגרורות נשמרה</p>
    <small>Dijkstra EA et al. Ann Surg 2023;278:e766-72</small></div>
-  <div class="study"><div class="y"><bdi>J Clin Oncol</bdi> 2024 · מעקב ארוך</div><b><bdi>OPRA</bdi>: חצי שומרים את <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span></b>
-   <p>324 חולים, מעקב חציוני 5.1 שנים. הישרדות בלי <bdi>TME</bdi>: <bdi dir="ltr">54%</bdi> כשהכימותרפיה אחרי הקרינה לעומת <bdi dir="ltr">39%</bdi>. 94% מהחזרות בשנתיים הראשונות. הישרדות בלי מחלה דומה בשתי הזרועות</p>
-   <small>Verheij FS et al. J Clin Oncol 2024;42:500-6 (מצוטט <span class="nw">ב-<bdi>Sabiston 22</bdi></span>)</small></div>
+  <div class="study"><div class="y"><bdi>J Clin Oncol</bdi> 2024 · מעקב ארוך</div><b><span class="nw"><bdi>OPRA</bdi>:</span> חצי שומרים את <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span></b>
+   <p>324 חולים, מעקב חציוני 5.1 שנים. הישרדות בלי <span class="nw"><bdi>TME</bdi>:</span> <bdi dir="ltr">54%</bdi> כשהכימותרפיה אחרי הקרינה לעומת <span class="nw"><bdi dir="ltr">39%</bdi>.</span> 94% מהחזרות בשנתיים הראשונות. הישרדות בלי מחלה דומה בשתי הזרועות</p>
+   <small>Verheij FS et al. J Clin Oncol 2024;42:500-6 (מצוטט <span class="nw">ב-<bdi>Sabiston 22</bdi>)</span></small></div>
  </div>
  <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
 </div></section>
@@ -397,14 +444,14 @@ bdi{unicode-bidi:isolate}
  <div class="kick"><b>15</b>לסיכום</div>
  <h2>חמישה דברים לקחת למחלקה</h2>
  <ol class="obj">
-  <li><span>הבדיקה הרקטלית של הכירורג היא הבסיס: מרחק, ניידות וקשר <span class="nw">ל-<bdi dir="ltr">sphincter</bdi></span>. תמיד מתעדים</span></li>
-  <li><span><bdi>MRI</bdi> של האגן קובע <bdi>T</bdi>, <bdi>N</bdi>, שוליים היקפיים ומיקום ביחס <span class="nw">ל-<bdi dir="ltr">peritoneal reflection</bdi></span>. כל חולה עובר ועדה רב-תחומית</span></li>
+  <li><span>הבדיקה הרקטלית של הכירורג היא הבסיס: מרחק, ניידות וקשר <span class="nw">ל-<bdi dir="ltr">sphincter</bdi>.</span> תמיד מתעדים</span></li>
+  <li><span><bdi>MRI</bdi> של האגן קובע <span class="nw"><bdi>T</bdi>,</span> <span class="nw"><bdi>N</bdi>,</span> שוליים היקפיים ומיקום ביחס <span class="nw">ל-<bdi dir="ltr">peritoneal reflection</bdi>.</span> כל חולה עובר ועדה רב-תחומית</span></li>
   <li><span>גידול מתקדם <span class="nw">ב-<bdi dir="ltr">rectum</bdi></span> החוץ-צפקי מקבל טיפול לפני הניתוח. היום לרוב <bdi>TNT</bdi></span></li>
   <li><span><bdi>TME</bdi> במישור הנכון מוריד חזרה מקומית ושומר על העצבים</span></li>
-  <li><span>תגובה קלינית מלאה: אפשר "המתנה ומעקב" בצוות מנוסה. גידול <bdi>dMMR</bdi>: לחשוב על אימונותרפיה</span></li>
+  <li><span>תגובה קלינית מלאה: אפשר "המתנה ומעקב" בצוות מנוסה. גידול <span class="nw"><bdi>dMMR</bdi>:</span> לחשוב על אימונותרפיה</span></li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 96 <bdi>Cancers of the Colon, Rectum, and Anus</bdi>, החלק על <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span> (עמ׳ <bdi dir="ltr">1503–1512</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906, נחלת הכלל) · <bdi>National Cancer Institute</bdi> (נחלת הכלל) · <bdi>Blausen Medical</bdi> (<bdi>CC BY 3.0</bdi>) · תמונה אנדוסקופית <span class="nw">מ-<bdi>Wikimedia Commons</bdi></span> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 96 <span class="nw"><bdi>Cancers of the Colon, Rectum, and Anus</bdi>,</span> החלק על <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span> (עמ׳ <span class="nw"><bdi dir="ltr">1503–1512</bdi>)</span></div>
+ <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906, נחלת הכלל) · <bdi>National Cancer Institute</bdi> (נחלת הכלל) · <bdi>Blausen Medical</bdi> <span class="nw">(<bdi>CC BY 3.0</bdi>)</span> · תמונה אנדוסקופית <span class="nw">מ-<bdi>Wikimedia Commons</bdi></span> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>
@@ -426,5 +473,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>

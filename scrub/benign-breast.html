@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>מחלות שפירות של השד · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,7 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -116,9 +116,56 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -142,10 +189,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>לגשת בצורה מסודרת לגוש, לכאב ולהפרשה מהפטמה ולדעת מתי צריך הדמיה וביופסיה</li>
   <li>להבדיל בין ציסטה, פיברואדנומה וגידול פילודס ולדעת מתי כורתים</li>
   <li>לאבחן ולטפל בדלקת ובמורסה בשד, בהנקה ומחוץ להנקה</li>
-  <li>להכיר את הנגעים בסיכון גבוה (אטיפיה, <bdi>LCIS</bdi>, פפילומה, צלקת רדיאלית) ואת המשמעות שלהם לסיכון ולמעקב</li>
+  <li>להכיר את הנגעים בסיכון גבוה (אטיפיה, <span class="nw"><bdi>LCIS</bdi>,</span> פפילומה, צלקת רדיאלית) ואת המשמעות שלהם לסיכון ולמעקב</li>
   <li>לזהות גינקומסטיה ולחפש לה סיבה</li>
  </ol>
- <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 68 (עמ׳ <bdi dir="ltr">822–837, 841–842</bdi>)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 68 (עמ׳ <span class="nw"><bdi dir="ltr">822–837, 841–842</bdi>)</span></span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -164,13 +211,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <g class="hzb" style="--c:#00967D"><circle cx="700" cy="600" r="20"/><text x="700" y="600">E</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="n" hidden><b>A · הפטמה <span class="nw">וה-<bdi>areola</bdi></span></b><p>פריחה שמתחילה בפטמה מחשידה <span class="nw">ל-<bdi>Paget</bdi></span>, אקזמה מתחילה <span class="nw">ב-<bdi>areola</bdi></span>. פטמה שנמשכה פנימה: אחרי דלקת כרונית מתחת <span class="nw">ל-<bdi>areola</bdi></span> היא בדרך כלל דו-צדדית וקיימת שנים. סרטן גורם לשינוי חד-צדדי שמתפתח בשבועות עד חודשים.</p></div>
-  <div class="hzi" data-hzi="d" hidden><b>B · <bdi>lactiferous ducts</bdi> מתחת לפטמה</b><p>כאן יושבת הפפילומה התוך-צינורית, הסיבה השכיחה ביותר להפרשה דמית מצינור אחד. כאן גם הרחבת הצינורות והדלקת סביבם (<bdi>periductal mastitis</bdi>) אצל מעשנות וחולות סוכרת. גלקטוצלה יושבת לרוב במרכז השד או מתחת לפטמה.</p></div>
+  <div class="hzi" data-hzi="n" hidden><b>A · הפטמה <span class="nw">וה-<bdi>areola</bdi></span></b><p>פריחה שמתחילה בפטמה מחשידה <span class="nw">ל-<bdi>Paget</bdi>,</span> אקזמה מתחילה <span class="nw">ב-<bdi>areola</bdi>.</span> פטמה שנמשכה פנימה: אחרי דלקת כרונית מתחת <span class="nw">ל-<bdi>areola</bdi></span> היא בדרך כלל דו-צדדית וקיימת שנים. סרטן גורם לשינוי חד-צדדי שמתפתח בשבועות עד חודשים.</p></div>
+  <div class="hzi" data-hzi="d" hidden><b>B · <bdi>lactiferous ducts</bdi> מתחת לפטמה</b><p>כאן יושבת הפפילומה התוך-צינורית, הסיבה השכיחה ביותר להפרשה דמית מצינור אחד. כאן גם הרחבת הצינורות והדלקת סביבם <span class="nw">(<bdi>periductal mastitis</bdi>)</span> אצל מעשנות וחולות סוכרת. גלקטוצלה יושבת לרוב במרכז השד או מתחת לפטמה.</p></div>
   <div class="hzi" data-hzi="l" hidden><b>C · <bdi>lobes, lobules (TDLU)</bdi></b><p>ציסטות נוצרות מהרחבה של <bdi>lobules</bdi> וצינוריות קטנות. פיברואדנומה ופילודס בנויים מסטרומה ומאפיתל. כאן גם השינויים השגשוגיים, האטיפיה <span class="nw">וה-<bdi>LCIS</bdi></span> וכאן מתחיל גם רוב סרטן השד.</p></div>
   <div class="hzi" data-hzi="f" hidden><b>D · רקמת השומן</b><p>נמק שומן אחרי חבלה, ניתוח, השתלת שומן או הקרנה. יכול להיראות כמו סרטן: גוש קשה עם הסתיידויות. אין לו פוטנציאל ממאיר.</p></div>
-  <div class="hzi" data-hzi="p" hidden><b>E · <bdi>pectoralis major</bdi> ודופן החזה</b><p>לא כל כאב "בשד" מגיע מהשד. הסיבה השכיחה לכאב מוקרן היא דלקת <span class="nw">ב-<bdi>scapulothoracic bursa</bdi></span>. הזרקה בנקודה הכואבת לאורך <span class="nw">ה-<bdi>medial border</bdi></span> של <span class="nw">ה-<bdi>scapula</bdi></span> היא גם האבחנה וגם הטיפול.</p></div>
+  <div class="hzi" data-hzi="p" hidden><b>E · <bdi>pectoralis major</bdi> ודופן החזה</b><p>לא כל כאב "בשד" מגיע מהשד. הסיבה השכיחה לכאב מוקרן היא דלקת <span class="nw">ב-<bdi>scapulothoracic bursa</bdi>.</span> הזרקה בנקודה הכואבת לאורך <span class="nw">ה-<bdi>medial border</bdi></span> של <span class="nw">ה-<bdi>scapula</bdi></span> היא גם האבחנה וגם הטיפול.</p></div>
  </div></div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 68 עמ׳ <bdi dir="ltr">824, 834–837, 841</bdi></span><span>איור: <bdi>Patrick J. Lynch</bdi> (עיבוד <bdi>Morgoth666</bdi>), CC BY 3.0, <bdi>Wikimedia Commons</bdi> · אזורים: Scrub In</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 68 עמ׳ <bdi dir="ltr">824, 834–837, 841</bdi></span><span>איור: <bdi>Patrick J. Lynch</bdi> (עיבוד <span class="nw"><bdi>Morgoth666</bdi>),</span> CC BY 3.0, <bdi>Wikimedia Commons</bdi> · אזורים: Scrub In</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -179,7 +226,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <ul class="b sm">
    <li><b>קו החלב:</b> <span class="nw">מה-<bdi>axilla</bdi></span> עד המפשעה. שד נוסף או פטמה נוספת לאורכו. רקמת שד <span class="nw">ב-<bdi>axilla</bdi></span> יכולה לגדול בהריון ולהישאר אחרי ההנקה</li>
-   <li><b>תסמונת <bdi>Poland</bdi>:</b> חוסר חד-צדדי של רקמת שד, של <span class="nw">ה-<bdi>pectoralis</bdi></span> ושל <span class="nw">ה-<bdi>serratus</bdi></span> ולפעמים של צלעות</li>
+   <li><b>תסמונת <span class="nw"><bdi>Poland</bdi>:</span></b> חוסר חד-צדדי של רקמת שד, של <span class="nw">ה-<bdi>pectoralis</bdi></span> ושל <span class="nw">ה-<bdi>serratus</bdi></span> ולפעמים של צלעות</li>
    <li><b>יילודים:</b> ב-90% יש הפרשה מהשד ("חלב מכשפות") מהורמונים של האם. חולפת תוך <bdi dir="ltr">3–4</bdi> שבועות</li>
    <li><b>ניצן שד לפני גיל 12 בלי סימני התבגרות אחרים:</b> לא גידול ולא סיבה לביופסיה</li>
   </ul>
@@ -232,7 +279,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>כאב מחזורי:</b> לפני הווסת. דנזול, לופרון או טמוקסיפן עוזרים, אבל עם תופעות לוואי משמעותיות</li>
     <li><b>כאב לא מחזורי:</b> בדרך כלל ללא סיבה ידועה וקשה יותר לטיפול. מגיל 30: בדיקה, ממוגרפיה ואולטרסאונד. גוש שנמצא הופך למוקד הבירור</li>
     <li><b>ציסטה כואבת:</b> שאיבה בדרך כלל פותרת את הכאב</li>
-    <li><b>כאב מוקרן:</b> בעיקר <span class="nw">מה-<bdi>scapulothoracic bursa</bdi></span>. הזרקה בנקודה הכואבת, אחר כך חום ונוגדי דלקת</li>
+    <li><b>כאב מוקרן:</b> בעיקר <span class="nw">מה-<bdi>scapulothoracic bursa</bdi>.</span> הזרקה בנקודה הכואבת, אחר כך חום ונוגדי דלקת</li>
    </ul>
   </div>
   <div style="display:grid;gap:10px;align-content:start">
@@ -258,7 +305,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    </ul>
    <div class="box a" style="margin-top:10px"><b class="t">סרטן בתוך ציסטה</b>נדיר מאוד: 3 מקרים ביותר מ-3,000 שאיבות <bdi dir="ltr">(0.1%)</bdi></div>
   </div>
-  <figure><img src="img/ben-us-cyst.jpg" alt="ציסטה פשוטה בשד באולטרסאונד"><figcaption>ציסטה פשוטה: עגולה, שחורה (בלי הדים), עם דפנות חלקות והגברה מאחוריה · <bdi>Nevit Dilmen</bdi>, CC BY-SA 3.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/ben-us-cyst.jpg" alt="ציסטה פשוטה בשד באולטרסאונד"><figcaption>ציסטה פשוטה: עגולה, שחורה (בלי הדים), עם דפנות חלקות והגברה מאחוריה · <span class="nw"><bdi>Nevit Dilmen</bdi>,</span> CC BY-SA 3.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 68 עמ׳ <bdi dir="ltr">827, 835</bdi></span><span>ציסטות</span></div>
 </div></section>
@@ -271,7 +318,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <ul class="b sm">
     <li>הגידול השני בשכיחותו בשד (אחרי סרטן) והשכיח ביותר מתחת לגיל 30. נדיר כגוש חדש אחרי <bdi dir="ltr">40–45</bdi></li>
     <li>גוש קשה, חלק או אונתי, ש"מחליק" מתחת לאצבעות</li>
-    <li>סרטן בתוך פיברואדנומה חדשה: <bdi dir="ltr">0.2%</bdi>. אחרי אבחנה בביופסיה לא חייבים לכרות</li>
+    <li>סרטן בתוך פיברואדנומה חדשה: <span class="nw"><bdi dir="ltr">0.2%</bdi>.</span> אחרי אבחנה בביופסיה לא חייבים לכרות</li>
     <li><b>כורתים:</b> מעל 3 ס״מ, גדילה מהירה, חשד לפילודס, תסמינים או רצון המטופלת. ענקית: מעל 5 ס״מ</li>
    </ul></div>
   <div class="box r"><b class="t">גידול פילודס · פחות מ-1%</b>
@@ -279,13 +326,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li>בעיקר בשנות ה-40. ממוצע כ-5 ס״מ, גדל מהר. רמזים: מעל 3 ס״מ, גדילה מהירה, אישה מבוגרת יותר</li>
     <li>שפיר, גבולי או ממאיר לפי הסטרומה</li>
     <li><b>שפיר:</b> כריתה כמו פיברואדנומה. <b>גבולי וממאיר:</b> כריתה רחבה עם שוליים של 1 ס״מ ומעלה, לפעמים כריתת שד</li>
-    <li><b>לא בודקים את <span class="nw">ה-<bdi>axilla</bdi></span>.</b> הישנות מקומית בעיקר בשנתיים הראשונות. גרורות בדם, בעיקר לריאות</li>
+    <li><b>לא בודקים את <span class="nw">ה-<bdi>axilla</bdi>.</span></b> הישנות מקומית בעיקר בשנתיים הראשונות. גרורות בדם, בעיקר לריאות</li>
    </ul></div>
  </div>
  <div class="grid g3 tight" style="margin-top:12px">
-  <figure><img src="img/ben-mammo-fa.jpg" alt="ממוגרפיה של גוש תחום"><figcaption>גוש סגלגל וחלק בממוגרפיה. בביופסיה: גידול פיברואפיתליאלי · <bdi>Cerevisae</bdi>, CC BY-SA 4.0</figcaption></figure>
-  <figure><img src="img/ben-mammo-fa-calc.jpg" alt="פיברואדנומות מסוידות בשני השדיים"><figcaption>פיברואדנומות ישנות עם הסתיידויות גסות ("פופקורן") בשני השדיים · <bdi>Hellerhoff</bdi>, CC BY-SA 4.0</figcaption></figure>
-  <figure><img src="img/ben-phyllodes.jpg" alt="חתכים בגידול פילודס"><figcaption>גידול פילודס בתכשיר: גוש גדול, אונתי ותחום · <bdi>Ed Uthman</bdi>, CC BY 2.0 · כולם <span class="nw">מ-<bdi>Wikimedia Commons</bdi></span></figcaption></figure>
+  <figure><img src="img/ben-mammo-fa.jpg" alt="ממוגרפיה של גוש תחום"><figcaption>גוש סגלגל וחלק בממוגרפיה. בביופסיה: גידול פיברואפיתליאלי · <span class="nw"><bdi>Cerevisae</bdi>,</span> CC BY-SA 4.0</figcaption></figure>
+  <figure><img src="img/ben-mammo-fa-calc.jpg" alt="פיברואדנומות מסוידות בשני השדיים"><figcaption>פיברואדנומות ישנות עם הסתיידויות גסות ("פופקורן") בשני השדיים · <span class="nw"><bdi>Hellerhoff</bdi>,</span> CC BY-SA 4.0</figcaption></figure>
+  <figure><img src="img/ben-phyllodes.jpg" alt="חתכים בגידול פילודס"><figcaption>גידול פילודס בתכשיר: גוש גדול, אונתי ותחום · <span class="nw"><bdi>Ed Uthman</bdi>,</span> CC BY 2.0 · כולם <span class="nw">מ-<bdi>Wikimedia Commons</bdi></span></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 68 עמ׳ <bdi dir="ltr">835, 841–842</bdi></span><span>פיברואדנומה ופילודס</span></div>
 </div></section>
@@ -299,7 +346,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <div><b>דו-צדדית, מכמה צינורות</b><span>בדרך כלל לא סיבה לניתוח</span></div>
     <div><b>חלבית בשני הצדדים</b><span>גלקטוריאה. בלי הריון או הנקה: לבדוק פרולקטין</span></div>
     <div><b>דמית בשני הצדדים</b><span>בדרך כלל הורמונלית: הריון, תת-פעילות של <span class="nw">ה-<bdi>thyroid</bdi></span></span></div>
-    <div><b>ספונטנית, מצינור אחד</b><span>פפילומה תוך-צינורית <bdi dir="ltr">(60–80%)</bdi>, הרחבת צינורות (20%). בדיקה והדמיה</span></div>
+    <div><b>ספונטנית, מצינור אחד</b><span>פפילומה תוך-צינורית <span class="nw"><bdi dir="ltr">(60–80%)</bdi>,</span> הרחבת צינורות (20%). בדיקה והדמיה</span></div>
     <div><b>דמית מצינור אחד בלי אבחנה</b><span>כריתה של הצינור המעורב, לאבחנה ולעצירת ההפרשה</span></div>
    </div>
    <div class="num" style="margin-top:12px;grid-template-columns:1fr 1fr">
@@ -307,7 +354,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <div><b dir="ltr">20%</b><span>ממאירות בפפילומות רחוקות מהפטמה</span></div>
    </div>
   </div>
-  <figure><img src="img/ben-ductogram.jpg" alt="גלקטוגרפיה של צינור חלב אחד"><figcaption>גלקטוגרפיה: חומר ניגוד שהוזרק לפתח אחד בפטמה ממלא עץ צינורות אחד. בודקים כך הפרשה מצינור אחד · <bdi>Lange123</bdi>, CC BY-SA 3.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/ben-ductogram.jpg" alt="גלקטוגרפיה של צינור חלב אחד"><figcaption>גלקטוגרפיה: חומר ניגוד שהוזרק לפתח אחד בפטמה ממלא עץ צינורות אחד. בודקים כך הפרשה מצינור אחד · <span class="nw"><bdi>Lange123</bdi>,</span> CC BY-SA 3.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 68 עמ׳ <bdi dir="ltr">821, 836</bdi></span><span>הפרשה</span></div>
 </div></section>
@@ -320,19 +367,19 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <ul class="b sm">
     <li>חיידקים נכנסים דרך הפטמה. בדרך כלל <bdi>S. aureus</bdi> או סטרפטוקוק</li>
     <li>חום, לויקוציטוזיס, אודם ורגישות</li>
-    <li>אנטיביוטיקה (לפי הסיכון <span class="nw">ל-<bdi>MRSA</bdi></span>) <b>וממשיכים לרוקן את השד</b></li>
+    <li>אנטיביוטיקה (לפי הסיכון <span class="nw">ל-<bdi>MRSA</bdi>)</span> <b>וממשיכים לרוקן את השד</b></li>
     <li><b>מורסה:</b> אולטרסאונד ושאיבה במחט קודם. חתך וניקוז רק כשהשאיבה והאנטיביוטיקה לא הצליחו. מורסות כאלה בדרך כלל מרובות מדורים</li>
    </ul></div>
   <div class="box a"><b class="t">דלקת סביב הצינורות (מחוץ להנקה)</b>
    <ul class="b sm">
     <li>קשורה לעישון ולסוכרת. זיהום מעורב, אירובי ואנאירובי</li>
-    <li>כאב ואודם מתחת <span class="nw">ל-<bdi>areola</bdi></span>. התקפים חוזרים גורמים לפטמה שנמשכת פנימה, לגוש ולפעמים לפיסטולה לעור שליד <span class="nw">ה-<bdi>areola</bdi></span></li>
+    <li>כאב ואודם מתחת <span class="nw">ל-<bdi>areola</bdi>.</span> התקפים חוזרים גורמים לפטמה שנמשכת פנימה, לגוש ולפעמים לפיסטולה לעור שליד <span class="nw">ה-<bdi>areola</bdi></span></li>
     <li>בהתחלה: חום מקומי ואנטיביוטיקה שמכסה גם אנאירובים. מורסה: שאיבה</li>
-    <li><b>חוזרת:</b> כריתה של כל מערכת הצינורות מתחת <span class="nw">ל-<bdi>areola</bdi></span>, רק אחרי שהדלקת החריפה חלפה</li>
+    <li><b>חוזרת:</b> כריתה של כל מערכת הצינורות מתחת <span class="nw">ל-<bdi>areola</bdi>,</span> רק אחרי שהדלקת החריפה חלפה</li>
    </ul></div>
  </div>
  <div class="grid" style="margin-top:12px">
-  <figure class="sm"><img src="img/ben-us-abscess.jpg" alt="מורסה בשד באולטרסאונד"><figcaption>מורסה בשד באולטרסאונד: חלל עם נוזל לא אחיד. כך מכוונים את מחט השאיבה · <bdi>Nevit Dilmen</bdi>, CC BY-SA 3.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure class="sm"><img src="img/ben-us-abscess.jpg" alt="מורסה בשד באולטרסאונד"><figcaption>מורסה בשד באולטרסאונד: חלל עם נוזל לא אחיד. כך מכוונים את מחט השאיבה · <span class="nw"><bdi>Nevit Dilmen</bdi>,</span> CC BY-SA 3.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
   <div class="box r"><b class="t">לא לשכוח</b>אודם, בצקת ו"קליפת תפוז" מופיעים גם בדלקת חריפה וגם בסרטן דלקתי. דלקת בשד אצל אישה שלא מניקה דורשת חשיבה על האבחנה המבדלת</div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 68 עמ׳ <bdi dir="ltr">824, 835–836, 862–863</bdi></span><span>זיהומים</span></div>
@@ -343,11 +390,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>דלקת גרנולומטוטית, נמק שומן וגלקטוצלה</h2>
  <div class="grid f">
   <div style="display:grid;gap:10px">
-   <div class="box n"><b class="t">דלקת גרנולומטוטית אידיופתית (<bdi>IGM</bdi>)</b>שכיחה יותר באוכלוסיות מהמזרח התיכון, היספניות ובדרום-מזרח אסיה. גוש אחד או כמה, רגישים, עם מורסות, אודם וכיב. מתחזה לזיהום או לסרטן אגרסיבי. ביופסיה: גרנולומות בלי נמק ושולחים גם תרבית. <b>לא מנתחים</b> (פצע שלא נסגר). טיפול: אנטיביוטיקה נגד <bdi>Corynebacterium</bdi>, סטרואידים, מתוטרקסט וגם הזרקת סטרואידים לנגע</div>
+   <div class="box n"><b class="t">דלקת גרנולומטוטית אידיופתית <span class="nw">(<bdi>IGM</bdi>)</span></b>שכיחה יותר באוכלוסיות מהמזרח התיכון, היספניות ובדרום-מזרח אסיה. גוש אחד או כמה, רגישים, עם מורסות, אודם וכיב. מתחזה לזיהום או לסרטן אגרסיבי. ביופסיה: גרנולומות בלי נמק ושולחים גם תרבית. <b>לא מנתחים</b> (פצע שלא נסגר). טיפול: אנטיביוטיקה נגד <span class="nw"><bdi>Corynebacterium</bdi>,</span> סטרואידים, מתוטרקסט וגם הזרקת סטרואידים לנגע</div>
    <div class="box"><b class="t">נמק שומן</b>אחרי חבלה, ניתוח, השתלת שומן או הקרנה. גוש עם הסתיידויות שמחקה סרטן. אין פוטנציאל ממאיר</div>
    <div class="box"><b class="t">גלקטוצלה</b>ציסטה של חלב אחרי סוף ההנקה. שאיבה מאבחנת ומטפלת: נוזל סמיך, נראה מוגלתי אבל סטרילי. המרטומה ואדנומה: נראות כמו פיברואדנומה ומאובחנות בביופסיה</div>
   </div>
-  <figure><img src="img/ben-fatnecrosis.jpg" alt="נמק שומן מסויד בממוגרפיה"><figcaption>נמק שומן גדול ומסויד אחרי ניתוח להקטנת שד, בשתי תמונות ממוגרפיה · <bdi>Hellerhoff</bdi>, CC BY-SA 4.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/ben-fatnecrosis.jpg" alt="נמק שומן מסויד בממוגרפיה"><figcaption>נמק שומן גדול ומסויד אחרי ניתוח להקטנת שד, בשתי תמונות ממוגרפיה · <span class="nw"><bdi>Hellerhoff</bdi>,</span> CC BY-SA 4.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 68 עמ׳ <bdi dir="ltr">836–837</bdi></span><span>מחקים</span></div>
 </div></section>
@@ -358,7 +405,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="num">
   <div><b dir="ltr">×1</b><span>שינוי לא שגשוגי: הסיכון כמעט לא עולה</span></div>
   <div><b dir="ltr">×<bdi dir="ltr">1.3–1.9</bdi></b><span>שגשוגי בלי אטיפיה: פפילומה, אדנוזיס, צלקת רדיאלית</span></div>
-  <div><b dir="ltr">×<bdi dir="ltr">4–5</bdi></b><span>היפרפלזיה אטיפית (<bdi>ADH/ALH</bdi>): <bdi dir="ltr">0.5–1%</bdi> בשנה</span></div>
+  <div><b dir="ltr">×<bdi dir="ltr">4–5</bdi></b><span>היפרפלזיה אטיפית <span class="nw">(<bdi>ADH/ALH</bdi>):</span> <bdi dir="ltr">0.5–1%</bdi> בשנה</span></div>
   <div><b dir="ltr">×7</b><span><bdi>LCIS</bdi> קלאסי: כ-1% בשנה, בשני השדיים</span></div>
  </div>
  <div class="grid">
@@ -369,7 +416,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   </ul>
   <ul class="b sm">
    <li><b><bdi>LCIS</bdi> קלאסי:</b> סמן לסיכון ולא שלב לפני סרטן. חצי מהגידולים מופיעים בשד השני. מעקב בסיכון גבוה ושקילת מניעה בתרופות</li>
-   <li><b><bdi>LCIS</bdi> פלאומורפי:</b> אגרסיבי. מטפלים בו כמו <span class="nw">ב-<bdi>DCIS</bdi></span>: כריתה</li>
+   <li><b><bdi>LCIS</bdi> פלאומורפי:</b> אגרסיבי. מטפלים בו כמו <span class="nw">ב-<bdi>DCIS</bdi>:</span> כריתה</li>
    <li><b>מניעה:</b> טמוקסיפן הוריד ב-75% סרטן חודרני באטיפיה. אפשר מינון נמוך של 5 מ״ג ל-3 שנים</li>
   </ul>
  </div>
@@ -382,14 +429,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b sm">
-    <li>פוליפ של האפיתל בתוך צינור. בדרך כלל ליד <span class="nw">ה-<bdi>areola</bdi></span>, פחות מ-1 ס״מ, אבל יכולה להגיע <span class="nw">ל-<bdi dir="ltr">4–5</bdi></span> ס״מ</li>
+    <li>פוליפ של האפיתל בתוך צינור. בדרך כלל ליד <span class="nw">ה-<bdi>areola</bdi>,</span> פחות מ-1 ס״מ, אבל יכולה להגיע <span class="nw">ל-<bdi dir="ltr">4–5</bdi></span> ס״מ</li>
     <li>ליד הפטמה: הפרשה דמית. לפעמים גוש מתחת <span class="nw">ל-<bdi>areola</bdi></span> או ממצא בממוגרפיה</li>
     <li><b>מתי כורתים:</b> הפרשה דמית, גוש נמוש או אטיפיה בביופסיה</li>
-    <li><b>איך:</b> חתך סביב <span class="nw">ה-<bdi>areola</bdi></span>, מזהים את הצינור המפריש עם גשושית דקה או צבע וכורתים רק אותו</li>
-    <li>פפילומות רבות (<bdi>papillomatosis</bdi>) מעלות את הסיכון לסרטן גם בלי אטיפיה</li>
+    <li><b>איך:</b> חתך סביב <span class="nw">ה-<bdi>areola</bdi>,</span> מזהים את הצינור המפריש עם גשושית דקה או צבע וכורתים רק אותו</li>
+    <li>פפילומות רבות <span class="nw">(<bdi>papillomatosis</bdi>)</span> מעלות את הסיכון לסרטן גם בלי אטיפיה</li>
    </ul>
   </div>
-  <figure><img src="img/ben-papilloma-histo.jpg" alt="פפילומה תוך-צינורית במיקרוסקופ"><figcaption>פפילומה תוך-צינורית במיקרוסקופ: עלים של אפיתל על ציר של רקמת חיבור, בתוך צינור מורחב. נכרתה אחרי סימון בתיל · <bdi>Ed Uthman</bdi>, CC BY 2.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/ben-papilloma-histo.jpg" alt="פפילומה תוך-צינורית במיקרוסקופ"><figcaption>פפילומה תוך-צינורית במיקרוסקופ: עלים של אפיתל על ציר של רקמת חיבור, בתוך צינור מורחב. נכרתה אחרי סימון בתיל · <span class="nw"><bdi>Ed Uthman</bdi>,</span> CC BY 2.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 68 עמ׳ <bdi dir="ltr">836</bdi></span><span>פפילומה</span></div>
 </div></section>
@@ -408,10 +455,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   </div>
   <div>
    <div class="flow sm">
-    <div><b>גינקומסטיה</b><span>דיסקה חלקה ומוצקה, סימטרית מתחת <span class="nw">ל-<bdi>areola</bdi></span>, לרוב רגישה</span></div>
+    <div><b>גינקומסטיה</b><span>דיסקה חלקה ומוצקה, סימטרית מתחת <span class="nw">ל-<bdi>areola</bdi>,</span> לרוב רגישה</span></div>
     <div><b>סרטן</b><span>לא רגיש, לא סימטרי, מתחת <span class="nw">ל-<bdi>areola</bdi></span> או לידה, יכול להיות מקובע לעור או לשריר</span></div>
    </div>
-   <figure style="margin-top:10px"><img src="img/ben-gynecomastia.jpg" alt="גבר עם גינקומסטיה לפני ניתוח ואחריו"><figcaption>גינקומסטיה בדרגה III לפני ניתוח (משמאל) ואחריו · <bdi>David Andrew Copeland, Dr. Mordcai Blau</bdi>, CC BY-SA 3.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+   <figure style="margin-top:10px"><img src="img/ben-gynecomastia.jpg" alt="גבר עם גינקומסטיה לפני ניתוח ואחריו"><figcaption>גינקומסטיה בדרגה III לפני ניתוח (משמאל) ואחריו · <span class="nw"><bdi>David Andrew Copeland, Dr. Mordcai Blau</bdi>,</span> CC BY-SA 3.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
    <div class="box a" style="margin-top:10px"><b class="t">שימו לב</b>גינקומסטיה אינה גורם סיכון לסרטן שד בגבר. ממוגרפיה ואולטרסאונד עוזרים כשיש ספק</div>
   </div>
  </div>
@@ -422,11 +469,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>14</b>מה חדש בתחום · <bdi dir="ltr">2023–2025</bdi></div>
  <h2>מחקרים שכדאי להכיר</h2>
  <div class="grid g3">
-  <div class="study"><div class="y"><bdi>J Clin Oncol</bdi> 2023 · מחקר אקראי</div><b><bdi>TAM-01</bdi>: טמוקסיפן במינון נמוך</b>
-   <p>500 נשים עם <bdi>ADH</bdi>, <bdi>LCIS</bdi> או <bdi>DCIS</bdi>. 5 מ״ג ביום ל-3 שנים מול פלצבו. אחרי כ-10 שנים: 11.3 לעומת 19.5 אירועים ל-1,000 שנות אישה, בלי עלייה בתופעות לוואי קשות. צריך לטפל ב-14 נשים כדי למנוע אירוע אחד ב-10 שנים</p>
+  <div class="study"><div class="y"><bdi>J Clin Oncol</bdi> 2023 · מחקר אקראי</div><b><span class="nw"><bdi>TAM-01</bdi>:</span> טמוקסיפן במינון נמוך</b>
+   <p>500 נשים עם <span class="nw"><bdi>ADH</bdi>,</span> <bdi>LCIS</bdi> או <span class="nw"><bdi>DCIS</bdi>.</span> 5 מ״ג ביום ל-3 שנים מול פלצבו. אחרי כ-10 שנים: 11.3 לעומת 19.5 אירועים ל-1,000 שנות אישה, בלי עלייה בתופעות לוואי קשות. צריך לטפל ב-14 נשים כדי למנוע אירוע אחד ב-10 שנים</p>
    <small>Lazzeroni M et al. J Clin Oncol 2023;41(17):<bdi dir="ltr">3116-3121</bdi></small></div>
   <div class="study"><div class="y"><bdi>JNCI Cancer Spectrum</bdi> 2025 · <bdi>Mayo</bdi></div><b>הסיכון אחרי מחלה שפירה השתנה</b>
-   <p>18,704 נשים עם ביופסיה שפירה <bdi dir="ltr">(1967–2013)</bdi>, מעקב חציוני של 15.8 שנים. 9.9% חלו. הסיכון היחסי עלה מפי 1.61 לפי 1.99, בעיקר כי בעידן המחט העבה מאבחנים יותר נגעים שגשוגיים ואטיפיה</p>
+   <p>18,704 נשים עם ביופסיה שפירה <span class="nw"><bdi dir="ltr">(1967–2013)</bdi>,</span> מעקב חציוני של 15.8 שנים. 9.9% חלו. הסיכון היחסי עלה מפי 1.61 לפי 1.99, בעיקר כי בעידן המחט העבה מאבחנים יותר נגעים שגשוגיים ואטיפיה</p>
    <small>Degnim AC et al. JNCI Cancer Spectr 2025;9(1):pkae128</small></div>
   <div class="study"><div class="y"><bdi>Nat Commun</bdi> 2024 · מחקר אקראי</div><b>דלקת גרנולומטוטית בלי סטרואידים דרך הפה</b>
    <p>140 מטופלות. שטיפת צינורות עם טריאמצינולון ואנטיביוטיקה ומעקב, מול סטרואידים דרך הפה. תגובה קלינית מלאה בשנה: 85.5% לעומת 87.3% (לא נחות), עם פחות תופעות לוואי מסטרואידים</p>
@@ -445,7 +492,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>מורסה בשד: אולטרסאונד ושאיבה במחט קודם. אצל אישה שלא מניקה לחשוב גם על עישון, על <bdi>IGM</bdi> ועל סרטן דלקתי</li>
   <li>אטיפיה <span class="nw">ו-<bdi>LCIS</bdi></span> הם סמנים לסיכון: כריתה לפי סוג הנגע, מעקב צמוד ושקילת מניעה בתרופות</li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 68 <bdi>Diseases of the Breast</bdi>, הסעיפים על אנטומיה, גורמי סיכון ומחלות שפירות (עמ׳ <bdi dir="ltr">822–837, 841–842</bdi>)</div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 68 <span class="nw"><bdi>Diseases of the Breast</bdi>,</span> הסעיפים על אנטומיה, גורמי סיכון ומחלות שפירות (עמ׳ <span class="nw"><bdi dir="ltr">822–837, 841–842</bdi>)</span></div>
  <div class="src"><span>איורים ותמונות: <bdi>Wikimedia Commons</bdi> (רישיונות בכל כיתוב) · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 </main>
@@ -467,5 +514,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>

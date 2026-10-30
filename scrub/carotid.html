@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>מחלות <span class="nw">ה-<bdi>carotid</bdi></span> · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,7 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -116,9 +116,56 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -130,7 +177,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
  <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 5</div>
  <h1>מחלות <span class="nw">ה-<bdi>carotid</bdi></span></h1>
- <p class="lead">היצרות של <span class="nw">ה-<bdi>carotid</bdi></span>: מי עם תסמינים ומי בלי, דופלקס, החלטה על התערבות, אנדארטרקטומיה וסטנט</p>
+ <p class="lead">היצרות של <span class="nw">ה-<bdi>carotid</bdi>:</span> מי עם תסמינים ומי בלי, דופלקס, החלטה על התערבות, אנדארטרקטומיה וסטנט</p>
  <div class="cvsrc" data-ch="101" data-note=""><small>מבוסס על</small><b><bdi dir="ltr">Sabiston Textbook of Surgery</bdi> · מהדורה 22</b><div class="cvch"><span>פרק <bdi dir="ltr">101</bdi></span></div></div>
  <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
 </div></section>
@@ -141,11 +188,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <ol class="obj">
   <li>להבחין בין היצרות <bdi>carotid</bdi> עם תסמינים לבלי תסמינים ולזהות אמאורוזיס פוגקס, <bdi>TIA</bdi> ושבץ</li>
   <li>להאזין לאוושה בצוואר ולהבין את מגבלות הבדיקה</li>
-  <li>לפרש דופלקס של <span class="nw">ה-<bdi>carotid</bdi></span> ולהכיר את מקומם של <bdi>CTA</bdi>, <bdi>MRA</bdi> ואנגיוגרפיה</li>
+  <li>לפרש דופלקס של <span class="nw">ה-<bdi>carotid</bdi></span> ולהכיר את מקומם של <span class="nw"><bdi>CTA</bdi>,</span> <bdi>MRA</bdi> ואנגיוגרפיה</li>
   <li>לדעת מתי מטפלים בתרופות בלבד ומתי מוסיפים התערבות, לפי אחוז ההיצרות והתסמינים</li>
   <li>להכיר את שלבי האנדארטרקטומיה, את חלופות הסטנט ואת הסיבוכים אחרי הניתוח</li>
  </ol>
- <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 101 (עמ׳ <bdi dir="ltr">1603–1619</bdi>)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 101 (עמ׳ <span class="nw"><bdi dir="ltr">1603–1619</bdi>)</span></span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -164,7 +211,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <li>הרובד מצר את העורק, אבל הסכנה העיקרית היא <b>קריש שנוצר עליו ומתסחף</b> למוח או לעין</li>
    <li>גורמי סיכון: עישון, יתר לחץ דם, דיסליפידמיה וסוכרת</li>
   </ul>
-  <figure><img style="max-height:36vh" src="img/carotid-plaque-specimen.jpg" alt="רובד טרשתי מאנדארטרקטומיה"><figcaption>רובד שהוצא באנדארטרקטומיה. רואים את ההתפצלות: <span class="nw">ה-<bdi>common, internal & external carotid</bdi></span> · <bdi>Ed Uthman, MD</bdi>, CC BY 2.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img style="max-height:36vh" src="img/carotid-plaque-specimen.jpg" alt="רובד טרשתי מאנדארטרקטומיה"><figcaption>רובד שהוצא באנדארטרקטומיה. רואים את ההתפצלות: <span class="nw">ה-<bdi>common, internal & external carotid</bdi></span> · <span class="nw"><bdi>Ed Uthman, MD</bdi>,</span> CC BY 2.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 101 עמ׳ <bdi dir="ltr">1603</bdi></span><span>רקע</span></div>
 </div></section>
@@ -183,12 +230,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <g class="hzb" style="--c:#F0961E"><circle cx="302" cy="246" r="19.6"/><text x="302" y="246">4</text></g>
   </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על מספר בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="cca" hidden><b>1 · <bdi>common carotid artery</bdi></b><p>בחלק התחתון של החתך, לאורך הגבול הקדמי של <span class="nw">ה-<bdi>sternocleidomastoid</bdi></span>. כאן קל למצוא אותו ולשלוט עליו בלולאה. בציור <span class="nw">ה-<bdi>internal jugular vein</bdi></span> הוסר (הגדמים הכחולים): בניתוח מזיזים אותו לטרלית.</p></div>
-  <div class="hzi" data-hzi="bulb" hidden><b>2 · ההתפצלות <span class="nw">וה-<bdi>carotid bulb</bdi></span></b><p>כאן הזרימה סוערת וכאן נוצר הרובד. <span class="nw">ה-<bdi>facial vein</bdi></span> מסמן בדרך כלל את הגובה. לא ממשמשים את <span class="nw">ה-<bdi>bulb</bdi></span>: תסחיף מהרובד וברדיקרדיה מהברורצפטורים (אפשר להזריק מעט לידוקאין 1%). <span class="nw">ה-<bdi>external carotid</bdi></span> פונה לכיוון הפנים. <span class="nw">ה-<bdi>internal carotid</bdi></span> ממשיך למעלה ואחורה <span class="nw">ל-<bdi>skull base</bdi></span>.</p></div>
-  <div class="hzi" data-hzi="vag" hidden><b>3 · <bdi>vagus nerve</bdi></b><p>בדרך כלל מאחורי <span class="nw">ה-<bdi>carotid</bdi></span> ולטרלית לו, לפעמים על פניו הקדמיים. נזהרים בניתוח ובהצבת המלחציים. לא להתבלבל עם ענפי <span class="nw">ה-<bdi>ansa cervicalis</bdi></span> הדקים שעל העורק, שמותר לקשור. שימו לב <span class="nw">ל-<bdi>non-recurrent laryngeal nerve</bdi></span>, שיוצא <span class="nw">מה-<bdi>vagus</bdi></span> בצוואר.</p></div>
+  <div class="hzi" data-hzi="cca" hidden><b>1 · <bdi>common carotid artery</bdi></b><p>בחלק התחתון של החתך, לאורך הגבול הקדמי של <span class="nw">ה-<bdi>sternocleidomastoid</bdi>.</span> כאן קל למצוא אותו ולשלוט עליו בלולאה. בציור <span class="nw">ה-<bdi>internal jugular vein</bdi></span> הוסר (הגדמים הכחולים): בניתוח מזיזים אותו לטרלית.</p></div>
+  <div class="hzi" data-hzi="bulb" hidden><b>2 · ההתפצלות <span class="nw">וה-<bdi>carotid bulb</bdi></span></b><p>כאן הזרימה סוערת וכאן נוצר הרובד. <span class="nw">ה-<bdi>facial vein</bdi></span> מסמן בדרך כלל את הגובה. לא ממשמשים את <span class="nw">ה-<bdi>bulb</bdi>:</span> תסחיף מהרובד וברדיקרדיה מהברורצפטורים (אפשר להזריק מעט לידוקאין 1%). <span class="nw">ה-<bdi>external carotid</bdi></span> פונה לכיוון הפנים. <span class="nw">ה-<bdi>internal carotid</bdi></span> ממשיך למעלה ואחורה <span class="nw">ל-<bdi>skull base</bdi>.</span></p></div>
+  <div class="hzi" data-hzi="vag" hidden><b>3 · <bdi>vagus nerve</bdi></b><p>בדרך כלל מאחורי <span class="nw">ה-<bdi>carotid</bdi></span> ולטרלית לו, לפעמים על פניו הקדמיים. נזהרים בניתוח ובהצבת המלחציים. לא להתבלבל עם ענפי <span class="nw">ה-<bdi>ansa cervicalis</bdi></span> הדקים שעל העורק, שמותר לקשור. שימו לב <span class="nw">ל-<bdi>non-recurrent laryngeal nerve</bdi>,</span> שיוצא <span class="nw">מה-<bdi>vagus</bdi></span> בצוואר.</p></div>
   <div class="hzi" data-hzi="xii" hidden><b>4 · <bdi>hypoglossal nerve</bdi></b><p>חוצה את <span class="nw">ה-<bdi>internal & external carotid</bdi></span> בחלק העליון של החתך. מזהים אותו ושומרים עליו. בחלק הזה של הניתוח מפשק קבוע עוזר לחשיפה.</p></div>
  </div></div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 101 עמ׳ <bdi dir="ltr">1603, 1608</bdi></span><span>הצוואר מהצד · <bdi>Sobotta</bdi>, 1909, איור 539 (נחלת הכלל), חתוך · אזורים: Scrub In</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 101 עמ׳ <bdi dir="ltr">1603, 1608</bdi></span><span>הצוואר מהצד · <span class="nw"><bdi>Sobotta</bdi>,</span> 1909, איור 539 (נחלת הכלל), חתוך · אזורים: Scrub In</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -202,7 +249,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   </div>
   <div>
    <div class="box n"><b class="t">היצרות בלי תסמינים</b>כוח המשימה האמריקאי <b>לא ממליץ על סקר</b> באוכלוסייה. רוב ההיצרויות האלה מתגלות במקרה, בבדיקה שנעשתה מסיבה אחרת. לפעמים בודקים בגלל אוושה, מחלה וסקולרית במקומות אחרים או ריבוי גורמי סיכון</div>
-   <div class="box" style="margin-top:10px"><b class="t">באנמנזה</b>אירועים קודמים בעין, בקורטקס או באזור <span class="nw">ה-<bdi>vertebrobasilar</bdi></span>. <b>פרפור פרוזדורים</b>: סיבה אחרת אפשרית <span class="nw">ל-<bdi>TIA</bdi></span> ולשבץ</div>
+   <div class="box" style="margin-top:10px"><b class="t">באנמנזה</b>אירועים קודמים בעין, בקורטקס או באזור <span class="nw">ה-<bdi>vertebrobasilar</bdi>.</span> <b>פרפור פרוזדורים</b>: סיבה אחרת אפשרית <span class="nw">ל-<bdi>TIA</bdi></span> ולשבץ</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 101 עמ׳ <bdi dir="ltr">1603–1604</bdi></span><span>קליניקה</span></div>
@@ -214,7 +261,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b">
-    <li><b>אוושה</b> (<bdi>bruit</bdi>) היא הקול של זרימה סוערת בעורק צר. שומעים אותה בסטטוסקופ מעל <span class="nw">ה-<bdi>carotid</bdi></span></li>
+    <li><b>אוושה</b> <span class="nw">(<bdi>bruit</bdi>)</span> היא הקול של זרימה סוערת בעורק צר. שומעים אותה בסטטוסקופ מעל <span class="nw">ה-<bdi>carotid</bdi></span></li>
     <li><b>שלילית כוזבת:</b> בהיצרות קריטית עוברת כל כך מעט זרימה שאין סערה ואין אוושה</li>
     <li><b>חיובית כוזבת:</b> אוושה יכולה לבוא מהיצרות ב-<b><bdi>external carotid</bdi></b>, שאינה מסוכנת באותה מידה</li>
     <li>לכן תמיד משלבים את הבדיקה עם הדמיה</li>
@@ -222,7 +269,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    </ul>
    <div class="box b" style="margin-top:12px"><b class="t">במחלקה השבוע</b>האזינו לצוואר של שני מטופלים עם מחלה וסקולרית, בשני הצדדים. השוו למה שהדופלקס הראה. אם יש מטופל אחרי אנדארטרקטומיה: בדקו את הצלקת ואת המצב הנוירולוגי</div>
   </div>
-  <figure><img src="img/carotid-pulse-neck.jpg" alt="מישוש הדופק ב-carotid בצוואר"><figcaption><span class="nw">ה-<bdi>carotid</bdi></span> בצוואר: כאן ממששים את הדופק. באותו מקום מניחים את הסטטוסקופ כדי לחפש אוושה · <bdi>BruceBlaus</bdi>, CC BY-SA 4.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/carotid-pulse-neck.jpg" alt="מישוש הדופק ב-carotid בצוואר"><figcaption><span class="nw">ה-<bdi>carotid</bdi></span> בצוואר: כאן ממששים את הדופק. באותו מקום מניחים את הסטטוסקופ כדי לחפש אוושה · <span class="nw"><bdi>BruceBlaus</bdi>,</span> CC BY-SA 4.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 101 עמ׳ <bdi dir="ltr">1604</bdi> · פרק 103 עמ׳ <bdi dir="ltr">1647</bdi></span><span>בדיקה</span></div>
 </div></section>
@@ -236,7 +283,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div class="flow sm">
     <div><b>תקין</b><span>מהירות שיא מתחת ל-125 ס״מ/שנ׳, בלי רובד</span></div>
     <div><b dir="ltr">&lt;50%</b><span>מתחת ל-125 ס״מ/שנ׳, יש רובד</span></div>
-    <div><b dir="ltr">50–69%</b><span><bdi dir="ltr">125–230</bdi> ס״מ/שנ׳. יחס פנימי/משותף <bdi dir="ltr">2–4</bdi>. בסוף הדיאסטולה <bdi dir="ltr">40–100</bdi></span></div>
+    <div><b dir="ltr">50–69%</b><span><bdi dir="ltr">125–230</bdi> ס״מ/שנ׳. יחס פנימי/משותף <span class="nw"><bdi dir="ltr">2–4</bdi>.</span> בסוף הדיאסטולה <bdi dir="ltr">40–100</bdi></span></div>
     <div><b dir="ltr">≥70%</b><span>מעל 230 ס״מ/שנ׳. יחס מעל 4. בסוף הדיאסטולה מעל 100</span></div>
    </div>
    <p style="font-size:14px;color:var(--muted);margin:8px 0 0">המגבלה הגדולה: תלוי במיומנות הבודק. הסתיידות יכולה להסתיר היצרות קשה</p>
@@ -248,10 +295,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <div><b><bdi>MRA</bdi></b><span>בלי קרינה. מראה את מבנה הרובד ודימום בתוכו. יקר, לא לסקר</span></div>
     <div><b>אנגיוגרפיה</b><span>הייתה תקן הזהב. סיבוכים נוירולוגיים ב-2.6%. היום רק כשהבדיקות האחרות סותרות</span></div>
    </div>
-   <figure class="sm" style="margin-top:10px"><img src="img/carotid-us-stenosis.jpg" alt="דופלקס של היצרות ב-internal carotid"><figcaption>אולטרסאונד בחתך רוחבי של <span class="nw">ה-<bdi>right internal carotid</bdi></span>: רובד (החץ) שגורם להיצרות של כ-70% · <bdi>James Heilman, MD</bdi>, CC BY-SA 4.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+   <figure class="sm" style="margin-top:10px"><img src="img/carotid-us-stenosis.jpg" alt="דופלקס של היצרות ב-internal carotid"><figcaption>אולטרסאונד בחתך רוחבי של <span class="nw">ה-<bdi>right internal carotid</bdi>:</span> רובד (החץ) שגורם להיצרות של כ-70% · <span class="nw"><bdi>James Heilman, MD</bdi>,</span> CC BY-SA 4.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
   </div>
  </div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 101 עמ׳ <bdi dir="ltr">1604–1606</bdi> (טבלה <bdi>101.1</bdi>)</span><span>הדמיה</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 101 עמ׳ <bdi dir="ltr">1604–1606</bdi> (טבלה <span class="nw"><bdi>101.1</bdi>)</span></span><span>הדמיה</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -260,10 +307,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div>
    <div class="flow sm">
-    <div><b>עם תסמינים, מעל 70%</b><span><bdi>NASCET</bdi>: שבץ בצד ההיצרות תוך שנתיים <b>26% עם אספירין לעומת 9% אחרי ניתוח</b></span></div>
+    <div><b>עם תסמינים, מעל 70%</b><span><span class="nw"><bdi>NASCET</bdi>:</span> שבץ בצד ההיצרות תוך שנתיים <b>26% עם אספירין לעומת 9% אחרי ניתוח</b></span></div>
     <div><b>עם תסמינים, <bdi dir="ltr">50–69%</bdi></b><span>תועלת קטנה יותר: 22.2% לעומת 15.7% ב-5 שנים</span></div>
     <div><b>עם תסמינים, מתחת ל-50%</b><span>הניתוח לא מוריד אירועים. תרופות בלבד</span></div>
-    <div><b>בלי תסמינים, מעל 70%</b><span>ניתוח עם טיפול תרופתי מרבי (רמת ראיות <bdi>1B</bdi>). <bdi>ACAS</bdi> <span class="nw">ו-<bdi>ACST</bdi></span>: שבץ או מוות ב-5 שנים 4.1% לעומת 10%</span></div>
+    <div><b>בלי תסמינים, מעל 70%</b><span>ניתוח עם טיפול תרופתי מרבי (רמת ראיות <span class="nw"><bdi>1B</bdi>).</span> <bdi>ACAS</bdi> <span class="nw">ו-<bdi>ACST</bdi>:</span> שבץ או מוות ב-5 שנים 4.1% לעומת 10%</span></div>
    </div>
   </div>
   <div>
@@ -271,25 +318,25 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div class="box n" style="margin-top:10px"><b class="t">טיפול תרופתי לכולם</b>נוגד טסיות (בדרך כלל אספירין), <b>סטטין בעוצמה גבוהה</b>, הפסקת עישון, איזון לחץ דם וסוכרת. הסטטין מוריד שבץ לאורך זמן בהיצרות עם תסמינים</div>
   </div>
  </div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 101 עמ׳ <bdi dir="ltr">1604, 1606–1607</bdi> (טבלה <bdi>101.2</bdi>)</span><span>החלטה</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 101 עמ׳ <bdi dir="ltr">1604, 1606–1607</bdi> (טבלה <span class="nw"><bdi>101.2</bdi>)</span></span><span>החלטה</span></div>
 </div></section>
 
 <section class="s"><div class="card">
  <div class="kick"><b>8</b>הניתוח</div>
- <h2>אנדארטרקטומיה של <span class="nw">ה-<bdi>carotid</bdi></span> (<bdi>CEA</bdi>)</h2>
+ <h2>אנדארטרקטומיה של <span class="nw">ה-<bdi>carotid</bdi></span> <span class="nw">(<bdi>CEA</bdi>)</span></h2>
  <div class="grid f">
   <div>
    <ol class="obj sm">
     <li><b>תנוחה:</b> שכיבה, כרית מתחת לכתפיים, ראש מסובב לצד השני. קו עורקי לניטור לחץ הדם</li>
-    <li><b>חתך</b> לאורך הגבול הקדמי של <span class="nw">ה-<bdi>sternocleidomastoid</bdi></span>. דרך <span class="nw">ה-<bdi>platysma</bdi></span> אל <span class="nw">ה-<bdi>carotid sheath</bdi></span></li>
+    <li><b>חתך</b> לאורך הגבול הקדמי של <span class="nw">ה-<bdi>sternocleidomastoid</bdi>.</span> דרך <span class="nw">ה-<bdi>platysma</bdi></span> אל <span class="nw">ה-<bdi>carotid sheath</bdi></span></li>
     <li><span class="nw">ה-<bdi>internal jugular vein</bdi></span> לטרלית. <b><span class="nw">ה-<bdi>facial vein</bdi></span></b> מסמן בדרך כלל את גובה ההתפצלות</li>
-    <li>שומרים על <b><span class="nw">ה-<bdi>vagus</bdi></span></b> (מאחור ולטרלית) ועל <b><span class="nw">ה-<bdi>hypoglossal nerve</bdi></span></b> (למעלה). לא ממשמשים את <span class="nw">ה-<bdi>bulb</bdi></span>: תסחיף וברדיקרדיה</li>
-    <li>הפרין ואז מלחציים: <b>קודם על <span class="nw">ה-<bdi>internal carotid</bdi></span></b>. פותחים לאורך, מוציאים את הרובד ותופרים <b>טלאי</b>. חלופה: אנדארטרקטומיה בהיפוך (<bdi>eversion</bdi>)</li>
-    <li><b>הגנה על המוח:</b> שאנט, <bdi>EEG</bdi>, מדידת לחץ בגדם, או ניתוח בהרדמה מקומית עם מטופל ער</li>
+    <li>שומרים על <b><span class="nw">ה-<bdi>vagus</bdi></span></b> (מאחור ולטרלית) ועל <b><span class="nw">ה-<bdi>hypoglossal nerve</bdi></span></b> (למעלה). לא ממשמשים את <span class="nw">ה-<bdi>bulb</bdi>:</span> תסחיף וברדיקרדיה</li>
+    <li>הפרין ואז מלחציים: <b>קודם על <span class="nw">ה-<bdi>internal carotid</bdi></span></b>. פותחים לאורך, מוציאים את הרובד ותופרים <b>טלאי</b>. חלופה: אנדארטרקטומיה בהיפוך <span class="nw">(<bdi>eversion</bdi>)</span></li>
+    <li><b>הגנה על המוח:</b> שאנט, <span class="nw"><bdi>EEG</bdi>,</span> מדידת לחץ בגדם, או ניתוח בהרדמה מקומית עם מטופל ער</li>
     <li>בדיקת סיום בדופלקס. מעירים את המטופל בחדר ניתוח ובודקים מצב נוירולוגי</li>
    </ol>
   </div>
-  <figure><img src="img/carotid-cea-blausen.jpg" alt="איור של אנדארטרקטומיה של ה-carotid"><figcaption>אנדארטרקטומיה של <span class="nw">ה-<bdi>carotid</bdi></span>: פתיחת העורק והוצאת הרובד · <bdi>Blausen.com staff (2014), "Medical gallery of Blausen Medical 2014", WikiJournal of Medicine</bdi>, CC BY 3.0</figcaption></figure>
+  <figure><img src="img/carotid-cea-blausen.jpg" alt="איור של אנדארטרקטומיה של ה-carotid"><figcaption>אנדארטרקטומיה של <span class="nw">ה-<bdi>carotid</bdi>:</span> פתיחת העורק והוצאת הרובד · <span class="nw"><bdi>Blausen.com staff (2014), "Medical gallery of Blausen Medical 2014", WikiJournal of Medicine</bdi>,</span> CC BY 3.0</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 101 עמ׳ <bdi dir="ltr">1607–1610</bdi></span><span>ניתוח</span></div>
 </div></section>
@@ -299,7 +346,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>סיבוכים שהסטודנט צריך לזהות</h2>
  <div class="grid">
   <div class="box r"><b class="t">המטומה בצוואר מתרחבת</b>מצב חירום. סימנים: צרידות חדשה, קוצר נשימה, סטייה של <span class="nw">ה-<bdi>trachea</bdi></span> ונפיחות. יכולה לחסום את דרכי האוויר במהירות. אינטובציה קשה: מרדים מנוסה, אינטובציה בהכרה בסיב אופטי ומוכנות לדרך אוויר כירורגית. רק אחר כך פותחים את הפצע</div>
-  <div class="box r"><b class="t">שבץ</b>הסיבוך המפחיד ביותר. חסר חדש מיד אחרי הניתוח: פקקת בעורק, דש של דיסקציה או תסחיף. הדמיה מהירה (דופלקס או <bdi>CTA</bdi>) או חזרה לחדר ניתוח</div>
+  <div class="box r"><b class="t">שבץ</b>הסיבוך המפחיד ביותר. חסר חדש מיד אחרי הניתוח: פקקת בעורק, דש של דיסקציה או תסחיף. הדמיה מהירה (דופלקס או <span class="nw"><bdi>CTA</bdi>)</span> או חזרה לחדר ניתוח</div>
   <div class="box a"><b class="t">תסמונת היפרפרפוזיה</b>כלי הדם במוח היו מורחבים מאחורי ההיצרות. אחרי הפתיחה: זרימת יתר, פרכוסים ודימום מוחי. <b>הסימן הראשון: כאב ראש</b> באותו צד. בודקים, מאזנים לחץ דם בקפידה</div>
   <div class="box n"><b class="t">עוד</b>תנודות בלחץ הדם עד שהברורצפטורים מתאזנים. תת לחץ דם עמיד: לחשוב על איסכמיה בלב. רוב המטופלים משתחררים ביום שאחרי הניתוח. היצרות חוזרת <span class="nw">ב-<bdi dir="ltr">10–15%</bdi></span> לאורך השנים</div>
  </div>
@@ -310,22 +357,22 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>10</b>חלופות לניתוח</div>
  <h2>סטנט: דרך המפשעה או דרך הצוואר</h2>
  <div class="grid">
-  <div class="box b"><b class="t">סטנט דרך <span class="nw">ה-<bdi>femoral artery</bdi></span> (<bdi>TFCAS</bdi>)</b>
+  <div class="box b"><b class="t">סטנט דרך <span class="nw">ה-<bdi>femoral artery</bdi></span> <span class="nw">(<bdi>TFCAS</bdi>)</span></b>
    <ul class="b sm"><li>דרך הקשת. מסנן להגנה מתסחיף במהלך הפעולה</li><li>בהרדמה מקומית, כדי לעקוב אחרי הדיבור והתנועה</li><li>לא מתאים לקשת מסוג <bdi>III</bdi> או לקשת מסוידת וחולה. גם לא לנגע עם קריש</li><li>מעל גיל 70: יותר שבץ ומוות מאשר בניתוח</li><li>לפני: לפחות שבוע של שני נוגדי טסיות וסטטין</li></ul></div>
-  <div class="box"><b class="t">דרך הצוואר עם היפוך זרימה (<bdi>TCAR</bdi>)</b>
-   <ul class="b sm"><li>חתך קטן בבסיס הצוואר, סוגרים את <span class="nw">ה-<bdi>common carotid</bdi></span>. הדם זורם הפוך מהמוח <span class="nw">ל-<bdi>femoral vein</bdi></span> דרך מסנן</li><li>לא נוגעים <span class="nw">ב-<bdi>aortic arch</bdi></span></li><li><bdi>ROADSTER</bdi>: שבץ ב-1.4% ב-30 יום</li></ul></div>
+  <div class="box"><b class="t">דרך הצוואר עם היפוך זרימה <span class="nw">(<bdi>TCAR</bdi>)</span></b>
+   <ul class="b sm"><li>חתך קטן בבסיס הצוואר, סוגרים את <span class="nw">ה-<bdi>common carotid</bdi>.</span> הדם זורם הפוך מהמוח <span class="nw">ל-<bdi>femoral vein</bdi></span> דרך מסנן</li><li>לא נוגעים <span class="nw">ב-<bdi>aortic arch</bdi></span></li><li><span class="nw"><bdi>ROADSTER</bdi>:</span> שבץ ב-1.4% ב-30 יום</li></ul></div>
  </div>
- <div class="box a" style="margin-top:12px"><b class="t">ניתוח מול סטנט בניסויים</b><bdi>CREST</bdi>: בסטנט יותר שבץ, בניתוח יותר אוטם. אחרי 10 שנים לא היה הבדל בתוצאה המשולבת. <bdi>EVA-3S</bdi> (עם תסמינים): יותר שבץ או מוות בסטנט. <b>הניתוח מתאים כמעט לכל מטופל.</b> סטנט שוקלים בצוואר "עוין": קרינה או ניתוח קודם, טרכאוסטומיה, נגע מעל <bdi>C2</bdi>, פגיעה <span class="nw">ב-<bdi>recurrent laryngeal nerve</bdi></span> בצד השני</div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 101 עמ׳ <bdi dir="ltr">1607, 1610–1616</bdi> (טבלאות <bdi>101.3–101.6</bdi>)</span><span>סטנט</span></div>
+ <div class="box a" style="margin-top:12px"><b class="t">ניתוח מול סטנט בניסויים</b><span class="nw"><bdi>CREST</bdi>:</span> בסטנט יותר שבץ, בניתוח יותר אוטם. אחרי 10 שנים לא היה הבדל בתוצאה המשולבת. <bdi>EVA-3S</bdi> (עם תסמינים): יותר שבץ או מוות בסטנט. <b>הניתוח מתאים כמעט לכל מטופל.</b> סטנט שוקלים בצוואר "עוין": קרינה או ניתוח קודם, טרכאוסטומיה, נגע מעל <span class="nw"><bdi>C2</bdi>,</span> פגיעה <span class="nw">ב-<bdi>recurrent laryngeal nerve</bdi></span> בצד השני</div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 101 עמ׳ <bdi dir="ltr">1607, 1610–1616</bdi> (טבלאות <span class="nw"><bdi>101.3–101.6</bdi>)</span></span><span>סטנט</span></div>
 </div></section>
 
 <section class="s"><div class="card">
  <div class="kick"><b>11</b>לא רק טרשת</div>
  <h2>דיסקציה, <bdi>FMD</bdi> ומפרצת</h2>
  <div class="grid g3">
-  <div class="box"><b class="t">דיסקציה של <span class="nw">ה-<bdi>carotid</bdi></span></b>ספונטנית, אחרי חבלה (כ-1% מהחבלות הקהות) או יאטרוגנית. כאב ראש או <bdi>Horner</bdi>. עד 50% מגיעים עם שבץ או <bdi>TIA</bdi>. טיפול: <b>נוגדי טסיות או נוגדי קרישה</b>. התערבות רק כשהמצב הנוירולוגי מחמיר</div>
-  <div class="box"><b class="t">דיספלזיה פיברומוסקולרית</b>לא טרשתית ולא דלקתית, בעיקר בנשים. "מחרוזת חרוזים" בהדמיה. כאבי ראש, <bdi>TIA</bdi>, שבץ, טנטון פועם. כמעט מחצית מגיעות עם מפרצת או דיסקציה. טיפול: נוגדי טסיות, לעיתים אנגיופלסטיה</div>
-  <div class="box r"><b class="t">מפרצת של <span class="nw">ה-<bdi>carotid</bdi></span></b>נדירה: זיהום, חבלה, טרשת או ניתוח קודם. גוש פועם בצוואר, <bdi>TIA</bdi>, שבץ, חסר בעצבים או קושי בבליעה. <b>מטפלים כשמגלים</b>, בגלל סיכון גבוה לשבץ ולקרע</div>
+  <div class="box"><b class="t">דיסקציה של <span class="nw">ה-<bdi>carotid</bdi></span></b>ספונטנית, אחרי חבלה (כ-1% מהחבלות הקהות) או יאטרוגנית. כאב ראש או <span class="nw"><bdi>Horner</bdi>.</span> עד 50% מגיעים עם שבץ או <span class="nw"><bdi>TIA</bdi>.</span> טיפול: <b>נוגדי טסיות או נוגדי קרישה</b>. התערבות רק כשהמצב הנוירולוגי מחמיר</div>
+  <div class="box"><b class="t">דיספלזיה פיברומוסקולרית</b>לא טרשתית ולא דלקתית, בעיקר בנשים. "מחרוזת חרוזים" בהדמיה. כאבי ראש, <span class="nw"><bdi>TIA</bdi>,</span> שבץ, טנטון פועם. כמעט מחצית מגיעות עם מפרצת או דיסקציה. טיפול: נוגדי טסיות, לעיתים אנגיופלסטיה</div>
+  <div class="box r"><b class="t">מפרצת של <span class="nw">ה-<bdi>carotid</bdi></span></b>נדירה: זיהום, חבלה, טרשת או ניתוח קודם. גוש פועם בצוואר, <span class="nw"><bdi>TIA</bdi>,</span> שבץ, חסר בעצבים או קושי בבליעה. <b>מטפלים כשמגלים</b>, בגלל סיכון גבוה לשבץ ולקרע</div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 101 עמ׳ <bdi dir="ltr">1617</bdi></span><span>מחלות אחרות</span></div>
 </div></section>
@@ -334,13 +381,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>12</b>מה חדש בתחום · <bdi dir="ltr">2021–2025</bdi></div>
  <h2>שלושה ניסויים שמשנים את השיחה</h2>
  <div class="grid g3">
-  <div class="study"><div class="y"><bdi>NEJM</bdi> 2025 · שני ניסויים מקבילים</div><b><bdi>CREST-2</bdi>: היצרות קשה בלי תסמינים</b>
+  <div class="study"><div class="y"><bdi>NEJM</bdi> 2025 · שני ניסויים מקבילים</div><b><span class="nw"><bdi>CREST-2</bdi>:</span> היצרות קשה בלי תסמינים</b>
    <p>היצרות של 70% ומעלה בלי תסמינים, 155 מרכזים. <b>סטנט</b> (1,245 מטופלים): שבץ או מוות ב-4 שנים 2.8% לעומת 6.0% בטיפול תרופתי אינטנסיבי בלבד, הבדל מובהק. <b>ניתוח</b> (1,240 מטופלים): 3.7% לעומת 5.3%, הבדל לא מובהק</p>
    <small><bdi dir="ltr">Brott TG et al. N Engl J Med 2026;394:219-31 (online Nov 2025)</bdi></small></div>
-  <div class="study"><div class="y"><bdi>Lancet Neurol</bdi> 2025 · ניסוי אקראי</div><b><bdi>ECST-2</bdi>: היצרות בסיכון נמוך</b>
+  <div class="study"><div class="y"><bdi>Lancet Neurol</bdi> 2025 · ניסוי אקראי</div><b><span class="nw"><bdi>ECST-2</bdi>:</span> היצרות בסיכון נמוך</b>
    <p>429 מטופלים עם היצרות של 50% ומעלה (עם או בלי תסמינים) וסיכון מחושב נמוך לשבץ. טיפול תרופתי אופטימלי לבד מול טיפול תרופתי והתערבות: <b>אין יתרון</b> לאחד מהם אחרי שנתיים</p>
    <small><bdi dir="ltr">Donners SJA et al. Lancet Neurol 2025;24:389-99</bdi></small></div>
-  <div class="study"><div class="y"><bdi>Lancet</bdi> 2021 · ניסוי אקראי</div><b><bdi>ACST-2</bdi>: סטנט מול ניתוח בלי תסמינים</b>
+  <div class="study"><div class="y"><bdi>Lancet</bdi> 2021 · ניסוי אקראי</div><b><span class="nw"><bdi>ACST-2</bdi>:</span> סטנט מול ניתוח בלי תסמינים</b>
    <p>3,625 מטופלים, 130 מרכזים, מעקב של 5 שנים. שבץ או מוות משבית בפעולה: 1% בשתי הקבוצות. שבץ כלשהו אחרי הפעולה ב-5 שנים: 5.3% בסטנט לעומת 4.5% בניתוח, הבדל לא מובהק</p>
    <small><bdi dir="ltr">Halliday A et al. Lancet 2021;398:1065-73</bdi></small></div>
  </div>
@@ -357,7 +404,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>עם תסמינים ו-50% ומעלה: התערבות. מתחת ל-50%: תרופות. בלי תסמינים: ויכוח פתוח. הטיפול התרופתי חובה לכולם</li>
   <li>אחרי אנדארטרקטומיה: המטומה בצוואר היא בעיה של דרכי אוויר. כאב ראש יכול להיות היפרפרפוזיה</li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 101 <bdi>Contemporary Management of Carotid Disease</bdi> (עמ׳ <bdi dir="ltr">1603–1619</bdi>)</div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 101 <bdi>Contemporary Management of Carotid Disease</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1603–1619</bdi>)</span></div>
  <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1909, נחלת הכלל) · <bdi>Blausen Medical</bdi> (CC BY) · תמונות <span class="nw">מ-<bdi>Wikimedia Commons</bdi></span> לפי הרישיון בכל כיתוב · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 </main>
@@ -379,5 +426,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>

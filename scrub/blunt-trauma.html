@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>חבלת בטן קהה · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,7 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -116,9 +116,56 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -131,7 +178,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
  <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 6</div>
  <h1>חבלת בטן קהה</h1>
- <p class="lead"><bdi>FAST</bdi>, CT וההחלטה: מתי ניתוח, מתי צנתור ומתי השגחה. <bdi dir="ltr">spleen</bdi>, <bdi dir="ltr">liver</bdi>, מעי, <bdi dir="ltr">duodenum</bdi> <span class="nw">ו-<bdi dir="ltr">pancreas</bdi></span></p>
+ <p class="lead"><span class="nw"><bdi>FAST</bdi>,</span> CT וההחלטה: מתי ניתוח, מתי צנתור ומתי השגחה. <span class="nw"><bdi dir="ltr">spleen</bdi>,</span> <span class="nw"><bdi dir="ltr">liver</bdi>,</span> מעי, <bdi dir="ltr">duodenum</bdi> <span class="nw">ו-<bdi dir="ltr">pancreas</bdi></span></p>
  <div class="cvsrc" data-ch="36,37" data-note=""><small>מבוסס על</small><b><bdi dir="ltr">Sabiston Textbook of Surgery</bdi> · מהדורה 22</b><div class="cvch"><span>פרק <bdi dir="ltr">36</bdi></span><span>פרק <bdi dir="ltr">37</bdi></span></div></div>
  <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
 </div></section>
@@ -146,7 +193,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>להחליט בין ניתוח, CT, צנתור והשגחה לפי המצב ההמודינמי</li>
   <li>להכיר את הדירוג והטיפול בפגיעות <bdi dir="ltr">spleen</bdi> <span class="nw">ו-<bdi dir="ltr">liver</bdi></span> ולחשוד בפגיעה במעי, <span class="nw">ב-<bdi dir="ltr">duodenum</bdi></span> <span class="nw">וב-<bdi dir="ltr">pancreas</bdi></span></li>
  </ol>
- <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 36 (עמ׳ <bdi dir="ltr">340–354</bdi>)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 36 (עמ׳ <span class="nw"><bdi dir="ltr">340–354</bdi>)</span></span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -154,14 +201,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>איך כוח קהה פוגע</h2>
  <div class="grid">
   <div class="flow sm">
-   <div><b>לחיצה ישירה</b><span>שבר ברקמת <span class="nw">ה-<bdi dir="ltr">spleen</bdi></span> או <span class="nw">ה-<bdi dir="ltr">liver</bdi></span>: דימום</span></div>
+   <div><b>לחיצה ישירה</b><span>שבר ברקמת <span class="nw">ה-<bdi dir="ltr">spleen</bdi></span> או <span class="nw">ה-<bdi dir="ltr">liver</bdi>:</span> דימום</span></div>
    <div><b>האטה פתאומית</b><span>קרע של הקופסית במקום שבו האיבר מחובר, המטומה תת-קופסית, קרע <span class="nw">ב-<bdi dir="ltr">mesentery</bdi></span></span></div>
    <div><b>"פיצוץ"</b><span>לחץ פתאומי במקטע מעי סגור מלא נוזל ואוויר: נקב בצד שמול <span class="nw">ה-<bdi dir="ltr">mesentery</bdi></span></span></div>
-   <div><b>מעיכה מול עמוד השדרה</b><span>הגה או חגורת בטיחות: <bdi dir="ltr">pancreas</bdi>, <bdi dir="ltr">small bowel</bdi>, <bdi dir="ltr">duodenum</bdi>. בילדים: כידון אופניים</span></div>
-   <div><b>לחץ תוך-בטני</b><span>קרע <span class="nw">ב-<bdi dir="ltr">diaphragm</bdi></span>, ב-75% משמאל (<span class="nw">ה-<bdi dir="ltr">liver</bdi></span> מגן מימין)</span></div>
+   <div><b>מעיכה מול עמוד השדרה</b><span>הגה או חגורת בטיחות: <span class="nw"><bdi dir="ltr">pancreas</bdi>,</span> <span class="nw"><bdi dir="ltr">small bowel</bdi>,</span> <span class="nw"><bdi dir="ltr">duodenum</bdi>.</span> בילדים: כידון אופניים</span></div>
+   <div><b>לחץ תוך-בטני</b><span>קרע <span class="nw">ב-<bdi dir="ltr">diaphragm</bdi>,</span> ב-75% משמאל (<span class="nw">ה-<bdi dir="ltr">liver</bdi></span> מגן מימין)</span></div>
   </div>
   <div style="display:grid;gap:10px">
-   <div class="box n"><b class="t">שבר באגן</b>מקור שכיח להמטומה <span class="nw">ב-<bdi dir="ltr">retroperitoneum</bdi></span>. בשבר אגן עם הלם התמותה יכולה לעבור 50%</div>
+   <div class="box n"><b class="t">שבר באגן</b>מקור שכיח להמטומה <span class="nw">ב-<bdi dir="ltr">retroperitoneum</bdi>.</span> בשבר אגן עם הלם התמותה יכולה לעבור 50%</div>
    <div class="box a"><b class="t"><span class="nw">ה-<bdi dir="ltr">spleen</bdi></span> <span class="nw">וה-<bdi dir="ltr">liver</bdi></span></b>האיברים הנפגעים ביותר בבטן. פגיעה מבודדת <span class="nw">ב-<bdi dir="ltr">spleen</bdi></span> היא כ-42% מפגיעות הבטן <span class="nw">וה-<bdi dir="ltr">liver</bdi></span> נפגע ב-22.2% מהחבלות הקהות</div>
    <div class="box r"><b class="t">איברים חלולים: נדיר אבל מסוכן</b><bdi dir="ltr">small bowel</bdi> <span class="nw">ו-<bdi dir="ltr">colon</bdi></span> נפגעים רק ב-0.3% מהחבלות הקהות. <span class="nw">ב-<bdi dir="ltr">stomach</bdi></span> פחות מ-1%, אבל התמותה 28.2% בגלל אנרגיה גבוהה ופגיעות נלוות</div>
   </div>
@@ -177,14 +224,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <ul class="b sm">
     <li><b>הסתכלות:</b> בטן תפוחה, שטפי דם, פצעים ובמיוחד <b>סימן חגורת בטיחות</b> אחרי תאונת דרכים</li>
     <li><b>מישוש:</b> מחפשים פריטוניטיס או רגישות ממוקדת ומבדילים בין כאב בדופן לבין פגיעה בתוך הבטן</li>
-    <li><b>אגן:</b> שטפי דם ונפיחות. <b><bdi dir="ltr">perineum</bdi>:</b> המטומה <span class="nw">ב-<bdi dir="ltr">scrotum</bdi></span> ודם <span class="nw">ב-<bdi dir="ltr">urethral meatus</bdi></span> (פגיעה <span class="nw">ב-<bdi dir="ltr">urethra</bdi></span>)</li>
+    <li><b>אגן:</b> שטפי דם ונפיחות. <b><span class="nw"><bdi dir="ltr">perineum</bdi>:</span></b> המטומה <span class="nw">ב-<bdi dir="ltr">scrotum</bdi></span> ודם <span class="nw">ב-<bdi dir="ltr">urethral meatus</bdi></span> (פגיעה <span class="nw">ב-<bdi dir="ltr">urethra</bdi>)</span></li>
     <li><b>גב:</b> גלגול גוש ובדיקה רקטלית לפי הצורך</li>
-    <li><b>מגבלה:</b> <bdi dir="ltr">duodenum</bdi>, <bdi dir="ltr">pancreas</bdi> <span class="nw">ו-<bdi dir="ltr">ascending colon</bdi></span> <span class="nw">ו-<bdi dir="ltr">descending colon</bdi></span> נמצאים <span class="nw">ב-<bdi dir="ltr">retroperitoneum</bdi></span>. גם נקב מלא יכול להיות בלי סימני צפק</li>
+    <li><b>מגבלה:</b> <span class="nw"><bdi dir="ltr">duodenum</bdi>,</span> <bdi dir="ltr">pancreas</bdi> <span class="nw">ו-<bdi dir="ltr">ascending colon</bdi></span> <span class="nw">ו-<bdi dir="ltr">descending colon</bdi></span> נמצאים <span class="nw">ב-<bdi dir="ltr">retroperitoneum</bdi>.</span> גם נקב מלא יכול להיות בלי סימני צפק</li>
     <li>סימן חגורה או רגישות בבדיקה, יחד עם ממצא חשוד ב-CT, מעלים את החשד לפגיעה במעי</li>
    </ul>
    <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>בדקו פצוע אחרי חבלה קהה שמאושפז להשגחה. בדקו את הבטן יחד עם הבכיר/ה, חפשו סימן חגורה ועקבו אחרי הבדיקות החוזרות וההמוגלובין לאורך היום</div>
   </div>
-  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש ה-liver בשתי ידיים" style="max-height:44vh"><figcaption>מישוש בשתי ידיים: יד אחת מקבעת ויד שנייה ממששת · <bdi>Musser</bdi>, ספר אבחנה, 1904 (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש ה-liver בשתי ידיים" style="max-height:44vh"><figcaption>מישוש בשתי ידיים: יד אחת מקבעת ויד שנייה ממששת · <span class="nw"><bdi>Musser</bdi>,</span> ספר אבחנה, 1904 (נחלת הכלל)</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">324, 341, 348, 351</bdi></span><span>בדיקה</span></div>
 </div></section>
@@ -203,13 +250,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <g class="hzb" style="--c:#C9893F"><circle cx="445" cy="885" r="20"/><text x="445" y="885">4</text></g>
  </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על חלון בציור כדי לקרוא עליו</p>
-   <div class="hzi" data-hzi="per" hidden><b>1 · <bdi dir="ltr">pericardium</bdi> (מתחת <span class="nw">ל-<bdi dir="ltr">xiphoid</bdi></span>)</b><p>מחפשים נוזל סביב הלב. בטראומה נוזל כזה הוא דם וחושבים על טמפונדה</p></div>
-   <div class="hzi" data-hzi="ruq" hidden><b>2 · ימין עליון: <bdi dir="ltr">Morison's pouch</bdi>, בין <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> <span class="nw">ל-<bdi dir="ltr">kidney</bdi></span></b><p>החלון שבו רואים הכי הרבה פעמים דם בבטן: פס שחור בין <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> <span class="nw">ל-<bdi dir="ltr">right kidney</bdi></span>. תמיד מחליקים גם לקצה התחתון של <span class="nw">ה-<bdi dir="ltr">liver</bdi></span>, שם מופיעה כמות קטנה ראשונה</p></div>
-   <div class="hzi" data-hzi="luq" hidden><b>3 · שמאל עליון: בין <span class="nw">ה-<bdi dir="ltr">spleen</bdi></span> <span class="nw">ל-<bdi dir="ltr">left kidney</bdi></span></b><p>החלון לדם <span class="nw">מה-<bdi dir="ltr">spleen</bdi></span>. נמצא גבוה ואחורי מאחורי הצלעות ולכן קשה יותר לראות אותו</p></div>
-   <div class="hzi" data-hzi="pel" hidden><b>4 · אגן: מאחורי <span class="nw">ה-<bdi dir="ltr">bladder</bdi></span></b><p>הנקודה הנמוכה של הבטן בשכיבה (<bdi dir="ltr">pouch of Douglas</bdi> באישה). קל יותר לראות <span class="nw">כשה-<bdi dir="ltr">bladder</bdi></span> מלא</p></div>
+   <div class="hzi" data-hzi="per" hidden><b>1 · <bdi dir="ltr">pericardium</bdi> (מתחת <span class="nw">ל-<bdi dir="ltr">xiphoid</bdi>)</span></b><p>מחפשים נוזל סביב הלב. בטראומה נוזל כזה הוא דם וחושבים על טמפונדה</p></div>
+   <div class="hzi" data-hzi="ruq" hidden><b>2 · ימין עליון: <span class="nw"><bdi dir="ltr">Morison's pouch</bdi>,</span> בין <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> <span class="nw">ל-<bdi dir="ltr">kidney</bdi></span></b><p>החלון שבו רואים הכי הרבה פעמים דם בבטן: פס שחור בין <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> <span class="nw">ל-<bdi dir="ltr">right kidney</bdi>.</span> תמיד מחליקים גם לקצה התחתון של <span class="nw">ה-<bdi dir="ltr">liver</bdi>,</span> שם מופיעה כמות קטנה ראשונה</p></div>
+   <div class="hzi" data-hzi="luq" hidden><b>3 · שמאל עליון: בין <span class="nw">ה-<bdi dir="ltr">spleen</bdi></span> <span class="nw">ל-<bdi dir="ltr">left kidney</bdi></span></b><p>החלון לדם <span class="nw">מה-<bdi dir="ltr">spleen</bdi>.</span> נמצא גבוה ואחורי מאחורי הצלעות ולכן קשה יותר לראות אותו</p></div>
+   <div class="hzi" data-hzi="pel" hidden><b>4 · אגן: מאחורי <span class="nw">ה-<bdi dir="ltr">bladder</bdi></span></b><p>הנקודה הנמוכה של הבטן בשכיבה <span class="nw">(<bdi dir="ltr">pouch of Douglas</bdi></span> באישה). קל יותר לראות <span class="nw">כשה-<bdi dir="ltr">bladder</bdi></span> מלא</p></div>
   </div></div>
- <div class="box" style="margin-top:12px"><b class="t">הגרסה המורחבת (<bdi>eFAST</bdi>)</b>מוסיף את שתי הריאות: חזה אוויר והמוטורקס. אפשר לחזור על הבדיקה בכל פעם שהמצב משתנה</div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">322, 341</bdi> · Lobo V et al., West J Emerg Med 2017;18:270-80 · איור: <bdi>Mikael Häggström</bdi>, <bdi>Wikimedia Commons</bdi> (נחלת הכלל)</span><span>אולטרסאונד</span></div>
+ <div class="box" style="margin-top:12px"><b class="t">הגרסה המורחבת <span class="nw">(<bdi>eFAST</bdi>)</span></b>מוסיף את שתי הריאות: חזה אוויר והמוטורקס. אפשר לחזור על הבדיקה בכל פעם שהמצב משתנה</div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">322, 341</bdi> · Lobo V et al., West J Emerg Med 2017;18:270-80 · איור: <span class="nw"><bdi>Mikael Häggström</bdi>,</span> <bdi>Wikimedia Commons</bdi> (נחלת הכלל)</span><span>אולטרסאונד</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -221,11 +268,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>חיובי:</b> נוזל חופשי בבטן. בטראומה מניחים שזה דם</li>
     <li><b>בדיקה חיובית עם חוסר יציבות</b> (לא מגיב, או מגיב זמנית להחייאה): ניתוח בטן</li>
     <li><b>מגבלות:</b> תלוי בבודק, קשה בהשמנה, באמפיזמה תת-עורית ובגזים במעי. <b>לא רואה את <span class="nw">ה-<bdi dir="ltr">retroperitoneum</bdi></span></b></li>
-    <li><b>שטיפת צפק (<bdi>DPL</bdi>)</b> כשאין אולטרסאונד: שאיבת דם או מרה = חיובי. אחרת מכניסים ליטר נוזל ובודקים: יותר מ-100,000 כדוריות אדומות או יותר מ-500 לבנות במ״ל = חיובי</li>
+    <li><b>שטיפת צפק <span class="nw">(<bdi>DPL</bdi>)</span></b> כשאין אולטרסאונד: שאיבת דם או מרה = חיובי. אחרת מכניסים ליטר נוזל ובודקים: יותר מ-100,000 כדוריות אדומות או יותר מ-500 לבנות במ״ל = חיובי</li>
     <li>היום כמעט לא עושים שטיפה. גם בשאיבה בלבד, תוכן מעי, מרה או יותר מ-10 מ״ל דם מחייבים ניתוח</li>
    </ul>
   </div>
-  <figure><img src="img/blunt-morison-us.jpg" alt="אולטרסאונד של Morison's pouch עם נוזל"><figcaption>אולטרסאונד בימין העליון: <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> למעלה, <span class="nw">ה-<bdi dir="ltr">kidney</bdi></span> למטה ופס נוזל כהה ביניהם (<bdi dir="ltr">Morison's pouch</bdi>) · <bdi>Drahreg01</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/blunt-morison-us.jpg" alt="אולטרסאונד של Morison's pouch עם נוזל"><figcaption>אולטרסאונד בימין העליון: <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> למעלה, <span class="nw">ה-<bdi dir="ltr">kidney</bdi></span> למטה ופס נוזל כהה ביניהם <span class="nw">(<bdi dir="ltr">Morison's pouch</bdi>)</span> · <span class="nw"><bdi>Drahreg01</bdi>,</span> <span class="nw"><bdi>CC BY-SA 3.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">322, 325, 341</bdi></span><span>אולטרסאונד</span></div>
 </div></section>
@@ -259,12 +306,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>קרע:</b> קו או אזור כהה ולא סדיר ברקמה. סביבו המטומה ודם חופשי בבטן</li>
     <li><b>דימום פעיל:</b> "כתם" לבן של חומר ניגוד שיוצא מכלי הדם, לתוך הבטן או לתוך פסאודואנוריזמה</li>
     <li><b>המטומה תת-קופסית:</b> אוסף בצורת סהר שלוחץ על <span class="nw">ה-<bdi dir="ltr">spleen</bdi></span> מבחוץ</li>
-    <li>ה-CT מדויק מאוד <span class="nw">ל-<bdi dir="ltr">spleen</bdi></span> (רגישות וסגוליות <bdi dir="ltr">96–100%</bdi>), אבל חלש הרבה יותר למעי, <span class="nw">ל-<bdi dir="ltr">duodenum</bdi></span> <span class="nw">ול-<bdi dir="ltr">diaphragm</bdi></span></li>
+    <li>ה-CT מדויק מאוד <span class="nw">ל-<bdi dir="ltr">spleen</bdi></span> (רגישות וסגוליות <span class="nw"><bdi dir="ltr">96–100%</bdi>),</span> אבל חלש הרבה יותר למעי, <span class="nw">ל-<bdi dir="ltr">duodenum</bdi></span> <span class="nw">ול-<bdi dir="ltr">diaphragm</bdi></span></li>
    </ul>
   </div>
   <div style="display:grid;gap:10px">
-   <figure><img src="img/blunt-spleen-ct.jpg" alt="CT של קרע ב-spleen" style="max-height:26vh"><figcaption>קרע <span class="nw">ב-<bdi dir="ltr">spleen</bdi></span>: אזור כהה ולא סדיר בקוטב התחתון ונוזל סביב (מסומן) · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
-   <figure><img src="img/blunt-spleen-subcap-ct.jpg" alt="CT של המטומה תת-קופסית ב-spleen" style="max-height:18vh"><figcaption>קרע <span class="nw">ב-<bdi dir="ltr">spleen</bdi></span> עם המטומה תת-קופסית · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+   <figure><img src="img/blunt-spleen-ct.jpg" alt="CT של קרע ב-spleen" style="max-height:26vh"><figcaption>קרע <span class="nw">ב-<bdi dir="ltr">spleen</bdi>:</span> אזור כהה ולא סדיר בקוטב התחתון ונוזל סביב (מסומן) · <span class="nw"><bdi>Hellerhoff</bdi>,</span> <span class="nw"><bdi>CC BY-SA 3.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
+   <figure><img src="img/blunt-spleen-subcap-ct.jpg" alt="CT של המטומה תת-קופסית ב-spleen" style="max-height:18vh"><figcaption>קרע <span class="nw">ב-<bdi dir="ltr">spleen</bdi></span> עם המטומה תת-קופסית · <span class="nw"><bdi>Hellerhoff</bdi>,</span> <span class="nw"><bdi>CC BY-SA 4.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">341, 344</bdi></span><span>הדמיה</span></div>
@@ -272,21 +319,21 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>8</b>דירוג <bdi>AAST</bdi> (2018)</div>
- <h2><bdi dir="ltr">spleen</bdi> <span class="nw">ו-<bdi dir="ltr">liver</bdi></span>: דרגה 1 עד 5</h2>
+ <h2><bdi dir="ltr">spleen</bdi> <span class="nw">ו-<bdi dir="ltr">liver</bdi>:</span> דרגה 1 עד 5</h2>
  <div class="grid">
   <div class="flow sm">
    <div><b><bdi dir="ltr">spleen</bdi> 1</b><span>המטומה תת-קופסית מתחת ל-10% מהשטח, קרע עד 1 ס״מ עומק</span></div>
-   <div><b><bdi dir="ltr">spleen</bdi> 2</b><span>המטומה תת-קופסית <bdi dir="ltr">10–50%</bdi>, בתוך הרקמה עד 5 ס״מ, קרע <bdi dir="ltr">1–3</bdi> ס״מ</span></div>
+   <div><b><bdi dir="ltr">spleen</bdi> 2</b><span>המטומה תת-קופסית <span class="nw"><bdi dir="ltr">10–50%</bdi>,</span> בתוך הרקמה עד 5 ס״מ, קרע <bdi dir="ltr">1–3</bdi> ס״מ</span></div>
    <div><b><bdi dir="ltr">spleen</bdi> 3</b><span>המטומה מעל 50% או שנקרעה, קרע עמוק מ-3 ס״מ</span></div>
    <div><b><bdi dir="ltr">spleen</bdi> 4</b><span>פגיעה בכלי דם או דימום פעיל בתוך הקופסית. מעל 25% בלי אספקת דם</span></div>
-   <div><b><bdi dir="ltr">spleen</bdi> 5</b><span>דימום פעיל אל הבטן, פגיעה <span class="nw">ב-<bdi dir="ltr">hilum</bdi></span> שמנתקת את <span class="nw">ה-<bdi dir="ltr">spleen</bdi></span>, <bdi dir="ltr">spleen</bdi> מרוסק</span></div>
+   <div><b><bdi dir="ltr">spleen</bdi> 5</b><span>דימום פעיל אל הבטן, פגיעה <span class="nw">ב-<bdi dir="ltr">hilum</bdi></span> שמנתקת את <span class="nw">ה-<bdi dir="ltr">spleen</bdi>,</span> <bdi dir="ltr">spleen</bdi> מרוסק</span></div>
   </div>
   <div class="flow sm">
    <div><b><bdi dir="ltr">liver</bdi> 1</b><span>המטומה תת-קופסית מתחת ל-10%, קרע עד 1 ס״מ עומק</span></div>
-   <div><b><bdi dir="ltr">liver</bdi> 2</b><span>המטומה <bdi dir="ltr">10–50%</bdi>, בתוך הרקמה עד 10 ס״מ, קרע <bdi dir="ltr">1–3</bdi> ס״מ עומק</span></div>
+   <div><b><bdi dir="ltr">liver</bdi> 2</b><span>המטומה <span class="nw"><bdi dir="ltr">10–50%</bdi>,</span> בתוך הרקמה עד 10 ס״מ, קרע <bdi dir="ltr">1–3</bdi> ס״מ עומק</span></div>
    <div><b><bdi dir="ltr">liver</bdi> 3</b><span>המטומה מעל 50% או שנקרעה, קרע עמוק מ-3 ס״מ, או דימום פעיל בתוך <span class="nw">ה-<bdi dir="ltr">liver</bdi></span></span></div>
-   <div><b><bdi dir="ltr">liver</bdi> 4</b><span>הרס של <bdi dir="ltr">25–75%</bdi> <span class="nw">מ-<bdi dir="ltr">lobe</bdi></span>, או דימום פעיל אל הבטן</span></div>
-   <div><b><bdi dir="ltr">liver</bdi> 5</b><span>הרס מעל 75% <span class="nw">מ-<bdi dir="ltr">lobe</bdi></span>, או פגיעה <span class="nw">ב-<bdi dir="ltr">retrohepatic IVC</bdi></span> <span class="nw">וב-<bdi dir="ltr">hepatic veins</bdi></span></span></div>
+   <div><b><bdi dir="ltr">liver</bdi> 4</b><span>הרס של <bdi dir="ltr">25–75%</bdi> <span class="nw">מ-<bdi dir="ltr">lobe</bdi>,</span> או דימום פעיל אל הבטן</span></div>
+   <div><b><bdi dir="ltr">liver</bdi> 5</b><span>הרס מעל 75% <span class="nw">מ-<bdi dir="ltr">lobe</bdi>,</span> או פגיעה <span class="nw">ב-<bdi dir="ltr">retrohepatic IVC</bdi></span> <span class="nw">וב-<bdi dir="ltr">hepatic veins</bdi></span></span></div>
   </div>
  </div>
  <div class="box a" style="margin-top:12px"><b class="t">הדרגה לא מחליטה לבד</b>הדירוג מתאר את הפגיעה ועוזר לנבא סיכון. ההחלטה על ניתוח עדיין נקבעת לפי היציבות של המטופל</div>
@@ -309,25 +356,25 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <li>אין גורם סיכון (גיל, דרגה, כמות דם) שמנבא מי ייכשל ולכן לא מנתחים "ליתר ביטחון"</li>
    <li>לא יציב או נכשל: <bdi dir="ltr">splenectomy</bdi> מחתך באמצע</li>
   </ul>
-  <div class="box r"><b class="t">אחרי <bdi dir="ltr">splenectomy</bdi>: חיסונים</b>נגד <bdi>Streptococcus pneumoniae</bdi>, <bdi>Neisseria meningitidis</bdi> <span class="nw">ו-<bdi>Haemophilus influenzae</bdi></span>. זיהום מכריע אחרי <bdi dir="ltr">splenectomy</bdi> מופיע <span class="nw">ב-<bdi dir="ltr">0.5–2%</bdi></span> והתמותה ממנו <bdi dir="ltr">30–70%</bdi></div>
+  <div class="box r"><b class="t">אחרי <span class="nw"><bdi dir="ltr">splenectomy</bdi>:</span> חיסונים</b>נגד <span class="nw"><bdi>Streptococcus pneumoniae</bdi>,</span> <bdi>Neisseria meningitidis</bdi> <span class="nw">ו-<bdi>Haemophilus influenzae</bdi>.</span> זיהום מכריע אחרי <bdi dir="ltr">splenectomy</bdi> מופיע <span class="nw">ב-<bdi dir="ltr">0.5–2%</bdi></span> והתמותה ממנו <bdi dir="ltr">30–70%</bdi></div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">343–344</bdi></span><span>טחול</span></div>
 </div></section>
 
 <section class="s"><div class="card">
  <div class="kick"><b>10</b><bdi dir="ltr">liver</bdi></div>
- <h2>גם <span class="nw">ב-<bdi dir="ltr">liver</bdi></span>: קודם השגחה</h2>
+ <h2>גם <span class="nw">ב-<bdi dir="ltr">liver</bdi>:</span> קודם השגחה</h2>
  <div class="grid f">
   <div>
    <ul class="b sm">
     <li><b>יציב, בכל דרגה:</b> טיפול בלי ניתוח הוא הבחירה הראשונה. רוב דרגות <bdi dir="ltr">1–3</bdi> מצליחות בלי ניתוח, שני שלישים מדרגות 4 ו-5 צריכים ניתוח</li>
     <li><b>דימום או פסאודואנוריזמה ב-CT:</b> לשקול צנתור, אחרי שיחה בין הכירורג לרדיולוג. תסחיף "של הכול" גורם לנמק ולמורסות</li>
     <li><b>כישלון:</b> בכ-9.5%. מנבאים: הלם וסימני צפק בהגעה, פציעה קשה ופגיעות נוספות בבטן</li>
-    <li><b>סיבוכים גם בהצלחה (<bdi dir="ltr">12–14%</bdi>):</b> בילומה, המוביליה ומורסה. ניקוז מלעורי, <bdi>ERCP</bdi> עם תומכן, או צנתור</li>
-    <li><b>בניתוח:</b> ריפוד סביב <span class="nw">ה-<bdi dir="ltr">liver</bdi></span>, <bdi>Pringle</bdi> (חסימת <span class="nw">ה-<bdi dir="ltr">hepatoduodenal ligament</bdi></span>) ופגיעה ליד <span class="nw">ה-<bdi dir="ltr">IVC</bdi></span> שלא מדממת: מרפדים ולא חוקרים</li>
+    <li><b>סיבוכים גם בהצלחה <span class="nw">(<bdi dir="ltr">12–14%</bdi>):</span></b> בילומה, המוביליה ומורסה. ניקוז מלעורי, <bdi>ERCP</bdi> עם תומכן, או צנתור</li>
+    <li><b>בניתוח:</b> ריפוד סביב <span class="nw">ה-<bdi dir="ltr">liver</bdi>,</span> <bdi>Pringle</bdi> (חסימת <span class="nw">ה-<bdi dir="ltr">hepatoduodenal ligament</bdi>)</span> ופגיעה ליד <span class="nw">ה-<bdi dir="ltr">IVC</bdi></span> שלא מדממת: מרפדים ולא חוקרים</li>
    </ul>
   </div>
-  <figure><img src="img/blunt-liver-ct.jpg" alt="CT של קרע מרכזי ב-liver"><figcaption>קרע מרכזי <span class="nw">ב-<bdi dir="ltr">liver</bdi></span>: אזורים כהים ולא סדירים בתוך הרקמה, בלי דם חופשי · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/blunt-liver-ct.jpg" alt="CT של קרע מרכזי ב-liver"><figcaption>קרע מרכזי <span class="nw">ב-<bdi dir="ltr">liver</bdi>:</span> אזורים כהים ולא סדירים בתוך הרקמה, בלי דם חופשי · <span class="nw"><bdi>Hellerhoff</bdi>,</span> <span class="nw"><bdi>CC BY-SA 4.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">344–348</bdi></span><span>כבד</span></div>
 </div></section>
@@ -344,7 +391,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <ul class="b sm">
    <li><b>סימנים ב-CT:</b> עיבוי דופן המעי, הסננה בשומן סביב, פגם <span class="nw">ב-<bdi dir="ltr">mesentery</bdi></span> ונוזל חופשי בלי פגיעה באיבר מוצק</li>
-   <li>נוזל חופשי שאין לו הסבר מחייב מחשבה: לעיתים קרובות זה דם מקרע <span class="nw">ב-<bdi dir="ltr">mesentery</bdi></span>, אבל ייתכן שיש פגיעה במעי</li>
+   <li>נוזל חופשי שאין לו הסבר מחייב מחשבה: לעיתים קרובות זה דם מקרע <span class="nw">ב-<bdi dir="ltr">mesentery</bdi>,</span> אבל ייתכן שיש פגיעה במעי</li>
    <li>אוויר חופשי לבד בחבלה קהה הוא לא סימן אמין</li>
   </ul>
   <ul class="b sm">
@@ -358,12 +405,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>12</b><bdi dir="ltr">retroperitoneum</bdi></div>
- <h2><bdi dir="ltr">duodenum</bdi> <span class="nw">ו-<bdi dir="ltr">pancreas</bdi></span>: חושבים עליהם</h2>
+ <h2><bdi dir="ltr">duodenum</bdi> <span class="nw">ו-<bdi dir="ltr">pancreas</bdi>:</span> חושבים עליהם</h2>
  <div class="grid">
   <div class="box"><b class="t"><bdi dir="ltr">duodenum</bdi></b>
    <ul class="b sm"><li>מכה <span class="nw">ב-<bdi dir="ltr">epigastrium</bdi></span> בחפץ צר: הגה ובילדים כידון אופניים</li><li>ב-CT: דופן מעובה, אוויר ונוזל סביב. אם יש ספק: CT עם חומר ניגוד דרך הפה או שיקוף</li><li>כל סימן לנקב: ניתוח מיד</li><li><b>המטומה בדופן:</b> לרוב נספגת. אם חוסמת: זונדה, הזנה תוך-ורידית ובדיקת ניגוד אחרי <bdi dir="ltr">5–7</bdi> ימים. עדיין חסום אחרי כ-14 יום: ניתוח</li></ul></div>
   <div class="box n"><b class="t"><bdi dir="ltr">pancreas</bdi></b>
-   <ul class="b sm"><li>גוף <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span> נמעך בין ההגה או החגורה לעמוד השדרה</li><li>ה-CT מפספס כ-15%. רגישות לפגיעה ברקמה <bdi dir="ltr">47–79%</bdi> ולפגיעה <span class="nw">ב-<bdi dir="ltr">pancreatic duct</bdi></span> <bdi dir="ltr">52–54%</bdi></li><li>עמילאז שנלקח יותר מ-3 שעות אחרי הפגיעה עוזר מעט: רגיש אבל לא סגולי</li><li>חשד לפגיעה <span class="nw">ב-<bdi dir="ltr">pancreatic duct</bdi></span>: <bdi>ERCP</bdi> או <bdi>MRCP</bdi>. פגיעה <span class="nw">ב-<bdi dir="ltr">main pancreatic duct</bdi></span> מטופלת בניתוח</li></ul></div>
+   <ul class="b sm"><li>גוף <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span> נמעך בין ההגה או החגורה לעמוד השדרה</li><li>ה-CT מפספס כ-15%. רגישות לפגיעה ברקמה <bdi dir="ltr">47–79%</bdi> ולפגיעה <span class="nw">ב-<bdi dir="ltr">pancreatic duct</bdi></span> <bdi dir="ltr">52–54%</bdi></li><li>עמילאז שנלקח יותר מ-3 שעות אחרי הפגיעה עוזר מעט: רגיש אבל לא סגולי</li><li>חשד לפגיעה <span class="nw">ב-<bdi dir="ltr">pancreatic duct</bdi>:</span> <bdi>ERCP</bdi> או <span class="nw"><bdi>MRCP</bdi>.</span> פגיעה <span class="nw">ב-<bdi dir="ltr">main pancreatic duct</bdi></span> מטופלת בניתוח</li></ul></div>
  </div>
  <div class="box a" style="margin-top:12px"><b class="t">מטופל שנשאר "לא טוב"</b>בדיקת CT חוזרת אחרי כמה שעות יכולה להראות דלקת שעוד לא הספיקה להופיע בצילום הראשון</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">348–350</bdi></span><span>רטרופריטונאום</span></div>
@@ -400,13 +447,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>מחקרים שכדאי להכיר</h2>
  <div class="grid g3">
   <div class="study"><div class="y"><bdi>JAMA Surg</bdi> 2026 · מאגר <bdi>ACS-TQIP</bdi></div><b>פגיעה קשה <span class="nw">ב-<bdi dir="ltr">spleen</bdi></span> בפצוע רב-מערכתי</b>
-   <p>12,930 מטופלים. בהשוואה <span class="nw">ל-<bdi dir="ltr">splenectomy</bdi></span>, תסחיף (סיכון למוות 0.62) והשגחה (0.61) היו קשורים לפחות תמותה ולפחות סיבוכים. גם בלחץ דם נמוך בהגעה התוצאות לא היו גרועות יותר. כישלון של טיפול בלי ניתוח היה קשור ליותר סיבוכים</p>
+   <p>12,930 מטופלים. בהשוואה <span class="nw">ל-<bdi dir="ltr">splenectomy</bdi>,</span> תסחיף (סיכון למוות 0.62) והשגחה (0.61) היו קשורים לפחות תמותה ולפחות סיבוכים. גם בלחץ דם נמוך בהגעה התוצאות לא היו גרועות יותר. כישלון של טיפול בלי ניתוח היה קשור ליותר סיבוכים</p>
    <small>Huang W et al. JAMA Surg 2026;161(4):413-23</small></div>
   <div class="study"><div class="y"><bdi>Ann Surg</bdi> 2025 · 43 מרכזים, מחקר פרוספקטיבי</div><b>CT חוזר <span class="nw">ב-<bdi dir="ltr">spleen</bdi></span> <span class="nw">וב-<bdi dir="ltr">liver</bdi></span>?</b>
-   <p>2,341 פגיעות <span class="nw">ב-<bdi dir="ltr">liver</bdi></span> ו-2,143 פגיעות <span class="nw">ב-<bdi dir="ltr">spleen</bdi></span> שטופלו בלי ניתוח. ב-CT החוזר נמצאו סיבוכים ב-7.1% ובכ-7.5% ורובם בתוך <bdi dir="ltr">48–72</bdi> שעות. ההמלצה: CT מתוכנן <span class="nw">ב-<bdi dir="ltr">liver</bdi></span> דרגה <bdi dir="ltr">4–5</bdi> <span class="nw">וב-<bdi dir="ltr">spleen</bdi></span> דרגה <bdi dir="ltr">3–5</bdi>, גם בלי תסמינים</p>
+   <p>2,341 פגיעות <span class="nw">ב-<bdi dir="ltr">liver</bdi></span> ו-2,143 פגיעות <span class="nw">ב-<bdi dir="ltr">spleen</bdi></span> שטופלו בלי ניתוח. ב-CT החוזר נמצאו סיבוכים ב-7.1% ובכ-7.5% ורובם בתוך <bdi dir="ltr">48–72</bdi> שעות. ההמלצה: CT מתוכנן <span class="nw">ב-<bdi dir="ltr">liver</bdi></span> דרגה <bdi dir="ltr">4–5</bdi> <span class="nw">וב-<bdi dir="ltr">spleen</bdi></span> דרגה <span class="nw"><bdi dir="ltr">3–5</bdi>,</span> גם בלי תסמינים</p>
    <small>Perea LL et al. Ann Surg 2025;282(4):580-91</small></div>
   <div class="study"><div class="y"><bdi>Injury</bdi> 2022 · 15 מרכזים, מחקר פרוספקטיבי</div><b>מדד <bdi>BIPS</bdi> לפגיעה במעי</b>
-   <p>נקודה לכל אחד: לויקוציטים 17,000 ומעלה, רגישות בבטן, ממצא קשה ב-CT <span class="nw">ב-<bdi dir="ltr">mesentery</bdi></span>. 313 מטופלים, 38% נזקקו לניתוח. ציון 2 ומעלה: פי 10 סיכוי לניתוח, רגישות 72% וסגוליות 78%</p>
+   <p>נקודה לכל אחד: לויקוציטים 17,000 ומעלה, רגישות בבטן, ממצא קשה ב-CT <span class="nw">ב-<bdi dir="ltr">mesentery</bdi>.</span> 313 מטופלים, 38% נזקקו לניתוח. ציון 2 ומעלה: פי 10 סיכוי לניתוח, רגישות 72% וסגוליות 78%</p>
    <small>Wandling M et al. Injury 2022;53(1):122-8</small></div>
  </div>
  <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
@@ -419,11 +466,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>לא יציב עם <bdi>FAST</bdi> חיובי או עם פריטוניטיס: לחדר ניתוח. יציב: CT</li>
   <li>בדיקת <bdi>FAST</bdi> בודקת ארבעה חלונות ואפשר לחזור עליה, אבל היא לא רואה את <span class="nw">ה-<bdi dir="ltr">retroperitoneum</bdi></span></li>
   <li>רוב פגיעות <span class="nw">ה-<bdi dir="ltr">spleen</bdi></span> <span class="nw">וה-<bdi dir="ltr">liver</bdi></span> במטופל יציב מטופלות בלי ניתוח: השגחה, צנתור לפי הצורך ומעקב אחרי סיבוכים</li>
-  <li>ה-CT מפספס פגיעות במעי, <span class="nw">ב-<bdi dir="ltr">duodenum</bdi></span> <span class="nw">וב-<bdi dir="ltr">pancreas</bdi></span>. סימן חגורה ונוזל בלי הסבר מחייבים בדיקות חוזרות או ניתוח</li>
+  <li>ה-CT מפספס פגיעות במעי, <span class="nw">ב-<bdi dir="ltr">duodenum</bdi></span> <span class="nw">וב-<bdi dir="ltr">pancreas</bdi>.</span> סימן חגורה ונוזל בלי הסבר מחייבים בדיקות חוזרות או ניתוח</li>
   <li>שבר באגן עם הלם: חגורת אגן מיד ואז צנתור או ריפוד</li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 36 <bdi>Management of Acute Trauma</bdi>, חבלות בטן ואגן (עמ׳ <bdi dir="ltr">340–354</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Gray's Anatomy</bdi> (1918) <span class="nw">ו-<bdi>Musser</bdi></span> (1904), נחלת הכלל · הדמיה: <bdi>Hellerhoff</bdi> <span class="nw">ו-<bdi>Drahreg01</bdi></span> (<bdi>Wikimedia Commons</bdi>) · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 36 <span class="nw"><bdi>Management of Acute Trauma</bdi>,</span> חבלות בטן ואגן (עמ׳ <span class="nw"><bdi dir="ltr">340–354</bdi>)</span></div>
+ <div class="src"><span>איורים: <bdi>Gray's Anatomy</bdi> (1918) <span class="nw">ו-<bdi>Musser</bdi></span> (1904), נחלת הכלל · הדמיה: <bdi>Hellerhoff</bdi> <span class="nw">ו-<bdi>Drahreg01</bdi></span> <span class="nw">(<bdi>Wikimedia Commons</bdi>)</span> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>
@@ -445,5 +492,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>הכרת חדר הניתוח · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -63,6 +63,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 @media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
 @media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+figure.pen{padding:8px 8px 6px;background:linear-gradient(#FBFCFB,#F1F5F3)}figure.pen svg{width:100%;height:auto;max-height:24vh;display:block}
 /*BRAND*/
 .brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
 .brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
@@ -86,7 +87,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -116,9 +117,56 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -146,7 +194,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>להכיר את רשימת הבטיחות של ארגון הבריאות העולמי ולהשתתף בעצירה שלפני החתך</li>
   <li>להכיר סיכונים בחדר: חום גוף, שכחת פריטים, שריפה, כוויות מחשמל ומצבי חירום</li>
  </ol>
- <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 19 (עמ׳ <bdi dir="ltr">29–36</bdi>) · פרק 9 (מקוון, עמ׳ <bdi dir="ltr">e102–e109</bdi>) · פרק 25 (עמ׳ <bdi dir="ltr">121–123</bdi>)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 19 (עמ׳ <span class="nw"><bdi dir="ltr">29–36</bdi>)</span> · פרק 9 (מקוון, עמ׳ <span class="nw"><bdi dir="ltr">e102–e109</bdi>)</span> · פרק 25 (עמ׳ <span class="nw"><bdi dir="ltr">121–123</bdi>)</span></span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -177,7 +225,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div class="hzi" data-hzi="su" hidden><b>6 · שאיבה</b><p>חלק מהציוד הבסיסי של כל חדר. בדימום פתאומי השדה מתמלא בדם. לכן השאיבה צריכה להיות מוכנה ועובדת לפני החתך</p></div>
    <div class="hzi" data-hzi="dr" hidden><b>7 · הדלת והאוויר</b><p>בחדר לחץ אוויר חיובי שדוחף אוויר החוצה ומסננים שמורידים חלקיקים באוויר. אבק, בלגן וחפצים אישיים בחדר הם סיכון לשדה הסטרילי</p></div>
   </div></div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">29–30, 34</bdi> · פרק 9 עמ׳ <bdi dir="ltr">e106–e109</bdi></span><span>צילום: <bdi>Dr. Jayesh Amin</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">29–30, 34</bdi> · פרק 9 עמ׳ <bdi dir="ltr">e106–e109</bdi></span><span>צילום: <span class="nw"><bdi>Dr. Jayesh Amin</bdi>,</span> <span class="nw"><bdi>CC BY-SA 3.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -187,8 +235,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <div class="flow">
     <div><b>מנתח ועוזרים</b><span>לבושים סטרילית. אחראים לשלבי הניתוח, לדימום ולסגירה</span></div>
-    <div><b>אחות מכשירה</b><span>לבושה סטרילית. מכינה ומעבירה מכשירים, אחראית לספירות</span></div>
-    <div><b>אחות מסובבת</b><span>לא סטרילית. מביאה ציוד, מתעדת ומובילה את רשימת הבטיחות</span></div>
+    <div><b>אחות רחוצה</b><span>לבושה סטרילית. מכינה ומעבירה מכשירים, אחראית לספירות</span></div>
+    <div><b>אחות מסתובבת</b><span>לא סטרילית. מביאה ציוד, מתעדת ומובילה את רשימת הבטיחות</span></div>
     <div><b>צוות ההרדמה</b><span>הרדמה, דרכי אוויר, נוזלים, דם וניטור</span></div>
    </div>
    <ul class="b sm" style="margin-top:12px">
@@ -197,7 +245,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li>בזמן חיטוי העור: מומלץ שרוול ארוך, כי קשקשים מהעור מתפזרים באוויר</li>
    </ul>
   </div>
-  <figure><img src="img/or-team.jpg" alt="צוות בניתוח לב: מנתחים, אחיות ומרדים, כולם עם כובע ומסכה"><figcaption>צוות בניתוח: כובע, מסכה, חלוק סטרילי ומסכי ניטור · <bdi>Pfree2014</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/or-team.jpg" alt="צוות בניתוח לב: מנתחים, אחיות ומרדים, כולם עם כובע ומסכה"><figcaption>צוות בניתוח: כובע, מסכה, חלוק סטרילי ומסכי ניטור · <span class="nw"><bdi>Pfree2014</bdi>,</span> <span class="nw"><bdi>CC BY-SA 4.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 25 עמ׳ <bdi dir="ltr">122</bdi> · פרק 9 עמ׳ <bdi dir="ltr">e103–e104</bdi> · פרק 19 עמ׳ <bdi dir="ltr">30</bdi></span><span>חלוקת התפקידים לפי הנוהג המקובל</span></div>
 </div></section>
@@ -208,7 +256,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div class="flow">
    <div><b>1. רחיצה</b><span>ידיים ואמות, ידיים מעל המרפקים כדי שהמים יזרמו מהאצבעות למרפק. בכיור עם ברז שלא נוגעים בו בידיים</span></div>
-   <div><b>2. חלוק וכפפות</b><span>האחות המכשירה מלבישה. מרגע זה הידיים נשארות מלפנים, בין החזה למותניים</span></div>
+   <div><b>2. חלוק וכפפות</b><span>האחות הרחוצה מלבישה. מרגע זה הידיים נשארות מלפנים, בין החזה למותניים</span></div>
    <div><b>3. הסרת שיער</b><span>רק אם צריך. רק בקוצץ שיער חשמלי: סכין גילוח מעלה זיהום</span></div>
    <div><b>4. חיטוי העור</b><span>תמיסה עם אלכוהול (כלורהקסידין ואלכוהול). שטח רחב שכולל כל חתך אפשרי, בתנועות מעגליות, במוליך ייעודי. מחכים שיתייבש. לא אלכוהול על ריריות</span></div>
    <div><b>5. כיסוי</b><span>סדינים ושכמיות שלא מעבירים נוזלים. אם צריך כיסוי דביק: עם יוד</span></div>
@@ -228,13 +276,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li>טכניקה סטרילית היא שיטה שנועדה למנוע כל זיהום מחיידקים. <b>טעות אחת</b> בתהליך יכולה להכניס זיהום לפצע</li>
     <li>היסטוריה: <bdi>Semmelweis</bdi> הראה שרחיצת ידיים מצילה יולדות. <bdi>Halsted</bdi> הזמין כפפות גומי לכל הצוות</li>
     <li>פגיעה בסטריליות מדורגת לפי מתי שמו לב אליה: מיד (סוג 1) ועד רק אחרי שהמטופל יצא מהחדר (סוג 4)</li>
-    <li>רוב זיהומי הפצע (<bdi dir="ltr">70–95%</bdi>) נגרמים מהחיידקים של המטופל עצמו. לכן גם הכנת העור חשובה</li>
+    <li>רוב זיהומי הפצע <span class="nw">(<bdi dir="ltr">70–95%</bdi>)</span> נגרמים מהחיידקים של המטופל עצמו. לכן גם הכנת העור חשובה</li>
    </ul>
   </div>
   <div style="display:grid;gap:10px;align-content:start">
    <div class="box r"><b class="t">טעויות נפוצות של סטודנטים</b>ידיים שיורדות מתחת למותניים או נשלחות לסדר משקפיים. הסתובבות עם הגב לשדה. נגיעה במנורה או במסך. מעבר בין שני אנשים סטריליים</div>
    <div class="box n"><b class="t">נגעתם? אומרים מיד</b>"נגעתי" זה משפט מקצועי ולא בושה. מחליפים כפפה או חלוק וממשיכים. מה שגורם נזק הוא השתיקה</div>
-   <div class="box b"><b class="t">במחלקה השבוע</b>היכנסו לפחות לניתוח אחד כ"מתרחצים": רחיצה, חלוק וכפפות, עמידה ליד השולחן. בקשו מהאחות המכשירה משוב על הטכניקה</div>
+   <div class="box b"><b class="t">במחלקה השבוע</b>היכנסו לפחות לניתוח אחד כ"מתרחצים": רחיצה, חלוק וכפפות, עמידה ליד השולחן. בקשו מהאחות הרחוצה משוב על הטכניקה</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 9 עמ׳ <bdi dir="ltr">e106</bdi> · פרק 25 עמ׳ <bdi dir="ltr">121</bdi></span><span>הטעויות הנפוצות לפי הנוהג המקובל</span></div>
@@ -278,7 +326,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>8</b>אנרגיה ומכשירים</div>
- <h2>מה עושה ה"בובי"?</h2>
+ <h2>מה עושה הדיאטרמיה?</h2>
  <div class="grid">
   <div class="flow">
    <div><b>חד-קוטבי</b><span>זרם עובר מהעט, דרך המטופל, אל משטח הארקה גדול על העור. "חיתוך": זרם רציף, מעט נזק סביב. "קרישה": זרם לסירוגין (פחות <span class="nw">מ-<bdi dir="ltr">10%</bdi></span> מהזמן), יותר פיזור חום</span></div>
@@ -288,9 +336,28 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div><b>שדכנים (סטפלרים)</b><span>קוויים וחותכים, קוויים בלי חיתוך ומעגליים להשקה. גובה הסיכה לפי עובי הרקמה</span></div>
   </div>
   <div style="display:grid;gap:10px;align-content:start">
+   <figure class="pen"><svg viewBox="0 0 440 170" role="img" aria-label="עט דיאטרמיה חד-קוטבי: להב, כפתור חיתוך צהוב, כפתור קרישה כחול וכבל אל המחולל" font-family="Heebo,sans-serif">
+    <defs><linearGradient id="pb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F4F7F6"/><stop offset=".55" stop-color="#D9E1DE"/><stop offset="1" stop-color="#AEBBB7"/></linearGradient>
+    <linearGradient id="pt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E9EEF0"/><stop offset="1" stop-color="#8E9CA1"/></linearGradient></defs>
+    <path d="M352 86 C 392 86, 400 120, 432 128" fill="none" stroke="#5C6F73" stroke-width="7" stroke-linecap="round"/>
+    <path d="M352 86 C 392 86, 400 120, 432 128" fill="none" stroke="#8FA0A4" stroke-width="2.4" stroke-linecap="round" opacity=".7"/>
+    <path d="M96 78 L 120 70 L 340 70 Q 360 70 360 86 Q 360 102 340 102 L 120 102 L 96 94 Z" fill="url(#pb)" stroke="#5C6F73" stroke-width="2"/>
+    <rect x="300" y="72" width="44" height="28" rx="4" fill="#C9D3D0" opacity=".7"/>
+    <path d="M96 80 L 58 84 L 30 86 L 58 88 L 96 92 Z" fill="url(#pt)" stroke="#5C6F73" stroke-width="1.6"/>
+    <path d="M34 86 L 58 85" stroke="#fff" stroke-width="1.2" opacity=".8"/>
+    <rect x="170" y="61" width="38" height="16" rx="7" fill="#F2C94C" stroke="#8A6A10" stroke-width="1.6"/>
+    <rect x="222" y="61" width="38" height="16" rx="7" fill="#3E86C6" stroke="#1F4F7A" stroke-width="1.6"/>
+    <path d="M18 86 q-6 -10 2 -16 M18 86 q-9 2 -10 10 M22 92 q2 9 -6 14" fill="none" stroke="#C9893F" stroke-width="2" stroke-linecap="round" opacity=".85"/>
+    <g font-size="12.5" font-weight="800" text-anchor="middle">
+     <polyline points="189,58 189,40 150,32" fill="none" stroke="#8A6A10" stroke-width="1.4"/><text x="120" y="30" fill="#8A6A10">חיתוך · צהוב</text>
+     <polyline points="241,58 241,40 282,32" fill="none" stroke="#1F4F7A" stroke-width="1.4"/><text x="318" y="30" fill="#1F4F7A">קרישה · כחול</text>
+     <line x1="46" y1="92" x2="46" y2="128" stroke="#0C2A35" stroke-width="1.4"/><text x="58" y="144" fill="#0C2A35">להב · האלקטרודה</text>
+     <line x1="400" y1="112" x2="384" y2="146" stroke="#5C6F73" stroke-width="1.4"/><text x="366" y="160" fill="#5C6F73">כבל אל המחולל</text>
+     <text x="228" y="126" fill="#0A6B5A" font-weight="700" font-size="12">הזרם חוזר דרך משטח ההארקה על העור</text>
+    </g></svg><figcaption>עט דיאטרמיה חד-קוטבי · איור של המערך</figcaption></figure>
    <div class="box"><b class="t">כלי דם</b>נימים וורידים קטנים: צריבה. כלי דם מעל 1 מ״מ וכל כלי דם עם שם: קשירה, קליפס, סטפלר או מכשיר איטום</div>
    <div class="box a"><b class="t">תקלות</b>שני שלישים מהמנתחים הזעיר-פולשניים נתקלו בתקלת סטפלר. יותר מ-100 מקרי מוות דווחו</div>
-   <div class="box r"><b class="t">קרישה בגז ארגון</b>טובה לשטח של <bdi dir="ltr">liver</bdi> או <bdi dir="ltr">spleen</bdi>. אסור לכוון לוורידים גדולים: תסחיף גז ודום לב</div>
+   <div class="box r"><b class="t">קרישה בגז ארגון</b>טובה לשטח של <bdi dir="ltr">liver</bdi> או <span class="nw"><bdi dir="ltr">spleen</bdi>.</span> אסור לכוון לוורידים גדולים: תסחיף גז ודום לב</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">31, 33–34</bdi> · פרק 9 עמ׳ <bdi dir="ltr">e109</bdi></span><span>אנרגיה</span></div>
@@ -319,14 +386,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>10</b>מה חדש בתחום · <bdi dir="ltr">2021–2026</bdi></div>
  <h2>מחקרים שכדאי להכיר</h2>
  <div class="grid">
-  <div class="study"><div class="y"><bdi>Lancet</bdi> 2022 · מחקר אקראי באשכולות</div><b><bdi>ChEETAh</bdi>: החלפת כפפות ומכשירים לפני סגירה</b>
+  <div class="study"><div class="y"><bdi>Lancet</bdi> 2022 · מחקר אקראי באשכולות</div><b><span class="nw"><bdi>ChEETAh</bdi>:</span> החלפת כפפות ומכשירים לפני סגירה</b>
    <p>13,301 מטופלים בניתוחי בטן מזוהמים בשבע מדינות. כל הצוות המתרחץ החליף כפפות ומכשירים לפני סגירת הבטן. זיהום פצע ירד <span class="nw">מ-<bdi dir="ltr">18.9%</bdi></span> <span class="nw">ל-<bdi dir="ltr">16.0%</bdi></span></p>
    <small>NIHR Global Research Health Unit on Global Surgery. Lancet 2022;400:1767-76</small></div>
-  <div class="study"><div class="y"><bdi>Lancet</bdi> 2021 · מחקר אקראי</div><b><bdi>FALCON</bdi>: כלורהקסידין ותפרים עם טריקלוזן</b>
+  <div class="study"><div class="y"><bdi>Lancet</bdi> 2021 · מחקר אקראי</div><b><span class="nw"><bdi>FALCON</bdi>:</span> כלורהקסידין ותפרים עם טריקלוזן</b>
    <p>5,788 מטופלים בניתוחי בטן במדינות בהכנסה נמוכה ובינונית. לא נמצא הבדל בזיהום בין כלורהקסידין באלכוהול ליוד במים. גם לא בין תפר עם טריקלוזן לתפר רגיל</p>
    <small>NIHR Global Research Health Unit on Global Surgery. Lancet 2021;398:1687-99</small></div>
-  <div class="study"><div class="y"><bdi>NEJM</bdi> 2024 · 25 בתי חולים</div><b><bdi>PREPARE</bdi>: איזה חומר חיטוי לעור?</b>
-   <p>8,485 ניתוחי שברים בגפיים. בשברים סגורים: פחות זיהום עם יוד באלכוהול מאשר עם כלורהקסידין באלכוהול (<bdi dir="ltr">2.4%</bdi> לעומת <bdi dir="ltr">3.3%</bdi>). בשברים פתוחים: אין הבדל. שני החומרים מכילים אלכוהול</p>
+  <div class="study"><div class="y"><bdi>NEJM</bdi> 2024 · 25 בתי חולים</div><b><span class="nw"><bdi>PREPARE</bdi>:</span> איזה חומר חיטוי לעור?</b>
+   <p>8,485 ניתוחי שברים בגפיים. בשברים סגורים: פחות זיהום עם יוד באלכוהול מאשר עם כלורהקסידין באלכוהול <span class="nw">(<bdi dir="ltr">2.4%</bdi></span> לעומת <span class="nw"><bdi dir="ltr">3.3%</bdi>).</span> בשברים פתוחים: אין הבדל. שני החומרים מכילים אלכוהול</p>
    <small>Sprague S et al. N Engl J Med 2024;390:409-20</small></div>
  </div>
  <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
@@ -337,13 +404,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>לפני שנכנסים לניתוח</h2>
  <ol class="obj">
   <li>מדים נקיים, כל השיער מכוסה, מסכה. אכלתם ושתיתם לפני</li>
-  <li>הצגתם את עצמכם לאחות המסובבת ולמנתח. בעצירה לפני החתך: שם ותפקיד</li>
+  <li>הצגתם את עצמכם לאחות המסתובבת ולמנתח. בעצירה לפני החתך: שם ותפקיד</li>
   <li>קראתם את התיק: מה הניתוח, איזה צד, מה הבעיות של המטופל</li>
   <li>אחרי שהתלבשתם סטרילית: ידיים מלפנים, גב לא לשדה. נגעתם? אומרים מיד</li>
   <li>בחירום: שקט, מקשיבים, מבצעים ומאשרים בקול</li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 19 <bdi>Operating Room</bdi> (עמ׳ <bdi dir="ltr">29–36</bdi>) · פרק 9 <bdi>Safety in the Surgical Environment</bdi> (מקוון, עמ׳ <bdi dir="ltr">e102–e109</bdi>) · פרק 25 <bdi>Surgical Site Infections</bdi> (עמ׳ <bdi dir="ltr">121–123</bdi>)</div>
- <div class="src"><span>צילומים: <bdi>Dr. Jayesh Amin</bdi> (<bdi>CC BY-SA 3.0</bdi>), <bdi>Pfree2014</bdi> (<bdi>CC BY-SA 4.0</bdi>), <bdi>Wikimedia Commons</bdi> · איור: <bdi>Hunter Robb</bdi> 1916 (נחלת הכלל) · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 19 <bdi>Operating Room</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">29–36</bdi>)</span> · פרק 9 <bdi>Safety in the Surgical Environment</bdi> (מקוון, עמ׳ <span class="nw"><bdi dir="ltr">e102–e109</bdi>)</span> · פרק 25 <bdi>Surgical Site Infections</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">121–123</bdi>)</span></div>
+ <div class="src"><span>צילומים: <bdi>Dr. Jayesh Amin</bdi> <span class="nw">(<bdi>CC BY-SA 3.0</bdi>),</span> <bdi>Pfree2014</bdi> <span class="nw">(<bdi>CC BY-SA 4.0</bdi>),</span> <bdi>Wikimedia Commons</bdi> · איור: <bdi>Hunter Robb</bdi> 1916 (נחלת הכלל) · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>
@@ -365,5 +432,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>

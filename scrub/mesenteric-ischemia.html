@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>איסכמיה של המעי · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -88,7 +88,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -118,9 +118,56 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -148,12 +195,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>להכיר את עקרונות הטיפול: החייאה, הפרין, החזרת זרימה ובדיקת המעי</li>
   <li>לזהות איסכמיה כרונית (״פחד מאוכל״ וירידה במשקל) ולהכיר את הטיפול בה</li>
  </ol>
- <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 106 (עמ׳ <bdi dir="ltr">1709–1720</bdi>) · פרק 85 (עמ׳ <bdi dir="ltr">1158, 1162</bdi>)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 106 (עמ׳ <span class="nw"><bdi dir="ltr">1709–1720</bdi>)</span> · פרק 85 (עמ׳ <span class="nw"><bdi dir="ltr">1158, 1162</bdi>)</span></span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 <section class="s"><div class="card">
  <div class="kick"><b>2</b>אנטומיה · אינטראקטיבי</div>
- <h2><bdi dir="ltr">superior mesenteric artery</bdi> (<bdi dir="ltr">SMA</bdi>) וענפיו</h2>
+ <h2><bdi dir="ltr">superior mesenteric artery</bdi> <span class="nw">(<bdi dir="ltr">SMA</bdi>)</span> וענפיו</h2>
  <div class="hotw"><div class="hoti"><img src="img/Gray534.png" alt="SMA וענפיו ל-small bowel ול-colon"><svg viewBox="0 0 500 609" preserveAspectRatio="none" style="--lw:7;--bf:12px">
    <path class="hz ln" data-hz="sma" d="M265,213 C265,240 264,270 263,300 C262,330 259,360 256,385 C253,410 249,435 244,460" style="--c:#A3402E;--lw:10"/>
    <path class="hz ln" data-hz="mc" d="M256,228 C246,214 233,198 222,183 M222,183 C240,172 265,163 286,154 C300,146 310,136 320,130 C335,122 350,118 362,117 M222,183 C208,178 196,170 194,160 C196,148 205,135 214,120 C220,112 225,108 228,104" style="--c:#C9893F"/>
@@ -169,14 +216,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <g class="hzb" style="--c:#0C2A35"><circle cx="232" cy="560" r="10"/><text x="232" y="560">6</text></g>
   </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-   <div class="hzi" data-hzi="sma" hidden><b>1 · <span class="nw">ה-<bdi>SMA</bdi></span> עצמו</b><p>הענף השני של <span class="nw">ה-<bdi dir="ltr">aorta</bdi></span>, אחרי <span class="nw">ה-<bdi dir="ltr">celiac trunk</bdi></span>. יוצא בזווית חדה כלפי מטה. לכן תסחיפים נכנסים אליו בקלות. בכ-15% התסחיף נתקע ממש במוצא. <b>פקקת</b> על רקע טרשת נוצרת לרוב עד 2 ס״מ מהמוצא: נפגע קטע ארוך של מעי והתמותה גבוהה יותר</p></div>
-   <div class="hzi" data-hzi="mc" hidden><b>2 · <bdi dir="ltr">middle colic artery</bdi></b><p>מספק את <span class="nw">ה-<bdi dir="ltr">transverse colon</bdi></span> ומתחבר <span class="nw">ל-<bdi dir="ltr">right colic artery</bdi></span> <span class="nw">ול-<bdi dir="ltr">left colic artery</bdi></span> (<bdi dir="ltr">marginal artery of Drummond</bdi>). כ-50% מהתסחיפים נתקעים <b>מעט אחרי</b> יציאתו: לכן בתסחיף <span class="nw">ה-<bdi dir="ltr">proximal jejunum</bdi></span> <span class="nw">וה-<bdi dir="ltr">transverse colon</bdi></span> נחסכים לרוב. <span class="nw">ה-<bdi dir="ltr">arc of Riolan</bdi></span> מחבר אותו <span class="nw">ל-<bdi dir="ltr">left colic artery</bdi></span> (<span class="nw">מה-<bdi>IMA</bdi></span>)</p></div>
-   <div class="hzi" data-hzi="rc" hidden><b>3 · <bdi dir="ltr">right colic artery</bdi></b><p><span class="nw">ל-<bdi dir="ltr">ascending colon</bdi></span>. חלק מרשת העורקים שמספקת את <span class="nw">ה-<bdi dir="ltr">right colon</bdi></span> <span class="nw">מה-<bdi>SMA</bdi></span></p></div>
-   <div class="hzi" data-hzi="ic" hidden><b>4 · <bdi dir="ltr">ileocolic artery</bdi></b><p><span class="nw">ל-<bdi dir="ltr">terminal ileum</bdi></span>, <span class="nw">ל-<bdi dir="ltr">cecum</bdi></span> <span class="nw">ול-<bdi dir="ltr">appendix</bdi></span>. בפקקת ורידית (<bdi>MVT</bdi>) נפגעים בעיקר <span class="nw">ה-<bdi dir="ltr">ileum</bdi></span> <span class="nw">וה-<bdi dir="ltr">jejunum</bdi></span>. <span class="nw">ה-<bdi dir="ltr">duodenum</bdi></span> <span class="nw">וה-<bdi dir="ltr">colon</bdi></span> נחסכים יחסית</p></div>
-   <div class="hzi" data-hzi="jej" hidden><b>5 · <bdi dir="ltr">jejunal branches</bdi></b><p><bdi dir="ltr">arcade</bdi> אחת או שתיים עם <bdi dir="ltr">vasa recta</bdi> ארוכים. <span class="nw">ה-<bdi>SMA</bdi></span> מצטמצם אחרי הענפים הראשונים <span class="nw">ל-<bdi dir="ltr">jejunum</bdi></span>. לכן תסחיפים נעצרים לרוב קרוב למוצא</p></div>
+   <div class="hzi" data-hzi="sma" hidden><b>1 · <span class="nw">ה-<bdi>SMA</bdi></span> עצמו</b><p>הענף השני של <span class="nw">ה-<bdi dir="ltr">aorta</bdi>,</span> אחרי <span class="nw">ה-<bdi dir="ltr">celiac trunk</bdi>.</span> יוצא בזווית חדה כלפי מטה. לכן תסחיפים נכנסים אליו בקלות. בכ-15% התסחיף נתקע ממש במוצא. <b>פקקת</b> על רקע טרשת נוצרת לרוב עד 2 ס״מ מהמוצא: נפגע קטע ארוך של מעי והתמותה גבוהה יותר</p></div>
+   <div class="hzi" data-hzi="mc" hidden><b>2 · <bdi dir="ltr">middle colic artery</bdi></b><p>מספק את <span class="nw">ה-<bdi dir="ltr">transverse colon</bdi></span> ומתחבר <span class="nw">ל-<bdi dir="ltr">right colic artery</bdi></span> <span class="nw">ול-<bdi dir="ltr">left colic artery</bdi></span> <span class="nw">(<bdi dir="ltr">marginal artery of Drummond</bdi>).</span> כ-50% מהתסחיפים נתקעים <b>מעט אחרי</b> יציאתו: לכן בתסחיף <span class="nw">ה-<bdi dir="ltr">proximal jejunum</bdi></span> <span class="nw">וה-<bdi dir="ltr">transverse colon</bdi></span> נחסכים לרוב. <span class="nw">ה-<bdi dir="ltr">arc of Riolan</bdi></span> מחבר אותו <span class="nw">ל-<bdi dir="ltr">left colic artery</bdi></span> (<span class="nw">מה-<bdi>IMA</bdi>)</span></p></div>
+   <div class="hzi" data-hzi="rc" hidden><b>3 · <bdi dir="ltr">right colic artery</bdi></b><p><span class="nw">ל-<bdi dir="ltr">ascending colon</bdi>.</span> חלק מרשת העורקים שמספקת את <span class="nw">ה-<bdi dir="ltr">right colon</bdi></span> <span class="nw">מה-<bdi>SMA</bdi></span></p></div>
+   <div class="hzi" data-hzi="ic" hidden><b>4 · <bdi dir="ltr">ileocolic artery</bdi></b><p><span class="nw">ל-<bdi dir="ltr">terminal ileum</bdi>,</span> <span class="nw">ל-<bdi dir="ltr">cecum</bdi></span> <span class="nw">ול-<bdi dir="ltr">appendix</bdi>.</span> בפקקת ורידית <span class="nw">(<bdi>MVT</bdi>)</span> נפגעים בעיקר <span class="nw">ה-<bdi dir="ltr">ileum</bdi></span> <span class="nw">וה-<bdi dir="ltr">jejunum</bdi>.</span> <span class="nw">ה-<bdi dir="ltr">duodenum</bdi></span> <span class="nw">וה-<bdi dir="ltr">colon</bdi></span> נחסכים יחסית</p></div>
+   <div class="hzi" data-hzi="jej" hidden><b>5 · <bdi dir="ltr">jejunal branches</bdi></b><p><bdi dir="ltr">arcade</bdi> אחת או שתיים עם <bdi dir="ltr">vasa recta</bdi> ארוכים. <span class="nw">ה-<bdi>SMA</bdi></span> מצטמצם אחרי הענפים הראשונים <span class="nw">ל-<bdi dir="ltr">jejunum</bdi>.</span> לכן תסחיפים נעצרים לרוב קרוב למוצא</p></div>
    <div class="hzi" data-hzi="ile" hidden><b>6 · <bdi dir="ltr">ileal branches</bdi></b><p>ארבע או חמש <bdi dir="ltr">arcades</bdi> עם <bdi dir="ltr">vasa recta</bdi> קצרים. אזור רחוק מהמוצא: בחסימה קרובה כל המעי הזה בסכנה</p></div>
   </div></div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 106 עמ׳ <bdi dir="ltr">1709–1710, 1713, 1719</bdi> · פרק 91 עמ׳ <bdi dir="ltr">1322</bdi> · הציור: <bdi dir="ltr">Gray's Anatomy (1918)</bdi>, איור 534 (נחלת הכלל)</span><span>אנטומיה</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 106 עמ׳ <bdi dir="ltr">1709–1710, 1713, 1719</bdi> · פרק 91 עמ׳ <bdi dir="ltr">1322</bdi> · הציור: <span class="nw"><bdi dir="ltr">Gray's Anatomy (1918)</bdi>,</span> איור 534 (נחלת הכלל)</span><span>אנטומיה</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -185,8 +232,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b sm">
-    <li><b>שלושה עורקים:</b> <bdi dir="ltr">celiac trunk</bdi>, <bdi>SMA</bdi> <span class="nw">ו-<bdi>IMA</bdi></span>. מוצא <span class="nw">ה-<bdi dir="ltr">celiac trunk</bdi></span> <span class="nw">וה-<bdi>SMA</bdi></span> בגובה <bdi dir="ltr">T12–L1</bdi></li>
-    <li><b>מעגלים עוקפים:</b> <bdi dir="ltr">arc of Bühler</bdi> (<bdi dir="ltr">pancreaticoduodenal arcade</bdi>) <span class="nw">וה-<bdi dir="ltr">gastroduodenal artery</bdi></span> (<bdi dir="ltr">GDA</bdi>) בין <span class="nw">ה-<bdi dir="ltr">celiac trunk</bdi></span> <span class="nw">ל-<bdi>SMA</bdi></span>. <bdi dir="ltr">arc of Riolan</bdi> בין <span class="nw">ה-<bdi>SMA</bdi></span> <span class="nw">ל-<bdi>IMA</bdi></span>. <bdi dir="ltr">marginal artery of Drummond</bdi></li>
+    <li><b>שלושה עורקים:</b> <span class="nw"><bdi dir="ltr">celiac trunk</bdi>,</span> <bdi>SMA</bdi> <span class="nw">ו-<bdi>IMA</bdi>.</span> מוצא <span class="nw">ה-<bdi dir="ltr">celiac trunk</bdi></span> <span class="nw">וה-<bdi>SMA</bdi></span> בגובה <bdi dir="ltr">T12–L1</bdi></li>
+    <li><b>מעגלים עוקפים:</b> <bdi dir="ltr">arc of Bühler</bdi> <span class="nw">(<bdi dir="ltr">pancreaticoduodenal arcade</bdi>)</span> <span class="nw">וה-<bdi dir="ltr">gastroduodenal artery</bdi></span> <span class="nw">(<bdi dir="ltr">GDA</bdi>)</span> בין <span class="nw">ה-<bdi dir="ltr">celiac trunk</bdi></span> <span class="nw">ל-<bdi>SMA</bdi>.</span> <bdi dir="ltr">arc of Riolan</bdi> בין <span class="nw">ה-<bdi>SMA</bdi></span> <span class="nw">ל-<bdi>IMA</bdi>.</span> <bdi dir="ltr">marginal artery of Drummond</bdi></li>
     <li>בזכות הרשת הזו, חסימה של עורק אחד לרוב שקטה. תסחיף <span class="nw">ל-<bdi dir="ltr">celiac trunk</bdi></span> לבד גורם לתסמינים בעיקר <span class="nw">כשה-<bdi>SMA</bdi></span> כבר חולה</li>
     <li><b><span class="nw">ה-<bdi>SMA</bdi></span></b> יוצא סמוך לגבול התחתון של <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span> ועובר מלפני החלק השלישי של <span class="nw">ה-<bdi dir="ltr">duodenum</bdi></span></li>
    </ul>
@@ -195,7 +242,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <div><b dir="ltr">35–40%</b><span>אחרי ארוחה. שומן וחלבון: עלייה גדולה וארוכה יותר</span></div>
    </div>
   </div>
-  <figure><img src="img/Sobo_1906_413_sma.jpg" alt="retroperitoneum: pancreas, duodenum, kidneys ו-aorta עם גדמי ה-SMA וה-SMV" style="max-height:50vh"><figcaption>מאחורי המעי: גדמי <span class="nw">ה-<bdi dir="ltr">SMA</bdi></span> <span class="nw">וה-<bdi dir="ltr">SMV</bdi></span> בין <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span> <span class="nw">ל-<bdi dir="ltr">duodenum</bdi></span>, <span class="nw">ה-<bdi dir="ltr">aorta</bdi></span> ומוצא <span class="nw">ה-<bdi>IMA</bdi></span> · <bdi dir="ltr">Sobotta (1906)</bdi>, איור 413 (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/Sobo_1906_413_sma.jpg" alt="retroperitoneum: pancreas, duodenum, kidneys ו-aorta עם גדמי ה-SMA וה-SMV" style="max-height:50vh"><figcaption>מאחורי המעי: גדמי <span class="nw">ה-<bdi dir="ltr">SMA</bdi></span> <span class="nw">וה-<bdi dir="ltr">SMV</bdi></span> בין <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span> <span class="nw">ל-<bdi dir="ltr">duodenum</bdi>,</span> <span class="nw">ה-<bdi dir="ltr">aorta</bdi></span> ומוצא <span class="nw">ה-<bdi>IMA</bdi></span> · <span class="nw"><bdi dir="ltr">Sobotta (1906)</bdi>,</span> איור 413 (נחלת הכלל)</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 106 עמ׳ <bdi dir="ltr">1710, 1713–1714</bdi> · פרק 91 עמ׳ <bdi dir="ltr">1322</bdi></span><span>אנטומיה</span></div>
 </div></section>
@@ -206,16 +253,16 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="num">
   <div><b dir="ltr">40–50%</b><span>תסחיף עורקי: הסיבה השכיחה</span></div>
   <div><b dir="ltr">20–35%</b><span>פקקת עורקית על רקע טרשת</span></div>
-  <div><b dir="ltr">~20%</b><span>איסכמיה לא חסימתית (<bdi>NOMI</bdi>)</span></div>
-  <div><b dir="ltr">5–15%</b><span>פקקת ורידים מזנטריים (<bdi>MVT</bdi>)</span></div>
+  <div><b dir="ltr">~20%</b><span>איסכמיה לא חסימתית <span class="nw">(<bdi>NOMI</bdi>)</span></span></div>
+  <div><b dir="ltr">5–15%</b><span>פקקת ורידים מזנטריים <span class="nw">(<bdi>MVT</bdi>)</span></span></div>
  </div>
  <div class="grid">
   <div style="display:grid;gap:10px">
    <div class="box r"><b class="t">תסחיף</b>ממקור לבבי: פרפור או רפרוף פרוזדורים, קריש בחדר אחרי אוטם או באי-ספיקת לב, מסתמים, אנדוקרדיטיס, מפרצת עם קריש. עד 68% עם תסחיפים גם במקומות אחרים (מוח, גפיים). תמותה בלי טיפול: 54%</div>
-   <div class="box a"><b class="t">פקקת</b>על היצרות כרונית, לרוב עם סיפור של איסכמיה כרונית. גם מצבי קרישיות יתר, דיסקציה של <span class="nw">ה-<bdi dir="ltr">aorta</bdi></span>, פקקת בסטנט או בשתל. תמותה בלי טיפול: 77%</div>
+   <div class="box a"><b class="t">פקקת</b>על היצרות כרונית, לרוב עם סיפור של איסכמיה כרונית. גם מצבי קרישיות יתר, דיסקציה של <span class="nw">ה-<bdi dir="ltr">aorta</bdi>,</span> פקקת בסטנט או בשתל. תמותה בלי טיפול: 77%</div>
   </div>
   <div style="display:grid;gap:10px">
-   <div class="box n"><b class="t">לא חסימתית (<bdi>NOMI</bdi>)</b>זרימה נמוכה וכיווץ כלי דם בחולה קשה: אי-ספיקת לב קשה, אחרי ניתוח לב, דיאליזה ושימוש בוזופרסורים. התמותה הגבוהה מכולם</div>
+   <div class="box n"><b class="t">לא חסימתית <span class="nw">(<bdi>NOMI</bdi>)</span></b>זרימה נמוכה וכיווץ כלי דם בחולה קשה: אי-ספיקת לב קשה, אחרי ניתוח לב, דיאליזה ושימוש בוזופרסורים. התמותה הגבוהה מכולם</div>
    <div class="box b"><b class="t">פקקת ורידית</b>יותר מ-90% משנית: חבלה או ניתוח, דלקת בבטן, גודש (שחמת, אי-ספיקת לב), מצבי קרישיות יתר וגלולות</div>
   </div>
  </div>
@@ -234,7 +281,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <ul class="b">
    <li><b>גורמי סיכון:</b> טרשת עורקים, פרפור פרוזדורים, אוטם טרי, אי-ספיקת לב, איסכמיה כרונית ידועה</li>
-   <li><b><span class="nw">ל-<bdi>NOMI</bdi></span>:</b> חולים קשים בהלם, אחרי ניתוחי לב ובדיאליזה</li>
+   <li><b><span class="nw">ל-<bdi>NOMI</bdi>:</span></b> חולים קשים בהלם, אחרי ניתוחי לב ובדיאליזה</li>
   </ul>
   <div class="box r"><b class="t">המסר</b>הזמן הוא מעי. חשד גבוה מספיק כדי לא לעכב את האבחנה. בחסימת <bdi>SMA</bdi> התמותה בבית החולים הייתה 42% במי שעבר <bdi>CT</bdi> עם חומר ניגוד, לעומת 90% בלעדיו</div>
  </div>
@@ -254,7 +301,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <ul class="b sm" style="margin-top:10px">
     <li><b>תסחיף:</b> התחלה פתאומית והידרדרות מהירה (אין מעגלים עוקפים)</li>
     <li><b>פקקת:</b> התחלה הדרגתית, לעיתים ימים עד שבועות. לפעמים איסכמיה חריפה על כרונית</li>
-    <li><b><bdi>NOMI</bdi>:</b> בטיפול נמרץ, עם כשל איברים. יכול להיות בלי כאב: תפיחות, אלח דם וממצאי מעבדה</li>
+    <li><b><span class="nw"><bdi>NOMI</bdi>:</span></b> בטיפול נמרץ, עם כשל איברים. יכול להיות בלי כאב: תפיחות, אלח דם וממצאי מעבדה</li>
     <li><b>אבחנה מבדלת:</b> אפנדיציטיס, דיברטיקוליטיס, כולציסטיטיס, פנקריאטיטיס, חסימת מעי</li>
    </ul>
   </div>
@@ -271,7 +318,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <h3>מעבדה: תומכת, לא מאבחנת ולא שוללת</h3>
    <ul class="b sm">
-    <li>יכולה להיות תקינה בהתחלה. לויקוציטוזיס מעל <bdi dir="ltr">15,000</bdi>, חמצת מטבולית ולקטט גבוה</li>
+    <li>יכולה להיות תקינה בהתחלה. לויקוציטוזיס מעל <span class="nw"><bdi dir="ltr">15,000</bdi>,</span> חמצת מטבולית ולקטט גבוה</li>
     <li><bdi>D-dimer</bdi> רגיש ומוקדם, אבל לא סגולי. עמילאז, <bdi>CK</bdi> ואנזימי כבד לא מספיקים</li>
    </ul>
    <h3 style="margin-top:10px">הדמיה</h3>
@@ -282,7 +329,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <div><b>דופלר · <bdi>MRA</bdi></b><span>דופלר לא אמין במצב החריף. <bdi>MRA</bdi> מדויק אבל איטי ופחות זמין</span></div>
    </div>
   </div>
-  <figure><img src="img/ct-pneumatosis-portal-gas.jpg" alt="CT עם אוויר בדופן המעי וגז ב-portal vein" style="max-height:52vh"><figcaption>איסכמיה מתקדמת <span class="nw">ב-<bdi>CT</bdi></span>: אוויר בדופן המעי (פנאומטוזיס) וגז בענפי <span class="nw">ה-<bdi dir="ltr">portal vein</bdi></span> בתוך <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> · <bdi dir="ltr">Hellerhoff · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/ct-pneumatosis-portal-gas.jpg" alt="CT עם אוויר בדופן המעי וגז ב-portal vein" style="max-height:52vh"><figcaption>איסכמיה מתקדמת <span class="nw">ב-<bdi>CT</bdi>:</span> אוויר בדופן המעי (פנאומטוזיס) וגז בענפי <span class="nw">ה-<bdi dir="ltr">portal vein</bdi></span> בתוך <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> · <bdi dir="ltr">Hellerhoff · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 106 עמ׳ <bdi dir="ltr">1710–1711</bdi></span><span>אבחנה</span></div>
 </div></section>
@@ -303,8 +350,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div class="box n" style="margin-top:10px"><b class="t"><bdi>NOMI</bdi></b>מטפלים בגורם: תפוקת לב, הורדת וזופרסורים, תמיכה. עירוי מרחיבי כלי דם לעורק (פפאברין ועוד) תואר רק בסדרות קטנות</div>
   </div>
   <div class="flow">
-   <div><b>תסחיף</b><span>לפרוטומיה, חשיפת <span class="nw">ה-<bdi>SMA</bdi></span> בבסיס <span class="nw">ה-<bdi dir="ltr">transverse mesocolon</bdi></span>, הוצאת הקריש בבלון (<bdi>Fogarty</bdi>) ובדיקת המעי</span></div>
-   <div><b>פקקת</b><span>לרוב צריך מעקף, למשל <span class="nw">מה-<bdi dir="ltr">right common iliac artery</bdi></span> בצורת <bdi>C</bdi>, בלי לחסום את <span class="nw">ה-<bdi dir="ltr">aorta</bdi></span>. או <bdi>ROMS</bdi>: סטנט רטרוגרדי פתוח (הצלחה 98%)</span></div>
+   <div><b>תסחיף</b><span>לפרוטומיה, חשיפת <span class="nw">ה-<bdi>SMA</bdi></span> בבסיס <span class="nw">ה-<bdi dir="ltr">transverse mesocolon</bdi>,</span> הוצאת הקריש בבלון <span class="nw">(<bdi>Fogarty</bdi>)</span> ובדיקת המעי</span></div>
+   <div><b>פקקת</b><span>לרוב צריך מעקף, למשל <span class="nw">מה-<bdi dir="ltr">right common iliac artery</bdi></span> בצורת <span class="nw"><bdi>C</bdi>,</span> בלי לחסום את <span class="nw">ה-<bdi dir="ltr">aorta</bdi>.</span> או <span class="nw"><bdi>ROMS</bdi>:</span> סטנט רטרוגרדי פתוח (הצלחה 98%)</span></div>
    <div><b>אנדווסקולרי בלבד</b><span>רק בלי סימנים לאיסכמיה של המעי. חוסך לפרוטומיה ותזונה תוך-ורידית</span></div>
    <div><b>מעי מנוקב או נמק מלא</b><span>ניקוב או אוויר חופשי: כריתה קודם. נמק של כל המעי: לרוב מצב שאין ממנו הישרדות</span></div>
   </div>
@@ -336,7 +383,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div>
    <ul class="b sm">
-    <li><b>לרוב <span class="nw">ב-<bdi>SMV</bdi></span>.</b> <span class="nw">ב-<bdi>IMV</bdi></span> רק <bdi dir="ltr">5–10%</bdi>. נפגעים בעיקר <span class="nw">ה-<bdi dir="ltr">ileum</bdi></span> <span class="nw">וה-<bdi dir="ltr">jejunum</bdi></span></li>
+    <li><b>לרוב <span class="nw">ב-<bdi>SMV</bdi>.</span></b> <span class="nw">ב-<bdi>IMV</bdi></span> רק <span class="nw"><bdi dir="ltr">5–10%</bdi>.</span> נפגעים בעיקר <span class="nw">ה-<bdi dir="ltr">ileum</bdi></span> <span class="nw">וה-<bdi dir="ltr">jejunum</bdi></span></li>
     <li>מצב קרישיות יתר מזוהה <span class="nw">ב-<bdi dir="ltr">60–70%</bdi></span> ומנבא איסכמיה</li>
     <li><b>חריפה (כ-70%):</b> כאב שלא תואם את הבדיקה, בחילות והקאות. דימום ממערכת העיכול <span class="nw">ב-<bdi dir="ltr">15–50%</bdi></span></li>
     <li><b>תת-חריפה:</b> תסמינים לא ספציפיים שבועות עד חודשים. <b>כרונית:</b> לרוב שקטה, מתגלה עם סיבוכי <bdi dir="ltr">portal hypertension</bdi></li>
@@ -345,7 +392,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   </div>
   <div style="display:grid;gap:10px">
    <div class="box"><b class="t">הטיפול</b>הפרין לא מפוצל לווריד <b>מיד</b>. צום, נוזלים, אנטיביוטיקה ובדיקות בטן חוזרות. דימום ממערכת העיכול כמעט אף פעם לא מונע הפרין</div>
-   <div class="box r"><b class="t">מתי לנתח</b>פריטוניטיס מתקדמת: לפרוסקופיה או לפרוטומיה. אחרי כריתה: השקה או מבט שני תוך <bdi dir="ltr">24–48</bdi> שעות. החמרה בלי פריטוניטיס: טיפול אנדווסקולרי (<bdi>TIPS</bdi>, הוצאת קריש, תרומבוליזה)</div>
+   <div class="box r"><b class="t">מתי לנתח</b>פריטוניטיס מתקדמת: לפרוסקופיה או לפרוטומיה. אחרי כריתה: השקה או מבט שני תוך <bdi dir="ltr">24–48</bdi> שעות. החמרה בלי פריטוניטיס: טיפול אנדווסקולרי <span class="nw">(<bdi>TIPS</bdi>,</span> הוצאת קריש, תרומבוליזה)</div>
    <div class="num" style="grid-template-columns:1fr 1fr;margin:0">
     <div><b dir="ltr">6 mo</b><span>נוגדי קרישה בסיבה הפיכה. לכל החיים בקרישיות יתר או בסיבה לא ידועה</span></div>
     <div><b dir="ltr">25% · 3%</b><span>חזרה של הפקקת (עד 25%, בעיקר בחודש הראשון) · עם נוגדי קרישה</span></div>
@@ -390,7 +437,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <ul class="b sm">
     <li><b>למה לטפל:</b> להעלים תסמינים, למנוע איסכמיה חריפה ולשפר איכות חיים. ללא תסמינים: מעקב שנתי בדופלר והחלטה משותפת</li>
-    <li><b>המטרה העיקרית: <span class="nw">ה-<bdi>SMA</bdi></span>.</b> <span class="nw">ה-<bdi dir="ltr">celiac trunk</bdi></span> <span class="nw">וה-<bdi>IMA</bdi></span> הם מטרות משניות</li>
+    <li><b>המטרה העיקרית: <span class="nw">ה-<bdi>SMA</bdi>.</span></b> <span class="nw">ה-<bdi dir="ltr">celiac trunk</bdi></span> <span class="nw">וה-<bdi>IMA</bdi></span> הם מטרות משניות</li>
     <li><b>טיפול תרופתי לכולם:</b> נוגדי טסיות, הורדת שומנים, חוסמי בטא והפסקת עישון</li>
     <li><b>תזונה תוך-ורידית</b> אינה תחליף לטיפול. מותרת רק סביב הניתוח</li>
     <li><b>אחרי סטנט:</b> לרוב שני נוגדי טסיות <bdi dir="ltr">6–12</bdi> שבועות. מעקב הדמיה אחרי חודש, כל חצי שנה בשנתיים הראשונות ואחר כך כל שנה</li>
@@ -398,7 +445,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   </div>
   <div style="display:grid;gap:10px">
    <div class="box"><b class="t">אנדווסקולרי (קו ראשון)</b>הרחבה בבלון עם סטנט מכוסה מתרחב בבלון. במטא-אנליזה: הצלחה טכנית 95%, תמותה 2% ב-30 יום, אבל חזרת תסמינים או התערבות חוזרת בכ-25%</div>
-   <div class="box n"><b class="t">ניתוח פתוח</b>לצעירים, לאנטומיה שלא מתאימה לסטנט, או לחזרה אחרי סטנטים. מעקף אנטגרדי <span class="nw">מה-<bdi dir="ltr">supraceliac aorta</bdi></span>, או רטרוגרדי <span class="nw">מה-<bdi dir="ltr">infrarenal aorta</bdi></span> או <span class="nw">מה-<bdi dir="ltr">iliac arteries</bdi></span>. אשפוז ארוך יותר, פחות היצרות חוזרת</div>
+   <div class="box n"><b class="t">ניתוח פתוח</b>לצעירים, לאנטומיה שלא מתאימה לסטנט, או לחזרה אחרי סטנטים. מעקף אנטגרדי <span class="nw">מה-<bdi dir="ltr">supraceliac aorta</bdi>,</span> או רטרוגרדי <span class="nw">מה-<bdi dir="ltr">infrarenal aorta</bdi></span> או <span class="nw">מה-<bdi dir="ltr">iliac arteries</bdi>.</span> אשפוז ארוך יותר, פחות היצרות חוזרת</div>
    <div class="box a"><b class="t">התוצאות</b>הקלה בתסמינים ב-80% עד יותר מ-90% אחרי <bdi dir="ltr">24–36</bdi> חודשים בשתי הגישות. בלי הבדל בהישרדות</div>
   </div>
  </div>
@@ -410,9 +457,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>מחקרים והנחיות שכדאי להכיר</h2>
  <div class="grid">
   <div class="study"><div class="y"><bdi>Eur J Vasc Endovasc Surg</bdi> 2025 · הנחיות</div><b>הנחיות <bdi>ESVS</bdi> 2025 לעורקי וורידי המעי</b>
-   <p>העדכון הראשון מאז 2017: 102 המלצות על איסכמיה כרונית, איסכמיה עורקית חריפה, <bdi>NOMI</bdi>, פקקת ורידית, מפרצות ודיסקציות של עורקי הבטן</p>
+   <p>העדכון הראשון מאז 2017: 102 המלצות על איסכמיה כרונית, איסכמיה עורקית חריפה, <span class="nw"><bdi>NOMI</bdi>,</span> פקקת ורידית, מפרצות ודיסקציות של עורקי הבטן</p>
    <small>Koelemay MJ et al. Eur J Vasc Endovasc Surg 2025;70:153-218</small></div>
-  <div class="study"><div class="y"><bdi>Crit Care</bdi> 2024 · 32 בתי חולים</div><b><bdi>AMESI</bdi>: איסכמיה חריפה בעולם האמיתי</b>
+  <div class="study"><div class="y"><bdi>Crit Care</bdi> 2024 · 32 בתי חולים</div><b><span class="nw"><bdi>AMESI</bdi>:</span> איסכמיה חריפה בעולם האמיתי</b>
    <p>418 חולים. מהתחלת התסמינים לאשפוז: חציון 24 שעות. מהאשפוז לאבחנה: 6 שעות. עורקית חסימתית 55.3%, <bdi>NOMI</bdi> 13.2% וורידית 17.5%. תמותה בבית החולים 49%: הכי נמוכה בוורידית (13.7%), הכי גבוהה <span class="nw">ב-<bdi>NOMI</bdi></span> (72.7%)</p>
    <small>Reintam Blaser A et al. Crit Care 2024;28:32</small></div>
   <div class="study"><div class="y"><bdi>World J Emerg Surg</bdi> 2025 · מחקר המשך</div><b>אנדווסקולרי מול ניתוח בחסימת <bdi>SMA</bdi></b>
@@ -435,8 +482,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>קודם זרימה, אחר כך כריתה. מעי בספק: מבט שני</li>
   <li>כאב אחרי אוכל, פחד מאוכל וירידה במשקל: לחשוב על איסכמיה כרונית ולשלול גידול</li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 106 <bdi>Visceral Ischemic Syndromes</bdi> (עמ׳ <bdi dir="ltr">1709–1720</bdi>) · פרק 85 (עמ׳ <bdi dir="ltr">1158, 1162</bdi>)</div>
- <div class="src"><span>איורים: <bdi dir="ltr">Gray's Anatomy (1918), Sobotta (1906), Musser (1904)</bdi>, נחלת הכלל · צילומים: <bdi dir="ltr">Hellerhoff, Haitham Alfalah (CC BY-SA, Wikimedia Commons)</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 106 <bdi>Visceral Ischemic Syndromes</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1709–1720</bdi>)</span> · פרק 85 (עמ׳ <span class="nw"><bdi dir="ltr">1158, 1162</bdi>)</span></div>
+ <div class="src"><span>איורים: <span class="nw"><bdi dir="ltr">Gray's Anatomy (1918), Sobotta (1906), Musser (1904)</bdi>,</span> נחלת הכלל · צילומים: <bdi dir="ltr">Hellerhoff, Haitham Alfalah (CC BY-SA, Wikimedia Commons)</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>
@@ -458,5 +505,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>

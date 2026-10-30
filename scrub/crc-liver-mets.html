@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>גרורות לכבד מסרטן המעי הגס · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -80,7 +80,7 @@ bdi{unicode-bidi:isolate}
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -110,9 +110,56 @@ bdi{unicode-bidi:isolate}
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -135,13 +182,13 @@ bdi{unicode-bidi:isolate}
  <h2>בסוף המפגש תדעו</h2>
  <ol class="obj">
   <li><span>להסביר למה <span class="nw">ה-<bdi>liver</bdi></span> הוא האתר השכיח לגרורות של סרטן המעי הגס ולמה כריתה יכולה לרפא</span></li>
-  <li><span>לבנות בירור: <bdi>CEA</bdi>, <bdi>CT</bdi> רב-פאזי, <bdi>MRI</bdi> בכבד שומני ומתי צריך ביופסיה</span></li>
-  <li><span>להגדיר מה נחשב נתיח ולחשב בגדול את נפח <span class="nw">ה-<bdi>liver</bdi></span> שיישאר (<bdi>FLR</bdi>) ואיך מגדילים אותו</span></li>
-  <li><span>להכיר את גורמי הפרוגנוזה ואת הסמנים המולקולריים: <bdi>RAS</bdi>, <bdi>BRAF</bdi>, <bdi>MSI</bdi></span></li>
+  <li><span>לבנות בירור: <span class="nw"><bdi>CEA</bdi>,</span> <bdi>CT</bdi> רב-פאזי, <bdi>MRI</bdi> בכבד שומני ומתי צריך ביופסיה</span></li>
+  <li><span>להגדיר מה נחשב נתיח ולחשב בגדול את נפח <span class="nw">ה-<bdi>liver</bdi></span> שיישאר <span class="nw">(<bdi>FLR</bdi>)</span> ואיך מגדילים אותו</span></li>
+  <li><span>להכיר את גורמי הפרוגנוזה ואת הסמנים המולקולריים: <span class="nw"><bdi>RAS</bdi>,</span> <span class="nw"><bdi>BRAF</bdi>,</span> <bdi>MSI</bdi></span></li>
   <li><span>לתכנן את הסדר בין <span class="nw">ה-<bdi>liver</bdi></span> לגידול הראשוני ואת מקום הכימותרפיה</span></li>
   <li><span>להכיר חלופות לכריתה: אבלציה, משאבה עורקית, הקרנה פנימית והשתלה</span></li>
  </ol>
- <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 90 (עמ׳ <bdi dir="ltr">1306–1317</bdi>)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 90 (עמ׳ <span class="nw"><bdi dir="ltr">1306–1317</bdi>)</span></span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -155,7 +202,7 @@ bdi{unicode-bidi:isolate}
  </div>
  <div class="grid">
   <ul class="b">
-   <li><b>למה <span class="nw">ה-<bdi>liver</bdi></span>?</b> ניקוז ורידי ישיר דרך <span class="nw">ה-<bdi>portal vein</bdi></span>, סינוסואידים עם אנדותל מחורר וסביבה חיסונית סובלנית: "זרע וקרקע"</li>
+   <li><b>למה <span class="nw">ה-<bdi>liver</bdi></span>?</b> ניקוז ורידי ישיר דרך <span class="nw">ה-<bdi>portal vein</bdi>,</span> סינוסואידים עם אנדותל מחורר וסביבה חיסונית סובלנית: "זרע וקרקע"</li>
    <li>סרטן המעי הגס הוא המקור השכיח ביותר לגרורות בכבד. הגרורות האלה הן ההתוויה השכיחה לכריתת כבד בארה״ב</li>
   </ul>
   <div style="display:grid;gap:10px">
@@ -174,7 +221,7 @@ bdi{unicode-bidi:isolate}
    <ul class="b sm">
     <li><b>התסמינים בדרך כלל מהגידול הראשוני</b> (דימום, חסימה). הגרורות עצמן שקטות, אלא אם העומס גדול: כאב, ירידה במשקל, חולשה. חסימה של דרכי המרה: צהבת</li>
     <li><b>מעבדה:</b> ספירה, כימיה מלאה וקרישה. בילירובין <span class="nw">ו-<bdi>PT</bdi></span> עולים: חשד לתפקוד כבד ירוד. טסיות נמוכות: חשד ליתר לחץ דם פורטלי</li>
-    <li><b><bdi>CEA</bdi>:</b> הסמן של סרטן המעי הגס. גם עישון ודלקת כרונית יכולים להעלות אותו</li>
+    <li><b><span class="nw"><bdi>CEA</bdi>:</span></b> הסמן של סרטן המעי הגס. גם עישון ודלקת כרונית יכולים להעלות אותו</li>
     <li><b>ביופסיה מהגרורה לא חובה</b> כשהגידול הראשוני ידוע והתמונה מתאימה. רקמה עוזרת לבדיקות מולקולריות ולבחירת טיפול</li>
    </ul>
    <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>מששו את <span class="nw">ה-<bdi>liver</bdi></span> אצל חולה עם גרורות. לרוב לא תמצאו דבר: הגרורות שקטות עד שהעומס גדול. האבחנה בהדמיה. השוו בצילום שלו את הפאזה העורקית לפורטלית</div>
@@ -189,7 +236,7 @@ bdi{unicode-bidi:isolate}
  <h2>גרורה בכבד בהדמיה</h2>
  <div class="grid">
   <div style="display:grid;gap:10px">
-   <figure><img style="max-height:28vh" src="img/crc-liver-spleen-mets-ct.jpg" alt="CT עם גרורות ב-liver וב-spleen מסרטן ה-sigmoid"><figcaption>גרורות היפו-וסקולריות (כהות) <span class="nw">ב-<bdi>liver</bdi></span> <span class="nw">וב-<bdi>spleen</bdi></span> מאדנוקרצינומה של <span class="nw">ה-<bdi>sigmoid</bdi></span>, <bdi>CT</bdi> צירי ועטרתי · <bdi>Hellerhoff, Wikimedia Commons, CC BY-SA 3.0</bdi></figcaption></figure>
+   <figure><img style="max-height:28vh" src="img/crc-liver-spleen-mets-ct.jpg" alt="CT עם גרורות ב-liver וב-spleen מסרטן ה-sigmoid"><figcaption>גרורות היפו-וסקולריות (כהות) <span class="nw">ב-<bdi>liver</bdi></span> <span class="nw">וב-<bdi>spleen</bdi></span> מאדנוקרצינומה של <span class="nw">ה-<bdi>sigmoid</bdi>,</span> <bdi>CT</bdi> צירי ועטרתי · <bdi>Hellerhoff, Wikimedia Commons, CC BY-SA 3.0</bdi></figcaption></figure>
    <figure><img style="max-height:22vh" src="img/crc-liver-met-ceus.jpg" alt="אולטרסאונד עם חומר ניגוד של גרורה בכבד"><figcaption>גרורה מסרטן הקולון באולטרסאונד עם חומר ניגוד · <bdi>R. Badea, S. Ioanitescu, Wikimedia Commons, CC BY 3.0</bdi></figcaption></figure>
   </div>
   <div class="flow">
@@ -212,19 +259,19 @@ bdi{unicode-bidi:isolate}
   <path class="hz" data-hz="l" d="M618,279 C619.8,276 643.3,282.3 657,282 C670.7,281.7 684.5,277 700,277 C715.5,277 733.3,278.2 750,282 C766.7,285.8 784.5,292.2 800,300 C815.5,307.8 829.8,317.2 843,329 C856.2,340.8 871,355.7 879,371 C887,386.3 889.8,406.7 891,421 C892.2,435.3 888.7,448 886,457 C883.3,466 881,465.5 875,475 C869,484.5 860.2,500.3 850,514 C839.8,527.7 827.2,545.7 814,557 C800.8,568.3 785.2,575.5 771,582 C756.8,588.5 742,594.2 729,596 C716,597.8 703.8,595.3 693,593 C682.2,590.7 671,586.8 664,582 C657,577.2 652.2,575.3 651,564 C649.8,552.7 654.8,530.7 657,514 C659.2,497.3 662.5,484.2 664,464 C665.5,443.8 666.5,414.3 666,393 C665.5,371.7 664.3,351.5 661,336 C657.7,320.5 653.2,309.5 646,300 C638.8,290.5 616.2,282 618,279 Z" style="--c:#00967D"/>
  </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על חלק <span class="nw">ב-<bdi>liver</bdi></span> כדי לקרוא עליו</p>
-   <div class="hzi" data-hzi="p" hidden><b>סגמנטים 6 ו-7 · <bdi>right posterior sector</bdi></b><p><span class="nw">ה-<bdi>right hepatic vein</bdi></span> מפריד בינו לבין <span class="nw">ה-<bdi>right anterior sector</bdi></span>. יחד עם 5 ו-8 הם <strong><span class="nw">ה-<bdi>right liver</bdi></span></strong>. כריתת סגמנטים 5–8 נקראת כריתת כבד ימנית (<bdi>right hepatectomy</bdi>)</p></div>
-   <div class="hzi" data-hzi="a" hidden><b>סגמנטים 5 ו-8 · <bdi>right anterior sector</bdi></b><p>בין <span class="nw">ה-<bdi>right liver</bdi></span> <span class="nw">ל-<bdi>left liver</bdi></span> עובר <strong><span class="nw">ה-<bdi>middle hepatic vein</bdi></span></strong>, <span class="nw">ב-<bdi>Cantlie's line</bdi></span>: <span class="nw">מה-<bdi>gallbladder bed</bdi></span> לצד השמאלי של <span class="nw">ה-<bdi>IVC</bdi></span>. אין לגבול הזה סימן חיצוני על פני <span class="nw">ה-<bdi>liver</bdi></span></p></div>
-   <div class="hzi" data-hzi="m" hidden><b>סגמנט 4</b><p>חלק מ<strong><span class="nw">ה-<bdi>left liver</bdi></span></strong>, מימין <span class="nw">ל-<bdi>umbilical fissure</bdi></span>. כריתת 2–4 היא כריתת כבד שמאלית. כריתת 4–8 היא כריתה ימנית מורחבת (<bdi>right trisectionectomy</bdi>): אז נשארים רק 1–3: כאן נפח השארית הכי קריטי</p></div>
-   <div class="hzi" data-hzi="l" hidden><b>סגמנטים 2 ו-3 · <bdi>left lateral section</bdi></b><p>כריתתם היא <bdi>left lateral sectionectomy</bdi>. בכריתה דו-שלבית מנקים כאן קודם את הגרורות, כי זה בדרך כלל <span class="nw">ה-<bdi>liver</bdi></span> שיישאר. אחרי תסחיף של <span class="nw">ה-<bdi>right portal vein</bdi></span> הם גדלים</p></div>
+   <div class="hzi" data-hzi="p" hidden><b>סגמנטים 6 ו-7 · <bdi>right posterior sector</bdi></b><p><span class="nw">ה-<bdi>right hepatic vein</bdi></span> מפריד בינו לבין <span class="nw">ה-<bdi>right anterior sector</bdi>.</span> יחד עם 5 ו-8 הם <strong><span class="nw">ה-<bdi>right liver</bdi></span></strong>. כריתת סגמנטים 5–8 נקראת כריתת כבד ימנית <span class="nw">(<bdi>right hepatectomy</bdi>)</span></p></div>
+   <div class="hzi" data-hzi="a" hidden><b>סגמנטים 5 ו-8 · <bdi>right anterior sector</bdi></b><p>בין <span class="nw">ה-<bdi>right liver</bdi></span> <span class="nw">ל-<bdi>left liver</bdi></span> עובר <strong><span class="nw">ה-<bdi>middle hepatic vein</bdi></span></strong>, <span class="nw">ב-<bdi>Cantlie's line</bdi>:</span> <span class="nw">מה-<bdi>gallbladder bed</bdi></span> לצד השמאלי של <span class="nw">ה-<bdi>IVC</bdi>.</span> אין לגבול הזה סימן חיצוני על פני <span class="nw">ה-<bdi>liver</bdi></span></p></div>
+   <div class="hzi" data-hzi="m" hidden><b>סגמנט 4</b><p>חלק מ<strong><span class="nw">ה-<bdi>left liver</bdi></span></strong>, מימין <span class="nw">ל-<bdi>umbilical fissure</bdi>.</span> כריתת 2–4 היא כריתת כבד שמאלית. כריתת 4–8 היא כריתה ימנית מורחבת <span class="nw">(<bdi>right trisectionectomy</bdi>):</span> אז נשארים רק 1–3: כאן נפח השארית הכי קריטי</p></div>
+   <div class="hzi" data-hzi="l" hidden><b>סגמנטים 2 ו-3 · <bdi>left lateral section</bdi></b><p>כריתתם היא <span class="nw"><bdi>left lateral sectionectomy</bdi>.</span> בכריתה דו-שלבית מנקים כאן קודם את הגרורות, כי זה בדרך כלל <span class="nw">ה-<bdi>liver</bdi></span> שיישאר. אחרי תסחיף של <span class="nw">ה-<bdi>right portal vein</bdi></span> הם גדלים</p></div>
    <div class="box" style="margin-top:10px"><b class="t">מה זה "נתיח"?</b>אפשר להוציא את כל המחלה <span class="nw">ב-<bdi>liver</bdi></span> ולשמור זרימה פנימה, ניקוז ורידי, ניקוז מרה ולפחות <b>שני סגמנטים רציפים</b> עם נפח מספיק</div>
   </div></div>
- <figcaption>סגמנטים של <span class="nw">ה-<bdi>liver</bdi></span> לפי <bdi>Couinaud</bdi>, מבט קדמי (סגמנט 1 מאחור, לא נראה) · <bdi>BodyParts3D, Database Center for Life Science (DBCLS), Wikimedia Commons, CC BY-SA 2.1 JP</bdi></figcaption>
+ <figcaption>סגמנטים של <span class="nw">ה-<bdi>liver</bdi></span> לפי <span class="nw"><bdi>Couinaud</bdi>,</span> מבט קדמי (סגמנט 1 מאחור, לא נראה) · <bdi>BodyParts3D, Database Center for Life Science (DBCLS), Wikimedia Commons, CC BY-SA 2.1 JP</bdi></figcaption>
  <div class="src"><span><b>Sabiston 22</b> · פרק 89 עמ׳ <bdi dir="ltr">1250–1253, 1296</bdi> · פרק 90 עמ׳ <bdi dir="ltr">1309–1310</bdi></span><span>אנטומיה</span></div>
 </div></section>
 
 <section class="s"><div class="card">
  <div class="kick"><b>6</b>כמה <bdi>liver</bdi> צריך להשאיר</div>
- <h2>נפח <span class="nw">ה-<bdi>liver</bdi></span> שנשאר (<bdi>FLR</bdi>)</h2>
+ <h2>נפח <span class="nw">ה-<bdi>liver</bdi></span> שנשאר <span class="nw">(<bdi>FLR</bdi>)</span></h2>
  <div class="num">
   <div><b dir="ltr">20%</b><span>מינימום בכבד בריא. פחות מזה מנבא אי-ספיקה ותמותה</span></div>
   <div><b dir="ltr">30%</b><span>אחרי פגיעה מכימותרפיה</span></div>
@@ -233,14 +280,14 @@ bdi{unicode-bidi:isolate}
  </div>
  <div class="grid">
   <ul class="b sm">
-   <li><b>מחשבים</b> <span class="nw">מ-<bdi>CT</bdi></span> או <bdi>MRI</bdi>: נפח <span class="nw">ה-<bdi>liver</bdi></span> שיישאר ביחס לנפח <span class="nw">ה-<bdi>liver</bdi></span> הכולל (<bdi>sFLR</bdi>)</li>
+   <li><b>מחשבים</b> <span class="nw">מ-<bdi>CT</bdi></span> או <span class="nw"><bdi>MRI</bdi>:</span> נפח <span class="nw">ה-<bdi>liver</bdi></span> שיישאר ביחס לנפח <span class="nw">ה-<bdi>liver</bdi></span> הכולל <span class="nw">(<bdi>sFLR</bdi>)</span></li>
    <li><b>כריתה חוסכת רקמה</b> עדיפה כשאפשר: אין צורך בשוליים רחבים. בסקירה של יותר מ-2,500 חולים: שיעור <bdi>R0</bdi> והישרדות דומים לכריתה אנטומית</li>
    <li><b>אולטרסאונד תוך-ניתוחי</b> חובה: מגדיר אנטומיה, מוצא גרורות שלא נראו ומכוון את קו החיתוך</li>
   </ul>
   <div class="flow">
-   <div><b>תסחיף של <span class="nw">ה-<bdi>portal vein</bdi></span> (<bdi>PVE</bdi>)</b><span>סוגרים את הענף לצד שייכרת. הצד השני גדל בעיקר ב-3 השבועות הראשונים</span></div>
+   <div><b>תסחיף של <span class="nw">ה-<bdi>portal vein</bdi></span> <span class="nw">(<bdi>PVE</bdi>)</span></b><span>סוגרים את הענף לצד שייכרת. הצד השני גדל בעיקר ב-3 השבועות הראשונים</span></div>
    <div><b>קצב הגדילה</b><span>2% בשבוע ומעלה: אפס אי-ספיקה אחרי הניתוח</span></div>
-   <div><b><span class="nw">כשה-<bdi>PVE</bdi></span> לא מספיק (כ-5%)</b><span>מוסיפים תסחיף של <span class="nw">ה-<bdi>hepatic veins</bdi></span> (<bdi>LVD</bdi>): גדילה של 61% לעומת 29%</span></div>
+   <div><b><span class="nw">כשה-<bdi>PVE</bdi></span> לא מספיק (כ-5%)</b><span>מוסיפים תסחיף של <span class="nw">ה-<bdi>hepatic veins</bdi></span> <span class="nw">(<bdi>LVD</bdi>):</span> גדילה של 61% לעומת 29%</span></div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 90 עמ׳ <bdi dir="ltr">1309–1310</bdi></span><span>נפח הכבד</span></div>
@@ -265,8 +312,8 @@ bdi{unicode-bidi:isolate}
  <div class="grid">
   <div>
    <ul class="b sm">
-    <li><b>קו ראשון:</b> <bdi>FOLFOX</bdi> או <bdi>FOLFIRI</bdi>, תגובה ביותר מ-50%. <bdi>bevacizumab</bdi> משפר הישרדות. נוגדי <bdi>EGFR</bdi> רק <span class="nw">כש-<bdi>KRAS</bdi></span> תקין</li>
-    <li><b>הפיכה לנתיח:</b> מתוך 1,439 חולים, 77% לא היו נתיחים. 12.5% מהם הגיבו מספיק לכריתה: הישרדות ל-5 שנים 33%, לעומת 48% בנתיחים מראש ו-16% בכימותרפיה בלבד (<bdi>Adam</bdi> 2004)</li>
+    <li><b>קו ראשון:</b> <bdi>FOLFOX</bdi> או <span class="nw"><bdi>FOLFIRI</bdi>,</span> תגובה ביותר מ-50%. <bdi>bevacizumab</bdi> משפר הישרדות. נוגדי <bdi>EGFR</bdi> רק <span class="nw">כש-<bdi>KRAS</bdi></span> תקין</li>
+    <li><b>הפיכה לנתיח:</b> מתוך 1,439 חולים, 77% לא היו נתיחים. 12.5% מהם הגיבו מספיק לכריתה: הישרדות ל-5 שנים 33%, לעומת 48% בנתיחים מראש ו-16% בכימותרפיה בלבד <span class="nw">(<bdi>Adam</bdi></span> 2004)</li>
     <li><b>כימותרפיה סביב הניתוח בנתיחים:</b> שנויה במחלוקת. <bdi>EORTC 40983</bdi> (364 חולים): שיפור בהישרדות בלי התקדמות רק בחולים שנכרתו, בלי הבדל בהישרדות הכוללת (49% לעומת 51%)</li>
     <li><b>המחקר היפני</b> (300 חולים): כימותרפיה אחרי הכריתה שיפרה הישרדות בלי מחלה ל-5 שנים (50% לעומת 39%) אבל לא את ההישרדות הכוללת</li>
    </ul>
@@ -276,7 +323,7 @@ bdi{unicode-bidi:isolate}
    <div class="box"><b class="t">איך מצמצמים</b>לא יותר <span class="nw">מ-<bdi dir="ltr">2–3</bdi></span> חודשים לפני הניתוח. לחכות יותר מ-4 שבועות עד הכריתה. התגובה המקסימלית <span class="nw">ב-<bdi dir="ltr">2–4</bdi></span> חודשים. <bdi>bevacizumab</bdi> מגן מפגיעת האוקסליפלטין</div>
   </div>
  </div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 90 עמ׳ <bdi dir="ltr">1311–1312</bdi> (טבלה <bdi>90.1</bdi>)</span><span>כימותרפיה</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 90 עמ׳ <bdi dir="ltr">1311–1312</bdi> (טבלה <span class="nw"><bdi>90.1</bdi>)</span></span><span>כימותרפיה</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -286,7 +333,7 @@ bdi{unicode-bidi:isolate}
   <div class="flow">
    <div><b>יחד באותו ניתוח</b><span>פחות ניתוחים ופחות הפסקה בכימותרפיה. במחקר אקראי (85 חולים): סיבוכים קשים 49% לעומת 46%. כריתת כבד גדולה עם כריתת מעי בסיכון גבוה: תחלואה 55%, תמותה 5%. לכן רק במרכזים גדולים</span></div>
    <div><b><span class="nw">ה-<bdi>colon</bdi></span> קודם</b><span>גידול ראשוני שמדמם או חוסם עם מחלה מוגבלת בכבד</span></div>
-   <div><b><span class="nw">ה-<bdi>liver</bdi></span> קודם</b><span>מחלה נרחבת <span class="nw">ב-<bdi>liver</bdi></span>, שקובעת את הפרוגנוזה. במיוחד בגידול נמוך <span class="nw">ב-<bdi>rectum</bdi></span>: אפשר תגובה מלאה אחרי קרינה-כימו</span></div>
+   <div><b><span class="nw">ה-<bdi>liver</bdi></span> קודם</b><span>מחלה נרחבת <span class="nw">ב-<bdi>liver</bdi>,</span> שקובעת את הפרוגנוזה. במיוחד בגידול נמוך <span class="nw">ב-<bdi>rectum</bdi>:</span> אפשר תגובה מלאה אחרי קרינה-כימו</span></div>
   </div>
   <div style="display:grid;gap:10px">
    <div class="box"><b class="t">שום גישה לא הוכחה עדיפה</b>מחליטים לכל חולה בנפרד, בוועדה רב-תחומית עם כירורג כבד</div>
@@ -314,13 +361,13 @@ bdi{unicode-bidi:isolate}
    <div class="box" style="margin-top:10px"><b class="t">שוליים</b>המטרה: <bdi>R0</bdi> עם כמה שיותר <bdi>liver</bdi> בריא. שוליים חיוביים הם בעיקר סמן לביולוגיה רעה</div>
   </div>
   <div style="display:grid;gap:10px">
-   <div class="box n"><b class="t"><bdi>RAS</bdi> · <span class="nw">ב-<bdi dir="ltr">40–50%</bdi></span> מהנכרתים</b>עמידות לנוגדי <bdi>EGFR</bdi>. הישרדות ל-3 שנים 52% לעומת 81%. יחד עם <bdi>TP53</bdi>: גרוע יותר</div>
+   <div class="box n"><b class="t"><bdi>RAS</bdi> · <span class="nw">ב-<bdi dir="ltr">40–50%</bdi></span> מהנכרתים</b>עמידות לנוגדי <span class="nw"><bdi>EGFR</bdi>.</span> הישרדות ל-3 שנים 52% לעומת 81%. יחד עם <span class="nw"><bdi>TP53</bdi>:</span> גרוע יותר</div>
    <div class="box r"><b class="t"><bdi>BRAF V600E</bdi></b><bdi dir="ltr">8–12%</bdi> מהמחלה הגרורתית, חציון הישרדות 11 חודשים. בסדרות כריתה רק 2%: חציון 40 חודשים לעומת 81</div>
    <div class="box"><b class="t"><bdi>MSI-H</bdi></b>15% מסרטני המעי הגס, פחות מ-2% מהנכרתים בכבד. רגיש לחוסמי נקודות בקרה</div>
    <div class="box b"><b class="t">מחלה מחוץ לכבד</b>לא התוויית נגד מוחלטת. ריאה בלבד: חציון הישרדות 78 חודשים</div>
   </div>
  </div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 90 עמ׳ <bdi dir="ltr">1313–1314</bdi> (טבלה <bdi>90.2</bdi>)</span><span>פרוגנוזה</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 90 עמ׳ <bdi dir="ltr">1313–1314</bdi> (טבלה <span class="nw"><bdi>90.2</bdi>)</span></span><span>פרוגנוזה</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -329,9 +376,9 @@ bdi{unicode-bidi:isolate}
  <div class="grid g3">
   <div class="box"><b class="t">אבלציה</b>
    <ul class="b sm"><li>גידול מתחת ל-3 ס״מ: <bdi>RFA</bdi> יכולה להשמיד אותו לאורך זמן</li><li>כלי דם גדולים מקררים את האזור ומפחיתים יעילות</li><li>מיקרוגל: פחות רגיש לזה ואזור גדול יותר. מועדף</li><li>טובה לגרורה קטנה ועמוקה שכריתתה דורשת הרבה <bdi>liver</bdi></li></ul></div>
-  <div class="box n"><b class="t">משאבה <span class="nw">ל-<bdi>hepatic artery</bdi></span> (<bdi>HAIP</bdi>)</b>
-   <ul class="b sm"><li>הגרורות ניזונות כמעט רק מהעורק. <bdi>FUDR</bdi> נקלט <span class="nw">ב-<bdi>liver</bdi></span> <span class="nw">ב-<bdi dir="ltr">94–99%</bdi></span></li><li>הקטטר <span class="nw">ב-<bdi>GDA</bdi></span> (<bdi>gastroduodenal artery</bdi>)</li><li>בלא נתיחים: 47% הגיעו לכריתה מלאה</li><li>סיבוך ייחודי: פגיעה בדרכי המרה. עוקבים אחרי תפקודי כבד</li></ul></div>
-  <div class="box b"><b class="t">הקרנה פנימית (<bdi>Y-90</bdi>)</b>
+  <div class="box n"><b class="t">משאבה <span class="nw">ל-<bdi>hepatic artery</bdi></span> <span class="nw">(<bdi>HAIP</bdi>)</span></b>
+   <ul class="b sm"><li>הגרורות ניזונות כמעט רק מהעורק. <bdi>FUDR</bdi> נקלט <span class="nw">ב-<bdi>liver</bdi></span> <span class="nw">ב-<bdi dir="ltr">94–99%</bdi></span></li><li>הקטטר <span class="nw">ב-<bdi>GDA</bdi></span> <span class="nw">(<bdi>gastroduodenal artery</bdi>)</span></li><li>בלא נתיחים: 47% הגיעו לכריתה מלאה</li><li>סיבוך ייחודי: פגיעה בדרכי המרה. עוקבים אחרי תפקודי כבד</li></ul></div>
+  <div class="box b"><b class="t">הקרנה פנימית <span class="nw">(<bdi>Y-90</bdi>)</span></b>
    <ul class="b sm"><li>מיקרו-כדוריות רדיואקטיביות דרך העורקים שמזינים את הגידול</li><li>הוספה לכימותרפיה בקו ראשון לא שיפרה הישרדות</li><li>מוגבלת כשהגידול קרוב <span class="nw">ל-<bdi>bowel</bdi></span> או <span class="nw">ל-<bdi>stomach</bdi></span></li></ul></div>
  </div>
  <div class="box a" style="margin-top:12px"><b class="t">השתלת כבד</b>פעם: הישרדות ל-5 שנים 18% ונזנחה. בנורווגיה (61 חולים): חציון הישרדות 60.3 חודשים, אבל 78.3% חזרה. בבדיקה במחקרים אקראיים</div>
@@ -355,17 +402,17 @@ bdi{unicode-bidi:isolate}
  <div class="kick"><b>13</b>מה חדש בתחום · 2023–2026</div>
  <h2>מחקרים שכדאי להכיר</h2>
  <div class="grid">
-  <div class="study"><div class="y"><bdi>Lancet</bdi> 2024 · מחקר אקראי</div><b><bdi>TransMet</bdi>: השתלת כבד בגרורות לא נתיחות</b>
-   <p>94 חולים עם גרורות בכבד בלבד, לא נתיחות, שהגיבו לכימותרפיה, בלי <bdi>BRAF</bdi>. הישרדות ל-5 שנים <bdi dir="ltr">56.6%</bdi> עם השתלה לעומת <bdi dir="ltr">12.6%</bdi> עם כימותרפיה בלבד (בניתוח לפי הטיפול שניתן: <bdi dir="ltr">73.3%</bdi> לעומת <bdi dir="ltr">9.3%</bdi>)</p>
+  <div class="study"><div class="y"><bdi>Lancet</bdi> 2024 · מחקר אקראי</div><b><span class="nw"><bdi>TransMet</bdi>:</span> השתלת כבד בגרורות לא נתיחות</b>
+   <p>94 חולים עם גרורות בכבד בלבד, לא נתיחות, שהגיבו לכימותרפיה, בלי <span class="nw"><bdi>BRAF</bdi>.</span> הישרדות ל-5 שנים <bdi dir="ltr">56.6%</bdi> עם השתלה לעומת <bdi dir="ltr">12.6%</bdi> עם כימותרפיה בלבד (בניתוח לפי הטיפול שניתן: <bdi dir="ltr">73.3%</bdi> לעומת <span class="nw"><bdi dir="ltr">9.3%</bdi>)</span></p>
    <small>Adam R et al. Lancet 2024;404:1107-18</small></div>
-  <div class="study"><div class="y"><bdi>Lancet Oncol</bdi> 2025 · מחקר אקראי שלב 3</div><b><bdi>COLLISION</bdi>: אבלציה מול כריתה</b>
-   <p>300 חולים עם עד 10 גרורות של 3 ס״מ לכל היותר. אבלציה לא נחותה בהישרדות (<bdi dir="ltr">HR 1.05</bdi>). פחות תופעות לוואי (19% לעומת 46%), אפס תמותה מהטיפול לעומת 2%</p>
+  <div class="study"><div class="y"><bdi>Lancet Oncol</bdi> 2025 · מחקר אקראי שלב 3</div><b><span class="nw"><bdi>COLLISION</bdi>:</span> אבלציה מול כריתה</b>
+   <p>300 חולים עם עד 10 גרורות של 3 ס״מ לכל היותר. אבלציה לא נחותה בהישרדות <span class="nw">(<bdi dir="ltr">HR 1.05</bdi>).</span> פחות תופעות לוואי (19% לעומת 46%), אפס תמותה מהטיפול לעומת 2%</p>
    <small>van der Lei S et al. Lancet Oncol 2025;26:187-99</small></div>
-  <div class="study"><div class="y"><bdi>Lancet Oncol</bdi> 2023 · מחקר אקראי שלב 3</div><b><bdi>CAIRO5</bdi>: כימותרפיה להפיכה לנתיח</b>
-   <p>530 חולים עם גרורות לא נתיחות. בצד ימין או עם <bdi>RAS</bdi>/<bdi>BRAF</bdi>: <bdi>FOLFOXIRI</bdi> עם <bdi>bevacizumab</bdi> האריך הישרדות בלי התקדמות (10.6 לעומת 9.0 חודשים), במחיר רעילות. בצד שמאל עם <bdi>RAS</bdi> תקין: <bdi>panitumumab</bdi> לא עדיף על <bdi>bevacizumab</bdi></p>
+  <div class="study"><div class="y"><bdi>Lancet Oncol</bdi> 2023 · מחקר אקראי שלב 3</div><b><span class="nw"><bdi>CAIRO5</bdi>:</span> כימותרפיה להפיכה לנתיח</b>
+   <p>530 חולים עם גרורות לא נתיחות. בצד ימין או עם <bdi>RAS</bdi>/<span class="nw"><bdi>BRAF</bdi>:</span> <bdi>FOLFOXIRI</bdi> עם <bdi>bevacizumab</bdi> האריך הישרדות בלי התקדמות (10.6 לעומת 9.0 חודשים), במחיר רעילות. בצד שמאל עם <bdi>RAS</bdi> תקין: <bdi>panitumumab</bdi> לא עדיף על <bdi>bevacizumab</bdi></p>
    <small>Bond MJG et al. Lancet Oncol 2023;24:757-71</small></div>
-  <div class="study"><div class="y"><bdi>J Clin Oncol</bdi> 2026 · מעקב ארוך</div><b><bdi>JCOG0603</bdi>: כימותרפיה אחרי כריתה</b>
-   <p>300 חולים, מעקב חציוני 7.7 שנים. <bdi>mFOLFOX6</bdi> אחרי הכריתה שיפר הישרדות בלי מחלה ל-5 שנים (<bdi dir="ltr">49.7%</bdi> לעומת <bdi dir="ltr">40.5%</bdi>), אבל ההישרדות הכוללת לא השתפרה (<bdi dir="ltr">73.4%</bdi> לעומת <bdi dir="ltr">80.1%</bdi>)</p>
+  <div class="study"><div class="y"><bdi>J Clin Oncol</bdi> 2026 · מעקב ארוך</div><b><span class="nw"><bdi>JCOG0603</bdi>:</span> כימותרפיה אחרי כריתה</b>
+   <p>300 חולים, מעקב חציוני 7.7 שנים. <bdi>mFOLFOX6</bdi> אחרי הכריתה שיפר הישרדות בלי מחלה ל-5 שנים <span class="nw">(<bdi dir="ltr">49.7%</bdi></span> לעומת <span class="nw"><bdi dir="ltr">40.5%</bdi>),</span> אבל ההישרדות הכוללת לא השתפרה <span class="nw">(<bdi dir="ltr">73.4%</bdi></span> לעומת <span class="nw"><bdi dir="ltr">80.1%</bdi>)</span></p>
    <small>Kanemitsu Y et al. J Clin Oncol 2026;44:1395-1400</small></div>
  </div>
  <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
@@ -378,11 +425,11 @@ bdi{unicode-bidi:isolate}
   <li><span>גרורות בכבד מסרטן המעי הגס הן שלב <bdi>IV</bdi> שאפשר לרפא: כריתה מלאה נותנת כ-50% הישרדות ל-5 שנים</span></li>
   <li><span><bdi>CT</bdi> רב-פאזי הוא הבסיס. <bdi>MRI</bdi> בכבד שומני. ביופסיה <span class="nw">מה-<bdi>liver</bdi></span> לא חובה</span></li>
   <li><span>נתיח = כל המחלה יוצאת ונשארים שני סגמנטים רציפים עם זרימה, ניקוז ונפח (20% בכבד בריא, 30% אחרי כימותרפיה)</span></li>
-  <li><span>אין סדר "נכון" אחד בין <span class="nw">ה-<bdi>liver</bdi></span> <span class="nw">ל-<bdi>colon</bdi></span>. מחליטים בוועדה עם כירורג כבד</span></li>
-  <li><span><bdi>RAS</bdi>, <bdi>BRAF</bdi> ותגובה לכימותרפיה מספרים על הביולוגיה. הביולוגיה היא שקובעת</span></li>
+  <li><span>אין סדר "נכון" אחד בין <span class="nw">ה-<bdi>liver</bdi></span> <span class="nw">ל-<bdi>colon</bdi>.</span> מחליטים בוועדה עם כירורג כבד</span></li>
+  <li><span><span class="nw"><bdi>RAS</bdi>,</span> <bdi>BRAF</bdi> ותגובה לכימותרפיה מספרים על הביולוגיה. הביולוגיה היא שקובעת</span></li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 90 <bdi>Secondary Tumors of the Liver</bdi> (עמ׳ <bdi dir="ltr">1306–1317</bdi>) · פרק 89, אנטומיה של <span class="nw">ה-<bdi>liver</bdi></span> (עמ׳ <bdi dir="ltr">1250–1256</bdi>)</div>
- <div class="src"><span>איורים: <bdi>BodyParts3D</bdi> (<bdi>CC BY-SA 2.1 JP</bdi>) · <bdi>Musser</bdi> 1904 (נחלת הכלל) · הדמיה <span class="nw">מ-<bdi>Wikimedia Commons</bdi></span> לפי הרישיון שבכל כיתוב · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 90 <bdi>Secondary Tumors of the Liver</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1306–1317</bdi>)</span> · פרק 89, אנטומיה של <span class="nw">ה-<bdi>liver</bdi></span> (עמ׳ <span class="nw"><bdi dir="ltr">1250–1256</bdi>)</span></div>
+ <div class="src"><span>איורים: <bdi>BodyParts3D</bdi> <span class="nw">(<bdi>CC BY-SA 2.1 JP</bdi>)</span> · <bdi>Musser</bdi> 1904 (נחלת הכלל) · הדמיה <span class="nw">מ-<bdi>Wikimedia Commons</bdi></span> לפי הרישיון שבכל כיתוב · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>
@@ -404,5 +451,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>

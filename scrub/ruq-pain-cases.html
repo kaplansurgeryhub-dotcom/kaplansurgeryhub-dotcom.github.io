@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>דיון מקרים: כאב בבטן הימנית העליונה · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -90,7 +90,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -120,9 +120,56 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -134,7 +181,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
  <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 1</div>
  <h1>דיון מקרים: כאב בבטן הימנית העליונה</h1>
- <p class="lead">לא כל כאב מתחת לצלעות הימניות הוא <span class="nw">ה-<bdi dir="ltr">gallbladder</bdi></span>. שלושה מטופלים בדויים: הלב, <span class="nw">ה-<bdi dir="ltr">stomach</bdi></span> המנוקבת <span class="nw">וה-<bdi dir="ltr">gallbladder</bdi></span> בלי אבנים</p>
+ <p class="lead">לא כל כאב מתחת לצלעות הימניות הוא <span class="nw">ה-<bdi dir="ltr">gallbladder</bdi>.</span> שלושה מטופלים בדויים: הלב, <span class="nw">ה-<bdi dir="ltr">stomach</bdi></span> המנוקבת <span class="nw">וה-<bdi dir="ltr">gallbladder</bdi></span> בלי אבנים</p>
  <div class="cvsrc" data-ch="85,88" data-note=""><small>מבוסס על</small><b><bdi dir="ltr">Sabiston Textbook of Surgery</bdi> · מהדורה 22</b><div class="cvch"><span>פרק <bdi dir="ltr">85</bdi></span><span>פרק <bdi dir="ltr">88</bdi></span></div></div>
  <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
 </div></section>
@@ -149,7 +196,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>לזהות בטן חריפה מנקב ולהכין מטופל לניתוח דחוף</li>
   <li>לחשוד בדלקת של כיס המרה בלי אבנים במטופל קשה ביחידה לטיפול נמרץ</li>
  </ol>
- <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 85 (עמ׳ <bdi dir="ltr">1155–1165</bdi>) · פרק 88 (עמ׳ <bdi dir="ltr">1217</bdi>, <bdi dir="ltr">1221–1223</bdi>, <bdi dir="ltr">1227</bdi>)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 85 (עמ׳ <span class="nw"><bdi dir="ltr">1155–1165</bdi>)</span> · פרק 88 (עמ׳ <span class="nw"><bdi dir="ltr">1217</bdi>,</span> <span class="nw"><bdi dir="ltr">1221–1223</bdi>,</span> <span class="nw"><bdi dir="ltr">1227</bdi>)</span></span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -170,22 +217,22 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <g class="hzb" style="--c:#0A6B5A"><circle cx="600" cy="525" r="20"/><text x="600" y="525">6</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="gb" hidden><b>1 · <bdi dir="ltr">Gallbladder</bdi></b><p><span class="nw">ה-<bdi dir="ltr">fundus</bdi></span> בולטת מתחת <span class="nw">ל-<bdi dir="ltr">liver edge</bdi></span>. כאב בילארי ודלקת חריפה. במטופל קשה גם דלקת בלי אבנים. כאן בודקים סימן מרפי</p></div>
-  <div class="hzi" data-hzi="lv" hidden><b>2 · <bdi dir="ltr">Liver</bdi> (<bdi dir="ltr">right lobe</bdi>)</b><p>אבצס בכבד נמצא ברשימת הסיבות הכירורגיות לבטן חריפה. בשולי <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> עובר <span class="nw">ה-<bdi dir="ltr">hepatoduodenal ligament</bdi></span> עם <span class="nw">ה-<bdi dir="ltr">CBD</bdi></span>: אבן <span class="nw">ב-<bdi dir="ltr">CBD</bdi></span> ודלקת של דרכי המרה</p></div>
-  <div class="hzi" data-hzi="py" hidden><b>3 · <bdi dir="ltr">Pylorus</bdi> <span class="nw">ו-<bdi dir="ltr">duodenum</bdi></span></b><p>כיב מנוקב <span class="nw">ב-<bdi dir="ltr">stomach</bdi></span> או <span class="nw">ב-<bdi dir="ltr">duodenum</bdi></span>: כאב פתאומי וחזק עם סימני צפקת. לכן מחפשים אוויר חופשי. כיב, גסטריטיס ואפילו קוליטיס יכולים לחקות דלקת בכיס המרה</p></div>
-  <div class="hzi" data-hzi="st" hidden><b>4 · <bdi dir="ltr">Stomach</bdi></b><p>כאב אפיגסטרי. מאחוריה <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span>: דלקת לבלב (ליפאז מעל פי 3 מהנורמה). אוטם בדופן התחתונה של הלב יכול להתבטא בכאב בבטן העליונה</p></div>
-  <div class="hzi" data-hzi="di" hidden><b>5 · <bdi dir="ltr">Diaphragm</bdi></b><p>מעליה <span class="nw">ה-<bdi dir="ltr">lung bases</bdi></span>: דלקת ריאות <span class="nw">ב-<bdi dir="ltr">right lower lobe</bdi></span> גורמת לכאב ברבע הימני העליון. גירוי של <span class="nw">ה-<bdi dir="ltr">diaphragm</bdi></span> (אוויר חופשי, דם) מוקרן לכתף דרך <span class="nw">ה-<bdi dir="ltr">phrenic nerve</bdi></span></p></div>
-  <div class="hzi" data-hzi="om" hidden><b>6 · <bdi dir="ltr">Omentum</bdi> <span class="nw">ו-<bdi dir="ltr">transverse colon</bdi></span></b><p>מתחת <span class="nw">ל-<bdi dir="ltr">liver</bdi></span> נמצאת <span class="nw">ה-<bdi dir="ltr">hepatic flexure</bdi></span>. גם <span class="nw">ה-<bdi dir="ltr">right kidney</bdi></span> (אבן, פיילונפריטיס) <span class="nw">וה-<bdi dir="ltr">appendix</bdi></span> שעולה בהיריון יכולים לכאוב באזור</p></div>
+  <div class="hzi" data-hzi="gb" hidden><b>1 · <bdi dir="ltr">Gallbladder</bdi></b><p><span class="nw">ה-<bdi dir="ltr">fundus</bdi></span> בולטת מתחת <span class="nw">ל-<bdi dir="ltr">liver edge</bdi>.</span> כאב בילארי ודלקת חריפה. במטופל קשה גם דלקת בלי אבנים. כאן בודקים סימן מרפי</p></div>
+  <div class="hzi" data-hzi="lv" hidden><b>2 · <bdi dir="ltr">Liver</bdi> <span class="nw">(<bdi dir="ltr">right lobe</bdi>)</span></b><p>אבצס בכבד נמצא ברשימת הסיבות הכירורגיות לבטן חריפה. בשולי <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> עובר <span class="nw">ה-<bdi dir="ltr">hepatoduodenal ligament</bdi></span> עם <span class="nw">ה-<bdi dir="ltr">CBD</bdi>:</span> אבן <span class="nw">ב-<bdi dir="ltr">CBD</bdi></span> ודלקת של דרכי המרה</p></div>
+  <div class="hzi" data-hzi="py" hidden><b>3 · <bdi dir="ltr">Pylorus</bdi> <span class="nw">ו-<bdi dir="ltr">duodenum</bdi></span></b><p>כיב מנוקב <span class="nw">ב-<bdi dir="ltr">stomach</bdi></span> או <span class="nw">ב-<bdi dir="ltr">duodenum</bdi>:</span> כאב פתאומי וחזק עם סימני צפקת. לכן מחפשים אוויר חופשי. כיב, גסטריטיס ואפילו קוליטיס יכולים לחקות דלקת בכיס המרה</p></div>
+  <div class="hzi" data-hzi="st" hidden><b>4 · <bdi dir="ltr">Stomach</bdi></b><p>כאב אפיגסטרי. מאחוריה <span class="nw">ה-<bdi dir="ltr">pancreas</bdi>:</span> דלקת לבלב (ליפאז מעל פי 3 מהנורמה). אוטם בדופן התחתונה של הלב יכול להתבטא בכאב בבטן העליונה</p></div>
+  <div class="hzi" data-hzi="di" hidden><b>5 · <bdi dir="ltr">Diaphragm</bdi></b><p>מעליה <span class="nw">ה-<bdi dir="ltr">lung bases</bdi>:</span> דלקת ריאות <span class="nw">ב-<bdi dir="ltr">right lower lobe</bdi></span> גורמת לכאב ברבע הימני העליון. גירוי של <span class="nw">ה-<bdi dir="ltr">diaphragm</bdi></span> (אוויר חופשי, דם) מוקרן לכתף דרך <span class="nw">ה-<bdi dir="ltr">phrenic nerve</bdi></span></p></div>
+  <div class="hzi" data-hzi="om" hidden><b>6 · <bdi dir="ltr">Omentum</bdi> <span class="nw">ו-<bdi dir="ltr">transverse colon</bdi></span></b><p>מתחת <span class="nw">ל-<bdi dir="ltr">liver</bdi></span> נמצאת <span class="nw">ה-<bdi dir="ltr">hepatic flexure</bdi>.</span> גם <span class="nw">ה-<bdi dir="ltr">right kidney</bdi></span> (אבן, פיילונפריטיס) <span class="nw">וה-<bdi dir="ltr">appendix</bdi></span> שעולה בהיריון יכולים לכאוב באזור</p></div>
  </div></div>
  <p style="font-size:12px;color:var(--muted);margin:8px 0 0">איברי הבטן העליונה במבט מלפנים, <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> מורם · <bdi>Sobotta, Atlas and Text-book of Human Anatomy</bdi> (1906), איור 405 (נחלת הכלל)</p>
- <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1156–1157</bdi>, <bdi dir="ltr">1164</bdi> · פרק 88 עמ׳ <bdi dir="ltr">1217</bdi>, <bdi dir="ltr">1223</bdi>, <bdi dir="ltr">1225</bdi></span><span>אנטומיה</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <span class="nw"><bdi dir="ltr">1156–1157</bdi>,</span> <bdi dir="ltr">1164</bdi> · פרק 88 עמ׳ <span class="nw"><bdi dir="ltr">1217</bdi>,</span> <span class="nw"><bdi dir="ltr">1223</bdi>,</span> <bdi dir="ltr">1225</bdi></span><span>אנטומיה</span></div>
 </div></section>
 
 <section class="s"><div class="card">
  <div class="kick"><b>3</b>אבחנה מבדלת</div>
  <h2>הרשימה שצריך לעבור עליה</h2>
  <div class="grid g3">
-  <div class="box"><b class="t"><span class="nw">ה-<bdi dir="ltr">biliary tree</bdi></span></b><ul class="b sm"><li>כאב בילארי</li><li>דלקת חריפה של כיס המרה, עם או בלי אבנים</li><li>אבן <span class="nw">ב-<bdi dir="ltr">CBD</bdi></span>, דלקת של דרכי המרה</li></ul></div>
+  <div class="box"><b class="t"><span class="nw">ה-<bdi dir="ltr">biliary tree</bdi></span></b><ul class="b sm"><li>כאב בילארי</li><li>דלקת חריפה של כיס המרה, עם או בלי אבנים</li><li>אבן <span class="nw">ב-<bdi dir="ltr">CBD</bdi>,</span> דלקת של דרכי המרה</li></ul></div>
   <div class="box r"><b class="t">כירורגי אחר</b><ul class="b sm"><li>כיב מנוקב <span class="nw">ב-<bdi dir="ltr">stomach</bdi></span> או <span class="nw">ב-<bdi dir="ltr">duodenum</bdi></span></li><li>דלקת לבלב</li><li>אבצס בכבד</li><li>תוספתן (במיוחד בהיריון)</li></ul></div>
   <div class="box n"><b class="t">מחוץ לבטן</b><ul class="b sm"><li><b>אוטם שריר הלב</b></li><li>דלקת ריאות <span class="nw">ב-<bdi dir="ltr">lower lobe</bdi></span></li><li>תסחיף ריאתי</li></ul></div>
   <div class="box b"><b class="t">שתן וכליות</b><ul class="b sm"><li>אבן בכליה</li><li>פיילונפריטיס</li><li>אבצס בכליה</li></ul></div>
@@ -193,7 +240,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div class="box"><b class="t">היריון</b><ul class="b sm"><li>תסמונת <bdi>HELLP</bdi></li><li>דלקת תוספתן או כיס מרה. <span class="nw">ה-<bdi dir="ltr">uterus</bdi></span> המוגדל מזיז את מקום הכאב</li></ul></div>
  </div>
  <div class="box a" style="margin-top:10px"><b class="t">כלל הזהב</b>יש גם תחפושת הפוכה: כיב, גסטריטיס וקוליטיס יכולים להיראות כמו דלקת של כיס המרה. ובקשישים, בסוכרתיים ובמדוכאי חיסון הכול נראה פחות מרשים</div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1156–1157</bdi>, <bdi dir="ltr">1164–1165</bdi> (טבלאות <bdi dir="ltr">85.1</bdi>, <bdi dir="ltr">85.3</bdi>) · פרק 88 עמ׳ <bdi dir="ltr">1217</bdi>, <bdi dir="ltr">1223</bdi></span><span>אבחנה מבדלת</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <span class="nw"><bdi dir="ltr">1156–1157</bdi>,</span> <bdi dir="ltr">1164–1165</bdi> (טבלאות <span class="nw"><bdi dir="ltr">85.1</bdi>,</span> <span class="nw"><bdi dir="ltr">85.3</bdi>)</span> · פרק 88 עמ׳ <span class="nw"><bdi dir="ltr">1217</bdi>,</span> <bdi dir="ltr">1223</bdi></span><span>אבחנה מבדלת</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -203,7 +250,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <ul class="b sm">
     <li><b>הכאב:</b> מתי התחיל, איך, איפה, אופי ומשך. כאב קרביים עמום ומפוזר. כאב <span class="nw">מה-<bdi dir="ltr">parietal peritoneum</bdi></span> חד וממוקם</li>
-    <li><b>הקרנה:</b> כאב בכתף יכול לבוא מגירוי של <span class="nw">ה-<bdi dir="ltr">diaphragm</bdi></span>. וההפך: אוטם בלב יכול להופיע ככאב בבטן העליונה</li>
+    <li><b>הקרנה:</b> כאב בכתף יכול לבוא מגירוי של <span class="nw">ה-<bdi dir="ltr">diaphragm</bdi>.</span> וההפך: אוטם בלב יכול להופיע ככאב בבטן העליונה</li>
     <li><b>רקע:</b> כלי דם ועישון, ניתוחים, תרופות (סטרואידים מסתירים סימנים), נוגדי קרישה. באישה: וסת, היריון</li>
     <li><b>בדיקה:</b> הסתכלות, הקשה ואז מישוש, מהמקום הלא כואב. רגליים מכופפות כדי להרפות את הבטן. מחפשים התגוננות לא רצונית, נוקשות ורגישות בשחרור</li>
     <li><b>כאב לא פרופורציונלי לבדיקה:</b> לחשוב על איסכמיה</li>
@@ -213,7 +260,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   </div>
   <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש בשתי ידיים מתחת לה-right costal margin" style="max-height:48vh"><figcaption>מישוש הרבע הימני העליון בשתי ידיים: יד אחת מאחור דוחפת קדימה, השנייה ממששת מתחת <span class="nw">ל-<bdi dir="ltr">costal margin</bdi></span> · <bdi>Musser, A Practical Treatise on Medical Diagnosis</bdi> (1904), איור 192 (נחלת הכלל)</figcaption></figure>
  </div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1155</bdi>, <bdi dir="ltr">1157–1159</bdi></span><span>בדיקה</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <span class="nw"><bdi dir="ltr">1155</bdi>,</span> <bdi dir="ltr">1157–1159</bdi></span><span>בדיקה</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -221,13 +268,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>"יש לו אבנים. מזמינים כירורג"</h2>
  <div class="grid f">
   <div>
-   <div class="case">גבר בן 58, מעשן, סוכרתי ויתר לחץ דם. <b>שעתיים</b> של "לחץ" באפיגסטריום ובבטן הימנית העליונה, בחילה ו<b>הזעה</b>. הבטן רכה, רגישות קלה באפיגסטריום, <b>מרפי שלילי</b>. רופא המיון ראה באולטרסאונד ליד המיטה אבנים <span class="nw">ב-<bdi dir="ltr">gallbladder</bdi></span>.
+   <div class="case">גבר בן 58, מעשן, סוכרתי ויתר לחץ דם. <b>שעתיים</b> של "לחץ" באפיגסטריום ובבטן הימנית העליונה, בחילה ו<b>הזעה</b>. הבטן רכה, רגישות קלה באפיגסטריום, <b>מרפי שלילי</b>. רופא המיון ראה באולטרסאונד ליד המיטה אבנים <span class="nw">ב-<bdi dir="ltr">gallbladder</bdi>.</span>
     <div class="vit"><span>ל״ד 158/94</span><span>דופק 106</span><span>חום 36.9</span><span>נשימות 22</span><span>ספירה ותפקודי כבד תקינים</span></div></div>
    <ol class="q"><li>האבנים מסבירות את התמונה?</li><li>מה חייבים לשלול לפני שממשיכים?</li><li>אילו בדיקות פשוטות עושים עכשיו?</li></ol>
   </div>
   <figure><img src="img/us-gallstone-shadow.jpg" alt="אולטרסאונד: אבן גדולה ב-gallbladder עם צל אקוסטי" style="max-height:42vh"><figcaption>אבן גדולה <span class="nw">ב-<bdi dir="ltr">gallbladder</bdi></span> עם צל אקוסטי. הדופן דקה ואין נוזל סביב (להמחשה) · <bdi dir="ltr">Hellerhoff · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
  </div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1157</bdi>, <bdi dir="ltr">1159</bdi> · פרק 88 עמ׳ <bdi dir="ltr">1217</bdi>, <bdi dir="ltr">1221</bdi></span><span>מקרה 1</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <span class="nw"><bdi dir="ltr">1157</bdi>,</span> <bdi dir="ltr">1159</bdi> · פרק 88 עמ׳ <span class="nw"><bdi dir="ltr">1217</bdi>,</span> <bdi dir="ltr">1221</bdi></span><span>מקרה 1</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -258,7 +305,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>בכל מטופל עם כאב בבטן העליונה שאתם בודקים במיון: האזינו ללב ולריאות. בדקו אם נעשה א״ק״ג. הציגו לבכיר/ה אבחנה מבדלת עם לפחות סיבה אחת מחוץ לבטן</div>
   </div>
  </div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1157</bdi>, <bdi dir="ltr">1159</bdi>, <bdi dir="ltr">1163</bdi> · פרק 88 עמ׳ <bdi dir="ltr">1221</bdi>, <bdi dir="ltr">1223</bdi></span><span>מקרה 1</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <span class="nw"><bdi dir="ltr">1157</bdi>,</span> <span class="nw"><bdi dir="ltr">1159</bdi>,</span> <bdi dir="ltr">1163</bdi> · פרק 88 עמ׳ <span class="nw"><bdi dir="ltr">1221</bdi>,</span> <bdi dir="ltr">1223</bdi></span><span>מקרה 1</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -272,7 +319,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   </div>
   <figure><img src="img/xr-free-air.jpg" alt="צילום חזה עם אוויר מתחת ל-diaphragm ו-CT עם אוויר חופשי" style="max-height:40vh"><figcaption>אוויר חופשי: מתחת <span class="nw">ל-<bdi dir="ltr">diaphragm</bdi></span> בצילום החזה (משמאל) ומול <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> <span class="nw">ב-<bdi>CT</bdi></span> (מימין) · <bdi dir="ltr">Cerevisae · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
  </div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1157–1158</bdi>, <bdi dir="ltr">1160</bdi></span><span>מקרה 2</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <span class="nw"><bdi dir="ltr">1157–1158</bdi>,</span> <bdi dir="ltr">1160</bdi></span><span>מקרה 2</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -282,14 +329,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <details class="rev"><summary>הכתף והבטן</summary>
     <ul class="b sm">
-     <li>אוויר חופשי מגרה את <span class="nw">ה-<bdi dir="ltr">diaphragm</bdi></span>. <span class="nw">ה-<bdi dir="ltr">phrenic nerve</bdi></span> מוקרן לכתף</li>
+     <li>אוויר חופשי מגרה את <span class="nw">ה-<bdi dir="ltr">diaphragm</bdi>.</span> <span class="nw">ה-<bdi dir="ltr">phrenic nerve</bdi></span> מוקרן לכתף</li>
      <li><b>צפקת:</b> התגוננות לא רצונית, נוקשות ורגישות בשחרור, מגירוי של <span class="nw">ה-<bdi dir="ltr">parietal peritoneum</bdi></span></li>
      <li>החשד: כיב מנוקב <span class="nw">ב-<bdi dir="ltr">stomach</bdi></span> או <span class="nw">ב-<bdi dir="ltr">duodenum</bdi></span></li>
     </ul></details>
    <details class="rev"><summary>ההדמיה</summary>
     <ul class="b sm">
-     <li><b>צילום בעמידה:</b> אוויר מתחת <span class="nw">ל-<bdi dir="ltr">diaphragm</bdi></span>. זמין מהר ומקדים את הייעוץ הכירורגי</li>
-     <li><b>CT עם חומר ניגוד לווריד:</b> הכלי העיקרי בבטן חריפה. בלי חומר ניגוד הדיוק יורד בכ-30%</li>
+     <li><b>צילום בעמידה:</b> אוויר מתחת <span class="nw">ל-<bdi dir="ltr">diaphragm</bdi>.</span> זמין מהר ומקדים את הייעוץ הכירורגי</li>
+     <li><b><bdi dir="ltr">CT</bdi> עם חומר ניגוד לווריד:</b> הכלי העיקרי בבטן חריפה. בלי חומר ניגוד הדיוק יורד בכ-30%</li>
      <li><b>חומר ניגוד דרך הפה</b> כמעט לא צריך, חוץ מחשד לניקוב או לדליפה. דליפה שלו סגולית אבל לא רגישה</li>
     </ul></details>
   </div>
@@ -306,7 +353,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    </details>
   </div>
  </div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1157–1158</bdi>, <bdi dir="ltr">1160–1161</bdi>, <bdi dir="ltr">1163–1164</bdi> · פרק 88 עמ׳ <bdi dir="ltr">1217</bdi></span><span>מקרה 2</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <span class="nw"><bdi dir="ltr">1157–1158</bdi>,</span> <span class="nw"><bdi dir="ltr">1160–1161</bdi>,</span> <bdi dir="ltr">1163–1164</bdi> · פרק 88 עמ׳ <bdi dir="ltr">1217</bdi></span><span>מקרה 2</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -315,16 +362,16 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b sm">
-    <li><b>דלקת ריאות <span class="nw">ב-<bdi dir="ltr">right lower lobe</bdi></span>:</b> כאב ברבע הימני העליון עם חום, שיעול ונשימה מאומצת. צילום חזה מבדיל. זה אחד התפקידים המעטים שנשארו לצילום הבטן והחזה במחלות כיס המרה</li>
+    <li><b>דלקת ריאות <span class="nw">ב-<bdi dir="ltr">right lower lobe</bdi>:</span></b> כאב ברבע הימני העליון עם חום, שיעול ונשימה מאומצת. צילום חזה מבדיל. זה אחד התפקידים המעטים שנשארו לצילום הבטן והחזה במחלות כיס המרה</li>
     <li><b>פיילונפריטיס ואבן בכליה:</b> בדיקת שתן</li>
     <li><b>דלקת לבלב:</b> ליפאז מעל פי 3 מהנורמה. כאב אפיגסטרי בבדיקה מעלה חשד</li>
-    <li><b>אישה בגיל הפוריות:</b> <bdi>β-hCG</bdi> תמיד. בהיריון מעדיפים אולטרסאונד <span class="nw">ו-<bdi>MRI</bdi></span>. אם צריך <bdi>CT</bdi> בשביל האם, עושים אותו: כ-25 מיליגריי לעובר. עד 50 מיליגריי הסיכון נמוך</li>
+    <li><b>אישה בגיל הפוריות:</b> <bdi>β-hCG</bdi> תמיד. בהיריון מעדיפים אולטרסאונד <span class="nw">ו-<bdi>MRI</bdi>.</span> אם צריך <bdi>CT</bdi> בשביל האם, עושים אותו: כ-25 מיליגריי לעובר. עד 50 מיליגריי הסיכון נמוך</li>
     <li><b>חמצת קטוטית סוכרתית:</b> מטופל שהפסיק אינסולין</li>
    </ul>
   </div>
   <figure><img src="img/xr-rll-pneumonia.jpg" alt="צילום חזה עם דלקת ריאות ב-right lower lobe" style="max-height:42vh"><figcaption>דלקת ריאות <span class="nw">ב-<bdi dir="ltr">right lower lobe</bdi></span> (בעיגול), ממש מעל <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> <span class="nw">וה-<bdi dir="ltr">gallbladder</bdi></span> · <bdi dir="ltr">James Heilman, MD · CC BY 3.0 · Wikimedia Commons</bdi></figcaption></figure>
  </div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1157</bdi>, <bdi dir="ltr">1159</bdi>, <bdi dir="ltr">1164</bdi> · פרק 88 עמ׳ <bdi dir="ltr">1217</bdi>, <bdi dir="ltr">1225</bdi></span><span>מתחזים</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <span class="nw"><bdi dir="ltr">1157</bdi>,</span> <span class="nw"><bdi dir="ltr">1159</bdi>,</span> <bdi dir="ltr">1164</bdi> · פרק 88 עמ׳ <span class="nw"><bdi dir="ltr">1217</bdi>,</span> <bdi dir="ltr">1225</bdi></span><span>מתחזים</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -363,7 +410,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
      <li>כריתה מאוחרת רק אם ההדמיה בהמשך עדיין לא תקינה</li>
      <li><b>לא השתפר תוך 24 שעות?</b> לשקול ניתוח וכריתה. כנראה יש ניקוב והנקז לא מספיק</li>
     </ul></details>
-   <div class="box n" style="margin-top:10px"><b class="t">ומה עוד בטיפול נמרץ?</b>מחלה קשה מכל סיבה יכולה לייצר בעיה בבטן: דלקת בלי אבנים, איסכמיה של המעי ממינונים גבוהים של מכווצי כלי דם ופסאודו-חסימה של המעי הגס (<bdi>Ogilvie</bdi>)</div>
+   <div class="box n" style="margin-top:10px"><b class="t">ומה עוד בטיפול נמרץ?</b>מחלה קשה מכל סיבה יכולה לייצר בעיה בבטן: דלקת בלי אבנים, איסכמיה של המעי ממינונים גבוהים של מכווצי כלי דם ופסאודו-חסימה של המעי הגס <span class="nw">(<bdi>Ogilvie</bdi>)</span></div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 88 עמ׳ <bdi dir="ltr">1227</bdi> · פרק 85 עמ׳ <bdi dir="ltr">1164–1165</bdi></span><span>מקרה 3</span></div>
@@ -381,10 +428,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div><b>אולטרסאונד</b><span>הבדיקה הראשונה לחשד <span class="nw">ל-<bdi dir="ltr">gallbladder</bdi></span> ולצהבת. בלי קרינה, גם ליד המיטה. מוגבל בגזים ובמטופל שמן</span></div>
   <div><b>צילום בעמידה</b><span>אוויר חופשי, חסימת מעי, דלקת ריאות. אבני מרה רוב הזמן לא נראות</span></div>
   <div><b><bdi>CT</bdi> עם חומר ניגוד</b><span>הכלי העיקרי בבטן חריפה כשהתמונה לא ברורה. רגיש יותר מאולטרסאונד לדלקת בכיס המרה (90% לעומת 80%)</span></div>
-  <div><b>מיפוי <bdi>HIDA</bdi></b><span>אם <span class="nw">ה-<bdi dir="ltr">gallbladder</bdi></span> לא מתמלא תוך שעתיים: חסימה של <span class="nw">ה-<bdi dir="ltr">cystic duct</bdi></span>. רגישות 95% וסגוליות 90%</span></div>
+  <div><b>מיפוי <bdi>HIDA</bdi></b><span>אם <span class="nw">ה-<bdi dir="ltr">gallbladder</bdi></span> לא מתמלא תוך שעתיים: חסימה של <span class="nw">ה-<bdi dir="ltr">cystic duct</bdi>.</span> רגישות 95% וסגוליות 90%</span></div>
   <div><b><bdi>MRI</bdi></b><span>בהיריון ובילדים. יקר וארוך (30 עד 90 דקות)</span></div>
  </div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1159–1162</bdi> (טבלה <bdi dir="ltr">85.5</bdi>) · פרק 88 עמ׳ <bdi dir="ltr">1217–1218</bdi></span><span>הדמיה</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1159–1162</bdi> (טבלה <span class="nw"><bdi dir="ltr">85.5</bdi>)</span> · פרק 88 עמ׳ <bdi dir="ltr">1217–1218</bdi></span><span>הדמיה</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -392,13 +439,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>מחקרים שכדאי להכיר</h2>
  <div class="grid">
   <div class="study"><div class="y"><bdi>J Am Coll Radiol</bdi> 2023 · הנחיות</div><b>הנחיות <bdi>ACR</bdi> לכאב ברבע הימני העליון</b>
-   <p>כאב בלי סיבה ידועה: אולטרסאונד או <bdi>CT</bdi> עם חומר ניגוד. חשד למחלה <span class="nw">ב-<bdi dir="ltr">biliary tree</bdi></span>: אולטרסאונד. אולטרסאונד שלילי עם חום ולויקוציטוזיס: <bdi>MRI</bdi> עם <bdi>MRCP</bdi>, מיפוי או <bdi>CT</bdi>. חשד לדלקת בלי אבנים: מיפוי</p>
+   <p>כאב בלי סיבה ידועה: אולטרסאונד או <bdi>CT</bdi> עם חומר ניגוד. חשד למחלה <span class="nw">ב-<bdi dir="ltr">biliary tree</bdi>:</span> אולטרסאונד. אולטרסאונד שלילי עם חום ולויקוציטוזיס: <bdi>MRI</bdi> עם <span class="nw"><bdi>MRCP</bdi>,</span> מיפוי או <span class="nw"><bdi>CT</bdi>.</span> חשד לדלקת בלי אבנים: מיפוי</p>
    <small><bdi dir="ltr">Russo GK, Zaheer A, Kamel IR, et al. J Am Coll Radiol 2023;20(5S):S211-S223</bdi></small></div>
   <div class="study"><div class="y"><bdi>Ann Emerg Med</bdi> 2024 · מטה-אנליזה</div><b>אולטרסאונד ליד המיטה בידי רופאי מיון</b>
    <p>10 מחקרים, 2,356 מטופלים. לדלקת חריפה של כיס המרה: רגישות 70.9% וסגוליות 94.4%. בדיקה חיובית עוזרת לאשר. בדיקה שלילית לא שוללת</p>
    <small><bdi dir="ltr">Wilson SJ, Thavanathan R, Cheng W, et al. Ann Emerg Med 2024;83(3):235-246</bdi></small></div>
   <div class="study"><div class="y"><bdi>J Trauma Acute Care Surg</bdi> 2023 · מטה-אנליזה</div><b>כיב מנוקב: תיקון לפרוסקופי מול פתוח</b>
-   <p>29 מחקרים, 5,311 מטופלים (4 מחקרים אקראיים). בתיקון הלפרוסקופי פחות תמותה ב-30 יום (<bdi dir="ltr">OR 0.57</bdi>), פחות סיבוכים, פחות זיהומי פצע ואשפוז קצר בכ-3 ימים</p>
+   <p>29 מחקרים, 5,311 מטופלים (4 מחקרים אקראיים). בתיקון הלפרוסקופי פחות תמותה ב-30 יום <span class="nw">(<bdi dir="ltr">OR 0.57</bdi>),</span> פחות סיבוכים, פחות זיהומי פצע ואשפוז קצר בכ-3 ימים</p>
    <small><bdi dir="ltr">Chan KS, Ng STC, Tan CHB, et al. J Trauma Acute Care Surg 2023;94(1):e1-e13</bdi></small></div>
   <div class="study"><div class="y"><bdi>J Hepatobiliary Pancreat Sci</bdi> 2024 · סקר ארצי</div><b>דלקת בלי אבנים ביפן</b>
    <p>432 מטופלים מ-42 מוסדות, 7% מכל הדלקות החריפות. תמותה בבית החולים 2.5%. גורם הסיכון היחיד לתמותה: אוטם או אי ספיקת לב. כריתה, בעיקר לפרוסקופית, נתנה תוצאות טובות יותר</p>
@@ -417,7 +464,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>כאב פתאומי, בטן קשה וכאב בכתף: ניקוב. צילום בעמידה, החייאה, אנטיביוטיקה וחדר ניתוח</li>
   <li>מטופל קשה בטיפול נמרץ עם חום בלי מקור: לחשוב על דלקת בלי אבנים ולנקז</li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 85 <bdi>The Acute Abdomen</bdi> (עמ׳ <bdi dir="ltr">1155–1165</bdi>) · פרק 88 <bdi>Biliary System</bdi> (עמ׳ <bdi dir="ltr">1217–1227</bdi>)</div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 85 <bdi>The Acute Abdomen</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1155–1165</bdi>)</span> · פרק 88 <bdi>Biliary System</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1217–1227</bdi>)</span></div>
  <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906) <span class="nw">ו-<bdi>Musser</bdi></span> (1904), נחלת הכלל · הדמיה <span class="nw">מ-<bdi>Wikimedia Commons</bdi></span> לפי הרישיון בכל איור · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 </main>
@@ -439,5 +486,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>השמנת יתר חולנית · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -83,7 +83,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -113,9 +113,56 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -140,10 +187,10 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   <li>להגדיר השמנה חולנית ולמנות את המחלות הנלוות העיקריות</li>
   <li>להסביר למה ניתוח עובד: הגבלה, תת-ספיגה וההורמונים של המעי</li>
   <li>לדעת את ההתוויות לניתוח בריאטרי ואת ההכנה לפניו</li>
-  <li>להכיר את הניתוחים העיקריים: שרוול, מעקף <bdi>Roux-en-Y</bdi>, <bdi>BPD-DS</bdi> <span class="nw">ו-<bdi>SADI-S</bdi></span> ואת התוצאות שלהם</li>
+  <li>להכיר את הניתוחים העיקריים: שרוול, מעקף <span class="nw"><bdi>Roux-en-Y</bdi>,</span> <bdi>BPD-DS</bdi> <span class="nw">ו-<bdi>SADI-S</bdi></span> ואת התוצאות שלהם</li>
   <li>לזהות את סימני האזהרה בימים שאחרי הניתוח</li>
  </ol>
- <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 99 (עמ׳ <bdi dir="ltr">1554–1578</bdi>)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 99 (עמ׳ <span class="nw"><bdi dir="ltr">1554–1578</bdi>)</span></span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -175,12 +222,12 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
     <div><b dir="ltr">&gt;30%</b><span>יתר לחץ דם</span></div>
     <div><b dir="ltr">20–30%</b><span>רפלוקס</span></div>
    </div>
-   <ul class="b sm"><li>סוכרת מעל <bdi dir="ltr">20%</bdi>, אסתמה מעל <bdi dir="ltr">25%</bdi></li><li><b>תסמונת מטבולית:</b> השמנה מרכזית (היקף מותניים מעל 35 אינץ׳ בנשים או 40 בגברים), סוכרת, דיסליפידמיה ויתר לחץ דם</li></ul>
+   <ul class="b sm"><li>סוכרת מעל <span class="nw"><bdi dir="ltr">20%</bdi>,</span> אסתמה מעל <bdi dir="ltr">25%</bdi></li><li><b>תסמונת מטבולית:</b> השמנה מרכזית (היקף מותניים מעל 35 אינץ׳ בנשים או 40 בגברים), סוכרת, דיסליפידמיה ויתר לחץ דם</li></ul>
   </div>
   <div style="display:grid;gap:8px">
    <div class="box n"><b class="t">לב וכלי דם</b>מוות פתאומי, קרדיומיופתיה, אי-ספיקה ורידית, DVT, יתר לחץ דם ריאתי</div>
-   <div class="box"><b class="t">מטבולי וכבד</b>סוכרת מסוג 2, כבד שומני (<bdi>NASH</bdi>), אבני מרה</div>
-   <div class="box a"><b class="t">סרטן</b><span class="nw">ב-<bdi>esophagus, stomach, colon, kidney, pancreas, gallbladder, uterus, ovary</bdi></span>, בשד אחרי גיל המעבר ועוד</div>
+   <div class="box"><b class="t">מטבולי וכבד</b>סוכרת מסוג 2, כבד שומני <span class="nw">(<bdi>NASH</bdi>),</span> אבני מרה</div>
+   <div class="box a"><b class="t">סרטן</b><span class="nw">ב-<bdi>esophagus, stomach, colon, kidney, pancreas, gallbladder, uterus, ovary</bdi>,</span> בשד אחרי גיל המעבר ועוד</div>
    <div class="box b"><b class="t">נפש וחברה</b>דיכאון, הערכה עצמית נמוכה, אפליה. שכיח רקע של התעללות</div>
   </div>
  </div>
@@ -194,9 +241,9 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   <div>
    <ul class="b sm">
     <li><b>רעב שלא נגמר:</b> במטופל עם השמנה חמורה, כמות מזון שמשביעה אחרים לא משביעה. ה"נקודה הקבועה" של האנרגיה במוח עולה</li>
-    <li><b>גנטיקה:</b> <bdi>FTO</bdi>, <bdi>MC4R</bdi> (הגן הבודד השכיח). גם המיקרוביום</li>
-    <li><b>גרלין</b> ("הורמון הרעב") מופרש <span class="nw">ב-<bdi>fundus</bdi></span>. אחרי דיאטה הוא עולה ואחרי שרוול הוא יורד</li>
-    <li><b>GLP-1</b> <span class="nw">מה-<bdi>distal bowel</bdi></span> מגביר הפרשת אינסולין. עולה אחרי מעקף ושרוול ולא אחרי ירידה במשקל בדיאטה. <b>PYY</b> (שובע) עולה בעיקר אחרי מעקף</li>
+    <li><b>גנטיקה:</b> <span class="nw"><bdi>FTO</bdi>,</span> <bdi>MC4R</bdi> (הגן הבודד השכיח). גם המיקרוביום</li>
+    <li><b>גרלין</b> ("הורמון הרעב") מופרש <span class="nw">ב-<bdi>fundus</bdi>.</span> אחרי דיאטה הוא עולה ואחרי שרוול הוא יורד</li>
+    <li><b><bdi dir="ltr">GLP-1</bdi></b> <span class="nw">מה-<bdi>distal bowel</bdi></span> מגביר הפרשת אינסולין. עולה אחרי מעקף ושרוול ולא אחרי ירידה במשקל בדיאטה. <b>PYY</b> (שובע) עולה בעיקר אחרי מעקף</li>
    </ul>
   </div>
   <div>
@@ -219,8 +266,8 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <div class="grid">
   <div>
    <ul class="b sm">
-    <li><b>מחקר <bdi>SOS</bdi> (שבדיה):</b> 2,010 מנותחים מול 2,037 ביקורות, מעקב מעל 20 שנה. תמותה נמוכה <span class="nw">ב-<bdi dir="ltr">30%</bdi></span> (<bdi>HR</bdi> 0.70). פחות אוטמי לב</li>
-    <li><b>סוכרת (<bdi>STAMPEDE</bdi> ואחרים):</b> ניתוח מוריד <bdi>HbA1c</bdi> <span class="nw">ב-<bdi dir="ltr">2–3.5%</bdi></span>, טיפול תרופתי <span class="nw">ב-<bdi dir="ltr">1–1.5%</bdi></span>. <bdi dir="ltr">29–43%</bdi> מהמנותחים במעקף מגיעים מתחת ל-6, לעומת <bdi dir="ltr">5–7%</bdi></li>
+    <li><b>מחקר <bdi>SOS</bdi> (שבדיה):</b> 2,010 מנותחים מול 2,037 ביקורות, מעקב מעל 20 שנה. תמותה נמוכה <span class="nw">ב-<bdi dir="ltr">30%</bdi></span> <span class="nw">(<bdi>HR</bdi></span> 0.70). פחות אוטמי לב</li>
+    <li><b>סוכרת <span class="nw">(<bdi>STAMPEDE</bdi></span> ואחרים):</b> ניתוח מוריד <bdi>HbA1c</bdi> <span class="nw">ב-<bdi dir="ltr">2–3.5%</bdi>,</span> טיפול תרופתי <span class="nw">ב-<bdi dir="ltr">1–1.5%</bdi>.</span> <bdi dir="ltr">29–43%</bdi> מהמנותחים במעקף מגיעים מתחת ל-6, לעומת <bdi dir="ltr">5–7%</bdi></li>
     <li>בסוכרתיים מנותחים: <bdi dir="ltr">71%</bdi> פחות רטינופתיה <span class="nw">ו-<bdi dir="ltr">69%</bdi></span> פחות אי-ספיקת כליות סופנית</li>
    </ul>
   </div>
@@ -252,7 +299,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   </div>
   <div style="display:grid;gap:10px">
    <div class="box r"><b class="t">התוויות נגד</b><bdi>Prader-Willi</bdi> (התוויה נגד מוחלטת). מטופל שלא יכול ללכת. מעל 500 ליברות: קודם ירידה במשקל בלי ניתוח</div>
-   <div class="box"><b class="t">מתבגרים</b>אחרי קפיצת הגדילה. <span class="nw">ב-<bdi>Teen-LABS</bdi></span>: הפוגה של סוכרת <span class="nw">ב-<bdi dir="ltr">88%</bdi></span> אחרי 5 שנים, יותר <span class="nw">מ-<bdi dir="ltr">50–70%</bdi></span> במבוגרים</div>
+   <div class="box"><b class="t">מתבגרים</b>אחרי קפיצת הגדילה. <span class="nw">ב-<bdi>Teen-LABS</bdi>:</span> הפוגה של סוכרת <span class="nw">ב-<bdi dir="ltr">88%</bdi></span> אחרי 5 שנים, יותר <span class="nw">מ-<bdi dir="ltr">50–70%</bdi></span> במבוגרים</div>
    <div class="box a"><b class="t">מבוגרים</b>לא הגיל אלא השבריריות ותוחלת החיים. משך ההשמנה וחומרתה הם הגורמים החשובים</div>
   </div>
  </div>
@@ -273,9 +320,9 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
    </ul>
   </div>
   <div style="display:grid;gap:10px">
-   <div class="box"><b class="t"><bdi>Gallbladder</bdi></b>אבנים עם תסמינים: כריתת כיס מרה באותו ניתוח. אחרי מעקף נוצרות אבנים או בוצה <span class="nw">בכ-<bdi dir="ltr">30%</bdi></span>. אורסודיאול 6 חודשים מוריד <span class="nw">ל-<bdi dir="ltr">3%</bdi></span></div>
+   <div class="box"><b class="t"><bdi>Gallbladder</bdi></b>אבנים עם תסמינים: כריתת כיס מרה באותו ניתוח. אחרי מעקף נוצרות אבנים או בוצה <span class="nw">בכ-<bdi dir="ltr">30%</bdi>.</span> אורסודיאול 6 חודשים מוריד <span class="nw">ל-<bdi dir="ltr">3%</bdi></span></div>
    <div class="box n"><b class="t">ביום הניתוח</b>צפלוספורין דור 1 במינון לפי משקל. מניעת קרישים: הליכה מוקדמת, מגפי לחץ והפרין במשקל מולקולרי נמוך</div>
-   <div class="box b"><b class="t">במחלקה השבוע</b>בדקו מטופל לפני ניתוח בריאטרי: <bdi>BMI</bdi>, היקף מותניים, עור (פטריות, שינויי סטזיס ורידית) ובקעים בדופן. שאלו על נחירות ועל תסמיני רפלוקס. הציגו לבכיר/ה</div>
+   <div class="box b"><b class="t">במחלקה השבוע</b>בדקו מטופל לפני ניתוח בריאטרי: <span class="nw"><bdi>BMI</bdi>,</span> היקף מותניים, עור (פטריות, שינויי סטזיס ורידית) ובקעים בדופן. שאלו על נחירות ועל תסמיני רפלוקס. הציגו לבכיר/ה</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 99 עמ׳ <bdi dir="ltr">1556, 1562–1563</bdi></span><span>הכנה</span></div>
@@ -299,14 +346,14 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   <g class="hzb" style="--c:#B5476B"><circle cx="520" cy="565" r="20"/><text x="520" y="565">6</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="fun" hidden><b>1 · <bdi>fundus</bdi> <span class="nw">ו-<bdi>angle of His</bdi></span></b><p>כאן מופרש הגרלין. בשרוול כורתים אותו עד <span class="nw">ה-<bdi>angle of His</bdi></span> וחושפים את <span class="nw">ה-<bdi>left crus</bdi></span>. במעקף משאירים אותו מחוץ לכיס הקטן</p></div>
+  <div class="hzi" data-hzi="fun" hidden><b>1 · <bdi>fundus</bdi> <span class="nw">ו-<bdi>angle of His</bdi></span></b><p>כאן מופרש הגרלין. בשרוול כורתים אותו עד <span class="nw">ה-<bdi>angle of His</bdi></span> וחושפים את <span class="nw">ה-<bdi>left crus</bdi>.</span> במעקף משאירים אותו מחוץ לכיס הקטן</p></div>
   <div class="hzi" data-hzi="body" hidden><b>2 · <bdi>greater curvature</bdi></b><p>בשרוול משחררים את כל <span class="nw">ה-<bdi>greater curvature</bdi></span> ומשדכים לאורך בוז׳י <bdi dir="ltr">34–40</bdi> Fr. נשאר שרוול צינורי על <span class="nw">ה-<bdi>lesser curvature</bdi></span></p></div>
-  <div class="hzi" data-hzi="pyl" hidden><b>3 · <bdi>antrum, pylorus</bdi></b><p>בשרוול מתחילים לשדך <bdi dir="ltr">3–5</bdi> ס״מ <span class="nw">מה-<bdi>pylorus</bdi></span> ולא מצרים את <span class="nw">ה-<bdi>incisura angularis</bdi></span>: שם נוצרות היצרות ודליפות. <span class="nw">ה-<bdi>pylorus</bdi></span> נשמר ולכן אין דמפינג</p></div>
-  <div class="hzi" data-hzi="less" hidden><b>4 · <bdi>lesser curvature, lesser omentum</bdi></b><p>שומרים על <span class="nw">ה-<bdi>left gastric vessels</bdi></span>. במעקף בונים כאן כיס קטן של <bdi dir="ltr">15–30</bdi> מ״ל. בטבעת עוברים דרך החלק הדק (<bdi>pars flaccida</bdi>)</p></div>
-  <div class="hzi" data-hzi="spl" hidden><b>5 · <bdi>spleen</bdi></b><p>מחובר <span class="nw">ל-<bdi>stomach</bdi></span> <span class="nw">ב-<bdi>short gastric vessels</bdi></span>, שמחלקים בשרוול. זהירות מפגיעה <span class="nw">ב-<bdi>spleen</bdi></span> ומחום של מכשיר האנרגיה</p></div>
-  <div class="hzi" data-hzi="om" hidden><b>6 · <bdi>greater omentum, transverse colon</bdi></b><p>במעקף מעלים את לולאת <span class="nw">ה-<bdi>Roux</bdi></span> מלפני <span class="nw">ה-<bdi>transverse colon</bdi></span> (<bdi>antecolic</bdi>): פחות פתחים <span class="nw">ב-<bdi>mesentery</bdi></span>, פחות בקעים פנימיים</p></div>
+  <div class="hzi" data-hzi="pyl" hidden><b>3 · <bdi>antrum, pylorus</bdi></b><p>בשרוול מתחילים לשדך <bdi dir="ltr">3–5</bdi> ס״מ <span class="nw">מה-<bdi>pylorus</bdi></span> ולא מצרים את <span class="nw">ה-<bdi>incisura angularis</bdi>:</span> שם נוצרות היצרות ודליפות. <span class="nw">ה-<bdi>pylorus</bdi></span> נשמר ולכן אין דמפינג</p></div>
+  <div class="hzi" data-hzi="less" hidden><b>4 · <bdi>lesser curvature, lesser omentum</bdi></b><p>שומרים על <span class="nw">ה-<bdi>left gastric vessels</bdi>.</span> במעקף בונים כאן כיס קטן של <bdi dir="ltr">15–30</bdi> מ״ל. בטבעת עוברים דרך החלק הדק <span class="nw">(<bdi>pars flaccida</bdi>)</span></p></div>
+  <div class="hzi" data-hzi="spl" hidden><b>5 · <bdi>spleen</bdi></b><p>מחובר <span class="nw">ל-<bdi>stomach</bdi></span> <span class="nw">ב-<bdi>short gastric vessels</bdi>,</span> שמחלקים בשרוול. זהירות מפגיעה <span class="nw">ב-<bdi>spleen</bdi></span> ומחום של מכשיר האנרגיה</p></div>
+  <div class="hzi" data-hzi="om" hidden><b>6 · <bdi>greater omentum, transverse colon</bdi></b><p>במעקף מעלים את לולאת <span class="nw">ה-<bdi>Roux</bdi></span> מלפני <span class="nw">ה-<bdi>transverse colon</bdi></span> <span class="nw">(<bdi>antecolic</bdi>):</span> פחות פתחים <span class="nw">ב-<bdi>mesentery</bdi>,</span> פחות בקעים פנימיים</p></div>
  </div></div>
- <figcaption><span class="nw">ה-<bdi>stomach</bdi></span> במקומו, <span class="nw">ה-<bdi>liver</bdi></span> מורם · <bdi>Sobotta</bdi>, <bdi>Atlas and Text-book of Human Anatomy</bdi> (1906), איור 405 (נחלת הכלל)</figcaption>
+ <figcaption><span class="nw">ה-<bdi>stomach</bdi></span> במקומו, <span class="nw">ה-<bdi>liver</bdi></span> מורם · <span class="nw"><bdi>Sobotta</bdi>,</span> <bdi>Atlas and Text-book of Human Anatomy</bdi> (1906), איור 405 (נחלת הכלל)</figcaption>
  <div class="src"><span><b>Sabiston 22</b> · פרק 99 עמ׳ <bdi dir="ltr">1560, 1563–1570</bdi> · פרק 86 עמ׳ <bdi dir="ltr">1166–1167</bdi></span><span>אנטומיה</span></div>
 </div></section>
 
@@ -316,16 +363,16 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <div class="grid f">
   <div>
    <div class="flow">
-    <div><b>שרוול</b><span>כריתת <span class="nw">ה-<bdi>greater curvature</bdi></span> על בוז׳י <bdi dir="ltr">34–40</bdi> Fr, <bdi dir="ltr">3–5</bdi> ס״מ <span class="nw">מה-<bdi>pylorus</bdi></span> ועד <span class="nw">ה-<bdi>angle of His</bdi></span>. פשוט, בלי תת-ספיגה, בלי בקעים פנימיים</span></div>
-    <div><b>מעקף <bdi>Roux-en-Y</bdi></b><span>כיס קטן על <span class="nw">ה-<bdi>lesser curvature</bdi></span>. חיתוך <span class="nw">ה-<bdi>jejunum</bdi></span> כ-50 ס״מ <span class="nw">מ-<bdi>Treitz</bdi></span>. לולאת <bdi>Roux</bdi> של 100 ס״מ (150 <span class="nw">ב-<bdi>BMI</bdi></span> מעל 50), לפני <span class="nw">ה-<bdi>colon</bdi></span>. סגירת הפתחים <span class="nw">ב-<bdi>mesentery</bdi></span></span></div>
+    <div><b>שרוול</b><span>כריתת <span class="nw">ה-<bdi>greater curvature</bdi></span> על בוז׳י <bdi dir="ltr">34–40</bdi> Fr, <bdi dir="ltr">3–5</bdi> ס״מ <span class="nw">מה-<bdi>pylorus</bdi></span> ועד <span class="nw">ה-<bdi>angle of His</bdi>.</span> פשוט, בלי תת-ספיגה, בלי בקעים פנימיים</span></div>
+    <div><b>מעקף <bdi>Roux-en-Y</bdi></b><span>כיס קטן על <span class="nw">ה-<bdi>lesser curvature</bdi>.</span> חיתוך <span class="nw">ה-<bdi>jejunum</bdi></span> כ-50 ס״מ <span class="nw">מ-<bdi>Treitz</bdi>.</span> לולאת <bdi>Roux</bdi> של 100 ס״מ (150 <span class="nw">ב-<bdi>BMI</bdi></span> מעל 50), לפני <span class="nw">ה-<bdi>colon</bdi>.</span> סגירת הפתחים <span class="nw">ב-<bdi>mesentery</bdi></span></span></div>
     <div><b><bdi>BPD-DS</bdi></b><span>שרוול, חיתוך <span class="nw">ה-<bdi>duodenum</bdi></span> 2 ס״מ אחרי <span class="nw">ה-<bdi>pylorus</bdi></span> ותעלה משותפת של <bdi dir="ltr">100–200</bdi> ס״מ. הכי הרבה ירידה, הכי הרבה חוסרים</span></div>
-    <div><b><bdi>SADI-S</bdi></b><span>שרוול וחיבור אחד בין <span class="nw">ה-<bdi>duodenum</bdi></span> <span class="nw">ל-<bdi>ileum</bdi></span>, תעלה משותפת <bdi dir="ltr">250–350</bdi> ס״מ. פחות חוסרים <span class="nw">מ-<bdi>BPD-DS</bdi></span></span></div>
+    <div><b><bdi>SADI-S</bdi></b><span>שרוול וחיבור אחד בין <span class="nw">ה-<bdi>duodenum</bdi></span> <span class="nw">ל-<bdi>ileum</bdi>,</span> תעלה משותפת <bdi dir="ltr">250–350</bdi> ס״מ. פחות חוסרים <span class="nw">מ-<bdi>BPD-DS</bdi></span></span></div>
    </div>
    <div class="box a" style="margin-top:8px"><b class="t">טבעת מתכווננת</b>כמעט נעלמה: <bdi dir="ltr">0.9%</bdi> מהניתוחים ב-2022. <bdi dir="ltr">71%</bdi> עברו ניתוח חוזר תוך 7 שנים במאגר הצרפתי</div>
   </div>
   <div style="display:grid;gap:10px">
-   <figure><img src="img/niddk-rygb.png" alt="מעקף קיבה Roux-en-Y" style="max-height:26vh"><figcaption>מעקף <bdi>Roux-en-Y</bdi>: כיס קטן מחובר ללולאת <bdi>jejunum</bdi> · <bdi>NIDDK</bdi>, <bdi>NIH</bdi>, <bdi>Wikimedia Commons</bdi> (נחלת הכלל)</figcaption></figure>
-   <figure><img src="img/sleeve-specimen.jpg" alt="החלק הנכרת בשרוול" style="max-height:24vh"><figcaption>שרוול: החלק הנכרת <span class="nw">מה-<bdi>greater curvature</bdi></span>, אחרי הניתוח · <bdi>Herecomesdoc</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+   <figure><img src="img/niddk-rygb.png" alt="מעקף קיבה Roux-en-Y" style="max-height:26vh"><figcaption>מעקף <span class="nw"><bdi>Roux-en-Y</bdi>:</span> כיס קטן מחובר ללולאת <bdi>jejunum</bdi> · <span class="nw"><bdi>NIDDK</bdi>,</span> <span class="nw"><bdi>NIH</bdi>,</span> <bdi>Wikimedia Commons</bdi> (נחלת הכלל)</figcaption></figure>
+   <figure><img src="img/sleeve-specimen.jpg" alt="החלק הנכרת בשרוול" style="max-height:24vh"><figcaption>שרוול: החלק הנכרת <span class="nw">מה-<bdi>greater curvature</bdi>,</span> אחרי הניתוח · <span class="nw"><bdi>Herecomesdoc</bdi>,</span> <span class="nw"><bdi>CC BY-SA 3.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 99 עמ׳ <bdi dir="ltr">1564–1570, 1573</bdi></span><span>ניתוחים</span></div>
@@ -338,12 +385,12 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   <tr style="background:var(--navy);color:#fff"><th style="padding:7px;text-align:start">ניתוח</th><th style="padding:7px">ירידה מעודף המשקל</th><th style="padding:7px">תמותה</th><th style="padding:7px;text-align:start">נקודות חשובות</th></tr>
   <tr style="background:var(--soft)"><td style="padding:7px;text-align:start"><b>שרוול</b></td><td><bdi dir="ltr">53–62%</bdi></td><td><bdi dir="ltr">0.08%</bdi></td><td style="text-align:start"><bdi dir="ltr">57.5%</bdi> מהניתוחים בארה״ב ב-2022. רפלוקס חדש או מחמיר</td></tr>
   <tr><td style="padding:7px;text-align:start"><b>מעקף</b></td><td><bdi dir="ltr">57–67%</bdi></td><td><bdi dir="ltr">0.11%</bdi></td><td style="text-align:start"><bdi dir="ltr">22.2%</bdi> מהניתוחים. צרבת חולפת מיד ביותר <span class="nw">מ-<bdi dir="ltr">90%</bdi></span></td></tr>
-  <tr style="background:var(--soft)"><td style="padding:7px;text-align:start"><b><bdi>BPD-DS</bdi> / <bdi>SADI-S</bdi></b></td><td><bdi dir="ltr">74–78%</bdi></td><td><bdi dir="ltr">0.4–0.6%</bdi></td><td style="text-align:start">הפוגת סוכרת מעל <bdi dir="ltr">85%</bdi>. ויטמינים ומעקב לכל החיים</td></tr>
+  <tr style="background:var(--soft)"><td style="padding:7px;text-align:start"><b><bdi>BPD-DS</bdi> / <bdi>SADI-S</bdi></b></td><td><bdi dir="ltr">74–78%</bdi></td><td><bdi dir="ltr">0.4–0.6%</bdi></td><td style="text-align:start">הפוגת סוכרת מעל <span class="nw"><bdi dir="ltr">85%</bdi>.</span> ויטמינים ומעקב לכל החיים</td></tr>
   <tr><td style="padding:7px;text-align:start"><b>טבעת</b></td><td><bdi dir="ltr">44–46%</bdi></td><td>0</td><td style="text-align:start">הרבה ניתוחים חוזרים, ירידה לא מספקת</td></tr>
  </table>
  <div class="grid" style="margin-top:12px">
-  <div class="box"><b class="t">שרוול מול מעקף ב-5 שנים (<bdi>SLEEVEPASS</bdi>, <bdi>SM-BOSS</bdi>)</b>מעט יותר ירידה במעקף (<bdi dir="ltr">57%</bdi> מול <bdi dir="ltr">49%</bdi>), בלי הבדל מובהק בסוכרת ובסיבוכים מאוחרים. במעקף יותר הפוגה של רפלוקס (<bdi dir="ltr">60.4%</bdi> מול <bdi dir="ltr">25%</bdi>)</div>
-  <div class="box n"><b class="t">אחרי מעקף, 7–12 שנים</b>הפוגה של סוכרת <span class="nw">בכ-<bdi dir="ltr">51–59%</bdi></span>, של יתר לחץ דם <span class="nw">בכ-<bdi dir="ltr">36–39%</bdi></span></div>
+  <div class="box"><b class="t">שרוול מול מעקף ב-5 שנים <span class="nw">(<bdi>SLEEVEPASS</bdi>,</span> <span class="nw"><bdi>SM-BOSS</bdi>)</span></b>מעט יותר ירידה במעקף <span class="nw">(<bdi dir="ltr">57%</bdi></span> מול <span class="nw"><bdi dir="ltr">49%</bdi>),</span> בלי הבדל מובהק בסוכרת ובסיבוכים מאוחרים. במעקף יותר הפוגה של רפלוקס <span class="nw">(<bdi dir="ltr">60.4%</bdi></span> מול <span class="nw"><bdi dir="ltr">25%</bdi>)</span></div>
+  <div class="box n"><b class="t">אחרי מעקף, 7–12 שנים</b>הפוגה של סוכרת <span class="nw">בכ-<bdi dir="ltr">51–59%</bdi>,</span> של יתר לחץ דם <span class="nw">בכ-<bdi dir="ltr">36–39%</bdi></span></div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 99 עמ׳ <bdi dir="ltr">1569, 1571–1573</bdi></span><span>תוצאות</span></div>
 </div></section>
@@ -361,9 +408,9 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   </div>
   <div>
    <ul class="b sm">
-    <li><b>ERAS:</b> שיכוך בלי אופיואידים ככל האפשר, בלי משאבת PCA, הליכה מוקדמת</li>
+    <li><b><span class="nw"><bdi dir="ltr">ERAS</bdi>:</span></b> שיכוך בלי אופיואידים ככל האפשר, בלי משאבת PCA, הליכה מוקדמת</li>
     <li><b>לילה אחד</b> באשפוז ושחרור על דיאטה נוזלית מלאה</li>
-    <li><b>הקאות ממושכות:</b> <b>תיאמין</b> לפני שמופיעה אנצפלופתיה של <bdi>Wernicke</bdi>. הנזק לא תמיד הפיך</li>
+    <li><b>הקאות ממושכות:</b> <b>תיאמין</b> לפני שמופיעה אנצפלופתיה של <span class="nw"><bdi>Wernicke</bdi>.</span> הנזק לא תמיד הפיך</li>
     <li><b>דיכאון:</b> מטופל שמפסיק לאכול "ומצליח" יותר מדי. גם עלייה בהתאבדויות ופגיעה עצמית: מעקב נפשי</li>
     <li><b>תסחיף ריאתי:</b> <bdi dir="ltr">17%</bdi> ממקרי המוות</li>
    </ul>
@@ -379,11 +426,11 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   <div class="box n"><b class="t">מעקף</b>
    <ul class="b sm"><li>דליפה: מתחת <span class="nw">ל-<bdi dir="ltr">1%</bdi></span> היום</li><li>בקע פנימי וחסימה: CT וניתוח</li><li>היצרות בחיבור: <bdi dir="ltr">2–7%</bdi></li><li>כיב בחיבור: <bdi dir="ltr">2–14%</bdi></li><li>חוסר ברזל <span class="nw">ו-<bdi>B12</bdi></span></li></ul></div>
   <div class="box"><b class="t">שרוול</b>
-   <ul class="b sm"><li>דליפה: <bdi dir="ltr">0.3–0.5%</bdi>, לרוב <bdi dir="ltr">1–4</bdi> שבועות אחרי</li><li>היצרות באינציזורה: פחות <span class="nw">מ-<bdi dir="ltr">1%</bdi></span></li><li>רפלוקס: הסיבה העיקרית להמרה למעקף</li></ul></div>
+   <ul class="b sm"><li>דליפה: <span class="nw"><bdi dir="ltr">0.3–0.5%</bdi>,</span> לרוב <bdi dir="ltr">1–4</bdi> שבועות אחרי</li><li>היצרות באינציזורה: פחות <span class="nw">מ-<bdi dir="ltr">1%</bdi></span></li><li>רפלוקס: הסיבה העיקרית להמרה למעקף</li></ul></div>
   <div class="box a"><b class="t"><bdi>BPD-DS</bdi> / <bdi>SADI-S</bdi></b>
    <ul class="b sm"><li>תת-תזונה של חלבון: <bdi dir="ltr">8%</bdi> אחרי <bdi>BPD-DS</bdi></li><li>חוסר בוויטמינים מסיסי שומן: A, D, E, K</li><li>2–4 יציאות ביום</li></ul></div>
  </div>
- <div class="box" style="margin-top:12px"><b class="t">ניתוח חוזר</b>נשקל בירידה לא מספקת (פחות <span class="nw">מ-<bdi dir="ltr">50%</bdi></span> מהעודף אחרי 18 חודשים), עלייה של יותר <span class="nw">מ-<bdi dir="ltr">10%</bdi></span>, או חזרה של המחלות הנלוות. במאגר הגדול: <bdi dir="ltr">6.3%</bdi> ניתוחים חוזרים בלבד, תמותה <bdi dir="ltr">0.12–0.21%</bdi></div>
+ <div class="box" style="margin-top:12px"><b class="t">ניתוח חוזר</b>נשקל בירידה לא מספקת (פחות <span class="nw">מ-<bdi dir="ltr">50%</bdi></span> מהעודף אחרי 18 חודשים), עלייה של יותר <span class="nw">מ-<bdi dir="ltr">10%</bdi>,</span> או חזרה של המחלות הנלוות. במאגר הגדול: <bdi dir="ltr">6.3%</bdi> ניתוחים חוזרים בלבד, תמותה <bdi dir="ltr">0.12–0.21%</bdi></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 99 עמ׳ <bdi dir="ltr">1574–1576</bdi></span><span>סיבוכים</span></div>
 </div></section>
 
@@ -394,11 +441,11 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   <ul class="b sm">
    <li><b>לפני:</b> לפי שיקול המנתח. <span class="nw">ב-<bdi dir="ltr">7.6%</bdi></span> מהמטופלים הממצאים דחו או שינו את הניתוח</li>
    <li><b>בזמן הניתוח:</b> בדיקת דליפה: מנפחים אוויר <span class="nw">ב-<bdi>stomach</bdi></span> מתחת לסליין ומחפשים בועות. אפשר גם לעצור דימום מקו השדכנים</li>
-   <li><b>אחרי:</b> סטנט מכוסה לדליפה (<bdi dir="ltr">4–6</bdi> שבועות) ואקום אנדוסקופי לחלל (<bdi dir="ltr">8–12</bdi> טיפולים), הרחבה בבלון להיצרות (עד <bdi dir="ltr">3–5</bdi> מ״מ בכל פעם)</li>
+   <li><b>אחרי:</b> סטנט מכוסה לדליפה <span class="nw">(<bdi dir="ltr">4–6</bdi></span> שבועות) ואקום אנדוסקופי לחלל <span class="nw">(<bdi dir="ltr">8–12</bdi></span> טיפולים), הרחבה בבלון להיצרות (עד <bdi dir="ltr">3–5</bdi> מ״מ בכל פעם)</li>
   </ul>
   <div style="display:grid;gap:10px">
    <div class="box"><b class="t">טיפולים אנדוסקופיים לירידה במשקל</b>בלון <span class="nw">ב-<bdi>stomach</bdi></span> ל-6 חודשים (ירידה של <bdi dir="ltr">30–50</bdi> ליברות, לרוב לא נשמרת). שרוול אנדוסקופי בתפרים. נתונים לטווח ארוך חסרים</div>
-   <div class="box a"><b class="t">חזרה במשקל</b><span class="nw">בכ-<bdi dir="ltr">10–15%</bdi></span>. אפשרויות: המרה לניתוח אחר, תרופות <bdi>GLP-1</bdi>, הקטנת הפתח אנדוסקופית</div>
+   <div class="box a"><b class="t">חזרה במשקל</b><span class="nw">בכ-<bdi dir="ltr">10–15%</bdi>.</span> אפשרויות: המרה לניתוח אחר, תרופות <span class="nw"><bdi>GLP-1</bdi>,</span> הקטנת הפתח אנדוסקופית</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 99 עמ׳ <bdi dir="ltr">1576–1577</bdi></span><span>אנדוסקופיה</span></div>
@@ -411,14 +458,14 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   <div class="study"><div class="y"><bdi>Obes Surg</bdi> 2023 · הנחיות <bdi>ASMBS</bdi> <span class="nw">ו-<bdi>IFSO</bdi></span></div><b>התוויות חדשות לניתוח</b>
    <p>מחליפות את קריטריוני 1991: ניתוח מומלץ <span class="nw">ב-<bdi>BMI</bdi></span> מעל 35 גם בלי מחלות נלוות ויישקל <span class="nw">ב-<bdi dir="ltr">30–34.9</bdi></span> עם מחלה מטבולית. באסיה מעל 27.5. גם מתבגרים נבחרים</p>
    <small>Eisenberg D et al. Obes Surg 2023;33:3-14</small></div>
-  <div class="study"><div class="y"><bdi>Lancet Diabetes Endocrinol</bdi> 2025 · אקראי</div><b><bdi>By-Band-Sleeve</bdi>: מעקף, טבעת או שרוול</b>
-   <p>1,351 מטופלים ב-12 בתי חולים בבריטניה. ירידה של <bdi dir="ltr">50%</bdi> מהעודף אחרי 3 שנים: מעקף <bdi dir="ltr">68%</bdi>, שרוול <bdi dir="ltr">41%</bdi>, טבעת <bdi dir="ltr">25%</bdi>. המעקף היה גם המשתלם ביותר</p>
+  <div class="study"><div class="y"><bdi>Lancet Diabetes Endocrinol</bdi> 2025 · אקראי</div><b><span class="nw"><bdi>By-Band-Sleeve</bdi>:</span> מעקף, טבעת או שרוול</b>
+   <p>1,351 מטופלים ב-12 בתי חולים בבריטניה. ירידה של <bdi dir="ltr">50%</bdi> מהעודף אחרי 3 שנים: מעקף <span class="nw"><bdi dir="ltr">68%</bdi>,</span> שרוול <span class="nw"><bdi dir="ltr">41%</bdi>,</span> טבעת <span class="nw"><bdi dir="ltr">25%</bdi>.</span> המעקף היה גם המשתלם ביותר</p>
    <small>By-Band-Sleeve Collaborative Group. Lancet Diabetes Endocrinol 2025;13:410-26</small></div>
-  <div class="study"><div class="y"><bdi>NEJM</bdi> 2022 · אקראי שלב 3</div><b><bdi>SURMOUNT-1</bdi>: טירזפטייד</b>
+  <div class="study"><div class="y"><bdi>NEJM</bdi> 2022 · אקראי שלב 3</div><b><span class="nw"><bdi>SURMOUNT-1</bdi>:</span> טירזפטייד</b>
    <p>2,539 מבוגרים עם השמנה בלי סוכרת, 72 שבועות. ירידה ממוצעת של <bdi dir="ltr">20.9%</bdi> במשקל במינון 15 מ״ג, לעומת <bdi dir="ltr">3.1%</bdi> בפלצבו</p>
    <small>Jastreboff AM et al. N Engl J Med 2022;387:205-16</small></div>
-  <div class="study"><div class="y"><bdi>NEJM</bdi> 2023 · אקראי</div><b><bdi>SELECT</bdi>: סמגלוטייד ולב</b>
-   <p>17,604 מטופלים עם מחלת לב וכלי דם והשמנה, בלי סוכרת. אירועים לבביים קשים <bdi dir="ltr">6.5%</bdi> לעומת <bdi dir="ltr">8.0%</bdi> (<bdi>HR</bdi> 0.80). <bdi dir="ltr">16.6%</bdi> הפסיקו בגלל תופעות לוואי</p>
+  <div class="study"><div class="y"><bdi>NEJM</bdi> 2023 · אקראי</div><b><span class="nw"><bdi>SELECT</bdi>:</span> סמגלוטייד ולב</b>
+   <p>17,604 מטופלים עם מחלת לב וכלי דם והשמנה, בלי סוכרת. אירועים לבביים קשים <bdi dir="ltr">6.5%</bdi> לעומת <bdi dir="ltr">8.0%</bdi> <span class="nw">(<bdi>HR</bdi></span> 0.80). <bdi dir="ltr">16.6%</bdi> הפסיקו בגלל תופעות לוואי</p>
    <small>Lincoff AM et al. N Engl J Med 2023;389:2221-32</small></div>
  </div>
  <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
@@ -434,8 +481,8 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   <li>אחרי ניתוח בריאטרי, טכיקרדיה היא דליפה עד שיוכח אחרת</li>
   <li>הקאות ממושכות: תיאמין. אחרי מעקף: ברזל, <bdi>B12</bdi> ומעקב לכל החיים</li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 99 <bdi>Morbid Obesity</bdi> (עמ׳ <bdi dir="ltr">1554–1578</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906, נחלת הכלל) · תמונות: <bdi>Wikimedia Commons</bdi>, הקרדיט בכל תמונה · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 99 <bdi>Morbid Obesity</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1554–1578</bdi>)</span></div>
+ <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906, נחלת הכלל) · תמונות: <span class="nw"><bdi>Wikimedia Commons</bdi>,</span> הקרדיט בכל תמונה · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>
@@ -457,5 +504,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>

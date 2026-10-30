@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>פרוקטולוגיה · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,7 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -116,9 +116,56 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -139,14 +186,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>1</b>מטרות הלמידה</div>
  <h2>בסוף המפגש תדעו</h2>
  <ol class="obj">
-  <li>לתאר את האנטומיה של <span class="nw">ה-<bdi dir="ltr">anal canal</bdi></span>: <span class="nw">ה-<bdi dir="ltr">dentate line</bdi></span>, <span class="nw">ה-<bdi dir="ltr">anal sphincters</bdi></span>, <span class="nw">ה-<bdi dir="ltr">anal cushions</bdi></span> <span class="nw">וה-<bdi dir="ltr">anal glands</bdi></span></li>
+  <li>לתאר את האנטומיה של <span class="nw">ה-<bdi dir="ltr">anal canal</bdi>:</span> <span class="nw">ה-<bdi dir="ltr">dentate line</bdi>,</span> <span class="nw">ה-<bdi dir="ltr">anal sphincters</bdi>,</span> <span class="nw">ה-<bdi dir="ltr">anal cushions</bdi></span> <span class="nw">וה-<bdi dir="ltr">anal glands</bdi></span></li>
   <li>לקחת אנמנזה ממוקדת ולבצע בדיקה פרוקטולוגית: מנח, הסתכלות, בדיקה רקטלית ואנוסקופיה</li>
   <li>לדרג טחורים פנימיים ולבחור טיפול: שמרני, במרפאה או ניתוח</li>
   <li>לאבחן פיסורה ולהכיר את סולם הטיפול בה</li>
   <li>לטפל במורסה סביב <span class="nw">ה-<bdi dir="ltr">anus</bdi></span> ולהבין איך היא הופכת לפיסטולה</li>
   <li>לזהות סינוס פילונידלי ומצבים דחופים כמו גנגרנה של פורנייה</li>
  </ol>
- <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 97 (עמ׳ <bdi dir="ltr">1515–1534</bdi>)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 97 (עמ׳ <span class="nw"><bdi dir="ltr">1515–1534</bdi>)</span></span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -165,13 +212,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <g class="hzb" style="--c:#2EAA5A"><circle cx="215" cy="1420" r="37"/><text x="215" y="1420">5</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="amp" hidden><b>1 · <bdi dir="ltr">Rectal ampulla</bdi></b><p>מה שהאצבע מרגישה מעל <span class="nw">ל-<bdi dir="ltr">anal canal</bdi></span>. בבדיקה רקטלית בודקים את דופן <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span>, את <span class="nw">ה-<bdi dir="ltr">coccyx</bdi></span> <span class="nw">וה-<bdi dir="ltr">levator ani</bdi></span> מאחור. מלפנים: את <span class="nw">ה-<bdi dir="ltr">prostate</bdi></span> או רקטוצלה. גוש: מיקום לפי שעון, גודל, קשה או רך, נייד או מקובע. גם המרחק <span class="nw">מה-<bdi dir="ltr">anorectal ring</bdi></span>.</p></div>
-  <div class="hzi" data-hzi="col" hidden><b>2 · <bdi dir="ltr">Columns of Morgagni</bdi> <span class="nw">ו-<bdi dir="ltr">anal cushions</bdi></span></b><p>מעל <span class="nw">ה-<bdi dir="ltr">dentate line</bdi></span>: רירית עמודית עם עצבוב אוטונומי בלבד. לכן כמעט בלי כאב. כאן יושבות <span class="nw">ה-<bdi dir="ltr">anal cushions</bdi></span> של הטחורים הפנימיים (שמאל לטרלי, ימין קדמי וימין אחורי). כאן מניחים גומייה.</p></div>
-  <div class="hzi" data-hzi="crypt" hidden><b>3 · <span class="nw">ה-<bdi dir="ltr">dentate line</bdi></span> <span class="nw">וה-<bdi dir="ltr">anal crypts</bdi></span></b><p>הגבול בין אנדודרם לאקטודרם, באמצע <bdi dir="ltr">anal canal</bdi> של כ-4 ס״מ. בבסיס <span class="nw">ה-<bdi dir="ltr">columns of Morgagni</bdi></span> יש <bdi dir="ltr">anal crypts</bdi> שמתנקזות אליהן <bdi dir="ltr">6–12</bdi> <bdi dir="ltr">anal glands</bdi>, בעיקר מאחור. בלוטה חסומה היא נקודת ההתחלה של רוב המורסות והפיסטולות.</p></div>
-  <div class="hzi" data-hzi="anod" hidden><b>4 · <bdi dir="ltr">Anoderm</bdi></b><p>מתחת <span class="nw">ל-<bdi dir="ltr">dentate line</bdi></span>: אפיתל קשקשי בלי שערות ובלוטות, עם עצבוב סומטי עשיר. לכן כאן כואב: פיסורה (בדרך כלל בקו האמצע האחורי), טחור חיצוני עם קריש או גומייה שהונחה נמוך מדי.</p></div>
-  <div class="hzi" data-hzi="sph" hidden><b>5 · <bdi dir="ltr">Anal sphincters</bdi></b><p><b><bdi dir="ltr">Internal anal sphincter</bdi>:</b> המשך מעובה של <span class="nw">ה-<bdi dir="ltr">circular muscle layer</bdi></span> של <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span>, שריר חלק עם עצבוב אוטונומי, <span class="nw">ב-<bdi dir="ltr">2–4</bdi></span> ס״מ התחתונים. העווית שלו מחזיקה את הפיסורה פתוחה. אותו חותכים חלקית <span class="nw">ב-<bdi>LIS</bdi></span>.<br><b><bdi dir="ltr">External anal sphincter</bdi>:</b> שריר שלד שבשליטה רצונית, עצבוב <span class="nw">מה-<bdi dir="ltr">pudendal nerve</bdi></span>. כמה ממנו נחתך קובע את הסיכון לבריחה בניתוח פיסטולה.</p></div>
+  <div class="hzi" data-hzi="amp" hidden><b>1 · <bdi dir="ltr">Rectal ampulla</bdi></b><p>מה שהאצבע מרגישה מעל <span class="nw">ל-<bdi dir="ltr">anal canal</bdi>.</span> בבדיקה רקטלית בודקים את דופן <span class="nw">ה-<bdi dir="ltr">rectum</bdi>,</span> את <span class="nw">ה-<bdi dir="ltr">coccyx</bdi></span> <span class="nw">וה-<bdi dir="ltr">levator ani</bdi></span> מאחור. מלפנים: את <span class="nw">ה-<bdi dir="ltr">prostate</bdi></span> או רקטוצלה. גוש: מיקום לפי שעון, גודל, קשה או רך, נייד או מקובע. גם המרחק <span class="nw">מה-<bdi dir="ltr">anorectal ring</bdi>.</span></p></div>
+  <div class="hzi" data-hzi="col" hidden><b>2 · <bdi dir="ltr">Columns of Morgagni</bdi> <span class="nw">ו-<bdi dir="ltr">anal cushions</bdi></span></b><p>מעל <span class="nw">ה-<bdi dir="ltr">dentate line</bdi>:</span> רירית עמודית עם עצבוב אוטונומי בלבד. לכן כמעט בלי כאב. כאן יושבות <span class="nw">ה-<bdi dir="ltr">anal cushions</bdi></span> של הטחורים הפנימיים (שמאל לטרלי, ימין קדמי וימין אחורי). כאן מניחים גומייה.</p></div>
+  <div class="hzi" data-hzi="crypt" hidden><b>3 · <span class="nw">ה-<bdi dir="ltr">dentate line</bdi></span> <span class="nw">וה-<bdi dir="ltr">anal crypts</bdi></span></b><p>הגבול בין אנדודרם לאקטודרם, באמצע <bdi dir="ltr">anal canal</bdi> של כ-4 ס״מ. בבסיס <span class="nw">ה-<bdi dir="ltr">columns of Morgagni</bdi></span> יש <bdi dir="ltr">anal crypts</bdi> שמתנקזות אליהן <bdi dir="ltr">6–12</bdi> <span class="nw"><bdi dir="ltr">anal glands</bdi>,</span> בעיקר מאחור. בלוטה חסומה היא נקודת ההתחלה של רוב המורסות והפיסטולות.</p></div>
+  <div class="hzi" data-hzi="anod" hidden><b>4 · <bdi dir="ltr">Anoderm</bdi></b><p>מתחת <span class="nw">ל-<bdi dir="ltr">dentate line</bdi>:</span> אפיתל קשקשי בלי שערות ובלוטות, עם עצבוב סומטי עשיר. לכן כאן כואב: פיסורה (בדרך כלל בקו האמצע האחורי), טחור חיצוני עם קריש או גומייה שהונחה נמוך מדי.</p></div>
+  <div class="hzi" data-hzi="sph" hidden><b>5 · <bdi dir="ltr">Anal sphincters</bdi></b><p><b><span class="nw"><bdi dir="ltr">Internal anal sphincter</bdi>:</span></b> המשך מעובה של <span class="nw">ה-<bdi dir="ltr">circular muscle layer</bdi></span> של <span class="nw">ה-<bdi dir="ltr">rectum</bdi>,</span> שריר חלק עם עצבוב אוטונומי, <span class="nw">ב-<bdi dir="ltr">2–4</bdi></span> ס״מ התחתונים. העווית שלו מחזיקה את הפיסורה פתוחה. אותו חותכים חלקית <span class="nw">ב-<bdi>LIS</bdi>.</span><br><b><span class="nw"><bdi dir="ltr">External anal sphincter</bdi>:</span></b> שריר שלד שבשליטה רצונית, עצבוב <span class="nw">מה-<bdi dir="ltr">pudendal nerve</bdi>.</span> כמה ממנו נחתך קובע את הסיכון לבריחה בניתוח פיסטולה.</p></div>
  </div></div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1515–1516</bdi></span><span><bdi>Sobotta</bdi>, אטלס האנטומיה (1906), איור 386 (נחלת הכלל) · אזורים: Scrub In</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1515–1516</bdi></span><span><span class="nw"><bdi>Sobotta</bdi>,</span> אטלס האנטומיה (1906), איור 386 (נחלת הכלל) · אזורים: Scrub In</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -189,7 +236,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div style="display:grid;gap:10px">
    <div class="box"><b class="t">לשאול על היציאות</b>כמה ביום, מאמץ, כמה זמן בשירותים, קוטר ומרקם הצואה, דליפה ובריחה</div>
    <div class="box n"><b class="t">לשאול על הדם</b>טרי או כהה, כמה, קרישים, קשור ליציאה, מעורב בצואה או על פניה, רק בניגוב</div>
-   <div class="box a"><b class="t">לא לשכוח</b>ניתוחים קודמים <span class="nw">ב-<bdi dir="ltr">anus</bdi></span>, קרינה, לידות וקרעים, היסטוריה מינית (בעדינות) ומחלות מין. לפני כל פעולה: הערכה של שליטה על <bdi dir="ltr">anal sphincters</bdi></div>
+   <div class="box a"><b class="t">לא לשכוח</b>ניתוחים קודמים <span class="nw">ב-<bdi dir="ltr">anus</bdi>,</span> קרינה, לידות וקרעים, היסטוריה מינית (בעדינות) ומחלות מין. לפני כל פעולה: הערכה של שליטה על <bdi dir="ltr">anal sphincters</bdi></div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1517, 1519</bdi></span><span>אנמנזה</span></div>
@@ -205,14 +252,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>מנח:</b> שכיבה על הצד השמאלי, או מנח "סכין מתקפלת" על שולחן פרוקטולוגי</li>
     <li><b>הסתכלות:</b> הפרדה עדינה של העכוזים. לבקש לכווץ ואז ללחוץ כלפי מטה (צניחה, ירידת רצפת האגן)</li>
     <li><b>מישוש העור סביב</b> לפני הכנסת האצבע: רגישות. גם מאפשר למטופל להתכונן</li>
-    <li><b>בדיקה רקטלית עם ג׳ל:</b> אורך <span class="nw">ה-<bdi dir="ltr">anal canal</bdi></span> עד <span class="nw">ה-<bdi dir="ltr">puborectalis</bdi></span>, <span class="nw">ה-<bdi dir="ltr">coccyx</bdi></span> <span class="nw">וה-<bdi dir="ltr">levator ani</bdi></span>, <bdi dir="ltr">prostate</bdi> או רקטוצלה מלפנים. בסוף סריקה של <span class="nw">ה-<bdi dir="ltr">anal canal</bdi></span> עצמה עם הפלנגה הראשונה</li>
-    <li><b>לסיום:</b> לכווץ ואז <bdi>Valsalva</bdi>: <span class="nw">ה-<bdi dir="ltr">anal sphincters</bdi></span> צריכים להירפות</li>
+    <li><b>בדיקה רקטלית עם ג׳ל:</b> אורך <span class="nw">ה-<bdi dir="ltr">anal canal</bdi></span> עד <span class="nw">ה-<bdi dir="ltr">puborectalis</bdi>,</span> <span class="nw">ה-<bdi dir="ltr">coccyx</bdi></span> <span class="nw">וה-<bdi dir="ltr">levator ani</bdi>,</span> <bdi dir="ltr">prostate</bdi> או רקטוצלה מלפנים. בסוף סריקה של <span class="nw">ה-<bdi dir="ltr">anal canal</bdi></span> עצמה עם הפלנגה הראשונה</li>
+    <li><b>לסיום:</b> לכווץ ואז <span class="nw"><bdi>Valsalva</bdi>:</span> <span class="nw">ה-<bdi dir="ltr">anal sphincters</bdi></span> צריכים להירפות</li>
     <li><b>אנוסקופיה:</b> הרבה ג׳ל, מכניסים עם המוביל, מוציאים אותו ומסובבים כדי לראות את כל ההיקף</li>
    </ol>
   </div>
   <div style="display:grid;gap:10px">
-   <figure class="sm"><img src="img/procto-sims-position.jpg" alt="מנח שכיבה על הצד השמאלי לבדיקה"><figcaption><b>שכיבה על הצד השמאלי</b> (מנח <bdi>Sims</bdi>): ברכיים מכופפות, המטופל מכוסה ורק האזור הנבדק חשוף · Sue Clark (נחלת הכלל), Wikimedia Commons</figcaption></figure>
-   <figure class="sm"><img src="img/dre-nci.jpg" alt="בדיקה רקטלית באצבע, חתך אורך"><figcaption><b>הבדיקה הרקטלית:</b> האצבע בתוך <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span>, <span class="nw">ה-<bdi dir="ltr">prostate</bdi></span> מלפנים · <bdi>National Cancer Institute</bdi> (נחלת הכלל), Wikimedia Commons</figcaption></figure>
+   <figure class="sm"><img src="img/procto-sims-position.jpg" alt="מנח שכיבה על הצד השמאלי לבדיקה"><figcaption><b>שכיבה על הצד השמאלי</b> (מנח <span class="nw"><bdi>Sims</bdi>):</span> ברכיים מכופפות, המטופל מכוסה ורק האזור הנבדק חשוף · Sue Clark (נחלת הכלל), Wikimedia Commons</figcaption></figure>
+   <figure class="sm"><img src="img/dre-nci.jpg" alt="בדיקה רקטלית באצבע, חתך אורך"><figcaption><b>הבדיקה הרקטלית:</b> האצבע בתוך <span class="nw">ה-<bdi dir="ltr">rectum</bdi>,</span> <span class="nw">ה-<bdi dir="ltr">prostate</bdi></span> מלפנים · <bdi>National Cancer Institute</bdi> (נחלת הכלל), Wikimedia Commons</figcaption></figure>
   </div>
  </div>
  <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>הצטרפו למרפאה פרוקטולוגית או לבדיקה רקטלית במחלקה. בצעו לפחות בדיקה אחת בעצמכם, בנוכחות בכיר/ה ומלווה. תארו את הממצא לפי שעון</div>
@@ -225,10 +272,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b sm">
-    <li><b>כריות נורמליות</b> <span class="nw">ב-<bdi dir="ltr">submucosa</bdi></span>: בשמאל לטרלי, בימין קדמי ובימין אחורי. הדימום מהן <b>עורקי</b>, בגלל חיבורים ישירים בין עורקים לוורידים</li>
+    <li><b>כריות נורמליות</b> <span class="nw">ב-<bdi dir="ltr">submucosa</bdi>:</span> בשמאל לטרלי, בימין קדמי ובימין אחורי. הדימום מהן <b>עורקי</b>, בגלל חיבורים ישירים בין עורקים לוורידים</li>
     <li><b>מה מקדם אותן:</b> עצירות, מאמץ וישיבה ארוכה בשירותים. גם הזדקנות של רקמת התמיכה</li>
-    <li><b>פנימיים:</b> מעל <span class="nw">ה-<bdi dir="ltr">dentate line</bdi></span>. התלונה השכיחה: דם טרי בלי כאב ביציאה, עם או בלי בליטה</li>
-    <li><b>חיצוניים:</b> מתחת <span class="nw">ל-<bdi dir="ltr">dentate line</bdi></span>, מכוסים בעור עם עצבוב סומטי. כואבים כשנוצר בהם קריש</li>
+    <li><b>פנימיים:</b> מעל <span class="nw">ה-<bdi dir="ltr">dentate line</bdi>.</span> התלונה השכיחה: דם טרי בלי כאב ביציאה, עם או בלי בליטה</li>
+    <li><b>חיצוניים:</b> מתחת <span class="nw">ל-<bdi dir="ltr">dentate line</bdi>,</span> מכוסים בעור עם עצבוב סומטי. כואבים כשנוצר בהם קריש</li>
    </ul>
    <div class="flow" style="margin-top:10px">
     <div><b>דרגה <bdi>I</bdi></b><span>מדממים, בלי בליטה</span></div>
@@ -237,7 +284,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <div><b>דרגה <bdi>IV</bdi></b><span>בולטים ולא חוזרים</span></div>
    </div>
   </div>
-  <figure><img src="img/procto-blausen-hemorrhoids.png" alt="טחורים פנימיים וחיצוניים, איור"><figcaption><b>טחורים פנימיים (מעל <span class="nw">ה-<bdi dir="ltr">dentate line</bdi></span>) וחיצוניים (מתחתיו)</b> · <bdi>Blausen.com staff (2014). "Medical gallery of Blausen Medical 2014". WikiJournal of Medicine</bdi>, <bdi>CC BY 3.0</bdi></figcaption></figure>
+  <figure><img src="img/procto-blausen-hemorrhoids.png" alt="טחורים פנימיים וחיצוניים, איור"><figcaption><b>טחורים פנימיים (מעל <span class="nw">ה-<bdi dir="ltr">dentate line</bdi>)</span> וחיצוניים (מתחתיו)</b> · <span class="nw"><bdi>Blausen.com staff (2014). "Medical gallery of Blausen Medical 2014". WikiJournal of Medicine</bdi>,</span> <bdi>CC BY 3.0</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1515, 1519, 1521</bdi> (טבלה 97.1)</span><span>טחורים</span></div>
 </div></section>
@@ -249,12 +296,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div class="box"><b class="t">1 · שמרני לכולם, <bdi dir="ltr">6–8</bdi> שבועות</b>
    <ul class="b sm"><li>שתייה: לפחות 64 אונקיות ביום (כ-1.9 ליטר)</li><li>סיבים: <bdi dir="ltr">20–35</bdi> גרם ביום</li><li>לא יותר <span class="nw">מ-<bdi dir="ltr">2–3</bdi></span> דקות בשירותים, בלי טלפון ובלי לקרוא</li><li>אמבטיית ישיבה חמה אחרי יציאה</li><li>משחות ופתילות: מעט ראיות</li></ul></div>
   <div class="box n"><b class="t">2 · במרפאה · דרגות <bdi>I–II</bdi> וחלק <span class="nw">מ-<bdi>III</bdi></span></b>
-   <ul class="b sm"><li><b>קשירה בגומייה:</b> השכיחה והיעילה ביותר. מעל <span class="nw">ה-<bdi dir="ltr">dentate line</bdi></span>. לכן כמעט בלי כאב. כאב חזק: הגומייה נמוכה מדי, מורידים מיד</li><li>בנוטלי נוגדי קרישה וטסיות: זהירות. הכיב שנוצר אחרי ימים יכול לדמם</li><li><b>הזרקה טרשתית</b> (כ-1 מ״ל): מתאימה לנוטלי נוגדי קרישה</li><li>קרישה באינפרא-אדום</li></ul></div>
+   <ul class="b sm"><li><b>קשירה בגומייה:</b> השכיחה והיעילה ביותר. מעל <span class="nw">ה-<bdi dir="ltr">dentate line</bdi>.</span> לכן כמעט בלי כאב. כאב חזק: הגומייה נמוכה מדי, מורידים מיד</li><li>בנוטלי נוגדי קרישה וטסיות: זהירות. הכיב שנוצר אחרי ימים יכול לדמם</li><li><b>הזרקה טרשתית</b> (כ-1 מ״ל): מתאימה לנוטלי נוגדי קרישה</li><li>קרישה באינפרא-אדום</li></ul></div>
   <div class="box b"><b class="t">3 · ניתוח · דרגות <bdi>III–IV</bdi> מעורבים</b>
-   <ul class="b sm"><li>כריתה סגורה (<bdi>Ferguson</bdi>): פחות כאב, ריפוי מהיר ופחות דימום מהפתוחה (<bdi>Milligan-Morgan</bdi>)</li><li>כורתים רק את העודף ושומרים על <span class="nw">ה-<bdi dir="ltr">internal anal sphincter</bdi></span>. לא כורתים שלוש כריות בלי גשרי רירית (היצרות)</li><li>בלי אנטיביוטיקה מונעת ובלי טמפון</li><li>סיכות (<bdi>stapled</bdi>): פחות כאב, יותר חזרות</li></ul></div>
+   <ul class="b sm"><li>כריתה סגורה <span class="nw">(<bdi>Ferguson</bdi>):</span> פחות כאב, ריפוי מהיר ופחות דימום מהפתוחה <span class="nw">(<bdi>Milligan-Morgan</bdi>)</span></li><li>כורתים רק את העודף ושומרים על <span class="nw">ה-<bdi dir="ltr">internal anal sphincter</bdi>.</span> לא כורתים שלוש כריות בלי גשרי רירית (היצרות)</li><li>בלי אנטיביוטיקה מונעת ובלי טמפון</li><li>סיכות <span class="nw">(<bdi>stapled</bdi>):</span> פחות כאב, יותר חזרות</li></ul></div>
  </div>
  <div class="grid" style="margin-top:12px">
-  <div class="box a"><b class="t">אחרי ניתוח</b>מרככי צואה, אמבטיות ישיבה ומשככי כאב משולבים. דימום <span class="nw">ב-<bdi dir="ltr">1–2%</bdi></span>, אצירת שתן <span class="nw">ב-<bdi dir="ltr">1–15%</bdi></span></div>
+  <div class="box a"><b class="t">אחרי ניתוח</b>מרככי צואה, אמבטיות ישיבה ומשככי כאב משולבים. דימום <span class="nw">ב-<bdi dir="ltr">1–2%</bdi>,</span> אצירת שתן <span class="nw">ב-<bdi dir="ltr">1–15%</bdi></span></div>
   <div class="box r"><b class="t">דגל אדום: אלח דם באגן</b>אצירת שתן, כאב שמחמיר <span class="nw">ב-<bdi dir="ltr">anus</bdi></span> או באגן וחום, אחרי ניתוח או אחרי קשירה במרפאה: בדיקה בהרדמה ותחקיר מיידי</div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1519–1521</bdi></span><span>טחורים</span></div>
@@ -264,12 +311,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>7</b>טחורים · כך זה נראה</div>
  <h2>קשירה בגומייה במרפאה</h2>
  <div class="grid">
-  <figure><img src="img/procto-band-ligation.jpg" alt="גומייה על טחור פנימי מעל ה-dentate line, איור בחתך"><figcaption><b>הגומייה יושבת על הכרית, מעל <span class="nw">ה-<bdi dir="ltr">dentate line</bdi></span>.</b> רואים גם את <span class="nw">ה-<bdi dir="ltr">anal sphincters</bdi></span>, <span class="nw">ה-<bdi dir="ltr">levator ani</bdi></span> ושומן <span class="nw">ה-<bdi dir="ltr">ischiorectal space</bdi></span> · <bdi>www.scientificanimations.com</bdi>, <bdi>CC BY-SA 4.0</bdi>, Wikimedia Commons</figcaption></figure>
-  <figure><img src="img/procto-band-anoscopy.jpg" alt="טחור פנימי עם גומייה במבט אנוסקופי"><figcaption><b>מבט דרך האנוסקופ:</b> טחור פנימי אחרי הנחת גומייה בבסיסו · Απόστολος Σταματιάδης, <bdi>CC BY-SA 3.0</bdi>, Wikimedia Commons</figcaption></figure>
+  <figure><img src="img/procto-band-ligation.jpg" alt="גומייה על טחור פנימי מעל ה-dentate line, איור בחתך"><figcaption><b>הגומייה יושבת על הכרית, מעל <span class="nw">ה-<bdi dir="ltr">dentate line</bdi>.</span></b> רואים גם את <span class="nw">ה-<bdi dir="ltr">anal sphincters</bdi>,</span> <span class="nw">ה-<bdi dir="ltr">levator ani</bdi></span> ושומן <span class="nw">ה-<bdi dir="ltr">ischiorectal space</bdi></span> · <span class="nw"><bdi>www.scientificanimations.com</bdi>,</span> <span class="nw"><bdi>CC BY-SA 4.0</bdi>,</span> Wikimedia Commons</figcaption></figure>
+  <figure><img src="img/procto-band-anoscopy.jpg" alt="טחור פנימי עם גומייה במבט אנוסקופי"><figcaption><b>מבט דרך האנוסקופ:</b> טחור פנימי אחרי הנחת גומייה בבסיסו · Απόστολος Σταματιάδης, <span class="nw"><bdi>CC BY-SA 3.0</bdi>,</span> Wikimedia Commons</figcaption></figure>
  </div>
  <div class="grid g3" style="margin-top:12px">
   <div class="box"><b class="t">למה זה עובד</b>הגומייה חונקת את הרקמה. היא עוברת איסכמיה ונמק. במקומה נוצרת צלקת שמקבעת את הכרית לדופן</div>
-  <div class="box a"><b class="t">כאב חזק אחרי קשירה</b>הגומייה כנראה מתחת <span class="nw">ל-<bdi dir="ltr">dentate line</bdi></span>, באזור עם עצבוב סומטי. מורידים אותה מיד</div>
+  <div class="box a"><b class="t">כאב חזק אחרי קשירה</b>הגומייה כנראה מתחת <span class="nw">ל-<bdi dir="ltr">dentate line</bdi>,</span> באזור עם עצבוב סומטי. מורידים אותה מיד</div>
   <div class="box r"><b class="t">ימים אחרי</b>הרקמה המתה נושרת ומשאירה כיב. בנוטלי נוגדי קרישה או טסיות הוא עלול לדמם</div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1520</bdi></span><span>טחורים</span></div>
@@ -280,8 +327,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>קריש, כליאה ונמק</h2>
  <div class="grid g3">
    <div class="box"><b class="t">טחור חיצוני עם קריש</b>כאב פתאומי וחזק שמחמיר בישיבה וביציאה, גוש עגול וקשה. לעיתים אחרי עצירות, שלשול או מאמץ. רובם משתפרים בתוך <bdi dir="ltr">48–72</bdi> שעות עם אמבטיות ישיבה, משחת לידוקאין ומרככים. בכאב קשה: כריתה בהרדמה מקומית עדיפה על פינוי הקריש בלבד (מהיר יותר ופחות חזרות)</div>
-   <div class="box a"><b class="t">טחורים פנימיים כלואים</b>בדרך כלל אחרי טחורים מדרגה <bdi>III–IV</bdi>. בלי חניקה ובלי אלח דם: מנסים להחזיר. סוכר כחומר אוסמוטי, קרח וחסם מקומי. גם הזרקת היאלורונידאז</div>
-   <div class="box r"><b class="t">נמק או חניקה</b>ניתוח מהיר. שומרים כמה שיותר <bdi dir="ltr">mucosa</bdi> <span class="nw">ו-<bdi dir="ltr">anoderm</bdi></span>, כדי למנוע היצרות ובריחת צואה</div>
+   <div class="box a"><b class="t">טחורים פנימיים כלואים</b>בדרך כלל אחרי טחורים מדרגה <span class="nw"><bdi>III–IV</bdi>.</span> בלי חניקה ובלי אלח דם: מנסים להחזיר. סוכר כחומר אוסמוטי, קרח וחסם מקומי. גם הזרקת היאלורונידאז</div>
+   <div class="box r"><b class="t">נמק או חניקה</b>ניתוח מהיר. שומרים כמה שיותר <bdi dir="ltr">mucosa</bdi> <span class="nw">ו-<bdi dir="ltr">anoderm</bdi>,</span> כדי למנוע היצרות ובריחת צואה</div>
   </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1521–1522</bdi></span><span>חירום</span></div>
 </div></section>
@@ -292,13 +339,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b sm">
-    <li><b>מה זה:</b> קרע אליפטי <span class="nw">ב-<bdi dir="ltr">anoderm</bdi></span>, <span class="nw">מ-<bdi dir="ltr">anus</bdi></span> כלפי <span class="nw">ה-<bdi dir="ltr">dentate line</bdi></span></li>
-    <li><b>למה לא נרפא:</b> הכאב גורם לעווית של <span class="nw">ה-<bdi dir="ltr">anal sphincter</bdi></span>, העווית מורידה זרימת דם והקרע נשאר באיסכמיה</li>
-    <li><b>איפה:</b> בקו האמצע האחורי <span class="nw">ב-<bdi dir="ltr">75%</bdi></span>. בקו האמצע הקדמי בעיקר בנשים</li>
+    <li><b>מה זה:</b> קרע אליפטי <span class="nw">ב-<bdi dir="ltr">anoderm</bdi>,</span> <span class="nw">מ-<bdi dir="ltr">anus</bdi></span> כלפי <span class="nw">ה-<bdi dir="ltr">dentate line</bdi></span></li>
+    <li><b>למה לא נרפא:</b> הכאב גורם לעווית של <span class="nw">ה-<bdi dir="ltr">anal sphincter</bdi>,</span> העווית מורידה זרימת דם והקרע נשאר באיסכמיה</li>
+    <li><b>איפה:</b> בקו האמצע האחורי <span class="nw">ב-<bdi dir="ltr">75%</bdi>.</span> בקו האמצע הקדמי בעיקר בנשים</li>
     <li><b>כרונית:</b> מעל <bdi dir="ltr">6–8</bdi> שבועות</li>
     <li><b>האבחנה מהסיפור.</b> הפרדה עדינה של העכוזים מראה את הסדק. בדיקה רקטלית ואנוסקופיה לרוב נדחות בגלל הכאב</li>
    </ul>
-   <div class="box r" style="margin-top:10px"><b class="t">פיסורה לא בקו האמצע</b>לא טיפוסית: לחשוב על קרוהן, סרטן, שחפת, <bdi>HIV</bdi>, עגבת, הרפס ולוקמיה. אבחנה לא ברורה: בדיקה בהרדמה</div>
+   <div class="box r" style="margin-top:10px"><b class="t">פיסורה לא בקו האמצע</b>לא טיפוסית: לחשוב על קרוהן, סרטן, שחפת, <span class="nw"><bdi>HIV</bdi>,</span> עגבת, הרפס ולוקמיה. אבחנה לא ברורה: בדיקה בהרדמה</div>
   </div>
   <div style="display:grid;gap:10px">
    <div class="box n"><b class="t">איפה לחפש</b>מסתכלים בעדינות בין העכוזים. אם לא רואים: לחץ קל עם קצה האצבע או מקלון צמר גפן בקו האמצע האחורי או הקדמי משחזר את הכאב. אפשר להיעזר באיור האינטראקטיבי בתחילת המפגש (אזור 4)</div>
@@ -316,7 +363,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div><b>משחת ניטרטים</b><span>ריפוי בכמחצית מהפיסורות הכרוניות. כאב ראש שכיח. עד <bdi dir="ltr">20%</bdi> מפסיקים בגללו</span></div>
   <div><b>חוסמי תעלות סידן במשחה</b><span>(דילטיאזם, ניפדיפין) ריפוי דומה עם פחות כאבי ראש. הקו הראשון המועדף</span></div>
   <div><b>בוטולינום</b><span><bdi dir="ltr">20–100</bdi> יחידות, הרפיה של כ-3 חודשים. דומה לטיפול המקומי כקו ראשון. תופעת לוואי שכיחה: בריחת גזים זמנית</span></div>
-  <div><b>חיתוך חלקי של <span class="nw">ה-<bdi dir="ltr">internal anal sphincter</bdi></span> בצד</b><span>(<bdi>LIS</bdi>) הטיפול המועדף בפיסורה כרונית: ריפוי <bdi dir="ltr">88–100%</bdi>. בריחה, בעיקר של גזים ובחודש הראשון, <span class="nw">ב-<bdi dir="ltr">8–30%</bdi></span></span></div>
+  <div><b>חיתוך חלקי של <span class="nw">ה-<bdi dir="ltr">internal anal sphincter</bdi></span> בצד</b><span><span class="nw">(<bdi>LIS</bdi>)</span> הטיפול המועדף בפיסורה כרונית: ריפוי <span class="nw"><bdi dir="ltr">88–100%</bdi>.</span> בריחה, בעיקר של גזים ובחודש הראשון, <span class="nw">ב-<bdi dir="ltr">8–30%</bdi></span></span></div>
  </div>
  <div class="box a" style="margin-top:12px"><b class="t">לא לחתוך את <span class="nw">ה-<bdi dir="ltr">anal sphincter</bdi></span> אצל</b>מי שכבר יש לו בריחה, נשים עם קרע בלידה, אחרי ניתוחים קודמים <span class="nw">ב-<bdi dir="ltr">anus</bdi></span> או עם פגיעה ידועה <span class="nw">ב-<bdi dir="ltr">anal sphincter</bdi></span></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1523–1524</bdi></span><span>פיסורה</span></div>
@@ -324,18 +371,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>11</b>מורסה</div>
- <h2>מורסה סביב <span class="nw">ה-<bdi dir="ltr">anus</bdi></span>: מאיפה ולאן</h2>
+ <h2>מורסה סביב <span class="nw">ה-<bdi dir="ltr">anus</bdi>:</span> מאיפה ולאן</h2>
  <div class="grid f">
   <div>
    <ul class="b sm">
-    <li><b>מקור:</b> <bdi dir="ltr">anal gland</bdi> שנחסמה <span class="nw">ב-<bdi dir="ltr">anal crypt</bdi></span> <span class="nw">ב-<bdi dir="ltr">dentate line</bdi></span>. הזיהום מתחיל בין <span class="nw">ה-<bdi dir="ltr">anal sphincters</bdi></span> ומתפשט</li>
-    <li><b>לאן:</b> כלפי מטה לעור (סביב <span class="nw">ה-<bdi dir="ltr">anus</bdi></span>), דרך <span class="nw">ה-<bdi dir="ltr">external anal sphincter</bdi></span> <span class="nw">ל-<bdi dir="ltr">ischiorectal space</bdi></span>, למעלה מעל <span class="nw">ה-<bdi dir="ltr">levator ani</bdi></span>, או בקו האמצע האחורי <span class="nw">ל-<bdi dir="ltr">deep postanal space</bdi></span> ומשם לשני הצדדים ("פרסה")</li>
-    <li><span class="nw">כ-<bdi dir="ltr">10%</bdi></span> מסיבות אחרות: קרוהן, חבלה, <bdi>HIV</bdi>, מחלות מין, קרינה, גוף זר, ממאירות</li>
+    <li><b>מקור:</b> <bdi dir="ltr">anal gland</bdi> שנחסמה <span class="nw">ב-<bdi dir="ltr">anal crypt</bdi></span> <span class="nw">ב-<bdi dir="ltr">dentate line</bdi>.</span> הזיהום מתחיל בין <span class="nw">ה-<bdi dir="ltr">anal sphincters</bdi></span> ומתפשט</li>
+    <li><b>לאן:</b> כלפי מטה לעור (סביב <span class="nw">ה-<bdi dir="ltr">anus</bdi>),</span> דרך <span class="nw">ה-<bdi dir="ltr">external anal sphincter</bdi></span> <span class="nw">ל-<bdi dir="ltr">ischiorectal space</bdi>,</span> למעלה מעל <span class="nw">ה-<bdi dir="ltr">levator ani</bdi>,</span> או בקו האמצע האחורי <span class="nw">ל-<bdi dir="ltr">deep postanal space</bdi></span> ומשם לשני הצדדים ("פרסה")</li>
+    <li><span class="nw">כ-<bdi dir="ltr">10%</bdi></span> מסיבות אחרות: קרוהן, חבלה, <span class="nw"><bdi>HIV</bdi>,</span> מחלות מין, קרינה, גוף זר, ממאירות</li>
     <li><b>הסיפור:</b> כאב קבוע ופועם שמתפתח בהדרגה, נפיחות, אודם ותנודה</li>
    </ul>
    <div class="box r" style="margin-top:10px"><b class="t">טעות נפוצה</b>"צלוליטיס" סביב <span class="nw">ה-<bdi dir="ltr">anus</bdi></span> בלי תנודה היא לעיתים קרובות מורסה עמוקה. אנטיביוטיקה לבד לא תספיק. CT של האגן כשהבדיקה לא ברורה</div>
   </div>
-  <figure><img src="img/procto-abscess-diagram.png" alt="סוגי מורסות סביב ה-anus, איור בחתך"><figcaption><b>סוגי המורסות לפי המיקום:</b> <bdi dir="ltr">supralevator</bdi>, <bdi dir="ltr">intersphincteric</bdi>, <bdi dir="ltr">ischiorectal</bdi>, <bdi dir="ltr">submucosal</bdi> <span class="nw">ו-<bdi dir="ltr">perianal</bdi></span> · <bdi>McortNGHH</bdi> על בסיס <bdi>Armin Kübelbeck</bdi>, <bdi>CC BY-SA 4.0</bdi>, Wikimedia Commons</figcaption></figure>
+  <figure><img src="img/procto-abscess-diagram.png" alt="סוגי מורסות סביב ה-anus, איור בחתך"><figcaption><b>סוגי המורסות לפי המיקום:</b> <span class="nw"><bdi dir="ltr">supralevator</bdi>,</span> <span class="nw"><bdi dir="ltr">intersphincteric</bdi>,</span> <span class="nw"><bdi dir="ltr">ischiorectal</bdi>,</span> <bdi dir="ltr">submucosal</bdi> <span class="nw">ו-<bdi dir="ltr">perianal</bdi></span> · <bdi>McortNGHH</bdi> על בסיס <span class="nw"><bdi>Armin Kübelbeck</bdi>,</span> <span class="nw"><bdi>CC BY-SA 4.0</bdi>,</span> Wikimedia Commons</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1524–1525</bdi> (איור 97.13)</span><span>מורסה</span></div>
 </div></section>
@@ -345,9 +392,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>מנקזים מיד וקרוב <span class="nw">ל-<bdi dir="ltr">anus</bdi></span></h2>
  <div class="grid">
   <div class="box"><b class="t">הניקוז</b>
-   <ul class="b sm"><li>אפשר במרפאה בהרדמה מקומית או בחדר ניתוח</li><li>במקום הכי תנודתי וקרוב ככל האפשר <span class="nw">ל-<bdi dir="ltr">anus</bdi></span>, כדי שהפיסטולה שאולי תיווצר תהיה קצרה</li><li>חתך צלב והסרת הפינות, כדי שלא ייסגר מוקדם</li><li>לא מפרקים מחיצות באגרסיביות: סכנה <span class="nw">ל-<bdi dir="ltr">anal sphincter</bdi></span>, <span class="nw">ל-<bdi dir="ltr">pudendal nerve</bdi></span> ולדימום</li><li>חלל מעל 5 ס״מ: חתכים נוספים וגשר בנקז</li></ul></div>
+   <ul class="b sm"><li>אפשר במרפאה בהרדמה מקומית או בחדר ניתוח</li><li>במקום הכי תנודתי וקרוב ככל האפשר <span class="nw">ל-<bdi dir="ltr">anus</bdi>,</span> כדי שהפיסטולה שאולי תיווצר תהיה קצרה</li><li>חתך צלב והסרת הפינות, כדי שלא ייסגר מוקדם</li><li>לא מפרקים מחיצות באגרסיביות: סכנה <span class="nw">ל-<bdi dir="ltr">anal sphincter</bdi>,</span> <span class="nw">ל-<bdi dir="ltr">pudendal nerve</bdi></span> ולדימום</li><li>חלל מעל 5 ס״מ: חתכים נוספים וגשר בנקז</li></ul></div>
   <div style="display:grid;gap:10px">
-   <div class="box a"><b class="t">בלי תנודה מבחוץ</b>לא מנקזים דרך העור (סכנה לפיסטולה). בין <span class="nw">ה-<bdi dir="ltr">anal sphincters</bdi></span> ומעל <span class="nw">ה-<bdi dir="ltr">levator ani</bdi></span> מנקזים לתוך <span class="nw">ה-<bdi dir="ltr">anal canal</bdi></span>. "פרסה": ניקוז <span class="nw">ה-<bdi dir="ltr">deep postanal space</bdi></span> בקו האמצע וחתכים נגדיים בשני הצדדים</div>
+   <div class="box a"><b class="t">בלי תנודה מבחוץ</b>לא מנקזים דרך העור (סכנה לפיסטולה). בין <span class="nw">ה-<bdi dir="ltr">anal sphincters</bdi></span> ומעל <span class="nw">ה-<bdi dir="ltr">levator ani</bdi></span> מנקזים לתוך <span class="nw">ה-<bdi dir="ltr">anal canal</bdi>.</span> "פרסה": ניקוז <span class="nw">ה-<bdi dir="ltr">deep postanal space</bdi></span> בקו האמצע וחתכים נגדיים בשני הצדדים</div>
    <div class="box n"><b class="t">אחרי הניקוז</b>בלי טמפון שגרתי ובלי אנטיביוטיקה שגרתית (רק בצלוליטיס, מחלה מערכתית או דיכוי חיסוני). אמבטיות ישיבה וסיבים. ריפוי <span class="nw">ב-<bdi dir="ltr">6–8</bdi></span> שבועות. לא נרפא או חוזר? לחשוב על פיסטולה</div>
   </div>
  </div>
@@ -362,22 +409,22 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <ul class="b sm">
     <li>כמחצית מהמטופלים אחרי מורסה יפתחו פיסטולה: פתח פנימי <span class="nw">ב-<bdi dir="ltr">anal crypt</bdi></span> ופתח חיצוני בעור</li>
     <li><b>הסיפור:</b> הפרשה כרונית, או מחזור של כאב ונפיחות שמוקל כשהיא מתנקזת</li>
-    <li><b>חוק גודסל:</b> פתח חיצוני לפני <span class="nw">ה-<bdi dir="ltr">transverse anal line</bdi></span> הולך ישר <span class="nw">ל-<bdi dir="ltr">anal canal</bdi></span>. פתח מאחור מתעקל לקו האמצע האחורי (פתח קדמי רחוק מ-3 ס״מ יכול להיות המשך של "פרסה" אחורית)</li>
-    <li>פתחים בשני הצדדים: <bdi dir="ltr">deep postanal space</bdi>. הרבה פתחים ("זילוף"): לחשוב על קרוהן</li>
+    <li><b>חוק גודסל:</b> פתח חיצוני לפני <span class="nw">ה-<bdi dir="ltr">transverse anal line</bdi></span> הולך ישר <span class="nw">ל-<bdi dir="ltr">anal canal</bdi>.</span> פתח מאחור מתעקל לקו האמצע האחורי (פתח קדמי רחוק מ-3 ס״מ יכול להיות המשך של "פרסה" אחורית)</li>
+    <li>פתחים בשני הצדדים: <span class="nw"><bdi dir="ltr">deep postanal space</bdi>.</span> הרבה פתחים ("זילוף"): לחשוב על קרוהן</li>
     <li>לא ברור? <bdi>MRI</bdi> של האגן בפרוטוקול פיסטולה</li>
    </ul>
   </div>
   <div>
-  <figure class="sm"><img src="img/procto-fistula-diagram.png" alt="סוגי פיסטולות לפי היחס ל-anal sphincters, איור בחתך"><figcaption><b>סוגי הפיסטולות לפי היחס <span class="nw">ל-<bdi dir="ltr">anal sphincters</bdi></span></b> · <bdi>McortNGHH</bdi> על בסיס <bdi>Armin Kübelbeck</bdi>, <bdi>CC BY-SA 4.0</bdi>, Wikimedia Commons</figcaption></figure>
+  <figure class="sm"><img src="img/procto-fistula-diagram.png" alt="סוגי פיסטולות לפי היחס ל-anal sphincters, איור בחתך"><figcaption><b>סוגי הפיסטולות לפי היחס <span class="nw">ל-<bdi dir="ltr">anal sphincters</bdi></span></b> · <bdi>McortNGHH</bdi> על בסיס <span class="nw"><bdi>Armin Kübelbeck</bdi>,</span> <span class="nw"><bdi>CC BY-SA 4.0</bdi>,</span> Wikimedia Commons</figcaption></figure>
   <div class="flow sm" style="margin-top:10px">
    <div><b>סיווג <bdi>Parks</bdi></b><span><bdi dir="ltr">intersphincteric</bdi> <bdi dir="ltr">45%</bdi> · <bdi dir="ltr">transsphincteric</bdi> <bdi dir="ltr">30%</bdi> · <bdi dir="ltr">suprasphincteric</bdi> <bdi dir="ltr">20%</bdi> · <bdi dir="ltr">extrasphincteric</bdi> <bdi dir="ltr">5%</bdi></span></div>
-   <div><b>פיסטולה נמוכה</b><span>(פחות משליש <span class="nw">מה-<bdi dir="ltr">external anal sphincter</bdi></span>): פתיחה לכל האורך. בריחה משמעותית בפחות <span class="nw">מ-<bdi dir="ltr">5%</bdi></span>, חזרה <span class="nw">ב-<bdi dir="ltr">2–8%</bdi></span></span></div>
-   <div><b>מעורבות גדולה של <span class="nw">ה-<bdi dir="ltr">anal sphincter</bdi></span></b><span>סטון מנקז. אחר כך ניתוח ששומר על <span class="nw">ה-<bdi dir="ltr">anal sphincter</bdi></span>: קשירה בין <span class="nw">ה-<bdi dir="ltr">anal sphincters</bdi></span> (<bdi>LIFT</bdi>) או מתלה רירית (ריפוי <bdi dir="ltr">66–87%</bdi>)</span></div>
+   <div><b>פיסטולה נמוכה</b><span>(פחות משליש <span class="nw">מה-<bdi dir="ltr">external anal sphincter</bdi>):</span> פתיחה לכל האורך. בריחה משמעותית בפחות <span class="nw">מ-<bdi dir="ltr">5%</bdi>,</span> חזרה <span class="nw">ב-<bdi dir="ltr">2–8%</bdi></span></span></div>
+   <div><b>מעורבות גדולה של <span class="nw">ה-<bdi dir="ltr">anal sphincter</bdi></span></b><span>סטון מנקז. אחר כך ניתוח ששומר על <span class="nw">ה-<bdi dir="ltr">anal sphincter</bdi>:</span> קשירה בין <span class="nw">ה-<bdi dir="ltr">anal sphincters</bdi></span> <span class="nw">(<bdi>LIFT</bdi>)</span> או מתלה רירית (ריפוי <span class="nw"><bdi dir="ltr">66–87%</bdi>)</span></span></div>
    <div><b>המטרות</b><span>לנקז זיהום, להבין את המסלול, להסיר אותו, לשמור על שליטה ולמנוע חזרה</span></div>
   </div>
   </div>
  </div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1526–1528</bdi> (איורים <bdi dir="ltr">97.16–97.17</bdi>)</span><span>פיסטולה</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1526–1528</bdi> (איורים <span class="nw"><bdi dir="ltr">97.16–97.17</bdi>)</span></span><span>פיסטולה</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -387,14 +434,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <ul class="b sm">
     <li>צעירים, בדרך כלל באמצע עד סוף שנות ה-20. כ-70,000 מטופלים בשנה בארה״ב</li>
-    <li><b>המנגנון:</b> שערות נשאבות לעור דרך גומות בקו האמצע של <span class="nw">ה-<bdi dir="ltr">natal cleft</bdi></span>, תגובה לגוף זר וזיהום</li>
-    <li><b>הסימן:</b> גומות בקו האמצע ופתחי סינוס. מורסה רחוקה <span class="nw">מ-<bdi dir="ltr">anus</bdi></span>. לא בצמוד אליו כמו <bdi dir="ltr">perianal abscess</bdi></li>
+    <li><b>המנגנון:</b> שערות נשאבות לעור דרך גומות בקו האמצע של <span class="nw">ה-<bdi dir="ltr">natal cleft</bdi>,</span> תגובה לגוף זר וזיהום</li>
+    <li><b>הסימן:</b> גומות בקו האמצע ופתחי סינוס. מורסה רחוקה <span class="nw">מ-<bdi dir="ltr">anus</bdi>.</span> לא בצמוד אליו כמו <bdi dir="ltr">perianal abscess</bdi></li>
     <li><b>גורמי סיכון:</b> גברים (שיעור), השמנה, ישיבה ממושכת וחיכוך</li>
    </ul>
    <div class="box" style="margin-top:10px"><b class="t">הטיפול</b>
-    <ul class="b sm"><li><b>מורסה:</b> ניקוז בחתך לטרלי, מחוץ לקו האמצע וגירוד השערות. הסרת שיער מפחיתה חזרות</li><li><b>חוזר:</b> כריתת הגומות וניקוי החלל (שיטת גיפס, של ד״ר משה גיפס) או כריתה מלאה</li><li>להימנע מתפר בקו האמצע (<bdi>Bascom</bdi>). מקרים מורכבים: מתלים, למשל <bdi>Limberg</bdi> או <bdi>cleft lift</bdi></li><li>אנטיביוטיקה כתוספת: חיידקים <span class="nw">ב-<bdi dir="ltr">50–70%</bdi></span></li></ul></div>
+    <ul class="b sm"><li><b>מורסה:</b> ניקוז בחתך לטרלי, מחוץ לקו האמצע וגירוד השערות. הסרת שיער מפחיתה חזרות</li><li><b>חוזר:</b> כריתת הגומות וניקוי החלל (שיטת גיפס, של ד״ר משה גיפס) או כריתה מלאה</li><li>להימנע מתפר בקו האמצע <span class="nw">(<bdi>Bascom</bdi>).</span> מקרים מורכבים: מתלים, למשל <bdi>Limberg</bdi> או <bdi>cleft lift</bdi></li><li>אנטיביוטיקה כתוספת: חיידקים <span class="nw">ב-<bdi dir="ltr">50–70%</bdi></span></li></ul></div>
   </div>
-  <figure><img src="img/procto-pilonidal-specimen.png" alt="סינוס פילונידלי אחרי כריתה"><figcaption><b>סינוס פילונידלי אחרי כריתה</b>, ליד סרגל בסנטימטרים · Lord Lucan, <bdi>CC BY-SA 4.0</bdi>, Wikimedia Commons</figcaption></figure>
+  <figure><img src="img/procto-pilonidal-specimen.png" alt="סינוס פילונידלי אחרי כריתה"><figcaption><b>סינוס פילונידלי אחרי כריתה</b>, ליד סרגל בסנטימטרים · Lord Lucan, <span class="nw"><bdi>CC BY-SA 4.0</bdi>,</span> Wikimedia Commons</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1533–1534</bdi></span><span>פילונידלי</span></div>
 </div></section>
@@ -404,13 +451,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>גרד, מחלות מין ומצב חירום אחד</h2>
  <div class="grid">
   <div style="display:grid;gap:10px">
-   <div class="box"><b class="t">גרד <span class="nw">ב-<bdi dir="ltr">anus</bdi></span></b>גרוע יותר בלילה ומעיר משינה. שואלים על דליפה, הפרשה ולחות סביב <span class="nw">ה-<bdi dir="ltr">anus</bdi></span>. מסתכלים על העור. גרד מופיע גם בטחורים ובמחלות מין: קונדילומות, הרפס, זיבה וכלמידיה. אמבטיות ישיבה חמות מקלות על גרד ושריפה</div>
+   <div class="box"><b class="t">גרד <span class="nw">ב-<bdi dir="ltr">anus</bdi></span></b>גרוע יותר בלילה ומעיר משינה. שואלים על דליפה, הפרשה ולחות סביב <span class="nw">ה-<bdi dir="ltr">anus</bdi>.</span> מסתכלים על העור. גרד מופיע גם בטחורים ובמחלות מין: קונדילומות, הרפס, זיבה וכלמידיה. אמבטיות ישיבה חמות מקלות על גרד ושריפה</div>
    <div class="box n"><b class="t">מחלות מין <span class="nw">ב-<bdi dir="ltr">anus</bdi></span></b>
-    <ul class="b sm"><li><b>קונדילומה</b> (<bdi>HPV</bdi>): טיפול מקומי או הסרה. פתולוגיה לכל נגע שהוסר, בעיקר <span class="nw">ב-<bdi>HIV</bdi></span>. חזרה <span class="nw">ב-<bdi dir="ltr">20–30%</bdi></span></li><li><b>הרפס:</b> שלפוחיות קטנות, כאב, טנזמוס. אציקלוביר <bdi dir="ltr">7–10</bdi> ימים</li><li><b>זיבה וכלמידיה:</b> לעיתים קרובות בלי תסמינים. בזיבה מטפלים גם בכלמידיה, בגלל זיהום משולב שכיח</li><li>מחלת מין: מציעים בדיקת <bdi>HIV</bdi></li></ul></div>
+    <ul class="b sm"><li><b>קונדילומה</b> <span class="nw">(<bdi>HPV</bdi>):</span> טיפול מקומי או הסרה. פתולוגיה לכל נגע שהוסר, בעיקר <span class="nw">ב-<bdi>HIV</bdi>.</span> חזרה <span class="nw">ב-<bdi dir="ltr">20–30%</bdi></span></li><li><b>הרפס:</b> שלפוחיות קטנות, כאב, טנזמוס. אציקלוביר <bdi dir="ltr">7–10</bdi> ימים</li><li><b>זיבה וכלמידיה:</b> לעיתים קרובות בלי תסמינים. בזיבה מטפלים גם בכלמידיה, בגלל זיהום משולב שכיח</li><li>מחלת מין: מציעים בדיקת <bdi>HIV</bdi></li></ul></div>
   </div>
   <div class="box r"><b class="t">גנגרנה של פורנייה · חירום</b>
    <ul class="b sm">
-    <li>פסציאיטיס נמקית של <span class="nw">ה-<bdi dir="ltr">perineum</bdi></span>, איברי המין או <span class="nw">ה-<bdi dir="ltr">anus</bdi></span>. גברים, סוכרת, אלכוהול, דיכוי חיסוני</li>
+    <li>פסציאיטיס נמקית של <span class="nw">ה-<bdi dir="ltr">perineum</bdi>,</span> איברי המין או <span class="nw">ה-<bdi dir="ltr">anus</bdi>.</span> גברים, סוכרת, אלכוהול, דיכוי חיסוני</li>
     <li>כאב ונפיחות, קרפיטציות, שלפוחיות סגולות-שחורות. המטופל חולה הרבה יותר ממה שהעור מראה</li>
     <li>ציון <bdi>LRINEC</bdi> של 6 ומעלה: ערך מנבא חיובי <bdi dir="ltr">92%</bdi> ושלילי <bdi dir="ltr">96%</bdi></li>
     <li>החייאה, אנטיביוטיקה רחבה ו<b>הטריה ניתוחית מוקדמת ונרחבת</b>. בממוצע <bdi dir="ltr">3–4</bdi> ניתוחים. <span class="nw">ה-<bdi dir="ltr">testes</bdi></span> בדרך כלל נחסכים</li>
@@ -423,17 +470,17 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>16</b>מה חדש בתחום · <bdi dir="ltr">2021–2026</bdi></div>
  <h2>מחקרים שכדאי להכיר</h2>
  <div class="grid">
-  <div class="study"><div class="y"><bdi>Dis Colon Rectum</bdi> 2025 · מחקר אקראי בהולנד</div><b><bdi>HOLLAND</bdi>: גומייה מול כריתה בטחורים מדרגה <bdi>III</bdi></b>
-   <p>79 מטופלים בניתוח הכלכלי של המחקר. אחרי 24 חודשים הכריתה נתנה איכות חיים טובה יותר ופחות חזרות (הפרש של <bdi dir="ltr">33.5%</bdi>), במחיר גבוה יותר. המסקנה: לא לוותר על כריתה רק בגלל עלות</p>
+  <div class="study"><div class="y"><bdi>Dis Colon Rectum</bdi> 2025 · מחקר אקראי בהולנד</div><b><span class="nw"><bdi>HOLLAND</bdi>:</span> גומייה מול כריתה בטחורים מדרגה <bdi>III</bdi></b>
+   <p>79 מטופלים בניתוח הכלכלי של המחקר. אחרי 24 חודשים הכריתה נתנה איכות חיים טובה יותר ופחות חזרות (הפרש של <span class="nw"><bdi dir="ltr">33.5%</bdi>),</span> במחיר גבוה יותר. המסקנה: לא לוותר על כריתה רק בגלל עלות</p>
    <small>van Oostendorp JY et al. Dis Colon Rectum 2025;68:1100-11</small></div>
   <div class="study"><div class="y"><bdi>Surgery</bdi> 2022 · מטא-אנליזה של רשת</div><b>פיסורה: מה הכי מרפא?</b>
    <p>69 מחקרים אקראיים. חיתוך <span class="nw">ה-<bdi dir="ltr">anal sphincter</bdi></span> בצד נתן את הסיכוי הגבוה ביותר לריפוי בכל נקודות הזמן, אבל גם את הסיכון הגבוה ביותר לבריחה. בוטולינום וטיפול מקומי דומים זה לזה</p>
    <small>Jin JZ et al. Surgery 2022;172:41-52</small></div>
   <div class="study"><div class="y"><bdi>Dis Colon Rectum</bdi> 2024 · מחקר אקראי בישראל</div><b>אנטיביוטיקה אחרי ניקוז מורסה?</b>
-   <p>98 מטופלים, אוגמנטין שבוע מול בלי אנטיביוטיקה. פיסטולה: <bdi dir="ltr">16.3%</bdi> לעומת <bdi dir="ltr">10.2%</bdi>, מורסה חוזרת: <bdi dir="ltr">9.2%</bdi> בסך הכול, בלי הבדל מובהק. האנטיביוטיקה לא מנעה פיסטולה</p>
+   <p>98 מטופלים, אוגמנטין שבוע מול בלי אנטיביוטיקה. פיסטולה: <bdi dir="ltr">16.3%</bdi> לעומת <span class="nw"><bdi dir="ltr">10.2%</bdi>,</span> מורסה חוזרת: <bdi dir="ltr">9.2%</bdi> בסך הכול, בלי הבדל מובהק. האנטיביוטיקה לא מנעה פיסטולה</p>
    <small>Nasasra A et al. Dis Colon Rectum 2024;67:1072-6 (שמיר ורמב״ם)</small></div>
-  <div class="study"><div class="y"><bdi>BJS</bdi> 2024 · מחקר עוקבה בבריטניה</div><b><bdi>PITSTOP</bdi>: ניתוחי סינוס פילונידלי</b>
-   <p>667 משתתפים, 12 שיטות ניתוח. סיבוכים <span class="nw">ב-<bdi dir="ltr">45.1%</bdi></span>. ניתוח זעיר-פולשני: איכות חיים טובה יותר, פחות כאב ופחות סיבוכים, אבל <span class="nw">כ-<bdi dir="ltr">10%</bdi></span> יותר כישלונות. אחרי 6 חודשים לרבע מהמטופלים הפצע עדיין לא נסגר</p>
+  <div class="study"><div class="y"><bdi>BJS</bdi> 2024 · מחקר עוקבה בבריטניה</div><b><span class="nw"><bdi>PITSTOP</bdi>:</span> ניתוחי סינוס פילונידלי</b>
+   <p>667 משתתפים, 12 שיטות ניתוח. סיבוכים <span class="nw">ב-<bdi dir="ltr">45.1%</bdi>.</span> ניתוח זעיר-פולשני: איכות חיים טובה יותר, פחות כאב ופחות סיבוכים, אבל <span class="nw">כ-<bdi dir="ltr">10%</bdi></span> יותר כישלונות. אחרי 6 חודשים לרבע מהמטופלים הפצע עדיין לא נסגר</p>
    <small>Brown SR et al. Br J Surg 2024;111:znae009</small></div>
  </div>
  <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
@@ -446,11 +493,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li><span class="nw">ה-<bdi dir="ltr">dentate line</bdi></span> מפריד: מעליו אין כאב (גומייה), מתחתיו כואב (טחור חיצוני, פיסורה)</li>
   <li>בודקים עם מלווה, בשכיבה על הצד, בהסתכלות, מישוש, בדיקה רקטלית ואנוסקופיה. בפיסורה מוותרים על בדיקה כואבת</li>
   <li>טחורים: קודם סיבים, שתייה והרגלי שירותים. אחר כך גומייה. בדרגות <bdi>III–IV</bdi> ניתוח</li>
-  <li>פיסורה כרונית: משחה (חוסם סידן), בוטולינום. בסוף חיתוך חלקי של <span class="nw">ה-<bdi dir="ltr">anal sphincter</bdi></span>. לא בקו האמצע: לחשוב אחרת</li>
-  <li>מורסה מנקזים מיד וקרוב <span class="nw">ל-<bdi dir="ltr">anus</bdi></span>. אחריה פיסטולה בכמחצית</li>
+  <li>פיסורה כרונית: משחה (חוסם סידן), בוטולינום. בסוף חיתוך חלקי של <span class="nw">ה-<bdi dir="ltr">anal sphincter</bdi>.</span> לא בקו האמצע: לחשוב אחרת</li>
+  <li>מורסה מנקזים מיד וקרוב <span class="nw">ל-<bdi dir="ltr">anus</bdi>.</span> אחריה פיסטולה בכמחצית</li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 97 <bdi>Benign Anorectal Disorders</bdi> (עמ׳ <bdi dir="ltr">1515–1534</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906), <bdi>NCI</bdi> ו-Sue Clark (נחלת הכלל) · <bdi>Blausen Medical</bdi> (<bdi>CC BY 3.0</bdi>) · <bdi>scientificanimations.com</bdi>, <bdi>McortNGHH</bdi>, Απόστολος Σταματιάδης, Lord Lucan (<bdi>CC BY-SA</bdi>, <bdi>Wikimedia Commons</bdi>) · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 97 <bdi>Benign Anorectal Disorders</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1515–1534</bdi>)</span></div>
+ <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906), <bdi>NCI</bdi> ו-Sue Clark (נחלת הכלל) · <bdi>Blausen Medical</bdi> <span class="nw">(<bdi>CC BY 3.0</bdi>)</span> · <span class="nw"><bdi>scientificanimations.com</bdi>,</span> <span class="nw"><bdi>McortNGHH</bdi>,</span> Απόστολος Σταματιάδης, Lord Lucan <span class="nw">(<bdi>CC BY-SA</bdi>,</span> <span class="nw"><bdi>Wikimedia Commons</bdi>)</span> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
@@ -471,5 +518,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>

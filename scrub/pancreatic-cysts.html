@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>גידולים ציסטיים של הלבלב · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -82,7 +82,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -112,9 +112,56 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -137,12 +184,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>בסוף המפגש תדעו</h2>
  <ol class="obj">
   <li>להבדיל בין פסאודוציסטה לבין גידול ציסטי. להבדיל בין גידול מוציני ללא מוציני</li>
-  <li>להכיר ארבעה גידולים: ציסטה סרוזית, <bdi>MCN</bdi>, <bdi>IPMN</bdi> <span class="nw">ו-<bdi>SPN</bdi></span>. לדעת מה הסיכון לממאירות בכל אחד</li>
-  <li>להשתמש בבירור נכון: CT או MRI, <bdi>EUS</bdi> ובדיקת נוזל הציסטה (<bdi>CEA</bdi>, עמילאז)</li>
+  <li>להכיר ארבעה גידולים: ציסטה סרוזית, <span class="nw"><bdi>MCN</bdi>,</span> <bdi>IPMN</bdi> <span class="nw">ו-<bdi>SPN</bdi>.</span> לדעת מה הסיכון לממאירות בכל אחד</li>
+  <li>להשתמש בבירור נכון: CT או MRI, <bdi>EUS</bdi> ובדיקת נוזל הציסטה <span class="nw">(<bdi>CEA</bdi>,</span> עמילאז)</li>
   <li>לזהות סימנים מדאיגים וסימני סיכון גבוה <span class="nw">ב-<bdi>IPMN</bdi></span> ולהחליט בין מעקב לניתוח</li>
   <li>לדעת איזה ניתוח מתאים ומה המעקב אחריו</li>
  </ol>
- <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 92 (עמ׳ <bdi dir="ltr">1387, 1394–1400</bdi>) · פרק 93 (עמ׳ <bdi dir="ltr">1403</bdi>)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 92 (עמ׳ <span class="nw"><bdi dir="ltr">1387, 1394–1400</bdi>)</span> · פרק 93 (עמ׳ <span class="nw"><bdi dir="ltr">1403</bdi>)</span></span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -154,12 +201,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li>אחרי אדנוקרצינומה, הגידולים הציסטיים הם הנושא השכיח והחשוב ביותר <span class="nw">ב-<bdi dir="ltr">pancreas</bdi></span></li>
     <li>רובם מתגלים <b>במקרה</b>, בגלל השימוש הגובר ב-CT וב-MRI</li>
     <li>חלקם מקדימים סרטן לבלב. לכן <b>המטרה כפולה</b>: למנוע סרטן, בלי לנתח יותר מדי</li>
-    <li>שלוש הנחיות מרכזיות: האמריקאית (<bdi>AGA</bdi>, 2015), הבינלאומית (<bdi>IAP</bdi>, 2017) והאירופית (2018)</li>
+    <li>שלוש הנחיות מרכזיות: האמריקאית <span class="nw">(<bdi>AGA</bdi>,</span> 2015), הבינלאומית <span class="nw">(<bdi>IAP</bdi>,</span> 2017) והאירופית (2018)</li>
    </ul>
   </div>
   <div style="display:grid;gap:10px">
-   <div class="box b"><b class="t">לא מוציניים · אפיתל קוּבּי פשוט</b>ציסטה סרוזית (<bdi>SCN</bdi>) · גידול פסאודופפילרי מוצק (<bdi>SPN</bdi>)</div>
-   <div class="box a"><b class="t">מוציניים · אפיתל עמודי</b><bdi>IPMN</bdi> · <bdi>MCN</bdi>. אלה הנגעים המקדימים של סרטן</div>
+   <div class="box b"><b class="t">לא מוציניים · אפיתל קוּבּי פשוט</b>ציסטה סרוזית <span class="nw">(<bdi>SCN</bdi>)</span> · גידול פסאודופפילרי מוצק <span class="nw">(<bdi>SPN</bdi>)</span></div>
+   <div class="box a"><b class="t">מוציניים · אפיתל עמודי</b><bdi>IPMN</bdi> · <span class="nw"><bdi>MCN</bdi>.</span> אלה הנגעים המקדימים של סרטן</div>
    <div class="box n"><b class="t">ולא לשכוח: פסאודוציסטה</b>בלי אפיתל בכלל. אחרי פנקריאטיטיס. היא לא גידול</div>
   </div>
  </div>
@@ -184,14 +231,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <g class="hzb" style="--c:#8E44AD"><circle cx="1242" cy="912" r="26"/><text x="1242" y="912">6</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="head" hidden><b><bdi dir="ltr">pancreatic head</bdi></b><p>המקום השכיח של <bdi>IPMN</bdi> (<bdi dir="ltr">head</bdi> יותר מאשר מפושט או <bdi dir="ltr">body</bdi> <span class="nw">ו-<bdi dir="ltr">tail</bdi></span>). גם ציסטה סרוזית נוטה <span class="nw">ל-<bdi dir="ltr">head</bdi></span>. ציסטה <span class="nw">ב-<bdi dir="ltr">head</bdi></span> שדורשת כריתה פירושה וויפל. לכן ההחלטה כאן כבדה יותר.</p></div>
-  <div class="hzi" data-hzi="body" hidden><b><bdi dir="ltr">neck</bdi> <span class="nw">ו-<bdi dir="ltr">body</bdi></span></b><p><bdi>MCN</bdi> <span class="nw">ו-<bdi>SPN</bdi></span> יושבים בעיקר <span class="nw">ב-<bdi dir="ltr">body</bdi></span> <span class="nw">וב-<bdi dir="ltr">tail</bdi></span>. בגידול קטן ולא אגרסיבי <span class="nw">ב-<bdi dir="ltr">neck</bdi></span> או <span class="nw">ב-<bdi dir="ltr">body</bdi></span> אפשר לשקול כריתה מרכזית ששומרת רקמת <bdi dir="ltr">pancreas</bdi>.</p></div>
-  <div class="hzi" data-hzi="tail" hidden><b><bdi dir="ltr">pancreatic tail</bdi></b><p><bdi>MCN</bdi> באישה צעירה, <span class="nw">ב-<bdi dir="ltr">tail</bdi></span>, בלי קשר לצינור: התמונה הקלאסית. הטיפול הוא כריתה דיסטלית, לעיתים קרובות זעיר-פולשנית. פסאודוציסטה קטנה <span class="nw">ב-<bdi dir="ltr">tail</bdi></span> נוטה להיעלם לבד.</p></div>
+  <div class="hzi" data-hzi="head" hidden><b><bdi dir="ltr">pancreatic head</bdi></b><p>המקום השכיח של <bdi>IPMN</bdi> <span class="nw">(<bdi dir="ltr">head</bdi></span> יותר מאשר מפושט או <bdi dir="ltr">body</bdi> <span class="nw">ו-<bdi dir="ltr">tail</bdi>).</span> גם ציסטה סרוזית נוטה <span class="nw">ל-<bdi dir="ltr">head</bdi>.</span> ציסטה <span class="nw">ב-<bdi dir="ltr">head</bdi></span> שדורשת כריתה פירושה וויפל. לכן ההחלטה כאן כבדה יותר.</p></div>
+  <div class="hzi" data-hzi="body" hidden><b><bdi dir="ltr">neck</bdi> <span class="nw">ו-<bdi dir="ltr">body</bdi></span></b><p><bdi>MCN</bdi> <span class="nw">ו-<bdi>SPN</bdi></span> יושבים בעיקר <span class="nw">ב-<bdi dir="ltr">body</bdi></span> <span class="nw">וב-<bdi dir="ltr">tail</bdi>.</span> בגידול קטן ולא אגרסיבי <span class="nw">ב-<bdi dir="ltr">neck</bdi></span> או <span class="nw">ב-<bdi dir="ltr">body</bdi></span> אפשר לשקול כריתה מרכזית ששומרת רקמת <span class="nw"><bdi dir="ltr">pancreas</bdi>.</span></p></div>
+  <div class="hzi" data-hzi="tail" hidden><b><bdi dir="ltr">pancreatic tail</bdi></b><p><bdi>MCN</bdi> באישה צעירה, <span class="nw">ב-<bdi dir="ltr">tail</bdi>,</span> בלי קשר לצינור: התמונה הקלאסית. הטיפול הוא כריתה דיסטלית, לעיתים קרובות זעיר-פולשנית. פסאודוציסטה קטנה <span class="nw">ב-<bdi dir="ltr">tail</bdi></span> נוטה להיעלם לבד.</p></div>
   <div class="hzi" data-hzi="duod" hidden><b><bdi dir="ltr">duodenum</bdi> <span class="nw">ו-<bdi dir="ltr">papilla</bdi></span></b><p><span class="nw">ב-<bdi>IPMN</bdi></span> של <span class="nw">ה-<bdi dir="ltr">main duct</bdi></span> רואים באנדוסקופיה ריר סמיך שיוצא <span class="nw">מ-<bdi dir="ltr">papilla</bdi></span> פתוחה (״פה של דג״). פסאודוציסטה <span class="nw">ב-<bdi dir="ltr">pancreatic head</bdi></span> שצמודה <span class="nw">ל-<bdi dir="ltr">duodenum</bdi></span> מנוקזת אליו.</p></div>
   <div class="hzi" data-hzi="cbd" hidden><b><bdi dir="ltr">CBD</bdi></b><p>צהבת אצל מטופל עם ציסטה <span class="nw">ב-<bdi dir="ltr">pancreatic head</bdi></span> היא סימן בסיכון גבוה: מצדיקה כריתה.</p></div>
-  <div class="hzi" data-hzi="spl" hidden><b><bdi dir="ltr">spleen</bdi></b><p>כריתה דיסטלית <span class="nw">ל-<bdi>MCN</bdi></span> או <bdi>SPN</bdi> נעשית לעיתים עם <span class="nw">ה-<bdi dir="ltr">spleen</bdi></span>. בנגע שפיר אפשר לפעמים לשמר אותו.</p></div>
+  <div class="hzi" data-hzi="spl" hidden><b><bdi dir="ltr">spleen</bdi></b><p>כריתה דיסטלית <span class="nw">ל-<bdi>MCN</bdi></span> או <bdi>SPN</bdi> נעשית לעיתים עם <span class="nw">ה-<bdi dir="ltr">spleen</bdi>.</span> בנגע שפיר אפשר לפעמים לשמר אותו.</p></div>
  </div></div>
- <p style="font-size:12px;color:var(--muted);margin:6px 0 0"><bdi dir="ltr">pancreas</bdi>, <bdi dir="ltr">duodenum</bdi> והעורקים והוורידים שסביבם, מבט מלפנים · <bdi>Sobotta</bdi>, <bdi>Atlas and Text-book of Human Anatomy</bdi> (1906), איור 393 (נחלת הכלל)</p>
+ <p style="font-size:12px;color:var(--muted);margin:6px 0 0"><span class="nw"><bdi dir="ltr">pancreas</bdi>,</span> <bdi dir="ltr">duodenum</bdi> והעורקים והוורידים שסביבם, מבט מלפנים · <span class="nw"><bdi>Sobotta</bdi>,</span> <bdi>Atlas and Text-book of Human Anatomy</bdi> (1906), איור 393 (נחלת הכלל)</p>
  <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1387, 1395–1398</bdi> · פרק 76 עמ׳ <bdi dir="ltr">1028</bdi></span><span>אנטומיה</span></div>
 </div></section>
 
@@ -199,12 +246,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>4</b>ההבדלים</div>
  <h2>חמש ציסטות, טבלה אחת</h2>
  <div class="grid g3">
-  <div class="box n"><b class="t">פסאודוציסטה</b>אחרי פנקריאטיטיס. בכל חלקי <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span>. דופן עבה, לעיתים אטרופיה והסתיידויות <span class="nw">ב-<bdi dir="ltr">pancreas</bdi></span>. <b>קשורה לצינור.</b> נוזל: עמילאז גבוה מאוד, <bdi>CEA</bdi> נמוך, בלי מוצין</div>
-  <div class="box b"><b class="t">ציסטה סרוזית (<bdi>SCN</bdi>)</b>אישה, גיל 60–70. ציסטות קטנות רבות עם מחיצות והסתיידות מרכזית בצורת כוכב. <b>לא קשורה לצינור.</b> עמילאז <span class="nw">ו-<bdi>CEA</bdi></span> נמוכים</div>
-  <div class="box a"><b class="t"><bdi>MCN</bdi></b>כמעט רק נשים. <span class="nw">ב-<bdi dir="ltr">body</bdi></span> <span class="nw">וב-<bdi dir="ltr">tail</bdi></span>. ציסטה גדולה עם דופן עבה, לעיתים הסתיידות "קליפת ביצה". <b>כמעט אף פעם לא קשורה לצינור.</b> <bdi>CEA</bdi> גבוה, עמילאז נמוך</div>
-  <div class="box r"><b class="t"><bdi>IPMN</bdi></b>גברים ונשים, גיל 60–70. בעיקר <span class="nw">ב-<bdi dir="ltr">head</bdi></span>. ציסטות עם הרחבה של <span class="nw">ה-<bdi dir="ltr">main duct</bdi></span> או של <span class="nw">ה-<bdi dir="ltr">branch ducts</bdi></span>. <b>קשורה לצינור.</b> <bdi>CEA</bdi> ועמילאז גבוהים</div>
-  <div class="box"><b class="t"><bdi>SPN</bdi></b>אישה צעירה, גיל 25–40. <bdi dir="ltr">body</bdi> <span class="nw">ו-<bdi dir="ltr">tail</bdi></span>. מסה עם דופן עבה, חלק מוצק בהיקף וחלק ציסטי במרכז. לא קשורה לצינור. <bdi>CEA</bdi> ועמילאז נמוכים</div>
-  <div class="box b"><b class="t">שלוש שאלות שמסדרות הכול</b>1. היה פנקריאטיטיס? · 2. יש קשר לצינור? · 3. הנוזל מוציני (<bdi>CEA</bdi> גבוה)?</div>
+  <div class="box n"><b class="t">פסאודוציסטה</b>אחרי פנקריאטיטיס. בכל חלקי <span class="nw">ה-<bdi dir="ltr">pancreas</bdi>.</span> דופן עבה, לעיתים אטרופיה והסתיידויות <span class="nw">ב-<bdi dir="ltr">pancreas</bdi>.</span> <b>קשורה לצינור.</b> נוזל: עמילאז גבוה מאוד, <bdi>CEA</bdi> נמוך, בלי מוצין</div>
+  <div class="box b"><b class="t">ציסטה סרוזית <span class="nw">(<bdi>SCN</bdi>)</span></b>אישה, גיל 60–70. ציסטות קטנות רבות עם מחיצות והסתיידות מרכזית בצורת כוכב. <b>לא קשורה לצינור.</b> עמילאז <span class="nw">ו-<bdi>CEA</bdi></span> נמוכים</div>
+  <div class="box a"><b class="t"><bdi>MCN</bdi></b>כמעט רק נשים. <span class="nw">ב-<bdi dir="ltr">body</bdi></span> <span class="nw">וב-<bdi dir="ltr">tail</bdi>.</span> ציסטה גדולה עם דופן עבה, לעיתים הסתיידות "קליפת ביצה". <b>כמעט אף פעם לא קשורה לצינור.</b> <bdi>CEA</bdi> גבוה, עמילאז נמוך</div>
+  <div class="box r"><b class="t"><bdi>IPMN</bdi></b>גברים ונשים, גיל 60–70. בעיקר <span class="nw">ב-<bdi dir="ltr">head</bdi>.</span> ציסטות עם הרחבה של <span class="nw">ה-<bdi dir="ltr">main duct</bdi></span> או של <span class="nw">ה-<bdi dir="ltr">branch ducts</bdi>.</span> <b>קשורה לצינור.</b> <bdi>CEA</bdi> ועמילאז גבוהים</div>
+  <div class="box"><b class="t"><bdi>SPN</bdi></b>אישה צעירה, גיל 25–40. <bdi dir="ltr">body</bdi> <span class="nw">ו-<bdi dir="ltr">tail</bdi>.</span> מסה עם דופן עבה, חלק מוצק בהיקף וחלק ציסטי במרכז. לא קשורה לצינור. <bdi>CEA</bdi> ועמילאז נמוכים</div>
+  <div class="box b"><b class="t">שלוש שאלות שמסדרות הכול</b>1. היה פנקריאטיטיס? · 2. יש קשר לצינור? · 3. הנוזל מוציני <span class="nw">(<bdi>CEA</bdi></span> גבוה)?</div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1395</bdi> (טבלה 92.5) · עמ׳ <bdi dir="ltr">1396</bdi></span><span>השוואה</span></div>
 </div></section>
@@ -215,9 +262,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div>
    <div class="flow">
-    <div><b>CT או MRI</b><span>גודל, מיקום, מחיצות, הסתיידויות, גוש דופני, קוטר <span class="nw">ה-<bdi dir="ltr">main duct</bdi></span>. <bdi>MRCP</bdi> מראה קשר לצינור ומאתר גושים</span></div>
+    <div><b>CT או MRI</b><span>גודל, מיקום, מחיצות, הסתיידויות, גוש דופני, קוטר <span class="nw">ה-<bdi dir="ltr">main duct</bdi>.</span> <bdi>MRCP</bdi> מראה קשר לצינור ומאתר גושים</span></div>
     <div><b><bdi>EUS</bdi></b><span>מראה טוב יותר את הדופן, המחיצות והגושים. מאפשר שאיבה של נוזל לציטולוגיה ולבדיקות</span></div>
-    <div><b>נוזל הציסטה</b><span><bdi>CEA</bdi> מעל 192 ננוגרם/מ״ל: ציסטה מוצינית. עמילאז גבוה: קשר לצינור (פסאודוציסטה, <bdi>IPMN</bdi>)</span></div>
+    <div><b>נוזל הציסטה</b><span><bdi>CEA</bdi> מעל 192 ננוגרם/מ״ל: ציסטה מוצינית. עמילאז גבוה: קשר לצינור (פסאודוציסטה, <span class="nw"><bdi>IPMN</bdi>)</span></span></div>
    </div>
   </div>
   <div style="display:grid;gap:10px">
@@ -232,9 +279,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>6</b>בהדמיה</div>
  <h2>איך הציסטות נראות</h2>
  <div class="grid g3">
- <figure><img src="img/ipmn-bd-mri.jpg" alt="IPMN ב-MRI"><figcaption><bdi>IPMN</bdi> של ענף צדדי ב-MRI (<bdi>T2</bdi>): ציסטה קטנה ובהירה <span class="nw">ב-<bdi dir="ltr">pancreatic body</bdi></span> (מסומנת) · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ <figure><img src="img/ipmn-bd-mri.jpg" alt="IPMN ב-MRI"><figcaption><bdi>IPMN</bdi> של ענף צדדי ב-MRI <span class="nw">(<bdi>T2</bdi>):</span> ציסטה קטנה ובהירה <span class="nw">ב-<bdi dir="ltr">pancreatic body</bdi></span> (מסומנת) · <span class="nw"><bdi>Hellerhoff</bdi>,</span> <span class="nw"><bdi>CC BY-SA 4.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
  <figure><img src="img/scn-gross.jpg" alt="ציסטה סרוזית ב-CT"><figcaption>ציסטה סרוזית <span class="nw">ב-<bdi dir="ltr">pancreatic head</bdi></span> ב-CT (חץ): גוש מחולק לציסטות קטנות רבות · <bdi>Wikimedia Commons</bdi> (נחלת הכלל)</figcaption></figure>
- <figure><img src="img/pseudocyst-ct-stomach.jpg" alt="פסאודוציסטה"><figcaption>פסאודוציסטה: אוסף אחיד עם דופן, צמוד לקיבה, אחרי פנקריאטיטיס · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ <figure><img src="img/pseudocyst-ct-stomach.jpg" alt="פסאודוציסטה"><figcaption>פסאודוציסטה: אוסף אחיד עם דופן, צמוד לקיבה, אחרי פנקריאטיטיס · <span class="nw"><bdi>Hellerhoff</bdi>,</span> <span class="nw"><bdi>CC BY-SA 4.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="box b" style="margin-top:12px"><b class="t">מה לחפש בכל ציסטה</b>גודל · מחיצות · הסתיידות (כוכב מרכזי או קליפת ביצה) · גוש בדופן · קוטר <span class="nw">ה-<bdi dir="ltr">main duct</bdi></span> · קשר לצינור</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1387, 1395–1398</bdi></span><span>תמונות</span></div>
@@ -245,18 +292,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>7</b>לא מוציניים</div>
  <h2>ציסטה סרוזית <span class="nw">ו-<bdi>SPN</bdi></span></h2>
  <div class="grid">
-  <div class="box b"><b class="t">ציסטה סרוזית (<bdi>SCN</bdi>)</b>
+  <div class="box b"><b class="t">ציסטה סרוזית <span class="nw">(<bdi>SCN</bdi>)</span></b>
    <ul class="b sm">
     <li>כמעט תמיד שפירה. בדרך כלל <b>לא צריך מעקב</b></li>
-    <li><span class="nw">ב-<bdi dir="ltr">pancreatic head</bdi></span>, במטופלים מבוגרים יותר. כאב לא ממוקד, לעיתים ירידה במשקל או צהבת</li>
+    <li><span class="nw">ב-<bdi dir="ltr">pancreatic head</bdi>,</span> במטופלים מבוגרים יותר. כאב לא ממוקד, לעיתים ירידה במשקל או צהבת</li>
     <li>ציסטות קטנות רבות מלאות גליקוגן. הסתיידות מרכזית עם מחיצות שיוצאות ממנה ("כוכב") ב-10–20% מה-CT</li>
     <li><b>מתי כורתים:</b> כשיש תסמינים, כשהאבחנה לא בטוחה, או בגודל מעל 4 ס״מ או גדילה מהירה</li>
    </ul></div>
-  <div class="box a"><b class="t">גידול פסאודופפילרי מוצק (<bdi>SPN</bdi>, גידול <bdi>Frantz</bdi>)</b>
+  <div class="box a"><b class="t">גידול פסאודופפילרי מוצק <span class="nw">(<bdi>SPN</bdi>,</span> גידול <span class="nw"><bdi>Frantz</bdi>)</span></b>
    <ul class="b sm">
     <li>אישה צעירה (25–35). גודל ממוצע 8 ס״מ, <span class="nw">ב-<bdi dir="ltr">body</bdi></span> <span class="nw">וב-<bdi dir="ltr">tail</bdi></span></li>
     <li>לרוב מתגלה במקרה. עם תסמינים: גוש נמוש</li>
-    <li>מוטציה <span class="nw">ב-<bdi>β-catenin</bdi></span>, בלי <bdi>KRAS</bdi>, <bdi>SMAD4</bdi> <span class="nw">ו-<bdi>TP53</bdi></span></li>
+    <li>מוטציה <span class="nw">ב-<bdi>β-catenin</bdi>,</span> בלי <span class="nw"><bdi>KRAS</bdi>,</span> <bdi>SMAD4</bdi> <span class="nw">ו-<bdi>TP53</bdi></span></li>
     <li>נחשב ממאיר: <b>תמיד כורתים</b>. אחרי כריתה שלמה 95.6% נשארים בלי מחלה</li>
     <li>6% מגיעים עם מחלה מתקדמת מקומית, 8% עם גרורות. מעקב שנתי לכל החיים</li>
    </ul></div>
@@ -266,12 +313,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>8</b>מוציניים · 1</div>
- <h2><bdi>MCN</bdi>: ציסטה של נשים</h2>
+ <h2><span class="nw"><bdi>MCN</bdi>:</span> ציסטה של נשים</h2>
  <div class="grid">
   <div>
    <ul class="b">
     <li>ציסטה מוצינית <b>בלי</b> קשר לצינור. בדופן: <b>סטרומה דמוית שחלה</b>, לרוב חיובית לקולטני אסטרוגן ופרוגסטרון</li>
-    <li>נשים, בדרך כלל בעשור החמישי. <span class="nw">ב-<bdi dir="ltr">body</bdi></span> <span class="nw">וב-<bdi dir="ltr">tail</bdi></span>, רק לעיתים <span class="nw">ב-<bdi dir="ltr">head</bdi></span></li>
+    <li>נשים, בדרך כלל בעשור החמישי. <span class="nw">ב-<bdi dir="ltr">body</bdi></span> <span class="nw">וב-<bdi dir="ltr">tail</bdi>,</span> רק לעיתים <span class="nw">ב-<bdi dir="ltr">head</bdi></span></li>
     <li>עד 50% עם כאב לא ממוקד. כ-20% עם פנקריאטיטיס בעבר</li>
     <li><b>ב-CT:</b> ציסטה בודדת, לעיתים עם מחיצות דקות והסתיידות היקפית</li>
    </ul>
@@ -287,11 +334,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>9</b>מוציניים · 2</div>
- <h2><bdi>IPMN</bdi>: שלושה סוגים</h2>
+ <h2><span class="nw"><bdi>IPMN</bdi>:</span> שלושה סוגים</h2>
  <div class="grid g3">
-  <div class="box b"><b class="t">ענף צדדי (<bdi>BD-IPMN</bdi>)</b>הרחבה של <bdi dir="ltr">branch ducts</bdi> שמחוברים <span class="nw">ל-<bdi dir="ltr">main duct</bdi></span>, בלי לערב אותו. בודדת או רב-מוקדית. כמה ציסטות יחד מחזקות את האבחנה. <b>רוב המטופלים לא צריכים ניתוח</b></div>
-  <div class="box r"><b class="t"><bdi dir="ltr">main duct</bdi> (<bdi>MD-IPMN</bdi>)</b>הרחבה של <span class="nw">ה-<bdi dir="ltr">main duct</bdi></span> עם ריר סמיך. באנדוסקופיה: ריר יוצא <span class="nw">מ-<bdi dir="ltr">papilla</bdi></span> פתוחה ("פה של דג"). <b>30–50% כבר עם סרטן פולשני</b> באבחנה</div>
-  <div class="box a"><b class="t">מעורב</b>ענף צדדי שהתפשט <span class="nw">ל-<bdi dir="ltr">main duct</bdi></span>. חשד: ציסטה של ענף עם הרחבה של הצינור במעלה הזרם. מתנהג כמו <bdi dir="ltr">main duct</bdi>: <b>30–50% פולשני</b></div>
+  <div class="box b"><b class="t">ענף צדדי <span class="nw">(<bdi>BD-IPMN</bdi>)</span></b>הרחבה של <bdi dir="ltr">branch ducts</bdi> שמחוברים <span class="nw">ל-<bdi dir="ltr">main duct</bdi>,</span> בלי לערב אותו. בודדת או רב-מוקדית. כמה ציסטות יחד מחזקות את האבחנה. <b>רוב המטופלים לא צריכים ניתוח</b></div>
+  <div class="box r"><b class="t"><bdi dir="ltr">main duct</bdi> <span class="nw">(<bdi>MD-IPMN</bdi>)</span></b>הרחבה של <span class="nw">ה-<bdi dir="ltr">main duct</bdi></span> עם ריר סמיך. באנדוסקופיה: ריר יוצא <span class="nw">מ-<bdi dir="ltr">papilla</bdi></span> פתוחה ("פה של דג"). <b>30–50% כבר עם סרטן פולשני</b> באבחנה</div>
+  <div class="box a"><b class="t">מעורב</b>ענף צדדי שהתפשט <span class="nw">ל-<bdi dir="ltr">main duct</bdi>.</span> חשד: ציסטה של ענף עם הרחבה של הצינור במעלה הזרם. מתנהג כמו <span class="nw"><bdi dir="ltr">main duct</bdi>:</span> <b>30–50% פולשני</b></div>
  </div>
  <div class="grid" style="margin-top:12px">
   <div>
@@ -300,7 +347,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li>דרגות: דיספלזיה נמוכה, בינונית או גבוהה, עם או בלי סרטן פולשני</li>
    </ul>
   </div>
-  <div class="box n"><b class="t">פחות מ-10% מסרטני הלבלב</b>מתפתחים <span class="nw">מ-<bdi>IPMN</bdi></span>. רובם המכריע מתחילים בנגעים מיקרוסקופיים בצינורות (<bdi>PanIN</bdi>)</div>
+  <div class="box n"><b class="t">פחות מ-10% מסרטני הלבלב</b>מתפתחים <span class="nw">מ-<bdi>IPMN</bdi>.</span> רובם המכריע מתחילים בנגעים מיקרוסקופיים בצינורות <span class="nw">(<bdi>PanIN</bdi>)</span></div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1397–1399</bdi> · פרק 93 עמ׳ <bdi dir="ltr">1403</bdi></span><span><bdi>IPMN</bdi></span></div>
 </div></section>
@@ -335,7 +382,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="flow">
   <div><b><bdi dir="ltr">main duct</bdi> או מעורב</b><span>כריתה לכל מי שכשיר לניתוח: הסיכון לממאירות גבוה</span></div>
   <div><b>ענף צדדי · סיכון גבוה</b><span>כריתה</span></div>
-  <div><b>ענף צדדי · סימן מדאיג</b><span><bdi>EUS</bdi>. לפי התוצאה: ניתוח או מעקב צמוד</span></div>
+  <div><b>ענף צדדי · סימן מדאיג</b><span><span class="nw"><bdi>EUS</bdi>.</span> לפי התוצאה: ניתוח או מעקב צמוד</span></div>
   <div><b>ענף צדדי · בלי סימנים</b><span>מעקב הדמייתי. בממוצע: סיכון לסרטן פולשני של 10–15% בסך הכול, כ-2–3% בשנה</span></div>
  </div>
  <div class="grid" style="margin-top:12px">
@@ -351,8 +398,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div>
    <ul class="b sm">
-    <li><b>ענף צדדי:</b> כורתים את הנגע הבעייתי. הכריתה לפי המיקום: וויפל <span class="nw">ב-<bdi dir="ltr">head</bdi></span>, כריתה דיסטלית <span class="nw">ב-<bdi dir="ltr">body</bdi></span> <span class="nw">וב-<bdi dir="ltr">tail</bdi></span></li>
-    <li><b><bdi dir="ltr">main duct</bdi>:</b> קשה לדעת כמה מהצינור מעורב. בלי גושים לאורך כל הצינור: עדיפה כריתה מצד ימין (וויפל) עם <b>חתך קפוא</b> מהשוליים <span class="nw">ב-<bdi dir="ltr">neck</bdi></span></li>
+    <li><b>ענף צדדי:</b> כורתים את הנגע הבעייתי. הכריתה לפי המיקום: וויפל <span class="nw">ב-<bdi dir="ltr">head</bdi>,</span> כריתה דיסטלית <span class="nw">ב-<bdi dir="ltr">body</bdi></span> <span class="nw">וב-<bdi dir="ltr">tail</bdi></span></li>
+    <li><b><span class="nw"><bdi dir="ltr">main duct</bdi>:</span></b> קשה לדעת כמה מהצינור מעורב. בלי גושים לאורך כל הצינור: עדיפה כריתה מצד ימין (וויפל) עם <b>חתך קפוא</b> מהשוליים <span class="nw">ב-<bdi dir="ltr">neck</bdi></span></li>
     <li>דיספלזיה גבוהה או סרטן בשוליים: הרחבה לכריתת לבלב מלאה. כ-<b>15%</b> מהמטופלים יעברו בסוף כריתה מלאה. מדברים איתם על כך לפני הניתוח</li>
     <li>חשד לדיספלזיה גבוהה או סרטן: כריתה אונקולוגית מלאה עם בלוטות, בכל סוג ציסטה</li>
    </ul>
@@ -384,7 +431,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   </div>
   <div class="flow">
    <div><b>בלי תסמינים</b><span>מעקב</span></div>
-   <div><b>עם תסמינים או סיבוכים</b><span>ניקוז, לרוב אנדוסקופי (<bdi>EUS</bdi>) דרך הקיבה או <span class="nw">ה-<bdi dir="ltr">duodenum</bdi></span></span></div>
+   <div><b>עם תסמינים או סיבוכים</b><span>ניקוז, לרוב אנדוסקופי <span class="nw">(<bdi>EUS</bdi>)</span> דרך הקיבה או <span class="nw">ה-<bdi dir="ltr">duodenum</bdi></span></span></div>
    <div><b>כשאי אפשר אנדוסקופית</b><span>ניקוז בניתוח לקיבה, <span class="nw">ל-<bdi dir="ltr">duodenum</bdi></span> או ללולאת <bdi>Roux-en-Y</bdi></span></div>
    <div><b>לא בטוחים שזו פסאודוציסטה?</b><span>אבחנה לפני ניקוז. ניקוז של גידול ציסטי הוא טעות</span></div>
   </div>
@@ -415,12 +462,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <ol class="obj">
   <li>לפני הכול: האם היה פנקריאטיטיס? פסאודוציסטה אינה גידול, אבל אסור לנקז גידול בטעות</li>
   <li><bdi>CEA</bdi> בנוזל מעל 192 אומר מוציני, לא פולשני</li>
-  <li>ציסטה סרוזית: לרוב משאירים. <bdi>MCN</bdi> <span class="nw">ו-<bdi>SPN</bdi></span>: כורתים</li>
-  <li><bdi>IPMN</bdi> של <span class="nw">ה-<bdi dir="ltr">main duct</bdi></span>: כורתים. ענף צדדי: לפי סימנים מדאיגים וסימני סיכון גבוה</li>
+  <li>ציסטה סרוזית: לרוב משאירים. <bdi>MCN</bdi> <span class="nw">ו-<bdi>SPN</bdi>:</span> כורתים</li>
+  <li><bdi>IPMN</bdi> של <span class="nw">ה-<bdi dir="ltr">main duct</bdi>:</span> כורתים. ענף צדדי: לפי סימנים מדאיגים וסימני סיכון גבוה</li>
   <li>צהבת, גוש בדופן מעל 5 מ״מ או צינור מעל 1 ס״מ: ניתוח</li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 92 <bdi>Exocrine Pancreas</bdi>, <bdi>Cystic Neoplasms of the Pancreas</bdi> (עמ׳ <bdi dir="ltr">1394–1400</bdi>) ופסאודוציסטה (עמ׳ <bdi dir="ltr">1387</bdi>)</div>
- <div class="src"><span>איור: <bdi>Sobotta, Atlas and Text-book of Human Anatomy</bdi> (1906, נחלת הכלל, <bdi>Wikimedia Commons</bdi>) · תמונות: <bdi>Hellerhoff</bdi> (<bdi>CC BY-SA 4.0</bdi>), <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 92 <span class="nw"><bdi>Exocrine Pancreas</bdi>,</span> <bdi>Cystic Neoplasms of the Pancreas</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1394–1400</bdi>)</span> ופסאודוציסטה (עמ׳ <span class="nw"><bdi dir="ltr">1387</bdi>)</span></div>
+ <div class="src"><span>איור: <bdi>Sobotta, Atlas and Text-book of Human Anatomy</bdi> (1906, נחלת הכלל, <span class="nw"><bdi>Wikimedia Commons</bdi>)</span> · תמונות: <bdi>Hellerhoff</bdi> <span class="nw">(<bdi>CC BY-SA 4.0</bdi>),</span> <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>
@@ -442,5 +489,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>

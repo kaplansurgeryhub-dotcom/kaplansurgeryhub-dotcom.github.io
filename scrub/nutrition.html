@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>תזונה אנטרלית ו-TPN · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,7 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -116,9 +116,56 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -146,7 +193,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>לבחור את דרך ההזנה (דרך הפה, צינור לקיבה או למעי הדק, הזנה תוך-ורידית) ולהכיר את ההתוויות והסיבוכים של כל אחת</li>
   <li>לזהות ולמנוע את תסמונת ההזנה מחדש</li>
  </ol>
- <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 34 (עמ׳ <bdi dir="ltr">269–290</bdi>) · פרק 46 (עמ׳ <bdi dir="ltr">540</bdi>)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 34 (עמ׳ <span class="nw"><bdi dir="ltr">269–290</bdi>)</span> · פרק 46 (עמ׳ <span class="nw"><bdi dir="ltr">540</bdi>)</span></span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -157,13 +204,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div class="flow">
     <div><b>שלב השפל</b><span>כ-12 השעות הראשונות: הוצאה אנרגטית נמוכה, צריכת חמצן וחום גוף נמוכים יותר</span></div>
     <div><b>שלב הזרימה</b><span>עלייה בהוצאה האנרגטית. בפגיעה קשה: מצב קטבולי מתמשך שלא מגיב להאכלה</span></div>
-    <div><b>הורמונים</b><span>קורטיזול עולה <span class="nw">ל-<bdi dir="ltr">24–48</bdi></span> שעות. קטכולאמינים, גלוקגון. אלדוסטרון <span class="nw">ו-<bdi>ADH</bdi></span>: אגירת מלח ומים ובצקות</span></div>
+    <div><b>הורמונים</b><span>קורטיזול עולה <span class="nw">ל-<bdi dir="ltr">24–48</bdi></span> שעות. קטכולאמינים, גלוקגון. אלדוסטרון <span class="nw">ו-<bdi>ADH</bdi>:</span> אגירת מלח ומים ובצקות</span></div>
     <div><b>סוכר</b><span>פירוק גליקוגן, ייצור גלוקוז בכבד עולה עד 50%. תנגודת לאינסולין והיפרגליקמיה</span></div>
    </div>
   </div>
   <div style="display:grid;gap:10px">
    <div class="box r"><b class="t">השריר משלם</b>אין לגוף מאגר של חומצות אמינו. לכן הוא מפרק שריר. כבר בתחילת רעב מתפרקים כ-75 גרם חלבון שריר ביום. בחולה קשה נדרשים <bdi dir="ltr">1.2–2.0</bdi> גרם חלבון לק״ג ליום כדי להתגבר על "התנגודת האנבולית"</div>
-   <div class="box"><b class="t">מאזן חנקן</b><bdi dir="ltr">(protein g / 6.25) − (UUN + 4)</bdi>. מאזן שלילי: הגוף מפרק חלבון</div>
+   <div class="box"><b class="t">מאזן חנקן</b><span class="nw"><bdi dir="ltr">(protein g / 6.25) − (UUN + 4)</bdi>.</span> מאזן שלילי: הגוף מפרק חלבון</div>
    <div class="box n"><b class="t">כשזה לא נגמר</b><bdi>PICS</bdi> (דלקת, דיכוי חיסוני וקטבוליזם מתמשכים) פוגע <span class="nw">ב-<bdi dir="ltr">30–50%</bdi></span> מהשורדים אחרי אשפוז ארוך בטיפול נמרץ. הוא לא מגיב היטב להאכלה</div>
   </div>
  </div>
@@ -185,7 +232,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    </ul>
    <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>קחו אנמנזה תזונתית מחולה אחד לפני ניתוח: משקל לפני חצי שנה ועכשיו וכמה הוא אוכל. בדקו אותו. האם הוא עומד באחד מארבעת סימני הסינון?</div>
   </div>
-  <figure><img src="img/nutr-koilonychia.jpg" alt="ציפורניים בצורת כף בחוסר ברזל"><figcaption>ציפורני כף (<bdi>koilonychia</bdi>) בחוסר ברזל: אחד הסימנים שמחפשים בבדיקה התזונתית · <bdi>CHeitz</bdi>, <bdi>CC BY 2.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/nutr-koilonychia.jpg" alt="ציפורניים בצורת כף בחוסר ברזל"><figcaption>ציפורני כף <span class="nw">(<bdi>koilonychia</bdi>)</span> בחוסר ברזל: אחד הסימנים שמחפשים בבדיקה התזונתית · <span class="nw"><bdi>CHeitz</bdi>,</span> <span class="nw"><bdi>CC BY 2.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 34 עמ׳ <bdi dir="ltr">273–278</bdi> (איור 34.2, טבלאות 34.4, 34.6)</span><span>הערכה תזונתית</span></div>
 </div></section>
@@ -202,7 +249,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <ul class="b">
    <li>אלבומין, פרה-אלבומין וטרנספרין הם <b>חלבוני שלב חריף שליליים:</b> הם יורדים בדלקת גם כשהמטופל מוזן היטב</li>
-   <li>באנשים בריאים ברעב, אלבומין נשאר תקין עד תת-תזונה קשה (<bdi>BMI</bdi> מתחת ל-12 או 6 שבועות רעב)</li>
+   <li>באנשים בריאים ברעב, אלבומין נשאר תקין עד תת-תזונה קשה <span class="nw">(<bdi>BMI</bdi></span> מתחת ל-12 או 6 שבועות רעב)</li>
    <li>מתן אלבומין לתיקון רמה נמוכה לא שיפר תוצאות</li>
   </ul>
   <div style="display:grid;gap:10px">
@@ -266,7 +313,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   </div>
   <div style="display:grid;gap:10px">
    <div class="box"><b class="t">למה אנטרלי עדיף?</b>שומר על רירית המעי ועל תנועתיות, מפחית מעבר חיידקים, פחות זיהומים (כולל זיהומי צנתר), אשפוז קצר יותר וזול יותר. בתמותה לא נמצא הבדל בין אנטרלי מוקדם <span class="nw">ל-<bdi>TPN</bdi></span> מוקדם</div>
-   <div class="box n"><b class="t">מטופל מוזן היטב</b>בסיכון נמוך (<bdi>NRS</bdi> מתחת ל-3 או <bdi>NUTRIC</bdi> מתחת ל-5) יכול לעבור עד 7 ימים בלי הזנה, אם צפוי שיפור. בסיכון גבוה או בתת-תזונה קשה שלא סובל הזנה אנטרלית: <bdi>TPN</bdi> מוקדם</div>
+   <div class="box n"><b class="t">מטופל מוזן היטב</b>בסיכון נמוך <span class="nw">(<bdi>NRS</bdi></span> מתחת ל-3 או <bdi>NUTRIC</bdi> מתחת ל-5) יכול לעבור עד 7 ימים בלי הזנה, אם צפוי שיפור. בסיכון גבוה או בתת-תזונה קשה שלא סובל הזנה אנטרלית: <bdi>TPN</bdi> מוקדם</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 34 עמ׳ <bdi dir="ltr">279–280, 282</bdi></span><span>ההחלטה</span></div>
@@ -286,9 +333,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <g class="hzb" style="--c:#00967D"><circle cx="492" cy="745" r="26"/><text x="492" y="745">4</text></g>
   </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על אזור כדי לקרוא על דרך ההזנה</p>
-   <div class="hzi" data-hzi="n" hidden><b>1 · דרך האף: צינור לקיבה או למעי</b><p>לטווח קצר. מוחדר ליד המיטה או בשיקוף. קל להחדיר ולהחליף. סיכונים: מיקום שגוי, דלקת סינוסים, דימום מהאף, נמק באף ופגיעה <span class="nw">ב-<bdi dir="ltr">esophagus</bdi></span>. צינור <span class="nw">ל-<bdi dir="ltr">duodenum</bdi></span> או <span class="nw">ל-<bdi dir="ltr">jejunum</bdi></span> מתאים כשהקיבה לא מתרוקנת, ברפלוקס ובסיכון לשאיפה</p></div>
+   <div class="hzi" data-hzi="n" hidden><b>1 · דרך האף: צינור לקיבה או למעי</b><p>לטווח קצר. מוחדר ליד המיטה או בשיקוף. קל להחדיר ולהחליף. סיכונים: מיקום שגוי, דלקת סינוסים, דימום מהאף, נמק באף ופגיעה <span class="nw">ב-<bdi dir="ltr">esophagus</bdi>.</span> צינור <span class="nw">ל-<bdi dir="ltr">duodenum</bdi></span> או <span class="nw">ל-<bdi dir="ltr">jejunum</bdi></span> מתאים כשהקיבה לא מתרוקנת, ברפלוקס ובסיכון לשאיפה</p></div>
    <div class="hzi" data-hzi="s" hidden><b>2 · הקיבה: צינור אף-קיבה או גסטרוסטומיה</b><p>אפשר האכלה במנות (בולוס), הדרך הפיזיולוגית ביותר, רק לקיבה. גסטרוסטומיה (ניתוחית, אנדוסקופית או רדיולוגית) לטווח ארוך, כשהקיבה מתרוקנת היטב ואין סיכון גבוה לשאיפה. הזנה לקיבה בטוחה ברוב החולים</p></div>
-   <div class="hzi" data-hzi="j" hidden><b>3 · המעי הדק: צינור אחרי <span class="nw">ה-<bdi dir="ltr">pylorus</bdi></span> או ג׳ג׳ונוסטומיה</b><p>כשיש גסטרופרזיס, רפלוקס או סיכון לשאיפה. רק בעירוי רציף. אי אפשר למדוד שארית בקיבה. סיכונים של ג׳ג׳ונוסטומיה: דליפה <span class="nw">ל-<bdi dir="ltr">peritoneum</bdi></span>, חסימה, איסכמיה של המעי. בדלקת לבלב: הזנה <span class="nw">ל-<bdi dir="ltr">jejunum</bdi></span> בפורמולה דלת שומן</p></div>
+   <div class="hzi" data-hzi="j" hidden><b>3 · המעי הדק: צינור אחרי <span class="nw">ה-<bdi dir="ltr">pylorus</bdi></span> או ג׳ג׳ונוסטומיה</b><p>כשיש גסטרופרזיס, רפלוקס או סיכון לשאיפה. רק בעירוי רציף. אי אפשר למדוד שארית בקיבה. סיכונים של ג׳ג׳ונוסטומיה: דליפה <span class="nw">ל-<bdi dir="ltr">peritoneum</bdi>,</span> חסימה, איסכמיה של המעי. בדלקת לבלב: הזנה <span class="nw">ל-<bdi dir="ltr">jejunum</bdi></span> בפורמולה דלת שומן</p></div>
    <div class="hzi" data-hzi="c" hidden><b>4 · המעי הגס: הסיבים</b><p>סיבים מסיסים מותססים בידי חיידקי המעי לחומצות שומן קצרות, שמזינות את תאי המעי הגס. כמות יומית מומלצת: <bdi dir="ltr">25–30</bdi> גרם. שלשול בהזנה אנטרלית: משנים פורמולה, כמות סיבים וקצב</p></div>
   </div></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 34 עמ׳ <bdi dir="ltr">279, 281–282, 287–289</bdi> (טבלה 34.8)</span><span>איור: <bdi>Blausen.com staff (2014), WikiJournal of Medicine</bdi> · <bdi>CC BY 3.0</bdi> · <bdi>Wikimedia Commons</bdi></span></div>
@@ -308,7 +355,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div class="box a" style="margin-top:10px"><b class="t">שאריות בקיבה</b>מנבאות סיבוכים בצורה גרועה. העלאת הסף <span class="nw">מ-<bdi dir="ltr">50–150</bdi></span> <span class="nw">ל-<bdi dir="ltr">250–500</bdi></span> מ״ל לא הגדילה שאיפה. בודקים את הבטן: נפיחות וכאב</div>
   </div>
   <div style="display:grid;gap:10px">
-   <figure><img src="img/nutr-peg-xray.jpg" alt="צילום עם חומר ניגוד דרך צינור גסטרוסטומיה" style="max-height:28vh"><figcaption>אישור מיקום של גסטרוסטומיה בחומר ניגוד: הקיבה מתמלאת ואין דליפה · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+   <figure><img src="img/nutr-peg-xray.jpg" alt="צילום עם חומר ניגוד דרך צינור גסטרוסטומיה" style="max-height:28vh"><figcaption>אישור מיקום של גסטרוסטומיה בחומר ניגוד: הקיבה מתמלאת ואין דליפה · <span class="nw"><bdi>Hellerhoff</bdi>,</span> <span class="nw"><bdi>CC BY-SA 4.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
    <div class="box r"><b class="t">מתי עוצרים?</b>חוסר יציבות המודינמית או העלאה של תרופות מכווצות כלים: סיכון לאיסכמיה של המעי. כשהמינון יורד אפשר לחזור, בזהירות</div>
    <div class="box n"><b class="t">הפסקות</b><bdi dir="ltr">12–20%</bdi> מזמן ההזנה הולך לאיבוד. עד 65% מזה אפשר למנוע. יעד של 24 שעות במקום קצב לשעה עוזר</div>
   </div>
@@ -344,11 +391,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <ul class="b sm">
     <li><b>הצנתר:</b> זיהום דם וקריש. שמירה קפדנית על אספסיס</li>
     <li><b>מטבולי:</b> היפרגליקמיה (שכיחה, מטפלים באינסולין), טריגליצרידים גבוהים, הפרעות אלקטרוליטים</li>
-    <li><b><bdi dir="ltr">liver</bdi>:</b> מחלת כבד <span class="nw">מ-<bdi>TPN</bdi></span>, בעיקר בשימוש ארוך. מתאימים שומנים ונותנים מעט הזנה אנטרלית כשאפשר</li>
+    <li><b><span class="nw"><bdi dir="ltr">liver</bdi>:</span></b> מחלת כבד <span class="nw">מ-<bdi>TPN</bdi>,</span> בעיקר בשימוש ארוך. מתאימים שומנים ונותנים מעט הזנה אנטרלית כשאפשר</li>
     <li><b>המעי:</b> <bdi>TPN</bdi> מוקדם בחולה קשה נקשר לניוון של רירית המעי</li>
    </ul>
   </div>
-  <figure style="align-self:start"><img src="img/nutr-cvc.png" alt="צנתר ורידי מרכזי שנכנס ל-subclavian vein ומגיע ל-SVC"><figcaption>צנתר ורידי מרכזי: נכנס <span class="nw">ל-<bdi dir="ltr">subclavian vein</bdi></span>. הקצה שלו <span class="nw">ב-<bdi dir="ltr">SVC</bdi></span> (<bdi dir="ltr">superior vena cava</bdi>) מעל הלב. כך ניתנת <bdi>TPN</bdi> · <bdi>Blausen.com staff (2014)</bdi>, <bdi>CC BY 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure style="align-self:start"><img src="img/nutr-cvc.png" alt="צנתר ורידי מרכזי שנכנס ל-subclavian vein ומגיע ל-SVC"><figcaption>צנתר ורידי מרכזי: נכנס <span class="nw">ל-<bdi dir="ltr">subclavian vein</bdi>.</span> הקצה שלו <span class="nw">ב-<bdi dir="ltr">SVC</bdi></span> <span class="nw">(<bdi dir="ltr">superior vena cava</bdi>)</span> מעל הלב. כך ניתנת <bdi>TPN</bdi> · <span class="nw"><bdi>Blausen.com staff (2014)</bdi>,</span> <span class="nw"><bdi>CC BY 3.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 34 עמ׳ <bdi dir="ltr">279–281, 287, 289</bdi></span><span><bdi>TPN</bdi></span></div>
 </div></section>
@@ -362,7 +409,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>מי בסיכון:</b> מטופל אחרי רעב ממושך שמתחילים להאכיל, אנטרלית או תוך-ורידית</li>
     <li><b>מה קורה:</b> זרחן נכנס לתאים לייצור <bdi>ATP</bdi> ורמתו בדם צונחת. בהתחלה: מעברי נוזלים ואלקטרוליטים. מאוחר יותר: ירידות סוכר</li>
     <li><b>סימן ההיכר: זרחן נמוך.</b> לצידו מגנזיום ואשלגן נמוכים וחוסר תיאמין</li>
-    <li><b>הסכנה:</b> הפרעות קצב, אוטם ודום לב. חולשת שרירים (גם <span class="nw">ה-<bdi dir="ltr">diaphragm</bdi></span>) ופגיעה חיסונית</li>
+    <li><b>הסכנה:</b> הפרעות קצב, אוטם ודום לב. חולשת שרירים (גם <span class="nw">ה-<bdi dir="ltr">diaphragm</bdi>)</span> ופגיעה חיסונית</li>
    </ul>
   </div>
   <div style="display:grid;gap:10px">
@@ -381,10 +428,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>13</b>מצבים מיוחדים</div>
  <h2>מה שונה אחרי ניתוחי מעי</h2>
  <div class="grid">
-  <div class="box"><b class="t">כריתת מעי דק ומעי קצר</b>פחות מ-200 ס״מ מעי דק: מעי קצר. חסרים כרוניים כשנשארים פחות מ-100 ס״מ בלי <span class="nw">ה-<bdi dir="ltr">ileocecal valve</bdi></span>, או <bdi dir="ltr">50–75</bdi> ס״מ איתו. אובדן <span class="nw">ה-<bdi dir="ltr">ileum</bdi></span>: חוסר <bdi>B12</bdi> ומלחי מרה. במקרים הקשים: <bdi>TPN</bdi> בבית</div>
+  <div class="box"><b class="t">כריתת מעי דק ומעי קצר</b>פחות מ-200 ס״מ מעי דק: מעי קצר. חסרים כרוניים כשנשארים פחות מ-100 ס״מ בלי <span class="nw">ה-<bdi dir="ltr">ileocecal valve</bdi>,</span> או <bdi dir="ltr">50–75</bdi> ס״מ איתו. אובדן <span class="nw">ה-<bdi dir="ltr">ileum</bdi>:</span> חוסר <bdi>B12</bdi> ומלחי מרה. במקרים הקשים: <bdi>TPN</bdi> בבית</div>
   <div class="box b"><b class="t">אילאוסטומיה</b>התייבשות היא סיבה שכיחה לאשפוז חוזר. מלמדים את המטופל לזהות תפוקה גבוהה. לפני השחרור הראשון: תפוקה של כ-1,000 מ״ל ביממה או פחות</div>
-  <div class="box a"><b class="t">דלקת לבלב חריפה</b>דיאטה דלת שומן בתוך 48 שעות מהקבלה בטוחה גם בדלקת קשה. היא מפחיתה כשל רב-מערכתי. אם צריך צינור: <span class="nw">ל-<bdi dir="ltr">jejunum</bdi></span>, פורמולה דלת שומן</div>
-  <div class="box n"><b class="t">אחרי כריתת קיבה ובריאטריה</b>אחרי כריתת קיבה חוזרים לכ-75% מנפח הארוחה בתוך שנתיים. אחרי שרוול: חוסר <bdi>B12</bdi>. אחרי מעקף: חוסר ברזל. מולטי-ויטמין יומי ומעקב לכל החיים</div>
+  <div class="box a"><b class="t">דלקת לבלב חריפה</b>דיאטה דלת שומן בתוך 48 שעות מהקבלה בטוחה גם בדלקת קשה. היא מפחיתה כשל רב-מערכתי. אם צריך צינור: <span class="nw">ל-<bdi dir="ltr">jejunum</bdi>,</span> פורמולה דלת שומן</div>
+  <div class="box n"><b class="t">אחרי כריתת קיבה ובריאטריה</b>אחרי כריתת קיבה חוזרים לכ-75% מנפח הארוחה בתוך שנתיים. אחרי שרוול: חוסר <span class="nw"><bdi>B12</bdi>.</span> אחרי מעקף: חוסר ברזל. מולטי-ויטמין יומי ומעקב לכל החיים</div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 34 עמ׳ <bdi dir="ltr">284–287</bdi></span><span>מצבים מיוחדים</span></div>
 </div></section>
@@ -393,13 +440,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>14</b>מה חדש בתחום · 2021–2026</div>
  <h2>מחקרים שכדאי להכיר</h2>
  <div class="grid g3">
-  <div class="study"><div class="y"><bdi>Lancet</bdi> 2023 · מחקר אקראי</div><b><bdi>EFFORT Protein</bdi>: יותר חלבון בטיפול נמרץ</b>
+  <div class="study"><div class="y"><bdi>Lancet</bdi> 2023 · מחקר אקראי</div><b><span class="nw"><bdi>EFFORT Protein</bdi>:</span> יותר חלבון בטיפול נמרץ</b>
    <p>1,329 מונשמים בסיכון תזונתי גבוה. חלבון של 2.2 גרם לק״ג ומעלה לעומת 1.2 ומטה: לא קיצר את הזמן עד השחרור. תמותה ב-60 יום: 34.6% לעומת 32.1%. ייתכן נזק בפגיעה כלייתית חריפה</p>
    <small>Heyland DK et al. Lancet 2023;401:568-76</small></div>
-  <div class="study"><div class="y"><bdi>Lancet Respir Med</bdi> 2023 · מחקר אקראי</div><b><bdi>NUTRIREA-3</bdi>: פחות קלוריות בשבוע הראשון</b>
+  <div class="study"><div class="y"><bdi>Lancet Respir Med</bdi> 2023 · מחקר אקראי</div><b><span class="nw"><bdi>NUTRIREA-3</bdi>:</span> פחות קלוריות בשבוע הראשון</b>
    <p>3,044 מונשמים בשוק. 6 קק״ל לק״ג לעומת 25 בשבוע הראשון: תמותה ב-90 יום 41.3% לעומת 42.8%. בקבוצה המוגבלת: החלמה מהירה יותר ופחות הקאות, שלשולים ואיסכמיה של המעי</p>
    <small>Reignier J et al. Lancet Respir Med 2023;11:602-12</small></div>
-  <div class="study"><div class="y"><bdi>Lancet</bdi> 2024 · מחקר אקראי כפול-סמיות</div><b><bdi>PRECISe</bdi>: חלבון גבוה ואיכות חיים</b>
+  <div class="study"><div class="y"><bdi>Lancet</bdi> 2024 · מחקר אקראי כפול-סמיות</div><b><span class="nw"><bdi>PRECISe</bdi>:</span> חלבון גבוה ואיכות חיים</b>
    <p>935 מונשמים. 2.0 גרם חלבון לק״ג לעומת 1.3: איכות חיים <b>נמוכה יותר</b> לאורך 180 יום. יותר אי-סבילות במערכת העיכול. בלי שיפור בתפקוד</p>
    <small>Bels JLM et al. Lancet 2024;404:659-69</small></div>
  </div>
@@ -414,11 +461,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>ניתוח מפעיל קטבוליזם: השריר מתפרק. החלבון חשוב לא פחות מהקלוריות</li>
   <li>מזהים סיכון לפי ירידה במשקל, כמה המטופל אוכל, בדיקה וכלי סינון. אלבומין מנבא סיבוכים אבל לא מודד תזונה</li>
   <li>אם המעי עובד, משתמשים בו. מתחילים מוקדם: גם אחרי השקה, גם בלי נוזלים צלולים קודם</li>
-  <li>כלל ה-60%: מהפה לצינור ומהצינור <span class="nw">ל-<bdi>TPN</bdi></span>, כשלא מגיעים ל-60% מהיעד</li>
+  <li>כלל ה-60%: מהפה לצינור ומהצינור <span class="nw">ל-<bdi>TPN</bdi>,</span> כשלא מגיעים ל-60% מהיעד</li>
   <li>אחרי רעב: מתחילים לאט ונותנים תיאמין. בודקים זרחן, אשלגן ומגנזיום</li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 34 <bdi>Metabolism and Nutrition in Surgical Patients</bdi> (עמ׳ <bdi dir="ltr">269–290</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Blausen.com staff (2014), WikiJournal of Medicine, CC BY 3.0</bdi> · שיקוף: <bdi>Hellerhoff, CC BY-SA 4.0</bdi> · ציפורניים: <bdi>CHeitz, CC BY 2.0</bdi> (<bdi>Wikimedia Commons</bdi>) · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 34 <bdi>Metabolism and Nutrition in Surgical Patients</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">269–290</bdi>)</span></div>
+ <div class="src"><span>איורים: <bdi>Blausen.com staff (2014), WikiJournal of Medicine, CC BY 3.0</bdi> · שיקוף: <bdi>Hellerhoff, CC BY-SA 4.0</bdi> · ציפורניים: <bdi>CHeitz, CC BY 2.0</bdi> <span class="nw">(<bdi>Wikimedia Commons</bdi>)</span> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>
@@ -440,5 +487,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>

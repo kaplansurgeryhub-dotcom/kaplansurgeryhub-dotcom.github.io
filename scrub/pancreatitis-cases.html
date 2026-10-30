@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>דיון מקרים: פנקריאטיטיס · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -82,7 +82,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -112,9 +112,56 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -137,12 +184,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>בסוף המפגש תדעו</h2>
  <ol class="obj">
   <li>לאבחן פנקריאטיטיס חריפה לפי שניים משלושה קריטריונים ולדעת מתי באמת צריך CT</li>
-  <li>להעריך חומרה (קלה, בינונית או קשה) ולהכיר את הכלים לחיזוי (<bdi>SIRS</bdi>, <bdi>BISAP</bdi>, <bdi>Ranson</bdi>)</li>
+  <li>להעריך חומרה (קלה, בינונית או קשה) ולהכיר את הכלים לחיזוי <span class="nw">(<bdi>SIRS</bdi>,</span> <span class="nw"><bdi>BISAP</bdi>,</span> <span class="nw"><bdi>Ranson</bdi>)</span></li>
   <li>לרשום טיפול ראשוני: נוזלים במינון סביר, משככי כאבים, הזנה מוקדמת ובלי אנטיביוטיקה מונעת</li>
   <li>לתזמן ERCP וכריתת כיס מרה בפנקריאטיטיס ביליארית</li>
   <li>לסווג אוספים סביב <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span> ולהסביר את גישת ה״צעד אחר צעד״ בנמק נגוע</li>
  </ol>
- <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 92 (עמ׳ <bdi dir="ltr">1379–1388</bdi>)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 92 (עמ׳ <span class="nw"><bdi dir="ltr">1379–1388</bdi>)</span></span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -196,14 +243,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <g class="hzb" style="--c:#5D6D3A"><circle cx="230" cy="420" r="26"/><text x="230" y="420">6</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="stom" hidden><b>הדופן האחורית של הקיבה</b><p>בציור הקיבה מורמת כלפי מעלה. מאחוריה נמצא <span class="nw">ה-<bdi dir="ltr">lesser sac</bdi></span>. ברצפת <span class="nw">ה-<bdi dir="ltr">lesser sac</bdi></span>: <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span>. פסאודוציסטה או נמק מוקף שצמודים לדופן האחורית (פחות מ-1 ס״מ) מנוקזים דרך הקיבה, באנדוסקופיה או בניתוח (ציסטוגסטרוסטומיה).</p></div>
-  <div class="hzi" data-hzi="panc" hidden><b><bdi dir="ltr">pancreas</bdi> ברצפת <span class="nw">ה-<bdi dir="ltr">lesser sac</bdi></span></b><p><span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span> רטרופריטונאלי ושוכב מאחורי הקיבה, לפני חוליה <bdi dir="ltr">L1</bdi>. כשהוא מודלק, נוצרים סביבו אוספי נוזל ונמק. חלקם צמודים לדופן האחורית של הקיבה. זה מה שמאפשר לנקז אותם דרכה.</p></div>
-  <div class="hzi" data-hzi="meso" hidden><b><bdi dir="ltr">transverse mesocolon</bdi></b><p>יוצא מהגבול התחתון של <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span>. בצילום בטן בפנקריאטיטיס אפשר לראות ״קטיעה״ של הגז במעי הגס <span class="nw">ב-<bdi dir="ltr">splenic flexure</bdi></span>, בגלל עווית של המעי.</p></div>
-  <div class="hzi" data-hzi="colon" hidden><b><bdi dir="ltr">transverse colon</bdi></b><p>קרוב מאוד <span class="nw">ל-<bdi dir="ltr">pancreas</bdi></span>. בצילום בטן בפנקריאטיטיס רואים לעיתים מפלסי נוזל-אוויר של אילאוס. צילום לא עוזר לאבחנה, אבל עוזר לשלול ניקוב של כיב.</p></div>
-  <div class="hzi" data-hzi="spl" hidden><b><bdi dir="ltr">spleen</bdi> <span class="nw">ו-<bdi dir="ltr">splenic artery</bdi></span></b><p><span class="nw">ה-<bdi dir="ltr">pancreatic tail</bdi></span> מגיע עד <span class="nw">ה-<bdi dir="ltr">splenic hilum</bdi></span>. הדלקת יכולה לפגוע <span class="nw">ב-<bdi dir="ltr">splenic artery</bdi></span> (פסאודואנוריזמה מדממת) או לגרום לפקקת <span class="nw">ב-<bdi dir="ltr">splenic vein</bdi></span>, עם דליות בקיבה. דימום חוזר מהדליות האלה מטופל בכריתת טחול.</p></div>
+  <div class="hzi" data-hzi="stom" hidden><b>הדופן האחורית של הקיבה</b><p>בציור הקיבה מורמת כלפי מעלה. מאחוריה נמצא <span class="nw">ה-<bdi dir="ltr">lesser sac</bdi>.</span> ברצפת <span class="nw">ה-<bdi dir="ltr">lesser sac</bdi>:</span> <span class="nw">ה-<bdi dir="ltr">pancreas</bdi>.</span> פסאודוציסטה או נמק מוקף שצמודים לדופן האחורית (פחות מ-1 ס״מ) מנוקזים דרך הקיבה, באנדוסקופיה או בניתוח (ציסטוגסטרוסטומיה).</p></div>
+  <div class="hzi" data-hzi="panc" hidden><b><bdi dir="ltr">pancreas</bdi> ברצפת <span class="nw">ה-<bdi dir="ltr">lesser sac</bdi></span></b><p><span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span> רטרופריטונאלי ושוכב מאחורי הקיבה, לפני חוליה <span class="nw"><bdi dir="ltr">L1</bdi>.</span> כשהוא מודלק, נוצרים סביבו אוספי נוזל ונמק. חלקם צמודים לדופן האחורית של הקיבה. זה מה שמאפשר לנקז אותם דרכה.</p></div>
+  <div class="hzi" data-hzi="meso" hidden><b><bdi dir="ltr">transverse mesocolon</bdi></b><p>יוצא מהגבול התחתון של <span class="nw">ה-<bdi dir="ltr">pancreas</bdi>.</span> בצילום בטן בפנקריאטיטיס אפשר לראות ״קטיעה״ של הגז במעי הגס <span class="nw">ב-<bdi dir="ltr">splenic flexure</bdi>,</span> בגלל עווית של המעי.</p></div>
+  <div class="hzi" data-hzi="colon" hidden><b><bdi dir="ltr">transverse colon</bdi></b><p>קרוב מאוד <span class="nw">ל-<bdi dir="ltr">pancreas</bdi>.</span> בצילום בטן בפנקריאטיטיס רואים לעיתים מפלסי נוזל-אוויר של אילאוס. צילום לא עוזר לאבחנה, אבל עוזר לשלול ניקוב של כיב.</p></div>
+  <div class="hzi" data-hzi="spl" hidden><b><bdi dir="ltr">spleen</bdi> <span class="nw">ו-<bdi dir="ltr">splenic artery</bdi></span></b><p><span class="nw">ה-<bdi dir="ltr">pancreatic tail</bdi></span> מגיע עד <span class="nw">ה-<bdi dir="ltr">splenic hilum</bdi>.</span> הדלקת יכולה לפגוע <span class="nw">ב-<bdi dir="ltr">splenic artery</bdi></span> (פסאודואנוריזמה מדממת) או לגרום לפקקת <span class="nw">ב-<bdi dir="ltr">splenic vein</bdi>,</span> עם דליות בקיבה. דימום חוזר מהדליות האלה מטופל בכריתת טחול.</p></div>
   <div class="hzi" data-hzi="gb" hidden><b><bdi dir="ltr">gallbladder</bdi></b><p>אבנים <span class="nw">ב-<bdi dir="ltr">gallbladder</bdi></span> הן הסיבה השכיחה ביותר לפנקריאטיטיס במערב (כ-40% בארה״ב). אחרי פנקריאטיטיס ביליארית קלה מוציאים את <span class="nw">ה-<bdi dir="ltr">gallbladder</bdi></span> עוד באותו אשפוז.</p></div>
  </div></div>
- <p style="font-size:12px;color:var(--muted);margin:6px 0 0"><bdi dir="ltr">lesser sac</bdi> (<bdi>omental bursa</bdi>) נפתח: הקיבה מורמת כלפי מעלה, <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span> נראה מאחוריה ומתחתיו <span class="nw">ה-<bdi dir="ltr">transverse colon</bdi></span> · <bdi>Sobotta</bdi>, <bdi>Atlas and Text-book of Human Anatomy</bdi> (1906), איור 406 (נחלת הכלל)</p>
+ <p style="font-size:12px;color:var(--muted);margin:6px 0 0"><bdi dir="ltr">lesser sac</bdi> <span class="nw">(<bdi>omental bursa</bdi>)</span> נפתח: הקיבה מורמת כלפי מעלה, <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span> נראה מאחוריה ומתחתיו <span class="nw">ה-<bdi dir="ltr">transverse colon</bdi></span> · <span class="nw"><bdi>Sobotta</bdi>,</span> <bdi>Atlas and Text-book of Human Anatomy</bdi> (1906), איור 406 (נחלת הכלל)</p>
  <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1374, 1380, 1382, 1385, 1387–1388</bdi></span><span>אנטומיה</span></div>
 </div></section>
 
@@ -215,7 +262,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <ul class="b sm">
     <li>כאב חזק ומתמשך באפיגסטריום שמקרין לגב, החל לפני 8 שעות אחרי ארוחה</li>
     <li>הקאות שלא מקלות על הכאב</li>
-    <li>ידועה עם אבנים <span class="nw">ב-<bdi dir="ltr">gallbladder</bdi></span>, לא שותה אלכוהול</li>
+    <li>ידועה עם אבנים <span class="nw">ב-<bdi dir="ltr">gallbladder</bdi>,</span> לא שותה אלכוהול</li>
     <li>דופק 104, לחץ דם 128/76, חום 37.6, סטורציה 97%</li>
     <li>בבדיקה: רגישות באפיגסטריום, בלי סימני גירוי צפקי</li>
    </ul></div>
@@ -244,9 +291,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div class="box" style="margin-top:10px"><b class="t">לרחל יש שניים: אין צורך ב-CT לאבחנה</b>ליפאז עדיף: ספציפי יותר ונשאר מוגבר יותר זמן (8–14 יום מול 3–5 לעמילאז). חשוב במי שמגיע אחרי 24–48 שעות</div>
   </div>
   <div style="display:grid;gap:10px">
-   <div class="box b"><b class="t">אולטרסאונד לכל מטופל</b>רגישות של 95% לאבנים <span class="nw">ב-<bdi dir="ltr">gallbladder</bdi></span>. אנזימי כבד מוגברים, ליפאז גבוה ואבנים: רגישות 97% וסגוליות 100% לפנקריאטיטיס ביליארית. <bdi>ALT</bdi> מוגבר לבד: ערך מנבא חיובי של 95%</div>
+   <div class="box b"><b class="t">אולטרסאונד לכל מטופל</b>רגישות של 95% לאבנים <span class="nw">ב-<bdi dir="ltr">gallbladder</bdi>.</span> אנזימי כבד מוגברים, ליפאז גבוה ואבנים: רגישות 97% וסגוליות 100% לפנקריאטיטיס ביליארית. <bdi>ALT</bdi> מוגבר לבד: ערך מנבא חיובי של 95%</div>
    <div class="box a"><b class="t">מתי CT עם חומר ניגוד</b>אבחנה לא ברורה, אישור חומרה לפי מדדים קליניים, חוסר שיפור בטיפול שמרני או הידרדרות. שלב ורידי פורטלי (65–70 שניות) מראה הכי טוב נמק</div>
-   <div class="box n"><b class="t">בבדיקה הגופנית</b>בפנקריאטיטיס קלה הבטן יכולה להיות כמעט תקינה. סימנים נדירים של מחלה קשה: שטף דם במותניים (<bdi>Grey Turner</bdi>) או סביב הטבור (<bdi>Cullen</bdi>)</div>
+   <div class="box n"><b class="t">בבדיקה הגופנית</b>בפנקריאטיטיס קלה הבטן יכולה להיות כמעט תקינה. סימנים נדירים של מחלה קשה: שטף דם במותניים <span class="nw">(<bdi>Grey Turner</bdi>)</span> או סביב הטבור <span class="nw">(<bdi>Cullen</bdi>)</span></div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1381–1382</bdi></span><span>אבחנה</span></div>
@@ -264,7 +311,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   </div>
   <div class="box a" style="margin-top:10px"><b class="t">שימו לב</b>עוצמת הכאב לא תמיד מתאימה לממצאים בבדיקה או לחומרת הדלקת</div>
  </div>
- <figure><img src="img/grey-turner-sign.jpg" alt="שטפי דם במותן"><figcaption>סימן <bdi>Grey Turner</bdi>: שטפי דם במותן ובדופן הצדדית בפנקריאטיטיס דמממית · <bdi>Herbert L. Fred, MD</bdi> <span class="nw">ו-<bdi>Hendrik A. van Dijk</bdi></span>, <bdi>CC BY 2.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ <figure><img src="img/grey-turner-sign.jpg" alt="שטפי דם במותן"><figcaption>סימן <span class="nw"><bdi>Grey Turner</bdi>:</span> שטפי דם במותן ובדופן הצדדית בפנקריאטיטיס דמממית · <bdi>Herbert L. Fred, MD</bdi> <span class="nw">ו-<bdi>Hendrik A. van Dijk</bdi>,</span> <span class="nw"><bdi>CC BY 2.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1381–1382</bdi></span><span>תמונות</span></div>
 </div></section>
@@ -286,10 +333,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <h3>כלים לחיזוי</h3>
    <ul class="b sm">
-    <li><b>SIRS:</b> פשוט וזול. מומלץ על ידי אגודות רבות. תמותה של 25% ב-SIRS מתמשך, 8% בחולף, 0% בלי SIRS</li>
-    <li><b>BISAP:</b> חמישה פרמטרים ב-24 השעות הראשונות (אוריאה, מצב הכרה, SIRS, גיל מעל 60, תפליט פלאורלי). מתחת ל-1% עד מעל 20% תמותה</li>
-    <li><b>Ranson:</b> 11 פרמטרים, שישה מהם רק אחרי 48 שעות. 3 ומעלה: קשה. טוב בעיקר לשלילה</li>
-    <li><b>CRP</b> של 150 ומעלה אחרי 48–72 שעות · <bdi>APACHE II</bdi> של 8 ומעלה</li>
+    <li><b><span class="nw"><bdi dir="ltr">SIRS</bdi>:</span></b> פשוט וזול. מומלץ על ידי אגודות רבות. תמותה של 25% ב-SIRS מתמשך, 8% בחולף, 0% בלי SIRS</li>
+    <li><b><span class="nw"><bdi dir="ltr">BISAP</bdi>:</span></b> חמישה פרמטרים ב-24 השעות הראשונות (אוריאה, מצב הכרה, SIRS, גיל מעל 60, תפליט פלאורלי). מתחת ל-1% עד מעל 20% תמותה</li>
+    <li><b><span class="nw"><bdi dir="ltr">Ranson</bdi>:</span></b> 11 פרמטרים, שישה מהם רק אחרי 48 שעות. 3 ומעלה: קשה. טוב בעיקר לשלילה</li>
+    <li><b><bdi dir="ltr">CRP</bdi></b> של 150 ומעלה אחרי 48–72 שעות · <bdi>APACHE II</bdi> של 8 ומעלה</li>
    </ul>
    <div class="box" style="margin-top:10px"><b class="t">רחל</b>דופק 104 ולויקוציטוזיס: מתקרבת ל-SIRS. בלי אי-ספיקת איברים. כרגע: קלה, אבל עוקבים</div>
   </div>
@@ -317,11 +364,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2><bdi>ERCP</bdi> או ניתוח? ומתי?</h2>
  <div class="grid">
   <div>
-   <h3><bdi>ERCP</bdi>: רק כשיש סיבה</h3>
+   <h3><span class="nw"><bdi>ERCP</bdi>:</span> רק כשיש סיבה</h3>
    <ul class="b sm">
     <li>שגרתית ומוקדמת: <b>לא</b>, בשום דרגת חומרה. החסימה בדרך כלל חולפת תוך 48 שעות</li>
     <li>כן: <b>כולנגיטיס</b>, או חסימה מתמשכת שהוכחה בהדמיה</li>
-    <li>לבירור אבן בצינור: <bdi>EUS</bdi> או <bdi>MRCP</bdi>, בלי סיכון להחמיר את הדלקת</li>
+    <li>לבירור אבן בצינור: <bdi>EUS</bdi> או <span class="nw"><bdi>MRCP</bdi>,</span> בלי סיכון להחמיר את הדלקת</li>
     <li>מבוגר שלא מתאים לניתוח: <bdi>ERCP</bdi> עם ספינקטרוטומיה למניעת התקף חוזר</li>
    </ul>
   </div>
@@ -367,12 +414,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <ul class="b sm">
     <li><b>חומרה:</b> אי-ספיקת איברים מעל 48 שעות היא <b>קשה</b>. נשימה וכליות: מעקב צמוד, לעיתים עם צנתר מרכזי וקטטר. לרוב בטיפול נמרץ</li>
     <li><b>חמצן:</b> פגיעה ריאתית חריפה היא מהסיבוכים המערכתיים השכיחים. תפליט פלאורלי משמאל מתאים לפנקריאטיטיס</li>
-    <li><b>CT:</b> כאן יש אינדיקציה, כי המטופל לא משתפר. מחפשים <b>נמק</b>: אזורים שלא נצבעים (מתחת ל-40–50 יחידות, לעומת 100–150 ברקמה תקינה)</li>
+    <li><b><span class="nw"><bdi dir="ltr">CT</bdi>:</span></b> כאן יש אינדיקציה, כי המטופל לא משתפר. מחפשים <b>נמק</b>: אזורים שלא נצבעים (מתחת ל-40–50 יחידות, לעומת 100–150 ברקמה תקינה)</li>
    </ul>
-   <div class="box a" style="margin-top:10px"><b class="t">תזונה</b>הזנה אנטרלית עדיפה על הזנה תוך-ורידית: פחות מוות, פחות אי-ספיקת איברים ופחות זיהומים. לא אוכל דרך הפה תוך 72 שעות? זונדה לקיבה או <span class="nw">ל-<bdi dir="ltr">jejunum</bdi></span>. הזנה תוך-ורידית רק כשאי אפשר (אילאוס, חסימה)</div>
+   <div class="box a" style="margin-top:10px"><b class="t">תזונה</b>הזנה אנטרלית עדיפה על הזנה תוך-ורידית: פחות מוות, פחות אי-ספיקת איברים ופחות זיהומים. לא אוכל דרך הפה תוך 72 שעות? זונדה לקיבה או <span class="nw">ל-<bdi dir="ltr">jejunum</bdi>.</span> הזנה תוך-ורידית רק כשאי אפשר (אילאוס, חסימה)</div>
   </div>
   <div>
-   <h3>מדד החומרה ב-CT (<bdi>CTSI</bdi>)</h3>
+   <h3>מדד החומרה ב-CT <span class="nw">(<bdi>CTSI</bdi>)</span></h3>
    <div class="flow">
     <div><b>דלקת: 0–4 נק׳</b><span><span class="nw">מ-<bdi dir="ltr">pancreas</bdi></span> תקין ועד שני אוספים או יותר או גז</span></div>
     <div><b>נמק: 0–6 נק׳</b><span>אין · עד 30% · 30–50% · מעל 50%</span></div>
@@ -388,10 +435,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>12</b>מקרה 2 · ההדמיה</div>
  <h2>מה רואים ב-CT</h2>
  <div class="grid">
- <figure><img src="img/ap-ct-exudative.jpg" alt="CT של פנקריאטיטיס חריפה"><figcaption>בשבוע הראשון: <bdi dir="ltr">pancreas</bdi> נפוח ונוזל רב סביבו, בלי דופן. אין אזור שלא נצבע (אין נמק) · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
- <figure><img src="img/pseudocyst-ct-stomach.jpg" alt="פסאודוציסטה צמודה לקיבה"><figcaption>אחרי שבועות: אוסף אחיד עם דופן, צמוד לדופן האחורית של הקיבה. נוקז דרך הקיבה · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ <figure><img src="img/ap-ct-exudative.jpg" alt="CT של פנקריאטיטיס חריפה"><figcaption>בשבוע הראשון: <bdi dir="ltr">pancreas</bdi> נפוח ונוזל רב סביבו, בלי דופן. אין אזור שלא נצבע (אין נמק) · <span class="nw"><bdi>Hellerhoff</bdi>,</span> <span class="nw"><bdi>CC BY-SA 3.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
+ <figure><img src="img/pseudocyst-ct-stomach.jpg" alt="פסאודוציסטה צמודה לקיבה"><figcaption>אחרי שבועות: אוסף אחיד עם דופן, צמוד לדופן האחורית של הקיבה. נוקז דרך הקיבה · <span class="nw"><bdi>Hellerhoff</bdi>,</span> <span class="nw"><bdi>CC BY-SA 4.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
- <div class="box n" style="margin-top:12px"><b class="t">איך קוראים</b>מחפשים: נוזל סביב <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span>, אזורים <span class="nw">ב-<bdi dir="ltr">pancreas</bdi></span> שלא נצבעים (נמק), גז באוסף, דופן מוגדרת. את הנמק מעריכים הכי טוב בשלב הוורידי הפורטלי</div>
+ <div class="box n" style="margin-top:12px"><b class="t">איך קוראים</b>מחפשים: נוזל סביב <span class="nw">ה-<bdi dir="ltr">pancreas</bdi>,</span> אזורים <span class="nw">ב-<bdi dir="ltr">pancreas</bdi></span> שלא נצבעים (נמק), גז באוסף, דופן מוגדרת. את הנמק מעריכים הכי טוב בשלב הוורידי הפורטלי</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1382, 1385, 1387</bdi></span><span>תמונות</span></div>
 </div></section>
 
@@ -404,7 +451,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div class="box b"><b class="t">אוסף נוזל חריף · עד 4 שבועות</b>אחיד, נוזלי, בלי דופן. ב-30–57% מההתקפים. רובם נספגים לבד</div>
   <div class="box"><b class="t">פסאודוציסטה · אחרי 4 שבועות</b>נוזל אחיד בתוך דופן מוגדרת של קולגן ורקמה גרנולציונית, בלי אפיתל</div>
   <div class="box a"><b class="t">אוסף נמקי חריף · עד 4 שבועות</b>תערובת של נוזל ורקמה מתה, בלי דופן, בתוך <span class="nw">ה-<bdi dir="ltr">pancreas</bdi></span> או סביבו</div>
-  <div class="box r"><b class="t">נמק מוקף דופן (<bdi>WON</bdi>) · אחרי 4 שבועות</b>נוזל ונמק בתוך דופן מוגדרת. זה השלב שבו נוח ובטוח יותר להתערב</div>
+  <div class="box r"><b class="t">נמק מוקף דופן <span class="nw">(<bdi>WON</bdi>)</span> · אחרי 4 שבועות</b>נוזל ונמק בתוך דופן מוגדרת. זה השלב שבו נוח ובטוח יותר להתערב</div>
  </div>
  <div class="box n" style="margin-top:12px"><b class="t">כל אחד מהם יכול להזדהם</b>גז באוסף בלי התערבות קודמת הוא אבחנתי. חום, לויקוציטוזיס וכאב יכולים להופיע גם בלי זיהום. לכן הידרדרות או חוסר שיפור אחרי 10–14 יום מעלים חשד</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1385</bdi></span><span>סיווג</span></div>
@@ -422,8 +469,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    </div>
    <ul class="b sm">
     <li><b>האבחנה:</b> חשד קליני (חום ממושך, הידרדרות, אי-ספיקה מאוחרת אחרי יום 7). גז ב-CT מאשר. כשלא ברור: דגימה במחט לצביעת גרם ותרבית</li>
-    <li><b>חיידקים:</b> בעיקר מהמעי (<bdi>E. coli</bdi>, <bdi>Klebsiella</bdi>, אנטרוקוקים)</li>
-    <li><b>אנטיביוטיקה:</b> קרבפנמים קודם, בגלל החדירה <span class="nw">ל-<bdi dir="ltr">pancreas</bdi></span>. חלופות: קווינולונים, מטרונידזול, צפלוספורינים מדור 3, פיפרצילין</li>
+    <li><b>חיידקים:</b> בעיקר מהמעי <span class="nw">(<bdi>E. coli</bdi>,</span> <span class="nw"><bdi>Klebsiella</bdi>,</span> אנטרוקוקים)</li>
+    <li><b>אנטיביוטיקה:</b> קרבפנמים קודם, בגלל החדירה <span class="nw">ל-<bdi dir="ltr">pancreas</bdi>.</span> חלופות: קווינולונים, מטרונידזול, צפלוספורינים מדור 3, פיפרצילין</li>
    </ul>
   </div>
   <div>
@@ -444,9 +491,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>15</b>הראיות שבספר</div>
  <h2>שלושה מחקרים הולנדיים ששינו את הטיפול</h2>
  <div class="grid g3">
-  <div class="study"><div class="y">2010 · מחקר אקראי</div><b>צעד אחר צעד מול ניתוח פתוח</b><p>ניקוז מלעורי ואחריו ניקוי זעיר-פולשני, מול נקרוזקטומיה פתוחה מוקדמת. בגישה ההדרגתית: פחות תמותה ופחות אי-ספיקה אקסוקרינית ואנדוקרינית בטווח הארוך</p><small>כפי שמסוכם <span class="nw">ב-<bdi>Sabiston 22</bdi></span>, פרק 92 עמ׳ <bdi dir="ltr">1386</bdi></small></div>
-  <div class="study"><div class="y">2018 · מחקר אקראי</div><b>אנדוסקופי מול כירורגי</b><p>הגישה האנדוסקופית לא עדיפה בתמותה, אבל עם פחות פיסטולות, אשפוז קצר יותר ועלות נמוכה יותר</p><small>כפי שמסוכם <span class="nw">ב-<bdi>Sabiston 22</bdi></span>, פרק 92 עמ׳ <bdi dir="ltr">1386</bdi></small></div>
-  <div class="study"><div class="y"><bdi>POINTER</bdi> · מחקר אקראי</div><b>לנקז מיד או לדחות?</b><p>104 מטופלים עם נמק נגוע. אותם סיבוכים ואותה תמותה. בדחייה: פחות התערבויות (2.6 לעומת 4.4). חלק מהמטופלים לא נזקקו לניקוז בכלל</p><small>כפי שמסוכם <span class="nw">ב-<bdi>Sabiston 22</bdi></span>, פרק 92 עמ׳ <bdi dir="ltr">1386–1387</bdi></small></div>
+  <div class="study"><div class="y">2010 · מחקר אקראי</div><b>צעד אחר צעד מול ניתוח פתוח</b><p>ניקוז מלעורי ואחריו ניקוי זעיר-פולשני, מול נקרוזקטומיה פתוחה מוקדמת. בגישה ההדרגתית: פחות תמותה ופחות אי-ספיקה אקסוקרינית ואנדוקרינית בטווח הארוך</p><small>כפי שמסוכם <span class="nw">ב-<bdi>Sabiston 22</bdi>,</span> פרק 92 עמ׳ <bdi dir="ltr">1386</bdi></small></div>
+  <div class="study"><div class="y">2018 · מחקר אקראי</div><b>אנדוסקופי מול כירורגי</b><p>הגישה האנדוסקופית לא עדיפה בתמותה, אבל עם פחות פיסטולות, אשפוז קצר יותר ועלות נמוכה יותר</p><small>כפי שמסוכם <span class="nw">ב-<bdi>Sabiston 22</bdi>,</span> פרק 92 עמ׳ <bdi dir="ltr">1386</bdi></small></div>
+  <div class="study"><div class="y"><bdi>POINTER</bdi> · מחקר אקראי</div><b>לנקז מיד או לדחות?</b><p>104 מטופלים עם נמק נגוע. אותם סיבוכים ואותה תמותה. בדחייה: פחות התערבויות (2.6 לעומת 4.4). חלק מהמטופלים לא נזקקו לניקוז בכלל</p><small>כפי שמסוכם <span class="nw">ב-<bdi>Sabiston 22</bdi>,</span> פרק 92 עמ׳ <bdi dir="ltr">1386–1387</bdi></small></div>
  </div>
  <div class="box" style="margin-top:12px"><b class="t">היום</b>ניקוז אנדוסקופי עם סטנט רחב, לפעמים עם ניקוי אנדוסקופי או ניקוז מלעורי, חוסך ניתוח מרוב המטופלים. אם נכשל, ניתוח זעיר-פולשני פשוט יותר. דיון רב-תחומי ומרכז מנוסה</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1386–1387</bdi></span><span>ראיות</span></div>
@@ -466,7 +513,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <div class="flow">
     <div><b>בלי תסמינים</b><span>מעקב. עד 70% נעלמות לבד, במיוחד מתחת ל-4 ס״מ, <span class="nw">ב-<bdi dir="ltr">tail</bdi></span> ובלי קשר <span class="nw">ל-<bdi dir="ltr">main pancreatic duct</bdi></span></span></div>
-    <div><b>עם תסמינים · צמודה לקיבה</b><span>ניקוז אנדוסקופי דרך הקיבה (או <span class="nw">ה-<bdi dir="ltr">duodenum</bdi></span>), כשהמרחק פחות מ-1 ס״מ</span></div>
+    <div><b>עם תסמינים · צמודה לקיבה</b><span>ניקוז אנדוסקופי דרך הקיבה (או <span class="nw">ה-<bdi dir="ltr">duodenum</bdi>),</span> כשהמרחק פחות מ-1 ס״מ</span></div>
     <div><b>אנדוסקופיה לא אפשרית</b><span>ניתוח: ציסטוגסטרוסטומיה, ציסטודואודנוסטומיה או ציסטוג׳ג׳ונוסטומיה. הצלחה מעל 90%, חזרה עד 12%</span></div>
     <div><b>ניקוז מלעורי</b><span>רק בציסטה נגועה עם ספסיס: סיכון גבוה לפיסטולה לעור</span></div>
    </div>
@@ -481,7 +528,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div class="box r"><b class="t">פסאודואנוריזמה שנקרעה</b>
    <ul class="b sm">
-    <li>אלסטאז <span class="nw">מה-<bdi dir="ltr">pancreas</bdi></span> פוגע בדופן העורק. השכיח ביותר: <b><bdi dir="ltr">splenic artery</bdi></b>. גם <span class="nw">ה-<bdi dir="ltr">gastroduodenal artery</bdi></span>, <span class="nw">ה-<bdi dir="ltr">SMA</bdi></span> <span class="nw">וה-<bdi dir="ltr">cystic artery</bdi></span></li>
+    <li>אלסטאז <span class="nw">מה-<bdi dir="ltr">pancreas</bdi></span> פוגע בדופן העורק. השכיח ביותר: <b><bdi dir="ltr">splenic artery</bdi></b>. גם <span class="nw">ה-<bdi dir="ltr">gastroduodenal artery</bdi>,</span> <span class="nw">ה-<bdi dir="ltr">SMA</bdi></span> <span class="nw">וה-<bdi dir="ltr">cystic artery</bdi></span></li>
     <li>כאב בטן פתאומי, טכיקרדיה ותת-לחץ דם</li>
     <li><b>טיפול:</b> החייאה וצנתור לתסחיף. כשלא מצליח: קשירת העורק בניתוח</li>
     <li>תמותה: 28–56%</li>
@@ -494,7 +541,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li>דימום חוזר מהדליות בקיבה: <b>כריתת טחול</b></li>
    </ul></div>
  </div>
- <div class="box n" style="margin-top:12px"><b class="t">סיבוכים נדירים נוספים</b>מיימת לבלבית ופיסטולה לבלבית-פלאורלית (קרע <span class="nw">ב-<bdi dir="ltr">pancreatic duct</bdi></span>: עמילאז גבוה בנוזל, מעל 50,000 בנוזל הפלאורלי). טיפול: ניקוז, סטנט <span class="nw">ב-<bdi dir="ltr">pancreatic duct</bdi></span> ותמיכה תזונתית</div>
+ <div class="box n" style="margin-top:12px"><b class="t">סיבוכים נדירים נוספים</b>מיימת לבלבית ופיסטולה לבלבית-פלאורלית (קרע <span class="nw">ב-<bdi dir="ltr">pancreatic duct</bdi>:</span> עמילאז גבוה בנוזל, מעל 50,000 בנוזל הפלאורלי). טיפול: ניקוז, סטנט <span class="nw">ב-<bdi dir="ltr">pancreatic duct</bdi></span> ותמיכה תזונתית</div>
  <div class="src"><span>מקרה בדוי למטרות הוראה · <b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1387–1388</bdi></span><span>מקרה 3</span></div>
 </div></section>
 
@@ -502,13 +549,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>18</b>מה חדש בתחום · 2021–2022</div>
  <h2>מחקרים שכדאי להכיר</h2>
  <div class="grid g3">
-  <div class="study"><div class="y"><bdi>NEJM</bdi> 2022 · מחקר אקראי</div><b><bdi>WATERFALL</bdi>: כמה נוזלים?</b>
+  <div class="study"><div class="y"><bdi>NEJM</bdi> 2022 · מחקר אקראי</div><b><span class="nw"><bdi>WATERFALL</bdi>:</span> כמה נוזלים?</b>
    <p>249 מטופלים, 18 מרכזים. רינגר לקטט אגרסיבי (בולוס 20 מ״ל/ק״ג ואחריו 3 מ״ל/ק״ג/שעה) מול מתון. עומס נוזלים: <b>20.5% לעומת 6.3%</b>, בלי שיפור בחומרה. המחקר נעצר מוקדם</p>
    <small>de-Madaria E et al. N Engl J Med 2022;387:989-1000</small></div>
-  <div class="study"><div class="y"><bdi>NEJM</bdi> 2021 · מחקר אקראי</div><b><bdi>POINTER</bdi>: לנקז מיד?</b>
+  <div class="study"><div class="y"><bdi>NEJM</bdi> 2021 · מחקר אקראי</div><b><span class="nw"><bdi>POINTER</bdi>:</span> לנקז מיד?</b>
    <p>104 מטופלים עם נמק נגוע. ניקוז מיידי מול ניקוז אחרי שהנמק מוקף דופן: אותם סיבוכים. התערבויות: <b>4.4 לעומת 2.6</b>. ב-39% מקבוצת הדחייה הספיקה אנטיביוטיקה בלי ניקוז</p>
    <small>Boxhoorn L et al. N Engl J Med 2021;385:1372-81</small></div>
-  <div class="study"><div class="y"><bdi>Gastroenterology</bdi> 2022 · מעקב ארוך</div><b><bdi>ExTENSION</bdi>: 7 שנים אחרי</b>
+  <div class="study"><div class="y"><bdi>Gastroenterology</bdi> 2022 · מעקב ארוך</div><b><span class="nw"><bdi>ExTENSION</bdi>:</span> 7 שנים אחרי</b>
    <p>אנדוסקופי מול כירורגי בנמק נגוע: אותו שיעור מוות וסיבוכים קשים (53% לעומת 57%). באנדוסקופי פחות פיסטולות לעור (<b>8% לעומת 34%</b>) ופחות התערבויות חוזרות</p>
    <small>Onnekink AM et al. Gastroenterology 2022;163:712-22</small></div>
  </div>
@@ -525,8 +572,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>ביליארית קלה: כריתת כיס מרה באותו אשפוז. ERCP רק בכולנגיטיס או בחסימה מוכחת</li>
   <li>נמק נגוע: אנטיביוטיקה ולחכות לדופן. אחר כך צעד אחר צעד. ניתוח פתוח מוקדם הורג</li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 92 <bdi>Exocrine Pancreas</bdi>, החלק על פנקריאטיטיס חריפה (עמ׳ <bdi dir="ltr">1379–1388</bdi>)</div>
- <div class="src"><span>איור: <bdi>Sobotta, Atlas and Text-book of Human Anatomy</bdi> (1906, נחלת הכלל, <bdi>Wikimedia Commons</bdi>) · תמונות: <bdi>Herbert L. Fred</bdi> <span class="nw">ו-<bdi>Hendrik A. van Dijk</bdi></span> (<bdi>CC BY 2.0</bdi>), <bdi>Hellerhoff</bdi> (<bdi>CC BY-SA</bdi>), <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 92 <span class="nw"><bdi>Exocrine Pancreas</bdi>,</span> החלק על פנקריאטיטיס חריפה (עמ׳ <span class="nw"><bdi dir="ltr">1379–1388</bdi>)</span></div>
+ <div class="src"><span>איור: <bdi>Sobotta, Atlas and Text-book of Human Anatomy</bdi> (1906, נחלת הכלל, <span class="nw"><bdi>Wikimedia Commons</bdi>)</span> · תמונות: <bdi>Herbert L. Fred</bdi> <span class="nw">ו-<bdi>Hendrik A. van Dijk</bdi></span> <span class="nw">(<bdi>CC BY 2.0</bdi>),</span> <bdi>Hellerhoff</bdi> <span class="nw">(<bdi>CC BY-SA</bdi>),</span> <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>
@@ -548,5 +595,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>

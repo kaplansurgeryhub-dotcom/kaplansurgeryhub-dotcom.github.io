@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>קרצינומה של השד · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,7 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -116,9 +116,56 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -142,10 +189,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>לתאר את ניקוז הלימפה של השד ואת שלוש הרמות של <span class="nw">ה-<bdi>axilla</bdi></span></li>
   <li>למנות את גורמי הסיכון ולזהות מי בסיכון גבוה, כולל נשאות <bdi>BRCA</bdi> ביוצאי אשכנז</li>
   <li>לבדוק שד <span class="nw">ו-<bdi>axilla</bdi></span> ולבנות הערכה משולשת: בדיקה, הדמיה וביופסיה</li>
-  <li>להסביר את הבחירה בין שימור שד לכריתה ואת הטיפול <span class="nw">ב-<bdi>axilla</bdi></span>, מבלוטת הזקיף ועד הוויתור עליה</li>
+  <li>להסביר את הבחירה בין שימור שד לכריתה ואת הטיפול <span class="nw">ב-<bdi>axilla</bdi>,</span> מבלוטת הזקיף ועד הוויתור עליה</li>
   <li>להכיר את עקרונות הטיפול המשלים לפי סוג הגידול: הורמונלי, <bdi>HER2</bdi> ומשולש שלילי</li>
  </ol>
- <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 68 (עמ׳ <bdi dir="ltr">819–865</bdi>)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 68 (עמ׳ <span class="nw"><bdi dir="ltr">819–865</bdi>)</span></span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -164,11 +211,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <g class="hzb" style="--c:#A3402E"><circle cx="866" cy="462" r="26.3"/><text x="866" y="462">5</text></g>
   </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="sap" hidden><b>1 · <bdi>Sappey's plexus</bdi> מתחת <span class="nw">ל-<bdi>areola</bdi></span></b><p>לימפה מהעור עוברת <span class="nw">ל-<bdi>subareolar plexus</bdi></span> ומשם לשד <span class="nw">ול-<bdi>axilla</bdi></span>. לכן הזרקה של חומר סימון מתחת <span class="nw">ל-<bdi>areola</bdi></span> או לעור מגיעה כמעט רק <span class="nw">ל-<bdi>axilla</bdi></span>.</p></div>
-  <div class="hzi" data-hzi="ax" hidden><b>2 · <bdi>Axilla, Level I–II</bdi></b><p><b><bdi dir="ltr">70–80%</bdi></b> מהלימפה של השד מגיעה <span class="nw">ל-<bdi>axilla</bdi></span>. רמה I לטרלית <span class="nw">ל-<bdi>pectoralis minor</bdi></span>, רמה II מאחוריו (כולל <bdi>Rotter's nodes</bdi> בין <bdi>pectoralis major</bdi> <span class="nw">ל-<bdi>minor</bdi></span>). בלוטת הזקיף נמצאת בדרך כלל ברמה I.</p></div>
-  <div class="hzi" data-hzi="l3" hidden><b>3 · רמה III (<bdi>infraclavicular</bdi>)</b><p>מדיאלית <span class="nw">ל-<bdi>pectoralis minor</bdi></span>, עד <span class="nw">ה-<bdi>costoclavicular ligament</bdi></span> (<bdi>Halsted</bdi>). שם <span class="nw">ה-<bdi>axillary vein</bdi></span> נכנס לבית החזה והופך <span class="nw">ל-<bdi>subclavian vein</bdi></span>.</p></div>
-  <div class="hzi" data-hzi="sc" hidden><b>4 · <bdi>supraclavicular nodes</bdi></b><p>ממשיכות את רמה III, אבל נמצאות מחוץ לגבולות <span class="nw">ה-<bdi>axilla</bdi></span>. מעורבות קלינית שלהן היא חלק מההגדרה של מחלה מתקדמת מקומית.</p></div>
-  <div class="hzi" data-hzi="im" hidden><b>5 · <bdi>internal mammary nodes</bdi></b><p>ליד <span class="nw">ה-<bdi>sternum</bdi></span>. הניקוז העיקרי <span class="nw">ב-<bdi dir="ltr">2–3%</bdi></span> מהמטופלות ומסלול משני לצד <span class="nw">ה-<bdi>axilla</bdi></span> בכ-20%. מעורבות קלינית כאן היא מחלה מתקדמת מקומית.</p></div>
+  <div class="hzi" data-hzi="sap" hidden><b>1 · <bdi>Sappey's plexus</bdi> מתחת <span class="nw">ל-<bdi>areola</bdi></span></b><p>לימפה מהעור עוברת <span class="nw">ל-<bdi>subareolar plexus</bdi></span> ומשם לשד <span class="nw">ול-<bdi>axilla</bdi>.</span> לכן הזרקה של חומר סימון מתחת <span class="nw">ל-<bdi>areola</bdi></span> או לעור מגיעה כמעט רק <span class="nw">ל-<bdi>axilla</bdi>.</span></p></div>
+  <div class="hzi" data-hzi="ax" hidden><b>2 · <bdi>Axilla, Level I–II</bdi></b><p><b><bdi dir="ltr">70–80%</bdi></b> מהלימפה של השד מגיעה <span class="nw">ל-<bdi>axilla</bdi>.</span> רמה I לטרלית <span class="nw">ל-<bdi>pectoralis minor</bdi>,</span> רמה II מאחוריו (כולל <bdi>Rotter's nodes</bdi> בין <bdi>pectoralis major</bdi> <span class="nw">ל-<bdi>minor</bdi>).</span> בלוטת הזקיף נמצאת בדרך כלל ברמה I.</p></div>
+  <div class="hzi" data-hzi="l3" hidden><b>3 · רמה III <span class="nw">(<bdi>infraclavicular</bdi>)</span></b><p>מדיאלית <span class="nw">ל-<bdi>pectoralis minor</bdi>,</span> עד <span class="nw">ה-<bdi>costoclavicular ligament</bdi></span> <span class="nw">(<bdi>Halsted</bdi>).</span> שם <span class="nw">ה-<bdi>axillary vein</bdi></span> נכנס לבית החזה והופך <span class="nw">ל-<bdi>subclavian vein</bdi>.</span></p></div>
+  <div class="hzi" data-hzi="sc" hidden><b>4 · <bdi>supraclavicular nodes</bdi></b><p>ממשיכות את רמה III, אבל נמצאות מחוץ לגבולות <span class="nw">ה-<bdi>axilla</bdi>.</span> מעורבות קלינית שלהן היא חלק מההגדרה של מחלה מתקדמת מקומית.</p></div>
+  <div class="hzi" data-hzi="im" hidden><b>5 · <bdi>internal mammary nodes</bdi></b><p>ליד <span class="nw">ה-<bdi>sternum</bdi>.</span> הניקוז העיקרי <span class="nw">ב-<bdi dir="ltr">2–3%</bdi></span> מהמטופלות ומסלול משני לצד <span class="nw">ה-<bdi>axilla</bdi></span> בכ-20%. מעורבות קלינית כאן היא מחלה מתקדמת מקומית.</p></div>
  </div></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 68 עמ׳ <bdi dir="ltr">821–822, 851, 862</bdi></span><span>איור: <bdi>Don Bliss, National Cancer Institute</bdi> (נחלת הכלל) · אזורים: Scrub In</span></div>
 </div></section>
@@ -179,15 +226,15 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b sm">
-    <li><b>גבולות הניתוח <span class="nw">ב-<bdi>axilla</bdi></span>:</b> <span class="nw">ה-<bdi>pectoralis major</bdi></span> מלפנים, <span class="nw">ה-<bdi>latissimus dorsi</bdi></span> מאחור, דופן החזה מדיאלית <span class="nw">וה-<bdi>axillary vein</bdi></span> למעלה</li>
-    <li><b><span class="nw">ה-<bdi>long thoracic nerve</bdi></span>:</b> צמוד לדופן החזה, מעצבב את <span class="nw">ה-<bdi>serratus anterior</bdi></span>. פגיעה בו גורמת לשכמה מכונפת</li>
-    <li><b><span class="nw">ה-<bdi>thoracodorsal nerve</bdi></span>:</b> חוצה את <span class="nw">ה-<bdi>axilla</bdi></span> אל <span class="nw">ה-<bdi>latissimus dorsi</bdi></span> ביחד עם כלי הדם. שומרים עליו</li>
-    <li><b><span class="nw">ה-<bdi>medial pectoral bundle</bdi></span>:</b> מעצבב את <span class="nw">ה-<bdi>pectoralis major</bdi></span>. סימן דרך טוב: <span class="nw">ה-<bdi>axillary vein</bdi></span> נמצא מעליו ועמוק ממנו</li>
-    <li><b><span class="nw">ה-<bdi>intercostobrachial nerves</bdi></span>:</b> חוצים את <span class="nw">ה-<bdi>axilla</bdi></span> לרוחב. חיתוך שלהם גורם לחוסר תחושה בזרוע הפנימית ולפעמים לכאב כרוני. מסבירים על כך לפני הניתוח</li>
+    <li><b>גבולות הניתוח <span class="nw">ב-<bdi>axilla</bdi>:</span></b> <span class="nw">ה-<bdi>pectoralis major</bdi></span> מלפנים, <span class="nw">ה-<bdi>latissimus dorsi</bdi></span> מאחור, דופן החזה מדיאלית <span class="nw">וה-<bdi>axillary vein</bdi></span> למעלה</li>
+    <li><b><span class="nw">ה-<bdi>long thoracic nerve</bdi>:</span></b> צמוד לדופן החזה, מעצבב את <span class="nw">ה-<bdi>serratus anterior</bdi>.</span> פגיעה בו גורמת לשכמה מכונפת</li>
+    <li><b><span class="nw">ה-<bdi>thoracodorsal nerve</bdi>:</span></b> חוצה את <span class="nw">ה-<bdi>axilla</bdi></span> אל <span class="nw">ה-<bdi>latissimus dorsi</bdi></span> ביחד עם כלי הדם. שומרים עליו</li>
+    <li><b><span class="nw">ה-<bdi>medial pectoral bundle</bdi>:</span></b> מעצבב את <span class="nw">ה-<bdi>pectoralis major</bdi>.</span> סימן דרך טוב: <span class="nw">ה-<bdi>axillary vein</bdi></span> נמצא מעליו ועמוק ממנו</li>
+    <li><b><span class="nw">ה-<bdi>intercostobrachial nerves</bdi>:</span></b> חוצים את <span class="nw">ה-<bdi>axilla</bdi></span> לרוחב. חיתוך שלהם גורם לחוסר תחושה בזרוע הפנימית ולפעמים לכאב כרוני. מסבירים על כך לפני הניתוח</li>
    </ul>
-   <div class="box a" style="margin-top:10px"><b class="t"><bdi>Cooper's ligaments</bdi></b>מחברות את השד לעור. גידול שמושך אותן יוצר שקע בעור. בצקת בעור יוצרת "קליפת תפוז" (<bdi>peau d'orange</bdi>)</div>
+   <div class="box a" style="margin-top:10px"><b class="t"><bdi>Cooper's ligaments</bdi></b>מחברות את השד לעור. גידול שמושך אותן יוצר שקע בעור. בצקת בעור יוצרת "קליפת תפוז" <span class="nw">(<bdi>peau d'orange</bdi>)</span></div>
   </div>
-  <figure><img src="img/Gray607.png" alt="כלי הלימפה של השד ו-axillary nodes"><figcaption>כלי הלימפה (בכחול) של השד <span class="nw">וה-<bdi>axillary nodes</bdi></span>: הקבוצות <bdi>pectoral, central, lateral, subclavicular</bdi> · <bdi>Gray's Anatomy</bdi> (1918), איור 607 (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/Gray607.png" alt="כלי הלימפה של השד ו-axillary nodes"><figcaption>כלי הלימפה (בכחול) של השד <span class="nw">וה-<bdi>axillary nodes</bdi>:</span> הקבוצות <bdi>pectoral, central, lateral, subclavicular</bdi> · <bdi>Gray's Anatomy</bdi> (1918), איור 607 (נחלת הכלל)</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 68 עמ׳ <bdi dir="ltr">819, 821, 850</bdi></span><span>אנטומיה</span></div>
 </div></section>
@@ -198,7 +245,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="num">
   <div><b dir="ltr">12.9%</b><span>סיכון מצטבר לאורך החיים באישה</span></div>
   <div><b dir="ltr">2M+</b><span>מקרים חדשים בעולם בשנה, כ-685,000 מקרי מוות</span></div>
-  <div><b dir="ltr">91%</b><span>הישרדות ל-5 שנים <bdi dir="ltr">(2012–2018)</bdi>. בשנות ה-60: 63%</span></div>
+  <div><b dir="ltr">91%</b><span>הישרדות ל-5 שנים <span class="nw"><bdi dir="ltr">(2012–2018)</bdi>.</span> בשנות ה-60: 63%</span></div>
   <div><b dir="ltr">&lt;1%</b><span>מהמקרים בגברים</span></div>
  </div>
  <div class="grid">
@@ -206,12 +253,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <li><b>גיל:</b> גורם הסיכון החשוב ביותר. פחות מ-2% מהמקרים לפני גיל 20</li>
    <li><b>חשיפה להורמונים:</b> וסת ראשונה לפני 11, בלות אחרי 55, לידה ראשונה אחרי 30 או בלי לידות. כל 12 חודשי הנקה מורידים את הסיכון ב-4%</li>
    <li><b>טיפול הורמונלי בבלות:</b> <span class="nw">ב-<bdi>WHI</bdi></span> היו 245 מקרים עם אסטרוגן ופרוגסטרון לעומת 185 בפלצבו</li>
-   <li><b>הקרנה לבית החזה לפני גיל 30</b> (למשל בלימפומה): סיכון פי <bdi dir="ltr">2–4</bdi>, שמתחיל לעלות כ-8 שנים אחרי ההקרנה</li>
+   <li><b>הקרנה לבית החזה לפני גיל 30</b> (למשל בלימפומה): סיכון פי <span class="nw"><bdi dir="ltr">2–4</bdi>,</span> שמתחיל לעלות כ-8 שנים אחרי ההקרנה</li>
   </ul>
   <ul class="b sm">
    <li><b>משפחה:</b> קרובת דרגה ראשונה אחת: פי 1.5. יותר מאחת: פי <bdi dir="ltr">2–4</bdi></li>
-   <li><b>ממצאים בביופסיה:</b> שינוי שגשוגי בלי אטיפיה פי <bdi dir="ltr">1.3–1.9</bdi>. אטיפיה (<bdi>ADH/ALH</bdi>) פי <bdi dir="ltr">4–5</bdi>. <bdi>LCIS</bdi> קלאסי פי 7, כ-1% בשנה</li>
-   <li><b>שד צפוף</b> (<bdi>BI-RADS C–D</bdi>): פי <bdi dir="ltr">1.5–2</bdi> וגם מסתיר ממצאים בממוגרפיה</li>
+   <li><b>ממצאים בביופסיה:</b> שינוי שגשוגי בלי אטיפיה פי <span class="nw"><bdi dir="ltr">1.3–1.9</bdi>.</span> אטיפיה <span class="nw">(<bdi>ADH/ALH</bdi>)</span> פי <span class="nw"><bdi dir="ltr">4–5</bdi>.</span> <bdi>LCIS</bdi> קלאסי פי 7, כ-1% בשנה</li>
+   <li><b>שד צפוף</b> <span class="nw">(<bdi>BI-RADS C–D</bdi>):</span> פי <bdi dir="ltr">1.5–2</bdi> וגם מסתיר ממצאים בממוגרפיה</li>
    <li><b>אורח חיים:</b> השמנה, אלכוהול, עישון, חוסר פעילות ועבודת לילה. כ-30% מהמקרים אחרי הבלות קשורים לגורמים שאפשר לשנות</li>
   </ul>
  </div>
@@ -224,18 +271,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div>
    <ul class="b sm">
-    <li><b>נשאיות <bdi>BRCA1/2</bdi>:</b> סיכון לסרטן שד מעל 60% לאורך החיים. שחלה: <bdi dir="ltr">39–58%</bdi> <span class="nw">ב-<bdi>BRCA1</bdi></span> <span class="nw">ו-<bdi dir="ltr">13–29%</bdi></span> <span class="nw">ב-<bdi>BRCA2</bdi></span></li>
-    <li><b>מוטציות מייסד ביוצאי אשכנז:</b> שתיים <span class="nw">ב-<bdi>BRCA1</bdi></span>: <bdi>185delAG</bdi> אצל <span class="nw">כ-<bdi dir="ltr">1.1%</bdi></span> <span class="nw">ו-<bdi>5382insC</bdi></span> אצל <span class="nw">כ-<bdi dir="ltr">0.1%</bdi></span>. אחת <span class="nw">ב-<bdi>BRCA2</bdi></span>: <bdi>6174delT</bdi> אצל <span class="nw">כ-<bdi dir="ltr">1.5%</bdi></span>. יחד כ-1 מכל 40. בישראל הן אחראיות <span class="nw">לכ-<bdi dir="ltr">11%</bdi></span> מסרטני השד <span class="nw">ולכ-<bdi dir="ltr">40%</bdi></span> מסרטני השחלה ביוצאות אשכנז. באוכלוסייה הכללית: כ-1 ל-300 עד 500</li>
+    <li><b>נשאיות <span class="nw"><bdi>BRCA1/2</bdi>:</span></b> סיכון לסרטן שד מעל 60% לאורך החיים. שחלה: <bdi dir="ltr">39–58%</bdi> <span class="nw">ב-<bdi>BRCA1</bdi></span> <span class="nw">ו-<bdi dir="ltr">13–29%</bdi></span> <span class="nw">ב-<bdi>BRCA2</bdi></span></li>
+    <li><b>מוטציות מייסד ביוצאי אשכנז:</b> שתיים <span class="nw">ב-<bdi>BRCA1</bdi>:</span> <bdi>185delAG</bdi> אצל <span class="nw">כ-<bdi dir="ltr">1.1%</bdi></span> <span class="nw">ו-<bdi>5382insC</bdi></span> אצל <span class="nw">כ-<bdi dir="ltr">0.1%</bdi>.</span> אחת <span class="nw">ב-<bdi>BRCA2</bdi>:</span> <bdi>6174delT</bdi> אצל <span class="nw">כ-<bdi dir="ltr">1.5%</bdi>.</span> יחד כ-1 מכל 40. בישראל הן אחראיות <span class="nw">לכ-<bdi dir="ltr">11%</bdi></span> מסרטני השד <span class="nw">ולכ-<bdi dir="ltr">40%</bdi></span> מסרטני השחלה ביוצאות אשכנז. באוכלוסייה הכללית: כ-1 ל-300 עד 500</li>
     <li>גידול <span class="nw">ב-<bdi>BRCA1</bdi></span> הוא בדרך כלל בדרגה גבוהה ומשולש שלילי. <span class="nw">ב-<bdi>BRCA2</bdi></span> לרוב רגיש להורמונים</li>
     <li><b>בדיקה גנטית:</b> אבחנה לפני 50, משולש שלילי, כמה גידולים ראשוניים, סרטן שד בגבר, מוצא יהודי אשכנזי, או סיפור משפחתי מתאים</li>
-    <li>גנים נוספים בפאנל: <bdi>PALB2</bdi>, <bdi>CHEK2</bdi>, <bdi>ATM</bdi>, <bdi>TP53</bdi>, <bdi>PTEN</bdi>, <bdi>CDH1</bdi>. על וריאנט בעל משמעות לא ידועה (<bdi>VUS</bdi>) לא פועלים</li>
+    <li>גנים נוספים בפאנל: <span class="nw"><bdi>PALB2</bdi>,</span> <span class="nw"><bdi>CHEK2</bdi>,</span> <span class="nw"><bdi>ATM</bdi>,</span> <span class="nw"><bdi>TP53</bdi>,</span> <span class="nw"><bdi>PTEN</bdi>,</span> <span class="nw"><bdi>CDH1</bdi>.</span> על וריאנט בעל משמעות לא ידועה <span class="nw">(<bdi>VUS</bdi>)</span> לא פועלים</li>
    </ul>
   </div>
   <div>
    <div class="flow sm">
     <div><b>הגדרת סיכון גבוה</b><span><bdi>Gail</bdi> של 1.66% ומעלה ל-5 שנים, 20% ומעלה לאורך החיים, או הקרנה לבית החזה בגיל <bdi dir="ltr">10–30</bdi></span></div>
     <div><b>מעקב</b><span>בדיקה קלינית, ממוגרפיה או טומוסינתזה <span class="nw">ו-<bdi>MRI</bdi></span> שנתי מגיל 30</span></div>
-    <div><b>מניעה בתרופות</b><span>טמוקסיפן <span class="nw">ב-<bdi>P-1</bdi></span>: ירידה של 43% בסרטן חודרני (75% <span class="nw">ב-<bdi>ADH/ALH</bdi></span>). מחיר: סרטן רירית הרחם, קרישי דם</span></div>
+    <div><b>מניעה בתרופות</b><span>טמוקסיפן <span class="nw">ב-<bdi>P-1</bdi>:</span> ירידה של 43% בסרטן חודרני (75% <span class="nw">ב-<bdi>ADH/ALH</bdi>).</span> מחיר: סרטן רירית הרחם, קרישי דם</span></div>
     <div><b>ניתוח מונע</b><span>כריתת שדיים דו-צדדית: ירידה של כ-90% בסיכון. כריתת שחלות וחצוצרות: ירידה של 45% בסרטן שד ושיפור בהישרדות</span></div>
    </div>
   </div>
@@ -255,8 +302,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <ul class="b sm">
    <li>הנתונים מ-8 מחקרים אקראיים עם כמעט 650,000 נשים</li>
-   <li><b>סיכון ממוצע:</b> הספר ממליץ על ממוגרפיה מגיל 40 בכל שנה, כל עוד האישה מתאימה לניתוח. <bdi>USPSTF</bdi>: מגיל 40 כל שנתיים. ההחלטה משותפת עם המטופלת</li>
-   <li><b>שתי תמונות בכל צד:</b> <bdi>MLO</bdi> <span class="nw">ו-<bdi>CC</bdi></span>. בממוגרפיה אבחנתית מוסיפים תמונות לפי הצורך</li>
+   <li><b>סיכון ממוצע:</b> הספר ממליץ על ממוגרפיה מגיל 40 בכל שנה, כל עוד האישה מתאימה לניתוח. <span class="nw"><bdi>USPSTF</bdi>:</span> מגיל 40 כל שנתיים. ההחלטה משותפת עם המטופלת</li>
+   <li><b>שתי תמונות בכל צד:</b> <bdi>MLO</bdi> <span class="nw">ו-<bdi>CC</bdi>.</span> בממוגרפיה אבחנתית מוסיפים תמונות לפי הצורך</li>
    <li><b>צפיפות השד:</b> <bdi>A</bdi> שומני עד <bdi>D</bdi> צפוף מאוד. בשד צפוף יש שמוסיפים אולטרסאונד או <bdi>MRI</bdi></li>
    <li><b>אולטרסאונד כתוספת:</b> עוד 4.2 גידולים לכל 1,000 נשים בסיכון גבוה, אבל יותר תוצאות חיוביות כוזבות. אין הוכחה שהוא מוריד תמותה</li>
   </ul>
@@ -273,8 +320,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <h3>בישיבה · הסתכלות</h3>
    <ul class="b sm">
     <li>א-סימטריה, גוש נראה, שקע בעור, כיב. אור צדדי מגלה שקע עדין</li>
-    <li>ידיים למעלה ואחר כך ידיים על המותניים (כיווץ <span class="nw">ה-<bdi>pectoralis</bdi></span>) מבליטים שקע ומשיכה</li>
-    <li><b>פטמה:</b> משיכה פנימה חדשה וחד-צדדית מחשידה. פריחה שמתחילה בפטמה: <bdi>Paget</bdi>. אקזמה מתחילה <span class="nw">ב-<bdi>areola</bdi></span></li>
+    <li>ידיים למעלה ואחר כך ידיים על המותניים (כיווץ <span class="nw">ה-<bdi>pectoralis</bdi>)</span> מבליטים שקע ומשיכה</li>
+    <li><b>פטמה:</b> משיכה פנימה חדשה וחד-צדדית מחשידה. פריחה שמתחילה בפטמה: <span class="nw"><bdi>Paget</bdi>.</span> אקזמה מתחילה <span class="nw">ב-<bdi>areola</bdi></span></li>
     <li><b>בלוטות:</b> <span class="nw">ה-<bdi>axilla</bdi></span> כשהבודק תומך בזרוע ואחריו מעל ומתחת <span class="nw">ל-<bdi>clavicle</bdi></span></li>
    </ul>
    <h3 style="margin-top:10px">בשכיבה · מישוש</h3>
@@ -285,7 +332,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    </ul>
   </div>
   <div>
-   <figure><img src="img/breast-exam-nci.jpg" alt="שישה שלבים בבדיקת השד"><figcaption>הסתכלות בשלוש תנוחות (<bdi dir="ltr">1–3</bdi>), מישוש עם יד מורמת (4), בדיקת הפטמה (5) ומישוש בשכיבה (6) · <bdi>National Cancer Institute</bdi> (נחלת הכלל)</figcaption></figure>
+   <figure><img src="img/breast-exam-nci.jpg" alt="שישה שלבים בבדיקת השד"><figcaption>הסתכלות בשלוש תנוחות <span class="nw">(<bdi dir="ltr">1–3</bdi>),</span> מישוש עם יד מורמת (4), בדיקת הפטמה (5) ומישוש בשכיבה (6) · <bdi>National Cancer Institute</bdi> (נחלת הכלל)</figcaption></figure>
    <div class="box b" style="margin-top:10px"><b class="t">במחלקה ובמרפאה השבוע</b>הצטרפו למרפאת שד. בדקו מטופלת אחת עם מדריך/ה ותארו את הגוש במשפט אחד: צד, שעה, מרחק מהפטמה, גודל, עקביות וקיבוע</div>
   </div>
  </div>
@@ -299,15 +346,15 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div class="flow">
    <div><b>1 · אנמנזה ובדיקה</b><span>משך, שינוי עם המחזור, הפרשה, תסמינים כלליים וכאבי עצמות. גורמי סיכון וסיפור משפחתי</span></div>
    <div><b>2 · הדמיה</b><span>ממוגרפיה אבחנתית ואולטרסאונד. באולטרסאונד: מוצק או ציסטי ומאפיינים חשודים</span></div>
-   <div><b>3 · ביופסיה במחט עבה</b><span>השיטה המועדפת: מחט <bdi dir="ltr">8–14G</bdi> בהנחיית אולטרסאונד, סטריאוטקסיה או <bdi>MRI</bdi>. משאירים סימן (קליפס)</span></div>
+   <div><b>3 · ביופסיה במחט עבה</b><span>השיטה המועדפת: מחט <bdi dir="ltr">8–14G</bdi> בהנחיית אולטרסאונד, סטריאוטקסיה או <span class="nw"><bdi>MRI</bdi>.</span> משאירים סימן (קליפס)</span></div>
    <div><b>4 · התאמה</b><span>האם הפתולוגיה מסבירה את ההדמיה? אם לא (ממצא חשוד ורקמה תקינה): כריתה ניתוחית</span></div>
   </div>
   <div>
    <ul class="b sm">
     <li><bdi dir="ltr">75–80%</bdi> מהממצאים הלא נמושים שנשלחים לביופסיה הם שפירים. לכן מתחילים בפעולה הפחות פולשנית</li>
     <li>פחות מ-10% מהביופסיות במחט עבה לא חד-משמעיות ומחייבות ביופסיה ניתוחית</li>
-    <li><b>ביופסיה בשאיבה (<bdi>FNA</bdi>):</b> לא מבדילה בין גידול חודרני ללא חודרני. שימושית לבלוטה חשודה (רגישות כ-90%, סגוליות עד 100%) ולמוקד שני באותו שד</li>
-    <li><b><bdi>MRI</bdi>:</b> בלוטה חיובית בלי גידול נראה, <bdi>Paget</bdi>, גידול לובולרי, תגובה לטיפול טרום ניתוחי. אין הוכחה שהוא משפר הישנות או הישרדות כשמשתמשים בו לתכנון הניתוח</li>
+    <li><b>ביופסיה בשאיבה <span class="nw">(<bdi>FNA</bdi>):</span></b> לא מבדילה בין גידול חודרני ללא חודרני. שימושית לבלוטה חשודה (רגישות כ-90%, סגוליות עד 100%) ולמוקד שני באותו שד</li>
+    <li><b><span class="nw"><bdi>MRI</bdi>:</span></b> בלוטה חיובית בלי גידול נראה, <span class="nw"><bdi>Paget</bdi>,</span> גידול לובולרי, תגובה לטיפול טרום ניתוחי. אין הוכחה שהוא משפר הישנות או הישרדות כשמשתמשים בו לתכנון הניתוח</li>
     <li>ביופסיה ניתוחית כצעד ראשון מייקרת ומעכבת את הניתוח הסופי</li>
    </ul>
   </div>
@@ -319,8 +366,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>9</b>כך זה נראה</div>
  <h2>סרטן שד בהדמיה</h2>
  <div class="grid g3">
-  <figure><img src="img/br-mammo-mass.jpg" alt="ממוגרפיה עם גוש עם שוליים לא סדירים בשד ימין"><figcaption><b>גוש עם שוליים מחודדים</b> (<bdi>BI-RADS 5</bdi>) בשד ימין, תמונת <bdi>MLO</bdi> · <bdi>SCiardullo</bdi>, CC BY-SA 4.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
-  <figure><img src="img/br-mammo-calc.jpg" alt="הסתיידויות מקובצות בממוגרפיה"><figcaption><b>הסתיידויות זעירות מקובצות:</b> הסימן האופייני <span class="nw">ל-<bdi>DCIS</bdi></span> · <bdi>Cerevisae</bdi>, CC BY-SA 4.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/br-mammo-mass.jpg" alt="ממוגרפיה עם גוש עם שוליים לא סדירים בשד ימין"><figcaption><b>גוש עם שוליים מחודדים</b> <span class="nw">(<bdi>BI-RADS 5</bdi>)</span> בשד ימין, תמונת <bdi>MLO</bdi> · <span class="nw"><bdi>SCiardullo</bdi>,</span> CC BY-SA 4.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/br-mammo-calc.jpg" alt="הסתיידויות מקובצות בממוגרפיה"><figcaption><b>הסתיידויות זעירות מקובצות:</b> הסימן האופייני <span class="nw">ל-<bdi>DCIS</bdi></span> · <span class="nw"><bdi>Cerevisae</bdi>,</span> CC BY-SA 4.0, <bdi>Wikimedia Commons</bdi></figcaption></figure>
   <figure><img src="img/br-us-cancer.jpg" alt="אולטרסאונד של סרטן שד"><figcaption><b>באולטרסאונד:</b> גוש מוצק והיפואקואי עם שוליים לא סדירים · <bdi>Hic et nunc</bdi> (נחלת הכלל), <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="flow sm" style="margin-top:12px">
@@ -338,13 +385,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b sm">
-    <li><b><bdi>DCIS</bdi>:</b> תאים ממאירים בתוך הצינור, בלי חציית <span class="nw">ה-<bdi>basement membrane</bdi></span>. אין גישה ללימפה ולדם</li>
-    <li><b>דוקטלי חודרני:</b> השכיח ביותר <bdi dir="ltr">(50–70%)</bdi>. גוש מגובש שנמוש ונראה בממוגרפיה</li>
-    <li><b>לובולרי חודרני <bdi dir="ltr">(5–15%)</bdi>:</b> תאים בשורה אחת, אובדן <bdi>E-cadherin</bdi> (<bdi>CDH1</bdi>). מתפשט בשקט ומתגלה מאוחר</li>
-    <li><b>דרגה (<bdi>Nottingham</bdi>):</b> מבנה בלוטי, צורת הגרעין וחלוקות. סכום <bdi dir="ltr">3–5</bdi> דרגה 1, <bdi dir="ltr">8–9</bdi> דרגה 3</li>
+    <li><b><span class="nw"><bdi>DCIS</bdi>:</span></b> תאים ממאירים בתוך הצינור, בלי חציית <span class="nw">ה-<bdi>basement membrane</bdi>.</span> אין גישה ללימפה ולדם</li>
+    <li><b>דוקטלי חודרני:</b> השכיח ביותר <span class="nw"><bdi dir="ltr">(50–70%)</bdi>.</span> גוש מגובש שנמוש ונראה בממוגרפיה</li>
+    <li><b>לובולרי חודרני <span class="nw"><bdi dir="ltr">(5–15%)</bdi>:</span></b> תאים בשורה אחת, אובדן <bdi>E-cadherin</bdi> <span class="nw">(<bdi>CDH1</bdi>).</span> מתפשט בשקט ומתגלה מאוחר</li>
+    <li><b>דרגה <span class="nw">(<bdi>Nottingham</bdi>):</span></b> מבנה בלוטי, צורת הגרעין וחלוקות. סכום <bdi dir="ltr">3–5</bdi> דרגה 1, <bdi dir="ltr">8–9</bdi> דרגה 3</li>
     <li><b>קולטנים:</b> <bdi>ER/PR</bdi> חיובי מעל 1% מהתאים. <bdi>HER2</bdi> מוגבר בכ-20%: צביעה 3+ חיובי, 2+ לא חד-משמעי ובודקים <bdi>ISH</bdi></li>
-    <li><b>תת-סוגים:</b> לומינלי <bdi>A</bdi> <bdi dir="ltr">(40–60%)</bdi>, לומינלי <bdi>B</bdi> <bdi dir="ltr">(20–30%)</bdi>, <bdi>HER2</bdi> <bdi dir="ltr">(10–20%)</bdi>, בזאלי, לרוב משולש שלילי <bdi dir="ltr">(10–20%)</bdi></li>
-    <li><b>מבחן 21 גנים (<bdi>Oncotype DX</bdi>):</b> ציון <bdi dir="ltr">1–100</bdi> שמנבא הישנות ותועלת מכימותרפיה בגידול <bdi>ER</bdi> חיובי</li>
+    <li><b>תת-סוגים:</b> לומינלי <bdi>A</bdi> <span class="nw"><bdi dir="ltr">(40–60%)</bdi>,</span> לומינלי <bdi>B</bdi> <span class="nw"><bdi dir="ltr">(20–30%)</bdi>,</span> <bdi>HER2</bdi> <span class="nw"><bdi dir="ltr">(10–20%)</bdi>,</span> בזאלי, לרוב משולש שלילי <bdi dir="ltr">(10–20%)</bdi></li>
+    <li><b>מבחן 21 גנים <span class="nw">(<bdi>Oncotype DX</bdi>):</span></b> ציון <bdi dir="ltr">1–100</bdi> שמנבא הישנות ותועלת מכימותרפיה בגידול <bdi>ER</bdi> חיובי</li>
    </ul>
   </div>
   <figure><img src="img/breast-cancer-specimen.jpg" alt="חתך של סרטן שד בתכשיר כריתה"><figcaption>חתך בתכשיר: גידול לבן-אפור, קשה וכוכבי במרכז השד, שמושך את הרקמה סביבו · <bdi>John Hayman</bdi> (נחלת הכלל), <bdi>Wikimedia Commons</bdi></figcaption></figure>
@@ -357,9 +404,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>שלב, צוות רב-תחומי וסדר הטיפולים</h2>
  <div class="grid">
   <ul class="b sm">
-   <li><b><bdi>TNM</bdi> לפי <bdi>AJCC</bdi> מהדורה 8:</b> גודל הגידול ומעורבות מבנים סמוכים, בלוטות, גרורות. נוספו דרגה, <bdi>ER/PR/HER2</bdi>, ציון גנומי ותגובה לטיפול טרום ניתוחי</li>
+   <li><b><bdi>TNM</bdi> לפי <bdi>AJCC</bdi> מהדורה 8:</b> גודל הגידול ומעורבות מבנים סמוכים, בלוטות, גרורות. נוספו דרגה, <span class="nw"><bdi>ER/PR/HER2</bdi>,</span> ציון גנומי ותגובה לטיפול טרום ניתוחי</li>
    <li><b>קליני מול פתולוגי:</b> <bdi>cTNM</bdi> לפני הטיפול, <bdi>pTNM</bdi> אחרי הניתוח. האות <bdi>y</bdi> מסמנת שלב אחרי טיפול טרום ניתוחי</li>
-   <li><b>בירור גרורות</b> (<bdi>CT</bdi>, מיפוי עצמות) רק כשיש בלוטות חיוביות בבדיקה, תסמינים, בדיקות דם חריגות, מחלה מתקדמת מקומית או דלקתית</li>
+   <li><b>בירור גרורות</b> <span class="nw">(<bdi>CT</bdi>,</span> מיפוי עצמות) רק כשיש בלוטות חיוביות בבדיקה, תסמינים, בדיקות דם חריגות, מחלה מתקדמת מקומית או דלקתית</li>
    <li><b>מחלה מתקדמת מקומית:</b> גידול מעל 5 ס״מ, מעורבות דופן החזה או העור, סרטן דלקתי, בלוטות מקובעות, <bdi>internal mammary nodes</bdi> או <bdi>supraclavicular nodes</bdi></li>
   </ul>
   <div style="display:grid;gap:10px">
@@ -376,7 +423,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>שימור שד: למי ואיך</h2>
  <div class="num">
   <div><b dir="ltr">6</b><span>מחקרים אקראיים, יותר מ-4,500 נשים: אותה הישרדות כמו בכריתה</span></div>
-  <div><b dir="ltr">14.3% · 39.2%</b><span>הישנות בשד אחרי 20 שנה, עם הקרנה · בלי הקרנה (<bdi>NSABP B-06</bdi>)</span></div>
+  <div><b dir="ltr">14.3% · 39.2%</b><span>הישנות בשד אחרי 20 שנה, עם הקרנה · בלי הקרנה <span class="nw">(<bdi>NSABP B-06</bdi>)</span></span></div>
   <div><b dir="ltr">&lt;5%</b><span>הישנות מקומית ב-10 שנים במרכזים גדולים</span></div>
   <div><b dir="ltr">&gt;20%</b><span>מנפח השד: לשקול טכניקה אונקופלסטית</span></div>
  </div>
@@ -388,7 +435,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <li><b>גידול לא נמוש:</b> סימון לפני הניתוח (תיל, זרע מגנטי או רדיואקטיבי, אולטרסאונד) וצילום של התכשיר בחדר הניתוח</li>
   </ul>
   <div style="display:grid;gap:10px">
-   <div class="box r"><b class="t">התוויות נגד להקרנה</b>מוחלטות: הריון, הומוזיגוטיות <span class="nw">ל-<bdi>ATM</bdi></span>. יחסיות: סקלרודרמה או זאבת, הקרנה קודמת לבית החזה, מחלת לב או ריאה קשה, חוסר יכולת לשכב או להרים את הזרוע</div>
+   <div class="box r"><b class="t">התוויות נגד להקרנה</b>מוחלטות: הריון, הומוזיגוטיות <span class="nw">ל-<bdi>ATM</bdi>.</span> יחסיות: סקלרודרמה או זאבת, הקרנה קודמת לבית החזה, מחלת לב או ריאה קשה, חוסר יכולת לשכב או להרים את הזרוע</div>
    <div class="box"><b class="t">אונקופלסטיקה</b>כריתה עם סידור מחדש של הרקמה, כדי למנוע עיוות ופטמה שזזה. עדיף באותו ניתוח ולא מאוחר יותר</div>
   </div>
  </div>
@@ -408,12 +455,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li>התווית נגד להקרנה</li>
     <li>בחירה של המטופלת, או נשאית מוטציה שבוחרת גם בכריתה מונעת של הצד השני</li>
    </ul>
-   <div class="box a" style="margin-top:10px"><b class="t">מההיסטוריה</b>הכריתה הרדיקלית של <bdi>Halsted</bdi> (כולל <span class="nw">ה-<bdi>pectoralis</bdi></span>) ננטשה אחרי <bdi>NSABP B-04</bdi>: אחרי 25 שנה לא היה לה יתרון בהישרדות על פני כריתה מלאה</div>
+   <div class="box a" style="margin-top:10px"><b class="t">מההיסטוריה</b>הכריתה הרדיקלית של <bdi>Halsted</bdi> (כולל <span class="nw">ה-<bdi>pectoralis</bdi>)</span> ננטשה אחרי <span class="nw"><bdi>NSABP B-04</bdi>:</span> אחרי 25 שנה לא היה לה יתרון בהישרדות על פני כריתה מלאה</div>
   </div>
   <div class="flow sm">
    <div><b>כריתה מלאה</b><span>כל בלוטת השד כולל הפטמה <span class="nw">וה-<bdi>areola</bdi></span></span></div>
    <div><b>רדיקלית מותאמת</b><span>כריתה מלאה + ריקון <span class="nw">ה-<bdi>axilla</bdi></span> ברמות I–II</span></div>
-   <div><b>חוסכת עור</b><span>מוציאים רק את הפטמה <span class="nw">וה-<bdi>areola</bdi></span>. לשחזור מיידי</span></div>
+   <div><b>חוסכת עור</b><span>מוציאים רק את הפטמה <span class="nw">וה-<bdi>areola</bdi>.</span> לשחזור מיידי</span></div>
    <div><b>חוסכת פטמה ועור</b><span>במטופלות נבחרות, גם בכריתה מונעת בנשאיות <bdi>BRCA</bdi></span></div>
    <div><b>סגירה שטוחה</b><span>בלי שחזור: מורידים מספיק עור כדי שדופן החזה תהיה חלקה</span></div>
   </div>
@@ -428,15 +475,15 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div class="flow sm">
    <div><b>בבדיקה: <bdi>axilla</bdi> נקייה</b><span>בלוטת זקיף. <span class="nw">ב-<bdi>NSABP B-32</bdi></span> (5,611 נשים): זיהוי ב-97%, שלילי כוזב 9.8%, בלי הבדל בהישרדות ופחות תחלואה מריקון</span></div>
-   <div><b>מיקרו-גרורה (<bdi dir="ltr">0.2–2</bdi> מ״מ)</b><span>לא מרוקנים את <span class="nw">ה-<bdi>axilla</bdi></span></span></div>
+   <div><b>מיקרו-גרורה <span class="nw">(<bdi dir="ltr">0.2–2</bdi></span> מ״מ)</b><span>לא מרוקנים את <span class="nw">ה-<bdi>axilla</bdi></span></span></div>
    <div><b><bdi dir="ltr">1–2</bdi> בלוטות זקיף חיוביות + שימור שד והקרנה</b><span><span class="nw">ב-<bdi>Z0011</bdi></span> אין צורך בריקון. הישרדות ל-10 שנים 86.3% בלי ריקון ו-83.6% עם ריקון</span></div>
-   <div><b>זקיף חיובי בכריתת שד</b><span>הקרנה <span class="nw">ל-<bdi>axilla</bdi></span> במקום ריקון היא חלופה (<bdi>AMAROS</bdi>)</span></div>
+   <div><b>זקיף חיובי בכריתת שד</b><span>הקרנה <span class="nw">ל-<bdi>axilla</bdi></span> במקום ריקון היא חלופה <span class="nw">(<bdi>AMAROS</bdi>)</span></span></div>
    <div><b>בלוטה נמושה</b><span>אולטרסאונד וביופסיה. אחר כך ריקון, או טיפול טרום ניתוחי וקליפס בבלוטה</span></div>
-   <div><b>אחרי טיפול טרום ניתוחי</b><span>זקיף + הוצאת הבלוטה המסומנת (<bdi>TAD</bdi>): שלילי כוזב עד 1.4%</span></div>
+   <div><b>אחרי טיפול טרום ניתוחי</b><span>זקיף + הוצאת הבלוטה המסומנת <span class="nw">(<bdi>TAD</bdi>):</span> שלילי כוזב עד 1.4%</span></div>
   </div>
   <div>
    <ul class="b sm">
-    <li><b>הטכניקה:</b> טכנציום וצבע כחול (או <bdi>ICG</bdi>, חלקיקים מגנטיים). גשש גמא, בממוצע <bdi dir="ltr">2–3</bdi> בלוטות. ניתוח יום, בלי נקז</li>
+    <li><b>הטכניקה:</b> טכנציום וצבע כחול (או <span class="nw"><bdi>ICG</bdi>,</span> חלקיקים מגנטיים). גשש גמא, בממוצע <bdi dir="ltr">2–3</bdi> בלוטות. ניתוח יום, בלי נקז</li>
     <li><b>ריקון <span class="nw">ה-<bdi>axilla</bdi></span> עדיין נדרש:</b> סרטן דלקתי, מחלה מתקדמת מקומית, יותר מ-3 בלוטות חיוביות, זקיף חיובי בלי הקרנה מתאימה, זקיף או <bdi>TAD</bdi> חיוביים אחרי טיפול טרום ניתוחי</li>
     <li><b>המחיר של ריקון:</b> כאב, הגבלה בכתף ובצקת לימפתית בזרוע. בשילוב הקרנה יש סדרות שמדווחות עד 80%</li>
     <li><b>לוותר לגמרי:</b> <span class="nw">ב-<bdi>SOUND</bdi></span> (גידול <bdi>cT1</bdi> ואולטרסאונד תקין) הישרדות בלי גרורות 98.0% בלי ניתוח <span class="nw">ב-<bdi>axilla</bdi></span> לעומת 97.7% עם זקיף. בגיל 70 ומעלה עם גידול הורמונלי מוקדם לא עושים זקיף כשגרה</li>
@@ -448,15 +495,15 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>15</b>מצבים מיוחדים</div>
- <h2><bdi>DCIS</bdi>, סרטן דלקתי, <bdi>Paget</bdi>, גברים והריון</h2>
+ <h2><span class="nw"><bdi>DCIS</bdi>,</span> סרטן דלקתי, <span class="nw"><bdi>Paget</bdi>,</span> גברים והריון</h2>
  <div class="grid f">
   <div style="display:grid;gap:8px">
    <div class="box n"><b class="t"><bdi>DCIS</bdi> · כ-20% מהאבחנות החדשות</b>ב-75% רק הסתיידויות. שוליים של 2 מ״מ. הקרנה אחרי כריתה חלקית מורידה הישנות בכחצי. בכריתת שד עושים זקיף, כי <span class="nw">ב-<bdi dir="ltr">20–30%</bdi></span> מתגלה רכיב חודרני</div>
-   <div class="box r"><b class="t">סרטן דלקתי · <bdi dir="ltr">1–5%</bdi></b>אודם, בצקת וחום שהתפתחו תוך שבועות עד 3 חודשים. אבחנה קלינית, גם בלי גוש. לא עושים זקיף: ריקון <span class="nw">ה-<bdi>axilla</bdi></span>. טיפול טרום ניתוחי, כריתה רדיקלית מותאמת בלי שחזור מיידי והקרנה</div>
+   <div class="box r"><b class="t">סרטן דלקתי · <bdi dir="ltr">1–5%</bdi></b>אודם, בצקת וחום שהתפתחו תוך שבועות עד 3 חודשים. אבחנה קלינית, גם בלי גוש. לא עושים זקיף: ריקון <span class="nw">ה-<bdi>axilla</bdi>.</span> טיפול טרום ניתוחי, כריתה רדיקלית מותאמת בלי שחזור מיידי והקרנה</div>
    <div class="box a"><b class="t"><bdi>Paget</bdi> של הפטמה</b>פריחה מגרדת שמתחילה בפטמה ויכולה להתקדם לכיב. ביופסיה מהפטמה. ביותר מ-95% יש סרטן בשד מתחתיה</div>
-   <div class="box"><b class="t">גברים והריון</b>גברים: פחות מ-1%, גיל חציוני 68, <bdi>BRCA2</bdi> <span class="nw">ו-<bdi>Klinefelter</bdi></span>. גינקומסטיה אינה גורם סיכון. הריון: 1 <span class="nw">ל-<bdi dir="ltr">3,000–10,000</bdi></span>. ממוגרפיה ואולטרסאונד מותרים, בלי גדוליניום. אין כימותרפיה בשליש הראשון. הקרנה אחרי הלידה</div>
+   <div class="box"><b class="t">גברים והריון</b>גברים: פחות מ-1%, גיל חציוני 68, <bdi>BRCA2</bdi> <span class="nw">ו-<bdi>Klinefelter</bdi>.</span> גינקומסטיה אינה גורם סיכון. הריון: 1 <span class="nw">ל-<bdi dir="ltr">3,000–10,000</bdi>.</span> ממוגרפיה ואולטרסאונד מותרים, בלי גדוליניום. אין כימותרפיה בשליש הראשון. הקרנה אחרי הלידה</div>
   </div>
-  <figure><img src="img/br-paget.jpg" alt="ציור של מחלת פג׳ט בפטמה"><figcaption>מחלת <bdi>Paget</bdi>: פטמה כיבית ומכוסה גלד, עם אודם <span class="nw">ב-<bdi>areola</bdi></span> · ציור בצבעי מים, <bdi>Leonard Portal Mark</bdi>, <bdi>Wellcome Collection</bdi>, CC BY 4.0</figcaption></figure>
+  <figure><img src="img/br-paget.jpg" alt="ציור של מחלת פג׳ט בפטמה"><figcaption>מחלת <span class="nw"><bdi>Paget</bdi>:</span> פטמה כיבית ומכוסה גלד, עם אודם <span class="nw">ב-<bdi>areola</bdi></span> · ציור בצבעי מים, <span class="nw"><bdi>Leonard Portal Mark</bdi>,</span> <span class="nw"><bdi>Wellcome Collection</bdi>,</span> CC BY 4.0</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 68 עמ׳ <bdi dir="ltr">853–855, 862–864</bdi></span><span>מצבים מיוחדים</span></div>
 </div></section>
@@ -466,14 +513,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>הקרנה וטיפול מערכתי לפי סוג הגידול</h2>
  <div class="grid g3">
   <div class="box n"><b class="t">רגיש להורמונים, <bdi>HER2</bdi> שלילי</b>
-   <ul class="b sm"><li>טמוקסיפן 5 שנים: הישנות פחות ב-41%, תמותה פחות בכשליש</li><li>אחרי הבלות: מעכבי ארומטאז (<bdi>ATAC</bdi>: הישרדות ללא מחלה טובה ב-17%)</li><li>כימותרפיה לפי ציון 21 הגנים. בלי בלוטות: לא נותנים מתחת ל-25 מעל גיל 50 ומתחת ל-16 עד גיל 50</li></ul></div>
+   <ul class="b sm"><li>טמוקסיפן 5 שנים: הישנות פחות ב-41%, תמותה פחות בכשליש</li><li>אחרי הבלות: מעכבי ארומטאז <span class="nw">(<bdi>ATAC</bdi>:</span> הישרדות ללא מחלה טובה ב-17%)</li><li>כימותרפיה לפי ציון 21 הגנים. בלי בלוטות: לא נותנים מתחת ל-25 מעל גיל 50 ומתחת ל-16 עד גיל 50</li></ul></div>
   <div class="box b"><b class="t"><bdi>HER2</bdi> חיובי</b>
-   <ul class="b sm"><li>טרסטוזומאב שנה (<bdi>HERA</bdi>: 46% פחות אירועים). לעקוב אחרי הלב</li><li>גידול של 2 ס״מ ומעלה או בלוטות: טיפול טרום ניתוחי עם טרסטוזומאב ופרטוזומאב</li><li>שארית בניתוח: <bdi>T-DM1</bdi> (<bdi>KATHERINE</bdi>: סיכון נמוך בחצי)</li></ul></div>
+   <ul class="b sm"><li>טרסטוזומאב שנה <span class="nw">(<bdi>HERA</bdi>:</span> 46% פחות אירועים). לעקוב אחרי הלב</li><li>גידול של 2 ס״מ ומעלה או בלוטות: טיפול טרום ניתוחי עם טרסטוזומאב ופרטוזומאב</li><li>שארית בניתוח: <bdi>T-DM1</bdi> <span class="nw">(<bdi>KATHERINE</bdi>:</span> סיכון נמוך בחצי)</li></ul></div>
   <div class="box r"><b class="t">משולש שלילי</b>
-   <ul class="b sm"><li>שלב <bdi dir="ltr">II–III</bdi>: כימותרפיה טרום ניתוחית עם פמברוליזומאב (תגובה מלאה 65% לעומת 51%)</li><li>שארית בניתוח: קפציטבין</li><li>נשאיות <bdi>BRCA</bdi>: אולפריב שנה (<bdi>OlympiA</bdi>)</li></ul></div>
+   <ul class="b sm"><li>שלב <span class="nw"><bdi dir="ltr">II–III</bdi>:</span> כימותרפיה טרום ניתוחית עם פמברוליזומאב (תגובה מלאה 65% לעומת 51%)</li><li>שארית בניתוח: קפציטבין</li><li>נשאיות <span class="nw"><bdi>BRCA</bdi>:</span> אולפריב שנה <span class="nw">(<bdi>OlympiA</bdi>)</span></li></ul></div>
  </div>
  <div class="grid" style="margin-top:12px">
-  <div class="box"><b class="t">הקרנה</b>אחרי שימור שד זה הסטנדרט. היום בדרך כלל 3 שבועות (<bdi dir="ltr">42.5 Gy</bdi> ב-16 מנות). אחרי כריתה: 4 בלוטות ומעלה או שלב <bdi>III</bdi> ובחלק <span class="nw">מ-<bdi dir="ltr">1–3</bdi></span> בלוטות. בגיל 70 ומעלה עם גידול <bdi>ER</bdi> חיובי בשלב <bdi>I</bdi> אפשר לוותר: אותה הישרדות, קצת יותר הישנות מקומית</div>
+  <div class="box"><b class="t">הקרנה</b>אחרי שימור שד זה הסטנדרט. היום בדרך כלל 3 שבועות <span class="nw">(<bdi dir="ltr">42.5 Gy</bdi></span> ב-16 מנות). אחרי כריתה: 4 בלוטות ומעלה או שלב <bdi>III</bdi> ובחלק <span class="nw">מ-<bdi dir="ltr">1–3</bdi></span> בלוטות. בגיל 70 ומעלה עם גידול <bdi>ER</bdi> חיובי בשלב <bdi>I</bdi> אפשר לוותר: אותה הישרדות, קצת יותר הישנות מקומית</div>
   <div class="box a"><b class="t">למה טיפול טרום ניתוחי</b>מקטין את הגידול ומאפשר שימור שד, מקטין ניתוח <span class="nw">ב-<bdi>axilla</bdi></span> ומראה איך הגידול מגיב. לפני שמתחילים: <b>קליפס בגידול ובבלוטה החיובית</b>, כי לפעמים הם נעלמים</div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 68 עמ׳ <bdi dir="ltr">855–862</bdi></span><span>טיפול משלים</span></div>
@@ -483,14 +530,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>17</b>מה חדש בתחום · <bdi dir="ltr">2024–2026</bdi></div>
  <h2>פחות ניתוח, יותר ביולוגיה</h2>
  <div class="grid">
-  <div class="study"><div class="y"><bdi>NEJM</bdi> 2025 · מחקר אקראי</div><b><bdi>INSEMA</bdi>: בלי ניתוח <span class="nw">ב-<bdi>axilla</bdi></span></b>
-   <p>5,502 נשים עם גידול <bdi>T1–T2</bdi>, <bdi>axilla</bdi> נקייה בבדיקה ושימור שד. הישרדות ללא מחלה חודרנית ל-5 שנים 91.9% בלי זקיף לעומת 91.7% עם זקיף. פחות בצקת וכאב בזרוע. הישנות <span class="nw">ב-<bdi>axilla</bdi></span> 1.0% לעומת 0.3%</p>
+  <div class="study"><div class="y"><bdi>NEJM</bdi> 2025 · מחקר אקראי</div><b><span class="nw"><bdi>INSEMA</bdi>:</span> בלי ניתוח <span class="nw">ב-<bdi>axilla</bdi></span></b>
+   <p>5,502 נשים עם גידול <span class="nw"><bdi>T1–T2</bdi>,</span> <bdi>axilla</bdi> נקייה בבדיקה ושימור שד. הישרדות ללא מחלה חודרנית ל-5 שנים 91.9% בלי זקיף לעומת 91.7% עם זקיף. פחות בצקת וכאב בזרוע. הישנות <span class="nw">ב-<bdi>axilla</bdi></span> 1.0% לעומת 0.3%</p>
    <small>Reimer T et al. N Engl J Med 2025;392(11):<bdi dir="ltr">1051-1064</bdi></small></div>
-  <div class="study"><div class="y"><bdi>NEJM</bdi> 2024 · מחקר אקראי</div><b><bdi>SENOMAC</bdi>: מקרו-גרורה בזקיף</b>
-   <p>2,540 מטופלים עם <bdi dir="ltr">1–2</bdi> מקרו-גרורות, כולל כריתות שד וגידולי <bdi>T3</bdi>. הישרדות ללא הישנות ל-5 שנים 89.7% בלי ריקון לעומת 88.7% עם ריקון. כמעט 90% קיבלו הקרנה לבלוטות</p>
+  <div class="study"><div class="y"><bdi>NEJM</bdi> 2024 · מחקר אקראי</div><b><span class="nw"><bdi>SENOMAC</bdi>:</span> מקרו-גרורה בזקיף</b>
+   <p>2,540 מטופלים עם <bdi dir="ltr">1–2</bdi> מקרו-גרורות, כולל כריתות שד וגידולי <span class="nw"><bdi>T3</bdi>.</span> הישרדות ללא הישנות ל-5 שנים 89.7% בלי ריקון לעומת 88.7% עם ריקון. כמעט 90% קיבלו הקרנה לבלוטות</p>
    <small>de Boniface J et al. N Engl J Med 2024;390(13):<bdi dir="ltr">1163-1175</bdi></small></div>
   <div class="study"><div class="y"><bdi>NEJM</bdi> 2024 · <bdi>KEYNOTE-522</bdi></div><b>אימונותרפיה במשולש שלילי</b>
-   <p>1,174 מטופלות בשלב <bdi dir="ltr">II–III</bdi>. פמברוליזומאב עם כימותרפיה לפני הניתוח ואחריו: הישרדות ל-5 שנים 86.6% לעומת 81.7%</p>
+   <p>1,174 מטופלות בשלב <span class="nw"><bdi dir="ltr">II–III</bdi>.</span> פמברוליזומאב עם כימותרפיה לפני הניתוח ואחריו: הישרדות ל-5 שנים 86.6% לעומת 81.7%</p>
    <small>Schmid P et al. N Engl J Med 2024;391(21):<bdi dir="ltr">1981-1991</bdi></small></div>
   <div class="study"><div class="y"><bdi>JAMA</bdi> 2025 · <bdi>COMET</bdi></div><b>מעקב פעיל <span class="nw">ב-<bdi>DCIS</bdi></span> בסיכון נמוך</b>
    <p>957 נשים עם <bdi>DCIS</bdi> בדרגה <bdi dir="ltr">1–2</bdi> ורגיש להורמונים. אחרי שנתיים: סרטן חודרני באותו שד ב-4.2% במעקב פעיל לעומת 5.9% בטיפול הרגיל. צריך מעקב ארוך יותר</p>
@@ -507,9 +554,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>יוצאת אשכנז עם סיפור משפחתי, אבחנה צעירה או גידול משולש שלילי: להפנות לייעוץ גנטי</li>
   <li>שימור שד עם הקרנה שווה בהישרדות לכריתה. השוליים בגידול חודרני: אין דיו על הגידול</li>
   <li><span class="nw">ה-<bdi>axilla</bdi></span> עברה מריקון לבלוטת זקיף והיום לפעמים בלי ניתוח בכלל. בסרטן דלקתי עדיין מרוקנים</li>
-  <li>הקולטנים (<bdi>ER/PR</bdi>, <bdi>HER2</bdi>) קובעים את הטיפול המשלים ולעיתים גם שהטיפול יתחיל לפני הניתוח</li>
+  <li>הקולטנים <span class="nw">(<bdi>ER/PR</bdi>,</span> <span class="nw"><bdi>HER2</bdi>)</span> קובעים את הטיפול המשלים ולעיתים גם שהטיפול יתחיל לפני הניתוח</li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 68 <bdi>Diseases of the Breast</bdi> (עמ׳ <bdi dir="ltr">819–865</bdi>)</div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 68 <bdi>Diseases of the Breast</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">819–865</bdi>)</span></div>
  <div class="src"><span>איורים: <bdi>Gray's Anatomy</bdi> (1918) <span class="nw">ו-<bdi>National Cancer Institute</bdi></span> (נחלת הכלל), <bdi>Wellcome Collection</bdi> <span class="nw">ו-<bdi>Wikimedia Commons</bdi></span> (רישיונות בכל כיתוב) · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 </main>
@@ -531,5 +578,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>

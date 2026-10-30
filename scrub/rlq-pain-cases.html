@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>דיון מקרים: כאבי בטן ימנית תחתונה · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -88,7 +88,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -118,9 +118,56 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -142,13 +189,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>1</b>מטרות הלמידה</div>
  <h2>בסוף המפגש תדעו</h2>
  <ol class="obj">
-  <li>לבנות אבחנה מבדלת לכאב ברבע הימני התחתון לפי גיל ומין, כולל סיבות גינקולוגיות</li>
-  <li>לזהות את התמונה הקלינית של דלקת התוספתן ולהכיר את מגבלות המעבדה והמדדים</li>
+  <li>לבנות אבחנה מבדלת לכאב בבטן ימנית תחתונה לפי גיל ומין, כולל סיבות גינקולוגיות</li>
+  <li>לזהות את התמונה הקלינית של דלקת התוספתן, לענות על השאלות הקליניות הקלאסיות ולהכיר את מגבלות המעבדה והמדדים</li>
   <li>לבחור הדמיה: <bdi>CT</bdi> במבוגר, אולטרסאונד בילד ובהיריון, <bdi>MRI</bdi> בהיריון</li>
   <li>להבדיל בין דלקת לא מסובכת למסובכת ולהסביר את הבחירה בין ניתוח לאנטיביוטיקה</li>
   <li>לנהל אבצס או פלגמון ולדעת מתי צריך מעקב אחרי גידול</li>
+  <li>לא לפספס דלקת תוספתן בהיריון ולחשוד במוקוצלה או בגידול של התוספתן</li>
  </ol>
- <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 94 (עמ׳ <bdi dir="ltr">1415–1426</bdi>) · פרק 85 (עמ׳ <bdi dir="ltr">1155–1165</bdi>)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 94 (עמ׳ <span class="nw"><bdi dir="ltr">1415–1427</bdi>)</span> · פרק 85 (עמ׳ <span class="nw"><bdi dir="ltr">1155–1165</bdi>)</span></span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -156,7 +204,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2><span class="nw">ה-<bdi dir="ltr">appendix</bdi></span> ולמה הוא מודלק</h2>
  <div class="num">
   <div><b dir="ltr">6–7%</b><span>סיכון לאורך החיים. השיא בעשור השני</span></div>
-  <div><b dir="ltr">8–9 cm</b><span>אורך ממוצע במבוגר (<bdi dir="ltr">5–35</bdi> ס״מ)</span></div>
+  <div><b dir="ltr">8–9 cm</b><span>אורך ממוצע במבוגר <span class="nw">(<bdi dir="ltr">5–35</bdi></span> ס״מ)</span></div>
   <div><b dir="ltr">~60%</b><span>הקצה מאחורי <span class="nw">ה-<bdi dir="ltr">cecum</bdi></span> (עדיין תוך-צפקי)</span></div>
   <div><b dir="ltr">30%</b><span>אגני. רטרופריטונאלי: <bdi dir="ltr">7–10%</bdi></span></div>
  </div>
@@ -169,8 +217,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <div><b>ניקוב</b><span>לרוב אבצס סביב <span class="nw">ה-<bdi dir="ltr">appendix</bdi></span> או באגן. לעיתים פריטוניטיס מפושטת</span></div>
    </div>
    <ul class="b sm" style="margin-top:10px">
-    <li><b>אספקת הדם:</b> <span class="nw">ה-<bdi dir="ltr">appendicular artery</bdi></span>, ענף של <span class="nw">ה-<bdi>ileocolic</bdi></span>, <span class="nw">מה-<bdi>SMA</bdi></span></li>
-    <li><b>החיידקים:</b> כמו במעי הגס, פולימיקרוביאלי: <bdi>E. coli</bdi> (כ-65% בתרביות), <bdi>Bacteroides</bdi>, פסאודומונס. מכסים גראם שליליים ואנאירובים</li>
+    <li><b>אספקת הדם:</b> <span class="nw">ה-<bdi dir="ltr">appendicular artery</bdi>,</span> ענף של <span class="nw">ה-<bdi>ileocolic</bdi>,</span> <span class="nw">מה-<bdi>SMA</bdi></span></li>
+    <li><b>החיידקים:</b> כמו במעי הגס, פולימיקרוביאלי: <bdi>E. coli</bdi> (כ-65% בתרביות), <span class="nw"><bdi>Bacteroides</bdi>,</span> פסאודומונס. מכסים גראם שליליים ואנאירובים</li>
    </ul>
   </div>
   <figure><img src="img/lap-appendix.jpg" alt="appendix מודלק במבט לפרוסקופי" style="max-height:42vh"><figcaption>כך זה נראה בחדר הניתוח: <bdi dir="ltr">phlegmonous appendix</bdi> עם רבדי פיברין <span class="nw">ב-<bdi dir="ltr">right iliac fossa</bdi></span> · <bdi dir="ltr">Javier Montero Arredondo · CC BY-SA 4.0 · Wikimedia Commons</bdi></figcaption></figure>
@@ -186,21 +234,21 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <path class="hz" data-hz="ile" d="M502,112 C520,85 545,65 570,56 C600,45 630,40 656,39 C700,40 730,44 746,43 C790,32 830,20 870,12 C890,10 898,30 901,64 C904,95 905,115 905,129 C922,145 932,160 931,172 C928,195 920,210 905,228 C890,240 892,255 905,275 C914,295 914,320 896,343 C885,360 870,375 845,390 C830,400 826,420 824,438 C810,448 795,452 789,455 C780,480 775,500 772,506 C768,525 763,545 755,549 C740,540 725,510 716,481 C710,450 707,430 703,412 C680,395 660,382 635,378 C620,392 605,405 583,412 C570,420 560,435 553,445 C548,455 540,460 530,462 C500,466 465,465 440,458 C420,445 405,425 403,405 C403,380 405,360 410,345 C430,325 460,305 489,300 C500,280 503,260 502,240 C502,190 502,140 502,112 Z" style="--c:#2F6FA8"/>
   <path class="hz" data-hz="sig" d="M862,430 C900,442 945,440 983,426 C982,460 975,490 969,506 C960,535 952,555 944,575 C930,600 920,615 912,625 C895,650 880,668 868,679 C850,693 835,700 818,704 C800,708 780,710 764,710 C740,710 720,709 701,707 C680,703 665,700 654,694 C640,685 634,675 632,663 C627,640 624,620 623,600 C621,570 620,545 620,521 C621,500 624,485 629,474 C637,462 645,455 654,452 C665,450 675,451 686,455 C698,460 704,467 708,474 C714,486 717,496 717,506 C717,525 714,540 711,553 C709,570 708,585 710,600 C718,608 727,613 736,613 C745,605 752,597 761,588 C770,577 778,566 786,556 C794,546 801,537 808,528 C816,515 823,503 830,490 C837,478 843,468 849,459 C854,449 858,440 862,430 Z" style="--c:#7A5BD6"/>
   <path class="hz" data-hz="pel" d="M405,590 C430,560 470,540 520,535 C550,520 575,490 600,470 C610,490 618,505 620,521 C620,560 622,600 627,650 C632,690 650,705 680,712 C700,740 690,765 660,778 C620,786 580,780 545,765 C505,745 470,715 445,680 C425,650 410,620 405,590 Z" style="--c:#0C2A35"/>
-  <path class="hz ln" data-hz="app" d="M541,462 C549,470 546,480 535,484 C515,490 490,496 470,505 C455,512 445,520 438,532" style="--c:#C9893F"/>
+  <path class="hz ln" data-hz="app" d="M541,462 C549,470 546,480 535,484 C515,490 490,496 470,505 C455,512 445,520 438,532" style="--c:#C9893F;--lw:34"/>
   <g class="hzb" style="--c:#A3402E"><circle cx="108" cy="330" r="24"/><text x="108" y="330">1</text></g>
-  <g class="hzb" style="--c:#C9893F"><circle cx="478" cy="552" r="24"/><text x="478" y="552">2</text></g>
+  <g class="hzb" style="--c:#C9893F"><circle cx="470" cy="568" r="32"/><text x="470" y="568">2</text></g>
   <g class="hzb" style="--c:#2F6FA8"><circle cx="515" cy="62" r="24"/><text x="515" y="62">3</text></g>
   <g class="hzb" style="--c:#7A5BD6"><circle cx="1010" cy="600" r="24"/><text x="1010" y="600">4</text></g>
   <g class="hzb" style="--c:#0C2A35"><circle cx="540" cy="805" r="24"/><text x="540" y="805">5</text></g>
  </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-   <div class="hzi" data-hzi="cec" hidden><b>1 · <bdi dir="ltr">Cecum</bdi> <span class="nw">ו-<bdi dir="ltr">ascending colon</bdi></span></b><p>בסיס <span class="nw">ה-<bdi dir="ltr">appendix</bdi></span> נמצא במקום שבו נפגשות <span class="nw">ה-<bdi dir="ltr">taeniae coli</bdi></span> בקצה <span class="nw">ה-<bdi dir="ltr">cecum</bdi></span>. כשהקצה מאחורי <span class="nw">ה-<bdi dir="ltr">cecum</bdi></span> או רטרופריטונאלי, הכאב יכול להיות במותן או בגב ולהתפתח לאט יותר. מאחור: <span class="nw">ה-<bdi dir="ltr">kidney</bdi></span> <span class="nw">וה-<bdi dir="ltr">ureter</bdi></span>. אבן בכליה ודלקת בדרכי השתן נותנות כאב ימני תחתון בשני המינים. בחולה נויטרופני: טיפליטיס</p></div>
-   <div class="hzi" data-hzi="app" hidden><b>2 · <bdi dir="ltr">Appendix</bdi> (<bdi dir="ltr">McBurney's point</bdi>)</b><p>שליש הדרך <span class="nw">מ-<bdi dir="ltr">ASIS</bdi></span> <span class="nw">ל-<bdi dir="ltr">umbilicus</bdi></span>. כאן הרגישות הקלאסית, עם רגישות בהרפיה. הכאב מתחיל סביב <span class="nw">ה-<bdi dir="ltr">umbilicus</bdi></span> (ויסצרלי) ועובר לכאן כשהקצה המודלק מגרה את <span class="nw">ה-<bdi dir="ltr">parietal peritoneum</bdi></span> (סומטי)</p></div>
-   <div class="hzi" data-hzi="ile" hidden><b>3 · <bdi dir="ltr">Terminal ileum</bdi> <span class="nw">ו-<bdi dir="ltr">mesentery</bdi></span></b><p>אדניטיס מזנטריאלית (לרוב אחרי מחלה ויראלית, בילדים), דיברטיקולום של מקל, מחלת קרוהן (״שומן זוחל״ על <span class="nw">ה-<bdi dir="ltr">mesentery</bdi></span>), אינטוסוספציה בילדים. את כל אלה בודקים בניתוח <span class="nw">כשה-<bdi dir="ltr">appendix</bdi></span> נראה תקין</p></div>
+   <div class="hzi" data-hzi="cec" hidden><b>1 · <bdi dir="ltr">Cecum</bdi> <span class="nw">ו-<bdi dir="ltr">ascending colon</bdi></span></b><p>בסיס <span class="nw">ה-<bdi dir="ltr">appendix</bdi></span> נמצא במקום שבו נפגשות <span class="nw">ה-<bdi dir="ltr">taeniae coli</bdi></span> בקצה <span class="nw">ה-<bdi dir="ltr">cecum</bdi>.</span> כשהקצה מאחורי <span class="nw">ה-<bdi dir="ltr">cecum</bdi></span> או רטרופריטונאלי, הכאב יכול להיות במותן או בגב ולהתפתח לאט יותר. מאחור: <span class="nw">ה-<bdi dir="ltr">kidney</bdi></span> <span class="nw">וה-<bdi dir="ltr">ureter</bdi>.</span> אבן בכליה ודלקת בדרכי השתן נותנות כאב בבטן ימנית תחתונה בשני המינים. בחולה נויטרופני: טיפליטיס</p></div>
+   <div class="hzi" data-hzi="app" hidden><b>2 · <bdi dir="ltr">Appendix</bdi> <span class="nw">(<bdi dir="ltr">McBurney's point</bdi>)</span></b><p>שליש הדרך <span class="nw">מ-<bdi dir="ltr">ASIS</bdi></span> <span class="nw">ל-<bdi dir="ltr">umbilicus</bdi>.</span> כאן הרגישות הקלאסית, עם רגישות בהרפיה. הכאב מתחיל סביב <span class="nw">ה-<bdi dir="ltr">umbilicus</bdi></span> (ויסצרלי) ועובר לכאן כשהקצה המודלק מגרה את <span class="nw">ה-<bdi dir="ltr">parietal peritoneum</bdi></span> (סומטי)</p></div>
+   <div class="hzi" data-hzi="ile" hidden><b>3 · <bdi dir="ltr">Terminal ileum</bdi> <span class="nw">ו-<bdi dir="ltr">mesentery</bdi></span></b><p>אדניטיס מזנטריאלית (לרוב אחרי מחלה ויראלית, בילדים), דיברטיקולום של מקל, מחלת קרוהן (״שומן זוחל״ על <span class="nw">ה-<bdi dir="ltr">mesentery</bdi>),</span> אינטוסוספציה בילדים. את כל אלה בודקים בניתוח <span class="nw">כשה-<bdi dir="ltr">appendix</bdi></span> נראה תקין</p></div>
    <div class="hzi" data-hzi="sig" hidden><b>4 · <bdi dir="ltr">Sigmoid colon</bdi></b><p>בקשישים: דיברטיקוליטיס וגידול ממאיר. <bdi dir="ltr">sigmoid colon</bdi> ארוך יכול לשכב ברבע הימני התחתון ולחקות דלקת תוספתן</p></div>
-   <div class="hzi" data-hzi="pel" hidden><b>5 · האגן</b><p>באישה בגיל הפוריות: ציסטה שחלתית שנקרעה, כאב ביוץ (<bdi>mittelschmerz</bdi>), אנדומטריוזיס, תסביב שחלה, היריון מחוץ לרחם ומחלה דלקתית של האגן. <span class="nw">ה-<bdi dir="ltr">pelvic appendix</bdi></span> נותן כאב מעל הערווה שמחקה דלקת בדרכי השתן. בגבר: תסביב אשך. הציור של <bdi>Sobotta</bdi> הוא של גבר: <span class="nw">ה-<bdi dir="ltr">bladder</bdi></span> <span class="nw">וה-<bdi dir="ltr">rectum</bdi></span></p></div>
+   <div class="hzi" data-hzi="pel" hidden><b>5 · האגן</b><p>באישה בגיל הפוריות: ציסטה שחלתית שנקרעה, כאב ביוץ <span class="nw">(<bdi>mittelschmerz</bdi>),</span> אנדומטריוזיס, תסביב שחלה, היריון מחוץ לרחם ומחלה דלקתית של האגן. <span class="nw">ה-<bdi dir="ltr">pelvic appendix</bdi></span> נותן כאב מעל הערווה שמחקה דלקת בדרכי השתן. בגבר: תסביב אשך. הציור של <bdi>Sobotta</bdi> הוא של גבר: <span class="nw">ה-<bdi dir="ltr">bladder</bdi></span> <span class="nw">וה-<bdi dir="ltr">rectum</bdi></span></p></div>
   </div></div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 94 עמ׳ <bdi dir="ltr">1415–1417, 1421</bdi> · הציור: <bdi dir="ltr">Sobotta (1906)</bdi>, איור 410, הבטן התחתונה אחרי הרחקת המעי הדק (נחלת הכלל)</span><span>אנטומיה</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 94 עמ׳ <bdi dir="ltr">1415–1417, 1421</bdi> · הציור: <span class="nw"><bdi dir="ltr">Sobotta (1906)</bdi>,</span> איור 410, הבטן התחתונה אחרי הרחקת המעי הדק (נחלת הכלל)</span><span>אנטומיה</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -208,8 +256,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>סטודנט בן 24 עם כאב שזז</h2>
  <div class="grid f">
   <div>
-   <div class="box n"><b class="t">הסיפור</b>אתמול בערב כאב עמום סביב <span class="nw">ה-<bdi dir="ltr">umbilicus</bdi></span>. בלילה הכאב עבר לבטן הימנית התחתונה והחמיר. אין תיאבון, בחילה והקאה אחת. לא נותח בעבר</div>
-   <div class="box" style="margin-top:10px"><b class="t">בבדיקה</b>שוכב בלי לזוז. חום <bdi dir="ltr">38.1°C</bdi>, דופק 104. רגישות מרבית <span class="nw">ב-<bdi dir="ltr">McBurney's point</bdi></span> עם התגוננות ורגישות בהרפיה. לחיצה בצד שמאל גורמת לכאב מימין</div>
+   <div class="box n"><b class="t">הסיפור</b>אתמול בערב כאב עמום סביב <span class="nw">ה-<bdi dir="ltr">umbilicus</bdi>.</span> בלילה הכאב עבר לבטן הימנית התחתונה והחמיר. אין תיאבון, בחילה והקאה אחת. לא נותח בעבר</div>
+   <div class="box" style="margin-top:10px"><b class="t">בבדיקה</b>שוכב בלי לזוז. חום <span class="nw"><bdi dir="ltr">38.1°C</bdi>,</span> דופק 104. רגישות מרבית <span class="nw">ב-<bdi dir="ltr">McBurney's point</bdi></span> עם התגוננות ורגישות בהרפיה. לחיצה בבטן שמאלית תחתונה גורמת לכאב בבטן ימנית תחתונה</div>
    <div class="box a" style="margin-top:10px"><b class="t">מעבדה</b>לויקוציטים <bdi dir="ltr">14,500</bdi> עם עודף נויטרופילים. שתן: עקבות של לויקוציטים</div>
    <h3 style="margin-top:12px">שאלות לדיון</h3>
    <ul class="b sm"><li>מה האבחנה הסבירה ומה עוד ברשימה?</li><li>מה המשמעות של השתן?</li><li>האם צריך הדמיה?</li></ul>
@@ -226,7 +274,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <h3>מה תומך בדלקת תוספתן</h3>
    <ul class="b sm">
-    <li><b>נדידת הכאב</b> <span class="nw">מה-<bdi dir="ltr">umbilicus</bdi></span> לימין למטה: סימן אמין</li>
+    <li><b>נדידת הכאב</b> <span class="nw">מה-<bdi dir="ltr">umbilicus</bdi></span> לבטן ימנית תחתונה: סימן אמין</li>
     <li>חוסר תיאבון, בחילה. גם שלשול או עצירות אפשריים</li>
     <li>שוכב בשקט (פריטוניטיס מקומית), דופק מהיר, חום. <b>היעדר חום לא שולל</b></li>
     <li>רובזינג, פסואס ואובטורטור: מראים פריטוניטיס מקומית, לא אבחנה ספציפית</li>
@@ -237,9 +285,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <details class="rev"><summary>הצגת התשובה: מעבדה ומדדים</summary>
     <ul class="b sm">
      <li><b>לויקוציטוזיס</b> ב-90% מהמקרים. ספירה תקינה ב-10%: לא שוללת</li>
-     <li><b>עקבות לויקוציטים בשתן</b> שכיחות: <span class="nw">ה-<bdi dir="ltr">appendix</bdi></span> המודלק קרוב <span class="nw">ל-<bdi dir="ltr">bladder</bdi></span> <span class="nw">ול-<bdi dir="ltr">ureter</bdi></span>. גם קטונוריה</li>
+     <li><b>עקבות לויקוציטים בשתן</b> שכיחות: <span class="nw">ה-<bdi dir="ltr">appendix</bdi></span> המודלק קרוב <span class="nw">ל-<bdi dir="ltr">bladder</bdi></span> <span class="nw">ול-<bdi dir="ltr">ureter</bdi>.</span> גם קטונוריה</li>
      <li><bdi>CRP</bdi> הרגיש ביותר מבין הסמנים, אבל לא סגולי</li>
-     <li><b>מדדים:</b> אלוורדו, מדד ילדים, <bdi>AIR</bdi> <span class="nw">ו-<bdi>AAS</bdi></span>. ההנחיות ממליצות על <bdi>AIR</bdi> או <bdi>AAS</bdi>. אלוורדו טוב לשלילה אבל לא מספיק סגולי</li>
+     <li><b>מדדים:</b> אלוורדו, מדד ילדים, <bdi>AIR</bdi> <span class="nw">ו-<bdi>AAS</bdi>.</span> ההנחיות ממליצות על <bdi>AIR</bdi> או <span class="nw"><bdi>AAS</bdi>.</span> אלוורדו טוב לשלילה אבל לא מספיק סגולי</li>
      <li>אף סימן או בדיקה לבד לא מנבאים. מה שקובע הוא התמונה כולה</li>
     </ul>
    </details>
@@ -252,36 +300,56 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 </div></section>
 
 <section class="s"><div class="card">
- <div class="kick"><b>6</b>מקרה 1 · הדמיה</div>
+ <div class="kick"><b>6</b>מקרה 1 · שאלות קליניות</div>
+ <h2>שבע שאלות שכל סטודנט/ית צריך/ה לענות עליהן</h2>
+ <div class="grid">
+  <div>
+   <details class="rev"><summary>1. למה הכאב מתחיל סביב הטבור ורק אחר כך עובר?</summary><p style="margin:0;font-size:15px">בהתחלה <span class="nw">ה-<bdi dir="ltr">appendix</bdi></span> נמתח ומגרה סיבי עצב ויסצרליים: כאב עמום ולא ממוקם סביב הטבור. כשהקצה המודלק מגרה את הצפק הפריאטלי, הכאב הופך סומטי וממוקם במקום הקצה, לרוב בבטן ימנית תחתונה</p></details>
+   <details class="rev"><summary>2. כאב במותן ובגב שמתפתח לאט: מה חושבים?</summary><p style="margin:0;font-size:15px">קצה <span class="nw">ה-<bdi dir="ltr">appendix</bdi></span> מאחורי <span class="nw">ה-<bdi dir="ltr">cecum</bdi></span> או רטרופריטונאלי. קצה באגן נותן כאב מעל הערווה שנראה כמו דלקת בדרכי השתן</p></details>
+   <details class="rev"><summary>3. רובזינג חיובי: זו האבחנה?</summary><p style="margin:0;font-size:15px">לא. רובזינג (כאב בבטן ימנית תחתונה בלחיצה משמאל למטה), אובטורטור (כאב בסיבוב פנימי של הירך) ופסואס (כאב ביישור הירך) מעידים רק על גירוי מקומי של הצפק</p></details>
+   <details class="rev"><summary>4. ספירת דם לבנה תקינה: אפשר לשחרר?</summary><p style="margin:0;font-size:15px">לא. אצל <bdi dir="ltr">10%</bdi> מהחולים הספירה תקינה. מעבדה תומכת בתמונה הקלינית ולא מחליפה אותה</p></details>
+  </div>
+  <div>
+   <details class="rev"><summary>5. לויקוציטים בשתן: אולי זו דלקת בדרכי השתן?</summary><p style="margin:0;font-size:15px">עקבות של לויקוציטים בשתן לא נדירות בדלקת תוספתן, כי <span class="nw">ה-<bdi dir="ltr">appendix</bdi></span> המודלק קרוב לשלפוחית ולשופכן. זה לא שולל</p></details>
+   <details class="rev"><summary>6. אוויר חופשי בצילום: עוד סימן לדלקת תוספתן?</summary><p style="margin:0;font-size:15px">לא. גם בניקוב של <span class="nw">ה-<bdi dir="ltr">appendix</bdi></span> אוויר חופשי לא אופייני. חושבים על ניקוב אחר: כיב מנוקב או דיברטיקוליטיס</p></details>
+   <details class="rev"><summary>7. מה מצפים למצוא בבדיקה רקטלית?</summary><p style="margin:0;font-size:15px">לרוב היא תקינה. רגישות או גוש: קצה אגני או מורסה באגן. באישה בדיקה אגנית חשובה. רגישות בהזזת צוואר הרחם לא שוללת דלקת תוספתן</p></details>
+   <div class="box n" style="margin-top:10px"><b class="t">והמדדים?</b>ההנחיות מעדיפות <bdi>AIR</bdi> או <span class="nw"><bdi>AAS</bdi>.</span> אלוורדו טוב לשלילה אבל לא מספיק סגולי. אף סימן לבד לא קובע</div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 94 עמ׳ <bdi dir="ltr">1416–1417</bdi></span><span>מקרה 1</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>7</b>מקרה 1 · הדמיה</div>
  <h2>האם צריך <bdi>CT</bdi>?</h2>
  <div class="grid f">
   <div>
    <details class="rev"><summary>הצגת התשובה</summary>
     <ul class="b sm">
      <li><b>כן.</b> הדמיה מורידה את שיעור הכריתות המיותרות, שיכול להגיע ל-15%. <bdi>CT</bdi> מומלץ לכל מבוגר בחשד לדלקת תוספתן: לתכנון ולשלילת מחלות אחרות</li>
-     <li><b><bdi>CT</bdi>:</b> רגישות 95%, סגוליות 94%. היום ממליצים על <bdi>CT</bdi> במינון נמוך עם חומר ניגוד</li>
+     <li><b><span class="nw"><bdi>CT</bdi>:</span></b> רגישות 95%, סגוליות 94%. היום ממליצים על <bdi>CT</bdi> במינון נמוך עם חומר ניגוד</li>
      <li><b>הממצאים:</b> קוטר מעל 7 מ״מ, דופן מעובה עם האדרה (״מטרה״), ״הסתננות״ בשומן. נוזל או אוויר סביבו מרמזים על ניקוב</li>
      <li><span class="nw">כשה-<bdi dir="ltr">appendix</bdi></span> לא נראה ואין דלקת: כנראה אין דלקת תוספתן</li>
      <li><b>צילום בטן:</b> כמעט לא עוזר. צואה מאובנת נראית רק בכ-5%. אוויר חופשי לא אופייני: לחשוב על כיב או דיברטיקוליטיס</li>
     </ul>
    </details>
   </div>
-  <figure><img src="img/ct-appendicitis.jpg" alt="CT עם appendix מורחב בקוטר 17 מ״מ"><figcaption>דלקת תוספתן <span class="nw">ב-<bdi>CT</bdi></span>: <bdi dir="ltr">appendix</bdi> מורחב בקוטר 17.1 מ״מ (המדידה בתמונה) · <bdi dir="ltr">James Heilman, MD · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/ct-appendicitis.jpg" alt="CT עם appendix מורחב בקוטר 17 מ״מ"><figcaption>דלקת תוספתן <span class="nw">ב-<bdi>CT</bdi>:</span> <bdi dir="ltr">appendix</bdi> מורחב בקוטר 17.1 מ״מ (המדידה בתמונה) · <bdi dir="ltr">James Heilman, MD · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 94 עמ׳ <bdi dir="ltr">1417–1418</bdi></span><span>מקרה 1</span></div>
 </div></section>
 
 <section class="s"><div class="card">
- <div class="kick"><b>7</b>מקרה 1 · ההחלטה</div>
+ <div class="kick"><b>8</b>מקרה 1 · ההחלטה</div>
  <h2>ניתוח או אנטיביוטיקה?</h2>
- <p class="lead" style="margin-bottom:10px"><span class="nw">ב-<bdi>CT</bdi></span>: <bdi dir="ltr">appendix</bdi> <bdi dir="ltr">11 mm</bdi>, בלי צואה מאובנת, בלי אבצס, אוויר חופשי או נוזל. דלקת <b>לא מסובכת</b>. המטופל שואל: ״חייבים לנתח?״</p>
+ <p class="lead" style="margin-bottom:10px"><span class="nw">ב-<bdi>CT</bdi>:</span> <bdi dir="ltr">appendix</bdi> <span class="nw"><bdi dir="ltr">11 mm</bdi>,</span> בלי צואה מאובנת, בלי אבצס, אוויר חופשי או נוזל. דלקת <b>לא מסובכת</b>. המטופל שואל: ״חייבים לנתח?״</p>
  <div class="grid">
   <div style="display:grid;gap:10px">
    <div class="box"><b class="t">לא מסובכת · שתי אפשרויות טובות</b>אנטיביוטיקה היא היום טיפול קו ראשון מקובל. מחליטים יחד עם המטופל (החלטה משותפת)</div>
    <div class="box a"><b class="t">מה אומרים לו על אנטיביוטיקה</b>
     <ul class="b sm">
-     <li><bdi>CODA</bdi>: לא נחותה באיכות החיים ב-30 יום, אבל 29% נותחו תוך 90 יום</li>
-     <li>חזרה בשנה: כ-25% (מטא-אנליזה, <bdi>COMMA</bdi>)</li>
+     <li><span class="nw"><bdi>CODA</bdi>:</span> לא נחותה באיכות החיים ב-30 יום, אבל 29% נותחו תוך 90 יום</li>
+     <li>חזרה בשנה: כ-25% (מטא-אנליזה, <span class="nw"><bdi>COMMA</bdi>)</span></li>
      <li>צואה מאובנת מעלה את הסיכון לכישלון ולסיבוכים</li>
      <li>סיכון לגידול שלא אובחן</li>
      <li>הטיפול: 10 ימים, 24 השעות הראשונות לווריד</li>
@@ -292,8 +360,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <ul class="b sm">
      <li><b>לפרוסקופיה</b> עדיפה: פחות זיהומי פצע, פחות כאב, החלמה מהירה וראייה של כל הבטן</li>
      <li>שוכב על הגב, יד ימין פתוחה ושמאל צמודה לגוף. לרוקן <bdi dir="ltr">bladder</bdi></li>
-     <li>כניסה פתוחה <span class="nw">ב-<bdi dir="ltr">umbilicus</bdi></span> (<bdi>Hasson</bdi>) ועוד שתי פתחים. המנתח והעוזר משמאל למטופל</li>
-     <li>בסיס <span class="nw">ה-<bdi dir="ltr">appendix</bdi></span>: סטפלר או לולאות. הוצאה בשקית</li>
+     <li>כניסה פתוחה <span class="nw">ב-<bdi dir="ltr">umbilicus</bdi></span> <span class="nw">(<bdi>Hasson</bdi>)</span> ועוד שתי פתחים. המנתח והעוזר משמאל למטופל</li>
+     <li>בסיס <span class="nw">ה-<bdi dir="ltr">appendix</bdi>:</span> סטפלר או לולאות. הוצאה בשקית</li>
     </ul></div>
    <div class="box r"><b class="t">דלקת מסובכת (נמק או ניקוב) בלי אבצס</b>ניתוח. אנטיביוטיקה אחרי הניתוח עד 4 ימים (יש נתונים ליומיים). בלי נקז שגרתי ובלי תרביות שגרתיות</div>
   </div>
@@ -302,12 +370,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 </div></section>
 
 <section class="s"><div class="card">
- <div class="kick"><b>8</b>מקרה 2</div>
- <h2>סטודנטית בת 23 עם כאב בימין למטה</h2>
+ <div class="kick"><b>9</b>מקרה 2</div>
+ <h2>סטודנטית בת 23 עם כאב בבטן ימנית תחתונה</h2>
  <div class="grid">
   <div>
-   <div class="box n"><b class="t">הסיפור</b>כאב ברבע הימני התחתון כבר 14 שעות, בחילה. וסת אחרונה לפני שבועיים. יש בן זוג, גלולות למניעה ״לפעמים״. חום <bdi dir="ltr">37.8°C</bdi></div>
-   <div class="box" style="margin-top:10px"><b class="t">בבדיקה</b>רגישות ברבע הימני התחתון עם רגישות בהרפיה. בבדיקה אגנית: רגישות בהזזת <span class="nw">ה-<bdi dir="ltr">cervix</bdi></span></div>
+   <div class="box n"><b class="t">הסיפור</b>כאב בבטן ימנית תחתונה כבר 14 שעות, בחילה. וסת אחרונה לפני שבועיים. יש בן זוג, גלולות למניעה ״לפעמים״. חום <bdi dir="ltr">37.8°C</bdi></div>
+   <div class="box" style="margin-top:10px"><b class="t">בבדיקה</b>רגישות בבטן ימנית תחתונה עם רגישות בהרפיה. בבדיקה אגנית: רגישות בהזזת <span class="nw">ה-<bdi dir="ltr">cervix</bdi></span></div>
    <h3 style="margin-top:12px">שאלות לדיון</h3>
    <ul class="b sm"><li>מה האבחנה המבדלת?</li><li>האם רגישות <span class="nw">ב-<bdi dir="ltr">cervix</bdi></span> שוללת דלקת תוספתן?</li><li>איזו בדיקה ראשונה?</li></ul>
   </div>
@@ -330,20 +398,20 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 </div></section>
 
 <section class="s"><div class="card">
- <div class="kick"><b>9</b>מקרה 2 · הדמיה וניתוח</div>
+ <div class="kick"><b>10</b>מקרה 2 · הדמיה וניתוח</div>
  <h2>קודם אולטרסאונד, אחר כך לפרוסקופיה</h2>
  <p class="lead" style="margin-bottom:10px"><bdi>β-hCG</bdi> שלילי. באולטרסאונד: <bdi dir="ltr">ovaries</bdi> תקינות, <bdi dir="ltr">appendix</bdi> מורחב שלא נלחץ</p>
  <div class="grid f">
   <div>
    <ul class="b sm">
-    <li><b>אולטרסאונד:</b> בלי קרינה. <span class="nw">ה-<bdi dir="ltr">appendix</bdi></span> המודלק מורחב, לא זז ולא נלחץ. רגישות <bdi dir="ltr">71–94%</bdi>, סגוליות <bdi dir="ltr">81–98%</bdi>, תלוי מאוד במבצע</li>
+    <li><b>אולטרסאונד:</b> בלי קרינה. <span class="nw">ה-<bdi dir="ltr">appendix</bdi></span> המודלק מורחב, לא זז ולא נלחץ. רגישות <span class="nw"><bdi dir="ltr">71–94%</bdi>,</span> סגוליות <span class="nw"><bdi dir="ltr">81–98%</bdi>,</span> תלוי מאוד במבצע</li>
     <li><span class="nw">כשה-<bdi dir="ltr">appendix</bdi></span> לא נראה: הבדיקה לא חד-משמעית. סימנים עקיפים: נוזל חופשי, שומן מזנטרי מעובה, בלוטות</li>
     <li><b>לפרוסקופיה</b> מתאימה במיוחד כאן: רואים את <span class="nw">ה-<bdi dir="ltr">appendix</bdi></span> ואת איברי האגן. בהדמיה קשה להבדיל ביניהם</li>
    </ul>
    <details class="rev"><summary>ובניתוח <span class="nw">ה-<bdi dir="ltr">appendix</bdi></span> נראה תקין. מה עושים?</summary>
     <ul class="b sm">
      <li>מחפשים סיבה אחרת: <b><bdi dir="ltr">terminal ileum</bdi></b> (מקל), <b><span class="nw">ה-<bdi dir="ltr">small bowel</bdi></span></b> (קרוהן), <b>בלוטות <span class="nw">ב-<bdi dir="ltr">mesentery</bdi></span></b> (אדניטיס), <b><span class="nw">ה-<bdi dir="ltr">ovaries</bdi></span> <span class="nw">וה-<bdi dir="ltr">fallopian tubes</bdi></span></b> (תסביב, אבצס, אנדומטריוזיס, ציסטה), <b><span class="nw">ה-<bdi dir="ltr">sigmoid colon</bdi></span></b>. אחר כך <span class="nw">ה-<bdi dir="ltr">gallbladder</bdi></span> <span class="nw">וה-<bdi dir="ltr">duodenum</bdi></span></li>
-     <li>אם הכול תקין: <b>לשקול ברצינות לכרות</b> את <span class="nw">ה-<bdi dir="ltr">appendix</bdi></span>. כך הוא יוצא מהאבחנה המבדלת בפעם הבאה</li>
+     <li>אם הכול תקין: <b>לשקול ברצינות לכרות</b> את <span class="nw">ה-<bdi dir="ltr">appendix</bdi>.</span> כך הוא יוצא מהאבחנה המבדלת בפעם הבאה</li>
      <li>קרוהן: כורתים, אלא אם הבסיס <span class="nw">וה-<bdi dir="ltr">cecum</bdi></span> מעורבים (סכנת פיסטולה)</li>
     </ul>
    </details>
@@ -354,8 +422,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 </div></section>
 
 <section class="s"><div class="card">
- <div class="kick"><b>10</b>מקרה 2 · ומה אם?</div>
- <h2>אותה מטופלת, בשבוע 20 להיריון</h2>
+ <div class="kick"><b>11</b>מקרה 2 · ומה אם?</div>
+ <h2>אותה מטופלת, בשבוע 20 להיריון: לא לפספס</h2>
  <div class="num">
   <div><b dir="ltr">50–60%</b><span>מהמקרים בהיריון בהסתמנות טיפוסית</span></div>
   <div><b dir="ltr">11% · 6%</b><span>לידה מוקדמת · אובדן עובר בדלקת מסובכת</span></div>
@@ -375,22 +443,23 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div><b>טיפול</b><span>ניתוח, לרוב לפרוסקופי. מיקום הפתחים לפי גובה <span class="nw">ה-<bdi dir="ltr">uterus</bdi></span></span></div>
   </div>
  </div>
+ <div class="box r" style="margin-top:10px"><b class="t">איך לא לפספס</b>הכאב יכול להיות גבוה יותר <span class="nw">מ-<bdi dir="ltr">McBurney's point</bdi>,</span> הבחילות, הספירה <span class="nw">וה-<bdi>CRP</bdi></span> לא עוזרים להבדיל והחום מוחלש. לכן בהיריון עושים הדמיה באופן שגרתי: גם ניקוב וגם כריתה מיותרת מסכנים את העובר</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 94 עמ׳ <bdi dir="ltr">1422, 1425</bdi> · פרק 85 עמ׳ <bdi dir="ltr">1164</bdi></span><span>מקרה 2</span></div>
 </div></section>
 
 <section class="s"><div class="card">
- <div class="kick"><b>11</b>מקרה 3</div>
- <h2>בן 68 עם גוש בימין למטה</h2>
+ <div class="kick"><b>12</b>מקרה 3</div>
+ <h2>בן 68 עם גוש בבטן ימנית תחתונה</h2>
  <div class="grid f">
   <div>
-   <div class="box n"><b class="t">הסיפור</b>כאב ברבע הימני התחתון כבר שבוע, חום נמוך. ״חשב שזה יעבור״. יציב, לא רעיל</div>
-   <div class="box" style="margin-top:10px"><b class="t">בבדיקה</b>גוש רגיש במישוש ברבע הימני התחתון. בלי פריטוניטיס מפושטת</div>
+   <div class="box n"><b class="t">הסיפור</b>כאב בבטן ימנית תחתונה כבר שבוע, חום נמוך. ״חשב שזה יעבור״. יציב, לא רעיל</div>
+   <div class="box" style="margin-top:10px"><b class="t">בבדיקה</b>גוש רגיש במישוש בבטן ימנית תחתונה. בלי פריטוניטיס מפושטת</div>
    <h3 style="margin-top:12px">שאלות לדיון</h3>
    <ul class="b sm"><li>מה רואים <span class="nw">ב-<bdi>CT</bdi></span>?</li><li>ניתוח מיידי?</li><li>מה האבחנה המבדלת בגיל הזה?</li></ul>
    <details class="rev"><summary>הצגת התשובה</summary>
     <ul class="b sm">
      <li><b>אבצס סביב <span class="nw">ה-<bdi dir="ltr">appendix</bdi></span></b>: דלקת מסובכת</li>
-     <li>ניתוח מיידי ברקמה דלקתית ושבירה מסתכן באי-מציאת <span class="nw">ה-<bdi dir="ltr">appendix</bdi></span>, אבצס או פיסטולה והרחבה לכריתת צקום. טיפול לא ניתוחי מצליח לרוב עם פחות סיבוכים. הנחיות <bdi>WSES</bdi>: בלי מומחיות לפרוסקופית מטפלים בלי ניתוח. בידיים מנוסות אפשר גם לנתח</li>
+     <li>ניתוח מיידי ברקמה דלקתית ושבירה מסתכן באי-מציאת <span class="nw">ה-<bdi dir="ltr">appendix</bdi>,</span> אבצס או פיסטולה והרחבה לכריתת צקום. טיפול לא ניתוחי מצליח לרוב עם פחות סיבוכים. הנחיות <span class="nw"><bdi>WSES</bdi>:</span> בלי מומחיות לפרוסקופית מטפלים בלי ניתוח. בידיים מנוסות אפשר גם לנתח</li>
      <li><b>בקשיש:</b> דיברטיקוליטיס, גידול ממאיר, איסכמיה של המעי, קוליטיס איסכמית, כיב מנוקב. ניקוב <span class="nw">ה-<bdi dir="ltr">appendix</bdi></span> בקשישים: <bdi dir="ltr">40–70%</bdi></li>
     </ul>
    </details>
@@ -401,7 +470,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 </div></section>
 
 <section class="s"><div class="card">
- <div class="kick"><b>12</b>מקרה 3 · הטיפול והמעקב</div>
+ <div class="kick"><b>13</b>מקרה 3 · הטיפול והמעקב</div>
  <h2>ניקוז, אנטיביוטיקה ומעקב אחרי גידול</h2>
  <div class="grid f">
   <div>
@@ -409,30 +478,54 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <div><b>אבצס שאפשר לנקז</b><span>ניקוז מלעורי בהנחיית הדמיה ואנטיביוטיקה. אחרי שליטה במקור: 4 ימי אנטיביוטיקה</span></div>
     <div><b>אבצס שאי אפשר לנקז</b><span>ניקוז לפרוסקופי ואנטיביוטיקה</span></div>
     <div><b>פלגמון בלי נוזל לניקוז</b><span>אנטיביוטיקה <bdi dir="ltr">4–7</bdi> ימים. לא משתפר: הדמיה חוזרת לחפש אבצס (באלגוריתם: אחרי <bdi dir="ltr">3–5</bdi> ימים)</span></div>
-    <div><b>חזרה אחרי טיפול שמרני</b><span><bdi dir="ltr">8–31.8%</bdi>. לכן לא כורתים באופן שגרתי מאוחר יותר. צואה מאובנת <span class="nw">ב-<bdi>CT</bdi></span> יכולה להצדיק כריתה</span></div>
+    <div><b>חזרה אחרי טיפול שמרני</b><span><span class="nw"><bdi dir="ltr">8–31.8%</bdi>.</span> לכן לא כורתים באופן שגרתי מאוחר יותר. צואה מאובנת <span class="nw">ב-<bdi>CT</bdi></span> יכולה להצדיק כריתה</span></div>
    </div>
    <div class="box r" style="margin-top:10px"><b class="t">גיל 40 ומעלה: לחפש גידול</b>אם לא כורתים: קולונוסקופיה <span class="nw">ו-<bdi>CT</bdi></span> מלא עם חומר ניגוד. מחקר שהשווה כריתה מאוחרת <span class="nw">ל-<bdi>MRI</bdi></span> נעצר מוקדם בגלל שיעור גבוה של גידולים, כולם מעל גיל 40. גידולים נמצאים בעד 3.7% <span class="nw">מה-<bdi dir="ltr">appendices</bdi></span> שנכרתים: כל <bdi dir="ltr">appendix</bdi> נשלח לפתולוגיה</div>
   </div>
-  <figure><img src="img/ct-abscess-drain.jpg" alt="CT אחרי הכנסת נקז לאבצס"><figcaption>אותו מטופל אחרי ניקוז מלעורי בהנחיית <bdi>CT</bdi>: הנקז בתוך חלל האבצס · <bdi dir="ltr">Hellerhoff · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/ct-abscess-drain.jpg" alt="CT אחרי הכנסת נקז לאבצס"><figcaption>אותו מטופל אחרי ניקוז מלעורי בהנחיית <span class="nw"><bdi>CT</bdi>:</span> הנקז בתוך חלל האבצס · <bdi dir="ltr">Hellerhoff · CC BY-SA 3.0 · Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>מצאו מטופל/ת שאושפז/ה עם דלקת תוספתן. בררו: מסובכת או לא, ניתוח או אנטיביוטיקה ולמה. אם אפשר, הצטרפו לכריתה לפרוסקופית וזהו את בסיס <span class="nw">ה-<bdi dir="ltr">appendix</bdi></span> ואת <span class="nw">ה-<bdi dir="ltr">taeniae coli</bdi></span></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 94 עמ׳ <bdi dir="ltr">1420–1421, 1425–1426</bdi></span><span>מקרה 3</span></div>
 </div></section>
 
 <section class="s"><div class="card">
- <div class="kick"><b>13</b>מה חדש בתחום · 2021–2026</div>
+ <div class="kick"><b>14</b>מקרה 3 · לא לפספס</div>
+ <h2>תוספתן ריירי (מוקוצלה) וגידול <span class="nw">ב-<bdi dir="ltr">appendix</bdi></span></h2>
+ <div class="grid">
+  <div>
+   <ul class="b sm">
+    <li><b>מוקוצלה</b>: <bdi dir="ltr">appendix</bdi> מורחב ומלא ריר. זה תיאור ולא אבחנה: הסיבה יכולה להיות שפירה או גידול</li>
+    <li>נדיר. יכול להיראות בדיוק כמו דלקת תוספתן: כאב בבטן ימנית תחתונה, בחילה, חום ולויקוציטוזיס</li>
+    <li>לרוב מתגלה במקרה: <span class="nw">ב-<bdi>CT</bdi>,</span> בניתוח או בקולונוסקופיה. גידולים נמצאים בעד <bdi dir="ltr">3.7%</bdi> מהכריתות ולכן כל <bdi dir="ltr">appendix</bdi> נשלח לפתולוגיה</li>
+    <li><b>בניתוח</b> אי אפשר להבדיל בעין בין שפיר לממאיר: מוציאים בלי לקרוע ומחפשים ריר וגושים על הצפק. ממצא חשוד נשלח לביופסיה</li>
+   </ul>
+  </div>
+  <div>
+   <div class="box a"><b class="t">מתי לחשוד בגידול</b>
+    <ul class="b sm">
+     <li>גיל מעל 40, דיכוי חיסוני, מורסה או פלגמון סביב <span class="nw">ה-<bdi dir="ltr">appendix</bdi></span></li>
+     <li><span class="nw">ב-<bdi>CT</bdi>:</span> קוטר מעל 2 ס״מ, דופן עבה ולא סדירה, הרחבה מוקדית, הסתיידות בדופן ומעט הסתננות בשומן שמסביב</li>
+    </ul></div>
+   <div class="box r" style="margin-top:10px"><b class="t">למה לא לקרוע</b>גידול שמייצר ריר ופורץ את הדופן מפזר תאים וריר בבטן <span class="nw"><bdi>(pseudomyxoma peritonei)</bdi>,</span> לרוב <span class="nw">מ-<bdi>LAMN</bdi>.</span> הטיפול: ניתוח להסרת הגידול מהצפק עם כימותרפיה חמה לחלל הבטן <span class="nw">(<bdi>HIPEC</bdi>)</span></div>
+  </div>
+ </div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 94 עמ׳ <bdi dir="ltr">1425–1427</bdi></span><span>מקרה 3</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>15</b>מה חדש בתחום · 2021–2026</div>
  <h2>מחקרים שכדאי להכיר</h2>
  <div class="grid">
-  <div class="study"><div class="y"><bdi>JAMA</bdi> 2026 · מעקב של 10 שנים</div><b><bdi>APPAC</bdi>: אנטיביוטיקה לדלקת תוספתן לא מסובכת</b>
+  <div class="study"><div class="y"><bdi>JAMA</bdi> 2026 · מעקב של 10 שנים</div><b><span class="nw"><bdi>APPAC</bdi>:</span> אנטיביוטיקה לדלקת תוספתן לא מסובכת</b>
    <p>257 מטופלים שקיבלו אנטיביוטיקה. אחרי 10 שנים: חזרה מוכחת 37.8%, כריתה מצטברת 44.3%. סיבוכים: 8.5% בקבוצת האנטיביוטיקה לעומת 27.4% בקבוצת הניתוח. בלי הבדל באיכות החיים</p>
    <small>Salminen P et al. JAMA 2026;335:1041-9</small></div>
-  <div class="study"><div class="y"><bdi>JAMA</bdi> 2021 · מחקר אקראי</div><b><bdi>APPAC II</bdi>: אנטיביוטיקה בפה בלבד?</b>
+  <div class="study"><div class="y"><bdi>JAMA</bdi> 2021 · מחקר אקראי</div><b><span class="nw"><bdi>APPAC II</bdi>:</span> אנטיביוטיקה בפה בלבד?</b>
    <p>599 מבוגרים. 7 ימי מוקסיפלוקסצין בפה מול יומיים לווריד ואחר כך בפה. הצלחה בשנה: 70.2% מול 73.8%. שתי הקבוצות מעל 65%, אבל אי-הנחיתות של הטיפול בפה לא הוכחה</p>
    <small>Sippola S et al. JAMA 2021;325:353-62</small></div>
-  <div class="study"><div class="y"><bdi>BJS</bdi> 2022 · כפול סמיות</div><b><bdi>APPAC III</bdi>: אנטיביוטיקה מול פלצבו</b>
-   <p>72 מבוגרים עם דלקת לא מסובכת <span class="nw">ב-<bdi>CT</bdi></span>. הצלחה ב-10 ימים: 87% עם פלצבו, 97% עם אנטיביוטיקה. ההבדל לא מובהק. מחקר קטן: צריך מחקר גדול יותר</p>
+  <div class="study"><div class="y"><bdi>BJS</bdi> 2022 · כפול סמיות</div><b><span class="nw"><bdi>APPAC III</bdi>:</span> אנטיביוטיקה מול פלצבו</b>
+   <p>72 מבוגרים עם דלקת לא מסובכת <span class="nw">ב-<bdi>CT</bdi>.</span> הצלחה ב-10 ימים: 87% עם פלצבו, 97% עם אנטיביוטיקה. ההבדל לא מובהק. מחקר קטן: צריך מחקר גדול יותר</p>
    <small>Salminen P et al. Br J Surg 2022;109:503-9</small></div>
-  <div class="study"><div class="y"><bdi>JAMA Surg</bdi> 2025 · 1,797 מטופלים</div><b><bdi>PERFECT</bdi>: אנטיביוטיקה בזמן ההמתנה לניתוח</b>
+  <div class="study"><div class="y"><bdi>JAMA Surg</bdi> 2025 · 1,797 מטופלים</div><b><span class="nw"><bdi>PERFECT</bdi>:</span> אנטיביוטיקה בזמן ההמתנה לניתוח</b>
    <p>כשהכריתה נעשתה תוך 24 שעות, אנטיביוטיקה לפני הניתוח לא הורידה ניקוב (8.3% לעומת 8.9%). זיהום פצע מעט נמוך יותר (1.6% לעומת 3.2%)</p>
    <small>Jalava K et al. JAMA Surg 2025;160:745-54</small></div>
  </div>
@@ -440,17 +533,17 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 </div></section>
 
 <section class="s"><div class="card">
- <div class="kick"><b>14</b>לסיכום</div>
+ <div class="kick"><b>16</b>לסיכום</div>
  <h2>חמישה דברים לקחת למחלקה</h2>
  <ol class="obj">
-  <li>כאב שנודד <span class="nw">מה-<bdi dir="ltr">umbilicus</bdi></span> לימין למטה הוא הסימן האמין ביותר. ספירה תקינה לא שוללת</li>
-  <li>באישה בגיל הפוריות: <bdi>β-hCG</bdi>, אנמנזה גינקולוגית ובדיקה אגנית. רגישות <span class="nw">ב-<bdi dir="ltr">cervix</bdi></span> לא שוללת <bdi dir="ltr">appendix</bdi></li>
-  <li>מבוגר: <bdi>CT</bdi>. ילד או היריון: אולטרסאונד. בהיריון <bdi>MRI</bdi> אחריו</li>
+  <li>כאב שנודד <span class="nw">מה-<bdi dir="ltr">umbilicus</bdi></span> לבטן ימנית תחתונה הוא הסימן האמין ביותר. ספירה תקינה לא שוללת</li>
+  <li>באישה בגיל הפוריות: <span class="nw"><bdi>β-hCG</bdi>,</span> אנמנזה גינקולוגית ובדיקה אגנית. רגישות <span class="nw">ב-<bdi dir="ltr">cervix</bdi></span> לא שוללת <bdi dir="ltr">appendix</bdi></li>
+  <li>מבוגר: <span class="nw"><bdi>CT</bdi>.</span> ילד או היריון: אולטרסאונד. בהיריון <bdi>MRI</bdi> אחריו</li>
   <li>לא מסובכת: ניתוח או אנטיביוטיקה, בהחלטה משותפת. מסובכת: ניתוח. אבצס: ניקוז ואנטיביוטיקה</li>
-  <li>מעל גיל 40 אחרי טיפול שמרני באבצס: קולונוסקופיה <span class="nw">ו-<bdi>CT</bdi></span>. כל <bdi dir="ltr">appendix</bdi> לפתולוגיה</li>
+  <li>מעל גיל 40 אחרי טיפול שמרני באבצס: קולונוסקופיה <span class="nw">ו-<bdi>CT</bdi>.</span> כל <bdi dir="ltr">appendix</bdi> לפתולוגיה</li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 94 <bdi>The Appendix</bdi> (עמ׳ <bdi dir="ltr">1415–1426</bdi>) · פרק 85 <bdi>The Acute Abdomen</bdi> (עמ׳ <bdi dir="ltr">1155–1165</bdi>)</div>
- <div class="src"><span>איורים: <bdi dir="ltr">Sobotta (1906)</bdi>, נחלת הכלל · צילומים: <bdi dir="ltr">Hellerhoff, James Heilman, Steven Fruitsmaak, Javier Montero Arredondo (CC BY-SA, Wikimedia Commons)</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל) · המקרים בדויים</span><span>Scrub In · קפלן</span></div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 94 <bdi>The Appendix</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1415–1427</bdi>)</span> · פרק 85 <bdi>The Acute Abdomen</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1155–1165</bdi>)</span></div>
+ <div class="src"><span>איורים: <span class="nw"><bdi dir="ltr">Sobotta (1906)</bdi>,</span> נחלת הכלל · צילומים: <bdi dir="ltr">Hellerhoff, James Heilman, Steven Fruitsmaak, Javier Montero Arredondo (CC BY-SA, Wikimedia Commons)</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל) · המקרים בדויים</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>
@@ -472,5 +565,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>

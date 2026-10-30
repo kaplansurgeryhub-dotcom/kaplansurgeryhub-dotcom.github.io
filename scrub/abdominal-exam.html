@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>בדיקת בטן · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,7 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -116,9 +116,56 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -146,7 +193,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>להכיר את הסימנים הקלאסיים (מרפי, רובסינג, פסואס ועוד) ואת המגבלות שלהם</li>
   <li>לדעת אילו בדיקות מעבדה לשלוח אחרי הבדיקה</li>
  </ol>
- <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 85 (עמ׳ <bdi dir="ltr">1155–1165</bdi>)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 85 (עמ׳ <span class="nw"><bdi dir="ltr">1155–1165</bdi>)</span></span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -155,14 +202,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b">
-    <li><b>שכבה ויסצרלית (<bdi>visceral peritoneum</bdi>):</b> עוטף את האיברים, עצבוב אוטונומי. כאב עמום, לא ממוקם, "התכווצויות"</li>
-    <li><b>שכבה פריאטלית (<bdi>parietal peritoneum</bdi>):</b> מצפה את דופן הבטן, עצבוב סומטי לפי הדרמטומים. כאב חד וממוקם היטב</li>
+    <li><b>שכבה ויסצרלית <span class="nw">(<bdi>visceral peritoneum</bdi>):</span></b> עוטף את האיברים, עצבוב אוטונומי. כאב עמום, לא ממוקם, "התכווצויות"</li>
+    <li><b>שכבה פריאטלית <span class="nw">(<bdi>parietal peritoneum</bdi>):</span></b> מצפה את דופן הבטן, עצבוב סומטי לפי הדרמטומים. כאב חד וממוקם היטב</li>
     <li><b>הדוגמה הקלאסית:</b> בדלקת התוספתן הכאב מתחיל עמום סביב הטבור ועובר לרבע הימני התחתון <span class="nw">כשה-<bdi>parietal peritoneum</bdi></span> נפגע</li>
     <li><b>כאב מוקרן:</b> אוויר חופשי שמגרה את <span class="nw">ה-<bdi>diaphragm</bdi></span> יכול לגרום לכאב בכתף. ולהפך: אוטם בשריר הלב יכול להופיע ככאב בבטן העליונה</li>
     <li><b>"חריף":</b> בדרך כלל כאב שהתחיל לפני פחות משבוע (גבול שרירותי)</li>
    </ul>
   </div>
-  <figure><img src="img/Sobo_1906_408.jpg" alt="חלל הבטן הפתוח עם small bowel ו-colon"><figcaption>חלל הבטן הפתוח: <span class="nw">ה-<bdi>greater omentum</bdi></span> מורם, מתחתיו <span class="nw">ה-<bdi>small bowel</bdi></span> ומסגרת <span class="nw">ה-<bdi>colon</bdi></span> · <bdi>Sobotta</bdi>, אטלס האנטומיה 1906, איור 408 (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/Sobo_1906_408.jpg" alt="חלל הבטן הפתוח עם small bowel ו-colon"><figcaption>חלל הבטן הפתוח: <span class="nw">ה-<bdi>greater omentum</bdi></span> מורם, מתחתיו <span class="nw">ה-<bdi>small bowel</bdi></span> ומסגרת <span class="nw">ה-<bdi>colon</bdi></span> · <span class="nw"><bdi>Sobotta</bdi>,</span> אטלס האנטומיה 1906, איור 408 (נחלת הכלל)</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1155, 1157</bdi></span><span>פיזיולוגיה של הכאב</span></div>
 </div></section>
@@ -191,17 +238,17 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <g class="hzb" style="--c:#2F6FA8"><circle cx="280" cy="410" r="9"/><text x="280" y="410">9</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו (ימין המטופל בצד שמאל של הציור)</p>
-  <div class="hzi" data-hzi="rh" hidden><b>1 · תת-צלעי ימני</b><p>באזור: <bdi>liver, gallbladder, hepatic flexure</bdi>. כאן בודקים את סימן מרפי: עצירת הנשימה בשאיפה מרמזת על כיס מרה חריף</p></div>
-  <div class="hzi" data-hzi="ep" hidden><b>2 · אפיגסטרי</b><p>באזור: <bdi>stomach, duodenum, pancreas</bdi>. כיב מנוקב ודלקת לבלב. <b style="display:inline;font-size:inherit;color:var(--red)">זכרו את הלב:</b> אוטם בשריר הלב יכול להופיע ככאב בבטן העליונה</p></div>
-  <div class="hzi" data-hzi="lh" hidden><b>3 · תת-צלעי שמאלי</b><p>באזור: <bdi>spleen, splenic flexure</bdi>. עמימות בהקשה משמאל למעלה עם עמימות משתנה בצד ימין: קרע או המטומה של <span class="nw">ה-<bdi>spleen</bdi></span> (סימן <bdi>Balance</bdi>)</p></div>
-  <div class="hzi" data-hzi="rl" hidden><b>4 · מותני ימני</b><p>באזור: <bdi>ascending colon, kidney</bdi>. אבנים, פיאלונפריטיס. שטף דם במותן (<bdi>Grey Turner</bdi>): דימום רטרופריטונאלי או דלקת לבלב קשה</p></div>
-  <div class="hzi" data-hzi="um" hidden><b>5 · טבורי</b><p>באזור: <bdi>small bowel, transverse colon</bdi>. כאב ויסצרלי עמום, למשל בתחילת דלקת התוספתן. חסימה, איסכמיה של המעי. שטף דם סביב הטבור (<bdi>Cullen</bdi>): דימום תוך-בטני</p></div>
-  <div class="hzi" data-hzi="ll" hidden><b>6 · מותני שמאלי</b><p>באזור: <bdi>descending colon, kidney</bdi>. אבנים, פיאלונפריטיס, שטף דם במותן כמו בצד ימין</p></div>
-  <div class="hzi" data-hzi="ri" hidden><b>7 · כסלי ימני (רבע ימני תחתון)</b><p>באזור: <bdi>cecum, appendix, right ovary</bdi>. דלקת תוספתן (רובסינג, פסואס). תסביב שחלה, היריון מחוץ לרחם. כאן גם המפשעה: בקע</p></div>
-  <div class="hzi" data-hzi="hy" hidden><b>8 · היפוגסטרי</b><p>באזור: <bdi>bladder, uterus</bdi> וחלק <span class="nw">מה-<bdi>sigmoid</bdi></span>. דלקת אגן, היריון מחוץ לרחם, מורסה באגן <span class="nw">ו-<bdi>pelvic appendix</bdi></span> (סימן האובטורטור). בדיקה רקטלית ואגנית לפי החשד</p></div>
-  <div class="hzi" data-hzi="li" hidden><b>9 · כסלי שמאלי</b><p>באזור: <bdi>sigmoid colon, left ovary</bdi>. דלקת סעיפים, תסביב (וולוולוס) של <span class="nw">ה-<bdi>sigmoid</bdi></span>, סיבות גינקולוגיות. המפשעה השמאלית</p></div>
+  <div class="hzi" data-hzi="rh" hidden><b>1 · תת-צלעי ימני</b><p>באזור: <span class="nw"><bdi>liver, gallbladder, hepatic flexure</bdi>.</span> כאן בודקים את סימן מרפי: עצירת הנשימה בשאיפה מרמזת על כיס מרה חריף</p></div>
+  <div class="hzi" data-hzi="ep" hidden><b>2 · אפיגסטרי</b><p>באזור: <span class="nw"><bdi>stomach, duodenum, pancreas</bdi>.</span> כיב מנוקב ודלקת לבלב. <b style="display:inline;font-size:inherit;color:var(--red)">זכרו את הלב:</b> אוטם בשריר הלב יכול להופיע ככאב בבטן העליונה</p></div>
+  <div class="hzi" data-hzi="lh" hidden><b>3 · תת-צלעי שמאלי</b><p>באזור: <span class="nw"><bdi>spleen, splenic flexure</bdi>.</span> עמימות בהקשה משמאל למעלה עם עמימות משתנה בצד ימין: קרע או המטומה של <span class="nw">ה-<bdi>spleen</bdi></span> (סימן <span class="nw"><bdi>Balance</bdi>)</span></p></div>
+  <div class="hzi" data-hzi="rl" hidden><b>4 · מותני ימני</b><p>באזור: <span class="nw"><bdi>ascending colon, kidney</bdi>.</span> אבנים, פיאלונפריטיס. שטף דם במותן <span class="nw">(<bdi>Grey Turner</bdi>):</span> דימום רטרופריטונאלי או דלקת לבלב קשה</p></div>
+  <div class="hzi" data-hzi="um" hidden><b>5 · טבורי</b><p>באזור: <span class="nw"><bdi>small bowel, transverse colon</bdi>.</span> כאב ויסצרלי עמום, למשל בתחילת דלקת התוספתן. חסימה, איסכמיה של המעי. שטף דם סביב הטבור <span class="nw">(<bdi>Cullen</bdi>):</span> דימום תוך-בטני</p></div>
+  <div class="hzi" data-hzi="ll" hidden><b>6 · מותני שמאלי</b><p>באזור: <span class="nw"><bdi>descending colon, kidney</bdi>.</span> אבנים, פיאלונפריטיס, שטף דם במותן כמו בצד ימין</p></div>
+  <div class="hzi" data-hzi="ri" hidden><b>7 · כסלי ימני (רבע ימני תחתון)</b><p>באזור: <span class="nw"><bdi>cecum, appendix, right ovary</bdi>.</span> דלקת תוספתן (רובסינג, פסואס). תסביב שחלה, היריון מחוץ לרחם. כאן גם המפשעה: בקע</p></div>
+  <div class="hzi" data-hzi="hy" hidden><b>8 · היפוגסטרי</b><p>באזור: <bdi>bladder, uterus</bdi> וחלק <span class="nw">מה-<bdi>sigmoid</bdi>.</span> דלקת אגן, היריון מחוץ לרחם, מורסה באגן <span class="nw">ו-<bdi>pelvic appendix</bdi></span> (סימן האובטורטור). בדיקה רקטלית ואגנית לפי החשד</p></div>
+  <div class="hzi" data-hzi="li" hidden><b>9 · כסלי שמאלי</b><p>באזור: <span class="nw"><bdi>sigmoid colon, left ovary</bdi>.</span> דלקת סעיפים, תסביב (וולוולוס) של <span class="nw">ה-<bdi>sigmoid</bdi>,</span> סיבות גינקולוגיות. המפשעה השמאלית</p></div>
  </div></div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1155–1158, 1164</bdi> (טבלאות 85.1, 85.4)</span><span>איור: <bdi>Gray's Anatomy</bdi>, איור 1220 (נחלת הכלל)</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1155–1158, 1164</bdi> (טבלאות 85.1, 85.4)</span><span>איור: <span class="nw"><bdi>Gray's Anatomy</bdi>,</span> איור 1220 (נחלת הכלל)</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -250,7 +297,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>בדיקה מלאה:</b> גם לב וריאות. קולות לב עמומים וכאב באפיגסטריום? לחשוב על לב</li>
    </ul>
   </div>
-  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש בשתי ידיים של שפת הכבד"><figcaption>מישוש בשתי ידיים מתחת <span class="nw">ל-<bdi>costal margin</bdi></span> הימני בזמן שהמטופל נושם עמוק · <bdi>Musser</bdi>, <bdi>A Practical Treatise on Medical Diagnosis</bdi> 1904, איור 192 (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש בשתי ידיים של שפת הכבד"><figcaption>מישוש בשתי ידיים מתחת <span class="nw">ל-<bdi>costal margin</bdi></span> הימני בזמן שהמטופל נושם עמוק · <span class="nw"><bdi>Musser</bdi>,</span> <bdi>A Practical Treatise on Medical Diagnosis</bdi> 1904, איור 192 (נחלת הכלל)</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1158–1159</bdi> · הציוד וההסכמה: נוהג מקובל</span><span>הכנה</span></div>
 </div></section>
@@ -259,12 +306,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>6</b>צעד אחר צעד</div>
  <h2>סדר הבדיקה</h2>
  <div class="flow">
-  <div><b>1 · הסתכלות</b><span>תפיחות, צלקות ושינויים בעור, גושים ובקעים, סימני מתיחה וורידים בולטים. שטף דם סביב הטבור (<bdi>Cullen</bdi>) או במותן (<bdi>Grey Turner</bdi>): דימום תוך-בטני או רטרופריטונאלי</span></div>
+  <div><b>1 · הסתכלות</b><span>תפיחות, צלקות ושינויים בעור, גושים ובקעים, סימני מתיחה וורידים בולטים. שטף דם סביב הטבור <span class="nw">(<bdi>Cullen</bdi>)</span> או במותן <span class="nw">(<bdi>Grey Turner</bdi>):</span> דימום תוך-בטני או רטרופריטונאלי</span></div>
   <div><b>2 · הקשה</b><span>קודם הקשה, אחר כך מישוש. טימפני מעל לולאות מלאות גז, עמימות משתנה בנוזל חופשי</span></div>
   <div><b>3 · מישוש</b><span>מתחילים רחוק מהכאב. מחפשים את <b>נקודת הרגישות המרבית</b>, רגישות בהרפיה ועמידה לא רצונית. מחפשים גושים, פגמים בדופן ופעימה של כלי דם</span></div>
   <div><b>4 · המפשעה</b><span><b>חובה בכל בדיקת בטן.</b> בקע שלא חוזר עם בטן תפוחה וטימפנית: חסימה</span></div>
   <div><b>5 · האזנה</b><span>תועלת מוגבלת: לקולות מעיים ולאוושות רגישות וסגוליות נמוכות. רק יחד עם שאר הבדיקה</span></div>
-  <div><b>6 · רקטלית, גניטלית, אגנית</b><span>לפי החשד: דימום, עצירות או גוש <span class="nw">ב-<bdi>rectum</bdi></span>. תסביב אשך או שחלה, דלקת אגן, הריון. דוחים רק כשהחשד נמוך</span></div>
+  <div><b>6 · רקטלית, גניטלית, אגנית</b><span>לפי החשד: דימום, עצירות או גוש <span class="nw">ב-<bdi>rectum</bdi>.</span> תסביב אשך או שחלה, דלקת אגן, הריון. דוחים רק כשהחשד נמוך</span></div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1157–1158</bdi> · "מתחילים רחוק מהכאב": נוהג מקובל</span><span>סדר הבדיקה</span></div>
 </div></section>
@@ -276,9 +323,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <h3>סימני הצפקת הקלאסיים</h3>
    <ul class="b">
-    <li><b>עמידה לא רצונית (<bdi>guarding</bdi>):</b> קשה להבדיל ממתיחה רצונית של השרירים. כפיפת הברכיים עוזרת</li>
+    <li><b>עמידה לא רצונית <span class="nw">(<bdi>guarding</bdi>):</span></b> קשה להבדיל ממתיחה רצונית של השרירים. כפיפת הברכיים עוזרת</li>
     <li><b>נוקשות של דופן הבטן</b></li>
-    <li><b>רגישות בהרפיה (<bdi>rebound</bdi>):</b> הכאב מחמיר כשמשחררים את הלחץ. מעיד על גירוי <span class="nw">ה-<bdi>parietal peritoneum</bdi></span></li>
+    <li><b>רגישות בהרפיה <span class="nw">(<bdi>rebound</bdi>):</span></b> הכאב מחמיר כשמשחררים את הלחץ. מעיד על גירוי <span class="nw">ה-<bdi>parietal peritoneum</bdi></span></li>
     <li>רוב המטופלים עם בטן חריפה יראו לפחות חלק מהסימנים האלה</li>
     <li><b>כאב שמתמקד:</b> מי שמתלונן על כאב בכל הבטן מצביע לפעמים על נקודה אחת בבדיקה זהירה. המיקום מצמצם את האבחנה המבדלת</li>
    </ul>
@@ -286,7 +333,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div style="display:grid;gap:10px">
    <div class="box r"><b class="t">כאב שאינו תואם לבדיקה</b>כאב קשה עם בטן כמעט לא רגישה: לחשוב על איסכמיה של המעי, לא על ניקוב. לשאול על גורמי סיכון לכלי דם</div>
    <div class="box a"><b class="t">בטן תפוחה וטימפנית עם בקע שלא חוזר</b>חסימת מעיים עד שיוכח אחרת</div>
-   <figure><img src="img/cullen-sign.jpg" alt="שטף דם בדופן הבטן ליד הטבור" style="max-height:24vh"><figcaption>סימן <bdi>Cullen</bdi>: שטף דם בדופן הבטן התחתונה ליד הטבור, בדלקת לבלב חריפה · <bdi>Herbert L. Fred, MD &amp; Hendrik A. van Dijk</bdi>, <bdi>CC BY 2.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+   <figure><img src="img/cullen-sign.jpg" alt="שטף דם בדופן הבטן ליד הטבור" style="max-height:24vh"><figcaption>סימן <span class="nw"><bdi>Cullen</bdi>:</span> שטף דם בדופן הבטן התחתונה ליד הטבור, בדלקת לבלב חריפה · <span class="nw"><bdi>Herbert L. Fred, MD &amp; Hendrik A. van Dijk</bdi>,</span> <span class="nw"><bdi>CC BY 2.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1158</bdi></span><span>צפקת</span></div>
@@ -380,10 +427,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <p>הסיפור הקלאסי (כאב סביב הטבור שנודד לימין למטה, חוסר תיאבון או בחילה וחום קל) מוביל לאבחנה הנכונה <span class="nw">בכ-<bdi dir="ltr">90%</bdi></span> מהמטופלים. <span class="nw">כ-<bdi dir="ltr">96.5–100</bdi></span> מקרים <span class="nw">ל-<bdi dir="ltr">100,000</bdi></span> מבוגרים בשנה</p>
    <small>Moris D, Paulson EK, Pappas TN. JAMA 2021;326(22):2299-311</small></div>
   <div class="study"><div class="y"><bdi>BJGP Open</bdi> 2024 · סקירה שיטתית</div><b>אילו סימנים באמת מנבאים מחלה קשה?</b>
-   <p>16 מחקרים ו-6,004 מטופלים. 14 סימנים ותסמינים שינו את הסבירות. הרושם הכולל של הרופא היה הטוב ביותר לאישור (למשל חסימה: <bdi dir="ltr">LR+ 24.6</bdi>). רגישות בהרפיה ועמידה לבדן לא עמדו בסף</p>
+   <p>16 מחקרים ו-6,004 מטופלים. 14 סימנים ותסמינים שינו את הסבירות. הרושם הכולל של הרופא היה הטוב ביותר לאישור (למשל חסימה: <span class="nw"><bdi dir="ltr">LR+ 24.6</bdi>).</span> רגישות בהרפיה ועמידה לבדן לא עמדו בסף</p>
    <small>Tans A et al. BJGP Open 2024;8(3):BJGPO.2023.0245</small></div>
   <div class="study"><div class="y"><bdi>Scand J Trauma Resusc Emerg Med</bdi> 2024 · מחקר אקראי</div><b>אולטרסאונד ליד המיטה לכולם?</b>
-   <p>251 מבוגרים עם כאב בטן חריף במיון. אולטרסאונד שגרתי לא שיפר את דיוק האבחנה הראשונית (<bdi dir="ltr">56%</bdi> לעומת <bdi dir="ltr">62%</bdi>) ולא קיצר את השהות. ההדמיה לא מחליפה את הבדיקה</p>
+   <p>251 מבוגרים עם כאב בטן חריף במיון. אולטרסאונד שגרתי לא שיפר את דיוק האבחנה הראשונית <span class="nw">(<bdi dir="ltr">56%</bdi></span> לעומת <span class="nw"><bdi dir="ltr">62%</bdi>)</span> ולא קיצר את השהות. ההדמיה לא מחליפה את הבדיקה</p>
    <small>Brau F et al. Scand J Trauma Resusc Emerg Med 2024;32:15</small></div>
   <div class="box n"><b class="t">השורה התחתונה</b>אנמנזה ובדיקה טובות הן עדיין הכלי המרכזי. הסימנים הבודדים חלשים, התמונה השלמה חזקה</div>
  </div>
@@ -400,8 +447,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>כאב קשה עם בטן רכה: לחשוב על איסכמיה</li>
   <li>ספירה, כימיה ולקטט כמעט לכולם. <bdi>β-HCG</bdi> לכל אישה בגיל הפוריות</li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 85 <bdi>The Acute Abdomen</bdi> (עמ׳ <bdi dir="ltr">1155–1165</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906), <bdi>Gray's Anatomy</bdi> (1918) <span class="nw">ו-<bdi>Musser</bdi></span> (1904), נחלת הכלל · צילום סימן <bdi>Cullen</bdi>: <bdi>H.L. Fred &amp; H.A. van Dijk</bdi>, <bdi>CC BY 2.0</bdi> · <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 85 <bdi>The Acute Abdomen</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1155–1165</bdi>)</span></div>
+ <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906), <bdi>Gray's Anatomy</bdi> (1918) <span class="nw">ו-<bdi>Musser</bdi></span> (1904), נחלת הכלל · צילום סימן <span class="nw"><bdi>Cullen</bdi>:</span> <span class="nw"><bdi>H.L. Fred &amp; H.A. van Dijk</bdi>,</span> <bdi>CC BY 2.0</bdi> · <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>
@@ -423,5 +470,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>

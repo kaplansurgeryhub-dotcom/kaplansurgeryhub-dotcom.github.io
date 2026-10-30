@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>בטן חריפה · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -65,6 +65,20 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 @media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
 .num.n3{grid-template-columns:repeat(3,1fr)}@media (max-width:760px){.num.n3{grid-template-columns:1fr 1fr}}
 .rev{margin-top:10px;border:1px dashed var(--g);border-radius:14px;padding:8px 12px;background:#F6FBF9}.rev summary{display:block;cursor:pointer;font-weight:800;color:var(--g3);list-style:none}.rev summary::-webkit-details-marker{display:none}.rev summary::before{content:"👁 "}.rev[open] summary{margin-bottom:8px}
+.sgt{cursor:pointer;transition:transform .15s,box-shadow .15s,background .15s;position:relative}.sgt:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(12,42,53,.12)}.sgt:focus{outline:none}.sgt:focus-visible{outline:2px solid var(--g2);outline-offset:2px}
+.sgt b.t::after{content:'👆';display:inline-block;margin-inline-start:6px;font-size:.8em;opacity:.55;animation:tapn 3.2s ease-in-out infinite}
+.sghint{margin:-4px 0 10px;font-weight:700;color:var(--g3);font-size:14.5px}
+.sgdlg{position:fixed;inset:0;z-index:30;background:rgba(6,22,28,.62);display:grid;place-items:center;padding:16px;backdrop-filter:blur(3px)}.sgdlg[hidden]{display:none}
+.sgp{position:relative;width:min(880px,100%);max-height:calc(100% - 20px);overflow:auto;background:#fff;border-radius:20px;box-shadow:0 24px 60px rgba(0,0,0,.4);padding:22px 22px 16px}
+.sgp::before{content:'';position:absolute;inset:0 0 auto 0;height:6px;border-radius:20px 20px 0 0;background:linear-gradient(90deg,var(--g3),var(--g),var(--g2),var(--lime))}
+.sgclose{position:absolute;top:12px;inset-inline-end:12px;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:#fff;font-size:17px;cursor:pointer;color:var(--navy)}
+.sgbody>div{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:center}
+.sgi{background:linear-gradient(#FBFCFB,#EEF4F1);border:1px solid var(--line);border-radius:16px;padding:10px;text-align:center}.sgi svg{width:100%;height:auto;max-height:46vh;display:block}
+.sgph{display:block;max-width:100%;max-height:18vh;margin:8px auto 0;border-radius:10px}
+.sgx h3{font-family:'Frank Ruhl Libre',serif;font-size:28px;margin:0 0 8px;color:var(--navy)}
+.sgr{background:var(--soft);border-radius:12px;padding:9px 12px;margin-bottom:8px;border-inline-start:4px solid var(--g)}.sgr.m{border-color:var(--red);background:#FBEDEA}.sgr b{display:block;color:var(--navy);font-size:14.5px}.sgr p{margin:2px 0 0;font-size:15.5px;line-height:1.45}
+.sgc{display:block;font-size:11.5px;color:var(--muted);margin-top:6px}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.sgbody>div{grid-template-columns:1fr}.sgi svg{max-height:30vh}.sgp{padding:18px 14px 12px}.sgx h3{font-size:23px}}
 /*BRAND*/
 .brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
 .brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
@@ -88,7 +102,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -118,9 +132,56 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -149,7 +210,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>להכין חולה לניתוח דחוף ולהכיר את מקומו של טיפול לא ניתוחי</li>
   <li>להכיר את האוכלוסיות המיוחדות: הריון, קשישים, מדוכאי חיסון וחולים קשים</li>
  </ol>
- <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 85 <bdi>The Acute Abdomen</bdi> (עמ׳ <bdi dir="ltr">1155–1165</bdi>)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 85 <bdi>The Acute Abdomen</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1155–1165</bdi>)</span></span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -163,10 +224,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>ארבעה מנגנונים:</b> דלקת, חסימה, ניקוב ואיסכמיה</li>
     <li><b>תוך-צפקי:</b> <bdi>stomach, small bowel, transverse colon, liver, spleen, appendix</bdi></li>
     <li><b>רטרופריטונאלי:</b> <bdi>kidneys, pancreas, ascending & descending colon</bdi> וכלי הדם הגדולים</li>
-    <li><b>אספקת הדם:</b> <span class="nw">ה-<bdi>aorta</bdi></span> מתפצל <span class="nw">ל-<bdi>common iliac arteries</bdi></span> בגובה חוליה <bdi>L4</bdi>. ענפי הבטן: <bdi>celiac trunk</bdi>, <bdi>SMA</bdi> <span class="nw">ו-<bdi>IMA</bdi></span>. פגיעה בזרימה גורמת לאיסכמיה של המעי</li>
+    <li><b>אספקת הדם:</b> <span class="nw">ה-<bdi>aorta</bdi></span> מתפצל <span class="nw">ל-<bdi>common iliac arteries</bdi></span> בגובה חוליה <span class="nw"><bdi>L4</bdi>.</span> ענפי הבטן: <span class="nw"><bdi>celiac trunk</bdi>,</span> <bdi>SMA</bdi> <span class="nw">ו-<bdi>IMA</bdi>.</span> פגיעה בזרימה גורמת לאיסכמיה של המעי</li>
    </ul>
   </div>
-  <figure><img src="img/Sobo_1906_413.jpg" alt="החלל הרטרופריטונאלי: pancreas, duodenum, kidneys, aorta" style="max-height:52vh"><figcaption>החלל הרטרופריטונאלי אחרי הוצאת המעי: <span class="nw">ה-<bdi>pancreas, duodenum, spleen, kidneys, aorta</bdi></span> <span class="nw">וה-<bdi>IVC</bdi></span> · <bdi dir="ltr">Sobotta, Atlas and Text-book of Human Anatomy (1906)</bdi>, איור 413 (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/Sobo_1906_413.jpg" alt="החלל הרטרופריטונאלי: pancreas, duodenum, kidneys, aorta" style="max-height:52vh"><figcaption>החלל הרטרופריטונאלי אחרי הוצאת המעי: <span class="nw">ה-<bdi>pancreas, duodenum, spleen, kidneys, aorta</bdi></span> <span class="nw">וה-<bdi>IVC</bdi></span> · <span class="nw"><bdi dir="ltr">Sobotta, Atlas and Text-book of Human Anatomy (1906)</bdi>,</span> איור 413 (נחלת הכלל)</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1155</bdi></span><span>מושגים</span></div>
 </div></section>
@@ -183,11 +244,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <h3>כאב מושלך</h3>
    <ul class="b sm">
-    <li>אוויר חופשי או דם מתחת <span class="nw">ל-<bdi>diaphragm</bdi></span>: כאב בכתף, דרך <span class="nw">ה-<bdi>phrenic nerve</bdi></span></li>
+    <li>אוויר חופשי או דם מתחת <span class="nw">ל-<bdi>diaphragm</bdi>:</span> כאב בכתף, דרך <span class="nw">ה-<bdi>phrenic nerve</bdi></span></li>
     <li>אוטם שריר הלב יכול להופיע ככאב בבטן העליונה</li>
     <li>לכן שואלים גם על כאב מחוץ לבטן ובודקים את כל הגוף</li>
    </ul>
-   <div class="box r" style="margin-top:12px"><b class="t">כאב שלא תואם את הבדיקה</b>כאב חזק מאוד עם בטן כמעט לא רגישה (<bdi>pain out of proportion</bdi>) מרמז על איסכמיה של איבר ולא על ניקוב. לחפש גורמי סיכון וסקולריים</div>
+   <div class="box r" style="margin-top:12px"><b class="t">כאב שלא תואם את הבדיקה</b>כאב חזק מאוד עם בטן כמעט לא רגישה <span class="nw">(<bdi>pain out of proportion</bdi>)</span> מרמז על איסכמיה של איבר ולא על ניקוב. לחפש גורמי סיכון וסקולריים</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1155, 1157–1158</bdi></span><span>פיזיולוגיה</span></div>
@@ -211,12 +272,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <g class="hzb" style="--c:#0C2A35"><circle cx="235" cy="1240" r="23"/><text x="235" y="1240">6</text></g>
  </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-   <div class="hzi" data-hzi="ruq" hidden><b>1 · ימין עליון: <bdi>liver, gallbladder</bdi></b><p>דלקת כיס המרה (סימן מרפי), אבצס <span class="nw">ב-<bdi>liver</bdi></span>. באולטרסאונד: דופן <bdi>gallbladder</bdi> מעובה ואבנים. דם או אוויר מתחת <span class="nw">ל-<bdi>diaphragm</bdi></span> יכולים לגרום לכאב בכתף. לחשוב גם על דלקת ריאות שמחקה כאב בטן</p></div>
-   <div class="hzi" data-hzi="epi" hidden><b>2 · אפיגסטריום: <bdi>stomach, duodenum</bdi></b><p>כיב מנוקב: אוויר חופשי מתחת <span class="nw">ל-<bdi>diaphragm</bdi></span> בצילום בעמידה. דלקת לבלב (מאחורי <span class="nw">ה-<bdi>stomach</bdi></span>, רטרופריטונאלית): ליפאז. לעיתים סימן גריי טרנר. לחשוב גם על אוטם שריר הלב שמופיע ככאב בבטן העליונה</p></div>
+   <div class="hzi" data-hzi="ruq" hidden><b>1 · ימין עליון: <bdi>liver, gallbladder</bdi></b><p>דלקת כיס המרה (סימן מרפי), אבצס <span class="nw">ב-<bdi>liver</bdi>.</span> באולטרסאונד: דופן <bdi>gallbladder</bdi> מעובה ואבנים. דם או אוויר מתחת <span class="nw">ל-<bdi>diaphragm</bdi></span> יכולים לגרום לכאב בכתף. לחשוב גם על דלקת ריאות שמחקה כאב בטן</p></div>
+   <div class="hzi" data-hzi="epi" hidden><b>2 · אפיגסטריום: <bdi>stomach, duodenum</bdi></b><p>כיב מנוקב: אוויר חופשי מתחת <span class="nw">ל-<bdi>diaphragm</bdi></span> בצילום בעמידה. דלקת לבלב (מאחורי <span class="nw">ה-<bdi>stomach</bdi>,</span> רטרופריטונאלית): ליפאז. לעיתים סימן גריי טרנר. לחשוב גם על אוטם שריר הלב שמופיע ככאב בבטן העליונה</p></div>
    <div class="hzi" data-hzi="mid" hidden><b>3 · מרכז הבטן: <bdi>small bowel</bdi> מתחת <span class="nw">ל-<bdi>omentum</bdi></span></b><p>חסימת מעי (צלקות ניתוח, בקע), איסכמיה של המעי (כאב שלא תואם את הבדיקה, פרפור פרוזדורים). כאן מתחיל גם הכאב הוויסצרלי של דלקת התוספתן, סביב הטבור</p></div>
    <div class="hzi" data-hzi="rlq" hidden><b>4 · ימין תחתון: <bdi>appendix, cecum</bdi></b><p>דלקת התוספתן: רגישות, סימן רובזינג, פסואס ואובטורטור. באישה בגיל הפוריות: היריון מחוץ לרחם, תסביב שחלה ואבצס טובו-אובריאלי. תמיד <bdi>β-hCG</bdi></p></div>
-   <div class="hzi" data-hzi="llq" hidden><b>5 · שמאל תחתון: <bdi>sigmoid</bdi></b><p>דיברטיקוליטיס, שכיחה במבוגרים ולא בצעירים. וולוולוס של <span class="nw">ה-<bdi>sigmoid</bdi></span>: סימן ״פולי הקפה״ בצילום בטן. ניקוב מכוסה בלי פריטוניטיס מטופל לרוב בלי ניתוח</p></div>
-   <div class="hzi" data-hzi="pel" hidden><b>6 · אגן ומפשעות</b><p>בדיקת המפשעות היא חובה בכל בדיקת בטן: בקע כלוא. איברי האגן: <bdi>uterus, ovaries, bladder</bdi>. אצל גברים: תסביב אשך ודלקת האפידידימיס. בדיקה רקטלית: דימום, עצירות, גוש חוסם</p></div>
+   <div class="hzi" data-hzi="llq" hidden><b>5 · שמאל תחתון: <bdi>sigmoid</bdi></b><p>דיברטיקוליטיס, שכיחה במבוגרים ולא בצעירים. וולוולוס של <span class="nw">ה-<bdi>sigmoid</bdi>:</span> סימן ״פולי הקפה״ בצילום בטן. ניקוב מכוסה בלי פריטוניטיס מטופל לרוב בלי ניתוח</p></div>
+   <div class="hzi" data-hzi="pel" hidden><b>6 · אגן ומפשעות</b><p>בדיקת המפשעות היא חובה בכל בדיקת בטן: בקע כלוא. איברי האגן: <span class="nw"><bdi>uterus, ovaries, bladder</bdi>.</span> אצל גברים: תסביב אשך ודלקת האפידידימיס. בדיקה רקטלית: דימום, עצירות, גוש חוסם</p></div>
   </div></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1155–1160, 1164</bdi> · הציור: <bdi>Sobotta</bdi> (1906), איור 407, הבטן אחרי פתיחה (נחלת הכלל)</span><span>מפת הבטן</span></div>
 </div></section>
@@ -229,9 +290,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <h3>סיבות כירורגיות</h3>
    <ul class="b sm">
     <li><b>מערכת העיכול:</b> כיב מנוקב, כיס מרה, תוספתן, בקע כלוא, חסימה, דיברטיקוליטיס, תסביב (וולוולוס), קוליטיס איסכמית</li>
-    <li><b>איברים מוצקים:</b> אבצס <span class="nw">ב-<bdi>liver</bdi></span> או <span class="nw">ב-<bdi>spleen</bdi></span>, דלקת לבלב נמקית, קרע <span class="nw">ב-<bdi>spleen</bdi></span></li>
+    <li><b>איברים מוצקים:</b> אבצס <span class="nw">ב-<bdi>liver</bdi></span> או <span class="nw">ב-<bdi>spleen</bdi>,</span> דלקת לבלב נמקית, קרע <span class="nw">ב-<bdi>spleen</bdi></span></li>
     <li><b>אורוגניטלי:</b> אבן בכליה, היריון מחוץ לרחם, תסביב שחלה או אשך, אבצס טובו-אובריאלי</li>
-    <li><b>וסקולרי:</b> מפרצת של <span class="nw">ה-<bdi>aorta</bdi></span>, דיסקציה, חסימה של <bdi>mesenteric artery</bdi>, דימום תוך-בטני</li>
+    <li><b>וסקולרי:</b> מפרצת של <span class="nw">ה-<bdi>aorta</bdi>,</span> דיסקציה, חסימה של <span class="nw"><bdi>mesenteric artery</bdi>,</span> דימום תוך-בטני</li>
    </ul>
   </div>
   <div>
@@ -240,12 +301,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>מטבולי:</b> חמצת קטוטית סוכרתית, היפרקלצמיה, אדיסון, פורפיריה, <b>קדחת ים תיכונית משפחתית</b></li>
     <li><b>לב וריאה:</b> אוטם שריר הלב, תסחיף ריאתי, דלקת ריאות</li>
     <li><b>זיהומי:</b> פיאלונפריטיס, פריטוניטיס בקטריאלית ספונטנית</li>
-    <li><b>המטולוגי ואחרים:</b> משבר של אנמיה חרמשית, <bdi>HSP</bdi>, שלבקת חוגרת, תרופות (קוקאין, נרקוטיקה)</li>
+    <li><b>המטולוגי ואחרים:</b> משבר של אנמיה חרמשית, <span class="nw"><bdi>HSP</bdi>,</span> שלבקת חוגרת, תרופות (קוקאין, נרקוטיקה)</li>
    </ul>
    <div class="box a" style="margin-top:10px"><b class="t">הגיל משנה את הרשימה</b>דיברטיקוליטיס, מחלות דרכי המרה וכיב פפטי שכיחים במבוגרים. בילדים: עד גיל שנתיים אינטוסוספציה בראש הרשימה. מגיל 5 התוספתן בראש הרשימה</div>
   </div>
  </div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1155–1157</bdi> (טבלאות <bdi dir="ltr">85.1–85.3</bdi>)</span><span>אבחנה מבדלת</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1155–1157</bdi> (טבלאות <span class="nw"><bdi dir="ltr">85.1–85.3</bdi>)</span></span><span>אבחנה מבדלת</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -278,16 +339,16 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b sm">
-    <li><b>הסתכלות:</b> תפיחות, צלקות, בקעים וורידים בולטים. שטף דם סביב הטבור (<bdi>Cullen</bdi>) או במותן (<bdi>Grey Turner</bdi>) מרמז על דימום תוך-בטני או רטרופריטונאלי</li>
+    <li><b>הסתכלות:</b> תפיחות, צלקות, בקעים וורידים בולטים. שטף דם סביב הטבור <span class="nw">(<bdi>Cullen</bdi>)</span> או במותן <span class="nw">(<bdi>Grey Turner</bdi>)</span> מרמז על דימום תוך-בטני או רטרופריטונאלי</li>
     <li><b>מפשעות: חובה</b> בכל בדיקת בטן. לפי החשד גם בדיקה גניטלית, רקטלית ואגנית</li>
     <li><b>הקשה ואחריה מישוש:</b> מחפשים את נקודת הרגישות המרבית, גושים, פגמים בדופן ופעימות</li>
-    <li><b>פריטוניטיס:</b> התגוננות לא רצונית, קשיחות ורגישות בהרפיה (<bdi>rebound</bdi>)</li>
+    <li><b>פריטוניטיס:</b> התגוננות לא רצונית, קשיחות ורגישות בהרפיה <span class="nw">(<bdi>rebound</bdi>)</span></li>
     <li><b>האזנה:</b> רגישות וסגוליות נמוכות. לא מסתמכים עליה</li>
     <li><b>כל הגוף:</b> דופק מהיר, הזעה, חיוורון, נשימה מהירה בלי ממצא בריאות (חמצת)</li>
    </ul>
    <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>בדקו שני מטופלים שהגיעו מהמיון עם כאב בטן. בשכיבה על הגב עם ברכיים כפופות. הציגו לבכיר/ה: איפה הרגישות המרבית והאם יש סימני פריטוניטיס</div>
   </div>
-  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש בטן בשתי ידיים" style="max-height:50vh"><figcaption>מישוש בשתי ידיים: יד אחת מקבעת ויד אחת ממששת (שיטת גלנאר למישוש <span class="nw">ה-<bdi>liver</bdi></span>, בעמידה) · <bdi dir="ltr">Musser, A Practical Treatise on Medical Diagnosis (1904) · Internet Archive Book Images · Wikimedia Commons</bdi> (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש בטן בשתי ידיים" style="max-height:50vh"><figcaption>מישוש בשתי ידיים: יד אחת מקבעת ויד אחת ממששת (שיטת גלנאר למישוש <span class="nw">ה-<bdi>liver</bdi>,</span> בעמידה) · <bdi dir="ltr">Musser, A Practical Treatise on Medical Diagnosis (1904) · Internet Archive Book Images · Wikimedia Commons</bdi> (נחלת הכלל)</figcaption></figure>
  </div>
  <div class="box a" style="margin-top:10px"><b class="t">טיפ להבדלה בין התגוננות רצונית ללא רצונית</b>המטופל שוכב על הגב, ברכיים כפופות וכפות הרגליים על המיטה. כך שרירי הבטן רפויים והבדיקה מדויקת יותר</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1157–1159</bdi></span><span>בדיקה גופנית</span></div>
@@ -296,22 +357,31 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 <section class="s"><div class="card">
  <div class="kick"><b>8</b>סימנים על שם</div>
  <h2>הסימנים שכדאי להכיר</h2>
+ <p class="sghint">👆 לחצו על סימן כדי לראות איך בודקים אותו</p>
  <div class="grid g3">
-  <div class="box"><b class="t">מרפי</b>מישוש מתחת <span class="nw">ל-<bdi>costal margin</bdi></span> מימין ושאיפה עמוקה: הנשימה נעצרת מכאב. דלקת כיס המרה</div>
-  <div class="box"><b class="t">רובזינג</b>לחיצה ברבע השמאלי התחתון גורמת לכאב ברבע הימני התחתון. דלקת התוספתן</div>
-  <div class="box"><b class="t">פסואס</b>הרמת רגל ישרה נגד התנגדות כואבת. <bdi>retrocecal appendix</bdi></div>
-  <div class="box"><b class="t">אובטורטור</b>סיבוב פנימי פסיבי של הירך עם ברך כפופה. אבצס באגן או <bdi>pelvic appendix</bdi></div>
-  <div class="box"><b class="t">בלומברג</b>הכאב מחמיר כשמשחררים את הלחץ ולא כשלוחצים. פריטוניטיס</div>
-  <div class="box"><b class="t">קרנט</b>הכאב נמשך או מחמיר כשמכווצים את שרירי הבטן. מקור בדופן הבטן</div>
-  <div class="box n"><b class="t">קאלן · גריי טרנר</b>שטף דם סביב הטבור או במותניים. דימום תוך-בטני, רטרופריטונאלי או דלקת לבלב קשה</div>
-  <div class="box n"><b class="t">האושיפ-רומברג</b>כאב בירך הפנימית בסיבוב פנימי של הירך. בקע אובטורטורי</div>
-  <div class="box n"><b class="t">שנדליר</b>כאב אגני קשה בהזזת <span class="nw">ה-<bdi>cervix</bdi></span>. מחלה דלקתית של האגן</div>
+  <div role="button" tabindex="0" data-sg="murphy" class="sgt box"><b class="t">מרפי</b>מישוש מתחת <span class="nw">ל-<bdi>costal margin</bdi></span> מימין ושאיפה עמוקה: הנשימה נעצרת מכאב. דלקת כיס המרה</div>
+  <div role="button" tabindex="0" data-sg="rovsing" class="sgt box"><b class="t">רובזינג</b>לחיצה ברבע השמאלי התחתון גורמת לכאב ברבע הימני התחתון. דלקת התוספתן</div>
+  <div role="button" tabindex="0" data-sg="psoas" class="sgt box"><b class="t">פסואס</b>הרמת רגל ישרה נגד התנגדות כואבת. <bdi>retrocecal appendix</bdi></div>
+  <div role="button" tabindex="0" data-sg="obturator" class="sgt box"><b class="t">אובטורטור</b>סיבוב פנימי פסיבי של הירך עם ברך כפופה. אבצס באגן או <bdi>pelvic appendix</bdi></div>
+  <div role="button" tabindex="0" data-sg="blumberg" class="sgt box"><b class="t">בלומברג</b>הכאב מחמיר כשמשחררים את הלחץ ולא כשלוחצים. פריטוניטיס</div>
+  <div role="button" tabindex="0" data-sg="carnett" class="sgt box"><b class="t">קרנט</b>הכאב נמשך או מחמיר כשמכווצים את שרירי הבטן. מקור בדופן הבטן</div>
+  <div role="button" tabindex="0" data-sg="cullen" class="sgt box n"><b class="t">קאלן · גריי טרנר</b>שטף דם סביב הטבור או במותניים. דימום תוך-בטני, רטרופריטונאלי או דלקת לבלב קשה</div>
+  <div role="button" tabindex="0" data-sg="howship" class="sgt box n"><b class="t">האושיפ-רומברג</b>כאב בירך הפנימית בסיבוב פנימי של הירך. בקע אובטורטורי</div>
+  <div role="button" tabindex="0" data-sg="chandelier" class="sgt box n"><b class="t">שנדליר</b>כאב אגני קשה בהזזת <span class="nw">ה-<bdi>cervix</bdi>.</span> מחלה דלקתית של האגן</div>
  </div>
+ <div class="sgdlg" hidden><div class="sgp" role="dialog" aria-modal="true"><button type="button" class="sgclose" aria-label="סגירה">✕</button><div class="sgbody"></div></div><svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<g id="sgHand"><ellipse cx="-19" cy="-30" rx="6" ry="12" transform="rotate(-28 -19 -30)" fill="#E7C2A6" stroke="#8E6750" stroke-width="1.6"/><rect x="-17" y="-56" width="36" height="32" rx="11" fill="#E7C2A6" stroke="#8E6750" stroke-width="1.6"/><g fill="#E7C2A6" stroke="#8E6750" stroke-width="1.6"><rect x="-15" y="-30" width="7.5" height="26" rx="3.7"/><rect x="-7" y="-30" width="7.5" height="30" rx="3.7"/><rect x="1" y="-30" width="7.5" height="29" rx="3.7"/><rect x="9" y="-30" width="7.5" height="24" rx="3.7"/></g></g>
+<g id="sgPain"><circle r="17" fill="#A3402E" opacity=".18"/><path d="M0,-13 L3.5,-4 L13,-4 L5.5,2 L8.5,11 L0,5.5 L-8.5,11 L-5.5,2 L-13,-4 L-3.5,-4 Z" fill="#A3402E"/></g>
+<marker id="sgAr" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#0C2A35"/></marker>
+<marker id="sgArR" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#A3402E"/></marker>
+<g id="sgTorso"><path d="M68,8 C58,60 56,112 60,152 C64,192 76,222 96,252 L204,252 C224,222 236,192 240,152 C244,112 242,60 232,8 Z" fill="#F4E3D3" stroke="#B48A70" stroke-width="2"/><path d="M150,36 C122,64 98,92 66,108 M150,36 C178,64 202,92 234,108" fill="none" stroke="#B48A70" stroke-width="1.6" opacity=".75"/><path d="M84,214 C100,204 112,206 120,214 M216,214 C200,204 188,206 180,214" fill="none" stroke="#B48A70" stroke-width="1.4" opacity=".7"/><path d="M150,52 V246 M64,150 H236" stroke="#B48A70" stroke-width="1" stroke-dasharray="4 5" opacity=".55"/><circle cx="150" cy="150" r="3.6" fill="#B48A70"/></g>
+<g id="sgSide"><circle cx="34" cy="96" r="17" fill="#F4E3D3" stroke="#B48A70" stroke-width="2"/><path d="M52,84 C70,78 95,76 120,77 L196,79 C214,80 222,88 222,100 C222,112 214,118 196,118 L120,119 C95,120 70,118 52,110 Z" fill="#F4E3D3" stroke="#B48A70" stroke-width="2"/></g>
+</defs></svg><div class="sgd" data-sgd="murphy" hidden><div class="sgi"><svg viewBox="0 0 300 260" role="img" aria-label="מישוש מתחת לקשת הצלעות מימין בזמן שאיפה" font-family="Heebo,sans-serif"><use href="#sgTorso"/><use href="#sgPain" x="104" y="118"/><use href="#sgHand" transform="translate(104 126) rotate(-150)"/><path d="M272,114 V70" stroke="#0C2A35" stroke-width="2.4" marker-end="url(#sgAr)"/><text x="236" y="30" text-anchor="middle" font-size="12.5" font-weight="800" fill="#0C2A35">שאיפה עמוקה</text><text x="236" y="48" text-anchor="middle" font-size="11.5" font-weight="800" fill="#A3402E">הנשימה נעצרת</text><text x="30" y="250" text-anchor="middle" font-size="11" font-weight="700" fill="#B48A70">ימין</text><text x="270" y="250" text-anchor="middle" font-size="11" font-weight="700" fill="#B48A70">שמאל</text></svg></div><div class="sgx"><h3>מרפי</h3><div class="sgr"><b>איך בודקים</b><p>המטופל/ת שוכב/ת על הגב ונושף/ת. ממששים מתחת לקשת הצלעות מימין ומבקשים לנשום עמוק</p></div><div class="sgr"><b>מה רואים</b><p>הסרעפת דוחפת את כיס המרה המודלק אל היד ואל הצפק שמתחתיה. הכאב עוצר את השאיפה באמצע</p></div><div class="sgr m"><b>מה זה אומר</b><p>דלקת חריפה של כיס המרה</p></div><small class="sgc">איור של המערך · <b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1158–1159</bdi></small></div></div><div class="sgd" data-sgd="rovsing" hidden><div class="sgi"><svg viewBox="0 0 300 260" role="img" aria-label="לחיצה בבטן שמאלית תחתונה וכאב בבטן ימנית תחתונה" font-family="Heebo,sans-serif"><use href="#sgTorso"/><use href="#sgHand" transform="translate(196 196)"/><use href="#sgPain" x="104" y="196"/><path d="M180,218 C160,236 130,236 118,214" fill="none" stroke="#A3402E" stroke-width="2.2" stroke-dasharray="5 4" marker-end="url(#sgArR)"/><text x="206" y="240" text-anchor="middle" font-size="12.5" font-weight="800" fill="#0C2A35">לוחצים כאן</text><text x="96" y="236" text-anchor="middle" font-size="12.5" font-weight="800" fill="#A3402E">כואב כאן</text><text x="30" y="250" text-anchor="middle" font-size="11" font-weight="700" fill="#B48A70">ימין</text><text x="270" y="250" text-anchor="middle" font-size="11" font-weight="700" fill="#B48A70">שמאל</text></svg></div><div class="sgx"><h3>רובזינג</h3><div class="sgr"><b>איך בודקים</b><p>לוחצים לאט ובעמוק בבטן שמאלית תחתונה</p></div><div class="sgr"><b>מה רואים</b><p>כאב בבטן ימנית תחתונה. מעיד על גירוי מקומי של הצפק ולא קובע אבחנה לבד</p></div><div class="sgr m"><b>מה זה אומר</b><p>דלקת התוספתן</p></div><small class="sgc">איור של המערך · <b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1158–1159</bdi> · פרק 94 עמ׳ <bdi dir="ltr">1417</bdi></small></div></div><div class="sgd" data-sgd="psoas" hidden><div class="sgi"><svg viewBox="0 0 300 215" role="img" aria-label="הרמת רגל ישרה נגד התנגדות" font-family="Heebo,sans-serif"><use href="#sgSide" transform="translate(0 20)"/><path d="M196,104 L292,40 L300,52 L206,134 Z" fill="#F4E3D3" stroke="#B48A70" stroke-width="2"/><use href="#sgHand" transform="translate(262 44) rotate(170) scale(.85)"/><path d="M262,6 V26" stroke="#0C2A35" stroke-width="2.4" marker-end="url(#sgAr)"/><use href="#sgPain" x="176" y="110"/><text x="150" y="190" text-anchor="middle" font-size="12.5" font-weight="800" fill="#0C2A35">מרימים רגל ימין ישרה, הבודק/ת לוחץ/ת מטה</text><text x="150" y="206" text-anchor="middle" font-size="12" font-weight="800" fill="#A3402E">כאב בבטן ימנית תחתונה</text></svg></div><div class="sgx"><h3>פסואס</h3><div class="sgr"><b>איך בודקים</b><p>המטופל/ת על הגב ומרים/ה רגל ימין ישרה. הבודק/ת לוחץ/ת על הירך כלפי מטה והמטופל/ת מתנגד/ת</p></div><div class="sgr"><b>מה רואים</b><p>כאב בבטן ימנית תחתונה: התהליך הדלקתי שוכב על שריר <span class="nw">ה-<bdi>psoas</bdi>.</span> גם יישור של הירך יכול לעורר את הכאב</p></div><div class="sgr m"><b>מה זה אומר</b><p><bdi>appendix</bdi> מאחורי <span class="nw">ה-<bdi>cecum</bdi></span> (רטרוצקלי)</p></div><small class="sgc">איור של המערך · <b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1158–1159</bdi> · פרק 94 עמ׳ <bdi dir="ltr">1417</bdi></small></div></div><div class="sgd" data-sgd="obturator" hidden><div class="sgi"><svg viewBox="0 0 300 215" role="img" aria-label="סיבוב פנימי של ירך כפופה" font-family="Heebo,sans-serif"><use href="#sgSide" transform="translate(0 40)"/><path d="M200,124 L232,56 L248,62 L222,136 Z" fill="#F4E3D3" stroke="#B48A70" stroke-width="2"/><path d="M234,58 L296,90 L290,104 L230,74 Z" fill="#F4E3D3" stroke="#B48A70" stroke-width="2"/><path d="M280,120 C296,112 300,92 292,78" fill="none" stroke="#0C2A35" stroke-width="2.4" marker-end="url(#sgAr)"/><use href="#sgHand" transform="translate(240 50) rotate(150) scale(.8)"/><use href="#sgPain" x="186" y="140"/><text x="150" y="190" text-anchor="middle" font-size="12.5" font-weight="800" fill="#0C2A35">ירך וברך כפופות, מסובבים את הירך פנימה</text><text x="150" y="206" text-anchor="middle" font-size="12" font-weight="800" fill="#A3402E">כאב באגן ובבטן ימנית תחתונה</text></svg></div><div class="sgx"><h3>אובטורטור</h3><div class="sgr"><b>איך בודקים</b><p>המטופל/ת על הגב, ירך וברך ימין כפופות. מסובבים את הירך פנימה בעדינות, בלי עזרת המטופל/ת</p></div><div class="sgr"><b>מה רואים</b><p>כאב באגן ובבטן ימנית תחתונה, מגירוי של שריר האובטורטור</p></div><div class="sgr m"><b>מה זה אומר</b><p>מורסה או גוש דלקתי באגן, <bdi>pelvic appendix</bdi></p></div><small class="sgc">איור של המערך · <b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1158–1159</bdi></small></div></div><div class="sgd" data-sgd="blumberg" hidden><div class="sgi"><svg viewBox="0 0 300 210" role="img" aria-label="לחיצה איטית ושחרור מהיר" font-family="Heebo,sans-serif"><g transform="translate(148 0)"><use href="#sgTorso" transform="translate(4 30) scale(.48)"/><use href="#sgHand" transform="translate(56 132) scale(.8)"/><path d="M56,62 V92" stroke="#0C2A35" stroke-width="2.4" marker-end="url(#sgAr)"/><text x="76" y="170" text-anchor="middle" font-size="12.5" font-weight="800" fill="#0C2A35">1. לוחצים לאט ובעמוק</text><text x="76" y="186" text-anchor="middle" font-size="11.5" font-weight="700" fill="#B48A70">כואב מעט</text></g><g transform="translate(-148 0)"><use href="#sgTorso" transform="translate(152 30) scale(.48)"/><use href="#sgPain" x="208" y="132"/><use href="#sgHand" transform="translate(208 92) scale(.8)"/><path d="M226,98 V62" stroke="#A3402E" stroke-width="2.4" marker-end="url(#sgArR)"/><text x="224" y="170" text-anchor="middle" font-size="12.5" font-weight="800" fill="#0C2A35">2. משחררים מהר</text><text x="224" y="186" text-anchor="middle" font-size="11.5" font-weight="800" fill="#A3402E">הכאב חזק יותר</text></g><line x1="150" y1="40" x2="150" y2="200" stroke="#DCE6E2" stroke-width="2"/></svg></div><div class="sgx"><h3>בלומברג</h3><div class="sgr"><b>איך בודקים</b><p>לוחצים לאט ובעמוק ואז מרימים את היד מהר</p></div><div class="sgr"><b>מה רואים</b><p>הכאב בשחרור חזק יותר מהכאב בלחיצה</p></div><div class="sgr m"><b>מה זה אומר</b><p>דלקת של הצפק (פריטוניטיס)</p></div><small class="sgc">איור של המערך · <b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1158–1159</bdi></small></div></div><div class="sgd" data-sgd="carnett" hidden><div class="sgi"><svg viewBox="0 0 300 215" role="img" aria-label="הרמת ראש וכתפיים עם אצבע על נקודת הכאב" font-family="Heebo,sans-serif"><g transform="translate(0 30)"><circle cx="58" cy="58" r="17" fill="#F4E3D3" stroke="#B48A70" stroke-width="2"/><path d="M70,74 C86,86 104,100 128,108 L196,112 C214,113 222,121 222,132 C222,144 214,150 196,150 L118,150 C96,150 76,138 66,118 C60,104 60,88 70,74 Z" fill="#F4E3D3" stroke="#B48A70" stroke-width="2"/><path d="M222,118 L292,124 M222,144 L292,146" stroke="#B48A70" stroke-width="2"/><use href="#sgPain" x="160" y="112"/><use href="#sgHand" transform="translate(160 110) rotate(180) scale(.85)"/><path d="M30,96 C24,70 30,44 50,30" fill="none" stroke="#0C2A35" stroke-width="2.4" marker-end="url(#sgAr)"/></g><text x="150" y="22" text-anchor="middle" font-size="12.5" font-weight="800" fill="#0C2A35">מרימים ראש וכתפיים: שרירי הבטן מתכווצים</text><text x="160" y="206" text-anchor="middle" font-size="12" font-weight="800" fill="#A3402E">הכאב נשאר או מתחזק: מקור בדופן הבטן</text></svg></div><div class="sgx"><h3>קרנט</h3><div class="sgr"><b>איך בודקים</b><p>מוצאים את נקודת הרגישות ומשאירים עליה אצבע. מבקשים להרים ראש וכתפיים כדי לכווץ את שרירי הבטן</p></div><div class="sgr"><b>מה רואים</b><p>הכאב נשאר או מתחזק כשהשרירים מכווצים</p></div><div class="sgr m"><b>מה זה אומר</b><p>מקור הכאב בדופן הבטן</p></div><small class="sgc">איור של המערך · <b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1158–1159</bdi></small></div></div><div class="sgd" data-sgd="cullen" hidden><div class="sgi"><svg viewBox="0 0 300 260" role="img" aria-label="שטף דם סביב הטבור ובמותניים" font-family="Heebo,sans-serif"><use href="#sgTorso"/><ellipse cx="150" cy="150" rx="26" ry="20" fill="#6E4C8E" opacity=".45"/><ellipse cx="148" cy="152" rx="15" ry="11" fill="#5B3E78" opacity=".45"/><path d="M58,160 C52,182 60,206 76,222 C84,206 82,182 72,164 Z" fill="#6E4C8E" opacity=".4"/><path d="M242,160 C248,182 240,206 224,222 C216,206 218,182 228,164 Z" fill="#6E4C8E" opacity=".4"/><text x="150" y="192" text-anchor="middle" font-size="12.5" font-weight="800" fill="#5B3E78">קאלן: סביב הטבור</text><text x="150" y="118" text-anchor="middle" font-size="12.5" font-weight="800" fill="#5B3E78">גריי טרנר: במותניים</text><path d="M110,114 L70,170 M190,114 L230,170" stroke="#5B3E78" stroke-width="1.4" stroke-dasharray="4 3"/><text x="30" y="250" text-anchor="middle" font-size="11" font-weight="700" fill="#B48A70">ימין</text><text x="270" y="250" text-anchor="middle" font-size="11" font-weight="700" fill="#B48A70">שמאל</text></svg><img src="img/cullen-sign.jpg" alt="שטף דם סביב הטבור" class="sgph"><small class="sgc">סימן קאלן · <bdi dir="ltr">Herbert L. Fred, MD &amp; Hendrik A. van Dijk · CC BY 2.0 · Wikimedia Commons</bdi></small></div><div class="sgx"><h3>קאלן · גריי טרנר</h3><div class="sgr"><b>איך בודקים</b><p>מסתכלים לפני שנוגעים: סביב הטבור ובמותניים, בין הצלע האחרונה לראש עצם הכסל</p></div><div class="sgr"><b>מה רואים</b><p>שטף דם כחלחל-סגול סביב הטבור (קאלן) או במותניים (גריי טרנר)</p></div><div class="sgr m"><b>מה זה אומר</b><p>קאלן: דם בחלל הבטן. גריי טרנר: דימום רטרופריטונאלי או דלקת לבלב קשה</p></div><small class="sgc">איור של המערך · <b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1158–1159</bdi></small></div></div><div class="sgd" data-sgd="howship" hidden><div class="sgi"><svg viewBox="0 0 300 215" role="img" aria-label="סיבוב פנימי של הירך וכאב בירך הפנימית" font-family="Heebo,sans-serif"><use href="#sgSide" transform="translate(0 40)"/><path d="M200,124 L232,56 L248,62 L222,136 Z" fill="#F4E3D3" stroke="#B48A70" stroke-width="2"/><path d="M234,58 L296,90 L290,104 L230,74 Z" fill="#F4E3D3" stroke="#B48A70" stroke-width="2"/><path d="M280,120 C296,112 300,92 292,78" fill="none" stroke="#0C2A35" stroke-width="2.4" marker-end="url(#sgAr)"/><use href="#sgPain" x="222" y="104"/><path d="M216,110 L206,130" stroke="#A3402E" stroke-width="2" stroke-dasharray="4 3"/><text x="150" y="190" text-anchor="middle" font-size="12.5" font-weight="800" fill="#0C2A35">סיבוב פנימי של הירך</text><text x="150" y="206" text-anchor="middle" font-size="12" font-weight="800" fill="#A3402E">כאב בצד הפנימי של הירך</text></svg></div><div class="sgx"><h3>האושיפ-רומברג</h3><div class="sgr"><b>איך בודקים</b><p>מסובבים את הירך פנימה</p></div><div class="sgr"><b>מה רואים</b><p>כאב בצד הפנימי של הירך: הבקע לוחץ על עצב האובטורטור</p></div><div class="sgr m"><b>מה זה אומר</b><p>בקע אובטורטורי</p></div><small class="sgc">איור של המערך · <b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1158–1159</bdi></small></div></div><div class="sgd" data-sgd="chandelier" hidden><div class="sgi"><svg viewBox="0 0 300 255" role="img" aria-label="תזוזת צוואר הרחם בבדיקה אגנית, מבט אל הרחם מלפנים" font-family="Heebo,sans-serif"><path d="M150,40 C112,40 92,70 96,104 C100,134 124,150 140,160 L140,184 L160,184 L160,160 C176,150 200,134 204,104 C208,70 188,40 150,40 Z" fill="#F2C9C2" stroke="#B0786E" stroke-width="2"/><ellipse cx="150" cy="188" rx="17" ry="9" fill="#E9B2A8" stroke="#B0786E" stroke-width="2"/><path d="M66,96 C80,90 90,94 96,102 M234,96 C220,90 210,94 204,102" stroke="#B0786E" stroke-width="2" fill="none"/><ellipse cx="58" cy="100" rx="11" ry="8" fill="#F2D6C9" stroke="#B0786E" stroke-width="1.6"/><ellipse cx="242" cy="100" rx="11" ry="8" fill="#F2D6C9" stroke="#B0786E" stroke-width="1.6"/><path d="M118,200 H182" stroke="#0C2A35" stroke-width="2.4" marker-start="url(#sgAr)" marker-end="url(#sgAr)"/><use href="#sgPain" x="150" y="112"/><text x="150" y="226" text-anchor="middle" font-size="12.5" font-weight="800" fill="#0C2A35">מזיזים את צוואר הרחם בבדיקה אגנית</text><text x="150" y="244" text-anchor="middle" font-size="12" font-weight="800" fill="#A3402E">כאב אגני קשה מאוד</text></svg></div><div class="sgx"><h3>שנדליר</h3><div class="sgr"><b>איך בודקים</b><p>בבדיקה אגנית מזיזים את צוואר הרחם</p></div><div class="sgr"><b>מה רואים</b><p>כאב אגני קשה מאוד. רגישות בהזזת צוואר הרחם יכולה להופיע גם בדלקת תוספתן, כי התוספתן המודלק מגרה את איברי האגן</p></div><div class="sgr m"><b>מה זה אומר</b><p>מחלה דלקתית של האגן</p></div><small class="sgc">איור של המערך · <b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1158–1159</bdi> · פרק 94 עמ׳ <bdi dir="ltr">1417</bdi></small></div></div></div>
  <div class="grid f" style="margin-top:12px">
   <div class="box r"><b class="t">שימו לב</b>לרוב הסימנים אין רגישות וסגוליות מספיקות לאבחנה לבדם. הם תוספת לאנמנזה ולבדיקה המלאה</div>
   <figure><img src="img/cullen-sign.jpg" alt="שטף דם סביב הטבור" style="max-height:24vh"><figcaption>סימן קאלן: שטף דם סביב הטבור · <bdi dir="ltr">Herbert L. Fred, MD &amp; Hendrik A. van Dijk · CC BY 2.0 · Wikimedia Commons</bdi></figcaption></figure>
  </div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1158–1159</bdi> (טבלה <bdi dir="ltr">85.4</bdi>)</span><span>סימנים</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1158–1159</bdi> (טבלה <span class="nw"><bdi dir="ltr">85.4</bdi>)</span></span><span>סימנים</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -352,7 +422,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <ul class="b sm">
     <li><b>קודם אבחנה מבדלת, אחר כך הדמיה.</b> לא שולחים כל בטן <span class="nw">ל-<bdi>CT</bdi></span> באופן אוטומטי</li>
-    <li><b>אולטרסאונד:</b> בלי קרינה, מהיר, ליד המיטה (<bdi>POCUS</bdi>). זמין <span class="nw">ל-<bdi>liver</bdi></span> ולדרכי המרה, לכלי הדם, למערכת השתן ולאגן. מוגבל בגזים במעי ובמטופלים גדולי גוף</li>
+    <li><b>אולטרסאונד:</b> בלי קרינה, מהיר, ליד המיטה <span class="nw">(<bdi>POCUS</bdi>).</span> זמין <span class="nw">ל-<bdi>liver</bdi></span> ולדרכי המרה, לכלי הדם, למערכת השתן ולאגן. מוגבל בגזים במעי ובמטופלים גדולי גוף</li>
     <li><b>צילום בטן:</b> דיוק נמוך יותר, אבל מהיר:</li>
    </ul>
    <div class="flow" style="margin-top:8px">
@@ -369,18 +439,18 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 <section class="s"><div class="card">
  <div class="kick"><b>11</b>הדמיה · חלק ב׳</div>
- <h2><bdi>CT</bdi>, <bdi>MRI</bdi> ולפרוסקופיה אבחנתית</h2>
+ <h2><span class="nw"><bdi>CT</bdi>,</span> <bdi>MRI</bdi> ולפרוסקופיה אבחנתית</h2>
  <div class="num">
   <div><b dir="ltr">30%</b><span>פחות דיוק <span class="nw">ב-<bdi>CT</bdi></span> בלי חומר ניגוד לווריד</span></div>
   <div><b dir="ltr">&gt;1 h</b><span>עיכוב אפשרי בגלל חומר ניגוד לשתייה, בלי רווח באבחנה</span></div>
-  <div><b dir="ltr">42% · 90%</b><span>תמותה בחסימה של <bdi>SMA</bdi>: עם <bdi>CT</bdi> בחומר ניגוד · בלעדיו</span></div>
+  <div><b dir="ltr">42% · 90%</b><span>תמותה בחסימה של <span class="nw"><bdi>SMA</bdi>:</span> עם <bdi>CT</bdi> בחומר ניגוד · בלעדיו</span></div>
   <div><b dir="ltr">&gt;90%</b><span>רגישות וסגוליות של <bdi>MRI</bdi> לתוספתן בהיריון</span></div>
  </div>
  <div class="grid f">
   <ul class="b sm">
    <li><b><bdi>CT</bdi> היא בדיקת הבחירה</b> היום. חומר ניגוד לווריד משפר מאוד את הדיוק. חומר לשתייה רק בחשד לניקוב או לדליפה מהשקה</li>
    <li><b><bdi>CTA</bdi></b> בחשד לאיסכמיה מזנטרית או לדיסקציה. מראה גם דופן מעי שלא נצבעת</li>
-   <li><b><bdi>MRI</bdi>:</b> בלי קרינה, טוב לילדים ולהיריון. יקר וארוך (<bdi dir="ltr">30–90</bdi> דקות)</li>
+   <li><b><span class="nw"><bdi>MRI</bdi>:</span></b> בלי קרינה, טוב לילדים ולהיריון. יקר וארוך <span class="nw">(<bdi dir="ltr">30–90</bdi></span> דקות)</li>
    <li><b>צנתור:</b> היום בעיקר לטיפול, או <span class="nw">כשה-<bdi>CTA</bdi></span> לא חד-משמעי</li>
    <li><b>לפרוסקופיה אבחנתית:</b> כשלא ברור, למשל תוספתן מול בעיה גינקולוגית, אחרי ניתוח בריאטרי ובחבלה</li>
   </ul>
@@ -421,9 +491,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>מתי אפשר בלי ניתוח?</h2>
  <div class="box r" style="margin-bottom:12px"><b class="t">התנאי הראשון: יציבות המודינמית</b>חולה לא יציב בגלל התהליך בבטן כנראה לא יצליח בטיפול שמרני. לא מעכבים ניתוח</div>
  <div class="num n3">
-  <div><b dir="ltr">29%</b><span>מהמטופלים באנטיביוטיקה לתוספתן עברו כריתה תוך 90 יום (<bdi>CODA</bdi>)</span></div>
+  <div><b dir="ltr">29%</b><span>מהמטופלים באנטיביוטיקה לתוספתן עברו כריתה תוך 90 יום <span class="nw">(<bdi>CODA</bdi>)</span></span></div>
   <div><b dir="ltr">40%</b><span>שיעור סיבוכים עד כ-40% בניתוח חירום לדיברטיקוליטיס</span></div>
-  <div><b dir="ltr">71.4–94%</b><span>הצלחה בניקוב מכוסה של <span class="nw">ה-<bdi>sigmoid</bdi></span>: צום ואנטיביוטיקה לווריד</span></div>
+  <div><b dir="ltr">71.4–94%</b><span>הצלחה בניקוב מכוסה של <span class="nw">ה-<bdi>sigmoid</bdi>:</span> צום ואנטיביוטיקה לווריד</span></div>
  </div>
  <div class="grid">
   <ul class="b sm">
@@ -448,14 +518,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div class="box b"><b class="t">היריון</b>
     <ul class="b sm">
      <li>תוספתן: כ-100 לכל 100,000 לידות, עם יותר פריטוניטיס ואלח דם. <b>מנתחים</b>: טיפול שמרני מסוכן יותר</li>
-     <li>מעדיפים אולטרסאונד <span class="nw">ו-<bdi>MRI</bdi></span>. אם צריך <bdi>CT</bdi>, לא מעכבים: עיכוב מסכן את האם ואת העובר</li>
-     <li>מנה לעובר <span class="nw">ב-<bdi>CT</bdi></span> בטן ואגן: <span class="nw">כ-<bdi dir="ltr">25 mGy</bdi></span>. סיכון נמוך עד <bdi dir="ltr">50 mGy</bdi>. הרגישות לטרטוגניות הגבוהה ביותר בשבועות <bdi dir="ltr">10–17</bdi></li>
+     <li>מעדיפים אולטרסאונד <span class="nw">ו-<bdi>MRI</bdi>.</span> אם צריך <span class="nw"><bdi>CT</bdi>,</span> לא מעכבים: עיכוב מסכן את האם ואת העובר</li>
+     <li>מנה לעובר <span class="nw">ב-<bdi>CT</bdi></span> בטן ואגן: <span class="nw">כ-<bdi dir="ltr">25 mGy</bdi>.</span> סיכון נמוך עד <span class="nw"><bdi dir="ltr">50 mGy</bdi>.</span> הרגישות לטרטוגניות הגבוהה ביותר בשבועות <bdi dir="ltr">10–17</bdi></li>
     </ul></div>
    <div class="box"><b class="t">נשים · גברים</b>אנדומטריוזיס (כאב מחזורי), תסביב שחלה, היריון מחוץ לרחם. בגברים: תסביב אשך ואפידידימיטיס</div>
   </div>
   <div style="display:grid;gap:10px">
    <div class="box a"><b class="t">קשישים</b>הסתמנות לא טיפוסית, תרופות רבות. <b>שבריריות</b> מנבאת תוצאות טוב יותר מהגיל לבדו</div>
-   <div class="box a"><b class="t">מדוכאי חיסון</b>סטרואידים, השתלה, כימותרפיה, <bdi>HIV</bdi>: הפריטוניטיס מוסווית. סף חשד נמוך</div>
+   <div class="box a"><b class="t">מדוכאי חיסון</b>סטרואידים, השתלה, כימותרפיה, <span class="nw"><bdi>HIV</bdi>:</span> הפריטוניטיס מוסווית. סף חשד נמוך</div>
    <div class="box n"><b class="t">חולים קשים בטיפול נמרץ</b>מונשמים, בלבול. כולציסטיטיס בלי אבנים, איסכמיה ממינון גבוה של וזופרסורים, <bdi>Ogilvie</bdi></div>
    <div class="box n"><b class="t">אחרי ניתוח בריאטרי</b>בקע פנימי, דליפה, כיב בהשקה (דימום או ניקוב), אבני מרה אחרי ירידה מהירה במשקל</div>
   </div>
@@ -468,13 +538,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>מחקרים והנחיות שכדאי להכיר</h2>
  <div class="grid">
   <div class="study"><div class="y"><bdi>World J Surg</bdi> 2021 · הנחיות <bdi>ERAS</bdi></div><b>ניתוח לפרוטומיה דחוף: ההנחיות הראשונות</b>
-   <p>הנחיות הסכמה ראשונות לטיפול במנותחי לפרוטומיה דחופה בגישת <bdi>ERAS</bdi>. בחלק הראשון 12 רכיבים של הטיפול לפני הניתוח: אבחנה מהירה, הערכה ואופטימיזציה. ההדגשה: הטיפול הראשוני חשוב במיוחד בחולים עם אלח דם ושיבוש פיזיולוגי</p>
+   <p>הנחיות הסכמה ראשונות לטיפול במנותחי לפרוטומיה דחופה בגישת <span class="nw"><bdi>ERAS</bdi>.</span> בחלק הראשון 12 רכיבים של הטיפול לפני הניתוח: אבחנה מהירה, הערכה ואופטימיזציה. ההדגשה: הטיפול הראשוני חשוב במיוחד בחולים עם אלח דם ושיבוש פיזיולוגי</p>
    <small>Peden CJ et al. World J Surg 2021;45:1272-90</small></div>
-  <div class="study"><div class="y"><bdi>Ann Surg</bdi> 2021 · 49 בתי חולים</div><b><bdi>ELF</bdi>: שבריריות בקשישים בלפרוטומיה דחופה</b>
-   <p>937 בני 65 ומעלה. 20% שבריריים. תמותה ב-90 יום: 19.5%. השבריריות העלתה את הסיכון למוות בלי קשר לגיל (<bdi dir="ltr">aOR 3.18</bdi> בדרגה 5, <bdi dir="ltr">6.10</bdi> בדרגות 6–7)</p>
+  <div class="study"><div class="y"><bdi>Ann Surg</bdi> 2021 · 49 בתי חולים</div><b><span class="nw"><bdi>ELF</bdi>:</span> שבריריות בקשישים בלפרוטומיה דחופה</b>
+   <p>937 בני 65 ומעלה. 20% שבריריים. תמותה ב-90 יום: 19.5%. השבריריות העלתה את הסיכון למוות בלי קשר לגיל <span class="nw">(<bdi dir="ltr">aOR 3.18</bdi></span> בדרגה 5, <bdi dir="ltr">6.10</bdi> בדרגות 6–7)</p>
    <small>Parmar KL et al. Ann Surg 2021;273:709-18</small></div>
   <div class="study"><div class="y"><bdi>World J Emerg Surg</bdi> 2021 · 46 מדינות</div><b>מסלולים גלובליים לזיהום תוך-בטני</b>
-   <p>מסמך משותף של חמש אגודות (<bdi>WSES</bdi>, <bdi>SIS-E</bdi>, <bdi>AAST</bdi> ועוד). עמודי התווך: זיהוי מוקדם, שליטה במקור, אנטיביוטיקה מתאימה וייצוב פיזיולוגי מהיר</p>
+   <p>מסמך משותף של חמש אגודות <span class="nw">(<bdi>WSES</bdi>,</span> <span class="nw"><bdi>SIS-E</bdi>,</span> <bdi>AAST</bdi> ועוד). עמודי התווך: זיהוי מוקדם, שליטה במקור, אנטיביוטיקה מתאימה וייצוב פיזיולוגי מהיר</p>
    <small>Sartelli M et al. World J Emerg Surg 2021;16:49</small></div>
   <div class="study"><div class="y"><bdi>World J Emerg Surg</bdi> 2022 · הנחיות <bdi>OBA</bdi></div><b>בטן חריפה אחרי ניתוח בריאטרי</b>
    <p>הנחיות <bdi>WSES</bdi> עם מנתחים בריאטריים לסיבוכים מאוחרים (יותר מ-4 שבועות) אחרי שרוול ומעקף. הכרת האנטומיה ועבודה משותפת עם רדיולוגים, אנדוסקופאים ומרדימים משפרות תוצאות</p>
@@ -493,14 +563,26 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li><bdi>CT</bdi> עם חומר ניגוד לווריד היא בדיקת הבחירה, אבל קודם אנמנזה ובדיקה</li>
   <li>חולה לא יציב לא מחכה: החייאה, אנטיביוטיקה רחבה, שיחה כנה וחדר ניתוח</li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 85 <bdi>The Acute Abdomen</bdi> (עמ׳ <bdi dir="ltr">1155–1165</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906) <span class="nw">ו-<bdi>Musser</bdi></span> (1904), נחלת הכלל · צילומים: <bdi>Hellerhoff</bdi>, <bdi>James Heilman</bdi> (<bdi>CC BY-SA</bdi>) <span class="nw">ו-<bdi>H.L. Fred · H.A. van Dijk</bdi></span> (<bdi>CC BY 2.0</bdi>), <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 85 <bdi>The Acute Abdomen</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1155–1165</bdi>)</span></div>
+ <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906) <span class="nw">ו-<bdi>Musser</bdi></span> (1904), נחלת הכלל · צילומים: <span class="nw"><bdi>Hellerhoff</bdi>,</span> <bdi>James Heilman</bdi> <span class="nw">(<bdi>CC BY-SA</bdi>)</span> <span class="nw">ו-<bdi>H.L. Fred · H.A. van Dijk</bdi></span> <span class="nw">(<bdi>CC BY 2.0</bdi>),</span> <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
 <script>
 document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz').forEach(function(z){z.addEventListener('click',function(){w.querySelectorAll('.hz').forEach(function(x){x.classList.toggle('on',x===z)});w.querySelectorAll('.hzi').forEach(function(i){i.hidden=i.dataset.hzi!==z.dataset.hz;i.style.setProperty('--c',z.style.getPropertyValue('--c'))});var h=w.querySelector('.hint');if(h)h.hidden=true;});});});
+</script>
+<script>
+(function () {
+  var d = document.querySelector('.sgdlg'); if (!d) return; var body = d.querySelector('.sgbody');
+  /* the dialog and the drawings' shared parts live on the page itself, above the slide, the brand bar and the bottom bar */
+  var defs = d.querySelector('svg[aria-hidden]'); if (defs) document.body.appendChild(defs); document.body.appendChild(d);
+  function open(k) { var src = d.querySelector('.sgd[data-sgd="' + k + '"]'); if (!src) return; body.innerHTML = ''; var c = src.cloneNode(true); c.hidden = false; c.removeAttribute('data-sgd'); body.appendChild(c); d.hidden = false; d.querySelector('.sgclose').focus({ preventScroll: true }); }
+  function close() { d.hidden = true; body.innerHTML = ''; }
+  [].forEach.call(document.querySelectorAll('.sgt'), function (b) { b.addEventListener('click', function () { open(b.dataset.sg); }); b.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); open(b.dataset.sg); } }); });
+  d.addEventListener('click', function (e) { if (e.target === d || e.target.closest('.sgclose')) close(); });
+  document.addEventListener('keydown', function (e) { if (d.hidden) return; if (e.key === 'Escape') close(); e.stopPropagation(); }, true);
+})();
 </script>
 <script>
 (function () {
@@ -516,5 +598,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>הגישה לחולה בשוק · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -63,6 +63,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 @media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
 @media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+.stype{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:0 0 12px}.stype>div{border-radius:12px;padding:8px 10px;background:color-mix(in srgb,var(--c) 10%,#fff);border:1px solid color-mix(in srgb,var(--c) 40%,#fff);border-top:4px solid var(--c)}
+.stype b{display:block;font-size:16px;color:var(--navy)}.stype i{display:block;font-style:normal;font-weight:900;font-size:15px;color:var(--c);letter-spacing:.01em}.stype small{display:block;font-size:12.5px;color:var(--muted);margin-top:2px;line-height:1.35}
+.stype small.sub{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}.stype small.sub span{background:#fff;border:1px solid color-mix(in srgb,var(--c) 45%,#fff);border-radius:999px;padding:1px 7px;font-weight:700;color:var(--g3)}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.stype{grid-template-columns:1fr 1fr}}
 /*BRAND*/
 .brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
 .brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
@@ -86,7 +90,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -116,9 +120,56 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -140,34 +191,40 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>1</b>מטרות הלמידה</div>
  <h2>בסוף המפגש תדעו</h2>
  <ol class="obj">
-  <li>להגדיר שוק ולמיין אותו לארבעה סוגים: היפובולמי, חלוקתי, קרדיוגני וחסימתי</li>
+  <li>להגדיר שוק ולמיין אותו לארבעה סוגים: היפובולמי, קרדיוגני, חסימתי וחלוקתי (ספטי, אנפילקטי ונוירוגני)</li>
   <li>להסביר את מנגנוני הפיצוי של הגוף ואת משוואת אספקת החמצן</li>
   <li>לזהות שוק ליד המיטה ולהכיר את מגבלות הכלים: בדיקה גופנית, סימנים חיוניים, מדד שוק, לקטט וחוסר בסיס</li>
   <li>לנהל שוק מדמם: החייאה לשליטה בנזק, יחס 1:1:1, פרוטוקול עירוי מסיבי וחומצה טרנקסמית</li>
   <li>להכיר את העקרונות של טיפול בשוק חלוקתי, קרדיוגני וחסימתי</li>
  </ol>
- <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 33 (עמ׳ <bdi dir="ltr">222–248</bdi>) · פרק 46 (עמ׳ <bdi dir="ltr">531–536, 545</bdi>)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 33 (עמ׳ <span class="nw"><bdi dir="ltr">222–248</bdi>)</span> · פרק 46 (עמ׳ <span class="nw"><bdi dir="ltr">531–536, 545</bdi>)</span></span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 <section class="s"><div class="card">
  <div class="kick"><b>2</b>הגדרה וסיווג</div>
  <h2>מה זה שוק ואיפה הבעיה?</h2>
  <p class="lead" style="margin-bottom:10px"><b>שוק</b> הוא אספקת דם לא מספקת לרקמות, שמתבטאת בפגיעה באיברי המטרה: לקטט עולה, שינוי בהכרה, פחות שתן ועלייה באנזימי הכבד. לא רק חמצן חסר: הדם מביא לתאים גם חומרי מזון, בופרים והורמונים</p>
+ <div class="stype">
+  <div style="--c:#C9893F"><b>היפובולמי</b><i><bdi dir="ltr">Hypovolemic</bdi></i><small>דימום או אובדן נוזלים</small></div>
+  <div style="--c:#A3402E"><b>קרדיוגני</b><i><bdi dir="ltr">Cardiogenic</bdi></i><small>כשל של המשאבה</small></div>
+  <div style="--c:#2F6FA8"><b>חסימתי</b><i><bdi dir="ltr">Obstructive</bdi></i><small>חסימה לזרימה, מחוץ ללב</small></div>
+  <div style="--c:#00967D"><b>חלוקתי</b><i><bdi dir="ltr">Distributive</bdi></i><small class="sub"><span>ספטי · <bdi dir="ltr">Septic</bdi></span><span>אנפילקטי · <bdi dir="ltr">Anaphylactic</bdi></span><span>נוירוגני · <bdi dir="ltr">Neurogenic</bdi></span></small></div>
+ </div>
  <div class="hotw"><div class="hoti"><img src="img/shock-cv-system.png" alt="מערכת הדם: heart, great vessels ו-capillary beds"><svg viewBox="0 0 1280 1280" preserveAspectRatio="none" style="--lw:24;--bf:31px">
   <path class="hz" data-hz="o" d="M384,457 C413,452 434,451 448,466 C462,481 462,519 466,548 C470,577 474,614 475,640 C476,666 478,686 475,704 C472,722 464,733 457,750 C450,767 436,784 430,804 C424,824 418,845 420,868 C422,891 437,921 439,941 C441,961 438,976 430,987 C422,998 414,991 393,1005 C372,1019 328,1044 302,1069 C276,1094 253,1140 238,1152 C223,1164 219,1168 210,1143 C201,1118 190,1051 183,1005 C176,959 166,914 165,868 C164,822 166,778 174,731 C182,684 193,624 210,585 C227,546 245,515 274,494 C303,473 355,462 384,457 Z M877,448 C901,451 955,455 987,475 C1019,495 1048,527 1069,567 C1090,607 1104,663 1115,713 C1126,763 1132,819 1133,868 C1134,917 1130,958 1124,1005 C1118,1052 1108,1123 1097,1152 C1086,1181 1075,1188 1060,1179 C1045,1170 1029,1121 1005,1097 C981,1073 938,1048 914,1033 C890,1018 865,1022 859,1005 C853,988 876,962 877,932 C878,902 877,852 868,823 C859,794 834,779 823,759 C812,739 806,727 804,704 C802,681 810,654 813,622 C816,590 818,540 823,512 C828,484 832,468 841,457 C850,446 853,445 877,448 Z" style="--c:#2F6FA8"/>
   <path class="hz" data-hz="d" d="M366,1099 a267,130 0 1,0 534,0 a267,130 0 1,0 -534,0 Z M470,402 a167,128 0 1,0 334,0 a167,128 0 1,0 -334,0 Z" style="--c:#00967D"/>
   <path class="hz" data-hz="c" d="M600,748 C610,734 633,730 650,725 C667,720 683,718 700,720 C717,722 739,729 752,738 C765,747 772,761 778,775 C784,789 785,803 786,820 C787,837 789,861 786,878 C783,895 778,910 770,920 C762,930 748,936 735,938 C722,940 708,934 695,930 C682,926 670,919 658,912 C646,905 635,899 625,890 C615,881 606,873 600,860 C594,847 590,829 590,810 C590,791 590,762 600,748 Z" style="--c:#A3402E"/>
   <path class="hz ln" data-hz="h" d="M542,519 C560,535 590,560 603,586 C610,605 611,640 611,674 C612,700 613,720 613,748 M630,895 C632,930 634,955 635,974 C630,988 600,992 565,994 M652,750 C643,730 642,712 652,698 C662,686 685,684 702,690 C715,696 722,706 724,716 M662,690 C665,660 668,640 672,620 C674,600 676,590 690,578 C705,568 720,560 740,548 C752,540 762,525 771,512 M674,935 C674,955 674,970 676,982 C690,992 720,995 758,997" style="--c:#C9893F"/>
-  <g class="hzb" style="--c:#A3402E"><circle cx="830" cy="960" r="26"/><text x="830" y="960">1</text></g>
-  <g class="hzb" style="--c:#C9893F"><circle cx="560" cy="640" r="26"/><text x="560" y="640">2</text></g>
-  <g class="hzb" style="--c:#00967D"><circle cx="330" cy="1190" r="26"/><text x="330" y="1190">3</text></g>
-  <g class="hzb" style="--c:#2F6FA8"><circle cx="1160" cy="650" r="26"/><text x="1160" y="650">4</text></g>
+  <g class="hzb" style="--c:#A3402E"><circle cx="830" cy="960" r="26"/><text x="830" y="960">2</text></g>
+  <g class="hzb" style="--c:#C9893F"><circle cx="560" cy="640" r="26"/><text x="560" y="640">1</text></g>
+  <g class="hzb" style="--c:#00967D"><circle cx="330" cy="1190" r="26"/><text x="330" y="1190">4</text></g>
+  <g class="hzb" style="--c:#2F6FA8"><circle cx="1160" cy="650" r="26"/><text x="1160" y="650">3</text></g>
  </svg></div>
   <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא על סוג השוק</p>
-   <div class="hzi" data-hzi="c" hidden><b>1 · <bdi dir="ltr">Heart</bdi>: שוק קרדיוגני</b><p>כשל של המשאבה, עם כיווץ כלי דם מפצה: "שוק קר". הסיבה השכיחה: מחלת לב כלילית, אוטם חריף או השלכותיו</p></div>
-   <div class="hzi" data-hzi="h" hidden><b>2 · <bdi dir="ltr">Great vessels</bdi>: שוק היפובולמי</b><p>אובדן נפח: דימום, או אובדן נוזלים בהקאות, שלשולים, פיסטולות ונקזים. תפוקת לב נמוכה בגלל מילוי נמוך, תנגודת כלי דם גבוהה, גפיים קרות</p></div>
-   <div class="hzi" data-hzi="d" hidden><b>3 · <bdi dir="ltr">Microcirculation</bdi>: שוק חלוקתי</b><p>הרחבת כלי דם ופיזור לא תקין של נפח הדם: ספסיס, פגיעה <span class="nw">ב-<bdi dir="ltr">spinal cord</bdi></span> (נוירוגני), אנפילקסיס, משבר אדרנלי. לרוב "שוק חם"</p></div>
-   <div class="hzi" data-hzi="o" hidden><b>4 · מחוץ <span class="nw">ל-<bdi dir="ltr">heart</bdi></span> <span class="nw">ול-<bdi dir="ltr">lungs</bdi></span>: שוק חסימתי</b><p>חזה אוויר בלחץ, טמפונדה, פריקרדיטיס מכווצת ותסחיף ריאתי מסיבי. הטיפול: להסיר את החסימה</p></div>
+   <div class="hzi" data-hzi="c" hidden><b>2 · שוק קרדיוגני · <bdi dir="ltr">Cardiogenic</bdi></b><p>הלב: כשל של המשאבה, עם כיווץ כלי דם מפצה: "שוק קר". הסיבה השכיחה: מחלת לב כלילית, אוטם חריף או השלכותיו</p></div>
+   <div class="hzi" data-hzi="h" hidden><b>1 · שוק היפובולמי · <bdi dir="ltr">Hypovolemic</bdi></b><p>כלי הדם הגדולים: אובדן נפח. דימום, או אובדן נוזלים בהקאות, שלשולים, פיסטולות ונקזים. תפוקת לב נמוכה בגלל מילוי נמוך, תנגודת כלי דם גבוהה, גפיים קרות</p></div>
+   <div class="hzi" data-hzi="d" hidden><b>4 · שוק חלוקתי · <bdi dir="ltr">Distributive</bdi></b><p>מחזור הדם הקטן: הרחבת כלי דם ופיזור לא תקין של נפח הדם. שלושה סוגים עיקריים: <b>ספטי</b> <span class="nw"><bdi dir="ltr">(Septic)</bdi>,</span> <b>אנפילקטי</b> <bdi dir="ltr">(Anaphylactic)</bdi> <b>ונוירוגני</b> <bdi dir="ltr">(Neurogenic)</bdi> אחרי פגיעה <span class="nw">ב-<bdi dir="ltr">spinal cord</bdi>.</span> גם משבר אדרנלי. לרוב "שוק חם"</p></div>
+   <div class="hzi" data-hzi="o" hidden><b>3 · שוק חסימתי · <bdi dir="ltr">Obstructive</bdi></b><p>מחוץ ללב ולריאות: חזה אוויר בלחץ, טמפונדה, פריקרדיטיס מכווצת ותסחיף ריאתי מסיבי. הטיפול: להסיר את החסימה</p></div>
    <div class="box n" style="margin-top:10px"><b class="t">שימו לב</b>סוגי שוק יכולים להופיע יחד באותו חולה. פצוע יכול לדמם וגם להיות בטמפונדה</div>
   </div></div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 33 עמ׳ <bdi dir="ltr">222–223, 226–227</bdi> · פרק 46 עמ׳ <bdi dir="ltr">533–536</bdi></span><span>איור: <bdi>Blausen.com staff (2014), WikiJournal of Medicine</bdi> · <bdi>CC BY 3.0</bdi> · <bdi>Wikimedia Commons</bdi></span></div>
@@ -178,9 +235,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>איך הגוף מפצה</h2>
  <div class="grid">
   <div class="flow">
-   <div><b>עצבי</b><span>ירידה בלחץ מפעילה את הברורצפטורים (<bdi dir="ltr">aortic arch</bdi>, <bdi dir="ltr">atria</bdi>, <bdi dir="ltr">carotid sinus</bdi>). שחרור אדרנלין ונוראדרנלין: דופק, התכווצות ותנגודת עולים</span></div>
+   <div><b>עצבי</b><span>ירידה בלחץ מפעילה את הברורצפטורים <span class="nw">(<bdi dir="ltr">aortic arch</bdi>,</span> <span class="nw"><bdi dir="ltr">atria</bdi>,</span> <span class="nw"><bdi dir="ltr">carotid sinus</bdi>).</span> שחרור אדרנלין ונוראדרנלין: דופק, התכווצות ותנגודת עולים</span></div>
    <div><b>הסטת זרימה</b><span>הדם מוסט מהעור, השרירים <span class="nw">וה-<bdi dir="ltr">splanchnic circulation</bdi></span> אל האיברים החיוניים</span></div>
-   <div><b>הורמונלי</b><span>רנין <span class="nw">מה-<bdi dir="ltr">kidney</bdi></span>, אנגיוטנסין 2 ואלדוסטרון: החזרת נתרן ומים. <bdi>ADH</bdi> <span class="nw">מה-<bdi dir="ltr">pituitary</bdi></span>: החזרת מים חופשיים</span></div>
+   <div><b>הורמונלי</b><span>רנין <span class="nw">מה-<bdi dir="ltr">kidney</bdi>,</span> אנגיוטנסין 2 ואלדוסטרון: החזרת נתרן ומים. <bdi>ADH</bdi> <span class="nw">מה-<bdi dir="ltr">pituitary</bdi>:</span> החזרת מים חופשיים</span></div>
    <div><b>גיוס נוזלים</b><span>הלחץ ההידרוסטטי בנימים יורד. מים עוברים מהחללים הבין-תאי והתוך-תאי אל כלי הדם</span></div>
   </div>
   <div style="display:grid;gap:10px">
@@ -199,7 +256,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <div class="flow">
     <div><b>אספקה <bdi>DO₂</bdi></b><span>תפוקת לב × תכולת החמצן בדם העורקי</span></div>
-    <div><b>תכולה <bdi>CaO₂</bdi></b><span><bdi dir="ltr">(1.34 × Hb × SaO₂) + (0.003 × PaO₂)</bdi>. החמצן המומס בפלזמה כמעט זניח</span></div>
+    <div><b>תכולה <bdi>CaO₂</bdi></b><span><span class="nw"><bdi dir="ltr">(1.34 × Hb × SaO₂) + (0.003 × PaO₂)</bdi>.</span> החמצן המומס בפלזמה כמעט זניח</span></div>
     <div><b>תפוקת לב</b><span>דופק × נפח פעימה. באדם ממוצע <bdi dir="ltr">4–6</bdi> ליטר לדקה</span></div>
    </div>
    <ul class="b sm" style="margin-top:12px">
@@ -209,7 +266,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   </div>
   <div style="display:grid;gap:10px">
    <div class="box a"><b class="t">"אופטימיזציה" לערכים על-נורמליים</b>בשנות ה-80 דחפו את תפוקת הלב ואת צריכת החמצן לערכים גבוהים בנוזלים ובדובוטמין. מחקרים אקראיים לא הראו תועלת. נוזלים בכמות גדולה הוסיפו כשל רב-מערכתי ותסמונת מדור בבטן</div>
-   <div class="box n"><b class="t">צנתר <span class="nw">ב-<bdi dir="ltr">pulmonary artery</bdi></span> (<bdi>Swan-Ganz</bdi>)</b>כמעט נעלם מהטיפול הנמרץ הכירורגי (חוץ מניתוחי לב). הפסקת השימוש בו לא פגעה בתוצאות</div>
+   <div class="box n"><b class="t">צנתר <span class="nw">ב-<bdi dir="ltr">pulmonary artery</bdi></span> <span class="nw">(<bdi>Swan-Ganz</bdi>)</span></b>כמעט נעלם מהטיפול הנמרץ הכירורגי (חוץ מניתוחי לב). הפסקת השימוש בו לא פגעה בתוצאות</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 33 עמ׳ <bdi dir="ltr">235–237</bdi> · פרק 46 עמ׳ <bdi dir="ltr">531</bdi></span><span>אספקת חמצן</span></div>
@@ -222,7 +279,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <ul class="b sm">
     <li><b>מראה ומצב נפשי:</b> אדישות, תגובות איטיות, חוסר שקט. פנים מתוחות וחרדות, עיניים שקועות</li>
-    <li><b>עור:</b> חיוור או אפרפר, קר, לח ודביק. כתמים (<bdi>mottling</bdi>) באזורים הנמוכים של הגוף</li>
+    <li><b>עור:</b> חיוור או אפרפר, קר, לח ודביק. כתמים <span class="nw">(<bdi>mottling</bdi>)</span> באזורים הנמוכים של הגוף</li>
     <li><b>ורידים שטחיים:</b> קרוסים ולא מתמלאים בלחיצה. פעימות <span class="nw">ה-<bdi dir="ltr">jugular veins</bdi></span> בקושי נראות</li>
     <li><b>דופק:</b> בדרך כלל מהיר, קטן וחוטי. <b>לחץ הדם</b> נמוך ולחץ הדופק צר</li>
     <li><b>נשימה:</b> מהירה, בעומק משתנה. <b>צמא, הקאות וירידה בשתן</b></li>
@@ -230,13 +287,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    </ul>
    <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>בדקו חולה אחד במיון או בטיפול נמרץ: הכרה, צבע וחום העור, מילוי נימי, דופק, לחץ דם ושתן לשעה. הציגו לבכיר/ה בשתי דקות ואמרו איזה סוג שוק אתם חושדים</div>
   </div>
-  <figure><img src="img/shock-capillary-refill.jpg" alt="בדיקת מילוי נימי בכרית האצבע" style="max-height:52vh"><figcaption>בדיקת מילוי נימי: לוחצים על כרית האצבע עד שהיא מלבינה, משחררים ומודדים כמה זמן לוקח לצבע לחזור · <bdi>Thailand2021</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/shock-capillary-refill.jpg" alt="בדיקת מילוי נימי בכרית האצבע" style="max-height:52vh"><figcaption>בדיקת מילוי נימי: לוחצים על כרית האצבע עד שהיא מלבינה, משחררים ומודדים כמה זמן לוקח לצבע לחזור · <span class="nw"><bdi>Thailand2021</bdi>,</span> <span class="nw"><bdi>CC BY-SA 4.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 33 עמ׳ <bdi dir="ltr">224</bdi> (התסמונת של <bdi>Wiggers</bdi>, איור 33.2) · פרק 46 עמ׳ <bdi dir="ltr">534–535</bdi></span><span>בדיקה גופנית</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 33 עמ׳ <bdi dir="ltr">224</bdi> (התסמונת של <span class="nw"><bdi>Wiggers</bdi>,</span> איור 33.2) · פרק 46 עמ׳ <bdi dir="ltr">534–535</bdi></span><span>בדיקה גופנית</span></div>
 </div></section>
 
 <section class="s"><div class="card">
- <div class="kick"><b>6</b>שוק מדמם · כמה דם איבד?</div>
+ <div class="kick"><b>6</b>שוק היפובולמי · <bdi dir="ltr">Hypovolemic</bdi> · כמה דם איבד?</div>
  <h2>ארבע דרגות לפי <bdi>ATLS</bdi></h2>
  <div class="num">
   <div><b dir="ltr">0–15%</b><span>דרגה 1 · דופק מתחת ל-100, לחץ דם תקין, חרדה קלה</span></div>
@@ -271,7 +328,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   </div>
   <div style="display:grid;gap:10px">
    <div class="box"><b class="t">לקטט</b>סמן של מצוקה ברקמות, לא רק של חוסר חמצן. גם אדרנלין מעלה אותו. הכבד מפנה אותו. לכן מחלת כבד משנה את הערך</div>
-   <div class="box a"><b class="t">חוסר בסיס (<bdi>base deficit</bdi>)</b>מתאם טוב עם לקטט ב-24 השעות הראשונות. חוסר בסיס של 8 היה קשור לתמותה של 25% בקבוצות מסוימות. ערך שנשאר גבוה מעיד על שוק מתמשך</div>
+   <div class="box a"><b class="t">חוסר בסיס <span class="nw">(<bdi>base deficit</bdi>)</span></b>מתאם טוב עם לקטט ב-24 השעות הראשונות. חוסר בסיס של 8 היה קשור לתמותה של 25% בקבוצות מסוימות. ערך שנשאר גבוה מעיד על שוק מתמשך</div>
    <div class="box n"><b class="t">עורקי או ורידי?</b>דימום עורקי מוריד לחץ מוקדם, לפני שהלקטט עולה. בדימום ורידי איטי אפשר לאבד הרבה דם לפני ירידה בלחץ</div>
   </div>
  </div>
@@ -304,7 +361,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 </div></section>
 
 <section class="s"><div class="card">
- <div class="kick"><b>9</b>שוק מדמם · הטיפול</div>
+ <div class="kick"><b>9</b>שוק היפובולמי · <bdi dir="ltr">Hypovolemic</bdi> · הטיפול</div>
  <h2>החייאה לשליטה בנזק</h2>
  <div class="grid">
   <div>
@@ -316,9 +373,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    </div>
   </div>
   <div style="display:grid;gap:10px">
-   <div class="study"><div class="y">מחקר מכונן · <bdi>NEJM</bdi> 1994</div><b>נוזלים לפני הניתוח או אחריו (<bdi>Bickell, Mattox</bdi>)</b>
+   <div class="study"><div class="y">מחקר מכונן · <bdi>NEJM</bdi> 1994</div><b>נוזלים לפני הניתוח או אחריו <span class="nw">(<bdi>Bickell, Mattox</bdi>)</span></b>
     <p>פצועים חודרים בגו עם לחץ סיסטולי מתחת ל-90. מניעת נוזלים עד לשליטה בדימום שיפרה את ההישרדות באופן מובהק</p>
-    <small>כפי שמסוכם <span class="nw">ב-<bdi>Sabiston 22</bdi></span>, פרק 33 עמ׳ <bdi dir="ltr">239</bdi></small></div>
+    <small>כפי שמסוכם <span class="nw">ב-<bdi>Sabiston 22</bdi>,</span> פרק 33 עמ׳ <bdi dir="ltr">239</bdi></small></div>
    <div class="box a"><b class="t">למה לא ליטרים של סליין?</b>אחרי כמה שעות נשארים בכלי הדם רק <bdi dir="ltr">175–200</bdi> מ״ל מכל ליטר. כמויות גדולות מגבירות דלקת, תסמונת מדור בבטן <span class="nw">ו-<bdi>ARDS</bdi></span></div>
   </div>
  </div>
@@ -326,19 +383,19 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 </div></section>
 
 <section class="s"><div class="card">
- <div class="kick"><b>10</b>שוק מדמם · מוצרי דם</div>
+ <div class="kick"><b>10</b>שוק היפובולמי · <bdi dir="ltr">Hypovolemic</bdi> · מוצרי דם</div>
  <h2>עירוי מסיבי</h2>
  <div class="grid">
   <div>
    <ul class="b">
-    <li><b>יחס 1:1:1</b> של פלזמה, טסיות ותאים, כשאין דם מלא. מחקר <bdi>PROPPR</bdi>: אין הבדל בתמותה ב-24 שעות וב-30 יום, אבל יותר חולים הגיעו לעצירת דימום ופחות מתו מדימום ב-24 השעות הראשונות</li>
+    <li><b>יחס 1:1:1</b> של פלזמה, טסיות ותאים, כשאין דם מלא. מחקר <span class="nw"><bdi>PROPPR</bdi>:</span> אין הבדל בתמותה ב-24 שעות וב-30 יום, אבל יותר חולים הגיעו לעצירת דימום ופחות מתו מדימום ב-24 השעות הראשונות</li>
     <li><b>דם מלא</b> (סוג <bdi>O</bdi> עם נוגדנים בטיטר נמוך): ייתכן שעדיף על רכיבים, אם זמין</li>
     <li>יחידה אחת של טסיות מאפרזיס שווה לשש יחידות. לכן היא ניתנת על כל 6 יחידות תאים ו-6 פלזמה</li>
     <li>המוגלובין יורד <b>מאוחר</b> בדימום פעיל. מחליטים לפי דופק, לחץ דם ולקטט</li>
    </ul>
   </div>
   <div style="display:grid;gap:10px">
-   <div class="box"><b class="t">פרוטוקול עירוי מסיבי · דוגמה</b>צידנית ראשונה: 5 יחידות דם מלא, או 4 תאים ו-4 פלזמה מסוג <bdi>AB</bdi> או <bdi>A</bdi>. אחר כך צידניות ביחס 1:1:1. לוקחים דגימה לסוג והצלבה <b>לפני</b> העירוי</div>
+   <div class="box"><b class="t">פרוטוקול עירוי מסיבי · דוגמה</b>צידנית ראשונה: 5 יחידות דם מלא, או 4 תאים ו-4 פלזמה מסוג <bdi>AB</bdi> או <span class="nw"><bdi>A</bdi>.</span> אחר כך צידניות ביחס 1:1:1. לוקחים דגימה לסוג והצלבה <b>לפני</b> העירוי</div>
    <div class="box b"><b class="t">דם <bdi>O</bdi> שלילי</b>שמור לנשים בגיל הפוריות שסוג הדם שלהן לא ידוע או ידוע <span class="nw">כ-<bdi>Rh</bdi></span> שלילי</div>
    <div class="box a"><b class="t">חומצה טרנקסמית</b>מחקר <bdi>CRASH-2</bdi> (20,211 חולים): תמותה 14.5% לעומת 16.0%. יעילה רק בתוך 3 שעות. מספר הנדרש לטיפול: 68</div>
   </div>
@@ -347,24 +404,24 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 </div></section>
 
 <section class="s"><div class="card">
- <div class="kick"><b>11</b>שוק חלוקתי</div>
+ <div class="kick"><b>11</b>שוק חלוקתי · <bdi dir="ltr">Distributive</bdi></div>
  <h2>כלי הדם מתרחבים</h2>
  <div class="grid">
   <div style="display:grid;gap:10px">
-   <div class="box"><b class="t">נוירוגני</b>אובדן הטונוס הסימפתטי אחרי פגיעה <span class="nw">ב-<bdi dir="ltr">spinal cord</bdi></span>. "שוק חם". פגיעה מתחת <span class="nw">ל-<bdi>C5</bdi></span>: טכיקרדיה מפצה. <span class="nw">ב-<bdi>C5</bdi></span> ומעלה: לעיתים קרובות ברדיקרדיה. הטיפול: תרופות מכווצות כלים, יותר ויותר נוראדרנלין</div>
-   <div class="box n"><b class="t">לא לבלבל</b>"שוק שדרתי" הוא אובדן זמני של רפלקסים אחרי פגיעה <span class="nw">ב-<bdi dir="ltr">spinal cord</bdi></span>, לא מצב המודינמי</div>
+   <div class="box b"><b class="t">ספטי · <bdi dir="ltr">Septic</bdi></b>השוק השכיח ביותר בטיפול הנמרץ הכירורגי: הרחבת כלים ודליפה מהנימים. בהרחבה בהרצאה על החולה הספטי</div>
+   <div class="box r"><b class="t">אנפילקטי · <bdi dir="ltr">Anaphylactic</bdi></b>הטיפול הראשון: אדרנלין. אנטיהיסטמין לא פותר את בעיית דרכי האוויר. סטרואידים פועלים רק אחרי שעות</div>
   </div>
   <div style="display:grid;gap:10px">
-   <div class="box r"><b class="t">אנפילקטי</b>הטיפול הראשון: אדרנלין. אנטיהיסטמין לא פותר את בעיית דרכי האוויר. סטרואידים פועלים רק אחרי שעות</div>
-   <div class="box a"><b class="t">אנדוקריני</b>משבר אדרנלי או תרדמת מיקסדמה. רמזים: נתרן נמוך, אשלגן גבוה ותת-לחץ דם שלא מגיב לקטכולאמינים. נותנים סטרואידים בלי לחכות לתשובה</div>
-   <div class="box b"><b class="t">ספטי</b>השוק השכיח ביותר בטיפול הנמרץ הכירורגי: הרחבת כלים ודליפה מהנימים. בהרחבה בהרצאה על החולה הספטי</div>
+   <div class="box"><b class="t">נוירוגני · <bdi dir="ltr">Neurogenic</bdi></b>אובדן הטונוס הסימפתטי אחרי פגיעה <span class="nw">ב-<bdi dir="ltr">spinal cord</bdi>.</span> "שוק חם". פגיעה מתחת <span class="nw">ל-<bdi>C5</bdi>:</span> טכיקרדיה מפצה. <span class="nw">ב-<bdi>C5</bdi></span> ומעלה: לעיתים קרובות ברדיקרדיה. הטיפול: תרופות מכווצות כלים, יותר ויותר נוראדרנלין</div>
+   <div class="box n"><b class="t">לא לבלבל</b>"שוק שדרתי" הוא אובדן זמני של רפלקסים אחרי פגיעה <span class="nw">ב-<bdi dir="ltr">spinal cord</bdi>,</span> לא מצב המודינמי</div>
+   <div class="box a"><b class="t">אנדוקריני · <bdi dir="ltr">Endocrine</bdi></b>משבר אדרנלי או תרדמת מיקסדמה. רמזים: נתרן נמוך, אשלגן גבוה ותת-לחץ דם שלא מגיב לקטכולאמינים. נותנים סטרואידים בלי לחכות לתשובה</div>
   </div>
  </div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 46 עמ׳ <bdi dir="ltr">533–535</bdi> · פרק 33 עמ׳ <bdi dir="ltr">257–258</bdi></span><span>שוק חלוקתי</span></div>
+<div class="src"><span><b>Sabiston 22</b> · פרק 46 עמ׳ <bdi dir="ltr">533–535</bdi> · פרק 33 עמ׳ <bdi dir="ltr">257–258</bdi></span><span>שוק חלוקתי</span></div>
 </div></section>
 
 <section class="s"><div class="card">
- <div class="kick"><b>12</b>המשאבה</div>
+ <div class="kick"><b>12</b>שוק קרדיוגני · <bdi dir="ltr">Cardiogenic</bdi></div>
  <h2>שוק קרדיוגני</h2>
  <div class="grid">
   <div>
@@ -378,9 +435,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <ul class="b sm">
     <li><b>לב ימני:</b> נוזלים בזהירות עד אאוולמיה. אחר כך דובוטמין או מילרינון. להימנע מפנילפרין: הוא מעלה את התנגודת הריאתית</li>
-    <li><b>לב שמאלי:</b> קודם לקבוע את מצב הנפח: משקל, בצקות, אולטרסאונד של <span class="nw">ה-<bdi dir="ltr">IVC</bdi></span>. החולה יכול להיות עמוס, יבש או מאוזן</li>
+    <li><b>לב שמאלי:</b> קודם לקבוע את מצב הנפח: משקל, בצקות, אולטרסאונד של <span class="nw">ה-<bdi dir="ltr">IVC</bdi>.</span> החולה יכול להיות עמוס, יבש או מאוזן</li>
     <li>עם לחץ דם גבוה: ניטרוגליצרין או ניקרדיפין להורדת העומס</li>
-    <li>לחץ ותפוקה נמוכים: אדרנלין או דופמין. אם אין תגובה: תמיכה מכנית (בלון תוך-אאורטלי, מכשיר עזר לחדר, <bdi>ECMO</bdi>)</li>
+    <li>לחץ ותפוקה נמוכים: אדרנלין או דופמין. אם אין תגובה: תמיכה מכנית (בלון תוך-אאורטלי, מכשיר עזר לחדר, <span class="nw"><bdi>ECMO</bdi>)</span></li>
    </ul>
   </div>
  </div>
@@ -388,7 +445,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 </div></section>
 
 <section class="s"><div class="card">
- <div class="kick"><b>13</b>החסימות</div>
+ <div class="kick"><b>13</b>שוק חסימתי · <bdi dir="ltr">Obstructive</bdi></div>
  <h2>שוק חסימתי: מסירים את הסיבה</h2>
  <div class="grid">
   <div>
@@ -398,9 +455,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <div><b>תסחיף ריאתי מסיבי</b><span>הפרין. ממיסי קריש בווריד או בצנתר, עם או בלי כריתת הקריש</span></div>
    </div>
    <div class="box a" style="margin-top:10px"><b class="t">חושבים על זה מוקדם</b>האבחנות האלה דורשות חשד גבוה. <span class="nw">ה-<bdi dir="ltr">right ventricle</bdi></span> לא עומד בעלייה חדה בתנגודת הריאתית, למשל בתסחיף ריאתי</div>
-   <figure style="margin-top:10px"><img src="img/shock-tamponade.png" alt="טמפונדה: נוזל ב-pericardial sac לוחץ על ה-heart" style="max-height:24vh"><figcaption>טמפונדה: נוזל <span class="nw">ב-<bdi dir="ltr">pericardial sac</bdi></span> לוחץ על <span class="nw">ה-<bdi dir="ltr">heart</bdi></span> · <bdi>Blausen.com staff (2014)</bdi>, <bdi>CC BY 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+   <figure style="margin-top:10px"><img src="img/shock-tamponade.png" alt="טמפונדה: נוזל ב-pericardial sac לוחץ על ה-heart" style="max-height:24vh"><figcaption>טמפונדה: נוזל <span class="nw">ב-<bdi dir="ltr">pericardial sac</bdi></span> לוחץ על <span class="nw">ה-<bdi dir="ltr">heart</bdi></span> · <span class="nw"><bdi>Blausen.com staff (2014)</bdi>,</span> <span class="nw"><bdi>CC BY 3.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
   </div>
-  <figure style="align-self:start"><img src="img/shock-tension-ptx.jpg" alt="צילום חזה: חזה אוויר בלחץ משמאל, לפני נקז ואחריו"><figcaption>חזה אוויר בלחץ <span class="nw">ב-<bdi dir="ltr">left lung</bdi></span>. בתמונה השמאלית: <span class="nw">ה-<bdi dir="ltr">lung</bdi></span> קרוסה, אין סימני ריאה בצד הפגוע <span class="nw">וה-<bdi dir="ltr">mediastinum</bdi></span> נדחק לצד הנגדי. בתמונה הימנית: אחרי נקז חזה <span class="nw">ה-<bdi dir="ltr">lung</bdi></span> התפשטה · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure style="align-self:start"><img src="img/shock-tension-ptx.jpg" alt="צילום חזה: חזה אוויר בלחץ משמאל, לפני נקז ואחריו"><figcaption>חזה אוויר בלחץ <span class="nw">ב-<bdi dir="ltr">left lung</bdi>.</span> בתמונה השמאלית: <span class="nw">ה-<bdi dir="ltr">lung</bdi></span> קרוסה, אין סימני ריאה בצד הפגוע <span class="nw">וה-<bdi dir="ltr">mediastinum</bdi></span> נדחק לצד הנגדי. בתמונה הימנית: אחרי נקז חזה <span class="nw">ה-<bdi dir="ltr">lung</bdi></span> התפשטה · <span class="nw"><bdi>Hellerhoff</bdi>,</span> <span class="nw"><bdi>CC BY-SA 4.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 46 עמ׳ <bdi dir="ltr">532, 536</bdi></span><span>חסימתי</span></div>
 </div></section>
@@ -428,16 +485,16 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>15</b>מה חדש בתחום · 2021–2026</div>
  <h2>מחקרים שכדאי להכיר</h2>
  <div class="grid">
-  <div class="study"><div class="y"><bdi>NEJM</bdi> 2023 · מחקר אקראי</div><b><bdi>PATCH-Trauma</bdi>: חומצה טרנקסמית לפני בית החולים</b>
+  <div class="study"><div class="y"><bdi>NEJM</bdi> 2023 · מחקר אקראי</div><b><span class="nw"><bdi>PATCH-Trauma</bdi>:</span> חומצה טרנקסמית לפני בית החולים</b>
    <p>1,310 פצועים קשה. אין הבדל בהישרדות עם תפקוד טוב אחרי 6 חודשים (53.7% לעומת 53.5%). תמותה ב-28 יום: 17.3% לעומת 21.8%</p>
    <small>PATCH-Trauma Investigators (Gruen RL et al.) N Engl J Med 2023;389:127-36</small></div>
-  <div class="study"><div class="y"><bdi>JAMA</bdi> 2023 · מחקר אקראי</div><b><bdi>CRYOSTAT-2</bdi>: קריופרציפיטט מוקדם במינון גבוה</b>
+  <div class="study"><div class="y"><bdi>JAMA</bdi> 2023 · מחקר אקראי</div><b><span class="nw"><bdi>CRYOSTAT-2</bdi>:</span> קריופרציפיטט מוקדם במינון גבוה</b>
    <p>1,604 פצועים עם הפעלת פרוטוקול דימום מסיבי. תמותה ב-28 יום: 25.3% לעומת 26.1%, בלי הבדל. שיעור אירועי פקקת דומה</p>
    <small>Davenport R et al. JAMA 2023;330:1882-91</small></div>
-  <div class="study"><div class="y"><bdi>JAMA</bdi> 2023 · מחקר אקראי</div><b><bdi>PROCOAG</bdi>: תרכיז פרותרומבין בטראומה</b>
+  <div class="study"><div class="y"><bdi>JAMA</bdi> 2023 · מחקר אקראי</div><b><span class="nw"><bdi>PROCOAG</bdi>:</span> תרכיז פרותרומבין בטראומה</b>
    <p>324 פצועים בסיכון לעירוי מסיבי. לא חסך מוצרי דם ב-24 שעות (12 לעומת 11 יחידות). אירועי פקקת: 35% לעומת 24%</p>
    <small>Bouzat P et al. JAMA 2023;329:1367-75 (מצוטט ב-Sabiston 22)</small></div>
-  <div class="study"><div class="y"><bdi>Lancet Haematol</bdi> 2022 · מחקר אקראי</div><b><bdi>RePHILL</bdi>: דם ופלזמה באמבולנס מול סליין</b>
+  <div class="study"><div class="y"><bdi>Lancet Haematol</bdi> 2022 · מחקר אקראי</div><b><span class="nw"><bdi>RePHILL</bdi>:</span> דם ופלזמה באמבולנס מול סליין</b>
    <p>432 פצועים בשוק מדמם. התוצאה המשולבת (מוות או פינוי לקטט לקוי): 64% לעומת 65%, בלי יתרון למוצרי הדם</p>
    <small>Crombie N et al. Lancet Haematol 2022;9:e250-61</small></div>
  </div>
@@ -449,13 +506,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>חמישה דברים לקחת למחלקה</h2>
  <ol class="obj">
   <li>שוק הוא זילוח לא מספק של רקמות. מחפשים פגיעה באיברים: לקטט, הכרה, שתן</li>
-  <li>ארבעה סוגים: היפובולמי, חלוקתי, קרדיוגני וחסימתי. לפעמים יחד</li>
+  <li>ארבעה סוגים: <b>היפובולמי</b>, <b>קרדיוגני</b>, <b>חסימתי</b> <b>וחלוקתי</b> (ספטי, אנפילקטי ונוירוגני). לפעמים יחד</li>
   <li>לחץ הדם יורד מאוחר. הבדיקה הגופנית, מדד שוק, לקטט וחוסר בסיס עוזרים לזהות מוקדם</li>
   <li>בשוק מדמם: לעצור את הדימום, לתת דם במקום ליטרים של סליין, לשמור על החולה חם</li>
   <li>חסימה מנקזים, דימום עוצרים, בספסיס נותנים אנטיביוטיקה ושולטים במקור. הסוג קובע את הטיפול</li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 33 <bdi>Shock, Electrolytes, and Fluid</bdi> (עמ׳ <bdi dir="ltr">222–248</bdi>) · פרק 46 <bdi>Surgical Critical Care</bdi> (עמ׳ <bdi dir="ltr">531–536</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Blausen.com staff (2014), WikiJournal of Medicine, CC BY 3.0</bdi> · צילום חזה: <bdi>Hellerhoff, CC BY-SA 4.0</bdi> · מילוי נימי: <bdi>Thailand2021, CC BY-SA 4.0</bdi> (<bdi>Wikimedia Commons</bdi>) · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 33 <bdi>Shock, Electrolytes, and Fluid</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">222–248</bdi>)</span> · פרק 46 <bdi>Surgical Critical Care</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">531–536</bdi>)</span></div>
+ <div class="src"><span>איורים: <bdi>Blausen.com staff (2014), WikiJournal of Medicine, CC BY 3.0</bdi> · צילום חזה: <bdi>Hellerhoff, CC BY-SA 4.0</bdi> · מילוי נימי: <bdi>Thailand2021, CC BY-SA 4.0</bdi> <span class="nw">(<bdi>Wikimedia Commons</bdi>)</span> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>
@@ -477,5 +534,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>

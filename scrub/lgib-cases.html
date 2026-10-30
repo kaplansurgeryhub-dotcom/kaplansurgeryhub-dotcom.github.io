@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>דימום מדרכי העיכול התחתונות · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,7 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -116,9 +116,56 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -130,7 +177,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="cvhead"><img class="em" src="brand/emblem.jpg" alt=""><div><b>המערך לכירורגיה כללית</b><span>המרכז הרפואי קפלן</span></div></div>
  <div class="kick">Scrub In · סטודנטים שנה ד׳ · שבוע 3</div>
  <h1>דיון מקרים: דימום מדרכי העיכול התחתונות</h1>
- <p class="lead">שלושה מטופלים עם דם <span class="nw">מה-<bdi dir="ltr">rectum</bdi></span>: דימום מדיברטיקול, דימום מסיבי עם הלם ודלקת איסכמית של <span class="nw">ה-<bdi dir="ltr">colon</bdi></span>. איך מוצאים את המקור ומתי מנתחים</p>
+ <p class="lead">שלושה מטופלים עם דם <span class="nw">מה-<bdi dir="ltr">rectum</bdi>:</span> דימום מדיברטיקול, דימום מסיבי עם הלם ודלקת איסכמית של <span class="nw">ה-<bdi dir="ltr">colon</bdi>.</span> איך מוצאים את המקור ומתי מנתחים</p>
  <div class="cvsrc" data-ch="98,95" data-note=""><small>מבוסס על</small><b><bdi dir="ltr">Sabiston Textbook of Surgery</bdi> · מהדורה 22</b><div class="cvch"><span>פרק <bdi dir="ltr">98</bdi></span><span>פרק <bdi dir="ltr">95</bdi></span></div></div>
  <div class="cvlogos"><img src="brand/logo_k.webp" alt="המרכז הרפואי קפלן"><img src="brand/logo_c.webp" alt="כללית"><small>הסבב בכירורגיה · האוניברסיטה העברית</small></div>
 </div></section>
@@ -145,7 +192,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>להכיר את ההתוויות לניתוח ולהבין למה כמעט תמיד מנסים למקם את הדימום לפני כריתה</li>
   <li>לזהות דלקת איסכמית של <span class="nw">ה-<bdi dir="ltr">colon</bdi></span> ולהבין את אספקת הדם של <span class="nw">ה-<bdi dir="ltr">colon</bdi></span></li>
  </ol>
- <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 98 (עמ׳ <bdi dir="ltr">1544–1552</bdi>) · פרק 95 (עמ׳ <bdi dir="ltr">1449–1450, 1476–1479</bdi>)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 98 (עמ׳ <span class="nw"><bdi dir="ltr">1544–1552</bdi>)</span> · פרק 95 (עמ׳ <span class="nw"><bdi dir="ltr">1449–1450, 1476–1479</bdi>)</span></span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -159,7 +206,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  </div>
  <div class="grid">
   <ul class="b sm">
-   <li><b>דימום תחתון:</b> מקורו מתחת <span class="nw">ל-<bdi dir="ltr">ligament of Treitz</bdi></span>, ברוב המקרים <span class="nw">ב-<bdi dir="ltr">colon</bdi></span></li>
+   <li><b>דימום תחתון:</b> מקורו מתחת <span class="nw">ל-<bdi dir="ltr">ligament of Treitz</bdi>,</span> ברוב המקרים <span class="nw">ב-<bdi dir="ltr">colon</bdi></span></li>
    <li><b>הסימן:</b> דם אדום או בצבע בורדו, לעיתים עם קרישים. דימום <span class="nw">מה-<bdi dir="ltr">right colon</bdi></span> יכול לתת לעיתים נדירות מלנה</li>
    <li><b>הסיבה השכיחה:</b> דיברטיקולוזיס</li>
   </ul>
@@ -169,7 +216,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li><b>כלי דם:</b> אנגיודיספלזיה, איסכמיה, נזק מקרינה</li>
     <li><b>דלקתי:</b> קוליטיס זיהומית, מחלות מעי דלקתיות</li>
     <li><b>גידולי:</b> פוליפים, סרטן <span class="nw">ה-<bdi dir="ltr">colon</bdi></span></li>
-    <li><b><bdi dir="ltr">anal canal</bdi>:</b> טחורים, פיסורה, דליות <span class="nw">ב-<bdi dir="ltr">rectum</bdi></span></li>
+    <li><b><span class="nw"><bdi dir="ltr">anal canal</bdi>:</span></b> טחורים, פיסורה, דליות <span class="nw">ב-<bdi dir="ltr">rectum</bdi></span></li>
     <li><b>אחרי טיפול:</b> כריתת פוליפ, ביופסיה</li>
    </ul></div>
  </div>
@@ -208,13 +255,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <ul class="b sm">
     <li><b>מקור תחתון:</b> קרישים בצואה מרחיקים ממקור עליון (יחס סבירות 0.05). גם יחס אוריאה לקראטינין תקין</li>
-    <li><b>דיברטיקולות "כוזבות":</b> רק רירית ושכבת שריר הרירית בולטות החוצה, <span class="nw">ב-<bdi dir="ltr">mesenteric side</bdi></span>, בדיוק במקום שבו כלי הדם הקטנים (<bdi>vasa recta</bdi>) חודרים את דופן השריר</li>
+    <li><b>דיברטיקולות "כוזבות":</b> רק רירית ושכבת שריר הרירית בולטות החוצה, <span class="nw">ב-<bdi dir="ltr">mesenteric side</bdi>,</span> בדיוק במקום שבו כלי הדם הקטנים <span class="nw">(<bdi>vasa recta</bdi>)</span> חודרים את דופן השריר</li>
     <li>דיברטיקולות <span class="nw">ב-<bdi dir="ltr">40%</bdi></span> מבני <bdi dir="ltr">50–60</bdi> ובמעל <bdi dir="ltr">60%</bdi> מבני 80 ומעלה</li>
     <li>דיברטיקולוזיס היא הסיבה השכיחה לדימום תחתון מסיבי. דימום בזמן דלקת חריפה של דיברטיקול נדיר. לכן כאב עם דימום מכוון לאבחנה אחרת, כמו איסכמיה או מחלת מעי דלקתית</li>
     <li>הדימום בדרך כלל ללא כאב. בשינוי בהרגלי היציאה חושבים על גידול</li>
    </ul>
   </div>
-  <figure><img src="img/lgib-diverticula-endo.jpg" alt="דיברטיקולות ב-sigmoid colon בקולונוסקופיה"><figcaption><b>דיברטיקולות <span class="nw">ב-<bdi dir="ltr">sigmoid colon</bdi></span> בקולונוסקופיה:</b> הפתחים הכהים ליד חלל המעי · Joachim Guntau, <bdi>CC BY-SA 3.0</bdi>, Wikimedia Commons</figcaption></figure>
+  <figure><img src="img/lgib-diverticula-endo.jpg" alt="דיברטיקולות ב-sigmoid colon בקולונוסקופיה"><figcaption><b>דיברטיקולות <span class="nw">ב-<bdi dir="ltr">sigmoid colon</bdi></span> בקולונוסקופיה:</b> הפתחים הכהים ליד חלל המעי · Joachim Guntau, <span class="nw"><bdi>CC BY-SA 3.0</bdi>,</span> Wikimedia Commons</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1449–1450</bdi> · פרק 98 עמ׳ <bdi dir="ltr">1544–1545</bdi></span><span>מקרה 1</span></div>
 </div></section>
@@ -234,7 +281,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div style="display:grid;gap:10px">
    <div class="box a"><b class="t">"מצאנו דיברטיקולות". זה המקור?</b>לא בהכרח. נגע שלא מדמם לא שולל מקור גבוה יותר. לעיתים קרובות יש יותר ממקור אפשרי אחד (למשל דיברטיקולות וטחורים). לפעמים לא נמצא מקור בכלל</div>
    <div class="box"><b class="t">מתי אפשר בלי קולונוסקופיה</b>דימום קודם מדיברטיקול, דימום מתון שנעצר לבד וקולונוסקופיה איכותית בשנה האחרונה בלי גידול</div>
-   <div class="box b"><b class="t">במחלקה השבוע</b>צפו בקולונוסקופיה במטופל עם דימום. שימו לב איך מזהים "סימנים של דימום אחרון" ומה עושים בהם. אם אין, בדקו בעצמכם מטופל עם דם <span class="nw">מה-<bdi dir="ltr">rectum</bdi></span>, כולל בדיקה רקטלית בנוכחות בכיר/ה</div>
+   <div class="box b"><b class="t">במחלקה השבוע</b>צפו בקולונוסקופיה במטופל עם דימום. שימו לב איך מזהים "סימנים של דימום אחרון" ומה עושים בהם. אם אין, בדקו בעצמכם מטופל עם דם <span class="nw">מה-<bdi dir="ltr">rectum</bdi>,</span> כולל בדיקה רקטלית בנוכחות בכיר/ה</div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 98 עמ׳ <bdi dir="ltr">1545, 1549–1550</bdi></span><span>מקרה 1</span></div>
@@ -271,14 +318,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <ul class="b sm">
     <li><b>לשלול מקור עליון:</b> בדם מסיבי עם הלם, <bdi dir="ltr">10–15%</bdi> מגיעים מלמעלה. יעוץ גסטרו. גם כירורגיה ורדיולוגיה פולשנית כבר עכשיו</li>
-    <li><b>החייאה:</b> בדימום קשה ומתמשך מנות ביחס <bdi dir="ltr">1:1:1</bdi>, כמו בחבלה</li>
+    <li><b>החייאה:</b> בדימום קשה ומתמשך מנות ביחס <span class="nw"><bdi dir="ltr">1:1:1</bdi>,</span> כמו בחבלה</li>
     <li><b><bdi>CTA</bdi> היא הבדיקה הראשונה</b> בדימום משמעותי ומתמשך עם פגיעה המודינמית. מזהה דימום של <bdi dir="ltr">0.3–0.5</bdi> מ״ל לדקה, רגישות <bdi dir="ltr">85%</bdi> וסגוליות <bdi dir="ltr">92%</bdi></li>
-    <li><b>CTA חיובי:</b> אנגיוגרפיה מהר, רצוי בתוך 90 דקות, אחרת הדימום עלול להיעצר ונפספס את האמבוליזציה</li>
-    <li><b>אנגיוגרפיה:</b> צריכה דימום של <bdi dir="ltr">0.5–1</bdi> מ״ל לדקה. בלי מיקום מוקדם מתחילים <span class="nw">ב-<bdi dir="ltr">SMA</bdi></span>. הצלחה <bdi dir="ltr">25–70%</bdi></li>
-    <li><b>אמבוליזציה סופר-סלקטיבית:</b> אפשרית <span class="nw">ב-<bdi dir="ltr">98%</bdi></span>, סיבוכים <span class="nw">ב-<bdi dir="ltr">4.6%</bdi></span> (בעיקר אוטם או כיב במעי)</li>
+    <li><b><bdi dir="ltr">CTA</bdi> חיובי:</b> אנגיוגרפיה מהר, רצוי בתוך 90 דקות, אחרת הדימום עלול להיעצר ונפספס את האמבוליזציה</li>
+    <li><b>אנגיוגרפיה:</b> צריכה דימום של <bdi dir="ltr">0.5–1</bdi> מ״ל לדקה. בלי מיקום מוקדם מתחילים <span class="nw">ב-<bdi dir="ltr">SMA</bdi>.</span> הצלחה <bdi dir="ltr">25–70%</bdi></li>
+    <li><b>אמבוליזציה סופר-סלקטיבית:</b> אפשרית <span class="nw">ב-<bdi dir="ltr">98%</bdi>,</span> סיבוכים <span class="nw">ב-<bdi dir="ltr">4.6%</bdi></span> (בעיקר אוטם או כיב במעי)</li>
    </ul>
   </div>
-  <figure><img src="img/lgib-ct-diverticular-bleed.jpg" alt="CT עם דליפה פעילה של חומר ניגוד לתוך ה-sigmoid colon"><figcaption><b>דימום פעיל מדיברטיקול <span class="nw">ב-<bdi dir="ltr">sigmoid colon</bdi></span> ב-CT:</b> שני שלבים של ההזרקה (עורקי ופורטלי). חומר הניגוד נשפך לחלל המעי ומתפשט בין השלבים (חיצים) · Hellerhoff, <bdi>CC BY-SA 4.0</bdi>, Wikimedia Commons</figcaption></figure>
+  <figure><img src="img/lgib-ct-diverticular-bleed.jpg" alt="CT עם דליפה פעילה של חומר ניגוד לתוך ה-sigmoid colon"><figcaption><b>דימום פעיל מדיברטיקול <span class="nw">ב-<bdi dir="ltr">sigmoid colon</bdi></span> ב-CT:</b> שני שלבים של ההזרקה (עורקי ופורטלי). חומר הניגוד נשפך לחלל המעי ומתפשט בין השלבים (חיצים) · Hellerhoff, <span class="nw"><bdi>CC BY-SA 4.0</bdi>,</span> Wikimedia Commons</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 98 עמ׳ <bdi dir="ltr">1545, 1547, 1549–1550</bdi></span><span>מקרה 2</span></div>
 </div></section>
@@ -290,8 +337,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div><b>קולונוסקופיה</b><span>מאבחנת וממקמת גם בלי דימום פעיל ומאפשרת טיפול. צריכה הכנת מעי והרדמה. יש סיכון לנקב</span></div>
   <div><b><bdi>CTA</bdi></b><span>מהירה, זמינה ומדויקת במיקום. רק בזמן דימום פעיל, בלי טיפול, עם קרינה וחומר ניגוד</span></div>
   <div><b>אנגיוגרפיה</b><span>ממקמת ומטפלת (אמבוליזציה), בלי הכנת מעי. פולשנית ועובדת רק בזמן דימום פעיל</span></div>
-  <div><b>מיפוי כדוריות אדומות</b><span>הרגיש ביותר: <bdi dir="ltr">0.1–0.5</bdi> מ״ל לדקה. אבל ממקם רק לאזור כללי בבטן (דיוק <bdi dir="ltr">24–91%</bdi>), כי הדם זז עם התנועתיות</span></div>
-  <div><b>לא נמצא מקור</b><span>גסטרוסקופיה או אנטרוסקופיה בדחיפה (כ-60 ס״מ ראשונים של <span class="nw">ה-<bdi dir="ltr">jejunum</bdi></span>): עד <bdi dir="ltr">15%</bdi> מהם מדממים מלמעלה. אחר כך קפסולה. אם הדימום נעצר: השגחה <bdi dir="ltr">24–48</bdi> שעות</span></div>
+  <div><b>מיפוי כדוריות אדומות</b><span>הרגיש ביותר: <bdi dir="ltr">0.1–0.5</bdi> מ״ל לדקה. אבל ממקם רק לאזור כללי בבטן (דיוק <span class="nw"><bdi dir="ltr">24–91%</bdi>),</span> כי הדם זז עם התנועתיות</span></div>
+  <div><b>לא נמצא מקור</b><span>גסטרוסקופיה או אנטרוסקופיה בדחיפה (כ-60 ס״מ ראשונים של <span class="nw">ה-<bdi dir="ltr">jejunum</bdi>):</span> עד <bdi dir="ltr">15%</bdi> מהם מדממים מלמעלה. אחר כך קפסולה. אם הדימום נעצר: השגחה <bdi dir="ltr">24–48</bdi> שעות</span></div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 98 עמ׳ <bdi dir="ltr">1549–1551</bdi> (טבלה 98.4)</span><span>בירור</span></div>
 </div></section>
@@ -311,7 +358,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   </div>
   <div class="flow">
    <div><b>המקור ממוקם · יציב</b><span>כריתה סגמנטלית של החלק המדמם</span></div>
-   <div><b>המקור לא ידוע · ממשיך לדמם</b><span>כריתה סאב-טוטלית של <span class="nw">ה-<bdi dir="ltr">colon</bdi></span>. סיבוכים <span class="nw">כ-<bdi dir="ltr">37%</bdi></span>, תמותה <bdi dir="ltr">11–33%</bdi></span></div>
+   <div><b>המקור לא ידוע · ממשיך לדמם</b><span>כריתה סאב-טוטלית של <span class="nw">ה-<bdi dir="ltr">colon</bdi>.</span> סיבוכים <span class="nw">כ-<bdi dir="ltr">37%</bdi>,</span> תמותה <bdi dir="ltr">11–33%</bdi></span></div>
    <div><b>לא ממוקם · לא יציב</b><span>בשני שלבים: איליאוסטומיה ובהמשך חיבור <span class="nw">ה-<bdi dir="ltr">ileum</bdi></span> <span class="nw">ל-<bdi dir="ltr">rectum</bdi></span></span></div>
    <div><b>לא ממוקם · יציב ובלי מחלות רקע</b><span>אפשר בשלב אחד עם חיבור מיידי</span></div>
   </div>
@@ -363,15 +410,15 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <g class="hzb" style="--c:#B8860B"><circle cx="216" cy="500" r="11"/><text x="216" y="500">7</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="rc" hidden><b>1 · <bdi dir="ltr">right colon</bdi> (<bdi dir="ltr">SMA</bdi>)</b><p><span class="nw">ה-<bdi dir="ltr">ileocolic artery</bdi></span> הוא ענף סופי של <span class="nw">ה-<bdi dir="ltr">SMA</bdi></span>. לכן הצד הימני רגיש לתסחיף ולזרימה נמוכה (אי-ספיקת לב, דימום, אלח דם). איסכמיה של צד ימין בלבד: פחות דם ויותר ניתוחים. מחייבת <bdi>CTA</bdi> לשלילת איסכמיה מזנטרית חריפה.</p></div>
-  <div class="hzi" data-hzi="mc" hidden><b>2 · <bdi dir="ltr">middle colic artery</bdi></b><p>ענף של <span class="nw">ה-<bdi dir="ltr">superior mesenteric artery</bdi></span> (<bdi dir="ltr">SMA</bdi>). באנגיוגרפיה לדימום תחתון בלי מיקום מוקדם מתחילים <span class="nw">ב-<bdi dir="ltr">SMA</bdi></span>, כי שם נמצאים רוב מקורות הדימום. אחר כך <span class="nw">ה-<bdi dir="ltr">IMA</bdi></span> <span class="nw">וה-<bdi dir="ltr">celiac trunk</bdi></span>.</p></div>
-  <div class="hzi" data-hzi="sf" hidden><b>3 · <bdi dir="ltr">splenic flexure</bdi> (<bdi dir="ltr">Griffiths' point</bdi>)</b><p>קו פרשת המים בין <span class="nw">ה-<bdi dir="ltr">SMA</bdi></span> <span class="nw">ל-<bdi dir="ltr">IMA</bdi></span>. <span class="nw">ה-<bdi dir="ltr">marginal artery</bdi></span> (<bdi>Drummond</bdi>) חסר כאן אצל עד <bdi dir="ltr">18%</bdi> מהאנשים. בחלק מהמחקרים: עד <bdi dir="ltr">50%</bdi>. מקום שכיח לאיסכמיה. מנתחים נמנעים מחיבור כאן.</p></div>
-  <div class="hzi" data-hzi="ima" hidden><b>4 · מוצא <span class="nw">ה-<bdi dir="ltr">IMA</bdi></span></b><p>בניתוחי <bdi dir="ltr">aorta</bdi>, או כשקושרים את העורק בניתוח בטן, האספקה <span class="nw">ל-<bdi dir="ltr">sigmoid colon</bdi></span> ולצד שמאל תלויה בעורקים העוקפים. אם הם לא מספיקים: איסכמיה של <span class="nw">ה-<bdi dir="ltr">sigmoid colon</bdi></span> ושל צד שמאל.</p></div>
-  <div class="hzi" data-hzi="lca" hidden><b>5 · <bdi dir="ltr">left colic artery</bdi></b><p>ענף של <span class="nw">ה-<bdi dir="ltr">IMA</bdi></span>. צד שמאל, כולל <span class="nw">ה-<bdi dir="ltr">splenic flexure</bdi></span>, הוא המקום השכיח ביותר לדלקת איסכמית. הדימום בה בדרך כלל קל.</p></div>
-  <div class="hzi" data-hzi="sig" hidden><b>6 · <bdi dir="ltr">sigmoid colon</bdi> <span class="nw">ו-<bdi dir="ltr">sigmoid arteries</bdi></span></b><p><span class="nw">ה-<bdi dir="ltr">sigmoid colon</bdi></span> <span class="nw">וה-<bdi dir="ltr">descending colon</bdi></span> הם המקום הטיפוסי לדיברטיקולות. הן נוצרות <span class="nw">ב-<bdi dir="ltr">mesenteric side</bdi></span>, במקום שבו כלי הדם הקטנים חודרים את השריר. לכן הן יכולות לדמם. זה גם המקום השני בשכיחותו לאיסכמיה.</p></div>
-  <div class="hzi" data-hzi="rs" hidden><b>7 · <bdi dir="ltr">rectosigmoid junction</bdi> (<bdi dir="ltr">Sudeck's point</bdi>)</b><p>אזור פרשת מים שני: מקבל דם <span class="nw">מה-<bdi dir="ltr">superior rectal artery</bdi></span> <span class="nw">ומה-<bdi dir="ltr">sigmoid arteries</bdi></span>, שניהם ענפים סופיים של <span class="nw">ה-<bdi dir="ltr">IMA</bdi></span>. <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span> עצמו כמעט לא נפגע מאיסכמיה, כי יש לו אספקה גם <span class="nw">מה-<bdi dir="ltr">internal iliac arteries</bdi></span>.</p></div>
+  <div class="hzi" data-hzi="rc" hidden><b>1 · <bdi dir="ltr">right colon</bdi> <span class="nw">(<bdi dir="ltr">SMA</bdi>)</span></b><p><span class="nw">ה-<bdi dir="ltr">ileocolic artery</bdi></span> הוא ענף סופי של <span class="nw">ה-<bdi dir="ltr">SMA</bdi>.</span> לכן הצד הימני רגיש לתסחיף ולזרימה נמוכה (אי-ספיקת לב, דימום, אלח דם). איסכמיה של צד ימין בלבד: פחות דם ויותר ניתוחים. מחייבת <bdi>CTA</bdi> לשלילת איסכמיה מזנטרית חריפה.</p></div>
+  <div class="hzi" data-hzi="mc" hidden><b>2 · <bdi dir="ltr">middle colic artery</bdi></b><p>ענף של <span class="nw">ה-<bdi dir="ltr">superior mesenteric artery</bdi></span> <span class="nw">(<bdi dir="ltr">SMA</bdi>).</span> באנגיוגרפיה לדימום תחתון בלי מיקום מוקדם מתחילים <span class="nw">ב-<bdi dir="ltr">SMA</bdi>,</span> כי שם נמצאים רוב מקורות הדימום. אחר כך <span class="nw">ה-<bdi dir="ltr">IMA</bdi></span> <span class="nw">וה-<bdi dir="ltr">celiac trunk</bdi>.</span></p></div>
+  <div class="hzi" data-hzi="sf" hidden><b>3 · <bdi dir="ltr">splenic flexure</bdi> <span class="nw">(<bdi dir="ltr">Griffiths' point</bdi>)</span></b><p>קו פרשת המים בין <span class="nw">ה-<bdi dir="ltr">SMA</bdi></span> <span class="nw">ל-<bdi dir="ltr">IMA</bdi>.</span> <span class="nw">ה-<bdi dir="ltr">marginal artery</bdi></span> <span class="nw">(<bdi>Drummond</bdi>)</span> חסר כאן אצל עד <bdi dir="ltr">18%</bdi> מהאנשים. בחלק מהמחקרים: עד <span class="nw"><bdi dir="ltr">50%</bdi>.</span> מקום שכיח לאיסכמיה. מנתחים נמנעים מחיבור כאן.</p></div>
+  <div class="hzi" data-hzi="ima" hidden><b>4 · מוצא <span class="nw">ה-<bdi dir="ltr">IMA</bdi></span></b><p>בניתוחי <span class="nw"><bdi dir="ltr">aorta</bdi>,</span> או כשקושרים את העורק בניתוח בטן, האספקה <span class="nw">ל-<bdi dir="ltr">sigmoid colon</bdi></span> ולצד שמאל תלויה בעורקים העוקפים. אם הם לא מספיקים: איסכמיה של <span class="nw">ה-<bdi dir="ltr">sigmoid colon</bdi></span> ושל צד שמאל.</p></div>
+  <div class="hzi" data-hzi="lca" hidden><b>5 · <bdi dir="ltr">left colic artery</bdi></b><p>ענף של <span class="nw">ה-<bdi dir="ltr">IMA</bdi>.</span> צד שמאל, כולל <span class="nw">ה-<bdi dir="ltr">splenic flexure</bdi>,</span> הוא המקום השכיח ביותר לדלקת איסכמית. הדימום בה בדרך כלל קל.</p></div>
+  <div class="hzi" data-hzi="sig" hidden><b>6 · <bdi dir="ltr">sigmoid colon</bdi> <span class="nw">ו-<bdi dir="ltr">sigmoid arteries</bdi></span></b><p><span class="nw">ה-<bdi dir="ltr">sigmoid colon</bdi></span> <span class="nw">וה-<bdi dir="ltr">descending colon</bdi></span> הם המקום הטיפוסי לדיברטיקולות. הן נוצרות <span class="nw">ב-<bdi dir="ltr">mesenteric side</bdi>,</span> במקום שבו כלי הדם הקטנים חודרים את השריר. לכן הן יכולות לדמם. זה גם המקום השני בשכיחותו לאיסכמיה.</p></div>
+  <div class="hzi" data-hzi="rs" hidden><b>7 · <bdi dir="ltr">rectosigmoid junction</bdi> <span class="nw">(<bdi dir="ltr">Sudeck's point</bdi>)</span></b><p>אזור פרשת מים שני: מקבל דם <span class="nw">מה-<bdi dir="ltr">superior rectal artery</bdi></span> <span class="nw">ומה-<bdi dir="ltr">sigmoid arteries</bdi>,</span> שניהם ענפים סופיים של <span class="nw">ה-<bdi dir="ltr">IMA</bdi>.</span> <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span> עצמו כמעט לא נפגע מאיסכמיה, כי יש לו אספקה גם <span class="nw">מה-<bdi dir="ltr">internal iliac arteries</bdi>.</span></p></div>
  </div></div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1430, 1449–1450, 1476–1478</bdi> · פרק 98 עמ׳ <bdi dir="ltr">1550</bdi></span><span><bdi>Gray's Anatomy</bdi>, איור 537 (נחלת הכלל) · אזורים: Scrub In</span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1430, 1449–1450, 1476–1478</bdi> · פרק 98 עמ׳ <bdi dir="ltr">1550</bdi></span><span><span class="nw"><bdi>Gray's Anatomy</bdi>,</span> איור 537 (נחלת הכלל) · אזורים: Scrub In</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -381,14 +428,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <ul class="b sm">
     <li><b>מחלה של כלי דם קטנים.</b> לרוב קלה וחולפת. באיסכמיה מזנטרית חריפה יש חסימה של עורק גדול וכאב שאינו תואם את הבדיקה</li>
-    <li><b>מי בסיכון:</b> מבוגרים, נשים, מצבי זרימה נמוכה (אי-ספיקת לב, אלח דם), פרפור פרוזדורים, ניתוחי <bdi dir="ltr">aorta</bdi>, עצירות ותרופות שגורמות לה</li>
+    <li><b>מי בסיכון:</b> מבוגרים, נשים, מצבי זרימה נמוכה (אי-ספיקת לב, אלח דם), פרפור פרוזדורים, ניתוחי <span class="nw"><bdi dir="ltr">aorta</bdi>,</span> עצירות ותרופות שגורמות לה</li>
     <li><b>הסיפור:</b> כאב פתאומי ועוויתות, טנזמוס ודם. הכאב מקדים את הדימום. השילוב קיים בכמחצית. הדימום קל ורק לעיתים נדירות צריך עירוי</li>
-    <li><b>המיקום השכיח:</b> צד שמאל (כולל <span class="nw">ה-<bdi dir="ltr">splenic flexure</bdi></span>) ואחריו <span class="nw">ה-<bdi dir="ltr">sigmoid colon</bdi></span>. ברבע מהמקרים רק בצד ימין: פחות דם, יותר ניתוחים ופרוגנוזה גרועה יותר</li>
+    <li><b>המיקום השכיח:</b> צד שמאל (כולל <span class="nw">ה-<bdi dir="ltr">splenic flexure</bdi>)</span> ואחריו <span class="nw">ה-<bdi dir="ltr">sigmoid colon</bdi>.</span> ברבע מהמקרים רק בצד ימין: פחות דם, יותר ניתוחים ופרוגנוזה גרועה יותר</li>
    </ul>
   </div>
   <div class="grid tight">
-   <figure class="sm"><img src="img/lgib-ischemic-colitis-endo.jpg" alt="דלקת איסכמית בקולונוסקופיה"><figcaption><b>בקולונוסקופיה:</b> רירית בצקתית ושבירה עם כיבים, בגבול חד מרירית תקינה (<bdi dir="ltr">transverse colon</bdi>, אישה בת 82) · melvil, <bdi>CC BY-SA 4.0</bdi>, Wikimedia Commons</figcaption></figure>
-   <figure class="sm"><img src="img/lgib-ischemic-colitis-ct.jpg" alt="דלקת איסכמית ב-CT"><figcaption><b>ב-CT:</b> עיבוי מקטעי של דופן <span class="nw">ה-<bdi dir="ltr">transverse colon</bdi></span> · Hellerhoff, <bdi>CC BY-SA 4.0</bdi>, Wikimedia Commons</figcaption></figure>
+   <figure class="sm"><img src="img/lgib-ischemic-colitis-endo.jpg" alt="דלקת איסכמית בקולונוסקופיה"><figcaption><b>בקולונוסקופיה:</b> רירית בצקתית ושבירה עם כיבים, בגבול חד מרירית תקינה <span class="nw">(<bdi dir="ltr">transverse colon</bdi>,</span> אישה בת 82) · melvil, <span class="nw"><bdi>CC BY-SA 4.0</bdi>,</span> Wikimedia Commons</figcaption></figure>
+   <figure class="sm"><img src="img/lgib-ischemic-colitis-ct.jpg" alt="דלקת איסכמית ב-CT"><figcaption><b>ב-CT:</b> עיבוי מקטעי של דופן <span class="nw">ה-<bdi dir="ltr">transverse colon</bdi></span> · Hellerhoff, <span class="nw"><bdi>CC BY-SA 4.0</bdi>,</span> Wikimedia Commons</figcaption></figure>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1476–1478</bdi></span><span>מקרה 3</span></div>
@@ -399,14 +446,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>רוב המטופלים מחלימים בלי ניתוח</h2>
  <div class="grid">
   <div class="flow">
-   <div><b>מעבדה</b><span>לא ספציפית. ספירה גבוהה, לקטט וחמצת מעידים על מחלה קשה. בדיקות צואה לשלול זיהום (כולל <bdi>C. difficile</bdi>)</span></div>
+   <div><b>מעבדה</b><span>לא ספציפית. ספירה גבוהה, לקטט וחמצת מעידים על מחלה קשה. בדיקות צואה לשלול זיהום (כולל <span class="nw"><bdi>C. difficile</bdi>)</span></span></div>
    <div><b>CT עם חומר ניגוד</b><span>עיבוי מקטעי של הדופן, תסנין בשומן, "טביעות אגודל". אוויר בדופן, אוויר <span class="nw">ב-<bdi dir="ltr">portal vein</bdi></span> או דופן שלא נצבעת: מחלה של כל עובי הדופן</span></div>
    <div><b><bdi>CTA</bdi> רב-שלבי</b><span>רק בכאב פתאומי שאינו תואם את הבדיקה או באיסכמיה של צד ימין בלבד, כדי לשלול איסכמיה מזנטרית חריפה</span></div>
    <div><b>קולונוסקופיה בתוך 48 שעות</b><span>תקן הזהב. בלי ניפוח יתר ובלי להתקדם מעבר לגבול המחלה. "פס יחיד" לאורך המעי ספציפי. רירית תקינה <span class="nw">ב-<bdi dir="ltr">rectum</bdi></span> תומכת באיסכמיה ולא במחלה דלקתית</span></div>
   </div>
   <div style="display:grid;gap:10px">
    <div class="box"><b class="t">טיפול שמרני: <span class="nw">כ-<bdi dir="ltr">80%</bdi></span> משתפרים בתוך ימים</b>מנוחת מעי, נוזלים לווריד, אנטיביוטיקה רחבת טווח, זונדה אם יש איליאוס. מתקנים זרימה נמוכה. בלי משלשלים ובלי סטרואידים</div>
-   <div class="box r"><b class="t">ניתוח דחוף</b>צפקת, חוסר יציבות, אוויר חופשי, אוויר <span class="nw">ב-<bdi dir="ltr">portal vein</bdi></span>. תמותה ב-30 יום <span class="nw">כ-<bdi dir="ltr">25%</bdi></span>. כריתה אנטומית, בדרך כלל בלי חיבור באותו ניתוח. לעיתים "מבט שני" אחרי 24 שעות</div>
+   <div class="box r"><b class="t">ניתוח דחוף</b>צפקת, חוסר יציבות, אוויר חופשי, אוויר <span class="nw">ב-<bdi dir="ltr">portal vein</bdi>.</span> תמותה ב-30 יום <span class="nw">כ-<bdi dir="ltr">25%</bdi>.</span> כריתה אנטומית, בדרך כלל בלי חיבור באותו ניתוח. לעיתים "מבט שני" אחרי 24 שעות</div>
    <div class="box a"><b class="t">לא משתפרת אחרי כמה ימים?</b>חושבים על מחלה של כל עובי הדופן: הדמיה או אנדוסקופיה חוזרת</div>
   </div>
  </div>
@@ -423,8 +470,8 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div class="study"><div class="y"><bdi>Endoscopy</bdi> 2021 · הנחיות אירופיות</div><b>הנחיות <bdi>ESGE</bdi> לדימום תחתון</b>
    <p>במטופל לא יציב עם חשד לדימום פעיל: <bdi>CTA</bdi> לפני טיפול אנדוסקופי או צנתורי. לא להפסיק אספירין במניעה שניונית. אם הופסק: לחדש בתוך 5 ימים. בדימום משמעותי עוצרים זמנית נוגדי קרישה ישירים</p>
    <small>Triantafyllou K et al. Endoscopy 2021;53:850-68</small></div>
-  <div class="study"><div class="y"><bdi>Endoscopy</bdi> 2022 · 49 בתי חולים ביפן</div><b><bdi>CODE BLUE-J</bdi>: גומייה מול קליפסים</b>
-   <p>1,679 מטופלים עם דימום מדיברטיקול. קשירה בגומייה הורידה דימום חוזר מוקדם (<bdi>OR</bdi> 0.46) ומאוחר (0.62) וצורך באנגיוגרפיה, בלי הבדל בעצירה הראשונית או בתמותה. נקב <span class="nw">ב-<bdi dir="ltr">0.31%</bdi></span></p>
+  <div class="study"><div class="y"><bdi>Endoscopy</bdi> 2022 · 49 בתי חולים ביפן</div><b><span class="nw"><bdi>CODE BLUE-J</bdi>:</span> גומייה מול קליפסים</b>
+   <p>1,679 מטופלים עם דימום מדיברטיקול. קשירה בגומייה הורידה דימום חוזר מוקדם <span class="nw">(<bdi>OR</bdi></span> 0.46) ומאוחר (0.62) וצורך באנגיוגרפיה, בלי הבדל בעצירה הראשונית או בתמותה. נקב <span class="nw">ב-<bdi dir="ltr">0.31%</bdi></span></p>
    <small>Kobayashi K et al. Endoscopy 2022;54:735-44</small></div>
  </div>
  <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
@@ -435,13 +482,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>חמישה דברים לקחת למחלקה</h2>
  <ol class="obj">
   <li>רוב הדימומים התחתונים נעצרים לבד. מתחילים כמו בדימום עליון: גישה ורידית, חומרה והחייאה</li>
-  <li>דם טרי עם הלם: לשלול מקור עליון (<bdi dir="ltr">10–15%</bdi>)</li>
+  <li>דם טרי עם הלם: לשלול מקור עליון <span class="nw">(<bdi dir="ltr">10–15%</bdi>)</span></li>
   <li>יציב: קולונוסקופיה בתור הבא אחרי הכנה. לא יציב ומדמם: <bdi>CTA</bdi> ואז אנגיוגרפיה בתוך 90 דקות</li>
   <li>מנתחים כשהמטופל לא יציב, כשהדימום חוזר או אחרי יותר מ-4 מנות ביממה. כמעט תמיד ממקמים קודם</li>
   <li>כאב ואחריו שלשול דמי במבוגר עם מחלות לב: לחשוב על איסכמיה של <span class="nw">ה-<bdi dir="ltr">colon</bdi></span></li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 98 <bdi>Acute Gastrointestinal Hemorrhage</bdi> (עמ׳ <bdi dir="ltr">1544–1552</bdi>) · פרק 95 <bdi>Colon and Rectum</bdi> (עמ׳ <bdi dir="ltr">1449–1450, 1476–1479</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Gray's Anatomy</bdi> (1918, נחלת הכלל) · אנדוסקופיה ו-CT: Joachim Guntau, Hellerhoff, melvil (<bdi>CC BY-SA</bdi>, <bdi>Wikimedia Commons</bdi>) · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 98 <bdi>Acute Gastrointestinal Hemorrhage</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1544–1552</bdi>)</span> · פרק 95 <bdi>Colon and Rectum</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1449–1450, 1476–1479</bdi>)</span></div>
+ <div class="src"><span>איורים: <bdi>Gray's Anatomy</bdi> (1918, נחלת הכלל) · אנדוסקופיה ו-CT: Joachim Guntau, Hellerhoff, melvil <span class="nw">(<bdi>CC BY-SA</bdi>,</span> <span class="nw"><bdi>Wikimedia Commons</bdi>)</span> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
@@ -462,5 +509,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>

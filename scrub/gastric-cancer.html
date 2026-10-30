@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>קרצינומה של הקיבה · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -83,7 +83,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -113,9 +113,56 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -144,7 +191,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   <li>להכיר את היקף הכריתה ואת כריתת בלוטות הלימפה ואת עקרונות המעקב אחרי הניתוח</li>
   <li>להבחין בין אדנוקרצינומה לבין GIST, לימפומה וגידול נוירואנדוקריני של הקיבה</li>
  </ol>
- <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 87 (עמ׳ <bdi dir="ltr">1192–1211</bdi>) · פרק 86, אנטומיה (עמ׳ <bdi dir="ltr">1166–1168</bdi>)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 87 (עמ׳ <span class="nw"><bdi dir="ltr">1192–1211</bdi>)</span> · פרק 86, אנטומיה (עמ׳ <span class="nw"><bdi dir="ltr">1166–1168</bdi>)</span></span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -157,10 +204,10 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   <div><b dir="ltr">~35%</b><span>הישרדות ל-5 שנים בכלל החולים</span></div>
  </div>
  <ul class="b">
-  <li>השכיחות הגבוהה ביותר <b>במזרח אסיה ובמזרח אירופה</b>. ביפן הישרדות ספציפית למחלה ל-5 שנים מעל <bdi dir="ltr">80%</bdi>, בארה״ב מתחת <span class="nw">ל-<bdi dir="ltr">50%</bdi></span></li>
+  <li>השכיחות הגבוהה ביותר <b>במזרח אסיה ובמזרח אירופה</b>. ביפן הישרדות ספציפית למחלה ל-5 שנים מעל <span class="nw"><bdi dir="ltr">80%</bdi>,</span> בארה״ב מתחת <span class="nw">ל-<bdi dir="ltr">50%</bdi></span></li>
   <li><span class="nw">כ-<bdi dir="ltr">60%</bdi></span> מהחולים בארה״ב <b>גברים</b></li>
   <li><b>גידולי <bdi>cardia</bdi></b> חולקים גורמי סיכון עם ושט ברט: השמנה ורפלוקס. השכיחות שלהם יציבה או עולה במערב</li>
-  <li><b>גידולים דיסטליים</b> קשורים בעיקר <span class="nw">ל-<bdi>H. pylori</bdi></span>. עלייה מדאיגה בגידולים כאלה בגילים <bdi dir="ltr">25–40</bdi></li>
+  <li><b>גידולים דיסטליים</b> קשורים בעיקר <span class="nw">ל-<bdi>H. pylori</bdi>.</span> עלייה מדאיגה בגידולים כאלה בגילים <bdi dir="ltr">25–40</bdi></li>
  </ul>
  <div class="src"><span><b>Sabiston 22</b> · פרק 87 עמ׳ <bdi dir="ltr">1192, 1205</bdi></span><span>אפידמיולוגיה</span></div>
 </div></section>
@@ -178,15 +225,15 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
     <div><b>4</b><span>דיספלזיה</span></div>
     <div><b>5</b><span>אדנוקרצינומה</span></div>
    </div>
-   <p style="font-size:14.5px;color:var(--muted);margin:8px 0 0">נשא של <bdi>H. pylori</bdi>: סיכון גבוה פי 6 בערך. הסיכון נשאר מוגבר גם אחרי הכחדת החיידק. ארגון הבריאות העולמי מסווג אותו כמסרטן ודאי</p>
+   <p style="font-size:14.5px;color:var(--muted);margin:8px 0 0">נשא של <span class="nw"><bdi>H. pylori</bdi>:</span> סיכון גבוה פי 6 בערך. הסיכון נשאר מוגבר גם אחרי הכחדת החיידק. ארגון הבריאות העולמי מסווג אותו כמסרטן ודאי</p>
   </div>
   <div>
    <ul class="b sm">
-    <li><b>תזונה:</b> בשר ודגים מעושנים ומומלחים, חנקות (תרכובות <bdi>N-nitroso</bdi>), מעט פירות וירקות טריים</li>
+    <li><b>תזונה:</b> בשר ודגים מעושנים ומומלחים, חנקות (תרכובות <span class="nw"><bdi>N-nitroso</bdi>),</span> מעט פירות וירקות טריים</li>
     <li><b>עישון:</b> סיכון גבוה פי 1.5 בערך. גם אלכוהול</li>
     <li><b>אנמיה ממארת</b> (אכלורהידריה), <b>גסטריטיס אטרופית</b>, פוליפים אדנומטוטיים</li>
     <li><b>ניתוח קודם <span class="nw">ב-<bdi>stomach</bdi></span></b>, הקרנה קודמת לבטן (למשל אחרי לימפומת הודג׳קין או סרטן אשך)</li>
-    <li><b>השמנה</b> (לגידולי <bdi>cardia</bdi>), שימוש ממושך ב-PPI, נגיף <bdi>EBV</bdi></li>
+    <li><b>השמנה</b> (לגידולי <span class="nw"><bdi>cardia</bdi>),</span> שימוש ממושך ב-PPI, נגיף <bdi>EBV</bdi></li>
     <li>מצב סוציואקונומי נמוך, מין זכר, חוסר קירור ומי באר מזוהמים</li>
    </ul>
    <div class="box a" style="margin-top:10px"><b class="t">PPI ממושך</b>מומלץ להפסיק PPI למי שאין לו התוויה. דיספפסיה מתמשכת למרות PPI: לבדוק <bdi>H. pylori</bdi> ולטפל</div>
@@ -199,22 +246,22 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <div class="kick"><b>4</b>תורשה ופוליפים</div>
  <h2>מי בסיכון גבוה במיוחד</h2>
  <div class="grid">
-  <div class="box n"><b class="t">סרטן קיבה דיפוזי תורשתי (מוטציה <span class="nw">ב-<bdi>CDH1</bdi></span>)</b>
+  <div class="box n"><b class="t">סרטן קיבה דיפוזי תורשתי (מוטציה <span class="nw">ב-<bdi>CDH1</bdi>)</span></b>
    <ul class="b sm">
     <li>סיכון לכל החיים: <bdi dir="ltr">37–42%</bdi> בגברים, <bdi dir="ltr">25–33%</bdi> בנשים</li>
     <li>בנשים גם סיכון של <bdi dir="ltr">39–55%</bdi> לסרטן שד לובולרי: MRI שד שנתי מגיל 30</li>
-    <li><b>כריתת קיבה מלאה מונעת</b>, בדרך כלל בגיל <bdi dir="ltr">20–30</bdi>. <span class="nw">ב-<bdi dir="ltr">90%</bdi></span> ומעלה מהתכשירים יש מוקדים מיקרוסקופיים של סרטן</li>
+    <li><b>כריתת קיבה מלאה מונעת</b>, בדרך כלל בגיל <span class="nw"><bdi dir="ltr">20–30</bdi>.</span> <span class="nw">ב-<bdi dir="ltr">90%</bdi></span> ומעלה מהתכשירים יש מוקדים מיקרוסקופיים של סרטן</li>
     <li>מי שמסרב: גסטרוסקופיה שנתית עם ביופסיות לפי פרוטוקול</li>
    </ul></div>
   <div class="box"><b class="t">פוליפים <span class="nw">ב-<bdi>stomach</bdi></span> (<span class="nw">כ-<bdi dir="ltr">6%</bdi></span> מהגסטרוסקופיות)</b>
    <ul class="b sm">
     <li>כל פוליפ: <b>ביופסיה</b>. פוליפ בודד מעל 1 ס״מ: כריתה מלאה</li>
     <li><b>אדנומה:</b> כריתה אנדוסקופית מלאה ומעקב. סיכון גם לסרטן במקום אחר <span class="nw">ב-<bdi>stomach</bdi></span></li>
-    <li><b>היפרפלסטי:</b> דיספלזיה <span class="nw">ב-<bdi dir="ltr">1–20%</bdi></span>. סיכון גבוה יותר מעל 1 ס״מ ובפוליפ עם גבעול</li>
+    <li><b>היפרפלסטי:</b> דיספלזיה <span class="nw">ב-<bdi dir="ltr">1–20%</bdi>.</span> סיכון גבוה יותר מעל 1 ס״מ ובפוליפ עם גבעול</li>
     <li><b>פוליפ של בלוטות הפונדוס עם PPI:</b> בשליש מהמטופלים אחרי שנה. לא כורתים ולא עוקבים</li>
    </ul></div>
  </div>
- <div class="box a" style="margin-top:12px"><b class="t">מטאפלזיה מעיית נרחבת או אטרופיה נרחבת</b>מעקב אנדוסקופי כל <bdi dir="ltr">1–3</bdi> שנים. תסמונת <bdi>Lynch</bdi>, <bdi>FAP</bdi> <span class="nw">ו-<bdi>Peutz-Jeghers</bdi></span> מעלות גם הן את הסיכון</div>
+ <div class="box a" style="margin-top:12px"><b class="t">מטאפלזיה מעיית נרחבת או אטרופיה נרחבת</b>מעקב אנדוסקופי כל <bdi dir="ltr">1–3</bdi> שנים. תסמונת <span class="nw"><bdi>Lynch</bdi>,</span> <bdi>FAP</bdi> <span class="nw">ו-<bdi>Peutz-Jeghers</bdi></span> מעלות גם הן את הסיכון</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 87 עמ׳ <bdi dir="ltr">1193–1196</bdi></span><span>תורשה ופוליפים</span></div>
 </div></section>
 
@@ -238,13 +285,13 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   <g class="hzb" style="--c:#0A6B5A"><circle cx="234" cy="374" r="13.2"/><text x="234" y="374">7</text></g>
  </svg></div>
  <div class="hotp"><p class="hint">👆 לחצו על אזור בציור כדי לקרוא עליו</p>
-  <div class="hzi" data-hzi="cel" hidden><b>1 · <bdi>Celiac trunk</bdi></b><p>מספק את רוב הדם <span class="nw">ל-<bdi>stomach</bdi></span>. שלושה ענפים: <bdi>left gastric artery</bdi>, <bdi>common hepatic artery</bdi> <span class="nw">ו-<bdi>splenic artery</bdi></span>. כל ארבע קבוצות הבלוטות של <span class="nw">ה-<bdi>stomach</bdi></span> מתנקזות בסוף <span class="nw">ל-<bdi>celiac nodes</bdi></span></p></div>
-  <div class="hzi" data-hzi="lga" hidden><b>2 · <bdi>Left gastric artery</bdi></b><p>העורק הגדול ביותר של <span class="nw">ה-<bdi>stomach</bdi></span>. עובר לאורך <span class="nw">ה-<bdi>lesser curvature</bdi></span>. בכריתה אונקולוגית קושרים אותו בבסיסו ומוציאים את הבלוטות סביבו</p></div>
-  <div class="hzi" data-hzi="hep" hidden><b>3 · <bdi>Common hepatic artery</bdi></b><p>ממנו יוצא <span class="nw">ה-<bdi>gastroduodenal artery (GDA)</bdi></span> וממנו <span class="nw">ה-<bdi>right gastroepiploic artery</bdi></span>. <span class="nw">ה-<bdi>right gastric artery</bdi></span> יוצא בדרך כלל <span class="nw">מה-<bdi>hepatic artery</bdi></span>. הבלוטות לאורכו הן חלק מכריתת <bdi>D2</bdi></p></div>
-  <div class="hzi" data-hzi="rge" hidden><b>4 · <bdi>Right gastroepiploic artery</bdi></b><p>עובר לאורך <span class="nw">ה-<bdi>greater curvature</bdi></span>. כשבונים צינור <span class="nw">מה-<bdi>stomach</bdi></span> אחרי כריתת ושט, זה העורק ששומרים עליו: הוא מזין את הצינור</p></div>
-  <div class="hzi" data-hzi="lge" hidden><b>5 · <bdi>Left gastroepiploic artery</bdi></b><p>ענף של <span class="nw">ה-<bdi>splenic artery</bdi></span>. נפגש עם הימני וסוגר קשת לאורך <span class="nw">ה-<bdi>greater curvature</bdi></span></p></div>
-  <div class="hzi" data-hzi="sg" hidden><b>6 · <bdi>Spleen</bdi> <span class="nw">ו-<bdi>short gastric arteries</bdi></span></b><p>ענפים של <span class="nw">ה-<bdi>splenic artery</bdi></span> <span class="nw">ל-<bdi>fundus</bdi></span>. בזכות הקשתות, <span class="nw">ה-<bdi>stomach</bdi></span> שורד ברוב המקרים גם כששלושה מתוך ארבעת העורקים הראשיים נקשרים</p></div>
-  <div class="hzi" data-hzi="pyl" hidden><b>7 · <bdi>Pylorus</bdi></b><p>הסוגר בין <span class="nw">ה-<bdi>antrum</bdi></span> <span class="nw">ל-<bdi>duodenum</bdi></span>. גידול דיסטלי שחוסם אותו גורם לחסימת מוצא הקיבה: הקאות של מזון לא מעוכל</p></div>
+  <div class="hzi" data-hzi="cel" hidden><b>1 · <bdi>Celiac trunk</bdi></b><p>מספק את רוב הדם <span class="nw">ל-<bdi>stomach</bdi>.</span> שלושה ענפים: <span class="nw"><bdi>left gastric artery</bdi>,</span> <bdi>common hepatic artery</bdi> <span class="nw">ו-<bdi>splenic artery</bdi>.</span> כל ארבע קבוצות הבלוטות של <span class="nw">ה-<bdi>stomach</bdi></span> מתנקזות בסוף <span class="nw">ל-<bdi>celiac nodes</bdi></span></p></div>
+  <div class="hzi" data-hzi="lga" hidden><b>2 · <bdi>Left gastric artery</bdi></b><p>העורק הגדול ביותר של <span class="nw">ה-<bdi>stomach</bdi>.</span> עובר לאורך <span class="nw">ה-<bdi>lesser curvature</bdi>.</span> בכריתה אונקולוגית קושרים אותו בבסיסו ומוציאים את הבלוטות סביבו</p></div>
+  <div class="hzi" data-hzi="hep" hidden><b>3 · <bdi>Common hepatic artery</bdi></b><p>ממנו יוצא <span class="nw">ה-<bdi>gastroduodenal artery (GDA)</bdi></span> וממנו <span class="nw">ה-<bdi>right gastroepiploic artery</bdi>.</span> <span class="nw">ה-<bdi>right gastric artery</bdi></span> יוצא בדרך כלל <span class="nw">מה-<bdi>hepatic artery</bdi>.</span> הבלוטות לאורכו הן חלק מכריתת <bdi>D2</bdi></p></div>
+  <div class="hzi" data-hzi="rge" hidden><b>4 · <bdi>Right gastroepiploic artery</bdi></b><p>עובר לאורך <span class="nw">ה-<bdi>greater curvature</bdi>.</span> כשבונים צינור <span class="nw">מה-<bdi>stomach</bdi></span> אחרי כריתת ושט, זה העורק ששומרים עליו: הוא מזין את הצינור</p></div>
+  <div class="hzi" data-hzi="lge" hidden><b>5 · <bdi>Left gastroepiploic artery</bdi></b><p>ענף של <span class="nw">ה-<bdi>splenic artery</bdi>.</span> נפגש עם הימני וסוגר קשת לאורך <span class="nw">ה-<bdi>greater curvature</bdi></span></p></div>
+  <div class="hzi" data-hzi="sg" hidden><b>6 · <bdi>Spleen</bdi> <span class="nw">ו-<bdi>short gastric arteries</bdi></span></b><p>ענפים של <span class="nw">ה-<bdi>splenic artery</bdi></span> <span class="nw">ל-<bdi>fundus</bdi>.</span> בזכות הקשתות, <span class="nw">ה-<bdi>stomach</bdi></span> שורד ברוב המקרים גם כששלושה מתוך ארבעת העורקים הראשיים נקשרים</p></div>
+  <div class="hzi" data-hzi="pyl" hidden><b>7 · <bdi>Pylorus</bdi></b><p>הסוגר בין <span class="nw">ה-<bdi>antrum</bdi></span> <span class="nw">ל-<bdi>duodenum</bdi>.</span> גידול דיסטלי שחוסם אותו גורם לחסימת מוצא הקיבה: הקאות של מזון לא מעוכל</p></div>
  </div></div>
  <figcaption><span class="nw">ה-<bdi>celiac trunk</bdi></span> וענפיו, <span class="nw">ה-<bdi>stomach</bdi></span> מורם · <bdi>Gray's Anatomy</bdi> (1918), איור 532 (נחלת הכלל)</figcaption>
  <div class="src"><span><b>Sabiston 22</b> · פרק 86 עמ׳ <bdi dir="ltr">1166–1168</bdi> · פרק 87 עמ׳ <bdi dir="ltr">1202–1203</bdi> · פרק 84 עמ׳ <bdi dir="ltr">1147</bdi></span><span>אנטומיה</span></div>
@@ -256,19 +303,19 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <div class="grid f">
   <div>
    <table style="width:100%;border-collapse:collapse;font-size:15px;line-height:1.4">
-    <tr style="background:var(--navy);color:#fff"><th style="padding:7px;text-align:start">לפי <bdi>Lauren</bdi></th><th style="padding:7px;text-align:start">מעיי (<bdi>intestinal</bdi>)</th><th style="padding:7px;text-align:start">דיפוזי (<bdi>diffuse</bdi>)</th></tr>
+    <tr style="background:var(--navy);color:#fff"><th style="padding:7px;text-align:start">לפי <bdi>Lauren</bdi></th><th style="padding:7px;text-align:start">מעיי <span class="nw">(<bdi>intestinal</bdi>)</span></th><th style="padding:7px;text-align:start">דיפוזי <span class="nw">(<bdi>diffuse</bdi>)</span></th></tr>
     <tr style="background:var(--soft)"><td style="padding:7px"><b>רקע</b></td><td style="padding:7px">אטרופיה ומטאפלזיה, <bdi>H. pylori</bdi></td><td style="padding:7px">לא קשור לגסטריטיס, סוג דם A</td></tr>
     <tr><td style="padding:7px"><b>מי</b></td><td style="padding:7px">גברים יותר, מבוגרים</td><td style="padding:7px">שני המינים, צעירים יותר</td></tr>
     <tr style="background:var(--soft)"><td style="padding:7px"><b>מבנה</b></td><td style="padding:7px">יוצר בלוטות, ממוין היטב</td><td style="padding:7px">תאי טבעת חותם, בלי בלוטות</td></tr>
-    <tr><td style="padding:7px"><b>פיזור</b></td><td style="padding:7px">גרורות <b>לכבד</b></td><td style="padding:7px">התפשטות <span class="nw">ב-<bdi>submucosa</bdi></span>, <b>לצפק</b></td></tr>
+    <tr><td style="padding:7px"><b>פיזור</b></td><td style="padding:7px">גרורות <b>לכבד</b></td><td style="padding:7px">התפשטות <span class="nw">ב-<bdi>submucosa</bdi>,</span> <b>לצפק</b></td></tr>
     <tr style="background:var(--soft)"><td style="padding:7px"><b>פרוגנוזה</b></td><td style="padding:7px">טובה יותר</td><td style="padding:7px">גרועה יותר</td></tr>
    </table>
    <ul class="b sm" style="margin-top:10px">
-    <li><b><bdi>Borrmann</bdi> (מראה מאקרוסקופי):</b> I פוליפואידי, II פטרייתי, III מכויב, IV מסתנן מפושט (<bdi>linitis plastica</bdi>)</li>
-    <li><b>סמנים שבודקים בכל ביופסיה:</b> <bdi>HER2</bdi>, <bdi>MSI</bdi> או <bdi>MMR</bdi>, <bdi>PD-L1</bdi>, <bdi>EBV</bdi>. הם קובעים טיפול</li>
+    <li><b><bdi>Borrmann</bdi> (מראה מאקרוסקופי):</b> I פוליפואידי, II פטרייתי, III מכויב, IV מסתנן מפושט <span class="nw">(<bdi>linitis plastica</bdi>)</span></li>
+    <li><b>סמנים שבודקים בכל ביופסיה:</b> <span class="nw"><bdi>HER2</bdi>,</span> <bdi>MSI</bdi> או <span class="nw"><bdi>MMR</bdi>,</span> <span class="nw"><bdi>PD-L1</bdi>,</span> <span class="nw"><bdi>EBV</bdi>.</span> הם קובעים טיפול</li>
    </ul>
   </div>
-  <figure><img src="img/gastric-ca-infiltrative.jpg" alt="דופן קיבה מעובה בסרטן מסתנן"><figcaption>סרטן קיבה מסתנן (דיפוזי): הדופן מעובה ולבנה, <span class="nw">ה-<bdi>mucosa</bdi></span> שטוחה · <bdi>Narraburra</bdi>, <bdi>Wikimedia Commons</bdi> (CC0)</figcaption></figure>
+  <figure><img src="img/gastric-ca-infiltrative.jpg" alt="דופן קיבה מעובה בסרטן מסתנן"><figcaption>סרטן קיבה מסתנן (דיפוזי): הדופן מעובה ולבנה, <span class="nw">ה-<bdi>mucosa</bdi></span> שטוחה · <span class="nw"><bdi>Narraburra</bdi>,</span> <bdi>Wikimedia Commons</bdi> (CC0)</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 87 עמ׳ <bdi dir="ltr">1195, 1198</bdi></span><span>פתולוגיה</span></div>
 </div></section>
@@ -281,12 +328,12 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
    <h3>התסמינים</h3>
    <ul class="b sm">
     <li>השכיחים: <b>ירידה במשקל</b> ו<b>כאב בטן מתמשך</b></li>
-    <li>גידול ליד <span class="nw">ה-<bdi>cardia</bdi></span>: <b>דיספאגיה</b>. גידול דיסטלי: <b>חסימת מוצא הקיבה</b></li>
+    <li>גידול ליד <span class="nw">ה-<bdi>cardia</bdi>:</span> <b>דיספאגיה</b>. גידול דיסטלי: <b>חסימת מוצא הקיבה</b></li>
     <li>דימום: <span class="nw">כ-<bdi dir="ltr">40%</bdi></span> עם אנמיה</li>
    </ul>
    <h3 style="margin-top:12px">בדיקות דם</h3>
-   <ul class="b sm"><li>ספירה, כימיה כולל תפקודי כבד, תפקודי קרישה</li><li>CEA ו-CA19-9 לפעמים מוגברים</li></ul>
-   <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>אצל מטופל עם חשד לגידול <span class="nw">ב-<bdi>stomach</bdi></span>: מששו את <span class="nw">ה-<bdi>supraclavicular fossa</bdi></span> משמאל ואת <span class="nw">ה-<bdi>umbilicus</bdi></span>, חפשו מיימת וצהבת. הציגו לבכיר/ה את הממצאים ואת תוכנית הבירור</div>
+   <ul class="b sm"><li>ספירה, כימיה כולל תפקודי כבד, תפקודי קרישה</li><li><bdi dir="ltr">CEA</bdi> ו-CA19-9 לפעמים מוגברים</li></ul>
+   <div class="box b" style="margin-top:10px"><b class="t">במחלקה השבוע</b>אצל מטופל עם חשד לגידול <span class="nw">ב-<bdi>stomach</bdi>:</span> מששו את <span class="nw">ה-<bdi>supraclavicular fossa</bdi></span> משמאל ואת <span class="nw">ה-<bdi>umbilicus</bdi>,</span> חפשו מיימת וצהבת. הציגו לבכיר/ה את הממצאים ואת תוכנית הבירור</div>
   </div>
   <div>
    <h3>מה מחפשים בבדיקה: סימני מחלה מתקדמת</h3>
@@ -294,15 +341,15 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
     <div><b>בלוטת <bdi>Virchow</bdi></b><span><span class="nw">ה-<bdi>left supraclavicular lymph node</bdi></span></span></div>
     <div><b>בלוטת <bdi>Irish</bdi></b><span><span class="nw">ה-<bdi>axillary lymph node</bdi></span></span></div>
     <div><b><bdi>Sister Mary Joseph</bdi></b><span>קשרית <span class="nw">ב-<bdi>umbilicus</bdi></span></span></div>
-    <div><b>גידול <bdi>Krukenberg</bdi></b><span>גרורה <span class="nw">ב-<bdi>ovary</bdi></span>, בבדיקה גינקולוגית</span></div>
+    <div><b>גידול <bdi>Krukenberg</bdi></b><span>גרורה <span class="nw">ב-<bdi>ovary</bdi>,</span> בבדיקה גינקולוגית</span></div>
     <div><b>מדף <bdi>Blumer</bdi></b><span>מדף קשה בבדיקה רקטלית: גרורות בצפק</span></div>
     <div><b>בבטן</b><span>כבד מוגדל, צהבת, מיימת</span></div>
    </div>
   </div>
  </div>
  <div class="grid" style="margin-top:12px">
-  <figure><img src="img/Gray602.png" alt="cervical lymph nodes" style="max-height:26vh"><figcaption><span class="nw">ה-<bdi>cervical lymph nodes</bdi></span>: <span class="nw">ה-<bdi>inferior deep cervical nodes</bdi></span> יושבות מעל <span class="nw">ה-<bdi>clavicle</bdi></span>. כאן ממששים, בצד שמאל, את בלוטת <bdi>Virchow</bdi> · <bdi>Gray's Anatomy</bdi> (1918), איור 602 (נחלת הכלל)</figcaption></figure>
-  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש ה-liver בשתי ידיים" style="max-height:26vh"><figcaption>מישוש <span class="nw">ה-<bdi>liver</bdi></span> בשתי ידיים: מחפשים כבד מוגדל וגושי בגרורות · <bdi>Musser</bdi>, <bdi>A practical treatise on medical diagnosis</bdi> (1904), איור 192 (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/Gray602.png" alt="cervical lymph nodes" style="max-height:26vh"><figcaption><span class="nw">ה-<bdi>cervical lymph nodes</bdi>:</span> <span class="nw">ה-<bdi>inferior deep cervical nodes</bdi></span> יושבות מעל <span class="nw">ה-<bdi>clavicle</bdi>.</span> כאן ממששים, בצד שמאל, את בלוטת <bdi>Virchow</bdi> · <bdi>Gray's Anatomy</bdi> (1918), איור 602 (נחלת הכלל)</figcaption></figure>
+  <figure><img src="img/Musser1904_Glenard_liver_palpation.jpg" alt="מישוש ה-liver בשתי ידיים" style="max-height:26vh"><figcaption>מישוש <span class="nw">ה-<bdi>liver</bdi></span> בשתי ידיים: מחפשים כבד מוגדל וגושי בגרורות · <span class="nw"><bdi>Musser</bdi>,</span> <bdi>A practical treatise on medical diagnosis</bdi> (1904), איור 192 (נחלת הכלל)</figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 87 עמ׳ <bdi dir="ltr">1196</bdi></span><span>הצגה קלינית</span></div>
 </div></section>
@@ -313,16 +360,16 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <div class="grid f">
   <div>
    <div class="flow">
-    <div><b>גסטרוסקופיה</b><span><b>6–8 ביופסיות</b> מאזורים שונים בנגע. לתעד מיקום ויחס <span class="nw">ל-<bdi>gastroesophageal junction (GEJ)</bdi></span>. נגע קטן מ-2 ס״מ בלי כיב: אפשר לכרות כבר בבדיקה</span></div>
+    <div><b>גסטרוסקופיה</b><span><b>6–8 ביופסיות</b> מאזורים שונים בנגע. לתעד מיקום ויחס <span class="nw">ל-<bdi>gastroesophageal junction (GEJ)</bdi>.</span> נגע קטן מ-2 ס״מ בלי כיב: אפשר לכרות כבר בבדיקה</span></div>
     <div><b>CT חזה, בטן ואגן</b><span>לכולם, עם חומר ניגוד. מדויק פחות לעומק החדירה ולבלוטות</span></div>
-    <div><b>חשד למחלה מוקדמת (<bdi>cT1–2 N0</bdi>)</b><span>EUS: הבדיקה המדויקת ביותר לעומק החדירה</span></div>
-    <div><b>חשד למחלה מתקדמת (<bdi>cT3–4</bdi> או <bdi>N+</bdi>)</b><span>PET-CT ו<b>לפרוסקופיה אבחנתית עם שטיפת צפק</b>, לפני ניתוח או כימותרפיה</span></div>
+    <div><b>חשד למחלה מוקדמת <span class="nw">(<bdi>cT1–2 N0</bdi>)</span></b><span>EUS: הבדיקה המדויקת ביותר לעומק החדירה</span></div>
+    <div><b>חשד למחלה מתקדמת <span class="nw">(<bdi>cT3–4</bdi></span> או <span class="nw"><bdi>N+</bdi>)</span></b><span>PET-CT ו<b>לפרוסקופיה אבחנתית עם שטיפת צפק</b>, לפני ניתוח או כימותרפיה</span></div>
    </div>
-   <div class="box r" style="margin-top:10px"><b class="t">למה לפרוסקופיה?</b>PET-CT ולפרוסקופיה מגלים גרורות <span class="nw">ב-<bdi dir="ltr">25–30%</bdi></span> ממי שנראה "מקומי" ב-CT. דיוק הלפרוסקופיה לגרורות בצפק מעל <bdi dir="ltr">90%</bdi>. ציטולוגיה חיובית בשטיפה = M1</div>
+   <div class="box r" style="margin-top:10px"><b class="t">למה לפרוסקופיה?</b>PET-CT ולפרוסקופיה מגלים גרורות <span class="nw">ב-<bdi dir="ltr">25–30%</bdi></span> ממי שנראה "מקומי" ב-CT. דיוק הלפרוסקופיה לגרורות בצפק מעל <span class="nw"><bdi dir="ltr">90%</bdi>.</span> ציטולוגיה חיובית בשטיפה = M1</div>
   </div>
   <div style="display:grid;gap:10px">
-   <figure><img src="img/gastric-ca-endo.jpg" alt="גידול מתקדם ב-stomach בגסטרוסקופיה" style="max-height:27vh"><figcaption>גידול מתקדם, מכויב ומדמם, בגסטרוסקופיה · <bdi>Boreali</bdi>, <bdi>Wikimedia Commons</bdi> (נחלת הכלל)</figcaption></figure>
-   <figure><img src="img/early-gastric-ca.jpg" alt="סרטן קיבה מוקדם ב-gastric body" style="max-height:22vh"><figcaption>סרטן קיבה מוקדם <span class="nw">ב-<bdi>gastric body</bdi></span>: שינוי עדין <span class="nw">ב-<bdi>mucosa</bdi></span> · <bdi>Med_Chaos</bdi>, <bdi>Wikimedia Commons</bdi> (נחלת הכלל)</figcaption></figure>
+   <figure><img src="img/gastric-ca-endo.jpg" alt="גידול מתקדם ב-stomach בגסטרוסקופיה" style="max-height:27vh"><figcaption>גידול מתקדם, מכויב ומדמם, בגסטרוסקופיה · <span class="nw"><bdi>Boreali</bdi>,</span> <bdi>Wikimedia Commons</bdi> (נחלת הכלל)</figcaption></figure>
+   <figure><img src="img/early-gastric-ca.jpg" alt="סרטן קיבה מוקדם ב-gastric body" style="max-height:22vh"><figcaption>סרטן קיבה מוקדם <span class="nw">ב-<bdi>gastric body</bdi>:</span> שינוי עדין <span class="nw">ב-<bdi>mucosa</bdi></span> · <span class="nw"><bdi>Med_Chaos</bdi>,</span> <bdi>Wikimedia Commons</bdi> (נחלת הכלל)</figcaption></figure>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 87 עמ׳ <bdi dir="ltr">1197–1199</bdi></span><span>בירור</span></div>
@@ -330,7 +377,7 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
 
 <section class="s"><div class="card">
  <div class="kick"><b>9</b>שלבים</div>
- <h2>TNM, <bdi>Siewert</bdi> ו-R</h2>
+ <h2><span class="nw"><bdi dir="ltr">TNM</bdi>,</span> <bdi>Siewert</bdi> ו-R</h2>
  <div class="grid">
   <div>
    <h3>עומק החדירה (T)</h3>
@@ -338,26 +385,26 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
     <div><b><bdi>T1a</bdi></b><span><bdi>lamina propria</bdi> או <bdi>muscularis mucosae</bdi></span></div>
     <div><b><bdi>T1b</bdi></b><span><bdi>submucosa</bdi></span></div>
     <div><b><bdi>T2</bdi></b><span><bdi>muscularis propria</bdi></span></div>
-    <div><b><bdi>T3</bdi></b><span><bdi>subserosa</bdi>, בלי חדירה <span class="nw">ל-<bdi>visceral peritoneum</bdi></span></span></div>
+    <div><b><bdi>T3</bdi></b><span><span class="nw"><bdi>subserosa</bdi>,</span> בלי חדירה <span class="nw">ל-<bdi>visceral peritoneum</bdi></span></span></div>
     <div><b><bdi>T4a / T4b</bdi></b><span>חודר את <span class="nw">ה-<bdi>serosa</bdi></span> / חודר לאיבר שכן</span></div>
    </div>
   </div>
   <div>
    <h3>בלוטות (N): לפי <b>מספר</b> הבלוטות</h3>
    <ul class="b sm">
-    <li><bdi>N1</bdi>: <bdi dir="ltr">1–2</bdi> · <bdi>N2</bdi>: <bdi dir="ltr">3–6</bdi> · <bdi>N3a</bdi>: <bdi dir="ltr">7–15</bdi> · <bdi>N3b</bdi>: 16 ומעלה</li>
+    <li><span class="nw"><bdi>N1</bdi>:</span> <bdi dir="ltr">1–2</bdi> · <span class="nw"><bdi>N2</bdi>:</span> <bdi dir="ltr">3–6</bdi> · <span class="nw"><bdi>N3a</bdi>:</span> <bdi dir="ltr">7–15</bdi> · <span class="nw"><bdi>N3b</bdi>:</span> 16 ומעלה</li>
     <li>צריך לבדוק <b>לפחות 16 בלוטות</b> כדי שהשלב יהיה מדויק</li>
    </ul>
    <h3 style="margin-top:10px">גידולי <span class="nw">ה-<bdi>GEJ</bdi></span> לפי <bdi>Siewert</bdi></h3>
    <ul class="b sm">
-    <li><b>I:</b> מרכז <bdi dir="ltr">1–5</bdi> ס״מ מעל <span class="nw">ה-<bdi>GEJ</bdi></span>. מטופל כמו סרטן ושט</li>
-    <li><b>II:</b> מ-1 ס״מ מעל עד 2 ס״מ מתחת. שלבים כמו בסרטן ושט, שנוי במחלוקת</li>
-    <li><b>III:</b> <bdi dir="ltr">2–5</bdi> ס״מ מתחת <span class="nw">ל-<bdi>GEJ</bdi></span>. מטופל כמו סרטן קיבה</li>
+    <li><b><span class="nw"><bdi dir="ltr">I</bdi>:</span></b> מרכז <bdi dir="ltr">1–5</bdi> ס״מ מעל <span class="nw">ה-<bdi>GEJ</bdi>.</span> מטופל כמו סרטן ושט</li>
+    <li><b><span class="nw"><bdi dir="ltr">II</bdi>:</span></b> מ-1 ס״מ מעל עד 2 ס״מ מתחת. שלבים כמו בסרטן ושט, שנוי במחלוקת</li>
+    <li><b><span class="nw"><bdi dir="ltr">III</bdi>:</span></b> <bdi dir="ltr">2–5</bdi> ס״מ מתחת <span class="nw">ל-<bdi>GEJ</bdi>.</span> מטופל כמו סרטן קיבה</li>
    </ul>
-   <div class="box n" style="margin-top:8px"><b class="t">שוליים</b><bdi>R0</bdi>: בלי גידול. <bdi>R1</bdi>: גידול מיקרוסקופי בשוליים. <bdi>R2</bdi>: גידול שנשאר בעין</div>
+   <div class="box n" style="margin-top:8px"><b class="t">שוליים</b><span class="nw"><bdi>R0</bdi>:</span> בלי גידול. <span class="nw"><bdi>R1</bdi>:</span> גידול מיקרוסקופי בשוליים. <span class="nw"><bdi>R2</bdi>:</span> גידול שנשאר בעין</div>
   </div>
  </div>
-  <figure style="margin-top:12px"><img src="img/siewert.png" alt="סיווג Siewert" style="max-height:22vh"><figcaption>גידולי <span class="nw">ה-<bdi>GEJ</bdi></span> לפי <bdi>Siewert</bdi>: סוג 1 (כחול), 2 (תכלת), 3 (ירוק) · <bdi>Olek Remesz</bdi>, <bdi>Wikimedia Commons</bdi> (CC0)</figcaption></figure>
+  <figure style="margin-top:12px"><img src="img/siewert.png" alt="סיווג Siewert" style="max-height:22vh"><figcaption>גידולי <span class="nw">ה-<bdi>GEJ</bdi></span> לפי <span class="nw"><bdi>Siewert</bdi>:</span> סוג 1 (כחול), 2 (תכלת), 3 (ירוק) · <span class="nw"><bdi>Olek Remesz</bdi>,</span> <bdi>Wikimedia Commons</bdi> (CC0)</figcaption></figure>
  <div class="src"><span><b>Sabiston 22</b> · פרק 87 עמ׳ <bdi dir="ltr">1196–1197</bdi></span><span>שלבים</span></div>
 </div></section>
 
@@ -367,12 +414,12 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <div class="grid">
   <div class="box"><b class="t">כריתה אנדוסקופית (EMR או ESD)</b>
    <p style="margin:0 0 6px">רק כשכל התנאים מתקיימים:</p>
-   <ul class="b sm"><li>אדנוקרצינומה מסוג מעיי</li><li>מוגבל <span class="nw">ל-<bdi>mucosa</bdi></span> (<bdi>Tis</bdi> או <bdi>T1a</bdi>)</li><li>בלי חדירה לכלי לימפה ודם</li><li>בלי כיב</li><li>קטן מ-2 ס״מ</li></ul>
+   <ul class="b sm"><li>אדנוקרצינומה מסוג מעיי</li><li>מוגבל <span class="nw">ל-<bdi>mucosa</bdi></span> <span class="nw">(<bdi>Tis</bdi></span> או <span class="nw"><bdi>T1a</bdi>)</span></li><li>בלי חדירה לכלי לימפה ודם</li><li>בלי כיב</li><li>קטן מ-2 ס״מ</li></ul>
    <p style="margin:6px 0 0;font-size:14.5px">שוליים עמוקים חיוביים, חדירה <span class="nw">ל-<bdi>submucosa</bdi></span> או לכלי דם: <b>לכריתת קיבה עם בלוטות</b></p></div>
   <div style="display:grid;gap:10px">
    <div class="box n"><b class="t">מחלה בשלב <bdi>II</bdi> ומעלה</b>במערב: <b>כימותרפיה לפני הניתוח ואחריו</b>. במזרח: ניתוח ואחריו כימותרפיה משלימה</div>
    <div class="box a"><b class="t">גידול <bdi>MSI-high</bdi></b>לא מגיב לכימותרפיה רגילה. הגישה היום: ניתוח מיידי בלי כימותרפיה. מגיב היטב לאימונותרפיה</div>
-   <div class="box r"><b class="t">לא נתיח</b>גרורות רחוקות, או חדירה <span class="nw">ל-<bdi>aorta</bdi></span>, <span class="nw">ל-<bdi>celiac trunk</bdi></span> או <span class="nw">ל-<bdi>common hepatic artery</bdi></span></div>
+   <div class="box r"><b class="t">לא נתיח</b>גרורות רחוקות, או חדירה <span class="nw">ל-<bdi>aorta</bdi>,</span> <span class="nw">ל-<bdi>celiac trunk</bdi></span> או <span class="nw">ל-<bdi>common hepatic artery</bdi></span></div>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 87 עמ׳ <bdi dir="ltr">1199, 1204–1205</bdi></span><span>החלטה</span></div>
@@ -385,17 +432,17 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
   <div>
    <h3>היקף הכריתה</h3>
    <ul class="b sm">
-    <li><b><span class="nw">ה-<bdi>body</bdi></span> <span class="nw">וה-<bdi>antrum</bdi></span>:</b> כריתת קיבה דיסטלית. שוליים: 2 ס״מ <span class="nw">ב-<bdi>cT1</bdi></span>, 3 ס״מ <span class="nw">ב-<bdi>cT2–T4</bdi></span> עם גבול ברור, 5 ס״מ בגידול מסתנן</li>
+    <li><b><span class="nw">ה-<bdi>body</bdi></span> <span class="nw">וה-<bdi>antrum</bdi>:</span></b> כריתת קיבה דיסטלית. שוליים: 2 ס״מ <span class="nw">ב-<bdi>cT1</bdi>,</span> 3 ס״מ <span class="nw">ב-<bdi>cT2–T4</bdi></span> עם גבול ברור, 5 ס״מ בגידול מסתנן</li>
     <li>שוליים קרובים: <b>חתך קפוא</b> לפני החיבור</li>
     <li><b>שחזור:</b> <bdi>Roux-en-Y</bdi> גורם פחות גסטריטיס ופחות רפלוקס מרה <span class="nw">מ-<bdi>Billroth</bdi></span></li>
-    <li><b><span class="nw">ה-<bdi>fundus</bdi></span> <span class="nw">וה-<bdi>cardia</bdi></span>:</b> כריתה מלאה עם <bdi>Roux-en-Y</bdi> <span class="nw">ל-<bdi>esophagus</bdi></span>, או כריתה פרוקסימלית. שקולות אונקולוגית</li>
-    <li><bdi>T4</bdi>: כורתים <b>בגוש אחד</b> את האיבר שנפגע</li>
+    <li><b><span class="nw">ה-<bdi>fundus</bdi></span> <span class="nw">וה-<bdi>cardia</bdi>:</span></b> כריתה מלאה עם <bdi>Roux-en-Y</bdi> <span class="nw">ל-<bdi>esophagus</bdi>,</span> או כריתה פרוקסימלית. שקולות אונקולוגית</li>
+    <li><span class="nw"><bdi>T4</bdi>:</span> כורתים <b>בגוש אחד</b> את האיבר שנפגע</li>
    </ul>
   </div>
   <div>
    <h3>כריתת בלוטות</h3>
    <ul class="b sm">
-    <li><bdi>D1</bdi>: <span class="nw">ה-<bdi>perigastric nodes</bdi></span>. <bdi>D2</bdi>: מוסיף את תחנות הבלוטות לאורך העורקים הגדולים (בטבלה היפנית: <bdi dir="ltr">8a, 9, 11p, 12a</bdi>)</li>
+    <li><span class="nw"><bdi>D1</bdi>:</span> <span class="nw">ה-<bdi>perigastric nodes</bdi>.</span> <span class="nw"><bdi>D2</bdi>:</span> מוסיף את תחנות הבלוטות לאורך העורקים הגדולים (בטבלה היפנית: <span class="nw"><bdi dir="ltr">8a, 9, 11p, 12a</bdi>)</span></li>
     <li><bdi>D2</bdi> שיפר הישרדות ספציפית למחלה, אבל במחקרים הישנים עם יותר תמותה, בעיקר בגלל כריתת טחול וזנב הלבלב</li>
     <li>ההמלצה: <b><bdi>D2</bdi> מותאם בלי כריתת טחול ולבלב</b> במרכזים מנוסים. לפחות 16 בלוטות, רצוי מעל 30</li>
    </ul>
@@ -412,15 +459,15 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <div class="grid">
   <div>
    <ul class="b">
-    <li><bdi>MAGIC</bdi>: 3 מחזורים לפני ו-3 אחרי הניתוח שיפרו הישרדות לעומת ניתוח בלבד</li>
-    <li><bdi>FLOT4</bdi>: <bdi>FLOT</bdi> (4 לפני ו-4 אחרי) עדיף על <bdi>MAGIC</bdi>. זה הטיפול המומלץ למטופל במצב תפקודי טוב</li>
-    <li>רק <bdi dir="ltr">41–46%</bdi> השלימו את המחזורים שאחרי הניתוח. למי שלא יעמוד <span class="nw">ב-<bdi>FLOT</bdi></span>: <bdi>FOLFOX</bdi></li>
+    <li><span class="nw"><bdi>MAGIC</bdi>:</span> 3 מחזורים לפני ו-3 אחרי הניתוח שיפרו הישרדות לעומת ניתוח בלבד</li>
+    <li><span class="nw"><bdi>FLOT4</bdi>:</span> <bdi>FLOT</bdi> (4 לפני ו-4 אחרי) עדיף על <span class="nw"><bdi>MAGIC</bdi>.</span> זה הטיפול המומלץ למטופל במצב תפקודי טוב</li>
+    <li>רק <bdi dir="ltr">41–46%</bdi> השלימו את המחזורים שאחרי הניתוח. למי שלא יעמוד <span class="nw">ב-<bdi>FLOT</bdi>:</span> <bdi>FOLFOX</bdi></li>
     <li><b>הקרנה:</b> מוסיפים בעיקר כשכריתת הבלוטות הייתה פחות <span class="nw">מ-<bdi>D2</bdi></span></li>
    </ul>
   </div>
   <div style="display:grid;gap:10px">
    <div class="box n"><b class="t"><bdi>HER2</bdi> חיובי</b>טרסטוזומאב מתווסף לכימותרפיה בקו הראשון במחלה מתקדמת</div>
-   <div class="box"><b class="t"><bdi>MSI-high</bdi>, <bdi>PD-L1</bdi> גבוה, <bdi>EBV</bdi></b>מגיבים לאימונותרפיה. במחקרי שלב 2 בגידולי <bdi>MSI-high</bdi>: תגובה פתולוגית מלאה <span class="nw">בכ-<bdi dir="ltr">60%</bdi></span></div>
+   <div class="box"><b class="t"><span class="nw"><bdi>MSI-high</bdi>,</span> <bdi>PD-L1</bdi> גבוה, <bdi>EBV</bdi></b>מגיבים לאימונותרפיה. במחקרי שלב 2 בגידולי <span class="nw"><bdi>MSI-high</bdi>:</span> תגובה פתולוגית מלאה <span class="nw">בכ-<bdi dir="ltr">60%</bdi></span></div>
    <div class="box a"><b class="t">החזרה</b>בעיקר רחוקה ובצפק. <bdi dir="ltr">10–20%</bdi> חוזרים רק מקומית. פחות חזרה מקומית אחרי <bdi>D2</bdi></div>
   </div>
  </div>
@@ -450,14 +497,14 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
 
 <section class="s"><div class="card">
  <div class="kick"><b>14</b>לא כל גידול <span class="nw">ב-<bdi>stomach</bdi></span> הוא אדנוקרצינומה</div>
- <h2>GIST, לימפומה ו-NET</h2>
+ <h2><span class="nw"><bdi dir="ltr">GIST</bdi>,</span> לימפומה ו-NET</h2>
  <div class="grid g3">
   <div class="box n"><b class="t">GIST</b>
-   <ul class="b sm"><li>הגידול המזנכימלי השכיח. <bdi dir="ltr">40–60%</bdi> <span class="nw">ב-<bdi>stomach</bdi></span></li><li>מתאי <bdi>Cajal</bdi>. <span class="nw">כ-<bdi dir="ltr">95%</bdi></span> מבטאים <bdi>KIT</bdi></li><li>גוש תת-רירי חלק. ביופסיה רגילה לרוב לא מאבחנת</li><li>כורתים מעל <bdi dir="ltr">2–3</bdi> ס״מ או עם תסמינים. שוליים של 1 ס״מ, <b>בלי כריתת בלוטות</b>, בלי לקרוע את הגידול</li><li>סיכון גבוה: אימטיניב <b>3 שנים</b></li></ul></div>
+   <ul class="b sm"><li>הגידול המזנכימלי השכיח. <bdi dir="ltr">40–60%</bdi> <span class="nw">ב-<bdi>stomach</bdi></span></li><li>מתאי <span class="nw"><bdi>Cajal</bdi>.</span> <span class="nw">כ-<bdi dir="ltr">95%</bdi></span> מבטאים <bdi>KIT</bdi></li><li>גוש תת-רירי חלק. ביופסיה רגילה לרוב לא מאבחנת</li><li>כורתים מעל <bdi dir="ltr">2–3</bdi> ס״מ או עם תסמינים. שוליים של 1 ס״מ, <b>בלי כריתת בלוטות</b>, בלי לקרוע את הגידול</li><li>סיכון גבוה: אימטיניב <b>3 שנים</b></li></ul></div>
   <div class="box b"><b class="t">לימפומה</b>
-   <ul class="b sm"><li><span class="nw">ה-<bdi>stomach</bdi></span> הוא האתר השכיח ללימפומה מחוץ לבלוטות. <span class="nw">כ-<bdi dir="ltr">3%</bdi></span> מגידולי <span class="nw">ה-<bdi>stomach</bdi></span></li><li><bdi>DLBCL</bdi> (<bdi dir="ltr">45–60%</bdi>): כימותרפיה. ניתוח רק לסיבוכים: דימום, חסימה, ניקוב</li><li><bdi>MALT</bdi>: כמעט תמיד עם <bdi>H. pylori</bdi>. <b>הכחדת החיידק</b> משיגה הפוגה ביותר <span class="nw">מ-<bdi dir="ltr">75%</bdi></span> מהמקרים המוקדמים</li></ul></div>
+   <ul class="b sm"><li><span class="nw">ה-<bdi>stomach</bdi></span> הוא האתר השכיח ללימפומה מחוץ לבלוטות. <span class="nw">כ-<bdi dir="ltr">3%</bdi></span> מגידולי <span class="nw">ה-<bdi>stomach</bdi></span></li><li><bdi>DLBCL</bdi> <span class="nw">(<bdi dir="ltr">45–60%</bdi>):</span> כימותרפיה. ניתוח רק לסיבוכים: דימום, חסימה, ניקוב</li><li><span class="nw"><bdi>MALT</bdi>:</span> כמעט תמיד עם <span class="nw"><bdi>H. pylori</bdi>.</span> <b>הכחדת החיידק</b> משיגה הפוגה ביותר <span class="nw">מ-<bdi dir="ltr">75%</bdi></span> מהמקרים המוקדמים</li></ul></div>
   <div class="box"><b class="t">גידול נוירואנדוקריני</b>
-   <ul class="b sm"><li><b>סוג I</b> (<bdi dir="ltr">70–80%</bdi>): גסטריטיס אטרופית, גסטרין גבוה, קטנים ומרובים, פרוגנוזה מצוינת</li><li><b>סוג II</b>: גסטרינומה <span class="nw">ו-<bdi>MEN1</bdi></span></li><li><b>סוג III</b>: ספורדי, בודד, אגרסיבי. כריתה אונקולוגית עם בלוטות</li></ul></div>
+   <ul class="b sm"><li><b>סוג I</b> <span class="nw">(<bdi dir="ltr">70–80%</bdi>):</span> גסטריטיס אטרופית, גסטרין גבוה, קטנים ומרובים, פרוגנוזה מצוינת</li><li><b>סוג II</b>: גסטרינומה <span class="nw">ו-<bdi>MEN1</bdi></span></li><li><b>סוג III</b>: ספורדי, בודד, אגרסיבי. כריתה אונקולוגית עם בלוטות</li></ul></div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 87 עמ׳ <bdi dir="ltr">1206–1210</bdi></span><span>גידולים אחרים</span></div>
 </div></section>
@@ -466,17 +513,17 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <div class="kick"><b>15</b>מה חדש בתחום · 2021–2026</div>
  <h2>מחקרים שכדאי להכיר</h2>
  <div class="grid">
-  <div class="study"><div class="y"><bdi>NEJM</bdi> 2025 · מחקר אקראי שלב 3</div><b><bdi>MATTERHORN</bdi>: אימונותרפיה סביב הניתוח</b>
-   <p>948 מטופלים עם גידול נתיח <span class="nw">ב-<bdi>stomach</bdi></span> או <span class="nw">ב-<bdi>GEJ</bdi></span>. דורבלומאב עם <bdi>FLOT</bdi> מול <bdi>FLOT</bdi> לבד. הישרדות ללא אירוע לשנתיים <bdi dir="ltr">67.4%</bdi> לעומת <bdi dir="ltr">58.5%</bdi>. תגובה פתולוגית מלאה <bdi dir="ltr">19.2%</bdi> לעומת <bdi dir="ltr">7.2%</bdi>. בלי עלייה בתופעות לוואי קשות</p>
+  <div class="study"><div class="y"><bdi>NEJM</bdi> 2025 · מחקר אקראי שלב 3</div><b><span class="nw"><bdi>MATTERHORN</bdi>:</span> אימונותרפיה סביב הניתוח</b>
+   <p>948 מטופלים עם גידול נתיח <span class="nw">ב-<bdi>stomach</bdi></span> או <span class="nw">ב-<bdi>GEJ</bdi>.</span> דורבלומאב עם <bdi>FLOT</bdi> מול <bdi>FLOT</bdi> לבד. הישרדות ללא אירוע לשנתיים <bdi dir="ltr">67.4%</bdi> לעומת <span class="nw"><bdi dir="ltr">58.5%</bdi>.</span> תגובה פתולוגית מלאה <bdi dir="ltr">19.2%</bdi> לעומת <span class="nw"><bdi dir="ltr">7.2%</bdi>.</span> בלי עלייה בתופעות לוואי קשות</p>
    <small>Janjigian YY et al. N Engl J Med 2025;393:217-30</small></div>
-  <div class="study"><div class="y"><bdi>NEJM</bdi> 2024 · מחקר אקראי שלב 3</div><b><bdi>TOPGEAR</bdi>: הקרנה לפני הניתוח</b>
-   <p>574 מטופלים. הוספת כימו-הקרנה לפני הניתוח לכימותרפיה סביב הניתוח: יותר תגובה פתולוגית מלאה (<bdi dir="ltr">17%</bdi> לעומת <bdi dir="ltr">8%</bdi>), אבל <b>בלי שיפור בהישרדות</b> (חציון 46 לעומת 49 חודשים)</p>
+  <div class="study"><div class="y"><bdi>NEJM</bdi> 2024 · מחקר אקראי שלב 3</div><b><span class="nw"><bdi>TOPGEAR</bdi>:</span> הקרנה לפני הניתוח</b>
+   <p>574 מטופלים. הוספת כימו-הקרנה לפני הניתוח לכימותרפיה סביב הניתוח: יותר תגובה פתולוגית מלאה <span class="nw">(<bdi dir="ltr">17%</bdi></span> לעומת <span class="nw"><bdi dir="ltr">8%</bdi>),</span> אבל <b>בלי שיפור בהישרדות</b> (חציון 46 לעומת 49 חודשים)</p>
    <small>Leong T et al. N Engl J Med 2024;391:1810-21</small></div>
-  <div class="study"><div class="y"><bdi>JAMA Surg</bdi> 2022 · מחקר אקראי</div><b><bdi>CLASS-01</bdi>: לפרוסקופיה במחלה מתקדמת מקומית</b>
-   <p>1,056 מטופלים, כריתה דיסטלית עם <bdi>D2</bdi>. הישרדות ל-5 שנים <bdi dir="ltr">72.6%</bdi> בלפרוסקופיה לעומת <bdi dir="ltr">76.3%</bdi> בפתוח, הבדל לא מובהק. מנתחים מנוסים במרכזים גדולים</p>
+  <div class="study"><div class="y"><bdi>JAMA Surg</bdi> 2022 · מחקר אקראי</div><b><span class="nw"><bdi>CLASS-01</bdi>:</span> לפרוסקופיה במחלה מתקדמת מקומית</b>
+   <p>1,056 מטופלים, כריתה דיסטלית עם <span class="nw"><bdi>D2</bdi>.</span> הישרדות ל-5 שנים <bdi dir="ltr">72.6%</bdi> בלפרוסקופיה לעומת <bdi dir="ltr">76.3%</bdi> בפתוח, הבדל לא מובהק. מנתחים מנוסים במרכזים גדולים</p>
    <small>Huang C et al. JAMA Surg 2022;157:9-17</small></div>
-  <div class="study"><div class="y"><bdi>Lancet</bdi> 2021 · מחקר אקראי שלב 3</div><b><bdi>CheckMate 649</bdi>: ניבולומאב בקו ראשון</b>
-   <p>1,581 מטופלים עם מחלה מתקדמת <span class="nw">ו-<bdi>HER2</bdi></span> שלילי. ניבולומאב עם כימותרפיה שיפר הישרדות כוללת (<bdi>HR</bdi> 0.71 <span class="nw">כש-<bdi>PD-L1 CPS</bdi></span> 5 ומעלה). יותר תופעות לוואי בדרגה 3–4 (<bdi dir="ltr">59%</bdi> לעומת <bdi dir="ltr">44%</bdi>)</p>
+  <div class="study"><div class="y"><bdi>Lancet</bdi> 2021 · מחקר אקראי שלב 3</div><b><span class="nw"><bdi>CheckMate 649</bdi>:</span> ניבולומאב בקו ראשון</b>
+   <p>1,581 מטופלים עם מחלה מתקדמת <span class="nw">ו-<bdi>HER2</bdi></span> שלילי. ניבולומאב עם כימותרפיה שיפר הישרדות כוללת <span class="nw">(<bdi>HR</bdi></span> 0.71 <span class="nw">כש-<bdi>PD-L1 CPS</bdi></span> 5 ומעלה). יותר תופעות לוואי בדרגה 3–4 <span class="nw">(<bdi dir="ltr">59%</bdi></span> לעומת <span class="nw"><bdi dir="ltr">44%</bdi>)</span></p>
    <small>Janjigian YY et al. Lancet 2021;398:27-40</small></div>
  </div>
  <div class="src"><span>מחקרים מהשנים האחרונות, מעבר לספר · מקורות בתחתית כל כרטיס</span><span>מה חדש</span></div>
@@ -487,13 +534,13 @@ details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;back
  <h2>חמישה דברים לקחת למחלקה</h2>
  <ol class="obj">
   <li><bdi>H. pylori</bdi> הוא גורם הסיכון החשוב ביותר: גסטריטיס, אטרופיה, מטאפלזיה, דיספלזיה ואז סרטן</li>
-  <li>ירידה במשקל וכאב מתמשך מחייבים גסטרוסקופיה. בבדיקה מחפשים <bdi>Virchow</bdi>, טבור, מיימת ומדף רקטלי</li>
+  <li>ירידה במשקל וכאב מתמשך מחייבים גסטרוסקופיה. בבדיקה מחפשים <span class="nw"><bdi>Virchow</bdi>,</span> טבור, מיימת ומדף רקטלי</li>
   <li>בירור: 6–8 ביופסיות, CT לכולם, EUS במחלה מוקדמת, PET-CT ולפרוסקופיה במחלה מתקדמת</li>
   <li>גידול קטן <span class="nw">ב-<bdi>mucosa</bdi></span> בלי סימני סיכון: כריתה אנדוסקופית. שלב <bdi>II</bdi> ומעלה: <bdi>FLOT</bdi> לפני הניתוח ואחריו</li>
   <li>ניתוח טוב: שוליים נקיים, <bdi>D2</bdi> מותאם ולפחות 16 בלוטות. אחר כך ברזל, <bdi>B12</bdi> ומעקב</li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 87 <bdi>Gastric Cancer</bdi> (עמ׳ <bdi dir="ltr">1192–1211</bdi>) · פרק 86 <bdi>Stomach</bdi>, אנטומיה (עמ׳ <bdi dir="ltr">1166–1168</bdi>)</div>
- <div class="src"><span>איורים: <bdi>Gray's Anatomy</bdi> (1918, נחלת הכלל) · תמונות קליניות: <bdi>Wikimedia Commons</bdi>, הקרדיט בכל תמונה · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 87 <bdi>Gastric Cancer</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1192–1211</bdi>)</span> · פרק 86 <span class="nw"><bdi>Stomach</bdi>,</span> אנטומיה (עמ׳ <span class="nw"><bdi dir="ltr">1166–1168</bdi>)</span></div>
+ <div class="src"><span>איורים: <bdi>Gray's Anatomy</bdi> (1918, נחלת הכלל) · תמונות קליניות: <span class="nw"><bdi>Wikimedia Commons</bdi>,</span> הקרדיט בכל תמונה · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>
@@ -515,5 +562,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>

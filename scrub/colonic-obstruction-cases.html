@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>דיון מקרים: חסימה קולונית · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -90,7 +90,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -120,9 +120,56 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -150,7 +197,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>לטפל בשלבים באוגילבי אחרי ניתוח ולזהות מתי השמרני נכשל</li>
  </ol>
  <div class="box a" style="margin-top:14px"><b class="t">איך עובדים</b>קוראים את המקרה, עונים בקול בקבוצה ורק אז פותחים את התשובה (▸)</div>
- <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 95 (עמ׳ <bdi dir="ltr">1454–1459</bdi>) · פרק 96 (עמ׳ <bdi dir="ltr">1501</bdi>)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 95 (עמ׳ <span class="nw"><bdi dir="ltr">1454–1459</bdi>)</span> · פרק 96 (עמ׳ <span class="nw"><bdi dir="ltr">1501</bdi>)</span></span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -163,11 +210,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li>שלושה ימים בלי יציאות ובלי גזים. הבטן הולכת ומתנפחת. היום הקיא פעם אחת</li>
     <li>לפי הצוות: "כבר היה לו פעם משהו דומה ועבר"</li>
     <li>דופק 96, ל״ד 135/80, חום 37.4</li>
-    <li>בטן תפוחה מאוד וטימפנית, רגישות קלה מפושטת, <b>בלי</b> התגוננות ובלי כאב בשחרור. מפשעות תקינות. <span class="nw">ב-<bdi>rectum</bdi></span>: ריק</li>
+    <li>בטן תפוחה מאוד וטימפנית, רגישות קלה מפושטת, <b>בלי</b> התגוננות ובלי כאב בשחרור. מפשעות תקינות. <span class="nw">ב-<bdi>rectum</bdi>:</span> ריק</li>
    </ul>
    <div class="box b" style="margin-top:12px"><b class="t">שאלות לקבוצה</b>מה האבחנה המבדלת? מה הבדיקה הראשונה? מה בבדיקה הגופנית ובמעבדה יגיד לכם שהמצב דחוף יותר?</div>
   </div>
-  <figure><img src="img/xray-sigmoid-volvulus.jpg" alt="צילום בטן בוולבולוס של ה-sigmoid"><figcaption>צילום בטן של מטופל אחר עם וולבולוס של <span class="nw">ה-<bdi>sigmoid</bdi></span> · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/xray-sigmoid-volvulus.jpg" alt="צילום בטן בוולבולוס של ה-sigmoid"><figcaption>צילום בטן של מטופל אחר עם וולבולוס של <span class="nw">ה-<bdi>sigmoid</bdi></span> · <span class="nw"><bdi>Hellerhoff</bdi>,</span> <span class="nw"><bdi>CC BY-SA 3.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span>מקרה בדוי · <b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1454–1456</bdi></span><span>מקרה 1</span></div>
 </div></section>
@@ -176,7 +223,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>3</b>מקרה 1 · אבחנה</div>
  <h2>הצילום אומר הכול</h2>
  <details class="box"><summary><b>▸ אבחנה מבדלת</b></summary>
-  <ul class="b sm" style="margin-top:8px"><li><b>וולבולוס של <span class="nw">ה-<bdi>sigmoid</bdi></span>:</b> מבוגר, עצירות כרונית, אירועים קודמים</li><li><b>גידול חוסם בצד שמאל</b></li><li><b>פסאודו-חסימה (אוגילבי):</b> מחלה נוירולוגית ותרופות</li><li>צואה דחוסה, היצרות על רקע סעיפים, בקע</li></ul></details>
+  <ul class="b sm" style="margin-top:8px"><li><b>וולבולוס של <span class="nw">ה-<bdi>sigmoid</bdi>:</span></b> מבוגר, עצירות כרונית, אירועים קודמים</li><li><b>גידול חוסם בצד שמאל</b></li><li><b>פסאודו-חסימה (אוגילבי):</b> מחלה נוירולוגית ותרופות</li><li>צואה דחוסה, היצרות על רקע סעיפים, בקע</li></ul></details>
  <details class="box b" style="margin-top:10px"><summary><b>▸ מה רואים בצילום</b></summary>
   <p style="margin:8px 0 0">לולאה ענקית מלאת גז בצורת <b>"צינור פנימי מקופל"</b> או <b>"פולי קפה"</b>: קטע <bdi>sigmoid</bdi> מסובב על <span class="nw">ה-<bdi>mesentery</bdi></span> שלו. זו לולאה סגורה. ב-CT רואים <b>מערבולת <span class="nw">ב-<bdi>mesentery</bdi></span></b> ואפשר להעריך גם איסכמיה</p></details>
  <details class="box r" style="margin-top:10px"><summary><b>▸ מה יעשה את זה דחוף יותר</b></summary>
@@ -200,7 +247,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <div class="hzi" data-hzi="m" hidden><b>2 · <bdi>sigmoid mesocolon</bdi></b><p>כל קטע <span class="nw">ב-<bdi>colon</bdi></span> שלא מקובע <span class="nw">ל-<bdi>retroperitoneum</bdi></span> ויש לו <bdi>mesentery</bdi> מוארך יכול להסתובב. הלחץ על <span class="nw">ה-<bdi>mesentery</bdi></span> חוסם קודם את הוורידים ואחר כך את העורקים</p></div>
    <div class="hzi" data-hzi="d" hidden><b>3 · <bdi>descending colon</bdi></b><p>מקובע לדופן האחורית ולכן לא מסתובב. מעל הפיתול הוא מתרחב בגלל הגז והצואה שמצטברים</p></div>
   </div></div>
- <figure style="margin-top:8px;border:0;padding:0"><figcaption><span class="nw">ה-<bdi>sigmoid</bdi></span> <span class="nw">וה-<bdi>mesocolon</bdi></span> שלו (<bdi>mesocolon sigmoideum</bdi>) · <bdi>Sobotta, Atlas and Text-book of Human Anatomy</bdi> 1906, איור 414 (נחלת הכלל)</figcaption></figure>
+ <figure style="margin-top:8px;border:0;padding:0"><figcaption><span class="nw">ה-<bdi>sigmoid</bdi></span> <span class="nw">וה-<bdi>mesocolon</bdi></span> שלו <span class="nw">(<bdi>mesocolon sigmoideum</bdi>)</span> · <bdi>Sobotta, Atlas and Text-book of Human Anatomy</bdi> 1906, איור 414 (נחלת הכלל)</figcaption></figure>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1455–1456</bdi></span><span>מקרה 1</span></div>
 </div></section>
 
@@ -212,7 +259,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <details class="box b" style="margin-top:10px"><summary><b>▸ ההתרה הצליחה. אפשר לשחרר הביתה?</b></summary>
   <p style="margin:8px 0 0">לא בלי תוכנית. החזרה שכיחה ולכן ממליצים על <b>כריתה מתוכננת של <span class="nw">ה-<bdi>sigmoid</bdi></span> עם השקה ראשונית</b>, אחרי שהמעי הוכן והמטופל אוזן</p></details>
  <details class="box r" style="margin-top:10px"><summary><b>▸ ההתרה נכשלה, או שבאנדוסקופיה רואים רירית כהה</b></summary>
-  <p style="margin:8px 0 0">ניתוח: כריתה של <span class="nw">ה-<bdi>sigmoid</bdi></span> וקולוסטומיה (<bdi>Hartmann</bdi>). פריטוניטיס, נקב או מעי איסכמי: לחדר ניתוח מיד, בלי ניסיון אנדוסקופי</p></details>
+  <p style="margin:8px 0 0">ניתוח: כריתה של <span class="nw">ה-<bdi>sigmoid</bdi></span> וקולוסטומיה <span class="nw">(<bdi>Hartmann</bdi>).</span> פריטוניטיס, נקב או מעי איסכמי: לחדר ניתוח מיד, בלי ניסיון אנדוסקופי</p></details>
  <div class="box a" style="margin-top:12px"><b class="t">ומה אם זה <span class="nw">ה-<bdi>cecum</bdi></span>?</b>וולבולוס של <span class="nw">ה-<bdi>cecum</bdi></span> מטופל בכריתה והשקה ראשונית. דוחים השקה כשהסיכון לדליפה גבוה: מעי לא חיוני, אלח דם, תת-לחץ דם</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1457</bdi></span><span>מקרה 1</span></div>
 </div></section>
@@ -227,12 +274,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li>ארבעה ימים בלי יציאות ובלי גזים, כאבי בטן גליים, בחילה</li>
     <li>לא עברה קולונוסקופיה מעולם</li>
     <li>דופק 104, ל״ד 128/76, חום 37.2</li>
-    <li>בטן תפוחה מאוד, <b>רגישות בבטן ימנית תחתונה</b>, בלי התגוננות. מפשעות תקינות. <span class="nw">ב-<bdi>rectum</bdi></span>: ריק, בלי גוש במישוש</li>
-    <li>צילום: <bdi>colon</bdi> מורחב עד <span class="nw">ה-<bdi>sigmoid</bdi></span>, <span class="nw">ה-<bdi>cecum</bdi></span> 11 ס״מ, כמעט בלי גז <span class="nw">ב-<bdi>rectum</bdi></span>. <span class="nw">ה-<bdi>small bowel</bdi></span> לא מורחב</li>
+    <li>בטן תפוחה מאוד, <b>רגישות בבטן ימנית תחתונה</b>, בלי התגוננות. מפשעות תקינות. <span class="nw">ב-<bdi>rectum</bdi>:</span> ריק, בלי גוש במישוש</li>
+    <li>צילום: <bdi>colon</bdi> מורחב עד <span class="nw">ה-<bdi>sigmoid</bdi>,</span> <span class="nw">ה-<bdi>cecum</bdi></span> 11 ס״מ, כמעט בלי גז <span class="nw">ב-<bdi>rectum</bdi>.</span> <span class="nw">ה-<bdi>small bowel</bdi></span> לא מורחב</li>
    </ul>
    <div class="box b" style="margin-top:12px"><b class="t">שאלות לקבוצה</b>למה <span class="nw">ה-<bdi>small bowel</bdi></span> לא מורחב ולמה זה מדאיג? למה הרגישות בצד ימין כשהבעיה כנראה בצד שמאל? איזו בדיקה עכשיו?</div>
   </div>
-  <figure><img src="img/lap-sigmoid-cancer.jpg" alt="גידול ב-sigmoid במבט לפרוסקופי"><figcaption>כך נראה גידול <span class="nw">ב-<bdi>sigmoid</bdi></span> בלפרוסקופיה (מטופל אחר) · <bdi>Anpol42</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/lap-sigmoid-cancer.jpg" alt="גידול ב-sigmoid במבט לפרוסקופי"><figcaption>כך נראה גידול <span class="nw">ב-<bdi>sigmoid</bdi></span> בלפרוסקופיה (מטופל אחר) · <span class="nw"><bdi>Anpol42</bdi>,</span> <span class="nw"><bdi>CC BY-SA 4.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span>מקרה בדוי · <b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1497, 1501</bdi></span><span>מקרה 2</span></div>
 </div></section>
@@ -241,17 +288,17 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>7</b>מקרה 2 · פענוח</div>
  <h2><span class="nw">ה-<bdi>cecum</bdi></span> נמתח: השעון מתקתק</h2>
  <details class="box"><summary><b>▸ למה <span class="nw">ה-<bdi>small bowel</bdi></span> לא מורחב?</b></summary>
-  <p style="margin:8px 0 0"><span class="nw">ה-<bdi>ileocecal valve</bdi></span> <b>שלם</b> ולא נותן לתוכן לחזור <span class="nw">ל-<bdi>small bowel</bdi></span>. נוצרה <b>לולאה סגורה</b> בין <span class="nw">ה-<bdi>valve</bdi></span> לגידול: הופעה חריפה וסיכון גבוה לנקב</p></details>
+  <p style="margin:8px 0 0"><span class="nw">ה-<bdi>ileocecal valve</bdi></span> <b>שלם</b> ולא נותן לתוכן לחזור <span class="nw">ל-<bdi>small bowel</bdi>.</span> נוצרה <b>לולאה סגורה</b> בין <span class="nw">ה-<bdi>valve</bdi></span> לגידול: הופעה חריפה וסיכון גבוה לנקב</p></details>
  <details class="box r" style="margin-top:10px"><summary><b>▸ למה הרגישות מימין?</b></summary>
-  <p style="margin:8px 0 0"><span class="nw">ה-<bdi>cecum</bdi></span> הוא הקטע הרחב ביותר ולפי חוק לפלס המתח בדופן שלו הגבוה ביותר. כשהלחץ בדופן עולה מעל לחץ הנימים מתפתחת איסכמיה. <b>הנקב קורה <span class="nw">ב-<bdi>cecum</bdi></span></b> גם כשהגידול <span class="nw">ב-<bdi>sigmoid</bdi></span>. רגישות מעל <span class="nw">ה-<bdi>cecum</bdi></span> היא אזהרה</p></details>
+  <p style="margin:8px 0 0"><span class="nw">ה-<bdi>cecum</bdi></span> הוא הקטע הרחב ביותר ולפי חוק לפלס המתח בדופן שלו הגבוה ביותר. כשהלחץ בדופן עולה מעל לחץ הנימים מתפתחת איסכמיה. <b>הנקב קורה <span class="nw">ב-<bdi>cecum</bdi></span></b> גם כשהגידול <span class="nw">ב-<bdi>sigmoid</bdi>.</span> רגישות מעל <span class="nw">ה-<bdi>cecum</bdi></span> היא אזהרה</p></details>
  <details class="box b" style="margin-top:10px"><summary><b>▸ איזו בדיקה עכשיו?</b></summary>
-  <p style="margin:8px 0 0"><b>CT עם ניגוד בווריד</b> (ובחשד לחסימה קולונית עדיף גם ניגוד רקטלי): מיקום וסיבה, תקינות <span class="nw">ה-<bdi>ileocecal valve</bdi></span>, סימני איסכמיה ונקב מתקרב ובמקביל הערכת גרורות. מעבדה: אלקטרוליטים, ספירה, לקטט, גזים, סוג והצלבה</p></details>
+  <p style="margin:8px 0 0"><b><bdi dir="ltr">CT</bdi> עם ניגוד בווריד</b> (ובחשד לחסימה קולונית עדיף גם ניגוד רקטלי): מיקום וסיבה, תקינות <span class="nw">ה-<bdi>ileocecal valve</bdi>,</span> סימני איסכמיה ונקב מתקרב ובמקביל הערכת גרורות. מעבדה: אלקטרוליטים, ספירה, לקטט, גזים, סוג והצלבה</p></details>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1455–1457</bdi></span><span>מקרה 2</span></div>
 </div></section>
 
 <section class="s"><div class="card">
  <div class="kick"><b>8</b>מקרה 2 · החלטה</div>
- <h2>ב-CT: גידול חוסם <span class="nw">ב-<bdi>sigmoid</bdi></span>. ומה עכשיו?</h2>
+ <h2>ב-CT: גידול חוסם <span class="nw">ב-<bdi>sigmoid</bdi>.</span> ומה עכשיו?</h2>
  <div class="grid">
   <div>
    <details class="box r"><summary><b>▸ תרחיש א׳: <span class="nw">ה-<bdi>cecum</bdi></span> לא נראה חיוני</b></summary>
@@ -276,7 +323,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b">
-    <li>אי ספיקת לב, <bdi>COPD</bdi>. מקבל אופיאטים לכאב</li>
+    <li>אי ספיקת לב, <span class="nw"><bdi>COPD</bdi>.</span> מקבל אופיאטים לכאב</li>
     <li>מאתמול הבטן מתנפחת, בחילה, לא היו יציאות. הוא לא נראה חולה מאוד</li>
     <li>דופק 88, חום 37.3. בטן תפוחה וטימפנית, <b>בלי רגישות</b> משמעותית</li>
     <li>מעבדה: אשלגן 3.1, ספירה תקינה</li>
@@ -284,7 +331,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    </ul>
    <div class="box b" style="margin-top:12px"><b class="t">שאלות לקבוצה</b>מה האבחנה? מה עוד צריך לשלול? מה תכתבו בהוראות היום?</div>
   </div>
-  <figure><img src="img/ct-ogilvie-axial.jpg" alt="CT של colon מורחב באוגילבי"><figcaption>CT (חתך רוחבי) של מטופלת אחרת עם אוגילבי · <bdi>Milliways</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/ct-ogilvie-axial.jpg" alt="CT של colon מורחב באוגילבי"><figcaption>CT (חתך רוחבי) של מטופלת אחרת עם אוגילבי · <span class="nw"><bdi>Milliways</bdi>,</span> <span class="nw"><bdi>CC BY-SA 3.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span>מקרה בדוי · <b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1457–1458</bdi></span><span>מקרה 3</span></div>
 </div></section>
@@ -295,7 +342,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <details class="box"><summary><b>▸ למה אוגילבי?</b></summary>
   <p style="margin:8px 0 0">מבוגר עם מחלות רקע, אחרי ניתוח אורתופדי, עם אופיאטים והיפוקלמיה. הגז מגיע <b>עד <span class="nw">ה-<bdi>rectum</bdi></span></b> ובחסימה מכנית כמעט אין גז מעבר לחסימה</p></details>
  <details class="box a" style="margin-top:10px"><summary><b>▸ מה לשלול?</b></summary>
-  <p style="margin:8px 0 0">חסימה מכנית ומגה-קולון טוקסי (<bdi>C. difficile</bdi>). <b>CT</b> הוא הבדיקה המאשרת: מבדיל ממכני ומחפש איסכמיה או נקב מתקרב</p></details>
+  <p style="margin:8px 0 0">חסימה מכנית ומגה-קולון טוקסי <span class="nw">(<bdi>C. difficile</bdi>).</span> <b>CT</b> הוא הבדיקה המאשרת: מבדיל ממכני ומחפש איסכמיה או נקב מתקרב</p></details>
  <details class="box b" style="margin-top:10px"><summary><b>▸ ההוראות להיום</b></summary>
   <ul class="b sm" style="margin-top:8px"><li>צום, תיקון אשלגן ואלקטרוליטים</li><li>להפסיק או להפחית אופיאטים ותרופות אנטיכולינרגיות</li><li>זונדה ושרוול רקטלי (בזהירות)</li><li><b>בלי משלשלים</b> אוסמוטיים או מגרים: הם מגדילים את ההרחבה</li><li>הליכה, שכיבה על הבטן או ברכיים-חזה</li><li>בדיקה וצילום חוזרים</li></ul></details>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1457–1458</bdi></span><span>מקרה 3</span></div>
@@ -305,11 +352,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="kick"><b>11</b>מקרה 3 · יומיים אחר כך</div>
  <h2><span class="nw">ה-<bdi>cecum</bdi></span> 13 ס״מ, עדיין בלי רגישות</h2>
  <details class="box"><summary><b>▸ הצעד הבא</b></summary>
-  <p style="margin:8px 0 0"><b>ניאוסטיגמין</b> <bdi dir="ltr">2–2.5</bdi> מ״ג בווריד במשך <bdi dir="ltr">3–5</bdi> דקות, <b>במוניטור עם אטרופין מוכן</b>. מצפים לגזים וליציאה. הצלחה <bdi dir="ltr">60–94%</bdi>, חזרה עד 31%</p></details>
+  <p style="margin:8px 0 0"><b>ניאוסטיגמין</b> <bdi dir="ltr">2–2.5</bdi> מ״ג בווריד במשך <bdi dir="ltr">3–5</bdi> דקות, <b>במוניטור עם אטרופין מוכן</b>. מצפים לגזים וליציאה. הצלחה <span class="nw"><bdi dir="ltr">60–94%</bdi>,</span> חזרה עד 31%</p></details>
  <details class="box a" style="margin-top:10px"><summary><b>▸ למה לחשוב פעמיים אצל המטופל הזה?</b></summary>
   <p style="margin:8px 0 0">יש לו <bdi>COPD</bdi> ומחלת לב: זהירות. גם באסתמה, ברדיקרדיה, תסמונת כלילית חריפה ואי ספיקת כליות. התוויית נגד: חסימה מכנית, איסכמיה, נקב. תופעות לוואי: הקאות, כאבים, ריור, ברדיקרדיה</p></details>
  <details class="box b" style="margin-top:10px"><summary><b>▸ ניאוסטיגמין לא עבד</b></summary>
-  <p style="margin:8px 0 0">קולונוסקופיה עם מינימום ניפוח, עד הצד הימני והשארת צינור הנקזה. הצלחה ראשונית <bdi dir="ltr">61–95%</bdi>, נקב <bdi dir="ltr">1–3%</bdi></p></details>
+  <p style="margin:8px 0 0">קולונוסקופיה עם מינימום ניפוח, עד הצד הימני והשארת צינור הנקזה. הצלחה ראשונית <span class="nw"><bdi dir="ltr">61–95%</bdi>,</span> נקב <bdi dir="ltr">1–3%</bdi></p></details>
  <details class="box r" style="margin-top:10px"><summary><b>▸ מופיעים חום, רגישות ולויקוציטוזיס</b></summary>
   <p style="margin:8px 0 0">חשד לאיסכמיה או לנקב: ניתוח. מעי חיוני: צקוסטומיה. איסכמיה או נקב: כריתה, בדרך כלל עם סטומה. כשזה כבר קורה, התמותה קרובה ל-50%</p></details>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1458–1459</bdi></span><span>מקרה 3</span></div>
@@ -325,7 +372,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div><b>הצעד הראשון</b><span>וולבולוס: התרה אנדוסקופית · גידול: ניתוח או סטנט · אוגילבי: שמרני</span></div>
   <div><b>מתי לחדר ניתוח מיד</b><span>בכולם: פריטוניטיס, נקב, מעי איסכמי</span></div>
  </div>
- <div class="box b" style="margin-top:12px"><b class="t">במחלקה השבוע</b>מצאו מטופל עם בטן תפוחה (חסימה, איליאוס או אחרי ניתוח). בדקו אותו, פתחו את הצילום עם המתמחה ומדדו את קוטר <span class="nw">ה-<bdi>cecum</bdi></span>. הציגו בביקור: מכני או תפקודי ולמה</div>
+ <div class="box b" style="margin-top:12px"><b class="t">במחלקה השבוע</b>מצאו מטופל עם בטן תפוחה (חסימה, איליאוס או אחרי ניתוח). בדקו אותו, פתחו את הצילום עם המתמחה ומדדו את קוטר <span class="nw">ה-<bdi>cecum</bdi>.</span> הציגו בביקור: מכני או תפקודי ולמה</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1455–1459</bdi> · פרק 96 עמ׳ <bdi dir="ltr">1501</bdi></span><span>השוואה</span></div>
 </div></section>
 
@@ -334,9 +381,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>מחקרים שכדאי להכיר</h2>
  <div class="grid g3">
   <div class="study"><div class="y"><bdi>World J Emerg Surg</bdi> 2023 · הנחיות</div><b>הנחיות <bdi>WSES</bdi> לוולבולוס של <span class="nw">ה-<bdi>sigmoid</bdi></span></b>
-   <p>אבחנה בצילום ("פולי קפה"), CT כשיש ספק או חשד לאיסכמיה. בלי איסכמיה: התרה באנדוסקופ גמיש כקו ראשון (יעילה <span class="nw">ב-<bdi dir="ltr">60–95%</bdi></span>). אחרי התרה מוצלחת החזרה <bdi dir="ltr">43–75%</bdi> ולכן כריתה מוקדם ככל האפשר, גם באותו אשפוז</p>
+   <p>אבחנה בצילום ("פולי קפה"), CT כשיש ספק או חשד לאיסכמיה. בלי איסכמיה: התרה באנדוסקופ גמיש כקו ראשון (יעילה <span class="nw">ב-<bdi dir="ltr">60–95%</bdi>).</span> אחרי התרה מוצלחת החזרה <bdi dir="ltr">43–75%</bdi> ולכן כריתה מוקדם ככל האפשר, גם באותו אשפוז</p>
    <small>Tian BWCA et al. World J Emerg Surg 2023;18:34</small></div>
-  <div class="study"><div class="y"><bdi>Br J Surg</bdi> 2025 · מחקר אקראי</div><b><bdi>CReST2</bdi>: איזה סטנט בטיפול פליאטיבי?</b>
+  <div class="study"><div class="y"><bdi>Br J Surg</bdi> 2025 · מחקר אקראי</div><b><span class="nw"><bdi>CReST2</bdi>:</span> איזה סטנט בטיפול פליאטיבי?</b>
    <p>377 מטופלים עם גידול חוסם בטיפול פליאטיבי, סטנט מכוסה מול לא מכוסה. הסטנט לא הצליח ב-12.5%. פתיחות אחרי 6 חודשים: 72.7% במכוסה, 81.9% בלא מכוסה. יותר סיבוכים במכוסה, בעיקר תזוזה. איכות החיים דומה</p>
    <small>CReST2 Collaborative Group. Br J Surg 2025;112(9):znaf117</small></div>
   <div class="study"><div class="y"><bdi>J Surg Res</bdi> 2025 · מטא-אנליזה</div><b>אוגילבי: ניאוסטיגמין או קולונוסקופיה?</b>
@@ -353,11 +400,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>לכל בטן תפוחה: שלושה שאלות. האם יש לולאה סגורה? האם יש איסכמיה? מכני או תפקודי?</li>
   <li>גז עד <span class="nw">ה-<bdi>rectum</bdi></span> מכוון לאוגילבי. מעט גז מעבר לנקודה מכוון לחסימה מכנית</li>
   <li>וולבולוס של <span class="nw">ה-<bdi>sigmoid</bdi></span> שהותר עדיין צריך תוכנית לכריתה</li>
-  <li>בגידול שמאלי עם <bdi>ileocecal valve</bdi> שלם, מסתכלים על <span class="nw">ה-<bdi>cecum</bdi></span>: רגישות שם היא אזהרה</li>
+  <li>בגידול שמאלי עם <bdi>ileocecal valve</bdi> שלם, מסתכלים על <span class="nw">ה-<bdi>cecum</bdi>:</span> רגישות שם היא אזהרה</li>
   <li>באוגילבי לא נותנים משלשלים ולא נותנים ניאוסטיגמין בלי מוניטור ואטרופין</li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 95 <bdi>Colon and Rectum</bdi> (עמ׳ <bdi dir="ltr">1454–1459</bdi>) · פרק 96 <bdi>Cancers of the Colon, Rectum, and Anus</bdi> (עמ׳ <bdi dir="ltr">1501</bdi>)</div>
- <div class="src"><span>המקרים בדויים · איורים: <bdi>Sobotta</bdi> 1906 (נחלת הכלל) · צילומים: <bdi>Hellerhoff</bdi>, <bdi>Anpol42</bdi>, <bdi>Milliways</bdi> (<bdi>CC BY-SA</bdi>, <bdi>Wikimedia Commons</bdi>) · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 95 <bdi>Colon and Rectum</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1454–1459</bdi>)</span> · פרק 96 <bdi>Cancers of the Colon, Rectum, and Anus</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1501</bdi>)</span></div>
+ <div class="src"><span>המקרים בדויים · איורים: <bdi>Sobotta</bdi> 1906 (נחלת הכלל) · צילומים: <span class="nw"><bdi>Hellerhoff</bdi>,</span> <span class="nw"><bdi>Anpol42</bdi>,</span> <bdi>Milliways</bdi> <span class="nw">(<bdi>CC BY-SA</bdi>,</span> <span class="nw"><bdi>Wikimedia Commons</bdi>)</span> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>
@@ -382,5 +429,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="copyright" content="© 2026 המערך לכירורגיה כללית, המרכז הרפואי קפלן. כל הזכויות שמורות.">
+<meta charset="utf-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0C2A35">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>צילומי חזה ובטן · Scrub In</title>
 <meta name="robots" content="noindex">
@@ -86,7 +86,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .study p b,.study li b,.study small b{display:inline;font-size:inherit;margin:0}
 /* an English title or a range in Hebrew text stays one clean unit instead of being split across lines */
 .card bdi{display:inline-block;max-width:100%}
-.nw{white-space:nowrap}.nw bdi{white-space:normal}
+.nw{white-space:nowrap}.nw bdi{white-space:normal;display:inline}
 .grid.tight figure img{max-height:24vh}
 /* fit: a tall slide scrolls from its top (no centring cut), nothing hides under the bottom bar or the logos */
 .s{align-items:flex-start;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.s>.card{margin-block:auto}
@@ -116,9 +116,56 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 /* the thick-line opacity is set per plate by brand.py (--li/--lh/--lo) */
 /* the bottom bar: forward is the left button (pointing left), back is the right one; dots still run right to left */
 .nav{direction:ltr}.nav .dots{direction:rtl}
-/* rights notice on every slide */
-.card::after{content:'© 2026 המערך לכירורגיה כללית · המרכז הרפואי קפלן · כל הזכויות שמורות · אין להעתיק, להפיץ או להשתמש בתוכן ללא אישור בכתב';display:block;margin-top:10px;padding-top:7px;border-top:1px dashed var(--line);font-size:10.5px;line-height:1.4;color:#8A9A9D;letter-spacing:.01em}
-.cover .card::after{color:rgba(255,255,255,.45);border-top-color:rgba(255,255,255,.12)}
+/* taps: no blue tap squares or focus boxes after a click or a tap; a calm ring only for the keyboard */
+html,body,*{-webkit-tap-highlight-color:transparent}
+.hoti,.hoti svg,summary,.nav button,.fsb{touch-action:manipulation}
+summary{list-style:none;cursor:pointer;-webkit-user-select:none;user-select:none}summary::-webkit-details-marker{display:none}summary::marker{content:''}
+summary:focus,.hz:focus,.hzhit:focus,svg:focus{outline:none}summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:10px}
+.nav button:focus:not(:focus-visible),.fsb:focus:not(:focus-visible){outline:none}
+details>summary:hover{color:var(--g3)}
+/* the small tap hand beside everything that opens on a click */
+summary::after{content:'👆';display:inline-block;margin-inline-start:8px;font-size:.8em;line-height:1;opacity:.55;vertical-align:.04em;animation:tapn 3.2s ease-in-out infinite}
+details[open]>summary::after{content:none}
+@keyframes tapn{0%,72%,100%{transform:none}80%{transform:translateY(-3px)}88%{transform:translateY(1px)}}
+/* interactive plates: every zone softly coloured and breathing until one is chosen, wide invisible hit areas, a pulsing ring on the numbers */
+.hz{fill-opacity:.24}
+.hoti svg:not(:has(.hz.on)) .hz:not(.ln){animation:hzp 2.8s ease-in-out infinite}
+.hoti svg:not(:has(.hz.on)) .hz.ln{animation:hzpl 2.8s ease-in-out infinite}
+@keyframes hzp{0%,100%{fill-opacity:.18}50%{fill-opacity:.36}}
+@keyframes hzpl{0%,100%{stroke-opacity:var(--li,.55)}50%{stroke-opacity:var(--lh,.8)}}
+.hoti svg:not(:has(.hz.on)) .hz:hover,.hoti svg:not(:has(.hz.on)) .hz.hv{animation:none}
+.hz.hv{fill-opacity:.4}.hz.ln.hv{stroke-opacity:var(--lh,.8)}
+.hzhit{fill:transparent;stroke:transparent;cursor:pointer;pointer-events:all;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;stroke-width:18px}
+.hzb.tap{pointer-events:auto;cursor:pointer}.hzb .hzbhit{fill:transparent!important;stroke:none!important}.hzb.tap text{pointer-events:none}
+.hzbr{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:hzr 2.8s ease-out infinite}
+.hoti svg:has(.hz.on) .hzbr{animation:none;opacity:0}
+@keyframes hzr{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){summary::after,.hz,.hzbr{animation:none!important}}
+/* full screen button (only where the browser can) */
+.fsb{position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:8;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(6,22,28,.55);color:#fff;font:700 19px/1 Heebo,sans-serif;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);opacity:.8;transition:opacity .2s}
+.fsb:hover{opacity:1}.fsb[hidden]{display:none}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){.fsb{right:auto;left:8px;top:calc(4px + env(safe-area-inset-top));width:32px;height:32px;font-size:16px}}
+/* backgrounds to choose from: body.bg-1 … bg-4 (or ?bg=1 … 4 in the address). Without a class the slide keeps today's look */
+body.bg-1,body.bg-3{background:#0A222B}
+body.bg-1 .s:not(.cover){background:linear-gradient(rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(111,211,168,.05) 1px,transparent 1px) 0 0/30px 30px,radial-gradient(120% 90% at 88% 6%,#15434D 0%,#0B2530 58%,#081C24 100%)}
+body.bg-1 .s::after,body.bg-3 .s::after{filter:none;opacity:.2}
+body.bg-1 .s:nth-child(5n+1)::after,body.bg-2 .s:nth-child(5n+1)::after,body.bg-4 .s:nth-child(5n+1)::after{background-image:url(../ops/art/organs.webp)}
+body.bg-1 .s:nth-child(5n+2)::after,body.bg-2 .s:nth-child(5n+2)::after,body.bg-4 .s:nth-child(5n+2)::after{background-image:url(../ops/art/heart.webp);background-position:96% 60%}
+body.bg-1 .s:nth-child(5n+3)::after,body.bg-2 .s:nth-child(5n+3)::after,body.bg-4 .s:nth-child(5n+3)::after{background-image:url(../ops/art/gi.webp)}
+body.bg-1 .s:nth-child(5n+4)::after,body.bg-2 .s:nth-child(5n+4)::after,body.bg-4 .s:nth-child(5n+4)::after{background-image:url(../ops/art/vessels.webp);background-position:96% 50%}
+body.bg-1 .s:nth-child(5n)::after,body.bg-2 .s:nth-child(5n)::after,body.bg-4 .s:nth-child(5n)::after{background-image:url(../ops/art/tools.webp)}
+body.bg-2,body.bg-4{background:#E6ECE9}
+body.bg-2 .s:not(.cover){background:radial-gradient(90% 70% at 90% 0%,#FBF9F3 0%,rgba(251,249,243,0) 70%),radial-gradient(80% 70% at 0% 100%,#DCE7E1 0%,rgba(220,231,225,0) 70%),#ECEFEA}
+body.bg-4 .s:not(.cover){background:radial-gradient(rgba(12,42,53,.13) 1.1px,transparent 1.5px) 0 0/22px 22px,linear-gradient(180deg,#F5F8F6,#E2EAE6)}
+body.bg-2 .s:not(.cover)::after{filter:invert(1) sepia(.5) hue-rotate(110deg);opacity:.2;mix-blend-mode:multiply}
+body.bg-4 .s:not(.cover)::after{filter:invert(1);opacity:.13;mix-blend-mode:multiply}
+body.bg-2 .card:not(.cover .card),body.bg-4 .card:not(.cover .card){box-shadow:0 14px 40px rgba(12,42,53,.14),0 1px 0 rgba(12,42,53,.04);border:1px solid rgba(12,42,53,.07)}
+body.bg-2 .nav,body.bg-4 .nav{background:linear-gradient(rgba(230,236,233,0),rgba(230,236,233,.94) 45%)}
+body.bg-2 .nav button,body.bg-4 .nav button{color:var(--navy);background:rgba(12,42,53,.06);border-color:rgba(12,42,53,.22)}
+body.bg-2 .dots i,body.bg-4 .dots i{background:rgba(12,42,53,.22)}body.bg-2 .dots i.on,body.bg-4 .dots i.on{background:var(--g)}
+body.bg-2 .count,body.bg-4 .count{color:var(--muted)}
+body.bg-3 .s:not(.cover){background:radial-gradient(55% 45% at 6% 96%,rgba(61,192,140,.2),rgba(61,192,140,0) 70%),radial-gradient(60% 55% at 98% 2%,rgba(47,111,168,.26),rgba(47,111,168,0) 72%),linear-gradient(165deg,#113A46 0%,#0B2530 55%,#081B22 100%)}
+body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat 97% 40%/auto 125%;opacity:.22}
 @media print{.brandbar{display:none}}
 /*/BRAND*/
 </style>
@@ -143,20 +190,20 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <li>לקרוא צילום בטן בשיטה קבועה: תנוחה, גז, קוטר, אוויר חופשי, הסתיידויות</li>
   <li>לזהות אוויר מתחת <span class="nw">ל-<bdi dir="ltr">diaphragm</bdi></span> ולהבין שזה חירום</li>
   <li>לזהות סימנים של חסימת מעי דק ושל וולוולוס של <span class="nw">ה-<bdi dir="ltr">colon</bdi></span></li>
-  <li>להבדיל בין חסימה מכנית לפסאודו-חסימה ולזכור את המספרים: <bdi dir="ltr">3</bdi>, <bdi dir="ltr">5</bdi>, <bdi dir="ltr">12</bdi> ס״מ</li>
+  <li>להבדיל בין חסימה מכנית לפסאודו-חסימה ולזכור את המספרים: <span class="nw"><bdi dir="ltr">3</bdi>,</span> <span class="nw"><bdi dir="ltr">5</bdi>,</span> <bdi dir="ltr">12</bdi> ס״מ</li>
   <li>לזהות חזה אוויר, נוזל ודם <span class="nw">ב-<bdi dir="ltr">pleura</bdi></span> בצילום חזה</li>
  </ol>
- <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 85 (עמ׳ <bdi dir="ltr">1159–1163</bdi>) · פרק 91 (עמ׳ <bdi dir="ltr">1333–1336</bdi>) · פרק 95 (עמ׳ <bdi dir="ltr">1455–1458</bdi>) · פרק 110 (עמ׳ <bdi dir="ltr">1796, 1799</bdi>)</span><span>Scrub In · קפלן</span></div>
+ <div class="src"><span>קריאה: <b>Sabiston 22</b> · פרק 85 (עמ׳ <span class="nw"><bdi dir="ltr">1159–1163</bdi>)</span> · פרק 91 (עמ׳ <span class="nw"><bdi dir="ltr">1333–1336</bdi>)</span> · פרק 95 (עמ׳ <span class="nw"><bdi dir="ltr">1455–1458</bdi>)</span> · פרק 110 (עמ׳ <span class="nw"><bdi dir="ltr">1796, 1799</bdi>)</span></span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 <section class="s"><div class="card">
  <div class="kick"><b>2</b>מתי צילום פשוט</div>
  <h2>זול, מהיר וממוקד</h2>
  <div class="num">
-  <div><b dir="ltr">0</b><span>אולטרסאונד (<bdi>mSv</bdi>)</span></div>
-  <div><b dir="ltr">0.1–1</b><span>צילום בטן (<bdi>mSv</bdi>)</span></div>
-  <div><b dir="ltr">1–10</b><span><bdi>CT</bdi> בטן ואגן עם או בלי חומר ניגוד (<bdi>mSv</bdi>)</span></div>
-  <div><b dir="ltr">10–30</b><span><bdi>CT</bdi> בשני שלבים, בלי ועם חומר ניגוד (<bdi>mSv</bdi>)</span></div>
+  <div><b dir="ltr">0</b><span>אולטרסאונד <span class="nw">(<bdi>mSv</bdi>)</span></span></div>
+  <div><b dir="ltr">0.1–1</b><span>צילום בטן <span class="nw">(<bdi>mSv</bdi>)</span></span></div>
+  <div><b dir="ltr">1–10</b><span><bdi>CT</bdi> בטן ואגן עם או בלי חומר ניגוד <span class="nw">(<bdi>mSv</bdi>)</span></span></div>
+  <div><b dir="ltr">10–30</b><span><bdi>CT</bdi> בשני שלבים, בלי ועם חומר ניגוד <span class="nw">(<bdi>mSv</bdi>)</span></span></div>
  </div>
  <div class="grid">
   <ul class="b">
@@ -167,7 +214,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <li>אבנים בכליות וגופים זרים</li>
   </ul>
   <div style="display:grid;gap:10px;align-content:start">
-   <div class="box a"><b class="t">חסימה? צילום ואז זונדה</b>צילום מוקדם מאפשר להכניס זונדה <span class="nw">ל-<bdi dir="ltr">stomach</bdi></span> לפני שהמטופל שוכב על הגב <span class="nw">ל-<bdi>CT</bdi></span>. כך קטן הסיכון לשאיפת הקאה</div>
+   <div class="box a"><b class="t">חסימה? צילום ואז זונדה</b>צילום מוקדם מאפשר להכניס זונדה <span class="nw">ל-<bdi dir="ltr">stomach</bdi></span> לפני שהמטופל שוכב על הגב <span class="nw">ל-<bdi>CT</bdi>.</span> כך קטן הסיכון לשאיפת הקאה</div>
    <div class="box n"><b class="t">לפני ניתוח חירום</b>אק״ג וצילום חזה נותנים מידע חשוב בלי לעכב את הניתוח</div>
   </div>
  </div>
@@ -179,9 +226,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>צילום בטן בחמישה צעדים</h2>
  <div class="flow">
   <div><b>1 · מי ואיך</b><span>שם, תאריך, תנוחה. <b>בשכיבה</b> רואים את התפלגות הגז והקוטר. <b>בעמידה או על הצד השמאלי</b> רואים רמות נוזל-אוויר ואוויר חופשי</span></div>
-  <div><b>2 · התפלגות הגז</b><span>גז <span class="nw">ב-<bdi dir="ltr">stomach</bdi></span>, <span class="nw">ב-<bdi dir="ltr">small bowel</bdi></span>, <span class="nw">ב-<bdi dir="ltr">colon</bdi></span> <span class="nw">וב-<bdi dir="ltr">rectum</bdi></span>. יש גז <span class="nw">ב-<bdi dir="ltr">rectum</bdi></span>? חסר גז <span class="nw">ב-<bdi dir="ltr">colon</bdi></span>?</span></div>
+  <div><b>2 · התפלגות הגז</b><span>גז <span class="nw">ב-<bdi dir="ltr">stomach</bdi>,</span> <span class="nw">ב-<bdi dir="ltr">small bowel</bdi>,</span> <span class="nw">ב-<bdi dir="ltr">colon</bdi></span> <span class="nw">וב-<bdi dir="ltr">rectum</bdi>.</span> יש גז <span class="nw">ב-<bdi dir="ltr">rectum</bdi></span>? חסר גז <span class="nw">ב-<bdi dir="ltr">colon</bdi></span>?</span></div>
   <div><b>3 · קוטר</b><span><span class="nw">ה-<bdi dir="ltr">small bowel</bdi></span> מעל <bdi dir="ltr">3</bdi> ס״מ: מורחב · <bdi dir="ltr">transverse colon</bdi> מעל <bdi dir="ltr">5</bdi> ס״מ במטופל עם קוליטיס: מגהקולון טוקסי · <bdi dir="ltr">cecum</bdi> מעל <bdi dir="ltr">12</bdi> ס״מ: סכנת נמק וניקוב</span></div>
-  <div><b>4 · אוויר במקום לא נכון</b><span>מתחת <span class="nw">ל-<bdi dir="ltr">diaphragm</bdi></span> (אוויר חופשי) · בדופן המעי (<bdi>pneumatosis</bdi>)</span></div>
+  <div><b>4 · אוויר במקום לא נכון</b><span>מתחת <span class="nw">ל-<bdi dir="ltr">diaphragm</bdi></span> (אוויר חופשי) · בדופן המעי <span class="nw">(<bdi>pneumatosis</bdi>)</span></span></div>
   <div><b>5 · מה עוד</b><span>הסתיידויות ואבנים (אבן מרה בתוך המעי), גופים זרים, עצמות, זונדות וצנתרים</span></div>
  </div>
  <div class="box b" style="margin-top:12px"><b class="t">כלל זהב</b>קודם מסתכלים על המטופל. מטופל רעיל עם חסימה הולך לחדר ניתוח, בלי לחכות להדמיות מיותרות</div>
@@ -194,14 +241,14 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid f">
   <div>
    <ul class="b">
-    <li>בצילום <b>בעמידה</b> האוויר עולה ונאסף מתחת <span class="nw">ל-<bdi dir="ltr">hemidiaphragm</bdi></span>, בעיקר מעל <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> מימין</li>
+    <li>בצילום <b>בעמידה</b> האוויר עולה ונאסף מתחת <span class="nw">ל-<bdi dir="ltr">hemidiaphragm</bdi>,</span> בעיקר מעל <span class="nw">ה-<bdi dir="ltr">liver</bdi></span> מימין</li>
     <li>המשמעות: <b>ניקוב של איבר חלול</b>. מזמינים ייעוץ כירורגי מיד</li>
     <li>המטופל מתאר לפעמים כאב בכתף: האוויר מגרה את <span class="nw">ה-<bdi dir="ltr">diaphragm</bdi></span></li>
     <li>אחרי ניתוח בטן אוויר חופשי יכול להיות צפוי. מחפשים דליפה כשהמצב הקליני לא מתאים</li>
    </ul>
    <div class="box r" style="margin-top:12px"><b class="t">מה עושים</b>צום, עירוי ונוזלים, אנטיביוטיקה רחבת טווח ובדיקות לפני ניתוח. <bdi>CT</bdi> מאתר את המקור, אבל לא מעכבים מטופל לא יציב</div>
   </div>
-  <figure><img src="img/xr-free-air-hellerhoff.jpg" alt="צילום בטן עם אוויר חופשי מתחת ל-diaphragm" style="max-height:52vh"><figcaption>אוויר חופשי: פס כהה בצורת סהר בין <span class="nw">ה-<bdi dir="ltr">diaphragm</bdi></span> <span class="nw">ל-<bdi dir="ltr">liver</bdi></span>, אחרי ניקוב של <span class="nw">ה-<bdi dir="ltr">sigmoid colon</bdi></span> · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 4.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/xr-free-air-hellerhoff.jpg" alt="צילום בטן עם אוויר חופשי מתחת ל-diaphragm" style="max-height:52vh"><figcaption>אוויר חופשי: פס כהה בצורת סהר בין <span class="nw">ה-<bdi dir="ltr">diaphragm</bdi></span> <span class="nw">ל-<bdi dir="ltr">liver</bdi>,</span> אחרי ניקוב של <span class="nw">ה-<bdi dir="ltr">sigmoid colon</bdi></span> · <span class="nw"><bdi>Hellerhoff</bdi>,</span> <span class="nw"><bdi>CC BY-SA 4.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1157, 1159–1160, 1163</bdi></span><span>אוויר חופשי</span></div>
 </div></section>
@@ -220,9 +267,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="hotp"><p class="hint">👆 לחצו על אזור בצילום כדי לקרוא עליו</p>
   <div class="hzi" data-hzi="l1" hidden><b>1 · רמות נוזל-אוויר</b><p>קו ישר ואופקי: נוזל למטה, גז למעלה. בצילום בעמידה יש <b>הרבה רמות</b>, לעתים קרובות במדרגות. רמות ארוכות <span class="nw">מ-<bdi dir="ltr">2.5</bdi></span> ס״מ מחשידות</p></div>
   <div class="hzi" data-hzi="l2" hidden><b>2 · רמות בגבהים שונים</b><p>שתי רמות באותה לולאה בגובה שונה הן סימן נוסף לחסימה. בשורה של כיסי אוויר קטנים ("מחרוזת חרוזים") לחשוב על חסימה גבוהה בדרגה או על לולאה סגורה</p></div>
-  <div class="hzi" data-hzi="dl" hidden><b>3 · לולאה מורחבת</b><p><span class="nw">ה-<bdi dir="ltr">small bowel</bdi></span> מלא גז או נוזל בקוטר <b>מעל <bdi dir="ltr">3</bdi> ס״מ</b>. <span class="nw">ה-<bdi dir="ltr">small bowel</bdi></span> מורחב יותר <span class="nw">מה-<bdi dir="ltr">colon</bdi></span>. חפשו גם <bdi dir="ltr">stomach</bdi> מורחבת ומיעוט גז <span class="nw">ב-<bdi dir="ltr">colon</bdi></span> <span class="nw">וב-<bdi dir="ltr">rectum</bdi></span></p></div>
+  <div class="hzi" data-hzi="dl" hidden><b>3 · לולאה מורחבת</b><p><span class="nw">ה-<bdi dir="ltr">small bowel</bdi></span> מלא גז או נוזל בקוטר <b>מעל <bdi dir="ltr">3</bdi> ס״מ</b>. <span class="nw">ה-<bdi dir="ltr">small bowel</bdi></span> מורחב יותר <span class="nw">מה-<bdi dir="ltr">colon</bdi>.</span> חפשו גם <bdi dir="ltr">stomach</bdi> מורחבת ומיעוט גז <span class="nw">ב-<bdi dir="ltr">colon</bdi></span> <span class="nw">וב-<bdi dir="ltr">rectum</bdi></span></p></div>
  </div></div>
- <div class="src"><span><b>Sabiston 22</b> · פרק 91 עמ׳ <bdi dir="ltr">1333–1334</bdi> (תיבה 91.2)</span><span>צילום: <bdi>James Heilman, MD</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></span></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 91 עמ׳ <bdi dir="ltr">1333–1334</bdi> (תיבה 91.2)</span><span>צילום: <span class="nw"><bdi>James Heilman, MD</bdi>,</span> <span class="nw"><bdi>CC BY-SA 3.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></span></div>
 </div></section>
 
 <section class="s"><div class="card">
@@ -233,7 +280,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
    <h3>סימנים בצילום בשכיבה</h3>
    <ul class="b sm">
     <li>לולאות <bdi dir="ltr">small bowel</bdi> מורחבות, <bdi dir="ltr">stomach</bdi> מורחבת</li>
-    <li>היעדר גז <span class="nw">ב-<bdi dir="ltr">rectum</bdi></span>. לפעמים בטן כמעט בלי גז בכלל (הלולאות מלאות נוזל)</li>
+    <li>היעדר גז <span class="nw">ב-<bdi dir="ltr">rectum</bdi>.</span> לפעמים בטן כמעט בלי גז בכלל (הלולאות מלאות נוזל)</li>
     <li>הצילום יכול להראות את הסיבה: גוף זר או <b>אבן מרה</b> שחוסמת את <span class="nw">ה-<bdi dir="ltr">ileum</bdi></span></li>
    </ul>
    <h3 style="margin-top:12px">מה הלאה</h3>
@@ -243,7 +290,7 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
     <li>חסימה חלקית: עד <bdi dir="ltr">85%</bdi> מסתדרים בלי ניתוח. התרחבות שהולכת וגדלה בצילומים חוזרים: לחדר ניתוח</li>
    </ul>
   </div>
-  <figure><img src="img/xr-sbo-supine.jpg" alt="צילום בטן בשכיבה עם לולאות small bowel מורחבות" style="max-height:50vh"><figcaption>חסימת מעי דק בצילום בשכיבה: לולאות מורחבות במרכז הבטן לפני גוש מזון <span class="nw">ב-<bdi dir="ltr">terminal ileum</bdi></span> · <bdi>Hellerhoff</bdi>, <bdi>CC BY-SA 3.0</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/xr-sbo-supine.jpg" alt="צילום בטן בשכיבה עם לולאות small bowel מורחבות" style="max-height:50vh"><figcaption>חסימת מעי דק בצילום בשכיבה: לולאות מורחבות במרכז הבטן לפני גוש מזון <span class="nw">ב-<bdi dir="ltr">terminal ileum</bdi></span> · <span class="nw"><bdi>Hellerhoff</bdi>,</span> <span class="nw"><bdi>CC BY-SA 3.0</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 91 עמ׳ <bdi dir="ltr">1333–1336</bdi></span><span>חסימת מעי דק</span></div>
 </div></section>
@@ -254,17 +301,17 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <div class="grid">
   <div>
    <ul class="b sm">
-    <li>בעולם וולוולוס אחראי לכשליש מחסימות <span class="nw">ה-<bdi dir="ltr">colon</bdi></span>. השכיח ביותר: <b><span class="nw">ה-<bdi dir="ltr">sigmoid colon</bdi></span></b>. גם <bdi dir="ltr">cecum</bdi></li>
+    <li>בעולם וולוולוס אחראי לכשליש מחסימות <span class="nw">ה-<bdi dir="ltr">colon</bdi>.</span> השכיח ביותר: <b><span class="nw">ה-<bdi dir="ltr">sigmoid colon</bdi></span></b>. גם <bdi dir="ltr">cecum</bdi></li>
     <li><b>בצילום:</b> לולאה ענקית מלאה גז, "פול קפה" או "צמיג מקופל". זו <b>לולאה סגורה</b>: הלחץ עולה עד נמק וניקוב</li>
-    <li><b><span class="nw">ב-<bdi>CT</bdi></span>:</b> מערבולת <span class="nw">ב-<bdi dir="ltr">mesentery</bdi></span> (<bdi>whirl</bdi>)</li>
+    <li><b><span class="nw">ב-<bdi>CT</bdi>:</span></b> מערבולת <span class="nw">ב-<bdi dir="ltr">mesentery</bdi></span> <span class="nw">(<bdi>whirl</bdi>)</span></li>
     <li><b><span class="nw">ה-<bdi dir="ltr">cecum</bdi></span> מעל <bdi dir="ltr">12</bdi> ס״מ:</b> סכנת נמק וניקוב, טיפול דחוף, בדרך כלל ניתוח. לפי חוק לפלס, <span class="nw">ה-<bdi dir="ltr">cecum</bdi></span> הרחב מתנקב ראשון גם כשהחסימה רחוקה ממנו</li>
     <li><b><bdi dir="ltr">Ileocecal valve</bdi> שלם:</b> גידול חוסם <span class="nw">ב-<bdi dir="ltr">colon</bdi></span> יוצר לולאה סגורה והסתמנות חריפה יותר</li>
     <li>אנדוסקופיה יכולה לפתוח וולוולוס של <span class="nw">ה-<bdi dir="ltr">sigmoid colon</bdi></span></li>
    </ul>
   </div>
   <div class="grid" style="gap:8px">
-   <figure><img src="img/xr-sigmoid-volvulus-child.jpg" alt="צילום בטן עם וולוולוס של ה-sigmoid colon" style="max-height:40vh"><figcaption>וולוולוס של <span class="nw">ה-<bdi dir="ltr">sigmoid colon</bdi></span> בצילום בטן · <bdi>Mont4nha</bdi>, <bdi>CC0</bdi></figcaption></figure>
-   <figure><img src="img/op-sigmoid-volvulus.jpg" alt="סיגמואיד מסובב ונמקי בניתוח" style="max-height:40vh"><figcaption>אותה מחלה בחדר הניתוח: סיגמואיד מסובב ונמקי · <bdi>Herecomesdoc</bdi>, <bdi>CC BY-SA 3.0</bdi></figcaption></figure>
+   <figure><img src="img/xr-sigmoid-volvulus-child.jpg" alt="צילום בטן עם וולוולוס של ה-sigmoid colon" style="max-height:40vh"><figcaption>וולוולוס של <span class="nw">ה-<bdi dir="ltr">sigmoid colon</bdi></span> בצילום בטן · <span class="nw"><bdi>Mont4nha</bdi>,</span> <bdi>CC0</bdi></figcaption></figure>
+   <figure><img src="img/op-sigmoid-volvulus.jpg" alt="סיגמואיד מסובב ונמקי בניתוח" style="max-height:40vh"><figcaption>אותה מחלה בחדר הניתוח: סיגמואיד מסובב ונמקי · <span class="nw"><bdi>Herecomesdoc</bdi>,</span> <bdi>CC BY-SA 3.0</bdi></figcaption></figure>
   </div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1432, 1454–1457</bdi></span><span>צילומים: <bdi>Wikimedia Commons</bdi></span></div>
@@ -275,10 +322,10 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>פסאודו-חסימה, מגהקולון ופנאומטוזיס</h2>
  <div class="grid g3">
   <div class="box"><b class="t">חסימה מכנית</b>גז ושרפרף מצטברים מעל החסימה. <b>מתחת לחסימה כמעט אין גז</b>. <bdi>CT</bdi> עם חומר ניגוד <span class="nw">ב-<bdi dir="ltr">rectum</bdi></span> מראה מקום וסיבה</div>
-  <div class="box a"><b class="t">פסאודו-חסימה (<bdi>Ogilvie</bdi>)</b><span class="nw">ה-<bdi dir="ltr">colon</bdi></span> מורחב, הכי רחב <span class="nw">ב-<bdi dir="ltr">cecum</bdi></span> <span class="nw">וב-<bdi dir="ltr">right colon</bdi></span> (<bdi dir="ltr">10–12</bdi> ס״מ). <b>גז ממשיך עד <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span></b>. רגישות, חום ולויקוציטוזיס או <bdi dir="ltr">cecum</bdi> מעל <bdi dir="ltr">12</bdi> ס״מ: חשד לאיסכמיה. איסכמיה או ניקוב <span class="nw">ב-<bdi dir="ltr">3–15%</bdi></span>. במקרים האלה התמותה קרובה <span class="nw">ל-<bdi dir="ltr">50%</bdi></span></div>
-  <div class="box r"><b class="t">מגהקולון טוקסי</b>קוליטיס קשה עם 3 מתוך: דופק מעל <bdi dir="ltr">100</bdi>, לויקוציטים מעל <bdi dir="ltr">12,000</bdi>, אלבומין מתחת ל-3, חום מעל 38°, <bdi dir="ltr">transverse colon</bdi> מעל <bdi dir="ltr">5</bdi> ס״מ בצילום. ההגדרה לא דורשת "מגהקולון"</div>
+  <div class="box a"><b class="t">פסאודו-חסימה <span class="nw">(<bdi>Ogilvie</bdi>)</span></b><span class="nw">ה-<bdi dir="ltr">colon</bdi></span> מורחב, הכי רחב <span class="nw">ב-<bdi dir="ltr">cecum</bdi></span> <span class="nw">וב-<bdi dir="ltr">right colon</bdi></span> <span class="nw">(<bdi dir="ltr">10–12</bdi></span> ס״מ). <b>גז ממשיך עד <span class="nw">ה-<bdi dir="ltr">rectum</bdi></span></b>. רגישות, חום ולויקוציטוזיס או <bdi dir="ltr">cecum</bdi> מעל <bdi dir="ltr">12</bdi> ס״מ: חשד לאיסכמיה. איסכמיה או ניקוב <span class="nw">ב-<bdi dir="ltr">3–15%</bdi>.</span> במקרים האלה התמותה קרובה <span class="nw">ל-<bdi dir="ltr">50%</bdi></span></div>
+  <div class="box r"><b class="t">מגהקולון טוקסי</b>קוליטיס קשה עם 3 מתוך: דופק מעל <span class="nw"><bdi dir="ltr">100</bdi>,</span> לויקוציטים מעל <span class="nw"><bdi dir="ltr">12,000</bdi>,</span> אלבומין מתחת ל-3, חום מעל 38°, <bdi dir="ltr">transverse colon</bdi> מעל <bdi dir="ltr">5</bdi> ס״מ בצילום. ההגדרה לא דורשת "מגהקולון"</div>
  </div>
- <div class="box n" style="margin-top:12px"><b class="t">אוויר בדופן המעי (<bdi>pneumatosis intestinalis</bdi>)</b>ממצא בהדמיה, לא אבחנה. <bdi dir="ltr">85%</bdi> שניוניים. מטפלים בסיבה. יחד עם צפקת או גז <span class="nw">ב-<bdi dir="ltr">mesenteric veins</bdi></span> <span class="nw">וב-<bdi dir="ltr">portal vein</bdi></span>: סימן מבשר רע לאיסכמיה של המעי. ההחלטה על ניתוח לפי המצב הקליני</div>
+ <div class="box n" style="margin-top:12px"><b class="t">אוויר בדופן המעי <span class="nw">(<bdi>pneumatosis intestinalis</bdi>)</span></b>ממצא בהדמיה, לא אבחנה. <bdi dir="ltr">85%</bdi> שניוניים. מטפלים בסיבה. יחד עם צפקת או גז <span class="nw">ב-<bdi dir="ltr">mesenteric veins</bdi></span> <span class="nw">וב-<bdi dir="ltr">portal vein</bdi>:</span> סימן מבשר רע לאיסכמיה של המעי. ההחלטה על ניתוח לפי המצב הקליני</div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1456–1458, 1464</bdi> · פרק 91 עמ׳ <bdi dir="ltr">1369</bdi></span><span>פסאודו-חסימה</span></div>
 </div></section>
 
@@ -289,13 +336,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
   <div>
    <ul class="b sm">
     <li><b>חזה אוויר:</b> אזור שקוף בלי סימני ריאה, מחוץ <span class="nw">ל-<bdi dir="ltr">lung edge</bdi></span> הקורסת. סיבות: חבלה, ניתוח, <b>צנתר מרכזי</b>, הנשמה, מחלת ריאה, ספונטני (גבר צעיר, גבוה ורזה, מעשן)</li>
-    <li>ספונטני קטן (<bdi dir="ltr">3</bdi> ס״מ <span class="nw">ב-<bdi dir="ltr">apex</bdi></span> או <bdi dir="ltr">2</bdi> ס״מ <span class="nw">ב-<bdi dir="ltr">hilum</bdi></span>): אפשר מעקב. גדול או גדל: שאיבה או נקז</li>
+    <li>ספונטני קטן <span class="nw">(<bdi dir="ltr">3</bdi></span> ס״מ <span class="nw">ב-<bdi dir="ltr">apex</bdi></span> או <bdi dir="ltr">2</bdi> ס״מ <span class="nw">ב-<bdi dir="ltr">hilum</bdi>):</span> אפשר מעקב. גדול או גדל: שאיבה או נקז</li>
     <li>בחבלה: כל חזה אוויר או דם שנראה בצילום שוקלים לנקז. בלי חוסר יציבות, חזה אוויר עד <bdi dir="ltr">35</bdi> מ״מ <span class="nw">ב-<bdi>CT</bdi></span> אפשר לעקוב. חוזרים על הצילום אחרי <bdi dir="ltr">12–24</bdi> שעות</li>
-    <li><b>נוזל <span class="nw">ב-<bdi dir="ltr">pleura</bdi></span>:</b> <span class="nw">כ-<bdi dir="ltr">300</bdi></span> מ״ל מטשטשים את <span class="nw">ה-<bdi dir="ltr">costophrenic angle</bdi></span> בצילום בעמידה</li>
-    <li><b>דם <span class="nw">ב-<bdi dir="ltr">pleura</bdi></span>:</b> הצללה תלוית כובד. מה שנראה בצילום בעמידה הוא <span class="nw">כ-<bdi dir="ltr">400–500</bdi></span> מ״ל: נקז</li>
+    <li><b>נוזל <span class="nw">ב-<bdi dir="ltr">pleura</bdi>:</span></b> <span class="nw">כ-<bdi dir="ltr">300</bdi></span> מ״ל מטשטשים את <span class="nw">ה-<bdi dir="ltr">costophrenic angle</bdi></span> בצילום בעמידה</li>
+    <li><b>דם <span class="nw">ב-<bdi dir="ltr">pleura</bdi>:</span></b> הצללה תלוית כובד. מה שנראה בצילום בעמידה הוא <span class="nw">כ-<bdi dir="ltr">400–500</bdi></span> מ״ל: נקז</li>
    </ul>
   </div>
-  <figure><img src="img/xr-pneumothorax-left.jpg" alt="צילום חזה עם חזה אוויר משמאל" style="max-height:46vh"><figcaption>חזה אוויר משמאל (בצד ימין של התמונה): אין סימני ריאה בין <span class="nw">ה-<bdi dir="ltr">lung edge</bdi></span> <span class="nw">ל-<bdi dir="ltr">chest wall</bdi></span> · <bdi>Clinical Cases</bdi>, <bdi>CC BY-SA 2.5</bdi>, <bdi>Wikimedia Commons</bdi></figcaption></figure>
+  <figure><img src="img/xr-pneumothorax-left.jpg" alt="צילום חזה עם חזה אוויר משמאל" style="max-height:46vh"><figcaption>חזה אוויר משמאל (בצד ימין של התמונה): אין סימני ריאה בין <span class="nw">ה-<bdi dir="ltr">lung edge</bdi></span> <span class="nw">ל-<bdi dir="ltr">chest wall</bdi></span> · <span class="nw"><bdi>Clinical Cases</bdi>,</span> <span class="nw"><bdi>CC BY-SA 2.5</bdi>,</span> <bdi>Wikimedia Commons</bdi></figcaption></figure>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 110 עמ׳ <bdi dir="ltr">1796, 1799</bdi> · פרק 36 עמ׳ <bdi dir="ltr">335–336</bdi></span><span>צילום חזה</span></div>
 </div></section>
@@ -305,11 +352,11 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>הצילום לא מחליף את העיניים</h2>
  <div class="grid">
   <div style="display:grid;gap:10px;align-content:start">
-   <div class="box r"><b class="t">חזה אוויר בלחץ: אבחנה קלינית</b>לחץ דם נמוך, אין קולות נשימה בצד הפגוע, <span class="nw">ה-<bdi dir="ltr">trachea</bdi></span> נדחקת לצד השני. <span class="nw">ה-<bdi dir="ltr">jugular veins</bdi></span> גודשים. לא מחכים לצילום: ניקור במחט (<bdi dir="ltr">10–16G</bdi>) <span class="nw">ב-<bdi dir="ltr">5th intercostal space</bdi></span>, <span class="nw">ב-<bdi dir="ltr">anterior axillary line</bdi></span>, או נקז חזה</div>
+   <div class="box r"><b class="t">חזה אוויר בלחץ: אבחנה קלינית</b>לחץ דם נמוך, אין קולות נשימה בצד הפגוע, <span class="nw">ה-<bdi dir="ltr">trachea</bdi></span> נדחקת לצד השני. <span class="nw">ה-<bdi dir="ltr">jugular veins</bdi></span> גודשים. לא מחכים לצילום: ניקור במחט <span class="nw">(<bdi dir="ltr">10–16G</bdi>)</span> <span class="nw">ב-<bdi dir="ltr">5th intercostal space</bdi>,</span> <span class="nw">ב-<bdi dir="ltr">anterior axillary line</bdi>,</span> או נקז חזה</div>
    <div class="box n"><b class="t">בסקירה הראשונית</b>צילום חזה, צילום אגן <span class="nw">ו-<bdi>eFAST</bdi></span> מאתרים את מקור הדימום: דם רב בחזה, שבר באגן</div>
   </div>
   <div style="display:grid;gap:10px;align-content:start">
-   <div class="box a"><b class="t"><bdi dir="ltr">Widened mediastinum</bdi></b><span class="nw">ה-<bdi dir="ltr">mediastinum</bdi></span> רחב, <bdi dir="ltr">apical cap</bdi> או היעלמות של <span class="nw">ה-<bdi dir="ltr">aortic knob</bdi></span> מחשידים לפגיעה <span class="nw">ב-<bdi dir="ltr">aorta</bdi></span>. הצילום לא רגיש מספיק כבדיקת סינון: <bdi>CTA</bdi> של החזה</div>
+   <div class="box a"><b class="t"><bdi dir="ltr">Widened mediastinum</bdi></b><span class="nw">ה-<bdi dir="ltr">mediastinum</bdi></span> רחב, <bdi dir="ltr">apical cap</bdi> או היעלמות של <span class="nw">ה-<bdi dir="ltr">aortic knob</bdi></span> מחשידים לפגיעה <span class="nw">ב-<bdi dir="ltr">aorta</bdi>.</span> הצילום לא רגיש מספיק כבדיקת סינון: <bdi>CTA</bdi> של החזה</div>
    <div class="box b"><b class="t">במחלקה השבוע</b>בכל ביקור בוקר בקשו לראות את צילומי היום. קראו אותם בקול לפי חמשת הצעדים לפני שאתם קוראים את הפענוח. השוו לצילום הקודם</div>
   </div>
  </div>
@@ -321,9 +368,9 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>ארבעה צילומים, ארבע החלטות</h2>
  <div class="grid">
   <div class="box"><b class="t">1 · אישה בת 70, כאב פתאומי באפיגסטריום, צילום בעמידה: סהר אוויר מתחת <span class="nw">ל-<bdi dir="ltr">diaphragm</bdi></span></b>ניקוב של איבר חלול. נוזלים, אנטיביוטיקה, ייעוץ כירורגי מיד. <bdi>CT</bdi> רק אם המטופלת יציבה</div>
-  <div class="box"><b class="t">2 · גבר עם ניתוח בטן בעבר, הקאות, רמות במדרגות, אין גז <span class="nw">ב-<bdi dir="ltr">rectum</bdi></span></b>חסימת מעי דק, כנראה מהדבקויות. זונדה, נוזלים, <bdi>CT</bdi>. סימני צפקת או רעילות: לחדר ניתוח</div>
-  <div class="box"><b class="t">3 · מטופל סיעודי מבוגר, בטן תפוחה מאוד, "פול קפה" באגן</b>וולוולוס של <span class="nw">ה-<bdi dir="ltr">sigmoid colon</bdi></span>: לולאה סגורה. <bdi>CT</bdi> ואנדוסקופיה לפתיחה. נמק או ניקוב: ניתוח</div>
-  <div class="box"><b class="t">4 · אחרי צנתר מרכזי <span class="nw">ב-<bdi dir="ltr">subclavian vein</bdi></span>: קוצר נשימה</b>לחשוב על חזה אוויר. צילום חזה. אם לחץ הדם צונח: ניקור במחט בלי לחכות</div>
+  <div class="box"><b class="t">2 · גבר עם ניתוח בטן בעבר, הקאות, רמות במדרגות, אין גז <span class="nw">ב-<bdi dir="ltr">rectum</bdi></span></b>חסימת מעי דק, כנראה מהדבקויות. זונדה, נוזלים, <span class="nw"><bdi>CT</bdi>.</span> סימני צפקת או רעילות: לחדר ניתוח</div>
+  <div class="box"><b class="t">3 · מטופל סיעודי מבוגר, בטן תפוחה מאוד, "פול קפה" באגן</b>וולוולוס של <span class="nw">ה-<bdi dir="ltr">sigmoid colon</bdi>:</span> לולאה סגורה. <bdi>CT</bdi> ואנדוסקופיה לפתיחה. נמק או ניקוב: ניתוח</div>
+  <div class="box"><b class="t">4 · אחרי צנתר מרכזי <span class="nw">ב-<bdi dir="ltr">subclavian vein</bdi>:</span> קוצר נשימה</b>לחשוב על חזה אוויר. צילום חזה. אם לחץ הדם צונח: ניקור במחט בלי לחכות</div>
  </div>
  <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1159–1160</bdi> · פרק 91 עמ׳ <bdi dir="ltr">1333–1335</bdi> · פרק 95 עמ׳ <bdi dir="ltr">1455–1457</bdi> · פרק 110 עמ׳ <bdi dir="ltr">1799</bdi> · פרק 36 עמ׳ <bdi dir="ltr">309</bdi></span><span>מקרים בדויים</span></div>
 </div></section>
@@ -333,13 +380,13 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <h2>מחקרים שכדאי להכיר</h2>
  <div class="grid">
   <div class="study"><div class="y"><bdi>Ann Surg</bdi> 2022 · מטא-אנליזה</div><b>חומר ניגוד מסיס במים בחסימה מהדבקויות</b>
-   <p>11 מחקרים אקראיים (<bdi dir="ltr">817</bdi> מטופלים). קיצר את האשפוז בכ-2 ימים במי שלא נותח. שיעור הניתוחים לא השתנה במחקרים האקראיים (<bdi dir="ltr">19.8%</bdi> לעומת <bdi dir="ltr">21.4%</bdi>)</p>
+   <p>11 מחקרים אקראיים <span class="nw">(<bdi dir="ltr">817</bdi></span> מטופלים). קיצר את האשפוז בכ-2 ימים במי שלא נותח. שיעור הניתוחים לא השתנה במחקרים האקראיים <span class="nw">(<bdi dir="ltr">19.8%</bdi></span> לעומת <span class="nw"><bdi dir="ltr">21.4%</bdi>)</span></p>
    <small>Klingbeil KD et al. Ann Surg 2022;276(6):981-8</small></div>
   <div class="study"><div class="y"><bdi>BJS Open</bdi> 2025 · מטא-אנליזה</div><b>ושוב: האם החומר מונע ניתוח?</b>
-   <p>11 מחקרים אקראיים. אין הבדל מובהק בצורך בניתוח (<bdi dir="ltr">OR 0.63</bdi>, גבולי), באיסכמיה, בכריתת מעי או בתמותה. רק מחקר אחד אבחן את החסימה <span class="nw">ב-<bdi>CT</bdi></span>. השימוש הטיפולי עדיין לא מוכח</p>
+   <p>11 מחקרים אקראיים. אין הבדל מובהק בצורך בניתוח <span class="nw">(<bdi dir="ltr">OR 0.63</bdi>,</span> גבולי), באיסכמיה, בכריתת מעי או בתמותה. רק מחקר אחד אבחן את החסימה <span class="nw">ב-<bdi>CT</bdi>.</span> השימוש הטיפולי עדיין לא מוכח</p>
    <small>Gowell M et al. BJS Open 2025;9(3):zraf049</small></div>
   <div class="study"><div class="y"><bdi>Med Ultrason</bdi> 2023 · מטא-אנליזה</div><b>אולטרסאונד לחזה אוויר בחבלה</b>
-   <p>12 מחקרים פרוספקטיביים. רגישות <bdi dir="ltr">89%</bdi> וסגוליות <bdi dir="ltr">96%</bdi>. אולטרסאונד ליד המיטה הוא כלי אמין לגילוי חזה אוויר במטופל חבול</p>
+   <p>12 מחקרים פרוספקטיביים. רגישות <bdi dir="ltr">89%</bdi> וסגוליות <span class="nw"><bdi dir="ltr">96%</bdi>.</span> אולטרסאונד ליד המיטה הוא כלי אמין לגילוי חזה אוויר במטופל חבול</p>
    <small>Tian H et al. Med Ultrason 2023;25(1):66-71</small></div>
   <div class="box n"><b class="t">השורה התחתונה</b>הצילום הפשוט נותן תשובה מהירה לשאלות ממוקדות. הבחירה בבדיקה הבאה תלויה במטופל, לא בהרגל</div>
  </div>
@@ -352,12 +399,12 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
  <ol class="obj">
   <li>קוראים כל צילום באותו סדר: תנוחה, גז, קוטר, אוויר במקום לא נכון, כל השאר</li>
   <li>אוויר מתחת <span class="nw">ל-<bdi dir="ltr">diaphragm</bdi></span> בצילום בעמידה = ניקוב עד שיוכח אחרת</li>
-  <li><span class="nw">ה-<bdi dir="ltr">small bowel</bdi></span> מעל <bdi dir="ltr">3</bdi> ס״מ, רמות במדרגות ומעט גז <span class="nw">ב-<bdi dir="ltr">colon</bdi></span>: חסימת מעי דק. הבדיקה הבאה היא <bdi>CT</bdi></li>
+  <li><span class="nw">ה-<bdi dir="ltr">small bowel</bdi></span> מעל <bdi dir="ltr">3</bdi> ס״מ, רמות במדרגות ומעט גז <span class="nw">ב-<bdi dir="ltr">colon</bdi>:</span> חסימת מעי דק. הבדיקה הבאה היא <bdi>CT</bdi></li>
   <li>"פול קפה" = וולוולוס = לולאה סגורה. <bdi dir="ltr">cecum</bdi> מעל <bdi dir="ltr">12</bdi> ס״מ = סכנת ניקוב</li>
   <li>חזה אוויר בלחץ מאבחנים ליד המיטה, לא בצילום</li>
  </ol>
- <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><bdi>Sabiston Textbook of Surgery</bdi>, מהדורה 22: פרק 85 (עמ׳ <bdi dir="ltr">1159–1162</bdi>) · פרק 91 (עמ׳ <bdi dir="ltr">1333–1336</bdi>) · פרק 95 (עמ׳ <bdi dir="ltr">1454–1458</bdi>) · פרק 110 (עמ׳ <bdi dir="ltr">1799</bdi>)</div>
- <div class="src"><span>צילומים: <bdi>Hellerhoff</bdi> (<bdi>CC BY-SA</bdi>), <bdi>James Heilman, MD</bdi> (<bdi>CC BY-SA 3.0</bdi>), <bdi>Mont4nha</bdi> (<bdi>CC0</bdi>), <bdi>Herecomesdoc</bdi> (<bdi>CC BY-SA 3.0</bdi>), <bdi>Clinical Cases</bdi> (<bdi>CC BY-SA 2.5</bdi>) · <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+ <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 85 (עמ׳ <span class="nw"><bdi dir="ltr">1159–1162</bdi>)</span> · פרק 91 (עמ׳ <span class="nw"><bdi dir="ltr">1333–1336</bdi>)</span> · פרק 95 (עמ׳ <span class="nw"><bdi dir="ltr">1454–1458</bdi>)</span> · פרק 110 (עמ׳ <span class="nw"><bdi dir="ltr">1799</bdi>)</span></div>
+ <div class="src"><span>צילומים: <bdi>Hellerhoff</bdi> <span class="nw">(<bdi>CC BY-SA</bdi>),</span> <bdi>James Heilman, MD</bdi> <span class="nw">(<bdi>CC BY-SA 3.0</bdi>),</span> <bdi>Mont4nha</bdi> <span class="nw">(<bdi>CC0</bdi>),</span> <bdi>Herecomesdoc</bdi> <span class="nw">(<bdi>CC BY-SA 3.0</bdi>),</span> <bdi>Clinical Cases</bdi> <span class="nw">(<bdi>CC BY-SA 2.5</bdi>)</span> · <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
 </main>
@@ -379,5 +426,76 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   sync();
 })();
 </script>
+<!--BRANDJS--><script>
+(function () {
+  var deck = document.getElementById('deck'), cur = 0, want = null, rt;
+  var b = document.body, m = location.search.match(/[?&]bg=([1-4])/); if (m) b.classList.add('bg-' + m[1]);
+  /* plates: a wide invisible hit area under every zone, a pulsing ring on every number */
+  var coarse = matchMedia('(pointer:coarse)').matches, NS = 'http://www.w3.org/2000/svg';
+  [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+    var zs = [].slice.call(svg.querySelectorAll('.hz')); if (!zs.length) return;
+    /* thin structures (lines) are drawn above the areas, so a vessel that crosses an organ can still be tapped */
+    var ar = zs.filter(function (z) { return !z.classList.contains('ln'); }), lnz = zs.filter(function (z) { return z.classList.contains('ln'); });
+    if (ar.length && lnz.length) { var after = ar[ar.length - 1]; lnz.forEach(function (z) { if (z.compareDocumentPosition(after) & 4) { after.parentNode.insertBefore(z, after.nextSibling); after = z; } }); zs = [].slice.call(svg.querySelectorAll('.hz')); }
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'hzhits'); g.setAttribute('aria-hidden', 'true'); svg.insertBefore(g, zs[0]);
+    zs.forEach(function (z) {
+      var h = z.cloneNode(false); h.removeAttribute('data-hz'); h.removeAttribute('style'); h.setAttribute('class', 'hzhit' + (z.classList.contains('ln') ? ' ln' : '')); h._z = z; g.appendChild(h);
+      h.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      h.addEventListener('mouseenter', function () { z.classList.add('hv'); }); h.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    /* every number is a tap target too: matched to its zone by the number in the panel title ("3 · …"), or by its colour when that is unique */
+    var w = svg.closest('.hotw');
+    [].forEach.call(svg.querySelectorAll('.hzb'), function (g) {
+      var n = (g.textContent || '').trim(), z = null;
+      if (n && w) [].some.call(w.querySelectorAll('.hzi'), function (i) { var t = (i.querySelector('b') || i).textContent.trim(); if (t.indexOf(n + ' ·') === 0 || t.indexOf(n + ' ') === 0 && /^\S+ ·/.test(t)) { z = svg.querySelector('.hz[data-hz="' + i.dataset.hzi + '"]'); return true; } });
+      if (!z) { var c = (g.getAttribute('style') || '').replace(/\s/g, ''), m = zs.filter(function (x) { return (x.getAttribute('style') || '').replace(/\s/g, '').indexOf(c) === 0 && c; }); if (m.length === 1) z = m[0]; }
+      if (!z) return;
+      g.classList.add('tap'); var c0 = g.querySelector('circle');
+      if (c0) { var big = c0.cloneNode(false); big.setAttribute('class', 'hzbhit'); big.setAttribute('r', (parseFloat(c0.getAttribute('r')) || 10) * 1.7); g.insertBefore(big, g.firstChild); }
+      g.addEventListener('click', function () { z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      g.addEventListener('mouseenter', function () { z.classList.add('hv'); }); g.addEventListener('mouseleave', function () { z.classList.remove('hv'); });
+    });
+    [].forEach.call(svg.querySelectorAll('.hzb circle:not(.hzbhit)'), function (c) { var r = c.cloneNode(false); r.setAttribute('class', 'hzbr'); r.removeAttribute('style'); c.parentNode.insertBefore(r, c); });
+  });
+  function snap() { hitSize(); if (!deck) return; if (want !== null) { cur = want; want = null; } var s = deck.children[cur]; if (s && Math.abs(Math.abs(deck.scrollLeft) - cur * deck.clientWidth) > 4) s.scrollIntoView({ inline: 'start', block: 'nearest' }); }
+  function hitSize() {
+    [].forEach.call(document.querySelectorAll('.hoti svg'), function (svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal, w = svg.getBoundingClientRect().width; if (!vb || !vb.width || !w) return; var sc = w / vb.width;
+      [].forEach.call(svg.querySelectorAll('.hzhit'), function (h) {
+        if (h.classList.contains('ln')) { var lw = parseFloat(getComputedStyle(h._z).strokeWidth) || 9; h.style.strokeWidth = Math.max(coarse ? 38 : 26, lw * sc * 2.2) + 'px'; }
+        else h.style.strokeWidth = (coarse ? 26 : 16) + 'px';
+      });
+    });
+  }
+  hitSize(); addEventListener('load', hitSize);
+  /* full screen: by itself on the first tap or key (browsers ask for a gesture), and a button to go in and out */
+  var de = document.documentElement, req = de.requestFullscreen || de.webkitRequestFullscreen, out = document.exitFullscreen || document.webkitExitFullscreen;
+  var can = !!req && !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function enter() { try { var r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  if (can) {
+    var fb = document.createElement('button'); fb.className = 'fsb'; fb.type = 'button'; b.appendChild(fb);
+    function lbl() { var f = isFs(); fb.textContent = f ? '⤡' : '⤢'; fb.setAttribute('aria-label', f ? 'יציאה ממסך מלא' : 'מסך מלא'); fb.title = fb.getAttribute('aria-label'); }
+    lbl(); fb.addEventListener('click', function (e) { e.stopPropagation(); if (isFs()) { auto = false; out.call(document); } else enter(); });
+    var auto = true; try { auto = !sessionStorage.getItem('fs_off'); } catch (e) {}
+    var first = function (e) {
+      if (!auto || isFs() || (e.target.closest && e.target.closest('.fsb'))) return; auto = false;
+      /* the tap that opens full screen may also be a step in the deck: remember where it was going, the resize would cancel the scroll */
+      var t = e.target.closest && e.target.closest('#next,#prev,.dots i'), k = null;
+      if (t) k = t.id === 'next' ? cur + 1 : t.id === 'prev' ? cur - 1 : [].indexOf.call(t.parentNode.children, t);
+      else if (e.type === 'keydown') k = e.key === 'ArrowLeft' || e.key === ' ' ? cur + 1 : e.key === 'ArrowRight' ? cur - 1 : null;
+      if (k !== null && deck) want = Math.max(0, Math.min(deck.children.length - 1, k));
+      enter();
+    };
+    ['pointerup', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, first, true); });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (t) { document.addEventListener(t, function () { lbl(); clearTimeout(rt); rt = setTimeout(snap, 250); if (!isFs()) { auto = false; try { sessionStorage.setItem('fs_off', '1'); } catch (e) {} } }); });
+  }
+  /* after a resize (full screen, rotation) stay on the same slide */
+  if (deck) {
+    deck.addEventListener('scroll', function () { clearTimeout(deck._t); deck._t = setTimeout(function () { cur = Math.round(Math.abs(deck.scrollLeft) / deck.clientWidth); }, 120); }, { passive: true });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(snap, 160); });
+  }
+})();
+</script><!--/BRANDJS-->
 </body>
 </html>
