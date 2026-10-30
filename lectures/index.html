@@ -15,7 +15,7 @@
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Frank+Ruhl+Libre:wght@500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Frank+Ruhl+Libre:wght@500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
 :root{--navy:#0C2A35;--navy2:#164B54;--g:#00967D;--g2:#3DC08C;--g3:#0A6B5A;--g4:#6FD3A8;--bg:#EDF2F0;--card:#fff;--line:#D6E2DE;--ink:#14252B;--muted:#5A6E73;--serif:'Frank Ruhl Libre',Georgia,serif;--sans:Heebo,system-ui,-apple-system,sans-serif;--r:22px}
 *{box-sizing:border-box}
@@ -198,20 +198,124 @@ main.wrap{position:relative;max-width:1720px;margin:-2.6rem auto 3rem;padding:0 
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
+<style id="dk-css">
+.dkb{--dk-ink:#14252B;--dk-mu:#5A6E73;--dk-ln:#D6E2DE;--dk-navy:#0C2A35;--dk-g:#00967D;--dk-g3:#0A6B5A;--dk-mono:'IBM Plex Mono',ui-monospace,Menlo,monospace}
+.dkb *{box-sizing:border-box}
+.dk-tb{position:relative;z-index:5;background:#fff;border:1px solid var(--dk-ln);border-radius:22px;padding:14px;box-shadow:0 14px 36px rgba(12,42,53,.10);margin-bottom:16px}
+.dk-r{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.dk-r+.dk-r{margin-top:12px}
+.dk-seg{display:inline-flex;background:#EAF1EE;border-radius:999px;padding:4px;gap:2px}
+.dk-seg button{border:0;background:transparent;border-radius:999px;min-height:42px;padding:0 16px;font:inherit;font-weight:800;font-size:15px;color:#3E5A60;cursor:pointer;display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.dk-seg button svg{width:18px;height:18px}
+.dk-seg button[aria-checked=true]{background:var(--dk-navy);color:#fff;box-shadow:0 4px 14px rgba(12,42,53,.28)}
+.dk-seg button:focus-visible,.dk-chip:focus-visible,.dk-wk button:focus-visible,.dk-btn:focus-visible,.dk-sel:focus-visible,.dk-q input:focus-visible{outline:3px solid #3DC08C;outline-offset:2px}
+.dk-q{position:relative;flex:1 1 240px;min-width:0}
+.dk-q input{width:100%;height:46px;border-radius:999px;border:1px solid var(--dk-ln);background:#F5F9F7;padding:0 44px 0 40px;font:inherit;font-size:16px;color:var(--dk-ink);outline:none;-webkit-appearance:none;appearance:none}
+.dk-q input:focus{border-color:#3DC08C;background:#fff}
+.dk-q>svg{position:absolute;right:15px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:#7C9196;pointer-events:none}
+.dk-q button{position:absolute;left:6px;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;border:0;background:#E3ECE9;cursor:pointer;font-size:14px;color:#3E5A60}
+.dk-cnt{font-weight:800;color:var(--dk-navy);white-space:nowrap;font-size:15px}
+.dk-cnt b{font-family:var(--dk-mono);font-size:17px;color:var(--dk-g)}
+.dk-btn{border:1px solid var(--dk-ln);background:#fff;border-radius:999px;min-height:42px;padding:0 15px;font:inherit;font-weight:800;font-size:14.5px;color:var(--dk-navy);cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.dk-btn[disabled]{opacity:.4;cursor:default}
+.dk-btn.dk-ft{display:none}
+.dk-btn i{font-style:normal;font-family:var(--dk-mono);background:var(--dk-g);color:#fff;border-radius:999px;padding:0 7px;font-size:12.5px}
+.dk-lab{font-weight:800;font-size:13px;color:var(--dk-mu);white-space:nowrap}
+.dk-chips{display:flex;flex-wrap:wrap;gap:7px;flex:1;min-width:0}
+.dk-chip{--a:#13A386;display:inline-flex;align-items:center;gap:7px;border:1px solid var(--dk-ln);background:#fff;border-radius:999px;min-height:40px;padding:0 13px 0 11px;font:inherit;font-weight:700;font-size:14px;color:#2B4249;cursor:pointer;white-space:nowrap}
+.dk-chip>i{width:10px;height:10px;border-radius:50%;background:var(--a);flex:none}
+.dk-chip small{font-family:var(--dk-mono);font-size:12px;color:#7C9196}
+.dk-chip[aria-pressed=true]{background:color-mix(in srgb,var(--a) 14%,#fff);border-color:var(--a);color:color-mix(in srgb,var(--a) 70%,#0C2A35);box-shadow:inset 0 0 0 1px var(--a)}
+.dk-chip[aria-pressed=true]>i{box-shadow:0 0 0 3px color-mix(in srgb,var(--a) 30%,transparent)}
+.dk-chip.dk-z{opacity:.45}
+.dk-wk{display:inline-flex;border:1px solid var(--dk-ln);border-radius:999px;overflow:hidden;background:#fff}
+.dk-wk button{border:0;background:transparent;min-width:40px;min-height:40px;padding:0 10px;font:inherit;font-weight:800;font-size:14px;color:#3E5A60;cursor:pointer;font-family:var(--dk-mono)}
+.dk-wk button:first-child{font-family:inherit;padding:0 14px}
+.dk-wk button+button{border-inline-start:1px solid var(--dk-ln)}
+.dk-wk button[aria-pressed=true]{background:var(--dk-g);color:#fff}
+.dk-sel{-webkit-appearance:none;appearance:none;height:42px;border-radius:999px;border:1px solid var(--dk-ln);background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%230C2A35' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat 14px 50%/11px 8px;padding:0 14px 0 34px;font:inherit;font-weight:700;font-size:14.5px;color:var(--dk-navy);max-width:100%;min-width:0}
+.dk-sp{flex:1}
+.dk-jump{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.dk-jump a{--a:#13A386;display:inline-flex;align-items:center;gap:7px;min-height:38px;padding:0 13px;border-radius:999px;background:#fff;border:1px solid var(--dk-ln);text-decoration:none;font-weight:800;font-size:14px;color:var(--dk-navy)}
+.dk-jump a i{width:8px;height:8px;border-radius:50%;background:var(--a)}
+.dk-jump a small{font-family:var(--dk-mono);color:var(--dk-mu);font-size:12px}
+.dk-sec{--a:#13A386;background:#fff;border:1px solid var(--dk-ln);border-radius:26px;padding:20px;margin-bottom:16px;box-shadow:0 10px 30px rgba(12,42,53,.06);scroll-margin-top:110px}
+.dk-sh{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.dk-si{flex:none;width:52px;height:52px;border-radius:16px;display:grid;place-items:center;color:#fff;background:linear-gradient(150deg,color-mix(in srgb,var(--a) 85%,#fff),color-mix(in srgb,var(--a) 50%,#0C2A35));box-shadow:0 6px 16px color-mix(in srgb,var(--a) 35%,transparent)}
+.dk-si svg{width:34px;height:34px;fill:none;stroke:#fff;stroke-width:4.2;stroke-linecap:round;stroke-linejoin:round;--hl:#fff}
+.dk-si.n{font-family:var(--dk-mono);font-weight:600;font-size:24px}
+.dk-sh h3{margin:0;font-family:'Frank Ruhl Libre',Georgia,serif;font-weight:900;font-size:clamp(22px,2vw,30px);color:var(--dk-navy);line-height:1.15}
+.dk-sh p{margin:2px 0 0;color:var(--dk-mu);font-weight:600;font-size:14.5px}
+.dk-sh .dk-n{margin-inline-start:auto;font-weight:800;font-size:13px;color:var(--dk-g3);background:#E4F4ED;border-radius:999px;padding:5px 11px;white-space:nowrap}
+.dk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,262px),1fr));gap:16px}
+.dk-card{--a:#13A386;--hl:color-mix(in srgb,var(--a) 45%,#fff);position:relative;display:flex;flex-direction:column;border-radius:20px;overflow:hidden;background:#fff;border:1px solid var(--dk-ln);text-decoration:none;color:inherit;transition:transform .18s,box-shadow .18s,border-color .18s;min-width:0}
+.dk-card:hover{transform:translateY(-3px);box-shadow:0 20px 44px rgba(12,42,53,.18);border-color:color-mix(in srgb,var(--a) 60%,#fff)}
+.dk-card:focus-visible{outline:none;box-shadow:0 0 0 4px color-mix(in srgb,var(--a) 55%,transparent),0 18px 40px rgba(12,42,53,.16)}
+.dk-cv{position:relative;display:block;aspect-ratio:16/8.4;overflow:hidden;color:#fff;isolation:isolate;
+ background:radial-gradient(75% 110% at 16% 46%,color-mix(in srgb,var(--a) 62%,transparent) 0%,transparent 64%),linear-gradient(158deg,#0C2A35 0%,#0E3340 52%,color-mix(in srgb,var(--a) 42%,#0A222B) 100%)}
+.dk-cv::before{content:'';position:absolute;inset:0;z-index:-1;background-image:linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px);background-size:14px 14px;background-position:-1px -1px;-webkit-mask-image:radial-gradient(80% 100% at 18% 50%,#000 10%,transparent 75%);mask-image:radial-gradient(80% 100% at 18% 50%,#000 10%,transparent 75%)}
+.dk-cv::after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,rgba(6,20,26,.55),transparent 46%)}
+.dk-ct{position:absolute;left:-6%;top:50%;width:62%;aspect-ratio:1;transform:translateY(-50%);fill:none;stroke:rgba(255,255,255,.09);stroke-width:.5;z-index:-1}
+.dk-il{position:absolute;left:7%;top:50%;height:74%;aspect-ratio:1;transform:translateY(-50%);fill:none;stroke:rgba(255,255,255,.94);stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 10px color-mix(in srgb,var(--a) 70%,transparent));transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.dk-card:hover .dk-il{transform:translateY(-50%) scale(1.06)}
+.dk-no{position:absolute;top:12px;right:14px;font-family:var(--dk-mono);font-weight:600;font-size:12.5px;letter-spacing:.06em;color:rgba(255,255,255,.88);direction:ltr}
+.dk-no b{font-size:22px;font-weight:600;color:#fff;letter-spacing:0}
+.dk-sl{position:absolute;top:42px;right:14px;font-weight:600;font-size:12px;color:rgba(255,255,255,.66)}.dk-sl b{font-family:var(--dk-mono);font-weight:500;color:rgba(255,255,255,.9)}
+.dk-dc{position:absolute;bottom:11px;right:12px;display:inline-flex;align-items:center;gap:6px;max-width:58%;border-radius:999px;padding:4px 10px 4px 9px;font-weight:700;font-size:12.5px;line-height:1.2;color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dk-dc i{flex:none;width:8px;height:8px;border-radius:50%;background:var(--dc,var(--a));box-shadow:0 0 0 2px rgba(255,255,255,.35)}
+.dk-cb{flex:1;display:flex;flex-direction:column;gap:7px;padding:14px 15px 15px}
+.dk-cb b{font-size:17.5px;line-height:1.3;color:var(--dk-navy);font-weight:800}
+.dk-kd{align-self:flex-start;font-size:12px;font-weight:800;border-radius:6px;padding:2px 8px;background:#EEF3F1;color:#41595E}
+.dk-kd.case{background:#F1ECFA;color:#5F48A0}.dk-kd.workshop{background:#E5F5EE;color:#0A6B5A}.dk-kd.imaging{background:#E6F2F9;color:#24678E}
+.dk-mt{margin-top:auto;display:flex;flex-wrap:wrap;gap:4px 12px;color:var(--dk-mu);font-size:13px;font-weight:600}
+.dk-mt span{display:inline-flex;align-items:center;gap:5px}
+.dk-mt .tp{color:color-mix(in srgb,var(--a) 70%,#0C2A35);font-weight:800}
+.dk-mt .tp::before{content:'';width:6px;height:6px;border-radius:2px;background:var(--a)}
+.dk-pend{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;color:var(--dk-mu);font-size:13.5px;font-weight:700}
+.dk-pend span{border:1px dashed #C4D4CF;border-radius:999px;padding:5px 11px;background:#F7FAF9}
+.dk-empty{text-align:center;padding:44px 16px;color:var(--dk-mu)}
+.dk-empty h3{margin:0 0 8px;font-family:'Frank Ruhl Libre',Georgia,serif;color:var(--dk-navy);font-size:28px}
+.dk-empty p{margin:0 0 16px;font-size:16px}
+.dk-more{display:contents}
+@media (max-width:760px),(max-height:500px) and (max-width:1000px){
+ .dk-tb{padding:12px;border-radius:18px}
+ .dk-seg{display:flex;width:100%}
+ .dk-seg button{flex:1;justify-content:center;padding:0 6px;font-size:14px;gap:5px}
+ .dk-seg button svg{display:none}
+ .dk-btn.dk-ft{display:inline-flex}
+ .dk-more{display:none}
+ .dk-tb.open .dk-more{display:block}
+ .dk-more .dk-r{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:-12px;padding:0 12px 2px}
+ .dk-more .dk-r::-webkit-scrollbar{display:none}
+ .dk-more .dk-r.dk-cr{flex-wrap:wrap;overflow:visible;margin:0;padding:0}
+ .dk-chip{min-height:38px;font-size:13.5px}
+ .dk-cv{aspect-ratio:16/7}
+ .dk-more .dk-r.dk-wr{flex-wrap:wrap;overflow:visible}
+ .dk-cnt{order:5}
+ .dk-sec{padding:14px 12px;border-radius:20px}
+ .dk-si{width:44px;height:44px;border-radius:13px}.dk-si svg{width:28px;height:28px}
+ .dk-grid{gap:12px}
+ .dk-jump{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:-14px;padding:0 14px 4px}
+ .dk-jump::-webkit-scrollbar{display:none}
+ .dk-jump a{flex:none}
+}
+@media (prefers-reduced-motion:reduce){.dk-card,.dk-il{transition:none}}
+</style>
 </head>
 <body>
+<svg id="dk-sprite" width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="dk-i-up" viewBox="0 0 96 96"><path d="M42 4v20c0 2-1 3-3 4"/><path d="M52 4v18c0 3 1 5 3 6"/><path d="M39 28C26 33 18 48 22 62c4 15 21 24 38 18 9-3 15-10 15-17 0-7-7-11-13-7-5 3-6 9-12 7-6-2-4-11-4-17 0-6 2-9 4-11"/><path d="M75 63c4 2 9 0 12-4"/><path style="stroke:var(--hl)" d="M31 52c5 4 10 4 14 1M30 63c8 6 18 7 26 3M38 74c6 2 12 2 17 0"/></symbol><symbol id="dk-i-cr" viewBox="0 0 96 96"><path d="M30 82V38c0-9 6-15 15-15h8c9 0 15 6 15 15v26c0 5-3 9-8 9-6 0-7 6-12 10"/><path d="M30 82c-1 5 3 9 8 7"/><path style="stroke:var(--hl)" d="M24 46h12M24 58h12M24 70h12M42 17v12M55 17v12M62 42h12M62 55h12"/></symbol><symbol id="dk-i-hpb" viewBox="0 0 96 96"><path d="M10 40c0-13 17-22 40-22 22 0 38 6 38 17 0 17-21 33-45 35C24 72 10 58 10 40z"/><path d="M52 20c-2 13-4 24-11 37"/><path style="stroke:var(--hl)" d="M60 64c-1 10 3 17 9 17s9-7 5-15c-2-4-6-6-9-5"/><path style="stroke:var(--hl)" d="M62 70c-5 2-10 4-12 10v10"/></symbol><symbol id="dk-i-ac" viewBox="0 0 96 96"><path d="M28 8c-4 20-8 32-8 48 0 20 12 32 28 32s28-12 28-32c0-16-4-28-8-48"/><path d="M48 24v62M22 54h52" stroke-dasharray="2 5"/><circle cx="48" cy="54" r="1.6"/><circle style="stroke:var(--hl)" cx="35" cy="69" r="9"/><circle style="stroke:var(--hl)" cx="35" cy="69" r="2.6"/><path style="stroke:var(--hl)" d="M35 55v6M35 77v6M21 69h6M43 69h6"/></symbol><symbol id="dk-i-he" viewBox="0 0 96 96"><path d="M6 40h26c0-16 32-16 32 0h26"/><path d="M6 50h28M62 50h28"/><path d="M6 60h84" stroke-dasharray="3 5"/><path style="stroke:var(--hl)" d="M36 50c0-12 24-12 24 0"/><path style="stroke:var(--hl)" d="M42 48c2-5 10-5 12 0"/><path d="M48 76V66M43 71l5-5 5 5"/></symbol><symbol id="dk-i-br" viewBox="0 0 96 96"><path d="M22 30c-8 18-2 44 22 46 20 2 32-12 30-30"/><circle cx="50" cy="54" r="4"/><path d="M50 36v8M50 64v8M32 54h8M60 54h8" stroke-dasharray="2 4"/><path style="stroke:var(--hl)" d="M74 46c2-10 2-20-4-28"/><circle style="stroke:var(--hl)" cx="70" cy="18" r="3.4"/><circle style="stroke:var(--hl)" cx="79" cy="28" r="3.4"/><circle style="stroke:var(--hl)" cx="62" cy="11" r="2.6"/></symbol><symbol id="dk-i-tr" viewBox="0 0 96 96"><path d="M48 6l32 12v24c0 22-14 38-32 46C30 80 16 64 16 42V18z"/><path d="M48 16l22 8v18c0 16-10 28-22 34"/><path style="stroke:var(--hl)" d="M42 32h12v10h10v12H54v10H42V54H32V42h10z"/></symbol><symbol id="dk-i-va" viewBox="0 0 96 96"><path d="M44 4v40c0 6-5 10-10 18L24 90"/><path d="M52 4v40c0 6 5 10 10 18l10 28"/><path d="M33 90l9-22c3-7 9-7 12 0l9 22"/><path d="M44 26H30M44 33H30M52 26h14M52 33h14"/><path style="stroke:var(--hl)" d="M2 60h6l3-7 4 14 3-9 2 2h3"/><path style="stroke:var(--hl)" d="M72 60h5l3-7 4 14 3-9 2 2h5"/></symbol><symbol id="dk-i-th" viewBox="0 0 96 96"><path d="M48 4v26"/><path d="M48 30c-3 4-7 6-11 9M48 30c3 4 7 6 11 9"/><path d="M42 22c-15 1-28 22-28 44 0 15 8 21 18 17l10-4c2-1 3-3 3-6V36"/><path d="M54 22c15 1 28 22 28 44 0 15-8 21-18 17l-10-4c-2-1-3-3-3-6V36"/><path style="stroke:var(--hl)" d="M28 50c-3 6-4 13-3 20M68 50c3 6 4 13 3 20M34 44l-6 6M62 44l6 6"/></symbol><symbol id="dk-i-po" viewBox="0 0 96 96"><rect x="8" y="14" width="80" height="54" rx="8"/><path d="M38 84h20M48 68v16"/><path d="M68 24h12M68 32h8"/><path style="stroke:var(--hl)" d="M15 46h16l4-12 6 24 5-16 4 7h11"/><circle style="stroke:var(--hl)" cx="74" cy="52" r="5"/></symbol><symbol id="dk-i-sk" viewBox="0 0 96 96"><path d="M14 30h68"/><path style="stroke:var(--hl)" d="M24 22l6 16M38 22l6 16M52 22l6 16M66 22l6 16"/><path d="M22 72a28 28 0 0 1 52-14"/><path d="M74 58l3 4"/><path d="M22 72c-6 8 2 16 12 12 8-3 12-10 20-8 6 2 10 8 18 6"/></symbol><symbol id="dk-i-im" viewBox="0 0 96 96"><circle cx="48" cy="42" r="32"/><circle cx="48" cy="42" r="17"/><path d="M6 80h84M22 80v8M74 80v8"/><path d="M16 42h-6M86 42h-6"/><path style="stroke:var(--hl)" d="M31 42h34" stroke-dasharray="3 4"/><path style="stroke:var(--hl)" d="M48 25v34"/></symbol><symbol id="dk-i-pr" viewBox="0 0 96 96"><path d="M14 12h40a7 7 0 0 1 7 7v18a7 7 0 0 1-7 7H32l-11 10V44h-7a7 7 0 0 1-7-7V19a7 7 0 0 1 7-7z"/><path d="M44 52h38a7 7 0 0 1 7 7v15a7 7 0 0 1-7 7h-4v10L67 81H44a7 7 0 0 1-7-7V59a7 7 0 0 1 7-7z"/><path style="stroke:var(--hl)" d="M18 24h30M18 32h20M48 63h30M48 70h20"/></symbol><symbol id="dk-i-pl" viewBox="0 0 96 96"><path d="M6 30c10-6 20 6 30 0s20-6 30 0 20 6 24 2"/><path d="M6 50h84M6 66h84" stroke-dasharray="3 5"/><path d="M6 84h84"/><path style="stroke:var(--hl)" d="M48 30v54"/><path style="stroke:var(--hl)" d="M38 40l20 8M38 56l20 8M38 72l20 6"/></symbol><symbol id="dk-i-or" viewBox="0 0 96 96"><path d="M48 6v12"/><path d="M14 44c0-14 15-26 34-26s34 12 34 26z"/><path d="M28 44v5a20 8 0 0 0 40 0v-5"/><path style="stroke:var(--hl)" d="M48 60v6M33 64l-5 9M63 64l5 9M48 72v10"/><path d="M18 90h60"/></symbol><symbol id="dk-i-cl" viewBox="0 0 96 96"><rect x="18" y="12" width="60" height="78" rx="7"/><path d="M36 12V6h24v6"/><path d="M30 34h14M30 50h14M30 66h14"/><path style="stroke:var(--hl)" d="M52 34l4 4 8-8M52 50l4 4 8-8M52 66l4 4 8-8"/></symbol><symbol id="dk-i-iv" viewBox="0 0 96 96"><path d="M32 6h32v8H32z"/><path d="M30 14h36v34c0 8-6 14-14 14h-8c-8 0-14-6-14-14z"/><path d="M48 62v8M44 70h8v8h-8z"/><path d="M48 78v6c0 6 6 8 12 6l22-8"/><path style="stroke:var(--hl)" d="M30 30h36M38 40h8M38 48h8"/><circle style="stroke:var(--hl)" cx="48" cy="74" r="1.2"/></symbol><symbol id="dk-i-hosp" viewBox="0 0 96 96"><path d="M10 88V34l38-22 38 22v54"/><path d="M36 88V66h24v22"/><path d="M4 88h88"/><path style="stroke:var(--hl)" d="M42 36h12v8h8v12h-8v8H42v-8h-8V44h8z"/></symbol><symbol id="dk-contour" viewBox="0 0 96 96"><circle cx="48" cy="48" r="10"/><circle cx="48" cy="48" r="18"/><circle cx="48" cy="48" r="26"/><circle cx="48" cy="48" r="34"/><circle cx="48" cy="48" r="42"/><circle cx="48" cy="48" r="50"/><circle cx="48" cy="48" r="58"/><circle cx="48" cy="48" r="66"/></symbol></svg><!--/dk-sprite-->
 
 <!-- landing -->
 <section id="home" aria-label="אולם ההרצאות">
   <div class="art a1"></div><div class="art a2"></div><div class="art a3"></div>
   <div class="brand">
-    <div class="emb"><img src="emblem.jpg" alt="סמל המערך הכירורגי · המרכז הרפואי קפלן"></div>
+    <div class="emb"><img src="../scrub/brand/emblem-512.jpg" width="250" height="250" alt="סמל המערך הכירורגי · המרכז הרפואי קפלן"></div>
     <div class="ttl">Kaplan <span>Surgical</span> Hub</div>
     <div class="sub">המערך לכירורגיה כללית<i>·</i>המרכז הרפואי קפלן</div>
     <div class="hall"><b></b>אולם ההרצאות</div>
   </div>
   <nav class="choose" aria-label="בחירת קהל">
-    <a class="pick" href="#s/rot" style="--art:url(../ops/art/gi.webp)">
+    <a class="pick" href="#s" style="--art:url(../ops/art/gi.webp)">
       <span class="pi" data-i="cap"></span>
       <span class="pt"><small>SCRUB IN</small><h2>מצגות לסטודנטים</h2><p>כל מצגות הסבב בכירורגיה: לפי שבועות הסבב, לפי נושא ולפי תחום</p><span class="badge" id="nDecks"></span></span>
       <span class="go" aria-hidden="true">←</span>
@@ -233,16 +337,11 @@ main.wrap{position:relative;max-width:1720px;margin:-2.6rem auto 3rem;padding:0 
 <!-- inner page shell -->
 <section id="page" class="hide">
   <header class="bar"><div class="in">
-    <a class="home" href="#" aria-label="חזרה למסך הפתיחה"><span class="ar">→</span><img src="emblem.jpg" alt=""><span class="lbl">מסך הפתיחה</span></a>
+    <a class="home" href="#" aria-label="חזרה למסך הפתיחה"><span class="ar">→</span><img src="../scrub/brand/emblem-512.jpg" alt=""><span class="lbl">מסך הפתיחה</span></a>
     <h1 id="pTitle"></h1>
-    <div class="srch" id="srchBox"><span data-i="search"></span><label class="vh" for="q">חיפוש מצגת</label><input id="q" type="search" placeholder="חיפוש: נושא, מצגת, פרק בסאביסטון…" autocomplete="off" enterkeyhint="search"><button id="qx" class="hide" aria-label="ניקוי החיפוש">✕</button></div>
-    <div class="tabs" id="tabs" role="tablist">
-      <button role="tab" data-v="rot"><span data-i="cal"></span>לפי הסבב</button>
-      <button role="tab" data-v="top"><span data-i="grid"></span>לפי נושא</button>
-      <button role="tab" data-v="dis"><span data-i="hosp"></span>לפי תחום</button>
-    </div>
   </div></header>
   <div class="hero" id="hero"></div>
+  <main class="wrap dkb" id="dk"></main>
   <main class="wrap" id="main"></main>
 </section>
 
@@ -257,11 +356,154 @@ main.wrap{position:relative;max-width:1720px;margin:-2.6rem auto 3rem;padding:0 
   </div>
 </div>
 
-<script id="data" type="application/json">{"decks":{"orientation.html":{"t":"מבוא לסבב ואדמיניסטרציה","k":"admin","ch":[],"n":20,"o":1,"dis":"כירורגיה כללית","top":"מקצועיות ותקשורת"},"admission.html":{"t":"עקרונות קבלת חולים בכירורגיה","k":"lecture","ch":[19],"n":17,"o":3,"dis":"כירורגיה כללית","top":"פריאופרטיבי וטיפול נמרץ"},"surgical-risk.html":{"t":"הערכת סיכון ניתוחי","k":"lecture","ch":[19,4,27],"n":16,"o":4,"dis":"כירורגיה כללית","top":"פריאופרטיבי וטיפול נמרץ"},"abdominal-exam.html":{"t":"בדיקת בטן","k":"workshop","ch":[85],"n":13,"o":5,"dis":"כירורגיה כללית","top":"מיומנויות וסדנאות"},"operating-room.html":{"t":"הכרת חדר הניתוח","k":"workshop","ch":[19,9],"n":12,"o":6,"dis":"אחות חדר ניתוח","top":"מיומנויות וסדנאות"},"iv-workshop.html":{"t":"סדנת ורידים","k":"workshop","ch":[20,33,36],"n":12,"o":7,"dis":"כירורגיה כללית","top":"מיומנויות וסדנאות"},"pneumothorax.html":{"t":"חזה אוויר","k":"lecture","ch":[110],"n":12,"o":8,"dis":"כירורגיית בית החזה","top":"בית החזה"},"suturing.html":{"t":"סדנת תפירה","k":"workshop","ch":[19,23],"n":12,"o":9,"dis":"כירורגיה כללית","top":"מיומנויות וסדנאות"},"hernias.html":{"t":"בקעים של דופן הבטן","k":"lecture","ch":[79,80,81,82],"n":20,"o":10,"dis":"כירורגיה כללית","top":"בקעים ודופן הבטן"},"colorectal-cancer.html":{"t":"קרצינומה של הקולון והרקטום","k":"lecture","ch":[96],"n":16,"o":11,"dis":"כירורגיה כללית","top":"קולורקטלי"},"breast-rectal-exam.html":{"t":"בדיקת שד ובדיקה רקטלית","k":"workshop","ch":[68,97],"n":12,"o":12,"dis":"מכון השד","top":"מיומנויות וסדנאות"},"wound-healing.html":{"t":"ריפוי פצע","k":"lecture","ch":[23,45],"n":15,"o":13,"dis":"כירורגיה פלסטית","top":"פריאופרטיבי וטיפול נמרץ"},"gallbladder-cases.html":{"t":"דיון מקרים: מחלות כיס המרה","k":"case","ch":[88],"n":16,"o":14,"dis":"כירורגיה כללית","top":"כבד, לבלב ודרכי מרה"},"ruq-pain-cases.html":{"t":"דיון מקרים: כאב בבטן הימנית העליונה","k":"case","ch":[85,88],"n":15,"o":15,"dis":"כירורגיה כללית","top":"בטן חריפה ומיון"},"rlq-pain-cases.html":{"t":"דיון מקרים: כאבי בטן ימנית תחתונה","k":"case","ch":[85,94],"n":17,"o":16,"dis":"כירורגיה כללית","top":"בטן חריפה ומיון"},"colonic-obstruction.html":{"t":"חסימות קולוניות","k":"lecture","ch":[95],"n":17,"o":17,"dis":"כירורגיה כללית","top":"קולורקטלי"},"trauma-intro.html":{"t":"מבוא לטראומה","k":"lecture","ch":[36],"n":18,"o":18,"dis":"טראומה","top":"טראומה"},"shock.html":{"t":"הגישה לחולה בשוק","k":"lecture","ch":[33,46],"n":17,"o":19,"dis":"כירורגיה כללית","top":"פריאופרטיבי וטיפול נמרץ"},"breast-cancer.html":{"t":"קרצינומה של השד","k":"lecture","ch":[68],"n":19,"o":20,"dis":"מכון השד","top":"שד"},"peripheral-arterial.html":{"t":"מחלות כלי דם פריפריים","k":"lecture","ch":[103],"n":17,"o":21,"dis":"כירורגיית כלי דם","top":"כלי דם"},"llq-pain-cases.html":{"t":"דיון מקרים: כאבי בטן שמאלית תחתונה","k":"case","ch":[85,95],"n":16,"o":22,"dis":"כירורגיה כללית","top":"בטן חריפה ומיון"},"xray.html":{"t":"צילומי חזה ובטן","k":"imaging","ch":[36,85,91,95,110],"n":14,"o":23,"dis":"רדיולוגיה (מכון הדימות)","top":"דימות"},"acute-abdomen.html":{"t":"בטן חריפה","k":"lecture","ch":[85],"n":17,"o":24,"dis":"כירורגיה כללית","top":"בטן חריפה ומיון"},"sepsis.html":{"t":"הגישה לחולה הספטי","k":"lecture","ch":[32,46],"n":16,"o":25,"dis":"כירורגיה כללית","top":"פריאופרטיבי וטיפול נמרץ"},"ugib-cases.html":{"t":"דימום ממערכת העיכול העליונה","k":"case","ch":[98,86],"n":17,"o":26,"dis":"כירורגיה כללית","top":"ושט, קיבה ובריאטריה"},"colonic-obstruction-cases.html":{"t":"דיון מקרים: חסימה קולונית","k":"case","ch":[95],"n":15,"o":27,"dis":"כירורגיה כללית","top":"קולורקטלי"},"penetrating-trauma.html":{"t":"חבלת בטן חודרת","k":"lecture","ch":[36],"n":16,"o":28,"dis":"טראומה","top":"טראומה"},"gastric-cancer.html":{"t":"קרצינומה של הקיבה","k":"lecture","ch":[87],"n":17,"o":29,"dis":"כירורגיה כללית","top":"ושט, קיבה ובריאטריה"},"aortic-disease.html":{"t":"מחלות האאורטה","k":"lecture","ch":[102],"n":17,"o":30,"dis":"כירורגיית כלי דם","top":"כלי דם"},"lgib-cases.html":{"t":"דימום מדרכי העיכול התחתונות","k":"case","ch":[98],"n":16,"o":31,"dis":"כירורגיה כללית","top":"קולורקטלי"},"diverticular-disease.html":{"t":"מחלות סעיפים של המעי הגס","k":"lecture","ch":[95],"n":18,"o":32,"dis":"כירורגיה כללית","top":"קולורקטלי"},"benign-breast.html":{"t":"מחלות שפירות של השד","k":"lecture","ch":[68],"n":16,"o":33,"dis":"מכון השד","top":"שד"},"ultrasound.html":{"t":"אולטרסאונד בטן","k":"imaging","ch":[36,85,88,94],"n":12,"o":34,"dis":"רדיולוגיה (מכון הדימות)","top":"דימות"},"small-bowel-obstruction.html":{"t":"חסימת מעי דק","k":"lecture","ch":[91],"n":16,"o":35,"dis":"כירורגיה כללית","top":"בטן חריפה ומיון"},"dysphagia-cases.html":{"t":"דיון מקרים: דיספאגיה וגידולי ושט","k":"case","ch":[83,84],"n":15,"o":36,"dis":"כירורגיה כללית","top":"ושט, קיבה ובריאטריה"},"pancreatic-tumors.html":{"t":"גידולי לבלב","k":"lecture","ch":[93,76],"n":19,"o":37,"dis":"כירורגיה כללית","top":"כבד, לבלב ודרכי מרה"},"bariatric.html":{"t":"השמנת יתר חולנית","k":"lecture","ch":[99],"n":16,"o":38,"dis":"כירורגיה כללית","top":"ושט, קיבה ובריאטריה"},"pancreatitis-cases.html":{"t":"דיון מקרים: פנקריאטיטיס","k":"case","ch":[92],"n":20,"o":40,"dis":"כירורגיה כללית","top":"כבד, לבלב ודרכי מרה"},"gastric-surgery-complications.html":{"t":"סיבוכי ניתוחי קיבה","k":"lecture","ch":[86,99],"n":16,"o":41,"dis":"כירורגיה כללית","top":"ושט, קיבה ובריאטריה"},"rectal-cancer.html":{"t":"קרצינומה של הרקטום","k":"lecture","ch":[96],"n":16,"o":42,"dis":"כירורגיה כללית","top":"קולורקטלי"},"ct.html":{"t":"CT בטן","k":"imaging","ch":[36,85,91,92,94,95,106],"n":13,"o":43,"dis":"רדיולוגיה (מכון הדימות)","top":"דימות"},"proctology.html":{"t":"פרוקטולוגיה","k":"lecture","ch":[97],"n":18,"o":44,"dis":"כירורגיה כללית","top":"קולורקטלי"},"reflux.html":{"t":"הגישה לחולה עם רפלוקס","k":"lecture","ch":[83],"n":17,"o":45,"dis":"כירורגיה כללית","top":"ושט, קיבה ובריאטריה"},"complications.html":{"t":"סיבוכים כירורגיים","k":"lecture","ch":[26,25],"n":17,"o":46,"dis":"כירורגיה כללית","top":"פריאופרטיבי וטיפול נמרץ"},"pancreatic-cysts.html":{"t":"גידולים ציסטיים של הלבלב","k":"lecture","ch":[93],"n":16,"o":47,"dis":"כירורגיה כללית","top":"כבד, לבלב ודרכי מרה"},"breast-reconstruction.html":{"t":"שחזורי שד","k":"lecture","ch":[69],"n":15,"o":48,"dis":"כירורגיה פלסטית","top":"שד"},"portal-hypertension.html":{"t":"יתר לחץ דם פורטלי","k":"lecture","ch":[89],"n":18,"o":49,"dis":"כירורגיה כללית","top":"כבד, לבלב ודרכי מרה"},"carotid.html":{"t":"מחלות","k":"lecture","ch":[101],"n":14,"o":51,"dis":"כירורגיית כלי דם","top":"כלי דם"},"obstructive-jaundice-cases.html":{"t":"דיון מקרים: צהבת חסימתית","k":"case","ch":[88,93],"n":17,"o":52,"dis":"כירורגיה כללית","top":"כבד, לבלב ודרכי מרה"},"mesenteric-ischemia.html":{"t":"איסכמיה של המעי","k":"lecture","ch":[106],"n":15,"o":53,"dis":"כירורגיית כלי דם","top":"כלי דם"},"fluids.html":{"t":"תכנון תוכנית נוזלים","k":"lecture","ch":[33],"n":16,"o":54,"dis":"כירורגיה כללית","top":"פריאופרטיבי וטיפול נמרץ"},"nutrition.html":{"t":"תזונה אנטרלית ו-TPN","k":"lecture","ch":[34],"n":16,"o":55,"dis":"כירורגיה כללית","top":"פריאופרטיבי וטיפול נמרץ"},"crc-liver-mets.html":{"t":"גרורות לכבד מסרטן המעי הגס","k":"lecture","ch":[90],"n":15,"o":56,"dis":"כירורגיה כללית","top":"כבד, לבלב ודרכי מרה"},"case-presentation.html":{"t":"איך מציגים מטופל כירורגי","k":"case","ch":[9,19,26,36],"n":14,"o":57,"dis":"כירורגיה כללית","top":"מיומנויות וסדנאות"},"blunt-trauma.html":{"t":"חבלת בטן קהה","k":"lecture","ch":[36],"n":16,"o":58,"dis":"טראומה","top":"טראומה"},"breaking-bad-news.html":{"t":"מסירת בשורה מרה","k":"workshop","ch":[30],"n":16,"o":59,"dis":"כירורגיה כללית","top":"מקצועיות ותקשורת"},"medicolegal.html":{"t":"דילמות מדיקו-לגליות","k":"lecture","ch":[16],"n":16,"o":60,"dis":"כירורגיה כללית","top":"מקצועיות ותקשורת"}},"rot":[{"w":1,"d":["orientation.html","admission.html","surgical-risk.html","abdominal-exam.html","operating-room.html","iv-workshop.html","pneumothorax.html","suturing.html","hernias.html","colorectal-cancer.html","breast-rectal-exam.html","wound-healing.html","gallbladder-cases.html","ruq-pain-cases.html","rlq-pain-cases.html","colonic-obstruction.html","trauma-intro.html"]},{"w":2,"d":["shock.html","breast-cancer.html","peripheral-arterial.html","llq-pain-cases.html","xray.html","acute-abdomen.html","sepsis.html","ugib-cases.html","colonic-obstruction-cases.html","penetrating-trauma.html"]},{"w":3,"d":["gastric-cancer.html","aortic-disease.html","lgib-cases.html","diverticular-disease.html","benign-breast.html","ultrasound.html","small-bowel-obstruction.html","dysphagia-cases.html","pancreatic-tumors.html"]},{"w":4,"d":["bariatric.html","pancreatitis-cases.html","gastric-surgery-complications.html","rectal-cancer.html","ct.html","proctology.html","reflux.html","complications.html","pancreatic-cysts.html","breast-reconstruction.html"]},{"w":5,"d":["portal-hypertension.html","carotid.html","obstructive-jaundice-cases.html","mesenteric-ischemia.html","fluids.html","nutrition.html","crc-liver-mets.html","case-presentation.html"]},{"w":6,"d":["blunt-trauma.html","breaking-bad-news.html","medicolegal.html"]}]}</script>
+<script id="dk-data" type="application/json">{"decks":{"orientation.html":{"t":"מבוא לסבב ואדמיניסטרציה","k":"admin","ch":[],"n":20,"o":1,"d":0,"p":12,"w":[1],"no":1},"admission.html":{"t":"עקרונות קבלת חולים בכירורגיה","k":"lecture","ch":[19],"n":17,"o":3,"d":0,"p":9,"w":[1],"ic":"cl","no":2},"surgical-risk.html":{"t":"הערכת סיכון ניתוחי","k":"lecture","ch":[19,4,27],"n":16,"o":4,"d":0,"p":9,"w":[1],"no":3},"abdominal-exam.html":{"t":"בדיקת בטן","k":"workshop","ch":[85],"n":13,"o":5,"d":0,"p":10,"w":[1],"ic":"ac","no":4},"operating-room.html":{"t":"הכרת חדר הניתוח","k":"workshop","ch":[19,9],"n":12,"o":6,"d":6,"p":10,"w":[1],"no":5},"iv-workshop.html":{"t":"סדנת ורידים","k":"workshop","ch":[20,33,36],"n":12,"o":7,"d":0,"p":10,"w":[1],"ic":"iv","no":6},"pneumothorax.html":{"t":"חזה אוויר","k":"lecture","ch":[110],"n":12,"o":8,"d":2,"p":8,"w":[1],"no":7},"suturing.html":{"t":"סדנת תפירה","k":"workshop","ch":[19,23],"n":12,"o":9,"d":0,"p":10,"w":[1],"no":8},"hernias.html":{"t":"בקעים של דופן הבטן","k":"lecture","ch":[79,80,81,82],"n":20,"o":10,"d":0,"p":4,"w":[1],"no":9},"colorectal-cancer.html":{"t":"קרצינומה של הקולון והרקטום","k":"lecture","ch":[96],"n":16,"o":11,"d":0,"p":1,"w":[1],"no":10},"breast-rectal-exam.html":{"t":"בדיקת שד ובדיקה רקטלית","k":"workshop","ch":[68,97],"n":12,"o":12,"d":1,"p":10,"w":[1],"no":11},"wound-healing.html":{"t":"ריפוי פצע","k":"lecture","ch":[23,45],"n":15,"o":13,"d":3,"p":9,"w":[1],"no":12},"gallbladder-cases.html":{"t":"דיון מקרים: מחלות כיס המרה","k":"case","ch":[88],"n":16,"o":14,"d":0,"p":2,"w":[1],"no":13},"ruq-pain-cases.html":{"t":"דיון מקרים: כאב בבטן הימנית העליונה","k":"case","ch":[85,88],"n":15,"o":15,"d":0,"p":3,"w":[1],"no":14},"rlq-pain-cases.html":{"t":"דיון מקרים: כאבי בטן ימנית תחתונה","k":"case","ch":[85,94],"n":17,"o":16,"d":0,"p":3,"w":[1],"no":15},"colonic-obstruction.html":{"t":"חסימות קולוניות","k":"lecture","ch":[95],"n":17,"o":17,"d":0,"p":1,"w":[1],"no":16},"trauma-intro.html":{"t":"מבוא לטראומה","k":"lecture","ch":[36],"n":18,"o":18,"d":7,"p":6,"w":[1],"no":17},"shock.html":{"t":"הגישה לחולה בשוק","k":"lecture","ch":[33,46],"n":17,"o":19,"d":0,"p":9,"w":[2],"no":18},"breast-cancer.html":{"t":"קרצינומה של השד","k":"lecture","ch":[68],"n":19,"o":20,"d":1,"p":5,"w":[2],"no":19},"peripheral-arterial.html":{"t":"מחלות כלי דם פריפריים","k":"lecture","ch":[103],"n":17,"o":21,"d":4,"p":7,"w":[2],"no":20},"llq-pain-cases.html":{"t":"דיון מקרים: כאבי בטן שמאלית תחתונה","k":"case","ch":[85,95],"n":16,"o":22,"d":0,"p":3,"w":[2],"no":21},"xray.html":{"t":"צילומי חזה ובטן","k":"imaging","ch":[36,85,91,95,110],"n":14,"o":23,"d":5,"p":11,"w":[2],"no":22},"acute-abdomen.html":{"t":"בטן חריפה","k":"lecture","ch":[85],"n":17,"o":24,"d":0,"p":3,"w":[2],"no":23},"sepsis.html":{"t":"הגישה לחולה הספטי","k":"lecture","ch":[32,46],"n":16,"o":25,"d":0,"p":9,"w":[2],"no":24},"ugib-cases.html":{"t":"דימום ממערכת העיכול העליונה","k":"case","ch":[98,86],"n":17,"o":26,"d":0,"p":0,"w":[2],"no":25},"colonic-obstruction-cases.html":{"t":"דיון מקרים: חסימה קולונית","k":"case","ch":[95],"n":15,"o":27,"d":0,"p":1,"w":[2],"no":26},"penetrating-trauma.html":{"t":"חבלת בטן חודרת","k":"lecture","ch":[36],"n":16,"o":28,"d":7,"p":6,"w":[2],"no":27},"gastric-cancer.html":{"t":"קרצינומה של הקיבה","k":"lecture","ch":[87],"n":17,"o":29,"d":0,"p":0,"w":[3],"no":28},"aortic-disease.html":{"t":"מחלות האאורטה","k":"lecture","ch":[102],"n":17,"o":30,"d":4,"p":7,"w":[3],"no":29},"lgib-cases.html":{"t":"דימום מדרכי העיכול התחתונות","k":"case","ch":[98],"n":16,"o":31,"d":0,"p":1,"w":[3],"no":30},"diverticular-disease.html":{"t":"מחלות סעיפים של המעי הגס","k":"lecture","ch":[95],"n":18,"o":32,"d":0,"p":1,"w":[3],"no":31},"benign-breast.html":{"t":"מחלות שפירות של השד","k":"lecture","ch":[68],"n":16,"o":33,"d":1,"p":5,"w":[3],"no":32},"ultrasound.html":{"t":"אולטרסאונד בטן","k":"imaging","ch":[36,85,88,94],"n":12,"o":34,"d":5,"p":11,"w":[3],"no":33},"small-bowel-obstruction.html":{"t":"חסימת מעי דק","k":"lecture","ch":[91],"n":16,"o":35,"d":0,"p":3,"w":[3],"no":34},"dysphagia-cases.html":{"t":"דיון מקרים: דיספאגיה וגידולי ושט","k":"case","ch":[83,84],"n":15,"o":36,"d":0,"p":0,"w":[3],"no":35},"pancreatic-tumors.html":{"t":"גידולי לבלב","k":"lecture","ch":[93,76],"n":19,"o":37,"d":0,"p":2,"w":[3],"no":36},"bariatric.html":{"t":"השמנת יתר חולנית","k":"lecture","ch":[99],"n":16,"o":38,"d":0,"p":0,"w":[4],"no":37},"pancreatitis-cases.html":{"t":"דיון מקרים: פנקריאטיטיס","k":"case","ch":[92],"n":20,"o":40,"d":0,"p":2,"w":[4],"no":38},"gastric-surgery-complications.html":{"t":"סיבוכי ניתוחי קיבה","k":"lecture","ch":[86,99],"n":16,"o":41,"d":0,"p":0,"w":[4],"no":39},"rectal-cancer.html":{"t":"קרצינומה של הרקטום","k":"lecture","ch":[96],"n":16,"o":42,"d":0,"p":1,"w":[4],"no":40},"ct.html":{"t":"CT בטן","k":"imaging","ch":[36,85,91,92,94,95,106],"n":13,"o":43,"d":5,"p":11,"w":[4],"no":41},"proctology.html":{"t":"פרוקטולוגיה","k":"lecture","ch":[97],"n":18,"o":44,"d":0,"p":1,"w":[4],"no":42},"reflux.html":{"t":"הגישה לחולה עם רפלוקס","k":"lecture","ch":[83],"n":17,"o":45,"d":0,"p":0,"w":[4],"no":43},"complications.html":{"t":"סיבוכים כירורגיים","k":"lecture","ch":[26,25],"n":17,"o":46,"d":0,"p":9,"w":[4],"no":44},"pancreatic-cysts.html":{"t":"גידולים ציסטיים של הלבלב","k":"lecture","ch":[93],"n":16,"o":47,"d":0,"p":2,"w":[4],"no":45},"breast-reconstruction.html":{"t":"שחזורי שד","k":"lecture","ch":[69],"n":15,"o":48,"d":3,"p":5,"w":[4],"no":46},"portal-hypertension.html":{"t":"יתר לחץ דם פורטלי","k":"lecture","ch":[89],"n":18,"o":49,"d":0,"p":2,"w":[5],"no":47},"carotid.html":{"t":"מחלות","k":"lecture","ch":[101],"n":14,"o":51,"d":4,"p":7,"w":[5],"no":48},"obstructive-jaundice-cases.html":{"t":"דיון מקרים: צהבת חסימתית","k":"case","ch":[88,93],"n":17,"o":52,"d":0,"p":2,"w":[5],"no":49},"mesenteric-ischemia.html":{"t":"איסכמיה של המעי","k":"lecture","ch":[106],"n":15,"o":53,"d":4,"p":7,"w":[5],"no":50},"fluids.html":{"t":"תכנון תוכנית נוזלים","k":"lecture","ch":[33],"n":16,"o":54,"d":0,"p":9,"w":[5],"no":51},"nutrition.html":{"t":"תזונה אנטרלית ו-TPN","k":"lecture","ch":[34],"n":16,"o":55,"d":0,"p":9,"w":[5],"no":52},"crc-liver-mets.html":{"t":"גרורות לכבד מסרטן המעי הגס","k":"lecture","ch":[90],"n":15,"o":56,"d":0,"p":2,"w":[5],"no":53},"case-presentation.html":{"t":"איך מציגים מטופל כירורגי","k":"case","ch":[9,19,26,36],"n":14,"o":57,"d":0,"p":10,"w":[5],"no":54},"blunt-trauma.html":{"t":"חבלת בטן קהה","k":"lecture","ch":[36],"n":16,"o":58,"d":7,"p":6,"w":[6],"no":55},"breaking-bad-news.html":{"t":"מסירת בשורה מרה","k":"workshop","ch":[30],"n":16,"o":59,"d":0,"p":12,"w":[6],"no":56},"medicolegal.html":{"t":"דילמות מדיקו-לגליות","k":"lecture","ch":[16],"n":16,"o":60,"d":0,"p":12,"w":[6],"no":57}},"rot":[{"w":1,"d":["orientation.html","admission.html","surgical-risk.html","abdominal-exam.html","operating-room.html","iv-workshop.html","pneumothorax.html","suturing.html","hernias.html","colorectal-cancer.html","breast-rectal-exam.html","wound-healing.html","gallbladder-cases.html","ruq-pain-cases.html","rlq-pain-cases.html","colonic-obstruction.html","trauma-intro.html"],"p":[]},{"w":2,"d":["shock.html","breast-cancer.html","peripheral-arterial.html","llq-pain-cases.html","xray.html","acute-abdomen.html","sepsis.html","ugib-cases.html","colonic-obstruction-cases.html","penetrating-trauma.html"],"p":[]},{"w":3,"d":["gastric-cancer.html","aortic-disease.html","lgib-cases.html","diverticular-disease.html","benign-breast.html","ultrasound.html","small-bowel-obstruction.html","dysphagia-cases.html","pancreatic-tumors.html"],"p":[]},{"w":4,"d":["bariatric.html","pancreatitis-cases.html","gastric-surgery-complications.html","rectal-cancer.html","ct.html","proctology.html","reflux.html","complications.html","pancreatic-cysts.html","breast-reconstruction.html"],"p":[]},{"w":5,"d":["portal-hypertension.html","carotid.html","obstructive-jaundice-cases.html","mesenteric-ischemia.html","fluids.html","nutrition.html","crc-liver-mets.html","case-presentation.html"],"p":[]},{"w":6,"d":["blunt-trauma.html","breaking-bad-news.html","medicolegal.html"],"p":[]}],"dis":[["כירורגיה כללית","hosp","#13A386","אשפוז, מרפאות, חדר ניתוח ומיון"],["מכון השד","br","#C0608A","אבחון, ניתוח ומעקב"],["כירורגיית בית החזה","th","#4A8FD0","ריאות, צדר ובית החזה"],["כירורגיה פלסטית","pl","#9473D0","פצעים ושחזורים"],["כירורגיית כלי דם","va","#D0535C","עורקים, ורידים ואאורטה"],["רדיולוגיה (מכון הדימות)","im","#3AA0C8","צילום, אולטרסאונד ו-CT"],["אחות חדר ניתוח","or","#2FB5A5","סטריליות ועבודה בחדר הניתוח"],["טראומה","tr","#DE6A48","הגישה לפצוע"]],"top":[["ושט, קיבה ובריאטריה","up","#18A88E"],["קולורקטלי","cr","#0F9670"],["כבד, לבלב ודרכי מרה","hpb","#4FAE5E"],["בטן חריפה ומיון","ac","#25A6A0"],["בקעים ודופן הבטן","he","#2A97B0"],["שד","br","#C0608A"],["טראומה","tr","#DE6A48"],["כלי דם","va","#D0535C"],["בית החזה","th","#4A8FD0"],["פריאופרטיבי וטיפול נמרץ","po","#2390B8"],["מיומנויות וסדנאות","sk","#3DB58C"],["דימות","im","#3AA0C8"],["מקצועיות ותקשורת","pr","#5E95A8"]],"kind":{"lecture":"הרצאה","case":"דיון מקרים","workshop":"סדנה","imaging":"דימות","round":"ביקור מודרך","admin":"פתיחת הסבב","exam":"מבחן"},"wn":{"1":"פתיחת הסבב, מיומנויות יסוד ובטן ימנית","2":"שוק, ספסיס, בטן חריפה ודימום עליון","3":"קיבה, כלי דם, שד ולבלב","4":"בריאטריה, רקטום, CT ופרוקטולוגיה","5":"כבד, נוזלים, תזונה ואיסכמיה","6":"חבלה קהה, תקשורת ודילמות"}}</script>
+<script id="dk-js">
+window.DeckBrowser = function(cfg){
+'use strict';
+var D = JSON.parse(document.getElementById('dk-data').textContent), root = cfg.root, KEY = cfg.key;
+var FILES = Object.keys(D.decks).sort(function(a,b){ return D.decks[a].o - D.decks[b].o; });
+var VIEWS = [['rot','לפי סדר הסבב','cal'],['dis','לפי תחום','hosp'],['top','לפי נושא','grid']];
+var MINI = {cal:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>',
+ hosp:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V8l8-5 8 5v13M2 21h20"/><path d="M12 8v6M9 11h6"/></svg>',
+ grid:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg>',
+ search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>',
+ filt:'<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h16M7 12h10M10 18h4"/></svg>'};
+var S = {v:'rot', d:[], w:0, t:-1, k:'', q:''};
+function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+function norm(s){ return String(s||'').toLowerCase().replace(/[֑-ׇ]/g,'').replace(/[״"׳'`\-–·,.()]/g,' ').replace(/\s+/g,' ').trim(); }
+var HAY = {};
+FILES.forEach(function(f){ var d = D.decks[f]; HAY[f] = norm([d.t, D.dis[d.d][0], D.top[d.p][0], D.kind[d.k]||'', (d.ch||[]).map(function(c){ return 'ch' + c + ' ' + c + ' פרק ' + c; }).join(' '), f.replace('.html','').replace(/-/g,' '), d.w.map(function(w){ return 'שבוע ' + w; }).join(' ')].join(' ')); });
+var KINDS = []; FILES.forEach(function(f){ var k = D.decks[f].k; if(KINDS.indexOf(k) < 0) KINDS.push(k); });
+
+// ---------- state <-> query ----------
+function toQ(){ var a = []; if(S.v !== 'rot') a.push('v=' + S.v); if(S.d.length) a.push('d=' + S.d.join('.')); if(S.w) a.push('w=' + S.w); if(S.t >= 0) a.push('t=' + S.t); if(S.k) a.push('k=' + S.k); if(S.q) a.push('q=' + encodeURIComponent(S.q)); return a.join('&'); }
+function fromQ(q){
+  var n = {v:'rot', d:[], w:0, t:-1, k:'', q:''};
+  String(q||'').split('&').forEach(function(p){ var i = p.indexOf('='); if(i < 0) return; var k = p.slice(0,i), v = p.slice(i+1);
+    try { v = decodeURIComponent(v); } catch(e){}
+    if(k === 'v' && /^(rot|dis|top)$/.test(v)) n.v = v;
+    else if(k === 'd') n.d = v.split('.').map(Number).filter(function(x){ return x >= 0 && x < D.dis.length; });
+    else if(k === 'w') n.w = +v || 0;
+    else if(k === 't') n.t = isNaN(+v) ? -1 : +v;
+    else if(k === 'k' && D.kind[v]) n.k = v;
+    else if(k === 'q') n.q = v; });
+  return n;
+}
+function save(){ try { localStorage.setItem(KEY, toQ()); } catch(e){} if(cfg.onState) cfg.onState(toQ()); }
+function load(q){ if(q == null){ try { q = localStorage.getItem(KEY) || ''; } catch(e){ q = ''; } } S = fromQ(q); }
+function active(){ return S.d.length + (S.w ? 1 : 0) + (S.t >= 0 ? 1 : 0) + (S.k ? 1 : 0) + (S.q ? 1 : 0); }
+
+// ---------- matching ----------
+function m(f, skip){
+  var d = D.decks[f];
+  if(skip !== 'd' && S.d.length && S.d.indexOf(d.d) < 0) return false;
+  if(skip !== 'w' && S.w && d.w.indexOf(S.w) < 0) return false;
+  if(skip !== 't' && S.t >= 0 && d.p !== S.t) return false;
+  if(skip !== 'k' && S.k && d.k !== S.k) return false;
+  var q = norm(S.q); if(q && !q.split(' ').every(function(w){ return HAY[f].indexOf(w) >= 0; })) return false;
+  return true;
+}
+
+// ---------- markup ----------
+function accent(d){ return d.d === 0 ? D.top[d.p][2] : D.dis[d.d][2]; }
+function icon(d){ return d.ic || (d.d === 0 ? D.top[d.p][1] : D.dis[d.d][1]); }
+function use(i){ return '<svg viewBox="0 0 96 96" aria-hidden="true"><use href="#dk-i-' + i + '"/></svg>'; }
+function chs(ch){ if(!ch || !ch.length) return 'ספרון המערך'; return 'Sabiston ' + (ch.length > 1 ? 'פרקים ' : 'פרק ') + '⁦' + ch.join(', ') + '⁩'; }
+function card(f){
+  var d = D.decks[f], no = (d.no < 10 ? '0' : '') + d.no;
+  return '<a class="dk-card" href="' + esc(cfg.href(f, toQ())) + '" data-f="' + esc(f) + '" style="--a:' + accent(d) + '">' +
+    '<span class="dk-cv"><svg class="dk-ct" viewBox="0 0 96 96" aria-hidden="true"><use href="#dk-contour"/></svg>' +
+    '<svg class="dk-il" viewBox="0 0 96 96" aria-hidden="true"><use href="#dk-i-' + icon(d) + '"/></svg>' +
+    '<span class="dk-no">N° <b>' + no + '</b></span>' + (d.n ? '<span class="dk-sl"><b>' + d.n + '</b> שקפים</span>' : '') +
+    '<span class="dk-dc" style="--dc:' + D.dis[d.d][2] + '"><i></i>' + esc(D.dis[d.d][0]) + '</span></span>' +
+    '<span class="dk-cb"><span class="dk-kd ' + d.k + '">' + esc(D.kind[d.k] || 'מצגת') + '</span><b>' + esc(d.t) + '</b>' +
+    '<span class="dk-mt"><span class="tp">' + esc(D.top[d.p][0]) + '</span><span>' + chs(d.ch) + '</span><span>שבוע ' + d.w.join(' ו-') + '</span></span></span></a>';
+}
+function sec(id, head, sub, ico, color, items, extra){
+  return '<section class="dk-sec" id="' + id + '" style="--a:' + color + '"><div class="dk-sh">' + ico + '<div><h3>' + esc(head) + '</h3>' + (sub ? '<p>' + esc(sub) + '</p>' : '') + '</div><span class="dk-n">' + items.length + ' מצגות</span></div>' +
+    '<div class="dk-grid">' + items.map(card).join('') + '</div>' + (extra || '') + '</section>';
+}
+
+// ---------- toolbar ----------
+function bar(){
+  var weeks = D.rot.map(function(r){ return r.w; });
+  root.innerHTML = '<div class="dk-tb" id="dkTb">' +
+    '<div class="dk-r"><div class="dk-seg" role="radiogroup" aria-label="תצוגה">' + VIEWS.map(function(v){ return '<button role="radio" data-v="' + v[0] + '">' + MINI[v[2]] + v[1] + '</button>'; }).join('') + '</div>' +
+    '<div class="dk-q">' + MINI.search + '<label class="vh" for="dkQ" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">חיפוש מצגת</label><input id="dkQ" type="search" placeholder="חיפוש: נושא, מצגת, פרק בסאביסטון…" autocomplete="off" enterkeyhint="search"><button id="dkQx" type="button" aria-label="ניקוי החיפוש" hidden>✕</button></div>' +
+    '<button class="dk-btn dk-ft" id="dkFt" type="button" aria-expanded="false" aria-controls="dkMore">' + MINI.filt + 'סינון <i id="dkFn" hidden></i></button>' +
+    '<span class="dk-cnt" id="dkCnt" aria-live="polite"></span><button class="dk-btn" id="dkClr" type="button">ניקוי</button></div>' +
+    '<div class="dk-more" id="dkMore">' +
+    '<div class="dk-r dk-cr"><span class="dk-lab">תחום</span><div class="dk-chips" role="group" aria-label="סינון לפי תחום">' + D.dis.map(function(x, i){ return '<button class="dk-chip" type="button" data-d="' + i + '" style="--a:' + x[2] + '" aria-pressed="false"><i></i>' + esc(x[0]) + ' <small></small></button>'; }).join('') + '</div></div>' +
+    '<div class="dk-r dk-wr"><span class="dk-lab">שבוע</span><div class="dk-wk" role="group" aria-label="סינון לפי שבוע"><button type="button" data-w="0">הכול</button>' + weeks.map(function(w){ return '<button type="button" data-w="' + w + '" aria-label="שבוע ' + w + '">' + w + '</button>'; }).join('') + '</div>' +
+    '<label class="dk-lab" for="dkT">נושא</label><select class="dk-sel" id="dkT"><option value="-1">כל הנושאים</option>' + D.top.map(function(t, i){ return '<option value="' + i + '">' + esc(t[0]) + '</option>'; }).join('') + '</select>' +
+    '<label class="dk-lab" for="dkK">סוג</label><select class="dk-sel" id="dkK"><option value="">כל הסוגים</option>' + KINDS.map(function(k){ return '<option value="' + k + '">' + esc(D.kind[k]) + '</option>'; }).join('') + '</select></div>' +
+    '</div></div><div id="dkOut"></div>';
+  var tb = root.querySelector('#dkTb'), qi = root.querySelector('#dkQ'), qx = root.querySelector('#dkQx'), qT = 0;
+  tb.querySelector('.dk-seg').addEventListener('click', function(e){ var b = e.target.closest('button'); if(b){ S.v = b.getAttribute('data-v'); go(true); } });
+  tb.querySelector('.dk-seg').addEventListener('keydown', function(e){
+    var i = ['rot','dis','top'].indexOf(S.v), n = e.key === 'ArrowLeft' ? 1 : e.key === 'ArrowRight' ? -1 : 0; if(!n) return;
+    e.preventDefault(); S.v = VIEWS[(i + n + 3) % 3][0]; go(true); tb.querySelector('.dk-seg [data-v="' + S.v + '"]').focus(); });
+  tb.querySelector('.dk-chips').addEventListener('click', function(e){ var b = e.target.closest('[data-d]'); if(!b) return; var i = +b.getAttribute('data-d'), p = S.d.indexOf(i); if(p < 0) S.d.push(i); else S.d.splice(p, 1); S.d.sort(); go(); });
+  tb.querySelector('.dk-wk').addEventListener('click', function(e){ var b = e.target.closest('[data-w]'); if(!b) return; var w = +b.getAttribute('data-w'); S.w = S.w === w ? 0 : w; go(); });
+  tb.querySelector('#dkT').addEventListener('change', function(){ S.t = +this.value; go(); });
+  tb.querySelector('#dkK').addEventListener('change', function(){ S.k = this.value; go(); });
+  qi.addEventListener('input', function(){ qx.hidden = !qi.value; clearTimeout(qT); qT = setTimeout(function(){ S.q = qi.value.trim(); go(); }, 140); });
+  qi.addEventListener('keydown', function(e){ if(e.key === 'Escape' && qi.value){ e.preventDefault(); qx.click(); } });
+  qx.addEventListener('click', function(){ qi.value = ''; S.q = ''; qx.hidden = true; go(); qi.focus(); });
+  tb.querySelector('#dkClr').addEventListener('click', function(){ S.d = []; S.w = 0; S.t = -1; S.k = ''; S.q = ''; qi.value = ''; qx.hidden = true; go(); });
+  tb.querySelector('#dkFt').addEventListener('click', function(){ var o = tb.classList.toggle('open'); this.setAttribute('aria-expanded', o ? 'true' : 'false'); });
+  root.querySelector('#dkOut').addEventListener('click', function(e){
+    var j = e.target.closest('[data-jump]'); if(j){ e.preventDefault(); var t = document.getElementById(j.getAttribute('href').slice(1)); if(t) t.scrollIntoView({behavior:'smooth', block:'start'}); return; }
+    var c = e.target.closest('.dk-card'); if(c && cfg.onOpen) cfg.onOpen(c.getAttribute('data-f'), e);
+  });
+  document.addEventListener('keydown', function(e){ if(e.key === '/' && root.offsetParent !== null && !/INPUT|SELECT|TEXTAREA/.test((document.activeElement||{}).tagName||'') && !(cfg.busy && cfg.busy())){ e.preventDefault(); qi.focus(); } });
+}
+
+// ---------- render ----------
+function render(){
+  var tb = root.querySelector('#dkTb');
+  tb.querySelectorAll('.dk-seg button').forEach(function(b){ var on = b.getAttribute('data-v') === S.v; b.setAttribute('aria-checked', on ? 'true' : 'false'); b.tabIndex = on ? 0 : -1; });
+  tb.querySelectorAll('.dk-chip').forEach(function(b){ var i = +b.getAttribute('data-d'), n = FILES.filter(function(f){ return D.decks[f].d === i && m(f, 'd'); }).length;
+    b.setAttribute('aria-pressed', S.d.indexOf(i) >= 0 ? 'true' : 'false'); b.querySelector('small').textContent = n; b.classList.toggle('dk-z', !n && S.d.indexOf(i) < 0); });
+  tb.querySelectorAll('.dk-wk button').forEach(function(b){ b.setAttribute('aria-pressed', +b.getAttribute('data-w') === S.w ? 'true' : 'false'); });
+  tb.querySelector('#dkT').value = String(S.t); tb.querySelector('#dkK').value = S.k;
+  var qi = tb.querySelector('#dkQ'); if(document.activeElement !== qi && qi.value !== S.q){ qi.value = S.q; } tb.querySelector('#dkQx').hidden = !qi.value;
+  var fa = S.d.length + (S.w ? 1 : 0) + (S.t >= 0 ? 1 : 0) + (S.k ? 1 : 0), fn = tb.querySelector('#dkFn'); fn.hidden = !fa; fn.textContent = fa;
+  var hit = FILES.filter(function(f){ return m(f); });
+  tb.querySelector('#dkCnt').innerHTML = '<b>' + hit.length + '</b> ' + (hit.length === FILES.length ? 'מצגות' : 'מתוך ' + FILES.length);
+  tb.querySelector('#dkClr').disabled = !active();
+  var html = '', jump = '', plain = !active();
+  if(S.v === 'rot'){
+    D.rot.forEach(function(r){
+      var it = r.d.filter(function(f){ return m(f); }); if(!it.length) return;
+      var pend = plain && r.p.length ? '<div class="dk-pend">בהכנה בשבוע הזה: ' + r.p.map(function(p){ return '<span>' + esc(p.t) + '</span>'; }).join('') + '</div>' : '';
+      jump += '<a href="#dk-w' + r.w + '" data-jump><i></i>שבוע ' + r.w + ' <small>' + it.length + '</small></a>';
+      html += sec('dk-w' + r.w, 'שבוע ' + r.w, D.wn[r.w] || '', '<span class="dk-si n">' + r.w + '</span>', '#00967D', it, pend);
+    });
+  } else {
+    var L = S.v === 'dis' ? D.dis : D.top, key = S.v === 'dis' ? 'd' : 'p';
+    L.forEach(function(t, n){
+      var it = FILES.filter(function(f){ return D.decks[f][key] === n && m(f); }); if(!it.length) return;
+      jump += '<a href="#dk-g' + n + '" data-jump style="--a:' + t[2] + '"><i></i>' + esc(t[0]) + ' <small>' + it.length + '</small></a>';
+      html += sec('dk-g' + n, t[0], S.v === 'dis' ? t[3] : '', '<span class="dk-si">' + use(t[1]) + '</span>', t[2], it);
+    });
+  }
+  if(!html) html = '<section class="dk-sec"><div class="dk-empty"><h3>לא נמצאו מצגות</h3><p>אפשר לחפש לפי נושא, שם מצגת, פרק בסאביסטון או שבוע בסבב.</p><button class="dk-btn" type="button" onclick="document.getElementById(\'dkClr\').click()">ניקוי הסינון</button></div></section>';
+  root.querySelector('#dkOut').innerHTML = (jump ? '<nav class="dk-jump" aria-label="קפיצה מהירה">' + jump + '</nav>' : '') + html;
+}
+function go(top){ save(); render(); if(top && cfg.onView) cfg.onView(); }
+bar();
+return {
+  load: function(q){ load(q); render(); },
+  render: render, query: toQ, total: FILES.length, weeks: D.rot.length, topics: D.top.length,
+  chapters: (function(){ var c = {}; FILES.forEach(function(f){ (D.decks[f].ch||[]).forEach(function(x){ c[x] = 1; }); }); return Object.keys(c).length; })(),
+  title: function(f){ return D.decks[f] && D.decks[f].t; }, has: function(f){ return !!D.decks[f]; }
+};
+};
+</script>
 <script>
 (function(){
 'use strict';
-var D = JSON.parse(document.getElementById('data').textContent);
 var DECK = '../scrub/';
 
 // line icons, 48x48, stroke = currentColor
@@ -299,97 +541,13 @@ var P = {
 function ic(k){ return '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (P[k]||'') + '</svg>'; }
 function fill(root){ (root||document).querySelectorAll('[data-i]').forEach(function(e){ if(!e.firstChild) e.innerHTML = ic(e.getAttribute('data-i')); }); }
 
-// topics: label -> icon, colour, Leonardo plate
-var TOP = [
-  ['ושט, קיבה ובריאטריה','up','#0E8C7A','stomach'],
-  ['קולורקטלי','cr','#0A6B5A','gi'],
-  ['כבד, לבלב ודרכי מרה','hpb','#3E8E4F','liver'],
-  ['בטן חריפה ומיון','ac','#B4533A','cavity'],
-  ['בקעים ודופן הבטן','he','#2D7F8F','bowel'],
-  ['שד','br','#A24C7C','thorax'],
-  ['טראומה','tr','#A3402E','muscle3'],
-  ['כלי דם','va','#B03A48','arterman'],
-  ['בית החזה','th','#3C6FA8','heart'],
-  ['פריאופרטיבי וטיפול נמרץ','po','#1E7C9A','cardio'],
-  ['מיומנויות וסדנאות','sk','#6A4FB0','instr'],
-  ['דימות','im','#2F6FA8','organs'],
-  ['מקצועיות ותקשורת','pr','#4F6F8F','theatre']
-];
-var TM = {}; TOP.forEach(function(t){ TM[t[0]] = {i:t[1], c:t[2], a:t[3]}; });
-var DIS = [
-  ['כירורגיה כללית','hosp','#00967D','organs'],
-  ['מכון השד','br','#A24C7C','thorax'],
-  ['כירורגיית בית החזה','th','#3C6FA8','heart'],
-  ['כירורגיה פלסטית','sk','#8A5FA8','facehand'],
-  ['כירורגיית כלי דם','va','#B03A48','arterman'],
-  ['רדיולוגיה (מכון הדימות)','im','#2F6FA8','organs'],
-  ['אחות חדר ניתוח','steth','#2D7F8F','instr2'],
-  ['טראומה','tr','#A3402E','muscle3']
-];
-var DISNOTE = {
-  'כירורגיה כללית':'אשפוז, מרפאות, חדר ניתוח ומיון',
-  'מכון השד':'אבחון, ניתוח ומעקב',
-  'כירורגיית בית החזה':'ריאות, צדר ובית החזה',
-  'כירורגיה פלסטית':'פצעים ושחזורים',
-  'כירורגיית כלי דם':'עורקים, ורידים ואאורטה',
-  'רדיולוגיה (מכון הדימות)':'צילום, אולטרסאונד ו-CT',
-  'אחות חדר ניתוח':'סטריליות ועבודה בחדר הניתוח',
-  'טראומה':'הגישה לפצוע'
-};
-var KIND = {lecture:'הרצאה', 'case':'דיון מקרים', workshop:'סדנה', imaging:'דימות', round:'ביקור מודרך', admin:'פתיחת הסבב'};
-
-var FILES = Object.keys(D.decks).sort(function(a,b){ return D.decks[a].o - D.decks[b].o; });
-var WEEKS = {}; D.rot.forEach(function(r){ r.d.forEach(function(f){ (WEEKS[f] = WEEKS[f] || []).push(r.w); }); });
-
-function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
-function norm(s){ return String(s||'').toLowerCase().replace(/[֑-ׇ]/g,'').replace(/[״"׳'`\-–·,.()]/g,' ').replace(/\s+/g,' ').trim(); }
-function chTxt(ch){ if(!ch || !ch.length) return 'ספרון המערך'; return 'Sabiston ' + (ch.length > 1 ? 'פרקים ' : 'פרק ') + '\u2066' + ch.join(', ') + '\u2069'; }
-function hay(f){ var d = D.decks[f]; return norm([d.t, d.top, d.dis, KIND[d.k]||'', (d.ch||[]).map(function(c){ return 'ch' + c + ' ' + c + ' פרק ' + c; }).join(' '), f.replace('.html','').replace(/-/g,' '), (WEEKS[f]||[]).map(function(w){ return 'שבוע ' + w; }).join(' ')].join(' ')); }
-var HAY = {}; FILES.forEach(function(f){ HAY[f] = hay(f); });
-
-function card(f, view, no){
-  var d = D.decks[f], t = TM[d.top] || {i:'slides', c:'#00967D', a:'organs'};
-  var wk = WEEKS[f] ? 'שבוע ' + WEEKS[f].join(' ו-') : '';
-  return '<a class="card k-' + d.k + '" href="#s/' + view + '/' + encodeURIComponent(f) + '" data-f="' + esc(f) + '" style="--c:' + t.c + ';--art:url(../ops/art/' + t.a + '.webp)">' +
-    '<span class="cv"><span class="kd">' + esc(KIND[d.k] || 'מצגת') + '</span>' + (no ? '<span class="no">' + no + '</span>' : '') +
-    '<span class="play">' + ic('play') + '</span></span><span class="ic">' + ic(t.i) + '</span>' +
-    '<span class="cb"><b>' + esc(d.t) + '</b>' +
-    '<span class="mt"><span>' + ic('book') + esc(chTxt(d.ch)) + '</span>' + (d.n ? '<span>' + ic('slides') + d.n + ' שקפים</span>' : '') + '</span>' +
-    '<span class="tg"><span class="tp">' + esc(d.top) + '</span>' + (view !== 'dis' ? '<span>' + esc(d.dis) + '</span>' : '') + (view !== 'rot' && wk ? '<span>' + esc(wk) + '</span>' : '') + '</span>' +
-    '</span></a>';
-}
-
-function section(id, head, sub, iconHtml, color, items, view, numbered){
-  if(!items.length) return '';
-  return '<section class="sec" id="' + id + '" style="--c:' + color + '"><div class="sh">' + iconHtml +
-    '<div><h3>' + esc(head) + '</h3>' + (sub ? '<p>' + esc(sub) + '</p>' : '') + '</div><span class="cnt">' + items.length + ' מצגות</span></div>' +
-    '<div class="grid">' + items.map(function(f, i){ return card(f, view, numbered ? i + 1 : 0); }).join('') + '</div></section>';
-}
-
-var state = {view:'rot', q:''};
-var WEEKNOTE = {1:'פתיחת הסבב, מיומנויות יסוד ובטן ימנית', 2:'שוק, ספסיס, בטן חריפה ודימום עליון', 3:'קיבה, כלי דם, שד ולבלב', 4:'בריאטריה, רקטום, CT ופרוקטולוגיה', 5:'כבד, נוזלים, תזונה ואיסכמיה', 6:'חבלה קהה, תקשורת ודילמות'};
-
-function renderStudents(){
-  var q = norm(state.q), match = function(f){ return !q || q.split(' ').every(function(w){ return HAY[f].indexOf(w) >= 0; }); };
-  var html = '', jump = '';
-  if(state.view === 'rot'){
-    D.rot.forEach(function(r){
-      var it = r.d.filter(match); if(!it.length) return;
-      jump += '<a href="#w' + r.w + '" data-jump><span class="dot"></span>שבוע ' + r.w + ' <i>' + it.length + '</i></a>';
-      html += section('w' + r.w, 'שבוע ' + r.w, q ? '' : WEEKNOTE[r.w], '<span class="si n">' + r.w + '</span>', '#00967D', it, 'rot', !q);
-    });
-  } else {
-    var LIST = state.view === 'top' ? TOP : DIS, key = state.view === 'top' ? 'top' : 'dis';
-    LIST.forEach(function(t, n){
-      var it = FILES.filter(function(f){ return D.decks[f][key] === t[0] && match(f); }); if(!it.length) return;
-      var sub = state.view === 'dis' ? DISNOTE[t[0]] : '';
-      jump += '<a href="#g' + n + '" data-jump style="--c:' + t[2] + '"><span class="dot"></span>' + esc(t[0]) + ' <i>' + it.length + '</i></a>';
-      html += section('g' + n, t[0], sub, '<span class="si">' + ic(t[1]) + '</span>', t[2], it, state.view, false);
-    });
-  }
-  if(!html) html = '<section class="sec"><div class="empty"><div class="eic">' + ic('search') + '</div><h3>לא נמצאו מצגות</h3><p>אפשר לחפש לפי שם הנושא, שם המצגת, מספר פרק בסאביסטון או שבוע בסבב.</p></div></section>';
-  document.getElementById('main').innerHTML = (jump ? '<nav class="jump" aria-label="קפיצה מהירה">' + jump + '</nav>' : '') + html;
-}
+var B = DeckBrowser({root: document.getElementById('dk'), key: 'lh_students',
+  href: function(f, q){ return '#s/' + encodeURIComponent(f) + (q ? '?' + q : ''); },
+  onOpen: function(){ goFull(); },
+  busy: function(){ return !V.classList.contains('hide'); },
+  onState: function(q){ if(!openFile){ try { history.replaceState(null, '', '#s' + (q ? '?' + q : '')); } catch(e){} lastQ = q; } },
+  onView: function(){}});
+var lastQ = null;
 
 function setHero(kick, title, text, stats, art){
   var h = document.getElementById('hero');
@@ -403,19 +561,16 @@ function showPage(kind){
   document.getElementById('home').classList.add('hide');
   document.getElementById('page').classList.remove('hide');
   var stu = kind === 's';
-  document.getElementById('srchBox').classList.toggle('hide', !stu);
-  document.getElementById('tabs').classList.toggle('hide', !stu);
+  document.getElementById('dk').classList.toggle('hide', !stu);
+  document.getElementById('main').classList.toggle('hide', stu);
   var tt = document.getElementById('pTitle');
   if(kind !== shownPage) window.scrollTo(0, 0);
   shownPage = kind;
   if(stu){
     tt.innerHTML = 'מצגות לסטודנטים<small>Scrub In · הסבב בכירורגיה</small>';
     document.title = 'מצגות לסטודנטים · אולם ההרצאות';
-    var nCh = {}; FILES.forEach(function(f){ (D.decks[f].ch||[]).forEach(function(c){ nCh[c] = 1; }); });
     setHero('SCRUB IN', 'מצגות הסבב בכירורגיה', 'כל המצגות של סבב הסטודנטים במערך. בוחרים מצגת והיא נפתחת על כל המסך. מעבר בין שקפים בחצים או בהחלקה.',
-      '<span><b>' + FILES.length + '</b> מצגות</span><span><b>' + D.rot.length + '</b> שבועות</span><span><b>' + TOP.length + '</b> נושאים</span><span><b>' + Object.keys(nCh).length + '</b> פרקים בסאביסטון</span>', 'gi');
-    document.querySelectorAll('#tabs button').forEach(function(b){ b.setAttribute('aria-selected', b.getAttribute('data-v') === state.view ? 'true' : 'false'); });
-    renderStudents();
+      '<span><b>' + B.total + '</b> מצגות</span><span><b>' + B.weeks + '</b> שבועות</span><span><b>8</b> תחומים</span><span><b>' + B.topics + '</b> נושאים</span><span><b>' + B.chapters + '</b> פרקים בסאביסטון</span>', 'gi');
   } else if(kind === 'r'){
     tt.innerHTML = 'מצגות למתמחים<small>Residents · המערך לכירורגיה כללית</small>';
     document.title = 'מצגות למתמחים · אולם ההרצאות';
@@ -442,7 +597,7 @@ function goFull(){ var e = document.documentElement, r = e.requestFullscreen || 
 function exitFull(){ var x = document.exitFullscreen || document.webkitExitFullscreen; if(x && isFull()){ try { var p = x.call(document); if(p && p.catch) p.catch(function(){}); } catch(e){} } weFull = false; }
 function syncFullBtn(){ document.getElementById('vFullT').textContent = isFull() ? 'יציאה ממסך מלא' : 'מסך מלא'; }
 function openDeck(f){
-  if(!D.decks[f]){ return; }
+  if(!B.has(f)){ return; }
   if(openFile === f && !V.classList.contains('hide')) return;
   openFile = f;
   document.getElementById('vload').style.opacity = 1;
@@ -450,7 +605,7 @@ function openDeck(f){
   document.getElementById('vTab').href = DECK + f;
   V.classList.remove('hide');
   document.body.style.overflow = 'hidden';
-  document.title = D.decks[f].t + ' · אולם ההרצאות';
+  document.title = B.title(f) + ' · אולם ההרצאות';
   poke(); syncFullBtn();
 }
 function closeDeck(){
@@ -472,43 +627,32 @@ F.addEventListener('load', function(){
 });
 function poke(){ V.classList.remove('idle'); clearTimeout(idleT); idleT = setTimeout(function(){ V.classList.add('idle'); }, 2600); }
 V.addEventListener('mousemove', poke); V.addEventListener('touchstart', poke, {passive:true});
-document.getElementById('vClose').onclick = function(){ var h = location.hash.split('/'); location.hash = h.slice(0, 2).join('/'); };
+document.getElementById('vClose').onclick = function(){ var q = B.query(); location.hash = 's' + (q ? '?' + q : ''); };
 document.getElementById('vFull').onclick = function(){ if(isFull()) exitFull(); else goFull(); setTimeout(syncFullBtn, 300); try { F.contentWindow.focus(); } catch(e){} };
 document.addEventListener('fullscreenchange', syncFullBtn); document.addEventListener('webkitfullscreenchange', syncFullBtn);
 
 // ---------- routing ----------
 function route(){
-  var h = decodeURIComponent(location.hash.replace(/^#/, '')), p = h.split('/');
+  var raw = location.hash.replace(/^#/, ''), qi = raw.indexOf('?'), path = qi < 0 ? raw : raw.slice(0, qi), q = qi < 0 ? null : raw.slice(qi + 1);
+  try { path = decodeURIComponent(path); } catch(e){}
+  var p = path.split('/');
   if(p[0] === 's'){
-    var v = ['rot','top','dis'].indexOf(p[1]) >= 0 ? p[1] : 'rot';
-    var changed = v !== state.view || shownPage !== 's';
-    state.view = v;
-    if(changed) showPage('s');
-    if(p[2]) openDeck(p[2]); else closeDeck();
+    var file = '';
+    p.slice(1).forEach(function(x){ if(/^(rot|dis|top)$/.test(x)){ if(!/(^|&)v=/.test(q || '')) q = [x === 'rot' ? '' : 'v=' + x, q || ''].filter(Boolean).join('&'); } else if(/\.html$/.test(x)) file = x; });
+    if(shownPage !== 's'){ showPage('s'); lastQ = null; }
+    if(q !== lastQ || lastQ === null){ B.load(q); lastQ = q; }
+    if(file) openDeck(file); else { closeDeck(); var cq = B.query(); try { history.replaceState(null, '', '#s' + (cq ? '?' + cq : '')); } catch(e){} lastQ = cq; }
   } else if(p[0] === 'r'){ closeDeck(); showPage('r'); }
   else if(p[0] === 'l'){ closeDeck(); showPage('l'); }
-  else if(/^[wg]\d+$/.test(p[0])){ /* in-page anchor */ }
+  else if(/^dk-[wg]\d+$/.test(p[0])){ /* in-page anchor */ }
   else { closeDeck(); showPage('home'); }
 }
 window.addEventListener('hashchange', route);
 
-document.getElementById('main').addEventListener('click', function(e){
-  var j = e.target.closest('[data-jump]');
-  if(j){ e.preventDefault(); var t = document.querySelector(j.getAttribute('href')); if(t) t.scrollIntoView({behavior:'smooth', block:'start'}); return; }
-  var c = e.target.closest('.card'); if(c) goFull();
-});
-document.getElementById('tabs').addEventListener('click', function(e){ var b = e.target.closest('button'); if(b) location.hash = 's/' + b.getAttribute('data-v'); });
-var qi = document.getElementById('q'), qx = document.getElementById('qx'), qT = 0;
-qi.addEventListener('input', function(){ qx.classList.toggle('hide', !qi.value); clearTimeout(qT); qT = setTimeout(function(){ state.q = qi.value; renderStudents(); }, 120); });
-qx.onclick = function(){ qi.value = ''; state.q = ''; qx.classList.add('hide'); renderStudents(); qi.focus(); };
-document.addEventListener('keydown', function(e){
-  if(!V.classList.contains('hide')){ if(e.key === 'Escape' && !isFull()) document.getElementById('vClose').click(); return; }
-  if(shownPage === 's' && e.key === '/' && document.activeElement !== qi){ e.preventDefault(); qi.focus(); }
-  if(e.key === 'Escape' && document.activeElement === qi && qi.value){ qx.click(); }
-});
+document.addEventListener('keydown', function(e){ if(!V.classList.contains('hide') && e.key === 'Escape' && !isFull()) document.getElementById('vClose').click(); });
 
 fill();
-document.getElementById('nDecks').textContent = FILES.length + ' מצגות · ' + D.rot.length + ' שבועות';
+document.getElementById('nDecks').textContent = B.total + ' מצגות · ' + B.weeks + ' שבועות · 8 תחומים';
 route();
 })();
 </script>
