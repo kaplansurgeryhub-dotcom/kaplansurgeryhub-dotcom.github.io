@@ -651,6 +651,9 @@ window.addEventListener('hashchange', route);
 
 document.addEventListener('keydown', function(e){ if(!V.classList.contains('hide') && e.key === 'Escape' && !isFull()) document.getElementById('vClose').click(); });
 
+// the lecture hall always opens full screen: browsers allow it only after a user action, so the first tap, click or key enters it
+(function(){ var done = false; function first(){ if(done) return; done = true; goFull(); ['pointerdown','keydown','touchend'].forEach(function(t){ document.removeEventListener(t, first, true); }); } ['pointerdown','keydown','touchend'].forEach(function(t){ document.addEventListener(t, first, true); }); })();
+
 fill();
 document.getElementById('nDecks').textContent = B.total + ' מצגות · ' + B.weeks + ' שבועות · 8 תחומים';
 route();
