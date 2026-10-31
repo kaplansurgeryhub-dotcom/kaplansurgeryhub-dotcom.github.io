@@ -10,12 +10,14 @@ mkdir -p "$F"
 NAMES=("KSH פורטל המערך" "KSH סטאז׳רים" "פורטל האקדמיה")
 mk(){ name="$1"; url="$2"; icon="$3"; app="$F/$name.app"
   if [ -e "$OLD/$name.app" ] && [ ! -e "$app" ]; then mv "$OLD/$name.app" "$app"; echo "הועבר: $name"; fi
+  # v2 (1/11/2026): the apps open in full screen; an older app is rebuilt once
+  if [ -e "$app" ] && [ ! -e "$app/Contents/Resources/ksh-v2" ]; then mv "$app" "$T/old-$RANDOM.app"; fi
   if [ ! -e "$app" ]; then
     curl -fsSL "$B/$icon" -o "$T/i.png"; sips -z 1024 1024 "$T/i.png" --out "$T/big.png" >/dev/null
-    osacompile -o "$app" -e "do shell script \"open -na 'Google Chrome' --args --app=$url\""
+    osacompile -o "$app" -e "do shell script \"open -na 'Google Chrome' --args --app=$url --start-fullscreen\""
     set="$T/$RANDOM.iconset"; mkdir -p "$set"
     for s in 16 32 128 256 512; do sips -z $s $s "$T/big.png" --out "$set/icon_${s}x${s}.png" >/dev/null; d=$((s*2)); sips -z $d $d "$T/big.png" --out "$set/icon_${s}x${s}@2x.png" >/dev/null; done
-    iconutil -c icns "$set" -o "$app/Contents/Resources/applet.icns"; touch "$app"; echo "נוצר: $name"
+    iconutil -c icns "$set" -o "$app/Contents/Resources/applet.icns"; touch "$app/Contents/Resources/ksh-v2" "$app"; echo "נוצר: $name"
   fi; }
 mk "KSH פורטל המערך" "$B/ops/" "ops/icon-512.png"
 mk "KSH סטאז׳רים" "$B/" "interns-icon-512.png"
