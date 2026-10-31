@@ -1,6 +1,6 @@
 {
-  "name": "Kaplan Surgical Hub",
-  "short_name": "Kaplan Hub",
+  "name": "KSH סטאז׳רים · Kaplan Surgical Hub",
+  "short_name": "KSH סטאז׳רים",
   "description": "המערך הכירורגי · המרכז הרפואי קפלן",
   "lang": "he",
   "dir": "rtl",
@@ -9,7 +9,17 @@
   "background_color": "#0C2A35",
   "theme_color": "#0C2A35",
   "icons": [
-    { "src": "/ops/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "/ops/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+    {
+      "src": "/ops/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/ops/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
   ]
 }
