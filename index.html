@@ -110,6 +110,8 @@
     bg.onclick = function (e) { if (e.target === bg) close(); };
     paint();
   }
+  // a notification while the app is open: the app plays its heartbeat and shows a banner (1/11/2026)
+  if ('serviceWorker' in navigator) navigator.serviceWorker.addEventListener('message', function (e) { var d = e.data; if (d && d.ksh === 'push' && document.visibilityState === 'visible') tell({ ev: 'push', title: d.title || '', body: d.body || '' }); });
   addEventListener('message', function (e) {
     if (!ORIGIN.test(e.origin)) return; var m = e.data; if (!m || m.ksh !== 1 || (m.op !== 'push' && m.op !== 'pstate')) return;
     src = e.source; org = e.origin;
