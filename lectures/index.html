@@ -565,6 +565,22 @@ AUD.forEach(function(a){
     s.groups.forEach(function(g){ g.items = (g.items||[]).map(function(it){ var n = normItem(it); s.all.push(n); return n; }).filter(Boolean); });
   });
 });
+// 1/11/2026: what the team shared and the editors approved in the portal (Acad.js) joins "עולם המערך": the journal clubs under the meetings,
+// articles, the department's research and innovation under "חדשות, מחקר ויזמות". Read from the portal's public feed (JSONP); without it the page stays as it is
+var OPS_FEED = 'https:' + '/' + '/script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec?acfeed=1&cb=__acFeed';
+window.__acFeed = function(d){
+  var a = A.m; if(!a || !d || !d.items || !d.items.length) return;
+  var MAP = {jc: ['meetings', 'ג׳ורנל קלאב'], art: ['research', 'מה חדש בספרות'], link: ['research', 'מה חדש בספרות'], rsch: ['research', 'המחקר במערך'], inn: ['research', 'יזמות וחדשנות']};
+  var KIND = {jc: 'ג׳ורנל קלאב', art: 'מאמר', link: 'קישור', rsch: 'מחקר במערך', inn: 'יזמות וחדשנות'};
+  d.items.forEach(function(x, i){ var m = MAP[x.k]; if(!m) return;
+    var s = (a.sections || []).filter(function(y){ return y.id === m[0]; })[0]; if(!s) return;
+    var g = s.groups.filter(function(y){ return y.t === m[1]; })[0]; if(!g) return;
+    var dt = x.at ? x.at.slice(8, 10).replace(/^0/, '') + '/' + x.at.slice(5, 7).replace(/^0/, '') : '';
+    var it = normItem({id: 'f' + i, t: x.t, type: 'link', href: x.u || '#m/' + s.id, kind: KIND[x.k], icon: x.k === 'jc' ? 'jc' : x.k === 'rsch' ? 'sa' : x.k === 'inn' ? 'cl' : 'jc', sub: [x.by, dt, x.n].filter(Boolean).join(' · ').slice(0, 140)});
+    g.items.push(it); s.all.push(it); });
+  shown = ''; route();
+};
+(function(){ var sc = document.createElement('script'); sc.src = OPS_FEED; sc.async = true; sc.onerror = function(){}; document.head.appendChild(sc); })();
 function normItem(it){
   var o = {}; for(var k in it) o[k] = it[k];
   if(o.deck){ o.type = 'deck'; o.src = o.deck; }
@@ -652,7 +668,7 @@ function itemCard(a, s, it, i){
   var kind = it.kind || (it.type === 'pdf' ? 'PDF' : it.type === 'page' ? 'דף' : 'מצגת'), no = it.no != null ? it.no : i + 1;
   var cnt = it.pages ? '<span class="dk-sl"><b>' + it.pages + '</b> ' + (it.type === 'pdf' ? 'עמודים' : 'שקפים') + '</span>' : '';
   var tag = it.type === 'pdf' ? 'PDF' : it.type === 'page' ? 'דף אינטרנט' : it.type === 'link' ? 'קישור' : 'מצגת';
-  return '<a class="dk-card" href="' + esc(href) + '" style="--a:' + (it.c || s.c || '#00967D') + '">' +
+  return '<a class="dk-card" href="' + esc(href) + '"' + (/^https?:/.test(href) ? ' target="_blank" rel="noopener"' : '') + ' style="--a:' + (it.c || s.c || '#00967D') + '">' +
     '<span class="dk-cv"><svg class="dk-ct" viewBox="0 0 96 96" aria-hidden="true"><use href="#dk-contour"/></svg>' + ill(it.icon || s.ill || 'pdf', 'dk-il') +
     '<span class="dk-no">N° <b>' + (no < 10 ? '0' : '') + no + '</b></span>' + cnt + '<span class="dk-dc"><i></i>' + tag + '</span></span>' +
     '<span class="dk-cb"><span class="dk-kd ' + (it.type === 'pdf' ? 'pdf' : it.type === 'page' ? 'page' : '') + '">' + esc(kind) + '</span><b>' + esc(it.t) + '</b>' +
