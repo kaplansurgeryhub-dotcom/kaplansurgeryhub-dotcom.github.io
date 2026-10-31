@@ -220,7 +220,7 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
     if (m.op === 'del') { ls.set(k, null); if (m.k === 'ops_dev') { ls.set('fid_cred', null); ls.set('b_ops_snap', null); } return reply({ v: 1 }); }
   });
   // a tapped notification while the app is open: fresh data in place
-  if ('serviceWorker' in navigator) navigator.serviceWorker.addEventListener('message', function (e) { if (e.data && e.data.ksh === 'refresh') toFrame({ kop: 1, ev: 'refresh' }); });
+  if ('serviceWorker' in navigator) navigator.serviceWorker.addEventListener('message', function (e) { if (e.data && e.data.ksh === 'refresh') toFrame({ kop: 1, ev: 'refresh' }); if (e.data && e.data.ksh === 'push' && document.visibilityState === 'visible') toFrame({ kop: 1, ev: 'push', title: e.data.title || '', body: e.data.body || '' }); });
 
   if (!PERSONAL && bioOn() && ls.get('b_ops_dev') && !fresh()) lockScreen();
   // iPhone home-screen app: the window reports a height without the status bar area, so the app stopped short of the bottom.
