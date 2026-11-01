@@ -717,10 +717,13 @@ function openView(it, back){
   closeTo = back;
   if(openItem && openItem.url === it.url && !V.classList.contains('hide')) return;
   openItem = it;
-  document.getElementById('vTab').href = it.url;
+  // 1/11/2026: PDFs that also exist as page images open as images (hospital computers block downloading PDF files from outside sites)
+  var iu = it.img ? 'view.html?d=' + it.img + '&e=1' : '';
+  document.getElementById('vTab').href = iu ? 'view.html?d=' + it.img : it.url;
   V.classList.remove('hide'); document.body.style.overflow = 'hidden';
   document.title = it.t + ' · פורטל האקדמיה';
-  if(it.type === 'pdf'){ F.classList.add('hide'); F.src = 'about:blank'; PV.classList.remove('hide'); try { F.blur(); } catch(e){} V.focus({preventScroll: true}); pdfOpen(it.url); }
+  if(iu){ PV.classList.add('hide'); F.classList.remove('hide'); loading(true, 'טוען…'); F.src = iu; }
+  else if(it.type === 'pdf'){ F.classList.add('hide'); F.src = 'about:blank'; PV.classList.remove('hide'); try { F.blur(); } catch(e){} V.focus({preventScroll: true}); pdfOpen(it.url); }
   else { PV.classList.add('hide'); F.classList.remove('hide'); loading(true, it.type === 'page' ? 'טוען…' : 'טוען את המצגת…'); F.src = it.url; }
   // 1/11/2026 (Dr. Gozani): a deck always opens in full screen, if the portal is not in it already (the click that opened it is the gesture the browser needs)
   if(it.type !== 'page') goFull();
