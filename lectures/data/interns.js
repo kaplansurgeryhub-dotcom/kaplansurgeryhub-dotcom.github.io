@@ -11,10 +11,10 @@ LH.audience({
       desc: 'סמינרי הסטאז׳רים של המערך, ומצגות מסבב הסטודנטים שמתאימות גם לסטאז׳רים',
       groups: [
         { t: 'סמינרי הסטאז׳רים', desc: 'נפתחים על כל המסך · מעבר בין שקפים בחצים או בשלט', items: [
-          { id: 'sem1', no: 1, t: 'המטופל הכירורגי הדחוף', type: 'pdf', src: 'interns/sem1-urgent-surgical-patient.pdf', pages: 26, kind: 'סמינר 1', icon: 'tr', c: '#DE6A48' },
-          { id: 'sem2', no: 2, t: 'סדנת תפירה', type: 'pdf', src: 'interns/sem2-suturing-workshop.pdf', pages: 14, kind: 'סמינר 2', icon: 'sk', c: '#2FB5A5' },
-          { id: 'sem3', no: 3, t: 'אפנדיציטיס', type: 'pdf', src: 'interns/sem3-appendicitis.pdf', pages: 25, kind: 'סמינר 3', icon: 'ac', c: '#13A386' },
-          { id: 'sem4', no: 4, t: 'שוק, נוזלים ואלקטרוליטים', type: 'pdf', src: 'interns/sem4-shock-fluids-electrolytes.pdf', pages: 31, kind: 'סמינר 4', icon: 'iv', c: '#3AA0C8' }
+          { id: 'sem1', img: 'sem1', no: 1, t: 'המטופל הכירורגי הדחוף', type: 'pdf', src: 'interns/sem1-urgent-surgical-patient.pdf', pages: 26, kind: 'סמינר 1', icon: 'tr', c: '#DE6A48' },
+          { id: 'sem2', img: 'sem2', no: 2, t: 'סדנת תפירה', type: 'pdf', src: 'interns/sem2-suturing-workshop.pdf', pages: 14, kind: 'סמינר 2', icon: 'sk', c: '#2FB5A5' },
+          { id: 'sem3', img: 'sem3', no: 3, t: 'אפנדיציטיס', type: 'pdf', src: 'interns/sem3-appendicitis.pdf', pages: 25, kind: 'סמינר 3', icon: 'ac', c: '#13A386' },
+          { id: 'sem4', img: 'sem4', no: 4, t: 'שוק, נוזלים ואלקטרוליטים', type: 'pdf', src: 'interns/sem4-shock-fluids-electrolytes.pdf', pages: 31, kind: 'סמינר 4', icon: 'iv', c: '#3AA0C8' }
         ] },
         { t: 'מצגות מסבב הסטודנטים', desc: 'נושאים שהסטאז׳ר פוגש כל יום במחלקה ובמיון', items: [
           { deck: 'admission.html' },
@@ -38,9 +38,9 @@ LH.audience({
     { id: 'onboard', t: 'קליטה, ספרון ונהלים', en: 'ONBOARDING', icon: 'book', ill: 'bk', c: '#0A6B5A',
       desc: 'ספרון הסטאז׳רים, עבודה נכונה במערך, מדריך הקבלה בטרום ניתוח והמדריך לאפליקציה',
       items: [
-        { id: 'booklet', t: 'ספרון הסטאז׳רים', type: 'pdf', src: '../academy/booklet.pdf', pages: 14, kind: 'ספרון', icon: 'bk', c: '#0A6B5A', sub: 'כל מה שצריך לדעת על הסבב במערך' },
+        { id: 'booklet', img: 'booklet', t: 'ספרון הסטאז׳רים', type: 'pdf', src: '../academy/booklet.pdf', pages: 14, kind: 'ספרון', icon: 'bk', c: '#0A6B5A', sub: 'כל מה שצריך לדעת על הסבב במערך' },
         { id: 'work', t: 'עבודה נכונה במערך', type: 'page', src: '../academy/work.html', kind: 'מצגת', icon: 'sh', c: '#13A386', sub: 'היגיינת ידיים, זיהוי מטופל, בטיחות, SBAR וכללי הזהב' },
-        { id: 'preop', t: 'טרום ניתוח: הסבר וקבלות לדוגמה', type: 'pdf', src: '../academy/preop.pdf', pages: 5, kind: 'מדריך', icon: 'cl', c: '#9473D0', sub: 'מבנה הקבלה במרפאת טרום ניתוח ושלוש דוגמאות' },
+        { id: 'preop', img: 'preop', t: 'טרום ניתוח: הסבר וקבלות לדוגמה', type: 'pdf', src: '../academy/preop.pdf', pages: 5, kind: 'מדריך', icon: 'cl', c: '#9473D0', sub: 'מבנה הקבלה במרפאת טרום ניתוח ושלוש דוגמאות' },
         { id: 'guide', t: 'המדריך לאפליקציה', type: 'page', src: '../academy/guide-interns.html', kind: 'מדריך', icon: 'ph', c: '#4A8FD0', sub: 'דיווח יומי, תוכנית שבועית, תורנויות ובקשות' }
       ] }
   ]
