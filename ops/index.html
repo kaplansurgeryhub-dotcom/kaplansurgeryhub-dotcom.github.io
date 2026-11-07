@@ -10,7 +10,7 @@
 <meta name="apple-mobile-web-app-title" content="KSH">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="application-name" content="KSH">
-<meta name="theme-color" content="#0C2A35">
+<meta name="theme-color" content="#1D3047">
 <meta property="og:title" content="Kaplan Surgical Hub">
 <meta property="og:description" content="המערך הכירורגי · המרכז הרפואי קפלן">
 <meta property="og:image" content="https://kaplansurgeryhub-dotcom.github.io/ops/icon-512.png">
@@ -18,8 +18,8 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <style>
-:root{--navy:#0C2A35;--navy2:#133F4E;--green:#00907A;--green2:#00A87A;--lime:#A8D84A;--ink:#0C2A35;--muted:#5B6F77}
-html,body{margin:0;height:100%;background:#071C24;font-family:'Heebo','Assistant',-apple-system,'Segoe UI',Arial,sans-serif}
+:root{--navy:#1D3047;--navy2:#133F4E;--green:#2F6A47;--green2:#00A87A;--lime:#9DB36A;--ink:#1D3047;--muted:#6E5A45}
+html,body{margin:0;height:100%;background:#16243A;font-family:'Heebo','Assistant',-apple-system,'Segoe UI',Arial,sans-serif}
 /* full screen: the app inside handles the notch and the home bar itself (iOS passes the safe areas into the frame) */
 iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border:0;display:block}
 .sap{position:fixed;left:0;bottom:0;width:1px;height:env(safe-area-inset-bottom);visibility:hidden;pointer-events:none}.sat{position:fixed;left:0;top:0;width:1px;height:env(safe-area-inset-top);visibility:hidden;pointer-events:none}
@@ -27,10 +27,10 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
 .lock{position:fixed;inset:0;z-index:20;display:grid;place-items:center;background:radial-gradient(120% 90% at 50% 0%,#174a5a 0%,var(--navy) 60%);color:#fff;text-align:center;padding:24px}
 .lock img{width:112px;height:112px;border-radius:26px;box-shadow:0 10px 40px rgba(0,0,0,.35)}
 .lock h1{font-size:22px;margin:18px 0 4px;font-weight:800;letter-spacing:.2px}
-.lock p{margin:0 0 22px;color:#B9D3D9;font-size:15px}
+.lock p{margin:0 0 22px;color:#D9CDB9;font-size:15px}
 .btn{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:0 22px;border-radius:14px;font-size:17px;font-weight:700;background:linear-gradient(135deg,var(--green2),var(--green));color:#fff;box-shadow:0 6px 18px rgba(0,144,122,.35);width:100%;max-width:320px;margin:0 auto}
 .btn:active{transform:scale(.98)}
-.btn.ghost{background:transparent;box-shadow:none;color:#B9D3D9;font-weight:600;font-size:15px;min-height:40px;margin-top:10px}
+.btn.ghost{background:transparent;box-shadow:none;color:#D9CDB9;font-weight:600;font-size:15px;min-height:40px;margin-top:10px}
 .btn.line{background:#fff;color:var(--ink);box-shadow:none;border:1.5px solid #D5E3E1}
 .bg{position:fixed;inset:0;z-index:30;background:rgba(6,22,28,.55);display:flex;align-items:flex-end;justify-content:center}
 .sh{background:#fff;color:var(--ink);width:100%;max-width:460px;border-radius:22px 22px 0 0;padding:22px 20px calc(18px + env(safe-area-inset-bottom));box-sizing:border-box;max-height:92vh;overflow:auto}
@@ -46,8 +46,8 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
 .warn{color:#A3402E;font-size:13.5px}
 .steps{margin:6px 0 0;padding:0 18px 0 0;font-size:14px;line-height:1.7}
 .close{margin-top:8px}
-.unk{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:20px;background:radial-gradient(ellipse at 80% 0%,#1B5A68,#0C2A35 50%,#06161D);font-family:Heebo,Arial,sans-serif;direction:rtl;z-index:50}
-.unkc{width:min(440px,100%);background:rgba(255,255,255,.06);border:1px solid rgba(169,230,201,.25);border-radius:22px;padding:26px 22px;color:#F2F7F5;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.unk{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:20px;background:radial-gradient(ellipse at 80% 0%,#1B5A68,#1D3047 50%,#06161D);font-family:Heebo,Arial,sans-serif;direction:rtl;z-index:50}
+.unkc{width:min(440px,100%);background:rgba(255,255,255,.06);border:1px solid rgba(169,230,201,.25);border-radius:22px;padding:26px 22px;color:#F8F1E5;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
 .unkc img{width:72px;height:72px;border-radius:18px}.unkc b{font-size:21px}.unkc p{margin:0;color:#C9DCD6;line-height:1.6;font-size:15px}.unkc .unkt{background:rgba(61,192,140,.14);border-radius:12px;padding:10px 12px;color:#E6F4EE}.unkc .unks{font-size:13.5px;color:#A9C7C2}.unkc small{color:#6E9690;font-size:11.5px;margin-top:6px}
 </style>
 </head>
@@ -154,7 +154,7 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
   function sheet() {
     if (document.querySelector('.bg')) return;
     var bg = document.createElement('div'); bg.className = 'bg';
-    bg.innerHTML = '<div class="sh"><h2>התראות וכניסה מהירה</h2><p class="sub">ההגדרות נשמרות במכשיר הזה בלבד</p><div id="shPush"></div><div id="shBio"></div><a class="btn line" href="install.html" target="_blank" rel="noopener" style="margin-top:8px;text-decoration:none">📲 הסבר התקנה ושליחה לאחרים</a><button class="btn line close" id="shClose">סגירה</button></div>';
+    bg.innerHTML = '<div class="sh"><h2>התראות וכניסה מהירה</h2><p class="sub">ההגדרות נשמרות במכשיר הזה בלבד</p><div id="shPush"></div><div id="shBio"></div><a class="btn line" href="install.html" target="_blank" rel="noopener" style="margin-top:8px;text-decoration:none"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-.15em"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg> הסבר התקנה ושליחה לאחרים</a><button class="btn line close" id="shClose">סגירה</button></div>';
     document.body.appendChild(bg);
     bg.onclick = function (e) { if (e.target === bg) bg.remove(); };
     $('shClose').onclick = function () { bg.remove(); };
@@ -162,8 +162,8 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
   }
   function paintPush() {
     var el = $('shPush'); if (!el) return; var s = pushState(), h = '';
-    h += '<div class="row"><div class="ic">🔔</div><div style="flex:1"><b>התראות לטלפון ולמחשב</b><small>כשמתפרסמת תוכנית שבועית או לוח, כשיש שינוי בשיבוץ וכשמנהל שולח הודעה</small>';
-    if (s === 'on') h += '<span class="ok">✓ פעיל במכשיר הזה</span> <button class="btn ghost" id="pTest" style="display:inline-flex;width:auto;margin:0 6px;min-height:0;color:#00907A">התראת בדיקה</button>';
+    h += '<div class="row"><div class="ic"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-.15em"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></div><div style="flex:1"><b>התראות לטלפון ולמחשב</b><small>כשמתפרסמת תוכנית שבועית או לוח, כשיש שינוי בשיבוץ וכשמנהל שולח הודעה</small>';
+    if (s === 'on') h += '<span class="ok">✓ פעיל במכשיר הזה</span> <button class="btn ghost" id="pTest" style="display:inline-flex;width:auto;margin:0 6px;min-height:0;color:#2F6A47">התראת בדיקה</button>';
     else if (s === 'install') h += '<span class="warn">באייפון ההתראות עובדות רק מהאפליקציה במסך הבית:</span><ol class="steps"><li>פותחים את הכתובת הזו בספארי</li><li>לוחצים על כפתור השיתוף <b style="display:inline">⬆︎</b></li><li>בוחרים "הוספה למסך הבית"</li><li>פותחים את KSH ממסך הבית וחוזרים לכאן</li></ol>';
     else if (s === 'denied') h += '<span class="warn">ההתראות חסומות במכשיר. פותחים את ההגדרות של הטלפון או הדפדפן, מאפשרים התראות ל-KSH וחוזרים לכאן</span>';
     else if (s === 'unsupported') h += '<span class="warn">הדפדפן הזה לא תומך בהתראות. אפשר לנסות בכרום או בספארי מעודכן</span>';
@@ -176,7 +176,7 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
     var el = $('shBio'); if (!el) return;
     if (PERSONAL) { el.innerHTML = ''; return; }
     bioAvail().then(function (ok) {
-      var h = '<div class="row"><div class="ic">🔐</div><div style="flex:1"><b>כניסה עם ' + BIO + '</b><small>במקום הקוד: האפליקציה נפתחת רק אחרי זיהוי שלך במכשיר</small>';
+      var h = '<div class="row"><div class="ic"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-.15em"><rect x="5" y="11" width="14" height="10" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div><div style="flex:1"><b>כניסה עם ' + BIO + '</b><small>במקום הקוד: האפליקציה נפתחת רק אחרי זיהוי שלך במכשיר</small>';
       if (!ok) h += '<span class="warn">אין במכשיר הזה ' + BIO + ' זמין</span>';
       else if (!ls.get('b_ops_dev')) h += '<span class="warn">קודם נכנסים עם הקוד ומסמנים "להישאר מחובר/ת במכשיר הזה"</span>';
       else if (bioOn()) h += '<span class="ok">✓ פעיל</span> <button class="btn ghost" id="bOff" style="display:inline-flex;width:auto;margin:0 6px;min-height:0">ביטול</button>';
@@ -194,10 +194,10 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
     bioAvail().then(function (ok) {
       if (!ok) return;
       var bg = document.createElement('div'); bg.className = 'bg';
-      bg.innerHTML = '<div class="sh" style="text-align:center"><div style="font-size:46px;line-height:1">🔐</div><h2 style="margin-top:8px">כניסה מהירה עם ' + BIO + '</h2><p class="sub">מעכשיו האפליקציה נפתחת אחרי זיהוי שלך, בלי הקוד. נשמר רק במכשיר הזה</p><button class="btn" id="obOn">הפעלת ' + BIO + '</button><button class="btn ghost" id="obNo" style="color:#5B6F77">לא עכשיו</button></div>';
+      bg.innerHTML = '<div class="sh" style="text-align:center"><div style="font-size:46px;line-height:1"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-.15em"><rect x="5" y="11" width="14" height="10" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div><h2 style="margin-top:8px">כניסה מהירה עם ' + BIO + '</h2><p class="sub">מעכשיו האפליקציה נפתחת אחרי זיהוי שלך, בלי הקוד. נשמר רק במכשיר הזה</p><button class="btn" id="obOn">הפעלת ' + BIO + '</button><button class="btn ghost" id="obNo" style="color:#6E5A45">לא עכשיו</button></div>';
       document.body.appendChild(bg);
       $('obNo').onclick = function () { ls.set('bio_no', Date.now()); bg.remove(); };
-      $('obOn').onclick = function () { var b = this; b.textContent = 'רגע…'; bioCreate().then(function () { ls.set('fid_at', Date.now()); bg.querySelector('.sh').innerHTML = '<div style="font-size:46px;line-height:1">✅</div><h2 style="margin-top:8px">' + BIO + ' פעיל</h2><p class="sub">מעכשיו נכנסים בזיהוי אחד, ואחריו 12 שעות בלי לבקש שוב</p>'; setTimeout(function () { bg.remove(); }, 1800); }, function () { b.textContent = 'הפעלת ' + BIO; alert('ההפעלה בוטלה או לא הצליחה. אפשר לנסות שוב מההגדרות'); }); };
+      $('obOn').onclick = function () { var b = this; b.textContent = 'רגע…'; bioCreate().then(function () { ls.set('fid_at', Date.now()); bg.querySelector('.sh').innerHTML = '<div style="font-size:46px;line-height:1"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-.15em"><path d="M5 12.5l4.5 4.5L19 7"/></svg></div><h2 style="margin-top:8px">' + BIO + ' פעיל</h2><p class="sub">מעכשיו נכנסים בזיהוי אחד, ואחריו 12 שעות בלי לבקש שוב</p>'; setTimeout(function () { bg.remove(); }, 1800); }, function () { b.textContent = 'הפעלת ' + BIO; alert('ההפעלה בוטלה או לא הצליחה. אפשר לנסות שוב מההגדרות'); }); };
     });
   }
   /* ---------- the bridge to the app frame ---------- */
@@ -235,7 +235,7 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
   if (UNKNOWN) {
     document.body.insertAdjacentHTML('beforeend', '<div class="unk"><div class="unkc"><img src="icon-192.png" alt=""><b>הקישור הזה מזהה אותך לפי הטלפון</b>' +
       '<p>במכשיר הזה עוד לא נפתח הקישור האישי שלך. פותחים פעם אחת את הקישור האישי שקיבלת בפרטי בוואטסאפ, ומאז הקישור הכללי יזהה אותך לבד.</p>' +
-      '<p class="unkt">📱 פתחת מתוך וואטסאפ? לוחצים על ⋯ ואז "פתיחה בדפדפן" (ספארי או כרום), ומנסים שוב.</p>' +
+      '<p class="unkt"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-.15em"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg> פתחת מתוך וואטסאפ? לוחצים על ⋯ ואז "פתיחה בדפדפן" (ספארי או כרום), ומנסים שוב.</p>' +
       '<p class="unks">אין לך את הקישור האישי? אפשר לבקש אותו מד״ר גיא גוזני.</p><small>Kaplan Surgical Hub · מערך כירורגיה כללית</small></div></div>');
   } else $('app').src = EXEC + SRC;
   setTimeout(pushRefresh, 4000);
