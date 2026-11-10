@@ -52,7 +52,7 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
 </style>
 </head>
 <body>
-<iframe id="app" title="Kaplan Surgical Hub" allow="clipboard-write"></iframe><i class="sap" id="sap"></i><i class="sat" id="sat"></i>
+<iframe id="app" title="Kaplan Surgical Hub" allow="clipboard-write; fullscreen" allowfullscreen></iframe><i class="sap" id="sap"></i><i class="sat" id="sat"></i>
 
 <div class="lock" id="lock" hidden>
   <div>
@@ -209,6 +209,7 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
     var reply = function (o) { o.kop = 1; o.id = m.id; try { e.source.postMessage(o, e.origin); } catch (x) {} };
     if (m.op === 'env') return bioAvail().then(function (b) { reply({ v: { sab: ($('sap') || {}).offsetHeight || 0, sat: ($('sat') || {}).offsetHeight || (IOS && STANDALONE && screen && matchMedia('(orientation: portrait)').matches ? Math.max(0, Math.min(60, Math.max(screen.width, screen.height) - innerHeight)) : 0), standalone: STANDALONE, ios: IOS, push: pushState(), ptok: ls.get('ptok') || '', bio: BIO, bioAvail: !!b, bioOn: bioOn(), personal: PERSONAL } }); });
     if (m.op === 'sheet') { sheet(); return reply({ v: 1 }); }
+    if (m.op === 'fs') { var de = document.documentElement; if (!document.fullscreenElement && de.requestFullscreen) de.requestFullscreen().then(function () { reply({ v: 1 }); }).catch(function () { reply({ v: 0 }); }); else reply({ v: 0 }); return; }
     if (!KEYS[m.k]) return;
     var k = 'b_' + m.k;
     if (m.op === 'get') {
