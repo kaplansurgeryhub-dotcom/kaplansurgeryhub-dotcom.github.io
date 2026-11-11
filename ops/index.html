@@ -200,10 +200,10 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
       $('obOn').onclick = function () { var b = this; b.textContent = 'רגע…'; bioCreate().then(function () { ls.set('fid_at', Date.now()); bg.querySelector('.sh').innerHTML = '<div style="font-size:46px;line-height:1"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-.15em"><path d="M5 12.5l4.5 4.5L19 7"/></svg></div><h2 style="margin-top:8px">' + BIO + ' פעיל</h2><p class="sub">מעכשיו נכנסים בזיהוי אחד, ואחריו 12 שעות בלי לבקש שוב</p>'; setTimeout(function () { bg.remove(); }, 1800); }, function () { b.textContent = 'הפעלת ' + BIO; alert('ההפעלה בוטלה או לא הצליחה. אפשר לנסות שוב מההגדרות'); }); };
     });
   }
-  /* full screen on a computer (10/11/2026): also on a first click on this page's own screens */
+  /* full screen on a computer (10/11/2026): also on a first click on this page's own screens; on the click's bubble phase, after the click did its job (11/11/2026) */
   (function () { var desk = matchMedia('(pointer:fine)').matches && innerWidth >= 1000 && !/iPhone|iPad|iPod|Android/.test(navigator.userAgent); if (!desk) return;
-    function once() { document.removeEventListener('pointerdown', once, true); var de = document.documentElement; if (!document.fullscreenElement && de.requestFullscreen) de.requestFullscreen().catch(function () {}); }
-    document.addEventListener('pointerdown', once, true); })();
+    function once() { document.removeEventListener('click', once); var de = document.documentElement; if (!document.fullscreenElement && de.requestFullscreen) de.requestFullscreen().catch(function () {}); }
+    document.addEventListener('click', once); })();
   /* ---------- the bridge to the app frame ---------- */
   function toFrame(m) { if (frame && frameOrigin) try { frame.postMessage(m, frameOrigin); } catch (e) {} }
   addEventListener('message', function (e) {
