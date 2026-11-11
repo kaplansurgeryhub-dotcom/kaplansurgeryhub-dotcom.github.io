@@ -5,17 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>Boss TV</title>
-<meta name="description" content="המערך הכירורגי במסך אחד">
+<meta name="description" content="המערך היום במסך אחד">
 <meta name="application-name" content="Boss TV">
 <meta name="apple-mobile-web-app-title" content="Boss TV">
-<meta name="theme-color" content="#06171E">
+<meta name="theme-color" content="#0B1A29">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png"><link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <style>
 html,body{margin:0;height:100%;background:#06171E;color:#E8F2EF;font-family:Heebo,Arial,sans-serif;overflow:hidden}
 iframe{position:fixed;inset:0;width:100vw;height:100vh;border:0;display:block}
-.cover{position:fixed;inset:0;z-index:5;cursor:pointer;display:flex;align-items:flex-end;justify-content:center;padding-bottom:3vh}
+.cover{position:fixed;inset:0;z-index:5;cursor:pointer;background:transparent;display:flex;align-items:flex-end;justify-content:center;padding-bottom:3vh}
 .cover span{background:rgba(6,23,30,.82);border:1px solid rgba(169,230,201,.3);color:#A9E6C9;border-radius:99px;padding:10px 22px;font-size:18px;transition:opacity .8s}
 .none{position:fixed;inset:0;display:grid;place-items:center;text-align:center;padding:24px;background:radial-gradient(60% 60% at 50% 0%,#0E3A44,#06171E 70%)}
 .none img{width:120px;height:120px}
@@ -26,7 +26,7 @@ iframe{position:fixed;inset:0;width:100vw;height:100vh;border:0;display:block}
 </head>
 <body>
 <iframe id="tv" title="Boss TV" hidden></iframe>
-<div class="cover" id="cover" hidden><span>לחיצה אחת על המסך · מסך מלא</span></div>
+<div class="cover" id="cover" hidden><span>לחיצה אחת או מקש · מסך מלא</span></div>
 <div class="none" id="none" hidden><div><img src="icon-192.png" alt=""><b>Boss TV</b><p>המסך עוד לא מוגדר במחשב הזה.<br>פותחים פעם אחת את הקישור האישי של המסך, ומשם הוא נפתח לבד.</p></div></div>
 <script>
 // Boss TV: the department head's TV screen, a separate app with its own icon. The screen itself runs in Kaplan Ops (?tv=<key>);
@@ -47,14 +47,15 @@ iframe{position:fixed;inset:0;width:100vw;height:100vh;border:0;display:block}
   // keep the display awake while the screen is shown
   var lock = null, wake = function () { try { if (navigator.wakeLock && document.visibilityState === 'visible') navigator.wakeLock.request('screen').then(function (l) { lock = l; }, function () {}); } catch (e) {} };
   wake(); document.addEventListener('visibilitychange', wake);
-  // full screen needs one click; when the app already opens full screen the hint never shows
+  // full screen on its own (11/11/2026, Dr. Gozani): the Mac app opens Chrome already full screen; otherwise the first click or key
+  // anywhere on the screen makes it full screen, and again whenever it leaves full screen. The screen is read only, so nothing is lost
   var full = function () { return !!document.fullscreenElement || (window.matchMedia && matchMedia('(display-mode: fullscreen)').matches) || (screen.height - innerHeight < 4 && screen.width - innerWidth < 4); };
-  if (!full() && document.documentElement.requestFullscreen) {
-    $('cover').hidden = false;
-    $('cover').onclick = function () { $('cover').hidden = true; document.documentElement.requestFullscreen().catch(function () {}); wake(); };
-    setTimeout(function () { var s = $('cover').querySelector('span'); if (s) s.style.opacity = '0'; }, 20000);
-    setTimeout(function () { $('cover').hidden = true; }, 60000);
-  }
+  var go = function () { if (full() || !document.documentElement.requestFullscreen) return; document.documentElement.requestFullscreen({ navigationUI: 'hide' }).then(function () { $('cover').hidden = true; }, function () {}); wake(); };
+  var arm = function () { if (full() || !document.documentElement.requestFullscreen) { $('cover').hidden = true; return; } $('cover').hidden = false; var s = $('cover').querySelector('span'); if (s) { s.style.opacity = '1'; clearTimeout(arm.t); arm.t = setTimeout(function () { s.style.opacity = '0'; }, 15000); } };
+  $('cover').onclick = go; document.addEventListener('keydown', go);
+  document.addEventListener('fullscreenchange', function () { setTimeout(arm, 300); });
+  window.addEventListener('resize', function () { setTimeout(arm, 300); });
+  go(); setTimeout(arm, 800);
 })();
 </script>
 </body>
