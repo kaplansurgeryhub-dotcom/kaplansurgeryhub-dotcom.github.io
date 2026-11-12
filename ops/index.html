@@ -233,13 +233,20 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
   // The frame takes the full screen height instead (and follows rotation)
   function fit() {
     var f = $('app'); if (!f) return; var h = innerHeight;
-    // 12/11/2026: only when the page really starts under the status bar (a top safe area). Where the page starts below it, the screen height
-    // pushed the frame past the bottom edge and the tab bar slid out of sight (Dr. Shadi's iPhone)
+    // 12/11/2026 (2): on a cold launch iOS reports the top safe area as 0 for a moment, and the frame stopped short (header under the clock,
+    // an empty band at the bottom). So: the screen height whenever this device ever showed a top inset, and also during the first 2.5 seconds;
+    // only a device that never shows one (the page starts below the status bar, Dr. Shadi's iPhone) keeps the window height
     var topIn = ($('sat') || {}).offsetHeight || 0;
-    if (IOS && STANDALONE && topIn > 0 && screen && screen.height) { var land = window.matchMedia && matchMedia('(orientation: landscape)').matches; h = Math.max(h, land ? Math.min(screen.width, screen.height) : Math.max(screen.width, screen.height)); }
+    if (topIn > 0) ls.set('sat_seen', String(topIn));
+    var under = topIn > 0 || +(ls.get('sat_seen') || 0) > 0 || !FIT_SETTLED;
+    if (IOS && STANDALONE && under && screen && screen.height) { var land = window.matchMedia && matchMedia('(orientation: landscape)').matches; h = Math.max(h, land ? Math.min(screen.width, screen.height) : Math.max(screen.width, screen.height)); }
     f.style.height = h + 'px'; document.documentElement.style.height = document.body.style.height = h + 'px';
   }
+  var FIT_SETTLED = false;
   fit(); addEventListener('resize', fit); addEventListener('orientationchange', function () { setTimeout(fit, 250); });
+  [80, 400, 1200].forEach(function (t) { setTimeout(fit, t); }); setTimeout(function () { FIT_SETTLED = true; fit(); }, 2500);
+  addEventListener('pageshow', function () { setTimeout(fit, 60); });
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) { setTimeout(fit, 60); setTimeout(fit, 600); } });
   if (UNKNOWN) {
     document.body.insertAdjacentHTML('beforeend', '<div class="unk"><div class="unkc"><img src="icon-192.png" alt=""><b>הקישור הזה מזהה אותך לפי הטלפון</b>' +
       '<p>במכשיר הזה עוד לא נפתח הקישור האישי שלך. פותחים פעם אחת את הקישור האישי שקיבלת בפרטי בוואטסאפ, ומאז הקישור הכללי יזהה אותך לבד.</p>' +
