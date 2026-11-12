@@ -233,7 +233,10 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
   // The frame takes the full screen height instead (and follows rotation)
   function fit() {
     var f = $('app'); if (!f) return; var h = innerHeight;
-    if (IOS && STANDALONE && screen && screen.height) { var land = window.matchMedia && matchMedia('(orientation: landscape)').matches; h = Math.max(h, land ? Math.min(screen.width, screen.height) : Math.max(screen.width, screen.height)); }
+    // 12/11/2026: only when the page really starts under the status bar (a top safe area). Where the page starts below it, the screen height
+    // pushed the frame past the bottom edge and the tab bar slid out of sight (Dr. Shadi's iPhone)
+    var topIn = ($('sat') || {}).offsetHeight || 0;
+    if (IOS && STANDALONE && topIn > 0 && screen && screen.height) { var land = window.matchMedia && matchMedia('(orientation: landscape)').matches; h = Math.max(h, land ? Math.min(screen.width, screen.height) : Math.max(screen.width, screen.height)); }
     f.style.height = h + 'px'; document.documentElement.style.height = document.body.style.height = h + 'px';
   }
   fit(); addEventListener('resize', fit); addEventListener('orientationchange', function () { setTimeout(fit, 250); });
