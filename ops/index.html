@@ -257,11 +257,16 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
   } else {
     // 12/11/2026: Google sometimes takes 15 seconds or more to send the page and the blue screen just waits; a second request usually comes back
     // in 3. If the frame has not loaded after 14 seconds (counted only while the page is on screen), ask once more, with a small note
-    var fr = $('app'), loaded = false, waited = 0; fr.addEventListener('load', function () { loaded = true; PF.load = Math.round(performance.now()); var n = $('slowN'); if (n) n.remove(); });
+    // 13/11/2026: the second request goes out beside the first (a hidden frame) instead of replacing it; whichever arrives first is shown
+    var fr = $('app'), loaded = false, waited = 0, f2 = null;
+    function won(f) { if (loaded) return; loaded = true; PF.load = Math.round(performance.now()); var n = $('slowN'); if (n) n.remove();
+      var other = f === fr ? f2 : fr; if (other) other.remove(); if (f !== fr) { f.id = 'app'; f.style.visibility = ''; fr = f; fit(); } }
+    fr.addEventListener('load', function () { won(fr); });
     PF.src = Math.round(performance.now()); fr.src = EXEC + SRC;
     var slow = setInterval(function () { if (loaded) return clearInterval(slow); if (document.hidden) return; waited += 1;
       if (waited === 14) { clearInterval(slow); document.body.insertAdjacentHTML('beforeend', '<div id="slowN" style="position:fixed;left:50%;bottom:calc(28px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:rgba(255,255,255,.12);color:#fff;font:600 14px/1.4 system-ui,sans-serif;padding:8px 16px;border-radius:99px;direction:rtl;z-index:5">הטעינה מתעכבת · מנסה שוב…</div>');
-        PF.retry = 1; fr.src = EXEC + SRC + (SRC ? '&' : '?') + 'r=' + Date.now(); } }, 1000);
+        PF.retry = 1; f2 = fr.cloneNode(false); f2.removeAttribute('id'); f2.style.visibility = 'hidden'; f2.addEventListener('load', function () { won(f2); });
+        f2.src = EXEC + SRC + (SRC ? '&' : '?') + 'r=' + Date.now(); fr.parentNode.insertBefore(f2, fr.nextSibling); } }, 1000);
   }
   setTimeout(pushRefresh, 4000);
 })();
