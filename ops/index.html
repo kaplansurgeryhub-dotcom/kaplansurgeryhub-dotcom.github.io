@@ -71,6 +71,7 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
 //  3. push notifications (a service worker + Firebase Cloud Messaging), 4. storage that Safari keeps for the device sign-in.
 // The frame talks to this page with postMessage, only from the Apps Script origin, only for the keys below.
 (function () {
+  var PF = { src: 0, load: 0, retry: 0 };
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec';
   var FB = { apiKey: 'AIzaSyDgxuGVjnxJXU4QUYMW8Re8PYLdtRJXR3g', authDomain: 'kaplan-surgical-hub.firebaseapp.com', projectId: 'kaplan-surgical-hub', storageBucket: 'kaplan-surgical-hub.firebasestorage.app', messagingSenderId: '538271511290', appId: '1:538271511290:web:af6678624fa31873818f43' };
   var VAPID = 'BFfAAO23QxF8ETU3IyJuW6_2lOL_uiP5qhkKSrIm6ReOEtrLfmrlDHb3cFpndp4VE_Nce7m56BgnV9cARVIZ3BE';
@@ -212,6 +213,7 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
     frame = e.source; frameOrigin = e.origin;
     var reply = function (o) { o.kop = 1; o.id = m.id; try { e.source.postMessage(o, e.origin); } catch (x) {} };
     if (m.op === 'env') return bioAvail().then(function (b) { reply({ v: { sab: ($('sap') || {}).offsetHeight || 0, sat: ($('sat') || {}).offsetHeight || (IOS && STANDALONE && screen && matchMedia('(orientation: portrait)').matches ? Math.max(0, Math.min(60, Math.max(screen.width, screen.height) - innerHeight)) : 0), standalone: STANDALONE, ios: IOS, push: pushState(), ptok: ls.get('ptok') || '', bio: BIO, bioAvail: !!b, bioOn: bioOn(), personal: PERSONAL } }); });
+    if (m.op === 'perf') return reply({ v: { src: PF.src, load: PF.load, retry: PF.retry } });
     if (m.op === 'sheet') { sheet(); return reply({ v: 1 }); }
     if (m.op === 'fs') { var de = document.documentElement; if (!document.fullscreenElement && de.requestFullscreen) de.requestFullscreen().then(function () { reply({ v: 1 }); }).catch(function () { reply({ v: 0 }); }); else reply({ v: 0 }); return; }
     if (!KEYS[m.k]) return;
@@ -255,11 +257,11 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
   } else {
     // 12/11/2026: Google sometimes takes 15 seconds or more to send the page and the blue screen just waits; a second request usually comes back
     // in 3. If the frame has not loaded after 14 seconds (counted only while the page is on screen), ask once more, with a small note
-    var fr = $('app'), loaded = false, waited = 0; fr.addEventListener('load', function () { loaded = true; var n = $('slowN'); if (n) n.remove(); });
-    fr.src = EXEC + SRC;
+    var fr = $('app'), loaded = false, waited = 0; fr.addEventListener('load', function () { loaded = true; PF.load = Math.round(performance.now()); var n = $('slowN'); if (n) n.remove(); });
+    PF.src = Math.round(performance.now()); fr.src = EXEC + SRC;
     var slow = setInterval(function () { if (loaded) return clearInterval(slow); if (document.hidden) return; waited += 1;
       if (waited === 14) { clearInterval(slow); document.body.insertAdjacentHTML('beforeend', '<div id="slowN" style="position:fixed;left:50%;bottom:calc(28px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:rgba(255,255,255,.12);color:#fff;font:600 14px/1.4 system-ui,sans-serif;padding:8px 16px;border-radius:99px;direction:rtl;z-index:5">הטעינה מתעכבת · מנסה שוב…</div>');
-        fr.src = EXEC + SRC + (SRC ? '&' : '?') + 'r=' + Date.now(); } }, 1000);
+        PF.retry = 1; fr.src = EXEC + SRC + (SRC ? '&' : '?') + 'r=' + Date.now(); } }, 1000);
   }
   setTimeout(pushRefresh, 4000);
 })();
