@@ -262,13 +262,29 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
     // 13/11/2026 (speed): the managers' site opens from our own address (ops/app/, built by dev/shell.js and kept by sw.js), so the screen
     // no longer waits ~5 s for Google to serve the page; only the data comes from Google. If it does not come alive (no word from the
     // frame's first server answer within 20 seconds on screen, or a failed call before any answer), the page falls back to Google's, as before, for an hour
-    var FAST = !PERSONAL && !Q.get('legacy') && !Q.get('s') && !Q.get('l') && !Q.get('j') && !Q.get('tv') && !Q.get('room') && !(Date.now() - (+(ls.get('fast_off') || 0)) < 3600e3);
-    if (FAST) {
+    // 13/11/2026 (2): every app the same way. A personal link (?p=) opens the doctors' app, an intern's app or a manager's portal, as doGet
+    // decides on the server: the wrapper asks once (ops_route) and keeps the answer on the device, so the next opening goes straight to it.
+    // A student (?s=) and a lecturer (?l=) have their own pages. The registration form, the lecture room and the TV stay on Google's page
+    var off = Date.now() - (+(ls.get('fast_off') || 0)) < 3600e3, PQ = new URLSearchParams(SRC);
+    var FAST = !off && !Q.get('legacy') && !PQ.get('j') && !PQ.get('tv') && !PQ.get('room');
+    var page = function (kind) { if (PQ.get('s')) return 'student'; if (PQ.get('l')) return 'lecturer'; if (!PQ.get('p')) return 'index';
+      if (kind === 'int') return 'intern'; if (kind === 'mgr' && !PQ.get('dm') && !PQ.get('pv') && !PQ.get('tab') && !PQ.get('chat')) return 'index'; return kind ? 'prefs' : ''; };
+    var go = function (pg) {
+      if (!pg) return legacy();
       PF.fast = 1; PF.src = Math.round(performance.now()); var fq = $('app'), seen = 0;
       fq.addEventListener('load', function () { if (!PF.load) PF.load = Math.round(performance.now()); });
-      fq.src = 'app/index.html' + SRC;
+      fq.src = 'app/' + pg + '.html' + SRC;
       var dog = setInterval(function () { if (ALIVE || LEG) return clearInterval(dog); if (document.hidden) return; if (++seen >= 20) { clearInterval(dog); legacy(); } }, 1000);
-    } else legacy();
+    };
+    if (!FAST) legacy();
+    else if (!PQ.get('p') || PQ.get('s') || PQ.get('l')) go(page(''));
+    else {
+      var tk = PQ.get('p').replace(/[^A-Za-z0-9]/g, ''), kk = 'tkk_' + tk.slice(-24), known = ls.get(kk);
+      // a known link opens at once; the answer is checked again behind it, for the next opening (a doctor who became a manager)
+      var ask = function () { return fetch(EXEC, { method: 'POST', body: JSON.stringify({ f: 'ops_route', a: [tk] }), headers: { 'Content-Type': 'text/plain;charset=utf-8' }, credentials: 'omit' }).then(function (r) { return r.json(); }).then(function (o) { var k = (o && o.r) || ''; if (k) ls.set(kk, k); return k; }); };
+      if (known) { go(page(known)); setTimeout(function () { ask().catch(function () {}); }, 6000); }
+      else ask().then(function (k) { go(page(k)); }, function () { legacy(); });
+    }
   }
   function legacy() {
     if (LEG) return; LEG = 1; if (PF.fast) { ls.set('fast_off', Date.now()); PF.fast = 0; PF.load = 0; }

@@ -28,13 +28,13 @@ self.addEventListener('notificationclick', e => {
   })());
 });
 
-// the fast app (13/11/2026, speed): app/index.html opens from the copy on the device at once, and the fresh copy is fetched behind it
+// the fast app (13/11/2026, speed): the pages under app/ open from the copy on the device at once, and the fresh copy is fetched behind it
 // for the next opening (a deploy reaches the device on the opening after). Nothing else is cached: the data always comes from the server
 const APPC = 'ksh-app';
 self.addEventListener('fetch', e => {
   const u = new URL(e.request.url);
-  if (e.request.method !== 'GET' || u.origin !== self.location.origin || !/\/app\/(index\.html)?$/.test(u.pathname)) return;
-  const key = u.origin + u.pathname.replace(/index\.html$/, '') + 'index.html';
+  if (e.request.method !== 'GET' || u.origin !== self.location.origin || !/\/app\/(\w+\.html)?$/.test(u.pathname)) return;
+  const key = u.origin + (/\.html$/.test(u.pathname) ? u.pathname : u.pathname + 'index.html');
   e.respondWith((async () => {
     const c = await caches.open(APPC), hit = await c.match(key);
     const net = fetch(key, { cache: 'no-cache' }).then(r => { if (r && r.ok) c.put(key, r.clone()); return r; });
