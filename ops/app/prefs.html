@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="b1332bc39c31"><script>(function () {
+<head><meta name="ksh-ver" content="51469a70030b"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -2107,7 +2107,7 @@ function vThird() {
     const tx = busy ? '…' : id ? (me ? (arm ? 'לחיצה נוספת לביטול' : 'אני') : esc(P(id).name)) : h ? esc(h) : past ? '' : 'פנוי<em>לקחת ›</em>';
     return `<button class="t3c${id ? ' on' : ''}${me ? ' me' : ''}${arm ? ' arm' : ''}${h ? ' hol' : ''}${past ? ' past' : ''}${d === t ? ' now' : ''}" data-t3="${d}" ${past || h || (id && !me) || PV ? 'disabled' : ''}><small>${+d.slice(8)}</small><b>${tx}</b></button>`; };
   return `<section class="hcard t3v"><div class="hch"><h3>🕗 תורנות שליש</h3></div>
-    <div class="t3rules"><b>הנהלים · ד״ר בר זכאי</b><ul><li><i>🩺</i><span><b>למה:</b> לצרכים הקליניים של המערך. עזרה במיון, ניתוחים וייעוצים.</span></li><li><i>📝</i><span><b>נרשמים מראש</b>, לפני היום עצמו. כך כולם יודעים מי עושה תורנות שליש ומתי.</span></li><li><i>🕗</i><span>ימים א׳–ה׳ עד <b>20:00</b>, בכיר/ה אחד/ת ביום, לא בחגים.</span></li><li><i>⏱</i><span>ניתוח שגלש לשעות הערב נרשם כתורנות שליש רק במקרים מסוימים, בתיאום.</span></li></ul><small>לוקחים יום פנוי בלחיצה. לחיצה כפולה על יום שלכם מבטלת אותו.</small></div>
+    <div class="t3rules"><b>הנהלים · ד״ר בר זכאי</b><ul><li><i>🩺</i><span><b>למה:</b> לצרכים הקליניים של המערך. עזרה במיון, ניתוחים וייעוצים.</span></li><li><i>📝</i><span><b>נרשמים מראש</b>, לפני היום עצמו. כך כולם יודעים מי עושה תורנות שליש ומתי.</span></li><li><i>🕗</i><span>ימים א׳–ה׳ עד <b>20:00</b>, בכיר/ה אחד/ת ביום, לא בחגים.</span></li></ul><small>לוקחים יום פנוי בלחיצה. לחיצה כפולה על יום שלכם מבטלת אותו.</small></div>
     <div class="seg t3seg">${ms.map(x => `<button data-t3m="${x}" class="${x === m ? 'on' : ''}">${MONTHS[+x.slice(5) - 1]}</button>`).join('')}</div>
     <div class="t3sum"><span><b>${mine.length}</b> ימים שלי</span><span><b>${free}</b> ימים פנויים</span><span><b>${Object.keys(mp).length}</b> תפוסים</span></div>
     <div class="t3cal">${['א׳', 'ב׳', 'ג׳', 'ד׳', 'ה׳'].map(x => `<span class="t3hd">${x}</span>`).join('')}${'<span></span>'.repeat(lead)}${ds.map((d, i) => (i && pd(d).getDay() === 0 ? '' : '') + cell(d)).join('')}</div>
