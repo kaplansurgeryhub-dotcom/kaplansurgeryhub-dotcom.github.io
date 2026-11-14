@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="61501bf48d1f"><script>(function () {
+<head><meta name="ksh-ver" content="ced974bcdb42"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -2249,7 +2249,7 @@ body.wspon{overflow:hidden}
 .ws-f{margin-top:8px;font-size:11px;color:#8A9A9F;text-align:left}
 .pqb{border-radius:8px;color:#fff;font-weight:800;font-size:12px;padding:3px 8px;margin-bottom:4px;line-height:1.3}.pqb.n{background:#4A86C5}.pqb.s{background:#C9893F}.pqb.m{background:#6A4FB0}
 .pql{font-size:10.5px;color:#7E7366;font-weight:700;margin:2px 0 1px}.pqs .wc{box-shadow:0 0 0 1.5px #2E6044}
-.a4pq{font-weight:800;color:#fff;border-radius:3px;padding:0 4px;font-size:.85em;display:inline-block;margin-bottom:1px}.a4pq.n{background:#4A86C5}.a4pq.s{background:#C9893F}.a4pq.m{background:#6A4FB0}.a4n.lead2{font-weight:800;color:#2E6044}.a4n.lead2::before{display:none}
+.a4pq{font-weight:800;color:#fff;border-radius:3px;padding:0 4px;font-size:.85em;display:inline-block;margin-bottom:1px}.a4pq.n{background:#4A86C5}.a4pq.s{background:#C9893F}.a4pq.m{background:#6A4FB0}.a4pq.a4pqm{display:block;margin-top:2px;padding:1px 5px}.a4n.lead2{font-weight:800;color:#2E6044}.a4n.lead2::before{display:none}
 /* the week on one A4 landscape page (14/11/2026, Dr. Gozani): a fixed page, everything in em of --a4f, which weekFitA4 steps down until it fits */
 .wsheet.wsa4{width:1077px;min-height:730px;box-sizing:border-box;font-size:var(--a4f,12px);background:#fff;color:#14232E;display:flex;flex-direction:column;font-family:Heebo,Assistant,Arial,sans-serif;line-height:1.28}
 .a4h{display:flex;align-items:center;gap:10px;background:#0C2A35;color:#fff;padding:5px 12px;border-bottom:3px solid #3DC08C}
@@ -2279,7 +2279,8 @@ body.wspon{overflow:hidden}
 .a4z{display:inline-block;white-space:nowrap;margin:0 5px 1px 0;font-weight:700}.a4z i{font-style:normal;font-size:.75em;font-weight:800;color:#fff;background:#0C2A35;border-radius:3px;padding:0 3px;margin-inline-end:2px}
 .a4z.z-er1 i,.a4z.z-er2 i{background:#A3402E}.a4z.z-dept i{background:#2F6FA8}.a4z.z-active i{background:#2E6044}.a4z.z-passive i{background:#6E8C7B}.a4z.z-half i{background:#4A5560}.a4z.z-third i{background:#3949AB}.a4z.z-fm i{background:#B7791F}
 .a4w{display:inline-block;margin-inline-end:6px;color:#A3402E;font-weight:600}.a4w i{font-style:normal;font-size:.8em;color:#7E7366}
-.a4f{margin-top:auto;display:flex;justify-content:space-between;font-size:9.5px;color:#8A9A9F;padding:2px 6px 0;border-top:1px solid #3DC08C}
+.a4lgw{margin-top:auto;display:flex;justify-content:flex-start;padding:3px 6px 4px}.a4lgw .awleg{margin:0}
+.a4f{display:flex;justify-content:space-between;font-size:9.5px;color:#8A9A9F;padding:2px 6px 0;border-top:1px solid #3DC08C}
 @media print{body.wsprint>*:not(.wsp){display:none!important}body.wsprint .wsp{position:static;background:none;padding:0}body.wsprint .wsph,body.wsprint .wsphint{display:none}body.wsprint .wspf{overflow:visible;padding:0}body.wsprint .wspz{transform:none!important;box-shadow:none}body.wsprint .wspb{background:none;padding:0}body.wsprint .wsheet{width:100%}body.wsprint .wsheet.wsa4{width:1077px;box-shadow:none;margin:0}@page{size:A4 landscape;margin:6mm}}
 .wprev{width:auto!important;padding:0 12px!important;font-weight:700;font-size:13px;white-space:nowrap;background:#0C2A35!important;color:#fff!important;border-color:#0C2A35!important}
 .tools2 .wprev{display:inline-flex!important;flex-direction:row!important;align-items:center;gap:5px;min-width:max-content;height:34px!important;line-height:1!important}
@@ -2978,7 +2979,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = '61501bf48d1f'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = 'ced974bcdb42'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -4754,9 +4755,9 @@ function weekA4(W, ws) {
   const dc = (d, k) => { const L = dcOf(D(d), k); return L.length ? `<div class="a4dc">שחרורים: ${L.map(id => esc(P(id).name)).join(', ')}</div>` : ''; };
   const night = d => { const y = dutyDay(d), c = callDay(d); return FZ.filter(([k]) => (k in y ? y[k] : c[k])).map(([k, , sh]) => `<span class="a4z z-${k}"><i>${sh}</i>${esc(P(y[k] || c[k]).name)}</span>`).join('') + (c.trauma ? `<span class="a4z z-tr"><i>טר׳</i>${esc(c.trauma)}</span>` : ''); };
   const away = d => awayPost(d).map(id => awTile(id, 'pd', 'awp')).join('') + onLeave(d).filter(id => AWAY_R.indexOf(P(id).role) >= 0).map(id => awTile(id, awKind(id, d), 'awp')).join('') + absShow(D(d).abs, d).map(y => y.w ? absTile(y, 'awp') : `<span class="a4w">${esc(P(y.id).name)}</span>`).join('');
-  const ROWS = [['ישיבת בוקר', '#0C2A35', d => meet(D(d), 'morning')], ['ביקור צפון', '#4A86C5', d => ns(D(d).rn) + dc(d, 'rn')], ['ביקור דרום', '#C9893F', d => ns(D(d).rs) + dc(d, 'rs')],
+  const ROWS = [['ישיבת בוקר', '#0C2A35', d => meet(D(d), 'morning') + (pd(d).getDay() === 4 ? `<div class="a4pq m a4pqm">07:30 ישיבת טרום ניתוח · ניתוחי השבוע הבא${(D(d).preop || []).length ? ' · מציגים: ' + D(d).preop.map(x => esc(P(x.id).name)).join(', ') : ''}</div>` : '')], ['ביקור צפון', '#4A86C5', d => ns(D(d).rn) + dc(d, 'rn')], ['ביקור דרום', '#C9893F', d => ns(D(d).rs) + dc(d, 'rs')],
     ['ייעוצים', '#187A5C', d => ns(D(d).consult)], ['מיון', '#A3402E', d => (D(d).erlead || []).map(y => `<span class="a4n lead">אחראי · ${esc(P(y.id).name)}</span>`).join('') + ns(D(d).er)],
-    ['חדרי ניתוח', '#00967D', rooms], ['אשפוז יום', '#2BA58A', d => ns(D(d).day)], ['טרום ניתוח', '#6A4FB0', d => { const pq = PREOP_DAY[pd(d).getDay()], L = D(d).preop || []; if (!pq || !L.length) return ns(L); const sen = L.filter(x => P(x.id).role === 'senior'), res = L.filter(x => P(x.id).role !== 'senior'); return `<div class="a4pq ${pq[1]}">${pq[0]}</div>${pq[1] === 'm' ? ns(L) : (sen.length ? `<span class="a4n lead2">אחראי · ${sen.map(x => esc(P(x.id).name)).join(', ')}</span>` : '') + ns(res)}`; }], ['מרפאות', '#3B4C8E', clin],
+    ['חדרי ניתוח', '#00967D', rooms], ['אשפוז יום', '#2BA58A', d => ns(D(d).day)], ['טרום ניתוח', '#6A4FB0', d => { if (pd(d).getDay() === 4) return ''; const pq = PREOP_DAY[pd(d).getDay()], L = D(d).preop || []; if (!pq || !L.length) return ns(L); const sen = L.filter(x => P(x.id).role === 'senior'), res = L.filter(x => P(x.id).role !== 'senior'); return `<div class="a4pq ${pq[1]}">${pq[0]}</div>${pq[1] === 'm' ? ns(L) : (sen.length ? `<span class="a4n lead2">אחראי · ${sen.map(x => esc(P(x.id).name)).join(', ')}</span>` : '') + ns(res)}`; }], ['מרפאות', '#3B4C8E', clin],
     ['ישיבות', '#0C2A35', d => meet(D(d), 'meet')], ['ישיבת לימודים', '#B8863B', d => ns(D(d).study)], ['תורנים · כוננים', '#0C2A35', night], ['לא נמצאים', '#A3402E', away]]
     .filter(([, , f]) => days.some(d => f(d)));
   const wing = d => { const w = wingName(wingOf(d, S.cache['duty:' + monthOf(d)])); return `<em class="a4wg ${w === 'צפון' ? 'n' : 's'}">${w}</em>`; };
@@ -4767,7 +4768,7 @@ function weekA4(W, ws) {
     <table class="a4t"><colgroup><col class="a4c0">${days.map(d => `<col${pd(d).getDay() >= 5 ? ' class="a4cw2"' : ''}>`).join('')}</colgroup>
     <tr class="a4d"><th></th>${days.map(d => `<th${we(d)}><b>${DAYS[pd(d).getDay()]}</b> ${dm(d)} ${wing(d)}</th>`).join('')}</tr>
     ${ROWS.map(([l, c, f]) => `<tr style="--rc:${c}"><th>${l}</th>${days.map(d => `<td${we(d)}>${f(d) || ''}</td>`).join('')}</tr>`).join('')}</table>
-    <div class="a4f"><span>Kaplan Surgical Hub</span>${awLegend(awKinds(days, W))}<span>הודפס ${new Date().toLocaleDateString('he-IL', { day: 'numeric', month: 'numeric', year: 'numeric' })}</span></div></div>`;
+    ${(() => { const lg = awLegend(awKinds(days, W)); return lg ? `<div class="a4lgw">${lg}</div>` : ''; })()}<div class="a4f"><span>Kaplan Surgical Hub</span><span>הודפס ${new Date().toLocaleDateString('he-IL', { day: 'numeric', month: 'numeric', year: 'numeric' })}</span></div></div>`;
 }
 // the A4 sheet is 1077x748 css px (A4 landscape less 6mm margins); the type steps down until the week fits, and only below 7px is the page scaled
 const A4W = 1077, A4H = 730;
