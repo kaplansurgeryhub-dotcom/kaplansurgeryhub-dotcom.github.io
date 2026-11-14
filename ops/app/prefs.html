@@ -1,11 +1,25 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="0b2d67278c52"><script>(function () {
+<head><meta name="ksh-ver" content="5fd7a45dc6ed"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
-  function post(f, a) {
-    return fetch(EXEC, { method: 'POST', body: JSON.stringify({ f: f, a: a }), headers: { 'Content-Type': 'text/plain;charset=utf-8' }, redirect: 'follow', credentials: 'omit' })
+  var Q = [], T = 0, BATCH = 1;
+  function send(body) {
+    return fetch(EXEC, { method: 'POST', body: JSON.stringify(body), headers: { 'Content-Type': 'text/plain;charset=utf-8' }, redirect: 'follow', credentials: 'omit' })
       .then(function (r) { if (!r.ok) throw Object.assign(new Error('השרת לא זמין כרגע (' + r.status + ')'), { net: 1 }); return r.text(); })
-      .then(function (t) { var o; try { o = JSON.parse(t); } catch (x) { throw Object.assign(new Error('התשובה מהשרת לא תקינה'), { net: 1 }); } if (!okOnce) try { parent.postMessage({ kop: 1, op: 'ok' }, location.origin); } catch (x) {} okOnce = 1; if (o.e) throw new Error(o.e); return o.r === undefined ? null : o.r; });
+      .then(function (t) { var o; try { o = JSON.parse(t); } catch (x) { throw Object.assign(new Error('התשובה מהשרת לא תקינה'), { net: 1 }); } if (!okOnce) try { parent.postMessage({ kop: 1, op: 'ok' }, location.origin); } catch (x) {} okOnce = 1; return o; });
+  }
+  function one(o) { if (o && o.e) throw new Error(o.e); return o && o.r !== undefined ? o.r : null; }
+  function single(f, a) { return send({ f: f, a: a }).then(one); }
+  function flush() {
+    T = 0; var L = Q; Q = [];
+    if (L.length === 1 || !BATCH) return L.forEach(function (x) { single(x.f, x.a).then(x.ok, x.no); });
+    send({ b: L.map(function (x) { return { f: x.f, a: x.a }; }) }).then(function (o) {
+      if (!o || !Array.isArray(o.b)) { BATCH = 0; return L.forEach(function (x) { single(x.f, x.a).then(x.ok, x.no); }); }
+      L.forEach(function (x, i) { var r; try { r = one(o.b[i] || {}); } catch (e) { return x.no(e); } x.ok(r); });
+    }, function (e) { L.forEach(function (x) { x.no(e); }); });
+  }
+  function post(f, a) {
+    return new Promise(function (ok, no) { Q.push({ f: f, a: a, ok: ok, no: no }); if (Q.length >= 12) { clearTimeout(T); flush(); } else if (!T) T = setTimeout(flush, 0); });
   }
   function runner(ok, no, uo) {
     return new Proxy({}, { get: function (_, k) {
