@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="445c101caaf4"><script>(function () {
+<head><meta name="ksh-ver" content="ebe3baa578c3"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -2979,7 +2979,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = '445c101caaf4'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = 'ebe3baa578c3'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -5679,7 +5679,7 @@ function flowBind(root, ws, redraw) {
 // publishing (14/11/2026, Dr. Gozani): one red button in the window, one confirmation inside it, then the plan goes out:
 // the "published" mark first, then the notification to everyone; the owner gets the WhatsApp group text on screen, anyone else leaves it in the owner's outbox
 async function weekPublish(ws, F) {
-  F = F || {}; const upd = !!F.pub, rng = `⁦${dm(ws)}–${dm(add(ws, 4))}⁩`;
+  F = F || {}; const upd = !!F.pub, rng = `⁦${dm(ws)}–${dm(add(ws, 6))}⁩`;
   let r; try { r = await call('ops_weekFlow', S.code, ws, 'pub', true); if (S.cache['week:' + ws]) S.cache['week:' + ws].flow = r.flow; } catch (e) { return toast(e.message); }
   try { S.data.notif = await call('ops_notify', S.code, { kind: 'week', title: `📅 התוכנית השבועית ${rng} ${upd ? 'עודכנה' : 'פורסמה'}`, body: 'רואים אותה באפליקציה, בלשונית "תוכנית". הכפתור "תצוגה שבועית" פותח את כל השבוע בעמוד אחד.', aud: 'all' }); lsSet('ops_seen', new Date().toISOString()); bellPaint(); } catch (e) { toast('פורסם, אבל ההתראה לא נשלחה: ' + e.message); }
   document.querySelectorAll('.flowm').forEach(x => x.remove()); render();
