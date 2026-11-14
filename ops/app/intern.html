@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="8b8c07b597c9"><script>(function () {
+<head><meta name="ksh-ver" content="3b0890a678b2"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -671,6 +671,7 @@ textarea:focus,input:focus,select:focus{outline:2px solid #00967D;outline-offset
 .crr{position:absolute;inset:0;pointer-events:none;border-radius:50%;box-shadow:0 0 0 999px rgba(5,20,26,.62);outline:2.5px solid #3DC08C;outline-offset:-2px}
 .crz{display:flex;align-items:center;gap:10px;width:100%}.crz input{flex:1;accent-color:#3DC08C}.crz span{font-size:20px;font-weight:800;color:#A9E6C9}.crb{display:flex;gap:8px}
 /* the whole week sideways (from the Hub) */
+.wkl{touch-action:pan-x pan-y;-webkit-user-select:none;user-select:none}.wkl.wkzm{touch-action:none}.wkl.wkzm .wkl-b{overflow:hidden!important}
 .wkl{position:fixed;inset:0;z-index:99999;background:radial-gradient(ellipse at 70% 0%,#123E4B 0%,#0C2A35 55%,#06161D 100%);overflow:hidden}
 .wkl-r{position:absolute;left:0;top:0;transform-origin:0 0;display:flex;flex-direction:column;box-sizing:border-box;padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)}
 .wkl.rot .wkl-r{padding:0 calc(env(safe-area-inset-bottom,0px) + 4px) 0 calc(env(safe-area-inset-top,0px) + 4px)}
@@ -1127,6 +1128,33 @@ function weekSessions() {
   return `<section class="card"><h2>השבוע במערך</h2><p class="cap">הסמינר שלכם מסומן בירוק</p><div class="days">${[0, 1, 2, 3, 4].map(k => `<button data-sd="${k}" class="${k === SD ? 'on' : ''}">${DN[k]}</button>`).join('')}</div>${ev.map(e => `<div class="ev ${esc(e.k || 'meet')}"><span class="t">${esc(e.time)}</span><div><b>${esc(e.t)}</b>${e.b ? `<small>${esc(e.b)}</small>` : ''}</div></div>`).join('') || '<p class="cap">אין ישיבות קבועות ביום הזה</p>'}</section>`;
 }
 // the whole week on one screen, sideways (the Hub's wkLand): a portrait phone gets the sheet turned 90°, ✕ brings it back
+// 14/11/2026 (Dr. Gozani): the week opens as a still picture. Two fingers enlarge it and one finger moves it, like a photo; nothing is laid
+// out again and nothing reloads, the sheet never leaves the screen and at full size the whole week is back. A double tap enlarges or returns
+function wklPinch(bg, r, base, b) {
+  let s = 1, tx = 0, ty = 0, st = null, tap = 0;
+  const paint = () => { const W = bg.clientWidth, H = bg.clientHeight; s = Math.min(4, Math.max(1, s)); if (s < 1.01) { s = 1; tx = 0; ty = 0; }
+    tx = Math.min(0, Math.max(W - W * s, tx)); ty = Math.min(0, Math.max(H - H * s, ty));
+    r.style.transform = (s > 1 ? `translate(${tx}px,${ty}px) scale(${s}) ` : '') + (base() || (s > 1 ? '' : 'none')); bg.classList.toggle('wkzm', s > 1); };
+  const pts = e => [...e.touches].map(t => [t.clientX, t.clientY]);
+  const at = (x, y, ns) => { tx = x - (x - tx) * ns / s; ty = y - (y - ty) * ns / s; s = ns; paint(); };
+  bg.addEventListener('touchstart', e => { if (e.target.closest('.wkl-x,.wkl-tabs')) { st = null; return; } const p = pts(e); st = { p, s, tx, ty };
+    if (p.length === 1) { const now = Date.now(); if (now - tap < 320) { at(p[0][0], p[0][1], s > 1.2 ? 1 : 2.5); tap = 0; st = null; if (e.cancelable) e.preventDefault(); return; } tap = now; } else tap = 0; }, { passive: false });
+  bg.addEventListener('touchmove', e => { if (!st) return; const p = pts(e);
+    // one finger on the whole sheet: a scrolling (tall) week scrolls as before; otherwise nothing moves
+    if (p.length === 1 && st.p.length === 1 && s <= 1) { if (!(b && b.scrollHeight > b.clientHeight + 2) && e.cancelable) e.preventDefault(); return; }
+    if (e.cancelable) e.preventDefault(); tap = 0;
+    if (p.length >= 2) { if (st.p.length < 2) { st = { p, s, tx, ty }; return; }
+      const d0 = Math.hypot(st.p[0][0] - st.p[1][0], st.p[0][1] - st.p[1][1]) || 1, d1 = Math.hypot(p[0][0] - p[1][0], p[0][1] - p[1][1]);
+      const m0 = [(st.p[0][0] + st.p[1][0]) / 2, (st.p[0][1] + st.p[1][1]) / 2], m1 = [(p[0][0] + p[1][0]) / 2, (p[0][1] + p[1][1]) / 2], ns = Math.min(4, Math.max(1, st.s * d1 / d0));
+      s = ns; tx = m1[0] - (m0[0] - st.tx) * ns / st.s; ty = m1[1] - (m0[1] - st.ty) * ns / st.s; paint(); }
+    else if (st.p.length === 1) { tx = st.tx + p[0][0] - st.p[0][0]; ty = st.ty + p[0][1] - st.p[0][1]; paint(); } }, { passive: false });
+  bg.addEventListener('touchend', e => { st = e.touches.length ? { p: pts(e), s, tx, ty } : null; });
+  ['gesturestart', 'gesturechange', 'gestureend'].forEach(ev => bg.addEventListener(ev, e => e.preventDefault()));
+  // a trackpad pinch (ctrl + wheel) zooms at the pointer; when enlarged, the wheel moves the picture
+  bg.addEventListener('wheel', e => { if (!e.ctrlKey && s <= 1) return; e.preventDefault(); if (e.ctrlKey) at(e.clientX, e.clientY, Math.min(4, Math.max(1, s * Math.exp(-e.deltaY / 120)))); else { tx -= e.deltaX; ty -= e.deltaY; paint(); } }, { passive: false });
+  bg.addEventListener('dblclick', e => { if (e.target.closest('.wkl-x,.wkl-tabs')) return; at(e.clientX, e.clientY, s > 1.2 ? 1 : 2.5); });
+  return { reset: () => { s = 1; tx = 0; ty = 0; paint(); } };
+}
 function wkLand(html, title, sub) {
   const bg = document.createElement('div'); bg.className = 'wkl';
   bg.innerHTML = `<div class="wkl-r"><div class="wkl-h"><b>${title}</b><small>${sub || ''}</small><span class="sp"></span><span class="wkl-tabs"></span><button class="wkl-x" aria-label="סגירה"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="wkl-b"><div class="wkl-s"><div class="wkl-z">${html}</div></div></div></div>`;
@@ -1134,12 +1162,13 @@ function wkLand(html, title, sub) {
   // the ✕ lives on the screen itself, not on the turned sheet: on an upright phone the sheet's corner sat under the clock (1/11/2026)
   { const X = bg.querySelector('.wkl-x'); if (X) { X.classList.add('wkl-xf'); bg.appendChild(X); } }
   const r = bg.querySelector('.wkl-r'), b = bg.querySelector('.wkl-b'), s = bg.querySelector('.wkl-s'), z = bg.querySelector('.wkl-z'), sh = z.firstElementChild, pgs = [...sh.querySelectorAll('[data-pg]')], tb = bg.querySelector('.wkl-tabs');
+  let RB = '', PZ = null;
   let zoom = false;
   // 14/11/2026: the ✕ sits at the frame's bottom both upright and turned (there it is the screen's side); that strip, in screen pixels, stays empty
   const XR = 66; b.style.paddingBottom = XR + 'px'; b.style.boxSizing = 'border-box';
   const fit = () => {
-    const W = innerWidth, H = innerHeight, rot = H > W, w = rot ? H : W, h = rot ? W : H;
-    bg.classList.toggle('rot', rot); r.style.width = w + 'px'; r.style.height = h + 'px'; r.style.transform = rot ? `translate(${W}px,0) rotate(90deg)` : 'none';
+    const W = bg.clientWidth || innerWidth, H = bg.clientHeight || innerHeight, rot = H > W, w = rot ? H : W, h = rot ? W : H;
+    bg.classList.toggle('rot', rot); r.style.width = w + 'px'; r.style.height = h + 'px'; RB = rot ? `translate(${W}px,0) rotate(90deg)` : ''; if (PZ) PZ.reset(); else r.style.transform = RB || 'none';
     const bw = b.clientWidth - 12, bh = b.clientHeight - 8 - XR; let k = 0;
     if (zoom) { sh.style.width = Math.max(760, bw) + 'px'; k = bw / sh.offsetWidth; }
     else { for (let t = 1.15; t >= 0.42; t -= 0.03) { const lw = Math.round(bw / t); if (lw < 720) continue; sh.style.width = lw + 'px'; if (sh.offsetHeight * t <= bh) { k = t; break; } } if (!k) { sh.style.width = '1100px'; k = Math.min(bw / 1100, bh / sh.offsetHeight); } }
@@ -1147,10 +1176,11 @@ function wkLand(html, title, sub) {
   };
   const pick = n => { pgs.forEach((x, k) => { x.hidden = k !== n; }); tb.querySelectorAll('button').forEach((x, k) => x.classList.toggle('on', k === n)); zoom = false; b.scrollTop = 0; fit(); };
   if (pgs.length > 1) { tb.innerHTML = pgs.map(x => `<button type="button">${x.dataset.pg}</button>`).join(''); tb.querySelectorAll('button').forEach((x, k) => x.onclick = () => pick(k)); }
+  PZ = wklPinch(bg, r, () => RB, b);
   const esc_ = e => { if (e.key === 'Escape') close(); };
   const close = () => { removeEventListener('resize', refit); removeEventListener('orientationchange', refit); try { if (window.visualViewport) visualViewport.removeEventListener('resize', refit); } catch (e) {} removeEventListener('keydown', esc_); try { if (screen.orientation && screen.orientation.unlock) screen.orientation.unlock(); } catch (e) {} try { if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(() => {}); } catch (e) {} bg.remove(); document.documentElement.classList.remove('wklon'); };
-  bg.querySelector('.wkl-x').onclick = close; z.onclick = e => { if (e.target.closest('a,button')) return; zoom = !zoom; fit(); };
-  const refit = () => { fit(); [120, 450, 900].forEach(t => setTimeout(() => { if (bg.isConnected) fit(); }, t)); }; addEventListener('resize', refit); addEventListener('orientationchange', refit); try { if (window.visualViewport) visualViewport.addEventListener('resize', refit); } catch (e) {} addEventListener('keydown', esc_);
+  bg.querySelector('.wkl-x').onclick = close; 
+  let lastSz = bg.clientWidth + 'x' + bg.clientHeight; const refit = () => { const go = () => { if (!bg.isConnected) return; const sz = bg.clientWidth + 'x' + bg.clientHeight; if (sz === lastSz) return; lastSz = sz; fit(); }; go(); [120, 450, 900].forEach(t => setTimeout(go, t)); }; addEventListener('resize', refit); addEventListener('orientationchange', refit); try { if (window.visualViewport) visualViewport.addEventListener('resize', refit); } catch (e) {} addEventListener('keydown', esc_);
   if (pgs.length > 1) pick(0); else fit(); requestAnimationFrame(fit); setTimeout(fit, 350);
   if (matchMedia('(pointer:coarse)').matches && innerHeight > innerWidth && document.documentElement.requestFullscreen && screen.orientation && screen.orientation.lock) { document.documentElement.requestFullscreen({ navigationUI: 'hide' }).then(() => screen.orientation.lock('landscape')).then(() => setTimeout(fit, 200)).catch(() => {}); }
 }
