@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="3b0890a678b2"><script>(function () {
+<head><meta name="ksh-ver" content="ac4def232718"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -2951,7 +2951,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = '3b0890a678b2'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = 'ac4def232718'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -6066,7 +6066,7 @@ async function thirdSheet(m0, after, host) {
   draw();
 }
 const addM = (m, n) => { const [y, k] = m.split('-').map(Number), d = new Date(y, k - 1 + n, 1); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0'); };
-const FZ = [['er1', 'מיון 1', 'מ1'], ['er2', 'מיון 2', 'מ2'], ['dept', 'מחלקה', 'מח'], ['minor', 'מיינור טראומה', 'מי'], ['fm', 'שישי בוקר · 08:00–13:00', '☀'], ['active', 'כונן פעיל', 'פעיל'], ['passive', 'כונן פסיבי', 'פסיבי'], ['half', 'תורן חצי', 'חצי'], ['third', 'תורן שליש · עד 20:00', 'שליש']];
+const FZ = [['er1', 'מיון 1', 'מ1'], ['er2', 'מיון 2', 'מ2'], ['dept', 'מחלקה', 'מח'], ['minor', 'מיינור טראומה', 'מיינור'], ['fm', 'שישי בוקר · 08:00–13:00', '☀'], ['active', 'כונן פעיל', 'פעיל'], ['passive', 'כונן פסיבי', 'פסיבי'], ['half', 'תורן חצי', 'חצי'], ['third', 'תורן שליש · עד 20:00', 'שליש']];
 // the final board, edited in place (10/11/2026, Dr. Gozani): a click on a day opens every slot of that day, duty and on-call, past days too.
 // Each slot: a person from those who hold that position (or anyone, with "כולם"), or empty. A change is locked on its board like any manual placement
 function finalDay(d, done) { const mo = d.slice(0, 7), DU = JSON.parse(JSON.stringify(S.cache['duty:' + mo] || {})), CA = JSON.parse(JSON.stringify(S.cache['oncall:' + mo] || {}));

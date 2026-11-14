@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="3b0890a678b2"><script>(function () {
+<head><meta name="ksh-ver" content="ac4def232718"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -2102,7 +2102,7 @@ function vRost() {
   const top = Object.keys(cnt).sort((a, b) => cnt[b] - cnt[a]);
   if (!RD || RD.slice(0, 7) !== RM) RD = TODAY.slice(0, 7) === RM ? TODAY : first;
   const sd = days[RD] || {}, mi = ms.indexOf(RM);
-  const SH = { er1: 'מ1', er2: 'מ2', dept: 'מח', minor: 'מי', fm: '☀', active: 'פעיל', passive: 'פסיבי', half: 'חצי' };
+  const SH = { er1: 'מ1', er2: 'מ2', dept: 'מח', minor: 'מיינור', fm: '☀', active: 'פעיל', passive: 'פסיבי', half: 'חצי' };
   return `<section class="ph rh">${art(RB === 'duty' ? 'vesvessels' : 'torso', 'a1')}<div class="phin"><small>לוחות · ${RB === 'duty' ? 'תורנויות' : 'כוננויות'}</small>
     <div class="wnav"><button data-rm="${ms[mi - 1] || ''}" ${mi > 0 ? '' : 'disabled'}><svg class="chv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button><b>${MONTHS[+RM.slice(5, 7) - 1]} ${RM.slice(0, 4)}${(src || {}).draft ? ' <em class="rdraft">טיוטה · עוד לא פורסם</em>' : ''}</b><button data-rm="${ms[mi + 1] || ''}" ${mi >= 0 && mi < ms.length - 1 ? '' : 'disabled'}><svg class="chv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button></div>
     ${rbSeg()}
@@ -2152,7 +2152,7 @@ async function t3Tap(d) {
   catch (e) { toast2(e.message); try { A.third = await call('ops_meThird', TOKEN); } catch (x) {} }
   T3.busy = ''; show();
 }
-const FZ = [['er1', 'מיון 1', 'מ1'], ['er2', 'מיון 2', 'מ2'], ['dept', 'מחלקה', 'מח'], ['minor', 'מיינור טראומה', 'מי'], ['fm', 'שישי בוקר', '☀'], ['active', 'כונן פעיל', 'פעיל'], ['passive', 'כונן פסיבי', 'פסיבי'], ['half', 'תורן חצי', 'חצי'], ['third', 'תורן שליש · עד 20:00', 'שליש']];
+const FZ = [['er1', 'מיון 1', 'מ1'], ['er2', 'מיון 2', 'מ2'], ['dept', 'מחלקה', 'מח'], ['minor', 'מיינור טראומה', 'מיינור'], ['fm', 'שישי בוקר', '☀'], ['active', 'כונן פעיל', 'פעיל'], ['passive', 'כונן פסיבי', 'פסיבי'], ['half', 'תורן חצי', 'חצי'], ['third', 'תורן שליש · עד 20:00', 'שליש']];
 function vFinalApp(ms, mi) {
   if (!(RM in PAF)) { PAF[RM] = {}; call('ops_paFinalT', TOKEN, RM).then(r => { PAF[RM] = r || {}; if (TAB === 'rost' && RB === 'all') show(); }).catch(() => {}); }
   // 10/11/2026 (Dr. Gozani): the final board holds only what was published (a manager's draft stays in "my shifts"), and the interns' nights once their board is published
