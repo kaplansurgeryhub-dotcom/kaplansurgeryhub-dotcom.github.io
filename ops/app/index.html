@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="ced974bcdb42"><script>(function () {
+<head><meta name="ksh-ver" content="445c101caaf4"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -2979,7 +2979,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = 'ced974bcdb42'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = '445c101caaf4'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -3940,9 +3940,10 @@ const AWAY_R = ['senior', 'resident', 'house'], awayPost = d => postCall(d).filt
 const absShow = (a, d) => (a || []).filter(x => P(x.id).role !== 'extern' && !(d && awayPost(d).indexOf(x.id) >= 0));
 const lanesFor = (W, dates) => LANES.filter(r => r.k !== 'er' && (!r.chief || isChief() || (r.k === 'preop' && can('week')) || dates.some(d => (((W.days || {})[d] || {})[r.k] || []).length)));
 // a resident the department head placed (operating room, consults, day ward, clinic) leaves the chief's day rows that day
-function pruneChief(D) {
+// Thursday's pre-op is a 07:30 meeting (who presents), not a clinic: a resident who works elsewhere that day still presents (14/11/2026)
+function pruneChief(D, d) {
   const took = new Set(); DIR_K.forEach(k => (D[k] || []).forEach(x => took.add(x.id))); (D.or || []).forEach(r => (r.ids || []).forEach(x => took.add(x.id)));
-  ['rn', 'rs', 'er', 'preop'].forEach(k => { if (D[k]) D[k] = D[k].filter(x => P(x.id).role === 'senior' || !took.has(x.id)); });
+  ['rn', 'rs', 'er'].concat(d && pd(d).getDay() === 4 ? [] : ['preop']).forEach(k => { if (D[k]) D[k] = D[k].filter(x => P(x.id).role === 'senior' || !took.has(x.id)); });
 }
 const PROCS = {
   'דופן הבטן': ['בקע מפשעתי', 'בקע טבורי', 'בקע בצלקת', 'בקע אפיגסטרי', 'בקע ספיגלי'],
@@ -4489,7 +4490,7 @@ async function vWeek(m) {
   $$('#board .night2 .nt[data-sw]').forEach(e => { const k = e.dataset.sw.split('|')[1]; if (!can(nightBoard(k))) return; e.classList.add('swok'); e.onclick = ev => { ev.stopPropagation(); const [d2, k2] = e.dataset.sw.split('|'); swapSheet(d2, k2, () => render()); }; });
   if (!edit) return;
   const cur = () => JSON.parse(JSON.stringify(S.cache['week:' + ws] || W));
-  const commit = nw => { if (!isChief()) Object.values(nw.days || {}).forEach(pruneChief); WK.hist.push(JSON.stringify(S.cache['week:' + ws] || W)); if (WK.hist.length > 40) WK.hist.shift(); save('week:' + ws, nw); render(); };
+  const commit = nw => { if (!isChief()) Object.keys(nw.days || {}).forEach(d => pruneChief(nw.days[d], d)); WK.hist.push(JSON.stringify(S.cache['week:' + ws] || W)); if (WK.hist.length > 40) WK.hist.shift(); save('week:' + ws, nw); render(); };
   const put = (d, fn) => { const nw = cur(); nw.days[d] = nw.days[d] || weekDefaults(ws).days[d]; fn(nw.days[d]); commit(nw); };
   $('#wUndo').onclick = undo;
   if (isSec() && $('#wAuto')) $('#wAuto').hidden = true;
@@ -6293,7 +6294,7 @@ function autoSides(W, ws) {
   const out = JSON.parse(JSON.stringify(W || { days: {} })), def = weekDefaults(ws); out.days = out.days || {}; let n = 0;
   [0, 1, 2, 3, 4].map(i => add(ws, i)).forEach(d => {
     const D = out.days[d] = out.days[d] || def.days[d]; ['rn', 'rs', 'er', 'preop', 'study', 'abs'].forEach(k => { D[k] = D[k] || []; });
-    pruneChief(D);
+    pruneChief(D, d);
     const busy = new Set(); ['rn', 'rs', 'er', 'abs'].concat(DIR_K).forEach(k => (D[k] || []).forEach(x => busy.add(x.id))); (D.or || []).forEach(r => (r.ids || []).forEach(x => busy.add(x.id)));
     resGroup().forEach(p => { if (busy.has(p.id) || whyOff(out, d, p.id)) return; const k = sideOf(p.id, d) === 'n' ? 'rn' : 'rs'; D[k].push({ id: p.id, c: laneColor(k, p.id) }); n++; });
   });
