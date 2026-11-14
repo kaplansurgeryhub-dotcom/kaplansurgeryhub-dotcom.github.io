@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="3b61219720dc"><script>(function () {
+<head><meta name="ksh-ver" content="11484bf43d4a"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -29,9 +29,13 @@
       if (typeof k !== 'string' || k === 'then') return undefined;
       return function () {
         var a = Array.prototype.slice.call(arguments);
-        post(k, a).then(function (r) { if (ok) ok(r, uo); }, function (e) {
-          if (e && (e.net || e.name === 'TypeError')) { bad++; if (!okOnce && bad >= 1) try { parent.postMessage({ kop: 1, op: 'slow' }, location.origin); } catch (x) {} }
+        var fail = function (e) {
+          if (e && (e.net || e.name === 'TypeError')) { bad++; if (!okOnce && bad >= 1 && !document.hidden && navigator.onLine !== false) try { parent.postMessage({ kop: 1, op: 'slow' }, location.origin); } catch (x) {} }
           if (no) no(e, uo);
+        };
+        post(k, a).then(function (r) { if (ok) ok(r, uo); }, function (e) {
+          if (e && (e.net || e.name === 'TypeError') && !okOnce) return setTimeout(function () { post(k, a).then(function (r) { if (ok) ok(r, uo); }, fail); }, 1500);
+          fail(e);
         });
       };
     } });
@@ -330,6 +334,9 @@ html.ui2 #main .rcal .pk.cl.pac:not(.em):not(.blk):not(.wnt){border-inline-start
 html.ui2 .wcell.night2 .nt.mi{--nb:#0E7C99;--nbg:#E0F0F5;--nc:#0A5568}
 html.ui2 .wcell.night2 .nt.ca{--nb:#1F6B43;--nbg:#24704A;--nc:#FFFFFF}
 html.ui2 .wcell.night2 .nt b,html .wcell.night2 .nt b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;min-width:0;flex:1 1 auto}
+
+
+html.ui2 .clh b,html.ui2 .gt .clh b{background:#E8ECF8!important;color:#26357A!important;-webkit-text-fill-color:#26357A;border:1px solid #C9D2EE;font-weight:800}
 </style>
 <script>(function () {
   /* the new look is the only look (7/11/2026, Dr. Gozani): no switch, no per-device choice */
