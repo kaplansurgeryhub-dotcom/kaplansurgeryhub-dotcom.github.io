@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="160e14774da3"><script>(function () {
+<head><meta name="ksh-ver" content="c5f712f9504a"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -390,7 +390,7 @@ html.ui2 .wcell.night2 .nt b,html .wcell.night2 .nt b{white-space:nowrap;overflo
     lock: '<rect x="5" y="11" width="14" height="10" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
     print: '<path d="M7 9V3h10v6M7 17H4v-7h16v7h-3"/><rect x="7" y="14" width="10" height="7"/>',
     mail: '<rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 7l9 6 9-6"/>',
-    palm: '<path d="M12 21v-9M12 12c-1-4-5-5-8-4M12 12c1-4 5-5 8-4M12 12c-2-3-2-6 0-8M12 12c2-3 2-6 0-8"/>',
+    palm: '<path d="M2 9h20"/><path d="M3 9l1 4.5A3 3 0 0 0 7 16h1a3 3 0 0 0 3-2.5l.5-2.5h1l.5 2.5a3 3 0 0 0 3 2.5h1a3 3 0 0 0 3-2.5L21 9"/>',
     warn: '<path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18v.5"/>',
     swap: '<path d="M4 8h14l-3-3M20 16H6l3 3"/>',
     heart: '<path d="M12 20s-8-5-8-11a4.5 4.5 0 0 1 8-3 4.5 4.5 0 0 1 8 3c0 6-8 11-8 11z"/>',
@@ -443,7 +443,7 @@ html.ui2 .wcell.night2 .nt b,html .wcell.night2 .nt b{white-space:nowrap;overflo
     '🌙': 'moon', '🕶': 'shades', '🪖': 'helmet', '🤒': 'thermo', '↩': 'ret', '🌃': 'moon', '☀': 'sun', '🌅': 'sun', '🌇': 'sun', '📞': 'phone', '📲': 'phone', '📱': 'phone', '☎': 'phone', '🔔': 'bell', '💬': 'chat', '🗨': 'chat',
     '📣': 'mega', '📢': 'mega', '📋': 'clip', '🗓': 'cal', '📅': 'cal', '📆': 'cal', '🩺': 'steth', '🎓': 'cap', '📝': 'note', '✍': 'note', '👁': 'eye', '🧰': 'kit',
     '📊': 'chart', '📈': 'chart', '📚': 'books', '📖': 'books', '⚙': 'gear', '👤': 'user', '🧑': 'user', '👥': 'users', '🔒': 'lock', '🔐': 'lock', '🖨': 'print',
-    '✉': 'mail', '📨': 'mail', '📧': 'mail', '📩': 'mail', '🏖': 'palm', '🌴': 'palm', '⚠': 'warn', '🔁': 'swap', '🔄': 'swap', '💚': 'heart', '❤': 'heart',
+    '✉': 'mail', '📨': 'mail', '📧': 'mail', '📩': 'mail', '🏖': 'palm', '🌴': 'palm', '🏝': 'palm', '⚠': 'warn', '🔁': 'swap', '🔄': 'swap', '💚': 'heart', '❤': 'heart',
     '🏛': 'bank', '🔑': 'key', '🏠': 'home', '🏡': 'home', '🗂': 'folder', '📁': 'folder', '📂': 'folder', '⏳': 'hour', '⌛': 'hour', '📌': 'pin', '📍': 'pin',
     '🧪': 'tube', '🏥': 'hosp', '📷': 'cam', '📸': 'cam', '⭐': 'star', '🌟': 'star', '📤': 'send', '📭': 'mail', '📥': 'mail', '🔗': 'link', '🗑': 'trash',
     '✎': 'pen', '✏': 'pen', '🖊': 'pen', '🔍': 'search', '🔎': 'search', '✈': 'plane', '🔪': 'knife', '🏁': 'flag', '🚩': 'flag', '⚡': 'bolt', '🍕': 'food',
@@ -2983,7 +2983,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = '160e14774da3'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = 'c5f712f9504a'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
