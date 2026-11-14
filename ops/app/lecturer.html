@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="8f1325145f3f"><script>(function () {
+<head><meta name="ksh-ver" content="1f5032697386"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -38,6 +38,30 @@
   }
   window.google = { script: { run: runner(null, null, null), host: { close: function () {}, setHeight: function () {} } } };
   window.KSH_FAST = 1;
+})();
+(function () {
+  var mine = (document.querySelector('meta[name="ksh-ver"]') || {}).content || '', touched = 0, t0 = Date.now(), shown = 0, busy = 0;
+  if (!mine) return;
+  ['pointerdown', 'keydown'].forEach(function (k) { addEventListener(k, function () { touched = 1; }, { capture: true, passive: true }); });
+  function bar() {
+    if (shown) return; shown = 1;
+    var b = document.createElement('button'); b.type = 'button'; b.textContent = '✨ גרסה חדשה מוכנה · לחיצה לעדכון';
+    b.setAttribute('style', 'position:fixed;z-index:2147483000;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0px));background:#0C2A35;color:#fff;border:1.5px solid #3DC08C;border-radius:999px;padding:10px 18px;font:700 15px Heebo,Assistant,system-ui,sans-serif;box-shadow:0 6px 22px rgba(0,0,0,.25);cursor:pointer;direction:rtl');
+    b.onclick = function () { location.reload(); };
+    document.body.appendChild(b);
+  }
+  function check() {
+    if (busy || shown) return; busy = 1;
+    fetch(location.pathname + '?ksh_chk=' + Date.now(), { cache: 'no-store', credentials: 'omit' }).then(function (r) { return r.ok ? r.text() : ''; }).then(function (t) {
+      busy = 0; var m = /<meta name="ksh-ver" content="(\w+)"/.exec(t || '');
+      if (!m || m[1] === mine) return;
+      var tried = ''; try { tried = sessionStorage.getItem('ksh_upd') || ''; } catch (x) {}
+      if (!touched && Date.now() - t0 < 10000 && tried !== m[1]) { try { sessionStorage.setItem('ksh_upd', m[1]); } catch (x) {} return location.reload(); }
+      bar();
+    }, function () { busy = 0; });
+  }
+  setTimeout(check, 1500);
+  document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'visible') check(); });
 })();
 </script>
 <base target="_top">

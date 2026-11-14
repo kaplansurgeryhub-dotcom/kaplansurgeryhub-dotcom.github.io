@@ -35,6 +35,8 @@ self.addEventListener('fetch', e => {
   const u = new URL(e.request.url);
   if (e.request.method !== 'GET' || u.origin !== self.location.origin || !/\/app\/(\w+\.html)?$/.test(u.pathname)) return;
   const key = u.origin + (/\.html$/.test(u.pathname) ? u.pathname : u.pathname + 'index.html');
+  // the page's own check for a newer version (shell-run.js): past the copy, straight to the site, and the answer becomes the copy
+  if (u.searchParams.has('ksh_chk')) return e.respondWith(caches.open(APPC).then(c => fetch(key, { cache: 'no-store' }).then(r => { if (r && r.ok) c.put(key, r.clone()); return r; })));
   e.respondWith((async () => {
     const c = await caches.open(APPC), hit = await c.match(key);
     const net = fetch(key, { cache: 'no-cache' }).then(r => { if (r && r.ok) c.put(key, r.clone()); return r; });
