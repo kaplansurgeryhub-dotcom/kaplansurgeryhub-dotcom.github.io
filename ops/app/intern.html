@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="6781fefcd14f"><script>(function () {
+<head><meta name="ksh-ver" content="8e7af5c75c84"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -680,6 +680,8 @@ textarea:focus,input:focus,select:focus{outline:2px solid #00967D;outline-offset
 .wkl-b{flex:1;min-height:0;overflow:auto;-webkit-overflow-scrolling:touch;padding:2px 10px 10px;direction:ltr;overscroll-behavior:contain}.wkl-s{position:relative;margin:0 auto}
 .wkl-z{position:absolute;left:0;top:0;transform-origin:0 0;direction:rtl;background:#fff;border-radius:14px;box-shadow:0 18px 50px rgba(0,0,0,.35);overflow:hidden}
 .wkl-hint{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);background:rgba(6,22,29,.82);color:#fff;font-size:12.5px;font-weight:700;padding:6px 12px;border-radius:20px;pointer-events:none;white-space:nowrap}
+/* 14/11/2026 (Dr. Gozani): the whole week shows full names, nothing cut with "…"; the sheet grows to the table and the fit scales it */
+.wkl-z b,.wkl-z .nm,.wkl-z .gn{flex-shrink:0!important;max-width:none!important;overflow:visible!important;text-overflow:clip!important}
 html.wklon,html.wklon body{overflow:hidden!important}
 .wkl-in{padding:14px 16px 16px;display:grid;gap:16px}.wkl-in h3{margin:0 0 8px;font-family:var(--serif);font-size:18px}.wkl .wp-grid{display:grid!important}.wkl .wp-wk,.wkl .wp-det{display:none!important}.wkl table.tt{min-width:0}
 .wkl .wp-d{background:#0C2A35;color:#fff}.wkl .wp-d small{color:#A9E6C9}.wkl .wp-d.t{background:#00967D}.wkl .wp-d.t small{color:#fff}.wkl .wp-r{font-size:15px}.wkl .wp-pl{font-size:15.5px}.wkl .wp-x{background:#fff;box-shadow:0 2px 6px rgba(12,42,53,.08)}.wkl .tt .c{font-size:15px}.wkl .tt td.n{font-size:15px}
@@ -1101,7 +1103,7 @@ function drawPlan() {
   const nt = c => c.night ? `<span class="wp-n">${esc(c.night)}</span>` : '<span class="wp-e">—</span>';
   const rows = [['📍', 'השיבוץ שלי', pl], ['🗓', 'ישיבות ומפגשים', mt], ['🏥', 'המערך', dpShort], ['✅', 'מטלות', tk], ['🌙', 'תורנות', nt]];
   const lbl = WP.wk === 0 ? (before() ? 'השבוע הראשון' : 'השבוע') : WP.wk === 7 ? 'השבוע הבא' : WP.wk === -7 ? 'השבוע שעבר' : '';
-  sec.innerHTML = `<div class="wp-h"><div><h2>התוכנית השבועית שלי</h2><div class="cap" style="margin:0">${lbl} · ⁦${dm(days[0])}–${dm(cols[cols.length - 1])}⁩</div></div><span class="sp"></span><span class="seg"><button data-wp="-7" class="${WP.wk === -7 ? 'on' : ''}">הקודם</button><button data-wp="0" class="${WP.wk === 0 ? 'on' : ''}">השבוע</button><button data-wp="7" class="${WP.wk === 7 ? 'on' : ''}">הבא</button></span><button type="button" class="wkfull" id="wpFull"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="19" height="12" rx="2.5"/><path d="M7 6v12M12 6v12M17 6v12"/></svg>תצוגה מקדימה לכל השבוע</button></div>
+  sec.innerHTML = `<div class="wp-h"><div><h2>התוכנית השבועית שלי</h2><div class="cap" style="margin:0">${lbl} · ⁦${dm(days[0])}–${dm(cols[cols.length - 1])}⁩</div></div><span class="sp"></span><span class="seg"><button data-wp="-7" class="${WP.wk === -7 ? 'on' : ''}">הקודם</button><button data-wp="0" class="${WP.wk === 0 ? 'on' : ''}">השבוע</button><button data-wp="7" class="${WP.wk === 7 ? 'on' : ''}">הבא</button></span><button type="button" class="wkfull" id="wpFull"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="19" height="12" rx="2.5"/><path d="M7 6v12M12 6v12M17 6v12"/></svg>תצוגה שבועית</button></div>
     <div class="wp-grid" style="--n:${C.length}"><span></span>${C.map(c => `<span class="wp-d${c.today ? ' t' : ''}"><b>${DN[c.k]}</b><small>${dm(c.d)}</small></span>`).join('')}
       ${rows.map(r => `<span class="wp-r"><i>${r[0]}</i>${r[1]}</span>` + C.map(c => `<span class="wp-x${c.today ? ' t' : ''}${c.past ? ' p' : ''}">${r[2](c)}</span>`).join('')).join('')}</div>
     <div class="wp-wk" style="--n:${C.length}">${C.map(c => `<button type="button" class="wk-c${c.today ? ' t' : ''}${c.past ? ' p' : ''}${c.d === sel ? ' sel' : ''}" data-wd="${c.d}" aria-label="${DN[c.k]} ${dm(c.d)}"><span class="wk-h"><b>${DS[c.k]}</b><small>${dm(c.d)}</small></span>${c.place.t ? `<span class="wk-pl${c.place.off ? ' off' : ''}${c.place.no ? ' no' : ''}" style="${c.place.c ? '--sc:' + c.place.c : ''}">${esc(c.place.s || c.place.t)}</span>` : '<span class="wk-e">—</span>'}${c.meets.map(m => `<span class="wk-m${m.you ? ' you' : ''}"><i>${esc(m.tm)}</i>${esc(m.t)}</span>`).join('')}<span class="wk-f">${c.tasks.map(x => `<span class="wk-t${x.ok ? ' ok' : x.due ? ' due' : ''}"><i>${x.ok ? '✓' : '○'}</i>${x.t === 'דיווח יומי' ? 'דיווח' : x.t === 'הכנה לסמינר' ? 'סמינר' : 'סיכום'}</span>`).join('')}${c.night ? `<span class="wk-n">${c.night.indexOf('☀') === 0 ? '☀ שישי' : '🌙 ' + esc(c.night.replace('🌙 תורנות ', ''))}</span>` : ''}</span></button>`).join('')}</div>
@@ -1133,10 +1135,12 @@ function wkLand(html, title, sub) {
   { const X = bg.querySelector('.wkl-x'); if (X) { X.classList.add('wkl-xf'); bg.appendChild(X); } }
   const r = bg.querySelector('.wkl-r'), b = bg.querySelector('.wkl-b'), s = bg.querySelector('.wkl-s'), z = bg.querySelector('.wkl-z'), sh = z.firstElementChild, pgs = [...sh.querySelectorAll('[data-pg]')], tb = bg.querySelector('.wkl-tabs');
   let zoom = false;
+  // 14/11/2026: the ✕ sits at the frame's bottom both upright and turned (there it is the screen's side); that strip, in screen pixels, stays empty
+  const XR = 66; b.style.paddingBottom = XR + 'px'; b.style.boxSizing = 'border-box';
   const fit = () => {
     const W = innerWidth, H = innerHeight, rot = H > W, w = rot ? H : W, h = rot ? W : H;
     bg.classList.toggle('rot', rot); r.style.width = w + 'px'; r.style.height = h + 'px'; r.style.transform = rot ? `translate(${W}px,0) rotate(90deg)` : 'none';
-    const bw = b.clientWidth - 12, bh = b.clientHeight - 8; let k = 0;
+    const bw = b.clientWidth - 12, bh = b.clientHeight - 8 - XR; let k = 0;
     if (zoom) { sh.style.width = Math.max(760, bw) + 'px'; k = bw / sh.offsetWidth; }
     else { for (let t = 1.15; t >= 0.42; t -= 0.03) { const lw = Math.round(bw / t); if (lw < 720) continue; sh.style.width = lw + 'px'; if (sh.offsetHeight * t <= bh) { k = t; break; } } if (!k) { sh.style.width = '1100px'; k = Math.min(bw / 1100, bh / sh.offsetHeight); } }
     z.style.transform = `scale(${k})`; s.style.width = sh.offsetWidth * k + 'px'; s.style.height = sh.offsetHeight * k + 'px';
@@ -1144,12 +1148,11 @@ function wkLand(html, title, sub) {
   const pick = n => { pgs.forEach((x, k) => { x.hidden = k !== n; }); tb.querySelectorAll('button').forEach((x, k) => x.classList.toggle('on', k === n)); zoom = false; b.scrollTop = 0; fit(); };
   if (pgs.length > 1) { tb.innerHTML = pgs.map(x => `<button type="button">${x.dataset.pg}</button>`).join(''); tb.querySelectorAll('button').forEach((x, k) => x.onclick = () => pick(k)); }
   const esc_ = e => { if (e.key === 'Escape') close(); };
-  const close = () => { removeEventListener('resize', fit); removeEventListener('keydown', esc_); try { if (screen.orientation && screen.orientation.unlock) screen.orientation.unlock(); } catch (e) {} try { if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(() => {}); } catch (e) {} bg.remove(); document.documentElement.classList.remove('wklon'); };
+  const close = () => { removeEventListener('resize', refit); removeEventListener('orientationchange', refit); try { if (window.visualViewport) visualViewport.removeEventListener('resize', refit); } catch (e) {} removeEventListener('keydown', esc_); try { if (screen.orientation && screen.orientation.unlock) screen.orientation.unlock(); } catch (e) {} try { if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(() => {}); } catch (e) {} bg.remove(); document.documentElement.classList.remove('wklon'); };
   bg.querySelector('.wkl-x').onclick = close; z.onclick = e => { if (e.target.closest('a,button')) return; zoom = !zoom; fit(); };
-  addEventListener('resize', fit); addEventListener('keydown', esc_);
+  const refit = () => { fit(); [120, 450, 900].forEach(t => setTimeout(() => { if (bg.isConnected) fit(); }, t)); }; addEventListener('resize', refit); addEventListener('orientationchange', refit); try { if (window.visualViewport) visualViewport.addEventListener('resize', refit); } catch (e) {} addEventListener('keydown', esc_);
   if (pgs.length > 1) pick(0); else fit(); requestAnimationFrame(fit); setTimeout(fit, 350);
   if (matchMedia('(pointer:coarse)').matches && innerHeight > innerWidth && document.documentElement.requestFullscreen && screen.orientation && screen.orientation.lock) { document.documentElement.requestFullscreen({ navigationUI: 'hide' }).then(() => screen.orientation.lock('landscape')).then(() => setTimeout(fit, 200)).catch(() => {}); }
-  if (innerHeight > innerWidth) { const t = document.createElement('div'); t.className = 'wkl-hint'; t.textContent = '↻ מסובבים את הטלפון · הקשה מגדילה'; r.appendChild(t); setTimeout(() => t.remove(), 2700); }
 }
 
 /* ---------- duties ---------- */

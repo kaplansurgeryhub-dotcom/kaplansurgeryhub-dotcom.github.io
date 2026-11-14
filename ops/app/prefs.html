@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="6781fefcd14f"><script>(function () {
+<head><meta name="ksh-ver" content="8e7af5c75c84"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -1043,6 +1043,8 @@ button.ecgb{all:unset;box-sizing:border-box;position:absolute;left:10px;bottom:8
 .wkl-x svg{width:14px;height:14px}
 .wkl.rot .wkl-x{bottom:10px;left:10px}
 .wkl-hint{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);background:rgba(6,22,29,.82);color:#fff;font-size:12.5px;font-weight:700;padding:6px 12px;border-radius:20px;pointer-events:none;animation:wklHint 2.6s ease forwards;white-space:nowrap}
+/* 14/11/2026 (Dr. Gozani): the whole week shows full names, nothing cut with "…"; the sheet grows to the table and the fit scales it */
+.wkl-z b,.wkl-z .nm,.wkl-z .gn{flex-shrink:0!important;max-width:none!important;overflow:visible!important;text-overflow:clip!important}
 @keyframes wklHint{0%,70%{opacity:1}100%{opacity:0}}
 html.wklon,html.wklon body{overflow:hidden!important}
 .wkfull{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;gap:7px;padding:7px 13px 7px 11px;border-radius:999px;background:linear-gradient(135deg,#0C2A35,#155063);color:#fff;font-size:13px;font-weight:800;box-shadow:0 4px 14px rgba(12,42,53,.22);white-space:nowrap}.wkfull svg{width:17px;height:17px;flex:none}.wkfull:active{transform:scale(.97)}
@@ -1909,12 +1911,14 @@ function wkLand(html, title, sub) {
   { const X = bg.querySelector('.wkl-x'); if (X) { X.classList.add('wkl-xf'); bg.appendChild(X); } }
   const r = bg.querySelector('.wkl-r'), b = bg.querySelector('.wkl-b'), s = bg.querySelector('.wkl-s'), z = bg.querySelector('.wkl-z'), sh = z.firstElementChild;
   let zoom = false, tall = false;
+  // 14/11/2026: the ✕ sits at the frame's bottom both upright and turned (there it is the screen's side); that strip, in screen pixels, stays empty
+  const XR = 66; b.style.paddingBottom = XR + 'px'; b.style.boxSizing = 'border-box';
   const fit = () => {
     const W = innerWidth, H = innerHeight, rot = H > W, w = rot ? H : W, h = rot ? W : H;
     bg.classList.toggle('rot', rot); r.style.width = w + 'px'; r.style.height = h + 'px'; r.style.transform = rot ? `translate(${W}px,0) rotate(90deg)` : 'none';
     // the whole week on one screen: the sheet is laid out at the width whose shape matches the screen best and scaled to fit it; a tap enlarges (then it scrolls)
     // a thin margin all round, then the layout width whose shape is closest to the screen; what is left is taken up by a slight stretch (at most 12%), so the page is full
-    const M = 8, bw = b.clientWidth - 2 * M, bh = b.clientHeight - 2 * M;
+    const M = 8, bw = b.clientWidth - 2 * M, bh = b.clientHeight - 2 * M - XR;
     if (!zoom) { let best = null; for (let lw = 640; lw <= 2200; lw += 20) { sh.style.width = lw + 'px'; const q = Math.min(bw / lw, bh / sh.offsetHeight); if (!best || q > best.q) best = { lw: lw, q: q }; }
       // a week too tall to read on one screen (a long plan on a phone held sideways) fills the width and scrolls down instead of shrinking (1/11/2026)
       tall = best.q < 0.7; sh.style.width = (tall ? Math.max(640, Math.round(bw / 0.85)) : best.lw) + 'px'; }
@@ -1928,18 +1932,17 @@ function wkLand(html, title, sub) {
   let curK = 1; const hr = sh.querySelector('table tr:first-child'), hcells = hr ? [...hr.children] : [];
   const pin = () => { if (!hr) return; const y = Math.max(0, b.scrollTop / curK - hr.offsetTop); hcells.forEach(c => { c.style.position = 'relative'; c.style.zIndex = '3'; c.style.transform = y ? `translateY(${y}px)` : ''; }); };
   b.addEventListener('scroll', pin, { passive: true });
-  const close = () => { removeEventListener('resize', fit); removeEventListener('orientationchange', fit); removeEventListener('keydown', esc_);
+  const close = () => { removeEventListener('resize', refit); removeEventListener('orientationchange', refit); try { if (window.visualViewport) visualViewport.removeEventListener('resize', refit); } catch (e) {} removeEventListener('keydown', esc_);
     try { if (screen.orientation && screen.orientation.unlock) screen.orientation.unlock(); } catch (e) {}
     try { if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(() => {}); } catch (e) {}
     bg.style.transition = 'opacity .14s'; bg.style.opacity = '0'; setTimeout(() => { bg.remove(); document.documentElement.classList.remove('wklon'); }, 140); };
   const esc_ = e => { if (e.key === 'Escape') close(); };
   bg.querySelector('.wkl-x').onclick = close; z.onclick = e => { if (e.target.closest('a,button')) return; zoom = !zoom; b.scrollTop = 0; fit(); };
-  addEventListener('resize', fit); addEventListener('orientationchange', () => { setTimeout(fit, 120); setTimeout(fit, 450); setTimeout(fit, 900); }); addEventListener('keydown', esc_);
+  const refit = () => { fit(); [120, 450, 900].forEach(t => setTimeout(() => { if (bg.isConnected) fit(); }, t)); }; addEventListener('resize', refit); addEventListener('orientationchange', refit); try { if (window.visualViewport) visualViewport.addEventListener('resize', refit); } catch (e) {} addEventListener('keydown', esc_);
   fit(); requestAnimationFrame(fit); setTimeout(fit, 350);
   // Android: real full screen and landscape where the browser allows it; iPhone keeps the turned sheet
   if (matchMedia('(pointer:coarse)').matches && innerHeight > innerWidth && document.documentElement.requestFullscreen && screen.orientation && screen.orientation.lock) {
     document.documentElement.requestFullscreen({ navigationUI: 'hide' }).then(() => screen.orientation.lock('landscape')).then(() => setTimeout(fit, 200)).catch(() => {}); }
-  if (innerHeight > innerWidth) { const t = document.createElement('div'); t.className = 'wkl-hint'; t.textContent = '↻ מסובבים את הטלפון · הקשה מגדילה'; r.appendChild(t); setTimeout(() => t.remove(), 2700); }
 }
 document.addEventListener('click', e => { if (!e.target.closest || !e.target.closest('#wkFull')) return; const t = document.querySelector('.pwide .ptw'); if (!t) return;
   wkLand(`<div class="wkl-pt">${t.innerHTML}</div>`, 'תוכנית שבועית', `${dm(WS)} – ${dm(add(WS, 6))}`); });
@@ -1955,7 +1958,7 @@ function vPlan() {
   const tdays = days.filter(d => pd(d).getDay() < 5 || placesOf(d, A.me.id).length || rows.some(([k]) => planCell(d, k)));
   const myN = days.reduce((a, d) => a + placesOf(d, A.me.id).filter(x => x.t !== 'x' && x.t !== 'p').length, 0);
   return `<div class="pbar2"><div class="pb2t"><small>תוכנית שבועית${A.weeks[WS] ? (A.weeks[WS].draft ? ' · טיוטה, רק המנהלים רואים' : '') : ' · עוד לא פורסמה'}</small>${weekNav()}</div>
-  <div class="pb2r"><button class="wkfull" id="wkFull"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="19" height="12" rx="2.5"/><path d="M7 6v12M12 6v12M17 6v12"/></svg>תצוגה מקדימה לכל השבוע</button>${appAtt(WS, 'pl2')}</div></div>
+  <div class="pb2r"><button class="wkfull" id="wkFull"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="19" height="12" rx="2.5"/><path d="M7 6v12M12 6v12M17 6v12"/></svg>תצוגה שבועית</button>${appAtt(WS, 'pl2')}</div></div>
   <section class="hcard hwk2"><h3>השבוע שלי${myN ? `<small> · ${myN} שיבוצים</small>` : ''}</h3>${weekStrip(WS, true)}</section>
   ${WS === sunday(TODAY) ? myCasesCard() : ''}
   <section class="hcard pwide"><div class="ptw"><table class="pt"><tr><th></th>${tdays.map(d => `<th class="${d === TODAY ? 'now' : ''}${pd(d).getDay() >= 5 ? ' we' : ''}${holCls(d)}"><b>${DS[pd(d).getDay()]}</b><small>${dm(d)}</small>${holTag(d, 1)}<em class="wg w${wingOf(d) === 'א' ? 's' : 'n'}">${esc(wingName(wingOf(d)))}</em></th>`).join('')}</tr>
