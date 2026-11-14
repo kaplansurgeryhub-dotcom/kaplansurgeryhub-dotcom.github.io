@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="2a0a2217aa6c"><script>(function () {
+<head><meta name="ksh-ver" content="22c0d31da8d4"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -2933,7 +2933,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = '2a0a2217aa6c'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = '22c0d31da8d4'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -6824,8 +6824,9 @@ async function vCurr(m, who) {
 const LV = { mo: '', grp: '' };
 // every kind of absence, one icon each (10/11/2026, Dr. Gozani): vacation, a return day, sick leave, reserve duty, a course, conference or ceremony
 // 14/11/2026 (Dr. Gozani): the "not present" row. No red palm (it read as a cross): a tile in the reason's color with its sign, and one small legend line
-const AWK = { pd: ['🌙', 'אחרי תורנות'], vac: ['🕶️', 'חופשה'], mil: ['🪖', 'מילואים'], ret: ['↩', 'יום החזר'], sick: ['🤒', 'מחלה'], edu: ['🎓', 'כנס / קורס'] };
-const awKind = (id, d) => { const l = leaveOf(id, d); return lvKind(l && l.w)[2]; };
+const AWK = { pd: ['🌙', 'אחרי תורנות'], vac: ['🕶️', 'חופשה'], ret: ['↩', 'יום החזר'], sick: ['🤒', 'מחלה'], edu: ['🎓', 'כנס / קורס'] };
+// 14/11/2026 (Dr. Gozani): reserve duty can still be chosen as the reason, but the plan shows it as a vacation
+const awKind = (id, d) => { const l = leaveOf(id, d), k = lvKind(l && l.w)[2]; return k === 'mil' ? 'vac' : k; };
 const awTile = (id, k, cls, at) => `<span class="awt ${k}${cls ? ' ' + cls : ''}"${at || ''}><i>${AWK[k][0]}</i><b>${esc(P(id).name)}</b></span>`;
 const awLegend = ks => { ks = Object.keys(AWK).filter(k => ks.indexOf(k) >= 0); return ks.length ? `<div class="awleg">${ks.map(k => `<span class="awt ${k}"><i>${AWK[k][0]}</i>${AWK[k][1]}</span>`).join('')}</div>` : ''; };
 const awKinds = (dates, W) => { const o = []; dates.forEach(d => { if (awayPost(d).length) o.push('pd'); onLeave(d).filter(id => AWAY_R.indexOf(P(id).role) >= 0).forEach(id => o.push(awKind(id, d))); }); return o; };
