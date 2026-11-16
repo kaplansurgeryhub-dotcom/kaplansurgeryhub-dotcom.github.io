@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="8329012f30cd"><script>(function () {
+<head><meta name="ksh-ver" content="30a37368d753"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -99,7 +99,7 @@ const EMBLEM = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QBARXhpZgAAT
   const st = document.createElement('style'); st.textContent = '#kbusy{position:fixed;left:50%;top:50%;z-index:2147483000;pointer-events:none;opacity:0;transform:translate(-50%,-50%) scale(.85);transition:opacity .2s,transform .2s;display:flex;flex-direction:column;align-items:center;gap:8px}#kbusy.on{opacity:1;transform:translate(-50%,-50%) scale(1)}#kbusy .kb{position:relative;width:120px;height:120px;border-radius:50%;background:rgba(255,253,248,.96);box-shadow:0 10px 34px rgba(13,30,45,.28);display:grid;place-items:center}#kbusy .kb:before{content:"";position:absolute;inset:-6px;border-radius:50%;background:conic-gradient(from 0deg,transparent 0 55%,#3DC08C 75%,#1D3047 100%);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 6px),#000 calc(100% - 5px));mask:radial-gradient(farthest-side,transparent calc(100% - 6px),#000 calc(100% - 5px));animation:kbspin .9s linear infinite}#kbusy img{width:88px;height:88px;border-radius:50%;object-fit:contain}#kbusy small{font:700 14px Heebo,Arial,sans-serif;color:#1D3047;background:rgba(255,253,248,.92);padding:2px 10px;border-radius:99px;box-shadow:0 4px 12px rgba(13,30,45,.15)}@keyframes kbspin{to{transform:rotate(360deg)}}@media (prefers-reduced-motion:reduce){#kbusy .kb:before{animation:none;background:#3DC08C}}';
   (document.head || document.documentElement).appendChild(st);
   const done = () => { n = Math.max(0, n - 1); if (!n) { clearTimeout(t); if (el) el.classList.remove('on'); } };
-  window.kBusy = p => { if (Date.now() - last > 1200 || !p || !p.then) return p; n++; clearTimeout(t);
+  window.kBusy = p => { if (Date.now() - last > 1200 || (window.kBusyOff || 0) > Date.now() || !p || !p.then) return p; n++; clearTimeout(t);
     t = setTimeout(() => { if (!n || !document.body) return; if (!el) { el = document.createElement('div'); el.id = 'kbusy'; el.setAttribute('role', 'status'); el.innerHTML = '<div class="kb"><img src="' + EMB + '" alt=""></div><small>רגע…</small>'; document.body.appendChild(el); } el.classList.add('on'); }, 250);
     p.then(done, done); return p; };
 })();
@@ -895,7 +895,8 @@ const slotL = s => SLOT[s] || 'מחלקה';
 // the 5th and 6th nights of someone who agreed to more than four are the extra ones (not for the elective track)
 function extraSet() { if (!A.me.extra || A.me.track === 'אלקטיב') return {}; const o = {}; A.duty.filter(x => x.id === A.me.id && x.s !== 'fm').sort((a, b) => a.d.localeCompare(b.d)).slice(4).forEach(x => { o[x.d] = 1; }); return o; }
 const sessOn = d => (A.sess || []).filter(s => s.date ? s.date === d : +s.day === dow(d) && dow(d) <= 4).sort((a, b) => String(a.time).localeCompare(String(b.time)));
-function nextSession() { for (let k = 0; k < 8; k++) { const d = add(TODAY(), k), c = sessOn(d).filter(x => k > 0 || String(x.time || '') > NOWHM); if (c.length) return { x: c.find(x => x.k === 'you') || c[0], d: d, k: k }; } return null; }
+// 16/11/2026: before the rotation there is no 'tomorrow 07:00' (the department's meetings are not theirs yet); the countdown card says when and where the first day starts
+function nextSession() { if (before()) return null; for (let k = 0; k < 8; k++) { const d = add(TODAY(), k), c = sessOn(d).filter(x => k > 0 || String(x.time || '') > NOWHM); if (c.length) return { x: c.find(x => x.k === 'you') || c[0], d: d, k: k }; } return null; }
 
 /* ---------- photos ---------- */
 function phOf(c) { if (!c) return ''; if (c.me || c.id === A.me.id) return A.photo || ''; if (!c.ph) return ''; const k = c.id + '_' + c.ph; if (PHS[k]) return PHS[k]; const v = lsg('int_ph_' + k); if (v) { PHS[k] = v; return v; } return ''; }
@@ -1010,7 +1011,7 @@ function vHome() {
 }
 function preCard() {
   const n = Math.max(1, Math.round((pd(START()) - pd(TODAY())) / 864e5)), L = A.learn || {}, inst = !!(WR.env && WR.env.standalone);
-  return `<section class="card"><div class="pre"><span class="pre-num" style="--p:${Math.max(6, 100 - n * 6)}%"><b>${n}</b><small>${n === 1 ? 'יום' : 'ימים'}</small></span><div><h2>הסבב מתחיל ב-${+START().slice(8)} ב${HM[+M().slice(5) - 1]}</h2><p class="cap" style="margin:0">עד אז אין צורך לדווח. זה הזמן להכיר את האפליקציה ולהתכונן${A.rot.time ? `. ביום הראשון: ישיבת הבוקר ב-${esc(A.rot.time)}` : ''}.</p></div></div>
+  return `<section class="card"><div class="pre"><span class="pre-num" style="--p:${Math.max(6, 100 - n * 6)}%"><b>${n}</b><small>${n === 1 ? 'יום' : 'ימים'}</small></span><div><h2>הסבב מתחיל ב-${+START().slice(8)} ב${HM[+M().slice(5) - 1]}</h2><p class="cap" style="margin:0">עד אז אין צורך לדווח. זה הזמן להכיר את האפליקציה ולהתכונן${A.rot.time ? `. ביום הראשון, יום ${DN[dow(START())]} ${dm(START())}, נפגשים בישיבת הבוקר ב-${esc(A.rot.time)}` : ''}.</p></div></div>
   <div class="pre-l">${L.booklet && L.booklet.link ? `<a href="${esc(L.booklet.link)}" target="_blank" rel="noopener">📘 <b>לקרוא את ספרון הסטאז׳רים</b><span>נהלים, תבניות קבלה ומה מצופה מכם</span></a>` : ''}
   ${inst ? '<div class="ok">📲 <b>האפליקציה שמורה במסך הבית ✓</b><span>מעולה</span></div>' : '<button type="button" data-act="a2">📲 <b>לשמור את האפליקציה במסך הבית</b><span>אייקון KSH ו-Face ID, כמו כל הרופאים במערך</span></button>'}
   ${A.photo ? '<div class="ok">📷 <b>תמונת פרופיל ✓</b><span>הצוות יכיר אותך מהיום הראשון</span></div>' : '<button type="button" data-act="photo">📷 <b>להעלות תמונת פרופיל</b><span>סלפי ברור, 10 שניות</span></button>'}
@@ -1516,9 +1517,10 @@ function photoGate() {
 function pickPhoto() {
   const f = document.createElement('input'); f.type = 'file'; f.accept = 'image/jpeg,image/png,image/webp,image/heic,image/heif';
   f.onchange = () => { const file = f.files[0]; if (!file) return; const r = new FileReader(); r.onload = async () => { const url = await cropDialog(r.result); if (!url) return;
-    toast('מעלה את התמונה…');
+    // 16/11/2026: the photo shows at once and the upload runs behind it; a failure puts the old one back
+    const old = A.photo; A.photo = url; const g0 = document.getElementById('phgate'); if (g0) g0.remove(); keepScroll(shell); toast('התמונה עולה…'); window.kBusyOff = Date.now() + 1500;
     try { const x = await call('ops_intMeSave', TOKEN, 'photo', { data: url }); A.photo = url; A.me.ph = x.ph; (A.crew || []).forEach(c => { if (c.me) c.ph = x.ph; }); snapPut(); const g = document.getElementById('phgate'); if (g) g.remove(); keepScroll(shell); toast('התמונה עודכנה ✓'); }
-    catch (e) { toast(e.message || 'ההעלאה לא הצליחה. נסו תמונה אחרת'); } }; r.onerror = () => toast('לא הצלחתי לקרוא את התמונה'); r.readAsDataURL(file); };
+    catch (e) { A.photo = old; keepScroll(shell); toast(e.message || 'ההעלאה לא הצליחה. נסו תמונה אחרת'); } }; r.onerror = () => toast('לא הצלחתי לקרוא את התמונה'); r.readAsDataURL(file); };
   f.click();
 }
 function cropDialog(src) { return new Promise(done => {

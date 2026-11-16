@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="8329012f30cd"><script>(function () {
+<head><meta name="ksh-ver" content="30a37368d753"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -101,7 +101,7 @@ const EMBLEM = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QBARXhpZgAAT
   const st = document.createElement('style'); st.textContent = '#kbusy{position:fixed;left:50%;top:50%;z-index:2147483000;pointer-events:none;opacity:0;transform:translate(-50%,-50%) scale(.85);transition:opacity .2s,transform .2s;display:flex;flex-direction:column;align-items:center;gap:8px}#kbusy.on{opacity:1;transform:translate(-50%,-50%) scale(1)}#kbusy .kb{position:relative;width:120px;height:120px;border-radius:50%;background:rgba(255,253,248,.96);box-shadow:0 10px 34px rgba(13,30,45,.28);display:grid;place-items:center}#kbusy .kb:before{content:"";position:absolute;inset:-6px;border-radius:50%;background:conic-gradient(from 0deg,transparent 0 55%,#3DC08C 75%,#1D3047 100%);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 6px),#000 calc(100% - 5px));mask:radial-gradient(farthest-side,transparent calc(100% - 6px),#000 calc(100% - 5px));animation:kbspin .9s linear infinite}#kbusy img{width:88px;height:88px;border-radius:50%;object-fit:contain}#kbusy small{font:700 14px Heebo,Arial,sans-serif;color:#1D3047;background:rgba(255,253,248,.92);padding:2px 10px;border-radius:99px;box-shadow:0 4px 12px rgba(13,30,45,.15)}@keyframes kbspin{to{transform:rotate(360deg)}}@media (prefers-reduced-motion:reduce){#kbusy .kb:before{animation:none;background:#3DC08C}}';
   (document.head || document.documentElement).appendChild(st);
   const done = () => { n = Math.max(0, n - 1); if (!n) { clearTimeout(t); if (el) el.classList.remove('on'); } };
-  window.kBusy = p => { if (Date.now() - last > 1200 || !p || !p.then) return p; n++; clearTimeout(t);
+  window.kBusy = p => { if (Date.now() - last > 1200 || (window.kBusyOff || 0) > Date.now() || !p || !p.then) return p; n++; clearTimeout(t);
     t = setTimeout(() => { if (!n || !document.body) return; if (!el) { el = document.createElement('div'); el.id = 'kbusy'; el.setAttribute('role', 'status'); el.innerHTML = '<div class="kb"><img src="' + EMB + '" alt=""></div><small>רגע…</small>'; document.body.appendChild(el); } el.classList.add('on'); }, 250);
     p.then(done, done); return p; };
 })();
@@ -3056,7 +3056,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = '8329012f30cd'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = '30a37368d753'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
