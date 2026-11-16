@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="22fdfd4c3b25"><script>(function () {
+<head><meta name="ksh-ver" content="ffe8017f7ef3"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -3049,7 +3049,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = '22fdfd4c3b25'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = 'ffe8017f7ef3'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -9626,7 +9626,7 @@ function scSyl(id, done) {
     <label class="f">התחום</label>${ed ? discSel('syDi', disc) : scDiscChip(disc)}
     <label class="f">מטרות למידה (שורה לכל מטרה)</label><textarea class="in" id="syO" style="min-height:120px" ${ed ? '' : 'disabled'}>${esc((cur.obj || []).join('\n'))}</textarea>
     <label class="f">קריאה מסאביסטון (שורה לכל מקור, באנגלית)</label><textarea class="in" id="syR" dir="ltr" style="min-height:60px" ${ed ? '' : 'disabled'}>${esc(cur.read)}</textarea>
-    <label class="f">📘 הכנה לשיעור (קישור) · הסטודנטים רואים אותה מראש</label><div style="display:flex;gap:6px"><input class="in" id="syP" dir="ltr" value="${esc(cur.prep || '')}" placeholder="…/scrub/…-prep.html" ${ed ? '' : 'disabled'}>${cur.prep ? `<a class="btn sm" href="${esc(scDeckUrl(cur.prep))}" target="_blank" rel="noopener">פתיחה</a>` : ''}</div>
+    <label class="f">📘 הכנה לשיעור (קישור) · הסטודנטים רואים אותה מראש</label><div style="display:flex;gap:6px"><input class="in" id="syP" dir="ltr" value="${esc(cur.prep || (cur.deck && ['admin', 'round', 'exam'].indexOf(c.k) < 0 ? String(cur.deck).replace(/\.html\b/, '-prep.html') : ''))}" placeholder="…/scrub/…-prep.html" ${ed ? '' : 'disabled'}>${cur.prep ? `<a class="btn sm" href="${esc(scDeckUrl(cur.prep))}" target="_blank" rel="noopener">פתיחה</a>` : ''}</div>
     <label class="f">▶ המצגת המלאה (קישור) · עם המקרים בסוף. מוצגת רק בשיעור</label><div style="display:flex;gap:6px"><input class="in" id="syD" dir="ltr" value="${esc(cur.deck)}" ${ed ? '' : 'disabled'}>${cur.deck ? `<a class="btn sm" href="${esc(scDeckUrl(cur.deck))}" target="_blank" rel="noopener">פתיחה</a>` : ''}</div>
     <label class="f">📝 דגשים למרצה (שורה לכל דגש) · רק המרצים והמנהלים רואים</label><textarea class="in" id="syL" style="min-height:90px" ${ed ? '' : 'disabled'}>${esc((cur.ln || []).join('\n'))}</textarea>
     <label class="f">שמות המפגש בלוח (כדי שיופיע אצל הסטודנטים)</label><input class="in" id="syT" value="${esc((cur.t || []).join(' | '))}" ${ed ? '' : 'disabled'}>
