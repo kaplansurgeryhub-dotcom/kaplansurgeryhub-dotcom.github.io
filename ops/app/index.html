@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="af00961c5876"><script>(function () {
+<head><meta name="ksh-ver" content="514bf8dcbb33"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -3008,7 +3008,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = 'af00961c5876'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = '514bf8dcbb33'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -12532,8 +12532,13 @@ async function vToday(m, who, keep) {
   const FIRST = { chief: ['erlead', 'consult', 'rn', 'rs'], deputy: ['clinic'], sec: ['clinic'], director: ['rn', 'rs'], pa: ['erlead'] }[who] || [];
   // who is where: one row per post, each with its colour; the manager's own posts first; who is away closes the card
   const dcR = k => { const L = typeof dcOf === 'function' ? dcOf(DW, k) : []; return td3Ppl((DW[k] || []).concat(L.filter(id => !(DW[k] || []).some(y => y.id === id)).map(id => ({ id })))); };
-  const ROWS = [['rn', 'ביקור צפון', dcR('rn'), '#4A86C5'], ['rs', 'ביקור דרום', dcR('rs'), '#C9893F'], ['erlead', 'אחראי מיון', td3Ppl(DW.erlead), '#E2574C'], ['consult', 'ייעוצים', td3Ppl(DW.consult), '#8B6BD6'],
-    ['clinic', 'מרפאות', clinHtml(DW, x => td3Chip(x.id), L => td3Ppl(L)), '#00967D'], ['day', 'אשפוז יום', td3Ppl(DW.day), '#2FA7B5']]
+  // 16/11/2026 (Dr. Gozani): everyone on the day's plan, seniors and residents: the ER residents beside the lead, the OR teams by room,
+  // pre-op and the residents' teaching too. Drawn from the same week as the plan, so every change there shows here on the next refresh
+  const idOf = x => x && (x.id || x), erHtml = (() => { const lead = (DW.erlead || []).map(idOf), L = lead.map(id => td3Chip(id, 'אחראי')).concat((DW.er || []).map(idOf).filter(id => lead.indexOf(id) < 0).map(id => td3Chip(id))).join(''); return L ? `<div class="td3-pp">${L}</div>` : ''; })();
+  const orHtml = (() => { const seen = {}, L = []; (DW.or || []).forEach(r => { const ids = (r.ids || []).map(idOf); (r.cx || []).forEach(c => (c.s || []).forEach(id => { if (ids.indexOf(id) < 0) ids.push(id); })); ids.forEach(id => { if (id && !seen[id]) { seen[id] = 1; L.push(td3Chip(id, r.n || '')); } }); }); return L.join('') ? `<div class="td3-pp">${L.join('')}</div>` : ''; })();
+  const ROWS = [['rn', 'ביקור צפון', dcR('rn'), '#4A86C5'], ['rs', 'ביקור דרום', dcR('rs'), '#C9893F'], ['erlead', 'מיון', erHtml, '#E2574C'], ['consult', 'ייעוצים', td3Ppl(DW.consult), '#8B6BD6'],
+    ['or', 'חדרי ניתוח', orHtml, '#0C2A35'], ['clinic', 'מרפאות', clinHtml(DW, x => td3Chip(x.id), L => td3Ppl(L)), '#00967D'], ['day', 'אשפוז יום', td3Ppl(DW.day), '#2FA7B5'],
+    ['preop', 'טרום ניתוח', td3Ppl(DW.preop), '#6A4FB0'], ['study', 'ישיבת לימודים', td3Ppl(DW.study), '#B8863B']]
     .filter(r => r[2]).sort((a, b) => (FIRST.indexOf(a[0]) < 0 ? 99 : FIRST.indexOf(a[0])) - (FIRST.indexOf(b[0]) < 0 ? 99 : FIRST.indexOf(b[0])));
   const AT = typeof weekAtt === 'function' ? weekAtt(WK(wsW)) : {}, attRow = AT.n || AT.s ? `<div class="td3-r td4-att" style="--c:#0C2A35"><span><i></i>אטנדינג השבוע</span><div class="td3-pp">${AT.n ? td3Chip(AT.n, 'צפון').replace('class="td3-p"', 'class="td3-p atn"') : ''}${AT.s ? td3Chip(AT.s, 'דרום').replace('class="td3-p"', 'class="td3-p ats"') : ''}</div></div>` : '';
   const rowsHtml = attRow + (ROWS.map(r => `<div class="td3-r${FIRST.indexOf(r[0]) >= 0 ? ' em' : ''}" style="--c:${r[3]}"><span><i></i>${r[1]}</span><div style="min-width:0">${r[2]}</div></div>`).join('') || '<p class="hb5-0">עוד לא שובץ</p>')
@@ -12561,7 +12566,7 @@ async function vToday(m, who, keep) {
   if (nx) TK.push(`⏱ ${pT ? 'הבא' : td5Lab(pdy)}: ${esc(nx.t)} ${esc(nx.s)}`);
   TK.push(`${wn === 'צפון' ? '🔵' : '🟠'} אגף ${esc(wn)} בקבלה עד 07:00`);
   if (rooms.length) TK.push(`🔪 ${pT ? '' : td5Lab(pdy) + ': '}${rooms.length} חדרים · ${nProc} ניתוחים`);
-  if (nAway) TK.push(`🏝 לא נמצאים${wd === d ? '' : ' ב' + td5Lab(wd)}: ${[...away.map(id => absIc('תורנות') + kName(id)), ...abs.map(x => (x.why ? absIc(x.why) : '') + kName(x.id))].join(', ')}`);
+  if (nAway) TK.push(`🏝 לא נמצאים${wd === d ? '' : ' ' + (/^(היום|מחר)$/.test(td5Lab(wd)) ? td5Lab(wd) : 'ביום ' + td5Lab(wd))}: ${[...away.map(id => absIc('תורנות') + kName(id)), ...abs.map(x => (x.why ? absIc(x.why) : '') + kName(x.id))].join(', ')}`);
   const sN = evs.filter(e => e.k === 's'), iN = evs.filter(e => e.k === 'i');
   if (sN.length) TK.push(`🎓 סטודנטים: ${sN.length} מפגשים · ${esc(sN[0].t)} ${esc(sN[0].s)}`);
   if (iN.length) TK.push(`🩺 סטאז׳רים: ${esc(iN[0].t)} ${esc(iN[0].s)}`);
