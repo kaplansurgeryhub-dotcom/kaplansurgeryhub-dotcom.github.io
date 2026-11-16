@@ -67,6 +67,28 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .hz{fill:var(--c);fill-opacity:.38;stroke:var(--c);stroke-width:2;cursor:pointer;transition:fill-opacity .2s}.hz:hover,.hz.on{fill-opacity:.62}.hzl{font:900 22px Heebo,sans-serif;fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;pointer-events:none;text-anchor:middle}
 .hotp .hint{background:var(--soft);border-radius:12px;padding:10px 12px;font-weight:700;color:var(--g3)}.hzi{border-inline-start:5px solid var(--c,var(--g));background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-top:8px;font-size:15.5px;line-height:1.45}.hzi b{display:block;font-size:17px;color:var(--navy);margin-bottom:4px}
 @media (max-width:760px){.hotw{grid-template-columns:1fr}}
+
+/* rolling cases (the last slides of the full deck): a case opens stage by stage, each answer opens on a tap */
+.cs-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}.cs-h .tag{font-size:12.5px}
+.cs-p{background:var(--soft);border-radius:14px;padding:12px 15px;font-size:16.5px;line-height:1.5;border-inline-start:4px solid var(--navy)}
+.cs-st{display:grid;gap:8px;margin-top:10px}
+details.cs{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+details.cs>summary{display:flex;gap:10px;align-items:center;padding:11px 14px;font-weight:800;font-size:16px;color:var(--navy)}
+details.cs>summary i{font-style:normal;flex:0 0 28px;height:28px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-size:14px}
+details.cs[open]>summary{background:#F2F8F5;border-bottom:1px solid var(--line)}
+details.cs .ans{padding:11px 15px 13px;font-size:15.5px;line-height:1.5}
+details.cs .ans p{margin:0 0 6px}details.cs .ans ul{margin:4px 0 0;padding-inline-start:18px}details.cs .ans li{margin:3px 0}
+details.cs .cs-pv{margin-inline-start:auto;font-size:12px;font-weight:800;color:var(--g3);background:#E3F4EC;border-radius:999px;padding:2px 9px}
+details.cs .nx{margin-top:8px;background:#FFF6EA;border-radius:10px;padding:8px 11px;font-weight:700;color:#7A4E10}
+.cs-div{text-align:center}.cs-div h2{font-size:clamp(30px,5vw,46px)}.cs-div .lead{max-width:640px;margin-inline:auto}
+.cs-div .num{max-width:720px;margin-inline:auto;grid-template-columns:repeat(3,1fr)}
+/* the prep deck */
+.pv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.pv div{background:var(--soft);border-radius:14px;padding:13px 14px}.pv b{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}.pv span{font-size:14.5px;line-height:1.45;color:var(--ink)}
+.rd{display:grid;gap:8px}.rd div{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 14px}
+.rd div>b{font-family:'Frank Ruhl Libre',serif;font-size:22px;color:var(--g3);min-width:46px;text-align:center}.rd div>span{font-size:15.5px;line-height:1.4}.rd div>em{font-style:normal;font-size:12.5px;font-weight:800;border-radius:999px;padding:3px 10px;background:#E3F4EC;color:var(--g3);white-space:nowrap}
+.rd div>em.o{background:#F1F3F2;color:var(--muted)}
+@media (max-width:760px){.pv,.cs-div .num{grid-template-columns:1fr}.rd div{grid-template-columns:auto 1fr}.rd div>em{grid-column:2}}
+
 /*BRAND*/
 .brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
 .brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
@@ -487,6 +509,41 @@ body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat
  <div class="src"><span>איורים: <bdi>Sobotta</bdi> 1906 (נחלת הכלל) · צילומים: <span class="nw"><bdi>Hellerhoff</bdi>,</span> <span class="nw"><bdi>J. Guntau</bdi>,</span> <bdi>Milliways</bdi> <span class="nw">(<bdi>CC BY-SA</bdi>,</span> <span class="nw"><bdi>Wikimedia Commons</bdi>)</span> · <bdi>NCI</bdi> (נחלת הכלל) · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
+
+<section class="s"><div class="card cs-div">
+ <div class="kick"><b>17</b>מקרים מתגלגלים</div>
+ <h2>מהמיון לחדר הניתוח</h2>
+ <p class="lead">3 מטופלים. כל מקרה נפתח שלב אחרי שלב: קודם חושבים יחד מה עושים, ורק אז פותחים את התשובה</p>
+ <div class="num"><div><b>1</b><span>בטן נפוחה מאוד אצל דייר בית אבות</span></div><div><b>2</b><span>צואה דקה כעיפרון ועכשיו בלי גזים</span></div><div><b>3</b><span>בטן תפוחה שלושה ימים אחרי החלפת ירך</span></div></div>
+ <div class="src"><span>המקרים בדויים ונכתבו לפי <b>Sabiston 22</b>, בלי פרטי מטופלים</span><span>מקרים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>18</b>מקרה מתגלגל</div>
+ <h2>בטן שהתנפחה בתוך יום</h2>
+ <div class="cs-h"><span class="tag">גבר · 81</span><span class="tag b">מיון</span></div>
+ <div class="cs-p">גבר בן 81, דייר בית אבות עם עצירות כרונית, מגיע למיון עם בטן נפוחה מאוד וכאב קוליקי מאתמול. לא יוצאים גזים. הבטן טימפנית, בלי רגישות ממוקדת ובלי חום</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>איזו בדיקה ראשונה ומה מחפשים בה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>צילום בטן: איפה החסימה, כמה המעי מורחב ולפעמים האבחנה עצמה</li><li>CT עם ניגוד: הסיבה וסימנים של איסכמיה או נקב</li><li>מעבדה: ספירה, אלקטרוליטים, תפקודי כליה, לקטט</li></ul><div class="nx">בצילום: לולאה ענקית בצורת "צינור פנימי מקופל" שעולה מהאגן ואין גז ב-rectum</div></div></details><details class="cs"><summary><i>2</i>מה האבחנה ומה עושים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>וולבולוס של ה-sigmoid: סיבוב סביב ה-mesentery שיוצר לולאה סגורה</li><li>אין פריטוניטיס ואין סימני איסכמיה: התרה אנדוסקופית, בסיגמואידוסקופ קשיח או גמיש והשארת שרוול רקטלי מעל נקודת הסיבוב</li><li>אם יש פריטוניטיס, נקב או מעי איסכמי: לחדר ניתוח מיד</li></ul><div class="nx">ההתרה מצליחה. יוצאים גז וצואה בכמות גדולה והבטן רכה</div></div></details><details class="cs"><summary><i>3</i>משחררים אותו?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><p><b>לא בלי תוכנית.</b> אחרי התרה מוצלחת עושים כריתה מתוכננת של ה-sigmoid עם השקה ראשונית, כי החזרה שכיחה</p><p>אם ההתרה הייתה נכשלת: ניתוח, כריתה וקולוסטומיה (הרטמן)</p></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1455–1457</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>19</b>מקרה מתגלגל</div>
+ <h2>עצירות שהחמירה לאט</h2>
+ <div class="cs-h"><span class="tag">גבר · 72</span><span class="tag r">מיון</span></div>
+ <div class="cs-p">גבר בן 72 מספר על חודשיים של עצירות שהולכת ומחמירה וצואה דקה. בשלושת הימים האחרונים לא יצאו גזים והבטן מתנפחת. הוא מעולם לא עבר קולונוסקופיה</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה החשד ולמה זה מסוכן?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>הסיפור הקלאסי של גידול שמאלי שחוסם לאט</li><li>אם ה-ileocecal valve שלם, נוצרת לולאה סגורה בין הגידול לשסתום</li><li>ה-cecum הוא הרחב ביותר ולכן לפי חוק לפלס הוא נמתח ומתנקב ראשון, גם כשהגידול ב-sigmoid</li></ul><div class="nx">ב-CT: גידול חוסם ב-sigmoid, ה-cecum ברוחב 10 ס״מ, אין אוויר חופשי. הוא יציב</div></div></details><details class="cs"><summary><i>2</i>מה האפשרויות?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>בדרך כלל ניתוח דחוף וכריתה מקטעית של הגידול</li><li>במטופל יציב, עם מעי בריא ואספקת דם טובה: אפשר השקה ראשונית, עם או בלי סטומה מסיטה. אחרת: הרטמן</li><li>סטנט אנדוסקופי כגשר: משחרר את החסימה ומאפשר ניתוח מתוכנן בתנאים טובים יותר, עם יותר השקות ראשוניות ופחות זיהומי פצע</li><li>סטנט אסור בחשד לאיסכמיה או לנקב</li></ul><div class="nx">בזמן ההכנה הוא מתחיל לסבול מכאב חזק בצד ימין למטה, דופק 120 וחום</div></div></details><details class="cs"><summary><i>3</i>מה השתנה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>רגישות ב-cecum, חום ודופק מהיר: חשד לאיסכמיה או לנקב מתקרב</li><li>סטנט כבר לא בא בחשבון. לחדר ניתוח מיד</li><li>אם ה-colon הקרוב מנוקב או איסכמי: כריתה כמעט מלאה של המעי הגס</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1432, 1455–1457</bdi> · פרק 96 עמ׳ <bdi dir="ltr">1497, 1501</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>20</b>מקרה מתגלגל</div>
+ <h2>בטן תפוחה אחרי ניתוח אורתופדי</h2>
+ <div class="cs-h"><span class="tag">אישה · 79</span><span class="tag a">מחלקה</span></div>
+ <div class="cs-p">אישה בת 79 עם אי ספיקת לב, שלושה ימים אחרי החלפת מפרק ירך. היא מקבלת אופיאטים לכאבים. מאתמול הבטן הולכת ומתנפחת, אבל היא לא רגישה. הכירורג מתבקש לייעוץ</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה החשד ואיך מאשרים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>פסאודו-חסימה חריפה (אוגילבי): הרחבה של המעי הגס בלי חסימה מכנית. שכיחה במבוגרים עם מחלות רקע אחרי ניתוח</li><li>בצילום: המעי מורחב, הכי הרבה ב-cecum ובצד ימין וגז עד ה-rectum</li><li>CT מאשר: מבדיל מחסימה מכנית ומחפש סימני איסכמיה</li></ul><div class="nx">ב-CT כל ה-colon מורחב, ה-cecum ברוחב 10 ס״מ, אין גידול ואין סימני איסכמיה</div></div></details><details class="cs"><summary><i>2</i>מה עושים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>צום, תיקון אלקטרוליטים והפסקת התרופות שתורמות, כמו אופיאטים</li><li>זונדה ושרוול רקטלי. הליכה ושכיבה על הבטן או בתנוחת ברכיים-חזה</li><li><b>בלי משלשלים:</b> הם יכולים להגדיל את ההרחבה</li><li>בדיקה וצילום חוזרים</li></ul><div class="nx">אחרי יומיים אין שיפור. ה-cecum ברוחב 13 ס״מ. היא לא רגישה ואין חום</div></div></details><details class="cs"><summary><i>3</i>והשלב הבא?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>ניאוסטיגמין: 2–2.5 מ״ג בווריד במשך 3–5 דקות, במוניטור ועם אטרופין מוכן. הצלחה ב-60–94%, חזרה עד 31%</li><li>אסור בחסימה מכנית, באיסכמיה או בנקב. זהירות באסתמה, COPD, ברדיקרדיה, תסמונת כלילית חריפה ואי ספיקת כליות</li><li>אם לא עבד: פריקה בקולונוסקופיה. אם יש איסכמיה או נקב: ניתוח</li><li>למה לא מחכים: איסכמיה או נקב ב-3–15% ואז תמותה של כמעט 50%</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1457–1459</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
 <script>

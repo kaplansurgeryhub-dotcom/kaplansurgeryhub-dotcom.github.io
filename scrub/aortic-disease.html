@@ -63,6 +63,28 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 @media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
 @media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+
+/* rolling cases (the last slides of the full deck): a case opens stage by stage, each answer opens on a tap */
+.cs-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}.cs-h .tag{font-size:12.5px}
+.cs-p{background:var(--soft);border-radius:14px;padding:12px 15px;font-size:16.5px;line-height:1.5;border-inline-start:4px solid var(--navy)}
+.cs-st{display:grid;gap:8px;margin-top:10px}
+details.cs{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+details.cs>summary{display:flex;gap:10px;align-items:center;padding:11px 14px;font-weight:800;font-size:16px;color:var(--navy)}
+details.cs>summary i{font-style:normal;flex:0 0 28px;height:28px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-size:14px}
+details.cs[open]>summary{background:#F2F8F5;border-bottom:1px solid var(--line)}
+details.cs .ans{padding:11px 15px 13px;font-size:15.5px;line-height:1.5}
+details.cs .ans p{margin:0 0 6px}details.cs .ans ul{margin:4px 0 0;padding-inline-start:18px}details.cs .ans li{margin:3px 0}
+details.cs .cs-pv{margin-inline-start:auto;font-size:12px;font-weight:800;color:var(--g3);background:#E3F4EC;border-radius:999px;padding:2px 9px}
+details.cs .nx{margin-top:8px;background:#FFF6EA;border-radius:10px;padding:8px 11px;font-weight:700;color:#7A4E10}
+.cs-div{text-align:center}.cs-div h2{font-size:clamp(30px,5vw,46px)}.cs-div .lead{max-width:640px;margin-inline:auto}
+.cs-div .num{max-width:720px;margin-inline:auto;grid-template-columns:repeat(3,1fr)}
+/* the prep deck */
+.pv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.pv div{background:var(--soft);border-radius:14px;padding:13px 14px}.pv b{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}.pv span{font-size:14.5px;line-height:1.45;color:var(--ink)}
+.rd{display:grid;gap:8px}.rd div{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 14px}
+.rd div>b{font-family:'Frank Ruhl Libre',serif;font-size:22px;color:var(--g3);min-width:46px;text-align:center}.rd div>span{font-size:15.5px;line-height:1.4}.rd div>em{font-style:normal;font-size:12.5px;font-weight:800;border-radius:999px;padding:3px 10px;background:#E3F4EC;color:var(--g3);white-space:nowrap}
+.rd div>em.o{background:#F1F3F2;color:var(--muted)}
+@media (max-width:760px){.pv,.cs-div .num{grid-template-columns:1fr}.rd div{grid-template-columns:auto 1fr}.rd div>em{grid-column:2}}
+
 /*BRAND*/
 .brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
 .brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
@@ -496,6 +518,41 @@ body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 102 <bdi>Aortic Disease</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1620–1633</bdi>)</span></div>
  <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906, נחלת הכלל) · תמונות קליניות והדמיה <span class="nw">מ-<bdi>Wikimedia Commons</bdi></span> לפי הרישיון בכל כיתוב · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+<section class="s"><div class="card cs-div">
+ <div class="kick"><b>17</b>מקרים מתגלגלים</div>
+ <h2>מהמיון לחדר הניתוח</h2>
+ <p class="lead">3 מטופלים. כל מקרה נפתח שלב אחרי שלב: קודם חושבים יחד מה עושים, ורק אז פותחים את התשובה</p>
+ <div class="num"><div><b>1</b><span>ממצא בסקר של גבר מעשן</span></div><div><b>2</b><span>התעלפות וכאב גב</span></div><div><b>3</b><span>כאב בחזה ורגל שמאל קרה</span></div></div>
+ <div class="src"><span>המקרים בדויים ונכתבו לפי <b>Sabiston 22</b>, בלי פרטי מטופלים</span><span>מקרים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>18</b>מקרה מתגלגל</div>
+ <h2>4.7 ס״מ בסקר</h2>
+ <div class="cs-h"><span class="tag">גבר · 67</span><span class="tag b">מרפאה</span></div>
+ <div class="cs-p">גבר בן 67, מעשן כבר 40 שנה, עם יתר לחץ דם. עבר אולטרסאונד סקר ונמצאה מפרצת של ה-<span class="nw"><bdi dir="ltr">abdominal aorta</bdi></span> בקוטר 4.7 ס״מ. אין לו תסמינים</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>למה הוא עבר סקר ומה עושים עם הממצא?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>כוח המשימה האמריקאי ממליץ על אולטרסאונד חד-פעמי לגברים בני <bdi dir="ltr">65–75</bdi> שעישנו אי פעם</li><li>הקוטר מתחת לסף התיקון. מעקב לפי הקוטר: <bdi dir="ltr">4.5–5.4</bdi> ס״מ, אולטרסאונד חוזר כל 6 חודשים</li><li>סף התיקון במפרצת בטנית בלי תסמינים: 55 מ״מ</li></ul></div></details><details class="cs"><summary><i>2</i>מה הוא מקבל עד אז?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b>הפסקת עישון:</b> עישון פעיל מאיץ את ההתרחבות</li><li>איזון לחץ הדם, כולל לחץ הדופק. חוסמי בטא מתאימים לשתי המטרות</li><li><b>סטטין:</b> קשור להתרחבות איטית יותר ומוריד אירועים לבביים</li></ul><div class="nx">אחרי שנה וחצי הקוטר 5.7 ס״מ</div></div></details><details class="cs"><summary><i>3</i>פתוח או <span class="nw"><bdi dir="ltr">EVAR</bdi></span>?</summary><div class="ans"><ul><li>שתי הדרכים מקובלות וההחלטה לפי האנטומיה, הסיכון של המטופל ומה שהוא מעדיף</li><li>אחרי <span class="nw"><bdi dir="ltr">EVAR</bdi></span> היתרון המוקדם על פני ניתוח פתוח נעלם עם הזמן ויש יותר ניתוחים חוזרים</li><li><span class="nw"><bdi dir="ltr">EVAR</bdi></span> מחייב מעקב הדמיה לכל החיים: חודש, 6 חודשים, שנה ואחר כך כל שנה. מי שלא יוכל להתמיד במעקב אולי לא מתאים</li></ul><div class="nx">הוא עובר <span class="nw"><bdi dir="ltr">EVAR</bdi></span>. ב-CT אחרי חודש רואים זרימה לתוך השק מעורקי ה-<span class="nw"><bdi dir="ltr">lumbar</bdi></span></div></div></details><details class="cs"><summary><i>4</i>מה זה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b>דליפה מסוג 2:</b> זרימה לאחור מעורקי ה-<span class="nw"><bdi dir="ltr">lumbar</bdi></span> או מה-<span class="nw"><bdi dir="ltr">IMA</bdi></span></li><li>סוג 1 הוא דליפה באזור האיטום העליון או התחתון וסוג 3 היפרדות בין רכיבי השתל</li><li>בכל סוג עוקבים אחרי קוטר השק: זו המטרה של המעקב</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 102 עמ׳ <bdi dir="ltr">1626–1628, 1630–1631</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>19</b>מקרה מתגלגל</div>
+ <h2>כאב גב פתאומי</h2>
+ <div class="cs-h"><span class="tag">גבר · 76</span><span class="tag r">מיון</span></div>
+ <div class="cs-p">גבר בן 76, שידע שיש לו מפרצת בבטן אבל הפסיק להגיע למעקב. היום התעלף בבית ומתלונן על כאב חזק בגב ובבטן. הלחץ 82/50, הדופק 120. בבטן יש גוש פועם ורגיש</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה החשד ומה עושים מיד?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>מפרצת שנקרעה. מפרצת ידועה בלי מעקב מעלה מאוד את הסיכון לקרע</li><li>מעבר מהיר לחדר ניתוח שבו אפשר גם ניתוח פתוח וגם אנדווסקולרי</li><li>מינימום בדיקות לפני</li><li><b>בלון חוסם ב-<span class="nw"><bdi dir="ltr">aorta</bdi></span></b> לפני ההרדמה: הוא יכול לתמוך בלחץ הדם בכל סוג של תיקון</li></ul><div class="nx">ה-CT שנעשה בדרך מראה המטומה רטרופריטונאלית ומפרצת שמתאימה ל-<span class="nw"><bdi dir="ltr">EVAR</bdi></span></div></div></details><details class="cs"><summary><i>2</i>פתוח או <span class="nw"><bdi dir="ltr">EVAR</bdi></span>?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>בניסויים אקראיים לא היה הבדל בתמותה המוקדמת בין השניים</li><li>ב-<span class="nw"><bdi dir="ltr">IMPROVE</bdi></span> היה יתרון ל-<span class="nw"><bdi dir="ltr">EVAR</bdi></span> אחרי 4 שנים, שנעלם אחרי 7 שנים</li><li>מי שהתאים ל-<span class="nw"><bdi dir="ltr">EVAR</bdi></span> הגיע לתוצאות טובות יותר ולכן רבים ממליצים על גישה של <span class="nw"><bdi dir="ltr">EVAR</bdi></span> קודם</li><li>כשאפשר <span class="nw"><bdi dir="ltr">EVAR</bdi></span>, עדיף לעשות אותו בהרדמה מקומית ולא כללית</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 102 עמ׳ <bdi dir="ltr">1627, 1632</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>20</b>מקרה מתגלגל</div>
+ <h2>כאב קורע שנדד לגב</h2>
+ <div class="cs-h"><span class="tag">אישה · 58</span><span class="tag a">מיון</span></div>
+ <div class="cs-p">אישה בת 58 עם יתר לחץ דם לא מאוזן. לפני שעתיים כאב חד ופתאומי בחזה, שעבר לגב. הלחץ 190/105. בא.ק.ג יש שינויים לא ספציפיים</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>למה קל לפספס כאן אבחנה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>דיסקציה היא "המתחזה הגדולה": חסימה של ענפים נראית כמו תסמונת כלילית, שבץ, איסכמיה של גפה, אי ספיקת כליות או בטן חריפה</li><li>בסדרה של 526 חולים עם סוג A, אצל יותר מ-20% הכאב היה בבטן</li><li>הבדל בדפקים היה רק אצל 139 מהם. א.ק.ג תקין היה רק ב-31% ויותר מרבע הראו סימנים שמטעים לכיוון הלב</li></ul><div class="nx">ב-CT יש דיסקציה שמתחילה דיסטלית ל-<span class="nw"><bdi dir="ltr">left subclavian artery</bdi></span>. ה-<span class="nw"><bdi dir="ltr">ascending aorta</bdi></span> תקינה</div></div></details><details class="cs"><summary><i>2</i>איזה סוג ומה הטיפול?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b><span class="nw"><bdi dir="ltr">Stanford B</bdi></span></b>: רק דיסטלית ל-<span class="nw"><bdi dir="ltr">left subclavian artery</bdi></span></li><li>דיסקציה B לא מסובכת: טיפול תרופתי. חוסמי בטא מורידים את הלחץ ואת הכוח של כל פעימה על הדופן</li><li>לו ה-<span class="nw"><bdi dir="ltr">ascending aorta</bdi></span> הייתה מעורבת (סוג A): ניתוח חירום. בלי טיפול התמותה <bdi dir="ltr">1–2%</bdi> לשעה ביממה הראשונה</li></ul><div class="nx">אחרי שש שעות רגל שמאל קרה וחיוורת ובבדיקות הדם הקריאטינין עולה</div></div></details><details class="cs"><summary><i>3</i>מה השתנה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>זו עכשיו דיסקציה <b>מסובכת</b>: <span class="nw"><bdi dir="ltr">malperfusion</bdi></span> של הרגל ושל הכליה</li><li>בדיסקציה B מסובכת (קרע או <span class="nw"><bdi dir="ltr">malperfusion</bdi></span>) הטיפול המועדף הוא <span class="nw"><bdi dir="ltr">TEVAR</bdi></span>: שתל-סטנט שמכסה את הקרע</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 102 עמ׳ <bdi dir="ltr">1620–1623</bdi></span><span>מקרה לדיון · בדוי</span></div>
 </div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>

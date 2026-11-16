@@ -63,6 +63,28 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 @media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
 @media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+
+/* rolling cases (the last slides of the full deck): a case opens stage by stage, each answer opens on a tap */
+.cs-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}.cs-h .tag{font-size:12.5px}
+.cs-p{background:var(--soft);border-radius:14px;padding:12px 15px;font-size:16.5px;line-height:1.5;border-inline-start:4px solid var(--navy)}
+.cs-st{display:grid;gap:8px;margin-top:10px}
+details.cs{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+details.cs>summary{display:flex;gap:10px;align-items:center;padding:11px 14px;font-weight:800;font-size:16px;color:var(--navy)}
+details.cs>summary i{font-style:normal;flex:0 0 28px;height:28px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-size:14px}
+details.cs[open]>summary{background:#F2F8F5;border-bottom:1px solid var(--line)}
+details.cs .ans{padding:11px 15px 13px;font-size:15.5px;line-height:1.5}
+details.cs .ans p{margin:0 0 6px}details.cs .ans ul{margin:4px 0 0;padding-inline-start:18px}details.cs .ans li{margin:3px 0}
+details.cs .cs-pv{margin-inline-start:auto;font-size:12px;font-weight:800;color:var(--g3);background:#E3F4EC;border-radius:999px;padding:2px 9px}
+details.cs .nx{margin-top:8px;background:#FFF6EA;border-radius:10px;padding:8px 11px;font-weight:700;color:#7A4E10}
+.cs-div{text-align:center}.cs-div h2{font-size:clamp(30px,5vw,46px)}.cs-div .lead{max-width:640px;margin-inline:auto}
+.cs-div .num{max-width:720px;margin-inline:auto;grid-template-columns:repeat(3,1fr)}
+/* the prep deck */
+.pv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.pv div{background:var(--soft);border-radius:14px;padding:13px 14px}.pv b{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}.pv span{font-size:14.5px;line-height:1.45;color:var(--ink)}
+.rd{display:grid;gap:8px}.rd div{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 14px}
+.rd div>b{font-family:'Frank Ruhl Libre',serif;font-size:22px;color:var(--g3);min-width:46px;text-align:center}.rd div>span{font-size:15.5px;line-height:1.4}.rd div>em{font-style:normal;font-size:12.5px;font-weight:800;border-radius:999px;padding:3px 10px;background:#E3F4EC;color:var(--g3);white-space:nowrap}
+.rd div>em.o{background:#F1F3F2;color:var(--muted)}
+@media (max-width:760px){.pv,.cs-div .num{grid-template-columns:1fr}.rd div{grid-template-columns:auto 1fr}.rd div>em{grid-column:2}}
+
 /*BRAND*/
 .brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
 .brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
@@ -558,6 +580,41 @@ body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 68 <bdi>Diseases of the Breast</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">819–865</bdi>)</span></div>
  <div class="src"><span>איורים: <bdi>Gray's Anatomy</bdi> (1918) <span class="nw">ו-<bdi>National Cancer Institute</bdi></span> (נחלת הכלל), <bdi>Wellcome Collection</bdi> <span class="nw">ו-<bdi>Wikimedia Commons</bdi></span> (רישיונות בכל כיתוב) · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+<section class="s"><div class="card cs-div">
+ <div class="kick"><b>19</b>מקרים מתגלגלים</div>
+ <h2>מהמיון לחדר הניתוח</h2>
+ <p class="lead">3 מטופלים. כל מקרה נפתח שלב אחרי שלב: קודם חושבים יחד מה עושים, ורק אז פותחים את התשובה</p>
+ <div class="num"><div><b>1</b><span>גוש שנמצא במקלחת</span></div><div><b>2</b><span>צעירה עם גידול משולש שלילי וסיפור משפחתי</span></div><div><b>3</b><span>שד אדום ונפוח שלא השתפר מאנטיביוטיקה</span></div></div>
+ <div class="src"><span>המקרים בדויים ונכתבו לפי <b>Sabiston 22</b>, בלי פרטי מטופלים</span><span>מקרים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>20</b>מקרה מתגלגל</div>
+ <h2>גוש בשד ימין</h2>
+ <div class="cs-h"><span class="tag">אישה · 56</span><span class="tag b">מרפאה</span></div>
+ <div class="cs-p">אישה בת 56, אחרי הבלות, מצאה גוש בשד ימין. בבדיקה יש גוש קשה של כ-2 ס״מ בשעה 10, 4 ס״מ מהפטמה, לא מקובע. ה-axilla נקייה בבדיקה</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה הבירור?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>הערכה משולשת: אנמנזה ובדיקה, הדמיה וביופסיה</li><li>ממוגרפיה אבחנתית ואולטרסאונד</li><li>ביופסיה במחט עבה בהנחיית אולטרסאונד והשארת קליפס. ביופסיה ניתוחית כצעד ראשון מייקרת ומעכבת</li><li>בודקים התאמה: ממצא חשוד מאוד עם רקמה תקינה בביופסיה מחייב כריתה</li></ul><div class="nx">בממוגרפיה גוש עם שוליים מחודדים, BI-RADS 5. בביופסיה: דוקטלי חודרני, ER ו-PR חיוביים, HER2 שלילי</div></div></details><details class="cs"><summary><i>2</i>איזה ניתוח?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>גידול קטן ביחס לשד: שימור שד, כלומר כריתה חלקית ועוד הקרנה. אותה הישרדות כמו כריתת שד</li><li>שוליים בגידול חודרני: מספיק "אין דיו על הגידול"</li><li>ה-axilla נקייה בבדיקה: בלוטת זקיף</li></ul><div class="nx">בזקיף נמצאו 2 בלוטות, אחת מהן עם גרורה</div></div></details><details class="cs"><summary><i>3</i>צריך לרוקן את ה-axilla?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><p><b>לא.</b> ב-Z0011, אצל מטופלות עם גידול T1–T2 ובלוטת זקיף חיובית אחת או שתיים שעוברות שימור שד והקרנה, ריקון ה-axilla לא שיפר הישרדות</p></div></details><details class="cs"><summary><i>4</i>ואחרי הניתוח?</summary><div class="ans"><ul><li>הקרנה לשד: חלק מהטיפול, לא תוספת</li><li>גידול רגיש להורמונים אחרי הבלות: טיפול הורמונלי, למשל מעכב ארומטאז</li><li>אם לתת כימותרפיה: לפי השלב ולפי מבחן 21 הגנים</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 68 עמ׳ <bdi dir="ltr">826–829, 841, 844–846, 851, 855–858</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>21</b>מקרה מתגלגל</div>
+ <h2>גידול בגיל 37</h2>
+ <div class="cs-h"><span class="tag">אישה · 37</span><span class="tag a">ישיבה רב-תחומית</span></div>
+ <div class="cs-p">אישה בת 37, ממוצא אשכנזי. אמה חלתה בסרטן השחלה. בביופסיה של גוש של 3 ס״מ בשד שמאל: דוקטלי חודרני בדרגה גבוהה, ER, PR ו-HER2 שליליים. יש בלוטה חשודה ב-axilla</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>על מה חושבים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>צעירה, משולש שלילי, מוצא אשכנזי וסרטן שחלה במשפחה: מפנים לבדיקה גנטית</li><li>אצל נשאיות BRCA1 הגידול הוא לעיתים קרובות משולש שלילי ובדרגה גבוהה</li><li>ביוצאי אשכנז יש מוטציות מייסד ב-BRCA1 וב-BRCA2</li></ul><div class="nx">נמצאה מוטציה ב-BRCA1. בביופסיה של הבלוטה: גרורה</div></div></details><details class="cs"><summary><i>2</i>ניתוח קודם או טיפול קודם?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>משולש שלילי, T2 עם בלוטה: כימותרפיה טרום ניתוחית עם פמברוליזומאב</li><li>לפני שמתחילים: קליפס בגידול ובבלוטה החיובית, כי לפעמים הם נעלמים</li><li>התגובה לטיפול מנבאת את ההמשך: שארית בניתוח מובילה לטיפול נוסף</li></ul></div></details><details class="cs"><summary><i>3</i>ומה עם הצד השני והשחלות?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>כריתת שדיים מונעת מורידה את הסיכון בכ-90%. אפשר בכריתה שחוסכת עור ופטמה במטופלות נבחרות</li><li>כריתת שחלות וחצוצרות מורידה גם את הסיכון לסרטן שחלה</li><li>ההחלטה משותפת, אחרי ייעוץ גנטי</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 68 עמ׳ <bdi dir="ltr">830–834, 841, 844, 858</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>22</b>מקרה מתגלגל</div>
+ <h2>"דלקת" שלא עוברת</h2>
+ <div class="cs-h"><span class="tag">אישה · 61</span><span class="tag r">מרפאה</span></div>
+ <div class="cs-p">אישה בת 61 מגיעה עם שד ימין אדום, חם ונפוח כבר חמישה שבועות. היא קיבלה שני סבבי אנטיביוטיקה בלי שיפור. העור נראה כמו קליפת תפוז. לא ממששים גוש. ב-axilla יש בלוטה מוגדלת</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה החשד?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>סרטן שד דלקתי: אודם, בצקת וחום שהתפתחו מהר, תוך שבועות עד 3 חודשים</li><li>זו אבחנה קלינית. לא חייב להיות גוש ובממוגרפיה לפעמים רואים רק עור מעובה</li><li>הגידול נמצא בכלי הלימפה של העור ולכן "קליפת תפוז"</li></ul></div></details><details class="cs"><summary><i>2</i>מה הבירור?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>ממוגרפיה, אולטרסאונד וביופסיה</li><li>מחלה מתקדמת מקומית או דלקתית: מחפשים גרורות בהדמיה, למשל CT ומיפוי עצמות</li></ul><div class="nx">אין גרורות מרוחקות</div></div></details><details class="cs"><summary><i>3</i>מה הטיפול?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>טיפול בשלוש דרכים: כימותרפיה טרום ניתוחית, כריתה רדיקלית מותאמת בלי שחזור מיידי והקרנה אחרי הכריתה</li><li><b>בלי בלוטת זקיף:</b> בסרטן דלקתי הזקיף מפספס הרבה. מרוקנים את ה-axilla</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 68 עמ׳ <bdi dir="ltr">843, 862–863</bdi></span><span>מקרה לדיון · בדוי</span></div>
 </div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>

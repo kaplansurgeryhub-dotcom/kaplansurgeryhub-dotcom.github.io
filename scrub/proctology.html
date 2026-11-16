@@ -63,6 +63,28 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 @media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
 @media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+
+/* rolling cases (the last slides of the full deck): a case opens stage by stage, each answer opens on a tap */
+.cs-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}.cs-h .tag{font-size:12.5px}
+.cs-p{background:var(--soft);border-radius:14px;padding:12px 15px;font-size:16.5px;line-height:1.5;border-inline-start:4px solid var(--navy)}
+.cs-st{display:grid;gap:8px;margin-top:10px}
+details.cs{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+details.cs>summary{display:flex;gap:10px;align-items:center;padding:11px 14px;font-weight:800;font-size:16px;color:var(--navy)}
+details.cs>summary i{font-style:normal;flex:0 0 28px;height:28px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-size:14px}
+details.cs[open]>summary{background:#F2F8F5;border-bottom:1px solid var(--line)}
+details.cs .ans{padding:11px 15px 13px;font-size:15.5px;line-height:1.5}
+details.cs .ans p{margin:0 0 6px}details.cs .ans ul{margin:4px 0 0;padding-inline-start:18px}details.cs .ans li{margin:3px 0}
+details.cs .cs-pv{margin-inline-start:auto;font-size:12px;font-weight:800;color:var(--g3);background:#E3F4EC;border-radius:999px;padding:2px 9px}
+details.cs .nx{margin-top:8px;background:#FFF6EA;border-radius:10px;padding:8px 11px;font-weight:700;color:#7A4E10}
+.cs-div{text-align:center}.cs-div h2{font-size:clamp(30px,5vw,46px)}.cs-div .lead{max-width:640px;margin-inline:auto}
+.cs-div .num{max-width:720px;margin-inline:auto;grid-template-columns:repeat(3,1fr)}
+/* the prep deck */
+.pv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.pv div{background:var(--soft);border-radius:14px;padding:13px 14px}.pv b{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}.pv span{font-size:14.5px;line-height:1.45;color:var(--ink)}
+.rd{display:grid;gap:8px}.rd div{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 14px}
+.rd div>b{font-family:'Frank Ruhl Libre',serif;font-size:22px;color:var(--g3);min-width:46px;text-align:center}.rd div>span{font-size:15.5px;line-height:1.4}.rd div>em{font-style:normal;font-size:12.5px;font-weight:800;border-radius:999px;padding:3px 10px;background:#E3F4EC;color:var(--g3);white-space:nowrap}
+.rd div>em.o{background:#F1F3F2;color:var(--muted)}
+@media (max-width:760px){.pv,.cs-div .num{grid-template-columns:1fr}.rd div{grid-template-columns:auto 1fr}.rd div>em{grid-column:2}}
+
 /*BRAND*/
 .brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
 .brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
@@ -498,6 +520,41 @@ body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 97 <bdi>Benign Anorectal Disorders</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1515–1534</bdi>)</span></div>
  <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906), <bdi>NCI</bdi> ו-Sue Clark (נחלת הכלל) · <bdi>Blausen Medical</bdi> <span class="nw">(<bdi>CC BY 3.0</bdi>)</span> · <span class="nw"><bdi>scientificanimations.com</bdi>,</span> <span class="nw"><bdi>McortNGHH</bdi>,</span> Απόστολος Σταματιάδης, Lord Lucan <span class="nw">(<bdi>CC BY-SA</bdi>,</span> <span class="nw"><bdi>Wikimedia Commons</bdi>)</span> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+<section class="s"><div class="card cs-div">
+ <div class="kick"><b>18</b>מקרים מתגלגלים</div>
+ <h2>מהמיון לחדר הניתוח</h2>
+ <p class="lead">3 מטופלים. כל מקרה נפתח שלב אחרי שלב: קודם חושבים יחד מה עושים, ורק אז פותחים את התשובה</p>
+ <div class="num"><div><b>1</b><span>כאב חד "כמו זכוכית" בכל יציאה</span></div><div><b>2</b><span>כאב פועם ונפיחות ליד פי הטבעת</span></div><div><b>3</b><span>דם טרי בלי כאב</span></div></div>
+ <div class="src"><span>המקרים בדויים ונכתבו לפי <b>Sabiston 22</b>, בלי פרטי מטופלים</span><span>מקרים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>19</b>מקרה מתגלגל</div>
+ <h2>כאב בכל יציאה</h2>
+ <div class="cs-h"><span class="tag">גבר · 29</span><span class="tag b">מרפאה</span></div>
+ <div class="cs-p">גבר בן 29, עובד שעות ארוכות מול מחשב, עם עצירות. כבר חודשיים כל יציאה כואבת מאוד, "כמו לחתוך בזכוכית" והכאב נמשך שעות אחר כך. יש מעט דם טרי על הנייר</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה החשד ואיך בודקים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b>פיסורה</b>. בקו האמצע האחורי ב-75% ובקו האמצע הקדמי בעיקר בנשים</li><li>האבחנה מהסיפור. בהפרדה עדינה של העכוזים רואים את הסדק</li><li>בדיקה רקטלית ואנוסקופיה לרוב דוחים, בגלל הכאב</li><li>פיסורה שלא בקו האמצע אינה טיפוסית: לחשוב על קרוהן, סרטן, זיהומים</li></ul><div class="nx">בקו האמצע האחורי יש סדק. בבסיסו נראים סיבים לבנים ומתחתיו גבשושית עור קטנה</div></div></details><details class="cs"><summary><i>2</i>מה הסימנים אומרים ולמה זה לא נרפא?</summary><div class="ans"><ul><li>יותר מ-6–8 שבועות, סיבי שריר חשופים וגבשושית עור: <b>פיסורה כרונית</b></li><li>הכאב גורם לעווית של ה-internal sphincter, העווית מורידה את זרימת הדם והקרע נשאר באיסכמיה</li></ul></div></details><details class="cs"><summary><i>3</i>מה הטיפול?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>שתייה, סיבים ואמבטיות ישיבה</li><li>משחה שמרפה את השריר: ניטרטים מרפאים כמחצית מהפיסורות הכרוניות, אבל כאב ראש מפסיק את הטיפול אצל עד 20%. חוסמי תעלות סידן (דילטיאזם, ניפדיפין) מרפאים באותה מידה עם פחות כאבי ראש</li><li>בוטולינום: הרפיה של כ-3 חודשים. תופעת הלוואי השכיחה: בריחת גזים זמנית</li></ul><div class="nx">אחרי שלושה חודשים של טיפול הפיסורה לא נרפאה</div></div></details><details class="cs"><summary><i>4</i>ועכשיו?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>חיתוך חלקי של ה-internal sphincter בצד (LIS) הוא הטיפול המועדף בפיסורה כרונית: ריפוי ב-88–100%</li><li>המחיר: בריחה, בעיקר של גזים ובחודש הראשון, אצל 8–30%</li><li>לא חותכים אצל מי שכבר יש לו בריחה, אצל נשים עם קרע בלידה או אחרי ניתוחים קודמים באזור</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1523–1524</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>20</b>מקרה מתגלגל</div>
+ <h2>כאב פועם</h2>
+ <div class="cs-h"><span class="tag">גבר · 44</span><span class="tag r">מיון ואז מרפאה</span></div>
+ <div class="cs-p">גבר בן 44 עם סוכרת מגיע למיון אחרי שלושה ימים של כאב קבוע ופועם ליד פי הטבעת, שמחמיר בישיבה. בבדיקה יש נפיחות אדומה, חמה ורגישה מאוד מצד שמאל, ממש ליד ה-anus, עם תנודה</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה האבחנה ומאיפה זה בא?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b>מורסה סביב פי הטבעת</b></li><li>מתחילה לרוב בבלוטה חסומה בקריפטה שב-dentate line, מתפשטת בין השרירים הסוגרים ומשם לעור</li><li>CT של האגן רק כשהבדיקה לא ברורה</li></ul></div></details><details class="cs"><summary><i>2</i>לתת אנטיביוטיקה ולראות?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b>לא.</b> מורסה מנקזים מיד: במרפאה בהרדמה מקומית או בחדר ניתוח</li><li>החתך במקום הכי תנודתי וקרוב ככל האפשר לפי הטבעת, כדי שאם תיווצר פיסטולה היא תהיה קצרה</li><li>חתך צלב והסרת הפינות, שלא ייסגר מוקדם</li><li>טעות נפוצה: "צלוליטיס" סביב פי הטבעת היא לעיתים קרובות מורסה עמוקה. אנטיביוטיקה לבד לא תספיק</li></ul></div></details><details class="cs"><summary><i>3</i>אחרי הניקוז: אנטיביוטיקה? טמפון?</summary><div class="ans"><ul><li>מורסה שנוקזה היטב לא צריכה אנטיביוטיקה. נותנים רק כשיש צלוליטיס, מחלה מערכתית או דיכוי חיסוני</li><li>טמפון לא מוריד חזרה או פיסטולה</li><li>אמבטיות ישיבה, סיבים ומשככי כאב. רוב הפצעים נרפאים תוך 6–8 שבועות</li></ul><div class="nx">שלושה חודשים אחר כך הוא חוזר: מנקודה קטנה בעור יוצאת כל הזמן הפרשה, מדי פעם היא נסגרת, מתנפחת ושוב מתנקזת</div></div></details><details class="cs"><summary><i>4</i>מה קרה ומה עושים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b>פיסטולה</b>: נשארת אחרי מורסה אצל כמחצית המטופלים</li><li>חוק <span class="nw"><bdi dir="ltr">Goodsall</bdi></span> עוזר לנחש איפה הפתח הפנימי לפי מיקום הפתח החיצוני</li><li>פיסטולה נמוכה (פחות משליש מה-external sphincter): פותחים לכל האורך. מעורבות גדולה של השריר: קודם סטון מנקז ואחר כך ניתוח ששומר על השריר</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1524–1527</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>21</b>מקרה מתגלגל</div>
+ <h2>דם טרי באסלה</h2>
+ <div class="cs-h"><span class="tag">אישה · 52</span><span class="tag b">מרפאה</span></div>
+ <div class="cs-p">אישה בת 52 מספרת על דם אדום בהיר על הנייר ובאסלה בחלק מהיציאות, בלי כאב. לפעמים "משהו יוצא" ביציאה וחוזר לבד. היא נוטלת אספירין. בעבר עשתה קולונוסקופיה תקינה, לפני שלוש שנים</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה החשד ואיזו דרגה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>דם טרי בלי כאב ביציאה: <b>טחורים פנימיים</b></li><li>בולטים וחוזרים לבד: <b>דרגה II</b> (I: מדממים בלי בליטה, III: צריך להחזיר ביד, IV: לא חוזרים)</li><li>כאב בלי קשר ליציאה, עם דם, צריך לעורר חשד לגידול</li></ul></div></details><details class="cs"><summary><i>2</i>מה הטיפול הראשון?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>תמיד מתחילים בשמרני: שתייה (לפחות 64 אונקיות, כ-1.9 ליטר ביום) וסיבים (20–35 גרם ביום), כדי שהצואה תהיה רכה וקלה ליציאה</li><li>בלי מאמץ ולא יותר מ-2–3 דקות בכל ישיבה בשירותים, בלי טלפון ובלי קריאה</li></ul><div class="nx">אחרי כמה חודשים של טיפול שמרני היא עדיין מדממת</div></div></details><details class="cs"><summary><i>3</i>מה אפשר להציע במרפאה?</summary><div class="ans"><ul><li>בדרגות I–II ובחלק מ-III: קשירה בגומייה, הזרקה טרשתית או קרישה באינפרא-אדום</li><li>קשירה בגומייה היא השכיחה והיעילה ביותר. היא מעל ה-dentate line ולכן כמעט לא כואבת. כאב חזק: הגומייה נמוכה מדי, מורידים אותה מיד</li><li>היא נוטלת אספירין: זהירות בקשירה, כי הכיב שנשאר אחרי שהרקמה נושרת יכול לדמם</li></ul><div class="nx">יומיים אחרי טיפול במרפאה היא מתקשרת: הכאב באגן מחמיר, יש חום והיא לא מצליחה להטיל שתן</div></div></details><details class="cs"><summary><i>4</i>מה עושים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><p><b>חשד לאלח דם באגן</b>, סיבוך נדיר ומפחיד אחרי טיפול בטחורים, גם אחרי טיפול במרפאה. אצירת שתן, כאב שמחמיר באגן ובפי הטבעת וחום: מזמינים אותה מיד לבדיקה דחופה</p></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 97 עמ׳ <bdi dir="ltr">1517, 1519–1521</bdi></span><span>מקרה לדיון · בדוי</span></div>
 </div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>

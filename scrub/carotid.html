@@ -63,6 +63,28 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 @media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
 @media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+
+/* rolling cases (the last slides of the full deck): a case opens stage by stage, each answer opens on a tap */
+.cs-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}.cs-h .tag{font-size:12.5px}
+.cs-p{background:var(--soft);border-radius:14px;padding:12px 15px;font-size:16.5px;line-height:1.5;border-inline-start:4px solid var(--navy)}
+.cs-st{display:grid;gap:8px;margin-top:10px}
+details.cs{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+details.cs>summary{display:flex;gap:10px;align-items:center;padding:11px 14px;font-weight:800;font-size:16px;color:var(--navy)}
+details.cs>summary i{font-style:normal;flex:0 0 28px;height:28px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-size:14px}
+details.cs[open]>summary{background:#F2F8F5;border-bottom:1px solid var(--line)}
+details.cs .ans{padding:11px 15px 13px;font-size:15.5px;line-height:1.5}
+details.cs .ans p{margin:0 0 6px}details.cs .ans ul{margin:4px 0 0;padding-inline-start:18px}details.cs .ans li{margin:3px 0}
+details.cs .cs-pv{margin-inline-start:auto;font-size:12px;font-weight:800;color:var(--g3);background:#E3F4EC;border-radius:999px;padding:2px 9px}
+details.cs .nx{margin-top:8px;background:#FFF6EA;border-radius:10px;padding:8px 11px;font-weight:700;color:#7A4E10}
+.cs-div{text-align:center}.cs-div h2{font-size:clamp(30px,5vw,46px)}.cs-div .lead{max-width:640px;margin-inline:auto}
+.cs-div .num{max-width:720px;margin-inline:auto;grid-template-columns:repeat(3,1fr)}
+/* the prep deck */
+.pv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.pv div{background:var(--soft);border-radius:14px;padding:13px 14px}.pv b{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}.pv span{font-size:14.5px;line-height:1.45;color:var(--ink)}
+.rd{display:grid;gap:8px}.rd div{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 14px}
+.rd div>b{font-family:'Frank Ruhl Libre',serif;font-size:22px;color:var(--g3);min-width:46px;text-align:center}.rd div>span{font-size:15.5px;line-height:1.4}.rd div>em{font-style:normal;font-size:12.5px;font-weight:800;border-radius:999px;padding:3px 10px;background:#E3F4EC;color:var(--g3);white-space:nowrap}
+.rd div>em.o{background:#F1F3F2;color:var(--muted)}
+@media (max-width:760px){.pv,.cs-div .num{grid-template-columns:1fr}.rd div{grid-template-columns:auto 1fr}.rd div>em{grid-column:2}}
+
 /*BRAND*/
 .brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
 .brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
@@ -406,6 +428,41 @@ body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 101 <bdi>Contemporary Management of Carotid Disease</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1603–1619</bdi>)</span></div>
  <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1909, נחלת הכלל) · <bdi>Blausen Medical</bdi> (CC BY) · תמונות <span class="nw">מ-<bdi>Wikimedia Commons</bdi></span> לפי הרישיון בכל כיתוב · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+<section class="s"><div class="card cs-div">
+ <div class="kick"><b>14</b>מקרים מתגלגלים</div>
+ <h2>מהמיון לחדר הניתוח</h2>
+ <p class="lead">3 מטופלים. כל מקרה נפתח שלב אחרי שלב: קודם חושבים יחד מה עושים, ורק אז פותחים את התשובה</p>
+ <div class="num"><div><b>1</b><span>עין אחת שהחשיכה לכמה דקות</span></div><div><b>2</b><span>היצרות שהתגלתה במקרה</span></div><div><b>3</b><span>כאב בצוואר ועפעף שצנח</span></div></div>
+ <div class="src"><span>המקרים בדויים ונכתבו לפי <b>Sabiston 22</b>, בלי פרטי מטופלים</span><span>מקרים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>15</b>מקרה מתגלגל</div>
+ <h2>וילון על העין</h2>
+ <div class="cs-h"><span class="tag">גבר · 71</span><span class="tag b">מרפאה</span></div>
+ <div class="cs-p">גבר בן 71, מעשן, עם יתר לחץ דם וסוכרת. לפני שלושה שבועות הרגיש כאילו וילון ירד על העין הימנית לכמה דקות והראייה חזרה לגמרי. הוא הלך לרופא העיניים, שהפנה אותו אליכם</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה הוא תיאר ולמה זה חשוב?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b><span class="nw"><bdi dir="ltr">amaurosis fugax</bdi></span></b>: עיוורון חולף בעין אחת</li><li>אירוע כזה בצד של היצרות ב-6 החודשים האחרונים מגדיר אותה כ<b>היצרות עם תסמינים</b>. ההגדרה הזו קובעת את סף ההתערבות</li><li>לא כולם מגיעים למיון: הפרעה בראייה מגיעה לפעמים לרופא העיניים או לרופא המשפחה. צריך חשד קליני גבוה</li><li>שואלים גם על פרפור פרוזדורים: סיבה אחרת אפשרית לתסחיף</li></ul></div></details><details class="cs"><summary><i>2</i>איך בודקים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>מקשיבים לצוואר. אבל אוושה לא מספיקה: בהיצרות קריטית היא יכולה להיעלם ואוושה יכולה לבוא מה-<span class="nw"><bdi dir="ltr">external carotid</bdi></span></li><li><b>דופלקס</b> הוא הבדיקה הראשונה: מהיר, זול וליד המיטה. המגבלה: תלוי במיומנות הבודק והסתיידות יכולה להסתיר היצרות קשה</li><li><span class="nw"><bdi dir="ltr">CTA</bdi></span> מראה גם את הקשת ואת הכלים מעל ההתפצלות</li></ul><div class="nx">בדופלקס מהירות שיא של 290 ס״מ/שנ׳ ב-<span class="nw"><bdi dir="ltr">internal carotid</bdi></span> הימני: היצרות של 70% ומעלה</div></div></details><details class="cs"><summary><i>3</i>תרופות בלבד או ניתוח?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><p>עם תסמינים והיצרות של 70% ומעלה ההתערבות מוצדקת בבירור. ב-<span class="nw"><bdi dir="ltr">NASCET</bdi></span>: שבץ בצד ההיצרות בשנתיים ב-26% עם אספירין לעומת 9% אחרי ניתוח</p><ul><li>עם תסמינים ו-50% עד 69%: התועלת קטנה יותר</li><li>מתחת ל-50%: הניתוח לא מוריד אירועים</li><li>לכולם, בכל מקרה: נוגד טסיות, סטטין בעוצמה גבוהה, הפסקת עישון, איזון לחץ דם וסוכרת</li></ul><div class="nx">הוא עובר אנדארטרקטומיה בלי אירועים. שעה אחרי הניתוח הקול שלו צרוד והוא אומר שקשה לו לנשום. הצוואר נפוח</div></div></details><details class="cs"><summary><i>4</i>מה קורה ומה עושים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b>המטומה מתרחבת בצוואר</b>: מצב חירום. בלי טיפול היא יכולה לחסום את דרכי האוויר במהירות</li><li>סימנים: צרידות חדשה, קוצר נשימה, סטייה של הצוואר ונפיחות גדולה</li><li>קודם מבטיחים את דרכי האוויר. האינטובציה יכולה להיות קשה בגלל סטיית ה-<span class="nw"><bdi dir="ltr">trachea</bdi></span></li><li>רק אחרי שדרכי האוויר בטוחות פותחים את החתך באופן מבוקר ומרוקנים את ההמטומה</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 101 עמ׳ <bdi dir="ltr">1603–1606, 1610</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>16</b>מקרה מתגלגל</div>
+ <h2>היצרות בלי תסמינים</h2>
+ <div class="cs-h"><span class="tag">אישה · 68</span><span class="tag a">מרפאה ואז מחלקה</span></div>
+ <div class="cs-p">אישה בת 68 עם יתר לחץ דם ודיסליפידמיה. ב-<span class="nw"><bdi dir="ltr">CTA</bdi></span> שנעשה לפני ניתוח בבטן נמצאה היצרות קשה ב-<span class="nw"><bdi dir="ltr">internal carotid</bdi></span> השמאלי. אף פעם לא היו לה תסמינים נוירולוגיים או הפרעה בראייה</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>זה מצב שכיח?</summary><div class="ans"><ul><li>רוב ההיצרויות בלי תסמינים מתגלות במקרה, בבדיקה שנעשתה מסיבה אחרת</li><li>לא ממליצים על סקר שגרתי באוכלוסייה</li><li>קודם מאשרים את דרגת ההיצרות. לפני כל החלטה צריך לדעת את האחוז האמיתי</li></ul><div class="nx">הדופלקס מאשר היצרות של 70% ומעלה</div></div></details><details class="cs"><summary><i>2</i>האם היא צריכה ניתוח?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>ההנחיות: ניתוח יחד עם טיפול תרופתי מרבי, מעל 70% (רמת ראיות 1B)</li><li>ב-<span class="nw"><bdi dir="ltr">ACAS</bdi></span> וב-<span class="nw"><bdi dir="ltr">ACST</bdi></span>: שבץ או מוות ב-5 שנים 4.1% אחרי ניתוח לעומת 10% בתרופות בלבד</li><li><b>אבל</b> הניסויים האלה נעשו לפני הטיפול התרופתי של היום. יש מי שטוען שבלי תסמינים כבר לא צריך ניתוח ואחרים מצביעים על סיכון גבוה לשבץ בהיצרות קשה. זה ויכוח פתוח</li><li>בכל מקרה מתחילים טיפול תרופתי מיטבי, כולל סטטין</li></ul><div class="nx">אחרי שיחה היא בוחרת באנדארטרקטומיה. היא משתחררת ביום שאחרי וחוזרת ביום השלישי עם כאב ראש בצד שמאל</div></div></details><details class="cs"><summary><i>3</i>למה כאב ראש מדאיג אחרי אנדארטרקטומיה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b>תסמונת היפרפרפוזיה</b>: כלי הדם במוח היו מורחבים מאחורי ההיצרות. כשהזרימה חוזרת היא יכולה להיות מוגזמת: פרכוסים ודימום מוחי, עם תמותה גבוהה</li><li>הסימן הראשון הוא לרוב כאב ראש באותו צד</li><li>כל כאב ראש אחרי הניתוח מבררים: <span class="nw"><bdi dir="ltr">CT</bdi></span> של הראש בלי חומר ניגוד או <span class="nw"><bdi dir="ltr">transcranial Doppler</bdi></span></li><li>שומרים על לחץ דם מאוזן</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 101 עמ׳ <bdi dir="ltr">1604, 1606–1607, 1610</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>17</b>מקרה מתגלגל</div>
+ <h2>כאב בצוואר ועפעף שצנח</h2>
+ <div class="cs-h"><span class="tag">אישה · 42</span><span class="tag r">מיון</span></div>
+ <div class="cs-p">אישה בת 42, בריאה, מגיעה למיון עם כאב בצד ימין של הצוואר וכאב ראש מאתמול. יומיים קודם עברה טיפול כירופרקטי בצוואר. בבדיקה העפעף הימני צנוח והאישון הימני קטן</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה החשד?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b>דיסקציה של ה-<span class="nw"><bdi dir="ltr">carotid</bdi></span></b>: קרע בשכבה הפנימית שדרכו הדם חודר לדופן</li><li>יכולה להופיע כמו כאב ראש, או עם <span class="nw"><bdi dir="ltr">Horner syndrome</bdi></span> (העפעף והאישון)</li><li>ספונטנית, אחרי מגע של העורק בעצם, אחרי טיפול כירופרקטי או על רקע מחלה של כלי הדם. אחרי חבלה קהה בכ-1% מהמטופלים</li><li>עד מחצית מגיעים עם שבץ או <span class="nw"><bdi dir="ltr">TIA</bdi></span></li></ul><div class="nx">בהדמיה יש דיסקציה של ה-<span class="nw"><bdi dir="ltr">internal carotid</bdi></span> הימני, בלי סימנים לשבץ</div></div></details><details class="cs"><summary><i>2</i>מה הטיפול?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>הבסיס: טיפול נוגד קרישה או נוגד טסיות</li><li>אין ניסויים שמראים שאחד עדיף. ב-<span class="nw"><bdi dir="ltr">CADISS</bdi></span> (מעל 200 מטופלים) הסיכון לשבץ היה דומה בשתי הקבוצות</li><li>התערבות שמורה למי שהבדיקה הנוירולוגית שלו משתנה, או למי שלא מגיב לטיפול התרופתי או לא יכול לקבל אותו</li></ul></div></details><details class="cs"><summary><i>3</i>ומה שונה בדיסקציה אחרי חבלה?</summary><div class="ans"><p>בדיסקציה אחרי חבלה קהה התוצאות קשות: עד רבע מתים ומחצית נשארים עם נזק נוירולוגי קבוע. לכן חשוב לזהות אותה</p></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 101 עמ׳ <bdi dir="ltr">1617</bdi></span><span>מקרה לדיון · בדוי</span></div>
 </div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>

@@ -63,6 +63,28 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 @media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
 @media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+
+/* rolling cases (the last slides of the full deck): a case opens stage by stage, each answer opens on a tap */
+.cs-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}.cs-h .tag{font-size:12.5px}
+.cs-p{background:var(--soft);border-radius:14px;padding:12px 15px;font-size:16.5px;line-height:1.5;border-inline-start:4px solid var(--navy)}
+.cs-st{display:grid;gap:8px;margin-top:10px}
+details.cs{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+details.cs>summary{display:flex;gap:10px;align-items:center;padding:11px 14px;font-weight:800;font-size:16px;color:var(--navy)}
+details.cs>summary i{font-style:normal;flex:0 0 28px;height:28px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-size:14px}
+details.cs[open]>summary{background:#F2F8F5;border-bottom:1px solid var(--line)}
+details.cs .ans{padding:11px 15px 13px;font-size:15.5px;line-height:1.5}
+details.cs .ans p{margin:0 0 6px}details.cs .ans ul{margin:4px 0 0;padding-inline-start:18px}details.cs .ans li{margin:3px 0}
+details.cs .cs-pv{margin-inline-start:auto;font-size:12px;font-weight:800;color:var(--g3);background:#E3F4EC;border-radius:999px;padding:2px 9px}
+details.cs .nx{margin-top:8px;background:#FFF6EA;border-radius:10px;padding:8px 11px;font-weight:700;color:#7A4E10}
+.cs-div{text-align:center}.cs-div h2{font-size:clamp(30px,5vw,46px)}.cs-div .lead{max-width:640px;margin-inline:auto}
+.cs-div .num{max-width:720px;margin-inline:auto;grid-template-columns:repeat(3,1fr)}
+/* the prep deck */
+.pv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.pv div{background:var(--soft);border-radius:14px;padding:13px 14px}.pv b{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}.pv span{font-size:14.5px;line-height:1.45;color:var(--ink)}
+.rd{display:grid;gap:8px}.rd div{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 14px}
+.rd div>b{font-family:'Frank Ruhl Libre',serif;font-size:22px;color:var(--g3);min-width:46px;text-align:center}.rd div>span{font-size:15.5px;line-height:1.4}.rd div>em{font-style:normal;font-size:12.5px;font-weight:800;border-radius:999px;padding:3px 10px;background:#E3F4EC;color:var(--g3);white-space:nowrap}
+.rd div>em.o{background:#F1F3F2;color:var(--muted)}
+@media (max-width:760px){.pv,.cs-div .num{grid-template-columns:1fr}.rd div{grid-template-columns:auto 1fr}.rd div>em{grid-column:2}}
+
 /*BRAND*/
 .brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
 .brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
@@ -401,6 +423,41 @@ body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 110 <bdi>Lung, Chest Wall, Pleura, and Mediastinum</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1762–1763, 1796–1799</bdi>)</span> · פרק 36 <bdi>Management of Acute Trauma</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">319–322</bdi>)</span></div>
  <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906, נחלת הכלל) · צילומים <span class="nw">מ-<bdi>Wikimedia Commons</bdi></span> לפי הרישיון בכל כיתוב · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+<section class="s"><div class="card cs-div">
+ <div class="kick"><b>12</b>מקרים מתגלגלים</div>
+ <h2>מהמיון לחדר הניתוח</h2>
+ <p class="lead">3 מטופלים. כל מקרה נפתח שלב אחרי שלב: קודם חושבים יחד מה עושים, ורק אז פותחים את התשובה</p>
+ <div class="num"><div><b>1</b><span>כאב פתאומי בחזה אצל צעיר גבוה ורזה</span></div><div><b>2</b><span>רוכב אופנוע עם לחץ דם שיורד</span></div><div><b>3</b><span>דלקת ריאות שלא משתפרת ותפליט</span></div></div>
+ <div class="src"><span>המקרים בדויים ונכתבו לפי <b>Sabiston 22</b>, בלי פרטי מטופלים</span><span>מקרים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>13</b>מקרה מתגלגל</div>
+ <h2>כאב פתאומי בחזה בזמן מנוחה</h2>
+ <div class="cs-h"><span class="tag">גבר · 21</span><span class="tag b">מיון</span></div>
+ <div class="cs-p">גבר בן 21, גבוה ורזה, מעשן, מגיע למיון אחרי כאב חד בצד ימין של החזה שהופיע פתאום במנוחה וקוצר נשימה קל. לחץ דם ודופק תקינים, רוויה 96%</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה החשד ומה מחפשים בבדיקה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>חזה אוויר ספונטני ראשוני: גבר צעיר, גבוה ורזה. עישון מעלה את הסיכון</li><li>בצד הפגוע קולות הנשימה חסרים או מוחלשים</li><li>לפעמים יש אמפיזמה תת-עורית</li><li>בודקים שאין סימנים של חזה אוויר בלחץ: תת לחץ דם, סטייה של ה-<span class="nw"><bdi dir="ltr">trachea</bdi></span></li></ul><div class="nx">בצילום חזה יש חזה אוויר מימין, 2 ס״מ ב-<span class="nw"><bdi dir="ltr">apex</bdi></span></div></div></details><details class="cs"><summary><i>2</i>מה עושים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><p>חזה אוויר קטן (עד 3 ס״מ ב-<span class="nw"><bdi dir="ltr">apex</bdi></span> או 2 ס״מ ב-<span class="nw"><bdi dir="ltr">hilum</bdi></span>) עם מעט תסמינים: אפשר לעקוב. הוא נספג לבד</p><p>CT לא חובה, אבל אפשר לעשות אותו כדי לחפש את הסיבה ומחלת ריאה נסתרת</p><div class="nx">למחרת קוצר הנשימה מחמיר ובצילום חזה האוויר גדל</div></div></details><details class="cs"><summary><i>3</i>ועכשיו?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>חזה אוויר גדול או גדל: שאיבה במחט או נקז חזה</li><li>אחרי הנקז: צילום חזה כל יום עד שהריאה מתפשטת והדליפה נעצרת</li></ul><div class="nx">אחרי שלושה ימים עדיין יש בועות בנקז והריאה לא מתפשטת עד הסוף</div></div></details><details class="cs"><summary><i>4</i>מה הלאה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>דליפת אוויר יותר מיומיים, או ריאה שלא מתפשטת: לשקול ניתוח</li><li><span class="nw"><bdi dir="ltr">VATS</bdi></span>: כריתת הבועות ב-<span class="nw"><bdi dir="ltr">apex</bdi></span> ופלאורודזיס</li><li>ניתוח מומלץ גם בחזה אוויר חוזר, באפיזודה שנייה ובמקצועות בסיכון כמו צוללנים וטייסים</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 110 עמ׳ <bdi dir="ltr">1799</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>14</b>מקרה מתגלגל</div>
+ <h2>תאונת אופנוע ולחץ דם שיורד</h2>
+ <div class="cs-h"><span class="tag">גבר · 34</span><span class="tag r">חדר טראומה</span></div>
+ <div class="cs-p">גבר בן 34 מובא לחדר הטראומה אחרי תאונת אופנוע. הוא מתלונן על קוצר נשימה חזק. לחץ דם 82/50, דופק 130, רוויה 86%. אין קולות נשימה מצד שמאל</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>לשלוח צילום חזה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><p><b>לא.</b> חזה אוויר בלחץ הוא אבחנה קלינית שמזהים בסקר הראשוני. צילום לפני הטיפול אסור</p><ul><li>הסימנים: תת לחץ דם, קולות נשימה חסרים בצד אחד, גדישות של ורידי הצוואר, סטייה של ה-<span class="nw"><bdi dir="ltr">trachea</bdi></span> שנמששת ב-<span class="nw"><bdi dir="ltr">sternal notch</bdi></span></li><li>אם יש <span class="nw"><bdi dir="ltr">eFAST</bdi></span> ליד המיטה, אפשר לראות בו חזה אוויר</li></ul></div></details><details class="cs"><summary><i>2</i>מה עושים מיד?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>ניקוז במחט (10–16G) במרווח הבין-צלעי החמישי, בגובה הקפל שמתחת לשד או מעליו, בקו בית השחי הקדמי או בינו לבין הקו האמצעי</li><li>חלופה: המרווח השני בקו האמצע של עצם הבריח, למשל במטופל עם BMI גבוה</li><li>אמין יותר: "תורקוסטומיה באצבע" באותו מקום</li></ul><div class="nx">אחרי הניקוז לחץ הדם עולה ל-110/70 והרוויה ל-95%</div></div></details><details class="cs"><summary><i>3</i>סיימנו?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><p><b>לא.</b> גם כשהמחט הצליחה, אחריה מכניסים נקז חזה</p><ul><li>מעל הצלע, כי ה-neurovascular bundle עובר בשפה התחתונה שלה</li><li>הרדמה מקומית נדיבה</li><li>חתך גבוה מספיק, כדי לא להיכנס לבטן, לכבד או לטחול</li></ul><div class="nx">מהנקז יוצא דם רב</div></div></details><details class="cs"><summary><i>4</i>מה המשמעות?</summary><div class="ans"><p>המוטורקס. המוטורקס גדול מנקזים בנקז חזה. דימום שממשיך אחרי הנקז מחייב לשקול תורקוטומיה. מודיעים לכירורג הבכיר</p></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">309, 319–322</bdi> · פרק 110 עמ׳ <bdi dir="ltr">1762</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>15</b>מקרה מתגלגל</div>
+ <h2>חום שלא יורד אחרי דלקת ריאות</h2>
+ <div class="cs-h"><span class="tag">אישה · 58</span><span class="tag a">מחלקה</span></div>
+ <div class="cs-p">אישה בת 58 מאושפזת במחלקה הפנימית עם דלקת ריאות. אחרי חמישה ימים של אנטיביוטיקה עדיין יש לה חום, היא חלשה ולא אוכלת. בצילום חזה יש תפליט גדול מצד ימין והכירורג מתבקש לייעוץ</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה מבררים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>ניקור של הנוזל: מראה, ספירת תאים, חלבון, pH, LDH וגלוקוז. בחשד לזיהום: תרביות וצביעת גראם</li><li>CT של החזה</li><li>קריטריונים של <span class="nw"><bdi dir="ltr">Light</bdi></span>: אקסודט אם יחס החלבון בנוזל לסרום מעל 0.5, יחס ה-LDH מעל 0.6, או LDH בנוזל מעל שני שלישים מהגבול העליון בסרום</li></ul><div class="nx">הנוזל עכור ובניקור יוצא מעט. ב-CT יש כמה מדורים (לוקולציות)</div></div></details><details class="cs"><summary><i>2</i>מה זה ובאיזה שלב?</summary><div class="ans"><ul><li>אמפיאמה: מוגלה ב-pleura, לרוב אחרי תפליט תגובתי לדלקת ריאות</li><li>השלב החריף: נוזל דליל שאפשר לנקז כולו בצנתר</li><li>כאן הנוזל עכור וסמיך ויש מדורים: שלב מתקדם יותר</li><li>בשלב המאורגן נוצרת קליפה שעוטפת את הריאה ("ריאה לכודה")</li></ul></div></details><details class="cs"><summary><i>3</i>איך מטפלים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>תמיד ניקוז ואנטיביוטיקה</li><li>תפליט מורכב עם מדורים: בדרך כלל ניתוח. VATS מוקדם מקצר אשפוז ומאפשר לריאה להתפשט</li><li>tPA ו-DNase לתוך ה-pleura יכולים לעזור לניקוז, אבל לא כשגרה</li><li>קליפה עבה: תורקוטומיה ודקורטיקציה</li></ul><div class="nx">היא עוברת VATS. הנקז נשאר כמה ימים</div></div></details><details class="cs"><summary><i>4</i>מתי מוציאים את הנקז?</summary><div class="ans"><p>כשהניקוז היומי יורד מתחת ל-100–200 מ״ל, ההדמיה משתפרת וסימני הזיהום חולפים</p></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 110 עמ׳ <bdi dir="ltr">1797–1798</bdi></span><span>מקרה לדיון · בדוי</span></div>
 </div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>

@@ -59,6 +59,28 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 @media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
 @media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+
+/* rolling cases (the last slides of the full deck): a case opens stage by stage, each answer opens on a tap */
+.cs-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}.cs-h .tag{font-size:12.5px}
+.cs-p{background:var(--soft);border-radius:14px;padding:12px 15px;font-size:16.5px;line-height:1.5;border-inline-start:4px solid var(--navy)}
+.cs-st{display:grid;gap:8px;margin-top:10px}
+details.cs{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+details.cs>summary{display:flex;gap:10px;align-items:center;padding:11px 14px;font-weight:800;font-size:16px;color:var(--navy)}
+details.cs>summary i{font-style:normal;flex:0 0 28px;height:28px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-size:14px}
+details.cs[open]>summary{background:#F2F8F5;border-bottom:1px solid var(--line)}
+details.cs .ans{padding:11px 15px 13px;font-size:15.5px;line-height:1.5}
+details.cs .ans p{margin:0 0 6px}details.cs .ans ul{margin:4px 0 0;padding-inline-start:18px}details.cs .ans li{margin:3px 0}
+details.cs .cs-pv{margin-inline-start:auto;font-size:12px;font-weight:800;color:var(--g3);background:#E3F4EC;border-radius:999px;padding:2px 9px}
+details.cs .nx{margin-top:8px;background:#FFF6EA;border-radius:10px;padding:8px 11px;font-weight:700;color:#7A4E10}
+.cs-div{text-align:center}.cs-div h2{font-size:clamp(30px,5vw,46px)}.cs-div .lead{max-width:640px;margin-inline:auto}
+.cs-div .num{max-width:720px;margin-inline:auto;grid-template-columns:repeat(3,1fr)}
+/* the prep deck */
+.pv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.pv div{background:var(--soft);border-radius:14px;padding:13px 14px}.pv b{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}.pv span{font-size:14.5px;line-height:1.45;color:var(--ink)}
+.rd{display:grid;gap:8px}.rd div{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 14px}
+.rd div>b{font-family:'Frank Ruhl Libre',serif;font-size:22px;color:var(--g3);min-width:46px;text-align:center}.rd div>span{font-size:15.5px;line-height:1.4}.rd div>em{font-style:normal;font-size:12.5px;font-weight:800;border-radius:999px;padding:3px 10px;background:#E3F4EC;color:var(--g3);white-space:nowrap}
+.rd div>em.o{background:#F1F3F2;color:var(--muted)}
+@media (max-width:760px){.pv,.cs-div .num{grid-template-columns:1fr}.rd div{grid-template-columns:auto 1fr}.rd div>em{grid-column:2}}
+
 /*BRAND*/
 .brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
 .brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
@@ -520,6 +542,41 @@ body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat
  <div class="src"><span>איור: <bdi>Gray's Anatomy</bdi> (1918, נחלת הכלל, <span class="nw"><bdi>Wikimedia Commons</bdi>)</span> · תמונות: <bdi>Musser</bdi> (1904, נחלת הכלל), <span class="nw"><bdi>James Heilman</bdi>,</span> <span class="nw"><bdi>Jeremias</bdi>,</span> <span class="nw"><bdi>J. Guntau</bdi>,</span> <bdi>Pei-Ming Yang</bdi> <span class="nw">ו-<bdi>Ding-Shinn Chen</bdi>,</span> <span class="nw"><bdi>R. Torrance Andrews</bdi>,</span> <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
+
+<section class="s"><div class="card cs-div">
+ <div class="kick"><b>18</b>מקרים מתגלגלים</div>
+ <h2>מהמיון לחדר הניתוח</h2>
+ <p class="lead">3 מטופלים. כל מקרה נפתח שלב אחרי שלב: קודם חושבים יחד מה עושים, ורק אז פותחים את התשובה</p>
+ <div class="num"><div><b>1</b><span>הקאה של דם אצל מטופל עם שחמת</span></div><div><b>2</b><span>דליות בקיבה בלבד וכבד תקין</span></div><div><b>3</b><span>בקע טבורי ומיימת</span></div></div>
+ <div class="src"><span>המקרים בדויים ונכתבו לפי <b>Sabiston 22</b>, בלי פרטי מטופלים</span><span>מקרים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>19</b>מקרה מתגלגל</div>
+ <h2>הקאה של דם</h2>
+ <div class="cs-h"><span class="tag">גבר · 54</span><span class="tag r">מיון</span></div>
+ <div class="cs-p">גבר בן 54 עם שחמת מאלכוהול מובא למיון אחרי שהקיא כמות גדולה של דם. הוא מבולבל וישנוני, דופק 118 ולחץ דם 90/55. בבדיקה צהבת ובטן תפוחה</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה עושים בדקות הראשונות?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>קודם נתיב אוויר: הוא מבולבל ונמצא בסיכון לשאיפה</li><li>שני עירויים רחבים, נוזלים, סוג והצלבה</li><li>עירוי דם מצמצם: מתחת להמוגלובין 7 ולא מתחת ל-9. במחקר אקראי הגישה המצמצמת שיפרה הישרדות ב-6 שבועות והפחיתה דימום חוזר</li></ul></div></details><details class="cs"><summary><i>2</i>אילו תרופות מתחילים, עוד לפני האנדוסקופיה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b>אנטיביוטיקה מונעת:</b> זיהומים שכיחים בדימום מדליות. היא מורידה זיהומים ביותר מחצי, מפחיתה דימום חוזר ומשפרת הישרדות</li><li><b><span class="nw"><bdi dir="ltr">octreotide</bdi></span>:</b> מוריד את זרימת הדם בדליות. השילוב שלו עם טיפול אנדוסקופי יעיל יותר מ-<span class="nw"><bdi dir="ltr">octreotide</bdi></span> לבד והוא הטיפול המועדף</li></ul><div class="nx">אחרי החייאה ראשונית הוא עובר אנדוסקופיה</div></div></details><details class="cs"><summary><i>3</i>מה מצפים מהאנדוסקופיה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>מומלץ לבצע אותה מוקדם, רצוי בתוך 12 שעות מהקבלה</li><li><b>קשירה בגומיות</b> עדיפה על <span class="nw"><bdi dir="ltr">sclerotherapy</bdi></span>: שולטת טוב יותר בדימום, עם פחות סיבוכים</li><li>טיפול אנדוסקופי שולט ב-80% עד 90% מאירועי הדימום החריף</li></ul><div class="nx">הדימום לא נעצר. לחץ הדם יורד שוב</div></div></details><details class="cs"><summary><i>4</i>והלאה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b>בלון לחץ</b> (<span class="nw"><bdi dir="ltr">Sengstaken-Blakemore</bdi></span>) כגשר: עוצר מיד יותר מ-85% מהדימומים, אבל עד מחצית מדממים שוב כשמרוקנים אותו. מסוכן בידיים לא מנוסות</li><li><b><span class="nw"><bdi dir="ltr">TIPS</bdi></span></b> הוא הטיפול המועדף כשתרופות ואנדוסקופיה נכשלו. הוא שולט בדימום כמעט תמיד. המחיר: סיכון לאנצפלופתיה</li><li>ניתוח חירום רק למי שאינו מתאים ל-<span class="nw"><bdi dir="ltr">TIPS</bdi></span>. התמותה עוברת 25% ברוב הסדרות ותלויה בעיקר בתפקוד הכבד</li></ul><div class="nx">אחרי <span class="nw"><bdi dir="ltr">TIPS</bdi></span> הדימום נעצר והוא מתייצב</div></div></details><details class="cs"><summary><i>5</i>ואחרי שהוא יוצא מזה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><p>בלי טיפול מונע, יותר מ-70% ידממו שוב. הסיכון הגבוה ביותר בימים הראשונים והוא יורד עד 6 שבועות</p><ul><li>קו ראשון למניעה: חוסם בטא לא סלקטיבי יחד עם קשירה בגומיות</li><li>השתלת כבד היא הטיפול היחיד שמטפל גם במחלת הכבד עצמה. מתאים למי שהפסיק לשתות ותפקוד הכבד שלו ירוד (Child B או C)</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 89 עמ׳ <bdi dir="ltr">1268–1270, 1273–1274</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>20</b>מקרה מתגלגל</div>
+ <h2>דליות רק בקיבה</h2>
+ <div class="cs-h"><span class="tag">אישה · 47</span><span class="tag a">מחלקה</span></div>
+ <div class="cs-p">אישה בת 47 אושפזה אחרי דימום מדרכי העיכול העליונות. לפני שנה היא אושפזה עם דלקת חריפה של הלבלב. בדיקות הדם של הכבד תקינות. באנדוסקופיה יש דליות בפונדוס של הקיבה ובוושט אין דליות</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה לא מסתדר כאן?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>דליות בקיבה בלי דליות בוושט, בלי מחלת כבד</li><li>רקע של דלקת בלבלב</li><li>החשד: <b>פקקת של ה-<span class="nw"><bdi dir="ltr">splenic vein</bdi></span> בלבד</b> ("יתר לחץ דם פורטלי שמאלי"). לרוב היא נגרמת מדלקת או מגידול של הלבלב</li></ul></div></details><details class="cs"><summary><i>2</i>למה דווקא בקיבה?</summary><div class="ans"><ul><li>הלחץ עולה רק במערכת של הטחול והקיבה</li><li>הלחץ ב-<span class="nw"><bdi dir="ltr">superior mesenteric vein</bdi></span> וב-<span class="nw"><bdi dir="ltr">portal vein</bdi></span> נשאר תקין</li><li>הדם עוקף דרך ה-<span class="nw"><bdi dir="ltr">left gastroepiploic vein</bdi></span> ויוצר דליות בקיבה ולא בוושט</li></ul><div class="nx">בהדמיה ה-<span class="nw"><bdi dir="ltr">splenic vein</bdi></span> חסום וה-<span class="nw"><bdi dir="ltr">portal vein</bdi></span> פתוח</div></div></details><details class="cs"><summary><i>3</i>מה מציעים לה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><p><b>כריתת טחול</b> לבדה פותרת את הבעיה. חשוב לזהות את המצב הזה כי הוא אחד המקרים הנדירים שבהם יתר לחץ פורטלי מתרפא בניתוח פשוט</p><p>לעומת זאת, אצל מטופלים עם שחמת מיעוט הטסיות מטחול מוגדל כמעט אף פעם לא בעיה קלינית וכריתת טחול בגללו בדרך כלל מיותרת</p></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 89 עמ׳ <bdi dir="ltr">1268, 1271</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>21</b>מקרה מתגלגל</div>
+ <h2>בקע טבורי ומיימת</h2>
+ <div class="cs-h"><span class="tag">גבר · 61</span><span class="tag b">מרפאה ואז מחלקה</span></div>
+ <div class="cs-p">גבר בן 61 עם שחמת ומיימת מגיע למרפאה עם בקע טבורי שגדל. הוא רוצה ניתוח. הבילירובין 2.5 מ״ג/ד״ל, האלבומין 3.0 גר׳/ד״ל, זמן הפרותרומבין מוארך ב-4 שניות, מיימת בינונית ובלי אנצפלופתיה</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה ה-<span class="nw"><bdi dir="ltr">Child-Pugh</bdi></span> שלו ומה זה אומר?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><p>בילירובין 2 נקודות, אלבומין 2, זמן פרותרומבין 2, מיימת בינונית 3, בלי אנצפלופתיה 1. סך הכול 10: <b>Child C</b></p><ul><li>ניתוח מתוכנן בדרך כלל לא מוצע ל-Child B או C</li><li>היום מעריכים סיכון יותר לפי <span class="nw"><bdi dir="ltr">MELD</bdi></span> (בילירובין, <span class="nw"><bdi dir="ltr">INR</bdi></span> וקראטינין). <span class="nw"><bdi dir="ltr">MELD</bdi></span> מתחת ל-16: תמותה נמוכה יותר אחרי ניתוח</li><li>מיימת קשורה בעקביות לתוצאות רעות אחרי ניתוח</li></ul></div></details><details class="cs"><summary><i>2</i>לנתח או לא?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>בקעים בדופן הבטן שכיחים בשחמת: 20% עד 40%</li><li>בניתוח דחוף: 60% תחלואה ותמותה ו-10% תמותה ב-90 יום. בניתוח מתוכנן: 27% ו-3%</li><li>לכן מציעים תיקון מתוכנן כשה-<span class="nw"><bdi dir="ltr">MELD</bdi></span> מתחת ל-20, אחרי שמשפרים את מצבו</li></ul><div class="nx">קודם מטפלים במיימת</div></div></details><details class="cs"><summary><i>3</i>איך מטפלים במיימת לפני הניתוח?</summary><div class="ans"><ul><li>דיאטה דלת מלח, <span class="nw"><bdi dir="ltr">furosemide</bdi></span> ו-<span class="nw"><bdi dir="ltr">spironolactone</bdi></span></li><li>במיימת מתוחה (דרגה 3): ניקור בנפח גדול ואחריו אלבומין 25%, 6 עד 8 גרם לכל ליטר שהוצא. כך מונעים פגיעה כלייתית אחרי הניקור</li></ul><div class="nx">הוא נותח. ביום השלישי יש לו חום, כאב בטן מפושט והוא מעט מבולבל</div></div></details><details class="cs"><summary><i>4</i>מה חושבים ומה עושים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b>פריטוניטיס בקטריאלית ספונטנית</b> עד שיוכח אחרת</li><li>ניקור אבחנתי של המיימת: יותר מ-250 נויטרופילים למיקרוליטר הם האבחנה</li><li>תמיכה ואנטיביוטיקה לווריד</li><li>מי שעבר אירוע כזה יקבל טיפול מונע (בדרך כלל <span class="nw"><bdi dir="ltr">ciprofloxacin</bdi></span> או <span class="nw"><bdi dir="ltr">TMP-SMX</bdi></span>)</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 89 עמ׳ <bdi dir="ltr">1267</bdi> · פרק 51 עמ׳ <bdi dir="ltr">619</bdi> · פרק 80 עמ׳ <bdi dir="ltr">1080–1082</bdi> · פרק 46 עמ׳ <bdi dir="ltr">542</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
 <script>

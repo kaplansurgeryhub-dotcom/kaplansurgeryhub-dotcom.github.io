@@ -57,6 +57,28 @@ bdi{unicode-bidi:isolate}
 .hz{fill:var(--c);fill-opacity:.38;stroke:var(--c);stroke-width:2;cursor:pointer;transition:fill-opacity .2s}.hz:hover,.hz.on{fill-opacity:.62}.hzl{font:900 22px Heebo,sans-serif;fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;pointer-events:none;text-anchor:middle}
 .hotp .hint{background:var(--soft);border-radius:12px;padding:10px 12px;font-weight:700;color:var(--g3)}.hzi{border-inline-start:5px solid var(--c,var(--g));background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-top:8px;font-size:15.5px;line-height:1.45}.hzi b{display:block;font-size:17px;color:var(--navy);margin-bottom:4px}
 @media (max-width:760px){.hotw{grid-template-columns:1fr}}
+
+/* rolling cases (the last slides of the full deck): a case opens stage by stage, each answer opens on a tap */
+.cs-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}.cs-h .tag{font-size:12.5px}
+.cs-p{background:var(--soft);border-radius:14px;padding:12px 15px;font-size:16.5px;line-height:1.5;border-inline-start:4px solid var(--navy)}
+.cs-st{display:grid;gap:8px;margin-top:10px}
+details.cs{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+details.cs>summary{display:flex;gap:10px;align-items:center;padding:11px 14px;font-weight:800;font-size:16px;color:var(--navy)}
+details.cs>summary i{font-style:normal;flex:0 0 28px;height:28px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-size:14px}
+details.cs[open]>summary{background:#F2F8F5;border-bottom:1px solid var(--line)}
+details.cs .ans{padding:11px 15px 13px;font-size:15.5px;line-height:1.5}
+details.cs .ans p{margin:0 0 6px}details.cs .ans ul{margin:4px 0 0;padding-inline-start:18px}details.cs .ans li{margin:3px 0}
+details.cs .cs-pv{margin-inline-start:auto;font-size:12px;font-weight:800;color:var(--g3);background:#E3F4EC;border-radius:999px;padding:2px 9px}
+details.cs .nx{margin-top:8px;background:#FFF6EA;border-radius:10px;padding:8px 11px;font-weight:700;color:#7A4E10}
+.cs-div{text-align:center}.cs-div h2{font-size:clamp(30px,5vw,46px)}.cs-div .lead{max-width:640px;margin-inline:auto}
+.cs-div .num{max-width:720px;margin-inline:auto;grid-template-columns:repeat(3,1fr)}
+/* the prep deck */
+.pv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.pv div{background:var(--soft);border-radius:14px;padding:13px 14px}.pv b{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}.pv span{font-size:14.5px;line-height:1.45;color:var(--ink)}
+.rd{display:grid;gap:8px}.rd div{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 14px}
+.rd div>b{font-family:'Frank Ruhl Libre',serif;font-size:22px;color:var(--g3);min-width:46px;text-align:center}.rd div>span{font-size:15.5px;line-height:1.4}.rd div>em{font-style:normal;font-size:12.5px;font-weight:800;border-radius:999px;padding:3px 10px;background:#E3F4EC;color:var(--g3);white-space:nowrap}
+.rd div>em.o{background:#F1F3F2;color:var(--muted)}
+@media (max-width:760px){.pv,.cs-div .num{grid-template-columns:1fr}.rd div{grid-template-columns:auto 1fr}.rd div>em{grid-column:2}}
+
 /*BRAND*/
 .brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
 .brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
@@ -464,6 +486,41 @@ body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat
  <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906, נחלת הכלל) · תמונות קליניות <span class="nw">מ-<bdi>Wikimedia Commons</bdi></span> לפי הרישיון שבכל כיתוב · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
+
+<section class="s"><div class="card cs-div">
+ <div class="kick"><b>16</b>מקרים מתגלגלים</div>
+ <h2>מהמיון לחדר הניתוח</h2>
+ <p class="lead">3 מטופלים. כל מקרה נפתח שלב אחרי שלב: קודם חושבים יחד מה עושים, ורק אז פותחים את התשובה</p>
+ <div class="num"><div><b>1</b><span>עייפות ואנמיה מחוסר ברזל</span></div><div><b>2</b><span>צעיר עם גידול במעי וסיפור משפחתי</span></div><div><b>3</b><span>דם ביציאות וגידול נמוך ברקטום</span></div></div>
+ <div class="src"><span>המקרים בדויים ונכתבו לפי <b>Sabiston 22</b>, בלי פרטי מטופלים</span><span>מקרים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>17</b>מקרה מתגלגל</div>
+ <h2>עייפות שלא עוברת</h2>
+ <div class="cs-h"><span class="tag">אישה · 71</span><span class="tag b">מרפאה ומחלקה</span></div>
+ <div class="cs-p">אישה בת 71 מופנית ע״י רופאת המשפחה בגלל עייפות של כמה חודשים. בבדיקות הדם אנמיה מחוסר ברזל. אין לה כאבי בטן ואין שינוי ביציאות</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה החשד ומה הבדיקה הראשונה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>אנמיה מחוסר ברזל אצל מבוגרת: לחשוב על גידול בצד ימין של ה-<span class="nw"><bdi dir="ltr">colon</bdi></span></li><li>גידול בצד שמאל נוטה להופיע עם שינוי בקוטר הצואה או דם טרי</li><li>קולונוסקופיה מלאה</li></ul><div class="nx">בקולונוסקופיה יש גידול ב-<span class="nw"><bdi dir="ltr">cecum</bdi></span>. שאר המעי נקי</div></div></details><details class="cs"><summary><i>2</i>מה צריך להיות בדו״ח ומה משלים את הבירור?</summary><div class="ans"><ul><li>מיקום ביחס לסימנים אנטומיים, קעקוע, תיעוד שכל המעי נבדק וביופסיה. האבחנה היסטולוגית</li><li>בדיקת <span class="nw"><bdi dir="ltr">MMR</bdi></span> בביופסיה</li><li>ספירת דם, כימיה ו-<span class="nw"><bdi dir="ltr">CEA</bdi></span></li><li>CT של החזה, הבטן והאגן לחיפוש גרורות</li></ul><div class="nx">אין גרורות. היא מתוכננת לניתוח</div></div></details><details class="cs"><summary><i>3</i>איזה ניתוח ומה עושה אותו טוב?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>כריתה ימנית של ה-<span class="nw"><bdi dir="ltr">colon</bdi></span>, עם קשירה גבוהה של כלי הדם</li><li>שוליים של 5–7 ס״מ מהגידול בכל צד</li><li>יותר מ-12 בלוטות בבדיקה הפתולוגית קשורות להישרדות טובה יותר. פחות מ-12: יותר חזרות</li><li>חיבור בלי מתח, עם אספקת דם טובה</li></ul><div class="nx">בפתולוגיה: T3, 2 בלוטות חיוביות מתוך 19, בלי גרורות</div></div></details><details class="cs"><summary><i>4</i>מה הלאה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>שלב III: כימותרפיה משלימה. <span class="nw"><bdi dir="ltr">CAPEOX</bdi></span> או <span class="nw"><bdi dir="ltr">FOLFOX</bdi></span> עדיפים על 5-FU עם לויקובורין</li><li>מעקב: קולונוסקופיה מלאה שנה אחרי הניתוח, בדיקה ו-<span class="nw"><bdi dir="ltr">CEA</bdi></span> כל 3–6 חודשים בשנתיים הראשונות ו-CT כל 6–12 חודשים</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1497–1503</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>18</b>מקרה מתגלגל</div>
+ <h2>גידול בגיל 41</h2>
+ <div class="cs-h"><span class="tag">גבר · 41</span><span class="tag a">מרפאה</span></div>
+ <div class="cs-p">גבר בן 41 עם דם ביציאות כבר חודשיים. בקולונוסקופיה נמצא גידול ב-sigmoid. אביו חלה בסרטן המעי בגיל 45 ודודה שלו חלתה בסרטן הרחם</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>למה לחשוב כאן על תורשה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>חולה צעיר וסיפור משפחתי של סרטן מעי וסרטן רחם: חשד לתסמונת לינץ׳</li><li>לינץ׳ קשורה גם לגידולים בקיבה, במעי הדק, בדרכי השתן, בשחלות ועוד</li><li>היום לא מסתמכים רק על הסיפור המשפחתי: בכל ביופסיה של סרטן בודקים MMR</li></ul><div class="nx">בביופסיה חסר החלבון של <span class="nw"><bdi dir="ltr">MSH2</bdi></span>. הוא מופנה לייעוץ גנטי ונמצאה אצלו מוטציה</div></div></details><details class="cs"><summary><i>2</i>כריתה מקטעית או כריתה רחבה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>אחרי כריתה מקטעית בלבד, הסיכון לגידול חדש במעי הוא 12–20% ב-10 שנים</li><li>האגודה האמריקאית לכירורגיה קולורקטלית ממליצה על כריתה של כל ה-colon ולא כריתה מקטעית</li><li>שוקלים מול איכות החיים ומחליטים יחד עם המטופל</li></ul><div class="nx">הוא בוחר בכריתת כל ה-colon. בפתולוגיה: T3, בלי בלוטות. שלב II</div></div></details><details class="cs"><summary><i>3</i>צריך כימותרפיה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><p>בגידול עם חוסר ב-MMR בשלב I או II ממליצים על מעקב בלי טיפול משלים</p><p>וחשוב לא פחות: בני המשפחה מדרגה ראשונה מופנים לייעוץ גנטי</p></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1494–1497, 1501</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>19</b>מקרה מתגלגל</div>
+ <h2>גידול ברקטום</h2>
+ <div class="cs-h"><span class="tag">אישה · 63</span><span class="tag r">ישיבה רב-תחומית</span></div>
+ <div class="cs-p">אישה בת 63 עם דם ביציאות ותחושה שהיא לא מסיימת להתרוקן. בבדיקה רקטלית יש גידול נייד בדופן האחורית של ה-rectum</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה בודקים במרפאה?</summary><div class="ans"><ul><li>בדיקה רקטלית ופרוקטוסקופיה של המנתח: המרחק מפי הטבעת ומה-dentate line וקשר לסוגרים ולאיברים השכנים</li><li>לשאול על תפקוד היציאות, השתן והמין לפני הטיפול. שליטה לא מלאה לפני ניתוח מנבאת תפקוד גרוע אחריו</li><li>ביופסיה עם MMR, CEA וקולונוסקופיה מלאה</li></ul><div class="nx">הגידול 6 ס״מ מפי הטבעת</div></div></details><details class="cs"><summary><i>2</i>איזו הדמיה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>CT של החזה, הבטן והאגן לגרורות</li><li>MRI של האגן: הבדיקה המועדפת לקביעת T ו-N ולקשר לשוליים ההיקפיים (CRM)</li><li>כל הממצאים עוברים בישיבה רב-תחומית</li></ul><div class="nx">ב-MRI: T3N1. אין גרורות</div></div></details><details class="cs"><summary><i>3</i>ניתוח קודם או טיפול קודם?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>גידול מקומי מתקדם (T3–4 או N1) ב-rectum שמתחת לצפק: טיפול לפני הניתוח</li><li>טיפול לפני הניתוח הוריד חזרה מקומית ב-5 שנים מ-13% ל-6% לעומת טיפול אחרי ועם פחות רעילות קשה</li><li>היום: כל הכימותרפיה וההקרנה לפני הניתוח (TNT) נחשבים טיפול מקובל</li></ul><div class="nx">בסוף הטיפול לא נמוש גוש וב-MRI ובאנדוסקופיה נשארה צלקת חלקה בלבד</div></div></details><details class="cs"><summary><i>4</i>חייבים לנתח?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>תגובה קלינית מלאה: אפשר לשקול מעקב בלי ניתוח (watch and wait), רק בצוות מנוסה ובפרוטוקול מוגדר</li><li>המעקב צמוד: בדיקה רקטלית, אנדוסקופיה ו-CEA כל 3–6 חודשים ו-MRI כל 6 חודשים</li><li>אם הגידול חוזר או שאין תגובה מלאה: TME</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 96 עמ׳ <bdi dir="ltr">1503–1505</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
 <script>

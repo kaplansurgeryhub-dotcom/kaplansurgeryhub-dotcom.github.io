@@ -67,6 +67,28 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .hz{fill:var(--c);fill-opacity:.38;stroke:var(--c);stroke-width:2;cursor:pointer;transition:fill-opacity .2s}.hz:hover,.hz.on{fill-opacity:.62}.hzl{font:900 22px Heebo,sans-serif;fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;pointer-events:none;text-anchor:middle}
 .hotp .hint{background:var(--soft);border-radius:12px;padding:10px 12px;font-weight:700;color:var(--g3)}.hzi{border-inline-start:5px solid var(--c,var(--g));background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-top:8px;font-size:15.5px;line-height:1.45}.hzi b{display:block;font-size:17px;color:var(--navy);margin-bottom:4px}
 @media (max-width:760px){.hotw{grid-template-columns:1fr}}
+
+/* rolling cases (the last slides of the full deck): a case opens stage by stage, each answer opens on a tap */
+.cs-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}.cs-h .tag{font-size:12.5px}
+.cs-p{background:var(--soft);border-radius:14px;padding:12px 15px;font-size:16.5px;line-height:1.5;border-inline-start:4px solid var(--navy)}
+.cs-st{display:grid;gap:8px;margin-top:10px}
+details.cs{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+details.cs>summary{display:flex;gap:10px;align-items:center;padding:11px 14px;font-weight:800;font-size:16px;color:var(--navy)}
+details.cs>summary i{font-style:normal;flex:0 0 28px;height:28px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-size:14px}
+details.cs[open]>summary{background:#F2F8F5;border-bottom:1px solid var(--line)}
+details.cs .ans{padding:11px 15px 13px;font-size:15.5px;line-height:1.5}
+details.cs .ans p{margin:0 0 6px}details.cs .ans ul{margin:4px 0 0;padding-inline-start:18px}details.cs .ans li{margin:3px 0}
+details.cs .cs-pv{margin-inline-start:auto;font-size:12px;font-weight:800;color:var(--g3);background:#E3F4EC;border-radius:999px;padding:2px 9px}
+details.cs .nx{margin-top:8px;background:#FFF6EA;border-radius:10px;padding:8px 11px;font-weight:700;color:#7A4E10}
+.cs-div{text-align:center}.cs-div h2{font-size:clamp(30px,5vw,46px)}.cs-div .lead{max-width:640px;margin-inline:auto}
+.cs-div .num{max-width:720px;margin-inline:auto;grid-template-columns:repeat(3,1fr)}
+/* the prep deck */
+.pv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.pv div{background:var(--soft);border-radius:14px;padding:13px 14px}.pv b{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}.pv span{font-size:14.5px;line-height:1.45;color:var(--ink)}
+.rd{display:grid;gap:8px}.rd div{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 14px}
+.rd div>b{font-family:'Frank Ruhl Libre',serif;font-size:22px;color:var(--g3);min-width:46px;text-align:center}.rd div>span{font-size:15.5px;line-height:1.4}.rd div>em{font-style:normal;font-size:12.5px;font-weight:800;border-radius:999px;padding:3px 10px;background:#E3F4EC;color:var(--g3);white-space:nowrap}
+.rd div>em.o{background:#F1F3F2;color:var(--muted)}
+@media (max-width:760px){.pv,.cs-div .num{grid-template-columns:1fr}.rd div{grid-template-columns:auto 1fr}.rd div>em{grid-column:2}}
+
 /*BRAND*/
 .brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
 .brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
@@ -488,6 +510,41 @@ body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat
  <div class="src"><span>איורים: <bdi>Gray's Anatomy</bdi> 1918, <bdi>Musser</bdi> 1904 (נחלת הכלל) · צילומים: <span class="nw"><bdi>Hellerhoff</bdi>,</span> <bdi>Hic et nunc</bdi> <span class="nw">(<bdi>CC BY-SA</bdi>,</span> <span class="nw"><bdi>Wikimedia Commons</bdi>)</span> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
+
+<section class="s"><div class="card cs-div">
+ <div class="kick"><b>18</b>מקרים מתגלגלים</div>
+ <h2>מהמיון לחדר הניתוח</h2>
+ <p class="lead">3 מטופלים. כל מקרה נפתח שלב אחרי שלב: קודם חושבים יחד מה עושים, ורק אז פותחים את התשובה</p>
+ <div class="num"><div><b>1</b><span>כאב בבטן השמאלית התחתונה</span></div><div><b>2</b><span>מורסה ואחר כך אוויר בשתן</span></div><div><b>3</b><span>בטן קשה כקרש</span></div></div>
+ <div class="src"><span>המקרים בדויים ונכתבו לפי <b>Sabiston 22</b>, בלי פרטי מטופלים</span><span>מקרים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>19</b>מקרה מתגלגל</div>
+ <h2>כאב משמאל וחום</h2>
+ <div class="cs-h"><span class="tag">אישה · 63</span><span class="tag b">מיון ומרפאה</span></div>
+ <div class="cs-p">אישה בת 63 עם כאב בבטן השמאלית התחתונה כבר יומיים, חום של 38.1 וירידה בתיאבון. יש רגישות ממוקדת משמאל למטה, בלי סימני פריטוניטיס. אין דם ברקטום</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה החשד ואיך מאשרים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b>דלקת סעיפים</b> של ה-<span class="nw"><bdi dir="ltr">sigmoid</bdi></span>: כאב משמאל למטה, חום, שינוי ביציאות</li><li>דימום רקטלי לא אופייני לדלקת סעיפים חריפה ומכוון לאבחנה אחרת</li><li>CT הוא הבדיקה העיקרית: מאשר, שולל אבחנות אחרות וקובע את החומרה</li><li>קולונוסקופיה בזמן ההתקף: בזהירות, ניפוח המעי יכול להחמיר נקב</li></ul><div class="nx">ב-CT: סעיפים, עיבוי של דופן ה-<span class="nw"><bdi dir="ltr">sigmoid</bdi></span> והסננה של השומן סביבו. אין מורסה ואין אוויר חופשי</div></div></details><details class="cs"><summary><i>2</i>איך מטפלים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>דלקת לא מסובכת: רוב המטופלים מטופלים בבית וזה בטוח וחסכוני</li><li>משככי כאבים, נוזלים צלולים ואחר כך דיאטה דלת שאריות</li><li>אנטיביוטיקה: מטא-אנליזה לא הראתה שהיא מקצרת את ההחלמה או מונעת סיבוכים ויש רופאים שכבר לא נותנים</li><li>אחרי ההחלמה: קולונוסקופיה בעוד <bdi dir="ltr">4–8</bdi> שבועות כדי לשלול גידול (כ-<bdi dir="ltr">1–3%</bdi> מהמאובחנים, יותר במחלה מסובכת)</li></ul><div class="nx">בשנתיים הבאות היו לה עוד שלושה התקפים קלים ובין ההתקפים יש כאב שמגביל אותה בעבודה</div></div></details><details class="cs"><summary><i>3</i>לנתח?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>מספר ההתקפים לבדו כבר לא סיבה לניתוח: התקפים חוזרים דומים בדרך כלל בחומרתם להתקף הראשון</li><li>מה שמכריע: תלונות מתמשכות ופגיעה באיכות החיים, מול הסיכון של הניתוח</li><li>במחקר <span class="nw"><bdi dir="ltr">DIRECT</bdi></span> כריתת סיגמה שיפרה את איכות החיים במי שסובל מהתקפים חוזרים או מתלונות מתמשכות</li><li>בניתוח: שוליים קרובים במעי רך וגמיש וחיבור ל-<span class="nw"><bdi dir="ltr">upper rectum</bdi></span></li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1450–1452</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>20</b>מקרה מתגלגל</div>
+ <h2>מורסה ליד ה-sigmoid</h2>
+ <div class="cs-h"><span class="tag">גבר · 58</span><span class="tag a">מחלקה ומרפאה</span></div>
+ <div class="cs-p">גבר בן 58 עם כאב משמאל למטה וחום של 39. ב-CT יש מורסה של 6 ס״מ באגן, ליד ה-<span class="nw"><bdi dir="ltr">sigmoid</bdi></span></div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה הדרגה ומה עושים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>מורסה באגן: <span class="nw"><bdi dir="ltr">Hinchey</bdi></span> II. זו דלקת מסובכת</li><li>מורסה קטנה: לרוב אנטיביוטיקה מספיקה</li><li>מורסה גדולה: <b>ניקוז מלעורי</b> ואנטיביוטיקה</li><li>מורסה שאי אפשר לנקז ולא משתפרת: ניתוח דחוף</li></ul><div class="nx">המורסה נוקזה והוא השתפר. כעבור חודשיים הוא מתלונן על דלקות חוזרות בדרכי השתן ובשתן יש בועות אוויר</div></div></details><details class="cs"><summary><i>2</i>מה קרה?</summary><div class="ans"><ul><li><b>פיסטולה בין המעי לשלפוחית</b>, השכיחה בסוגי הפיסטולות, בעיקר בגברים</li><li>דלקות שתן חוזרות עם כמה חיידקים, אוויר וצואה בשתן</li><li>ב-CT אפשר לראות אוויר בשלפוחית בלי שהוכנס אליה מכשיר</li></ul></div></details><details class="cs"><summary><i>3</i>צריך ניתוח דחוף?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>בדרך כלל לא: המורסה כבר התנקזה דרך הפיסטולה</li><li>קודם אנטיביוטיקה ואחר כך קולונוסקופיה וציסטוסקופיה כדי לשלול גידול ו<span class="nw"><bdi dir="ltr">Crohn</bdi></span></li><li>הניתוח: כריתה של המעי הפגוע ושל הפיסטולה והשקה ראשונית</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1451–1452</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>21</b>מקרה מתגלגל</div>
+ <h2>פריטוניטיס</h2>
+ <div class="cs-h"><span class="tag">גבר · 71</span><span class="tag r">מיון</span></div>
+ <div class="cs-p">גבר בן 71 עם כאב בכל הבטן מהבוקר. הבטן קשה ורגישה בכל מקום. הלחץ 92/55, הדופק 118. ב-CT יש אוויר חופשי ונוזל בכל הבטן</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה המצב?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>פריטוניטיס מפושטת מנקב של סעיף: <span class="nw"><bdi dir="ltr">Hinchey</bdi></span> III (מוגלתית) או IV (צואתית). חירום</li><li>קשה להבדיל ביניהן ב-CT ולרוב האבחנה המדויקת נעשית בחדר הניתוח</li><li>החייאה, אנטיביוטיקה ומשם לחדר הניתוח כדי לשלוט במקור ולשטוף את הבטן</li></ul><div class="nx">בניתוח: צואה בבטן. הוא נשאר לא יציב ומקבל תרופות מכווצות כלים</div></div></details><details class="cs"><summary><i>2</i>איזה ניתוח?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>מטופל לא יציב: <b><span class="nw"><bdi dir="ltr">Hartmann</bdi></span></b> (כריתה וקולוסטומיה), או ניתוח לשליטה בנזק</li><li>המחיר של <span class="nw"><bdi dir="ltr">Hartmann</bdi></span>: החזרת הרציפות היא ניתוח גדול נוסף ועד 50% לא עוברים אותו לעולם</li><li>לו היה יציב וכשיר: כריתה והשקה ראשונית עם אילאוסטומיה מסיטה ב-<span class="nw"><bdi dir="ltr">Hinchey</bdi></span> IV</li><li>ב-<span class="nw"><bdi dir="ltr">Hinchey</bdi></span> III במטופל יציב אפשר גם השקה ראשונית או שטיפה לפרוסקופית. בשטיפה המקטע החולה נשאר והסיכון לחזרה גבוה כמעט פי 6</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 95 עמ׳ <bdi dir="ltr">1451–1453</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
 <script>

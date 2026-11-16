@@ -60,6 +60,28 @@ bdi{unicode-bidi:isolate}
 bdi[dir=ltr]{white-space:nowrap}
 details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;background:#fff}details.rev summary{cursor:pointer;list-style:none;padding:10px 14px;font-weight:800;color:#fff;background:var(--g3);border-radius:13px}details.rev summary::-webkit-details-marker{display:none}details.rev[open] summary{border-radius:13px 13px 0 0}details.rev>div{padding:12px 14px}
 .case{background:#0C2A35;color:#fff;border-radius:16px;padding:14px 16px;font-size:16px;line-height:1.55}.case b{color:#B5D96B}
+
+/* rolling cases (the last slides of the full deck): a case opens stage by stage, each answer opens on a tap */
+.cs-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}.cs-h .tag{font-size:12.5px}
+.cs-p{background:var(--soft);border-radius:14px;padding:12px 15px;font-size:16.5px;line-height:1.5;border-inline-start:4px solid var(--navy)}
+.cs-st{display:grid;gap:8px;margin-top:10px}
+details.cs{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+details.cs>summary{display:flex;gap:10px;align-items:center;padding:11px 14px;font-weight:800;font-size:16px;color:var(--navy)}
+details.cs>summary i{font-style:normal;flex:0 0 28px;height:28px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-size:14px}
+details.cs[open]>summary{background:#F2F8F5;border-bottom:1px solid var(--line)}
+details.cs .ans{padding:11px 15px 13px;font-size:15.5px;line-height:1.5}
+details.cs .ans p{margin:0 0 6px}details.cs .ans ul{margin:4px 0 0;padding-inline-start:18px}details.cs .ans li{margin:3px 0}
+details.cs .cs-pv{margin-inline-start:auto;font-size:12px;font-weight:800;color:var(--g3);background:#E3F4EC;border-radius:999px;padding:2px 9px}
+details.cs .nx{margin-top:8px;background:#FFF6EA;border-radius:10px;padding:8px 11px;font-weight:700;color:#7A4E10}
+.cs-div{text-align:center}.cs-div h2{font-size:clamp(30px,5vw,46px)}.cs-div .lead{max-width:640px;margin-inline:auto}
+.cs-div .num{max-width:720px;margin-inline:auto;grid-template-columns:repeat(3,1fr)}
+/* the prep deck */
+.pv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.pv div{background:var(--soft);border-radius:14px;padding:13px 14px}.pv b{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}.pv span{font-size:14.5px;line-height:1.45;color:var(--ink)}
+.rd{display:grid;gap:8px}.rd div{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 14px}
+.rd div>b{font-family:'Frank Ruhl Libre',serif;font-size:22px;color:var(--g3);min-width:46px;text-align:center}.rd div>span{font-size:15.5px;line-height:1.4}.rd div>em{font-style:normal;font-size:12.5px;font-weight:800;border-radius:999px;padding:3px 10px;background:#E3F4EC;color:var(--g3);white-space:nowrap}
+.rd div>em.o{background:#F1F3F2;color:var(--muted)}
+@media (max-width:760px){.pv,.cs-div .num{grid-template-columns:1fr}.rd div{grid-template-columns:auto 1fr}.rd div>em{grid-column:2}}
+
 /*BRAND*/
 .brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
 .brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
@@ -485,6 +507,41 @@ body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat
  <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906, נחלת הכלל) · תמונות: <span class="nw"><bdi>Wikimedia Commons</bdi>,</span> הקרדיט בכל תמונה · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
+
+<section class="s"><div class="card cs-div">
+ <div class="kick"><b>16</b>מקרים מתגלגלים</div>
+ <h2>מהמיון לחדר הניתוח</h2>
+ <p class="lead">3 מטופלים. כל מקרה נפתח שלב אחרי שלב: קודם חושבים יחד מה עושים, ורק אז פותחים את התשובה</p>
+ <div class="num"><div><b>1</b><span>מטופלת שמבקשת ניתוח</span></div><div><b>2</b><span>דופק 124 בלילה אחרי הניתוח</span></div><div><b>3</b><span>שלושה שבועות אחרי שרוול: מקיאה הכול</span></div></div>
+ <div class="src"><span>המקרים בדויים ונכתבו לפי <b>Sabiston 22</b>, בלי פרטי מטופלים</span><span>מקרים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>17</b>מקרה מתגלגל</div>
+ <h2>מגיעה לבד למרפאה</h2>
+ <div class="cs-h"><span class="tag">אישה · 46</span><span class="tag b">מרפאה</span></div>
+ <div class="cs-p">אישה בת 46 עם BMI 42, סוכרת מסוג 2 ויתר לחץ דם. ניסתה כמה דיאטות לאורך שנים, ירדה וחזרה למשקל. בעלה אומר שהיא נוחרת חזק והיא נרדמת בישיבות בעבודה. יש לה צרבת כמעט כל ערב</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>האם היא מתאימה לניתוח?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>כן. BMI מעל 35, או מעל 30 עם מחלה נלווית שההשמנה מחמירה</li><li>ניסיון דיאטה שלא הצליח</li><li>עוד דרישות: יציבות נפשית, בלי תלות באלכוהול או בסמים, הבנה של הניתוח ומוטיבציה</li><li>התוויות נגד שכדאי להכיר: מטופל שלא יכול ללכת ו-<span class="nw"><bdi dir="ltr">Prader-Willi</bdi></span></li></ul></div></details><details class="cs"><summary><i>2</i>מה בודקים לפני הניתוח?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>נחירות, הירדמות ביום ועייפות אחרי לילה: חשד לדום נשימה בשינה. שולחים לבדיקת שינה. אם יש, מכשיר לחץ חיובי בשינה אחרי הניתוח מפחית סיבוכים</li><li>צרבת: גסטרוסקופיה לפני הניתוח, לחפש <span class="nw"><bdi dir="ltr">Barrett</bdi></span> ובקע סרעפתי</li><li>הערכה של צוות: תזונאית, פסיכולוג, אחות מתאמת והרדמה</li></ul><div class="nx">בבדיקת השינה יש דום נשימה. בגסטרוסקופיה יש דלקת בוושט ובקע סרעפתי קטן</div></div></details><details class="cs"><summary><i>3</i>שרוול או מעקף?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>אחרי שרוול רפלוקס מחמיר אצל רבים: במעקב של 10 שנים ב-<span class="nw"><bdi dir="ltr">SLEEVEPASS</bdi></span> כמחצית מאלה שעברו אנדוסקופיה דיווחו על החמרה ו-11.6% עברו המרה למעקף</li><li>במעקף החומצה מופנית הרחק מהוושט והצרבת משתפרת</li><li>לכן מטופלת עם רפלוקס משמעותי: מעקף</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 99 עמ׳ <bdi dir="ltr">1561–1563, 1571–1575</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>18</b>מקרה מתגלגל</div>
+ <h2>רק טכיקרדיה</h2>
+ <div class="cs-h"><span class="tag">גבר · 39</span><span class="tag r">מחלקה</span></div>
+ <div class="cs-p">גבר בן 39 עם BMI 48 עבר מעקף לפרוסקופי בבוקר. בלילה האחות מתקשרת: הדופק 124, הוא חסר מנוחה ונושם מהר. אין חום. הבטן רכה ורגישה מעט סביב החתכים. השתן מעט, למרות שקיבל הרבה נוזלים</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה מדאיג כאן?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>במטופל עם השמנה, טכיקרדיה מתמשכת יכולה להיות הסימן היחיד לדליפה. אין חום ואין סימני צפקת כמו אצל אדם רזה</li><li>צורך בנוזלים גבוה מהצפוי, מיעוט שתן וטכיקרדיה: בעיה בבטן עד שיוכח אחרת</li><li>במעקף, דליפה מוקדמת מהחיבורים מופיעה עם סימני הלם: טכיקרדיה, נשימה מהירה וכאב בטן</li></ul></div></details><details class="cs"><summary><i>2</i>לתת משתן כי השתן מעט?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><p><b>לא לפני שמוודאים שהוא מלא בנוזלים.</b> בניתוח לפרוסקופי השתן בזמן הניתוח בדרך כלל מעט בגלל הגז בבטן. מטופל שנוטל משתנים כרוני יכול לצרוך משתן, אבל רק אחרי החייאת נוזלים מתאימה</p></div></details><details class="cs"><summary><i>3</i>איך מאשרים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>CT עם חומר ניגוד בשתייה, צילום בליעה ולפעמים לפרוסקופיה</li><li>במטופל לא יציב לא מחכים להדמיה: חוזרים לחדר הניתוח</li></ul><div class="nx">ב-CT רואים יציאה של חומר הניגוד ליד החיבור בין הכיס ללולאה</div></div></details><details class="cs"><summary><i>4</i>ומה למדנו?</summary><div class="ans"><ul><li>דליפה מהחיבור בין הכיס למעי שכיחה יותר מדליפה מהחיבור התחתון</li><li>אחרי ניתוח בריאטרי, טכיקרדיה היא דליפה עד שיוכח אחרת</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 99 עמ׳ <bdi dir="ltr">1570, 1574</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>19</b>מקרה מתגלגל</div>
+ <h2>לא מצליחה לאכול</h2>
+ <div class="cs-h"><span class="tag">אישה · 33</span><span class="tag a">מיון</span></div>
+ <div class="cs-p">אישה בת 33 עברה שרוול לפני שלושה שבועות. בשבוע האחרון היא מקיאה כמעט כל מה שהיא שותה ואוכלת. היום היא מגיעה למיון חלשה ובעלה אומר שהיא "קצת מבולבלת"</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה הדבר הראשון שעושים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>הקאות ממושכות אחרי כל ניתוח בריאטרי ותסמינים נוירולוגיים: <b>אנצפלופתיה של <span class="nw"><bdi dir="ltr">Wernicke</bdi></span></b></li><li>נותנים <b>תיאמין</b> (ויטמין B1) בעירוי מיד, עוד לפני הבירור</li><li>אם התסמינים כבר משמעותיים, הם לא תמיד חולפים לגמרי גם עם טיפול. לכן נותנים תיאמין כבר כשיש הקאות ממושכות</li></ul></div></details><details class="cs"><summary><i>2</i>למה היא מקיאה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>היצרות של השרוול, לרוב ב-<span class="nw"><bdi dir="ltr">incisura angularis</bdi></span>. נדירה (פחות מ-1%) ומופיעה עם תסמיני חסימה</li><li>מאבחנים בגסטרוסקופיה או בצילום בליעה</li></ul><div class="nx">בגסטרוסקופיה יש היצרות באינציזורה</div></div></details><details class="cs"><summary><i>3</i>איך מטפלים ומה עוד מחפשים?</summary><div class="ans"><ul><li>הרחבות חוזרות בבלון באנדוסקופיה. לפעמים צריך המרה למעקף</li><li>דליפה מהשרוול (0.3–0.5%) מופיעה בדרך כלל שבוע עד ארבעה שבועות אחרי הניתוח ולעיתים בלי הלם: חום ומורסה. היצרות באינציזורה היא אחת הסיבות לדליפה גבוהה יותר ולכן מחפשים אותה ב-CT עם חומר ניגוד בשתייה</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 99 עמ׳ <bdi dir="ltr">1574–1575, 1577</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
 <script>

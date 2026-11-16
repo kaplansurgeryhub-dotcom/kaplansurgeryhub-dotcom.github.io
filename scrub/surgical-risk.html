@@ -63,6 +63,28 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 @media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
 @media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+
+/* rolling cases (the last slides of the full deck): a case opens stage by stage, each answer opens on a tap */
+.cs-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}.cs-h .tag{font-size:12.5px}
+.cs-p{background:var(--soft);border-radius:14px;padding:12px 15px;font-size:16.5px;line-height:1.5;border-inline-start:4px solid var(--navy)}
+.cs-st{display:grid;gap:8px;margin-top:10px}
+details.cs{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+details.cs>summary{display:flex;gap:10px;align-items:center;padding:11px 14px;font-weight:800;font-size:16px;color:var(--navy)}
+details.cs>summary i{font-style:normal;flex:0 0 28px;height:28px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-size:14px}
+details.cs[open]>summary{background:#F2F8F5;border-bottom:1px solid var(--line)}
+details.cs .ans{padding:11px 15px 13px;font-size:15.5px;line-height:1.5}
+details.cs .ans p{margin:0 0 6px}details.cs .ans ul{margin:4px 0 0;padding-inline-start:18px}details.cs .ans li{margin:3px 0}
+details.cs .cs-pv{margin-inline-start:auto;font-size:12px;font-weight:800;color:var(--g3);background:#E3F4EC;border-radius:999px;padding:2px 9px}
+details.cs .nx{margin-top:8px;background:#FFF6EA;border-radius:10px;padding:8px 11px;font-weight:700;color:#7A4E10}
+.cs-div{text-align:center}.cs-div h2{font-size:clamp(30px,5vw,46px)}.cs-div .lead{max-width:640px;margin-inline:auto}
+.cs-div .num{max-width:720px;margin-inline:auto;grid-template-columns:repeat(3,1fr)}
+/* the prep deck */
+.pv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.pv div{background:var(--soft);border-radius:14px;padding:13px 14px}.pv b{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}.pv span{font-size:14.5px;line-height:1.45;color:var(--ink)}
+.rd{display:grid;gap:8px}.rd div{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 14px}
+.rd div>b{font-family:'Frank Ruhl Libre',serif;font-size:22px;color:var(--g3);min-width:46px;text-align:center}.rd div>span{font-size:15.5px;line-height:1.4}.rd div>em{font-style:normal;font-size:12.5px;font-weight:800;border-radius:999px;padding:3px 10px;background:#E3F4EC;color:var(--g3);white-space:nowrap}
+.rd div>em.o{background:#F1F3F2;color:var(--muted)}
+@media (max-width:760px){.pv,.cs-div .num{grid-template-columns:1fr}.rd div{grid-template-columns:auto 1fr}.rd div>em{grid-column:2}}
+
 /*BRAND*/
 .brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
 .brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
@@ -493,6 +515,41 @@ body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat
  <div class="src"><span>איורים: <bdi>Sobotta</bdi> 1906 (נחלת הכלל) · צילום: <bdi>James Heilman, MD</bdi> <span class="nw">(<bdi>CC BY-SA 3.0</bdi>,</span> <span class="nw"><bdi>Wikimedia Commons</bdi>)</span> · תרשים: <bdi>Scrub In</bdi> לפי הספר · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
+
+<section class="s"><div class="card cs-div">
+ <div class="kick"><b>16</b>מקרים מתגלגלים</div>
+ <h2>מהמיון לחדר הניתוח</h2>
+ <p class="lead">3 מטופלים. כל מקרה נפתח שלב אחרי שלב: קודם חושבים יחד מה עושים, ורק אז פותחים את התשובה</p>
+ <div class="num"><div><b>1</b><span>כריתת מעי מתוכננת ולב שעבר אוטם</span></div><div><b>2</b><span>מעשן עם COPD לפני ניתוח ארוך בבטן העליונה</span></div><div><b>3</b><span>בת 86 שגרה לבד וצריכה ניתוח דחוף</span></div></div>
+ <div class="src"><span>המקרים בדויים ונכתבו לפי <b>Sabiston 22</b>, בלי פרטי מטופלים</span><span>מקרים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>17</b>מקרה מתגלגל</div>
+ <h2>ארבע נקודות ב-RCRI</h2>
+ <div class="cs-h"><span class="tag">גבר · 69</span><span class="tag b">מרפאה</span></div>
+ <div class="cs-p">גבר בן 69 מתוכנן לכריתה של חצי המעי הגס הימני. לפני שנתיים עבר אוטם בשריר הלב. יש לו סוכרת שמטופלת באינסולין וקריאטינין 2.3. הוא לא מצליח לעלות שתי קומות בלי לעצור</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה הציון שלו ב-RCRI?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>ניתוח בתוך הבטן: נקודה</li><li>מחלת לב איסכמית: נקודה</li><li>סוכרת שמטופלת באינסולין: נקודה</li><li>קריאטינין מעל 2: נקודה</li></ul><p><b>4 נקודות:</b> סיכון גבוה, כ-11% לסיבוך לבבי. ב-<span class="nw"><bdi dir="ltr">ASA</bdi></span> הוא 3: מחלה קשה, אוטם לפני יותר משלושה חודשים</p></div></details><details class="cs"><summary><i>2</i>צריך בדיקת מאמץ?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>הכושר שלו נמוך: מי שלא עולה שתי קומות נמצא בסיכון כפול לסיבוך קשה</li><li>סיכון מוגבר, כושר נמוך ושלושה גורמי סיכון ומעלה: אפשר לשקול בדיקת מאמץ עם הדמיה של הלב</li><li>אבל רק אם התשובה תשנה את הטיפול. אם לא, לא שולחים</li></ul><div class="nx">בדיקות הדם מראות המוגלובין 11. הוא מעשן קופסה ביום כבר 40 שנה</div></div></details><details class="cs"><summary><i>3</i>מה אפשר לשפר לפני הניתוח?</summary><div class="ans"><ul><li><b>אנמיה:</b> בגבר מתחת ל-13 היא גורם סיכון. ככל שהיא קשה יותר, הסיכון עולה. מבררים ומטפלים</li><li><b>עישון:</b> מעל 20 שנות קופסה הסיבוכים עולים ברור. הפסקה לפחות 4 שבועות לפני מורידה סיבוכים</li><li><b>סוכר:</b> איזון מתון, בלי היפוגליקמיה</li><li><b>כושר:</b> הכנה גופנית לפני ניתוח מעי גס הורידה סיבוכים קשים</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 4 עמ׳ <bdi dir="ltr">e43–e44, e50</bdi> · פרק 19 עמ׳ <bdi dir="ltr">3, 9, 12</bdi> · פרק 27 עמ׳ <bdi dir="ltr">152</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>18</b>מקרה מתגלגל</div>
+ <h2>הריאות לפני ניתוח בבטן העליונה</h2>
+ <div class="cs-h"><span class="tag">גבר · 63</span><span class="tag a">מרפאה</span></div>
+ <div class="cs-p">גבר בן 63 עם COPD מעשן כבר 45 שנה. הוא מתוכנן לניתוח פתוח בבטן העליונה, שצפוי להימשך כארבע שעות. הרוויה שלו באוויר החדר 93%. אין לו זיהום נשימתי בחודש האחרון</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה הציון שלו ב-ARISCAT?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>גיל 51–80: 3</li><li>רוויה 91–95%: 8</li><li>חתך בבטן העליונה: 15</li><li>ניתוח מעל 3 שעות: 23</li></ul><p><b>49 נקודות:</b> מעל 45, קבוצת הסיכון הגבוה לסיבוך ריאתי. ככל שהחתך קרוב יותר לסרעפת, הסיכון עולה</p></div></details><details class="cs"><summary><i>2</i>לשלוח ספירומטריה וצילום חזה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><p><b>לא כשגרה.</b> ספירומטריה לפני כריתת ריאה או כשחושדים ב-COPD שלא אובחן. כאן האבחנה ידועה והבדיקה לא תשנה את ההחלטה</p><p>שימו לב: אי ספיקת לב מנבאת סיבוך ריאתי חזק יותר מ-COPD קשה. שואלים עליה</p></div></details><details class="cs"><summary><i>3</i>מה משנים לפני הניתוח?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>הפסקת עישון לפחות 4 שבועות לפני הניתוח: מורידה סיבוכים</li><li>מביאים את ה-COPD למצב הבסיסי הטוב ביותר שלו</li><li>מתאמים עם המרדים: הרדמה אזורית כשאפשר, במטופל עם כמה גורמי סיכון ריאתיים</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 19 עמ׳ <bdi dir="ltr">11–13</bdi> · פרק 4 עמ׳ <bdi dir="ltr">e44, e50</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>19</b>מקרה מתגלגל</div>
+ <h2>שבריריות בחירום</h2>
+ <div class="cs-h"><span class="tag">אישה · 86</span><span class="tag r">מיון</span></div>
+ <div class="cs-p">אישה בת 86 מגיעה מהבית עם חסימת מעי שלא משתפרת והמנתח ממליץ על ניתוח. בחצי השנה האחרונה היא ירדה במשקל, הולכת לאט עם הליכון ואומרת שאין לה כוח. היא גרה לבד והבת שלה מגיעה למיון</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>היא שברירית?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>לפי <span class="nw"><bdi dir="ltr">Fried</bdi></span>: ירידה במשקל, תשישות, הליכה איטית, אחיזה חלשה ופעילות מעטה. יש לה לפחות שלושה: שברירית</li><li>שבריריות מנבאת תוצאות טוב יותר מהגיל ומ-<span class="nw"><bdi dir="ltr">ASA</bdi></span></li><li>היא מעלה תמותה גם בניתוח חירום "קטן"</li></ul></div></details><details class="cs"><summary><i>2</i>מה שואלים אותה, מעבר לסיכון למות?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>מה חשוב לה ומה היא לא הייתה מוכנה לסבול</li><li>יותר מ-70% מהמבוגרים עם מחלה קשה לא ירצו אפילו טיפול קל אם התוצאה הצפויה היא פגיעה קשה בתפקוד או בזיכרון. החשש הזה גדול מהפחד מהמוות</li><li>האם היא תחזור הביתה ומה תעשה אם לא: רבים לא מוכנים לחיות דרך קבע בבית אבות</li></ul><div class="nx">היא אומרת שהדבר החשוב לה הוא לחזור לדירה שלה. הבת מבקשת לדעת מה הסיכויים</div></div></details><details class="cs"><summary><i>3</i>איך מנהלים את השיחה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>שיחת "התרחיש הטוב והרע" (<span class="nw"><bdi dir="ltr">Best Case/Worst Case</bdi></span>): מה צפוי אחרי הניתוח בכל תרחיש</li><li>ממקמים את המצב החריף בתוך המחלות שלה ומציגים גם אפשרויות תומכות</li><li>בספק: ניסיון טיפולי מוגבל בזמן</li><li>מתעדים מי מקבל ההחלטות החלופי ומתחייבים להמשיך ללוות אותה</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 4 עמ׳ <bdi dir="ltr">e43, e52</bdi> · פרק 27 עמ׳ <bdi dir="ltr">146–149</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
 <script>

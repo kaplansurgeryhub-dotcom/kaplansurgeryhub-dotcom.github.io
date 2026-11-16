@@ -79,6 +79,28 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .sgr{background:var(--soft);border-radius:12px;padding:9px 12px;margin-bottom:8px;border-inline-start:4px solid var(--g)}.sgr.m{border-color:var(--red);background:#FBEDEA}.sgr b{display:block;color:var(--navy);font-size:14.5px}.sgr p{margin:2px 0 0;font-size:15.5px;line-height:1.45}
 .sgc{display:block;font-size:11.5px;color:var(--muted);margin-top:6px}
 @media (max-width:760px),(max-height:500px) and (max-width:1000px){.sgbody>div{grid-template-columns:1fr}.sgi svg{max-height:30vh}.sgp{padding:18px 14px 12px}.sgx h3{font-size:23px}}
+
+/* rolling cases (the last slides of the full deck): a case opens stage by stage, each answer opens on a tap */
+.cs-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}.cs-h .tag{font-size:12.5px}
+.cs-p{background:var(--soft);border-radius:14px;padding:12px 15px;font-size:16.5px;line-height:1.5;border-inline-start:4px solid var(--navy)}
+.cs-st{display:grid;gap:8px;margin-top:10px}
+details.cs{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+details.cs>summary{display:flex;gap:10px;align-items:center;padding:11px 14px;font-weight:800;font-size:16px;color:var(--navy)}
+details.cs>summary i{font-style:normal;flex:0 0 28px;height:28px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-size:14px}
+details.cs[open]>summary{background:#F2F8F5;border-bottom:1px solid var(--line)}
+details.cs .ans{padding:11px 15px 13px;font-size:15.5px;line-height:1.5}
+details.cs .ans p{margin:0 0 6px}details.cs .ans ul{margin:4px 0 0;padding-inline-start:18px}details.cs .ans li{margin:3px 0}
+details.cs .cs-pv{margin-inline-start:auto;font-size:12px;font-weight:800;color:var(--g3);background:#E3F4EC;border-radius:999px;padding:2px 9px}
+details.cs .nx{margin-top:8px;background:#FFF6EA;border-radius:10px;padding:8px 11px;font-weight:700;color:#7A4E10}
+.cs-div{text-align:center}.cs-div h2{font-size:clamp(30px,5vw,46px)}.cs-div .lead{max-width:640px;margin-inline:auto}
+.cs-div .num{max-width:720px;margin-inline:auto;grid-template-columns:repeat(3,1fr)}
+/* the prep deck */
+.pv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.pv div{background:var(--soft);border-radius:14px;padding:13px 14px}.pv b{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}.pv span{font-size:14.5px;line-height:1.45;color:var(--ink)}
+.rd{display:grid;gap:8px}.rd div{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 14px}
+.rd div>b{font-family:'Frank Ruhl Libre',serif;font-size:22px;color:var(--g3);min-width:46px;text-align:center}.rd div>span{font-size:15.5px;line-height:1.4}.rd div>em{font-style:normal;font-size:12.5px;font-weight:800;border-radius:999px;padding:3px 10px;background:#E3F4EC;color:var(--g3);white-space:nowrap}
+.rd div>em.o{background:#F1F3F2;color:var(--muted)}
+@media (max-width:760px){.pv,.cs-div .num{grid-template-columns:1fr}.rd div{grid-template-columns:auto 1fr}.rd div>em{grid-column:2}}
+
 /*BRAND*/
 .brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
 .brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
@@ -567,6 +589,41 @@ body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat
  <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906) <span class="nw">ו-<bdi>Musser</bdi></span> (1904), נחלת הכלל · צילומים: <span class="nw"><bdi>Hellerhoff</bdi>,</span> <bdi>James Heilman</bdi> <span class="nw">(<bdi>CC BY-SA</bdi>)</span> <span class="nw">ו-<bdi>H.L. Fred · H.A. van Dijk</bdi></span> <span class="nw">(<bdi>CC BY 2.0</bdi>),</span> <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
+
+<section class="s"><div class="card cs-div">
+ <div class="kick"><b>17</b>מקרים מתגלגלים</div>
+ <h2>מהמיון לחדר הניתוח</h2>
+ <p class="lead">3 מטופלים. כל מקרה נפתח שלב אחרי שלב: קודם חושבים יחד מה עושים, ורק אז פותחים את התשובה</p>
+ <div class="num"><div><b>1</b><span>כאב חזק ובטן רכה</span></div><div><b>2</b><span>כאב שהתחיל בטבור ועבר לימין</span></div><div><b>3</b><span>כאב פתאומי אצל מטופל שמקבל סטרואידים</span></div></div>
+ <div class="src"><span>המקרים בדויים ונכתבו לפי <b>Sabiston 22</b>, בלי פרטי מטופלים</span><span>מקרים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>18</b>מקרה מתגלגל</div>
+ <h2>כאב שלא מתאים לבדיקה</h2>
+ <div class="cs-h"><span class="tag">גבר · 76</span><span class="tag r">מיון</span></div>
+ <div class="cs-p">גבר בן 76 עם פרפור פרוזדורים, שלא לוקח נוגדי קרישה כבר חודש. לפני שלוש שעות התחיל כאב חזק מאוד באמצע הבטן. הוא מתפתל על המיטה, אבל הבטן רכה וכמעט לא רגישה</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה מדאיג אותך בסיפור?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>כאב חזק מאוד עם בדיקה כמעט תקינה: <b>כאב שלא תואם את הבדיקה</b>. זה מכוון לאיסכמיה של איבר ולא לניקוב</li><li>פרפור פרוזדורים בלי נוגדי קרישה: מקור אפשרי לתסחיף</li><li>שואלים על גורמי סיכון וסקולריים ועל כאב מחוץ לבטן (גם אוטם שריר הלב יכול להופיע ככאב בבטן העליונה)</li></ul><div class="nx">בבדיקות הדם: לויקוציטים מוגברים וחמצת עם לקטט גבוה</div></div></details><details class="cs"><summary><i>2</i>מה הלקטט אומר ואיזו הדמיה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>חמצת ולקטט גבוה יכולים להעיד על התייבשות, על אלח דם מתפתח או על איסכמיה של איבר</li><li>בחשד לאיסכמיה מזנטרית: <span class="nw"><bdi dir="ltr">CTA</bdi></span>, עם חומר ניגוד לווריד</li><li>בחסימה חריפה של ה-<span class="nw"><bdi dir="ltr">SMA</bdi></span> התמותה בבית החולים הייתה 42% כשנעשה CT עם חומר ניגוד, לעומת 90% בלעדיו</li><li>לכן לא מוותרים על חומר הניגוד בגלל חשש מפגיעה בכליות כשהחשד גבוה</li></ul><div class="nx">ה-<span class="nw"><bdi dir="ltr">CTA</bdi></span> מראה חסימה של ה-<span class="nw"><bdi dir="ltr">SMA</bdi></span> ומקטע של מעי דק שלא נצבע</div></div></details><details class="cs"><summary><i>3</i>מה מכינים לפני חדר הניתוח?</summary><div class="ans"><ul><li>גישה ורידית טובה, נוזלים ותיקון אלקטרוליטים</li><li>סוג והצלבה, תפקודי קרישה, תרביות דם ולקטט</li><li>אנטיביוטיקה רחבת טווח: נגד חיידקי מעי גראם שליליים ואנאירובים</li><li>א.ק.ג וצילום חזה, בלי לעכב את הניתוח</li><li>שיחה עם המטופל ומשפחתו: ייתכנו כריתת מעי, סטומה, בטן פתוחה וניתוח חוזר</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1157–1159, 1162–1164</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>19</b>מקרה מתגלגל</div>
+ <h2>כאב בבטן הימנית התחתונה</h2>
+ <div class="cs-h"><span class="tag">אישה · 24</span><span class="tag b">מיון</span></div>
+ <div class="cs-p">אישה בת 24, בריאה. מאתמול כאב עמום סביב הטבור ומהבוקר הוא חד ועבר לבטן הימנית התחתונה. יש לה בחילה וחום של 37.9. הווסת האחרונה לפני חמישה שבועות</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>למה הכאב עבר מקום?</summary><div class="ans"><ul><li>בהתחלה הדלקת מגרה את ה-<span class="nw"><bdi dir="ltr">visceral peritoneum</bdi></span>: כאב עמום סביב הטבור</li><li>כשהדלקת מגיעה ל-<span class="nw"><bdi dir="ltr">parietal peritoneum</bdi></span> הכאב נעשה חד וממוקד מעל האיבר</li><li>זו התמונה הקלאסית של דלקת התוספתן, אבל באישה צעירה האבחנה המבדלת רחבה</li></ul></div></details><details class="cs"><summary><i>2</i>מה עוד צריך לשלול ואיך?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b><span class="nw"><bdi dir="ltr">β-hCG</bdi></span> קודם כול.</b> וסת שאיחרה: היריון מחוץ לרחם עד שיוכח אחרת</li><li>גם תסביב שחלה, מחלה דלקתית של האגן ואנדומטריוזיס</li><li>שואלים על הווסת, היריונות, אמצעי מניעה ופעילות מינית</li><li>אולטרסאונד: בלי קרינה, רואה את האגן ואת השחלות</li></ul><div class="nx">ה-<span class="nw"><bdi dir="ltr">β-hCG</bdi></span> שלילי. באולטרסאונד השחלות תקינות והתוספתן לא נראה. ב-CT: דלקת תוספתן בלי ניקוב ובלי מורסה</div></div></details><details class="cs"><summary><i>3</i>ניתוח או אנטיביוטיקה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>בדלקת תוספתן לא מסובכת אנטיביוטיקה היא חלופה מקובלת</li><li>במחקר <span class="nw"><bdi dir="ltr">CODA</bdi></span> האנטיביוטיקה לא הייתה נחותה מכריתה, אבל 29% מאלה שקיבלו אנטיביוטיקה עברו כריתה תוך 90 יום</li><li>התנאי לטיפול בלי ניתוח: יציבות המודינמית</li><li>מחליטים יחד איתה והיא יודעת שכישלון יחייב ניתוח</li></ul><div class="nx">היא בוחרת בניתוח</div></div></details><details class="cs"><summary><i>4</i>ואם התמונה לא הייתה ברורה גם אחרי ההדמיה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>באישה בגיל הפוריות דלקת תוספתן ובעיה גינקולוגית נראות דומות וההדמיה מוגבלת</li><li><b>לפרוסקופיה אבחנתית</b> מאפשרת לראות ולטפל באותו ניתוח</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1157–1159, 1163–1164</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>20</b>מקרה מתגלגל</div>
+ <h2>כאב פתאומי בבטן העליונה</h2>
+ <div class="cs-h"><span class="tag">גבר · 69</span><span class="tag a">מיון</span></div>
+ <div class="cs-p">גבר בן 69 שמקבל סטרואידים בגלל מחלת ריאות. לפני שש שעות התחיל כאב פתאומי בבטן העליונה, שמקרין לכתף ימין. הוא חיוור, הדופק 118. הבטן רגישה, אבל פחות ממה שהיית מצפה</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>למה הבדיקה "לא מספיק" רגישה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>סטרואידים ותרופות מדכאות חיסון מקהים את התגובה לכאב ולזיהום ומסווים פריטוניטיס</li><li>לכן סף החשד נמוך יותר</li><li>כאב בכתף: אוויר או נוזל שמגרים את הסרעפת, דרך ה-<span class="nw"><bdi dir="ltr">phrenic nerve</bdi></span></li></ul><div class="nx">בצילום בעמידה רואים אוויר מתחת לסרעפת</div></div></details><details class="cs"><summary><i>2</i>מה המשמעות ומה הצעד הבא?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>אוויר חופשי מתחת לסרעפת: <b>ניקוב של איבר חלול</b></li><li>מטופל לא יציב בגלל התהליך בבטן לא ינוהל בהצלחה בלי ניתוח ולא מעכבים</li><li>החייאה, אנטיביוטיקה רחבת טווח ותיאום חדר ניתוח</li></ul><div class="nx">המשפחה שואלת מה יהיה בניתוח ואחריו</div></div></details><details class="cs"><summary><i>3</i>מה אומרים למטופל ולמשפחה?</summary><div class="ans"><ul><li>היקף הניתוח לא תמיד ידוע מראש: ייתכנו סטומה, סגירה זמנית של הבטן וניתוח חוזר</li><li>אחרי הניתוח ייתכנו טיפול נמרץ והנשמה</li><li>מבררים מה המטופל רוצה ומי מחליט בשמו אם לא יוכל</li><li>בקשישים השבריריות מנבאת את התוצאה ולא רק הגיל</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 85 עמ׳ <bdi dir="ltr">1157, 1159–1160, 1163–1165</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
 <script>

@@ -63,6 +63,28 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 @media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
 @media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+
+/* rolling cases (the last slides of the full deck): a case opens stage by stage, each answer opens on a tap */
+.cs-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}.cs-h .tag{font-size:12.5px}
+.cs-p{background:var(--soft);border-radius:14px;padding:12px 15px;font-size:16.5px;line-height:1.5;border-inline-start:4px solid var(--navy)}
+.cs-st{display:grid;gap:8px;margin-top:10px}
+details.cs{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+details.cs>summary{display:flex;gap:10px;align-items:center;padding:11px 14px;font-weight:800;font-size:16px;color:var(--navy)}
+details.cs>summary i{font-style:normal;flex:0 0 28px;height:28px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-size:14px}
+details.cs[open]>summary{background:#F2F8F5;border-bottom:1px solid var(--line)}
+details.cs .ans{padding:11px 15px 13px;font-size:15.5px;line-height:1.5}
+details.cs .ans p{margin:0 0 6px}details.cs .ans ul{margin:4px 0 0;padding-inline-start:18px}details.cs .ans li{margin:3px 0}
+details.cs .cs-pv{margin-inline-start:auto;font-size:12px;font-weight:800;color:var(--g3);background:#E3F4EC;border-radius:999px;padding:2px 9px}
+details.cs .nx{margin-top:8px;background:#FFF6EA;border-radius:10px;padding:8px 11px;font-weight:700;color:#7A4E10}
+.cs-div{text-align:center}.cs-div h2{font-size:clamp(30px,5vw,46px)}.cs-div .lead{max-width:640px;margin-inline:auto}
+.cs-div .num{max-width:720px;margin-inline:auto;grid-template-columns:repeat(3,1fr)}
+/* the prep deck */
+.pv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.pv div{background:var(--soft);border-radius:14px;padding:13px 14px}.pv b{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}.pv span{font-size:14.5px;line-height:1.45;color:var(--ink)}
+.rd{display:grid;gap:8px}.rd div{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 14px}
+.rd div>b{font-family:'Frank Ruhl Libre',serif;font-size:22px;color:var(--g3);min-width:46px;text-align:center}.rd div>span{font-size:15.5px;line-height:1.4}.rd div>em{font-style:normal;font-size:12.5px;font-weight:800;border-radius:999px;padding:3px 10px;background:#E3F4EC;color:var(--g3);white-space:nowrap}
+.rd div>em.o{background:#F1F3F2;color:var(--muted)}
+@media (max-width:760px){.pv,.cs-div .num{grid-template-columns:1fr}.rd div{grid-template-columns:auto 1fr}.rd div>em{grid-column:2}}
+
 /*BRAND*/
 .brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
 .brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
@@ -435,6 +457,41 @@ body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat
  <div class="src"><span>צילומים: <bdi>Ahmed Shawky Mohammedin, MD</bdi> <span class="nw">(<bdi>CC BY-SA 4.0</bdi>),</span> <bdi>Htirgan</bdi> <span class="nw">(<bdi>CC BY-SA 3.0</bdi>),</span> <bdi>Linuxfox00</bdi> (נחלת הכלל), <bdi>Wikimedia Commons</bdi> · איור: <bdi>Riehl &amp; Zumbusch</bdi> 1925 · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
+
+<section class="s"><div class="card cs-div">
+ <div class="kick"><b>15</b>מקרים מתגלגלים</div>
+ <h2>מהמיון לחדר הניתוח</h2>
+ <p class="lead">3 מטופלים. כל מקרה נפתח שלב אחרי שלב: קודם חושבים יחד מה עושים, ורק אז פותחים את התשובה</p>
+ <div class="num"><div><b>1</b><span>חתך בבטן שנפתח אחרי ניתוח חירום</span></div><div><b>2</b><span>פצע ברגל שלא נסגר חצי שנה</span></div><div><b>3</b><span>כתם כהה בגב התחתון אחרי שבר בירך</span></div></div>
+ <div class="src"><span>המקרים בדויים ונכתבו לפי <b>Sabiston 22</b>, בלי פרטי מטופלים</span><span>מקרים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>16</b>מקרה מתגלגל</div>
+ <h2>פצע ניתוחי פתוח</h2>
+ <div class="cs-h"><span class="tag">גבר · 62</span><span class="tag b">מחלקה</span></div>
+ <div class="cs-p">גבר בן 62 עבר ניתוח פתוח בבטן בחירום. הוא מעשן, עם סוכרת ומקבל סטרואידים בגלל מחלת ריאות. ביום השישי החתך נפתח בגלל זיהום בעור והפצע נשאר פתוח</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>אילו גורמים יעכבו כאן את הריפוי?</summary><div class="ans"><ul><li><b>עישון:</b> מכווץ כלי דם ומוריד את זרימת הדם לפצע ב-30–40%</li><li><b>סוכרת:</b> פוגעת בכלי הדם, בחיסון ובייצור הקולגן</li><li><b>סטרואידים:</b> פחות גרנולציה ופחות קולגן. ויטמין A יכול לבטל חלק מההשפעה</li><li><b>זיהום:</b> מאריך את הדלקת</li><li><b>תזונה:</b> אלבומין מתחת ל-2 קשור לפתיחת פצעים</li></ul><div class="nx">האלבומין שלו 2.6. בבסיס הפצע יש כיסוי צהבהב ומעט רקמה אדומה</div></div></details><details class="cs"><summary><i>2</i>מה רואים בפצע ומה המשמעות?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>הכיסוי הצהבהב: פיברין ורקמה מתה, שלב הדלקת. מסירים אותו (הטריה)</li><li>הרקמה האדומה: גרנולציה, שלב השגשוג. היא הסימן שהפצע מתקדם</li><li>פצע טוב לריפוי הוא אדום, לח ונקי</li></ul></div></details><details class="cs"><summary><i>3</i>איך מטפלים בפצע?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>חבישה לחה: מתחת לחבישה סוגרת ולחה האפיתל מתקדם פי 2 מהר יותר מבפצע שמתייבש</li><li>פצע שמפריש הרבה צריך חבישה סופגת, כדי שהעור מסביב לא יתרכך</li><li>ואקום (<span class="nw"><bdi dir="ltr">NPWT</bdi></span>): מוציא בצקת, מגביר את זרימת הדם לעור ומעודד גרנולציה</li><li>גזה רטובה שמתייבשת מסירה רקמה מתה אבל גם גרנולציה חדשה וכואבת</li></ul><div class="nx">אחרי שלושה שבועות של ואקום הפצע אדום ומתמלא והשוליים מתקרבים</div></div></details><details class="cs"><summary><i>4</i>למה השוליים מתקרבים ומה הצלקת תעשה בהמשך?</summary><div class="ans"><ul><li>מיופיברובלסטים מכווצים את הפצע</li><li>הצלקת מתחזקת מהר בשבועות 1–6 ואחר כך החוזק מתייצב עד כשנה אחרי הניתוח</li><li>גם אז היא פחות חזקה ופחות גמישה מעור רגיל</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 23 עמ׳ <bdi dir="ltr">93–98, 103–106, 110</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>17</b>מקרה מתגלגל</div>
+ <h2>כיב ברגל</h2>
+ <div class="cs-h"><span class="tag">אישה · 68</span><span class="tag a">מרפאה</span></div>
+ <div class="cs-p">אישה בת 68 מגיעה למרפאה עם פצע מעל הקרסול הפנימי של רגל ימין, כבר חצי שנה. יש לה דליות, העור בשוק חום ומגרד והרגל נפוחה בסוף היום</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>איזה כיב זה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>פצע כרוני: לא נסגר במשך יותר מ-3 חודשים</li><li><b>כיב ורידי:</b> הכיב השכיח ברגל. דליות, דלקת עור ושינוי צבע חום. המסתמים בוורידים לא נסגרים ומשאבת שריר השוק נכשלה</li><li>לעומתו, <b>כיב עורקי:</b> באצבעות, בצד כף הרגל ובשוק, חד-גבולות, עמוק וחיוור, עור דק בלי שיער ומילוי נימי איטי</li></ul></div></details><details class="cs"><summary><i>2</i>מה בודקים לפני שמטפלים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>דפקים ויחס לחץ קרסול-זרוע. יחס נמוך מרמז על מחלת עורקים</li><li>כיב עורקי: הפניה דחופה למנתח כלי דם. בלי זרימת דם הוא לא ייסגר</li><li>פצע כרוני שנראה לא רגיל: ביופסיה. בפצע כרוני יכול להתפתח סרטן תאי קשקש</li></ul><div class="nx">הדפקים טובים. השוליים חלקים והפצע נראה כמו כיב ורידי רגיל</div></div></details><details class="cs"><summary><i>3</i>איך מטפלים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>בסיבה: גרבי לחץ והרמת הרגל, יחד עם מומחה לכלי דם שמטפל באי ספיקה הוורידית</li><li>בפצע: הסרת רקמה מתה ושמירה על פצע לח, כמו בכל פצע כרוני</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 23 עמ׳ <bdi dir="ltr">100–103</bdi> · פרק 45 עמ׳ <bdi dir="ltr">526</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>18</b>מקרה מתגלגל</div>
+ <h2>כתם כהה מעל ה-sacrum</h2>
+ <div class="cs-h"><span class="tag">אישה · 84</span><span class="tag r">מחלקה</span></div>
+ <div class="cs-p">אישה בת 84 מאושפזת 10 ימים אחרי ניתוח לשבר בצוואר הירך. היא כמעט לא זזה במיטה, אוכלת מעט ולפעמים לא שולטת על הסוגרים. בהחלפת המצעים נמצא כתם כהה ופצע פתוח מעל ה-sacrum</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>איך זה קרה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>פצע לחץ: נוצר מעל בליטה גרמית (<span class="nw"><bdi dir="ltr">sacrum</bdi></span>, <span class="nw"><bdi dir="ltr">ischial tuberosity</bdi></span>, עקבים) כשהלחץ ברקמה עולה מעל לחץ הזילוח בנימים (32 מ״מ כספית)</li><li>מה מחמיר: גזירה, חיכוך, לחות ותת-תזונה</li><li>הנזק מתחת לעור רחב יותר מהפצע שרואים</li></ul></div></details><details class="cs"><summary><i>2</i>מה עושים עכשיו?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>מורידים את הלחץ: שינויי תנוחה לפי לוח זמנים ומזרן מתאים</li><li>תזונה עם מספיק חלבון</li><li>ניידות: מטפלים בבעיה שמרתקת אותה ומפנים לפיזיותרפיה</li><li>בפצע: הטריה, ניקיון וחבישה לפי כמות ההפרשה</li></ul><div class="nx">אחרי שבועות של טיפול הפצע לא נסגר</div></div></details><details class="cs"><summary><i>3</i>ומה אם הוא לא נסגר?</summary><div class="ans"><p>אחרי שכל הגורמים שאפשר לשנות טופלו, אפשר לסגור את הפצע בניתוח עם מתלה של עור ושריר מהסביבה</p><p>וחשוב מכול: בבדיקה של העקב השני שלה מצאו כתם כהה. מניעה מתחילה בזיהוי המטופלים בסיכון</p></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 45 עמ׳ <bdi dir="ltr">526</bdi> · פרק 23 עמ׳ <bdi dir="ltr">106–108</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
 <script>

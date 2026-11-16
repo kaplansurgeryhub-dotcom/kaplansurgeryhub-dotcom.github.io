@@ -63,6 +63,28 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 @media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
 @media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+
+/* rolling cases (the last slides of the full deck): a case opens stage by stage, each answer opens on a tap */
+.cs-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}.cs-h .tag{font-size:12.5px}
+.cs-p{background:var(--soft);border-radius:14px;padding:12px 15px;font-size:16.5px;line-height:1.5;border-inline-start:4px solid var(--navy)}
+.cs-st{display:grid;gap:8px;margin-top:10px}
+details.cs{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+details.cs>summary{display:flex;gap:10px;align-items:center;padding:11px 14px;font-weight:800;font-size:16px;color:var(--navy)}
+details.cs>summary i{font-style:normal;flex:0 0 28px;height:28px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-size:14px}
+details.cs[open]>summary{background:#F2F8F5;border-bottom:1px solid var(--line)}
+details.cs .ans{padding:11px 15px 13px;font-size:15.5px;line-height:1.5}
+details.cs .ans p{margin:0 0 6px}details.cs .ans ul{margin:4px 0 0;padding-inline-start:18px}details.cs .ans li{margin:3px 0}
+details.cs .cs-pv{margin-inline-start:auto;font-size:12px;font-weight:800;color:var(--g3);background:#E3F4EC;border-radius:999px;padding:2px 9px}
+details.cs .nx{margin-top:8px;background:#FFF6EA;border-radius:10px;padding:8px 11px;font-weight:700;color:#7A4E10}
+.cs-div{text-align:center}.cs-div h2{font-size:clamp(30px,5vw,46px)}.cs-div .lead{max-width:640px;margin-inline:auto}
+.cs-div .num{max-width:720px;margin-inline:auto;grid-template-columns:repeat(3,1fr)}
+/* the prep deck */
+.pv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.pv div{background:var(--soft);border-radius:14px;padding:13px 14px}.pv b{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}.pv span{font-size:14.5px;line-height:1.45;color:var(--ink)}
+.rd{display:grid;gap:8px}.rd div{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 14px}
+.rd div>b{font-family:'Frank Ruhl Libre',serif;font-size:22px;color:var(--g3);min-width:46px;text-align:center}.rd div>span{font-size:15.5px;line-height:1.4}.rd div>em{font-style:normal;font-size:12.5px;font-weight:800;border-radius:999px;padding:3px 10px;background:#E3F4EC;color:var(--g3);white-space:nowrap}
+.rd div>em.o{background:#F1F3F2;color:var(--muted)}
+@media (max-width:760px){.pv,.cs-div .num{grid-template-columns:1fr}.rd div{grid-template-columns:auto 1fr}.rd div>em{grid-column:2}}
+
 /*BRAND*/
 .brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
 .brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
@@ -496,6 +518,41 @@ body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat
  <div class="src"><span>איור הנפרון: <bdi>BruceBlaus, CC BY-SA 4.0</bdi> · בצקת שוקעת: <bdi>James Heilman, MD, CC BY-SA 3.0</bdi> <span class="nw">(<bdi>Wikimedia Commons</bdi>)</span> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
+
+<section class="s"><div class="card cs-div">
+ <div class="kick"><b>16</b>מקרים מתגלגלים</div>
+ <h2>מהמיון לחדר הניתוח</h2>
+ <p class="lead">3 מטופלים. כל מקרה נפתח שלב אחרי שלב: קודם חושבים יחד מה עושים, ורק אז פותחים את התשובה</p>
+ <div class="num"><div><b>1</b><span>מעט שתן בלילה שאחרי הניתוח</span></div><div><b>2</b><span>מבולבלת ביום השני אחרי הניתוח</span></div><div><b>3</b><span>אשלגן גבוה ומיעוט שתן</span></div></div>
+ <div class="src"><span>המקרים בדויים ונכתבו לפי <b>Sabiston 22</b>, בלי פרטי מטופלים</span><span>מקרים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>17</b>מקרה מתגלגל</div>
+ <h2>מעט שתן בלילה</h2>
+ <div class="cs-h"><span class="tag">גבר · 66</span><span class="tag b">מחלקה</span></div>
+ <div class="cs-p">גבר בן 66, 80 ק״ג, בלילה שאחרי כריתה של המעי הגס הימני. בשלוש השעות האחרונות הפריש 20 מ״ל שתן בכל שעה. האחות שואלת אם לתת בולוס של ליטר</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>זה מיעוט שתן?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>ההגדרה: פחות מ-400 מ״ל ביממה בגבר של 70 ק״ג. זו הכמות המינימלית שמאפשרת לכליה לשמור על שתנן וקריאטינין תקינים</li><li>בולוס של ליטר על כל שתן מתחת ל-0.5 מ״ל לק״ג לשעה מוביל בדרך כלל לעודף נוזלים</li><li>עודף נוזלים אינו בלי מחיר: בצקת בריאות ויתר לחץ בבטן</li></ul></div></details><details class="cs"><summary><i>2</i>אז מה בודקים לפני שמחליטים?</summary><div class="ans"><ul><li>את כל המטופל: סימנים חיוניים, בצקות, המאזן מהניתוח ומאז ונקזים</li><li>דופק מפרשים בזהירות: כאב, חרדה, חום והורמונים משנים אותו</li><li>מטופל אחרי ניתוח יכול להיות עמוס בכל הגוף ועדיין חסר בתוך כלי הדם</li><li>יחס שתנן לקריאטינין: מעל 20 מתאים לסיבה טרום-כלייתית, מתחת ל-10 לנפח מלא</li></ul><div class="nx">הוא קיבל הרבה נוזלים בניתוח, יש לו בצקות ברגליים, הדופק 84 ולחץ הדם תקין. היחס 14</div></div></details><details class="cs"><summary><i>3</i>מה התוכנית לבוקר?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>לא ממהרים לבולוס. ממשיכים לעקוב אחרי השתן והמצב הכללי</li><li>רוב המטופלים אחרי ניתוח עמוסים בהתחלה, כי קיבלו יותר נוזלים מהדרוש</li><li>האחזקה לפי <bdi dir="ltr">4-2-1</bdi>: 40 + 20 + 60 = 120 מ״ל לשעה. זו נקודת התחלה, לא קצב קבוע</li><li>בודקים את המצב כל יום ומשנים את הקצב</li></ul><div class="nx">בבוקר הוא מפריש יותר שתן ומתחיל לשתות</div></div></details><details class="cs"><summary><i>4</i>ואיזו תמיסה?</summary><div class="ans"><ul><li>התמיסה המקובלת לאחזקה היא גלוקוז 5% בחצי סליין עם אשלגן. היא לא נבדקה היטב ומקורה לא ברור</li><li>תמיסת אחזקה כזו נותנת יותר נתרן ממה שמטופל צריך ביום</li><li>לאחזקה של כמה ליטרים ביום במטופל בלי אי-ספיקת כליות, <span class="nw"><bdi dir="ltr">Plasma-Lyte</bdi></span> עדיף אולי על רינגר לקטט או סליין</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 33 עמ׳ <bdi dir="ltr">255–257</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>18</b>מקרה מתגלגל</div>
+ <h2>מבולבלת ביום השני</h2>
+ <div class="cs-h"><span class="tag">אישה · 74</span><span class="tag a">מחלקה</span></div>
+ <div class="cs-p">אישה בת 74, יומיים אחרי ניתוח בבטן. היא לא אוכלת ומקבלת בטעות גלוקוז 5% במים כנוזלי אחזקה. הבוקר היא מתלוננת על כאב ראש ונראית ישנונית. הנתרן 123 מ״ק לליטר. הגלוקוז תקין</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>כמה זה חמור?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>קלה 130–138, בינונית 120–130, קשה מתחת ל-120</li><li>קלה ובינונית שכיחות ורק לעיתים נדירות גורמות לתסמינים. כאן יש תסמינים</li><li>היפונתרמיה חריפה בדרך כלל עם תסמינים. כרונית, גם קשה, יכולה להיות שקטה</li><li>תמיד בודקים גלוקוז: על כל 100 מ״ג/ד״ל מעל 100 הנתרן הנמדד יורד ב-1.6</li></ul></div></details><details class="cs"><summary><i>2</i>מה הסיבה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>הסיבה השכיחה היא אנחנו: מים חופשיים בעירוי</li><li>אחרי ניתוח <span class="nw"><bdi dir="ltr">ADH</bdi></span> עולה באופן זמני. התוצאה: היפונתרמיה עם נפח תקין</li><li>גלוקוז 5% במים למטופל שדימם או שחסר בו נפח מוריד נתרן מהר</li></ul><div class="nx">היא נראית בנפח תקין. אוסמולליות השתן 400 והנתרן בשתן 45</div></div></details><details class="cs"><summary><i>3</i>האם זה <span class="nw"><bdi dir="ltr">SIADH</bdi></span>?</summary><div class="ans"><ul><li>מאבחנים <span class="nw"><bdi dir="ltr">SIADH</bdi></span> רק במטופל עם נפח תקין</li><li>אוסמולליות שתן בדרך כלל מעל 150 ונתרן בשתן מעל 20</li><li>מבדילים מאי-ספיקת יותרת הכליה</li></ul><div class="nx">מפסיקים את הגלוקוז במים</div></div></details><details class="cs"><summary><i>4</i>ומה הטיפול?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>ב-<span class="nw"><bdi dir="ltr">SIADH</bdi></span>: הגבלת מים</li><li>שומרים על נפח תקין ובודקים את הנתרן שוב ושוב</li><li>בפגיעת ראש היפונתרמיה מסוכנת הרבה יותר, גם כשהיא קלה</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 33 עמ׳ <bdi dir="ltr">258–260</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>19</b>מקרה מתגלגל</div>
+ <h2>אשלגן גבוה</h2>
+ <div class="cs-h"><span class="tag">גבר · 71</span><span class="tag r">מחלקה</span></div>
+ <div class="cs-p">גבר בן 71, יומיים אחרי ניתוח דחוף, עם פגיעה כלייתית חריפה ומעט שתן. הוא מקבל עירוי עם אשלגן. בבדיקת דם שגרתית האשלגן 7.1 מ״מול לליטר</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה עושים קודם?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b>עוצרים כל עירוי של אשלגן</b></li><li>דגימה שעברה המוליזה יכולה להראות אשלגן גבוה בטעות. חוזרים על הבדיקה, אבל לא מחכים לה אם יש שינויים באק״ג</li><li><b>אק״ג מיד</b>: הוא קובע כמה מהר צריך לפעול</li></ul></div></details><details class="cs"><summary><i>2</i>באק״ג גלי T מחודדים. ומה אם היו גם בלי גל P ו-QRS רחב?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b>בלי גל P ו-QRS רחב:</b> סכנה של דום לב. מיד סידן לווריד ואחריו ביקרבונט</li><li><b>גלי T מחודדים:</b> צריך טיפול מהיר. גלוקוז עם אינסולין רגיל לווריד (לפי תיבה 33.5: 50 מ״ל גלוקוז 50% ו-10 יחידות) ומנטרים סוכר. בפגיעה כלייתית חריפה דיאליזה היא הדרך הבטוחה ביותר</li><li><b>רק במעבדה, בלי שינויים באק״ג:</b> טיפול שעובד תוך שעות: שרף שקושר אשלגן במעי ומשתן לולאה</li></ul></div></details><details class="cs"><summary><i>3</i>למה זה קרה?</summary><div class="ans"><ul><li>הסיבה השכיחה בבית החולים: פגיעה כלייתית חריפה</li><li>גם פירוק תאים: ספסיס, פירוק שריר, או חזרת זרימה לרקמה שהייתה איסכמית</li><li>ו... אנחנו: עירוי עם אשלגן למטופל שלא מפריש שתן</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 33 עמ׳ <bdi dir="ltr">261</bdi> (תיבה 33.5)</span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
 <script>

@@ -63,6 +63,28 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 @media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
 @media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+
+/* rolling cases (the last slides of the full deck): a case opens stage by stage, each answer opens on a tap */
+.cs-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}.cs-h .tag{font-size:12.5px}
+.cs-p{background:var(--soft);border-radius:14px;padding:12px 15px;font-size:16.5px;line-height:1.5;border-inline-start:4px solid var(--navy)}
+.cs-st{display:grid;gap:8px;margin-top:10px}
+details.cs{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+details.cs>summary{display:flex;gap:10px;align-items:center;padding:11px 14px;font-weight:800;font-size:16px;color:var(--navy)}
+details.cs>summary i{font-style:normal;flex:0 0 28px;height:28px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-size:14px}
+details.cs[open]>summary{background:#F2F8F5;border-bottom:1px solid var(--line)}
+details.cs .ans{padding:11px 15px 13px;font-size:15.5px;line-height:1.5}
+details.cs .ans p{margin:0 0 6px}details.cs .ans ul{margin:4px 0 0;padding-inline-start:18px}details.cs .ans li{margin:3px 0}
+details.cs .cs-pv{margin-inline-start:auto;font-size:12px;font-weight:800;color:var(--g3);background:#E3F4EC;border-radius:999px;padding:2px 9px}
+details.cs .nx{margin-top:8px;background:#FFF6EA;border-radius:10px;padding:8px 11px;font-weight:700;color:#7A4E10}
+.cs-div{text-align:center}.cs-div h2{font-size:clamp(30px,5vw,46px)}.cs-div .lead{max-width:640px;margin-inline:auto}
+.cs-div .num{max-width:720px;margin-inline:auto;grid-template-columns:repeat(3,1fr)}
+/* the prep deck */
+.pv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.pv div{background:var(--soft);border-radius:14px;padding:13px 14px}.pv b{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}.pv span{font-size:14.5px;line-height:1.45;color:var(--ink)}
+.rd{display:grid;gap:8px}.rd div{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 14px}
+.rd div>b{font-family:'Frank Ruhl Libre',serif;font-size:22px;color:var(--g3);min-width:46px;text-align:center}.rd div>span{font-size:15.5px;line-height:1.4}.rd div>em{font-style:normal;font-size:12.5px;font-weight:800;border-radius:999px;padding:3px 10px;background:#E3F4EC;color:var(--g3);white-space:nowrap}
+.rd div>em.o{background:#F1F3F2;color:var(--muted)}
+@media (max-width:760px){.pv,.cs-div .num{grid-template-columns:1fr}.rd div{grid-template-columns:auto 1fr}.rd div>em{grid-column:2}}
+
 /*BRAND*/
 .brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
 .brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
@@ -448,6 +470,41 @@ body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat
  <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906, נחלת הכלל) · צילומים: <bdi>Bobjgalindo</bdi> <span class="nw">ו-<bdi>Cerevisae</bdi></span> <span class="nw">(<bdi>CC BY-SA 4.0</bdi>,</span> <span class="nw"><bdi>Wikimedia Commons</bdi>)</span> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
+
+<section class="s"><div class="card cs-div">
+ <div class="kick"><b>16</b>מקרים מתגלגלים</div>
+ <h2>מהמיון לחדר הניתוח</h2>
+ <p class="lead">3 מטופלים. כל מקרה נפתח שלב אחרי שלב: קודם חושבים יחד מה עושים, ורק אז פותחים את התשובה</p>
+ <div class="num"><div><b>1</b><span>דקירה מתחת לצלעות משמאל</span></div><div><b>2</b><span>דקירה בבטן הקדמית ושעות של השגחה</span></div><div><b>3</b><span>שלושה פצעי ירי ולחץ דם נמוך</span></div></div>
+ <div class="src"><span>המקרים בדויים ונכתבו לפי <b>Sabiston 22</b>, בלי פרטי מטופלים</span><span>מקרים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>17</b>מקרה מתגלגל</div>
+ <h2>דקירה בבטן השמאלית העליונה</h2>
+ <div class="cs-h"><span class="tag">גבר · 23</span><span class="tag b">חדר טראומה</span></div>
+ <div class="cs-p">גבר בן 23 מגיע אחרי דקירה בסכין. הפצע באורך 2 ס״מ, מתחת לקשת הצלעות משמאל. הלחץ 128/76, הדופק 92. הוא מדבר, הבטן רכה ויש רגישות רק סביב הפצע</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>האם הוא צריך ניתוח מיד?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>לניתוח מיד, בדקירה כמו בירי: הלם או חוסר יציבות, פריטוניטיס, אוויסצרציה, או אוויר חופשי בצילום חזה</li><li>לו אין אף אחד מאלה ולכן יש זמן לברר</li><li>הבירור נקבע לפי מקום הפצע. כאן: הגבול בין החזה לבטן</li></ul></div></details><details class="cs"><summary><i>2</i>מה בודקים בפצע בגבול החזה-בטן?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>צילום חזה: חזה אוויר</li><li><span class="nw"><bdi dir="ltr">FAST</bdi></span> של קרום הלב: פגיעה בלב</li><li><b>הסרעפת:</b> בפצע בבטן השמאלית העליונה כמעט תמיד לפרוסקופיה כדי לבדוק אותה. בצד ימין ה-<span class="nw"><bdi dir="ltr">liver</bdi></span> מגן ושם זה לפי שיקול דעת</li></ul><div class="nx">הצילום וה-<span class="nw"><bdi dir="ltr">FAST</bdi></span> תקינים. בלפרוסקופיה יש קרע של 2 ס״מ בסרעפת השמאלית</div></div></details><details class="cs"><summary><i>3</i>קרע קטן כזה, למה לתקן?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>קרע בסרעפת לא מסכן חיים מיד, אבל בלי תיקון הוא גדל עם השנים והקיבה והמעי עולים לחזה</li><li>הסרעפת גמישה ולכן כמעט תמיד אפשר לתפור ישירות: שכבה אחת של חוט שלא נספג, בכל עובי הדופן</li><li>כ-75% מהפגיעות בסרעפת הן משמאל, כי ה-<span class="nw"><bdi dir="ltr">liver</bdi></span> מגן על הימנית</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">340, 342–343</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>18</b>מקרה מתגלגל</div>
+ <h2>השגחה שהשתנתה</h2>
+ <div class="cs-h"><span class="tag">אישה · 34</span><span class="tag a">חדר טראומה ומחלקה</span></div>
+ <div class="cs-p">אישה בת 34 עם פצע דקירה בבטן הקדמית, ליד הטבור. היא יציבה, אין פריטוניטיס ואין אוויסצרציה. בחקירה מקומית של הפצע לא ברור אם הפציה נחדרה</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה האפשרויות?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>בפצע בבטן הקדמית: חקירה מקומית, בדיקות חוזרות או הדמיה והדרכים בטוחות באותה מידה</li><li>פציה שלא נחדרה: אפשר לשקול שחרור</li><li>פציה שנחדרה או לא ברור: בדיקות בטן חוזרות במשך 24 שעות, CT או לפרוסקופיה אבחנתית</li><li>השגחה דורשת צוות ומחלקה שיכולים לבדוק אותה שוב ושוב</li></ul><div class="nx">היא מאושפזת להשגחה. אחרי עשר שעות הבטן רגישה בכל מקום, יש התגוננות והלויקוציטים עלו</div></div></details><details class="cs"><summary><i>2</i>מה המשמעות?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>פריטוניטיס, חוסר יציבות, ירידה משמעותית בהמוגלובין או עלייה בלויקוציטים: בדרך כלל לפרוטומיה</li><li>פגיעה במעי מתגלה לפעמים רק כמה שעות אחרי ההגעה וה-CT מוגבל בזיהוי שלה</li></ul><div class="nx">בניתוח מוצאים שני נקבים קטנים במעי הדק, רחוקים זה מזה ונקב שלישי שתופס יותר ממחצית ההיקף</div></div></details><details class="cs"><summary><i>3</i>איך מתקנים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>נקב קטן: מסירים רקמה פגועה ותופרים בשכבה אחת או שתיים, בלי להצר את החלל</li><li>פגיעה ביותר מ-50% מהיקף הדופן: <b>כריתה והשקה</b></li><li>לא היה הבדל בדליפה בין השקה בשדכן לבין השקה בתפירה</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">342, 351</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>19</b>מקרה מתגלגל</div>
+ <h2>ירי בבטן</h2>
+ <div class="cs-h"><span class="tag">גבר · 29</span><span class="tag r">חדר טראומה</span></div>
+ <div class="cs-p">גבר בן 29 מגיע אחרי ירי. סופרים שני פצעים בבטן ואחד בגב. הלחץ 78/40, הדופק 140, הבטן תפוחה</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה עושים בדקות הראשונות?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>חוסר יציבות בפצע חודר: <b>לפרוטומיה מיד</b></li><li>סופרים פצעים בכל הגוף, גם בבית השחי, בקפלים ובפרינאום. מספר הקליעים ועוד מספר הפצעים צריך לצאת זוגי. אם לא, מחפשים עוד קליע או עוד פצע</li><li>תוצאה חיובית ב-<span class="nw"><bdi dir="ltr">FAST</bdi></span> תומכת בניתוח, אבל תוצאה שלילית לא שוללת דימום</li></ul></div></details><details class="cs"><summary><i>2</i>מה הסדר בחדר הניתוח?</summary><div class="ans"><ul><li>חתך מהקסיפואיד ועד הפוביס</li><li>חותכים את ה-<span class="nw"><bdi dir="ltr">falciform ligament</bdi></span> כדי שה-<span class="nw"><bdi dir="ltr">liver</bdi></span> לא ייקרע במשיכה</li><li>מקור דימום לא ידוע: שואבים את הדם ומרפדים בפדים את ארבעת הרבעים</li><li>קודם עוצרים דימום, אחר כך שולטים בזליגת תוכן המעי</li></ul><div class="nx">יש קרע ב-<span class="nw"><bdi dir="ltr">liver</bdi></span>, המטומה במרכז ה-<span class="nw"><bdi dir="ltr">retroperitoneum</bdi></span> וכמה נקבים במעי. אחרי שעה: חום הגוף 33.8, pH של 7.1 והדם לא נקרש בשדה הניתוח</div></div></details><details class="cs"><summary><i>3</i>ממשיכים לתקן הכול?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b>לא.</b> היפותרמיה, חמצת והפרעת קרישה הן אינדיקציות ל<b>ניתוח לשליטה בנזק</b></li><li>עוצרים דימום (כולל ריפוד), סוגרים או כורתים את המעי בלי השקה וסוגרים את הבטן באופן זמני</li><li>ממשיכים בהחייאה בטיפול נמרץ וחוזרים לחדר הניתוח בדרך כלל אחרי <bdi dir="ltr">24–48</bdi> שעות</li><li>המטומה במרכז ה-<span class="nw"><bdi dir="ltr">retroperitoneum</bdi></span> נחקרת תמיד, כי היא יכולה לבוא מה-<span class="nw"><bdi dir="ltr">aorta</bdi></span> או מה-<span class="nw"><bdi dir="ltr">IVC</bdi></span></li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 36 עמ׳ <bdi dir="ltr">325–326, 342–343, 352</bdi> · פרק 37 עמ׳ <bdi dir="ltr">357</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
 <script>

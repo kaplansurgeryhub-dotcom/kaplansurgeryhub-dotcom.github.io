@@ -59,6 +59,28 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 @media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
 @media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+
+/* rolling cases (the last slides of the full deck): a case opens stage by stage, each answer opens on a tap */
+.cs-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}.cs-h .tag{font-size:12.5px}
+.cs-p{background:var(--soft);border-radius:14px;padding:12px 15px;font-size:16.5px;line-height:1.5;border-inline-start:4px solid var(--navy)}
+.cs-st{display:grid;gap:8px;margin-top:10px}
+details.cs{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+details.cs>summary{display:flex;gap:10px;align-items:center;padding:11px 14px;font-weight:800;font-size:16px;color:var(--navy)}
+details.cs>summary i{font-style:normal;flex:0 0 28px;height:28px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-size:14px}
+details.cs[open]>summary{background:#F2F8F5;border-bottom:1px solid var(--line)}
+details.cs .ans{padding:11px 15px 13px;font-size:15.5px;line-height:1.5}
+details.cs .ans p{margin:0 0 6px}details.cs .ans ul{margin:4px 0 0;padding-inline-start:18px}details.cs .ans li{margin:3px 0}
+details.cs .cs-pv{margin-inline-start:auto;font-size:12px;font-weight:800;color:var(--g3);background:#E3F4EC;border-radius:999px;padding:2px 9px}
+details.cs .nx{margin-top:8px;background:#FFF6EA;border-radius:10px;padding:8px 11px;font-weight:700;color:#7A4E10}
+.cs-div{text-align:center}.cs-div h2{font-size:clamp(30px,5vw,46px)}.cs-div .lead{max-width:640px;margin-inline:auto}
+.cs-div .num{max-width:720px;margin-inline:auto;grid-template-columns:repeat(3,1fr)}
+/* the prep deck */
+.pv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.pv div{background:var(--soft);border-radius:14px;padding:13px 14px}.pv b{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}.pv span{font-size:14.5px;line-height:1.45;color:var(--ink)}
+.rd{display:grid;gap:8px}.rd div{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 14px}
+.rd div>b{font-family:'Frank Ruhl Libre',serif;font-size:22px;color:var(--g3);min-width:46px;text-align:center}.rd div>span{font-size:15.5px;line-height:1.4}.rd div>em{font-style:normal;font-size:12.5px;font-weight:800;border-radius:999px;padding:3px 10px;background:#E3F4EC;color:var(--g3);white-space:nowrap}
+.rd div>em.o{background:#F1F3F2;color:var(--muted)}
+@media (max-width:760px){.pv,.cs-div .num{grid-template-columns:1fr}.rd div{grid-template-columns:auto 1fr}.rd div>em{grid-column:2}}
+
 /*BRAND*/
 .brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
 .brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
@@ -470,6 +492,41 @@ body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat
  <div class="src"><span>איור: <bdi>Sobotta, Atlas and Text-book of Human Anatomy</bdi> (1906, נחלת הכלל, <span class="nw"><bdi>Wikimedia Commons</bdi>)</span> · תמונות: <bdi>Hellerhoff</bdi> <span class="nw">(<bdi>CC BY-SA 4.0</bdi>),</span> <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
+
+<section class="s"><div class="card cs-div">
+ <div class="kick"><b>16</b>מקרים מתגלגלים</div>
+ <h2>מהמיון לחדר הניתוח</h2>
+ <p class="lead">3 מטופלים. כל מקרה נפתח שלב אחרי שלב: קודם חושבים יחד מה עושים, ורק אז פותחים את התשובה</p>
+ <div class="num"><div><b>1</b><span>ציסטה שהתגלתה במקרה</span></div><div><b>2</b><span>אישה צעירה עם ציסטה גדולה בזנב</span></div><div><b>3</b><span>אוסף נוזל אחרי דלקת לבלב</span></div></div>
+ <div class="src"><span>המקרים בדויים ונכתבו לפי <b>Sabiston 22</b>, בלי פרטי מטופלים</span><span>מקרים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>17</b>מקרה מתגלגל</div>
+ <h2>ציסטה במקרה</h2>
+ <div class="cs-h"><span class="tag">אישה · 68</span><span class="tag b">מרפאה</span></div>
+ <div class="cs-p">אישה בת 68 עשתה CT בגלל חשד לאבן בכליה. התגלתה ציסטה של 2 ס״מ בראש הלבלב ועוד שתי ציסטות קטנות בגוף. אין לה תסמינים. אין דלקת לבלב בעבר</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>איזו ציסטה זו כנראה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>בלי דלקת לבלב בעבר: לא פסאודוציסטה</li><li>MRCP מראה שהציסטות קשורות לענפי הצינור והצינור הראשי לא מורחב</li><li>כמה ציסטות שקשורות לענפים: <b>IPMN של ענף צדדי</b>. ריבוי ציסטות מחזק את האבחנה</li></ul></div></details><details class="cs"><summary><i>2</i>לנתח?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>בלי סימנים מדאיגים ובלי סיכון גבוה ובלי תסמינים: <b>מעקב הדמייתי</b> הוא אסטרטגיה סבירה</li><li>שוקלים גם גיל, מחלות רקע ותוחלת חיים</li></ul><div class="nx">במעקב, שנתיים אחר כך, הציסטה בראש הלבלב היא 3.5 ס״מ והצינור הראשי 7 מ״מ</div></div></details><details class="cs"><summary><i>3</i>מה השתנה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>ציסטה של ענף מעל 3 ס״מ וצינור ראשי 5–9 מ״מ: <b>סימנים מדאיגים</b></li><li>כל ציסטה עם סימן מדאיג עוברת <b>EUS</b></li><li>CEA גבוה בנוזל מראה שהציסטה מוצינית, לא שיש בה סרטן פולשני</li></ul><div class="nx">ב-EUS יש גוש של 7 מ״מ בדופן שנצבע</div></div></details><details class="cs"><summary><i>4</i>ועכשיו?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>גוש שנצבע בגודל 5 מ״מ ומעלה: <b>סיכון גבוה</b>. כורתים אם היא כשירה לניתוח</li><li>בענף צדדי כורתים את הנגע הבעייתי, לפי המיקום: בראש הלבלב, ניתוח וויפל</li><li>אחרי הניתוח ממשיכים במעקב, כי IPMN יכולה להופיע בשאר הלבלב</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1397–1399</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>18</b>מקרה מתגלגל</div>
+ <h2>ציסטה בזנב</h2>
+ <div class="cs-h"><span class="tag">אישה · 41</span><span class="tag a">מרפאה</span></div>
+ <div class="cs-p">אישה בת 41 עם כאב עמום בבטן העליונה כבר כמה חודשים. לפני שנתיים אושפזה בגלל דלקת לבלב קלה. ב-CT יש ציסטה בודדת של 6 ס״מ בזנב הלבלב, עם מחיצות דקות והסתיידות בשוליים. אין קשר לצינור הלבלב</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>פסאודוציסטה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>זו המלכודת: עד 20% מהמטופלות עם MCN מספרות על דלקת לבלב בעבר ולכן MCN מאובחנת לעיתים בטעות כפסאודוציסטה</li><li>אישה, זנב הלבלב, ציסטה בודדת בלי קשר לצינור והסתיידות בשוליים: <b>MCN</b></li><li>כשלא בטוחים, EUS עם דגימה לפני כל ניקוז</li></ul></div></details><details class="cs"><summary><i>2</i>מה הנוזל יראה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>MCN: ריר, CEA גבוה (מעל 192 ננוגרם/מ״ל) ועמילאז נמוך</li><li>פסאודוציסטה: עמילאז גבוה מאוד, בלי ריר ו-CEA נמוך</li><li>בדיקות הנוזל נותנות אבחנה נכונה בעד 80% מהמקרים</li></ul><div class="nx">בנוזל יש ריר ו-CEA גבוה. העמילאז נמוך</div></div></details><details class="cs"><summary><i>3</i>מה עושים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b>כריתה</b>, בגלל הפוטנציאל להתמרה ממארת. בזנב: כריתה דיסטלית</li><li>הסתיידות "קליפת ביצה", ציסטה גדולה וגוש בדופן מרמזים על ממאירות</li><li>בלי מרכיב פולשני, הניתוח מרפא ולא צריך מעקב</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1387, 1396</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>19</b>מקרה מתגלגל</div>
+ <h2>אחרי דלקת לבלב</h2>
+ <div class="cs-h"><span class="tag">גבר · 49</span><span class="tag b">מרפאה</span></div>
+ <div class="cs-p">גבר בן 49 אושפז לפני שבעה שבועות בגלל דלקת לבלב חריפה. עכשיו הוא מגיע עם שובע מוקדם, בחילות וכאב. ב-CT יש אוסף נוזל אחיד עם דופן, צמוד לקיבה</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה זה?</summary><div class="ans"><ul><li><b>פסאודוציסטה</b>: אוסף עם דופן של קולגן ורקמה גרנולציונית, בלי אפיתל</li><li>הדופן נבנית במשך 4–8 שבועות לפחות</li><li>מופיעה ב-5–15% מהמטופלים שהיה להם אוסף נוזל אחרי דלקת לבלב חריפה</li></ul></div></details><details class="cs"><summary><i>2</i>לנקז?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>בלי תסמינים: מעקב. עד 70% נעלמות לבד, במיוחד ציסטה קטנה מ-4 ס״מ, בזנב ובלי קשר לצינור</li><li>עם תסמינים, כמו אצלו, או כשאי אפשר להבדיל מגידול: טיפול פולשני</li><li>כשהאבחנה לא ברורה: EUS עם דגימה קודם. בפסאודוציסטה העמילאז גבוה, אין ריר וה-CEA נמוך</li></ul><div class="nx">האבחנה ברורה. האוסף צמוד לדופן הקיבה</div></div></details><details class="cs"><summary><i>3</i>איך מנקזים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>ניקוז אנדוסקופי דרך הקיבה או דרך ה-duodenum: בטוח ויעיל כשהאוסף צמוד אליהם (פחות מס״מ)</li><li>הניקוז מנקז את האוסף ולא כורת אותו. לכן חייבים להיות בטוחים באבחנה לפני: ניקוז של גידול ציסטי הוא טעות</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 92 עמ׳ <bdi dir="ltr">1387</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
 <script>

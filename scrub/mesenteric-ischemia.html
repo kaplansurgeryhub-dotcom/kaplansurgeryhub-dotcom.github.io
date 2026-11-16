@@ -65,6 +65,28 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 @media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
 .num.n3{grid-template-columns:repeat(3,1fr)}@media (max-width:760px){.num.n3{grid-template-columns:1fr 1fr}}
 .rev{margin-top:10px;border:1px dashed var(--g);border-radius:14px;padding:8px 12px;background:#F6FBF9}.rev summary{display:block;cursor:pointer;font-weight:800;color:var(--g3);list-style:none}.rev summary::-webkit-details-marker{display:none}.rev summary::before{content:"👁 "}.rev[open] summary{margin-bottom:8px}
+
+/* rolling cases (the last slides of the full deck): a case opens stage by stage, each answer opens on a tap */
+.cs-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}.cs-h .tag{font-size:12.5px}
+.cs-p{background:var(--soft);border-radius:14px;padding:12px 15px;font-size:16.5px;line-height:1.5;border-inline-start:4px solid var(--navy)}
+.cs-st{display:grid;gap:8px;margin-top:10px}
+details.cs{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+details.cs>summary{display:flex;gap:10px;align-items:center;padding:11px 14px;font-weight:800;font-size:16px;color:var(--navy)}
+details.cs>summary i{font-style:normal;flex:0 0 28px;height:28px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-size:14px}
+details.cs[open]>summary{background:#F2F8F5;border-bottom:1px solid var(--line)}
+details.cs .ans{padding:11px 15px 13px;font-size:15.5px;line-height:1.5}
+details.cs .ans p{margin:0 0 6px}details.cs .ans ul{margin:4px 0 0;padding-inline-start:18px}details.cs .ans li{margin:3px 0}
+details.cs .cs-pv{margin-inline-start:auto;font-size:12px;font-weight:800;color:var(--g3);background:#E3F4EC;border-radius:999px;padding:2px 9px}
+details.cs .nx{margin-top:8px;background:#FFF6EA;border-radius:10px;padding:8px 11px;font-weight:700;color:#7A4E10}
+.cs-div{text-align:center}.cs-div h2{font-size:clamp(30px,5vw,46px)}.cs-div .lead{max-width:640px;margin-inline:auto}
+.cs-div .num{max-width:720px;margin-inline:auto;grid-template-columns:repeat(3,1fr)}
+/* the prep deck */
+.pv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.pv div{background:var(--soft);border-radius:14px;padding:13px 14px}.pv b{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}.pv span{font-size:14.5px;line-height:1.45;color:var(--ink)}
+.rd{display:grid;gap:8px}.rd div{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 14px}
+.rd div>b{font-family:'Frank Ruhl Libre',serif;font-size:22px;color:var(--g3);min-width:46px;text-align:center}.rd div>span{font-size:15.5px;line-height:1.4}.rd div>em{font-style:normal;font-size:12.5px;font-weight:800;border-radius:999px;padding:3px 10px;background:#E3F4EC;color:var(--g3);white-space:nowrap}
+.rd div>em.o{background:#F1F3F2;color:var(--muted)}
+@media (max-width:760px){.pv,.cs-div .num{grid-template-columns:1fr}.rd div{grid-template-columns:auto 1fr}.rd div>em{grid-column:2}}
+
 /*BRAND*/
 .brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
 .brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
@@ -486,6 +508,41 @@ body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat
  <div class="src"><span>איורים: <span class="nw"><bdi dir="ltr">Gray's Anatomy (1918), Sobotta (1906), Musser (1904)</bdi>,</span> נחלת הכלל · צילומים: <bdi dir="ltr">Hellerhoff, Haitham Alfalah (CC BY-SA, Wikimedia Commons)</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
+
+<section class="s"><div class="card cs-div">
+ <div class="kick"><b>15</b>מקרים מתגלגלים</div>
+ <h2>מהמיון לחדר הניתוח</h2>
+ <p class="lead">3 מטופלים. כל מקרה נפתח שלב אחרי שלב: קודם חושבים יחד מה עושים, ורק אז פותחים את התשובה</p>
+ <div class="num"><div><b>1</b><span>כאב בטן חזק ובטן רכה</span></div><div><b>2</b><span>מפחד לאכול ויורד במשקל</span></div><div><b>3</b><span>כאב בטן אצל אישה צעירה</span></div></div>
+ <div class="src"><span>המקרים בדויים ונכתבו לפי <b>Sabiston 22</b>, בלי פרטי מטופלים</span><span>מקרים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>16</b>מקרה מתגלגל</div>
+ <h2>כאב בטן חזק, בטן רכה</h2>
+ <div class="cs-h"><span class="tag">אישה · 78</span><span class="tag r">מיון</span></div>
+ <div class="cs-p">אישה בת 78 עם פרפור פרוזדורים, שהפסיקה לקחת נוגדי קרישה לפני חודש. לפני שלוש שעות התחיל פתאום כאב בטן חזק מאוד. היא מקיאה. בבדיקה הבטן רכה וכמעט לא רגישה, אבל היא מתפתלת מכאב</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה מדליק כאן נורה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>כאב שלא תואם את הבדיקה: התמונה הקלאסית של איסכמיה חריפה בשלב המוקדם</li><li>פרפור פרוזדורים והתחלה פתאומית: <b>תסחיף</b>, הסיבה השכיחה (40% עד 50%)</li><li>עד 68% מהמטופלים עם תסחיף למעי יש להם תסחיפים גם במקומות אחרים: בודקים מוח וגפיים</li><li>הזמן הוא מעי: בתסחיף ל-<span class="nw"><bdi dir="ltr">SMA</bdi></span> ההישרדות יורדת מ-50% ל-30% כשהאבחנה נעשית אחרי 24 שעות</li></ul></div></details><details class="cs"><summary><i>2</i>בדיקות הדם תקינות כמעט לגמרי. זה מרגיע?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b>לא.</b> בדיקות הדם יכולות להיות תקינות בהתחלה</li><li>בהמשך: לויקוציטוזיס (מעל 15,000), חמצת מטבולית ולקטט גבוה</li><li><span class="nw"><bdi dir="ltr">D-dimer</bdi></span> רגיש ומוקדם, אבל לא סגולי</li><li>הבדיקה שמאבחנת: <b><span class="nw"><bdi dir="ltr">CTA</bdi></span></b>, ברגישות 93% וסגוליות 96%. בשלב עורקי ובשלב ורידי רואים גם את הוורידים ואת זילוח הדופן</li></ul><div class="nx">ב-<span class="nw"><bdi dir="ltr">CTA</bdi></span> יש תסחיף ב-<span class="nw"><bdi dir="ltr">SMA</bdi></span>, מעט אחרי ה-<span class="nw"><bdi dir="ltr">middle colic artery</bdi></span></div></div></details><details class="cs"><summary><i>3</i>מה מתחילים עוד לפני חדר הניתוח?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>עירוי ונוזלים, ניטור ותיקון אלקטרוליטים</li><li><b>הפרין</b> מיד עם האבחנה, כדי שהקריש לא יתפשט</li><li><b>אנטיביוטיקה רחבה לווריד</b>: חיידקים עוברים דרך מעי איסכמי</li><li>להימנע מוזופרסורים. אם חייבים, בוחרים כאלה שמכווצים פחות את כלי הדם של המעי (דובוטמין, מילרינון, דופמין במינון נמוך)</li></ul><div class="nx">בלפרוטומיה חושפים את ה-<span class="nw"><bdi dir="ltr">SMA</bdi></span> ומוציאים את הקריש בצנתר בלון (<span class="nw"><bdi dir="ltr">Fogarty</bdi></span>). מקטע אחד של המעי נמק ומקטע ארוך אחר נראה בספק</div></div></details><details class="cs"><summary><i>4</i>כמה מעי כורתים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>קודם מחזירים זרימה ורק אחר כך מחליטים על כריתה</li><li>מעי נמק ברור: כורתים ומשאירים את הקצוות בלי השקה</li><li>מעי בספק: לא כורתים באגרסיביות. סוגרים את הבטן באופן זמני וחוזרים ל<b>מבט שני</b> אחרי 24 עד 36 שעות. כך נותנים למעי זמן להתאושש ושומרים על כמה שיותר אורך</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 106 עמ׳ <bdi dir="ltr">1709–1712</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>17</b>מקרה מתגלגל</div>
+ <h2>מפחד לאכול</h2>
+ <div class="cs-h"><span class="tag">גבר · 69</span><span class="tag b">מרפאה</span></div>
+ <div class="cs-p">גבר בן 69, מעשן, עם מחלת לב ומחלת עורקים ברגליים. חצי שנה שהוא סובל מכאבי בטן שמתחילים בערך רבע שעה אחרי האוכל ונמשכים כמה שעות. הוא אוכל מעט כדי לא לסבול וירד 10 ק״ג</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה החשד ומה חייבים לשלול?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>כאב אחרי אוכל, "פחד מאוכל" וירידה לא מכוונת במשקל: <b>איסכמיה כרונית של המעי</b></li><li>התסמינים מתחילים בדרך כלל תוך 15 דקות מהאוכל ויכולים להימשך עד 7 שעות</li><li><b>חובה לשלול גידול:</b> כל מטופל עם כאב בטן וירידה במשקל עובר בירור מהיר לממאירות במערכת העיכול ובבטן</li></ul></div></details><details class="cs"><summary><i>2</i>איך מאבחנים?</summary><div class="ans"><ul><li>דופלקס: מהירות שיא של 200 ס״מ/שנ׳ ב-<span class="nw"><bdi dir="ltr">celiac trunk</bdi></span> ו-275 ב-<span class="nw"><bdi dir="ltr">SMA</bdi></span> מתאימה להיצרות מעל 70%</li><li><span class="nw"><bdi dir="ltr">CTA</bdi></span> מאשר ומשמש לתכנון הטיפול</li><li>האבחנה: היצרות מעל 70% ב-<span class="nw"><bdi dir="ltr">celiac trunk</bdi></span> או ב-<span class="nw"><bdi dir="ltr">SMA</bdi></span> יחד עם תסמינים מתאימים</li></ul><div class="nx">ב-<span class="nw"><bdi dir="ltr">CTA</bdi></span> יש היצרות קשה ב-<span class="nw"><bdi dir="ltr">SMA</bdi></span> ליד המוצא</div></div></details><details class="cs"><summary><i>3</i>מה הטיפול?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>מטרות: להעלים את התסמינים, למנוע איסכמיה חריפה ולשפר את איכות החיים</li><li><b>קו ראשון: הרחבה בבלון עם סטנט</b>. סטנט מכוסה שנפתח בבלון עדיף על סטנט מתכת חשוף</li><li>המחיר: בערך רבע חוזרים עם תסמינים או צריכים התערבות חוזרת</li><li>ניתוח פתוח (מעקף) לצעירים, לאנטומיה שלא מתאימה לסטנט, או לחזרה למרות סטנטים</li><li>אחרי סטנט: נוגד טסיות וטיפול להורדת שומנים לכולם. רבים מקבלים שני נוגדי טסיות ל-6 עד 12 שבועות</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 106 עמ׳ <bdi dir="ltr">1713–1715, 1717–1718</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>18</b>מקרה מתגלגל</div>
+ <h2>כאב בטן אצל אישה צעירה</h2>
+ <div class="cs-h"><span class="tag">אישה · 34</span><span class="tag a">מיון</span></div>
+ <div class="cs-p">אישה בת 34 שנוטלת גלולות למניעת הריון מגיעה עם כאבי בטן מפושטים שהולכים ומחמירים כבר יומיים, בחילות והקאות. היא מתארת כאב חזק ובבדיקה הבטן רכה יחסית. בבוקר היה לה מעט דם בצואה</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>על מה חושבים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>כאב שלא תואם את הבדיקה, אצל מטופלת צעירה עם גורם סיכון לקרישיות: <b>פקקת ורידים מזנטריים</b></li><li>יותר מ-90% מהמקרים משניים: חבלה או ניתוח, דלקת בבטן, גודש (שחמת, אי-ספיקת לב) ונטייה לקרישיות, כולל גלולות</li><li>דימום ממערכת העיכול מופיע ב-15% עד 50%</li></ul><div class="nx">ב-<span class="nw"><bdi dir="ltr">CT</bdi></span> בשלב עורקי ובשלב ורידי פורטלי יש קריש ב-<span class="nw"><bdi dir="ltr">SMV</bdi></span>. אין סימני פריטוניטיס</div></div></details><details class="cs"><summary><i>2</i>מה מתחילים? והדם בצואה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b>הפרין לא מפוצל לווריד מיד</b> עם האבחנה</li><li>הדימום כמעט אף פעם לא מונע טיפול בהפרין. לפעמים צריך גם מוצרי דם</li><li>בירור: נטייה לקרישיות ובדיקות סקר לסרטן לפי הגיל</li></ul><div class="nx">למחרת הכאב מחמיר למרות ההפרין, עדיין בלי פריטוניטיס</div></div></details><details class="cs"><summary><i>3</i>ומה עכשיו?</summary><div class="ans"><ul><li>החמרה בלי פריטוניטיס: אפשר לשקול טיפול אנדווסקולרי</li><li>פריטוניטיס מתקדמת או חשד לאוטם בכל הדופן: לפרוסקופיה או לפרוטומיה לבדיקת המעי. אחרי כריתה: השקה, או מבט שני תוך 24 עד 48 שעות</li></ul><div class="nx">היא משתפרת עם הטיפול ומשתחררת</div></div></details><details class="cs"><summary><i>4</i>כמה זמן נוגדי קרישה?</summary><div class="ans"><ul><li>6 חודשים כשיש סיבה שאפשר להפסיק</li><li>לכל החיים כשמזהים נטייה לקרישיות, או כשלא נמצאה סיבה</li><li>גלולות למניעת הריון קשורות לחזרה של הפקקת</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 106 עמ׳ <bdi dir="ltr">1719–1720</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
 <script>

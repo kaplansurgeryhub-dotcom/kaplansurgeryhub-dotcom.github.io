@@ -60,6 +60,28 @@ bdi{unicode-bidi:isolate}
 bdi[dir=ltr]{white-space:nowrap}
 details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;background:#fff}details.rev summary{cursor:pointer;list-style:none;padding:10px 14px;font-weight:800;color:#fff;background:var(--g3);border-radius:13px}details.rev summary::-webkit-details-marker{display:none}details.rev[open] summary{border-radius:13px 13px 0 0}details.rev>div{padding:12px 14px}
 .case{background:#0C2A35;color:#fff;border-radius:16px;padding:14px 16px;font-size:16px;line-height:1.55}.case b{color:#B5D96B}
+
+/* rolling cases (the last slides of the full deck): a case opens stage by stage, each answer opens on a tap */
+.cs-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}.cs-h .tag{font-size:12.5px}
+.cs-p{background:var(--soft);border-radius:14px;padding:12px 15px;font-size:16.5px;line-height:1.5;border-inline-start:4px solid var(--navy)}
+.cs-st{display:grid;gap:8px;margin-top:10px}
+details.cs{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+details.cs>summary{display:flex;gap:10px;align-items:center;padding:11px 14px;font-weight:800;font-size:16px;color:var(--navy)}
+details.cs>summary i{font-style:normal;flex:0 0 28px;height:28px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-size:14px}
+details.cs[open]>summary{background:#F2F8F5;border-bottom:1px solid var(--line)}
+details.cs .ans{padding:11px 15px 13px;font-size:15.5px;line-height:1.5}
+details.cs .ans p{margin:0 0 6px}details.cs .ans ul{margin:4px 0 0;padding-inline-start:18px}details.cs .ans li{margin:3px 0}
+details.cs .cs-pv{margin-inline-start:auto;font-size:12px;font-weight:800;color:var(--g3);background:#E3F4EC;border-radius:999px;padding:2px 9px}
+details.cs .nx{margin-top:8px;background:#FFF6EA;border-radius:10px;padding:8px 11px;font-weight:700;color:#7A4E10}
+.cs-div{text-align:center}.cs-div h2{font-size:clamp(30px,5vw,46px)}.cs-div .lead{max-width:640px;margin-inline:auto}
+.cs-div .num{max-width:720px;margin-inline:auto;grid-template-columns:repeat(3,1fr)}
+/* the prep deck */
+.pv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.pv div{background:var(--soft);border-radius:14px;padding:13px 14px}.pv b{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}.pv span{font-size:14.5px;line-height:1.45;color:var(--ink)}
+.rd{display:grid;gap:8px}.rd div{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 14px}
+.rd div>b{font-family:'Frank Ruhl Libre',serif;font-size:22px;color:var(--g3);min-width:46px;text-align:center}.rd div>span{font-size:15.5px;line-height:1.4}.rd div>em{font-style:normal;font-size:12.5px;font-weight:800;border-radius:999px;padding:3px 10px;background:#E3F4EC;color:var(--g3);white-space:nowrap}
+.rd div>em.o{background:#F1F3F2;color:var(--muted)}
+@media (max-width:760px){.pv,.cs-div .num{grid-template-columns:1fr}.rd div{grid-template-columns:auto 1fr}.rd div>em{grid-column:2}}
+
 /*BRAND*/
 .brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
 .brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
@@ -543,6 +565,41 @@ body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat
  <div class="src"><span>איורים: <bdi>Gray's Anatomy</bdi> (1918, נחלת הכלל) · תמונות קליניות: <span class="nw"><bdi>Wikimedia Commons</bdi>,</span> הקרדיט בכל תמונה · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
+
+<section class="s"><div class="card cs-div">
+ <div class="kick"><b>17</b>מקרים מתגלגלים</div>
+ <h2>מהמיון לחדר הניתוח</h2>
+ <p class="lead">3 מטופלים. כל מקרה נפתח שלב אחרי שלב: קודם חושבים יחד מה עושים, ורק אז פותחים את התשובה</p>
+ <div class="num"><div><b>1</b><span>ירידה במשקל וכאב שלא עובר</span></div><div><b>2</b><span>ממצא קטן בגסטרוסקופיה</span></div><div><b>3</b><span>שלושה בני משפחה עם סרטן קיבה</span></div></div>
+ <div class="src"><span>המקרים בדויים ונכתבו לפי <b>Sabiston 22</b>, בלי פרטי מטופלים</span><span>מקרים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>18</b>מקרה מתגלגל</div>
+ <h2>שלושה חודשים של כאב וירידה במשקל</h2>
+ <div class="cs-h"><span class="tag">גבר · 67</span><span class="tag a">מרפאה ואז מחלקה</span></div>
+ <div class="cs-p">גבר בן 67, מעשן. כבר שלושה חודשים כאבים בבטן העליונה והוא ירד 8 ק״ג. בבדיקות הדם יש אנמיה מחוסר ברזל</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה מחפשים בבדיקה הגופנית?</summary><div class="ans"><ul><li>התסמינים בסרטן הקיבה עמומים והשכיחים הם ירידה במשקל וכאב בטן מתמשך. לכן רבים מאובחנים מאוחר</li><li>סימני מחלה מתקדמת: בלוטה מעל עצם הבריח משמאל (<span class="nw"><bdi dir="ltr">Virchow</bdi></span>), בבית השחי (<span class="nw"><bdi dir="ltr">Irish</bdi></span>), ליד הטבור (<span class="nw"><bdi dir="ltr">Sister Mary Joseph</bdi></span>)</li><li>כבד מוגדל, צהבת, מיימת. מדף קשה בבדיקה רקטלית (<span class="nw"><bdi dir="ltr">Blumer</bdi></span>): גרורות בצפק</li></ul><div class="nx">הבדיקה תקינה. בגסטרוסקופיה יש גידול מכויב ב-<span class="nw"><bdi dir="ltr">antrum</bdi></span></div></div></details><details class="cs"><summary><i>2</i>מה הבירור?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><bdi dir="ltr">6–8</bdi> ביופסיות מאזורים שונים בנגע</li><li>CT של החזה, הבטן והאגן לכולם</li><li>גידול שנראה מתקדם מקומית (cT<bdi dir="ltr">3–4</bdi> או בלוטות): PET-CT ו<b>לפרוסקופיה עם שטיפת צפק</b> לפני ניתוח או כימותרפיה</li><li>הבדיקות האלה מגלות גרורות בכ-<bdi dir="ltr">25–30%</bdi> ממי שנראה "מקומי" ב-CT. הדיוק של הלפרוסקופיה לגרורות בצפק מעל 90%</li></ul><div class="nx">ב-CT: עיבוי של דופן ה-<span class="nw"><bdi dir="ltr">antrum</bdi></span> ובלוטות מוגדלות. בלפרוסקופיה אין גרורות והשטיפה שלילית</div></div></details><details class="cs"><summary><i>3</i>ניתוח עכשיו?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>במחלה מתקדמת מקומית, במערב נותנים כימותרפיה לפני הניתוח ואחריו</li><li>לפי <span class="nw"><bdi dir="ltr">FLOT4</bdi></span>: ארבעה מחזורים לפני וארבעה אחרי. זה המשטר המומלץ למי שבמצב תפקודי טוב</li><li>בגידול <span class="nw"><bdi dir="ltr">MSI-high</bdi></span> הגישה שונה: ניתוח מיידי, כי הוא לא מגיב לכימותרפיה רגילה</li></ul><div class="nx">אחרי הכימותרפיה הוא מגיע לניתוח</div></div></details><details class="cs"><summary><i>4</i>מה הניתוח?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>גידול ב-<span class="nw"><bdi dir="ltr">antrum</bdi></span>: כריתת קיבה דיסטלית</li><li>שוליים: לפחות 3 ס״מ בגידול cT2–T4 עם גבול ברור, לפחות 5 ס״מ בגידול מסתנן. שוליים קרובים נבדקים בחתך קפוא לפני החיבור</li><li>כריתת בלוטות <span class="nw"><bdi dir="ltr">D2</bdi></span>, בלי כריתה של הטחול וזנב הלבלב ולפחות 16 בלוטות לשלב מדויק</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 87 עמ׳ <bdi dir="ltr">1196–1199, 1203–1205</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>19</b>מקרה מתגלגל</div>
+ <h2>נגע קטן ושטוח</h2>
+ <div class="cs-h"><span class="tag">אישה · 61</span><span class="tag b">מרפאה</span></div>
+ <div class="cs-p">אישה בת 61 עברה גסטרוסקופיה בגלל צרבת. נמצא נגע שטוח של 1.5 ס״מ בגוף הקיבה, בלי כיב. בביופסיה: אדנוקרצינומה מסוג מעיי</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>האם היא צריכה כריתת קיבה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>לא בהכרח. כריתה אנדוסקופית (<span class="nw"><bdi dir="ltr">EMR</bdi></span> או <span class="nw"><bdi dir="ltr">ESD</bdi></span>) מתאימה רק כשכל התנאים מתקיימים:</li><li>אדנוקרצינומה מסוג מעיי, מוגבלת ל-<span class="nw"><bdi dir="ltr">mucosa</bdi></span>, בלי חדירה לכלי לימפה ודם, בלי כיב וקטנה מ-2 ס״מ</li><li>היתרון: חוסכים כריתת קיבה. החסרון: כריתה לא מלאה, או גרורה בבלוטה שלא זוהתה</li><li>מעדיפים להוציא את הנגע בחתיכה אחת: כריתה בחתיכות קשורה ליותר חזרה</li></ul><div class="nx">עושים <span class="nw"><bdi dir="ltr">ESD</bdi></span>. בפתולוגיה: הגידול חודר ל-<span class="nw"><bdi dir="ltr">submucosa</bdi></span></div></div></details><details class="cs"><summary><i>2</i>מה עכשיו?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>חדירה ל-<span class="nw"><bdi dir="ltr">submucosa</bdi></span>, שוליים עמוקים חיוביים או חדירה לכלי לימפה ודם: מפנים <b>לכריתת קיבה עם בלוטות</b></li><li>שוליים צדדיים חיוביים בלבד: אפשר לשקול כריתה אנדוסקופית חוזרת או מעקב צמוד</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 87 עמ׳ <bdi dir="ltr">1199</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>20</b>מקרה מתגלגל</div>
+ <h2>מוטציה במשפחה</h2>
+ <div class="cs-h"><span class="tag">אישה · 27</span><span class="tag b">מרפאה</span></div>
+ <div class="cs-p">אישה בת 27, בריאה. אצל אמה ושני דודים אובחן סרטן קיבה דיפוזי. בבדיקה גנטית נמצאה אצלה מוטציה ב-<span class="nw"><bdi dir="ltr">CDH1</bdi></span></div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה הסיכון שלה?</summary><div class="ans"><ul><li>מוטציה ב-<span class="nw"><bdi dir="ltr">CDH1</bdi></span> גורמת ל<b>סרטן קיבה דיפוזי תורשתי</b></li><li>הסיכון לכל החיים מוערך היום ב-<bdi dir="ltr">25–33%</bdi> לנשים ו-<bdi dir="ltr">37–42%</bdi> לגברים. במשפחה עם שלושה מקרים ויותר הוא גבוה יותר</li><li>לנשים יש גם סיכון של <bdi dir="ltr">39–55%</bdi> לסרטן שד לובולרי</li></ul></div></details><details class="cs"><summary><i>2</i>מה ממליצים לה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b>כריתת קיבה מלאה מונעת</b> למי שבריא/ה לניתוח ונמצא/ת בסיכון משמעותי, בדרך כלל בגיל <bdi dir="ltr">20–30</bdi></li><li>מי שלא רוצה ניתוח: גסטרוסקופיה שנתית עם ביופסיות לפי פרוטוקול</li><li>בגלל סיכון השד: MRI שד שנתי</li></ul><div class="nx">היא בוחרת בניתוח</div></div></details><details class="cs"><summary><i>3</i>ומה אחרי כריתת קיבה מלאה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>מעקב אחרי ברזל ויטמין <span class="nw"><bdi dir="ltr">B12</bdi></span> וויטמין <span class="nw"><bdi dir="ltr">D</bdi></span></li><li>סיכון לאובדן סידן: בדיקת צפיפות עצם למי שבסיכון</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 87 עמ׳ <bdi dir="ltr">1193–1194, 1206</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
 <script>

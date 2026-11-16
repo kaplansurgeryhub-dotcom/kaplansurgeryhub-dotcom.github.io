@@ -60,6 +60,28 @@ bdi{unicode-bidi:isolate}
 bdi[dir=ltr]{white-space:nowrap}
 details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;background:#fff}details.rev summary{cursor:pointer;list-style:none;padding:10px 14px;font-weight:800;color:#fff;background:var(--g3);border-radius:13px}details.rev summary::-webkit-details-marker{display:none}details.rev[open] summary{border-radius:13px 13px 0 0}details.rev>div{padding:12px 14px}
 .case{background:#0C2A35;color:#fff;border-radius:16px;padding:14px 16px;font-size:16px;line-height:1.55}.case b{color:#B5D96B}
+
+/* rolling cases (the last slides of the full deck): a case opens stage by stage, each answer opens on a tap */
+.cs-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}.cs-h .tag{font-size:12.5px}
+.cs-p{background:var(--soft);border-radius:14px;padding:12px 15px;font-size:16.5px;line-height:1.5;border-inline-start:4px solid var(--navy)}
+.cs-st{display:grid;gap:8px;margin-top:10px}
+details.cs{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+details.cs>summary{display:flex;gap:10px;align-items:center;padding:11px 14px;font-weight:800;font-size:16px;color:var(--navy)}
+details.cs>summary i{font-style:normal;flex:0 0 28px;height:28px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-size:14px}
+details.cs[open]>summary{background:#F2F8F5;border-bottom:1px solid var(--line)}
+details.cs .ans{padding:11px 15px 13px;font-size:15.5px;line-height:1.5}
+details.cs .ans p{margin:0 0 6px}details.cs .ans ul{margin:4px 0 0;padding-inline-start:18px}details.cs .ans li{margin:3px 0}
+details.cs .cs-pv{margin-inline-start:auto;font-size:12px;font-weight:800;color:var(--g3);background:#E3F4EC;border-radius:999px;padding:2px 9px}
+details.cs .nx{margin-top:8px;background:#FFF6EA;border-radius:10px;padding:8px 11px;font-weight:700;color:#7A4E10}
+.cs-div{text-align:center}.cs-div h2{font-size:clamp(30px,5vw,46px)}.cs-div .lead{max-width:640px;margin-inline:auto}
+.cs-div .num{max-width:720px;margin-inline:auto;grid-template-columns:repeat(3,1fr)}
+/* the prep deck */
+.pv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.pv div{background:var(--soft);border-radius:14px;padding:13px 14px}.pv b{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}.pv span{font-size:14.5px;line-height:1.45;color:var(--ink)}
+.rd{display:grid;gap:8px}.rd div{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 14px}
+.rd div>b{font-family:'Frank Ruhl Libre',serif;font-size:22px;color:var(--g3);min-width:46px;text-align:center}.rd div>span{font-size:15.5px;line-height:1.4}.rd div>em{font-style:normal;font-size:12.5px;font-weight:800;border-radius:999px;padding:3px 10px;background:#E3F4EC;color:var(--g3);white-space:nowrap}
+.rd div>em.o{background:#F1F3F2;color:var(--muted)}
+@media (max-width:760px){.pv,.cs-div .num{grid-template-columns:1fr}.rd div{grid-template-columns:auto 1fr}.rd div>em{grid-column:2}}
+
 /*BRAND*/
 .brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
 .brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
@@ -459,6 +481,41 @@ body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat
  <div class="src"><span>איורים: <bdi>Blausen Medical</bdi> <span class="nw">(<bdi>CC BY 3.0</bdi>)</span> ותרשימי שחזור <span class="nw">מ-<bdi>Wikimedia Commons</bdi>,</span> הקרדיט בכל תמונה · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
+
+<section class="s"><div class="card cs-div">
+ <div class="kick"><b>16</b>מקרים מתגלגלים</div>
+ <h2>מהמיון לחדר הניתוח</h2>
+ <p class="lead">3 מטופלים. כל מקרה נפתח שלב אחרי שלב: קודם חושבים יחד מה עושים, ורק אז פותחים את התשובה</p>
+ <div class="num"><div><b>1</b><span>כאב בטן שנתיים אחרי מעקף</span></div><div><b>2</b><span>הזעה ודפיקות לב אחרי כל ארוחה</span></div><div><b>3</b><span>קודם לא עובר אוכל, אחר כך כאב שורף</span></div></div>
+ <div class="src"><span>המקרים בדויים ונכתבו לפי <b>Sabiston 22</b>, בלי פרטי מטופלים</span><span>מקרים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>17</b>מקרה מתגלגל</div>
+ <h2>כאב בטן שנתיים אחרי מעקף</h2>
+ <div class="cs-h"><span class="tag">אישה · 37</span><span class="tag r">מיון</span></div>
+ <div class="cs-p">אישה בת 37 עברה מעקף קיבה לפני שנתיים וירדה 45 ק״ג. מהבוקר יש לה כאבי בטן התקפיים חזקים במרכז הבטן והיא מקיאה. הדופק 112, החום תקין. הבטן נפוחה מעט ורגישה</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה אתם חושבים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>אחרי מעקף, תמונה של חסימת מעי: <b>בקע פנימי</b> עד שיוכח אחרת</li><li>בגלל הבקעים הפנימיים, חסימה אחרי מעקף מגיעה לעיתים קרובות עם חניקה</li><li>שאלות חשובות: איזה ניתוח, מתי והאם יש טכיקרדיה</li></ul></div></details><details class="cs"><summary><i>2</i>איזו הדמיה ומה מחפשים בה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>CT עם חומר ניגוד בשתייה ובווריד</li><li>מחפשים לולאות מורחבות, סיבוב של המזנטריום ואת החלק העקוף של הקיבה</li><li>החשש: חסימה מתחת לחיבור התחתון מרחיבה לאחור את הלולאה עם המרה ואת הקיבה העקופה, עד פיצוץ קו השדכנים וצפקת. לא רואים את זה בגסטרוסקופיה</li></ul><div class="nx">ב-CT יש סיבוב של המזנטריום ולולאות מורחבות. הקיבה העקופה מורחבת</div></div></details><details class="cs"><summary><i>3</i>לנסות טיפול שמרני עם זונדה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><p><b>לא.</b> חסימה אחרי מעקף, בבדיקה או בהדמיה, היא סיבה לניתוח ומהר. מחזירים את המעי, בודקים חיוניות וסוגרים את הפתחים</p></div></details><details class="cs"><summary><i>4</i>איך מונעים את זה מראש?</summary><div class="ans"><ul><li>סגירה של הפתח מתחת לחיבור התחתון ושל ה-<span class="nw"><bdi dir="ltr">Petersen's space</bdi></span> בתפר שלא נספג</li><li>סגירת הפתחים מורידה בקע פנימי מ-4–17% ל-0–7%, בערך 70% פחות</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 99 עמ׳ <bdi dir="ltr">1566, 1574</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>18</b>מקרה מתגלגל</div>
+ <h2>מה קורה אחרי הארוחה</h2>
+ <div class="cs-h"><span class="tag">גבר · 66</span><span class="tag b">מרפאה</span></div>
+ <div class="cs-p">גבר בן 66 עבר לפני שנים כריתה חלקית של הקיבה עם חיבור Billroth II בגלל כיב. בחודשים האחרונים, כרבע שעה אחרי ארוחה מתוקה, הוא מרגיש נפיחות, כאב בטן ושלשול, מזיע ומרגיש דפיקות לב. לפעמים, שעתיים אחרי ארוחה, הוא רועד ומרגיש סחרחורת</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה המצב?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b>דמפינג.</b> שכיח ביותר אחרי כריתה חלקית עם Billroth II</li><li>מוקדם: עד שעה מהארוחה, רוב התסמינים בחצי השעה הראשונה. מזון מרוכז מגיע מהר למעי, נוזל עובר לתוך המעי ומשתחררים הורמונים</li><li>מאוחר: 1–3 שעות אחרי. פחמימות נספגות מהר, אינסולין מופרש בעודף ומגיעה היפוגליקמיה. כאן <span class="nw"><bdi dir="ltr">GLP-1</bdi></span> הוא המתווך המרכזי</li></ul></div></details><details class="cs"><summary><i>2</i>איך מאבחנים?</summary><div class="ans"><ul><li>בעיקר לפי הסיפור</li><li>כשצריך: 75 גרם גלוקוז בשתייה אחרי צום. מוקדם: אחרי 30 דקות המטוקריט עולה ב-3% לפחות, או הדופק עולה ב-10 לפחות. מאוחר: סוכר מתחת ל-50 מ״ג/ד״ל בין שעה לשלוש</li><li>מיפוי התרוקנות קיבה לא עוזר כאן</li></ul></div></details><details class="cs"><summary><i>3</i>מה הטיפול?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>קודם תזונה וזה מספיק לרוב המטופלים: בלי הרבה סוכר, ארוחות קטנות ותכופות עשירות בחלבון ובסיבים ושתייה בנפרד מהאוכל</li><li>אקרבוז יכול להפחית את ההיפוגליקמיה</li><li>אנלוגים של סומטוסטטין (אוקטראוטיד) למי שלא הגיב</li><li>ניתוח רק כשהכול נכשל: אחרי Billroth II ממירים ל-Roux-en-Y</li></ul><div class="nx">בבדיקות הדם שלו יש גם אנמיה</div></div></details><details class="cs"><summary><i>4</i>למה אנמיה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>ברזל נספג ב-<span class="nw"><bdi dir="ltr">duodenum</bdi></span> וב-<span class="nw"><bdi dir="ltr">proximal jejunum</bdi></span>, שנעקפים</li><li><span class="nw"><bdi dir="ltr">B12</bdi></span>: אין מספיק פקטור פנימי. אחרי כריתה חלקית נותנים B12 לכל החיים</li><li>לא לשכוח סידן וויטמין D: מחלת עצם מופיעה בדרך כלל כחמש שנים אחרי הניתוח</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 86 עמ׳ <bdi dir="ltr">1187</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>19</b>מקרה מתגלגל</div>
+ <h2>קודם מוצקים, אחר כך נוזלים</h2>
+ <div class="cs-h"><span class="tag">גבר · 51</span><span class="tag a">מרפאה ואז מיון</span></div>
+ <div class="cs-p">גבר בן 51 עבר מעקף קיבה לפני חמישה שבועות. הוא מעשן. בשבוע האחרון האוכל המוצק "נתקע" ומאתמול גם מים חוזרים</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה החשד?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b>היצרות בחיבור בין הכיס למעי</b>: 2–7% מהמעקפים, יותר עם שדכן מעגלי</li><li>מופיעה בדרך כלל 4–6 שבועות אחרי הניתוח: קודם מוצקים ואחר כך נוזלים</li><li>מי שמקיא הרבה אחרי ניתוח בריאטרי מקבל גם נוזלים ותיאמין</li></ul></div></details><details class="cs"><summary><i>2</i>איך מטפלים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>גסטרוסקופיה והרחבה בבלון</li><li>לא מרחיבים ביותר מ-3–5 מ״מ בכל פעם ולכן לפעמים צריך כמה הרחבות</li><li>מחפשים את הסיבה כדי שלא תחזור: עישון ותרופות NSAIDs</li><li>בלי כיב, בדרך כלל לא צריך ניתוח</li></ul><div class="nx">אחרי שתי הרחבות הוא אוכל. חצי שנה אחר כך הוא חוזר עם כאב קבוע ושורף באפיגסטריום. הוא עדיין מעשן ולוקח איבופרופן לכאבי גב</div></div></details><details class="cs"><summary><i>3</i>מה עכשיו?</summary><div class="ans"><ul><li><b>כיב בחיבור</b>: 2–14% מהמעקפים. כאב אפיגסטרי קבוע ו"קודח"</li><li>כיס גדול יותר מכיל יותר תאים שמפרישים חומצה ולכן יותר כיבים</li><li>הטיפול: PPI, הפסקת עישון ובלי NSAIDs. רוב הכיבים נרפאים</li></ul></div></details><details class="cs"><summary><i>4</i>והכיב לא נרפא. מה מחפשים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><p><b>פיסטולה בין הכיס לחלק העקוף של הקיבה.</b> היא מביאה חומצה לחיבור ומחמירה את הכיב. כדי שהכיב ייסגר צריך ניתוח שמפריד את הפיסטולה</p></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 99 עמ׳ <bdi dir="ltr">1574–1575, 1577</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
 <script>

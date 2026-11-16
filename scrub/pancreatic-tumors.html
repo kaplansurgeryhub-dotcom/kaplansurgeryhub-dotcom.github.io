@@ -59,6 +59,28 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 @media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
 @media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+
+/* rolling cases (the last slides of the full deck): a case opens stage by stage, each answer opens on a tap */
+.cs-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}.cs-h .tag{font-size:12.5px}
+.cs-p{background:var(--soft);border-radius:14px;padding:12px 15px;font-size:16.5px;line-height:1.5;border-inline-start:4px solid var(--navy)}
+.cs-st{display:grid;gap:8px;margin-top:10px}
+details.cs{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+details.cs>summary{display:flex;gap:10px;align-items:center;padding:11px 14px;font-weight:800;font-size:16px;color:var(--navy)}
+details.cs>summary i{font-style:normal;flex:0 0 28px;height:28px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-size:14px}
+details.cs[open]>summary{background:#F2F8F5;border-bottom:1px solid var(--line)}
+details.cs .ans{padding:11px 15px 13px;font-size:15.5px;line-height:1.5}
+details.cs .ans p{margin:0 0 6px}details.cs .ans ul{margin:4px 0 0;padding-inline-start:18px}details.cs .ans li{margin:3px 0}
+details.cs .cs-pv{margin-inline-start:auto;font-size:12px;font-weight:800;color:var(--g3);background:#E3F4EC;border-radius:999px;padding:2px 9px}
+details.cs .nx{margin-top:8px;background:#FFF6EA;border-radius:10px;padding:8px 11px;font-weight:700;color:#7A4E10}
+.cs-div{text-align:center}.cs-div h2{font-size:clamp(30px,5vw,46px)}.cs-div .lead{max-width:640px;margin-inline:auto}
+.cs-div .num{max-width:720px;margin-inline:auto;grid-template-columns:repeat(3,1fr)}
+/* the prep deck */
+.pv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.pv div{background:var(--soft);border-radius:14px;padding:13px 14px}.pv b{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}.pv span{font-size:14.5px;line-height:1.45;color:var(--ink)}
+.rd{display:grid;gap:8px}.rd div{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 14px}
+.rd div>b{font-family:'Frank Ruhl Libre',serif;font-size:22px;color:var(--g3);min-width:46px;text-align:center}.rd div>span{font-size:15.5px;line-height:1.4}.rd div>em{font-style:normal;font-size:12.5px;font-weight:800;border-radius:999px;padding:3px 10px;background:#E3F4EC;color:var(--g3);white-space:nowrap}
+.rd div>em.o{background:#F1F3F2;color:var(--muted)}
+@media (max-width:760px){.pv,.cs-div .num{grid-template-columns:1fr}.rd div{grid-template-columns:auto 1fr}.rd div>em{grid-column:2}}
+
 /*BRAND*/
 .brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
 .brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
@@ -547,6 +569,41 @@ body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat
  <div class="src"><span>איורים ותמונות: <bdi>Sobotta, Atlas and Text-book of Human Anatomy</bdi> (1906) <span class="nw">ו-<bdi>AFIP</bdi></span> (נחלת הכלל) · <bdi>Hellerhoff</bdi> <span class="nw">(<bdi>CC BY-SA 3.0</bdi>)</span> · <bdi>Cancer Research UK</bdi> <span class="nw">(<bdi>CC BY-SA 4.0</bdi>)</span> · כולם <span class="nw">מ-<bdi>Wikimedia Commons</bdi></span> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
+
+<section class="s"><div class="card cs-div">
+ <div class="kick"><b>19</b>מקרים מתגלגלים</div>
+ <h2>מהמיון לחדר הניתוח</h2>
+ <p class="lead">3 מטופלים. כל מקרה נפתח שלב אחרי שלב: קודם חושבים יחד מה עושים, ורק אז פותחים את התשובה</p>
+ <div class="num"><div><b>1</b><span>צהבת בלי כאב וסוכרת חדשה</span></div><div><b>2</b><span>יום 5 אחרי וויפל: הנקז משתנה</span></div><div><b>3</b><span>התקפים של בלבול כשהיא לא אוכלת</span></div></div>
+ <div class="src"><span>המקרים בדויים ונכתבו לפי <b>Sabiston 22</b>, בלי פרטי מטופלים</span><span>מקרים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>20</b>מקרה מתגלגל</div>
+ <h2>צהבת שקטה</h2>
+ <div class="cs-h"><span class="tag">גבר · 68</span><span class="tag b">מרפאה</span></div>
+ <div class="cs-p">גבר בן 68 מגיע למרפאה כי בני המשפחה ראו שהעיניים שלו צהובות. אין לו כאב ואין חום. הוא ירד כ-7 ק״ג בחודשיים ולפני חודש מצאו אצלו סוכרת חדשה. השתן כהה והצואה בהירה ושומנית</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה החשד ומה מבדיל אותו מאבן בצינור המרה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>צהבת הדרגתית בלי כאב, ירידה במשקל וסוכרת חדשה במבוגר: לחשוב על סרטן ב-<span class="nw"><bdi dir="ltr">pancreatic head</bdi></span></li><li>כ-40% מהחולים מגיעים עם סוכרת חדשה וירידה במשקל</li><li>אבן ב-<span class="nw"><bdi dir="ltr">CBD</bdi></span> מופיעה בדרך כלל בפתאומיות, עם כאב ולעיתים עם <span class="nw"><bdi dir="ltr">cholangitis</bdi></span>. בגידול הכולנגיטיס לא שכיחה ולכן כמעט אף פעם לא צריך פעולה אנדוסקופית דחופה</li></ul></div></details><details class="cs"><summary><i>2</i>מה הבדיקה הראשונה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><p><b>CT בפרוטוקול לבלב, לפני כל פעולה פולשנית.</b> חתכים דקים בשלב עורקי מאוחר ובשלב ורידי, יחד עם CT של החזה</p><ul><li><bdi dir="ltr">ERCP</bdi> או סטנט לפני ה-CT יכולים לגרום לדלקת (בערך 4% אחרי ERCP) שמטשטשת את היחס בין הגידול לכלי הדם</li><li>מחפשים: גוש בראש הלבלב, סימן שני הצינורות ואטרופיה של הלבלב הדיסטלי</li></ul><div class="nx">ב-CT יש גוש של 3 ס״מ בראש הלבלב. הוא נוגע ב-<span class="nw"><bdi dir="ltr">SMV</bdi></span> בפחות מחצי ההיקף. יש שכבת שומן תקינה סביב ה-<span class="nw"><bdi dir="ltr">SMA</bdi></span>. אין גרורות בכבד ובריאות</div></div></details><details class="cs"><summary><i>3</i>איך מסווגים את הגידול?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>אין מגע עם העורקים (SMA, celiac, common hepatic) ומגע מוגבל בווריד: <b>נתיח</b></li><li>מגע של עד 180 מעלות ב-SMA או ב-celiac: גבולי. עטיפה של יותר מ-180 מעלות: מתקדם מקומית</li><li>כל ההנחיות מחלקות לשתי קבוצות: אפשר לנתח (נתיח וגבולי) ולא סביר שאפשר לנתח (מתקדם מקומית וגרורתי)</li></ul></div></details><details class="cs"><summary><i>4</i>איך מגיעים לאבחנה ומה עושים עם הצהבת?</summary><div class="ans"><ul><li><bdi dir="ltr">EUS</bdi> עם דגימה במחט. עדיף על ביופסיה מלעורית בהכוונת CT, שאחריה דווח על פיזור ל-<span class="nw"><bdi dir="ltr">peritoneum</bdi></span> בעד 16%</li><li>באותה פעולה מכניסים סטנט מתכתי לא מצופה. הוא נשאר פתוח יותר זמן ועם פחות סיבוכים מסטנט פלסטיק</li><li><bdi dir="ltr">CA 19-9</bdi> מקבלים כבסיס, אבל מפרשים אותו רק אחרי שהבילירובין ירד מתחת ל-2 מ״ג/ד״ל</li></ul><div class="nx">הביופסיה מאשרת אדנוקרצינומה. הצהבת חולפת אחרי הסטנט</div></div></details><details class="cs"><summary><i>5</i>לנתח עכשיו או להתחיל בכימותרפיה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>יותר מ-75% מהמנותחים חוזרים תוך שנה: ברוב החולים המחלה כבר מערכתית</li><li>כל ההנחיות ממליצות על טיפול לפני הניתוח במחלה גבולית. מרכזים רבים נותנים אותו גם במחלה נתיחה</li><li>היתרונות: טיפול מוקדם במיקרו-גרורות, זמן לראות את הביולוגיה של הגידול ובחירה טובה יותר של מי שירוויח מניתוח גדול</li><li>לפני החתך בוויפל עושים לפרוסקופיה: בעד 10% מוצאים גרורות קטנות שלא נראו ב-CT</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 93 עמ׳ <bdi dir="ltr">1403–1408</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>21</b>מקרה מתגלגל</div>
+ <h2>מה יוצא מהנקז</h2>
+ <div class="cs-h"><span class="tag">אישה · 61</span><span class="tag a">מחלקה</span></div>
+ <div class="cs-p">אישה בת 61 ביום החמישי אחרי ניתוח וויפל. הלבלב היה רך וצינור הלבלב צר. היא לא סובלת אוכל ומקיאה. בבוקר יש לה חום 38.4 והנוזל בנקז עכור</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה החשד ומה בודקים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>החשד הראשון: <b>פיסטולה של הלבלב</b>. היא קשורה למרקם רך, לצינור צר ולאיבוד דם בניתוח</li><li>שולחים עמילאז מהנקז. פיסטולה מוגדרת כשהעמילאז בנקז גבוה פי 3 מהערך העליון בדם</li><li>CT לחיפוש אוסף סביב החיבור</li></ul><div class="nx">העמילאז בנקז גבוה מאוד. ב-CT יש אוסף קטן ליד החיבור לבלב-מעי</div></div></details><details class="cs"><summary><i>2</i>למה היא לא אוכלת?</summary><div class="ans"><ul><li>עיכוב בהתרוקנות הקיבה הוא סיבוך שכיח אחרי וויפל (10–15%)</li><li>לפי כותבי הפרק, ברוב החולים עם עיכוב כזה יש מאחוריו דליפה מהלבלב. לכן קודם שוללים פיסטולה או מורסה ב-CT</li><li>הטיפול: זונדה ותרופות פרוקינטיות (אריתרומיצין, מטוקלופרמיד). לרוב זה חולף</li></ul></div></details><details class="cs"><summary><i>3</i>איך מטפלים בפיסטולה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>פיסטולה בדרגה B: ניקוז טוב (גם כדי שהנוזל לא יפרוץ דרך החתך), אנטיביוטיקה ואנלוגים של סומטוסטטין</li><li>ניתוח חוזר בגלל פיסטולה נדיר מאוד</li></ul><div class="nx">ביום ה-11, כשהיא כבר אוכלת מעט, יוצא מהנקז דם טרי בכמות קטנה. הדימום נעצר לבד</div></div></details><details class="cs"><summary><i>4</i>מה המשמעות של הדימום הקטן?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>דימום מאוחר אחרי כריתת לבלב (בדרך כלל ביום 7–14) נובע לרוב מ-<span class="nw"><bdi dir="ltr">pseudoaneurysm</bdi></span> על רקע פיסטולה, או מכיב בחיבור קיבה-מעי</li><li>דימום קטן שנעצר הוא לעיתים <b>דימום מבשר</b> לפני דימום מסיבי</li><li>זה הסיבוך המסוכן ביותר אחרי כריתת לבלב. מזעיקים את הרדיולוגיה הפולשנית: צנתור לתסחיף של המפרצת או סטנט בעורק</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 93 עמ׳ <bdi dir="ltr">1412–1413</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>22</b>מקרה מתגלגל</div>
+ <h2>התקפים בצום</h2>
+ <div class="cs-h"><span class="tag">אישה · 44</span><span class="tag b">מיון ואז מרפאה</span></div>
+ <div class="cs-p">אישה בת 44 מגיעה למיון אחרי שבעלה מצא אותה מבולבלת ומזיעה בבוקר, לפני ארוחת הבוקר. בחודשים האחרונים היו כמה אירועים דומים והיא שמה לב שאכילה עוזרת. היא עלתה במשקל. הסוכר בבדיקה 38 מ״ג/ד״ל</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה עולה בראש?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>תסמיני היפוגליקמיה בצום, סוכר נמוך והטבה כשנותנים סוכר: <b>שלישיית וויפל</b></li><li>החשד: <b>אינסולינומה</b>, הגידול הנוירואנדוקריני התפקודי השכיח ביותר</li></ul></div></details><details class="cs"><summary><i>2</i>איך מאשרים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>צום מבוקר של עד 72 שעות: היפוגליקמיה עם אינסולין או פרואינסולין גבוהים מדי</li><li><bdi dir="ltr">C-peptide</bdi> באותו זמן, כדי לשלול הזרקה של אינסולין</li><li>בדיקה לתרופות מסוג סולפונילאוריאה</li></ul><div class="nx">הצום מאשר את האבחנה</div></div></details><details class="cs"><summary><i>3</i>איפה הגידול?</summary><div class="ans"><ul><li>CT או MRI עם חומר ניגוד מוצאים את רוב האינסולינומות</li><li>גידולים נוירואנדוקריניים נצבעים חזק <b>בשלב העורקי</b> ולכן צריך CT בשני שלבים</li><li>ביותר מ-90%: גידול יחיד, מקומי, בדרגה נמוכה וקטן מ-2 ס״מ</li></ul><div class="nx">ב-CT יש גוש של 1.5 ס״מ שנצבע בשלב העורקי, בשולי גוף הלבלב, רחוק מ-<span class="nw"><bdi dir="ltr">main pancreatic duct</bdi></span></div></div></details><details class="cs"><summary><i>4</i>איזה ניתוח?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>גידול תפקודי מנתחים בכל גודל, בגלל התסמינים</li><li>גידול קטן ושפיר בשולי הבלוטה, לפחות 3 מ״מ מצינור הלבלב הראשי: <b>אנוקלאציה</b> (קילוף). שומרת על רקמת הלבלב, במחיר של יותר פיסטולות</li><li>אינסולינומה קטנה ומקומית נרפאת כמעט תמיד בכריתה</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 76 עמ׳ <bdi dir="ltr">1022–1024, 1027–1028</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
 <script>

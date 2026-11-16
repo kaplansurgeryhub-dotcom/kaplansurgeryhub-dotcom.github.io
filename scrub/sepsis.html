@@ -63,6 +63,28 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 @media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
 @media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+
+/* rolling cases (the last slides of the full deck): a case opens stage by stage, each answer opens on a tap */
+.cs-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}.cs-h .tag{font-size:12.5px}
+.cs-p{background:var(--soft);border-radius:14px;padding:12px 15px;font-size:16.5px;line-height:1.5;border-inline-start:4px solid var(--navy)}
+.cs-st{display:grid;gap:8px;margin-top:10px}
+details.cs{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+details.cs>summary{display:flex;gap:10px;align-items:center;padding:11px 14px;font-weight:800;font-size:16px;color:var(--navy)}
+details.cs>summary i{font-style:normal;flex:0 0 28px;height:28px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-size:14px}
+details.cs[open]>summary{background:#F2F8F5;border-bottom:1px solid var(--line)}
+details.cs .ans{padding:11px 15px 13px;font-size:15.5px;line-height:1.5}
+details.cs .ans p{margin:0 0 6px}details.cs .ans ul{margin:4px 0 0;padding-inline-start:18px}details.cs .ans li{margin:3px 0}
+details.cs .cs-pv{margin-inline-start:auto;font-size:12px;font-weight:800;color:var(--g3);background:#E3F4EC;border-radius:999px;padding:2px 9px}
+details.cs .nx{margin-top:8px;background:#FFF6EA;border-radius:10px;padding:8px 11px;font-weight:700;color:#7A4E10}
+.cs-div{text-align:center}.cs-div h2{font-size:clamp(30px,5vw,46px)}.cs-div .lead{max-width:640px;margin-inline:auto}
+.cs-div .num{max-width:720px;margin-inline:auto;grid-template-columns:repeat(3,1fr)}
+/* the prep deck */
+.pv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.pv div{background:var(--soft);border-radius:14px;padding:13px 14px}.pv b{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}.pv span{font-size:14.5px;line-height:1.45;color:var(--ink)}
+.rd{display:grid;gap:8px}.rd div{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 14px}
+.rd div>b{font-family:'Frank Ruhl Libre',serif;font-size:22px;color:var(--g3);min-width:46px;text-align:center}.rd div>span{font-size:15.5px;line-height:1.4}.rd div>em{font-style:normal;font-size:12.5px;font-weight:800;border-radius:999px;padding:3px 10px;background:#E3F4EC;color:var(--g3);white-space:nowrap}
+.rd div>em.o{background:#F1F3F2;color:var(--muted)}
+@media (max-width:760px){.pv,.cs-div .num{grid-template-columns:1fr}.rd div{grid-template-columns:auto 1fr}.rd div>em{grid-column:2}}
+
 /*BRAND*/
 .brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
 .brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
@@ -467,6 +489,41 @@ body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat
  <div class="src"><span>איורים: <bdi>Blausen.com staff (2014), WikiJournal of Medicine, CC BY 3.0</bdi> · <span class="nw"><bdi>CT</bdi>:</span> <bdi>Hellerhoff, CC BY-SA 4.0</bdi> · צילומים קליניים: <bdi>Smuszkiewicz P, Trojanowska I, Tomczak H, CC BY 2.0</bdi> <span class="nw">(<bdi>Wikimedia Commons</bdi>)</span> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
+
+<section class="s"><div class="card cs-div">
+ <div class="kick"><b>16</b>מקרים מתגלגלים</div>
+ <h2>מהמיון לחדר הניתוח</h2>
+ <p class="lead">3 מטופלים. כל מקרה נפתח שלב אחרי שלב: קודם חושבים יחד מה עושים, ורק אז פותחים את התשובה</p>
+ <div class="num"><div><b>1</b><span>חום ותת-לחץ דם ביום החמישי אחרי ניתוח</span></div><div><b>2</b><span>הלחץ לא עולה למרות נוראדרנלין</span></div><div><b>3</b><span>חום חדש אחרי שבוע בטיפול נמרץ</span></div></div>
+ <div class="src"><span>המקרים בדויים ונכתבו לפי <b>Sabiston 22</b>, בלי פרטי מטופלים</span><span>מקרים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>17</b>מקרה מתגלגל</div>
+ <h2>היום החמישי אחרי כריתת מעי</h2>
+ <div class="cs-h"><span class="tag">גבר · 67</span><span class="tag r">מחלקה</span></div>
+ <div class="cs-p">גבר בן 67, חמישה ימים אחרי כריתה של המעי הגס עם השקה. בלילה עלה החום ל-38.9. הוא מבולבל, נושם 26 לדקה, הלחץ 88/50 והדופק 122. הבטן רגישה יותר מאתמול</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>האם הוא ספטי?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>חשד לזיהום עם פגיעה באיברים (בלבול, נשימה מהירה, לחץ נמוך): <b>ספסיס</b></li><li>ההגדרה היום: עלייה של 2 נקודות ומעלה בציון <span class="nw"><bdi dir="ltr">SOFA</bdi></span>. ההגדרות הישנות שנשענו על <span class="nw"><bdi dir="ltr">SIRS</bdi></span> כבר לא בשימוש</li><li><span class="nw"><bdi dir="ltr">qSOFA</bdi></span> (נשימה, הכרה, לחץ) יכול לעזור ליד המיטה, אבל ההנחיות לא ממליצות להסתמך עליו לבד</li></ul><div class="nx">אחרי מנת נוזלים הלחץ עדיין 85/48. הלקטט 4.2</div></div></details><details class="cs"><summary><i>2</i>מה עושים בשעה הראשונה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>תרביות ומיד אנטיביוטיקה: בתוך שעה מהזיהוי</li><li>נוזלים: 30 מ״ל לק״ג קריסטלואיד מאוזן ב-3 השעות הראשונות, לפי מדדים דינמיים</li><li>יעד: לחץ עורקי ממוצע 65. הלקטט משמש מדד לזילוח ומדריך להחייאה</li><li>תת-לחץ דם שנמשך למרות נוזלים: <b>שוק ספטי</b>. מתחילים <b>נוראדרנלין</b> מוקדם</li></ul><div class="nx">ב-CT רואים נוזל ואוויר ליד ההשקה</div></div></details><details class="cs"><summary><i>3</i>והאנטיביוטיקה לא מספיקה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b>לא.</b> בלי שליטה במקור החולה לא יחלים. שליטה מוקדמת במקור קשורה לתוצאות טובות יותר</li><li>מנקזים את האוסף (בניקוז מלעורי או בניתוח) ומטפלים בהשקה הדולפת לפי הממצא</li><li>מצמצמים את האנטיביוטיקה לפי התרביות</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 46 עמ׳ <bdi dir="ltr">534, 548</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>18</b>מקרה מתגלגל</div>
+ <h2>השוק שלא מגיב</h2>
+ <div class="cs-h"><span class="tag">אישה · 72</span><span class="tag a">טיפול נמרץ</span></div>
+ <div class="cs-p">אישה בת 72 בטיפול נמרץ אחרי ניתוח בגלל ניקוב של המעי. היא מקבלת סטרואידים כבר שנים בגלל מחלה ראומטית. אחרי נוזלים ונוראדרנלין במינון עולה, הלחץ הממוצע עדיין 58</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>לתת עוד נוזל?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>לא באופן אוטומטי. לחץ ורידי מרכזי לא מנבא אם החולה יגיב לנוזלים</li><li>בודקים במדדים דינמיים: הרמת רגליים פסיבית, מנת נוזל קטנה, שינוי בלחץ הדופק בהנשמה</li><li>בשוק ספטי יש גם הרחבת כלים וגם דליפה מהנימים. ניסיון לתקן כל מדד בעזרת נוזל יכול להוביל להחייאה מוגזמת</li></ul></div></details><details class="cs"><summary><i>2</i>איזו תרופה מוסיפים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>כשהצורך בנוראדרנלין עולה: מוסיפים <b>וזופרסין</b> במינון נמוך וקבוע. וזופרסין במינון גבוה לא מומלץ</li><li>כשגם זה לא מספיק: אדרנלין. הוא יכול להעלות את הלקטט ולהקשות על המעקב</li><li>דובוטמין כשגם תפוקת הלב נמוכה</li><li>פנילפרין אינו בחירה ראשונה: הוא נקשר לתמותה גבוהה יותר בשוק ספטי</li></ul></div></details><details class="cs"><summary><i>3</i>מה עם הסטרואידים שלה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>בשוק ספטי שתלוי בתרופות מכווצות כלים: הידרוקורטיזון במינון נמוך וממושך, פחות מ-400 מ״ג ליום במשך 3 ימים לפחות</li><li>מי שמקבל סטרואידים באופן קבוע מקבל לפחות את המינון הביתי ולפי שיקול דעת מינון דחק. מי שהציר ההורמונלי שלו פגוע צריך מינון דחק</li><li>ההשפעה על התמותה לא ברורה, אבל ייתכן שהשוק חולף מהר יותר</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 46 עמ׳ <bdi dir="ltr">534, 547–548, 550</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>19</b>מקרה מתגלגל</div>
+ <h2>חום ביום השמיני</h2>
+ <div class="cs-h"><span class="tag">גבר · 55</span><span class="tag b">טיפול נמרץ</span></div>
+ <div class="cs-p">גבר בן 55, שמונה ימים בטיפול נמרץ אחרי חבלה קשה. הוא מונשם, עם צנתר מרכזי בווריד הפמורלי וקטטר בשלפוחית ומקבל אנטיביוטיקה מסוף השבוע. היום חום של 39 ולחץ דם יורד</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>איפה מחפשים?</summary><div class="ans"><ul><li>בחולה בטיפול נמרץ התמונה לא תמיד קלאסית: לא תמיד יש לויקוציטוזיס ויש סיבות אחרות לכשל נשימתי ולבלבול</li><li><b>ריאות:</b> דלקת ריאות בהנשמה, אחרי יותר מיומיים של הנשמה</li><li><b>הצנתר המרכזי:</b> זיהום דם מצנתר. המיקום הפמורלי הוא המסוכן ביותר מבחינת זיהום</li><li><b>השתן:</b> הזיהום הנרכש השכיח ביותר. הסיכון עולה עם משך הקטטר</li><li><b>המעי:</b> שלשול אחרי אנטיביוטיקה מעלה חשד ל-<span class="nw"><bdi dir="ltr">C. difficile</bdi></span></li></ul><div class="nx">בתרבית דם צומח חיידק עור ואין מקור אחר</div></div></details><details class="cs"><summary><i>2</i>מה עושים עם הצנתר?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>זיהום דם מצנתר מרכזי: אנטיביוטיקה ו<b>הוצאה מהירה של הצנתר</b></li><li>משאירים צנתר רק כשאין כמעט גישה אחרת או בצנתר לטווח ארוך</li><li>החלפה קבועה של צנתרים לא מורידה את הסיכון. מוציאים כשכבר לא צריך</li></ul><div class="nx">שבוע אחר כך: שלשול מימי, בטן נפוחה ולחץ הדם יורד שוב</div></div></details><details class="cs"><summary><i>3</i>ואם זה <span class="nw"><bdi dir="ltr">C. difficile</bdi></span> עם שוק?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>מחלה סוערת (פריטוניטיס, שוק שמחמיר, ניקוב או מגה-קולון) מחייבת ניתוח</li><li>הניתוח המקובל: כריתה תת-שלמה של המעי הגס</li><li>איחור בניתוח כשהחולה בשוק מעלה את התמותה</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 46 עמ׳ <bdi dir="ltr">548–549</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
 <script>

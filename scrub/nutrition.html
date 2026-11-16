@@ -63,6 +63,28 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 @media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
 @media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+
+/* rolling cases (the last slides of the full deck): a case opens stage by stage, each answer opens on a tap */
+.cs-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}.cs-h .tag{font-size:12.5px}
+.cs-p{background:var(--soft);border-radius:14px;padding:12px 15px;font-size:16.5px;line-height:1.5;border-inline-start:4px solid var(--navy)}
+.cs-st{display:grid;gap:8px;margin-top:10px}
+details.cs{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+details.cs>summary{display:flex;gap:10px;align-items:center;padding:11px 14px;font-weight:800;font-size:16px;color:var(--navy)}
+details.cs>summary i{font-style:normal;flex:0 0 28px;height:28px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-size:14px}
+details.cs[open]>summary{background:#F2F8F5;border-bottom:1px solid var(--line)}
+details.cs .ans{padding:11px 15px 13px;font-size:15.5px;line-height:1.5}
+details.cs .ans p{margin:0 0 6px}details.cs .ans ul{margin:4px 0 0;padding-inline-start:18px}details.cs .ans li{margin:3px 0}
+details.cs .cs-pv{margin-inline-start:auto;font-size:12px;font-weight:800;color:var(--g3);background:#E3F4EC;border-radius:999px;padding:2px 9px}
+details.cs .nx{margin-top:8px;background:#FFF6EA;border-radius:10px;padding:8px 11px;font-weight:700;color:#7A4E10}
+.cs-div{text-align:center}.cs-div h2{font-size:clamp(30px,5vw,46px)}.cs-div .lead{max-width:640px;margin-inline:auto}
+.cs-div .num{max-width:720px;margin-inline:auto;grid-template-columns:repeat(3,1fr)}
+/* the prep deck */
+.pv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.pv div{background:var(--soft);border-radius:14px;padding:13px 14px}.pv b{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}.pv span{font-size:14.5px;line-height:1.45;color:var(--ink)}
+.rd{display:grid;gap:8px}.rd div{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 14px}
+.rd div>b{font-family:'Frank Ruhl Libre',serif;font-size:22px;color:var(--g3);min-width:46px;text-align:center}.rd div>span{font-size:15.5px;line-height:1.4}.rd div>em{font-style:normal;font-size:12.5px;font-weight:800;border-radius:999px;padding:3px 10px;background:#E3F4EC;color:var(--g3);white-space:nowrap}
+.rd div>em.o{background:#F1F3F2;color:var(--muted)}
+@media (max-width:760px){.pv,.cs-div .num{grid-template-columns:1fr}.rd div{grid-template-columns:auto 1fr}.rd div>em{grid-column:2}}
+
 /*BRAND*/
 .brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
 .brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
@@ -468,6 +490,41 @@ body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat
  <div class="src"><span>איורים: <bdi>Blausen.com staff (2014), WikiJournal of Medicine, CC BY 3.0</bdi> · שיקוף: <bdi>Hellerhoff, CC BY-SA 4.0</bdi> · ציפורניים: <bdi>CHeitz, CC BY 2.0</bdi> <span class="nw">(<bdi>Wikimedia Commons</bdi>)</span> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
+
+<section class="s"><div class="card cs-div">
+ <div class="kick"><b>16</b>מקרים מתגלגלים</div>
+ <h2>מהמיון לחדר הניתוח</h2>
+ <p class="lead">3 מטופלים. כל מקרה נפתח שלב אחרי שלב: קודם חושבים יחד מה עושים, ורק אז פותחים את התשובה</p>
+ <div class="num"><div><b>1</b><span>ירידה במשקל לפני ניתוח מתוכנן</span></div><div><b>2</b><span>מונשם בטיפול נמרץ אחרי ניתוח</span></div><div><b>3</b><span>פיסטולה ושבועות בלי לאכול</span></div></div>
+ <div class="src"><span>המקרים בדויים ונכתבו לפי <b>Sabiston 22</b>, בלי פרטי מטופלים</span><span>מקרים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>17</b>מקרה מתגלגל</div>
+ <h2>ירידה במשקל לפני ניתוח</h2>
+ <div class="cs-h"><span class="tag">גבר · 64</span><span class="tag b">מרפאה</span></div>
+ <div class="cs-p">גבר בן 64 מגיע למרפאה לפני ניתוח מתוכנן לכריתת גידול בקיבה. בחצי השנה האחרונה ירד מ-75 ל-65 ק״ג. בשבוע האחרון אכל פחות מחצי ממה שהוא רגיל. האלבומין 2.9 גר׳/ד״ל</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>הוא בסיכון תזונתי?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>ירידה של 10 ק״ג מ-75 היא יותר מ-13% בחצי שנה. ירידה של יותר מ-10% בחצי שנה מסמנת סיכון</li><li>בכלי הסינון שלפני ניתוח מספיק סעיף אחד: <span class="nw"><bdi dir="ltr">BMI</bdi></span> נמוך, אכילה של פחות מחצי מהרגיל בשבוע האחרון, ירידה לא מתוכננת של יותר מ-10% בחצי שנה, או אלבומין מתחת ל-3.0. אצלו שלושה</li><li>מה עושים: ייעוץ תזונתי לפני הניתוח</li></ul></div></details><details class="cs"><summary><i>2</i>האלבומין נמוך. זה אומר שהוא בתת-תזונה?</summary><div class="ans"><ul><li>לא בהכרח. אלבומין יורד גם בדלקת, גם כשהמטופל מוזן</li><li>אבל הוא מנבא טוב של סיבוכים ותמותה אחרי ניתוח</li><li>אין סמן אחד: משלבים אנמנזה, בדיקה, משקל, כלי סינון ומעבדה</li></ul></div></details><details class="cs"><summary><i>3</i>מה מרוויחים מהכנה?</summary><div class="ans"><ul><li>מטופל בתת-תזונה: פי 3 סיבוכים ופי 5 תמותה</li><li>תוספי אנרגיה וחלבון לפני ניתוח הפחיתו סיבוכים בניתוחי מערכת העיכול</li><li>צום לפני הניתוח: מזון מוצק 6 עד 8 שעות, נוזלים צלולים שעתיים</li><li>העמסת פחמימות לפני הניתוח מפחיתה תנגודת לאינסולין ומקצרת אשפוז</li></ul><div class="nx">הוא נותח. בבוקר שאחרי הניתוח הוא ער ושואל מתי יוכל לאכול</div></div></details><details class="cs"><summary><i>4</i>ומתי הוא אוכל?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>אם אין התווית נגד (למשל מעי לא רציף), אפשר להתחיל הזנה דרך מערכת העיכול כבר ב-24 השעות הראשונות</li><li>אין צורך לחכות לסימני תפקוד מעי ואין צורך להתחיל בנוזלים צלולים</li><li>גם אחרי השקה במעי הזנה מוקדמת עוזרת להחלמה</li><li>ממשיכים בתמיכה גם אחרי השחרור: מטופל בתת-תזונה חוזר לאשפוז פי 2</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 34 עמ׳ <bdi dir="ltr">274–278, 280–281</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>18</b>מקרה מתגלגל</div>
+ <h2>מונשם בטיפול נמרץ</h2>
+ <div class="cs-h"><span class="tag">גבר · 58</span><span class="tag r">טיפול נמרץ</span></div>
+ <div class="cs-p">גבר בן 58, יום אחרי לפרוטומיה בגלל ניקוב במעי וספסיס. הוא מונשם ומקבל נוראדרנלין במינון שהולך ועולה. המעי בשלמותו, בלי כריתה. לפני האשפוז היה מוזן היטב</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מתחילים להאכיל עכשיו?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b>לא כרגע.</b> כשיש חוסר יציבות המודינמית או שמעלים תרופות מכווצות כלי דם, עוצרים זמנית את ההזנה האנטרלית: אספקת הדם למעי לא מספיקה ויש סיכון לאיסכמיה של המעי</li><li>מטופל שהיה מוזן היטב (ציון סיכון נמוך) יכול לעבור עד 7 ימים בלי הזנה בלי נזק משמעותי, אם צפוי שיפור</li></ul><div class="nx">ביום השלישי הוא יציב והנוראדרנלין יורד</div></div></details><details class="cs"><summary><i>2</i>איך מתחילים?</summary><div class="ans"><ul><li>אפשר לשקול הזנה אנטרלית כשהתמיכה בלחץ הדם יורדת, עם מעקב צמוד אחרי סימני איסכמיה</li><li>מאשרים את מיקום הצינור לפני שימוש</li><li>מתחילים לאט, 10 או 20 מ״ל לשעה ומעלים לפי הסבילות</li><li>ראש המיטה מוגבה 30 עד 45 מעלות</li></ul><div class="nx">האחות מודדת שארית של 200 מ״ל בקיבה ושואלת אם לעצור</div></div></details><details class="cs"><summary><i>3</i>לעצור בגלל השארית?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>שארית בקיבה מנבאת סיבוכים בצורה גרועה</li><li>העלאת הסף מ-50–150 ל-250–500 מ״ל לא הגדילה שאיפה במחקרים אקראיים</li><li>בודקים את הבטן: נפיחות וכאב</li></ul><div class="nx">שבוע אחר כך הוא עדיין לא מגיע ל-60% מהיעד דרך הצינור</div></div></details><details class="cs"><summary><i>4</i>ומה עכשיו?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>מי שלא מגיע ל-60% מהיעד בהזנה אנטרלית: שוקלים <span class="nw"><bdi dir="ltr">TPN</bdi></span></li><li>בספסיס: חלבון 1.2 עד 2.0 גרם לק״ג ביום וכ-20 קק״ל לק״ג ביום שאינן מחלבון. בשלב ההחלמה יותר מ-1.5 גרם חלבון</li><li>גם האכלת יתר מזיקה</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 34 עמ׳ <bdi dir="ltr">279–283</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>19</b>מקרה מתגלגל</div>
+ <h2>פיסטולה ושבועות בלי לאכול</h2>
+ <div class="cs-h"><span class="tag">אישה · 52</span><span class="tag a">מחלקה</span></div>
+ <div class="cs-p">אישה בת 52, שלושה שבועות אחרי ניתוח במעי, עם פיסטולה מהמעי הדק לעור שמפרישה כ-700 מ״ל ביממה. היא כמעט לא אכלה כל הזמן הזה ונראית כחושה</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>באיזו דרך מאכילים אותה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>פיסטולה עם תפוקה של 400 מ״ל ביממה ומעלה היא <b>פיסטולה עם תפוקה גבוהה</b></li><li>זו אחת ההתוויות ל-<span class="nw"><bdi dir="ltr">TPN</bdi></span> במקום הזנה אנטרלית</li><li>בפיסטולה מהמעי לעור <span class="nw"><bdi dir="ltr">TPN</bdi></span> קשורה ליותר סגירה עצמונית של הפיסטולה, בלי עלייה בתמותה</li></ul></div></details><details class="cs"><summary><i>2</i>על מה חושבים לפני שמתחילים?</summary><div class="ans"><ul><li>אחרי רעב ממושך היא בסיכון ל<b>תסמונת ההזנה מחדש</b></li><li>מזהים ומתקנים חסרים באלקטרוליטים לפני ההזנה</li><li>נותנים ויטמיני <bdi dir="ltr">B</bdi> במינון גבוה ותוסף ויטמינים יומי</li><li>מתחילים ב-10 קק״ל לק״ג ביום ומעלים בהדרגה במשך 4 עד 7 ימים</li></ul><div class="nx">ביום השלישי היא חלשה מאוד ומתנשמת. בבדיקות הדם זרחן נמוך מאוד וגם המגנזיום והאשלגן נמוכים</div></div></details><details class="cs"><summary><i>3</i>מה קרה ולמה זה מסוכן?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>כשמתחילים להאכיל, זרחן נכנס לתאים לייצור <span class="nw"><bdi dir="ltr">ATP</bdi></span> ורמתו בדם צונחת. זרחן נמוך הוא סימן ההיכר של התסמונת</li><li>הסכנה: הפרעות קצב, אוטם ודום לב וגם חולשת שרירים</li><li>מחליפים אשלגן, זרחן, סידן ומגנזיום ומנטרים עד שהמצב מתייצב</li></ul><div class="nx">היא מתאוששת וההזנה עולה בהדרגה</div></div></details><details class="cs"><summary><i>4</i>מה עוד צריך לזכור כשמטופלת מקבלת <span class="nw"><bdi dir="ltr">TPN</bdi></span>?</summary><div class="ans"><ul><li>הצנתר: זיהום דם וקריש. שמירה קפדנית על אספסיס</li><li>מטבולי: סוכר גבוה (מטפלים באינסולין) והפרעות אלקטרוליטים</li><li>בשימוש ארוך: מחלת כבד</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 34 עמ׳ <bdi dir="ltr">279–282, 287</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
 <script>

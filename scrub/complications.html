@@ -63,6 +63,28 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 @media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
 @media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+
+/* rolling cases (the last slides of the full deck): a case opens stage by stage, each answer opens on a tap */
+.cs-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}.cs-h .tag{font-size:12.5px}
+.cs-p{background:var(--soft);border-radius:14px;padding:12px 15px;font-size:16.5px;line-height:1.5;border-inline-start:4px solid var(--navy)}
+.cs-st{display:grid;gap:8px;margin-top:10px}
+details.cs{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+details.cs>summary{display:flex;gap:10px;align-items:center;padding:11px 14px;font-weight:800;font-size:16px;color:var(--navy)}
+details.cs>summary i{font-style:normal;flex:0 0 28px;height:28px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-size:14px}
+details.cs[open]>summary{background:#F2F8F5;border-bottom:1px solid var(--line)}
+details.cs .ans{padding:11px 15px 13px;font-size:15.5px;line-height:1.5}
+details.cs .ans p{margin:0 0 6px}details.cs .ans ul{margin:4px 0 0;padding-inline-start:18px}details.cs .ans li{margin:3px 0}
+details.cs .cs-pv{margin-inline-start:auto;font-size:12px;font-weight:800;color:var(--g3);background:#E3F4EC;border-radius:999px;padding:2px 9px}
+details.cs .nx{margin-top:8px;background:#FFF6EA;border-radius:10px;padding:8px 11px;font-weight:700;color:#7A4E10}
+.cs-div{text-align:center}.cs-div h2{font-size:clamp(30px,5vw,46px)}.cs-div .lead{max-width:640px;margin-inline:auto}
+.cs-div .num{max-width:720px;margin-inline:auto;grid-template-columns:repeat(3,1fr)}
+/* the prep deck */
+.pv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.pv div{background:var(--soft);border-radius:14px;padding:13px 14px}.pv b{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}.pv span{font-size:14.5px;line-height:1.45;color:var(--ink)}
+.rd{display:grid;gap:8px}.rd div{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 14px}
+.rd div>b{font-family:'Frank Ruhl Libre',serif;font-size:22px;color:var(--g3);min-width:46px;text-align:center}.rd div>span{font-size:15.5px;line-height:1.4}.rd div>em{font-style:normal;font-size:12.5px;font-weight:800;border-radius:999px;padding:3px 10px;background:#E3F4EC;color:var(--g3);white-space:nowrap}
+.rd div>em.o{background:#F1F3F2;color:var(--muted)}
+@media (max-width:760px){.pv,.cs-div .num{grid-template-columns:1fr}.rd div{grid-template-columns:auto 1fr}.rd div>em{grid-column:2}}
+
 /*BRAND*/
 .brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
 .brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
@@ -477,6 +499,41 @@ body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat
  <div class="src"><span>איורים: <bdi>Sobotta</bdi> 1906 (נחלת הכלל) · צילום חזה: <bdi>Hellerhoff</bdi> <span class="nw">(<bdi>CC BY-SA 3.0</bdi>)</span> · אנדוסקופיה: <bdi>Samir</bdi> <span class="nw">(<bdi>CC BY 3.0</bdi>)</span> · <bdi>Wikimedia Commons</bdi> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
+
+<section class="s"><div class="card cs-div">
+ <div class="kick"><b>17</b>מקרים מתגלגלים</div>
+ <h2>מהמיון לחדר הניתוח</h2>
+ <p class="lead">3 מטופלים. כל מקרה נפתח שלב אחרי שלב: קודם חושבים יחד מה עושים, ורק אז פותחים את התשובה</p>
+ <div class="num"><div><b>1</b><span>חום ביום הראשון וחום שוב ביום החמישי</span></div><div><b>2</b><span>קוצר נשימה פתאומי ביום השלישי</span></div><div><b>3</b><span>ישנוני ולא מגיב בלילה השני</span></div></div>
+ <div class="src"><span>המקרים בדויים ונכתבו לפי <b>Sabiston 22</b>, בלי פרטי מטופלים</span><span>מקרים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>18</b>מקרה מתגלגל</div>
+ <h2>שני סוגים של חום</h2>
+ <div class="cs-h"><span class="tag">גבר · 66</span><span class="tag a">מחלקה</span></div>
+ <div class="cs-p">גבר בן 66 עבר כריתה פתוחה של ה-sigmoid עם השקה, בגלל גידול. ביום הראשון אחרי הניתוח יש לו חום 38.1, הוא נושם מהר ומעט והרוויה 93%. בבסיסי הריאות הנשימה מוחלשת. הבטן כואבת סביב החתך, כצפוי</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה הסיבה הסבירה לחום עכשיו?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>חום ב-48 השעות הראשונות: בדרך כלל התגובה הדלקתית לניתוח עצמו</li><li>הסימנים בריאות: <b>תמט ריאה</b>, הסיבוך הנשימתי השכיח ביותר, בעיקר אחרי ניתוח בבטן העליונה ובחזה</li></ul></div></details><details class="cs"><summary><i>2</i>מה הטיפול?</summary><div class="ans"><ul><li>אפשר להפוך את התמט ב-24–48 השעות הראשונות: הליכה מוקדמת, נשימות עמוקות, ספירומטר, שיעול ופיזיותרפיה</li><li>שיכוך כאב טוב, כדי שיוכל לנשום ולהשתעל</li></ul><div class="nx">הוא משתפר. ביום החמישי החום חוזר ל-38.6, הדופק 118, הבטן כואבת יותר מאתמול והשתן ירד</div></div></details><details class="cs"><summary><i>3</i>ועכשיו?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>חום מ-72 שעות והלאה: יותר סביר זיהום</li><li>אחרי השקה, חום, דופק מהיר, כאב בטן שמחמיר ושתן מעט: <b>דליפה מההשקה</b> עד שיוכח אחרת</li><li>הסימנים לא ספציפיים ולכן חושדים מוקדם ובודקים: עיכוב באבחנה מחמיר את התוצאה</li><li>CT: נוזל ליד ההשקה (יותר מ-300 מ״ל), אוויר חופשי ועיבוי. חומר הניגוד לא תמיד נראה יוצא</li></ul><div class="nx">ב-CT יש אוויר ונוזל חופשי בכל הבטן. בבדיקה יש צפקת מפושטת</div></div></details><details class="cs"><summary><i>4</i>איך מטפלים ואיך מדרגים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>צפקת מפושטת עם אלח: ניתוח. לפי מה שמוצאים: תיקון וניקוז, כריתה, או פירוק ההשקה וסטומה</li><li>ניתוח בהרדמה כללית: <b>Clavien-Dindo IIIb</b>. אם יתפתח כשל של כמה איברים בטיפול נמרץ: IVb</li><li>ולשם השוואה: מורסה קטנה ומוגבלת בלי אלח, שנוקזה בהחדרה מלעורית בלי הרדמה כללית, היא IIIa</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 26 עמ׳ <bdi dir="ltr">127–130, 138–139</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>19</b>מקרה מתגלגל</div>
+ <h2>קוצר נשימה פתאומי</h2>
+ <div class="cs-h"><span class="tag">אישה · 71</span><span class="tag r">מחלקה</span></div>
+ <div class="cs-p">אישה בת 71 עם עודף משקל, ביום השלישי אחרי כריתה של המעי הגס בגלל גידול. היא כמעט לא יצאה מהמיטה. פתאום היא קוצרת נשימה, הרוויה ירדה ל-89% והדופק 112. לחץ הדם תקין. השוק השמאלית נפוחה</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה החשד?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b>תסחיף ריאתי</b>, כנראה מקריש בוורידי הרגל</li><li>יש לה הרבה גורמי סיכון: גיל, השמנה, סרטן, ניתוח וחוסר תנועה</li></ul></div></details><details class="cs"><summary><i>2</i>לשלוח D-dimer?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b>לא עוזר.</b> אחרי ניתוח או חבלה הוא מוגבר בכל מקרה</li><li>מאבחנים בהדמיה: CT אנגיוגרפיה של הריאות לתסחיף ודופלר של ורידי הרגל לפקקת</li></ul><div class="nx">ה-CT מראה תסחיף בעורקי הריאה. לחץ הדם יציב</div></div></details><details class="cs"><summary><i>3</i>מה הטיפול?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>תסחיף יציב: נוגדי קרישה ואחר כך טיפול ארוך, בדרך כלל 6 חודשים</li><li>ממסי קרישים רק במטופל לא יציב שמחמיר למרות נוגדי קרישה</li><li>מדרגים: נוגדי קרישה הם טיפול תרופתי, כלומר Clavien-Dindo II</li></ul></div></details><details class="cs"><summary><i>4</i>איך היו צריכים למנוע את זה?</summary><div class="ans"><ul><li>כל מטופל מקבל מניעה לפי הסיכון שלו: תרופתית (הפרין במשקל מולקולרי נמוך, הפרין רגיל או פונדפרינוקס) ו/או מכנית (מגפי לחץ)</li><li>שוקלים מול סיכון הדימום</li><li>ובנוסף: הליכה מוקדמת</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 26 עמ׳ <bdi dir="ltr">127, 131–132</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>20</b>מקרה מתגלגל</div>
+ <h2>"הוא לא עצמו"</h2>
+ <div class="cs-h"><span class="tag">גבר · 82</span><span class="tag b">מחלקה ואז בית</span></div>
+ <div class="cs-p">גבר בן 82 עצמאי, ביום השני אחרי תיקון בקע מפשעתי פתוח בהרדמה ספינלית. בערב הבת שלו אומרת שהוא "לא עצמו": ישנוני, אדיש, עונה לאט ולא יודע איפה הוא. בבוקר הוא היה בסדר. הוא קיבל מורפין בלילה ובערב גם כדור שינה</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה קורה כאן?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b>דליריום</b>: שינוי חד בהכרה ובקשב, שמשתנה במהלך היום. בדרך כלל בחמשת הימים הראשונים</li><li>הצורה השקטה (היפואקטיבית) שכיחה יותר ומתפספסת: ישנוני, אדיש, מגיב פחות</li></ul></div></details><details class="cs"><summary><i>2</i>מה מחפשים?</summary><div class="ans"><ul><li>גורמים שאפשר לתקן: כאב, זיהום, חוסר חמצן, התייבשות, אנמיה, שינה מופרעת ותרופות: בנזודיאזפינים ותרופות אנטיכולינרגיות</li><li>וגם: הוא גבר מבוגר, אחרי ניתוח בקע, הרדמה ספינלית ומורפין. כל אלה גורמי סיכון ל<b>אצירת שתן</b>. רוב המטופלים צריכים להטיל שתן תוך 6–8 שעות</li></ul><div class="nx">הוא לא הטיל שתן מאז הבוקר. באולטרסאונד יש 750 מ״ל בשלפוחית</div></div></details><details class="cs"><summary><i>3</i>מה עושים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>נפח של 500 מ״ל ומעלה: מרוקנים, לרוב בצנתור</li><li>מפסיקים את כדור השינה, נותנים שיכוך כאב טוב, מוציאים קטטרים וצינורות מוקדם, אור ביום ושינה בלילה, משקפיים ומכשיר שמיעה ומשפחה ליד המיטה</li></ul><div class="nx">הוא משתפר ומשתחרר. ביום העשירי הוא חוזר למרפאה: הצלקת אדומה, חמה ויוצאת ממנה מוגלה. אין חום והוא נראה טוב</div></div></details><details class="cs"><summary><i>4</i>מה זה ומה עושים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b>זיהום שטחי באתר הניתוח</b>. אחרי לפרוטומיה הוא מופיע בממוצע ביום ה-10 ורובם אחרי השחרור</li><li>מסירים את כל החבישה ובודקים. בזיהום שטחי פותחים את הפצע, מנקזים ושולחים תרבית</li><li>לא לשכוח: בדיקה מלאה של המקום שבו נותחו העומק והחלל ולא רק של העור</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 26 עמ׳ <bdi dir="ltr">135, 142</bdi> · פרק 25 עמ׳ <bdi dir="ltr">123–124</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
 <script>

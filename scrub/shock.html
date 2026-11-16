@@ -67,6 +67,28 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 .stype b{display:block;font-size:16px;color:var(--navy)}.stype i{display:block;font-style:normal;font-weight:900;font-size:15px;color:var(--c);letter-spacing:.01em}.stype small{display:block;font-size:12.5px;color:var(--muted);margin-top:2px;line-height:1.35}
 .stype small.sub{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}.stype small.sub span{background:#fff;border:1px solid color-mix(in srgb,var(--c) 45%,#fff);border-radius:999px;padding:1px 7px;font-weight:700;color:var(--g3)}
 @media (max-width:760px),(max-height:500px) and (max-width:1000px){.stype{grid-template-columns:1fr 1fr}}
+
+/* rolling cases (the last slides of the full deck): a case opens stage by stage, each answer opens on a tap */
+.cs-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}.cs-h .tag{font-size:12.5px}
+.cs-p{background:var(--soft);border-radius:14px;padding:12px 15px;font-size:16.5px;line-height:1.5;border-inline-start:4px solid var(--navy)}
+.cs-st{display:grid;gap:8px;margin-top:10px}
+details.cs{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+details.cs>summary{display:flex;gap:10px;align-items:center;padding:11px 14px;font-weight:800;font-size:16px;color:var(--navy)}
+details.cs>summary i{font-style:normal;flex:0 0 28px;height:28px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-size:14px}
+details.cs[open]>summary{background:#F2F8F5;border-bottom:1px solid var(--line)}
+details.cs .ans{padding:11px 15px 13px;font-size:15.5px;line-height:1.5}
+details.cs .ans p{margin:0 0 6px}details.cs .ans ul{margin:4px 0 0;padding-inline-start:18px}details.cs .ans li{margin:3px 0}
+details.cs .cs-pv{margin-inline-start:auto;font-size:12px;font-weight:800;color:var(--g3);background:#E3F4EC;border-radius:999px;padding:2px 9px}
+details.cs .nx{margin-top:8px;background:#FFF6EA;border-radius:10px;padding:8px 11px;font-weight:700;color:#7A4E10}
+.cs-div{text-align:center}.cs-div h2{font-size:clamp(30px,5vw,46px)}.cs-div .lead{max-width:640px;margin-inline:auto}
+.cs-div .num{max-width:720px;margin-inline:auto;grid-template-columns:repeat(3,1fr)}
+/* the prep deck */
+.pv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.pv div{background:var(--soft);border-radius:14px;padding:13px 14px}.pv b{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}.pv span{font-size:14.5px;line-height:1.45;color:var(--ink)}
+.rd{display:grid;gap:8px}.rd div{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 14px}
+.rd div>b{font-family:'Frank Ruhl Libre',serif;font-size:22px;color:var(--g3);min-width:46px;text-align:center}.rd div>span{font-size:15.5px;line-height:1.4}.rd div>em{font-style:normal;font-size:12.5px;font-weight:800;border-radius:999px;padding:3px 10px;background:#E3F4EC;color:var(--g3);white-space:nowrap}
+.rd div>em.o{background:#F1F3F2;color:var(--muted)}
+@media (max-width:760px){.pv,.cs-div .num{grid-template-columns:1fr}.rd div{grid-template-columns:auto 1fr}.rd div>em{grid-column:2}}
+
 /*BRAND*/
 .brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
 .brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
@@ -515,6 +537,41 @@ body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat
  <div class="src"><span>איורים: <bdi>Blausen.com staff (2014), WikiJournal of Medicine, CC BY 3.0</bdi> · צילום חזה: <bdi>Hellerhoff, CC BY-SA 4.0</bdi> · מילוי נימי: <bdi>Thailand2021, CC BY-SA 4.0</bdi> <span class="nw">(<bdi>Wikimedia Commons</bdi>)</span> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
+
+<section class="s"><div class="card cs-div">
+ <div class="kick"><b>17</b>מקרים מתגלגלים</div>
+ <h2>מהמיון לחדר הניתוח</h2>
+ <p class="lead">3 מטופלים. כל מקרה נפתח שלב אחרי שלב: קודם חושבים יחד מה עושים, ורק אז פותחים את התשובה</p>
+ <div class="num"><div><b>1</b><span>הקאה של דם אצל מבוגר עם יתר לחץ דם</span></div><div><b>2</b><span>לחץ דם נמוך ודופק איטי אחרי נפילה מגובה</span></div><div><b>3</b><span>קוצר נשימה פתאומי ביום השלישי אחרי ניתוח</span></div></div>
+ <div class="src"><span>המקרים בדויים ונכתבו לפי <b>Sabiston 22</b>, בלי פרטי מטופלים</span><span>מקרים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>18</b>מקרה מתגלגל</div>
+ <h2>לחץ דם "תקין" שמטעה</h2>
+ <div class="cs-h"><span class="tag">גבר · 74</span><span class="tag r">מיון</span></div>
+ <div class="cs-p">גבר בן 74 עם יתר לחץ דם מגיע למיון אחרי שתי הקאות של דם ויציאה שחורה. הוא חיוור, מזיע ומעט מבולבל. דופק 112, לחץ דם 108/70. ההמוגלובין במיון 12.5</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>הוא בשוק?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>כן. בלבול, עור חיוור ומזיע ודופק מהיר מראים תת-זילוח</li><li>לחץ סיסטולי מתחת ל-110 הוא נקודת מפנה בתמותה. אצל מי שרגיל ללחץ גבוה, ערך "תקין" יכול להסתיר שוק</li><li>המוגלובין תקין במיון לא שולל דימום משמעותי, לפני שקיבל נוזלים</li></ul></div></details><details class="cs"><summary><i>2</i>כמה דם הוא איבד ומה עוד בודקים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>לפי דרגות ATLS: דופק מעל 100, בלבול ולחץ דם שמתחיל לרדת: בערך דרגה 2 עד 3, כלומר 15–40% מנפח הדם. הדרגות שרירותיות ולא כל חולה מתאים להן</li><li>לקטט וחוסר בסיס: חוסר בסיס של 8 נקשר לתמותה של 25% בקבוצות מסוימות</li><li>קטטר ומדידת שתן כל שעה</li></ul><div class="nx">הלקטט 4.8 וחוסר הבסיס 7</div></div></details><details class="cs"><summary><i>3</i>מה נותנים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>עוצרים את מקור הדימום. ההחייאה רצה במקביל</li><li>מוצרי דם מוקדם. לא ליטרים של סליין: אחרי כמה שעות נשארים בכלי הדם רק 175–200 מ״ל מכל ליטר</li><li>נוזלים ודם מחוממים, שמיכות: לשבור את המשולש הקטלני</li><li>עוקבים: לקטט, חוסר בסיס, שתן והכרה</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 33 עמ׳ <bdi dir="ltr">224–232, 239–240</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>19</b>מקרה מתגלגל</div>
+ <h2>חם, איטי ולא מזיז את הרגליים</h2>
+ <div class="cs-h"><span class="tag">גבר · 31</span><span class="tag a">חדר טראומה</span></div>
+ <div class="cs-p">גבר בן 31 נפל מפיגום. הוא ער ומדבר, אבל לא מזיז ידיים ורגליים. לחץ דם 80/45, דופק 52. הגפיים חמות וורודות</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>איזה סוג שוק זה כנראה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>לחץ דם נמוך, דופק איטי, גפיים חמות ושיתוק: שוק נוירוגני, אובדן הטונוס הסימפתטי אחרי פגיעה בחוט השדרה</li><li>בפגיעה ב-C5 ומעלה הדופק לעיתים קרובות איטי. מתחת ל-C5 יש טכיקרדיה מפצה</li></ul></div></details><details class="cs"><summary><i>2</i>אז מתחילים מיד תרופות מכווצות כלים?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><p><b>קודם שוללים דימום.</b> בפצוע, דימום הוא הסיבה השכיחה וסוגי שוק יכולים להופיע יחד באותו חולה. צילום חזה, צילום אגן ו-FAST</p><div class="nx">ה-FAST ושני הצילומים תקינים. אין מקור דימום</div></div></details><details class="cs"><summary><i>3</i>ועכשיו?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>תרופות מכווצות כלים לשמירה על לחץ הדם. יותר ויותר משתמשים בנוראדרנלין, במיוחד כשהדופק איטי</li><li>לא לבלבל עם "שוק שדרתי": אובדן זמני של רפלקסים אחרי פגיעה בחוט השדרה, לא מצב המודינמי</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 46 עמ׳ <bdi dir="ltr">533–534</bdi> · פרק 33 עמ׳ <bdi dir="ltr">227</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>20</b>מקרה מתגלגל</div>
+ <h2>קריסה בבוקר הליכה ראשונה</h2>
+ <div class="cs-h"><span class="tag">אישה · 61</span><span class="tag b">מחלקה</span></div>
+ <div class="cs-p">אישה בת 61, שלושה ימים אחרי ניתוח פתוח בבטן. כשקמה ללכת בפעם הראשונה הרגישה קוצר נשימה פתאומי. רוויה 84%, דופק 130, לחץ דם 78/50 וורידי הצוואר גדושים. קולות הנשימה שווים בשני הצדדים</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>חם או קר? ואיזה סוג?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>ורידי צוואר גדושים עם לחץ נמוך: הלב לא מקבל או לא מוציא דם. לחשוב על שוק חסימתי</li><li>קולות נשימה שווים: פחות סביר חזה אוויר בלחץ</li><li>אחרי ניתוח, עם קוצר נשימה פתאומי וחוסר חמצן: תסחיף ריאתי מסיבי. ה-right ventricle לא עומד בעלייה חדה בתנגודת הריאתית</li></ul></div></details><details class="cs"><summary><i>2</i>מה מצילים עכשיו?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>בשוק חסימתי מסירים את הסיבה</li><li>בתסחיף ריאתי מסיבי: חמצן והפרין וממיסי קריש בווריד או בצנתר, עם או בלי הוצאת הקריש</li><li>במקרים קשים: הנשמה ולעיתים ECMO</li></ul></div></details><details class="cs"><summary><i>3</i>ואיך מונעים את הבא?</summary><div class="ans"><p>מניעה היא הנשק הטוב ביותר: הליכה מוקדמת, מכשירי לחץ לסירוגין ונוגד קרישה מונע במינון נמוך כמעט לכל מטופל כירורגי</p></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 46 עמ׳ <bdi dir="ltr">536, 539</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
 <script>

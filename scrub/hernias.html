@@ -63,6 +63,28 @@ figure.sm img{max-height:24vh}figure img.tall{max-height:40vh}.obj.sm li{font-si
 
 @media (max-width:760px){.grid,.grid.f,.grid.g3{grid-template-columns:1fr}.num{grid-template-columns:1fr 1fr}.card{padding:24px 18px 18px;border-radius:18px}.s{padding-top:12px}.flow div{grid-template-columns:1fr}figure img{max-height:34vh}}
 @media print{.nav{display:none}.deck{position:static;display:block;overflow:visible}.s{height:auto;page-break-after:always;padding:0;background:#fff}.s::after{display:none}.card{box-shadow:none}html,body{background:#fff}.cover{background:var(--navy)}}
+
+/* rolling cases (the last slides of the full deck): a case opens stage by stage, each answer opens on a tap */
+.cs-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}.cs-h .tag{font-size:12.5px}
+.cs-p{background:var(--soft);border-radius:14px;padding:12px 15px;font-size:16.5px;line-height:1.5;border-inline-start:4px solid var(--navy)}
+.cs-st{display:grid;gap:8px;margin-top:10px}
+details.cs{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+details.cs>summary{display:flex;gap:10px;align-items:center;padding:11px 14px;font-weight:800;font-size:16px;color:var(--navy)}
+details.cs>summary i{font-style:normal;flex:0 0 28px;height:28px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-size:14px}
+details.cs[open]>summary{background:#F2F8F5;border-bottom:1px solid var(--line)}
+details.cs .ans{padding:11px 15px 13px;font-size:15.5px;line-height:1.5}
+details.cs .ans p{margin:0 0 6px}details.cs .ans ul{margin:4px 0 0;padding-inline-start:18px}details.cs .ans li{margin:3px 0}
+details.cs .cs-pv{margin-inline-start:auto;font-size:12px;font-weight:800;color:var(--g3);background:#E3F4EC;border-radius:999px;padding:2px 9px}
+details.cs .nx{margin-top:8px;background:#FFF6EA;border-radius:10px;padding:8px 11px;font-weight:700;color:#7A4E10}
+.cs-div{text-align:center}.cs-div h2{font-size:clamp(30px,5vw,46px)}.cs-div .lead{max-width:640px;margin-inline:auto}
+.cs-div .num{max-width:720px;margin-inline:auto;grid-template-columns:repeat(3,1fr)}
+/* the prep deck */
+.pv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.pv div{background:var(--soft);border-radius:14px;padding:13px 14px}.pv b{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}.pv span{font-size:14.5px;line-height:1.45;color:var(--ink)}
+.rd{display:grid;gap:8px}.rd div{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 14px}
+.rd div>b{font-family:'Frank Ruhl Libre',serif;font-size:22px;color:var(--g3);min-width:46px;text-align:center}.rd div>span{font-size:15.5px;line-height:1.4}.rd div>em{font-style:normal;font-size:12.5px;font-weight:800;border-radius:999px;padding:3px 10px;background:#E3F4EC;color:var(--g3);white-space:nowrap}
+.rd div>em.o{background:#F1F3F2;color:var(--muted)}
+@media (max-width:760px){.pv,.cs-div .num{grid-template-columns:1fr}.rd div{grid-template-columns:auto 1fr}.rd div>em{grid-column:2}}
+
 /*BRAND*/
 .brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
 .brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
@@ -515,6 +537,41 @@ body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat
  </ol>
  <div class="box" style="margin-top:14px"><b class="t">לקריאה לפני המפגש הבא</b><span class="nw"><bdi>Sabiston Textbook of Surgery</bdi>,</span> מהדורה 22: פרק 82 <bdi>Inguinal Hernias</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1091–1106</bdi>)</span> · פרק 80 <bdi>Ventral Hernias</bdi> (עמ׳ <span class="nw"><bdi dir="ltr">1063–1067</bdi>)</span></div>
  <div class="src"><span>איורים: <bdi>Gray's Anatomy</bdi> (1918, נחלת הכלל, <span class="nw"><bdi>Wikimedia Commons</bdi>)</span> · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
+</div></section>
+
+<section class="s"><div class="card cs-div">
+ <div class="kick"><b>20</b>מקרים מתגלגלים</div>
+ <h2>מהמיון לחדר הניתוח</h2>
+ <p class="lead">3 מטופלים. כל מקרה נפתח שלב אחרי שלב: קודם חושבים יחד מה עושים, ורק אז פותחים את התשובה</p>
+ <div class="num"><div><b>1</b><span>בליטה במפשעה שכמעט לא מפריעה</span></div><div><b>2</b><span>הקאות ובליטה כואבת מתחת למפשעה</span></div><div><b>3</b><span>בליטה בצלקת של ניתוח ישן</span></div></div>
+ <div class="src"><span>המקרים בדויים ונכתבו לפי <b>Sabiston 22</b>, בלי פרטי מטופלים</span><span>מקרים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>21</b>מקרה מתגלגל</div>
+ <h2>בליטה שמופיעה בערב</h2>
+ <div class="cs-h"><span class="tag">גבר · 66</span><span class="tag b">מרפאה</span></div>
+ <div class="cs-p">גבר בן 66, בריא, הולך כל בוקר. שלושה חודשים שהוא מרגיש בליטה במפשעה הימנית בסוף היום. לא כואב, לפעמים "כבד". בבוקר היא נעלמת</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>איך בודקים אותו?</summary><div class="ans"><ul><li>בודקים בעמידה ובשכיבה. אם לא רואים בליטה: <span class="nw"><bdi dir="ltr">Valsalva</bdi></span> או שיעול</li><li>בבקע קטן ממששים את ה-<span class="nw"><bdi dir="ltr">external inguinal ring</bdi></span></li><li>בליטה מעל ל-<span class="nw"><bdi dir="ltr">inguinal ligament</bdi></span>: מפשעתי. מתחתיו: לחשוב על פמורלי</li></ul><div class="nx">בעמידה יש בליטה רכה מעל הרצועה מימין. בשכיבה היא חוזרת לבטן בלחיצה עדינה</div></div></details><details class="cs"><summary><i>2</i>צריך הדמיה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><p><b>לא.</b> כשהבקע ברור בבדיקה, הבדיקה הקלינית מספיקה לאבחנה. אולטרסאונד רק כשהנפיחות לא ברורה או כשיש חשד לבקע סמוי. CT או MRI דינמי כשהאולטרסאונד לא עונה, בבקע חוזר או בבקע ענק לשק האשכים</p></div></details><details class="cs"><summary><i>3</i>לנתח עכשיו או להמתין?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><p>גבר עם תסמינים מעטים יכול להמתין בבטחה. במחקר האקראי של <span class="nw"><bdi dir="ltr">Fitzgibbons</bdi></span> (מעל 700 גברים) הכליאה בקבוצת ההמתנה הייתה נדירה מאוד (0.3%)</p><ul><li>כרבע עברו לניתוח בגלל כאב שמפריע לפעילות. אחרי 10 שנים 68% וכמעט 80% מעל גיל 65</li><li>מי שנותח מאוחר יותר לא סבל מיותר זיהומים או חזרות</li><li>מסבירים לו על סימני האזהרה: כאב חזק, בליטה שלא חוזרת, הקאות</li></ul><div class="nx">הוא בוחר להמתין. כעבור שנה הבקע גדל ומפריע לו בהליכה והוא מבקש ניתוח</div></div></details><details class="cs"><summary><i>4</i>איזו גישה מציעים לו?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>רוב התיקונים הם תיקון ללא מתח, עם רשת</li><li>בבקע ראשוני חד-צדדי בגבר: גם תיקון פתוח וגם זעיר-פולשני מקובלים. יש העדפה גוברת לזעיר-פולשני (TEP או TAPP), שמאפשר פחות כאב וחזרה מהירה לפעילות</li><li>מה ישנה את ההחלטה: ניתוחים קודמים בבטן התחתונה, בקע דו-צדדי, בקע חוזר (מנתחים מהגישה השנייה)</li></ul></div></details><details class="cs"><summary><i>5</i>בערב אחרי הניתוח הוא לא מצליח להטיל שתן</summary><div class="ans"><p><b>אצירת שתן אחרי הניתוח</b> שכיחה יותר בגברים ובגיל מבוגר. גורמי סיכון: תרופות אנטיכולינרגיות, אצירה בעבר, עצירות, שלפוחית בתוך הבקע, צנתור במהלך הניתוח, ניתוח ארוך וגיל</p><p>הטיפול שמרני: לרוב קטטר לשלפוחית ולעיתים צנתור לסירוגין</p></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 82 עמ׳ <bdi dir="ltr">1097, 1102–1103</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>22</b>מקרה מתגלגל</div>
+ <h2>הקאות ובליטה כואבת</h2>
+ <div class="cs-h"><span class="tag">אישה · 79</span><span class="tag r">מיון</span></div>
+ <div class="cs-p">אישה בת 79 מגיעה למיון אחרי יום של כאבי בטן, הקאות ונפיחות. היא לא יצאה לשירותים מאתמול. בבדיקה יש גוש קטן, קשה ורגיש בירך הימנית, מתחת למפשעה</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה החשד ומה מחפשים בבדיקה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>גוש מתחת ל-<span class="nw"><bdi dir="ltr">inguinal ligament</bdi></span> באישה: <b>בקע פמורלי</b> עד שיוכח אחרת</li><li>בקע פמורלי שכיח פי 10 בנשים. ובכל זאת, גם בנשים הבקע השכיח ביותר הוא מפשעתי</li><li>ההקאות והבטן הנפוחה: חסימת מעי. בודקים את כל פתחי הבקע בכל מי שמגיע עם חסימה</li><li>מחפשים סימני חניקה: עור אדום או חם מעל הגוש, רגישות שלא חולפת, חום, דופק מהיר</li></ul></div></details><details class="cs"><summary><i>2</i>מה עושים עכשיו?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>נוזלים, צינור לקיבה, בדיקות דם</li><li>מודיעים לכירורג הבכיר ומזמינים חדר ניתוח</li><li>בבקע כואב שלא חוזר עם סימני חסימה או חניקה לא מחכים להדמיה כדי להחליט על ניתוח</li><li>בקע פמורלי צריך תיקון מהיר גם כשהוא לא כלוא, כי הסיכון לחניקה גבוה יותר משל בקע מפשעתי. להמתנה מושכלת אין כאן מקום</li></ul><div class="nx">בניתוח מוצאים לולאה של המעי הדק כלואה בתעלה הפמורלית. אחרי שחרור הכליאה היא כהה ולא מתאוששת</div></div></details><details class="cs"><summary><i>3</i>והתיקון?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>כורתים את המקטע שאינו חיוני</li><li>כשיש כריתת מעי או זיהום, רשת סינתטית אסורה. מתקנים ברקמה: McVay (תיקון ל-<span class="nw"><bdi dir="ltr">Cooper's ligament</bdi></span>) מתאים במיוחד לבקע פמורלי חנוק</li><li>בניתוח מתוכנן לבקע פמורלי או באישה עם בקע במפשעה, הגישה הזעיר-פולשנית מועדפת (רואים את כל הפתחים, כולל הפמורלי)</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 82 עמ׳ <bdi dir="ltr">1091, 1097–1099, 1102</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>23</b>מקרה מתגלגל</div>
+ <h2>בליטה בצלקת</h2>
+ <div class="cs-h"><span class="tag">גבר · 58</span><span class="tag a">מרפאה ואז מיון</span></div>
+ <div class="cs-p">גבר בן 58 עבר לפני שנתיים ניתוח פתוח בחתך באמצע הבטן. הוא מעשן, עם סוכרת לא מאוזנת ועודף משקל. מאז הניתוח הוא רואה בליטה שגדלה בצלקת</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>איך מתארים את הבקע?</summary><div class="ans"><ul><li>בקע בחתך (<span class="nw"><bdi dir="ltr">incisional hernia</bdi></span>), רוב הסיכון בחמש השנים הראשונות אחרי הניתוח</li><li>לפי <span class="nw"><bdi dir="ltr">European Hernia Society</bdi></span>: מיקום באמצע הבטן (M1 עד M5) או בצד (L1 עד L4) ורוחב הפגם</li><li>CT עוזר לתכנון: גודל הפגם, רשתות קודמות ותוכן השק</li></ul></div></details><details class="cs"><summary><i>2</i>לנתח מיד?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><p>זה ניתוח מתוכנן ולכן קודם מכינים את המטופל: גורמי הסיכון האלה מעלים סיבוכים בפצע וחזרה של הבקע</p><ul><li>הפסקת עישון</li><li>איזון הסוכרת לפני הניתוח</li><li>הורדה במשקל</li><li>פעילות גופנית לפני הניתוח</li></ul><p>החיסרון: הכנה ארוכה דוחה את הניתוח ובזמן הזה הבקע יכול להיכלא</p><div class="nx">שלושה חודשים אחר כך הוא מגיע למיון: כאב חזק בבליטה, היא קשה ולא חוזרת והוא מקיא</div></div></details><details class="cs"><summary><i>3</i>מה עכשיו?</summary><div class="ans"><ul><li>זה כבר לא ניתוח מתוכנן: בקע כלוא עם סימני חסימה הוא חירום</li><li>נוזלים, צינור לקיבה, ניתוח בהקדם</li><li>בודקים את חיוניות המעי. אם יש כריתה או זיהום, שוקלים מחדש אם ואיזו רשת לשים</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 79 עמ׳ <bdi dir="ltr">1053–1061</bdi> · פרק 80 עמ׳ <bdi dir="ltr">1063, 1066</bdi></span><span>מקרה לדיון · בדוי</span></div>
 </div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>

@@ -60,6 +60,28 @@ bdi{unicode-bidi:isolate}
 bdi[dir=ltr]{white-space:nowrap}
 details.rev{margin-top:12px;border:1px solid var(--line);border-radius:14px;background:#fff}details.rev summary{cursor:pointer;list-style:none;padding:10px 14px;font-weight:800;color:#fff;background:var(--g3);border-radius:13px}details.rev summary::-webkit-details-marker{display:none}details.rev[open] summary{border-radius:13px 13px 0 0}details.rev>div{padding:12px 14px}
 .case{background:#0C2A35;color:#fff;border-radius:16px;padding:14px 16px;font-size:16px;line-height:1.55}.case b{color:#B5D96B}
+
+/* rolling cases (the last slides of the full deck): a case opens stage by stage, each answer opens on a tap */
+.cs-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}.cs-h .tag{font-size:12.5px}
+.cs-p{background:var(--soft);border-radius:14px;padding:12px 15px;font-size:16.5px;line-height:1.5;border-inline-start:4px solid var(--navy)}
+.cs-st{display:grid;gap:8px;margin-top:10px}
+details.cs{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+details.cs>summary{display:flex;gap:10px;align-items:center;padding:11px 14px;font-weight:800;font-size:16px;color:var(--navy)}
+details.cs>summary i{font-style:normal;flex:0 0 28px;height:28px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-size:14px}
+details.cs[open]>summary{background:#F2F8F5;border-bottom:1px solid var(--line)}
+details.cs .ans{padding:11px 15px 13px;font-size:15.5px;line-height:1.5}
+details.cs .ans p{margin:0 0 6px}details.cs .ans ul{margin:4px 0 0;padding-inline-start:18px}details.cs .ans li{margin:3px 0}
+details.cs .cs-pv{margin-inline-start:auto;font-size:12px;font-weight:800;color:var(--g3);background:#E3F4EC;border-radius:999px;padding:2px 9px}
+details.cs .nx{margin-top:8px;background:#FFF6EA;border-radius:10px;padding:8px 11px;font-weight:700;color:#7A4E10}
+.cs-div{text-align:center}.cs-div h2{font-size:clamp(30px,5vw,46px)}.cs-div .lead{max-width:640px;margin-inline:auto}
+.cs-div .num{max-width:720px;margin-inline:auto;grid-template-columns:repeat(3,1fr)}
+/* the prep deck */
+.pv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.pv div{background:var(--soft);border-radius:14px;padding:13px 14px}.pv b{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}.pv span{font-size:14.5px;line-height:1.45;color:var(--ink)}
+.rd{display:grid;gap:8px}.rd div{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 14px}
+.rd div>b{font-family:'Frank Ruhl Libre',serif;font-size:22px;color:var(--g3);min-width:46px;text-align:center}.rd div>span{font-size:15.5px;line-height:1.4}.rd div>em{font-style:normal;font-size:12.5px;font-weight:800;border-radius:999px;padding:3px 10px;background:#E3F4EC;color:var(--g3);white-space:nowrap}
+.rd div>em.o{background:#F1F3F2;color:var(--muted)}
+@media (max-width:760px){.pv,.cs-div .num{grid-template-columns:1fr}.rd div{grid-template-columns:auto 1fr}.rd div>em{grid-column:2}}
+
 /*BRAND*/
 .brandbar{position:fixed;top:calc(10px + env(safe-area-inset-top));left:16px;z-index:6;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 6px;border-radius:999px;background:rgba(6,22,28,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
 .brandbar img{display:block;height:26px;width:auto}.brandbar img.em{width:28px;height:28px;border-radius:50%;background:#fff}.brandbar i{width:1px;height:20px;background:rgba(255,255,255,.25)}
@@ -498,6 +520,41 @@ body.bg-3 .s:not(.cover)::after{background:url(../ops/art/organs.webp) no-repeat
  <div class="src"><span>איורים: <bdi>Sobotta</bdi> (1906, נחלת הכלל) · תמונות והדמיה: <span class="nw"><bdi>Wikimedia Commons</bdi>,</span> הקרדיט בכל תמונה · ציור הרקע: לאונרדו דה וינצ׳י (נחלת הכלל)</span><span>Scrub In · קפלן</span></div>
 </div></section>
 
+
+<section class="s"><div class="card cs-div">
+ <div class="kick"><b>17</b>מקרים מתגלגלים</div>
+ <h2>מהמיון לחדר הניתוח</h2>
+ <p class="lead">3 מטופלים. כל מקרה נפתח שלב אחרי שלב: קודם חושבים יחד מה עושים, ורק אז פותחים את התשובה</p>
+ <div class="num"><div><b>1</b><span>צרבת שנים ונמאס לה מכדורים</span></div><div><b>2</b><span>שובע מוקדם ואנמיה</span></div><div><b>3</b><span>כאב פתאומי בחזה וניסיונות להקיא</span></div></div>
+ <div class="src"><span>המקרים בדויים ונכתבו לפי <b>Sabiston 22</b>, בלי פרטי מטופלים</span><span>מקרים</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>18</b>מקרה מתגלגל</div>
+ <h2>"יש לי רפלוקס"</h2>
+ <div class="cs-h"><span class="tag">אישה · 42</span><span class="tag b">מרפאה</span></div>
+ <div class="cs-p">אישה בת 42 עם צרבת ורגורגיטציה כבר שש שנים. PPI עוזר לצרבת אבל לא לגמרי לרגורגיטציה והיא לא רוצה לקחת תרופות כל החיים. BMI 27. אין לה קושי בבליעה</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה שואלים כדי להבין מה זה "רפלוקס"?</summary><div class="ans"><ul><li>אילו תסמינים בדיוק: צרבת, רגורגיטציה (מעידה על מחלה קשה יותר), ריור יתר, קושי בבליעה (הפרעת תנועה או חסימה), נפיחות (התרוקנות קיבה איטית)</li><li>תסמינים מחוץ לוושט: שיעול, קוצר נשימה, כחכוח</li><li>האם PPI עזר: הקלה עם PPI מנבאת תגובה טובה לניתוח. בלי תגובה בכלל: לחשוב על אבחנה אחרת</li><li>כאב בחזה עם גורמי סיכון לבביים: קודם שוללים סיבה לבבית</li></ul></div></details><details class="cs"><summary><i>2</i>מה הבירור לפני ניתוח?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b>גסטרוסקופיה</b>: חובה לפני ניתוח. מחפשת דלקת, היצרות, Barrett וגידול</li><li><b>ניטור pH</b>: תקן הזהב, בלי תרופות נגד חומצה. חשיפה לחומצה מעל 6% מהזמן או ציון DeMeester</li><li><b>מנומטריה</b>: שוללת אכלזיה. לא מאבחנת GERD</li><li><b>בליעת בריום</b>: אנטומיה של בקע והיצרויות</li></ul><div class="nx">בגסטרוסקופיה יש דלקת ושט LA C ובקע סרעפתי מחליק קטן. המנומטריה תקינה</div></div></details><details class="cs"><summary><i>3</i>האם היא מתאימה לניתוח ואיזה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>כן: היא לא רוצה טיפול לכל החיים, יש לה GERD מוכח והייתה לה תגובה ל-PPI</li><li>BMI מתחת ל-35: פונדופליקציה</li><li>ההנחיות הרב-חברתיות מ-2023 מעדיפות פונדופליקציה חלקית: פחות חזרת בקע, פחות קושי בבליעה ופחות חוסר יכולת לגהק. ההבדל בשליטה ברפלוקס צנוע</li></ul><div class="nx">היא עוברת פונדופליקציה חלקית לפרוסקופית. שבועיים אחרי הניתוח היא מתקשרת: האוכל המוצק "נתקע"</div></div></details><details class="cs"><summary><i>4</i>זה מדאיג?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>קושי בבליעה בחודשים הראשונים מופיע אצל עד מחצית המנותחים ובדרך כלל חולף כשהבצקת יורדת</li><li>לכן אחרי הניתוח: דיאטה נוזלית מלאה לפחות שבוע, אחר כך מחית ואז רכה</li><li>מי שלא מצליח לבלוע אפילו רוק: צריך תיקון ניתוחי מיד. קושי שנמשך מעבר ל-3 חודשים: בליעת בריום</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 83 עמ׳ <bdi dir="ltr">1113, 1121–1124</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>19</b>מקרה מתגלגל</div>
+ <h2>אנמיה שאין לה הסבר</h2>
+ <div class="cs-h"><span class="tag">אישה · 76</span><span class="tag a">מרפאה</span></div>
+ <div class="cs-p">אישה בת 76 מתלוננת על שובע מוקדם, לחץ בחזה אחרי ארוחות וקוצר נשימה במאמץ. ברקע אנמיה מחוסר ברזל, בלי סיבה ברורה. בצילום חזה רואים בועת אוויר מאחורי הלב</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה החשד?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b>בקע פרא-וושטי</b>: הקיבה עולה לבית החזה לצד הוושט. השכיח הוא סוג III, שבו גם ה-GEJ עולה</li><li>האנמיה: כיבי <span class="nw"><bdi dir="ltr">Cameron</bdi></span> מלחץ כרוני על הקיבה. מופיעה אצל 30–40% מהמטופלים וחולפת אחרי התיקון</li></ul></div></details><details class="cs"><summary><i>2</i>איך מבררים?</summary><div class="ans"><ul><li>CT או בליעת בריום לאנטומיה וגסטרוסקופיה לפני ניתוח</li><li>אם בבליעה רואים בקע פרא-וושטי עם תסמינים קלאסיים, לא תמיד צריך ניטור pH ומנומטריה לפני הניתוח</li></ul></div></details><details class="cs"><summary><i>3</i>לנתח או להמתין?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>הסיכון לוולוולוס חריף נמוך, כ-1% בשנה והתמותה בתיקון דחוף 5.4%</li><li>לכן מתקנים בקע פרא-וושטי רק כשיש תסמינים או סיבוכים. אצלה יש: שובע מוקדם, קוצר נשימה ואנמיה</li><li>הניתוח: החזרת הקיבה לבטן, כריתת השק, שחרור הוושט, סגירת ה-crura ופונדופליקציה חלקית</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 83 עמ׳ <bdi dir="ltr">1121, 1130–1133</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
+
+<section class="s"><div class="card">
+ <div class="kick"><b>20</b>מקרה מתגלגל</div>
+ <h2>מנסה להקיא ולא יוצא כלום</h2>
+ <div class="cs-h"><span class="tag">אישה · 81</span><span class="tag r">מיון</span></div>
+ <div class="cs-p">אישה בת 81 עם בקע פרא-וושטי גדול ידוע, שלא נותחה, מגיעה למיון עם כאב פתאומי חזק באפיגסטריום ובחזה. היא מנסה להקיא שוב ושוב ולא יוצא דבר. האחות לא מצליחה להעביר זונדה</div>
+ <div class="cs-st"><details class="cs"><summary><i>1</i>מה האבחנה?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>כאב פתאומי, הקאה "יבשה" ואי אפשר להעביר זונדה: <b>שלישיית <span class="nw"><bdi dir="ltr">Borchardt</bdi></span></b></li><li><b>וולוולוס חריף של הקיבה</b>. חירום כירורגי: יכול להתקדם לאיסכמיה ולניקוב</li><li>כמובן שוללים במקביל סיבה לבבית לכאב בחזה</li></ul></div></details><details class="cs"><summary><i>2</i>מה הצעד הראשון?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li><b>זונדה לפירוק הלחץ</b>. אם לא עוברת ליד המיטה: מנסים להכניס באנדוסקופיה</li><li>אם גם זה לא מצליח: לחדר הניתוח מיד</li></ul><div class="nx">באנדוסקופיה מצליחים להכניס זונדה. יוצא הרבה נוזל והכאב משתפר</div></div></details><details class="cs"><summary><i>3</i>ועכשיו לנתח מיד?<span class="cs-pv" title="אפשר לפתוח הצבעה חיה על השלב הזה מלשונית Scrub In של המרצה">🗳️ הצבעה</span></summary><div class="ans"><ul><li>אחרי פירוק לחץ מוצלח יש זמן: החייאה ותיקון אלקטרוליטים</li><li>הניתוח באותו אשפוז, תוך 24–48 שעות, על רקמה שאינה מתוחה</li><li>בניתוח עושים אותו דבר כמו בתיקון מתוכנן: מחזירים את הקיבה לבטן וסוגרים את הבקע</li></ul></div></details></div>
+ <div class="src"><span><b>Sabiston 22</b> · פרק 83 עמ׳ <bdi dir="ltr">1121, 1133</bdi></span><span>מקרה לדיון · בדוי</span></div>
+</div></section>
 </main>
 <div class="nav"><button id="next" aria-label="הבא">‹</button><span class="count" id="count"></span><div class="dots" id="dots"></div><button id="prev" aria-label="הקודם">›</button></div>
 <script>
