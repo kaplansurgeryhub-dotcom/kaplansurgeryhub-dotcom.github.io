@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="a9141ee3ce98"><script>(function () {
+<head><meta name="ksh-ver" content="d6287f0bfc89"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -3086,7 +3086,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = 'a9141ee3ce98'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = 'd6287f0bfc89'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -3582,6 +3582,11 @@ function topFit() { const tb = $('.topbar'), nav = $('.topbar .nav'); if (!tb ||
   if (over()) tb.classList.add('fit1'); if (over()) tb.classList.add('fit2');
   const vis = () => nvTabs().filter(b => !b.classList.contains('nvh') && !b.classList.contains('on'));
   let guard = 12; while (over() && guard-- > 0) { const L = vis(); if (L.length <= 3) break; const b = L[L.length - 1]; b.classList.add('nvh', 'nvfit'); if (mb) mb.classList.add('has'); }
+  // 17/11/2026 (Dr. Gozani: the bar was cut on the left again): the checks at 0, 0.9 and 2.5 seconds missed what grows later (the theme,
+  // the photo, the red count, "הכול שמור ✓"), so any change in the size of the bar's parts fits it again, only when it spills over
+  if (!topFit.ro && window.ResizeObserver) { topFit.ro = new ResizeObserver(() => { clearTimeout(topFit.rt); topFit.rt = setTimeout(() => { const t = $('.topbar'); if (!t || NV.edit || PHONE()) return;
+      if (t.scrollWidth > t.clientWidth + 2 || [...t.querySelectorAll('button,a,img')].some(x => { const r = x.getBoundingClientRect(); return r.width && (r.left < -1 || r.right > innerWidth + 1); })) topFit(); }, 250); }); }
+  if (topFit.ro && topFit.ro.tb !== tb) { topFit.ro.disconnect(); topFit.ro.tb = tb; [...tb.children].forEach(x => topFit.ro.observe(x)); }
   if (!topFit.rs) { topFit.rs = 1; addEventListener('resize', () => { clearTimeout(topFit.t); topFit.t = setTimeout(() => { if (!NV.edit) topFit(); }, 150); }); document.addEventListener('fullscreenchange', () => setTimeout(topFit, 200)); } }
 function nvSave() { const c = NV.cfg; try { localStorage.setItem(nvLs(), JSON.stringify(c)); } catch (e) {} clearTimeout(NV.t); NV.t = setTimeout(() => call('ops_myNav', S.code, c).then(r => { if (S.data) S.data.ui = r; }).catch(() => {}), 500); }
 function navMore() {
