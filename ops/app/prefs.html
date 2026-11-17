@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="d59301782381"><script>(function () {
+<head><meta name="ksh-ver" content="4ccf9739a5f4"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -1326,7 +1326,7 @@ function draw() {
   const [y, m] = ym.split('-').map(Number), first = new Date(y, m - 1, 1).getDay(), n = new Date(y, m, 0).getDate(), lock = !!(D.open && D.open.closed) || !!D.late, vac = RQT === 'vac';
   const role = (D.person || {}).role, BDS = (D.boards && D.boards.length ? D.boards : [{ k: role === 'senior' ? 'oncall' : role === 'pa' ? 'pa' : 'duty', to: D.to }]), bi = BRD === 'dt' && BDS[1] ? 1 : 0;
   const what = BRD_W[BDS[bi].k] || 'התורנויות', whatAll = BDS.map(b => BRD_W[b.k]).join(' ו'), MAXB = D.maxBlock || 0;
-  const lvOn = d => ((D.person || {}).leaves || []).some(l => d >= l.f && d <= (l.t || l.f)), lqOn = d => (D.lreq || []).some(q => q.st === 'wait' && d >= q.f && d <= q.t);
+  const lvOn = d => ((D.person || {}).leaves || []).some(l => d >= l.f && d <= (l.t || l.f)), lqOn = d => (D.lreq || []).some(q => (q.st === 'wait' || q.st === 'rev') && d >= q.f && d <= q.t);
   let cells = DS.map(d => `<div class="h">${d}</div>`).join('') + '<div></div>'.repeat(first);
   for (let i = 1; i <= n; i++) {
     const d = ym + '-' + pad(i), dow = new Date(y, m - 1, i).getDay(), b = block.indexOf(d) >= 0, w = want.indexOf(d) >= 0, fx = fixedDays.indexOf(dow) >= 0, fw = fixedWant.indexOf(dow) >= 0, lv = lvOn(d), lq = lqOn(d), vs = vac && VSEL.indexOf(d) >= 0, st = vac && VMODE === 'range' && LSTART === d;
@@ -1334,7 +1334,7 @@ function draw() {
     cells += `<button data-d="${d}" class="${dow >= 5 ? 'we' : ''} ${cls}${st ? ' sel' : ''}"${!vac && lock ? ' disabled' : ''}>${i}${tag ? `<small>${tag}</small>` : ''}</button>`;
   }
   const due = D.due || '', dueTx = due ? `${+due.slice(8)}/${+due.slice(5, 7)} · 23:59` : '';
-  const lreqs = (D.lreq || []).filter(q => q.st === 'wait' || q.t >= TODAY), to = BDS[bi].to || D.to || '';
+  const lreqs = (D.lreq || []).filter(q => q.st === 'wait' || q.st === 'rev' || q.t >= TODAY), to = BDS[bi].to || D.to || '';
   const sentAt = brdCur().at, sent = !!sentAt && !dirty;
   const dBtn = lock ? '' : sent ? `<button class="rqsend done" id="send" disabled>✓ נשלח · ${atTx(sentAt)}</button>` : `<button class="rqsend" id="send">${sentAt ? 'שליחת עדכון' : 'שליחה'}${to ? ' ל' + esc(to) : ' לבונה הלוח'}</button>`;
   const vBtn = VSEL.length ? `<button class="rqsend" id="vSend">שליחה למנהל המערך לאישור</button>` : VSENT ? `<button class="rqsend done" disabled>✓ נשלח · ${esc(VSENT)}</button>` : `<button class="rqsend" disabled>מסמנים ימים בלוח ושולחים</button>`;
@@ -1342,7 +1342,7 @@ function draw() {
     ? `<div class="card"><h2><i class="num">2</i>סיבה ופירוט</h2><div class="lvq">${['חופשה', 'יום החזר', 'מחלה', 'קורס או כנס'].map(w => `<button type="button" data-lvq="${w}">${w}</button>`).join('')}</div>
        <textarea id="vW" maxlength="200" placeholder="למשל: חופשה משפחתית · כנס בחו״ל">${esc(VWHY || '')}</textarea><div id="vRet"></div>
        ${vBtn}${(() => { const yr = TODAY.slice(0, 4), S0 = {}; ((D.person || {}).leaves || []).forEach(l => { for (let d = l.f; d && d <= (l.t || l.f); d = new Date(new Date(d + 'T12:00:00').getTime() + 864e5).toISOString().slice(0, 10)) if (d.slice(0, 4) === yr && new Date(d + 'T12:00:00').getDay() < 5) S0[d] = 1; }); const n = Object.keys(S0).length; return `<p class="rqyr">ימי חופש שאושרו לך ב-${yr}: <b>${n}</b> <small>(א׳–ה׳)</small></p>`; })()}<p class="rqto">הבקשה מגיעה למנהל המערך לאישור. הימים חסומים בתורנויות ובכוננויות כבר מעכשיו, עד ההחלטה.</p>
-       ${lreqs.length ? `<div class="lql">${lreqs.map(q => `<div class="${q.st}"><b>🏖 ${dmy(q.f)}${q.t !== q.f ? '–' + dmy(q.t) : ''}</b><span>${esc(q.w || 'חופשה')}</span><em>${q.st === 'wait' ? '⏳ ממתין לאישור' : q.st === 'ok' ? '✓ אושר' : '✕ לא אושר' + (q.note ? ' · ' + esc(q.note) : '')}</em>${q.st === 'wait' ? `<button data-lqx="${q.id}">ביטול</button>` : ''}</div>`).join('')}</div>` : ''}</div>`
+       ${lreqs.length ? `<div class="lql">${lreqs.map(q => `<div class="${q.st}"><b>🏖 ${dmy(q.f)}${q.t !== q.f ? '–' + dmy(q.t) : ''}</b><span>${esc(q.w || 'חופשה')}</span><em>${q.st === 'wait' ? '⏳ ממתין לאישור' : q.st === 'rev' ? '⏳ בבדיקה אצל מנהל המערך, ד״ר בר זכאי. כשתתקבל החלטה יגיע עדכון' : q.st === 'ok' ? '✓ אושר' : '✕ לא אושר' + (q.note ? ' · ' + esc(q.note) : '')}</em>${q.st === 'wait' || q.st === 'rev' ? `<button data-lqx="${q.id}">ביטול</button>` : ''}</div>`).join('')}</div>` : ''}</div>`
     : `<div class="card"><h2><i class="num">2</i>במילים שלך</h2><p class="cap">כל מה שחשוב שנדע ל${MONTHS[m - 1]}.${role === 'senior' ? ' ימים קבועים בכל שבוע מסמנים בפרופיל · <button class="lnk" data-gofix="1">למעבר לכרטיס ›</button>' : ''}</p>
        <textarea id="note" maxlength="600" placeholder="למשל: כנס מ-12 עד 14 · חתונה ב-20 · מעדיף/ה כוננות פסיבית"${lock ? ' readonly' : ''}>${esc(brdCur().note || '')}</textarea>
        ${dBtn}<p class="rqto">${lock ? '' : `הבקשות מגיעות ל${to ? esc(to) + ', ש' : 'מי ש'}בונה את לוח ${what}. אפשר לשנות ולשלוח עדכון עד ${dueTx}.`}</p></div>`;
