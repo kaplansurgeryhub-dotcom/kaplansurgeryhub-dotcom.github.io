@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="f2dd68e5150b"><script>(function () {
+<head><meta name="ksh-ver" content="367d0814f6b0"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -1214,7 +1214,7 @@ body.noscroll{overflow:hidden}
 .pfv-t b{font-size:30px;line-height:1;color:var(--navy);font-weight:800}.pfv-t span{font-weight:700;color:var(--ink2,#2A4550);font-size:14px}.pfv-t small{color:var(--muted);font-size:12px}
 .pfv-yr{display:flex;align-items:center;gap:6px;padding:14px 22px 0}.pfv-yr span{width:34px;height:26px;border-radius:8px;display:grid;place-items:center;font-weight:800;font-size:13px;background:#E3EAE7;color:#7A8E87}
 .pfv-yr span.done{background:#BFE6D4;color:#0A6B5A}.pfv-yr span.now{background:var(--green,#00967D);color:#fff;box-shadow:0 0 0 3px rgba(0,150,125,.2)}.pfv-yr em{font-style:normal;color:var(--muted);font-weight:700;margin-inline-start:6px}
-.pfv-g{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px;padding:16px 22px 24px}
+.pfv-g{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px;padding:16px 22px 24px}.pfv-g.st{grid-template-columns:minmax(0,1fr)}
 .pfv-m,.pfv-s{display:flex;flex-direction:column;gap:16px;min-width:0}
 .pfv-c{background:var(--surface);border:1px solid var(--rule);border-radius:18px;padding:16px 18px}
 .pfv-c h3{margin:0 0 12px;font-family:var(--serif);font-size:19px;color:var(--navy)}.pfv-c h3 small{font-family:inherit;font-size:12px;color:var(--muted);font-weight:600;margin-inline-start:6px}
@@ -3078,7 +3078,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = 'f2dd68e5150b'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = '367d0814f6b0'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -5634,7 +5634,11 @@ async function vTeam(m) {
     return `<button class="pf${big ? ' big' : ''}${p.active === false ? ' off' : ''}" data-tm="${p.id}" style="--rc:${ROLE_COL[p.role]}">
       <span class="pfph${u ? ' has' : ''}"${u ? ` style="background-image:url(${u})"` : ''}>${u ? '' : esc(p.name.charAt(0))}</span>
       <span class="pfb"><b>${esc(drName(p))}</b>${p.title ? `<em class="pft">${esc(p.title)}</em>` : (p.rot || {}).on ? `<em class="pfr">ברוטציה${p.rot.base ? ' · ' + esc(p.rot.base) : ''}</em>` : `<em class="pfr">${ROLE_NAME[p.role].replace(/ים$/, '').replace('רופאי בית', 'רופא/ת בית').replace('תורני חוץ', 'תורן/ית חוץ')}${p.year ? ' · ' + esc(p.year) : ''}</em>`}${p.spec ? `<small>${esc(p.spec)}</small>` : ''}
-      <span class="tmst"><em class="${x || f ? 'ok' : ''}">${x || f ? '✓ מילא/ה בקשות' : 'טרם מילא/ה'}</em>${nc.n + nc.c ? `<em>${[nc.n ? nc.n + ' תורנויות' : '', nc.c ? nc.c + ' כוננויות' : ''].filter(Boolean).join(' · ')}</em>` : ''}${a ? `<em class="acc">🔑 ${esc(ACC[a.role] || (S.data.roles || {})[a.role] || a.role)}</em>` : ''}${p.orOnly ? '<em>לשיבוץ בניתוחים בלבד</em>' : p.active === false ? '<em>לא פעיל/ה</em>' : ''}</span></span>${owner && p.token && p.role !== 'staff' ? invRow(p) : ''}</button>`; };
+      <span class="tmst">${p.role === 'staff' ? stStat(p) : `<em class="${x || f ? 'ok' : ''}">${x || f ? '✓ מילא/ה בקשות' : 'טרם מילא/ה'}</em>`}${p.role !== 'staff' && nc.n + nc.c ? `<em>${[nc.n ? nc.n + ' תורנויות' : '', nc.c ? nc.c + ' כוננויות' : ''].filter(Boolean).join(' · ')}</em>` : ''}${a ? `<em class="acc">🔑 ${esc(ACC[a.role] || (S.data.roles || {})[a.role] || a.role)}</em>` : ''}${p.orOnly ? '<em>לשיבוץ בניתוחים בלבד</em>' : p.active === false ? '<em>לא פעיל/ה</em>' : ''}</span></span>${owner && p.token && p.role !== 'staff' ? invRow(p) : ''}</button>`; };
+  // 17/11/2026 (Dr. Gozani): a secretary is not a doctor: her card says her wing and whether she came in, never duty requests or nights
+  const stUser = p => (S.data.users || []).find(u => u.pid === p.id);
+  const stStat = p => { const u = stUser(p), x = (S.data.seen || {})[p.id]; const w = u && u.role === 'secretary' ? (WINGN[u.wing] ? 'אגף ' + WINGN[u.wing] : 'בלי אגף') : '';
+    return `${w ? `<em>${w}</em>` : ''}<em class="${x || p.profAt ? 'ok' : ''}">${x ? '✓ נכנסה ' + esc(ago(x.at)) : p.profAt ? '✓ השלימה פרופיל' : u ? 'עוד לא נכנסה' : 'בלי גישה למערכת'}</em>`; };
   // the portal status of a doctor: active, registered, opened the link, invited, or not yet invited
   const invRow = p => { const v = sentOf(p.id, 'inv'), x = (S.data.seen || {})[p.id], ago = x ? Math.floor((Date.now() - new Date(x.at).getTime()) / 864e5) : 99;
     const agoTx = ago < 1 ? 'היום' : ago === 1 ? 'אתמול' : `לפני ${ago} ימים`;
@@ -5654,7 +5658,7 @@ async function vTeam(m) {
     secs.push(['ors', L.filter(p => isOrP(p) && match(p) && leads.indexOf(p) < 0)]);
     secs.splice(2, 0, ['rot', L.filter(p => isRot(p) && match(p) && leads.indexOf(p) < 0)]);
     const SEC = r => r === 'rot' ? 'מתמחים ברוטציה' : r === 'ors' ? 'חדר ניתוח' : ROLE_NAME[r];
-    m.innerHTML = `<div class="hero">${ECG}${anat('liver')}<div style="position:relative;z-index:1"><div class="kick">צוות המערך</div><h1>הצוות שלנו</h1><p>${act} רופאים · ${sub} כבר מילאו את הקישור האישי · ${(S.data.users || []).filter(u => u.pid).length} עם גישה למערכת</p></div><span class="spacer"></span><div class="acts">${BOSS() ? '<button class="btn" id="tBoard">🗂 לוח עבודה</button>' : ''}${edit ? '<button class="btn gold" id="tAdd">＋ רופא/ה</button>' : ''}</div></div>
+    m.innerHTML = `<div class="hero">${ECG}${anat('liver')}<div style="position:relative;z-index:1"><div class="kick">צוות המערך</div><h1>הצוות שלנו</h1><p>${act} רופאים · ${sub} כבר מילאו את הקישור האישי · ${(S.data.users || []).filter(u => u.pid).length} עם גישה למערכת</p></div><span class="spacer"></span><div class="acts">${BOSS() ? '<button class="btn" id="tBoard">🗂 לוח עבודה</button>' : ''}${T.role === 'staff' ? (owner ? '<button class="btn gold" id="tAddS">＋ מזכירה</button>' : '') : T.role === 'ors' ? (owner ? '<button class="btn gold" id="tAddO">＋ צוות חדר ניתוח</button>' : '') : edit ? '<button class="btn gold" id="tAdd">＋ רופא/ה</button>' : ''}</div></div>
     <div class="tmbar"><input class="in" id="tQ" placeholder="חיפוש שם, תפקיד או תחום…" value="${esc(T.q)}"></div>
     ${leads.length ? `<h3 class="pfsec"><span>הנהלת המערך</span></h3><div class="pfgrid lead">${leads.map(p => card(p, true)).join('')}</div>` : ''}
     ${(S.data.people || []).some(p => p.out) ? `<div class="tmout"><button class="btn sm ghost" id="tOut">${T.out ? 'הסתרת מי שהוצא/ה מהצוות' : 'הוצאו מהצוות (' + (S.data.people || []).filter(p => p.out).length + ')'}</button></div>` : ''}
@@ -5666,8 +5670,17 @@ async function vTeam(m) {
     if (T.open) { const q = P(T.open); T.open = ''; if (q && q.id) open(q); }
     if ($('#tBoard')) $('#tBoard').onclick = () => { S.team = Object.assign(S.team || {}, { mode: 'board' }); go('team'); };
     if ($('#tAdd')) $('#tAdd').onclick = () => open({ name: '', full: '', role: T.role === 'ors' ? 'staff' : T.role || 'resident', pos: [], active: true }, true);
+    // 17/11/2026 (Dr. Gozani): on the secretaries' tab the button adds a secretary (name, wing or a title, phone; a user with a code and the invitation), not a doctor's profile
+    if ($('#tAddS')) $('#tAddS').onclick = () => secNew(() => { if (document.body.contains(m)) draw(); });
+    if ($('#tAddO')) $('#tAddO').onclick = () => secNew(() => { if (document.body.contains(m)) draw(); }, 'orteam');
     loadPhotos(L, () => { if (S.view === 'team' && !document.querySelector('.tmd')) draw(); });
   };
+  // the access part of a secretary's profile: her wing, whether she came in, and the invitation (owner)
+  const stAccess = p => { const u = stUser(p), x = (S.data.seen || {})[p.id];
+    if (!u) return `<section><h4>גישה למערכת</h4><p class="cap">אין לה עדיין משתמש. יוצרים מזכירה בכפתור "＋ מזכירה" בלשונית המזכירות</p></section>`;
+    return `<section><h4>גישה למערכת</h4><div class="tmm"><b>${esc((S.data.roles || {})[u.role] || 'מזכירות')}</b><span>${u.role === 'secretary' ? (WINGN[u.wing] ? 'אגף ' + WINGN[u.wing] : 'בלי אגף · לא באישור התוכנית השבועית') : ''}</span></div>
+      <p class="cap">${x ? '✓ נכנסה למערכת ' + esc(ago(x.at)) : p.profAt ? '✓ השלימה פרופיל' : '⏳ עוד לא נכנסה. בכניסה הראשונה היא ממלאת את הפרופיל'}</p>
+      <p class="cap">רואה: בית, OR, צוות ותוכנית שבועית</p>${ownerNow() && u.code ? '<button class="btn sm wa" id="tmSecInv">📨 הזמנה בוואטסאפ</button>' : ''}</section>`; };
   const open = (p0, isNew) => {
     const p = JSON.parse(JSON.stringify(p0)); let delArm = false; edit = canPerson(p);
     const bg = document.createElement('div'); bg.className = 'mbg tmbg'; document.body.appendChild(bg);
@@ -5684,13 +5697,13 @@ async function vTeam(m) {
          <label>שם מלא<input class="in" data-f="full" value="${esc(p.full || '')}" placeholder="ד״ר …" ${ro}></label>
          <label>תפקיד<select class="in" data-f="role" ${ro}>${Object.keys(ROLE_NAME).map(r => `<option value="${r}" ${p.role === r ? 'selected' : ''}>${ROLE_NAME[r]}</option>`).join('')}</select></label>
          <label>תפקיד במערך<input class="in" data-f="title" value="${esc(p.title || '')}" list="tmTitles" placeholder="למשל: סגן מנהל המערך" ${ro}></label>
-         <label>תחום<input class="in" data-f="spec" value="${esc(p.spec || '')}" placeholder="למשל: כירורגיה בריאטרית" ${ro}></label>
+         ${p.role === 'staff' ? '' : `<label>תחום<input class="in" data-f="spec" value="${esc(p.spec || '')}" placeholder="למשל: כירורגיה בריאטרית" ${ro}></label>`}
          ${p.role === 'resident' ? `<label>שנת התמחות<input class="in" data-f="year" value="${esc(p.year || '')}" placeholder="למשל: שנה ג׳" ${ro}></label>` : ''}
          <label>טלפון<input class="in" data-f="phone" value="${esc(p.phone || '')}" inputmode="tel" dir="ltr" ${ro}></label>
          <label>מייל<input class="in" data-f="email" value="${esc(p.email || '')}" inputmode="email" dir="ltr" ${ro}></label>
          ${p.role === 'senior' ? `<label>יחידות (מופרדות בפסיק)<input class="in" data-f="units" value="${esc(p.units || '')}" placeholder="למשל: HPB, בריאטריה" ${ro}></label><label>מרפאות קבועות<input class="in" data-f="clinics" value="${esc(p.clinics || '')}" placeholder="למשל: מרפאת שד · יום ב׳" ${ro}></label>` : ''}
         </div><datalist id="tmTitles">${['מנהל המערך', 'סגן מנהל המערך', 'מנהל הפרויקט', 'צ׳יף המתמחים', 'אחראי סטודנטים', 'אחראי/ת אגף צפון', 'אחראי/ת אגף דרום', 'אחראי/ת מרפאות', 'אחראי/ת סטאז׳רים', 'אחראי/ת הוראה'].map(t => `<option value="${t}">`).join('')}</datalist>
-        <label class="tmsw"><input type="checkbox" data-f="active" ${p.active !== false ? 'checked' : ''} ${ro}${!isNew && !ownerNow() ? ' disabled title="רק לבעלים"' : ''}> פעיל/ה במערך (מופיע/ה בלוחות ובבחירה)</label></section>
+        <label class="tmsw"><input type="checkbox" data-f="active" ${p.active !== false ? 'checked' : ''} ${ro}${!isNew && !ownerNow() ? ' disabled title="רק לבעלים"' : ''}> ${p.role === 'staff' ? 'פעילה במערך' : 'פעיל/ה במערך (מופיע/ה בלוחות ובבחירה)'}</label></section>
         ${p.role === 'resident' ? `<section class="tmrot"><h4>מתמחה ברוטציה</h4><label class="tmsw"><input type="checkbox" data-r="on" ${(p.rot || {}).on ? 'checked' : ''} ${ro}> מתמחה ממחלקה אחרת, אצלנו ברוטציה</label>
          ${(p.rot || {}).on ? `<div class="tmf"><label>התמחות הבסיס<input class="in" data-r="base" value="${esc((p.rot || {}).base || '')}" placeholder="למשל: כירורגיית כלי דם" ${ro}></label>
          <label>מחלקת האם / בית החולים<input class="in" data-r="home" value="${esc((p.rot || {}).home || '')}" placeholder="למשל: כלי דם · קפלן" ${ro}></label>
@@ -5698,14 +5711,14 @@ async function vTeam(m) {
          <label>מנחה במערך<input class="in" data-r="mentor" value="${esc((p.rot || {}).mentor || '')}" placeholder="שם הבכיר/ה" ${ro}></label></div>
          <label class="f">דרישות הרוטציה (שורה לכל דרישה)<textarea class="in" data-r="reqs" style="min-height:70px" ${ro}>${esc((p.rot || {}).reqs || '')}</textarea></label>
          <label class="f">מיומנויות וניתוחים לרכוש (שורה לכל אחד)<textarea class="in" data-r="skills" style="min-height:70px" ${ro}>${esc((p.rot || {}).skills || '')}</textarea></label>` : ''}</section>` : ''}
-        <section><h4>עמדות</h4><p class="cap">קובע מי מופיע בבחירה בכל משבצת ובבנייה האוטומטית</p><div class="tmpk">${Object.keys(POS).map(k => `<button data-pos="${k}" class="${(p.pos || []).indexOf(k) >= 0 ? 'on' : ''}" ${ro}>${POS[k]}</button>`).join('')}</div></section>
-        ${isNew ? '' : `<section><h4>מה הוא/היא מילא/ה בקישור</h4>
+        ${p.role === 'staff' ? stAccess(p) : `<section><h4>עמדות</h4><p class="cap">קובע מי מופיע בבחירה בכל משבצת ובבנייה האוטומטית</p><div class="tmpk">${Object.keys(POS).map(k => `<button data-pos="${k}" class="${(p.pos || []).indexOf(k) >= 0 ? 'on' : ''}" ${ro}>${POS[k]}</button>`).join('')}</div></section>`}
+        ${isNew || p.role === 'staff' ? '' : `<section><h4>מה הוא/היא מילא/ה בקישור</h4>
          ${isMgr(p) || tokOk(p) ? `<div class="tmlink">${isMgr(p) ? '<b class="cap">קישור למערכת הניהול</b>' : ''}${isMgr(p) || (ownerNow() && p.token) ? `<code dir="ltr">${esc(isMgr(p) ? WRAP_URL : base + '?p=' + p.token + '&k=d')}</code><button class="btn sm" id="tmCp">${ICON.copy}העתקה</button>` : '<span class="cap">🔒 הקישור האישי נשלח רק בכפתור ההזמנה · רק לבעלים: צפייה והעתקה</span>'}${edit ? `<button class="btn sm wa" id="tmWa" title="${p.phone ? 'נפתח בוואטסאפ שלך עם ההודעה מוכנה' : 'אין טלפון בפרופיל: ההודעה תועתק'}">💬 הזמנה בוואטסאפ</button>${p.email ? '<button class="btn sm" id="tmMl">✉️ הזמנה במייל</button>' : ''}` : ''}${isMgr(p) || (ownerNow() && p.token) ? `<a class="btn sm" href="${esc(isMgr(p) ? WRAP_URL : base + '?p=' + p.token + '&k=d')}" target="_blank" rel="noopener">פתיחה</a>` : ''}${edit && ownerNow() ? '<button class="btn sm ghost" id="tmNew" title="הקישור הישן יפסיק לעבוד">קישור חדש</button>' : ''}</div>` : ''}
          <p class="cap" style="margin:4px 0 0">${p.profAt ? `✓ השלים/ה הרשמה ב-${new Date(p.profAt).toLocaleDateString('he-IL')}` : '⏳ עוד לא השלים/ה הרשמה. הקישור פותח את הפרופיל להשלמת פרטים.'}</p>
          <div class="tmm"><b>קבוע</b>${f ? `<div class="ds">${(f.days || []).map(n => `<span class="b">לא ב${DS[n]}</span>`).join('')}${(f.want || []).map(n => `<span class="w">מעדיף/ה ${DS[n]}</span>`).join('')}</div>${f.note ? `<div class="tmq">“${esc(f.note)}”</div>` : ''}` : '<span class="cap">עוד לא מילא/ה</span>'}</div>
          ${monthBox(x, S.month)}${monthBox(xn, next)}
          <div class="tmm"><b>${monthName(S.month)} בלוחות</b><span>${nc.n} תורנויות · ${nc.c} כוננויות</span></div></section>`}
-        ${owner && !isNew ? `<section><h4>גישה למערכת</h4><p class="cap">מי שיש לו גישה נכנס עם קוד משלו ורואה רק את מה שמותר לתפקיד שלו</p>
+        ${owner && !isNew && p.role !== 'staff' ? `<section><h4>גישה למערכת</h4><p class="cap">מי שיש לו גישה נכנס עם קוד משלו ורואה רק את מה שמותר לתפקיד שלו</p>
          ${a && a.role === 'owner' ? '<div class="cap"><b>בעלים</b> · משנים בהגדרות</div>' : `<div class="tmf"><label>הרשאה<select class="in" id="tmAr"><option value="">בלי גישה</option>${Object.keys(ACC).filter(r => r !== 'owner').map(r => `<option value="${r}" ${a && accRole(a) === r ? 'selected' : ''}>${ACC[r]}</option>`).join('')}</select></label>
          <label>${a ? 'קוד חדש (ריק = בלי שינוי)' : 'קוד כניסה'}<input class="in" id="tmAc" type="password" autocomplete="new-password" placeholder="4 תווים לפחות"></label></div>
          <div style="display:flex;gap:8px;align-items:center;margin-top:8px"><button class="btn" id="tmAs">שמירת הגישה</button>${a ? '<span class="cap">✓ יש קוד כניסה</span>' : ''}</div>
@@ -5716,6 +5729,7 @@ async function vTeam(m) {
        ${edit ? `<div class="tmfoot"><span class="cap" id="tmSt">${isNew ? '' : 'כל שינוי נשמר מיד'}</span><span class="spacer"></span>${isNew ? '<button class="btn primary" id="tmAdd">הוספה לצוות</button>' : (ownerNow() ? (p.out ? `<span class="cap">הוצא/ה מהצוות ב-${dm(p.out)}</span><button class="btn" id="tmBack">↩ החזרה לצוות</button><button class="btn ghost danger" id="tmDel">מחיקה לצמיתות</button>` : `<button class="btn ghost danger" id="tmOutB" title="יורד/ת מהצוות, מהלוחות ומהבחירה. בלוחות שכבר נבנו השם נשאר">הוצאה מהצוות</button>`) : '<span class="cap">🔒 מחיקה והשבתה: רק לבעלים</span>')}</div>` : ''}
       </div>`;
       $('#tmX', bg).onclick = close; bg.onclick = e => { if (e.target === bg) close(); };
+      if ($('#tmSecInv', bg)) $('#tmSecInv', bg).onclick = () => secInvite(stUser(p));
       if (!edit) return;
       bg.querySelectorAll('[data-f]').forEach(inp => inp.onchange = () => { p[inp.dataset.f] = inp.type === 'checkbox' ? inp.checked : inp.value.trim(); if (!isNew) put(); else if (inp.dataset.f === 'role') paint(); });
       bg.querySelectorAll('[data-r]').forEach(inp => inp.onchange = () => { p.rot = p.rot || {}; p.rot[inp.dataset.r] = inp.type === 'checkbox' ? inp.checked : inp.value.trim(); if (!isNew) put(); if (inp.dataset.r === 'on') paint(); });
@@ -6115,6 +6129,12 @@ async function profileOpen(p, t, onEdit) {
      <div class="pfv-2">${lines(R.reqs).length ? `<div><h4>דרישות</h4><ul>${lines(R.reqs).map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}${lines(R.skills).length ? `<div><h4>מיומנויות וניתוחים</h4><ul>${lines(R.skills).map(x => { const n = Object.keys(t.procs || {}).filter(k => k.indexOf(x) >= 0 || x.indexOf(k) >= 0).reduce((a, k) => a + t.procs[k], 0); return `<li>${esc(x)}${n ? ` <b class="pfv-n">${n}</b>` : ''}</li>`; }).join('')}</ul></div>` : ''}</div>
      ${!lines(R.reqs).length && !lines(R.skills).length ? '<p class="cap">עוד לא נרשמו דרישות ומיומנויות. ✎ עריכה וגישה ← מתמחה ברוטציה</p>' : ''}</section>`; };
   const tile = (v, l, sub) => `<div class="pfv-t"><b>${v}</b><span>${l}</span>${sub ? `<small>${sub}</small>` : ''}</div>`;
+  // 17/11/2026 (Dr. Gozani): a secretary's profile is a secretary's: her wing, her access and whether she came in. No duties, on-calls, OR days or duty requests
+  const ST = p.role === 'staff', stU = ST ? (S.data.users || []).find(y => y.pid === p.id) : null, stSeen = (S.data.seen || {})[p.id];
+  const stWing = stU && stU.role === 'secretary' ? (WINGN[stU.wing] ? 'אגף ' + WINGN[stU.wing] : 'בלי אגף') : '—';
+  const stSees = stU ? (stU.role === 'secretary' ? 'בית · OR · צוות · תוכנית שבועית' : (S.data.roles || {})[stU.role] || '') : 'אין משתמש';
+  const stBox = () => `<section class="pfv-c"><h3>במערכת</h3><div class="pfv-rk"><span><small>אגף</small><b>${esc(stWing)}</b></span><span><small>רואה</small><b>${esc(stSees)}</b></span><span><small>כניסה</small><b>${stSeen ? '✓ ' + esc(ago(stSeen.at)) : p.profAt ? '✓ השלימה פרופיל' : 'עוד לא נכנסה'}</b></span></div>
+    ${stU && stU.role === 'secretary' && !WINGN[stU.wing] ? '<p class="cap">בלי אגף: לא משתתפת באישור התוכנית השבועית של האגפים</p>' : ''}${ownerNow() && stU && stU.code ? '<button class="btn sm wa" id="pfSecInv" style="margin-top:8px">📨 הזמנה בוואטסאפ</button>' : ''}</section>`;
   bg.innerHTML = `<div class="pfv-in">
    <header class="pfv-h" style="--rc:${ROLE_COL[p.role] || '#00967D'}">${anat(isSen ? 'organs' : p.role === 'resident' ? 'liver' : 'vessels')}<div class="pfv-hx">
     <label class="pfv-ph${u ? ' has' : ''}${canPh ? ' edit' : ''}${isMgmt(p) ? ' mg' : ''}"${u ? ` style="background-image:url(${u})"` : ''}>${u ? '' : esc((p.name || '?').charAt(0))}${canPh ? '<i class="pfv-cam">📷</i><input type="file" id="pfPhF" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" hidden>' : ''}</label>
@@ -6122,17 +6142,17 @@ async function profileOpen(p, t, onEdit) {
      <div class="pfv-tags">${p.id && String((S.data.settings || {}).acadMgr || '') === p.id ? '<span class="acc acadm">🎓 אחראי/ת אקדמיה</span>' : ''}${(() => { const a = S.me.pid === p.id ? S.me : (S.data.users || []).find(x => x.pid === p.id); return a && a.role !== 'viewer' ? `<span class="acc">🔑 גישה לניהול · ${esc(S.data.roles[a.role] || '')}</span>` : ''; })()}${p.spec ? `<span>${esc(p.spec)}</span>` : ''}${p.year ? `<span>שנה ${esc(p.year)}</span>` : ''}${(p.units || []).map(x => `<span>${esc(x)}</span>`).join('')}${(p.clinics || []).map(x => `<span class="cl">🩺 ${esc(x)}</span>`).join('')}</div>
      <div class="pfv-act">${tel ? `<a class="btn sm" href="tel:${esc(tel)}">📞 חיוג</a><a class="btn sm" href="${esc(wa)}" target="_blank" rel="noopener">💬 וואטסאפ</a>` : ''}${(isMgr(p) ? BOSS() : ownerNow() && p.token) ? `<button class="btn sm" data-cplink="${esc(p.id)}" title="${isMgr(p) ? 'הקישור למערכת הניהול' : 'הקישור האישי לאפליקציה של ' + esc(p.name)}">🔗 ${isMgr(p) ? 'קישור למערכת הניהול' : 'העתקת קישור'}</button>` : ''}${p.email ? `<a class="btn sm" href="mailto:${esc(p.email)}">✉️ מייל</a>` : ''}${onEdit ? '<button class="btn sm" id="pfEd">✎ עריכה וגישה</button>' : ''}${ownerNow() && !S.preview && (portalOf(p) || (p.token && p.role !== 'staff' && !isMgr(p))) ? `<button class="btn sm" id="pfPvA">👁 ${portalOf(p) ? 'צפייה באתר שלו/ה' : 'תצוגה אישית'}</button>` : ''}</div>
      ${BOSS() && tokOk(p) && p.role !== 'staff' ? `<div class="pfsend" id="pfSend">${pfSendHtml(p)}</div>` : ''}
-     ${S.me.role === 'owner' && !S.preview && p.token ? accHtml(p) : ''}</div></div>
+     ${S.me.role === 'owner' && !S.preview && p.token && !ST ? accHtml(p) : ''}</div></div>
     <button class="pfv-x" id="pfX" title="סגירה">✕</button></header>
-   <div class="pfv-tiles">${tile(cnt.n, 'תורנויות החודש', cnt.we ? cnt.we + ' בסוף שבוע' : '')}${tile(cnt.c, 'כוננויות החודש')}${tile(t.or || 0, 'ימי חדר ניתוח', '9 שבועות')}${tile((t.rounds || 0) + (t.consult || 0), 'ביקורים וייעוצים', '9 שבועות')}</div>
+   ${ST ? '' : `<div class="pfv-tiles">${tile(cnt.n, 'תורנויות החודש', cnt.we ? cnt.we + ' בסוף שבוע' : '')}${tile(cnt.c, 'כוננויות החודש')}${tile(t.or || 0, 'ימי חדר ניתוח', '9 שבועות')}${tile((t.rounds || 0) + (t.consult || 0), 'ביקורים וייעוצים', '9 שבועות')}</div>`}
    ${yi >= 0 && !isSen ? `<div class="pfv-yr">${['א׳', 'ב׳', 'ג׳', 'ד׳', 'ה׳', 'ו׳'].map((l, i) => `<span class="${i < yi ? 'done' : i === yi ? 'now' : ''}">${l}</span>`).join('')}<em>שנת התמחות</em></div>` : ''}
-   <div class="pfv-g"><div class="pfv-m">
+   <div class="pfv-g${ST ? ' st' : ''}"><div class="pfv-m">
     ${rotBox()}
     ${p.bio || p.interests || p.langs || p.edu ? `<section class="pfv-c pfv-ab"><h3>קצת עליי</h3>${p.bio ? `<p class="pfv-bio">${esc(p.bio)}</p>` : ''}<div class="pfv-rk">${p.interests ? `<span><small>תחומי עניין</small><b>${esc(p.interests)}</b></span>` : ''}${p.edu ? `<span><small>הכשרה</small><b>${esc(p.edu)}</b></span>` : ''}${p.langs ? `<span><small>שפות</small><b>${esc(p.langs)}</b></span>` : ''}${p.bday ? `<span><small>יום הולדת</small><b>🎂 ${+p.bday.slice(3)}/${+p.bday.slice(0, 2)}</b></span>` : ''}</div></section>` : ''}
-    <section class="pfv-c"><h3>השבוע</h3><div class="pfv-wk">${days.map(d => { const pl = placesOf(W, d, p.id); return `<div class="${d === today ? 'now' : ''}"><b>${DAYS[pd(d).getDay()]}<small>${dm(d)}</small></b>${pl.length ? pl.map(q => `<i class="pl-${q.t}">${esc(q.l)}</i>`).join('') : '<i class="pl-0">—</i>'}</div>`; }).join('')}</div></section>
-    <section class="pfv-c"><h3>הניתוחים המובילים <small>9 שבועות</small></h3>${procs.length ? `<div class="pfv-bars">${procs.map(([n, c]) => `<div><span>${esc(n)}</span><i style="width:${Math.max(8, Math.round(c / pmax * 100))}%"></i><b>${c}</b></div>`).join('')}</div>` : '<p class="cap">עוד לא סומנו ניתוחים בחדרים שלו/ה בתוכנית השבועית</p>'}</section>
+    ${ST ? stBox() : `<section class="pfv-c"><h3>השבוע</h3><div class="pfv-wk">${days.map(d => { const pl = placesOf(W, d, p.id); return `<div class="${d === today ? 'now' : ''}"><b>${DAYS[pd(d).getDay()]}<small>${dm(d)}</small></b>${pl.length ? pl.map(q => `<i class="pl-${q.t}">${esc(q.l)}</i>`).join('') : '<i class="pl-0">—</i>'}</div>`; }).join('')}</div></section>
+    <section class="pfv-c"><h3>הניתוחים המובילים <small>9 שבועות</small></h3>${procs.length ? `<div class="pfv-bars">${procs.map(([n, c]) => `<div><span>${esc(n)}</span><i style="width:${Math.max(8, Math.round(c / pmax * 100))}%"></i><b>${c}</b></div>`).join('')}</div>` : '<p class="cap">עוד לא סומנו ניתוחים בחדרים שלו/ה בתוכנית השבועית</p>'}</section>`}
     ${teach.length ? `<section class="pfv-c"><h3>🎓 הוראה לסטודנטים השבוע</h3>${teach.map(i => `<div class="pfv-li"><b>${DAYS[pd(i.d).getDay()]} ${dm(i.d)}${i.from ? ' · ' + esc(i.from) : ''}</b><span>${esc(i.title)}</span></div>`).join('')}</section>` : ''}
-   </div><aside class="pfv-s">
+   </div>${ST ? '' : `<aside class="pfv-s">
     <section class="pfv-c"><h3>${isSen ? 'כוננויות ותורנויות קרובות' : 'תורנויות קרובות'}</h3>${upc.length ? upc.slice(0, 7).map(q => `<div class="pfv-li ${q.k}"><b>${DAYS[pd(q.d).getDay()]} ${dm(q.d)}</b><span>${q.k === 'n' ? '🌙' : '📞'} ${esc(q.l)}</span></div>`).join('') : '<p class="cap">אין בלוחות שפורסמו</p>'}</section>
     <section class="pfv-c"><h3>🏖 חופשות והיעדרויות מתוכננות</h3><div id="pfLv"></div></section>
     ${isSen && !S.preview && S.me.role !== 'secretary' ? '<section class="pfv-c pfv-sets"><h3>🩺 הסטים לחדר הניתוח</h3><div id="pfSets"></div></section>' : ''}
@@ -6141,7 +6161,8 @@ async function profileOpen(p, t, onEdit) {
       ${(x.want || []).length ? `<div class="pfv-ch">${x.want.map(d => `<span class="w">💚 ${dm(d)}</span>`).join('')}</div>` : ''}
       ${(f.days || []).length ? `<div class="pfv-ch">${f.days.map(i => `<span class="f">קבוע · לא ב${DAYS[i]}</span>`).join('')}</div>` : ''}
       ${x.note ? `<p class="pfv-note">${esc(x.note)}</p>` : ''}` : '<p class="cap">עוד לא הוגשו בקשות</p>'}</section>
-   </aside></div></div>`;
+   </aside>`}</div></div>`;
+  if (bg.querySelector('#pfSecInv')) bg.querySelector('#pfSecInv').onclick = () => secInvite(stU);
   bg.querySelector('#pfX').onclick = close;
   const canLv = ['owner', 'director', 'deputy', 'secretary'].indexOf(S.me.role) >= 0 || (S.me.role === 'chief' && p.role !== 'senior');
   const drawLv = () => { const box = bg.querySelector('#pfLv'); if (!box) return; const L = (P(p.id).leaves || []).slice();
@@ -10645,6 +10666,11 @@ const APL = { m: '', off: {}, d: '' };
 const aplKey = m => 'acplan:' + m;
 const aplEdit = () => typeof can === 'function' && can('acplan:x');
 const aplMo = (m, n) => { const d = new Date(+m.slice(0, 4), +m.slice(5, 7) - 1 + n, 1); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0'); };
+// the n-th weekday of a month: "רביעי הראשון בחודש", and the same slot in another month (the 5th one falls back to the last)
+const aplNth = d => { if (!/^\d{4}-\d{2}-\d{2}$/.test(String(d || ''))) return 'אותו יום בשבוע'; const n = Math.ceil(+d.slice(8) / 7); return 'יום ' + DAYS[pd(d).getDay()] + ' ה' + ['ראשון', 'שני', 'שלישי', 'רביעי', 'אחרון'][n - 1] + ' בחודש'; };
+const aplNthIn = (m, d0) => { const wd = pd(d0).getDay(), n = Math.ceil(+d0.slice(8) / 7), last = new Date(+m.slice(0, 4), +m.slice(5, 7), 0).getDate(); let c = 0, hit = '';
+  for (let i = 1; i <= last; i++) { const d = m + '-' + String(i).padStart(2, '0'); if (pd(d).getDay() === wd) { c++; hit = d; if (c === n) return d; } } return hit; };
+const aplSameDay = (m, d0) => { const last = new Date(+m.slice(0, 4), +m.slice(5, 7), 0).getDate(); return m + '-' + String(Math.min(+d0.slice(8), last)).padStart(2, '0'); };
 const aplMoHe = m => MONTHS[+m.slice(5, 7) - 1] + ' ' + m.slice(0, 4);
 const aplId = () => 'a' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 // the weeks a month touches (for the students' weekly keys)
@@ -10701,7 +10727,7 @@ function aplDraw(box) {
   const cell = d => { const out = d.slice(0, 7) !== m, X0 = by[d] || [], wd = pd(d).getDay(), st = X0.filter(x => x.k === 'stud');
     const X = st.length > 1 ? X0.filter(x => x.k !== 'stud').concat([{ k: 'stud', t: st[0].t, ti: 'Scrub In · ' + st.length + ' מפגשים' }]).sort((a, b) => (a.t || '99').localeCompare(b.t || '99')) : X0;
     const hl = box._hl;
-    return `<div class="apl-d${out ? ' out' : ''}${wd >= 5 ? ' we' : ''}${out ? '' : holCls(d)}${d === today ? ' now' : ''}" ${out ? '' : `data-apd="${d}"`}><span class="apl-n"><b>${+d.slice(8)}</b>${!out && ed ? '<span class="apl-add" aria-hidden="true">＋</span>' : ''}</span>${out ? '' : orDayTag(d, 1)}${out ? '' : X.slice(0, 3).map(x => `<span class="apl-e${hl && hl.indexOf(x.k) < 0 ? ' dim' : ''}" style="--c:${APL_K[x.k][1]}" title="${esc((x.t ? x.t + ' ' : '') + x.ti)}">${x.t ? `<em>${esc(x.t)}</em>` : ''}<bdi>${esc(x.ti)}</bdi></span>`).join('') + (X.length > 3 ? `<span class="apl-more">ועוד ${X.length - 3}</span>` : '')}</div>`; };
+    return `<div class="apl-d${out ? ' out' : ''}${wd >= 5 ? ' we' : ''}${out ? '' : holCls(d)}${d === today ? ' now' : ''}" ${out ? '' : `data-apd="${d}"`}><span class="apl-n"><b>${+d.slice(8)}</b>${!out && ed ? '<span class="apl-add" aria-hidden="true">＋</span>' : ''}</span>${out ? '' : orDayTag(d, 1)}${out ? '' : X.slice(0, 3).map(x => `<span class="apl-e${hl && hl.indexOf(x.k) < 0 ? ' dim' : ''}" style="--c:${APL_K[x.k][1]}" title="${esc((x.t ? x.t + ' ' : '') + x.ti)}">${x.t ? `<em>${esc(x.t)}</em>` : ''}<bdi>${x.k === 'int' && x.src === 'plan' ? 'סטאז׳רים · ' : ''}${esc(x.ti)}</bdi></span>`).join('') + (X.length > 3 ? `<span class="apl-more">ועוד ${X.length - 3}</span>` : '')}</div>`; };
   box.innerHTML = `<section class="apl"><div class="apl-h"><h2>${only ? (only[0] === 'int' ? 'לימודי סטאז׳רים · התוכנית החודשית' : only[0] === 'res' ? 'לימודי מתמחים · התוכנית החודשית' : 'סמינרים וישיבות · התוכנית החודשית') : 'תוכנית אקדמיה חודשית במערך'}</h2><small>${L.length} מפגשים בחודש · ${box._hl ? 'מודגש: מה ששייך לך' : 'כל הלימודים במקום אחד'}</small><span class="sp"></span>
     <span class="apl-nav"><button data-apm="-1" data-tip="חודש קודם" aria-label="חודש קודם">${prev}</button><b>${aplMoHe(m)}</b><button data-apm="1" data-tip="חודש הבא" aria-label="חודש הבא">${next}</button></span>
     ${m !== monthOf(today) ? '<button class="apl-btn" data-apm="0">החודש</button>' : ''}<button class="apl-btn" id="aplYear">תוכנית שנתית</button>${ed ? '<button class="apl-btn pri" id="aplNew">＋ הוספה</button>' : ''}<button class="apl-btn" id="aplMsg" data-tip="הודעה על הלימודים של החודש">הודעה</button></div>
@@ -10741,7 +10767,7 @@ function aplForm(x, d, box) {
     <label class="f1">נושא<input id="apTi" maxlength="120" value="${esc(x.ti || '')}" placeholder="למשל: גישה לבטן חריפה"></label>
     <label>מי מלמד/ת<input id="apW" maxlength="80" value="${esc(x.who || '')}" placeholder="שם המרצה"></label><label>מקום<input id="apP" maxlength="80" value="${esc(x.pl || '')}" placeholder="למשל: חדר הישיבות"></label>
     <label class="f1">הערות<textarea id="apN" rows="2" maxlength="400" placeholder="חומר לקריאה, מי מציג, קישור">${esc(x.n || '')}</textarea></label>
-    ${nw ? '<label>חזרה<select id="apR"><option value="">פעם אחת</option><option value="w">כל שבוע</option><option value="2w">כל שבועיים</option><option value="m">כל חודש</option></select></label><label>עד תאריך<input type="date" id="apU"></label>' : ''}
+    <label>חזרה<select id="apR"><option value="">${nw ? 'פעם אחת' : 'בלי חזרה (רק המפגש הזה)'}</option><option value="w">כל שבוע</option><option value="2w">כל שבועיים</option><option value="m">כל חודש · ${esc(aplNth(x.d))}</option><option value="md">כל חודש · ב-${+String(x.d || '').slice(8) || '?'} בחודש</option></select></label><label>עד תאריך<input type="date" id="apU"><small class="cap">ריק = שנה קדימה</small></label>
     </div><p class="cap" style="margin-top:8px">בלי שום פרט על מטופלים: סוג הנושא בלבד.</p></div>
     <div class="mf"><button class="btn primary" id="apS">שמירה</button>${nw ? '' : '<button class="btn" id="apDel">מחיקה</button>'}<button class="btn" data-x>ביטול</button></div></div>`;
   document.body.appendChild(bg);
@@ -10753,12 +10779,14 @@ function aplForm(x, d, box) {
     const txt = [ti, v('#apW'), v('#apP'), v('#apN')].join(' '); if (typeof noPHI === 'function' && !noPHI(txt)) return toast('בלי פרטי מטופלים: בלי מספרים מזהים, גילאים או שמות');
     const base = { t: v('#apT'), k, ti, who: v('#apW'), pl: v('#apP'), n: v('#apN'), by: S.me.name, at: new Date().toISOString() };
     let dates = [d0];
-    if (nw && v('#apR') && /^\d{4}-\d{2}-\d{2}$/.test(v('#apU'))) { const r = v('#apR'), u = v('#apU'); dates = []; let c = d0, i = 0; while (c <= u && i < 60) { dates.push(c); i++; c = r === 'm' ? (aplMo(c.slice(0, 7), 1) + c.slice(7)) : add(c, r === '2w' ? 14 : 7); } }
-    const rep = dates.length > 1 ? aplId() : '', ms = [...new Set(dates.map(q => q.slice(0, 7)).concat(nw ? [] : [x.d.slice(0, 7)]))];
+    // 17/11/2026 (Dr. Gozani): a repeat needs no end date (a year ahead), "every month" keeps the weekday of the month (the first Wednesday, the second...), and an existing item can start a series too
+    if (v('#apR')) { const r = v('#apR'), u = /^\d{4}-\d{2}-\d{2}$/.test(v('#apU')) ? v('#apU') : add(d0, 365); dates = []; let c = d0, i = 0; while (c && c <= u && i < 60) { dates.push(c); i++; c = r === 'm' ? aplNthIn(aplMo(c.slice(0, 7), 1), d0) : r === 'md' ? aplSameDay(aplMo(c.slice(0, 7), 1), d0) : add(c, r === '2w' ? 14 : 7); } }
+    const rep = dates.length > 1 ? (nw ? '' : x.rep || '') || aplId() : '', ms = [...new Set(dates.map(q => q.slice(0, 7)).concat(nw ? [] : [x.d.slice(0, 7)]))];
     try { await load(ms.map(aplKey)); } catch (e) {}
     ms.forEach(mm => { const R = JSON.parse(JSON.stringify(S.cache[aplKey(mm)] || { items: [] })); R.items = R.items || [];
       if (!nw) R.items = R.items.filter(y => y.id !== x.id);
-      dates.filter(q => q.slice(0, 7) === mm).forEach(q => R.items.push(Object.assign({ id: nw ? aplId() : x.id, d: q }, base, rep ? { rep } : {}, !nw && x.rep ? { rep: x.rep } : {})));
+      // a series started from an existing item: the item keeps its id, the next dates are new; a date that already holds the same topic is not doubled
+      dates.filter(q => q.slice(0, 7) === mm).forEach(q => { const first = !nw && q === dates[0]; if (!first && R.items.some(y => y.d === q && y.ti === base.ti && y.k === base.k)) return; R.items.push(Object.assign({ id: first ? x.id : aplId(), d: q }, base, rep ? { rep } : !nw && x.rep ? { rep: x.rep } : {})); });
       R.items.sort((a, b) => (a.d + (a.t || '')).localeCompare(b.d + (b.t || ''))); save(aplKey(mm), R); });
     bg.remove(); toast(dates.length > 1 ? 'נשמרו ' + dates.length + ' מפגשים' : 'נשמר'); APL.m = d0.slice(0, 7); aplDraw(box);
   };
