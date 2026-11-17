@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="3dd57cd2c2d3"><script>(function () {
+<head><meta name="ksh-ver" content="8d095cdc3603"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -3089,7 +3089,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = '3dd57cd2c2d3'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = '8d095cdc3603'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -13293,7 +13293,7 @@ function evDraw(m) {
   const greet = D.own ? '<details class="evgr"><summary>🎂 ברכה אוטומטית ביום ההולדת · ' + (D.on ? '<span style="color:#187A5C">פעילה ✓</span>' : '<span style="color:#A3402E">כבויה</span>') + '</summary><p class="cap">ב-08:00 יוצאת התראה לטלפון של מי שחוגג, חתומה בשם ' + evEsc(D.from) + '. בנוסף מי שחוגג רואה באפליקציה מסך עם בלונים.</p><textarea class="in" id="evTx" maxlength="400">' + evEsc(D.text) + '</textarea><small class="cap">{שם} יוחלף בשם. "את/ה" ו"נותן/ת" מתאימים את עצמם למין שבפרופיל.</small><div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap"><button class="btn sm primary" id="evOn">' + (D.on ? 'שמירת הנוסח' : '✓ הפעלה') + '</button>' + (D.on ? '<button class="btn sm ghost" id="evOff">כיבוי</button>' : '') + '</div></details>' : '';
   const all = f.length === EV_L.length;
   // 17/11/2026 (Dr. Gozani): one compact bar on top (title, month, birthday greeting, ＋ event) so both boards start high on the page; the greeting opens under it
-  m.innerHTML = '<div class="evp"><div class="evtop"><h1>🗓️ יומן המערך</h1><div class="evmo">' + '<!-- 17/11/2026 (Dr. Gozani): right arrow goes back, left arrow goes forward -->' + '<button class="nv" data-evm="-1" aria-label="החודש הקודם">›</button><h2>' + EV_MN[+mo.slice(5) - 1] + ' ' + mo.slice(0, 4) + '</h2><button class="nv" data-evm="1" aria-label="החודש הבא">‹</button>' + (mo !== t0.slice(0, 7) ? '<button class="btn sm ghost" id="evNow">היום</button>' : '') + '</div><span class="spacer"></span>'
+  m.innerHTML = '<div class="evp"><div class="evtop"><h1>🗓️ יומן המערך</h1><div class="evmo">' + '<!-- 17/11/2026 (Dr. Gozani): right arrow goes back, left arrow goes forward; dir=ltr so the browser does not mirror the glyphs in RTL -->' + '<button class="nv" dir="ltr" data-evm="-1" aria-label="החודש הקודם">›</button><h2>' + EV_MN[+mo.slice(5) - 1] + ' ' + mo.slice(0, 4) + '</h2><button class="nv" dir="ltr" data-evm="1" aria-label="החודש הבא">‹</button>' + (mo !== t0.slice(0, 7) ? '<button class="btn sm ghost" id="evNow">היום</button>' : '') + '</div><span class="spacer"></span>'
     + (D.own ? '<button class="evgb' + (EVB.gr ? ' on' : '') + '" id="evGrB" aria-expanded="' + !!EVB.gr + '">🎂 ברכת יום הולדת · ' + (D.on ? '<span style="color:#187A5C">פעילה ✓</span>' : '<span style="color:#A3402E">כבויה</span>') + '</button>' : '')
     + (D.edit ? '<button class="btn gold sm" id="evAdd">＋ אירוע</button>' : '') + '</div>'
     + (D.own && EVB.gr ? greet.replace('<details class="evgr">', '<div class="evgr">').replace(/<summary>[\s\S]*?<\/summary>/, '<b>🎂 ברכה אוטומטית ביום ההולדת</b>').replace('</details>', (D.noBd ? '<p class="cap" style="margin-top:8px">ל-' + D.noBd + ' מתוך ' + D.all + ' עוד אין יום הולדת בפרופיל</p>' : '') + '</div>') : '')
