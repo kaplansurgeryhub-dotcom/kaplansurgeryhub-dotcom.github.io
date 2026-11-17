@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="4ccf9739a5f4"><script>(function () {
+<head><meta name="ksh-ver" content="f2dd68e5150b"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -3078,7 +3078,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = '4ccf9739a5f4'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = 'f2dd68e5150b'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -5800,7 +5800,7 @@ const FLOW_RK = { secretary: 0, director: 1, chief: 2 }, FLOW_WN = { n: 'צפו�
 const flowWings = () => S.data.flowWings || [];
 const flowOk = (F, k) => k === 'sec' ? flowWings().every(w => ((F || {}).sec || {})[w]) : !!(F || {})[k];
 const flowDone = F => FLOW_ST.every(s2 => flowOk(F, s2[0]));
-const flowMine = k => S.me.role === 'owner' || S.me.role === { sec: 'secretary', dir: 'director', chief: 'chief' }[k] || (k === 'dir' && S.me.role === 'deputy');
+const flowMine = k => S.me.role === 'owner' || (S.me.role === { sec: 'secretary', dir: 'director', chief: 'chief' }[k] && !(k === 'sec' && S.me.wing !== 'n' && S.me.wing !== 's')) || (k === 'dir' && S.me.role === 'deputy');
 const flowMyWing = () => S.me.wing === 'n' || S.me.wing === 's' ? S.me.wing : 'x';
 // a change after an approval, by the same step or an earlier one (the department head placing people after the secretaries approved is the normal order)
 const flowChg = (F, k, at) => { const C = (F || {}).chg || {}, r = { sec: 0, dir: 1, chief: 2 }[k]; return Object.keys(C).filter(ro => (ro in FLOW_RK ? FLOW_RK[ro] : 0) <= r && C[ro].at > at).map(ro => C[ro].by); };
@@ -8127,12 +8127,12 @@ function studGroups(groups, done) {
 function secInviteText(name, wing) {
   const w = WINGN[wing] || '', she = 'ך';
   return `שלום ${name} 🌷
-שמחים לצרף אותך למערכת החדשה של המערך הכירורגי בקפלן: Kaplan Surgical Hub. מעכשיו תוכנית הניתוחים, התוכנית השבועית ומה שקורה ${w ? 'באגף ' + w : 'באגף'} נמצאים במקום אחד, מעודכנים ונוחים.
+שמחים לצרף אותך למערכת החדשה של המערך הכירורגי בקפלן: Kaplan Surgical Hub. מעכשיו תוכנית הניתוחים, התוכנית השבועית ומה שקורה ${w ? 'באגף ' + w : 'במערך'} נמצאים במקום אחד, מעודכנים ונוחים.
 
 ✨ מה אפשר לעשות במערכת
 • 🗂️ תוכנית הניתוחים: חדרים, ניתוחים, מנתחים, ציוד והכנות (בלי פרטי מטופלים)
-• 📅 התוכנית השבועית: ישיבות, היעדרויות ושמות החדרים. האגף של${she} מסומן
-• 🏠 מסך הבית: היום ומחר ${w ? 'באגף ' + w : 'באגף'} במבט אחד והודעות מהמערך
+• 📅 התוכנית השבועית: ישיבות, היעדרויות ושמות החדרים${w ? '. האגף של' + she + ' מסומן' : ''}
+• 🏠 מסך הבית: היום ומחר ${w ? 'באגף ' + w : 'במערך'} במבט אחד והודעות מהמערך
 • 🌙 לוחות התורנויות והכוננויות: לצפייה
 
 📱 באייפון (פעם אחת)
@@ -8276,14 +8276,14 @@ function secNew(done, kind) {
   const ort = kind === 'orteam', orn = kind === 'ornurse' || ort, bg = document.createElement('div'); bg.className = 'mbg';
   bg.innerHTML = `<div class="modal"><div class="mh"><div><b>＋ ${ort ? 'צוות חדר ניתוח' : orn ? 'אחראי/ת חדר ניתוח' : 'מזכירה'}</b><br><small>נוצרים פרופיל בצוות ומשתמש "${ort ? 'צוות חדר ניתוח' : orn ? 'אחראי/ת חדר ניתוח' : 'מזכירות'}" עם קוד חדש. אחר כך נפתחת ההזמנה</small></div></div><div class="mb">
     <label class="f">שם</label><input class="in" id="snN" maxlength="30" placeholder="${orn ? 'השם הפרטי' : 'למשל: לילך'}">
-    ${orn ? '' : '<label class="f">אגף</label><div class="seg" id="snW"><button data-w="n" class="on">אגף צפון</button><button data-w="s">אגף דרום</button></div>'}
+    ${orn ? '' : '<label class="f">אגף</label><div class="seg" id="snW"><button data-w="n" class="on">אגף צפון</button><button data-w="s">אגף דרום</button><button data-w="x">בלי אגף</button></div><div id="snTw" hidden><label class="f">תפקיד</label><input class="in" id="snT" maxlength="40" placeholder="למשל: מזכירת כירורגיית בית החזה"><small class="cap">לא משתתפת באישור התוכנית השבועית של האגפים</small></div>'}
     <label class="f">טלפון (לא חובה, לוואטסאפ)</label><input class="in" id="snP" inputmode="tel" maxlength="20" dir="ltr"></div>
     <div class="mf"><button class="btn primary" id="snOk">יצירה</button><button class="btn" id="snNo">ביטול</button></div></div>`;
   document.body.appendChild(bg); let w = 'n';
-  bg.querySelectorAll('[data-w]').forEach(b => b.onclick = () => { w = b.dataset.w; bg.querySelectorAll('[data-w]').forEach(x => x.classList.toggle('on', x === b)); });
+  bg.querySelectorAll('[data-w]').forEach(b => b.onclick = () => { w = b.dataset.w; bg.querySelectorAll('[data-w]').forEach(x => x.classList.toggle('on', x === b)); const tw = bg.querySelector('#snTw'); if (tw) tw.hidden = w !== 'x'; });
   bg.querySelector('#snNo').onclick = () => bg.remove();
   bg.querySelector('#snOk').onclick = async () => { const n = bg.querySelector('#snN').value.trim(); if (!n) return toast('חסר שם');
-    try { const r = orn ? await call('ops_addOrNurse', S.code, n, bg.querySelector('#snP').value.trim(), ort) : await call('ops_addSecretary', S.code, n, w, bg.querySelector('#snP').value.trim()); S.data.people = r.people; if ((r.users || []).length) S.data.users = r.users; bg.remove(); toast(ort ? 'נוצר משתמש לצוות חדר הניתוח' : orn ? 'נוצר משתמש לאחראי/ת חדר הניתוח' : 'נוצרה מזכירה · אגף ' + WINGN[w]); done && done(); secInvite(r.users.find(x => x.id === r.uid)); } catch (e) { toast(e.message); } };
+    try { const r = orn ? await call('ops_addOrNurse', S.code, n, bg.querySelector('#snP').value.trim(), ort) : await call('ops_addSecretary', S.code, n, w, bg.querySelector('#snP').value.trim(), w === 'x' ? (bg.querySelector('#snT').value || '').trim() : ''); S.data.people = r.people; if ((r.users || []).length) S.data.users = r.users; bg.remove(); toast(ort ? 'נוצר משתמש לצוות חדר הניתוח' : orn ? 'נוצר משתמש לאחראי/ת חדר הניתוח' : 'נוצרה מזכירה · ' + (WINGN[w] ? 'אגף ' + WINGN[w] : 'בלי אגף')); done && done(); secInvite(r.users.find(x => x.id === r.uid)); } catch (e) { toast(e.message); } };
 }
 // ---------- the permissions manager (settings, owner only): a card per user, a panel with the role, the wing, the management title and a tile per app (כבוי / צפייה / עריכה) ----------
 const ROLE_C = { owner: '#0C2A35', director: '#00967D', chief: '#2F6FA8', deputy: '#0A6B5A', secretary: '#7A5CC0', students: '#1D6E8C', ornurse: '#C9893F', viewer: '#6E7F86' };
@@ -8315,7 +8315,7 @@ function permPanel(u0, again) {
   const draw = () => { const own = u.role === 'owner';
     bg.innerHTML = `<div class="modal pmp gsheet"><div class="mh"><div style="display:flex;gap:10px;align-items:center">${u.pid ? av(P(u.pid)) : ''}<div><b>${esc(u.name)}</b><br><small>${lastSeen(u) ? 'נראה ' + esc(lastSeen(u)) : 'עוד לא נכנס'}</small></div></div></div><div class="mb">
       <label class="f">תפקיד (ברירות המחדל של ההרשאות)</label><div class="pmr">${Object.keys(S.data.roles).map(r => `<button data-pr="${r}" class="${u.role === r && !preOn() ? 'on' : ''}" style="--rc:${ROLE_C[r] || '#6E7F86'}">${esc(S.data.roles[r])}</button>`).join('')}${u.pid ? INT_PRE.map(t => `<button data-ppre="${esc(t)}" class="${preOn() === t ? 'on' : ''}" style="--rc:#0A6B5A">${esc(t)}</button>`).join('') : ''}</div>
-      ${u.role === 'secretary' ? `<label class="f">אגף</label><div class="seg sm">${[['n', 'צפון'], ['s', 'דרום']].map(([w, l]) => `<button data-pw="${w}" class="${u.wing === w ? 'on' : ''}">אגף ${l}</button>`).join('')}</div>` : ''}
+      ${u.role === 'secretary' ? `<label class="f">אגף</label><div class="seg sm">${[['n', 'אגף צפון'], ['s', 'אגף דרום'], ['', 'בלי אגף']].map(([w, l]) => `<button data-pw="${w}" class="${(u.wing || '') === w ? 'on' : ''}">${l}</button>`).join('')}</div>` : ''}
       ${u.pid ? `<label class="f">תפקיד בהנהלת המערך (לא חובה)</label><input class="in" id="pmMg" maxlength="60" value="${esc(mg)}" placeholder="למשל: אחראי סטודנטים">` : ''}
       ${u.pid ? `<label class="f">תפקידים נוספים</label><div class="pmx">${CAPS.filter(([k]) => !((u.scope || []).indexOf(k) >= 0 && (k === 'int' || k === 'pa')) && (k !== 'acad' || P(u.pid).role === 'senior')).map(([k, l, sub]) => `<button data-pcap="${k}" class="${cap[k] ? 'on' : ''}"><b>${l}</b><small>${sub}</small><i>${cap[k] ? '✓' : ''}</i></button>`).join('')}${[['students', '🎓 אחראי/ת סטודנטים'], ['ornurse', '🧰 אחראי/ת חדר ניתוח'], ['orteam', '🧰 צוות חדר ניתוח']].map(([r, l]) => `<button data-prr="${r}" class="${u.role === r ? 'on' : ''}"><b>${l}</b><small>${u.role === r ? 'התפקיד הראשי' : 'כתפקיד ראשי'}</small><i>${u.role === r ? '✓' : ''}</i></button>`).join('')}</div>` : ''}
       ${own ? '' : `<label class="f">היקף ניהול (לא חובה) · כשמסומן, המשתמש רואה מה שרופא בתפקיד שלו רואה ומנהל רק את התחומים האלה. ההרשאות שלמטה לא חלות עליו</label><div class="pmx">${[['res', '🩺 מתמחים ורופאי בית', 'לוח התורנויות, עולם המתמחים ועריכת הפרטים שלהם'], ['ext', '🌙 תורני חוץ', 'לוח התורנויות ועריכת הפרטים שלהם'], ['pa', '🧑‍⚕️ עוזרי רופא', 'הלוח של עוזרי הרופא'], ['int', '🎓 סטאז׳רים', 'לשונית הסטאז׳רים']].map(([k, l, sub]) => `<button data-psc="${k}" class="${(u.scope || []).indexOf(k) >= 0 ? 'on' : ''}"><b>${l}</b><small>${sub}</small><i>${(u.scope || []).indexOf(k) >= 0 ? '✓' : ''}</i></button>`).join('')}</div>`}
@@ -10650,18 +10650,20 @@ const aplId = () => 'a' + Date.now().toString(36) + Math.random().toString(36).s
 // the weeks a month touches (for the students' weekly keys)
 function aplWeeks(m) { const L = []; let s = sunday(m + '-01'); while (s.slice(0, 7) <= m) { L.push(s); s = add(s, 7); } return L; }
 async function aplLoad(m) {
-  const keys = [aplKey(m), 'curr:' + m].concat(seeView('scrub') ? aplWeeks(m).map(w => 'stud:' + w) : []);
+  const keys = [aplKey(m), 'curr:' + m].concat(APL_STUD && seeView('scrub') ? aplWeeks(m).map(w => 'stud:' + w) : []);
   try { await load(keys); } catch (e) {}
   if (!S.hub && seeView('acint')) { try { S.hub = await (typeof call1 === 'function' ? call1(8000, 'ops_interns', S.code) : call('ops_interns', S.code)); } catch (e) {} }
 }
 // every teaching event of the month, from every source, in one list: {d, t, k, ti, sub, src, id}
+// 17/11/2026 (Dr. Gozani): the Scrub In sessions are still tentative (he and Dr. Wachtel are working on them): not in the department's learning plan for now. true brings them back
+const APL_STUD = false;
 function aplItems(m) {
   const L = [], inM = d => d && d.slice(0, 7) === m;
   ((S.cache[aplKey(m)] || {}).items || []).forEach(x => { if (inM(x.d)) L.push(Object.assign({ src: 'plan' }, x, { sub: [x.who, x.pl].filter(Boolean).join(' · ') })); });
   const F = aplFixed(m, (S.cache[aplKey(m)] || {}).fx);
   const C = S.cache['curr:' + m]; ((C && C.items) || []).forEach(x => { if (!inM(x.d)) return; const ty = (typeof CURT !== 'undefined' && CURT[x.type]) ? CURT[x.type][0] : 'הרצאה', sr = x.sen ? (P(x.sen) || {}).name || '' : '';
     L.push({ src: 'curr', d: x.d, t: x.time || '', k: x.type === 'mm' ? 'mm' : x.type === 'jc' ? 'jc' : 'res', ti: (x.title || ty), sub: [ty, sr].filter(Boolean).join(' · ') + (C.apDep && C.apChief ? '' : ' · טרם אושר') }); });
-  if (seeView('scrub')) aplWeeks(m).forEach(w => { const W = S.cache['stud:' + w]; ((W && W.items) || []).forEach(x => { if (!inM(x.d)) return; L.push({ src: 'stud', d: x.d, t: x.from || '', k: 'stud', ti: x.title || 'מפגש', sub: [x.who ? (P(x.who) || {}).name || '' : (x.by || ''), x.place || ''].filter(Boolean).join(' · ') }); }); });
+  if (APL_STUD && seeView('scrub')) aplWeeks(m).forEach(w => { const W = S.cache['stud:' + w]; ((W && W.items) || []).forEach(x => { if (!inM(x.d)) return; L.push({ src: 'stud', d: x.d, t: x.from || '', k: 'stud', ti: x.title || 'מפגש', sub: [x.who ? (P(x.who) || {}).name || '' : (x.by || ''), x.place || ''].filter(Boolean).join(' · ') }); }); });
   ((S.hub && S.hub.seminars) || []).forEach(x => { if (inM(x.d)) L.push({ src: 'int', d: x.d, t: x.h || '', k: 'int', ti: x.t, sub: x.b || '' }); });
   F.forEach(f => { if (!(f.c && L.some(x => x.d === f.d && x.k === f.k && x.src === 'curr'))) L.push(f); });
   return L.sort((a, b) => (a.d + (a.t || '99')).localeCompare(b.d + (b.t || '99')));
@@ -10694,7 +10696,7 @@ function aplDraw(box) {
   const only = box._only, m = APL.m, L = aplItems(m).filter(x => only ? only.indexOf(x.k) >= 0 : !APL.off[x.k]), ed = aplEdit(), by = {};
   L.forEach(x => (by[x.d] = by[x.d] || []).push(x));
   const first = m + '-01', s0 = sunday(first), days = []; for (let d = s0; d.slice(0, 7) <= m || pd(d).getDay() !== 0; d = add(d, 1)) days.push(d);
-  const kinds = only ? [] : Object.keys(APL_K).filter(k => aplItems(m).some(x => x.k === k) || ['res', 'int', 'stud', 'sem', 'meet'].indexOf(k) >= 0);
+  const kinds = only ? [] : Object.keys(APL_K).filter(k => aplItems(m).some(x => x.k === k) || ['res', 'int', 'sem', 'meet'].concat(APL_STUD ? ['stud'] : []).indexOf(k) >= 0);
   const prev = '<svg class="chv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>', next = '<svg class="chv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>';
   const cell = d => { const out = d.slice(0, 7) !== m, X0 = by[d] || [], wd = pd(d).getDay(), st = X0.filter(x => x.k === 'stud');
     const X = st.length > 1 ? X0.filter(x => x.k !== 'stud').concat([{ k: 'stud', t: st[0].t, ti: 'Scrub In · ' + st.length + ' מפגשים' }]).sort((a, b) => (a.t || '99').localeCompare(b.t || '99')) : X0;
@@ -12847,7 +12849,8 @@ async function vToday(m, who, keep) {
   // the evening round, every working day at 15:00 (8/11/2026, Dr. Gozani)
   if (pd(pdy).getDay() <= 4 && !EV.some(x => /סיבוב ערב|ביקור ערב/.test(x.s || ''))) EV.push({ t: '15:00', s: 'סיבוב ערב', k: 'r' });
   (typeof clinOf === 'function' ? clinOf(DP) : []).forEach(x => EV.push({ t: x.t, s: x.n || 'מרפאה', k: 'c' }));
-  stud.forEach(x => EV.push({ t: x.from || x.t || '', s: x.title || 'מפגש לסטודנטים', k: 's' }));
+  // 17/11/2026: the students' sessions are tentative; on the home schedule only for whoever runs Scrub In (the owner, the students' lead)
+  if (typeof scBoss === 'function' && scBoss()) stud.forEach(x => EV.push({ t: x.from || x.t || '', s: x.title || 'מפגש לסטודנטים', k: 's' }));
   const H = S.hub, hubWait = !H && seeView('inhome') && !vToday.hubFail;
   if (H) (H.seminars || []).filter(x => x.d === pdy).forEach(x => EV.push({ t: x.h || '', s: x.t, k: 'i' }));
   const nowM = new Date().getHours() * 60 + new Date().getMinutes(), pT = pdy === today;
