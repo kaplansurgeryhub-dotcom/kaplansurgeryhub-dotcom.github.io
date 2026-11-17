@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="367d0814f6b0"><script>(function () {
+<head><meta name="ksh-ver" content="d7ff3b3fee09"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -898,7 +898,7 @@ function nextDuty(id) { const t = TODAY(); return A.duty.filter(x => x.id === (i
 const slotL = s => SLOT[s] || 'מחלקה';
 // the 5th and 6th nights of someone who agreed to more than four are the extra ones (not for the elective track)
 function extraSet() { if (!A.me.extra || A.me.track === 'אלקטיב') return {}; const o = {}; A.duty.filter(x => x.id === A.me.id && x.s !== 'fm').sort((a, b) => a.d.localeCompare(b.d)).slice(4).forEach(x => { o[x.d] = 1; }); return o; }
-const sessOn = d => (A.sess || []).filter(s => s.date ? s.date === d : +s.day === dow(d) && dow(d) <= 4).sort((a, b) => String(a.time).localeCompare(String(b.time)));
+const sessOn = d => { const L = (A.sess || []).filter(s => s.date ? s.date === d : +s.day === dow(d) && dow(d) <= 4), D = L.filter(s => s.ac); return L.filter(s => s.ac || !D.some(x => x.time === s.time && s.k === 'you' && x.k === s.k)).sort((a, b) => String(a.time).localeCompare(String(b.time))); };
 // 16/11/2026: before the rotation there is no 'tomorrow 07:00' (the department's meetings are not theirs yet); the countdown card says when and where the first day starts
 function nextSession() { if (before()) return null; for (let k = 0; k < 8; k++) { const d = add(TODAY(), k), c = sessOn(d).filter(x => k > 0 || String(x.time || '') > NOWHM); if (c.length) return { x: c.find(x => x.k === 'you') || c[0], d: d, k: k }; } return null; }
 

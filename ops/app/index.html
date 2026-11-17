@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="367d0814f6b0"><script>(function () {
+<head><meta name="ksh-ver" content="d7ff3b3fee09"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -3064,7 +3064,7 @@ const ixP = (id, y) => { y = y || ixEntry(id); return { id, name: y.n ? y.n.spli
 const P = id => (S.data.people || []).find(p => p.id === id) || (isIx(id) ? ixP(id) : { id, name: '?', role: 'senior' });
 const can = k => { if (S.me && S.me.role === 'chief' && /^week(:[0-9-]+)?$/.test(String(k)) && accMe('week') !== 'off') return true; if (typeof myScope === 'function' && myScope().length) return myScope().some(s => SCOPE_K[s].indexOf(String(k).split(':')[0]) >= 0); const a = typeof appOfKey === 'function' && appOfKey(k), o = a && accMe(a); if (o) return o === 'edit'; return ((S.data.write || {})[k] || ['owner']).indexOf(S.me.role) >= 0; };
 // while the app shows the saved copy, calls wait for the device sign-in and then go out with the code
-const PV_BLOCK = /^ops_(sbSave|sbDel|inbSeen|pa(Save|Cfg|Add|BookSave|FbSave)|prefManual|rosterSw|caseNote|gear(Ack|Close|Clr|Post|Prep|ProtSave|Save|Seen|Send)|orRoomSave|oraSave|orTerm(Add|Set)|spSave|equipPhoto|acadDecide|acadPub|acadRevAct|scNoteDone|tosOk|food(Do|Push)|set|leaves|leaveReq|leaveDecide|leaveReqDel|notify|notifDel|save|person|photo(Save|Me|Mine)|pushReg|pushOff|devToken|devForget|devClear|profileMe|profileMine)/;
+const PV_BLOCK = /^ops_(sbSave|sbDel|inbSeen|pa(Save|Cfg|Add|BookSave|FbSave)|prefManual|rosterSw|caseNote|gear(Ack|Close|Clr|Post|Prep|ProtSave|Save|Seen|Send)|orRoomSave|oraSave|orTerm(Add|Set)|spSave|equipPhoto|acadDecide|acadPub|acadRevAct|scNoteDone|tosOk|food(Do|Push)|set|leaves|leaveReq(?!s$)|leaveDecide|leaveReqDel|notify|notifDel|save|person|photo(Save|Me|Mine)|pushReg|pushOff|devToken|devForget|devClear|profileMe|profileMine)/;
 // a call that may change something forgets the reads remembered by call1 (the final board's extra rows, the food, the log)
 // 14/11/2026 (night review): ops_pubState reads only; it was missing here, so every visit to the final board emptied CALL1 and the board waited for the server again
 const CALL_READ = /^ops_(?:inbox|fbCount|fbMine|devLogin|tokenLogin|perf|leaveReqs|paBoot|resAll|get|boot|food|log|interns|intFinal|paFinal|hrGet|tos|tosList|gearBoot|prefsAll|resAll|intBoot|intMonitor|activity|newsFresh|newsList|needsSetup|invInfo|archIndex|archGet|pubState|oraBoot|orLive)$/;
@@ -3078,7 +3078,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = '367d0814f6b0'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = 'd7ff3b3fee09'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -12763,13 +12763,16 @@ const inbKind = w => typeof lvKind === 'function' ? lvKind(w) : ['🕶️', w ||
 const inbDates = q => '⁦' + dm(q.f) + (q.t && q.t !== q.f ? '–' + dm(q.t) : '') + '⁩';
 // 10/11/2026: the home can be drawn from the device's copy before the sign-in ends (no code yet); then the banner waits and tries again,
 // and while the home is open it looks again every 2 minutes, so a new request shows without reloading
-async function tdInbox(fresh, tries) { const box = $('#tdInb'); if (!box || S.preview) return;
+// 17/11/2026 (Dr. Gozani): in a preview as someone else the requests circle shows too, with that person's answers (as the department head:
+// approve, under review, reject), but nothing is saved from a preview
+const inbPv = d => S.preview ? Object.assign({}, d, { dec: S.preview.role === 'director', see: true }) : d;
+async function tdInbox(fresh, tries) { const box = $('#tdInb'); if (!box) return;
   if (!S.code) { if ((tries || 0) < 40) setTimeout(() => tdInbox(true, (tries || 0) + 1), 1500); return; }
   clearTimeout(tdInbox.t); tdInbox.t = setTimeout(() => { if ($('#tdInb') && !document.hidden) tdInbox(true); }, 120000);
   // the circles that came with the sign-in (13/11/2026): used once, no round trip
   if (S.data && S.data.inbox) { INB.d = S.data.inbox; INB.at = Date.now(); if (S.data.fbc != null) { INB.fb = +S.data.fbc || 0; INB.fbAt = Date.now(); } delete S.data.inbox; delete S.data.fbc; fresh = false; }
   if (fresh || !INB.d || Date.now() - INB.at > 60000) { try { INB.d = await call1(fresh ? 1 : 20000, 'ops_inbox', S.code); INB.at = Date.now(); } catch (e) { return; } }
-  const D = INB.d, L = (D.leave || []).filter(q => q.st !== 'rev'), LR = (D.leave || []).filter(q => q.st === 'rev'), I = D.intern || [], n = L.length + I.length, own = S.me.role === 'owner', nw = Math.max(0, n - (D.seen || []).filter(id => !LR.some(q => q.id === id)).length);
+  const D = inbPv(INB.d), L = (D.leave || []).filter(q => q.st !== 'rev'), LR = (D.leave || []).filter(q => q.st === 'rev'), I = D.intern || [], n = L.length + I.length, own = S.me.role === 'owner', nw = Math.max(0, n - (D.seen || []).filter(id => !LR.some(q => q.id === id)).length);
   if (own && (fresh || INB.fbAt == null || Date.now() - INB.fbAt > 60000)) { try { INB.fb = +(await call1(fresh ? 1 : 20000, 'ops_fbCount', S.code)) || 0; INB.fbAt = Date.now(); } catch (e) {} }
   const b3 = $('#tdInb'); if (!b3) return;
   if (!own && !L.length && !LR.length && !I.length && !D.dec && !D.see && !(D.intern)) { b3.hidden = true; return; }
@@ -12800,7 +12803,7 @@ function inbYr(p) { const yr = today.slice(0, 4), S0 = {}; (p.leaves || []).forE
 // approve, under review (the one who sent it hears that it is with the department head; a small reminder every 3 days) and reject (with a few words why).
 // Approved and rejected go out by mail to the doctor
 const INBT = [['wait', 'חדשות'], ['rev', 'בבדיקה'], ['ok', 'אושרו'], ['no', 'נדחו'], ['all', 'הכול']];
-async function inbSheet(focus) { const D = INB.d || { leave: [] }, bg = document.createElement('div'); bg.className = 'mbg inbm';
+async function inbSheet(focus) { const D = inbPv(INB.d || { leave: [] }), bg = document.createElement('div'); bg.className = 'mbg inbm';
   let Q = []; try { Q = await callS(60000, 'ops_leaveReqs', S.code); } catch (e) {}
   const away = q => { const o = {}; for (let d = q.f; d <= (q.t || q.f); d = add(d, 1)) people().forEach(p => { if (p.id !== q.pid && leaveOf(p.id, d)) o[p.id] = 1; }); return Object.keys(o).map(id => P(id).name); };
   const cnt = k => k === 'all' ? Q.length : Q.filter(q => q.st === k).length;
@@ -12828,10 +12831,11 @@ async function inbSheet(focus) { const D = INB.d || { leave: [] }, bg = document
     bg.querySelectorAll('[data-int]').forEach(x => x.onclick = () => { INB.tab = x.dataset.int; draw(); });
     bg.querySelector('[data-insort]').onclick = () => { INB.sort = INB.sort === 'f' ? 'at' : 'f'; draw(); };
     bg.querySelector('[data-inall]').onclick = () => { bg.remove(); go('leaves'); };
-    bg.querySelectorAll('[data-inseen]').forEach(x => x.onclick = async () => { x.disabled = true; try { INB.d = await call('ops_inbSeen', S.code); INB.at = Date.now(); tdInbox(); draw(); toast('✓ סומן כנקרא'); } catch (e) { x.disabled = false; toast(e.message); } });
+    bg.querySelectorAll('[data-inseen]').forEach(x => x.onclick = async () => { if (S.preview) return toast('תצוגה מקדימה · לא נשמר'); x.disabled = true; try { INB.d = await call('ops_inbSeen', S.code); INB.at = Date.now(); tdInbox(); draw(); toast('✓ סומן כנקרא'); } catch (e) { x.disabled = false; toast(e.message); } });
     bg.querySelectorAll('[data-ingo]').forEach(x => x.onclick = () => { bg.remove(); klAfter('int', () => { IX.nt = 'rq'; }); go('innote'); });
     bg.querySelectorAll('[data-inv]').forEach(x => x.onclick = () => { const [id, v] = x.dataset.inv.split('|'), q = Q.find(y => y.id === id); if (!q) return; bg.remove(); ofxShow(ofxLeave(q), v); });
     bg.querySelectorAll('[data-ina]').forEach(x => x.onclick = async () => { const [id, ok] = x.dataset.ina.split('|'), ta = bg.querySelector(`[data-inn="${id}"]`), note = (ta || {}).value || '';
+      if (S.preview) return toast(ok === '1' ? 'תצוגה מקדימה · כאן מנהל המערך מאשר. לא נשמר' : ok === 'rev' ? 'תצוגה מקדימה · כאן מסמנים "בבדיקה" ומי ששלח מקבל עדכון. לא נשמר' : 'תצוגה מקדימה · כאן דוחים עם סיבה שנשלחת במייל. לא נשמר');
       if (ok === '0' && note.trim().length < 2) { if (ta) { ta.classList.add('need'); ta.focus(); } return toast('בדחייה כותבים בכמה מילים למה. זה נשלח במייל'); }
       if (!confirmOnce('ina' + id + ok, ok === '1' ? 'ללחוץ שוב לאישור' : ok === 'rev' ? 'ללחוץ שוב לסימון "בבדיקה"' : 'ללחוץ שוב לדחייה')) return; x.disabled = true;
       try { const res = await call('ops_leaveDecide', S.code, id, ok === 'rev' ? 'rev' : ok === '1', note); if (res.people) S.data.people = res.people;
