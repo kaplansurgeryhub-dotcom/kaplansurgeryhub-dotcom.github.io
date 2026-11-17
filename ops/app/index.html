@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="2ac08f9f7195"><script>(function () {
+<head><meta name="ksh-ver" content="7e2378b11b25"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -3060,7 +3060,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = '2ac08f9f7195'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = '7e2378b11b25'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -3721,7 +3721,7 @@ async function clinicPick(d, D, dn, list, roles, info, onSave, noText) {
 }
 function picker(o) {
   let list = (o.list || []).map(x => typeof x === 'string' ? { id: x, c: '' } : Object.assign({}, x));
-  const pool0 = people().filter(p => !o.roles || o.roles.indexOf(p.role) >= 0).filter(p => !o.pos || (p.pos || []).indexOf(o.pos) >= 0).sort((a, b) => (ROLE_ORDER[a.role] - ROLE_ORDER[b.role]) || (o.rank ? o.rank(a) - o.rank(b) : 0) || a.name.localeCompare(b.name, 'he'));
+  const pool0 = people().filter(p => !o.roles || o.roles.indexOf(p.role) >= 0).filter(p => !o.pos || posHas(p, o.pos)).sort((a, b) => (ROLE_ORDER[a.role] - ROLE_ORDER[b.role]) || (o.rank ? o.rank(a) - o.rank(b) : 0) || a.name.localeCompare(b.name, 'he'));
   let all = !o.only; const poolOf = () => all ? pool0 : pool0.filter(p => o.only.has(p.id) || list.some(x => x.id === p.id));
   const info = o.info || (() => '');
   const bg = document.createElement('div'); bg.className = 'mbg';
@@ -5193,8 +5193,11 @@ function tally(ctx, out) {
 }
 const qv = v => v === '' || v == null ? null : +v;
 // why a person cannot take a slot ('' = allowed). relax lets the weekend cap bend for an essential empty slot
+// 17/11/2026, Dr. Gozani: whoever holds ER 1 can also take ER 2 (never the other way). Manual placing, swaps and the board check allow it;
+// the automatic builder keeps to the positions as they are (ctx.strict), so it never pulls an ER 1 doctor into ER 2 by itself
+function posHas(p, k) { const L = (p && p.pos) || []; return L.indexOf(k) >= 0 || (k === 'er2' && L.indexOf('er1') >= 0); }
 function whyNot(ctx, out, d, k, id, T, relax, noBlk) {
-  const p = P(id); if ((p.pos || []).indexOf(k) < 0) return 'לא בעמדה הזו';
+  const p = P(id); if (ctx.strict ? (p.pos || []).indexOf(k) < 0 : !posHas(p, k)) return 'לא בעמדה הזו';
   if (leaveOf(id, d)) return 'בחופשה';
   if (((ctx.lreq) || []).some(q => q.pid === id && d >= q.f && d <= q.t)) return 'ביקש/ה חופשה';
   if (!noBlk && ctx.blk(id, d)) return 'ביקש/ה לא';
@@ -5225,7 +5228,7 @@ function rScore(ctx, out) {
 }
 // builds a month: mode 'fill' keeps every filled cell, 'rebuild' keeps only locked cells. Greedy restarts + local search
 function solveRoster(kind, R, pr, mode, month) {
-  const ctx = rosterCtx(kind, R, pr, month), lock = R.lock || {}, W = RK[kind].w, t0 = performance.now();
+  const ctx = rosterCtx(kind, R, pr, month), lock = R.lock || {}, W = RK[kind].w, t0 = performance.now(); ctx.strict = 1;
   // nights that already passed are history (the doctors saw them, the HR report counts them): copied as they are. Tonight keeps whoever is on it
   const base = { days: {} }; ctx.dates.forEach(d => { const r = (R.days || {})[d] || {}, n = JSON.parse(JSON.stringify(r)); if (d < today) { base.days[d] = n; return; } if (!n.wing && kind === 'duty') n.wing = wingOf(d, R); ctx.keys.forEach(k => { if (!(r[k] && (mode === 'fill' || lock[d + '|' + k] || d === today))) delete n[k]; }); base.days[d] = n; });
   // the builder's weekly seat rules first ('פסיבי בשלישי'): placed before anything else, unless the doctor is on leave or the seat is taken
@@ -6283,7 +6286,7 @@ function finalDay(d, done) { const mo = d.slice(0, 7), DU = JSON.parse(JSON.stri
   DU.days = DU.days || {}; CA.days = CA.days || {}; DU.lock = DU.lock || {}; CA.lock = CA.lock || {}; const r = DU.days[d] = DU.days[d] || {}, c = CA.days[d] = CA.days[d] || {};
   const SLT = FZ.filter(([k]) => k !== 'third').map(([k, l]) => [k, l, ['active', 'passive', 'half'].indexOf(k) >= 0 ? 'oncall' : 'duty']).filter(([, , b]) => can(b)), dn = DAYS[pd(d).getDay()] + ' ' + dm(d) + (d < today ? ' · עבר' : '');
   let all = false; const bg = document.createElement('div'); bg.className = 'mbg';
-  const opts = (k, cur) => { const L = people().filter(p => p.active !== false && (all || (p.pos || []).indexOf(k) >= 0 || p.id === cur)).sort((a, b) => a.name.localeCompare(b.name));
+  const opts = (k, cur) => { const L = people().filter(p => p.active !== false && (all || posHas(p, k) || p.id === cur)).sort((a, b) => a.name.localeCompare(b.name));
     return `<option value="">—</option>${L.map(p => `<option value="${p.id}" ${p.id === cur ? 'selected' : ''}>${esc(p.name)}</option>`).join('')}`; };
   const keep = () => { bg.querySelectorAll('[data-fk]').forEach(s => { const o = s.dataset.fb === 'duty' ? r : c; if (s.value) o[s.dataset.fk] = s.value; else delete o[s.dataset.fk]; }); const tr = bg.querySelector('#fdTr'); if (tr) { if (tr.value.trim()) c.trauma = tr.value.trim(); else delete c.trauma; } };
   const draw = () => { bg.innerHTML = `<div class="modal"><div class="mh"><div><b>✎ ${esc(dn)}</b><br><small>שינוי ידני בלוח${d < today ? ' · גם בדיעבד, למשל חילוף שהיה' : ''} · נשמר ונעול</small></div><button class="x" data-x="1" aria-label="סגירה">✕</button></div><div class="mb">
@@ -6315,7 +6318,7 @@ async function swapSheet(d, k, done) {
   // nights of others this month on the same board, from today on (or the whole month for a past day), that a can take and they can take d
   const others = Object.keys(B.days).filter(x => x !== d && x.slice(0, 7) === mo && (x >= today || d < today)).sort().reduce((o, x) => { KS.forEach(q => { const id = (B.days[x] || {})[q]; if (id && id !== a && (q === 'fm') === (k === 'fm')) o.push({ x, q, id }); }); return o; }, []);
   const ok = o => !busy(a, o.x) && !busy(o.id, d) && !lv(a, o.x) && !lv(o.id, d);
-  const pool = people().filter(p => p.active !== false && p.id !== a && (p.pos || []).indexOf(k) >= 0).sort((x, y) => x.name.localeCompare(y.name, 'he'));
+  const pool = people().filter(p => p.active !== false && p.id !== a && posHas(p, k)).sort((x, y) => x.name.localeCompare(y.name, 'he'));
   let tab = 'sw', q = '';
   const bg = document.createElement('div'); bg.className = 'mbg swq';
   const draw = () => {
