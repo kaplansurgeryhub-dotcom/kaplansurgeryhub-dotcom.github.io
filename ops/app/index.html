@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="ae8bcafcda19"><script>(function () {
+<head><meta name="ksh-ver" content="dc8f2bc92322"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -3085,7 +3085,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = 'ae8bcafcda19'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = 'dc8f2bc92322'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -3589,7 +3589,7 @@ function navMore() {
   if (!$('#navEd')) { const eb = document.createElement('button'); eb.id = 'navEd'; eb.className = 'navedb'; eb.title = 'סידור הסרגל העליון: סדר, הסתרה ל״עוד״ ושחזור'; eb.innerHTML = '✎ <span>סידור</span>'; nav.after(eb); eb.onclick = () => PHONE() ? nvSheet() : nvEdit(true); }
   nvApply(); if (!NV.rs) { NV.rs = 1; addEventListener('resize', () => { if (NV.ph !== null && NV.ph !== PHONE() && !NV.edit) nvApply(); }); }
   mb.onclick = () => { if (NV.edit) return; const bg = document.createElement('div'); bg.className = 'mbg nmbg'; const all = nvTabs(), rest = PHONE() ? all.slice(4) : all.filter(b => b.classList.contains('nvh'));
-    bg.innerHTML = `<div class="nms2">${rest.map((b, i) => `<button data-nm="${i}">${b.querySelector('svg') ? b.querySelector('svg').outerHTML : ''}<b>${esc((b.querySelector('span') || b).textContent)}</b></button>`).join('')}${S.me.pid ? `<button data-nm="me">${ICON.team || ''}<b>הפרופיל שלי</b></button>` : ''}<button data-nm="gd" class="nmed"><b>📘 המדריך שלי</b></button><button data-nm="ed" class="nmed"><b>✎ סידור הסרגל</b></button><button data-nm="out" class="nmout"><b>יציאה מהמכשיר</b></button><button data-nm="x" class="nmx">סגירה</button></div>`;
+    bg.innerHTML = `<div class="nms2">${rest.map((b, i) => `<button data-nm="${i}">${b.querySelector('svg') ? b.querySelector('svg').outerHTML : ''}<b>${esc((b.querySelector('span') || b).textContent)}</b></button>`).join('')}${S.me.pid && !all.some(b => b.dataset.v === 'me' || b.dataset.ptn === 'me') ? `<button data-nm="me">${ICON.team || ''}<b>הפרופיל שלי</b></button>` : ''}<button data-nm="gd" class="nmed"><b>📘 המדריך שלי</b></button><button data-nm="ed" class="nmed"><b>✎ סידור הסרגל</b></button><button data-nm="out" class="nmout"><b>יציאה מהמכשיר</b></button><button data-nm="x" class="nmx">סגירה</button></div>`;
     document.body.appendChild(bg); bg.onclick = e => { if (e.target === bg) bg.remove(); };
     bg.querySelectorAll('[data-nm]').forEach(x => x.onclick = () => { const k = x.dataset.nm; bg.remove(); if (k === 'x') return; if (k === 'gd') return guideOpen(myGuides(), S.me.name); if (k === 'ed') return PHONE() ? nvSheet() : nvEdit(true); if (k === 'me') return profileOpen(P(S.me.pid)); if (k === 'out') return $('#out').click(); rest[+k].click(); }); };
 }
