@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="8d095cdc3603"><script>(function () {
+<head><meta name="ksh-ver" content="6b7eed913368"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -30,7 +30,7 @@
       return function () {
         var a = Array.prototype.slice.call(arguments);
         var fail = function (e) {
-          if (e && (e.net || e.name === 'TypeError')) { bad++; if (!okOnce && bad >= 1 && !document.hidden && navigator.onLine !== false) try { parent.postMessage({ kop: 1, op: 'slow' }, location.origin); } catch (x) {} }
+          if (e && (e.net || e.name === 'TypeError')) { bad++; if (!okOnce && !window.KSH_SNAP && bad >= 1 && !document.hidden && navigator.onLine !== false) try { parent.postMessage({ kop: 1, op: 'slow' }, location.origin); } catch (x) {} }
           if (no) no(e, uo);
         };
         post(k, a).then(function (r) { if (ok) ok(r, uo); }, function (e) {
@@ -1642,7 +1642,7 @@ async function boot() {
   // Not in a preview and not on a refresh; requests ticked before the fresh data arrives are kept
   const snapOn = !PV && !A && !MINE && !EMB && !/[?&]dm=1/.test(QS_); let fromSnap = false;
   if (snapOn) { try { const sv = JSON.parse(localStorage.getItem(SNAP_K) || 'null');
-    if (sv && sv.v === 1 && sv.ws === WS && sv.ym === ym && Date.now() - sv.at < 7 * 864e5 && sv.A && sv.D) { A = sv.A; D = sv.D; fromSnap = true; bootApply(true, sv.so, sv.te); shell(); document.body.classList.add('snapping'); PERF_.snap = performance.now(); } } catch (e) { fromSnap = false; } }
+    if (sv && sv.v === 1 && sv.ws === WS && sv.ym === ym && Date.now() - sv.at < 7 * 864e5 && sv.A && sv.D) { A = sv.A; D = sv.D; fromSnap = true; window.KSH_SNAP = 1; bootApply(true, sv.so, sv.te); shell(); document.body.classList.add('snapping'); PERF_.snap = performance.now(); } } catch (e) { fromSnap = false; } }
   let A2, D2; try { [A2, D2] = await mainP; PERF_.boot = performance.now(); } catch (e) { if (fromSnap) { document.body.classList.remove('snapping');
     // a link that was replaced or removed does not keep showing the old copy; a passing network failure leaves the copy on the screen
     if (/קישור|לא תקין/.test((e && e.message) || '')) { try { localStorage.removeItem(SNAP_K); } catch (x) {} return fail(e); }

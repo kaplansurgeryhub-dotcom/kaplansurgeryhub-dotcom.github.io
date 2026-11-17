@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="8d095cdc3603"><script>(function () {
+<head><meta name="ksh-ver" content="6b7eed913368"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -30,7 +30,7 @@
       return function () {
         var a = Array.prototype.slice.call(arguments);
         var fail = function (e) {
-          if (e && (e.net || e.name === 'TypeError')) { bad++; if (!okOnce && bad >= 1 && !document.hidden && navigator.onLine !== false) try { parent.postMessage({ kop: 1, op: 'slow' }, location.origin); } catch (x) {} }
+          if (e && (e.net || e.name === 'TypeError')) { bad++; if (!okOnce && !window.KSH_SNAP && bad >= 1 && !document.hidden && navigator.onLine !== false) try { parent.postMessage({ kop: 1, op: 'slow' }, location.origin); } catch (x) {} }
           if (no) no(e, uo);
         };
         post(k, a).then(function (r) { if (ok) ok(r, uo); }, function (e) {
@@ -3089,7 +3089,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = '8d095cdc3603'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = '6b7eed913368'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -3177,6 +3177,8 @@ async function warm() {
 const INFL = {}, LOADAT = {};
 // 14/11/2026 (speed, 2): a key the server has nothing for (a board not made yet) is kept as null, so the page does not ask for it again on every drawing
 async function load(keys) {
+  // 17/11/2026 (backups): offline on the device copy: what the copy has is shown, what it lacks is empty, and nothing is asked of the server
+  if (S.offline) return keys.map(k => k in S.cache ? S.cache[k] : null);
   swr(keys);
   const need = keys.filter(k => !(k in S.cache) && !INFL[k]);
   if (need.length) { const C = S.cache, p = call('ops_get', S.code, need).then(r => { const t = Date.now(); need.forEach(k => { if (!(k in r)) r[k] = null; }); Object.keys(r).forEach(k => { LOADAT[k] = t; }); Object.assign(C, r); if (C !== S.cache) Object.keys(r).forEach(k => { if (!(k in S.cache)) S.cache[k] = r[k]; }); });
@@ -3338,6 +3340,10 @@ function snapQ() { const o = {}; if (!S.code) return o; Object.keys(CALL1).forEa
     if (a[0] !== S.code) return; a[0] = '\u0001'; o[k.slice(0, i) + '|' + JSON.stringify(a)] = e.v; }); return o; }
 function snapQPut(q, code) { Object.keys(q || {}).forEach(k => { if (!SNAP_Q.test(k)) return; const i = k.indexOf('|'); let a; try { a = JSON.parse(k.slice(i + 1)); } catch (x) { return; } if (a[0] !== '\u0001') return; a[0] = code;
     const kk = k.slice(0, i) + '|' + JSON.stringify(a); if (!CALL1[kk]) CALL1[kk] = { t: 1, p: Promise.resolve(q[k]), v: q[k], ok: 1 }; }); }
+// the bar of the offline copy: from when, and a button that tries again (a full reload)
+function offBar(at) { if (document.getElementById('offBar')) return; const d = new Date(at || Date.now()), t = d.toLocaleDateString('he-IL', { day: 'numeric', month: 'numeric' }) + ' ' + d.toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' });
+  document.body.insertAdjacentHTML('beforeend', '<div id="offBar" role="status" style="position:fixed;z-index:9999;left:50%;transform:translateX(-50%);bottom:calc(74px + env(safe-area-inset-bottom,0px));max-width:calc(100% - 24px);background:#A3402E;color:#fff;border-radius:14px;padding:9px 14px;font:700 13.5px Heebo,Arial,sans-serif;box-shadow:0 6px 20px rgba(0,0,0,.25);display:flex;gap:10px;align-items:center">⚠️ אין חיבור למערכת · מוצג העותק מ-' + t + '<button type="button" style="all:unset;cursor:pointer;background:#fff;color:#A3402E;border-radius:9px;padding:3px 10px">לנסות שוב</button></div>');
+  document.querySelector('#offBar button').onclick = () => location.reload(); }
 function snapSave() {
   if (!WR.env || S.fromSnap || S.preview || !S.data || !S.code) return; clearTimeout(S.snapT);
   S.snapT = setTimeout(() => { try { const d = Object.assign({}, S.data); delete d.users; delete d.inbox; delete d.fbc; d.people = (d.people || []).map(p => { const o = Object.assign({}, p); delete o.token; return o; }); const c = {}; Object.keys(S.cache || {}).filter(k => SNAP_K.test(k) || k === 'sides').forEach(k => { c[k] = S.cache[k]; });
@@ -3363,13 +3369,16 @@ async function start() {
   if (dev) {
     let snap = null; if (WR.env) { try { const v = ((await wrap('get', 'ops_snap', null, 4000)) || {}).v; snap = v ? JSON.parse(v) : null; } catch (e) { snap = null; } }
     let done; S.wait = new Promise(r => { done = r; });
-    if (snap && snap.d && snap.d.me) { S.data = snap.d; S.me = snap.d.me; S.cache = snap.c || {}; snapQPut(snap.q, ''); S.fromSnap = true; S.code = ''; S.view = 'home'; document.body.classList.add('snapping'); shell(); PERF_.snap = performance.now(); }
+    if (snap && snap.d && snap.d.me) { S.data = snap.d; S.me = snap.d.me; S.cache = snap.c || {}; snapQPut(snap.q, ''); S.fromSnap = true; window.KSH_SNAP = 1; S.code = ''; S.view = 'home'; document.body.classList.add('snapping'); shell(); PERF_.snap = performance.now(); }
     // a passing failure (network, a slow server) gets a second try; only a key the server does not know is dropped
     const devTry = async () => { try { const e0 = EARLY.devLogin && await EARLY.devLogin; EARLY.devLogin = null; if (e0 && e0.d === dev) { if (e0.e) throw e0.e; return e0.r; } return await call('ops_devLogin', dev); } catch (e) { if (/לא מזוהה|הוסר/.test(e.message || '')) throw e; await new Promise(r => setTimeout(r, 1500)); return call('ops_devLogin', dev); } };
     try { const r = await devTry(); PERF_.boot = performance.now(); S.code = r.code;
       if (S.fromSnap) { snapQPut(snap.q, S.code); S.data = r.boot; S.me = S.data.me; S.fromSnap = false; S.wait = null; done(); document.body.classList.remove('snapping'); const keep = S.cache; S.cache = {}; Object.keys(S.dirty || {}).forEach(k => { S.cache[k] = keep[k]; }); preMerge(); snapKeep(keep); bellPaint(); if (!document.querySelector('.mbg, .pfv')) await render(); snapSave(); return perfSend('dash', 'device'); }
       S.data = r.boot; S.me = S.data.me; S.wait = null; done(); shell(); return perfSend('dash', 'device'); }
-    catch (e) { S.wait = null; S.fromSnap = false; document.body.classList.remove('snapping'); done(); if (/לא מזוהה|הוסר/.test(e.message || '')) devSet(''); else return loginView('הכניסה המהירה לא הצליחה כרגע (' + (e.message || 'שגיאה') + '). אפשר לרענן או להיכנס עם הקוד'); }
+    catch (e) {
+      // 17/11/2026 (backups): the server does not answer and the device copy is on the screen: it stays, read only, with a bar that says from when
+      if (S.fromSnap && !/לא מזוהה|הוסר/.test(e.message || '')) { S.offline = true; S.wait = null; done(); document.body.classList.remove('snapping'); offBar(snap.at); return; }
+      S.wait = null; S.fromSnap = false; window.KSH_SNAP = 0; document.body.classList.remove('snapping'); done(); if (/לא מזוהה|הוסר/.test(e.message || '')) devSet(''); else return loginView('הכניסה המהירה לא הצליחה כרגע (' + (e.message || 'שגיאה') + '). אפשר לרענן או להיכנס עם הקוד'); }
   }
   S.code = lsGet('ops_code');
   if (!S.code) return loginView();

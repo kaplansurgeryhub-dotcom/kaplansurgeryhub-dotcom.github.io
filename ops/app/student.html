@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="8d095cdc3603"><script>(function () {
+<head><meta name="ksh-ver" content="6b7eed913368"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -30,7 +30,7 @@
       return function () {
         var a = Array.prototype.slice.call(arguments);
         var fail = function (e) {
-          if (e && (e.net || e.name === 'TypeError')) { bad++; if (!okOnce && bad >= 1 && !document.hidden && navigator.onLine !== false) try { parent.postMessage({ kop: 1, op: 'slow' }, location.origin); } catch (x) {} }
+          if (e && (e.net || e.name === 'TypeError')) { bad++; if (!okOnce && !window.KSH_SNAP && bad >= 1 && !document.hidden && navigator.onLine !== false) try { parent.postMessage({ kop: 1, op: 'slow' }, location.origin); } catch (x) {} }
           if (no) no(e, uo);
         };
         post(k, a).then(function (r) { if (ok) ok(r, uo); }, function (e) {
