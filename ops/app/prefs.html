@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="917ce83f22ea"><script>(function () {
+<head><meta name="ksh-ver" content="e435d63b7aad"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -4491,7 +4491,7 @@ function apmMount() {
   let TK = null, open = false, ed = null; const ST = { wait: ['ממתינה לאישור', ''], ok: ['אושרה · בחדר ההרצאות', 'ok'], no: ['לא אושרה', 'no'] };
   const tkE = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
   const load = () => google.script.run.withSuccessHandler(r => { TK = r; paint(); }).withFailureHandler(() => { TK = { mine: [], kinds: {} }; paint(); }).ops_meTalks(TOKEN);
-  function paint() { const b = document.getElementById('lTalk'); if (!b) return; if (!TK) { b.innerHTML = '<h3>הגשת הרצאה</h3><p class="cap">טוען…</p>'; return; }
+  function paint() { const b = document.getElementById('lTalk'); if (!b) return; if (TK && TK.off) { b.remove(); return; } if (!TK) { b.style.display = 'none'; return; } b.style.display = '';
     const x = ed || {}, K = TK.kinds || {};
     b.innerHTML = `<h3>הגשת הרצאה · M&M, ג׳ורנל, סמינר</h3><p class="cap">מכינים את המצגת ב-Google Slides או ב-Drive (או OneDrive), משתפים "כל מי שיש לו קישור", ומדביקים כאן. אחרי אישור היא מופיעה בתוכנית הלימודים ובחדר ההרצאות, ושם מציגים אותה.</p>
       ${open ? `<div class="tk-f"><div><label for="tkK">סוג</label><select id="tkK">${Object.keys(K).map(k => `<option value="${k}"${x.k === k ? ' selected' : ''}>${tkE(K[k])}</option>`).join('')}</select></div>
