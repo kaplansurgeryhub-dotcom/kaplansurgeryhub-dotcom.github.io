@@ -279,7 +279,7 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
     // decides on the server: the wrapper asks once (ops_route) and keeps the answer on the device, so the next opening goes straight to it.
     // A student (?s=) and a lecturer (?l=) have their own pages. The registration form, the lecture room and the TV stay on Google's page
     var off = Date.now() - (+(ls.get('fast_off') || 0)) < 600e3 /* 15/11/2026: ten minutes, not an hour */, PQ = new URLSearchParams(SRC);
-    var FAST = !off && !Q.get('legacy') && !PQ.get('j') && !PQ.get('tv') && !PQ.get('room');
+    var FAST = !off && !Q.get('legacy') && !PQ.get('j') && !PQ.get('tv') && !PQ.get('room') && !PQ.has('rp') && !PQ.has('rj');
     var page = function (kind) { if (PQ.get('s')) return 'student'; if (PQ.get('l')) return 'lecturer'; if (!PQ.get('p')) return 'index';
       if (kind === 'int') return 'intern'; if (kind === 'mgr' && !PQ.get('dm') && !PQ.get('pv') && !PQ.get('tab') && !PQ.get('chat')) return 'index'; return kind ? 'prefs' : ''; };
     var go = function (pg) {

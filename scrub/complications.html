@@ -624,5 +624,19 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   }
 })();
 </script><!--/BRANDJS-->
+<script>(function () {
+  var P = null;
+  function S() { return document.querySelectorAll('section.s'); }
+  function box() { var s = S(); return document.getElementById('deck') || (s[0] && s[0].parentElement); }
+  function idx() { var d = box(); return d && d.clientWidth ? Math.round(Math.abs(d.scrollLeft) / d.clientWidth) : 0; }
+  function rep() { if (!P) return; try { P.postMessage({ ksh: 'hallpos', i: idx(), n: S().length }, '*'); } catch (e) {} }
+  addEventListener('message', function (e) { var d = e.data || {}; if (d.ksh !== 'hall') return; P = e.source;
+    if (d.op === 'go') document.dispatchEvent(new KeyboardEvent('keydown', { key: d.d > 0 ? 'ArrowLeft' : 'ArrowRight', bubbles: true }));
+    if (d.op === 'to') { var s = S()[Math.max(0, Math.min(S().length - 1, +d.n || 0))]; if (s) s.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' }); }
+    setTimeout(rep, 700); });
+  var t = 0; addEventListener('scroll', function () { clearTimeout(t); t = setTimeout(rep, 350); }, true);
+  if (window.parent !== window) setTimeout(function () { P = window.parent; rep(); }, 1200);
+})();
+</script>
 </body>
 </html>

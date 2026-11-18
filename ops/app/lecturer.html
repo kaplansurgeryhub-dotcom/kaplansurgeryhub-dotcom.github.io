@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="1856e48f4f26"><script>(function () {
+<head><meta name="ksh-ver" content="1ceff8b6b3e3"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -1081,6 +1081,11 @@ body.kbon :is(.mbg,.sheetbg,.shbg,.crbg,.chbg,.k2bg,.nwpbg,.gdbg)>*{max-height:c
   document.addEventListener('focusin', e => { const t = e.target; if (!t || !t.matches || !t.matches(FIELD)) return; setTimeout(() => keep(t), 320); setTimeout(() => { if (document.activeElement === t) keep(t); }, 700); });
   window.addEventListener('resize', () => { const t = document.activeElement; if (t && t.matches && t.matches(FIELD)) setTimeout(() => keep(t), 120); });
 })();
+</script>
+<script>
+// חדר ההרצאות (18/11/2026): the phone remote for the lecture hall, once it is open to all lecturers
+google.script.run.withSuccessHandler(u => { if (!u) return; const a = document.createElement('a'); a.href = u; a.target = '_blank'; a.rel = 'noopener'; a.textContent = '🎤 חדר ההרצאות · השלט';
+  a.style.cssText = 'position:fixed;top:calc(10px + env(safe-area-inset-top));left:10px;z-index:50;background:#C9A257;color:#1D3047;font:800 13px Heebo,Arial;border-radius:999px;padding:8px 14px;text-decoration:none;box-shadow:0 6px 18px rgba(0,0,0,.25)'; document.body.appendChild(a); }).withFailureHandler(() => {}).ops_hallLink();
 </script>
 </body>
 </html>
