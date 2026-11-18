@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="6b7eed913368"><script>(function () {
+<head><meta name="ksh-ver" content="b85a916268e4"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -3089,7 +3089,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = '6b7eed913368'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = 'b85a916268e4'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -7230,16 +7230,17 @@ async function vCurr(m, who) {
 const LV = { mo: '', grp: '' };
 // every kind of absence, one icon each (10/11/2026, Dr. Gozani): vacation, a return day, sick leave, reserve duty, a course, conference or ceremony
 // 14/11/2026 (Dr. Gozani): the "not present" row. No red palm (it read as a cross): a tile in the reason's color with its sign, and one small legend line
-const AWK = { pd: ['🌙', 'אחרי תורנות'], vac: ['🕶️', 'חופשה'], ret: ['↩', 'יום החזר'], sick: ['🤒', 'מחלה'], edu: ['🎓', 'כנס / קורס'], oth: ['✎', 'אחר'] };
+const AWK = { pd: ['🌙', 'אחרי תורנות'], vac: ['🕶️', 'חופשה'], ret: ['↩', 'יום החזר'], sick: ['🤒', 'מחלה'], edu: ['🎓', 'קורס / השתלמות'], oth: ['✎', 'אחר'] };
 // 14/11/2026 (Dr. Gozani): a name put in the "not present" row must carry its reason, so it is documented and shown like every other absence
-const ABS_W = [['ret', 'יום החזר'], ['vac', 'חופשה'], ['sick', 'מחלה'], ['pd', 'אחרי תורנות'], ['oth', 'אחר']];
-const awAbsK = x => { const w = String((x && x.w) || ''); return !w ? '' : /החזר/.test(w) ? 'ret' : /חופש|נופש/.test(w) ? 'vac' : /מחל/.test(w) ? 'sick' : /תורנות/.test(w) ? 'pd' : 'oth'; };
+// 18/11/2026 (Dr. Gozani): a course or a training (ACLS, ATLS, a conference) is its own reason, with a graduation cap, not "other"
+const ABS_W = [['ret', 'יום החזר'], ['vac', 'חופשה'], ['sick', 'מחלה'], ['edu', 'קורס / השתלמות'], ['pd', 'אחרי תורנות'], ['oth', 'אחר']];
+const awAbsK = x => { const w = String((x && x.w) || ''); return !w ? '' : /החזר/.test(w) ? 'ret' : /חופש|נופש/.test(w) ? 'vac' : /מחל/.test(w) ? 'sick' : /קורס|השתלמ|כנס|ACLS|ATLS|BLS|PALS/i.test(w) ? 'edu' : /תורנות/.test(w) ? 'pd' : 'oth'; };
 const absTile = (x, cls, at) => `<span class="awt ${awAbsK(x)}${cls ? ' ' + cls : ''}"${at || ''} title="${esc(P(x.id).name + ' · ' + x.w)}"><i>${AWK[awAbsK(x)][0]}</i><b>${esc(P(x.id).name)}</b></span>`;
 // asks the reason of every name in ids; cancel takes them out of the row. No way around it: the sheet does not close on the backdrop
 function absAsk(d, ids, cb) {
   const pick = {}, bg = document.createElement('div'); bg.className = 'mbg absq';
   const draw = () => { const ok = ids.every(id => pick[id] && (pick[id] !== 'אחר' || (bg.querySelector('[data-awt="' + id + '"]') || {}).value));
-    bg.innerHTML = `<div class="modal"><div class="mh"><div><b>סיבת ההיעדרות</b><br><small>${DAYS[pd(d).getDay()]} ${dm(d)} · חובה לבחור, כדי שזה יתועד</small></div></div><div class="mb">${ids.map(id => `<div class="absr"><b>${esc(P(id).name)}</b><div class="absw">${ABS_W.map(([k, l]) => `<button type="button" class="awt ${k}${pick[id] === l ? ' on' : ''}" data-awp="${id}|${l}"><i>${AWK[k][0]}</i>${l}</button>`).join('')}</div>${pick[id] === 'אחר' ? `<input class="in" data-awt="${id}" placeholder="מה הסיבה? (למשל: כנס, מילואים, עניין אישי)" value="${esc(pick['t' + id] || '')}">` : ''}</div>`).join('')}</div>
+    bg.innerHTML = `<div class="modal"><div class="mh"><div><b>סיבת ההיעדרות</b><br><small>${DAYS[pd(d).getDay()]} ${dm(d)} · חובה לבחור, כדי שזה יתועד</small></div></div><div class="mb">${ids.map(id => `<div class="absr"><b>${esc(P(id).name)}</b><div class="absw">${ABS_W.map(([k, l]) => `<button type="button" class="awt ${k}${pick[id] === l ? ' on' : ''}" data-awp="${id}|${l}"><i>${AWK[k][0]}</i>${l}</button>`).join('')}</div>${pick[id] === 'אחר' ? `<input class="in" data-awt="${id}" placeholder="מה הסיבה? (למשל: מילואים, עניין אישי)" value="${esc(pick['t' + id] || '')}">` : ''}</div>`).join('')}</div>
       <div class="mf"><button class="btn primary" id="awOk" ${ok ? '' : 'disabled'}>שמירה</button><button class="btn" id="awNo">ביטול · לא לסמן</button></div></div>`;
     bg.querySelectorAll('[data-awp]').forEach(b => b.onclick = () => { const [id, l] = b.dataset.awp.split('|'); pick[id] = l; draw(); const t = bg.querySelector('[data-awt="' + id + '"]'); if (t) t.focus(); });
     bg.querySelectorAll('[data-awt]').forEach(t => t.oninput = () => { pick['t' + t.dataset.awt] = t.value; const b = bg.querySelector('#awOk'); b.disabled = !ids.every(id => pick[id] && (pick[id] !== 'אחר' || (pick['t' + id] || '').trim())); });
@@ -11491,7 +11492,7 @@ async function vMeHome(m) {
     <section class="me-c"><h3>⏭ בקרוב</h3>${up.slice(0, 6).map(q => `<div class="me-row"><b>${DAYS[pd(q.d).getDay()]} ${dm(q.d)}</b><div class="me-pos">${q.call ? '📞' : q.k === 'fm' ? '☀' : '🌙'} ${esc(q.l)}</div></div>`).join('') || '<p class="cap">אין תורנויות או כוננויות קרובות בלוחות שפורסמו</p>'}
      ${lv.length ? `<h3 style="margin-top:12px;font-size:15px">🏖 חופשות מתוכננות</h3>${lv.map(l => `<div class="me-row"><b>${dm(l.f)}${l.t && l.t !== l.f ? '–' + dm(l.t) : ''}</b><div>${esc(l.w || 'חופשה')}</div></div>`).join('')}` : ''}</section>
     ${sen && typeof sbForm === 'function' ? (() => { const L = [sunday(today), add(sunday(today), 7)].flatMap(w => ((S.cache['orsb:' + w] || {}).list || [])).filter(x => x.pid === p.id && x.d >= today);
-      return `<section class="me-c me-sb"><h3>🤝 ניתוח משולב עם דיסציפלינה אחרת</h3><p class="cap" style="margin:0 0 8px">סטנדביי לעזרה למחלקה אחרת בחדר ניתוח. מופיע מיד בחדרי הניתוח, ומי שמשבץ יראה שאת/ה עסוק/ה</p>${L.map(x => `<div class="sbroom" data-mesb="${esc(x.id)}" data-sbd="${x.d}"><div class="sbh"><b>${DAYS[pd(x.d).getDay()]} ${dm(x.d)} · ${esc(x.disc)}</b><span>${esc(x.from)}–${esc(x.to)}</span></div>${x.t ? `<div class="sbn">${esc(x.t)}</div>` : ''}</div>`).join('')}<button class="btn sm" id="meSbAdd" style="margin-top:6px">＋ ניתוח משולב חדש</button></section>`; })() : ''}
+      return `<section class="me-c me-sb"><h3>🤝 ניתוח משולב עם דיסציפלינה אחרת</h3><p class="cap" style="margin:0 0 8px">סטנדביי לעזרה למחלקה אחרת בחדר ניתוח. מופיע מיד בחדרי הניתוח ומי שמשבץ יראה שאת/ה עסוק/ה</p>${L.map(x => `<div class="sbroom" data-mesb="${esc(x.id)}" data-sbd="${x.d}"><div class="sbh"><b>${DAYS[pd(x.d).getDay()]} ${dm(x.d)} · ${esc(x.disc)}</b><span>${esc(x.from)}–${esc(x.to)}</span></div>${x.t ? `<div class="sbn">${esc(x.t)}</div>` : ''}</div>`).join('')}<button class="btn sm" id="meSbAdd" style="margin-top:6px">＋ ניתוח משולב חדש</button></section>`; })() : ''}
     <section class="me-c"><h3>⚡ קיצורים</h3><div class="me-go">${go2.map(([v, ic, l, s]) => `<button data-mgo="${v}"><b>${ic} ${l}</b><small>${esc(s)}</small></button>`).join('')}</div></section>
    </div></div></div>`;
   m.querySelectorAll('[data-mw]').forEach(b => b.onclick = () => { ME.wk = +b.dataset.mw === 0 ? 0 : ME.wk + +b.dataset.mw; vMeHome(m); });

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="6b7eed913368"><script>(function () {
+<head><meta name="ksh-ver" content="b85a916268e4"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -1923,7 +1923,7 @@ function mornCard(d, isToday, nx) {
 }
 function sbHomeCard() {
   const L = Object.keys(A.sb || {}).flatMap(w => A.sb[w] || []).filter(x => x.pid === A.me.id && x.d >= TODAY).sort((a, b) => (a.d + a.from).localeCompare(b.d + b.from));
-  return `<section class="hcard msb"><div class="hch"><h3>🤝 ניתוח משולב עם דיסציפלינה אחרת</h3><small class="cap">סטנדביי לעזרה למחלקה אחרת בחדר ניתוח. מופיע מיד בחדרי הניתוח, ומי שמשבץ יראה שאת/ה עסוק/ה</small></div>${L.map(x => `<div class="gt sbt" data-sbme="${esc(x.id)}" data-sbd="${x.d}"><div class="goh"><b>${DAYS[pd(x.d).getDay()]} ${dm(x.d)} · ${esc(x.disc)}</b><em>${esc(x.from)}–${esc(x.to)}</em></div>${x.t ? `<div class="sbn">${esc(x.t)}</div>` : ''}</div>`).join('')}<button class="btn" id="sbMeAdd" style="margin-top:8px">＋ ניתוח משולב חדש</button></section>`;
+  return `<section class="hcard msb"><div class="hch"><h3>🤝 ניתוח משולב עם דיסציפלינה אחרת</h3><small class="cap">סטנדביי לעזרה למחלקה אחרת בחדר ניתוח. מופיע מיד בחדרי הניתוח ומי שמשבץ יראה שאת/ה עסוק/ה</small></div>${L.map(x => `<div class="gt sbt" data-sbme="${esc(x.id)}" data-sbd="${x.d}"><div class="goh"><b>${DAYS[pd(x.d).getDay()]} ${dm(x.d)} · ${esc(x.disc)}</b><em>${esc(x.from)}–${esc(x.to)}</em></div>${x.t ? `<div class="sbn">${esc(x.t)}</div>` : ''}</div>`).join('')}<button class="btn" id="sbMeAdd" style="margin-top:8px">＋ ניתוח משולב חדש</button></section>`;
 }
 const SB_DISC = ['גינקולוגיה', 'אורולוגיה', 'כלי דם', 'חזה', 'אורתופדיה', 'פלסטיקה', 'אחר'];
 function sbMeForm(r) {
