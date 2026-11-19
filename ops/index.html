@@ -107,7 +107,13 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
   var frame = null, frameOrigin = '', unlocked = true, waiting = [];
 
   // keep the address this app was opened with, so a tapped notification opens the same app (personal or managers')
-  try { if ('caches' in window) caches.open('ksh').then(function (c) { return c.put('start', new Response(SRC)); }); } catch (e) {}
+  // 19/11/2026 (Dr. Gozani: Dr. Roy's app always opened on the requests): a link with &tab= (the requests reminder) opens that tab once.
+  // The address saved for the home screen and for a tapped notification is the same link without it, and the address bar drops it at once,
+  // so "add to home screen" never keeps it. An app opened from the home screen with an old saved &tab= opens on the home screen
+  var CLEAN = (function () { var q = new URLSearchParams(SRC); q.delete('tab'); q.delete('via'); var s = q.toString(); return s ? '?' + s : ''; })();
+  if (STANDALONE) SRC = CLEAN;
+  try { if (Q.get('p') && Q.get('tab') && CLEAN !== location.search) history.replaceState(null, '', location.pathname + CLEAN + location.hash); } catch (e) {}
+  try { if ('caches' in window) caches.open('ksh').then(function (c) { return c.put('start', new Response(CLEAN)); }); } catch (e) {}
 
   var b64 = function (buf) { var s = '', a = new Uint8Array(buf); for (var i = 0; i < a.length; i++) s += String.fromCharCode(a[i]); return btoa(s).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); };
   var unb64 = function (s) { s = s.replace(/-/g, '+').replace(/_/g, '/'); while (s.length % 4) s += '='; var b = atob(s), a = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) a[i] = b.charCodeAt(i); return a.buffer; };

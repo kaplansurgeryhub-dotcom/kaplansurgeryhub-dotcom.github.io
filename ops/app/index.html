@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="e435d63b7aad"><script>(function () {
+<head><meta name="ksh-ver" content="75c8c81700c9"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -368,6 +368,13 @@ html.wkmono body #board .pqb,html.wkmono body #board .pqb.n,html.wkmono body #bo
 html .mgc>i.av,html.ui2 .mgc>i.av{color:#fff}
 html.ui2 .seg button.on small{color:#E6DCCB;opacity:.85}
 html.ui2 .tcsec em{color:color-mix(in srgb,var(--rc) 62%,#000)}
+
+html.ui2.ui2 .yr i{color:#5E6E68}html.ui2.ui2 .pl-0{color:#6B7570}html.ui2.ui2 .tp em{color:#6B7570}html.ui2.ui2 .sadd{color:#5E6E68}
+html.ui2.ui2 .cutl span{color:color-mix(in srgb,var(--cc) 62%,#000)}html.ui2.ui2 .att1 .none{color:#6E6256}
+html.ui2.ui2 .orr-pp{background:#fff;border-color:#E2D6C2}html.ui2.ui2 .orr-pp b{color:#152334}html.ui2.ui2 .orr-pp small{color:#256D44;font-weight:700}html.ui2.ui2 .orr-pp button{color:#152334}
+html.ui2.ui2 .addroom{color:#7C6337}
+html.ui2.ui2 .card.evc{background:#1D3A5C!important;border-color:#1D3A5C!important;color:#fff}html.ui2.ui2 .card.now{color:var(--ink)}html.ui2.ui2 .card.now small,html.ui2.ui2 .card.now .cap{color:var(--muted)}html.ui2.ui2 .card.now b,html.ui2.ui2 .card.now h2,html.ui2.ui2 .card.now h3{color:var(--ink)}
+html.ui2.ui2 .card.rcon{background:#1C2D44!important;border-color:#1C2D44!important;color:#fff}
 </style>
 <script>(function () {
   /* the new look is the only look (7/11/2026, Dr. Gozani): no switch, no per-device choice */
@@ -3078,7 +3085,7 @@ const can = k => { if (S.me && S.me.role === 'chief' && /^week(:[0-9-]+)?$/.test
 const PV_BLOCK = /^ops_(sbSave|sbDel|inbSeen|pa(Save|Cfg|Add|BookSave|FbSave)|prefManual|rosterSw|caseNote|gear(Ack|Close|Clr|Post|Prep|ProtSave|Save|Seen|Send)|orRoomSave|oraSave|orTerm(Add|Set)|spSave|equipPhoto|acadDecide|acadPub|acadRevAct|scNoteDone|tosOk|food(Do|Push)|set|leaves|leaveReq(?!s$)|leaveDecide|leaveReqDel|notify|notifDel|save|person|photo(Save|Me|Mine)|pushReg|pushOff|devToken|devForget|devClear|profileMe|profileMine)/;
 // a call that may change something forgets the reads remembered by call1 (the final board's extra rows, the food, the log)
 // 14/11/2026 (night review): ops_pubState reads only; it was missing here, so every visit to the final board emptied CALL1 and the board waited for the server again
-const CALL_READ = /^ops_(?:inbox|fbCount|fbMine|devLogin|tokenLogin|perf|leaveReqs|paBoot|resAll|get|boot|food|log|interns|intFinal|paFinal|hrGet|tos|tosList|gearBoot|prefsAll|resAll|intBoot|intMonitor|activity|newsFresh|newsList|needsSetup|invInfo|archIndex|archGet|pubState|oraBoot|orLive)$/;
+const CALL_READ = /^ops_(?:inbox|fbCount|fbMine|devLogin|tokenLogin|perf|leaveReqs|paBoot|resAll|get|boot|food|log|interns|intFinal|paFinal|hrGet|tos|tosList|gearBoot|prefsAll|resAll|intBoot|intMonitor|activity|newsFresh|newsList|needsSetup|invInfo|archIndex|archGet|pubState|oraBoot|orLive|ownerBox)$/;
 // 13/11/2026 (speed): calls the first screen does not need wait until it is drawn (or 7 s at most), so the sign-in and the home's own data
 // are not queued behind them on a phone right after opening
 const CALL_LATER = /^ops_(?:food|log|tos|gearBoot|fbMine|newsFresh|newsList|activity)$/; let CALL_GATE = 0; const CALL_GQ = [];
@@ -3089,7 +3096,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = 'e435d63b7aad'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = '75c8c81700c9'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achall|achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -3331,7 +3338,8 @@ async function rememberDevice(code) { try { devSet(await call('ops_devToken', co
 // a copy of the last screens in the wrapper (no codes, no users): the app opens on it at once and refreshes behind it
 // 14/11/2026 (speed, 2): and the doctors' requests for the boards' months (prefs:), which every board waits for when it is first opened,
 // and what the home itself waited for on every opening: the ticker, the curriculum and academy plan of the month, the OR's equipment list
-const SNAP_K = /^(week|duty|oncall|stud|meet|prefs|curr|acplan):|^(notes:ticker|or:equip)$/;
+// 19/11/2026: and the OR standby of the week (orsb:), which the home waits for since 16/11
+const SNAP_K = /^(week|duty|oncall|stud|meet|prefs|curr|acplan|orsb):|^(notes:ticker|or:equip)$/;
 // 14/11/2026 (speed, 3): the answers the final board and the leave requests wait for on their first visit (the publish state, the interns'
 // and PAs' nights, the requests) go into the device copy too, so those screens draw at once on the next opening and refresh behind it.
 // The code is never kept: it is replaced by a mark and put back after the sign-in (and an empty code while the copy is shown, which call() fills in)
@@ -7302,7 +7310,7 @@ async function vLeaves(m, who) {
     ${['director', 'secretary', 'owner', 'deputy', 'chief'].indexOf(r) >= 0 ? `<button class="btn primary" id="lvNew">＋ ${isCh ? 'בקשת חופשה' : 'חופשה'}</button>` : ''}</div>
    <div class="lvcal">${DS.map(x => `<div class="lvdh">${x}</div>`).join('')}${'<div class="lvd e"></div>'.repeat(first)}${dates.map(d => { const a = onD(d), q = qD(d), dw = pd(d).getDay();
      return `<div class="lvd${dw >= 5 ? ' we' : ''}${holCls(d)}${d === today ? ' now' : ''}${d < today ? ' past' : ''}" data-ld="${d}" data-day="${d}"><b>${+d.slice(8)}</b>${orDayTag(d, 1)}${a.map(p => { const k = lvKind(leaveOf(p.id, d).w); return `<span class="lvc pc" style="--pc:${pcol(p.id)}" data-lp="${p.id}|${d}" data-pid="${p.id}" title="${esc(leaveOf(p.id, d).w || 'חופשה')}">${k[0]} ${esc(p.name)}</span>`; }).join('')}${q.map(x => `<span class="lvc q" style="--rc:${ROLE_COL[P(x.pid).role] || '#8A6416'}" title="בקשה בטיפול · ממתינה לאישור מנהל המערך">⏳ ${esc(P(x.pid).name)}</span>`).join('')}</div>`; }).join('')}</div>
-   <details class="hintx"><summary>ℹ️ איך זה עובד</summary><p>בקשה שנשלחה מסומנת לכל המנהלים בקו מקווקו, עם השם והימים. את הסוג והפרטים רואה רק מנהל המערך, והוא מאשר. חופשה מאושרת מסומנת בצבע מלא. חופשה מאושרת נכנסת לבד לתוכנית השבועית ("לא נמצא/ת") ולוחות התורנויות והכוננויות לא משבצים אותו/ה בימים האלה.</p></details>
+   <details class="hintx"><summary>ℹ️ איך זה עובד</summary><p>בקשה שנשלחה מסומנת לכל המנהלים בקו מקווקו, עם השם והימים. את הסוג והפרטים רואה ומאשר רק מנהל המערך. חופשה מאושרת מסומנת בצבע מלא. חופשה מאושרת נכנסת לבד לתוכנית השבועית ("לא נמצא/ת") ולוחות התורנויות והכוננויות לא משבצים אותו/ה בימים האלה.</p></details>
   </div><aside class="lvs">
    <div class="lvart"><img src="${ART.bowel}" alt="" onerror="this.remove()"><span>${esc(monthName(mo))}<b>${lvList.length}</b><small>חופשות בחודש</small></span></div>
    ${desk ? '' : `<section class="tday"><div class="tdh"><b>${boss ? 'בקשות לאישור' : 'הבקשות'}</b><span>${wait.length}</span></div>${wait.length ? wait.map(qRow).join('') : '<p class="cap">אין בקשות ממתינות</p>'}</section>`}
@@ -9410,7 +9418,7 @@ function pwGate(first) {
 async function tosAdmin(m) {
   const box = document.createElement('section'); box.className = 'card tosadm'; m.appendChild(box);
   let L = null; try { L = await call('ops_tosList', S.code); } catch (e) { box.remove(); return; }
-  box.innerHTML = `<h3 style="margin:0 0 4px">📜 תנאי שימוש · גרסה ${esc(L.v)}</h3><p class="cap">${L.live ? `✓ פעיל: כל איש צוות מאשר בכניסה. אישרו את הגרסה הנוכחית: ${L.list.filter(x => x.cur).length}` : '⏸ כבוי: אף אחד לא נשאל ולא נחסם. ההפעלה אחרי שד״ר גוזני מאשר את הנוסח (script property TOS_LIVE = 1)'}</p><button class="btn sm" id="tosPv">👁 תצוגה מקדימה של החלון</button>`;
+  box.innerHTML = `<h3 style="margin:0 0 4px">📜 תנאי שימוש · גרסה ${esc(L.v)}</h3><p class="cap">${L.live ? `✓ פעיל: כל איש צוות מאשר בכניסה. אישרו את הגרסה הנוכחית: ${L.list.filter(x => x.cur).length}` : '⏸ כבוי: אף אחד לא נשאל ולא נחסם. ההפעלה אחרי שד״ר גוזני מאשר את הנוסח'}</p><button class="btn sm" id="tosPv">👁 תצוגה מקדימה של החלון</button>`;
   box.querySelector('#tosPv').onclick = async () => { try { tosShow(await call('ops_tosPreview', S.code), S.me.name, null); } catch (e) { toast(e.message); } };
 }
 </script>
@@ -9610,7 +9618,7 @@ async function vScMg(m) {
   m.innerHTML = `${scHero(r, 'ניהול הסבב')}<div class="mgk pk4">${kp(decks.length, 'מפגשים עם מצגת')}${kp(decks.filter(x => lecOf(x.id).length).length, 'שובצו מרצים')}${kp(decks.filter(FL.rv).length, 'בבדיקה')}${kp(decks.filter(FL.ok).length, 'אושר')}${kp(st.pub, 'אצל הסטודנטים')}${kp(st.open, 'הערות פתוחות')}</div>
    ${mgInbox(decks, own)}${mgWeek(r, decks, W)}${mgLectBoard(LL, own)}
    <section class="card"><div class="sxhd"><b>🗂 המצגות: שיבוץ מרצים וסטטוס</b><small>${L.length} מתוך ${decks.length}</small></div>
-    <details class="hintx"><summary>ℹ️ איך זה עובד</summary><p>${own ? 'המצגות לפי סדר הסבב. בעמודה "שיבוץ מרצה" בוחרים מרצה אחד או כמה לכל מצגת. הסטטוס מתעדכן לבד מהמרצים (בבדיקה עד שכולם אישרו), ואפשר לקבוע אותו ביד. לחיצה על השורה פותחת את המפגש: מטרות, קריאה, הכנה לשיעור, המצגת, דגשים למרצה, הערות וקבצים. לסטודנטים מגיעה רק ההכנה לשיעור של מפגש שפורסם, והמצגת המלאה מוצגת רק בשיעור.' : 'לחיצה על שורה פותחת את המפגש: מטרות, קריאה, מצגת, הערות וקבצים. האישור והפרסום אצל ד״ר גוזני וד״ר וואכטל.'}</p></details>
+    <details class="hintx"><summary>ℹ️ איך זה עובד</summary><p>${own ? 'המצגות לפי סדר הסבב. בעמודה "שיבוץ מרצה" בוחרים מרצה אחד או כמה לכל מצגת. הסטטוס מתעדכן לבד מהמרצים (בבדיקה עד שכולם אישרו) ואפשר לקבוע אותו ביד. לחיצה על השורה פותחת את המפגש: מטרות, קריאה, הכנה לשיעור, המצגת, דגשים למרצה, הערות וקבצים. לסטודנטים מגיעה רק ההכנה לשיעור של מפגש שפורסם והמצגת המלאה מוצגת רק בשיעור.' : 'לחיצה על שורה פותחת את המפגש: מטרות, קריאה, מצגת, הערות וקבצים. האישור והפרסום אצל ד״ר גוזני וד״ר וואכטל.'}</p></details>
     <div class="seg mgf">${Object.keys(MG2_F).map(k => `<button data-mgf="${k}" class="${G.f === k ? 'on' : ''}">${MG2_F[k]}</button>`).join('')}</div>
     <div class="mgf2">${discSel('mgD', G.d, 1)}<input class="in" id="mgQ" placeholder="חיפוש מפגש" value="${esc(G.q)}"></div>
     ${own ? `<div class="mgbar${n ? ' on' : ''}" role="toolbar" aria-label="פעולות על כמה מפגשים"><label class="mgall"><input type="checkbox" id="mgAll" ${L.length && L.every(x => G.sel[x.id]) ? 'checked' : ''}> כל ${L.length} המוצגים</label><span class="mgn">${n ? `נבחרו <b>${n}</b> מפגשים. מה לעשות איתם?` : 'מסמנים ☐ ליד מפגשים ובוחרים פעולה אחת לכולם'}</span><span class="spacer"></span>
@@ -12790,6 +12798,8 @@ function td4Fit(m) { const L = Array.from((m || document).querySelectorAll('.td4
   L.forEach((b, i) => { if (R2[i]) { const f = parseFloat(b.style.fontSize); if (f > 9) b.style.fontSize = Math.max(9, f - 1) + 'px'; } }); }
 // 12/11/2026 (Dr. Gozani): the night cards show the display name as it is known in the department, without ד״ר: a full name did not fit on a phone
 const td4Pill = (id, role, col) => { const p = P(id); if (p.name === '?') return ''; const t = td2Tel(p); return `<div class="td4-n" style="--c:${col}">${av(p)}<span><small>${esc(role)}</small><b title="${esc(drName(p))}">${esc(dropDr(p.name))}</b></span>${t ? `<a class="td4-tel" href="tel:${t}" title="חיוג ל${esc(p.name)}" aria-label="חיוג ל${esc(p.name)}" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5h2.6l1.5 4.1-2 1.4a12 12 0 0 0 6.3 6.3l1.4-2 4.1 1.5v2.6a2 2 0 0 1-2.1 2A16.5 16.5 0 0 1 4.6 5.6a2 2 0 0 1 2-2.1z"/></svg></a>` : ''}</div>`; };
+// the hour the home goes by (a ?time=HH:MM in the mock, for tests)
+const td4H = () => { const q = new URLSearchParams(location.search).get('time'); if (q && /^\d{1,2}:\d\d$/.test(q)) return +q.split(':')[0] + (+q.split(':')[1]) / 60; const n = new Date(); return n.getHours() + n.getMinutes() / 60; };
 const td4Clock = () => { const n = new Date(); return String(n.getHours()).padStart(2, '0') + ':' + String(n.getMinutes()).padStart(2, '0'); };
 const td4Date = d => `יום ${DAYS[pd(d).getDay()]} · ${+d.slice(8)} ב${MONTHS[+d.slice(5, 7) - 1]} ${d.slice(0, 4)}`;
 // ---------- v5 (6/11/2026, Dr. Gozani): a balanced board under the banner, as much as possible on one screen ----------
@@ -12999,15 +13009,15 @@ async function vToday(m, who, keep) {
   const rn = S.rn, live = () => m.isConnected && S.rn === rn;
   who = who || (S.me.role === 'owner' ? 'owner' : MY_DESK[S.me.role] || S.me.role);
   vToday.last = { m, who };
-  const d = td2Day(), ws = sunday(d), we = pd(d).getDay() >= 5, isT = d === today, late = isT && !we && new Date().getHours() >= 17;
+  const d = td2Day(), ws = sunday(d), we = pd(d).getDay() >= 5, isT = d === today, late = isT && !we && td4H() >= 17;
   // the board's days: who is where follows the weekend; the rooms, the schedule and the line also move on after hours
   const wd = we || late ? td5Next(d) : d, pdy = we || late ? td5Next(d) : d, wsW = sunday(wd), wsP = sunday(pdy), wkS = we ? sunday(td5Next(d)) : ws;
   const ms = [...new Set([monthOf(d), monthOf(add(d, -1)), monthOf(pdy)])];
   try { await load([...new Set(['week:' + ws, 'week:' + wsW, 'week:' + wsP, 'week:' + wkS, 'stud:' + wsP, 'stud:' + wkS, 'orsb:' + wsP])].concat(['or:equip'], ms.map(x => 'duty:' + x), ms.map(x => 'oncall:' + x))); } catch (e) {}
   if (!live()) return;
   const WK = x => weekFill(S.cache['week:' + x] || weekDefaults(x), x);
-  // before 07:00 the night that is still running is the one that started yesterday (as in the doctors' app, nightD)
-  const nd = isT && new Date().getHours() < 7 ? add(d, -1) : d;
+  // before 06:00 the night that is still running is the one that started yesterday (as in the doctors' app, nightD); from 06:00 today's duty (19/11/2026, Dr. Gozani)
+  const nd = isT && td4H() < 6 ? add(d, -1) : d;
   const W = WK(ws), y = dutyDay(nd), c = callDay(nd), w = wingOf(d, S.cache['duty:' + monthOf(d)]), wn = wingName(w);
   const DW = (WK(wsW).days || {})[wd] || {}, DP = (WK(wsP).days || {})[pdy] || {};
   const rooms = (DP.or || []).filter(r => (r.ids || []).length || (r.proc || []).length), away = awayPost(wd), abs = absShow(DW.abs, wd), stud = (((S.cache['stud:' + wsP] || {}).items) || []).filter(x => x.d === pdy);

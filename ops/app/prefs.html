@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="e435d63b7aad"><script>(function () {
+<head><meta name="ksh-ver" content="75c8c81700c9"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -366,6 +366,13 @@ html.wkmono body #board .pqb,html.wkmono body #board .pqb.n,html.wkmono body #bo
 html .mgc>i.av,html.ui2 .mgc>i.av{color:#fff}
 html.ui2 .seg button.on small{color:#E6DCCB;opacity:.85}
 html.ui2 .tcsec em{color:color-mix(in srgb,var(--rc) 62%,#000)}
+
+html.ui2.ui2 .yr i{color:#5E6E68}html.ui2.ui2 .pl-0{color:#6B7570}html.ui2.ui2 .tp em{color:#6B7570}html.ui2.ui2 .sadd{color:#5E6E68}
+html.ui2.ui2 .cutl span{color:color-mix(in srgb,var(--cc) 62%,#000)}html.ui2.ui2 .att1 .none{color:#6E6256}
+html.ui2.ui2 .orr-pp{background:#fff;border-color:#E2D6C2}html.ui2.ui2 .orr-pp b{color:#152334}html.ui2.ui2 .orr-pp small{color:#256D44;font-weight:700}html.ui2.ui2 .orr-pp button{color:#152334}
+html.ui2.ui2 .addroom{color:#7C6337}
+html.ui2.ui2 .card.evc{background:#1D3A5C!important;border-color:#1D3A5C!important;color:#fff}html.ui2.ui2 .card.now{color:var(--ink)}html.ui2.ui2 .card.now small,html.ui2.ui2 .card.now .cap{color:var(--muted)}html.ui2.ui2 .card.now b,html.ui2.ui2 .card.now h2,html.ui2.ui2 .card.now h3{color:var(--ink)}
+html.ui2.ui2 .card.rcon{background:#1C2D44!important;border-color:#1C2D44!important;color:#fff}
 </style>
 <script>(function () {
   /* the new look is the only look (7/11/2026, Dr. Gozani): no switch, no per-device choice */
@@ -1917,7 +1924,7 @@ function deptTicker() {
   if (!it.length) return ''; const row = it.map(([a, b]) => `<span><i>${a}</i>${esc(b)}</span>`).join('');
   return `<div class="tick"><b>מה קורה במערך</b><div class="tkw"><div class="tkr" style="animation-duration:${Math.max(28, it.length * 8)}s">${row}${row}</div></div></div>`;
 }
-// the home changes with the hour (9/11/2026, Dr. Gozani): 07:00–16:00 the department today first (a slim line for where I am),
+// the home changes with the hour (9/11/2026, Dr. Gozani; 06:00 since 19/11): 06:00–16:00 the department today first (a slim line for where I am),
 // from 16:00, at night and on the weekend the night's duty stands out and a card says when tomorrow morning starts and what is on
 const nowH = () => { const q = new URLSearchParams(QS_).get('time'); if (q && /^\d{1,2}:\d\d$/.test(q)) return +q.split(':')[0] + (+q.split(':')[1]) / 60; const n = new Date(); return n.getHours() + n.getMinutes() / 60; };
 const nextWork = d => { let x = d; for (let i = 0; i < 7 && pd(x).getDay() >= 5; i++) x = add(x, 1); return x; };
@@ -1977,7 +1984,8 @@ function vHome() {
   const orR0 = D0 => (D0.or || []).filter(r => (r.ids || []).length || (r.proc || []).length), orR = orR0(D);
   const absL0 = (d, D0) => postCall(d).concat((D0.abs || []).map(x => x.id)).filter(id => P(id).role !== 'extern'), absL = absL0(t, D), absN = absL.length;
   // the home screen (1/11/2026, Dr. Gozani): short and to the point; a clean banner, where I am today and my next duty, the department today (attending, tonight's duty row, every place), a few numbers. The rest lives in its own page. The same for every doctor, phone and computer
-  const hr = nowH(), eve = we || hr >= 16 || hr < 7, md = hr < 7 && !we ? t : nextWork(add(t, 1)), nightD = hr < 7 ? add(t, -1) : t;
+  // 19/11/2026 (Dr. Gozani): until 06:00 the night that is running and the coming day below; from 06:00 today's duty and today in the department
+  const hr = nowH(), eve = we || hr >= 16 || hr < 6, md = hr < 6 && !we ? t : nextWork(add(t, 1)), nightD = hr < 6 ? add(t, -1) : t;
   // 18/11/2026 (Dr. Gozani): from 16:00 (and at the weekend) the department card shows the next working day, and says so
   const dd = eve ? md : t, tmr = dd !== t, DD = tmr ? (dayOf(dd) || {}) : D, ddT = add(t, 1) === dd ? 'מחר במערך' : 'ביום ' + DAYS[pd(dd).getDay()] + ' במערך';
   const att = appAtt(sunday(dd), 'hm'), night = heroMsg(nightD), nightSec = night ? `<section class="hnsec${eve ? ' big' : ''}"><div class="hnbar">${night}</div></section>` : '';
@@ -2632,8 +2640,10 @@ async function softRefresh() {
 installRefresh(softRefresh);
 // after midnight (Dr. Gozani, 10/11/2026): the app left open since yesterday moves to the new day by itself (today was fixed when the page loaded).
 // Checked every minute and whenever the app comes back to the screen; waits while a sheet is open, a field is being typed in or requests are not sent yet
-async function dayRoll() { if (/[?&]today=/.test(QS_) || document.hidden || !A) return; const t = iso(new Date()); if (t === TODAY) return;
+const hrBand = () => { const h = new Date().getHours(); return h < 6 ? 0 : h < 16 ? 1 : 2; }; let HRB = hrBand();
+async function dayRoll() { if (/[?&]today=/.test(QS_) || document.hidden || !A) return; const t = iso(new Date()), hb = hrBand(); if (t === TODAY && hb === HRB) return;
   const ae = document.activeElement; if (document.querySelector('.mbg, .sheetbg:not(.pfgate)') || (ae && ae.closest && ae.closest('input, textarea, select, [contenteditable]')) || dirty) return;
+  HRB = hb; if (t === TODAY) { try { await softRefresh(); } catch (e) {} return; }
   const nx = d => new Date(d + 'T12:00:00').getDay() >= 5, oW = nx(TODAY) ? add(sunday(TODAY), 7) : sunday(TODAY), oS = nx(TODAY) ? oW : TODAY; TODAY = t;
   if (WS === oW) WS = nx(t) ? add(sunday(t), 7) : sunday(t); if (SEL === oS) SEL = nx(t) ? add(sunday(t), 7) : t;
   try { await softRefresh(); } catch (e) {} }
@@ -4493,7 +4503,7 @@ function apmMount() {
   const load = () => google.script.run.withSuccessHandler(r => { TK = r; paint(); }).withFailureHandler(() => { TK = { mine: [], kinds: {} }; paint(); }).ops_meTalks(TOKEN);
   function paint() { const b = document.getElementById('lTalk'); if (!b) return; if (TK && TK.off) { b.remove(); return; } if (!TK) { b.style.display = 'none'; return; } b.style.display = '';
     const x = ed || {}, K = TK.kinds || {};
-    b.innerHTML = `<h3>הגשת הרצאה · M&M, ג׳ורנל, סמינר</h3><p class="cap">מכינים את המצגת ב-Google Slides או ב-Drive (או OneDrive), משתפים "כל מי שיש לו קישור", ומדביקים כאן. אחרי אישור היא מופיעה בתוכנית הלימודים ובחדר ההרצאות, ושם מציגים אותה.</p>
+    b.innerHTML = `<h3>הגשת הרצאה · M&M, ג׳ורנל, סמינר</h3><p class="cap">מכינים את המצגת ב-Google Slides או ב-Drive (או OneDrive), משתפים "כל מי שיש לו קישור" ומדביקים כאן. אחרי אישור היא מופיעה בתוכנית הלימודים ובחדר ההרצאות ומציגים אותה משם.</p>
       ${open ? `<div class="tk-f"><div><label for="tkK">סוג</label><select id="tkK">${Object.keys(K).map(k => `<option value="${k}"${x.k === k ? ' selected' : ''}>${tkE(K[k])}</option>`).join('')}</select></div>
         <div><label for="tkD">תאריך</label><input id="tkD" type="date" min="${TK.today}" value="${tkE(x.d || '')}"></div><div><label for="tkT">שעה</label><input id="tkT" type="time" value="${tkE((x.t || '07:00').slice(0, 5))}"></div>
         <div><label for="tkTi">נושא</label><input id="tkTi" maxlength="120" value="${tkE(x.ti || '')}"></div><div class="w"><label for="tkU">קישור למצגת</label><input id="tkU" type="url" placeholder="docs.google.com/presentation/…" value="${tkE(x.raw || '')}"></div>
