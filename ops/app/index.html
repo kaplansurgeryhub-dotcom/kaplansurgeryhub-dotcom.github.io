@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="f749edb0dc6a"><script>(function () {
+<head><meta name="ksh-ver" content="aba9f5294e5d"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -3130,11 +3130,11 @@ const CALL_LATER = /^ops_(?:food|log|tos|gearBoot|fbMine|newsFresh|newsList|acti
 function callGateOpen() { if (CALL_GATE) return; CALL_GATE = 1; CALL_GQ.splice(0).forEach(r => r()); }
 setTimeout(callGateOpen, 7000);
 // a call held at the gate while the saved copy was shown was made with an empty code (13/11/2026: ops_tos failed on every open): it gets the code the sign-in brought
-async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await new Promise(r => CALL_GQ.push(r)); if (a[0] === '' && S.code) a[0] = S.code; } if (!CALL_READ.test(fn) && typeof CALL1 !== 'undefined') Object.keys(CALL1).forEach(k => delete CALL1[k]); if (S.preview && PV_BLOCK.test(fn)) throw new Error('תצוגה בלבד · שינויים לא נשמרים'); if (S.wait && !S.code && fn !== 'ops_devLogin') { await S.wait; if (a[0] === '') a[0] = S.code; } return kBusy(new Promise((ok, no) => google.script.run.withSuccessHandler(ok).withFailureHandler(e => no(e && e.message ? e : new Error(String(e))))[fn](...a))); }
+async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await new Promise(r => CALL_GQ.push(r)); if (a[0] === '' && S.code) a[0] = S.code; } if (!CALL_READ.test(fn) && typeof CALL1 !== 'undefined') Object.keys(CALL1).forEach(k => delete CALL1[k]); if (S.preview && PV_BLOCK.test(fn)) throw new Error('תצוגה בלבד · שינויים לא נשמרים'); if (S.wait && !S.code && fn !== 'ops_devLogin') { await S.wait; if (a[0] === '') a[0] = S.code; } const P = kBusy(new Promise((ok, no) => google.script.run.withSuccessHandler(ok).withFailureHandler(e => no(e && e.message ? e : new Error(String(e))))[fn](...a))); return fn === 'ops_get' ? P.then(r => { try { wbNote(r); } catch (e) {} return r; }) : P; }
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = 'f749edb0dc6a'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = 'aba9f5294e5d'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achall|achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -3273,6 +3273,57 @@ function snapKeep(keep) {
 function preload(keys) { try { if (S.code && keys && keys.length) load(keys).catch(() => {}); } catch (e) {} }
 // the data that came back with the boot (bootPreKeys_ in the server) goes to the cache, unless the page already has a newer copy
 function preMerge() { const P = S.data && S.data.pre; if (!P) return; const t = Date.now(); Object.keys(P).forEach(k => { if (!(k in S.cache)) { S.cache[k] = P[k]; LOADAT[k] = t; } }); delete S.data.pre; }
+// 19/11/2026 (Dr. Gozani): the weekly plan and SLATE work on the same week (week:<sunday>), the manager staffing and the secretaries placing
+// cases at the same time, before the week is published. A save used to send the whole week, so a screen with an older copy wiped what the
+// other had just done. Now a save carries the copy it started from (base) and only what this screen changed goes over what is stored:
+// a three-way merge (base, mine, theirs). Objects key by key; lists by their names (rooms by n, people by id, plain values as a set);
+// a case list (proc with its cx) moves as one piece; the change log keeps both sides. Where both changed the same thing, the save wins, as before
+function wkMerge3(b, m, c) {
+  const J = x => JSON.stringify(x), isO = x => !!x && typeof x === 'object' && !Array.isArray(x);
+  const jb = J(b), jm = J(m), jc = J(c);
+  if (jm === jb) return c;
+  if (jc === jb || jc === jm) return m;
+  if (isO(b) && isO(m) && isO(c)) {
+    const out = {}, ks = [...new Set(Object.keys(m).concat(Object.keys(c), Object.keys(b)))];
+    const mineP = J(m.proc) !== J(b.proc) || J(m.cx) !== J(b.cx);
+    ks.forEach(k => {
+      let v;
+      if (k === 'proc' || k === 'cx') v = mineP ? m[k] : c[k];
+      else if (k === 'log' && Array.isArray(m[k]) && Array.isArray(c[k])) { const seen = {}; v = m[k].concat(c[k]).filter(x => { const s = J(x); if (seen[s]) return false; seen[s] = 1; return true; }).sort((x, y) => String((y || {}).at || '').localeCompare(String((x || {}).at || ''))).slice(0, 20); }
+      else v = wkMerge3(b === undefined || b === null ? undefined : b[k], m[k], c[k]);
+      if (v !== undefined) out[k] = v;
+    });
+    return out;
+  }
+  if (Array.isArray(m) && Array.isArray(c)) {
+    const B = Array.isArray(b) ? b : [];
+    const key = x => x === null || typeof x !== 'object' ? 'p' + J(x) : (x.n !== undefined && x.n !== null && x.n !== '') ? 'n' + x.n : (x.id !== undefined && x.id !== null && x.id !== '') ? 'i' + x.id : null;
+    const kb = B.map(key), km = m.map(key), kc = c.map(key), uniq = a => a.every(x => x !== null) && new Set(a).size === a.length;
+    if (uniq(kb) && uniq(km) && uniq(kc)) {
+      const Mb = new Map(B.map((x, i) => [kb[i], x])), Mc = new Map(c.map((x, i) => [kc[i], x])), out = [];
+      m.forEach((x, i) => {
+        const k = km[i];
+        // they took it out: it stays out, unless this screen changed it
+        if (Mb.has(k) && !Mc.has(k)) { if (J(x) !== J(Mb.get(k))) out.push(x); return; }
+        out.push(Mc.has(k) ? wkMerge3(Mb.get(k), x, Mc.get(k)) : x);
+      });
+      // what they added
+      c.forEach((x, i) => { if (!Mb.has(kc[i]) && km.indexOf(kc[i]) < 0) out.push(x); });
+      return out;
+    }
+    if (Array.isArray(b) && b.length === m.length && m.length === c.length) return m.map((x, i) => wkMerge3(b[i], x, c[i]));
+  }
+  return m;
+}
+// the copy of each week as the server last gave it (or as the last save left it): the base a save starts from
+const WBASE = {};
+function wbNote(r) { if (!r || typeof r !== 'object') return; Object.keys(r).forEach(k => { if (/^week:\d{4}-\d\d-\d\d$/.test(k) && !(S.dirty || {})[k]) WBASE[k] = r[k] === null || r[k] === undefined ? null : JSON.stringify(r[k]); }); }
+// while the weekly plan or SLATE is open (and the tab is in front), the week on the screen comes fresh every 20 s and is drawn again when it changed
+setInterval(() => { try {
+  if (document.visibilityState !== 'visible' || !S.code || S.offline || S.preview || ['week', 'week2', 'gplan', 'orplan', 'gweek'].indexOf(S.view) < 0) return;
+  const ks = Object.keys(S.cache || {}).filter(k => /^week:\d{4}-\d\d-\d\d$/.test(k) && LOADAT[k] > 1).sort((a, b) => LOADAT[b] - LOADAT[a]).slice(0, 3); if (!ks.length) return;
+  ks.forEach(k => { LOADAT[k] = Math.min(LOADAT[k], Date.now() - SWR_MS - 1); }); swr(ks);
+} catch (e) {} }, 20000);
 function save(key, val, onOk) {
   if (S.preview) { toast('תצוגה בלבד · שינויים לא נשמרים'); return; }
   // the weekly plan remembers who changed it last, and the last changes (one line per person per quarter hour)
@@ -3282,8 +3333,13 @@ function save(key, val, onOk) {
     val.upd = { by: S.me.name, role: S.me.role, at: now }; val.log = [val.upd].concat(L).slice(0, 20); }
   try { absGuard(key, val); } catch (e) {}
   S.cache[key] = val; S.dirty[key] = 1; status();
-  clearTimeout(S.timers[key]); S.timers[key] = setTimeout(async () => {
-    try { await call('ops_set', S.code, key, val); delete S.dirty[key]; LOADAT[key] = Date.now(); status(true); onOk && onOk(); }
+  clearTimeout(S.timers[key]); const my = S.timers[key] = setTimeout(async () => {
+    const wk = /^week:\d{4}-\d\d-\d\d$/.test(key), base = wk && WBASE[key] ? JSON.parse(WBASE[key]) : null;
+    try { const r = await (base ? call('ops_set', S.code, key, val, base) : call('ops_set', S.code, key, val));
+      const same = S.cache[key] === val;
+      if (wk) { const fin = r && r.val ? r.val : val; WBASE[key] = JSON.stringify(fin);
+        if (r && r.val) { if (same) S.cache[key] = r.val; else if (S.cache[key] && typeof S.cache[key] === 'object') S.cache[key] = wkMerge3(val, S.cache[key], r.val); if (JSON.stringify(r.val) !== JSON.stringify(val)) swrPaint(swrRk()); } }
+      if (same || !wk || S.timers[key] === my) delete S.dirty[key]; LOADAT[key] = Date.now(); status(true); onOk && onOk(); }
     catch (e) { toast(e.message || 'השמירה נכשלה'); }
   }, 700);
 }
