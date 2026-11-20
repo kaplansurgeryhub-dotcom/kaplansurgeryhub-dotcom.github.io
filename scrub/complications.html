@@ -638,5 +638,21 @@ document.querySelectorAll('.hotw').forEach(function(w){w.querySelectorAll('.hz')
   if (window.parent !== window) setTimeout(function () { P = window.parent; rep(); }, 1200);
 })();
 </script>
+<script>(function () {
+  if (window.__kshfit) return; window.__kshfit = 1; var t = 0;
+  function cards() { return Array.prototype.slice.call(document.querySelectorAll('.s .card')).filter(function (c) { return !c.parentElement.closest('.card'); }); }
+  function fit() {
+    var W = innerWidth, H = innerHeight, L = cards(); L.forEach(function (c) { c.style.zoom = ''; }); if (W < 1100 || H < 600) return;
+    L.forEach(function (c) { var s = c.closest('.s'), cs = s ? getComputedStyle(s) : null, w = c.offsetWidth, h = c.scrollHeight; if (!w || !h) return;
+      var ph = H - (cs ? parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom) : 150) - 24, pw = W - 140, z = Math.min(pw / w, ph / h, 1.9);
+      if (z > 1.04) c.style.zoom = z.toFixed(3); });
+  }
+  addEventListener('resize', function () { clearTimeout(t); t = setTimeout(fit, 150); });
+  if (document.readyState === 'complete') setTimeout(fit, 60); else addEventListener('load', function () { setTimeout(fit, 60); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { setTimeout(fit, 60); });
+  setTimeout(fit, 1500);
+  document.addEventListener('load', function (e) { if (e.target && e.target.tagName === 'IMG') { clearTimeout(t); t = setTimeout(fit, 150); } }, true);
+})();
+</script>
 </body>
 </html>
