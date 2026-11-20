@@ -285,8 +285,8 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
     // decides on the server: the wrapper asks once (ops_route) and keeps the answer on the device, so the next opening goes straight to it.
     // A student (?s=) and a lecturer (?l=) have their own pages. The registration form, the lecture room and the TV stay on Google's page
     var off = Date.now() - (+(ls.get('fast_off') || 0)) < 600e3 /* 15/11/2026: ten minutes, not an hour */, PQ = new URLSearchParams(SRC);
-    var FAST = !off && !Q.get('legacy') && !PQ.get('j') && !PQ.get('tv') && !PQ.get('room') && !PQ.has('rp') && !PQ.has('rj');
-    var page = function (kind) { if (PQ.get('s')) return 'student'; if (PQ.get('l')) return 'lecturer'; if (!PQ.get('p')) return 'index';
+    var FAST = !off && !Q.get('legacy') && !PQ.get('j') && !PQ.get('tv') && !(PQ.get('room') && PQ.get('old'));
+    var page = function (kind) { /* 20/11/2026: the lecture hall from our own address too (Google's page did not answer on the hall's computer) */ if (PQ.get('room')) return 'hall'; if (PQ.has('rp')) return 'remote'; if (PQ.has('rj')) return 'hjoin'; if (PQ.get('s')) return 'student'; if (PQ.get('l')) return 'lecturer'; if (!PQ.get('p')) return 'index';
       if (kind === 'int') return 'intern'; if (kind === 'mgr' && !PQ.get('dm') && !PQ.get('pv') && !PQ.get('tab') && !PQ.get('chat')) return 'index'; return kind ? 'prefs' : ''; };
     var go = function (pg) {
       if (!pg) return legacy();
@@ -300,7 +300,7 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
         if (seen >= 60) { clearInterval(dog); var n1 = $('slowF'); if (n1) n1.remove(); legacy(); } }, 1000);
     };
     if (!FAST) legacy();
-    else if (!PQ.get('p') || PQ.get('s') || PQ.get('l')) go(page(''));
+    else if (!PQ.get('p') || PQ.get('s') || PQ.get('l') || PQ.get('room') || PQ.has('rp') || PQ.has('rj')) go(page(''));
     else {
       var tk = PQ.get('p').replace(/[^A-Za-z0-9]/g, ''), kk = 'tkk_' + tk.slice(-24), known = ls.get(kk);
       // a known link opens at once; the answer is checked again behind it, for the next opening (a doctor who became a manager)

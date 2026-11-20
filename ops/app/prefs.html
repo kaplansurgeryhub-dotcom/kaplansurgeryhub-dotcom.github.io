@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="054b017faa59"><script>(function () {
+<head><meta name="ksh-ver" content="01a01812f283"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -4013,7 +4013,7 @@ function qkEdit(cur, onSave) {
     const r = await run('ops_hallGoKey', c.k, c.c); try { sessionStorage.setItem(KC, JSON.stringify({ rk: r.rk, k: r.k, name: r.name, c: String(c.c).slice(-8), at: Date.now() })); } catch (e) {} return r; }
   async function remote(justPaired) {
     stopCam(); let k; try { k = await key(); } catch (e) { return er(e.message); }
-    const url = (LOCAL ? 'remote.html' : EXEC) + '?rp=&rk=' + encodeURIComponent(k.rk) + (k.k ? '&k=' + encodeURIComponent(k.k) : '');
+    const url = (LOCAL || /github\.io$/.test(location.hostname) ? 'remote.html' : EXEC) + '?rp=&rk=' + encodeURIComponent(k.rk) + (k.k ? '&k=' + encodeURIComponent(k.k) : '');
     shell(justPaired ? 'החדר נפתח · בוחרים הרצאה על המסך' : 'השלט', `<iframe class="hgo-f" src="${esc(url)}" title="השלט" allow="clipboard-write"></iframe>`, 1);
   }
   window.hgoOpen = () => { if (!ctx()) return; home(); };

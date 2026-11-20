@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head><meta name="ksh-ver" content="01a01812f283"><script>(function () {
+  var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
+  var Q = [], T = 0, BATCH = 1;
+  function send(body) {
+    return fetch(EXEC, { method: 'POST', body: JSON.stringify(body), headers: { 'Content-Type': 'text/plain;charset=utf-8' }, redirect: 'follow', credentials: 'omit' })
+      .then(function (r) { if (!r.ok) throw Object.assign(new Error('השרת לא זמין כרגע (' + r.status + ')'), { net: 1 }); return r.text(); })
+      .then(function (t) { var o; try { o = JSON.parse(t); } catch (x) { throw Object.assign(new Error('התשובה מהשרת לא תקינה'), { net: 1 }); } if (!okOnce) try { parent.postMessage({ kop: 1, op: 'ok' }, location.origin); } catch (x) {} okOnce = 1; return o; });
+  }
+  function one(o) { if (o && o.e) throw new Error(o.e); return o && o.r !== undefined ? o.r : null; }
+  function single(f, a) { return send({ f: f, a: a }).then(one); }
+  function flush() {
+    T = 0; var L = Q; Q = [];
+    if (L.length === 1 || !BATCH) return L.forEach(function (x) { single(x.f, x.a).then(x.ok, x.no); });
+    send({ b: L.map(function (x) { return { f: x.f, a: x.a }; }) }).then(function (o) {
+      if (!o || !Array.isArray(o.b)) { BATCH = 0; return L.forEach(function (x) { single(x.f, x.a).then(x.ok, x.no); }); }
+      L.forEach(function (x, i) { var r; try { r = one(o.b[i] || {}); } catch (e) { return x.no(e); } x.ok(r); });
+    }, function (e) { L.forEach(function (x) { x.no(e); }); });
+  }
+  function post(f, a) {
+    return new Promise(function (ok, no) { Q.push({ f: f, a: a, ok: ok, no: no }); if (Q.length >= 12) { clearTimeout(T); flush(); } else if (!T) T = setTimeout(flush, 0); });
+  }
+  function runner(ok, no, uo) {
+    return new Proxy({}, { get: function (_, k) {
+      if (k === 'withSuccessHandler') return function (f) { return runner(f, no, uo); };
+      if (k === 'withFailureHandler') return function (f) { return runner(ok, f, uo); };
+      if (k === 'withUserObject') return function (u) { return runner(ok, no, u); };
+      if (typeof k !== 'string' || k === 'then') return undefined;
+      return function () {
+        var a = Array.prototype.slice.call(arguments);
+        var fail = function (e) {
+          if (e && (e.net || e.name === 'TypeError')) { bad++; if (!okOnce && !window.KSH_SNAP && bad >= 1 && !document.hidden && navigator.onLine !== false) try { parent.postMessage({ kop: 1, op: 'slow' }, location.origin); } catch (x) {} }
+          if (no) no(e, uo);
+        };
+        post(k, a).then(function (r) { if (ok) ok(r, uo); }, function (e) {
+          if (e && (e.net || e.name === 'TypeError') && !okOnce) return setTimeout(function () { post(k, a).then(function (r) { if (ok) ok(r, uo); }, fail); }, 1500);
+          fail(e);
+        });
+      };
+    } });
+  }
+  window.google = { script: { run: runner(null, null, null), host: { close: function () {}, setHeight: function () {} } } };
+  window.KSH_FAST = 1;
+})();
+(function () {
+  var mine = (document.querySelector('meta[name="ksh-ver"]') || {}).content || '', touched = 0, t0 = Date.now(), shown = 0, busy = 0;
+  if (!mine) return;
+  ['pointerdown', 'keydown'].forEach(function (k) { addEventListener(k, function () { touched = 1; }, { capture: true, passive: true }); });
+  function bar() {
+    if (shown) return; shown = 1;
+    var b = document.createElement('button'); b.type = 'button'; b.textContent = '✨ גרסה חדשה מוכנה · לחיצה לעדכון';
+    b.setAttribute('style', 'position:fixed;z-index:2147483000;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0px));background:#0C2A35;color:#fff;border:1.5px solid #3DC08C;border-radius:999px;padding:10px 18px;font:700 15px Heebo,Assistant,system-ui,sans-serif;box-shadow:0 6px 22px rgba(0,0,0,.25);cursor:pointer;direction:rtl');
+    b.onclick = function () { location.reload(); };
+    document.body.appendChild(b);
+  }
+  function check() {
+    if (busy || shown) return; busy = 1;
+    fetch(location.pathname + '?ksh_chk=' + Date.now(), { cache: 'no-store', credentials: 'omit' }).then(function (r) { return r.ok ? r.text() : ''; }).then(function (t) {
+      busy = 0; var m = /<meta name="ksh-ver" content="(\w+)"/.exec(t || '');
+      if (!m || m[1] === mine) return;
+      var tried = ''; try { tried = sessionStorage.getItem('ksh_upd') || ''; } catch (x) {}
+      if (!touched && Date.now() - t0 < 10000 && tried !== m[1]) { try { sessionStorage.setItem('ksh_upd', m[1]); } catch (x) {} return location.reload(); }
+      bar();
+    }, function () { busy = 0; });
+  }
+  setTimeout(check, 1500);
+  document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'visible') check(); });
+})();
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>חדר ההרצאות · הצטרפות</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Frank+Ruhl+Libre:wght@700;900&family=IBM+Plex+Mono:wght@600&display=swap" rel="stylesheet">
+<style>
+/* joining a lecture without an app (18/11/2026): the code on the room's screen, anonymous. With an app the lecture shows inside it */
+:root{--navy:#1D3047;--cream:#F6F1E7;--line:#E6DED0;--gold:#C9A257;--gold2:#E2C68A;--green:#3B7F57;--muted:#6F6556;--sans:Heebo,Arial,sans-serif;--serif:'Frank Ruhl Libre',Georgia,serif}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;background:var(--navy);color:#fff;font-family:var(--sans)}
+main{max-width:520px;margin:0 auto;padding:calc(22px + env(safe-area-inset-top)) 18px calc(30px + env(safe-area-inset-bottom))}
+.k{font:800 13px var(--sans);letter-spacing:.2em;color:var(--gold2)}h1{font:900 30px/1.2 var(--serif);margin:6px 0 4px}.by{color:#C9D3DE;font:600 15px var(--sans)}
+.card{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.15);border-radius:18px;padding:16px;margin-top:16px}
+.op{all:unset;cursor:pointer;display:flex;gap:12px;align-items:center;border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:15px;margin-top:9px;font:700 17px var(--sans);width:100%;box-sizing:border-box}
+.op i{font-style:normal;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.12);display:grid;place-items:center;flex:none;font-weight:900}
+.op.ok{border-color:#5FAF83;background:rgba(95,175,131,.18)}
+input{width:100%;font:inherit;font-size:18px;padding:13px;border-radius:12px;border:1.5px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);color:#fff}
+input.code{font:600 34px 'IBM Plex Mono',monospace;letter-spacing:.3em;text-align:center;direction:ltr}
+.go{all:unset;cursor:pointer;display:block;text-align:center;margin-top:10px;background:var(--gold);color:var(--navy);font:900 17px var(--sans);border-radius:14px;padding:14px}
+.row{display:flex;gap:8px;margin-top:12px}.row .go{flex:1;background:rgba(255,255,255,.1);color:#fff;font-size:15px;margin:0}
+.hint{color:#B8C4D2;font:500 13.5px/1.5 var(--sans);margin-top:10px}.done{color:#A9E6C9;font:700 16px var(--sans);margin-top:12px;text-align:center}
+.er{color:#FFB4AE;font:700 14px var(--sans);margin-top:8px;min-height:18px}
+</style>
+</head>
+<body>
+<main id="m"></main>
+<script>
+(function () {
+'use strict';
+const q = new URLSearchParams(location.search), tv = (s, n) => (!s || s.indexOf('<' + '?') === 0 ? q.get(n) || '' : s).replace(/[^a-z0-9]/g, '');
+const K = tv('<?= k ?>', 'k'); let CODE = tv('', 'rj').replace(/\D/g, '').slice(0, 4);
+const $ = id => document.getElementById(id), esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+const run = (fn, ...a) => new Promise((ok, no) => google.script.run.withSuccessHandler(ok).withFailureHandler(e => no(new Error((e && e.message) || 'שגיאה')))[fn](...a));
+let DEV = ''; try { DEV = localStorage.getItem('hall_dev') || ''; if (!DEV) { DEV = Array.from(crypto.getRandomValues(new Uint8Array(12)), b => b.toString(16).padStart(2, '0')).join(''); localStorage.setItem('hall_dev', DEV); } } catch (e) { DEV = DEV || String(Math.random()).slice(2) + String(Date.now()); }
+const M = $('m'); let V = null, word = '';
+function codeView(er) { M.innerHTML = `<div class="k">KAPLAN SURGICAL HUB</div><h1>הצטרפות להרצאה</h1><div class="card"><input class="code" id="c" inputmode="numeric" maxlength="4" placeholder="····"><button class="go" id="g">כניסה</button><div class="er">${esc(er || '')}</div><p class="hint">הקוד מופיע על המסך בחדר. יש לך את האפליקציה של המערך? ההרצאה מופיעה בה למעלה, ושם גם נרשמת ההשתתפות שלך.</p></div>`;
+  $('g').onclick = () => { CODE = $('c').value.replace(/\D/g, ''); loop(); }; }
+function paint() { const v = V, P = v.poll;
+  const typing = document.activeElement && document.activeElement.tagName === 'INPUT'; if (typing) return;
+  M.innerHTML = `<div class="k">${esc(v.wt)}</div><h1>${esc(v.ti)}</h1><div class="by">${esc(v.by)}${v.st === 'on' ? ' · בהרצאה עכשיו' : ' · עוד מעט מתחילים'}</div>
+    ${P && P.on ? `<div class="card"><b style="font-size:18px">${esc(P.q)}</b>${v.voted ? '<div class="done">ההצבעה נקלטה · אנונימי</div>' : P.k === 'cloud' ? `<div style="margin-top:10px"><input id="w" maxlength="24" placeholder="מילה אחת" value="${esc(word)}"><button class="go" id="wg">שליחה</button></div>` : P.o.map((o, i) => `<button class="op" data-i="${i}"><i>${'אבגדהו'[i]}</i>${esc(o)}</button>`).join('')}</div>` : '<div class="card hint" style="margin-top:16px">כשהמרצה יפתח הצבעה, היא תופיע כאן.</div>'}
+    <div class="card"><b>שאלה למרצה</b><input id="qq" maxlength="200" placeholder="אנונימי" style="margin-top:8px"><button class="go" id="qg">שליחה</button></div>
+    <div class="row"><button class="go" id="huh">🤔 לא הבנתי את השקף</button></div><div class="er" id="er"></div>
+    <p class="hint">אנונימי: המרצה רואה רק ספירה. בלי פרטים מזהים בשאלות.</p>`; }
+async function act(a, x) { try { V = await run('ops_hallAnonAct', CODE, DEV, K, a, x); paint(); return true; } catch (e) { const er = $('er'); if (er) er.textContent = e.message; return false; } }
+M.addEventListener('click', async e => { const t = e.target.closest('[data-i],#wg,#qg,#huh'); if (!t) return;
+  if (t.dataset.i != null) return act('vote', { i: +t.dataset.i });
+  if (t.id === 'wg') { word = $('w').value; if (await act('vote', { w: word })) word = ''; return; }
+  if (t.id === 'qg') { const v = $('qq').value.trim(); if (v && await act('q', { t: v })) { const er = $('er'); if (er) er.textContent = 'השאלה נשלחה'; } return; }
+  if (t.id === 'huh') { if (await act('huh')) { const er = $('er'); if (er) er.textContent = 'נרשם · תודה'; } } });
+let T = 0; async function loop() { clearTimeout(T); if (CODE.length !== 4) return codeView();
+  try { V = await run('ops_hallAnon', CODE, DEV, K); if (!V) return codeView('ההרצאה הסתיימה'); paint(); } catch (e) { return codeView(e.message); }
+  T = setTimeout(loop, document.hidden ? 9000 : 3000); }
+loop();
+})();
+</script>
+</body>
+</html>

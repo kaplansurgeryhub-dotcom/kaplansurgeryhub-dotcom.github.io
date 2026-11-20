@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head><meta name="ksh-ver" content="01a01812f283"><script>(function () {
+  var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
+  var Q = [], T = 0, BATCH = 1;
+  function send(body) {
+    return fetch(EXEC, { method: 'POST', body: JSON.stringify(body), headers: { 'Content-Type': 'text/plain;charset=utf-8' }, redirect: 'follow', credentials: 'omit' })
+      .then(function (r) { if (!r.ok) throw Object.assign(new Error('השרת לא זמין כרגע (' + r.status + ')'), { net: 1 }); return r.text(); })
+      .then(function (t) { var o; try { o = JSON.parse(t); } catch (x) { throw Object.assign(new Error('התשובה מהשרת לא תקינה'), { net: 1 }); } if (!okOnce) try { parent.postMessage({ kop: 1, op: 'ok' }, location.origin); } catch (x) {} okOnce = 1; return o; });
+  }
+  function one(o) { if (o && o.e) throw new Error(o.e); return o && o.r !== undefined ? o.r : null; }
+  function single(f, a) { return send({ f: f, a: a }).then(one); }
+  function flush() {
+    T = 0; var L = Q; Q = [];
+    if (L.length === 1 || !BATCH) return L.forEach(function (x) { single(x.f, x.a).then(x.ok, x.no); });
+    send({ b: L.map(function (x) { return { f: x.f, a: x.a }; }) }).then(function (o) {
+      if (!o || !Array.isArray(o.b)) { BATCH = 0; return L.forEach(function (x) { single(x.f, x.a).then(x.ok, x.no); }); }
+      L.forEach(function (x, i) { var r; try { r = one(o.b[i] || {}); } catch (e) { return x.no(e); } x.ok(r); });
+    }, function (e) { L.forEach(function (x) { x.no(e); }); });
+  }
+  function post(f, a) {
+    return new Promise(function (ok, no) { Q.push({ f: f, a: a, ok: ok, no: no }); if (Q.length >= 12) { clearTimeout(T); flush(); } else if (!T) T = setTimeout(flush, 0); });
+  }
+  function runner(ok, no, uo) {
+    return new Proxy({}, { get: function (_, k) {
+      if (k === 'withSuccessHandler') return function (f) { return runner(f, no, uo); };
+      if (k === 'withFailureHandler') return function (f) { return runner(ok, f, uo); };
+      if (k === 'withUserObject') return function (u) { return runner(ok, no, u); };
+      if (typeof k !== 'string' || k === 'then') return undefined;
+      return function () {
+        var a = Array.prototype.slice.call(arguments);
+        var fail = function (e) {
+          if (e && (e.net || e.name === 'TypeError')) { bad++; if (!okOnce && !window.KSH_SNAP && bad >= 1 && !document.hidden && navigator.onLine !== false) try { parent.postMessage({ kop: 1, op: 'slow' }, location.origin); } catch (x) {} }
+          if (no) no(e, uo);
+        };
+        post(k, a).then(function (r) { if (ok) ok(r, uo); }, function (e) {
+          if (e && (e.net || e.name === 'TypeError') && !okOnce) return setTimeout(function () { post(k, a).then(function (r) { if (ok) ok(r, uo); }, fail); }, 1500);
+          fail(e);
+        });
+      };
+    } });
+  }
+  window.google = { script: { run: runner(null, null, null), host: { close: function () {}, setHeight: function () {} } } };
+  window.KSH_FAST = 1;
+})();
+(function () {
+  var mine = (document.querySelector('meta[name="ksh-ver"]') || {}).content || '', touched = 0, t0 = Date.now(), shown = 0, busy = 0;
+  if (!mine) return;
+  ['pointerdown', 'keydown'].forEach(function (k) { addEventListener(k, function () { touched = 1; }, { capture: true, passive: true }); });
+  function bar() {
+    if (shown) return; shown = 1;
+    var b = document.createElement('button'); b.type = 'button'; b.textContent = '✨ גרסה חדשה מוכנה · לחיצה לעדכון';
+    b.setAttribute('style', 'position:fixed;z-index:2147483000;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0px));background:#0C2A35;color:#fff;border:1.5px solid #3DC08C;border-radius:999px;padding:10px 18px;font:700 15px Heebo,Assistant,system-ui,sans-serif;box-shadow:0 6px 22px rgba(0,0,0,.25);cursor:pointer;direction:rtl');
+    b.onclick = function () { location.reload(); };
+    document.body.appendChild(b);
+  }
+  function check() {
+    if (busy || shown) return; busy = 1;
+    fetch(location.pathname + '?ksh_chk=' + Date.now(), { cache: 'no-store', credentials: 'omit' }).then(function (r) { return r.ok ? r.text() : ''; }).then(function (t) {
+      busy = 0; var m = /<meta name="ksh-ver" content="(\w+)"/.exec(t || '');
+      if (!m || m[1] === mine) return;
+      var tried = ''; try { tried = sessionStorage.getItem('ksh_upd') || ''; } catch (x) {}
+      if (!touched && Date.now() - t0 < 10000 && tried !== m[1]) { try { sessionStorage.setItem('ksh_upd', m[1]); } catch (x) {} return location.reload(); }
+      bar();
+    }, function () { busy = 0; });
+  }
+  setTimeout(check, 1500);
+  document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'visible') check(); });
+})();
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>חדר ההרצאות · Kaplan Surgical Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Frank+Ruhl+Libre:wght@500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script id="dk-data" type="application/json">{"decks":{"orientation.html":{"t":"מבוא לסבב ואדמיניסטרציה","k":"admin","ch":[],"n":20,"o":1,"d":0,"p":12,"w":[1],"no":1},"admission.html":{"t":"עקרונות קבלת חולים בכירורגיה","k":"lecture","ch":[19],"n":17,"o":3,"d":0,"p":9,"w":[1],"ic":"cl","no":2},"surgical-risk.html":{"t":"הערכת סיכון ניתוחי","k":"lecture","ch":[19,4,27],"n":16,"o":4,"d":0,"p":9,"w":[1],"no":3},"abdominal-exam.html":{"t":"בדיקת בטן","k":"workshop","ch":[85],"n":13,"o":5,"d":0,"p":10,"w":[1],"ic":"ac","no":4},"operating-room.html":{"t":"הכרת חדר הניתוח","k":"workshop","ch":[19,9],"n":12,"o":6,"d":6,"p":10,"w":[1],"no":5},"iv-workshop.html":{"t":"סדנת ורידים","k":"workshop","ch":[20,33,36],"n":12,"o":7,"d":0,"p":10,"w":[1],"ic":"iv","no":6},"pneumothorax.html":{"t":"חזה אוויר","k":"lecture","ch":[110],"n":12,"o":8,"d":2,"p":8,"w":[1],"no":7},"suturing.html":{"t":"סדנת תפירה","k":"workshop","ch":[19,23],"n":12,"o":9,"d":0,"p":10,"w":[1],"no":8},"hernias.html":{"t":"בקעים של דופן הבטן","k":"lecture","ch":[79,80,81,82],"n":20,"o":10,"d":0,"p":4,"w":[1],"no":9},"colorectal-cancer.html":{"t":"קרצינומה של הקולון והרקטום","k":"lecture","ch":[96],"n":16,"o":11,"d":0,"p":1,"w":[1],"no":10},"breast-rectal-exam.html":{"t":"בדיקת שד ובדיקה רקטלית","k":"workshop","ch":[68,97],"n":12,"o":12,"d":1,"p":10,"w":[1],"no":11},"wound-healing.html":{"t":"ריפוי פצע","k":"lecture","ch":[23,45],"n":15,"o":13,"d":3,"p":9,"w":[1],"no":12},"gallbladder-cases.html":{"t":"דיון מקרים: מחלות כיס המרה","k":"case","ch":[88],"n":16,"o":14,"d":0,"p":2,"w":[1],"no":13},"ruq-pain-cases.html":{"t":"דיון מקרים: כאב בבטן הימנית העליונה","k":"case","ch":[85,88],"n":15,"o":15,"d":0,"p":3,"w":[1],"no":14},"rlq-pain-cases.html":{"t":"דיון מקרים: כאבי בטן ימנית תחתונה","k":"case","ch":[85,94],"n":17,"o":16,"d":0,"p":3,"w":[1],"no":15},"colonic-obstruction.html":{"t":"חסימות קולוניות","k":"lecture","ch":[95],"n":17,"o":17,"d":0,"p":1,"w":[1],"no":16},"trauma-intro.html":{"t":"מבוא לטראומה","k":"lecture","ch":[36],"n":18,"o":18,"d":7,"p":6,"w":[1],"no":17},"shock.html":{"t":"הגישה לחולה בשוק","k":"lecture","ch":[33,46],"n":17,"o":19,"d":0,"p":9,"w":[2],"no":18},"breast-cancer.html":{"t":"קרצינומה של השד","k":"lecture","ch":[68],"n":19,"o":20,"d":1,"p":5,"w":[2],"no":19},"peripheral-arterial.html":{"t":"מחלות כלי דם פריפריים","k":"lecture","ch":[103],"n":17,"o":21,"d":4,"p":7,"w":[2],"no":20},"llq-pain-cases.html":{"t":"דיון מקרים: כאבי בטן שמאלית תחתונה","k":"case","ch":[85,95],"n":16,"o":22,"d":0,"p":3,"w":[2],"no":21},"xray.html":{"t":"צילומי חזה ובטן","k":"imaging","ch":[36,85,91,95,110],"n":14,"o":23,"d":5,"p":11,"w":[2],"no":22},"acute-abdomen.html":{"t":"בטן חריפה","k":"lecture","ch":[85],"n":17,"o":24,"d":0,"p":3,"w":[2],"no":23},"sepsis.html":{"t":"הגישה לחולה הספטי","k":"lecture","ch":[32,46],"n":16,"o":25,"d":0,"p":9,"w":[2],"no":24},"ugib-cases.html":{"t":"דימום ממערכת העיכול העליונה","k":"case","ch":[98,86],"n":17,"o":26,"d":0,"p":0,"w":[2],"no":25},"colonic-obstruction-cases.html":{"t":"דיון מקרים: חסימה קולונית","k":"case","ch":[95],"n":15,"o":27,"d":0,"p":1,"w":[2],"no":26},"penetrating-trauma.html":{"t":"חבלת בטן חודרת","k":"lecture","ch":[36],"n":16,"o":28,"d":7,"p":6,"w":[2],"no":27},"gastric-cancer.html":{"t":"קרצינומה של הקיבה","k":"lecture","ch":[87],"n":17,"o":29,"d":0,"p":0,"w":[3],"no":28},"aortic-disease.html":{"t":"מחלות האאורטה","k":"lecture","ch":[102],"n":17,"o":30,"d":4,"p":7,"w":[3],"no":29},"lgib-cases.html":{"t":"דימום מדרכי העיכול התחתונות","k":"case","ch":[98],"n":16,"o":31,"d":0,"p":1,"w":[3],"no":30},"diverticular-disease.html":{"t":"מחלות סעיפים של המעי הגס","k":"lecture","ch":[95],"n":18,"o":32,"d":0,"p":1,"w":[3],"no":31},"benign-breast.html":{"t":"מחלות שפירות של השד","k":"lecture","ch":[68],"n":16,"o":33,"d":1,"p":5,"w":[3],"no":32},"ultrasound.html":{"t":"אולטרסאונד בטן","k":"imaging","ch":[36,85,88,94],"n":12,"o":34,"d":5,"p":11,"w":[3],"no":33},"small-bowel-obstruction.html":{"t":"חסימת מעי דק","k":"lecture","ch":[91],"n":16,"o":35,"d":0,"p":3,"w":[3],"no":34},"dysphagia-cases.html":{"t":"דיון מקרים: דיספאגיה וגידולי ושט","k":"case","ch":[83,84],"n":15,"o":36,"d":2,"p":0,"w":[3],"no":35},"pancreatic-tumors.html":{"t":"גידולי לבלב","k":"lecture","ch":[93,76],"n":19,"o":37,"d":0,"p":2,"w":[3],"no":36},"bariatric.html":{"t":"השמנת יתר חולנית","k":"lecture","ch":[99],"n":16,"o":38,"d":0,"p":0,"w":[4],"no":37},"pancreatitis-cases.html":{"t":"דיון מקרים: פנקריאטיטיס","k":"case","ch":[92],"n":20,"o":40,"d":0,"p":2,"w":[4],"no":38},"gastric-surgery-complications.html":{"t":"סיבוכי ניתוחי קיבה","k":"lecture","ch":[86,99],"n":16,"o":41,"d":0,"p":0,"w":[4],"no":39},"rectal-cancer.html":{"t":"קרצינומה של הרקטום","k":"lecture","ch":[96],"n":16,"o":42,"d":0,"p":1,"w":[4],"no":40},"ct.html":{"t":"CT בטן","k":"imaging","ch":[36,85,91,92,94,95,106],"n":13,"o":43,"d":5,"p":11,"w":[4],"no":41},"proctology.html":{"t":"פרוקטולוגיה","k":"lecture","ch":[97],"n":18,"o":44,"d":0,"p":1,"w":[4],"no":42},"reflux.html":{"t":"הגישה לחולה עם רפלוקס","k":"lecture","ch":[83],"n":17,"o":45,"d":2,"p":0,"w":[4],"no":43},"complications.html":{"t":"סיבוכים כירורגיים","k":"lecture","ch":[26,25],"n":17,"o":46,"d":0,"p":9,"w":[4],"no":44},"pancreatic-cysts.html":{"t":"גידולים ציסטיים של הלבלב","k":"lecture","ch":[93],"n":16,"o":47,"d":0,"p":2,"w":[4],"no":45},"breast-reconstruction.html":{"t":"שחזורי שד","k":"lecture","ch":[69],"n":15,"o":48,"d":3,"p":5,"w":[4],"no":46},"portal-hypertension.html":{"t":"יתר לחץ דם פורטלי","k":"lecture","ch":[89],"n":18,"o":49,"d":0,"p":2,"w":[5],"no":47},"carotid.html":{"t":"מחלות","k":"lecture","ch":[101],"n":14,"o":51,"d":4,"p":7,"w":[5],"no":48},"obstructive-jaundice-cases.html":{"t":"דיון מקרים: צהבת חסימתית","k":"case","ch":[88,93],"n":17,"o":52,"d":0,"p":2,"w":[5],"no":49},"mesenteric-ischemia.html":{"t":"איסכמיה של המעי","k":"lecture","ch":[106],"n":15,"o":53,"d":4,"p":7,"w":[5],"no":50},"fluids.html":{"t":"תכנון תוכנית נוזלים","k":"lecture","ch":[33],"n":16,"o":54,"d":0,"p":9,"w":[5],"no":51},"nutrition.html":{"t":"תזונה אנטרלית ו-TPN","k":"lecture","ch":[34],"n":16,"o":55,"d":0,"p":9,"w":[5],"no":52},"crc-liver-mets.html":{"t":"גרורות לכבד מסרטן המעי הגס","k":"lecture","ch":[90],"n":15,"o":56,"d":0,"p":2,"w":[5],"no":53},"case-presentation.html":{"t":"איך מציגים מטופל כירורגי","k":"case","ch":[9,19,26,36],"n":14,"o":57,"d":0,"p":10,"w":[5],"no":54},"blunt-trauma.html":{"t":"חבלת בטן קהה","k":"lecture","ch":[36],"n":16,"o":58,"d":7,"p":6,"w":[6],"no":55},"breaking-bad-news.html":{"t":"מסירת בשורה מרה","k":"workshop","ch":[30],"n":16,"o":59,"d":0,"p":12,"w":[6],"no":56},"medicolegal.html":{"t":"דילמות מדיקו-לגליות","k":"lecture","ch":[16],"n":16,"o":60,"d":0,"p":12,"w":[6],"no":57}},"rot":[{"w":1,"d":["orientation.html","admission.html","surgical-risk.html","abdominal-exam.html","operating-room.html","iv-workshop.html","pneumothorax.html","suturing.html","hernias.html","colorectal-cancer.html","breast-rectal-exam.html","wound-healing.html","gallbladder-cases.html","ruq-pain-cases.html","rlq-pain-cases.html","colonic-obstruction.html","trauma-intro.html"],"p":[]},{"w":2,"d":["shock.html","breast-cancer.html","peripheral-arterial.html","llq-pain-cases.html","xray.html","acute-abdomen.html","sepsis.html","ugib-cases.html","colonic-obstruction-cases.html","penetrating-trauma.html"],"p":[]},{"w":3,"d":["gastric-cancer.html","aortic-disease.html","lgib-cases.html","diverticular-disease.html","benign-breast.html","ultrasound.html","small-bowel-obstruction.html","dysphagia-cases.html","pancreatic-tumors.html"],"p":[]},{"w":4,"d":["bariatric.html","pancreatitis-cases.html","gastric-surgery-complications.html","rectal-cancer.html","ct.html","proctology.html","reflux.html","complications.html","pancreatic-cysts.html","breast-reconstruction.html"],"p":[]},{"w":5,"d":["portal-hypertension.html","carotid.html","obstructive-jaundice-cases.html","mesenteric-ischemia.html","fluids.html","nutrition.html","crc-liver-mets.html","case-presentation.html"],"p":[]},{"w":6,"d":["blunt-trauma.html","breaking-bad-news.html","medicolegal.html"],"p":[]}],"dis":[["כירורגיה כללית","hosp","#13A386","אשפוז, מרפאות, חדר ניתוח ומיון"],["מכון השד","br","#C0608A","אבחון, ניתוח ומעקב"],["כירורגיית בית החזה","th","#4A8FD0","ריאות, צדר ובית החזה"],["כירורגיה פלסטית","pl","#9473D0","פצעים ושחזורים"],["כירורגיית כלי דם","va","#D0535C","עורקים, ורידים ואאורטה"],["רדיולוגיה (מכון הדימות)","im","#3AA0C8","צילום, אולטרסאונד ו-CT"],["אחות חדר ניתוח","or","#2FB5A5","סטריליות ועבודה בחדר הניתוח"],["טראומה","tr","#DE6A48","הגישה לפצוע"]],"top":[["ושט, קיבה ובריאטריה","up","#18A88E"],["קולורקטלי","cr","#0F9670"],["כבד, לבלב ודרכי מרה","hpb","#4FAE5E"],["בטן חריפה ומיון","ac","#25A6A0"],["בקעים ודופן הבטן","he","#2A97B0"],["שד","br","#C0608A"],["טראומה","tr","#DE6A48"],["כלי דם","va","#D0535C"],["בית החזה","th","#4A8FD0"],["פריאופרטיבי וטיפול נמרץ","po","#2390B8"],["מיומנויות וסדנאות","sk","#3DB58C"],["דימות","im","#3AA0C8"],["מקצועיות ותקשורת","pr","#5E95A8"]],"kind":{"lecture":"הרצאה","case":"דיון מקרים","workshop":"סדנה","imaging":"דימות","round":"ביקור מודרך","admin":"פתיחת הסבב","exam":"מבחן"},"wn":{"1":"פתיחת הסבב, מיומנויות יסוד ובטן ימנית","2":"שוק, ספסיס, בטן חריפה ודימום עליון","3":"קיבה, כלי דם, שד ולבלב","4":"בריאטריה, רקטום, CT ופרוקטולוגיה","5":"כבד, נוזלים, תזונה ואיסכמיה","6":"חבלה קהה, תקשורת ודילמות"}}</script>
+
+<style>
+/* חדר ההרצאות (18/11/2026): the screen of the lecture hall. Drawn on a 1920x1080 stage and scaled to the screen. No names of the audience here. */
+:root{--navy:#14243A;--navy2:#1D3047;--navy3:#243B57;--cream:#F6F1E7;--paper:#FBF8F2;--line:#E6DED0;--gold:#C9A257;--gold2:#E2C68A;--green:#3B7F57;--g2:#5FAF83;--ink:#1D3047;--muted:#6F6556;--serif:'Frank Ruhl Libre',Georgia,serif;--sans:Heebo,Arial,sans-serif;--mono:'IBM Plex Mono',monospace;--res:#2F6FA8;--int:#C9893F;--stud:#3B7F57;--dept:#6A4FB0}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#0B1422;overflow:hidden;font-family:var(--sans);-webkit-font-smoothing:antialiased;color:#fff}
+button{font:inherit;color:inherit;cursor:pointer}
+#stage{position:absolute;width:1920px;height:1080px;top:0;left:0;transform-origin:0 0;overflow:hidden}
+.scr{position:absolute;inset:0;display:none}.scr.on{display:block;animation:fin .45s ease}
+@keyframes fin{from{opacity:0}}
+.dark{background:radial-gradient(120% 90% at 50% 0%,#24405F 0%,#172A42 45%,#0D1828 100%)}
+.art{position:absolute;pointer-events:none;mix-blend-mode:screen;opacity:.15;background-repeat:no-repeat;background-size:contain}
+.art.l{inset:-60px auto -60px -80px;width:720px;background-position:left center}.art.r{inset:-60px -80px -60px auto;width:720px;background-position:right center;opacity:.1}
+.grain{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(226,198,138,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(226,198,138,.04) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:radial-gradient(70% 70% at 50% 40%,#000,transparent);mask-image:radial-gradient(70% 70% at 50% 40%,#000,transparent)}
+.top{position:absolute;top:44px;right:64px;left:64px;display:flex;align-items:center;justify-content:space-between;z-index:5}
+.clock{direction:ltr;text-align:right}.clock b{display:block;font:600 64px/1 var(--mono);letter-spacing:.02em}.clock span{display:block;margin-top:8px;font:700 22px var(--sans);color:var(--gold2);direction:rtl}
+.who{all:unset;cursor:pointer;display:flex;align-items:center;gap:14px;padding:10px 12px 10px 22px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(226,198,138,.35);font:700 22px var(--sans)}
+.who i{width:48px;height:48px;border-radius:50%;background:linear-gradient(145deg,#C9A257,#8E6E30);display:grid;place-items:center;font:800 20px var(--sans);font-style:normal;color:var(--navy)}
+.who small{display:block;font:500 15px var(--sans);color:#B8C4D2}
+.logos{display:flex;align-items:center;gap:18px;padding:10px 20px;border-radius:16px;background:rgba(255,255,255,.95);color:var(--navy);font:800 17px var(--sans)}.logos .d{width:1px;height:26px;background:#D9D1C2}
+.btn{font:800 26px var(--sans);border:0;border-radius:999px;padding:20px 40px;background:var(--gold);color:var(--navy);display:inline-flex;align-items:center;gap:12px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.btn:hover{background:#D8B66C}.btn svg{width:28px;height:28px}
+.btn.gh{background:rgba(255,255,255,.08);color:#fff;border:1.5px solid rgba(255,255,255,.3);box-shadow:none;font-size:21px;padding:14px 26px}
+.kick{font:800 20px var(--sans);letter-spacing:.32em;color:var(--gold2);direction:ltr}
+.hh{margin:.08em 0 .1em;font:900 128px/1 var(--serif);text-shadow:0 8px 40px rgba(0,0,0,.4)}
+.subl{font:700 34px var(--sans);color:#D8E1EA}.subl i{font-style:normal;color:var(--gold);margin:0 .5em}
+.emb{position:relative;width:230px;height:230px;border-radius:50%}
+.emb img{width:100%;height:100%;border-radius:50%;display:block;background:#fff;box-shadow:0 24px 80px rgba(0,0,0,.5)}
+.emb::before{content:'';position:absolute;inset:-16px;border-radius:50%;border:2px solid rgba(226,198,138,.55);animation:ring 3.6s ease-out infinite}
+.emb::after{content:'';position:absolute;inset:-6px;border-radius:50%;border:3px solid var(--gold);box-shadow:0 0 40px rgba(201,162,87,.4)}
+@keyframes ring{0%{transform:scale(.96);opacity:.9}100%{transform:scale(1.28);opacity:0}}
+.qr{background:#fff;border-radius:14px;padding:10px;flex:none;display:grid;place-items:center}.qr img,.qr canvas{width:100%!important;height:100%!important;image-rendering:pixelated}
+/* the door: the emblem opens the hall */
+.emb.door{all:unset;cursor:pointer;position:relative;width:230px;height:230px;border-radius:50%;display:block}
+.emb.door img{width:100%;height:100%;border-radius:50%;display:block;background:#fff;box-shadow:0 24px 80px rgba(0,0,0,.5);transition:transform .3s}
+.emb.door:hover img{transform:scale(1.05)}
+.emb .tap{position:absolute;left:50%;bottom:-54px;transform:translateX(-50%);white-space:nowrap;font:800 18px var(--sans);letter-spacing:.06em;color:var(--gold2);animation:tapb 2.4s ease-in-out infinite}
+@keyframes tapb{50%{opacity:.35}}
+.opening #sLand .mid>*:not(.door){transition:opacity .5s,transform .7s;opacity:0;transform:translateY(-40px)}
+.opening #sLand .door{transition:transform 1s cubic-bezier(.6,0,.2,1),opacity 1s;transform:scale(5.5);opacity:0}
+.opening #sLand .today{transition:opacity .4s;opacity:0}
+.flash{position:absolute;inset:0;z-index:20;pointer-events:none;background:radial-gradient(circle at 50% 42%,rgba(226,198,138,.55),rgba(13,24,40,0) 55%);opacity:0}
+.opening .flash{animation:flash 1.1s ease}@keyframes flash{40%{opacity:1}100%{opacity:0}}
+.worlds.fly .wcard{animation:fly .8s cubic-bezier(.2,.9,.25,1.1) both}.worlds.fly .wcard:nth-child(2){animation-delay:.1s}.worlds.fly .wcard:nth-child(3){animation-delay:.2s}.worlds.fly .wcard:nth-child(4){animation-delay:.3s}
+@keyframes fly{from{transform:translateY(120px) scale(.9);opacity:0}}
+.wlock{position:absolute;top:28px;left:28px;display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(9,17,29,.6);border:1px solid rgba(226,198,138,.5);font:800 15px var(--sans);color:var(--gold2)}
+.wlock svg{width:20px;height:20px}.wopen{position:absolute;top:28px;left:28px;padding:8px 14px;border-radius:999px;background:#3B7F57;font:800 15px var(--sans);color:#fff}
+.wcard>.wlock,.wcard>.wopen{position:absolute}
+.wcard.locked h3,.wcard.locked p{opacity:.85}
+/* the opening screen: the emblem, the welcome and the four worlds */
+#sLand .mid.top{justify-content:flex-start;padding:62px 64px 150px}
+.emb.sm{width:132px;height:132px}.emb.sm::before{inset:-11px}.emb.sm::after{inset:-4px}
+#sLand .mid.top .kick{margin-top:22px;font-size:17px}#sLand .mid.top .hh{font-size:92px}#sLand .mid.top .subl{font-size:26px}
+.worlds.lw{position:relative;top:auto;right:auto;left:auto;bottom:auto;width:100%;height:400px;margin-top:30px}
+.worlds.lw .wcard{padding:26px 26px 22px}.worlds.lw .wcard h3{font-size:42px}.worlds.lw .wcard p{font-size:18px}.worlds.lw .wic{width:76px;height:76px}.worlds.lw .wic svg{width:42px;height:42px}
+.worlds.lw .wcard small{margin-top:14px}
+#sLand .mid.top .enter{margin-top:22px}#sLand .enter .btn.gh{font-size:19px;padding:11px 22px}
+/* landing */
+#sLand .mid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;z-index:2;padding-bottom:150px}
+#sLand .kick{margin-top:40px}#sLand .enter{margin-top:52px}
+.today{position:absolute;bottom:0;right:0;left:0;z-index:2;padding:26px 64px 34px;background:linear-gradient(0deg,rgba(9,17,29,.92),rgba(9,17,29,0));display:flex;align-items:flex-end;gap:22px}
+.today h3{margin:0 0 0 18px;font:800 22px var(--sans);color:var(--gold2);white-space:nowrap;align-self:center}
+.tcard{flex:1;max-width:520px;display:flex;align-items:center;gap:18px;padding:18px 22px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14)}
+.tcard b{font:600 30px var(--mono);direction:ltr;white-space:nowrap}.tcard p{margin:0;font:700 22px var(--sans)}.tcard small{display:block;font:500 17px var(--sans);color:#AFBCCB;margin-top:2px}
+.tcard.now{border-color:var(--gold);background:rgba(201,162,87,.14)}.tcard .live{margin-right:auto;font:800 15px var(--sans);color:var(--navy);background:var(--gold);border-radius:999px;padding:5px 12px;white-space:nowrap}
+.tnone{font:600 22px var(--sans);color:#AFBCCB}
+/* login */
+.glass{background:rgba(251,248,242,.98);color:var(--ink);border-radius:30px;box-shadow:0 40px 120px rgba(0,0,0,.55)}
+#sLog .pane{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:1180px;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;z-index:3}
+#sLog .pane>div{padding:56px 60px;position:relative}
+#sLog h2{margin:0;font:900 52px var(--serif)}#sLog p{margin:10px 0 24px;font:500 21px/1.5 var(--sans);color:var(--muted)}
+#sLog label{display:block;font:700 19px var(--sans);margin:16px 0 8px}
+#sLog input{width:100%;height:64px;border:2px solid var(--line);border-radius:16px;background:#fff;padding:0 20px;font:500 22px var(--sans);color:var(--ink);direction:ltr;text-align:left;outline:none}
+#sLog input:focus{border-color:var(--navy2)}
+#sLog .go{margin-top:26px;width:100%;height:68px;border:0;border-radius:16px;background:var(--navy2);color:#fff;font:800 24px var(--sans)}#sLog .go:disabled{opacity:.5}
+#sLog .er{color:#B5483A;font:700 18px var(--sans);min-height:26px;margin-top:10px}
+#sLog .side{background:var(--navy2);color:#fff;display:flex;flex-direction:column;align-items:center;text-align:center}
+#sLog .side h2{color:#fff;font-size:44px}#sLog .side p{color:#C9D3DE}
+#sLog .side .qr{width:270px;height:270px;border-radius:22px;padding:16px;margin:6px 0 22px;box-shadow:0 0 0 6px rgba(201,162,87,.5)}
+.steps{display:flex;gap:12px;font:700 18px var(--sans);color:#E8EEF4}.steps span{background:rgba(255,255,255,.08);border-radius:999px;padding:8px 16px}.steps b{color:var(--gold2);margin-left:6px}
+.or{position:absolute;top:50%;right:-28px;transform:translateY(-50%);width:56px;height:56px;border-radius:50%;background:var(--gold);color:var(--navy);display:grid;place-items:center;font:800 19px var(--sans);z-index:2}
+.note{display:flex;gap:10px;align-items:flex-start;margin-top:18px;font:500 17px/1.45 var(--sans);color:var(--muted)}.note svg{width:22px;height:22px;flex:none;margin-top:2px;color:var(--green)}
+.back{position:absolute;top:56px;left:64px;z-index:6}
+/* worlds */
+.head{position:absolute;top:170px;right:64px;left:64px;z-index:2}.head h2{margin:0;font:900 76px var(--serif)}.head p{margin:8px 0 0;font:600 26px var(--sans);color:#C9D3DE}
+.worlds{position:absolute;top:350px;right:64px;left:64px;bottom:80px;display:grid;grid-template-columns:repeat(4,1fr);gap:26px;z-index:2}
+.wcard{all:unset;cursor:pointer;position:relative;overflow:hidden;border-radius:30px;padding:34px 32px;background:linear-gradient(165deg,rgba(255,255,255,.1),rgba(255,255,255,.03));border:1.5px solid rgba(255,255,255,.16);display:flex;flex-direction:column;transition:transform .2s,border-color .2s}
+.wcard:hover,.wcard:focus-visible{transform:translateY(-6px);border-color:var(--gold2)}
+.wcard::before{content:'';position:absolute;inset:0;background:var(--art) no-repeat 0% 30%/auto 130%;mix-blend-mode:screen;opacity:.2}
+.wcard.mine{border-color:var(--gold);box-shadow:0 30px 80px rgba(0,0,0,.45)}.wcard.dim{opacity:.55}
+.wcard>*{position:relative}
+.wic{width:92px;height:92px;border-radius:50%;display:grid;place-items:center;background:var(--c);box-shadow:0 12px 30px rgba(0,0,0,.35)}.wic svg{width:50px;height:50px;color:#fff}
+.wcard small{margin-top:22px;font:800 16px var(--sans);letter-spacing:.2em;color:var(--gold2);direction:ltr;text-align:right}
+.wcard h3{margin:6px 0 4px;font:900 48px/1.05 var(--serif)}.wcard p{margin:0;font:500 20px/1.45 var(--sans);color:#C9D3DE}
+.wcount{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}.wcount i{font-style:normal;font:700 16px var(--sans);padding:6px 13px;border-radius:999px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18)}
+.wnext{margin-top:auto;padding:18px 20px;border-radius:20px;background:rgba(9,17,29,.55);border:1px solid rgba(226,198,138,.3)}
+.wnext.hot{border-color:var(--gold);background:rgba(201,162,87,.16)}
+.wnext em{font-style:normal;display:block;font:800 15px var(--sans);color:var(--gold2)}.wnext b{display:block;font:700 22px/1.3 var(--sans);margin-top:4px}.wnext span{font:500 17px var(--sans);color:#B8C4D2}
+/* a world */
+.light{background:var(--cream);color:var(--ink)}
+.band{position:absolute;top:0;right:0;left:0;height:340px;background:var(--navy2);color:#fff;overflow:hidden}
+.band .art{left:0;top:-40px;width:760px;height:420px;background-position:left center;opacity:.22}
+.band::after{content:'';position:absolute;right:0;left:0;bottom:0;height:4px;background:var(--gold)}
+.band .tt{position:absolute;right:64px;top:176px}.crumb{all:unset;cursor:pointer;font:700 20px var(--sans);color:var(--gold2)}.crumb b{color:#fff}
+.band h2{margin:8px 0 0;font:900 70px var(--serif)}
+.band .stats{position:absolute;left:64px;top:170px;display:flex;gap:16px}
+.st{min-width:150px;padding:14px 20px;border-radius:18px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);text-align:center}.st b{display:block;font:800 40px var(--sans)}.st span{font:600 16px var(--sans);color:#C9D3DE}
+.wbody{position:absolute;top:376px;right:64px;left:64px;bottom:40px;display:grid;grid-template-columns:1.35fr 1fr;gap:36px}
+.col{overflow-y:auto;padding-bottom:20px;scrollbar-width:thin}
+.tabs{display:flex;gap:8px;margin-bottom:18px}
+.tabs button{all:unset;cursor:pointer;font:800 20px var(--sans);padding:10px 22px;border-radius:999px;border:1.5px solid var(--line);background:#fff;color:var(--muted)}.tabs button.on{background:var(--navy2);color:#fff;border-color:var(--navy2)}
+.lec{display:grid;grid-template-columns:130px 1fr auto;gap:22px;align-items:center;padding:20px 24px;border-radius:22px;background:#fff;border:1.5px solid var(--line);margin-bottom:14px}
+.lec .dt{text-align:center;border-radius:16px;padding:10px 0;background:var(--cream)}.lec .dt b{display:block;font:900 32px/1 var(--serif)}.lec .dt span{font:700 15px var(--sans);color:var(--muted)}
+.lec h4{margin:0;font:800 26px var(--sans)}.lec p{margin:4px 0 0;font:500 18px var(--sans);color:var(--muted)}
+.chips{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}.chip{font:700 15px var(--sans);padding:4px 12px;border-radius:999px;background:#F1ECE1;color:#5E5547}.chip.g{background:#E7F1EA;color:#2E6A47}.chip.w{background:#FBEFDC;color:#8A5A1A}
+.lec.hot{border:2.5px solid var(--gold);box-shadow:0 14px 40px rgba(201,162,87,.25)}.lec.hot .dt{background:var(--navy2);color:#fff}.lec.hot .dt span{color:var(--gold2)}
+.lec.past{opacity:.62}
+.acts{display:flex;flex-direction:column;gap:10px}
+.play{border:0;border-radius:18px;padding:17px 24px;background:var(--green);color:#fff;font:800 21px var(--sans);display:flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap}.play svg{width:22px;height:22px}
+.play.sec{background:#fff;color:var(--ink);border:1.5px solid var(--line);font-size:18px;padding:13px 18px}
+.empty{padding:36px;border-radius:22px;border:2px dashed var(--line);text-align:center;font:600 21px/1.5 var(--sans);color:var(--muted)}
+.panel{background:#fff;border:1.5px solid var(--line);border-radius:26px;padding:26px 28px}.panel h5{margin:0 0 16px;font:800 23px var(--sans)}
+.deck{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.dk{all:unset;cursor:pointer;border-radius:16px;overflow:hidden;border:1.5px solid var(--line);background:var(--paper)}.dk:hover{border-color:var(--gold)}
+.dk .th{height:96px;background:linear-gradient(160deg,var(--navy2),var(--navy3));position:relative;display:grid;place-items:center;color:var(--gold2);font:800 15px var(--sans)}
+.dk b{display:block;padding:10px 12px 2px;font:700 16px/1.3 var(--sans)}.dk span{display:block;padding:0 12px 10px;font:500 13.5px var(--sans);color:var(--muted)}
+.rest{margin-top:18px}.rest div{display:flex;gap:12px;align-items:center;padding:10px 4px;border-bottom:1px solid var(--line);font:600 17px var(--sans)}.rest div b{font:600 17px var(--mono);color:var(--muted);direction:ltr;min-width:92px}
+.priv{margin-top:20px;display:flex;gap:14px;align-items:flex-start;padding:16px 18px;border-radius:18px;background:#EEF3EF;font:500 17px/1.5 var(--sans);color:#2E4A39}.priv svg{width:26px;height:26px;flex:none;color:var(--green)}
+/* waiting */
+#sWait .mid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;z-index:2;padding-bottom:60px}
+.cd{font:600 150px/1 var(--mono);color:var(--gold);direction:ltr;margin-top:26px;text-shadow:0 0 60px rgba(201,162,87,.35)}
+#sWait .hh{font-size:100px;max-width:1500px}
+.lect{display:flex;align-items:center;gap:18px;margin-top:22px;font:700 30px var(--sans)}.lect i{width:66px;height:66px;border-radius:50%;background:linear-gradient(145deg,#C9A257,#8E6E30);display:grid;place-items:center;font:800 24px var(--sans);font-style:normal;color:var(--navy)}
+#sWait .start{margin-top:34px}
+.joinbox{position:absolute;left:64px;bottom:60px;z-index:2;display:flex;align-items:center;gap:22px;padding:22px 26px;border-radius:26px;background:rgba(255,255,255,.07);border:1.5px solid rgba(226,198,138,.4)}
+.joinbox .qr{width:180px;height:180px}.joinbox b{display:block;font:800 28px var(--sans)}.joinbox span{display:block;margin-top:6px;font:500 19px/1.45 var(--sans);color:#C9D3DE;max-width:360px}
+.joinbox code{display:inline-block;margin-top:10px;font:600 34px var(--mono);letter-spacing:.2em;color:var(--gold);direction:ltr}
+.counter{position:absolute;right:64px;bottom:60px;z-index:2;text-align:right}.counter b{font:800 86px var(--sans)}.counter span{display:block;font:600 22px var(--sans);color:#C9D3DE}.counter small{display:block;margin-top:6px;font:500 17px var(--sans);color:#8FA0B3}
+/* presenting */
+#sShow{background:#0D1828}
+#frame{position:absolute;top:0;right:0;left:0;bottom:76px;width:100%;height:calc(100% - 76px);border:0;background:#fff}
+.nodeck{position:absolute;inset:0 0 76px 0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:16px;background:radial-gradient(120% 90% at 50% 0%,#24405F,#0D1828)}
+.nodeck h2{margin:0;font:900 80px var(--serif)}.nodeck p{margin:0;font:600 26px var(--sans);color:#C9D3DE;max-width:1100px}
+.poll{position:absolute;top:110px;left:60px;width:760px;padding:34px 38px;border-radius:30px;background:rgba(20,36,58,.97);color:#fff;box-shadow:0 40px 100px rgba(0,0,0,.45);border:2px solid rgba(226,198,138,.5);z-index:4;animation:pin .5s cubic-bezier(.2,.9,.25,1.2)}
+@keyframes pin{from{transform:translateY(-30px) scale(.96);opacity:0}}
+.poll .pk{display:flex;align-items:center;gap:12px;font:800 20px var(--sans);color:var(--gold2)}.poll .pk .ld{width:14px;height:14px;border-radius:50%;background:#E5534B;animation:pl 1.6s infinite}
+@keyframes pl{0%{box-shadow:0 0 0 0 rgba(229,83,75,.6)}100%{box-shadow:0 0 0 14px rgba(229,83,75,0)}}
+.poll h4{margin:12px 0 22px;font:800 33px/1.3 var(--sans)}
+.bar{position:relative;height:64px;border-radius:16px;background:rgba(255,255,255,.08);margin-bottom:12px;overflow:hidden;display:flex;align-items:center;padding:0 20px;font:700 23px var(--sans)}
+.bar i{position:absolute;top:0;bottom:0;right:0;background:linear-gradient(270deg,#3B7F57,#5FAF83);border-radius:16px;transition:width 1s cubic-bezier(.2,.8,.2,1)}
+.bar span,.bar em{position:relative}.bar em{margin-right:auto;font-style:normal;font-family:var(--mono)}
+.bar.ok{box-shadow:inset 0 0 0 3px var(--gold)}.bar.ok span::after{content:' ✓';color:var(--gold2)}.bar.no i{background:rgba(255,255,255,.18)}
+.poll .pf{display:flex;justify-content:space-between;margin-top:14px;font:600 18px var(--sans);color:#B8C4D2}
+.cloud{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;justify-content:center;min-height:240px;padding:10px}
+.cloud span{font-weight:800;line-height:1.1;color:#fff;animation:pin .5s ease}.cloud span:nth-child(3n){color:var(--gold2)}.cloud span:nth-child(3n+1){color:#9FD7B4}
+.qbox{position:absolute;bottom:100px;right:60px;width:720px;z-index:4;display:flex;flex-direction:column;gap:10px}
+.qbox div{padding:18px 22px;border-radius:20px;background:rgba(20,36,58,.95);border:1.5px solid rgba(226,198,138,.45);font:700 24px/1.4 var(--sans);box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.qbox div small{display:block;font:700 15px var(--sans);color:var(--gold2);margin-bottom:4px}
+.hud{position:absolute;bottom:0;right:0;left:0;height:76px;background:rgba(13,24,40,.96);display:flex;align-items:center;gap:22px;padding:0 30px;font:700 19px var(--sans);z-index:5}
+.hud .pg{font-family:var(--mono)}.hud .rc{display:flex;align-items:center;gap:9px;color:#9FD7B4}.hud .rc i{width:11px;height:11px;border-radius:50%;background:#5FAF83}
+.hud .sp{margin-right:auto}.hud .tm{font:600 25px var(--mono);direction:ltr}
+.hud .mq{display:flex;align-items:center;gap:12px}.hud .mq .qr{width:58px;height:58px;padding:4px;border-radius:8px}.hud code{font:600 22px var(--mono);color:var(--gold);letter-spacing:.12em;direction:ltr}
+.hud .hb{all:unset;cursor:pointer;padding:8px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.25);font:700 17px var(--sans)}.hud .hb.end{border-color:#E5534B;color:#FFB4AE}
+.solo .hud #bEnd,.solo .hud .mq,.solo .hud #rc,.solo .hud #pst{display:none}
+.prog{position:absolute;bottom:76px;right:0;height:5px;background:var(--gold);z-index:5;transition:width .5s}
+/* the end */
+#sEnd .mid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;z-index:2}
+.sum{display:flex;gap:22px;margin-top:40px}.sum div{min-width:220px;padding:24px 30px;border-radius:24px;background:rgba(255,255,255,.07);border:1px solid rgba(226,198,138,.35)}.sum b{display:block;font:800 64px var(--sans)}.sum span{font:600 21px var(--sans);color:#C9D3DE}
+#sEnd p{font:600 24px var(--sans);color:#C9D3DE;margin-top:30px}
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);z-index:99;padding:14px 26px;border-radius:999px;background:#1D3047;color:#fff;font:700 18px Heebo,Arial;box-shadow:0 10px 30px rgba(0,0,0,.4);border:1px solid rgba(226,198,138,.5);display:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="stage"><div class="flash"></div>
+<section class="scr dark" id="sLand">
+  <div class="art l" style="background-image:url(https://kaplansurgeryhub-dotcom.github.io/ops/art/cardio.webp)"></div><div class="art r" style="background-image:url(https://kaplansurgeryhub-dotcom.github.io/ops/art/vessels.webp)"></div><div class="grain"></div>
+  <div class="top"><div class="clock"><b class="clk"></b><span class="dte"></span></div><div class="logos"><span>המערך הכירורגי</span><i class="d"></i><span>המרכז הרפואי קפלן</span></div></div>
+  <div class="mid top">
+    <div class="emb sm"><img src="https://kaplansurgeryhub-dotcom.github.io/ops/art/emblem.webp" alt=""></div>
+    <div class="kick">KAPLAN SURGICAL HUB · LECTURE HALL</div>
+    <h1 class="hh">ברוכים הבאים</h1>
+    <div class="subl">חדר ההרצאות של המערך הכירורגי<i>·</i>מתמחים<i>·</i>סטאז׳רים<i>·</i>סטודנטים<i>·</i>המערך</div>
+    <div class="worlds lw" id="lWorlds"></div>
+    <div class="enter"><button class="btn gh" id="bEnter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>כניסת מרצים</button></div>
+  </div>
+  <div class="today" id="today"></div>
+</section>
+
+<section class="scr dark" id="sLog">
+  <div class="art l" style="background-image:url(https://kaplansurgeryhub-dotcom.github.io/ops/art/cardio.webp);opacity:.09"></div><div class="grain"></div>
+  <div class="top"><div class="clock"><b class="clk"></b><span class="dte"></span></div></div>
+  <button class="btn gh back" data-go="back">חזרה</button>
+  <div class="pane glass">
+    <div>
+      <h2>כניסת מרצים</h2>
+      <p>המייל שנרשמתם איתו והסיסמה שלכם. מנהלים: אותה סיסמה של מערכת הניהול.</p>
+      <form id="fLog" autocomplete="off"><label for="iE">מייל</label><input id="iE" type="email" autocomplete="off" required><label for="iP">סיסמה</label><input id="iP" type="password" autocomplete="new-password" required>
+      <button class="go" id="bGo">כניסה</button><div class="er" id="lEr"></div></form>
+      <div class="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg><span>המחשב הזה משותף: הסיסמה לא נשמרת, ויוצאים לבד אחרי 30 דקות בלי פעילות ובסוף ההרצאה.</span></div>
+    </div>
+    <div class="side">
+      <span class="or">או</span>
+      <h2>בסריקה מהטלפון</h2>
+      <p>מהאפליקציה של המערך: במסך הבית "חדר ההרצאות" ← "סריקת הקוד". הטלפון הופך לשלט, בלי סיסמה. (גם במצלמה של הטלפון: נכנסים פעם אחת עם המייל והסיסמה.)</p>
+      <div class="qr" id="pairQr"></div>
+      <div class="steps"><span><b>1</b>סריקה</span><span><b>2</b>אישור בטלפון</span><span><b>3</b>החדר נפתח</span></div><p style="margin:18px 0 0">או מקלידים באפליקציה את המספר:</p><div id="pairC" style="font:600 46px var(--mono);letter-spacing:.18em;color:var(--gold2);direction:ltr"></div>
+    </div>
+  </div>
+</section>
+
+<section class="scr dark" id="sWorlds">
+  <div class="art r" style="background-image:url(https://kaplansurgeryhub-dotcom.github.io/ops/art/vessels.webp);opacity:.08"></div><div class="grain"></div>
+  <div class="top"><div class="clock"><b class="clk"></b><span class="dte"></span></div><button class="who" data-act="out"><i class="ini"></i><div><span class="nm"></span><small>יציאה</small></div></button></div>
+  <div class="head"><h2 id="hello"></h2><p id="helloSub"></p></div>
+  <div class="worlds" id="worlds"></div>
+</section>
+
+<section class="scr light" id="sWorld">
+  <div class="band"><div class="art" id="wArt"></div>
+    <div class="top" style="top:40px"><div class="clock"><b class="clk"></b><span class="dte"></span></div><button class="who" data-act="out"><i class="ini"></i><div><span class="nm"></span><small>יציאה</small></div></button></div>
+    <div class="tt"><button class="crumb" data-go="worlds">העולמות שלי ‹ <b id="wName"></b></button><h2>ההרצאות שלי</h2></div>
+    <div class="stats" id="wStats"></div>
+  </div>
+  <div class="wbody">
+    <div class="col"><div class="tabs" id="wTabs"></div><div id="wList"></div></div>
+    <div class="col"><div class="panel"><h5 id="dkHead">מצגות בעולם</h5><div class="deck" id="wDecks"></div><div class="rest" id="wRest"></div>
+      <div class="priv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/></svg><span><b>מה לא מופיע כאן:</b> שמות של הקהל, נוכחות, משובים וציונים. הם נשארים באפליקציה האישית שלך ואצל אחראי/ת העולם.</span></div></div></div>
+  </div>
+</section>
+
+<section class="scr dark" id="sWait">
+  <div class="art l" style="background-image:url(https://kaplansurgeryhub-dotcom.github.io/ops/art/torso.webp);opacity:.13"></div><div class="art r" style="background-image:url(https://kaplansurgeryhub-dotcom.github.io/ops/art/cavity.webp)"></div><div class="grain"></div>
+  <div class="top"><div class="clock"><b class="clk"></b><span class="dte"></span></div><div class="logos"><span id="waitW"></span><i class="d"></i><span>המערך הכירורגי · קפלן</span></div></div>
+  <div class="mid"><div class="kick" id="waitK"></div><h1 class="hh" id="waitT"></h1><div class="lect"><i class="ini2"></i><span id="waitBy"></span></div><div class="cd" id="cd"></div>
+    <div class="start"><button class="btn" id="bBegin"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l13 8-13 8z"/></svg>מתחילים</button> <button class="btn gh" id="bCancel">ביטול</button></div></div>
+  <div class="joinbox"><div class="qr" id="joinQr"></div><div><b>מצטרפים להרצאה</b><span>מהאפליקציה שלכם: ההרצאה מופיעה למעלה. בלי אפליקציה: סורקים ומקלידים את הקוד</span><code id="joinCode"></code></div></div>
+  <div class="counter"><b id="jn">0</b><span>הצטרפו עד עכשיו</span><small>מספר בלבד · בלי שמות על המסך</small></div>
+</section>
+
+<section class="scr" id="sShow">
+  <iframe id="frame" title="המצגת" allow="fullscreen 'none'"></iframe>
+  <div class="nodeck" id="noDeck"><div class="kick" id="ndK"></div><h2 id="ndT"></h2><p>אין מצגת מקושרת להרצאה הזו. אפשר לשתף מסך מהמחשב הנייד, ולהפעיל הצבעות וענן מילים מהטלפון.</p></div>
+  <div id="pollBox"></div><div class="qbox" id="qBox"></div>
+  <div class="prog" id="prog" style="width:0"></div>
+  <div class="hud"><span class="pg" id="pg"></span><span class="rc" id="rc"></span><span id="pst"></span><span class="sp"></span>
+    <button class="hb" id="bHome">לעולם</button><button class="hb end" id="bEnd">סיום ההרצאה</button>
+    <span class="mq"><span class="qr" id="hudQr"></span><span>הצטרפות <code id="hudCode"></code></span></span><span class="tm" id="tm">00:00</span></div>
+</section>
+
+<section class="scr dark" id="sEnd">
+  <div class="art l" style="background-image:url(https://kaplansurgeryhub-dotcom.github.io/ops/art/cardio.webp);opacity:.1"></div><div class="grain"></div>
+  <div class="mid"><div class="kick">THANK YOU</div><h1 class="hh">תודה</h1><div class="subl" id="endT"></div><div class="sum" id="endSum"></div><p>הסיכום המלא נשמר אצל המרצה ואצל אחראי/ת העולם · יוצאים מהחדר בעוד <b id="endN">20</b> שניות</p></div>
+</section>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+(function () {
+'use strict';
+const q = new URLSearchParams(location.search), tv = (s, n) => (!s || s.indexOf('<' + '?') === 0 ? q.get(n) || '' : s).replace(/[^a-z0-9]/g, '');
+const K = tv('<?= k ?>', 'k');
+const DK = JSON.parse(document.getElementById('dk-data').textContent).decks;
+const SITE = 'https:' + '/' + '/kaplansurgeryhub-dotcom.github.io/';
+const WI = { res: ['RESIDENTS', 'עולם המתמחים', 'מקרה על השולחן ביום שני, שלב א׳ ביום רביעי', 'var(--res)', 'thorax', 'r'], int: ['INTERNS', 'עולם הסטאז׳רים', 'הסמינרים, טרום ניתוח והנהלים של הסבב', 'var(--int)', 'gi', 'i'], stud: ['SCRUB IN · STUDENTS', 'עולם הסטודנטים', 'הסבב של 6 שבועות, שנה ד׳', 'var(--stud)', 'organs', 's'], dept: ['DEPARTMENT', 'עולם המערך', 'ישיבות בוקר, M&M, ג׳ורנל קלאב וסמינרים', 'var(--dept)', 'liver', 'm'] };
+const WO = ['res', 'int', 'stud', 'dept'];
+const IC = { res: '<path d="M8 40l20-20"/><path d="M28 20l8-8a4 4 0 0 1 6 6l-8 8z"/><path d="M14 34l-4 4"/>', int: '<path d="M4 18l20-10 20 10-20 10z"/><path d="M12 22v10c0 3 5 6 12 6s12-3 12-6V22"/>', stud: '<circle cx="24" cy="14" r="7"/><path d="M10 42c0-8 6-13 14-13s14 5 14 13"/>', dept: '<path d="M6 42V14l18-9 18 9v28z"/><path d="M24 15v12M18 21h12"/><path d="M19 42v-8h10v8"/>' };
+const ico = w => '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">' + IC[w] + '</svg>';
+const $ = id => document.getElementById(id), esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+const run = (fn, ...a) => new Promise((ok, no) => { const t = setTimeout(() => no(new Error('השרת לא עונה. בודקים את החיבור ומנסים שוב')), 25000); google.script.run.withSuccessHandler(r => { clearTimeout(t); ok(r); }).withFailureHandler(e => { clearTimeout(t); no(new Error((e && e.message) || 'שגיאה')); })[fn](...a); });
+const ss = { get: k => { try { return sessionStorage.getItem(k) || ''; } catch (e) { return ''; } }, set: (k, v) => { try { v ? sessionStorage.setItem(k, v) : sessionStorage.removeItem(k); } catch (e) {} } };
+const S = { after: null, key: ss.get('hall_k'), me: null, w: '', world: null, tab: 'mine', live: null, pos: { i: 0, n: 0 }, seq: 0, began: 0, view: 'land', lastAct: Date.now(), pair: null, bridge: false };
+const toast = t => { const e = $('toast'); e.textContent = t; e.style.display = 'block'; clearTimeout(toast.t); toast.t = setTimeout(() => { e.style.display = 'none'; }, 3500); };
+const ini = n => String(n || '').replace(/^ד["״']?ר\s*/, '').split(/\s+/).filter(Boolean).slice(0, 2).map(x => x[0]).join('״') || '·';
+const dd = d => { const x = new Date(d + 'T12:00:00'); return x.getDate() + '/' + (x.getMonth() + 1); };
+const wd = d => ['א׳', 'ב׳', 'ג׳', 'ד׳', 'ה׳', 'ו׳', 'ש׳'][new Date(d + 'T12:00:00').getDay()];
+function qr(el, text) { el.innerHTML = ''; if (!text) return; try { new QRCode(el, { text: text, width: 512, height: 512, colorDark: '#14243A', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.M }); } catch (e) { el.textContent = text; } }
+
+// ---------- the stage and the clock ----------
+function fit() { const s = Math.min(innerWidth / 1920, innerHeight / 1080), st = $('stage'); st.style.transform = 'scale(' + s + ')'; st.style.left = (innerWidth - 1920 * s) / 2 + 'px'; st.style.top = (innerHeight - 1080 * s) / 2 + 'px'; }
+addEventListener('resize', fit); fit();
+const fT = new Intl.DateTimeFormat('he-IL', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Asia/Jerusalem' }), fD = new Intl.DateTimeFormat('he-IL', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'Asia/Jerusalem' });
+function tick() { const d = new Date(), t = fT.format(d), ds = fD.format(d); document.querySelectorAll('.clk').forEach(e => { e.textContent = t; }); document.querySelectorAll('.dte').forEach(e => { e.textContent = ds; });
+  if (S.view === 'wait') cdPaint(); if (S.view === 'show' && S.began) { const s = Math.floor((Date.now() - S.began) / 1000); $('tm').textContent = [Math.floor(s / 3600), Math.floor(s / 60) % 60, s % 60].map(x => String(x).padStart(2, '0')).join(':'); } }
+setInterval(tick, 1000); tick();
+function show(v) { S.view = v; ['land', 'log', 'worlds', 'world', 'wait', 'show', 'end'].forEach(x => { const id = 's' + x[0].toUpperCase() + x.slice(1); $(id).classList.toggle('on', x === v); }); }
+
+// ---------- the landing page ----------
+async function land() { show('land'); if (S.key && S.me) return worlds(); const g = $('lWorlds'); if (!g.innerHTML) { g.innerHTML = gateCards(); } g.classList.remove('fly'); void g.offsetWidth; g.classList.add('fly'); try { const T = await run('ops_hallToday', K); const now = fT.format(new Date());
+  $('today').innerHTML = '<h3>היום בחדר</h3>' + (T.items.length ? T.items.slice(0, 4).map(x => { const hot = x.t && x.t.slice(0, 5) >= now && x.t.slice(0, 5) <= addMin(now, 40);
+    return `<div class="tcard${hot ? ' now' : ''}"><b>${esc(x.t ? x.t.slice(0, 5) : '·')}</b><div><p>${esc(x.ti)}</p><small>${esc(WI[x.w] ? WI[x.w][1] : '')}</small></div>${hot ? '<span class="live">בקרוב</span>' : ''}</div>`; }).join('') : '<span class="tnone">היום אין הרצאות בלוח</span>');
+  if (T.live) $('today').insertAdjacentHTML('beforeend', `<div class="tcard now"><b>עכשיו</b><div><p>${esc(T.live.ti)}</p><small>${esc(T.live.by)}</small></div><span class="live">${T.live.st === 'on' ? 'בהרצאה' : 'מתחיל'}</span></div>`);
+} catch (e) { $('today').innerHTML = '<span class="tnone">' + esc(e.message) + '</span>'; } }
+const addMin = (hm, m) => { const [h, mm] = hm.split(':').map(Number), t = h * 60 + mm + m; return String(Math.floor(t / 60)).padStart(2, '0') + ':' + String(t % 60).padStart(2, '0'); };
+setInterval(() => { if (S.view === 'land') land(); }, 120000);
+
+// ---------- signing in ----------
+function login() { show('log'); $('lEr').textContent = ''; $('iP').value = ''; setTimeout(() => $('iE').focus(), 200); pairStart(); }
+async function pairStart() { clearTimeout(S.pairT); try { S.pair = await run('ops_hallPairNew', K); qr($('pairQr'), S.pair.url); $('pairC').textContent = (S.pair.c || '').replace(/(\d{3})(\d{3})/, '$1 $2'); S.pairAt = Date.now(); pairPoll(); } catch (e) { $('pairQr').innerHTML = '<span style="color:#B5483A;font:700 17px var(--sans);text-align:center;padding:10px">' + esc(e.message) + '</span>'; $('pairC').textContent = ''; clearTimeout(S.pairT); S.pairT = setTimeout(() => { if (S.view === 'log') pairStart(); }, 8000); } }
+async function pairPoll() { if (S.view !== 'log' || !S.pair) return; if (Date.now() - S.pairAt > 54e4) return pairStart();
+  try { const r = await run('ops_hallPairPoll', S.pair.id, K); if (r.key) return signed(r.key, r.me); if (r.gone) return pairStart(); } catch (e) {}
+  S.pairT = setTimeout(pairPoll, 2500); }
+$('fLog').onsubmit = async e => { e.preventDefault(); const g = $('bGo'); g.disabled = true; $('lEr').textContent = '';
+  g.textContent = 'נכנסים…'; try { const r = await run('ops_roomLogin', $('iE').value, $('iP').value, K); $('iP').value = ''; await signed(r.key, null); } catch (x) { $('lEr').textContent = x.message; } g.disabled = false; g.textContent = 'כניסה'; };
+async function signed(key, me) { S.key = key; ss.set('hall_k', key); S.lastAct = Date.now(); try { S.me = me || await run('ops_hallMe', key, K); } catch (e) { S.key = ''; ss.set('hall_k', ''); if (S.view === 'log') { $('lEr').textContent = 'הכניסה עברה אבל החדר לא נטען: ' + e.message; return; } return out(); }
+  document.querySelectorAll('.nm').forEach(x => { x.textContent = S.me.name; }); document.querySelectorAll('.ini').forEach(x => { x.textContent = ini(S.me.name); });
+  const lv = await run('ops_hallTick', key, K, null).catch(() => ({})); if (lv && lv.id && !lv.none && !lv.other) { S.live = lv; return lv.st === 'on' ? present() : waiting(); }
+  const a = S.after; S.after = null; if (a && a.start) return start(a.start); if (a && a.w) return world(a.w); worlds(); }
+async function out() { const k = S.key; S.key = ''; S.me = null; S.live = null; ss.set('hall_k', ''); if (k) run('ops_roomOut', k).catch(() => {}); land(); }
+
+// ---------- the worlds ----------
+function worlds() { if (!S.me) return land(); show('worlds'); document.querySelectorAll('#sWorlds .who').forEach(b => { b.dataset.act = 'out'; }); const M = S.me, h = new Date().getHours(); $('hello').textContent = (h < 12 ? 'בוקר טוב, ' : h < 17 ? 'צהריים טובים, ' : 'ערב טוב, ') + M.name;
+  const mine = WO.filter(w => M.worlds[w].mine); $('helloSub').textContent = mine.length ? 'בחרו עולם. ' + (mine.length === 1 ? 'אתם מלמדים באחד מהם.' : 'אתם מלמדים ב-' + mine.length + ' מהם.') : 'בחרו עולם. אפשר לפתוח כל מצגת של המערך.';
+  $('worlds').innerHTML = WO.map(w => { const W = M.worlds[w], I = WI[w], nx = W.next, hot = nx && nx.d === M.today;
+    return `<button class="wcard${W.mine ? ' mine' : ' dim'}" data-w="${w}" style="--art:url(${SITE}ops/art/${I[4]}.webp)"><div class="wic" style="--c:${I[3]}">${ico(w)}</div><small>${I[0]}</small><h3>${I[1]}</h3><p>${I[2]}</p>
+      <div class="wcount">${W.n ? `<i>${W.n === 1 ? 'הרצאה אחת שלך' : W.n + ' הרצאות שלך'}</i>` : ''}${W.past ? `<i>${W.past} שהעברת</i>` : ''}${!W.n && !W.past ? '<i>מצגות לצפייה</i>' : ''}</div>
+      ${w === 'dept' ? '<span class="wopen">פתוח לכולם</span>' : ''}${nx ? `<div class="wnext${hot ? ' hot' : ''}"><em>${hot ? 'היום' : 'ההרצאה הבאה שלך'}</em><b>${esc(nx.ti)}</b><span>${hot ? '' : 'יום ' + wd(nx.d) + ' ' + dd(nx.d) + ' · '}${esc(nx.t || '')}</span></div>` : ''}</button>`; }).join(''); }
+document.addEventListener('click', e => { const t = e.target.closest('[data-w],[data-go],[data-act],[data-start],[data-open],[data-tab],[data-solo]'); if (!t) return; S.lastAct = Date.now();
+  if (t.dataset.w) { if (!S.key) { if (t.dataset.w === 'dept') return pubWorld(); S.after = { w: t.dataset.w }; return login(); } return world(t.dataset.w); }
+  if (t.dataset.solo) return solo(JSON.parse(t.dataset.solo));
+  if (t.dataset.go) { if (t.dataset.go === 'back') { S.after = null; return S.key ? worlds() : land(); } return t.dataset.go === 'land' ? land() : t.dataset.go === 'worlds' ? (S.key ? worlds() : land()) : null; }
+  if (t.dataset.act === 'out') return out();
+  if (t.dataset.act === 'login') return login();
+  if (t.dataset.tab) { S.tab = t.dataset.tab; return worldPaint(); }
+  if (t.dataset.start) { const it = (S.world.mine || []).find(x => x.id === t.dataset.start); if (!S.key) { S.after = { start: it }; return login(); } return start(it); }
+  if (t.dataset.open) { const o = JSON.parse(t.dataset.open); return start(o); } });
+
+
+// nobody signed in: the department is open, the other worlds are locked behind the lecturers' entry (18/11/2026, Dr. Gozani)
+function gateCards() { return WO.map(w => { const I = WI[w], open = w === 'dept';
+    return `<button class="wcard${open ? ' mine' : ' locked'}" data-w="${w}" style="--art:url(${SITE}ops/art/${I[4]}.webp)">${open ? '<span class="wopen">כניסה חופשית</span>' : `<span class="wlock">${LOCK}למרצים</span>`}<div class="wic" style="--c:${I[3]}">${ico(w)}</div><small>${I[0]}</small><h3>${I[1]}</h3><p>${I[2]}</p>
+      <div class="wnext"><em>${open ? 'נכנסים בלחיצה' : 'כניסה עם מייל וסיסמה'}</em><b>${open ? 'הישיבות, ההרצאות והמצגות של המערך' : 'ההרצאות שלך, השלט בטלפון וההצבעות'}</b></div></button>`; }).join(''); }
+function gateW() { if (!S.key) return land(); show('worlds'); $('hello').textContent = 'חדר ההרצאות של המערך';
+  $('helloSub').textContent = 'עולם המערך פתוח לכולם: הישיבות, הסמינרים, ה-M&M והמצגות. לשאר העולמות נכנסים כמרצים.';
+  document.querySelectorAll('#sWorlds .who').forEach(b => { b.dataset.act = 'login'; b.querySelector('.nm').textContent = 'כניסת מרצים'; b.querySelector('small').textContent = 'מייל וסיסמה או סריקה'; b.querySelector('.ini').innerHTML = LOCK; });
+  $('worlds').innerHTML = WO.map(w => { const I = WI[w], open = w === 'dept';
+    return `<button class="wcard${open ? ' mine' : ' locked'}" data-w="${w}" style="--art:url(${SITE}ops/art/${I[4]}.webp)">${open ? '<span class="wopen">כניסה חופשית</span>' : `<span class="wlock">${LOCK}למרצים</span>`}<div class="wic" style="--c:${I[3]}">${ico(w)}</div><small>${I[0]}</small><h3>${I[1]}</h3><p>${I[2]}</p>
+      <div class="wnext"><em>${open ? 'נכנסים בלחיצה' : 'כניסה עם מייל וסיסמה'}</em><b>${open ? 'הישיבות, ההרצאות והמצגות של המערך' : 'ההרצאות שלך, השלט בטלפון וההצבעות'}</b></div></button>`; }).join('');
+  flyIn(); }
+const LOCK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>';
+function flyIn() { const g = $('worlds'); g.classList.remove('fly'); void g.offsetWidth; g.classList.add('fly'); }
+// the door: the emblem opens the hall with a short animation
+function door() { if (document.body.classList.contains('opening')) return; document.body.classList.add('opening'); setTimeout(() => { document.body.classList.remove('opening'); worlds(); flyIn(); }, 950); }
+// the department without a password: this month's sessions with their decks, and every deck of the department
+async function pubWorld() { S.w = 'dept'; show('world'); $('wName').textContent = WI.dept[1]; $('wArt').style.backgroundImage = 'url(' + SITE + 'ops/art/' + WI.dept[4] + '.webp)';
+  document.querySelector('#sWorld h2').textContent = 'הישיבות וההרצאות'; document.querySelectorAll('#sWorld .who').forEach(b => { b.dataset.act = 'login'; b.querySelector('.nm').textContent = 'כניסת מרצים'; b.querySelector('small').textContent = 'לשלט ולהצבעות'; b.querySelector('.ini').innerHTML = LOCK; });
+  $('wList').innerHTML = '<div class="empty">טוען…</div>'; $('wTabs').innerHTML = ''; $('wDecks').innerHTML = ''; $('wRest').innerHTML = '';
+  try { const [P] = await Promise.all([run('ops_hallPub', K), libLoad()]); S.world = { mine: P.items, rest: [], today: P.today, pub: 1 }; pubPaint(); } catch (e) { $('wList').innerHTML = '<div class="empty">' + esc(e.message) + '</div>'; } }
+function pubPaint() { const W = S.world, t = W.today, up = W.mine.filter(x => x.d >= t), lib = libOf('dept');
+  $('wStats').innerHTML = `<div class="st"><b>${up.filter(x => x.d <= addDay(t, 7)).length}</b><span>השבוע</span></div><div class="st"><b>${up.length}</b><span>החודש הקרוב</span></div><div class="st"><b>${lib.length}</b><span>מצגות</span></div>`;
+  $('wList').innerHTML = up.length ? up.slice(0, 24).map(x => { const hot = x.d === t;
+    return `<div class="lec${hot ? ' hot' : ''}"><div class="dt"><b>${hot ? esc((x.t || '').slice(0, 5) || 'היום') : dd(x.d)}</b><span>${hot ? 'היום' : 'יום ' + wd(x.d) + (x.t ? ' · ' + esc(x.t.slice(0, 5)) : '')}</span></div>
+      <div><h4>${esc(x.ti)}</h4><p>${esc(x.who || WI.dept[1])}</p><div class="chips">${x.deck ? '<span class="chip g">מצגת מוכנה</span>' : '<span class="chip w">בלי מצגת · שיתוף מסך</span>'}</div></div>
+      <div class="acts">${x.deck ? `<button class="play${hot ? '' : ' sec'}" data-solo="${esc(JSON.stringify({ ti: x.ti, deck: x.deck }))}"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l13 8-13 8z"/></svg>הצגה</button>` : ''}<button class="play sec" data-start="${x.id}">עם השלט וההצבעות</button></div></div>`; }).join('') : '<div class="empty">אין ישיבות בלוח בחודש הקרוב. המצגות של המערך משמאל.</div>';
+  $('dkHead').textContent = 'מצגות המערך';
+  $('wDecks').innerHTML = lib.length ? lib.slice(0, 60).map(x => `<button class="dk" data-solo="${esc(JSON.stringify({ ti: x.ti, deck: x.deck }))}"><div class="th">${esc(x.sub || '').slice(0, 30)}</div><b>${esc(x.ti)}</b><span>להצגה</span></button>`).join('') : '<div class="empty" style="grid-column:1/-1">עוד אין מצגות בעולם המערך. מצגות שמתמחים מגישים מהאפליקציה ומאושרות מופיעות ברשימה מימין.</div>'; }
+const addDay = (d, n) => { const x = new Date(d + 'T12:00:00'); x.setDate(x.getDate() + n); return x.toLocaleDateString('sv'); };
+// presenting without a session: the deck alone, the keyboard or a USB clicker moves it
+function solo(o) { S.solo = 1; S.live = null; show('show'); $('sShow').classList.add('solo'); const fr = $('frame'), dk = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? String(o.deck).replace(SITE + 'scrub/', '/dev/scrub-drafts/out/scrub/') : o.deck;
+  fr.style.display = ''; $('noDeck').style.display = 'none'; fr.dataset.src = dk; fr.src = dk; $('pollBox').innerHTML = ''; $('qBox').innerHTML = ''; S.pos = { i: 0, n: 0 }; posPaint(); S.began = Date.now(); }
+
+// ---------- a world ----------
+const LHW = { r: 'res', i: 'int', s: 'stud', m: 'dept' }; let LHL = null;
+function libLoad() { if (LHL) return Promise.resolve(LHL); return new Promise(ok => { window.LH = { list: [], audience: function (a) { this.list.push(a); } }; let n = 0;
+  ['department', 'residents', 'interns', 'students'].forEach(f => { const s = document.createElement('script'); s.src = SITE + 'lectures/data/' + f + '.js'; s.onload = s.onerror = () => { if (++n === 4) { LHL = window.LH.list; ok(LHL); } }; document.head.appendChild(s); }); setTimeout(() => ok(LHL = (window.LH && window.LH.list) || []), 6000); }); }
+// every deck, PDF and page of a world, from the site's content files (the same the old room showed)
+function libOf(w) { const A = (LHL || []).find(a => LHW[a.key] === w), out = []; if (!A) return out;
+  const add = (it, sec) => { if (it.deck && DK[it.deck]) out.push({ ti: DK[it.deck].t, sub: sec, deck: SITE + 'scrub/' + it.deck }); else if (it.src && (it.type === 'pdf' || it.type === 'page')) out.push({ ti: it.t, sub: it.sub || sec, deck: SITE + 'lectures/' + it.src }); };
+  (A.sections || []).forEach(s => { if (s.type === 'decks') Object.keys(DK).sort((a, b) => (DK[a].o || 0) - (DK[b].o || 0)).forEach(f => out.push({ ti: DK[f].t, sub: 'Scrub In', deck: SITE + 'scrub/' + f })); (s.items || []).forEach(it => add(it, s.t)); (s.groups || []).forEach(g => (g.items || []).forEach(it => add(it, g.t))); });
+  const seen = {}; return out.filter(x => !seen[x.deck] && (seen[x.deck] = 1)); }
+async function world(w) { if (!S.key) return w === 'dept' ? pubWorld() : login(); S.w = w; S.tab = 'mine'; show('world'); document.querySelector('#sWorld h2').textContent = 'ההרצאות שלי'; document.querySelectorAll('#sWorld .who').forEach(b => { b.dataset.act = 'out'; b.querySelector('.nm').textContent = S.me.name; b.querySelector('small').textContent = 'יציאה'; b.querySelector('.ini').textContent = ini(S.me.name); }); $('wName').textContent = WI[w][1]; $('wArt').style.backgroundImage = 'url(' + SITE + 'ops/art/' + WI[w][4] + '.webp)';
+  $('wList').innerHTML = '<div class="empty">טוען…</div>'; $('wDecks').innerHTML = ''; $('wRest').innerHTML = '';
+  try { const [W] = await Promise.all([run('ops_hallWorld', S.key, K, w), libLoad()]); S.world = W; worldPaint(); } catch (e) { $('wList').innerHTML = '<div class="empty">' + esc(e.message) + '</div>'; } }
+function worldPaint() { const W = S.world, t = W.today, up = W.mine.filter(x => x.d >= t), past = W.mine.filter(x => x.d < t).reverse(), lib = libOf(S.w);
+  $('wStats').innerHTML = `<div class="st"><b>${up.length}</b><span>הרצאות קרובות</span></div><div class="st"><b>${past.length}</b><span>ב-30 הימים האחרונים</span></div>` + (W.rot ? `<div class="st"><b>${W.rot.n}</b><span>${esc(W.rot.name || 'בסבב')}</span></div>` : `<div class="st"><b>${lib.length}</b><span>מצגות בעולם</span></div>`);
+  $('wTabs').innerHTML = [['mine', 'ההרצאות שלי'], ['past', 'שהעברתי'], ['free', 'הרצאה חופשית']].map(x => `<button data-tab="${x[0]}" class="${S.tab === x[0] ? 'on' : ''}">${x[1]}</button>`).join('');
+  const row = (x, i) => { const hot = x.d === t, ln = x.deck ? '' : '<span class="chip w">בלי מצגת מקושרת · שיתוף מסך</span>';
+    return `<div class="lec${hot && i === 0 && S.tab === 'mine' ? ' hot' : ''}${S.tab === 'past' ? ' past' : ''}"><div class="dt"><b>${hot ? esc((x.t || '').slice(0, 5) || 'היום') : dd(x.d)}</b><span>${hot ? 'היום' : 'יום ' + wd(x.d) + (x.t ? ' · ' + esc(x.t.slice(0, 5)) : '')}</span></div>
+      <div><h4>${esc(x.ti)}</h4><p>${esc(WI[x.w][1])}${x.who ? ' · ' + esc(x.who) : ''}</p><div class="chips">${x.prep ? '<span class="chip g">יש הכנה לשיעור</span>' : ''}${x.read ? `<span class="chip g">${x.read} סימנו שקראו</span>` : ''}${x.held ? '<span class="chip">הועברה בחדר</span>' : ''}${x.draft ? '<span class="chip w">טרם אושרה</span>' : ''}${ln}</div></div>
+      <div class="acts"><button class="play${hot || S.tab !== 'mine' ? '' : ' sec'}" data-start="${x.id}">${hot ? '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l13 8-13 8z"/></svg>התחלת ההרצאה' : S.tab === 'past' ? 'לפתוח שוב' : 'פתיחה'}</button></div></div>`; };
+  if (S.tab === 'free') $('wList').innerHTML = `<div class="empty">הרצאה שלא מופיעה בלוח: בוחרים מצגת מהרשימה משמאל, או מתחילים בלי מצגת ומשתפים מסך.<br><br><button class="play" data-open="${esc(JSON.stringify({ w: S.w, ti: 'הרצאה · ' + WI[S.w][1] }))}">התחלה בלי מצגת</button></div>`;
+  else { const L = S.tab === 'mine' ? up : past; $('wList').innerHTML = L.length ? L.map(row).join('') : `<div class="empty">${S.tab === 'mine' ? 'אין הרצאות שלך בלוח בחודשיים הקרובים. אפשר לפתוח כל מצגת מהרשימה, או "הרצאה חופשית".' : 'עוד לא העברת הרצאות בעולם הזה בחודש האחרון.'}</div>`; }
+  $('dkHead').textContent = 'מצגות ב' + WI[S.w][1].replace('עולם ', 'עולם ');
+  $('wDecks').innerHTML = lib.length ? lib.slice(0, 60).map(x => `<button class="dk" data-open="${esc(JSON.stringify({ w: S.w, ti: x.ti, deck: x.deck }))}"><div class="th">${esc(x.sub || '').slice(0, 30)}</div><b>${esc(x.ti)}</b><span>להצגה</span></button>`).join('') : '<div class="empty" style="grid-column:1/-1">עוד אין מצגות בעולם הזה</div>';
+  $('wRest').innerHTML = W.rest.length ? '<h5 style="margin:18px 0 6px;font:800 19px var(--sans)">עוד בעולם בשבועיים הקרובים</h5>' + W.rest.slice(0, 8).map(x => `<div><b>${dd(x.d)} ${esc((x.t || '').slice(0, 5))}</b>${esc(x.ti)}</div>`).join('') : ''; }
+
+// ---------- a session: waiting, presenting, the end ----------
+async function start(it) { if (!it) return; try { S.live = await run('ops_hallStart', S.key, K, { id: it.id, w: it.w || S.w, ti: it.ti, d: it.d, t: it.t, deck: it.deck, prep: it.prep, cid: it.cid }); S.seq = S.live.cmd.seq || 0; waiting(); } catch (e) { toast(e.message); } }
+function waiting() { const v = S.live; show('wait'); $('waitW').textContent = v.wt; $('waitK').textContent = WI[v.w][0]; $('waitT').textContent = v.ti; $('waitBy').textContent = v.by; document.querySelector('.ini2').textContent = ini(v.by);
+  $('joinCode').textContent = v.code; qr($('joinQr'), v.url); $('jn').textContent = v.joined; cdPaint(); poll(); }
+function cdPaint() { const v = S.live; if (!v) return; const e = $('cd'); if (!v.t0) { e.textContent = ''; return; } const s = Math.round((new Date(v.t0).getTime() - Date.now()) / 1000);
+  e.textContent = s > 0 ? String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0') : 'עכשיו'; }
+$('bBegin').onclick = () => cmd('begin');
+$('bCancel').onclick = async () => { await cmd('end'); worlds(); };
+$('bEnd').onclick = () => { const b = $('bEnd'); if (!b.dataset.arm) { b.dataset.arm = 1; b.textContent = 'לסיים? לחיצה נוספת'; setTimeout(() => { delete b.dataset.arm; b.textContent = 'סיום ההרצאה'; }, 4000); return; } cmd('end'); };
+$('bHome').onclick = () => { if (S.solo) { S.solo = 0; $('sShow').classList.remove('solo'); $('frame').src = 'about:blank'; delete $('frame').dataset.src; return S.key ? world(S.w || 'dept') : pubWorld(); } S.key ? worlds() : land(); };
+async function cmd(op, x) { try { const r = await run('ops_hallCmd', S.key, K, op, Object.assign({ room: 1 }, x || {})); if (r.end) return ended(); S.live = r; apply(r); } catch (e) { toast(e.message); } }
+function present() { const v = S.live; S.solo = 0; $('sShow').classList.remove('solo'); show('show'); S.began = new Date(v.at).getTime();
+  const fr = $('frame'), dk = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? String(v.deck).replace(SITE + 'scrub/', '/dev/scrub-drafts/out/scrub/') : v.deck; if (v.deck) { if (fr.dataset.src !== dk) { fr.dataset.src = dk; fr.src = dk; S.bridge = false; } fr.style.display = ''; $('noDeck').style.display = 'none'; } else { fr.style.display = 'none'; $('noDeck').style.display = ''; $('ndK').textContent = WI[v.w][0]; $('ndT').textContent = v.ti; }
+  $('hudCode').textContent = v.code; qr($('hudQr'), v.url); apply(v); poll(); }
+// the deck's own position comes from the bridge inside the deck (dev/scrub-drafts/build.py adds it); without it the keys still work in the frame
+function deckGo(m) { const f = $('frame'); try { f.contentWindow.postMessage(Object.assign({ ksh: 'hall' }, m), '*'); } catch (e) {} }
+addEventListener('message', e => { const d = e.data || {}; if (d.ksh !== 'hallpos') return; S.bridge = true; const i = Math.max(0, +d.i || 0), n = Math.max(0, +d.n || 0); if (i !== S.pos.i || n !== S.pos.n) { S.pos = { i: i, n: n }; posPaint(); posSend(); } });
+function posPaint() { $('pg').textContent = S.pos.n ? (S.pos.i + 1) + ' / ' + S.pos.n : ''; $('prog').style.width = S.pos.n ? Math.round((S.pos.i + 1) / S.pos.n * 100) + '%' : '0'; }
+let posT = 0; function posSend() { clearTimeout(posT); posT = setTimeout(() => { if (S.key && S.live) run('ops_hallTick', S.key, K, S.pos).then(r => { if (r && r.id) { S.live = r; apply(r); } }).catch(() => {}); }, 600); }
+document.addEventListener('keydown', e => { if (S.view !== 'show') return; S.lastAct = Date.now(); if (e.key === 'ArrowLeft' || e.key === 'PageDown' || e.key === ' ') { deckGo({ op: 'go', d: 1 }); e.preventDefault(); } if (e.key === 'ArrowRight' || e.key === 'PageUp') { deckGo({ op: 'go', d: -1 }); e.preventDefault(); } });
+function apply(v) {
+  if (v.cmd && v.cmd.seq > S.seq) { S.seq = v.cmd.seq; if (v.cmd.op === 'go') deckGo({ op: 'go', d: v.cmd.n }); if (v.cmd.op === 'to') deckGo({ op: 'to', n: v.cmd.n }); }
+  if (S.view === 'wait') { $('jn').textContent = v.joined; if (v.st === 'on') return present(); return; }
+  if (S.view !== 'show') return;
+  $('rc').innerHTML = v.cmd && v.cmd.seq ? '<i></i>השלט: הטלפון של המרצה' : ''; $('pst').textContent = v.joined + ' הצטרפו'; posPaint();
+  const P = v.poll, box = $('pollBox'); if (P && P.id && !(S.pseen || (S.pseen = {}))[P.id]) { S.pseen[P.id] = 1; S.polls = (S.polls || 0) + 1; }
+  if (!P) box.innerHTML = '';
+  else if (P.k === 'cloud') { const mx = Math.max(1, ...P.words.map(x => x[1])); box.innerHTML = `<div class="poll"><div class="pk">${P.on ? '<span class="ld"></span>' : ''}ענן מילים · ${P.tot} מילים</div><h4>${esc(P.q)}</h4><div class="cloud">${P.words.map(x => `<span style="font-size:${22 + Math.round(x[1] / mx * 52)}px">${esc(x[0])}</span>`).join('') || '<span style="font-size:22px;color:#B8C4D2">מחכים למילה הראשונה…</span>'}</div></div>`; }
+  else { const tot = Math.max(1, P.tot); box.innerHTML = `<div class="poll"><div class="pk">${P.on ? '<span class="ld"></span>הצבעה חיה' : P.rv ? 'התשובה' : 'ההצבעה נסגרה'} · ${P.tot} ענו</div><h4>${esc(P.q)}</h4>${P.o.map((o, i) => `<div class="bar${P.rv && P.a === i ? ' ok' : P.rv && P.a != null ? ' no' : ''}"><i style="width:${Math.round((P.n[i] || 0) / tot * 100)}%"></i><span>${esc(o)}</span><em>${P.n[i] || 0}</em></div>`).join('')}<div class="pf"><span>${P.on ? 'עונים מהאפליקציה או מהקוד ' + esc(v.code) : ''}</span><span>אנונימי</span></div></div>`; }
+  $('qBox').innerHTML = (v.q || []).slice(-2).map(x => `<div><small>שאלה מהקהל · אנונימי</small>${esc(x.t)}</div>`).join(''); }
+let pollT = 0; async function poll() { clearTimeout(pollT); if (!S.key || !S.live || ['wait', 'show'].indexOf(S.view) < 0) return;
+  try { const r = await run('ops_hallTick', S.key, K, S.bridge ? S.pos : null); if (r.none || r.other) return ended(r.other); S.live = r; apply(r); } catch (e) {}
+  pollT = setTimeout(poll, document.hidden ? 8000 : 2500); }
+function ended(other) { const v = S.live || {}; S.live = null; clearTimeout(pollT); $('frame').src = 'about:blank'; delete $('frame').dataset.src; if (other) { toast('ההרצאה נפתחה ממכשיר אחר'); return worlds(); }
+  show('end'); $('endT').textContent = v.ti || ''; $('endSum').innerHTML = `<div><b>${v.joined || 0}</b><span>הצטרפו</span></div><div><b>${S.polls || 0}</b><span>הצבעות</span></div>`; let n = 20; $('endN').textContent = n;
+  clearInterval(S.endT); S.endT = setInterval(() => { $('endN').textContent = --n; if (n <= 0) { clearInterval(S.endT); out(); } }, 1000); }
+// 30 minutes without a touch outside a lecture: out
+setInterval(() => { if (!S.key && !S.solo && S.view !== 'land' && S.view !== 'log' && Date.now() - S.lastAct > 6e5) land(); if (S.key && S.view !== 'show' && S.view !== 'wait' && Date.now() - S.lastAct > 18e5) out(); }, 60000);
+['pointerdown', 'keydown'].forEach(t => document.addEventListener(t, () => { S.lastAct = Date.now(); }, true));
+// full screen at the first touch (not on iPhone)
+document.addEventListener('pointerdown', function once() { document.removeEventListener('pointerdown', once, true); const d = document.documentElement; if (!document.fullscreenElement && d.requestFullscreen && !/iPhone|iPad|iPod/.test(navigator.userAgent)) d.requestFullscreen().catch(() => {}); }, true);
+$('bEnter').onclick = login;
+if (S.key) signed(S.key, null); else land();
+window.HALL_ = S;
+})();
+</script>
+</body>
+</html>
