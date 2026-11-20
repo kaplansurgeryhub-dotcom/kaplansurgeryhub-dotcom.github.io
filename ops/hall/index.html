@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>חדר ההרצאות</title>
+<meta name="application-name" content="חדר ההרצאות">
+<meta name="apple-mobile-web-app-title" content="חדר ההרצאות">
+<meta name="theme-color" content="#FBF8F1">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png"><link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<style>
+html,body{margin:0;height:100%;background:#0B1A29;overflow:hidden}
+iframe{position:fixed;inset:0;width:100vw;height:100vh;border:0;display:block}
+</style>
+</head>
+<body>
+<iframe id="h" title="חדר ההרצאות" allow="fullscreen; clipboard-write; camera" allowfullscreen></iframe>
+<script>
+// The lecture hall as an app of its own, with its own icon (21/11/2026, Dr. Gozani). The room itself is ../app/hall.html (the fast app).
+// Until the hall opens to everyone the owner's private key comes once in the address (?k=), stays on this computer and leaves the address bar.
+(function () {
+  var q = new URLSearchParams(location.search).get('k') || '', k = '';
+  try { if (/^[a-z0-9]{16,40}$/.test(q)) localStorage.setItem('hall_room_k', q); k = localStorage.getItem('hall_room_k') || ''; } catch (e) { k = q; }
+  if (q) { try { history.replaceState(null, '', location.pathname); } catch (e) {} }
+  document.getElementById('h').src = '../app/hall.html?room=1' + (k ? '&k=' + encodeURIComponent(k) : '');
+})();
+</script>
+</body>
+</html>
