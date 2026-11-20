@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="68587352af30"><script>(function () {
+<head><meta name="ksh-ver" content="dcba6482e3b6"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -442,7 +442,7 @@ function libLoad() { if (LHL) return Promise.resolve(LHL); return new Promise(ok
   ['department', 'residents', 'interns', 'students'].forEach(f => { const s = document.createElement('script'); s.src = SITE + 'lectures/data/' + f + '.js'; s.onload = s.onerror = () => { if (++n === 4) { LHL = window.LH.list; ok(LHL); } }; document.head.appendChild(s); }); setTimeout(() => ok(LHL = (window.LH && window.LH.list) || []), 6000); }); }
 // every deck, PDF and page of a world, from the site's content files (the same the old room showed)
 function libOf(w) { const A = (LHL || []).find(a => LHW[a.key] === w), out = []; if (!A) return out;
-  const add = (it, sec) => { if (it.deck && DK[it.deck]) out.push({ ti: DK[it.deck].t, sub: sec, deck: SITE + 'scrub/' + it.deck }); else if (it.src && (it.type === 'pdf' || it.type === 'page')) out.push({ ti: it.t, sub: it.sub || sec, deck: SITE + 'lectures/' + it.src }); };
+  const add = (it, sec) => { if (it.deck && DK[it.deck]) out.push({ ti: DK[it.deck].t, sub: sec, deck: SITE + 'scrub/' + it.deck }); else if (it.type === 'pdf' && it.img && it.pages) out.push({ ti: it.t, sub: it.sub || sec, deck: SITE + 'ops/hall/slides.html?d=' + encodeURIComponent(it.img) + '&n=' + it.pages + '&t=' + encodeURIComponent(it.t) }); else if (it.src && (it.type === 'pdf' || it.type === 'page')) out.push({ ti: it.t, sub: it.sub || sec, deck: SITE + 'lectures/' + it.src }); };
   (A.sections || []).forEach(s => { if (s.type === 'decks') Object.keys(DK).sort((a, b) => (DK[a].o || 0) - (DK[b].o || 0)).forEach(f => out.push({ ti: DK[f].t, sub: 'Scrub In', deck: SITE + 'scrub/' + f })); (s.items || []).forEach(it => add(it, s.t)); (s.groups || []).forEach(g => (g.items || []).forEach(it => add(it, g.t))); });
   const seen = {}; return out.filter(x => !seen[x.deck] && (seen[x.deck] = 1)); }
 async function world(w) { if (!S.key) return w === 'dept' ? pubWorld() : login(); S.w = w; S.tab = 'mine'; show('world'); document.querySelector('#sWorld h2').textContent = 'ההרצאות שלי'; document.querySelectorAll('#sWorld .who').forEach(b => { b.dataset.act = 'out'; b.querySelector('.nm').textContent = S.me.name; b.querySelector('small').textContent = 'יציאה'; b.querySelector('.ini').textContent = ini(S.me.name); }); $('wName').textContent = WI[w][1]; $('wArt').style.backgroundImage = 'url(' + SITE + 'ops/art/' + WI[w][4] + '.webp)';

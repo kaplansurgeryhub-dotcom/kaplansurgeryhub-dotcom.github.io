@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>מצגת</title>
+<style>
+html,body{margin:0;height:100%;background:#000;overflow:hidden;font-family:Heebo,Arial,sans-serif;user-select:none;-webkit-user-select:none}
+.st{position:fixed;inset:0;display:grid;place-items:center}
+.st img{max-width:100vw;max-height:100vh;width:100%;height:100%;object-fit:contain;display:block}
+.pg{position:fixed;left:18px;bottom:14px;color:rgba(255,255,255,.55);font:600 15px/1 Heebo,Arial,sans-serif;background:rgba(0,0,0,.35);padding:6px 10px;border-radius:99px;transition:opacity .6s;direction:ltr}
+.pg.h{opacity:0}
+.nav{position:fixed;top:0;bottom:0;width:30%;cursor:pointer}.nav.p{right:0}.nav.n{left:0}
+.er{position:fixed;inset:0;display:grid;place-items:center;color:#fff;font-size:22px;text-align:center;padding:30px}
+</style>
+</head>
+<body>
+<div class="st"><img id="im" alt=""></div><div class="nav p" id="bp"></div><div class="nav n" id="bn"></div><div class="pg" id="pg"></div>
+<script>
+// The interns' seminars (PDF) as slides on the whole screen (21/11/2026, Dr. Gozani): the PDF opened in Chrome's document viewer, small
+// and out of the remote's reach. Here one page image at a time (lectures/pages/<d>/pNN.jpg), arrows, a click or a swipe, and the lecture
+// hall's bridge: the room sends {ksh:'hall', op:'go'|'to'} and gets back {ksh:'hallpos', i, n}, so the lecturer's phone moves the slides.
+(function () {
+  var q = new URLSearchParams(location.search), d = (q.get('d') || '').replace(/[^a-z0-9_-]/gi, ''), n = Math.max(1, Math.min(300, +q.get('n') || 1)), i = 0, P = null, ht = 0;
+  var $ = function (x) { return document.getElementById(x); };
+  if (q.get('t')) document.title = q.get('t');
+  if (!d) { document.body.innerHTML = '<div class="er">המצגת לא נמצאה</div>'; return; }
+  var src = function (k) { var s = ('0' + (k + 1)).slice(-2); return '../../lectures/pages/' + d + '/p' + s + '.jpg'; };
+  var pre = {}; function preload(k) { if (k < 0 || k >= n || pre[k]) return; var im = new Image(); im.src = src(k); pre[k] = im; }
+  function rep() { if (!P) return; try { P.postMessage({ ksh: 'hallpos', i: i, n: n }, '*'); } catch (e) {} }
+  function show(k) { i = Math.max(0, Math.min(n - 1, k)); $('im').src = src(i); $('pg').textContent = (i + 1) + ' / ' + n; $('pg').classList.remove('h'); clearTimeout(ht); ht = setTimeout(function () { $('pg').classList.add('h'); }, 2500);
+    preload(i + 1); preload(i + 2); preload(i - 1); try { history.replaceState(null, '', location.pathname + location.search.replace(/&?p=\d+/, '') + '#' + (i + 1)); } catch (e) {} rep(); }
+  var next = function () { show(i + 1); }, prev = function () { show(i - 1); };
+  document.addEventListener('keydown', function (e) { var k = e.key;
+    if (k === 'ArrowLeft' || k === 'ArrowDown' || k === 'PageDown' || k === ' ' || k === 'Enter') { e.preventDefault(); next(); }
+    else if (k === 'ArrowRight' || k === 'ArrowUp' || k === 'PageUp' || k === 'Backspace') { e.preventDefault(); prev(); }
+    else if (k === 'Home') show(0); else if (k === 'End') show(n - 1); });
+  $('bn').onclick = next; $('bp').onclick = prev;
+  var x0 = null; document.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener('touchend', function (e) { if (x0 == null) return; var dx = e.changedTouches[0].clientX - x0; x0 = null; if (Math.abs(dx) > 40) { if (dx > 0) next(); else prev(); } });
+  addEventListener('message', function (e) { var m = e.data || {}; if (m.ksh !== 'hall') return; P = e.source;
+    if (m.op === 'go') { if (m.d > 0) next(); else if (m.d < 0) prev(); else rep(); } else if (m.op === 'to') show(+m.n || 0); else rep(); });
+  if (window.parent !== window) P = window.parent;
+  show(Math.max(0, (+(location.hash || '').slice(1) || 1) - 1));
+})();
+</script>
+</body>
+</html>
