@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="3596c1a4a071"><script>(function () {
+<head><meta name="ksh-ver" content="9bb49b775a05"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -2794,7 +2794,7 @@ function clinHtml(D, chip, rest) {
 
 // what the personal calendar holds besides duty, on-call and leave (20/11/2026): seniors the timed day, residents and house doctors
 // their OR cases. Everything on by default; each toggle saves right away (ops_calOpts). Never the morning meeting.
-const CAL_OL = { r: ['🩺', 'ביקורים', '\u206608:00–11:00\u2069 · צפון או דרום'], c: ['🏥', 'מרפאות', 'לפי שעות המרפאה, ו"עד" כשיוצאים מוקדם'], o: ['🔪', 'ניתוחים', 'כל ניתוח שלך: חדר, סוג וגישה, בשעה משוערת לפי הסדר בחדר'], m: ['👥', 'ישיבות המערך', 'עם השעה, כולל ישיבת הבוקר'], a: ['🔔', 'תזכורת', '15 דקות לפני כל אירוע עם שעה'] };
+const CAL_OL = { r: ['🩺', 'ביקורים ועמדות', 'רק בימים שמשובצים: ביקור, מיון, ייעוצים, טרום ניתוח, אשפוז יום'], c: ['🏥', 'מרפאות', 'לפי שעות המרפאה, ו"עד" כשיוצאים מוקדם'], o: ['🔪', 'ניתוחים', 'כל ניתוח שלך: חדר, סוג וגישה, בשעה משוערת לפי הסדר בחדר'], m: ['👥', 'ישיבות המערך', 'עם השעה, כולל ישיבת הבוקר'], a: ['🔔', 'תזכורת', '15 דקות לפני כל אירוע עם שעה'] };
 function calOptsHtml(C) {
   const ks = Object.keys(C.o || {}); if (!ks.length) return '';
   return '<div class="copts">' + ks.map(k => { const L = CAL_OL[k] || ['', k, '']; return `<label class="cop${k === 'a' ? ' al' : ''}"><span class="ci">${L[0]}</span><span class="ct"><b>${L[1]}</b><small>${L[2]}</small></span><input type="checkbox" class="csw" data-co="${k}" ${C.o[k] ? 'checked' : ''}></label>`; }).join('') + '</div>';
