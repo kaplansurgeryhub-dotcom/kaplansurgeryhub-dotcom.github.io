@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="3b7ba12b44ed"><script>(function () {
+<head><meta name="ksh-ver" content="9c28b971dd1c"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -413,6 +413,29 @@ html.ui2.ui2 .orr-pp{background:#fff;border-color:#E2D6C2}html.ui2.ui2 .orr-pp b
 html.ui2.ui2 .addroom{color:#7C6337}
 html.ui2.ui2 .card.evc{background:#1D3A5C!important;border-color:#1D3A5C!important;color:#fff}html.ui2.ui2 .card.now{color:var(--ink)}html.ui2.ui2 .card.now small,html.ui2.ui2 .card.now .cap{color:var(--muted)}html.ui2.ui2 .card.now b,html.ui2.ui2 .card.now h2,html.ui2.ui2 .card.now h3{color:var(--ink)}
 html.ui2.ui2 .card.rcon{background:#1C2D44!important;border-color:#1C2D44!important;color:#fff}
+
+
+html.ui2 .t3d em{color:#6B5E50}
+html.ui2 .rcal .pk.cl.em[data-k="pa"]{--sc:#7A6A58}
+html.ui2 .pfdw i.z{color:#6E6E7E}
+html.ui2 table.sxatt th small{color:#D6E0E4}
+html.ui2 .hero.ppl .rwhd h1,html.ui2 .hero.ppl .rwhd p,html.ui2 .hero.ppl .rwring b{color:#1D3047}
+html.ui2 .rwpl .r small{color:#5E6E74}
+html.ui2 .rwcol .b em{color:#fff}
+html.ui2 .rsa-hero .rsa-k{color:#2F6B4A}
+html.ui2 .rsa-hero .rsa-chip{color:#1D3047}
+html.ui2 .w2-nt small{color:color-mix(in srgb,currentColor 62%,#000)}
+html.ui2 .slh .slwg{background:rgba(29,48,71,.08)}
+html.ui2 .slh .slwg button{color:#3A3228}
+html.ui2 .slh .slwg button.on{background:#1D3047;color:#fff}
+html.ui2 .slh .slwg button.n.on{background:#1F5FA8;color:#fff}
+html.ui2 .slh .slwg button.s.on{background:#E9B10C;color:#1D3047}
+html.ui2 .rcal .pk.cl.em[data-k="pa"]>i{background:#7A6A58!important}
+
+html.ui2 .swr.bad,html.ui2 .swq .swr.bad{background:#FBECE9;border-color:#C0574A;opacity:1;cursor:not-allowed}
+html.ui2 .swr.bad em,html.ui2 .swq .swr.bad em{color:#9A2F22;font-weight:700}
+html.ui2 .swq .swp button.bad{background:#FBECE9;border-color:#C0574A;color:#9A2F22;cursor:not-allowed}
+html.ui2 .fdbad{margin:10px 0 0;padding:9px 12px;border-radius:10px;background:#FBECE9;border:1px solid #C0574A;color:#9A2F22;font-weight:700;font-size:13.5px}
 </style>
 <script>(function () {
   /* the new look is the only look (7/11/2026, Dr. Gozani): no switch, no per-device choice */
@@ -3136,7 +3159,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = '3b7ba12b44ed'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = '9c28b971dd1c'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achall|achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|rwext|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -5213,6 +5236,17 @@ function monthBar(title, kick, sub, extra) {
 function bindMonth() { $('#mPrev').onclick = () => { const [y, mo] = S.month.split('-').map(Number); const d = new Date(y, mo - 2, 1); S.month = iso(d).slice(0, 7); render(); }; $('#mNext').onclick = () => { const [y, mo] = S.month.split('-').map(Number); const d = new Date(y, mo, 1); S.month = iso(d).slice(0, 7); render(); }; }
 // ---------- swaps: two people trade slots; everything that reads the boards (post-call, the weekly plan's night row,
 // home, the personal app) updates by itself. Only swaps that keep the iron rules are offered first ----------
+// 21/11/2026 (Dr. Gozani): no swap or move may break an iron rule. One check for every path (the swap list, a drag, the final board's day,
+// the quick swap from the night row): the person is put in the seat on a copy, and whyNot (position, leave, a request, the same day, back-to-back nights,
+// Friday morning after a night, active on call twice running, a quota, the other board) plus the on-call board's clash with the duty board say why not.
+// A reason means red and no swap
+function cellWhy(kind, R, d, k, id, pr, ctx) { ctx = ctx || rosterCtx(kind, R, pr || S.cache['prefs:' + d.slice(0, 7)], d.slice(0, 7));
+  const tmp = JSON.parse(JSON.stringify(R)); tmp.days = tmp.days || {}; tmp.days[d] = tmp.days[d] || {}; delete tmp.days[d][k];
+  const w = whyNot(ctx, tmp, d, k, id, tally(ctx, tmp), true); return (w === 'הגיע/ה למכסה' ? '' : w) || (kind === 'oncall' && ctx.conflict(id, d)) || ''; } // a swap or a move keeps everyone's count, so the quota is not a reason
+// both sides of a change: ch = [[d, k, id], ...] applied together on a copy, each checked in its new seat
+function swapWhy(kind, R, ch, pr) { const T = JSON.parse(JSON.stringify(R)); T.days = T.days || {}; ch.forEach(([d, k, id]) => { T.days[d] = T.days[d] || {}; T.days[d][k] = id; });
+  const ctx = rosterCtx(kind, T, pr || S.cache['prefs:' + ch[0][0].slice(0, 7)], ch[0][0].slice(0, 7));
+  return ch.map(([d, k, id]) => { const w = cellWhy(kind, T, d, k, id, null, ctx); return w ? P(id).name + ' · ' + DAYS[pd(d).getDay()] + ' ' + dm(d) + ': ' + w : ''; }).filter(Boolean).join(' · '); }
 function swapPick(kind, ctx, R, d, k, manual, commit) {
   const A = R.days[d][k], dn = x => DAYS[pd(x).getDay()] + ' ' + dm(x), isDuty = kind === 'duty';
   // every other filled slot this month, checked both ways on a copy without the two
@@ -5220,24 +5254,22 @@ function swapPick(kind, ctx, R, d, k, manual, commit) {
   // 10/11/2026, Dr. Gozani: a swap that already happened can be recorded after the fact, so past nights are offered too (only to the board's editors)
   ctx.dates.forEach(d2 => { const r2 = R.days[d2] || {}; RK[kind].keys.forEach(k2 => {
     const B = r2[k2]; if (!B || B === A || (d2 === d && k2 === k)) return;
-    const tmp = JSON.parse(JSON.stringify(R)); delete tmp.days[d][k]; delete tmp.days[d2][k2]; const TT = tally(ctx, tmp);
-    const wa = whyNot(ctx, tmp, d2, k2, A, TT); tmp.days[d2][k2] = A; const T2 = tally(ctx, tmp); const wb = whyNot(ctx, tmp, d, k, B, T2);
-    opts.push({ d2, k2, B, bad: [wa ? P(A).name + ': ' + wa : '', wb ? P(B).name + ': ' + wb : ''].filter(Boolean).join(' · '), same: k2 === k ? 0 : 1, dist: Math.abs(pd(d2) - pd(d)) / 864e5 });
+    opts.push({ d2, k2, B, bad: swapWhy(kind, R, [[d2, k2, A], [d, k, B]]), same: k2 === k ? 0 : 1, dist: Math.abs(pd(d2) - pd(d)) / 864e5 });
   }); });
   opts.sort((a, b) => (!!a.bad - !!b.bad) || a.same - b.same || a.dist - b.dist);
   const good = opts.filter(o => !o.bad), rest = opts.filter(o => o.bad);
   const bg = document.createElement('div'); bg.className = 'mbg'; let showAll = false;
-  const row = (o, i) => `<button class="swr${o.bad ? ' bad' : ''}" data-sw="${i}"><span class="swd"><b>${dn(o.d2)}</b><small>${POS[o.k2]}</small></span><span class="swn">${av(P(o.B))}${esc(P(o.B).name)}</span>${o.bad ? `<em>⚠ ${esc(o.bad)}</em>` : '<em class="ok">✓ שומר על כל החוקים</em>'}</button>`;
+  const row = (o, i) => `<button class="swr${o.bad ? ' bad' : ''}" data-sw="${i}"${o.bad ? ' disabled aria-disabled="true" title="לא אפשרי: שובר חוק ברזל"' : ''}><span class="swd"><b>${dn(o.d2)}</b><small>${POS[o.k2]}</small></span><span class="swn">${av(P(o.B))}${esc(P(o.B).name)}</span>${o.bad ? `<em>⛔ לא אפשרי · ${esc(o.bad)}</em>` : '<em class="ok">✓ שומר על כל החוקים</em>'}</button>`;
   const draw = () => { const L = showAll ? good.concat(rest) : good;
     bg.innerHTML = `<div class="modal swm"><div class="mh">${av(P(A))}<div><b>🔁 חילוף · ${esc(drAddr(P(A)))}</b><br><small>${dn(d)} · ${POS[k]}</small></div></div><div class="mb">
      <p class="cap" style="margin:0 0 8px">בוחרים עם מי מתחלפים. שני הצדדים מתעדכנים מיד בלוח, בתוכנית השבועית (תורנים ואחרי תורנות), במסך הבית ובאפליקציה של כל אחד.</p>
      <div class="swl">${L.map(o => row(o, opts.indexOf(o))).join('') || '<p class="cap">אין חילוף שעומד בכל החוקים החודש</p>'}</div>
-     ${rest.length && !showAll ? `<button class="btn sm ghost" id="swAll">הצגת עוד ${rest.length} אפשרויות (עם חריגה)</button>` : ''}</div>
+     ${rest.length && !showAll ? `<button class="btn sm ghost" id="swAll">הצגת ${rest.length} חילופים שאינם אפשריים, ולמה</button>` : ''}</div>
      <div class="mf"><button class="btn" id="swMan">✎ שיבוץ מישהו אחר</button><button class="btn" id="swNo">סגירה</button></div></div>`;
     bg.querySelector('#swNo').onclick = () => bg.remove();
     bg.querySelector('#swMan').onclick = () => { bg.remove(); manual(); };
     if (bg.querySelector('#swAll')) bg.querySelector('#swAll').onclick = () => { showAll = true; draw(); };
-    bg.querySelectorAll('[data-sw]').forEach(b => b.onclick = () => { const o = opts[+b.dataset.sw]; if (o.bad && !confirmOnce('sw' + b.dataset.sw, 'ללחוץ שוב: חילוף עם חריגה (' + o.bad + ')')) return; doSwap(o); });
+    bg.querySelectorAll('[data-sw]').forEach(b => b.onclick = () => { const o = opts[+b.dataset.sw]; if (o.bad) { toast('⛔ החילוף לא אפשרי: ' + o.bad); return; } doSwap(o); });
   };
   const doSwap = o => {
     R.days[d][k] = o.B; R.days[o.d2][o.k2] = A; R.lock = R.lock || {}; R.lock[d + '|' + k] = 1; R.lock[o.d2 + '|' + o.k2] = 1;
@@ -5647,8 +5679,9 @@ function rosterView(m, kind) {
       rDrag($('#rTable'), { ok: x => sp(x)[0] >= today, has: x => !!who(...sp(x)),
         clear: x => { const [d, k] = sp(x), id = who(d, k); RUNDO[key] = JSON.stringify(R); delete R.days[d][k]; delete R.lock[x]; commit(R); toast((id ? P(id).name + ' ירד/ה מ' : 'רוקן: ') + dk(d, k) + ' · ↶ ביטול בכלים'); },
         move: (a, b) => { const [d1, k1] = sp(a), [d2, k2] = sp(b), x = who(d1, k1), y = who(d2, k2); if (!x) return;
-          const tmp = JSON.parse(JSON.stringify(R)); tmp.days[d2] = tmp.days[d2] || {}; delete tmp.days[d1][k1]; delete tmp.days[d2][k2];
-          const why1 = whyNot(ctx, tmp, d2, k2, x, tally(ctx, tmp)); tmp.days[d2][k2] = x; const why2 = y ? whyNot(ctx, tmp, d1, k1, y, tally(ctx, tmp)) : '';
+          const ch = [[d2, k2, x]].concat(y ? [[d1, k1, y]] : []), T0 = JSON.parse(JSON.stringify(R)); if (!y) delete (T0.days[d1] || {})[k1];
+          const bad = swapWhy(kind, T0, ch, pr); if (bad) { dnote('⛔ לא בוצע · שובר חוק ברזל', [{ t: bad, w: true }, { t: 'הלוח נשאר כמו שהיה' }]); return; }
+          const why1 = '', why2 = '';
           RUNDO[key] = JSON.stringify(R); R.days[d2] = R.days[d2] || {}; R.days[d2][k2] = x; R.lock[b] = 1; if (y) { R.days[d1][k1] = y; R.lock[a] = 1; } else { delete R.days[d1][k1]; delete R.lock[a]; }
           const line = (id, d, k, w) => ({ t: P(id).name + ' → ' + dk(d, k) + (w ? ' · ⚠ ' + w : ctx.want(id, d) ? ' · 💚 ביקש/ה את היום הזה' : ' · ✓ בלי חסימה'), w: !!w, g: !w && ctx.want(id, d) });
           const L = [line(x, d2, k2, why1)].concat(y ? [line(y, d1, k1, why2)] : []), nm = [x, y].filter(Boolean).map(id => P(id).name);
@@ -6486,10 +6519,13 @@ function finalDay(d, done) { const mo = d.slice(0, 7), DU = JSON.parse(JSON.stri
   const draw = () => { bg.innerHTML = `<div class="modal"><div class="mh"><div><b>✎ ${esc(dn)}</b><br><small>שינוי ידני בלוח${d < today ? ' · גם בדיעבד, למשל חילוף שהיה' : ''} · נשמר ונעול</small></div><button class="x" data-x="1" aria-label="סגירה">✕</button></div><div class="mb">
     <div class="fdx">${SLT.map(([k, l, b]) => { const cur = (b === 'duty' ? r : c)[k] || ''; return `<label class="fz fz-${k}"><i>${FZ.find(x => x[0] === k)[2]}</i><span>${l}</span><select class="in" data-fk="${k}" data-fb="${b}">${opts(k, cur)}</select></label>`; }).join('')}
     ${can('oncall') ? `<label class="fz fz-tr"><i>טראומה</i><span>כונן טראומה</span><input class="in" id="fdTr" maxlength="40" value="${esc(c.trauma || '')}" placeholder="שם חופשי"></label>` : ''}</div>
-    <p class="cap" style="margin-top:8px">כל הרופאים ברשימה. מי שלא בעמדה או בחופשה מסומן/ת ב-⚠</p></div>
+    <p class="cap" style="margin-top:8px">כל הרופאים ברשימה. מי שלא בעמדה או בחופשה מסומן/ת ב-⚠. שינוי ששובר חוק ברזל (לילות רצופים, כוננות אחרי תורנות, חופשה) לא נשמר</p></div>
     <div class="mf"><button class="btn primary" id="fdOk">שמירה</button><button class="btn" id="fdNo">ביטול</button></div></div>`;
     bg.querySelector('[data-x]').onclick = bg.querySelector('#fdNo').onclick = () => bg.remove();
     bg.querySelector('#fdOk').onclick = () => { keep(); let chD = 0, chC = 0; const D0 = (S.cache['duty:' + mo] || {}).days || {}, C0 = (S.cache['oncall:' + mo] || {}).days || {};
+      const bad = ['duty', 'oncall'].map(bk => { const R2 = bk === 'duty' ? DU : CA, O = bk === 'duty' ? D0 : C0, ch = SLT.filter(([k, , b]) => b === bk && (R2.days[d] || {})[k] && (R2.days[d] || {})[k] !== (O[d] || {})[k]).map(([k]) => [d, k, R2.days[d][k]]);
+        return ch.length ? swapWhy(bk, R2, ch) : ''; }).filter(Boolean).join(' · ');
+      if (bad) { const e = bg.querySelector('#fdBad') || bg.querySelector('.mb').appendChild(Object.assign(document.createElement('p'), { id: 'fdBad', className: 'fdbad' })); e.textContent = '⛔ לא נשמר · שובר חוק ברזל: ' + bad; return; }
       SLT.forEach(([k, , b]) => { const before = ((b === 'duty' ? D0 : C0)[d] || {})[k] || '', now = (b === 'duty' ? r : c)[k] || ''; if (before === now) return; const S2 = b === 'duty' ? DU : CA; S2.lock[d + '|' + k] = 1;
         if (before && now) S2.swaps = [{ at: new Date().toISOString(), by: S.me.name, a: { d, k, id: before }, b: { d, k, id: now }, manual: 1 }].concat(S2.swaps || []).slice(0, 60);
         if (b === 'duty') chD = 1; else chC = 1; });
@@ -6503,14 +6539,15 @@ function finalDay(d, done) { const mo = d.slice(0, 7), DU = JSON.parse(JSON.stri
 const nightBoard = k => ['active', 'passive', 'half'].indexOf(k) >= 0 ? 'oncall' : 'duty';
 const NSL = { er1: 'מיון 1', er2: 'מיון 2', dept: 'מחלקה', minor: 'מיינור טראומה', fm: 'שישי בוקר', active: 'כונן פעיל', passive: 'כונן פסיבי', half: 'תורן חצי' };
 async function swapSheet(d, k, done) {
-  const b = nightBoard(k), mo = d.slice(0, 7), key = b + ':' + mo; await load([key]);
+  const b = nightBoard(k), mo = d.slice(0, 7), key = b + ':' + mo; await load([key, (b === 'duty' ? 'oncall:' : 'duty:') + mo]); await prefsFor(mo).catch(() => null);
   const B = JSON.parse(JSON.stringify(S.cache[key] || { days: {} })); B.days = B.days || {}; B.lock = B.lock || {};
   const a = (B.days[d] || {})[k]; if (!a) return toast('אין כאן שיבוץ');
   const KS = b === 'oncall' ? ['active', 'passive', 'half'] : ['er1', 'er2', 'dept', 'minor', 'fm'], dl = x => DAYS[pd(x).getDay()] + ' ' + dm(x);
   const busy = (id, x) => KS.some(q => (B.days[x] || {})[q] === id), lv = (id, x) => onLeave(x).indexOf(id) >= 0;
   // nights of others this month on the same board, from today on (or the whole month for a past day), that a can take and they can take d
   const others = Object.keys(B.days).filter(x => x !== d && x.slice(0, 7) === mo && (x >= today || d < today)).sort().reduce((o, x) => { KS.forEach(q => { const id = (B.days[x] || {})[q]; if (id && id !== a && (q === 'fm') === (k === 'fm')) o.push({ x, q, id }); }); return o; }, []);
-  const ok = o => !busy(a, o.x) && !busy(o.id, d) && !lv(a, o.x) && !lv(o.id, d);
+  const WHY = {}, why = o => { const kk = o.x + o.q; if (WHY[kk] == null) WHY[kk] = swapWhy(b, B, [[o.x, o.q, a], [d, k, o.id]]); return WHY[kk]; }, ok = o => !why(o);
+  const rWhy = id => swapWhy(b, B, [[d, k, id]]);
   const pool = people().filter(p => p.active !== false && p.id !== a && posHas(p, k)).sort((x, y) => x.name.localeCompare(y.name, 'he'));
   let tab = 'sw', q = '';
   const bg = document.createElement('div'); bg.className = 'mbg swq';
@@ -6520,14 +6557,14 @@ async function swapSheet(d, k, done) {
       <div class="seg sm swt"><button data-t="sw" class="${tab === 'sw' ? 'on' : ''}">⇄ החלפה הדדית</button><button data-t="rp" class="${tab === 'rp' ? 'on' : ''}">↪ מישהו אחר במקום</button></div>
       ${tab === 'sw' ? `<p class="cap">${esc(P(a).name)} עובר/ת ללילה של השני, והשני מגיע ל${dl(d)}</p>
         ${ppl.length > 1 ? `<div class="swp"><button data-q="" class="${!q ? 'on' : ''}">כולם</button>${ppl.map(p => `<button data-q="${p.id}" class="${q === p.id ? 'on' : ''}">${esc(p.name)}</button>`).join('')}</div>` : ''}
-        <div class="swl">${L.map((o, i) => { const g = ok(o); return `<button class="swr${g ? '' : ' bad'}" data-o="${others.indexOf(o)}"><b>${esc(P(o.id).name)}</b><span>${dl(o.x)} · ${esc(NSL[o.q])}</span>${g ? '' : `<em>${busy(a, o.x) || lv(a, o.x) ? esc(P(a).name) + ' לא פנוי/ה אז' : esc(P(o.id).name) + ' לא פנוי/ה ב' + dl(d)}</em>`}</button>`; }).join('') || '<p class="cap">אין לילות אחרים בלוח החודש</p>'}</div>`
-      : `<p class="cap">רק ${dl(d)} משתנה. ${esc(P(a).name)} יורד/ת מהלילה הזה</p><div class="swp big">${pool.map(p => { const g = !busy(p.id, d) && !lv(p.id, d); return `<button data-r="${p.id}" class="${g ? '' : 'bad'}" title="${g ? '' : 'משובץ/ת כבר באותו לילה או בחופשה'}">${esc(p.name)}</button>`; }).join('') || '<span class="cap">אין מי שמחזיק/ה בעמדה הזו</span>'}</div>`}
+        <div class="swl">${L.map((o, i) => { const g = ok(o); return `<button class="swr${g ? '' : ' bad'}" data-o="${others.indexOf(o)}"><b>${esc(P(o.id).name)}</b><span>${dl(o.x)} · ${esc(NSL[o.q])}</span>${g ? '' : `<em>⛔ לא אפשרי · ${esc(why(o))}</em>`}</button>`; }).join('') || '<p class="cap">אין לילות אחרים בלוח החודש</p>'}</div>`
+      : `<p class="cap">רק ${dl(d)} משתנה. ${esc(P(a).name)} יורד/ת מהלילה הזה</p><div class="swp big">${pool.map(p => { const w = rWhy(p.id); return `<button data-r="${p.id}" class="${w ? 'bad' : ''}" title="${w ? esc('לא אפשרי · ' + w) : ''}">${esc(p.name)}${w ? ' ⛔' : ''}</button>`; }).join('') || '<span class="cap">אין מי שמחזיק/ה בעמדה הזו</span>'}</div>`}
       </div><div class="mf"><button class="btn" data-x="1">סגירה</button><span class="spacer"></span><small class="cap">נשמר בלוח ${b === 'oncall' ? 'הכוננויות' : 'התורנויות'}, נעול ומתועד</small></div></div>`;
     bg.querySelectorAll('[data-x]').forEach(x => x.onclick = () => bg.remove());
     bg.querySelectorAll('[data-t]').forEach(x => x.onclick = () => { tab = x.dataset.t; draw(); });
     bg.querySelectorAll('[data-q]').forEach(x => x.onclick = () => { q = x.dataset.q; draw(); });
-    bg.querySelectorAll('[data-o]').forEach(x => x.onclick = () => { const o = others[+x.dataset.o]; if (!ok(o) && !x.classList.contains('arm')) { x.classList.add('arm'); toast('יש התנגשות. לחיצה נוספת להחלפה בכל זאת'); return; } put([[d, k, o.id], [o.x, o.q, a]], `${P(a).name} ⇄ ${P(o.id).name} · ${dm(d)} ⇄ ${dm(o.x)}`, [{ d, k, id: a }, { d: o.x, k: o.q, id: o.id }]); });
-    bg.querySelectorAll('[data-r]').forEach(x => x.onclick = () => { if (x.classList.contains('bad') && !x.classList.contains('arm')) { x.classList.add('arm'); toast('יש התנגשות. לחיצה נוספת לשיבוץ בכל זאת'); return; } put([[d, k, x.dataset.r]], `${P(x.dataset.r).name} במקום ${P(a).name} · ${dm(d)}`, [{ d, k, id: a }, { d, k, id: x.dataset.r }]); });
+    bg.querySelectorAll('[data-o]').forEach(x => x.onclick = () => { const o = others[+x.dataset.o]; if (!ok(o)) { toast('⛔ ההחלפה לא אפשרית: ' + why(o)); return; } put([[d, k, o.id], [o.x, o.q, a]], `${P(a).name} ⇄ ${P(o.id).name} · ${dm(d)} ⇄ ${dm(o.x)}`, [{ d, k, id: a }, { d: o.x, k: o.q, id: o.id }]); });
+    bg.querySelectorAll('[data-r]').forEach(x => x.onclick = () => { const w = rWhy(x.dataset.r); if (w) { toast('⛔ לא אפשרי: ' + w); return; } put([[d, k, x.dataset.r]], `${P(x.dataset.r).name} במקום ${P(a).name} · ${dm(d)}`, [{ d, k, id: a }, { d, k, id: x.dataset.r }]); });
   };
   const put = (ch, msg, sw) => { ch.forEach(([x, q2, id]) => { B.days[x] = B.days[x] || {}; B.days[x][q2] = id; B.lock[x + '|' + q2] = 1; });
     B.swaps = [{ at: new Date().toISOString(), by: S.me.name, a: sw[0], b: sw[1], manual: 1, quick: 1 }].concat(B.swaps || []).slice(0, 60);
