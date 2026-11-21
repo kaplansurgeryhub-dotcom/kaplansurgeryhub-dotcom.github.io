@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="95a836a40d6f"><script>(function () {
+<head><meta name="ksh-ver" content="d90d48971758"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -4174,15 +4174,15 @@ document.addEventListener('click', e => { const b = e.target.closest && e.target
   const er = (t, ok) => { const x = q('.hgo-er'); if (x) { x.textContent = t || ''; x.className = ok ? 'hgo-er hgo-ok' : 'hgo-er'; } };
   function shell(sub, body, back) {
     if (!el) { el = document.createElement('div'); el.className = 'hgo'; el.setAttribute('role', 'dialog'); document.body.appendChild(el); document.addEventListener('keydown', onKey); }
-    el.innerHTML = `<div class="hgo-h">${back ? '<button class="hgo-bk" data-hb>‹ חזרה</button>' : ''}<h2><small>${esc(sub)}</small>חדר ההרצאות</h2><button class="hgo-x" data-hx aria-label="סגירה">✕</button></div><div class="hgo-b">${body}</div>`;
-    q('[data-hx]').onclick = close; const b = q('[data-hb]'); if (b) b.onclick = () => { stopCam(); home(); };
+    el.innerHTML = `<div class="hgo-h">${back ? '<button class="hgo-bk" data-hb>‹ לשלט</button>' : ''}<h2><small>${esc(sub)}</small>חדר ההרצאות</h2><button class="hgo-x" data-hx aria-label="סגירה">✕</button></div><div class="hgo-b">${body}</div>`;
+    q('[data-hx]').onclick = close; const b = q('[data-hb]'); if (b) b.onclick = () => { stopCam(); (typeof back === 'function' ? back : home)(); };
   }
   async function home() {
     const c = ctx(); if (!c) return;
     shell('מהאפליקציה, בלי סיסמה', `<div class="hgo-c"><b>1 · עומדים מול המסך בחדר</b><p class="hgo-s">על המסך: "כניסת מרצים". סורקים את הקוד שמופיע בו מכאן, או מקלידים את 6 הספרות שמתחתיו. אין צורך במצלמה של הטלפון או בספארי.</p>
       <div class="hgo-v" id="hgoV" hidden></div><button class="hgo-go" id="hgoScan">${ICQ}סריקת הקוד שעל המסך</button>
       <div class="hgo-d"><input id="hgoD" inputmode="numeric" maxlength="7" placeholder="000 000" autocomplete="off" aria-label="6 הספרות שעל המסך"><button id="hgoDg">כניסה</button></div><div class="hgo-er"></div></div>
-      <div class="hgo-c"><b>2 · השלט</b><p class="hgo-s">אחרי שהחדר נפתח בוחרים הרצאה על המסך, והשלט כאן מעביר שקפים, פותח הצבעות וענן מילים ומראה מי הצטרף.</p><div id="hgoLv"></div><button class="hgo-go g2" id="hgoRem">${IC}פתיחת השלט</button></div>`);
+      <div class="hgo-c"><b>2 · השלט</b><p class="hgo-s">אחרי שהחדר נפתח בוחרים הרצאה כאן או על המסך. השלט מעביר שקפים, פותח הצבעות וענן מילים ומראה מי הצטרף. החיבור נשאר עד "ניתוק", או שעה בלי שימוש.</p><div id="hgoLv"></div><button class="hgo-go g2" id="hgoRem">${IC}פתיחת השלט</button></div>`, hasKey() ? remote : 0);
     q('#hgoScan').onclick = scan; q('#hgoRem').onclick = remote;
     const d = q('#hgoD'); q('#hgoDg').onclick = () => { const v = d.value.replace(/\D/g, ''); if (v.length !== 6) return er('6 ספרות, כמו על המסך'); pair(v); }; d.onkeydown = e => { if (e.key === 'Enter') q('#hgoDg').click(); };
     try { const k = await key(1); const L = q('#hgoLv'); if (L && k.live) L.innerHTML = `<div class="hgo-lv"><i></i>${k.live.mine ? 'ההרצאה שלך בחדר עכשיו' : 'בחדר עכשיו'} · ${esc(k.live.ti)}</div>`; } catch (e) {}
@@ -4221,12 +4221,15 @@ document.addEventListener('click', e => { const b = e.target.closest && e.target
     stopCam(); let k; try { k = await key(); } catch (e) { return er(e.message); }
     const url = (LOCAL || /github\.io$/.test(location.hostname) ? 'remote.html' : EXEC) + '?rp=&rk=' + encodeURIComponent(k.rk) + (k.k ? '&k=' + encodeURIComponent(k.k) : '');
     try { const c = ctx(); localStorage.setItem(KO, JSON.stringify({ at: Date.now(), c: String(c.c).slice(-8) })); } catch (e) {}
-    shell(justPaired ? 'החדר נפתח · בוחרים הרצאה על המסך' : 'השלט', `<iframe class="hgo-f" src="${esc(url)}" title="השלט" allow="clipboard-write"></iframe>`, 1);
+    shell(justPaired ? 'החדר נפתח · בוחרים הרצאה כאן או על המסך' : 'השלט', `<iframe class="hgo-f" src="${esc(url)}" title="השלט" allow="clipboard-write"></iframe>`);
   }
-  window.hgoOpen = () => { if (!ctx()) return; home(); };
+  function hasKey() { const c = ctx(); if (!c) return false; let o = null; try { o = JSON.parse(localStorage.getItem(KC) || 'null'); } catch (e) {} return !!(o && o.c === String(c.c).slice(-8) && Date.now() - o.at < 8 * 36e5); }
+  window.hgoOpen = () => { if (!ctx()) return; if (hasKey()) return remote(); home(); };
+  addEventListener('message', e => { const m = e.data || {}; if (m.ksh !== 'hgo' || !el) return; const f = q('iframe.hgo-f'); if (!f || e.source !== f.contentWindow) return; if (m.op === 'scan') { home(); setTimeout(() => { const b = q('#hgoScan'); if (b) b.click(); }, 50); } });
   // back to the open remote: when the app comes back from the background without its sheet, or after a reload, once the page knows who he is
   const resume = () => { if (el) return true; let o = null; try { o = JSON.parse(localStorage.getItem(KO) || 'null'); } catch (e) {} if (!o || Date.now() - o.at > OPEN_MS) { try { localStorage.removeItem(KO); } catch (e) {} return true; }
     const c = ctx(); if (!c) return false; if (o.c !== String(c.c).slice(-8)) return true; remote(); return true; };
+  document.addEventListener('visibilitychange', () => { if (document.hidden && el && q('iframe.hgo-f')) { try { const c = ctx(); localStorage.setItem(KO, JSON.stringify({ at: Date.now(), c: String(c.c).slice(-8) })); } catch (e) {} } });
   let tries = 0; const tryResume = () => { if (resume() || ++tries > 40) return; setTimeout(tryResume, 1000); }; setTimeout(tryResume, 1200);
   document.addEventListener('visibilitychange', () => { if (!document.hidden) { tries = 0; setTimeout(tryResume, 300); } });
   document.addEventListener('click', e => { const b = e.target.closest && e.target.closest('[data-hallgo]'); if (b) { e.preventDefault(); window.hgoOpen(); } });
