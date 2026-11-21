@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="f2af09c8d782"><script>(function () {
+<head><meta name="ksh-ver" content="acf98d8a9a6f"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -208,6 +208,7 @@ async function startFromPhone(tag, btn) { const [k, id] = [tag.slice(0, 1), tag.
   catch (e) { toast(e.message); if (btn) { btn.textContent = 'התחלה'; btn.style.pointerEvents = ''; } } }
 const hdH = () => { const h = document.querySelector('.hd'); if (h) document.documentElement.style.setProperty('--hdh', h.offsetHeight + 'px'); };
 function liveView(v) {
+  rtWatch(v);
   $('hT').textContent = v.ti; $('hS').textContent = (v.st === 'on' ? 'אתה מרצה עכשיו' : 'מחכים להתחלה') + ' · ' + v.joined + ' הצטרפו' + (v.pos.n ? ' · שקף ' + (v.pos.i + 1) + ' / ' + v.pos.n : '');
   const P = v.poll, hi = noteFor(v.ln || [], v.pos.i), sec = v.st === 'on' ? Math.max(0, Math.floor((Date.now() - new Date(v.at).getTime()) / 1000)) : 0, el = Math.floor(sec / 60), left = 45 - el;
   if (v.st === 'on' && left <= 5 && left > 0 && !S.vib5) { S.vib5 = true; try { navigator.vibrate && navigator.vibrate([200, 100, 200]); } catch (e) {} toast('עוד 5 דקות'); }
@@ -233,7 +234,14 @@ function liveView(v) {
     <div class="card"><h3>הערה לשקף הזה</h3><input id="nt" maxlength="300" placeholder="למשל: לתקן את התרשים"><button class="go o" id="ntgo">שמירה</button><p class="hint">נשמר בסיכום ההרצאה, לשיפור המצגת.</p></div>
     <button class="go r" id="end">סיום ההרצאה</button>`;
 }
-async function c(op, x) { try { const r = await run('ops_hallCmd', S.key, K, op, x || {}); if (r.end) { toast('ההרצאה הסתיימה'); S.v = null; return refresh(); } S.v = r; liveView(r); } catch (e) { toast(e.message); } }
+// the fast channel (21/11/2026): next / previous / a slide go straight to the room, then to the server for the record (the room skips the repeat by its id)
+let RTP = null, RTPU = '';
+function rtSend(op, x) { const u = S.v && S.v.rt; if (!u || (op !== 'go' && op !== 'to')) return; x.u = Math.random().toString(36).slice(2, 12);
+  try { fetch(u + '/c.json', { method: 'PUT', body: JSON.stringify({ op: op, n: op === 'go' ? +x.d || 0 : +x.n || 0, t: Date.now(), u: x.u }) }).catch(() => {}); } catch (e) {} }
+function rtWatch(v) { const u = v && v.rt || ''; if (u === RTPU) return; try { RTP && RTP.close(); } catch (e) {} RTP = null; RTPU = u; if (!u || typeof EventSource !== 'function') return;
+  try { RTP = new EventSource(u + '/p.json'); RTP.addEventListener('put', e => { let d = null; try { d = JSON.parse(e.data); } catch (x) { return; } const p = d && d.path === '/' ? d.data : null;
+    if (!p || !S.v || S.v.rt !== u) return; const i = Math.max(0, +p.i || 0), n = Math.max(0, +p.n || 0); if (i === S.v.pos.i && n === S.v.pos.n) return; S.v.pos = { i: i, n: n }; liveView(S.v); }); } catch (e) { RTP = null; } }
+async function c(op, x) { x = x || {}; rtSend(op, x); if (op === 'end' && S.v && S.v.rt) { try { fetch(S.v.rt + '.json', { method: 'DELETE' }).catch(() => {}); } catch (e) {} } try { const r = await run('ops_hallCmd', S.key, K, op, x); if (r.end) { toast('ההרצאה הסתיימה'); S.v = null; return refresh(); } S.v = r; liveView(r); } catch (e) { toast(e.message); } }
 M.addEventListener('toggle', e => { const d = e.target.closest && e.target.closest('details[data-o]'); if (d) S.open[d.dataset.o] = d.open; }, true);
 M.addEventListener('click', e => {
   const u = e.target.closest('[data-wb],[data-nav],[data-st],#bUn,#bScan'); if (u) { e.preventDefault();

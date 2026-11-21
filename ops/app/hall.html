@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="f2af09c8d782"><script>(function () {
+<head><meta name="ksh-ver" content="acf98d8a9a6f"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -490,12 +490,21 @@ function present() { const v = S.live; S.solo = 0; $('sShow').classList.remove('
   $('hudCode').textContent = v.code; qr($('hudQr'), v.url); apply(v); poll(); }
 // the deck's own position comes from the bridge inside the deck (dev/scrub-drafts/build.py adds it); without it the keys still work in the frame
 function deckGo(m) { const f = $('frame'); try { f.contentWindow.postMessage(Object.assign({ ksh: 'hall' }, m), '*'); } catch (e) {} }
-addEventListener('message', e => { const d = e.data || {}; if (d.ksh !== 'hallpos') return; S.bridge = true; const i = Math.max(0, +d.i || 0), n = Math.max(0, +d.n || 0); if (i !== S.pos.i || n !== S.pos.n) { S.pos = { i: i, n: n }; posPaint(); posSend(); } });
+addEventListener('message', e => { const d = e.data || {}; if (d.ksh !== 'hallpos') return; S.bridge = true; const i = Math.max(0, +d.i || 0), n = Math.max(0, +d.n || 0); if (i !== S.pos.i || n !== S.pos.n) { S.pos = { i: i, n: n }; posPaint(); rtPos(); posSend(); } });
 function posPaint() { $('pg').textContent = S.pos.n ? (S.pos.i + 1) + ' / ' + S.pos.n : ''; $('prog').style.width = S.pos.n ? Math.round((S.pos.i + 1) / S.pos.n * 100) + '%' : '0'; }
 let posT = 0; function posSend() { clearTimeout(posT); posT = setTimeout(() => { if (S.key && S.live) run('ops_hallTick', S.key, K, S.pos).then(r => { if (r && r.id) { S.live = r; apply(r); } }).catch(() => {}); }, 600); }
 document.addEventListener('keydown', e => { if (S.view !== 'show') return; S.lastAct = Date.now(); if (e.key === 'ArrowLeft' || e.key === 'PageDown' || e.key === ' ') { deckGo({ op: 'go', d: 1 }); e.preventDefault(); } if (e.key === 'ArrowRight' || e.key === 'PageUp') { deckGo({ op: 'go', d: -1 }); e.preventDefault(); } });
+// the fast channel (21/11/2026): the phone's command arrives here in a fraction of a second; the same command through the server is then skipped by its id (u)
+const RTSEEN = {}; let RTES = null, RTURL = '';
+function rtOpen(url) { if (url === RTURL) return; rtClose(); if (!url || typeof EventSource !== 'function') return; RTURL = url;
+  try { RTES = new EventSource(url + '/c.json'); RTES.addEventListener('put', e => { let d = null; try { d = JSON.parse(e.data); } catch (x) { return; } const c = d && d.path === '/' ? d.data : null;
+    if (!c || !c.u || RTSEEN[c.u]) return; RTSEEN[c.u] = 1; if (Math.abs(Date.now() - (+c.t || 0)) > 60000 || S.view !== 'show') return; S.lastAct = Date.now();
+    if (c.op === 'go') deckGo({ op: 'go', d: Math.max(-1, Math.min(1, +c.n || 0)) }); if (c.op === 'to') deckGo({ op: 'to', n: Math.max(0, +c.n || 0) }); }); } catch (e) { RTES = null; } }
+function rtClose() { try { RTES && RTES.close(); } catch (e) {} RTES = null; RTURL = ''; }
+function rtPos() { if (!RTURL) return; try { fetch(RTURL + '/p.json', { method: 'PUT', body: JSON.stringify({ i: S.pos.i, n: S.pos.n, t: Date.now() }) }).catch(() => {}); } catch (e) {} }
 function apply(v) {
-  if (v.cmd && v.cmd.seq > S.seq) { S.seq = v.cmd.seq; if (v.cmd.op === 'go') deckGo({ op: 'go', d: v.cmd.n }); if (v.cmd.op === 'to') deckGo({ op: 'to', n: v.cmd.n }); }
+  rtOpen(v.rt || '');
+  if (v.cmd && v.cmd.seq > S.seq) { S.seq = v.cmd.seq; const dup = v.cmd.u && RTSEEN[v.cmd.u]; if (v.cmd.u) RTSEEN[v.cmd.u] = 1; if (!dup && v.cmd.op === 'go') deckGo({ op: 'go', d: v.cmd.n }); if (!dup && v.cmd.op === 'to') deckGo({ op: 'to', n: v.cmd.n }); }
   if (S.view === 'wait') { $('jn').textContent = v.joined; if (v.st === 'on') return present(); return; }
   if (S.view !== 'show') return;
   $('rc').innerHTML = v.cmd && v.cmd.seq ? '<i></i>השלט: הטלפון של המרצה' : ''; $('pst').textContent = v.joined + ' הצטרפו'; posPaint();
@@ -507,7 +516,7 @@ function apply(v) {
 let pollT = 0; async function poll() { clearTimeout(pollT); if (!S.key || !S.live || ['wait', 'show'].indexOf(S.view) < 0) return;
   try { const r = await run('ops_hallTick', S.key, K, S.bridge ? S.pos : null); if (r.none || r.other) return ended(r.other); S.live = r; apply(r); } catch (e) {}
   pollT = setTimeout(poll, document.hidden ? 8000 : 2500); }
-function ended(other) { const v = S.live || {}; S.live = null; clearTimeout(pollT); $('frame').src = 'about:blank'; delete $('frame').dataset.src; if (other) { toast('ההרצאה נפתחה ממכשיר אחר'); return worlds(); }
+function ended(other) { const v = S.live || {}; S.live = null; clearTimeout(pollT); rtClose(); $('frame').src = 'about:blank'; delete $('frame').dataset.src; if (other) { toast('ההרצאה נפתחה ממכשיר אחר'); return worlds(); }
   show('end'); $('endT').textContent = v.ti || ''; $('endSum').innerHTML = `<div><b>${v.joined || 0}</b><span>הצטרפו</span></div><div><b>${S.polls || 0}</b><span>הצבעות</span></div>`; let n = 20; $('endN').textContent = n;
   clearInterval(S.endT); S.endT = setInterval(() => { $('endN').textContent = --n; if (n <= 0) { clearInterval(S.endT); S.key ? worlds() : land(); } }, 1000); }
 // 30 minutes without a touch outside a lecture: out
