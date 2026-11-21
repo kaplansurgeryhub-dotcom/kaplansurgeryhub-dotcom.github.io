@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="d90d48971758"><script>(function () {
+<head><meta name="ksh-ver" content="5145e469ffd8"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -328,7 +328,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 
 <section class="scr dark" id="sEnd">
   <div class="art l" style="background-image:url(https://kaplansurgeryhub-dotcom.github.io/ops/art/cardio.webp);opacity:.1"></div><div class="grain"></div>
-  <div class="mid"><div class="kick">THANK YOU</div><h1 class="hh">תודה</h1><div class="subl" id="endT"></div><div class="sum" id="endSum"></div><p>הסיכום המלא נשמר אצל המרצה ואצל אחראי/ת העולם · חוזרים לעולמות בעוד <b id="endN">20</b> שניות · הטלפון נשאר מחובר</p></div>
+  <div class="mid"><div class="kick">THANK YOU</div><h1 class="hh">תודה</h1><div class="subl" id="endT"></div><div class="sum" id="endSum"></div><p>הסיכום המלא נשמר אצל המרצה ואצל אחראי/ת העולם · יוצאים מהחדר בעוד <b id="endN">20</b> שניות</p></div>
 </section>
 </div>
 <div class="toast" id="toast"></div>
@@ -379,24 +379,11 @@ async function pairPoll() { if (S.view !== 'log' || !S.pair) return; if (Date.no
   S.pairT = setTimeout(pairPoll, 2500); }
 $('fLog').onsubmit = async e => { e.preventDefault(); const g = $('bGo'); g.disabled = true; $('lEr').textContent = '';
   g.textContent = 'נכנסים…'; try { const r = await run('ops_roomLogin', $('iE').value, $('iP').value, K); $('iP').value = ''; await signed(r.key, null); } catch (x) { $('lEr').textContent = x.message; } g.disabled = false; g.textContent = 'כניסה'; };
-async function signed(key, me) { S.key = key; ss.set('hall_k', key); S.lastAct = Date.now(); S.navSeq = -1; run('ops_hallRoomOn', key, K).then(r => { if (S.navSeq < 0) S.navSeq = (r && r.seq) || 0; }).catch(() => {}); linkLoop(); try { S.me = me || await run('ops_hallMe', key, K); } catch (e) { S.key = ''; ss.set('hall_k', ''); if (S.view === 'log') { $('lEr').textContent = 'הכניסה עברה אבל החדר לא נטען: ' + e.message; return; } return out(); }
+async function signed(key, me) { S.key = key; ss.set('hall_k', key); S.lastAct = Date.now(); try { S.me = me || await run('ops_hallMe', key, K); } catch (e) { S.key = ''; ss.set('hall_k', ''); if (S.view === 'log') { $('lEr').textContent = 'הכניסה עברה אבל החדר לא נטען: ' + e.message; return; } return out(); }
   document.querySelectorAll('.nm').forEach(x => { x.textContent = S.me.name; }); document.querySelectorAll('.ini').forEach(x => { x.textContent = ini(S.me.name); });
   const lv = await run('ops_hallTick', key, K, null).catch(() => ({})); if (lv && lv.id && !lv.none && !lv.other) { S.live = lv; return lv.st === 'on' ? present() : waiting(); }
   const a = S.after; S.after = null; if (a && a.start) return start(a.start); if (a && a.w) return world(a.w); worlds(); }
-async function out() { const k = S.key; S.key = ''; S.me = null; S.live = null; ss.set('hall_k', ''); clearTimeout(linkT); clearInterval(S.endT); if (k) run('ops_roomOut', k).catch(() => {}); land(); }
-// the phone and the room are one connection (21/11/2026, Dr. Gozani): the phone shows a world here and starts a lecture here.
-// It ends on "ניתוק" (the phone, or "יציאה" here), or after an hour with nothing done: the server says gone.
-let linkT = 0; S.navSeq = -1; S.actSent = 0;
-async function linkLoop() { clearTimeout(linkT); if (!S.key) return;
-  if (['worlds', 'world', 'end'].indexOf(S.view) >= 0) { const act = S.lastAct > S.actSent ? 1 : 0; if (act) S.actSent = S.lastAct;
-    try { const r = await run('ops_hallRoomPoll', S.key, K, act); if (!S.key) return;
-      if (r.gone) { toast(r.idle ? 'החיבור לחדר הסתיים אחרי שעה בלי שימוש' : 'הטלפון התנתק מהחדר'); return out(); }
-      const nv = r.nav || { seq: 0 }; if (S.navSeq < 0) S.navSeq = nv.seq || 0;
-      if (r.live && r.live.id) { clearInterval(S.endT); S.live = r.live; S.seq = (r.live.cmd || {}).seq || 0; S.navSeq = nv.seq || 0; r.live.st === 'on' ? present() : waiting(); }
-      else 
-      if ((nv.seq || 0) > S.navSeq) { S.navSeq = nv.seq; clearInterval(S.endT); if (nv.w === 'home') worlds(); else if (WI[nv.w] && !(S.view === 'world' && S.w === nv.w)) world(nv.w); }
-    } catch (e) { if (/להיכנס שוב/.test(e.message || '')) return out(); } }
-  linkT = setTimeout(linkLoop, document.hidden ? 8000 : 2500); }
+async function out() { const k = S.key; S.key = ''; S.me = null; S.live = null; ss.set('hall_k', ''); if (k) run('ops_roomOut', k).catch(() => {}); land(); }
 
 // ---------- the worlds ----------
 function worlds() { if (!S.me) return land(); show('worlds'); document.querySelectorAll('#sWorlds .who').forEach(b => { b.dataset.act = 'out'; }); const M = S.me, h = new Date().getHours(); $('hello').textContent = (h < 12 ? 'בוקר טוב, ' : h < 17 ? 'צהריים טובים, ' : 'ערב טוב, ') + M.name;
@@ -509,9 +496,9 @@ let pollT = 0; async function poll() { clearTimeout(pollT); if (!S.key || !S.liv
   pollT = setTimeout(poll, document.hidden ? 8000 : 2500); }
 function ended(other) { const v = S.live || {}; S.live = null; clearTimeout(pollT); $('frame').src = 'about:blank'; delete $('frame').dataset.src; if (other) { toast('ההרצאה נפתחה ממכשיר אחר'); return worlds(); }
   show('end'); $('endT').textContent = v.ti || ''; $('endSum').innerHTML = `<div><b>${v.joined || 0}</b><span>הצטרפו</span></div><div><b>${S.polls || 0}</b><span>הצבעות</span></div>`; let n = 20; $('endN').textContent = n;
-  clearInterval(S.endT); S.endT = setInterval(() => { $('endN').textContent = --n; if (n <= 0) { clearInterval(S.endT); S.key ? worlds() : land(); } }, 1000); }
+  clearInterval(S.endT); S.endT = setInterval(() => { $('endN').textContent = --n; if (n <= 0) { clearInterval(S.endT); out(); } }, 1000); }
 // 30 minutes without a touch outside a lecture: out
-setInterval(() => { if (!S.key && !S.solo && S.view !== 'land' && S.view !== 'log' && Date.now() - S.lastAct > 6e5) land(); }, 60000);
+setInterval(() => { if (!S.key && !S.solo && S.view !== 'land' && S.view !== 'log' && Date.now() - S.lastAct > 6e5) land(); if (S.key && S.view !== 'show' && S.view !== 'wait' && Date.now() - S.lastAct > 18e5) out(); }, 60000);
 ['pointerdown', 'keydown'].forEach(t => document.addEventListener(t, () => { S.lastAct = Date.now(); }, true));
 // full screen at the first touch (not on iPhone)
 document.addEventListener('pointerdown', function once() { document.removeEventListener('pointerdown', once, true); const d = document.documentElement; if (!document.fullscreenElement && d.requestFullscreen && !/iPhone|iPad|iPod/.test(navigator.userAgent)) d.requestFullscreen().catch(() => {}); }, true);
