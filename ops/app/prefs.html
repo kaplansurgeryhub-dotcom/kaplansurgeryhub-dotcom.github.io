@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="80e6e0312f73"><script>(function () {
+<head><meta name="ksh-ver" content="8977c865c3d2"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -4031,7 +4031,9 @@ function qkEdit(cur, onSave) {
 .prltx h2{margin:4px 0 14px;font-family:'Frank Ruhl Libre',Georgia,serif;font-size:30px;line-height:1.15;color:var(--pn);font-weight:700;text-wrap:balance}
 .prlorn{display:flex;align-items:center;gap:10px;color:#B39A70;margin:2px 0 14px}.prlorn::before,.prlorn::after{content:"";flex:1;border-top:1px solid #CDB894}
 .prltx p{margin:0 0 16px;font-family:'Frank Ruhl Libre',Georgia,serif;font-size:18px;line-height:1.72;color:var(--pk)}
-.prltx p::first-letter{font-size:2.6em;font-weight:700;color:#7A2E1F;float:right;line-height:.9;margin:6px 0 0 8px}
+.prltx p::first-letter{font-size:2.3em;font-weight:700;color:#7A2E1F;float:right;line-height:.8;margin:5px 0 0 5px}
+/* 21/11/2026 (Dr. Gozani): the first letter sits in the text, two lines high, like the opening of an article */
+@supports (initial-letter:2) or (-webkit-initial-letter:2){.prltx p::first-letter{float:none;font-size:inherit;line-height:inherit;margin:0;margin-inline-end:6px;-webkit-initial-letter:2;initial-letter:2}.prlf2 .n2::first-letter{-webkit-initial-letter:normal;initial-letter:normal}}
 .prldid{border-top:1px solid #CDB894;border-bottom:1px solid #CDB894;padding:12px 2px;margin:0 0 18px;font-size:15px;line-height:1.6;color:#3E3123}
 .prldid b{font-family:'Frank Ruhl Libre',Georgia,serif;color:#7A2E1F;font-size:16px;margin-inline-end:6px}
 .prltl{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0;margin:0 0 18px;border:1px solid #CDB894;border-radius:4px;overflow:hidden}
