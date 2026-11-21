@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="acf98d8a9a6f"><script>(function () {
+<head><meta name="ksh-ver" content="e55988e9c160"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -216,6 +216,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .counter{position:absolute;right:64px;bottom:60px;z-index:2;text-align:right}.counter b{font:800 86px var(--sans)}.counter span{display:block;font:600 22px var(--sans);color:#C9D3DE}.counter small{display:block;margin-top:6px;font:500 17px var(--sans);color:#8FA0B3}
 /* presenting */
 #sShow{background:#0D1828}
+#cHide{position:absolute;inset:0;z-index:40;cursor:none;background:transparent;display:none}body.nocur,body.nocur *{cursor:none!important}
 #frame{position:absolute;top:0;right:0;left:0;bottom:76px;width:100%;height:calc(100% - 76px);border:0;background:#fff}
 .nodeck{position:absolute;inset:0 0 76px 0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:16px;background:radial-gradient(120% 90% at 50% 0%,#24405F,#0D1828)}
 .nodeck h2{margin:0;font:900 80px var(--serif)}.nodeck p{margin:0;font:600 26px var(--sans);color:#C9D3DE;max-width:1100px}
@@ -317,7 +318,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 </section>
 
 <section class="scr" id="sShow">
-  <iframe id="frame" title="המצגת" allow="fullscreen 'none'"></iframe>
+  <iframe id="frame" title="המצגת" allow="fullscreen 'none'"></iframe><div id="cHide" aria-hidden="true"></div>
   <div class="nodeck" id="noDeck"><div class="kick" id="ndK"></div><h2 id="ndT"></h2><p>אין מצגת מקושרת להרצאה הזו. אפשר לשתף מסך מהמחשב הנייד, ולהפעיל הצבעות וענן מילים מהטלפון.</p></div>
   <div id="pollBox"></div><div class="qbox" id="qBox"></div>
   <div class="prog" id="prog" style="width:0"></div>
@@ -360,7 +361,12 @@ const fT = new Intl.DateTimeFormat('he-IL', { hour: '2-digit', minute: '2-digit'
 function tick() { const d = new Date(), t = fT.format(d), ds = fD.format(d); document.querySelectorAll('.clk').forEach(e => { e.textContent = t; }); document.querySelectorAll('.dte').forEach(e => { e.textContent = ds; });
   if (S.view === 'wait') cdPaint(); if (S.view === 'show' && S.began) { const s = Math.floor((Date.now() - S.began) / 1000); $('tm').textContent = [Math.floor(s / 3600), Math.floor(s / 60) % 60, s % 60].map(x => String(x).padStart(2, '0')).join(':'); } }
 setInterval(tick, 1000); tick();
-function show(v) { S.view = v; ['land', 'log', 'worlds', 'world', 'wait', 'show', 'end'].forEach(x => { const id = 's' + x[0].toUpperCase() + x.slice(1); $(id).classList.toggle('on', x === v); }); }
+// 21/11/2026 (Dr. Gozani): during a lecture the mouse pointer disappears after a second and a half without movement, and comes back when it moves.
+// Over the deck (an iframe) the page cannot see the mouse, so a clear layer covers the deck while the pointer is hidden; a move on it brings the pointer back
+let curT = 0; function curShow() { document.body.classList.remove('nocur'); const h = document.getElementById('cHide'); if (h) h.style.display = 'none'; clearTimeout(curT); if (S.view === 'show') curT = setTimeout(curIdle, 1500); }
+function curIdle() { if (S.view !== 'show') return; document.body.classList.add('nocur'); const h = document.getElementById('cHide'); if (h) h.style.display = 'block'; }
+document.addEventListener('mousemove', curShow, { passive: true }); document.addEventListener('mousedown', curShow, true);
+function show(v) { S.view = v; if (v === 'show') curShow(); else { clearTimeout(curT); document.body.classList.remove('nocur'); const h = document.getElementById('cHide'); if (h) h.style.display = 'none'; } ['land', 'log', 'worlds', 'world', 'wait', 'show', 'end'].forEach(x => { const id = 's' + x[0].toUpperCase() + x.slice(1); $(id).classList.toggle('on', x === v); }); }
 
 // ---------- the landing page ----------
 async function land() { show('land'); if (S.key && S.me) return worlds(); const g = $('lWorlds'); if (!g.innerHTML) { g.innerHTML = gateCards(); } g.classList.remove('fly'); void g.offsetWidth; g.classList.add('fly'); try { const T = await run('ops_hallToday', K); const now = fT.format(new Date());
