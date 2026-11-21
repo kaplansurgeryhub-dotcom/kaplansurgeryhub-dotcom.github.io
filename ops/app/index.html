@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="c17218b8fe11"><script>(function () {
+<head><meta name="ksh-ver" content="42262c3e602e"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -438,15 +438,14 @@ html.ui2 .swq .swp button.bad{background:#FBECE9;border-color:#C0574A;color:#9A2
 html.ui2 .fdbad{margin:10px 0 0;padding:9px 12px;border-radius:10px;background:#FBECE9;border:1px solid #C0574A;color:#9A2F22;font-weight:700;font-size:13.5px}
 
 
-html.ui2 .in-av.wn{background:#1F5FA8 center/cover no-repeat;color:#fff}
-html.ui2 .in-av.ws{background:#E9B10C center/cover no-repeat;color:#3A2A00}
-html.ui2 .in-av.ph.wn,html.ui2 .in-av.ph.ws{color:transparent}
-html.ui2 .in-cr small.wn{color:#1F5FA8;font-weight:800}
-html.ui2 .in-cr small.ws{color:#8A6600;font-weight:800}
 html.ui2 .in-fil button.wn{border-color:#1F5FA8;color:#1F5FA8}
 html.ui2 .in-fil button.ws{border-color:#E9B10C;color:#7A5B00}
 html.ui2 .in-fil button.wn.on{background:#1F5FA8;border-color:#1F5FA8;color:#fff}
 html.ui2 .in-fil button.ws.on{background:#E9B10C;border-color:#E9B10C;color:#3A2A00}
+
+html.ui2 .in-cr small.wn,html.ui2 .in-cr small.ws{color:#111!important;font-weight:800;border-radius:999px;padding:2px 10px;max-width:none}
+html.ui2 .in-cr small.wn{background:#C9DCF4;box-shadow:inset 0 0 0 1.5px #1F5FA8}
+html.ui2 .in-cr small.ws{background:#FBE29A;box-shadow:inset 0 0 0 1.5px #E9B10C}
 </style>
 <script>(function () {
   /* the new look is the only look (7/11/2026, Dr. Gozani): no switch, no per-device choice */
@@ -3182,7 +3181,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = 'c17218b8fe11'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = '42262c3e602e'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achall|achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|rwext|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
