@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="747277fe3fb1"><script>(function () {
+<head><meta name="ksh-ver" content="b03d2987860d"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -2188,7 +2188,7 @@ function snEdit(key) { const [ws, d, ri, j] = key.split('|'), x = myCases().find
   bg.querySelector('#snOk').onclick = async () => { const t = bg.querySelector('#snT').value.trim(); if (/\d{6,}|ת[\.״"']?ז|בן\s{0,2}\d|בת\s{0,2}\d|גיל\s{0,2}\d/.test(t)) return toast2('בלי פרטי מטופלים');
     try { const r = await call('ops_caseNoteMe', TOKEN, ws, d, +ri, +j, t, k); const R = weekOf(d).days[d].or[+ri]; R.cx = R.cx || []; while (R.cx.length <= +j) R.cx.push({}); R.cx[+j] = R.cx[+j] || {}; if (r.sn) R.cx[+j].sn = r.sn; else delete R.cx[+j].sn; bg.remove(); toast2('נשמר · צוות חדר הניתוח יראה'); show(); } catch (e) { toast2(e.message); } }; }
 // ===== the weekly plan: the whole department, my name highlighted =====
-const PROWS = [['morning', 'ישיבת בוקר', 'tx'], ['rn', 'ביקור צפון'], ['rs', 'ביקור דרום'], ['consult', 'ייעוצים'], ['erlead', 'אחראי מיון'], ['er', 'מיון'], ['day', 'אשפוז יום'], ['preop', 'טרום ניתוח'], ['clinic', 'מרפאות'], ['or', 'חדרי ניתוח', 'or'], ['night', 'תורנים בלילה', 'night'], ['call', 'כוננים', 'call'], ['abs', 'לא נמצאים', 'abs']];
+const PROWS = [['morning', 'ישיבת בוקר', 'tx'], ['rn', 'ביקור צפון'], ['rs', 'ביקור דרום'], ['consult', 'ייעוצים'], ['erlead', 'אחראי מיון'], ['er', 'מיון'], ['day', 'אשפוז יום'], ['preop', 'טרום ניתוח'], ['clinic', 'מרפאות'], ['or', 'חדרי ניתוח', 'or'], ['night', 'תורנים בלילה', 'night'], ['call', 'כוננים', 'call'], ['nint', 'סטאז׳רים · תורנויות', 'nint'], ['npa', 'עוזרי רופא · ערב', 'npa'], ['abs', 'לא נמצאים', 'abs']];
 function planCell(d, k) {
   const D = dayOf(d) || {}, n = id => `<span class="pn${id === A.me.id ? ' me' : ''}" data-p="${id}">${esc(P(id).name)}</span>`;
   if (k === 'morning') return D.morning ? `<div class="txt2">${txHtml(D.morning)}</div>` : '';
@@ -2198,8 +2198,15 @@ function planCell(d, k) {
   // nights and on-calls: the same tags and colours as the final board
   if (k === 'night') { const y = dutyDay(d); return FZ.slice(0, 5).filter(([q]) => y[q]).map(([q, l, sh]) => `<div class="fz fz-${q}${y[q] === A.me.id ? ' me' : ''}" data-p="${y[q]}"><i>${sh}</i><b>${esc(P(y[q]).name)}</b></div>`).join(''); }
   if (k === 'call') { const c = callDay(d); return FZ.slice(5).filter(([q]) => c[q]).map(([q, l, sh]) => `<div class="fz fz-${q}${c[q] === A.me.id ? ' me' : ''}" data-p="${c[q]}"><i>${sh}</i><b>${esc(P(c[q]).name)}</b></div>`).join('') + (c.trauma ? `<div class="fz fz-tr"><i>טראומה</i><b>${esc(c.trauma)}</b></div>` : ''); }
+  // 22/11/2026 (Dr. Gozani): the interns' nights and the PAs' evening shifts on everyone's weekly plan, from the same published boards as the final board
+  if (k === 'nint') { const L = (IFT[d.slice(0, 7)] || {}).list || []; return L.filter(x => x.d === d).sort((a, b) => ({ dept: 0, er: 1, fm: 2 })[a.s] - ({ dept: 0, er: 1, fm: 2 })[b.s]).map(x => `<div class="fz fz-in" title="סטאז׳ר/ית · ${x.s === 'er' ? 'מיון' : x.s === 'fm' ? 'שישי בוקר' : 'מחלקה'} · ${esc(x.name)}"><i>${x.s === 'er' ? 'מיון' : x.s === 'fm' ? '☀' : 'מח'}</i><b>${esc(String(x.name).split(' ')[0])}</b></div>`).join(''); }
+  if (k === 'npa') return (((PAF[d.slice(0, 7)] || {})[d]) || []).map(id => `<div class="fz fz-pa${id === A.me.id ? ' me' : ''}" data-p="${id}" title="עוזר/ת רופא · משמרת ערב"><i>ערב</i><b>${esc(P(id).name)}</b></div>`).join('');
   return (D[k] || []).map(x => n(x.id)).join('');
 }
+// loaded once per month in the background; the plan (or the final board) is drawn again when they arrive, so nothing waits
+function nxApp(m) { const re = () => { if (TAB === 'week' || (TAB === 'rost' && RB === 'all')) show(); };
+  if (!(m in PAF)) { PAF[m] = {}; call('ops_paFinalT', TOKEN, m).then(r => { PAF[m] = r || {}; re(); }).catch(() => {}); }
+  if (!(m in IFT)) { IFT[m] = null; call('ops_intFinalT', TOKEN, m).then(r => { IFT[m] = r || { list: [] }; re(); }).catch(() => { IFT[m] = { list: [] }; }); } }
 // the whole week, edge to edge: the sheet fills the screen (a portrait phone gets it turned 90°); one small ✕ at the bottom brings the app back
 // 14/11/2026 (Dr. Gozani): the week opens as a still picture. Two fingers enlarge it and one finger moves it, like a photo; nothing is laid
 // out again and nothing reloads, the sheet never leaves the screen and at full size the whole week is back. A double tap enlarges or returns
@@ -2288,7 +2295,7 @@ function appAtt(ws, cls) {
   return a.n || a.s ? `<div class="aatw ${cls || ''}"><span class="aatk">👨‍⚕️ אטנדינג השבוע</span>${one('n', 'צפון')}${one('s', 'דרום')}</div>` : '';
 }
 function vPlan() {
-  const days = [0, 1, 2, 3, 4, 5, 6].map(i => add(WS, i)), wd = days.slice(0, 5); if (days.indexOf(SEL) < 0) SEL = days.indexOf(TODAY) >= 0 ? TODAY : days[0];
+  const days = [0, 1, 2, 3, 4, 5, 6].map(i => add(WS, i)), wd = days.slice(0, 5); [...new Set(days.map(d => d.slice(0, 7)))].forEach(nxApp); if (days.indexOf(SEL) < 0) SEL = days.indexOf(TODAY) >= 0 ? TODAY : days[0];
   const rows = PROWS.filter(([k]) => days.some(d => planCell(d, k)));
   // the table is the working week; Friday and Saturday join it only when someone is on there (nights, on call, me)
   const tdays = days.filter(d => pd(d).getDay() < 5 || placesOf(d, A.me.id).length || rows.some(([k]) => planCell(d, k)));
