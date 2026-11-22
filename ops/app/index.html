@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="39690908f948"><script>(function () {
+<head><meta name="ksh-ver" content="9c9b6bf84c51"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -3182,7 +3182,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = '39690908f948'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = '9c9b6bf84c51'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achall|achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|rwext|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -9926,16 +9926,22 @@ function lectPickStaff(done) {
 }
 // assign lecturers to decks (16/11/2026): several per deck, the ones of the deck's discipline suggested first. Each one approves or comments in his Scrub In tab
 function proSend(ids, done) {
-  const LL = lectList(), D = {}; ids.forEach(id => { const d = scDisc(id); D[d] = (D[d] || 0) + 1; }); const top = Object.keys(D).sort((a, b) => D[b] - D[a])[0] || '';
+  // 22/11/2026 (Dr. Gozani): every doctor of the department can be picked, not only who was marked a lecturer or lectured before; picking one marks him a lecturer
+  const L0 = lectList(), LL = L0.concat(people().filter(p => ['senior', 'resident', 'house'].indexOf(p.role) >= 0 && p.active !== false && !L0.some(l => l.id === p.id))
+    .map(p => ({ id: p.id, name: drName(p), disc: '', guest: false, nw: 1, role: p.role }))), D = {}; ids.forEach(id => { const d = scDisc(id); D[d] = (D[d] || 0) + 1; }); const top = Object.keys(D).sort((a, b) => D[b] - D[a])[0] || '';
   const cur = {}; ids.forEach(id => lecOf(id).forEach(l => { cur[l.lid] = (cur[l.lid] || 0) + 1; }));
-  const fit = l => l.disc === top, R0 = LL.slice().sort((a, b) => (fit(b) - fit(a)) || String(a.name).localeCompare(String(b.name), 'he'));
-  modal(`<div class="mh"><div><b>👩‍🏫 שיבוץ מרצים</b><br><small>${ids.length} מצגות${top ? ' · התחום: ' + esc(top) : ''} · אפשר כמה מרצים לכל מצגת. ⭐ = מתאים/ה לתחום</small></div></div><div class="mb">
-    <div class="lcrec lcpick">${R0.map(l => `<label><input type="checkbox" data-ap="${l.id}" ${cur[l.id] === ids.length ? 'checked' : ''}><b>${fit(l) ? '⭐ ' : ''}${esc(l.name)}</b><small class="cap">${esc(l.disc || '')}${l.guest ? ' · אורח/ת' : ''}${cur[l.id] ? ' · כבר משובץ/ת ל-' + cur[l.id] : ''}</small></label>`).join('') || '<p class="cap">קודם מוסיפים מרצים בלוח המרצים</p>'}</div>
+  const fit = l => !!top && l.disc === top, R0 = LL.slice().sort((a, b) => ((cur[b.id] ? 1 : 0) - (cur[a.id] ? 1 : 0)) || (fit(b) - fit(a)) || ((a.nw ? 1 : 0) - (b.nw ? 1 : 0)) || String(a.name).localeCompare(String(b.name), 'he'));
+  modal(`<div class="mh"><div><b>👩‍🏫 שיבוץ מרצים</b><br><small>${ids.length} מצגות${top ? ' · התחום: ' + esc(top) : ''} · כל הרופאים במערך והמרצים האורחים. אפשר כמה מרצים לכל מצגת. ⭐ = מתאים/ה לתחום</small></div></div><div class="mb">
+    <input class="in" id="apQ" type="search" placeholder="חיפוש לפי שם" autocomplete="off" style="margin-bottom:8px">
+    <div class="lcrec lcpick">${R0.map(l => `<label data-apn="${esc(String(l.name).toLowerCase())}"><input type="checkbox" data-ap="${l.id}" ${cur[l.id] === ids.length ? 'checked' : ''}><b>${fit(l) ? '⭐ ' : ''}${esc(l.name)}</b><small class="cap">${l.nw ? (l.role === 'resident' ? 'מתמחה' : l.role === 'house' ? 'רופא/ת בית' : 'בכיר/ה') : esc(l.disc || '')}${l.guest ? ' · אורח/ת' : ''}${cur[l.id] ? ' · כבר משובץ/ת ל-' + cur[l.id] : ''}</small></label>`).join('')}</div>
     <label class="mgall" style="margin-top:10px"><input type="checkbox" id="apRep"> להחליף את המרצים הקיימים במצגות האלה (בלי הסימון: מוסיפים)</label>
     <p class="cap" style="margin-top:8px">${ids.map(id => esc((SC_CAT.find(c => c.id === id) || {}).t || id)).join(' · ')}</p></div>
     <div class="mf"><button class="btn primary" id="apOk">שמירה</button><button class="btn" id="apNo">ביטול</button></div>`,
-    (bg, close) => { bg.querySelector('#apNo').onclick = close; bg.querySelector('#apOk').onclick = async () => {
+    (bg, close) => { bg.querySelector('#apNo').onclick = close;
+      const q = bg.querySelector('#apQ'); q.oninput = () => { const t = q.value.trim().toLowerCase(); bg.querySelectorAll('[data-apn]').forEach(e => { e.style.display = !t || e.dataset.apn.indexOf(t) >= 0 ? '' : 'none'; }); };
+      bg.querySelector('#apOk').onclick = async () => {
       const pick = [...bg.querySelectorAll('[data-ap]')].filter(c => c.checked).map(c => LL.find(x => x.id === c.dataset.ap)).filter(Boolean), rep = bg.querySelector('#apRep').checked; close();
+      const nw = pick.filter(l => l.nw); if (nw.length) { await freshLoad(['stud:lect']); const B = JSON.parse(JSON.stringify(lectAll())); B.staff = B.staff || {}; nw.forEach(l => { B.staff[l.id] = Object.assign({ disc: top || 'כירורגיה כללית' }, B.staff[l.id] || {}, { on: true }); }); save('stud:lect', B); }
       await revSaveMany(ids, v => { const L = (rep ? [] : lecIn(v).map(x => Object.assign({}, x))).filter(x => !rep); pick.forEach(l => { if (!L.some(x => x.lid === l.id)) L.push({ lid: l.id, name: l.name, at: nowIso(), ok: null }); }); if (rep) lecIn(v).forEach(x => { if (x.ok && pick.some(l => l.id === x.lid)) { const y = L.find(z => z.lid === x.lid); if (y) y.ok = x.ok; } }); lecSet(v, L); });
       done && done(); if (pick.length) setTimeout(() => lectMsg(pick.map(l => l.id), 'review', scCur(), ids), 400); }; });
 }
