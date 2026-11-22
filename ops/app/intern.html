@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="82294ffd6e20"><script>(function () {
+<head><meta name="ksh-ver" content="177d8b467afe"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -1101,17 +1101,15 @@ function vHome() {
   out.push(contactCard(1));
   out.push(monitor());
   out.push(todoCard());
-  if (WQ.open && A.wreq) out.push(wreqCard());
   out.push(dailyTop());
   out.push(rulesBox());
   // 10/11/2026, Dr. Gozani: a clear absence request in the middle of the home (it stays in the duty tab too); not for "only nights" and not before or after the rotation
-  if (!isDO() && !before() && !after()) out.push(`<button class="habs" data-goabs="1"><span class="habi">🙋</span><span class="habt"><b>בקשת היעדרות / חופש</b><small>חופש · מחלה · כנס · מילואים</small></span><em>›</em></button>`);
   // 10/11/2026, Dr. Gozani: the pocket book with its clinical scores for every group, a clear tile on home, next to the phones and the resuscitation card
   out.push(bkTile());
   if (typeof qkTiles === 'function') out.push(qkTiles());
   if (typeof prlBanner === 'function') out.push(prlBanner());
   out.push(`<section class="g2"><div class="card">${crewBox()}</div>${isDO() ? `<div class="card">${msgBox()}</div>` : `<div class="card">${myWeek()}</div>`}</section><div style="height:12px"></div>`);
-  if (!isDO()) out.push(`<section class="card rqm"><span style="font-size:24px">📨</span><span class="tx"><b>בקשות והחלפות</b><small>${A.req.filter(r => r.st === 'ממתינה').length ? `<em>${A.req.filter(r => r.st === 'ממתינה').length} ממתינות לאישור</em>` : 'חופש, היעדרות או החלפת תורנות'}</small></span><button class="btn sm ghost" data-rq="abs">🙋 היעדרות</button><button class="btn sm ghost" data-rq="swap" ${myUpcoming().length ? '' : 'disabled'}>🔁 תורנות</button></section>`);
+  if (!isDO()) out.push(`<section class="card rqm"><span style="font-size:24px">📨</span><span class="tx"><b>בקשות · רק במקרים חריגים</b><small>${A.req.filter(r => r.st === 'ממתינה').length ? `<em>${A.req.filter(r => r.st === 'ממתינה').length} ממתינות לאישור</em>` : 'יום החזר, היעדרות חריגה או החלפת תורנות'}</small></span><button class="btn sm ghost" data-rq="abs">יום החזר / היעדרות</button><button class="btn sm ghost" data-rq="swap" ${myUpcoming().length ? '' : 'disabled'}>🔁 תורנות</button></section>`);
   if ((A.msgs || []).length) out.push(msgsCard());
   if (!noRep() && !before()) out.push(`<section class="card">${pulse()}</section>`);
   return out.join('');
@@ -1192,7 +1190,6 @@ function todoCard() {
   if (!isDO() && !A.me.start) T.push({ ok: false, t: 'שאלון פתיחה קצר · דקה וחצי', a: 'data-act="intake"', g: 'למילוי ›' });
   T.push({ ok: rulesRead(), t: 'לקרוא את נהלי העבודה בסבב', a: 'data-act="rules"', g: 'לקריאה ›' });
   if (pre && bk) T.push({ ok: !!lsg('int_bk_read'), t: 'לקרוא את ספרון הסטאז׳רים', a: `href="${esc(bk)}" target="_blank" rel="noopener" data-bkread="1"`, g: 'לספרון ›', link: 1 });
-  if (Q) { const wd = dow(TODAY()), due = !Q.mine && (wd === 3 || wd === 4); T.push({ ok: !!Q.mine, t: 'בקשות לשבוע הבא · ⁦' + dm(Q.ws) + '–' + dm(add(Q.ws, 4)) + '⁩', a: 'data-act="wq"', g: WQ.open ? 'סגירה ▴' : Q.mine ? 'עריכה ›' : due ? 'חובה עד חמישי ›' : 'לבחירה ›', due }); }
   const left = T.filter(x => !x.ok).length; if (!pre && !left) return '';
   const n = pre ? Math.max(1, Math.round((pd(START()) - pd(TODAY())) / 864e5)) : 0;
   return `<section class="todo"><div class="todo-h"><b>${pre ? 'מה נשאר לך לעשות לפני הסבב' : 'מה נשאר לך להשלים'}</b><em>${T.length - left} מתוך ${T.length}</em></div>
@@ -1202,10 +1199,10 @@ function todoCard() {
 // the work rules of the rotation: the five that matter most on the home, the whole page in a sheet, and "I read and commit"
 function rulesList() {
   const R = [];
-  R.push({ k: 1, ic: '🎓', t: 'הסטאז׳ הוא תקופת הכשרה', s: 'לקראת רישיון לעבוד כרופאים. יש לו הגדרות ברורות, ועמידה בהן היא תנאי למעבר הסבב.' });
+  R.push({ k: 1, ic: '🎓', t: 'הסטאז׳ הוא תקופת הכשרה', s: 'לקראת רישיון לעבוד כרופאים. יש לו הגדרות ברורות. עמידה בהן היא תנאי למעבר הסבב.' });
   if (!isDO()) R.push({ k: 1, top: 1, ic: '☀️', t: 'ישיבת הבוקר · כולם, בזמן', s: 'כל בוקר, בשעה המדויקת. את בדיקות הדם משלימים אחרי הישיבה.' });
   R.push({ top: 1, ic: '🗓', t: 'השיבוץ נקבע ע״י הצוות', s: 'אף אחד לא מחליט לבד על התוכנית או על מה לעשות. בעיה, שאלה או פער: פונים לד״ר עאסלה או לד״ר גוזני.' });
-  R.push({ top: 1, ic: '🙋', t: 'היעדרות, חופש והחלפה', s: 'רק במקרים חריגים, ורק בבקשה מתוך האפליקציה ואחרי אישור. לא מסכמים בעל פה.' });
+  R.push({ top: 1, ic: '🙋', t: 'היעדרות, חופש והחלפה', s: 'רק במקרים חריגים ורק בבקשה מתוך האפליקציה ואחרי אישור. לא מסכמים בעל פה.' });
   if (!isDO() && !isTr()) R.push({ top: 1, ic: '📝', t: 'דיווח יומי', s: 'בכל יום עבודה עד 16:00, 30 שניות באפליקציה. מי שלא דיווח מקבל תזכורת.' });
   R.push({ top: 1, ic: '🌙', t: 'תורנות', s: 'נשארים עד סוף התורנות ולא עוזבים לפני. בבוקר מעבירים לצוות ומעדכנים מה לא הושלם: דמים, אק״ג, ונפלונים. שישי מ-08:00, שבת מ-09:00.' });
   if (!isDO()) R.push({ ic: '🌤', t: 'שישי בוקר', s: '⁦08:00–13:00⁩, פעם בחודש לפי הלוח.' });
@@ -1289,7 +1286,7 @@ function msgBox() {
 
 /* ---------- the weekly plan: my place, meetings, tasks and nights, per day (from the Hub) ---------- */
 function vPlan() {
-  return banner('lumbar', 'התוכנית השבועית', 'השבוע שלי במערך', 'השיבוץ, הישיבות, המטלות והתורנויות שלך') + wreqCard() + '<section class="card" id="wplan"></section>' + teamTable() + weekSessions();
+  return banner('lumbar', 'התוכנית השבועית', 'השבוע שלי במערך', 'השיבוץ, הישיבות, המטלות והתורנויות שלך') + '<section class="card" id="wplan"></section>' + teamTable() + weekSessions();
 }
 // the department's day inside my week (1/11/2026, Dr. Gozani): its meetings join mine, and who leads the rounds and the ER and what is in the operating rooms.
 // From the portal (ops_intDept): names, roles and procedure types only, not the whole weekly plan
@@ -1582,9 +1579,9 @@ async function intCal() {
     <div class="icsec"><h4>היומן שלי</h4><p>תמיד: התורנויות (מחלקה ומיון, יום שלם), שישי בוקר 08:00–13:00 וההיעדרויות שאושרו.</p>
     ${ks.map(k => { const L = ICAL_OL[k]; return `<label class="icop"><span>${L[0]}</span><span class="t"><b>${L[1]}</b><small>${L[2]}</small></span><input type="checkbox" data-co="${k}" ${C.o[k] ? 'checked' : ''}></label>`; }).join('')}
     ${btns(C.url)}</div>
-    <div class="icsec"><h4>לשתף עם בן/בת הזוג · רק התורנויות</h4><p>יומן נפרד עם התורנויות שלך בלבד. שולחים את הקישור למי שרוצים, והוא/היא מוסיפים אותו ביומן שלהם. אצלך אין צורך: ביומן שלך כבר יש את התורנויות.</p>
+    <div class="icsec"><h4>לשתף עם בן/בת הזוג · רק התורנויות</h4><p>יומן נפרד עם התורנויות שלך בלבד. שולחים את הקישור למי שרוצים והוא/היא מוסיפים אותו ביומן שלהם. אצלך אין צורך: ביומן שלך כבר יש את התורנויות.</p>
     <div class="icgo"><button type="button" class="pr" data-go="c" data-u="${esc(C.duty)}">📋 העתקת הקישור</button>${navigator.share ? '<button type="button" data-dsh="1">📤 שיתוף</button>' : ''}</div></div>
-    <details class="ichow"><summary>איך זה עובד?</summary><ol><li><b>אייפון ומק:</b> לוחצים "יומן האייפון" ואז "הרשמה" ו"הוספה". במק בוחרים "מיקום: iCloud", וכך היומן מופיע גם באייפון וגם במק. מוסיפים פעם אחת בלבד.</li><li><b>Google:</b> לוחצים "Google Calendar" ואז "הוספה".</li><li><b>Outlook:</b> לוחצים "Outlook" ומאשרים.</li></ol></details>
+    <details class="ichow"><summary>איך זה עובד?</summary><ol><li><b>אייפון ומק:</b> לוחצים "יומן האייפון" ואז "הרשמה" ו"הוספה". במק בוחרים "מיקום: iCloud" וכך היומן מופיע גם באייפון וגם במק. מוסיפים פעם אחת בלבד.</li><li><b>Google:</b> לוחצים "Google Calendar" ואז "הוספה".</li><li><b>Outlook:</b> לוחצים "Outlook" ומאשרים.</li></ol></details>
     <p class="cap">⏱ היומן מתעדכן לבד, אבל לא מיד: באייפון בדרך כלל תוך שעה, ב-Google לפעמים עד יום. החלפה של הרגע האחרון עדיין צריכה הודעה.<br>🔒 הקישור אישי. מי שמקבל אותו רואה את הסבב שלך.</p>
     <button type="button" class="icnew" id="icNew">החלפת הקישור (הישן יפסיק לעבוד)</button>`;
     S.qa('[data-go]').forEach(b => b.onclick = () => { const k = b.dataset.go; if (k !== 'c') return go(k, b.dataset.u, 'הסבב שלי · קפלן'); try { kCopy(b.dataset.u); } catch (e) {} b.textContent = '✓ הועתק'; });
@@ -1656,10 +1653,10 @@ function rqForm(kind) {
     S.qa('[data-tt]').forEach(b => b.onclick = () => { ex = b.dataset.tt === 'x'; S.qa('[data-tt]').forEach(x => x.classList.toggle('on', x === b)); S.q('#rqBL').hidden = !ex; });
     S.q('#rqS').onclick = () => send({ type: 'swap', date: S.q('#rqD').value, withId: S.q('#rqW').value, withDate: ex ? S.q('#rqB').value : '', note: S.q('#rqN').value }, r => !r.withId ? 'בחרו עם מי' : ex && !r.withDate ? 'בחרו איזו תורנות לקחת, או בחרו מסירה' : '');
   } else {
-    S = sheet(`<div class="sh-h"><h3>🙋 בקשת היעדרות</h3><button class="sh-x" data-x="1">✕</button></div>
-      <label class="lbl">סוג<select id="rqR">${(A.rqReasons || ['חופש', 'מחלה', 'כנס / קורס', 'מילואים', 'אחר']).map(r => `<option>${esc(r)}</option>`).join('')}</select></label>
+    S = sheet(`<div class="sh-h"><h3>🙋 יום החזר או היעדרות חריגה</h3><button class="sh-x" data-x="1">✕</button></div>
+      <label class="lbl">סוג<select id="rqR">${(A.rqReasons || ['יום החזר', 'מחלה', 'כנס / קורס', 'מילואים', 'אחר']).map(r => `<option>${esc(r)}</option>`).join('')}</select></label>
       <div class="two" style="gap:8px"><label class="lbl">מתאריך<input type="date" id="rqF" value="${minD}" min="${START()}" max="${END()}"></label><label class="lbl">עד תאריך<input type="date" id="rqT" value="${minD}" min="${START()}" max="${END()}"></label></div>
-      <label class="lbl">הערה <small>(לא חובה)</small><textarea id="rqN"></textarea></label><p class="cap" style="margin:0">הבקשה מגיעה לאחראי הסטאז׳רים. אחרי האישור היא תופיע בתוכנית ובלוח.</p>${act}`);
+      <label class="lbl">הערה <small>(לא חובה)</small><textarea id="rqN"></textarea></label><p class="cap" style="margin:0">רק במקרים חריגים: יום החזר אחרי תורנות בסוף שבוע, או היעדרות שאי אפשר לדחות. הבקשה מגיעה לאחראי הסטאז׳רים. אחרי האישור היא תופיע בתוכנית ובלוח.</p>${act}`);
     S.q('#rqS').onclick = () => send({ type: 'abs', reason: S.q('#rqR').value, from: S.q('#rqF').value, to: S.q('#rqT').value, note: S.q('#rqN').value }, r => !r.from ? 'בחרו תאריך' : r.to && r.to < r.from ? 'תאריך הסיום מוקדם מתאריך ההתחלה' : '');
   }
   async function send(r, check) {
@@ -1773,7 +1770,7 @@ function goBar() {
 function a2Help() {
   if (WR.env) return wrap('sheet');
   const url = (A.wrap || '') + '?p=' + encodeURIComponent(TOKEN) + '&k=i', ios = /iphone|ipad|ipod/i.test(navigator.userAgent);
-  const S = sheet(`<div class="sh-h"><h3>📲 שמירה במסך הבית</h3><button class="sh-x" data-x="1">✕</button></div><p class="cap" style="margin:0">פותחים את הקישור האישי ב${ios ? 'ספארי' : 'כרום'}, ואז ${ios ? 'שיתוף ⬆️ ו״הוספה למסך הבית״' : '⋮ ו״הוספה למסך הבית״'}. מעכשיו האפליקציה נפתחת בלחיצה אחת, עם Face ID.</p><button class="btn wide" id="a2c">📋 העתקת הקישור</button>`);
+  const S = sheet(`<div class="sh-h"><h3>📲 שמירה במסך הבית</h3><button class="sh-x" data-x="1">✕</button></div><p class="cap" style="margin:0">פותחים את הקישור האישי ב${ios ? 'ספארי' : 'כרום'} ואז ${ios ? 'שיתוף ⬆️ ו״הוספה למסך הבית״' : '⋮ ו״הוספה למסך הבית״'}. מעכשיו האפליקציה נפתחת בלחיצה אחת, עם Face ID.</p><button class="btn wide" id="a2c">📋 העתקת הקישור</button>`);
   S.q('#a2c').onclick = () => { try { kCopy(url); S.q('#a2c').textContent = '✓ הועתק'; } catch (e) {} };
 }
 
