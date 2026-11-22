@@ -224,8 +224,8 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
   }
   /* full screen on a computer (10/11/2026): also on a first click on this page's own screens; on the click's bubble phase, after the click did its job (11/11/2026) */
   (function () { var desk = matchMedia('(pointer:fine)').matches && innerWidth >= 1000 && !/iPhone|iPad|iPod|Android/.test(navigator.userAgent); if (!desk) return;
-    function once() { document.removeEventListener('click', once); var de = document.documentElement; if (!document.fullscreenElement && de.requestFullscreen) de.requestFullscreen().catch(function () {}); }
-    document.addEventListener('click', once); })();
+    function once(e) { if (e && e.isTrusted === false) return; document.removeEventListener('click', once, true); var de = document.documentElement; if (!document.fullscreenElement && de.requestFullscreen) de.requestFullscreen().catch(function () {}); }
+    document.addEventListener('click', once, true); })();
   /* ---------- the bridge to the app frame ---------- */
   function toFrame(m) { if (frame && frameOrigin) try { frame.postMessage(m, frameOrigin); } catch (e) {} }
   addEventListener('message', function (e) {
