@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="9c9b6bf84c51"><script>(function () {
+<head><meta name="ksh-ver" content="abd305b6a6a7"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -3182,7 +3182,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = '9c9b6bf84c51'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = 'abd305b6a6a7'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achall|achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|rwext|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -3372,10 +3372,20 @@ setInterval(() => { try {
   const ks = Object.keys(S.cache || {}).filter(k => /^week:\d{4}-\d\d-\d\d$/.test(k) && LOADAT[k] > 1).sort((a, b) => LOADAT[b] - LOADAT[a]).slice(0, 3); if (!ks.length) return;
   ks.forEach(k => { LOADAT[k] = Math.min(LOADAT[k], Date.now() - SWR_MS - 1); }); swr(ks);
 } catch (e) {} }, 20000);
+// 22/11/2026: after a change to the weekly plan or the students' board, a new clash pops up at once (the whole list is in the plan's sensor)
+const CLSEEN = {};
+function clashList(ws, W, items) { const out = []; Object.keys((W && W.days) || {}).sort().forEach(d => { const BZ = clashDay(W.days[d], d, items);
+  Object.keys(BZ).forEach(id => clashPairs(BZ[id], true).forEach(([x, y]) => { if (x.ok && y.ok) return; out.push(`${P(id).name} · ${DAYS[pd(d).getDay()]} ${dm(d)}: ${x.l} ⇄ ${y.l}`); })); }); return out; }
+function clashToast(ws, W, items) {
+  const L = clashList(ws, W || S.cache['week:' + ws], items || ((S.cache['stud:' + ws] || {}).items) || []), was = CLSEEN[ws]; CLSEEN[ws] = L;
+  const nw = was ? L.filter(x => was.indexOf(x) < 0) : L; if (nw.length) toast('⚠ התנגשות: ' + nw[0] + (nw.length > 1 ? ` (ועוד ${nw.length - 1})` : ''));
+}
 function save(key, val, onOk) {
   if (S.preview) { toast('תצוגה בלבד · שינויים לא נשמרים'); return; }
   // the weekly plan remembers who changed it last, and the last changes (one line per person per quarter hour)
   if (key.indexOf('week:') === 0 && !/:draft$/.test(key) && val && typeof val === 'object') orCompact(val);
+  if (key.indexOf('week:') === 0 && !/:draft$/.test(key) && val && val.days) try { clashToast(key.slice(5), val); } catch (e) {}
+  if (/^stud:\d{4}-\d\d-\d\d$/.test(key) && val && val.items) try { clashToast(key.slice(5), null, val.items); } catch (e) {}
   if (key.indexOf('week:') === 0 && val && typeof val === 'object') { const now = new Date().toISOString(), L = (val.log || []).slice(), last = L[0];
     if (last && last.by === S.me.name && (new Date(now) - new Date(last.at)) < 9e5) L.shift();
     val.upd = { by: S.me.name, role: S.me.role, at: now }; val.log = [val.upd].concat(L).slice(0, 20); }
@@ -4688,7 +4698,7 @@ async function vWeek(m) {
   WK.mode = 'board';
   if (WK.drawer === undefined) { try { WK.drawer = localStorage.getItem('ops_wdrawer') || ''; } catch (e) { WK.drawer = ''; } }
   if (WK.drawer === 'proc') WK.drawer = '';
-  const [wk, prev] = await load(['week:' + ws, 'week:' + add(ws, -7)].concat(months.map(x => 'duty:' + x), months.map(x => 'oncall:' + x), ['orsb:' + ws])); await curP;
+  const [wk, prev] = await load(['week:' + ws, 'week:' + add(ws, -7)].concat(months.map(x => 'duty:' + x), months.map(x => 'oncall:' + x), ['orsb:' + ws, 'stud:' + ws])); await curP;
   const W = weekFill(wk || weekDefaults(ws), ws), edit = can('week');
   m.classList.toggle('ro', !edit);
   const dates = [...Array(7)].map((_, i) => add(ws, i));
@@ -4705,6 +4715,9 @@ async function vWeek(m) {
       else if (ab.has(id)) { set.add(id); if (nok[id]) warns.push(`${P(id).name} לא נמצא/ת ב${dn}, ומשובץ/ת ב${placed[id][0]}`); }
       if (placed[id].filter(x => /חדר|א\. יום/.test(x)).length > 1) { set.add(id); warns.push(`${P(id).name} בשני חדרי ניתוח ב${dn}`); }
     });
+    // 22/11/2026: the clash engine: clinic x clinic, clinic x OR, teaching the students x anything (an acknowledged pair stays orange)
+    const BZ = clashDay(D, d, ((S.cache['stud:' + ws] || {}).items) || []);
+    Object.keys(BZ).forEach(id => clashPairs(BZ[id], false).forEach(([x, y]) => { if (x.ok && (y.ok || y.k === 'teach') || (y.ok && x.k === 'teach')) return; set.add(id); warns.push(`${P(id).name} ב${DAYS[pd(d).getDay()]}: ${x.l} ⇄ ${y.l}`); }));
     wsets[d] = set;
   });
   const cls = d => pd(d).getDay() >= 5 ? ' we' : '';
@@ -8321,13 +8334,40 @@ function parseStud(text, ws) {
 }
 const isChiefOnly = () => S.me.role === 'chief';
 const studEdit = () => can('stud');
-function teachState(d, id, items) {
+
+// ---------- 22/11/2026 (Dr. Gozani): one clash engine for the whole department ----------
+// Each person's day as time windows: rounds, ER, consults, day ward, pre-op, operating rooms, clinics (by their hours, or "until"), and teaching the
+// students (Scrub In). A clash: clinic x clinic, clinic x OR (unless he leaves the clinic early on purpose), teaching x anything, two rooms.
+// The same code runs on the server (Clash.js: clashDay_/clashPairs_) for the hourly check that alerts the owner.
+const CL_HM = t => { const m = String(t || '').match(/(\d{1,2}):(\d{2})/); return m ? +m[1] * 60 + +m[2] : null; };
+const CL_W = { rn: [480, 660], rs: [480, 660], consult: [480, 960], erlead: [480, 960], er: [480, 960], day: [480, 840], preop: [660, 840], or: [480, 960] };
+const CL_L = { rn: 'ביקור צפון', rs: 'ביקור דרום', consult: 'ייעוצים', erlead: 'אחראי מיון', er: 'מיון', day: 'אשפוז יום', preop: 'טרום ניתוח' };
+function clashDay(D, d, items) {
+  D = D || {}; const out = {}, put = (id, o) => { if (id) (out[id] = out[id] || []).push(o); };
+  Object.keys(CL_L).forEach(k => (D[k] || []).forEach(x => put(x.id, { k, l: CL_L[k], a: CL_W[k][0], b: CL_W[k][1], ok: x.ok })));
+  (D.or || []).forEach(r => (r.ids || []).forEach(x => put(x.id, { k: 'or', l: r.n || 'חדר ניתוח', a: 480, b: 960, ok: x.ok })));
+  (D.clin || []).forEach(c => { const T = String(c.t || '').match(/(\d{1,2}:\d{2})(?:\s*[–-]\s*(\d{1,2}:\d{2}))?/), a = T ? CL_HM(T[1]) : 480, e = T && T[2] ? CL_HM(T[2]) : a + 240;
+    (c.ids || []).forEach(x => { const u = CL_HM(x.until); put(x.id, { k: 'clinic', l: 'מרפאה' + (c.n ? ' ' + c.n : '') + (T ? ' ' + T[1] : ''), a, b: u && u > a ? u : e, early: !!u, ok: x.ok }); }); });
+  (items || []).filter(x => x.d === d && x.who && !x.dr).forEach(x => { const a = CL_HM(x.from); if (a == null) return; const b = CL_HM(x.to) || a + 60;
+    put(x.who, { k: 'teach', l: 'הוראה ' + x.from + (x.title ? ' · ' + String(x.title).slice(0, 40) : ''), a, b: b > a ? b : a + 60 }); });
+  return out;
+}
+function clashPairs(L, rooms) {
+  const out = [];
+  for (let i = 0; i < L.length; i++) for (let j = i + 1; j < L.length; j++) { const x = L[i], y = L[j]; if (!(x.a < y.b && y.a < x.b)) continue; const ks = [x.k, y.k].sort().join('|');
+    if (x.k === 'teach' || y.k === 'teach' || ks === 'clinic|clinic' || (rooms && ks === 'or|or') || (ks === 'clinic|or' && !x.early && !y.early)) out.push([x, y]); }
+  return out;
+}
+function teachState(d, id, items, it) {
   const W = S.cache['week:' + sunday(d)] || {}, D = (W.days || {})[d] || {};
   if (postCall(d).indexOf(id) >= 0) return { bad: 1, t: 'אחרי תורנות' };
   if ((D.abs || []).some(x => x.id === id)) return { bad: 1, t: 'לא נמצא/ת' };
   const c = callDay(d), y = dutyDay(d), on = c.active === id ? 'כונן פעיל' : ['er1', 'er2', 'dept', 'minor'].some(k => y[k] === id) ? 'תורן/ית הלילה' : '';
   const pl = placesOf(W, d, id).filter(x => !x.auto).map(x => x.l);
   const load = (items || []).filter(x => x.who === id).length;
+  // the session's own hours against the weekly plan and his other teaching: red when they overlap
+  if (it && it.from) { const a = CL_HM(it.from), b = CL_HM(it.to) || a + 60, L = (clashDay(D, d, (items || []).filter(x => x !== it && x.id !== it.id))[id] || []).filter(q => q.a < b && a < q.b);
+    if (L.length) return { bad: 1, t: 'תפוס/ה: ' + L.map(q => q.l).join(' · '), load }; }
   return { t: [on, pl.join(' · ')].filter(Boolean).join(' · '), load, or: pl.some(x => /חדר/.test(x)) };
 }
 // fills empty slots: who can teach is not post-call or away, has no clash at that hour, carries the lightest load; the room matches the activity
@@ -8392,7 +8432,7 @@ function studItem(it, items, days, commit) {
       <label>משעה<input class="in" id="siF" type="time" value="${esc(x.from)}"></label><label>עד<input class="in" id="siTo" type="time" value="${esc(x.to)}"></label></div>
       <label class="f">מקום</label><input class="in" id="siP" value="${esc(x.place)}" placeholder="למשל: חדר הסמינרים, קומה 4">
       <label class="f">מי מלמד/ת</label><div class="seg" id="siN">${Object.keys(NEED).map(k => `<button data-nd="${k}" class="${x.need === k ? 'on' : ''}">${NEED[k]}</button>`).join('')}</div>` : `<p class="cap">${x.need === 'resident' ? 'הפעילות מחכה למתמחה. בוחרים מהרשימה:' : 'צפייה בלבד'}</p>`}
-      ${canWho ? `<label class="f">שיבוץ</label><div class="opts">${pool.map(p => { const st = teachState(x.d, p.id, items); return `<button class="opt ${x.who === p.id ? 'on' : ''} ${st.bad ? 'no' : ''}" data-who="${p.id}">${esc(p.name)}<small>${esc(st.bad ? st.t : (st.t || 'פנוי/ה') + (st.load ? ' · ' + st.load + ' השבוע' : ''))}</small></button>`; }).join('')}</div>${x.need === 'resident' && !chiefOnly ? '<p class="cap">מתמחים משבץ הצ׳יף מהשולחן שלו. אפשר להשאיר ריק.</p>' : ''}` : ''}
+      ${canWho ? `<label class="f">שיבוץ</label><div class="opts">${pool.map(p => { const st = teachState(x.d, p.id, items, x); return `<button class="opt ${x.who === p.id ? 'on' : ''} ${st.bad ? 'no' : ''}" data-who="${p.id}">${esc(p.name)}<small>${esc(st.bad ? st.t : (st.t || 'פנוי/ה') + (st.load ? ' · ' + st.load + ' השבוע' : ''))}</small></button>`; }).join('')}</div>${x.need === 'resident' && !chiefOnly ? '<p class="cap">מתמחים משבץ הצ׳יף מהשולחן שלו. אפשר להשאיר ריק.</p>' : ''}` : ''}
     </div><div class="mf">${ed ? '<button class="btn primary" id="siOk">שמירה</button>' : ''}<button class="btn" id="siNo">סגירה</button><span class="spacer"></span>${canMeta && !x._new ? '<button class="btn ghost danger" id="siDel">מחיקה</button>' : ''}${canWho && x.who ? '<button class="btn ghost" id="siClr">ריקון השיבוץ</button>' : ''}</div></div>`;
     const keep = () => { if (!canMeta) return; const v = id => (bg.querySelector(id) || {}).value || ''; x.title = v('#siT').trim(); x.d = v('#siD') || x.d; x.kind = v('#siK') || x.kind; x.from = v('#siF'); x.to = v('#siTo'); x.place = v('#siP').trim(); };
     bg.querySelectorAll('[data-nd]').forEach(b => b.onclick = () => { keep(); x.need = b.dataset.nd; x.who = ''; draw(); });
@@ -9145,6 +9185,7 @@ function scItemBind(r, redraw) {
 }
 // one session: title, day and hours, place, group, and who teaches (a doctor from the department, or free text for a guest)
 function scItem(it, r, done) {
+  if (it && it.d && !S.cache['week:' + sunday(it.d)]) { load(['week:' + sunday(it.d)]).then(() => scItem(it, r, done)).catch(() => {}); return; }
   const ed = scEdit(), chief = S.me.role === 'chief', x = Object.assign({ by: '', grp: '' }, it), days = scDays(r), grps = (r.groups || []).map(g => g.name);
   const bg = document.createElement('div'); bg.className = 'mbg';
   const draw = () => {
@@ -9157,7 +9198,7 @@ function scItem(it, r, done) {
       <div class="tmf"><label>מקום<input class="in" id="xiP" value="${esc(x.place)}" placeholder="למשל: חדר הסמינרים"></label><label>קבוצה<select class="in" id="xiG"><option value="">כל הסטודנטים</option>${grps.map(g => `<option ${x.grp === g ? 'selected' : ''}>${esc(g)}</option>`).join('')}</select></label></div>
       <label class="f">מי מלמד/ת</label><div class="seg" id="xiN">${['senior', 'resident', 'none'].map(k => `<button data-nd="${k}" class="${x.need === k ? 'on' : ''}">${k === 'none' ? 'אורח/ת או בלי' : NEED[k]}</button>`).join('')}</div>
       <label class="f">שם כפי שיופיע (אורח/ת, מכון, יחידה)</label><input class="in" id="xiB" value="${esc(x.by)}" placeholder="למשל: ד״ר ניר גבריאל · מכון הדימות">${scGuestPick(x)}` : `<p class="cap">${esc(x.by || '')}</p>`}
-      ${canWho && x.need !== 'none' ? `<label class="f">רופא/ה מהמערך</label><div class="opts">${pool.map(p => { const st = teachState(x.d, p.id, scItems(r)); return `<button class="opt ${x.who === p.id ? 'on' : ''} ${st.bad ? 'no' : ''}" data-who="${p.id}">${esc(p.name)}<small>${esc(st.bad ? st.t : (st.t || 'פנוי/ה'))}</small></button>`; }).join('')}</div>` : ''}
+      ${canWho && x.need !== 'none' ? `<label class="f">רופא/ה מהמערך</label><div class="opts">${pool.map(p => { const st = teachState(x.d, p.id, scItems(r), x); return `<button class="opt ${x.who === p.id ? 'on' : ''} ${st.bad ? 'no' : ''}" data-who="${p.id}">${esc(p.name)}<small>${esc(st.bad ? st.t : (st.t || 'פנוי/ה'))}</small></button>`; }).join('')}</div>` : ''}
     </div><div class="mf">${ed || chief ? '<button class="btn primary" id="xiOk">שמירה</button>' : ''}<button class="btn" id="xiNo">סגירה</button><span class="spacer"></span>${ed && !x._new ? '<button class="btn ghost danger" id="xiDel">מחיקה</button>' : ''}</div></div>`;
     const keep = () => { if (!ed) return; const v = id => (bg.querySelector(id) || {}).value || ''; x.title = v('#xiT').trim(); x.d = v('#xiD') || x.d; x.kind = v('#xiK') || x.kind; x.from = v('#xiF'); x.to = v('#xiTo'); x.place = v('#xiP').trim(); x.grp = v('#xiG'); x.by = v('#xiB').trim(); if (x.lid && x.by.indexOf(lectNameOf(x.lid).split(/\s+/).pop()) < 0) x.lid = ''; };
     const gp = bg.querySelector('#xiL'); if (gp) gp.onchange = () => { keep(); x.lid = gp.value; if (x.lid) { x.by = lectNameOf(x.lid); x.who = ''; x.need = 'none'; } draw(); };
@@ -9408,6 +9449,8 @@ function wkInfo(W, ws, d, k, room, id, load7) {
   const days = [...Array(5)].map((_, i) => add(ws, i)).filter(x => x !== d);
   const did = days.filter(x => placesOf(W, x, id).some(q => !q.auto && q.k === k)).length;
   const here = placesOf(W, d, id).filter(q => !q.auto && q.k !== 'abs' && q.k !== 'study' && !(q.k === k && (k !== 'or' || q.room === room)));
+  const cw = CL_W[k], tch = cw ? (clashDay((W.days || {})[d], d, ((S.cache['stud:' + ws] || {}).items) || [])[id] || []).filter(q => q.k === 'teach' && q.a < cw[1] && cw[0] < q.b) : [];
+  if (tch.length) return { cls: 'clash', t: 'מלמד/ת סטודנטים: ' + tch.map(q => q.l).join(', ') };
   if (here.length) return { cls: 'clash', t: 'משובץ/ת: ' + here.map(q => q.l).join(', ') };
   if (did) return { cls: 'did', t: 'כבר השבוע' + (did > 1 ? ' ×' + did : '') };
   return load7[id] ? { t: String(load7[id]) } : {};
