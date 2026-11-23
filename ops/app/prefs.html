@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="fe0e1bc6deeb"><script>(function () {
+<head><meta name="ksh-ver" content="d1a568d07807"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -843,6 +843,8 @@ html.ui2 body .rpw .wmx.wmx td.wcl.past,html.ui2 body .rpwsnap .wmx.wmx td.wcl.p
 html.ui2 body .rpw .rpvc,html.ui2 body .rpwsnap .rpvc{background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important}
 
 html.ui2 body .rpw .kd-who .xt,html.ui2 body .rpwsnap .kd-who .xt{display:none!important}
+
+html.ui2 body .wmx.wmx td.wcl b{text-overflow:clip}
 </style>
 <script>(function () {
   /* the new look is the only look (7/11/2026, Dr. Gozani): no switch, no per-device choice */
@@ -2065,6 +2067,16 @@ const dayName = d => DAYS[pd(d).getDay()];
 const holOf = d => (((A || {}).settings || {}).hol || {})[d] || null;
 const holCls = d => { const x = holOf(d); return !x ? '' : x.off ? ' hol' : x.note ? ' hev' : ''; };
 // 23/11/2026 (Dr. Gozani, concept 1): every board a table per week, roles in rows, days in columns (same as wkMx in Index.html)
+// 23/11/2026 (Dr. Gozani): a name that is too long for its cell gets a smaller font until it fits, never cut with "…"
+function wmxFitNames(root) {
+  if (!root || !root.querySelectorAll) return;
+  root.querySelectorAll('.wmx td.wcl b, .wmx td.wcl .kd-who').forEach(el => { el.style.removeProperty('font-size'); });
+  root.querySelectorAll('.wmx td.wcl b, .wmx td.wcl .kd-who').forEach(el => { if (el.scrollWidth <= el.clientWidth + 1) return;
+    let f = parseFloat(getComputedStyle(el).fontSize) || 19; while (f > 10 && el.scrollWidth > el.clientWidth + 1) { f -= 1; el.style.setProperty('font-size', f + 'px', 'important'); } });
+}
+{ let ft = null; const fit = () => { clearTimeout(ft); ft = setTimeout(() => wmxFitNames(document.body), 80); };
+  new MutationObserver(m => { if (m.some(x => [...x.addedNodes].some(n => n.nodeType === 1 && (n.matches('.wmx,.hcard') || n.querySelector && n.querySelector('.wmx'))))) fit(); }).observe(document.documentElement, { childList: true, subtree: true });
+  addEventListener('resize', fit); }
 function wkMx(dates, rows, cell, head, o) {
   o = o || {}; const wks = []; let cur = null;
   dates.forEach(d => { const w = pd(d).getDay(); if (!cur || w === 0) { cur = Array(7).fill(null); wks.push(cur); } cur[w] = d; });

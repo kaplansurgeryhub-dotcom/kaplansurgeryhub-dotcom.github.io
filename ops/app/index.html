@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="fe0e1bc6deeb"><script>(function () {
+<head><meta name="ksh-ver" content="d1a568d07807"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -845,6 +845,8 @@ html.ui2 body .rpw .wmx.wmx td.wcl.past,html.ui2 body .rpwsnap .wmx.wmx td.wcl.p
 html.ui2 body .rpw .rpvc,html.ui2 body .rpwsnap .rpvc{background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important}
 
 html.ui2 body .rpw .kd-who .xt,html.ui2 body .rpwsnap .kd-who .xt{display:none!important}
+
+html.ui2 body .wmx.wmx td.wcl b{text-overflow:clip}
 </style>
 <script>(function () {
   /* the new look is the only look (7/11/2026, Dr. Gozani): no switch, no per-device choice */
@@ -3617,7 +3619,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = 'fe0e1bc6deeb'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = 'd1a568d07807'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achall|achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|rwext|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -4964,6 +4966,13 @@ function orDayTag(d, sm) { const x = orDayInfo(d); if (!x || !(x.off || x.note))
 function holCls(d) { const x = orDayInfo(d); return !x ? '' : x.off ? ' hol' : x.note ? ' hev' : ''; }
 // 23/11/2026 (Dr. Gozani chose concept 1, "a table per week"): every board is a table per week, the roles in rows and the days in columns,
 // so each role is written once at the side and the cells hold only big names. rows: [{k, l, sep, on(d)}]; cell(d, k) returns the cell's inside
+// 23/11/2026 (Dr. Gozani): a name that is too long for its cell gets a smaller font until it fits, never cut with "…"
+function wmxFitNames(root) {
+  if (!root || !root.querySelectorAll) return;
+  root.querySelectorAll('.wmx td.wcl b, .wmx td.wcl .kd-who').forEach(el => { el.style.removeProperty('font-size'); });
+  root.querySelectorAll('.wmx td.wcl b, .wmx td.wcl .kd-who').forEach(el => { if (el.scrollWidth <= el.clientWidth + 1) return;
+    let f = parseFloat(getComputedStyle(el).fontSize) || 19; while (f > 10 && el.scrollWidth > el.clientWidth + 1) { f -= 1; el.style.setProperty('font-size', f + 'px', 'important'); } });
+}
 function wkMx(dates, rows, cell, head, o) {
   o = o || {}; const wks = []; let cur = null, t0 = typeof today === 'string' ? today : '';
   dates.forEach(d => { const w = pd(d).getDay(); if (!cur || w === 0) { cur = Array(7).fill(null); wks.push(cur); } cur[w] = d; });
@@ -5699,7 +5708,7 @@ async function boardWide(kind, act) {
 function rpFit(bg) { const sc = bg.querySelector('.rpvsc'), el = bg.querySelector('#rpS'); if (!sc || !el || sc.classList.contains('zoom')) return;
   const W = el.offsetWidth, H = el.offsetHeight, aw = sc.clientWidth - 14, ah = sc.clientHeight - 14, rot = aw < ah && aw < 760;
   const k = rot ? Math.min(aw / H, ah / W) : Math.min(aw / W, ah / H); el.style.transform = `translate(-50%,-50%)${rot ? ' rotate(90deg)' : ''} scale(${k})`; bg.classList.toggle('rprot', rot); }
-function rpSnapWide(src, name) { const c = src.cloneNode(true); c.removeAttribute('id'); c.style.cssText = 'position:fixed;left:-40000px;top:0;transform:none;width:' + (src.offsetWidth || 2000) + 'px'; c.classList.add('rpw', 'rpwsnap'); c.dir = 'rtl'; document.body.appendChild(c);
+function rpSnapWide(src, name) { const c = src.cloneNode(true); c.removeAttribute('id'); c.style.cssText = 'position:fixed;left:-40000px;top:0;transform:none;width:' + (src.offsetWidth || 2000) + 'px'; c.classList.add('rpw', 'rpwsnap'); c.dir = 'rtl'; document.body.appendChild(c); wmxFitNames(c);
   if (!window.html2canvas) { c.remove(); return toast('רגע, טוען…'); } toast('מכין תמונה…');
   // html2canvas does not read color-mix(): every computed colour of the copy is written back as plain rgb
   const P2 = ['background-color', 'border-top-color', 'border-right-color', 'border-bottom-color', 'border-left-color', 'color', '-webkit-text-fill-color'], cv = v => { const m = /^color\(srgb ([\d.]+) ([\d.]+) ([\d.]+)(?: \/ ([\d.]+))?\)/.exec(v); return m ? `rgba(${Math.round(m[1] * 255)},${Math.round(m[2] * 255)},${Math.round(m[3] * 255)},${m[4] == null ? 1 : m[4]})` : ''; };
@@ -5720,7 +5729,7 @@ function rosterPreview(el, kind, opt) {
   const rpS = bg.querySelector('#rpS'); let onRs = null;
   if (opt.wide) { rpS.classList.add('rpw'); const sc = document.createElement('div'); sc.className = 'rpvsc'; sc.title = 'הקשה: גודל מלא'; rpS.parentNode.insertBefore(sc, rpS); sc.appendChild(rpS);
     sc.onclick = () => { sc.classList.toggle('zoom'); if (sc.classList.contains('zoom')) rpS.style.transform = ''; else rpFit(bg); }; onRs = () => rpFit(bg); addEventListener('resize', onRs); }
-  document.body.appendChild(bg); if (opt.wide) wmxSheet(rpS); const close = () => { bg.remove(); document.body.classList.remove('rpprint'); if (onRs) removeEventListener('resize', onRs); };
+  document.body.appendChild(bg); if (opt.wide) { wmxSheet(rpS); wmxFitNames(rpS); } const close = () => { bg.remove(); document.body.classList.remove('rpprint'); if (onRs) removeEventListener('resize', onRs); };
   bg.querySelector('.x').onclick = close; bg.onclick = e => { if (e.target === bg) close(); };
   const img = () => opt.wide ? rpSnapWide(rpS, (kind === 'final' ? 'לוח-מלא-' : kind + '-') + S.month + '.png') : snap(rpS, kind + '-' + S.month + '.png', 1);
   const pr = () => { document.body.classList.add('rpprint'); if (opt.wide) { rpS.style.transform = 'none'; rpS.style.zoom = Math.min(1080 / rpS.offsetWidth, 740 / rpS.offsetHeight); }
@@ -15656,7 +15665,8 @@ body.kbon :is(.mbg,.sheetbg,.shbg,.crbg,.chbg,.k2bg,.nwpbg,.gdbg)>*{max-height:c
       addEventListener('hashchange', () => shw(false)); }
     if (e === seen) { if (!e) shw(false); return; } if (seen) io.unobserve(seen); seen = e; shw(false); if (e) io.observe(e); };
   setInterval(() => { if (fl && fl.classList.contains('show') && (!onB() || !seen || !seen.isConnected)) shw(false); }, 700);
-  const sch = () => { clearTimeout(t); t = setTimeout(() => { put(); flo(); }, 80); };
+  const sch = () => { clearTimeout(t); t = setTimeout(() => { put(); flo(); wmxFitNames(document.getElementById('main')); }, 80); };
+  addEventListener('resize', () => { clearTimeout(t); t = setTimeout(() => wmxFitNames(document.getElementById('main')), 200); });
   const watch = () => { const m = document.getElementById('main'); if (!m) return setTimeout(watch, 500); new MutationObserver(sch).observe(m, { childList: true, subtree: true }); sch(); };
   watch();
 })();
