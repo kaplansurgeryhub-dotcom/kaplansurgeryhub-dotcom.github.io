@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="b96febe777dc"><script>(function () {
+<head><meta name="ksh-ver" content="b122f695a3b1"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -828,6 +828,23 @@ body:has(.mbg) .tdfloat,body:has(.rpvbg) .tdfloat{display:none!important}
 html.ui2 body .rpwide .wmx.wmx{display:grid!important;grid-template-columns:1fr 1fr;gap:10px;align-items:start}html.ui2 body .rpwide .wmx.wmx .wmt{min-width:0}
 html.ui2 body .rpvc .wmx.wmx .wmxs{overflow:visible}
 html.ui2 body .rpwsnap .wmx.wmx{display:grid!important;grid-template-columns:1fr 1fr;gap:10px;align-items:start}html.ui2 body .rpwsnap .wmx.wmx .wmt{min-width:0}html.ui2 body .rpwsnap .wmx.wmx .wmxs{overflow:visible}
+
+
+html.ui2 body .rpw .wmx.wmx,html.ui2 body .rpwsnap .wmx.wmx{display:grid!important;gap:14px 16px;align-items:start}
+html.ui2 body .rpw .wmx.wmx .wmt,html.ui2 body .rpwsnap .wmx.wmx .wmt{min-width:0}
+html.ui2 body .rpw .wmx.wmx .wmxs,html.ui2 body .rpwsnap .wmx.wmx .wmxs{overflow:visible}
+html.ui2 body .rpw .wmx.wmx .wrl,html.ui2 body .rpwsnap .wmx.wmx .wrl{position:static!important;width:112px!important;max-width:112px;font-size:15px}
+html.ui2 body .rpw .wmx.wmx td.wcl,html.ui2 body .rpwsnap .wmx.wmx td.wcl{padding:2px 4px}
+html.ui2 body .rpw .wmx.wmx td.wcl b,html.ui2 body .rpwsnap .wmx.wmx td.wcl b,html.ui2 body .rpw .wmx.wmx td.wcl .kd-who,html.ui2 body .rpw .wmx.wmx td.wcl .wn{font-size:19px!important}
+html.ui2 body .rpw .wmx.wmx .wdh,html.ui2 body .rpwsnap .wmx.wmx .wdh{padding:4px 4px 5px}
+html.ui2 body .rpw .wmx.wmx .wdh b,html.ui2 body .rpwsnap .wmx.wmx .wdh b{font-size:21px}
+html.ui2 body .rpw .lkb,html.ui2 body .rpw .rdx,html.ui2 body .rpw .kd-lk,html.ui2 body .rpw .kd-wn,html.ui2 body .rpw .cxh,html.ui2 body .rpw .pk.em b,html.ui2 body .rpwsnap .lkb,html.ui2 body .rpwsnap .kd-lk,html.ui2 body .rpwsnap .kd-wn,html.ui2 body .rpwsnap .pk.em b{display:none!important}
+html.ui2 body .rpw .wmx.wmx td.wcl.now,html.ui2 body .rpwsnap .wmx.wmx td.wcl.now{background:#fff;box-shadow:none}
+html.ui2 body .rpw .wmx.wmx .wdh.now,html.ui2 body .rpwsnap .wmx.wmx .wdh.now{background:#1D3047;color:#fff;-webkit-text-fill-color:#fff}
+html.ui2 body .rpw .wmx.wmx td.wcl.past,html.ui2 body .rpwsnap .wmx.wmx td.wcl.past{opacity:1}
+html.ui2 body .rpw .rpvc,html.ui2 body .rpwsnap .rpvc{background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important}
+
+html.ui2 body .rpw .kd-who .xt,html.ui2 body .rpwsnap .kd-who .xt{display:none!important}
 </style>
 <script>(function () {
   /* the new look is the only look (7/11/2026, Dr. Gozani): no switch, no per-device choice */
@@ -3600,7 +3617,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = 'b96febe777dc'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = 'b122f695a3b1'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achall|achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|rwext|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -5682,24 +5699,31 @@ async function boardWide(kind, act) {
 function rpFit(bg) { const sc = bg.querySelector('.rpvsc'), el = bg.querySelector('#rpS'); if (!sc || !el || sc.classList.contains('zoom')) return;
   const W = el.offsetWidth, H = el.offsetHeight, aw = sc.clientWidth - 14, ah = sc.clientHeight - 14, rot = aw < ah && aw < 760;
   const k = rot ? Math.min(aw / H, ah / W) : Math.min(aw / W, ah / H); el.style.transform = `translate(-50%,-50%)${rot ? ' rotate(90deg)' : ''} scale(${k})`; bg.classList.toggle('rprot', rot); }
-function rpSnapWide(src, name) { const c = src.cloneNode(true); c.removeAttribute('id'); c.style.cssText = 'position:fixed;left:-40000px;top:0;transform:none;width:2000px'; c.classList.add('rpw', 'rpwsnap'); c.dir = 'rtl'; document.body.appendChild(c);
+function rpSnapWide(src, name) { const c = src.cloneNode(true); c.removeAttribute('id'); c.style.cssText = 'position:fixed;left:-40000px;top:0;transform:none;width:' + (src.offsetWidth || 2000) + 'px'; c.classList.add('rpw', 'rpwsnap'); c.dir = 'rtl'; document.body.appendChild(c);
   if (!window.html2canvas) { c.remove(); return toast('רגע, טוען…'); } toast('מכין תמונה…');
   // html2canvas does not read color-mix(): every computed colour of the copy is written back as plain rgb
   const P2 = ['background-color', 'border-top-color', 'border-right-color', 'border-bottom-color', 'border-left-color', 'color', '-webkit-text-fill-color'], cv = v => { const m = /^color\(srgb ([\d.]+) ([\d.]+) ([\d.]+)(?: \/ ([\d.]+))?\)/.exec(v); return m ? `rgba(${Math.round(m[1] * 255)},${Math.round(m[2] * 255)},${Math.round(m[3] * 255)},${m[4] == null ? 1 : m[4]})` : ''; };
   [c, ...c.querySelectorAll('*')].forEach(e => { const cs = getComputedStyle(e); P2.forEach(k => { const x = cv(cs.getPropertyValue(k)); if (x) e.style.setProperty(k, x, 'important'); }); });
-  html2canvas(c, { scale: 2, backgroundColor: '#FFFFFF', windowWidth: 2100, width: c.scrollWidth, height: c.scrollHeight }).then(cv => cv.toBlob(b => { const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = name; a.click(); }, 'image/png')).finally(() => c.remove()); }
+  html2canvas(c, { scale: 2, backgroundColor: '#FFFFFF', windowWidth: (src.offsetWidth || 2000) + 100, width: c.scrollWidth, height: c.scrollHeight }).then(cv => cv.toBlob(b => { const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = name; a.click(); }, 'image/png')).finally(() => c.remove()); }
+// 23/11/2026 (Dr. Gozani): preview, picture, print and send: the whole month on ONE page, as large as possible.
+// The week tables are laid out in 1, 2 or 3 columns, the one whose sheet is closest to an A4 landscape page (1.414), each table about 1000px wide
+function wmxSheet(rpS) {
+  const w = rpS.querySelector('.wmx'); if (!w) return; const n = w.querySelectorAll('.wmxs').length || 1; let best = null;
+  for (const c of [1, 2, 3]) { if (c > n) break; rpS.style.width = (c * 1040 + 60) + 'px'; w.style.gridTemplateColumns = `repeat(${c},minmax(0,1fr))`; const r = rpS.offsetWidth / Math.max(1, rpS.offsetHeight), d = Math.abs(Math.log(r / 1.414)); if (!best || d < best.d) best = { c, d }; }
+  rpS.style.width = (best.c * 1040 + 60) + 'px'; w.style.gridTemplateColumns = `repeat(${best.c},minmax(0,1fr))`; w.dataset.cols = best.c;
+}
 function rosterPreview(el, kind, opt) {
-  opt = opt || {}; if (!el) return; const bg = document.createElement('div'); bg.className = 'mbg rpvbg' + (opt.wide ? ' rpwide' : '');
-  const ttl = (kind === 'final' ? 'לוח סופי' : kind === 'oncall' ? 'כוננויות' : kind === 'pa' ? 'משמרות עוזרי רופא' : 'תורנויות') + ' · ' + monthName(S.month);
-  bg.innerHTML = `<div class="rpvw"><div class="rpvh"><b>👁 ${esc(ttl)}</b><span class="spacer"></span><button class="btn sm" id="rpImg">📷 שמירת תמונה</button><button class="btn sm" id="rpPr">🖨 הדפסה</button><button class="x" title="סגירה">✕</button></div><div class="rpvs" id="rpS"><div class="rpvband"><div class="bplogo"><img src="${LOGO_K}" alt="קפלן"><img src="${LOGO_C}" alt="כללית"></div></div><div class="rpvgold"></div><div class="rpvt"><img src="${EMBLEM}" alt=""><div><b>${esc(ttl.split(' · ')[0])}</b><small>מערך כירורגיה כללית · המרכז הרפואי קפלן</small></div><span class="rpvmo">${esc(monthName(S.month))}</span></div></div></div>`;
+  opt = opt || {}; if (!el) return; if (el.querySelector && el.querySelector('.wmx')) opt.wide = 1; const bg = document.createElement('div'); bg.className = 'mbg rpvbg' + (opt.wide ? ' rpwide' : '');
+  const ttl = (kind === 'final' ? 'לוח סופי' : kind === 'oncall' ? 'כוננויות' : kind === 'pa' ? 'משמרות עוזרי רופא' : kind === 'int' ? 'תורנויות סטאז׳רים' : 'תורנויות') + ' · ' + monthName(opt.month || S.month);
+  bg.innerHTML = `<div class="rpvw"><div class="rpvh"><b>👁 ${esc(ttl)}</b><span class="spacer"></span><button class="btn sm" id="rpImg">📷 שמירת תמונה</button><button class="btn sm" id="rpPr">🖨 הדפסה</button><button class="x" title="סגירה">✕</button></div><div class="rpvs" id="rpS"><div class="rpvband"><div class="bplogo"><img src="${LOGO_K}" alt="קפלן"><img src="${LOGO_C}" alt="כללית"></div></div><div class="rpvgold"></div><div class="rpvt"><img src="${EMBLEM}" alt=""><div><b>${esc(ttl.split(' · ')[0])}</b><small>מערך כירורגיה כללית · המרכז הרפואי קפלן</small></div><span class="rpvmo">${esc(monthName(opt.month || S.month))}</span></div></div></div>`;
   const c = el.cloneNode(true); c.removeAttribute('id'); c.classList.add('rpvc'); if (opt.wide) c.classList.add('col'); bg.querySelector('#rpS').appendChild(c);
   const rpS = bg.querySelector('#rpS'); let onRs = null;
   if (opt.wide) { rpS.classList.add('rpw'); const sc = document.createElement('div'); sc.className = 'rpvsc'; sc.title = 'הקשה: גודל מלא'; rpS.parentNode.insertBefore(sc, rpS); sc.appendChild(rpS);
     sc.onclick = () => { sc.classList.toggle('zoom'); if (sc.classList.contains('zoom')) rpS.style.transform = ''; else rpFit(bg); }; onRs = () => rpFit(bg); addEventListener('resize', onRs); }
-  document.body.appendChild(bg); const close = () => { bg.remove(); document.body.classList.remove('rpprint'); if (onRs) removeEventListener('resize', onRs); };
+  document.body.appendChild(bg); if (opt.wide) wmxSheet(rpS); const close = () => { bg.remove(); document.body.classList.remove('rpprint'); if (onRs) removeEventListener('resize', onRs); };
   bg.querySelector('.x').onclick = close; bg.onclick = e => { if (e.target === bg) close(); };
   const img = () => opt.wide ? rpSnapWide(rpS, (kind === 'final' ? 'לוח-מלא-' : kind + '-') + S.month + '.png') : snap(rpS, kind + '-' + S.month + '.png', 1);
-  const pr = () => { document.body.classList.add('rpprint'); if (opt.wide) { rpS.style.transform = 'none'; rpS.style.zoom = Math.min(1050 / rpS.offsetWidth, 720 / rpS.offsetHeight); }
+  const pr = () => { document.body.classList.add('rpprint'); if (opt.wide) { rpS.style.transform = 'none'; rpS.style.zoom = Math.min(1080 / rpS.offsetWidth, 740 / rpS.offsetHeight); }
     setTimeout(() => { window.print(); document.body.classList.remove('rpprint'); if (opt.wide) { rpS.style.zoom = ''; rpFit(bg); } }, 80); };
   bg.querySelector('#rpImg').onclick = img; bg.querySelector('#rpPr').onclick = pr;
   if (opt.wide) { rpFit(bg); requestAnimationFrame(() => rpFit(bg)); if (opt.act === 'img') setTimeout(img, 300); if (opt.act === 'print') setTimeout(pr, 300); }
