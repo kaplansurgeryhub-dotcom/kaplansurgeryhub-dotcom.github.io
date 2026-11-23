@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="b18018e57268"><script>(function () {
+<head><meta name="ksh-ver" content="2237eacfa466"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -3448,7 +3448,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = 'b18018e57268'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = '2237eacfa466'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achall|achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|rwext|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -6372,7 +6372,7 @@ async function vTeam(m) {
            return `<div class="cap" style="margin-top:8px;background:#E6F5EF;border-radius:10px;padding:8px 10px;color:#0A4F42">🔐 <b>${esc((S.data.roles || {})[u.role] || u.role || '')}</b>${mg ? ' · ' + esc(mg) : ''}${(u.scope || []).length ? ' · מנהל/ת: ' + esc(u.scope.map(k => SC[k] || k).join(', ')) : ''}${ex.length ? ' · ' + esc(ex.join(', ')) : ''}<br><button class="btn sm" id="tmPerm" style="margin-top:6px">🔐 כל ההרשאות: תחומים, תפקידים נוספים ולוחות</button></div>`; })() : ''}
          <div class="cap" style="margin-top:6px">מנהל המערך: התוכנית השבועית · צ׳יף: תורנויות ומתמחים · סגן: כוננויות · מזכירות: ניתוחים, חדרים, טקסטים והיעדרויות בתוכנית השבועית · צפייה: רק לראות</div>`}</section>` : ''}
        </div>
-       ${edit ? `<div class="tmfoot"><span class="cap" id="tmSt">${isNew ? '' : 'כל שינוי נשמר מיד'}</span><span class="spacer"></span>${isNew ? '<button class="btn primary" id="tmAdd">הוספה לצוות</button>' : (ownerNow() ? (p.out ? `<span class="cap">הוצא/ה מהצוות ב-${dm(p.out)}</span><button class="btn" id="tmBack">↩ החזרה לצוות</button><button class="btn ghost danger" id="tmDel">מחיקה לצמיתות</button>` : `<button class="btn ghost danger" id="tmOutB" title="יורד/ת מהצוות, מהלוחות ומהבחירה. בלוחות שכבר נבנו השם נשאר">הוצאה מהצוות</button>`) : '<span class="cap">🔒 מחיקה והשבתה: רק לבעלים</span>')}</div>` : ''}
+       ${edit ? `<div class="tmfoot"><span class="cap" id="tmSt">${isNew ? '' : 'כל שינוי נשמר מיד'}</span><span class="spacer"></span>${!isNew && BOSS() && tokOk(p) && p.role !== 'staff' && !isMgr(p) ? '<button class="btn wa" id="tmInv">📨 שליחת הזמנה</button>' : ''}${isNew ? '<button class="btn primary" id="tmAdd">הוספה לצוות</button>' : (ownerNow() ? (p.out ? `<span class="cap">הוצא/ה מהצוות ב-${dm(p.out)}</span><button class="btn" id="tmBack">↩ החזרה לצוות</button><button class="btn ghost danger" id="tmDel">מחיקה לצמיתות</button>` : `<button class="btn ghost danger" id="tmOutB" title="יורד/ת מהצוות, מהלוחות ומהבחירה. בלוחות שכבר נבנו השם נשאר">הוצאה מהצוות</button>`) : '<span class="cap">🔒 מחיקה והשבתה: רק לבעלים</span>')}</div>` : ''}
       </div>`;
       $('#tmX', bg).onclick = close; bg.onclick = e => { if (e.target === bg) close(); };
       if ($('#tmSecInv', bg)) $('#tmSecInv', bg).onclick = () => secInvite(stUser(p));
@@ -6380,7 +6380,8 @@ async function vTeam(m) {
       bg.querySelectorAll('[data-f]').forEach(inp => inp.onchange = () => { p[inp.dataset.f] = inp.type === 'checkbox' ? inp.checked : inp.dataset.f === 'phone' ? (inp.value = telFmt(inp.value)) : inp.value.trim(); if (!isNew) put(); else if (inp.dataset.f === 'role') paint(); });
       bg.querySelectorAll('[data-r]').forEach(inp => inp.onchange = () => { p.rot = p.rot || {}; p.rot[inp.dataset.r] = inp.type === 'checkbox' ? inp.checked : inp.value.trim(); if (!isNew) put(); if (inp.dataset.r === 'on') paint(); });
       bg.querySelectorAll('[data-pos]').forEach(b => b.onclick = () => { const k = b.dataset.pos; p.pos = p.pos || []; p.pos = p.pos.indexOf(k) >= 0 ? p.pos.filter(y => y !== k) : p.pos.concat(k); b.classList.toggle('on'); if (!isNew) put(); });
-      if ($('#tmAdd', bg)) $('#tmAdd', bg).onclick = async () => { bg.querySelectorAll('[data-f]').forEach(inp => p[inp.dataset.f] = inp.type === 'checkbox' ? inp.checked : inp.dataset.f === 'phone' ? telFmt(inp.value) : inp.value.trim()); if (!p.name) return toast('חסר שם'); try { const r = await call('ops_personSave', S.code, p); S.data.people = r.people; toast('נוסף/ה לצוות'); bg.remove(); open(P(r.id)); } catch (e) { toast(e.message); } };
+      if ($('#tmInv', bg)) $('#tmInv', bg).onclick = () => invSheet(P(p.id) || p);
+      if ($('#tmAdd', bg)) $('#tmAdd', bg).onclick = async () => { bg.querySelectorAll('[data-f]').forEach(inp => p[inp.dataset.f] = inp.type === 'checkbox' ? inp.checked : inp.dataset.f === 'phone' ? telFmt(inp.value) : inp.value.trim()); if (!p.name) return toast('חסר שם'); try { const r = await call('ops_personSave', S.code, p); S.data.people = r.people; toast('נוסף/ה לצוות · אפשר לשלוח הזמנה'); bg.remove(); open(P(r.id)); } catch (e) { toast(e.message); } };
       // 14/11/2026 (Dr. Gozani): a two-tap button answers in place (a repaint jumped the card to its top, and it looked as if nothing happened)
       const arm = (b, txt) => { if (b.dataset.arm) return true; b.dataset.arm = '1'; b.textContent = txt; b.classList.add('arm'); setTimeout(() => { if (b.isConnected && !b.disabled) { delete b.dataset.arm; b.classList.remove('arm'); b.textContent = b.dataset.t0; } }, 6000); return false; };
       bg.querySelectorAll('#tmOutB,#tmDel').forEach(b => { b.dataset.t0 = b.textContent; });
@@ -6835,7 +6836,7 @@ async function profileOpen(p, t, onEdit) {
     try { const url = await squarePhoto(f); const r = S.me.role === 'owner' ? await call('ops_photoSave', S.code, p.id, url) : await call('ops_photoMine', S.code, url); S.data.people = r.people; const np = (r.people || []).find(x => x.id === p.id); if (np) { PH[np.id + '_' + np.ph] = url; try { localStorage.setItem('ops_ph_' + np.id + '_' + np.ph, url); } catch (x) {} } if (p.id === S.me.pid) myPhoto(); const ph = bg.querySelector('.pfv-ph'); ph.classList.add('has'); ph.style.backgroundImage = `url(${url})`; [...ph.childNodes].forEach(n => { if (n.nodeType === 3) n.remove(); }); toast('התמונה עודכנה'); } catch (x) { if (x.message !== 'בוטל') toast(x.message); } };
   if (bg.querySelector('#pfPvA')) bg.querySelector('#pfPvA').onclick = async () => { if (portalOf(p)) { close(); return startPreview(portalOf(p), p.id, p.full || p.name); } try { await needTok(p, 'pv'); } catch (e) { return toast(e.message); } appPreview(p, portalOf(p) ? () => { close(); startPreview(portalOf(p), p.id, p.full || p.name); } : null); };
   const sendBind = () => { const box = bg.querySelector('#pfSend'); if (!box) return; box.innerHTML = pfSendHtml(p);
-    box.querySelectorAll('[data-ps]').forEach(b => b.onclick = () => (b.dataset.ps === 'rem' ? sendReminder : sendInvite)(p, sendBind)); };
+    box.querySelectorAll('[data-ps]').forEach(b => b.onclick = () => (b.dataset.ps === 'rem' ? sendReminder : invSheet)(p, sendBind)); };
   sendBind();
   // access to the managers' portal: role and code (the code is a password, typed by the owner only)
   const accBind = () => { const box = bg.querySelector('#pfAcc'); if (!box) return;
@@ -11247,6 +11248,25 @@ function ivSheet(Q, m, one) { let i = 0; const bg = document.createElement('div'
     if (bg.querySelector('#ivSk')) bg.querySelector('#ivSk').onclick = () => { i++; draw(); };
     bg.querySelector('#ivX').onclick = () => { bg.remove(); vInvites(m); }; };
   document.body.appendChild(bg); draw(); }
+// 23/11/2026 (Dr. Gozani): "📨 שליחת הזמנה" on the extern card, in the profile and in the team window after adding someone.
+// A window with the full invite for his role (editable) before anything goes out; WhatsApp or copy, and the send is logged.
+// Externs: a line that the coming month is entered for him and from the month after he submits through the link.
+const ivMonthLine = p => { if (p.role !== 'extern') return ''; const m1 = monthOf(add(monthOf(today) + '-15', 31)), m2 = monthOf(add(m1 + '-15', 31)), n = m => monthName(m).split(' ')[0];
+  return '📅 את התורנויות של ' + n(m1) + ' אני מכניס ללוח בעצמי. מ' + n(m2) + ' מגישים את הבקשות לבד דרך הקישור, עד ה-15 בחודש שלפני.'; };
+const ivText = p => { const t = inviteFor(p), ml = ivMonthLine(p); return ml ? t.replace('*הקישור האישי שלך:*', ml + '\n\n*הקישור האישי שלך:*') : t; };
+async function invSheet(p, after) {
+  if (!p) return; { const mu = isMgr(p) && (S.data.users || []).find(u => u.pid === p.id); if (mu && ownerNow() && mu.role !== 'owner') return secInvite(mu); }
+  if (!tokOk(p) && !isMgr(p)) return toast('אין קישור אישי'); try { await needTok(p, 'invite'); } catch (e) { return toast(e.message); }
+  const tel = !!(p.phone || '').replace(/\D/g, ''), v = sentOf(p.id, 'inv'), bg = document.createElement('div'); bg.className = 'mbg ivsh';
+  bg.innerHTML = `<div class="modal" style="max-width:560px;width:100%"><div class="mh"><b>📨 הזמנה למערכת · ${esc(drName ? drName(p) : p.name)}</b></div><div class="mb">
+    <p class="cap" style="margin:0 0 8px">${v ? '✓ נשלחה ' + esc(whenTx(v.at)) + '. ' : ''}ההודעה מלאה לפי התפקיד: רקע, מה יש באפליקציה, הקישור האישי, איך מוסיפים למסך הבית, הספרון והמצגת. אפשר לשנות לפני השליחה.${tel ? '' : ' <b>אין טלפון בפרופיל: אפשר רק להעתיק.</b>'}</p>
+    <textarea id="ivT" dir="rtl" style="width:100%;min-height:340px;font:inherit;font-size:14px;line-height:1.5;padding:10px;border:1px solid #D8DEE0;border-radius:10px;box-sizing:border-box"></textarea></div>
+   <div class="mf">${tel ? '<button class="btn wa" id="ivW">💬 שליחה בוואטסאפ</button>' : ''}<button class="btn" id="ivC">📋 העתקה</button><span class="spacer"></span><button class="btn ghost" id="ivX">סגירה</button></div></div>`;
+  document.body.appendChild(bg); const ta = bg.querySelector('#ivT'); ta.value = ivText(p);
+  const done = async () => { await sentMark(p, 'inv'); bg.remove(); after && after(); };
+  if (bg.querySelector('#ivW')) bg.querySelector('#ivW').onclick = () => { waOpen(p.phone, ta.value); done(); };
+  bg.querySelector('#ivC').onclick = () => { copy(ta.value); toast('ההזמנה הועתקה'); done(); };
+  bg.querySelector('#ivX').onclick = () => bg.remove(); bg.onclick = e => { if (e.target === bg) bg.remove(); }; }
 </script>
 
 <style>
