@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="2237eacfa466"><script>(function () {
+<head><meta name="ksh-ver" content="16943bcf13b7"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -3448,7 +3448,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = '2237eacfa466'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = '16943bcf13b7'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achall|achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|rwext|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -11090,9 +11090,9 @@ const GUIDES = {
   ornurse: ['🧰', 'אחראי/ת חדר ניתוח', 'OR · מה מכינים לכל ניתוח', [['🧰', 'השבוע בחדר ניתוח', 'כל ניתוח עם הציוד, התנוחה והערות המנתח'], ['✓', 'נקלט', 'מסמנים שראית ומעדכנים סוגיה פתוחה'], ['🗂️', 'כרטיסי ניתוח וקטלוג', 'עדכון הציוד הקבוע לכל סוג ניתוח'], ['🖨', 'הדפסה', 'דף ניתוח לכל מקרה וחבילה למחר']]],
   orteam: ['🧰', 'צוות חדר ניתוח', 'מה להכין היום ומחר', [['🧰', 'מה להכין', 'אריח לכל פריט ציוד לפי חדר'], ['✓', 'הוכן', 'סימון לכל פריט והערה אלינו בלחיצה'], ['🛏', 'תנוחה והכנת החדר', 'בציור, עם הערות המנתחים'], ['🖨', 'דף ניתוח', 'להדפסה לכל מקרה']]],
   viewer: ['👁', 'צפייה', 'כל מה שפתוח לך לקריאה', [['🏠', 'היום במערך', 'מי איפה היום והלילה'], ['📅', 'התוכנית השבועית', 'כל השבוע בטבלה אחת'], ['🌙', 'לוחות', 'התורנויות והכוננויות']]],
-  senior: ['🩺', 'רופא/ה בכיר/ה', 'האפליקציה האישית שלך במערך', [['🏠', 'היום', 'השיבוץ שלך, הלילה במערך ומה קורה היום'], ['📅', 'תוכנית', 'השבוע שלך וכל המערך'], ['📞', 'לוחות', 'הכוננויות שלך והלוח המלא'], ['🧰', 'חדר ניתוח', 'הניתוחים שלך והכרטיסים האישיים לציוד ולתנוחה'], ['📝', 'בקשות', 'עד ה-15: ימים שלא מתאימים, ימים מבוקשים וחופשות'], ['📲', 'מסך הבית', 'שיתוף ← "הוספה למסך הבית" ואז התראות']]],
+  senior: ['🩺', 'רופא/ה בכיר/ה', 'האפליקציה האישית שלך במערך', [['🏠', 'היום', 'השיבוץ שלך, הלילה במערך ומה קורה היום'], ['📅', 'תוכנית', 'השבוע שלך וכל המערך'], ['📞', 'לוחות', 'הכוננויות שלך והלוח המלא'], ['🧰', 'חדר ניתוח', 'הניתוחים שלך והכרטיסים האישיים לציוד ולתנוחה'], ['📝', 'בקשות', 'ימים שלא מתאימים, ימים מבוקשים וחופשות, עד ה-15'], ['📲', 'מסך הבית', 'שיתוף ← "הוספה למסך הבית" ואז התראות']]],
   resident: ['🩺', 'מתמחה', 'האפליקציה האישית שלך במערך', [['🏠', 'היום', 'איפה את/ה היום, הלילה במערך ומחר'], ['📅', 'תוכנית', 'השבוע שלך וכל המערך'], ['🌙', 'לוחות', 'התורנויות שלך, הלוח המלא ובקשת החלפה'], ['📝', 'בקשות', 'עד ה-15 בכל חודש. ימים קבועים בפרופיל'], ['📈', 'פרופיל ההתקדמות', 'ניתוחים, מיון ומרפאות לאורך הזמן'], ['📲', 'מסך הבית', 'שיתוף ← "הוספה למסך הבית" ואז התראות']]],
-  extern: ['🌙', 'תורן/ית חוץ', 'התורנויות שלך אצלנו', [['🌙', 'התורנויות שלי', 'החודש והבא, עם מי את/ה בכל לילה'], ['📝', 'בקשות', 'עד ה-15: ימים שלא מתאימים וימים מבוקשים'], ['📞', 'אנשי קשר', 'התורנים והכונן, חיוג ישיר'], ['📲', 'מסך הבית', 'שיתוף ← "הוספה למסך הבית"']]],
+  extern: ['🌙', 'תורן/ית חוץ', 'התורנויות שלך אצלנו', [['🌙', 'התורנויות שלי', 'החודש והבא ומי איתך בכל לילה'], ['📝', 'בקשות', 'ימים שלא מתאימים וימים מבוקשים, עד ה-15'], ['📞', 'אנשי קשר', 'התורנים והכונן, חיוג ישיר'], ['📲', 'מסך הבית', 'שיתוף ← "הוספה למסך הבית"']]],
   pa: ['🩺', 'עוזר/ת רופא', 'משמרות הערב במיון', [['🏠', 'בית', 'המשמרת הבאה ומי איתך הערב'], ['🌙', 'משמרות', 'הלוח של החודש וספרון הכיס למשמרת'], ['📝', 'בקשות', 'עד ה-15 לחודש הבא'], ['📚', 'ללמוד', 'מצגות למיון והמרכז האקדמי'], ['📲', 'מסך הבית', 'שיתוף ← "הוספה למסך הבית"']]],
   lect: ['🎓', 'מרצה לסטודנטים', 'Scrub In · ההוראה שלך', [['🗓️', 'המפגשים שלי', 'מתי, איזו קבוצה, נושא וחדר'], ['📤', 'מצגות לאישור', 'צפייה, אישור, הערה וצירוף'], ['📅', 'מתי לא מתאים לי', 'תאריכים או ימים בשבוע. נכנס למחולל השיבוץ'], ['💬', 'משוב', 'מה הסטודנטים אמרו, בלי שמות'], ['📋', 'לוח הסבב', 'לקריאה, המפגשים שלך מודגשים']]],
   gear: ['🧰', 'מנהל/ת OR', 'חדרי הניתוח', [['🗂️', 'תוכנית הניתוחים', 'חדרים, ניתוחים, מנתחים וציוד לכל יום'], ['🧰', 'כרטיסי ניתוח', 'ציוד ותנוחה קבועים לכל סוג ניתוח'], ['💬', 'תקשורת', 'שיחה עם אחראית חדר הניתוח לכל שבוע'], ['📤', 'החבילה לשבוע', 'בכל חמישי: הדפסה ושליחה לחדר הניתוח']]]
@@ -11169,12 +11169,18 @@ const ivRoleLabel = k => (GUIDES[k] || [])[1] || k;
 // 8/11/2026 (Dr. Gozani): by discipline. Residents and seniors: a few words and what's recommended. Externs and PAs: more background on the department's digital move. Everyone: the booklet
 const IV_REV = 'המערך הכירורגי בקפלן עובר מהפכה דיגיטלית: התוכנית השבועית, התורנויות והכוננויות, חדרי הניתוח, הבקשות וההחלפות, הלימודים וההודעות עוברים כולם למערכת אחת, Kaplan Surgical Hub, שנבנתה בתוך המערך ובשבילו. המטרה פשוטה: פחות טלפונים, פתקים והודעות שהולכות לאיבוד, יותר שקיפות והוגנות. כל מה שנוגע לעבודה שלך נמצא במקום אחד בטלפון.';
 const IV_BG = r => r === 'extern' ? [IV_REV, '', 'גם תורני החוץ הם חלק מהצוות שלנו לכל דבר. מהיום הלוח, הבקשות, ההחלפות ופרטי הקשר של מי שאיתך בלילה נמצאים אצלך בטלפון, מעודכנים בזמן אמת.', ''] : r === 'pa' ? [IV_REV, '', 'עוזרי הרופא הם חלק חשוב מהמשמרת של הערב במיון. לכן פתחנו לך מקום משלך במערכת: הלוח שלך, הבקשות, מי בצוות איתך הערב והחומרים שיעזרו לך במשמרת.', ''] : r === 'senior' || r === 'resident' || r === 'house' ? ['מהיום התוכנית השבועית, ' + (r === 'senior' ? 'הכוננויות' : 'התורנויות') + ', חדרי הניתוח והבקשות מנוהלים במערכת אחת. זה המקום להתעדכן ולהגיש, במקום טלפונים ופתקים.', ''] : [];
+// 23/11/2026 (Dr. Gozani): one "what to do now" section after the link; adding to the home screen is its first item (with the icon), not a line in "✨ מה יש לך שם" and not again below
 const IV_TIPS = {
-  senior: ['להוסיף את האפליקציה למסך הבית ולאשר התראות', 'לעדכן בפרופיל תמונה, טלפון וימים קבועים', 'בקשות לכוננויות וחופשות רק דרך המערכת, עד ה-15 בכל חודש', 'להוסיף הערות מנתח לניתוחים שלך, הן מגיעות ישירות לצוות חדר הניתוח'],
-  resident: ['להוסיף את האפליקציה למסך הבית ולאשר התראות', 'לעדכן בפרופיל תמונה ופרטים', 'בקשות לתורנויות וחופשות רק דרך המערכת, עד ה-15 בכל חודש', 'החלפת תורנות מבקשים במערכת והיא מאושרת שם'],
-  house: ['להוסיף את האפליקציה למסך הבית ולאשר התראות', 'לעדכן בפרופיל תמונה ופרטים', 'בקשות לתורנויות וחופשות רק דרך המערכת, עד ה-15 בכל חודש'],
-  extern: ['להוסיף את האפליקציה למסך הבית ולאשר התראות, כך מגיעה תזכורת לפני כל תורנות', 'לעדכן בפרופיל תמונה וטלפון, כדי שהצוות בלילה יוכל להשיג אותך', 'בקשות לחודש הבא (ימים שמתאימים ושלא) רק דרך המערכת, עד ה-15', 'החלפה רק דרך המערכת ובאישור, כך הלוח תמיד נכון'],
-  pa: ['להוסיף את האפליקציה למסך הבית ולאשר התראות', 'לעדכן בפרופיל תמונה וטלפון', 'בקשות למשמרות של החודש הבא רק דרך המערכת, עד ה-15', 'לעבור על ספרון הכיס למשמרת לפני הערב הראשון'] };
+  senior: [['👤', 'מעדכנים בפרופיל תמונה, טלפון וימים קבועים'], ['📝', 'בקשות לכוננויות ולחופשות רק דרך האפליקציה, עד ה-15 בכל חודש'], ['🧰', 'הערות מנתח לניתוחים שלך מגיעות ישר לצוות חדר הניתוח']],
+  resident: [['👤', 'מעדכנים בפרופיל תמונה ופרטים'], ['📝', 'בקשות לתורנויות ולחופשות רק דרך האפליקציה, עד ה-15 בכל חודש'], ['🔁', 'החלפת תורנות מבקשים באפליקציה ומאשרים שם']],
+  house: [['👤', 'מעדכנים בפרופיל תמונה ופרטים'], ['📝', 'בקשות לתורנויות ולחופשות רק דרך האפליקציה, עד ה-15 בכל חודש']],
+  extern: [['👤', 'מעדכנים בפרופיל תמונה וטלפון כדי שהצוות בלילה יוכל להשיג אותך'], ['📝', 'בקשות לכל התורנויות של החודש הבא (ימים שמתאימים וימים שלא) רק דרך האפליקציה, עד ה-15 בחודש*'], ['🔁', 'החלפה רק דרך האפליקציה ובאישור. כך הלוח תמיד נכון']],
+  pa: [['👤', 'מעדכנים בפרופיל תמונה וטלפון'], ['📝', 'בקשות למשמרות של החודש הבא רק דרך האפליקציה, עד ה-15'], ['📖', 'עוברים על ספרון הכיס למשמרת לפני הערב הראשון']] };
+const IV_HOME = r => ['📲 *מוסיפים את האפליקציה למסך הבית ומאשרים התראות*' + (r === 'extern' ? ' (כך מגיעה תזכורת לפני כל תורנות)' : r === 'pa' ? ' (כך מגיעה תזכורת לפני כל משמרת)' : ''),
+  '   באייפון: פותחים את הקישור בספארי ← שיתוף ← "הוספה למסך הבית"', '   במחשב: אותו קישור בכרום ← סמל ההתקנה בשורת הכתובת ← "התקנה"', '   מעכשיו נכנסים מהאייקון KSH'];
+// externs: the requests line carries an asterisk; this month only they send Dr. Adnan their dates, from the month after like everyone
+const ivMonthLine = p => { if (p.role !== 'extern') return ''; const m1 = monthOf(add(monthOf(today) + '-15', 31)), m2 = monthOf(add(m1 + '-15', 31)), n = m => monthName(m).split(' ')[0];
+  return '* ב' + n(m1) + ' בלבד: שולחים לד״ר עדנאן את התאריכים שבהם אפשר להיות בתורנות. מ' + n(m2) + ' מגישים כרגיל דרך האפליקציה, כמו כולם.'; };
 // externs and PAs also get the department's "עבודה נכונה במערך" deck (the interns' one), 8/11/2026
 const IV_WORK = '\n🧭 עבודה נכונה במערך (מצגת קצרה, חובה לפני המשמרת הראשונה): ' + 'https:' + '/' + '/kaplansurgeryhub-dotcom.github.io/academy/work.html';
 const IV_BOOK = { pa: '🩺 בתוך האפליקציה, בלשונית המשמרות: ספרון כיס למשמרת הערב במיון' + IV_WORK, extern: '🩺 בתוך האפליקציה: אנשי הקשר של המערך ומי איתך בכל לילה' + IV_WORK };
@@ -11182,10 +11188,9 @@ function inviteFor(p, opt) { opt = opt || {}; const u = ivUser(p); if (u && u.ro
   const fc = !!(u && u.fc && u.inv), hi = 'שלום ' + (first ? (p.first || p.name) : drAddr(p)) + ',', link = opt.link || (mgr ? (u.inv ? OPS_PORTAL + '?i=' + u.inv : OPS_PORTAL) : WRAP_URL + '?p=' + p.token + '&k=d'), guide = mgr ? OPS_PORTAL + '?guide=1' : link + '&guide=1';
   const main = GUIDES[keys[0]] || GUIDES.resident, extra = keys.slice(1).filter(k => GUIDES[k]);
   const L = [hi, mgr ? 'המערך הכירורגי בקפלן עובר לעבוד עם Kaplan Surgical Hub ופתחנו לך פורטל משלך כ' + main[1] + '.' : /^(extern|pa)$/.test(p.role) ? 'זה הקישור האישי שלך לאפליקציה של המערך הכירורגי בקפלן. קודם כמה מילים של רקע.' : 'המערך הכירורגי בקפלן עובר לעבוד עם Kaplan Surgical Hub. זה הקישור האישי שלך לאפליקציה של המערך.', '',
-    ...(mgr ? [] : IV_BG(p.role)), '✨ מה יש לך שם', ...main[3].slice(0, 5).map(([ic, t, s]) => '• ' + ic + ' ' + t + ': ' + s)];
-  if (!mgr && IV_TIPS[p.role]) L.push('', '💡 מה מומלץ', ...IV_TIPS[p.role].map(x => '• ' + x));
+    ...(mgr ? [] : IV_BG(p.role)), '✨ מה יש לך שם', ...main[3].filter(x => mgr || x[0] !== '📲').slice(0, 5).map(([ic, t, s]) => '• ' + ic + ' ' + t + ': ' + s)];
   extra.forEach(k => { const G = GUIDES[k]; L.push('', G[0] + ' ' + G[1] + ' · ' + G[2], ...G[3].slice(0, 3).map(([ic, t, s]) => '• ' + ic + ' ' + t + ': ' + s)); });
-  L.push('', mgr ? (u.inv ? '*הקישור האישי שלך למערכת הניהול (רק שלך):*\n' : '*הקישור למערכת הניהול:*\n') + link + '\n' + (fc ? 'בכניסה הראשונה בוחרים סיסמה אישית.' : u.pw ? 'נכנסים עם הסיסמה האישית שלך.' : 'הקוד האישי שלך יישלח בהודעה נפרדת.') : '*הקישור האישי שלך:*\n' + link, '', mgr ? INV_MGR_HOW(fc, !!u.inv) : INV_HOW(''), '', '📘 הספרון שלך, מעודכן למערכת החדשה (מה יש בה לתפקיד שלך ואיך עובדים איתה): ' + guide + (IV_BOOK[p.role] ? '\n' + IV_BOOK[p.role] : ''), '', mgr && p.role !== 'staff' && /^(senior|resident|house)$/.test(p.role) ? MGR_NOTE + '\n' : '', INV_SIGN);
+  L.push('', mgr ? (u.inv ? '*הקישור האישי שלך למערכת הניהול (רק שלך):*\n' : '*הקישור למערכת הניהול:*\n') + link + '\n' + (fc ? 'בכניסה הראשונה בוחרים סיסמה אישית.' : u.pw ? 'נכנסים עם הסיסמה האישית שלך.' : 'הקוד האישי שלך יישלח בהודעה נפרדת.') : '*הקישור האישי שלך:*\n' + link, '', ...(mgr ? [INV_MGR_HOW(fc, !!u.inv)] : ['✅ *מה עושים עכשיו*', ...IV_HOME(p.role), ...(IV_TIPS[p.role] || []).map(([ic, t]) => ic + ' ' + t), ...(ivMonthLine(p) ? ['', ivMonthLine(p)] : [])]), '', '📘 הספרון שלך, מעודכן למערכת החדשה (מה יש בה לתפקיד שלך ואיך עובדים איתה): ' + guide + (IV_BOOK[p.role] ? '\n' + IV_BOOK[p.role] : ''), '', mgr && p.role !== 'staff' && /^(senior|resident|house)$/.test(p.role) ? MGR_NOTE + '\n' : '', INV_SIGN);
   return L.filter((x, i, A) => !(x === '' && A[i - 1] === '')).join('\n').replace(/\n{3,}/g, '\n\n').trim(); }
 // every invite button in the portal now sends the message for the person's own role
 inviteMsg = (p, base) => inviteFor(p, base && base !== WRAP_URL ? { link: base + '?p=' + p.token + (ivUser(p) ? '' : '&k=d') } : {});
@@ -11251,9 +11256,7 @@ function ivSheet(Q, m, one) { let i = 0; const bg = document.createElement('div'
 // 23/11/2026 (Dr. Gozani): "📨 שליחת הזמנה" on the extern card, in the profile and in the team window after adding someone.
 // A window with the full invite for his role (editable) before anything goes out; WhatsApp or copy, and the send is logged.
 // Externs: a line that the coming month is entered for him and from the month after he submits through the link.
-const ivMonthLine = p => { if (p.role !== 'extern') return ''; const m1 = monthOf(add(monthOf(today) + '-15', 31)), m2 = monthOf(add(m1 + '-15', 31)), n = m => monthName(m).split(' ')[0];
-  return '📅 את התורנויות של ' + n(m1) + ' אני מכניס ללוח בעצמי. מ' + n(m2) + ' מגישים את הבקשות לבד דרך הקישור, עד ה-15 בחודש שלפני.'; };
-const ivText = p => { const t = inviteFor(p), ml = ivMonthLine(p); return ml ? t.replace('*הקישור האישי שלך:*', ml + '\n\n*הקישור האישי שלך:*') : t; };
+const ivText = p => inviteFor(p);
 async function invSheet(p, after) {
   if (!p) return; { const mu = isMgr(p) && (S.data.users || []).find(u => u.pid === p.id); if (mu && ownerNow() && mu.role !== 'owner') return secInvite(mu); }
   if (!tokOk(p) && !isMgr(p)) return toast('אין קישור אישי'); try { await needTok(p, 'invite'); } catch (e) { return toast(e.message); }
