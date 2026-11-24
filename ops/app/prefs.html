@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="2bd8752d406e"><script>(function () {
+<head><meta name="ksh-ver" content="629fd42dc0ce"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -845,6 +845,40 @@ html.ui2 body .rpw .rpvc,html.ui2 body .rpwsnap .rpvc{background:transparent!imp
 html.ui2 body .rpw .kd-who .xt,html.ui2 body .rpwsnap .kd-who .xt{display:none!important}
 
 html.ui2 body .wmx.wmx td.wcl b{text-overflow:clip}
+
+
+html.ui2 body .ivrot{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}
+html.ui2 body .ivrot button{all:unset;cursor:pointer;font:800 14px Heebo,sans-serif;color:#1D3047;background:#fff;border:1.5px solid #D8DEE7;border-radius:999px;padding:7px 16px;display:inline-flex;gap:6px;align-items:center}
+html.ui2 body .ivrot button.on{background:#1D3047;color:#fff;-webkit-text-fill-color:#fff;border-color:#1D3047}
+html.ui2 body .ivrot button i{font-style:normal;font-size:11px;font-weight:700;opacity:.75}
+html.ui2 body .ivg2{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+html.ui2 body .ivk2{all:unset;box-sizing:border-box;cursor:pointer;display:block;background:#fff;border:1px solid #E6DED0;border-radius:16px;padding:12px 14px}
+html.ui2 body .ivk2:hover{border-color:#1D3047}
+html.ui2 body .ivk2m{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;font-size:12.5px;color:#5E6B73;font-weight:600}
+html.ui2 body .ivsh{width:min(520px,100%)}
+html.ui2 body .ivsh-h{display:flex;gap:14px;align-items:center;margin-bottom:12px}
+html.ui2 body .ivsh-h .iph{width:72px;height:72px;font-size:26px;flex:none}
+html.ui2 body .ivsh-h b{display:block;font-size:20px;color:#1D3047}
+html.ui2 body .ivsh-h small{display:block;color:#5E6B73;font-weight:600;margin:2px 0 6px}
+html.ui2 body .ivsh-a{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px}
+html.ui2 body .ivsh h4{margin:8px 0 6px;font-size:14px;color:#1D3047}
+html.ui2 body .ivsh-d{display:flex;flex-wrap:wrap;gap:6px}
+html.ui2 body .ivsh-d span{background:#F4F1EA;border:1px solid #E6DED0;border-radius:10px;padding:5px 10px;font-size:13px;display:flex;gap:6px}
+html.ui2 body .ivsh-d span b{color:#1D3047}
+
+
+html.ui2 body .wmx.wmx thead th.wdh.wo{background:#E9ECF1!important;color:#9AA4B2!important;-webkit-text-fill-color:#9AA4B2!important;border-bottom:2px solid #D3D9E2!important;box-shadow:none!important}
+html.ui2 body .wmx.wmx thead th.wdh.wo b,html.ui2 body .wmx.wmx thead th.wdh.wo small{color:#9AA4B2!important;-webkit-text-fill-color:#9AA4B2!important;opacity:1}
+html.ui2 body .wmx.wmx td.wo{background:repeating-linear-gradient(135deg,#F4F5F7 0 6px,#ECEEF2 6px 12px)!important;border-color:#E1E5EB!important}
+
+
+html.ui2 body .histrip{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 10px;padding:8px 10px;background:#fff;border:1px solid #E1E5EB;border-radius:12px}
+html.ui2 body .histrip>span{font:800 12.5px Heebo,sans-serif;color:#1D3047;margin-inline-end:4px;white-space:nowrap;flex:none}
+html.ui2 body .histrip button{all:unset;cursor:pointer;font:700 13px Heebo,sans-serif;color:#1D3047;background:#EEF1F5;border-radius:999px;padding:4px 11px}
+html.ui2 body .histrip button:hover{background:#E1E7EF}
+html.ui2 body .histrip button.on{background:#1D3047;color:#fff;-webkit-text-fill-color:#fff}
+html.ui2 body .hiset .wmx td.wcl [data-pid].hion,html.ui2 body .wmx.hiset td.wcl [data-pid].hion{background:#F2DA84!important;outline:2px solid #1D3047;border-radius:6px}
+@media (max-width:760px){html.ui2 body .histrip{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}html.ui2 body .histrip button{flex:none}}
 </style>
 <script>(function () {
   /* the new look is the only look (7/11/2026, Dr. Gozani): no switch, no per-device choice */
@@ -2082,8 +2116,10 @@ function wkMx(dates, rows, cell, head, o) {
   dates.forEach(d => { const w = pd(d).getDay(); if (!cur || w === 0) { cur = Array(7).fill(null); wks.push(cur); } cur[w] = d; });
   const dc = d => { const w = pd(d).getDay(); return (w >= 5 ? ' we' : '') + (d === TODAY ? ' now' : '') + holCls(d) + (d < TODAY ? ' past' : ''); };
   const hd = head || (d => `<th class="wdh${dc(d)}"><b>${+d.slice(8)}</b><small>${DAYS[pd(d).getDay()]}</small></th>`);
-  return `<div class="wmx${o.cls ? ' ' + o.cls : ''}">${wks.map(wk => { const ds = wk.filter(Boolean), rs = rows.filter(r => ds.some(d => !r.on || r.on(d)) && (!r.opt || ds.some(d => (!r.on || r.on(d)) && cell(d, r.k))));
-    return `<div class="wmxs"><table class="wmt"><thead><tr><th class="wrl wrh"></th>${wk.map(d => d ? hd(d, dc(d)) : '<th class="wdh wo"></th>').join('')}</tr></thead><tbody>${rs.map(r => `<tr${r.sep ? ' class="wsep"' : ''}><th class="wrl">${r.l}</th>${wk.map(d => !d ? '<td class="wo"></td>' : `<td class="wcl${dc(d)}"${o.td ? o.td(d, r.k) : ''}>${!r.on || r.on(d) ? cell(d, r.k) || '' : '<span class="wna"></span>'}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`; }).join('')}</div>`;
+  // 24/11/2026 (Dr. Gozani): no empty square at the edges of the month: the days of the month before and after, faded
+  const adj = wk => { const i0 = wk.findIndex(Boolean), i1 = 6 - [...wk].reverse().findIndex(Boolean); return wk.map((d, j) => d ? '' : j < i0 ? add(wk[i0], j - i0) : add(wk[i1], j - i1)); };
+  return `<div class="wmx${o.cls ? ' ' + o.cls : ''}">${wks.map(wk => { const ds = wk.filter(Boolean), AJ = adj(wk), rs = rows.filter(r => ds.some(d => !r.on || r.on(d)) && (!r.opt || ds.some(d => (!r.on || r.on(d)) && cell(d, r.k))));
+    return `<div class="wmxs"><table class="wmt"><thead><tr><th class="wrl wrh"></th>${wk.map((d, j) => d ? hd(d, dc(d)) : `<th class="wdh wo"><b>${+AJ[j].slice(8)}</b><small>${DAYS[j]}</small></th>`).join('')}</tr></thead><tbody>${rs.map(r => `<tr${r.sep ? ' class="wsep"' : ''}><th class="wrl">${r.l}</th>${wk.map(d => !d ? '<td class="wo"></td>' : `<td class="wcl${dc(d)}"${o.td ? o.td(d, r.k) : ''}>${!r.on || r.on(d) ? cell(d, r.k) || '' : '<span class="wna"></span>'}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`; }).join('')}</div>`;
 }
 const holTag = (d, sm) => { const x = holOf(d); return x && (x.off || x.note) ? `<span class="hlt${x.off ? ' off' : ''}${sm ? ' sm' : ''}" title="מחלוקת חדרי הניתוח של בית החולים">${esc(x.off ? x.off + (sm ? '' : ' · אין חדרי ניתוח') : x.note)}</span>` : ''; };
 
@@ -2911,7 +2947,7 @@ function vFinalApp(ms, mi) {
     ${rbSeg()}<div class="rsum"><span><b>${mine.length}</b>שלי החודש</span><span><b>${mine.filter(d => d < TODAY).length}</b>בוצעו</span><span><b>${mine.filter(d => d >= TODAY)[0] ? dm(mine.filter(d => d >= TODAY)[0]) : '—'}</b>הבא</span></div></div></section>
   ${any ? `<div class="flg">${FZ.map(([k, l, sh]) => `<span class="fz fz-${k}"><i>${sh}</i>${l}</span>`).join('')}<span class="fz fz-tr"><i>טראומה</i>כונן טראומה</span><span class="fz fz-pa"><i>ע״ר</i>עוזר/ת רופא · ערב במיון</span><span class="fz me"><i>★</i>את/ה</span></div>
   <section class="hcard">${wkMx(days, FZ.map(([k, l]) => ({ k, l: k === 'third' ? 'תורן שליש' : l, sep: k === 'half', opt: k === 'third' || k === 'fm' ? 1 : 0, on: k === 'fm' ? d => pd(d).getDay() === 5 : k === 'half' || k === 'third' ? d => pd(d).getDay() < 5 : null }))
-      .concat([{ k: 'tr', l: 'כונן טראומה', opt: 1 }, { k: 'in-dept', l: 'סטאז׳ר', sep: 1, opt: 1 }, { k: 'in-er', l: 'סטאז׳ר מיון', opt: 1 }, { k: 'in-fm', l: 'סטאז׳ר בוקר', opt: 1 }, { k: 'pa', l: 'עוזר/ת רופא', sep: 1, opt: 1 }]),
+      .concat([{ k: 'tr', l: 'כונן טראומה', opt: 1 }, { k: 'in-dept', l: 'סטאז׳ר', sep: 1, opt: 1 }, { k: 'in-er', l: 'סטאז׳ר מיון', opt: 1 }, { k: 'pa', l: 'עוזר/ת רופא', sep: 1, opt: 1 }]),
       (d, k) => { const r = du[d] || {}, c = ca[d] || {};
         if (k === 'tr') return c.trauma ? `<div class="wn"><b>${esc(c.trauma)}</b></div>` : '';
         if (k === 'pa') return ((PAF[RM] || {})[d] || []).map(id => `<div class="wn${id === me ? ' me' : ''}" data-p="${id}"><b>${esc(P(id).name)}</b></div>`).join('');

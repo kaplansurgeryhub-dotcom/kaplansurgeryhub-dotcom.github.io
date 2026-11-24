@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="2bd8752d406e"><script>(function () {
+<head><meta name="ksh-ver" content="629fd42dc0ce"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -847,6 +847,40 @@ html.ui2 body .rpw .rpvc,html.ui2 body .rpwsnap .rpvc{background:transparent!imp
 html.ui2 body .rpw .kd-who .xt,html.ui2 body .rpwsnap .kd-who .xt{display:none!important}
 
 html.ui2 body .wmx.wmx td.wcl b{text-overflow:clip}
+
+
+html.ui2 body .ivrot{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}
+html.ui2 body .ivrot button{all:unset;cursor:pointer;font:800 14px Heebo,sans-serif;color:#1D3047;background:#fff;border:1.5px solid #D8DEE7;border-radius:999px;padding:7px 16px;display:inline-flex;gap:6px;align-items:center}
+html.ui2 body .ivrot button.on{background:#1D3047;color:#fff;-webkit-text-fill-color:#fff;border-color:#1D3047}
+html.ui2 body .ivrot button i{font-style:normal;font-size:11px;font-weight:700;opacity:.75}
+html.ui2 body .ivg2{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+html.ui2 body .ivk2{all:unset;box-sizing:border-box;cursor:pointer;display:block;background:#fff;border:1px solid #E6DED0;border-radius:16px;padding:12px 14px}
+html.ui2 body .ivk2:hover{border-color:#1D3047}
+html.ui2 body .ivk2m{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;font-size:12.5px;color:#5E6B73;font-weight:600}
+html.ui2 body .ivsh{width:min(520px,100%)}
+html.ui2 body .ivsh-h{display:flex;gap:14px;align-items:center;margin-bottom:12px}
+html.ui2 body .ivsh-h .iph{width:72px;height:72px;font-size:26px;flex:none}
+html.ui2 body .ivsh-h b{display:block;font-size:20px;color:#1D3047}
+html.ui2 body .ivsh-h small{display:block;color:#5E6B73;font-weight:600;margin:2px 0 6px}
+html.ui2 body .ivsh-a{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px}
+html.ui2 body .ivsh h4{margin:8px 0 6px;font-size:14px;color:#1D3047}
+html.ui2 body .ivsh-d{display:flex;flex-wrap:wrap;gap:6px}
+html.ui2 body .ivsh-d span{background:#F4F1EA;border:1px solid #E6DED0;border-radius:10px;padding:5px 10px;font-size:13px;display:flex;gap:6px}
+html.ui2 body .ivsh-d span b{color:#1D3047}
+
+
+html.ui2 body .wmx.wmx thead th.wdh.wo{background:#E9ECF1!important;color:#9AA4B2!important;-webkit-text-fill-color:#9AA4B2!important;border-bottom:2px solid #D3D9E2!important;box-shadow:none!important}
+html.ui2 body .wmx.wmx thead th.wdh.wo b,html.ui2 body .wmx.wmx thead th.wdh.wo small{color:#9AA4B2!important;-webkit-text-fill-color:#9AA4B2!important;opacity:1}
+html.ui2 body .wmx.wmx td.wo{background:repeating-linear-gradient(135deg,#F4F5F7 0 6px,#ECEEF2 6px 12px)!important;border-color:#E1E5EB!important}
+
+
+html.ui2 body .histrip{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 10px;padding:8px 10px;background:#fff;border:1px solid #E1E5EB;border-radius:12px}
+html.ui2 body .histrip>span{font:800 12.5px Heebo,sans-serif;color:#1D3047;margin-inline-end:4px;white-space:nowrap;flex:none}
+html.ui2 body .histrip button{all:unset;cursor:pointer;font:700 13px Heebo,sans-serif;color:#1D3047;background:#EEF1F5;border-radius:999px;padding:4px 11px}
+html.ui2 body .histrip button:hover{background:#E1E7EF}
+html.ui2 body .histrip button.on{background:#1D3047;color:#fff;-webkit-text-fill-color:#fff}
+html.ui2 body .hiset .wmx td.wcl [data-pid].hion,html.ui2 body .wmx.hiset td.wcl [data-pid].hion{background:#F2DA84!important;outline:2px solid #1D3047;border-radius:6px}
+@media (max-width:760px){html.ui2 body .histrip{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}html.ui2 body .histrip button{flex:none}}
 </style>
 <script>(function () {
   /* the new look is the only look (7/11/2026, Dr. Gozani): no switch, no per-device choice */
@@ -3534,6 +3568,18 @@ function askRow(o) { const c = [];
   (o.days || []).forEach(t => c.push(`<span class="rqtc ${/^לא/.test(t) ? 'no' : 'ok'}">${esc(t)}</span>`));
   if (o.note) c.push('<span class="rqtc">יש הערה</span>');
   return `<div class="rqtl rqask"><span class="rqtk">ביקש/ה</span>${c.join('') || '<span class="rqtc">אין בקשות</span>'}</div>`; }
+// 24/11/2026 (Dr. Gozani): above every board a row of the names in it; a click lights up that person's shifts of the month and dims the rest (again: off)
+const HIS = {};
+function hiStripAll() { const m = document.getElementById('main'); if (!m) return;
+  m.querySelectorAll('.wmx').forEach(w => { const root = w.closest('#rTable,#fCal,#pabCal,.kd-cal') || w, key = (root.id || 'kd') + '|' + (S.view || '');
+    if (root.dataset.his) { if (HIS[key] && !root.classList.contains('hiset') && root.querySelector('[data-pid]')) hiMark(root, HIS[key]); return; } root.dataset.his = 1;
+    const N = new Map(); root.querySelectorAll('[data-pid]').forEach(e => { const id = e.dataset.pid, b = e.querySelector('b'); if (id && !N.has(id)) N.set(id, ((b && b.textContent) || e.textContent || '').trim()); });
+    if (N.size < 2) return; const L = [...N].sort((a, b) => a[1].localeCompare(b[1], 'he'));
+    const st = document.createElement('div'); st.className = 'histrip noprint'; st.innerHTML = `<span>הדגשה לפי שם</span>${L.map(([id, n]) => `<button type="button" data-his="${esc(id)}">${esc(n)}</button>`).join('')}`;
+    root.parentNode.insertBefore(st, root);
+    const set = id => { HIS[key] = id; hiMark(root, id); st.querySelectorAll('[data-his]').forEach(b => b.classList.toggle('on', b.dataset.his === id)); };
+    st.onclick = e => { const b = e.target.closest('[data-his]'); if (b) set(HIS[key] === b.dataset.his ? '' : b.dataset.his); };
+    if (HIS[key] && N.has(HIS[key])) set(HIS[key]); }); }
 function hiMark(root, id) { if (!root) return; root.classList.toggle('hiset', !!id); root.querySelectorAll('[data-pid]').forEach(e => e.classList.toggle('hion', !!id && e.dataset.pid === id)); }
 function rDrag(root, o) {
   if (!root) return;
@@ -3608,7 +3654,7 @@ const can = k => { if (S.me && S.me.role === 'chief' && /^week(:[0-9-]+)?$/.test
 const PV_BLOCK = /^ops_(sbSave|sbDel|inbSeen|pa(Save|Cfg|Add|BookSave|FbSave)|prefManual|rosterSw|caseNote|gear(Ack|Close|Clr|Post|Prep|ProtSave|Save|Seen|Send)|orRoomSave|oraSave|orTerm(Add|Set)|spSave|equipPhoto|acadDecide|acadPub|acadRevAct|scNoteDone|tosOk|food(Do|Push)|set|leaves|leaveReq(?!s$)|leaveDecide|leaveReqDel|notify|notifDel|save|person|photo(Save|Me|Mine)|pushReg|pushOff|devToken|devForget|devClear|profileMe|profileMine)/;
 // a call that may change something forgets the reads remembered by call1 (the final board's extra rows, the food, the log)
 // 14/11/2026 (night review): ops_pubState reads only; it was missing here, so every visit to the final board emptied CALL1 and the board waited for the server again
-const CALL_READ = /^ops_(?:inbox|fbCount|fbMine|devLogin|tokenLogin|perf|leaveReqs|paBoot|resAll|get|boot|food|log|interns|intFinal|paFinal|hrGet|tos|tosList|gearBoot|prefsAll|resAll|intBoot|intMonitor|activity|newsFresh|newsList|needsSetup|invInfo|archIndex|archGet|pubState|oraBoot|orLive|ownerBox)$/;
+const CALL_READ = /^ops_(?:inbox|fbCount|fbMine|devLogin|tokenLogin|perf|leaveReqs|paBoot|resAll|get|boot|food|log|interns|intFinal|paFinal|hrGet|tos|tosList|gearBoot|prefsAll|resAll|intBoot|intMonitor|activity|newsFresh|newsList|needsSetup|invInfo|archIndex|archGet|pubState|oraBoot|orLive|ownerBox|intTeam|intTeamPhotos)$/;
 // 13/11/2026 (speed): calls the first screen does not need wait until it is drawn (or 7 s at most), so the sign-in and the home's own data
 // are not queued behind them on a phone right after opening
 const CALL_LATER = /^ops_(?:food|log|tos|gearBoot|fbMine|newsFresh|newsList|activity)$/; let CALL_GATE = 0; const CALL_GQ = [];
@@ -3619,7 +3665,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = '2bd8752d406e'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = '629fd42dc0ce'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achall|achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|rwext|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -4316,7 +4362,7 @@ async function render() {
   m.classList.remove('rosterpg', 'ro'); if (!same) m.innerHTML = skel(S.view);
   // 12/11/2026 (night review): a reload with a saved session could draw before the later script blocks (InternsUi, ScrubUi...) had run: 'vInHome is not defined'. Wait for the whole page first
   if (document.readyState === 'loading') await new Promise(r => document.addEventListener('DOMContentLoaded', r, { once: true }));
-  try { const kg = klOf(S.view); if (kg.length) await kNeed(kg); await ({ achall: m => vHallAdm(m), rwduty: m => vRwDuty(m), bthird: m => thirdSheet(monthOf(today), null, m), barch: m => vArch(m), mehome: m => vMeHome(m), meshift: m => vMeHome(m), mereq: m => vMeApp(m, 'req'), meor: m => vMeApp(m, 'or'), meprof: m => vMeApp(m, 'me'), mecal: m => vMeApp(m, 'cal'), meplan: m => vMeApp(m, 'week'), meboards: m => vMeApp(m, 'rost'), meteam: m => vMeApp(m, 'team'), meint: m => vMeApp(m, 'int'), homeOld: vHome, rwhome: m => vRwHome(m), rwp: m => vRwFile(m), rwsyl: m => vRwSyl(m), rwcrs: m => vRwCrs(m), rwext: m => vRwExt(m), rwedu: m => vRwEdu(m), acbook: m => vAcBook(m), week2: m => vWeek2(m), intview: m => vInterns(m), bpa: m => vPaBoard(m), pa: m => vPaBoard(m), pab2: m => vPaBoard(m), pahome: m => paOverview(m), pafb: m => vPaFb(m), pateam: m => vPaTeam(m), pas: m => vPaTeam(m), mgmt: m => vMgmt(m), events: m => vEvents(m), gplan: m => vOrPlan(m), gweek: m => vGear(m, 'gweek'), gprep: m => vGear(m, 'gprep'), gcards: m => vGear(m, 'gcards'), gequip: m => vGear(m, 'gequip'), gor: m => vGear(m, 'gor'), gmsg: m => vGear(m, 'gmsg'), gpack: m => vGear(m, 'gpack'), inhome: m => vInHome(m), inppl: m => vInPpl(m), induty: m => vInDuty(m), bint: m => vInDuty(m), inweek: m => vInWeek(m), inlog: m => vInLog(m), intalk: m => vInTalk(m), innote: m => vInNote(m), inmon: m => vInHome(m), inlearn: m => vInLearn(m), scrub: vScrub, scplan: vScPlan, scppl: vScPpl, scshift: m => vScShift(m), scday: m => vScDay(m), invites: m => vInvites(m), scfb: m => vScFb(m), sccat: vScCat, scmg: vScMg, sclib: m => vAcHome(m), achome: m => vAcHome(m), acdeck: m => acList(m, 'acdeck'), acscrub: m => vAcScrub(m), acjc: m => acList(m, 'acjc'), acres: m => vAcRes(m), acrev: m => vAcRev(m), acroom: m => vAcRoom(m), acint: m => vAcInt(m), acsem: m => acList(m, 'acsem'), stats: m => statsPage(m, 'owner'), final: vFinal, home: m => vToday(m), week: vWeek, orplan: m => vOrPlan(m), rsadm: m => vRsAdmin(m), duty: vDuty, oncall: vCall, prefs: vPrefs, team: vTeam, set: vSet, students: vStudents, profiles: vProfiles, dlists: vDlists, phones: vPhones, comm: m => vComm(m), externs: m => { S.team = Object.assign(S.team || {}, { role: 'extern', open: '' }); return vTeam(m); }, staffv: m => { S.team = Object.assign(S.team || {}, { role: 'staff', open: '' }); return vTeam(m); }, orstaff: m => { S.team = Object.assign(S.team || {}, { role: 'ors', open: '' }); return vTeam(m); }, leaves: vLeaves, curr: vCurr, auto: vAuto, sec: m => portal(m, 'sec'), residents: vResidents, seniors: vSeniors, interns: vInterns, chief: vChief, deputy: vDeputy, director: vDirector, hq: vHQ })[S.view](m); status(); }
+  try { const kg = klOf(S.view); if (kg.length) await kNeed(kg); await ({ achall: m => vHallAdm(m), rwduty: m => vRwDuty(m), bthird: m => thirdSheet(monthOf(today), null, m), barch: m => vArch(m), mehome: m => vMeHome(m), meshift: m => vMeHome(m), mereq: m => vMeApp(m, 'req'), meor: m => vMeApp(m, 'or'), meprof: m => vMeApp(m, 'me'), mecal: m => vMeApp(m, 'cal'), meplan: m => vMeApp(m, 'week'), meboards: m => vMeApp(m, 'rost'), meteam: m => vMeApp(m, 'team'), meint: m => vMeApp(m, 'int'), homeOld: vHome, rwhome: m => vRwHome(m), rwp: m => vRwFile(m), rwsyl: m => vRwSyl(m), rwcrs: m => vRwCrs(m), rwext: m => vRwExt(m), rwedu: m => vRwEdu(m), acbook: m => vAcBook(m), week2: m => vWeek2(m), intview: m => vInterns(m), bpa: m => vPaBoard(m), pa: m => vPaBoard(m), pab2: m => vPaBoard(m), pahome: m => paOverview(m), pafb: m => vPaFb(m), pateam: m => vPaTeam(m), pas: m => { S.team = Object.assign(S.team || {}, { role: 'pa', open: '' }); return vTeam(m); }, mgmt: m => vMgmt(m), events: m => vEvents(m), gplan: m => vOrPlan(m), gweek: m => vGear(m, 'gweek'), gprep: m => vGear(m, 'gprep'), gcards: m => vGear(m, 'gcards'), gequip: m => vGear(m, 'gequip'), gor: m => vGear(m, 'gor'), gmsg: m => vGear(m, 'gmsg'), gpack: m => vGear(m, 'gpack'), inhome: m => vInHome(m), inppl: m => vInPpl(m), induty: m => vInDuty(m), bint: m => vInDuty(m), inweek: m => vInWeek(m), inlog: m => vInLog(m), intalk: m => vInTalk(m), innote: m => vInNote(m), inmon: m => vInHome(m), inlearn: m => vInLearn(m), scrub: vScrub, scplan: vScPlan, scppl: vScPpl, scshift: m => vScShift(m), scday: m => vScDay(m), invites: m => vInvites(m), scfb: m => vScFb(m), sccat: vScCat, scmg: vScMg, sclib: m => vAcHome(m), achome: m => vAcHome(m), acdeck: m => acList(m, 'acdeck'), acscrub: m => vAcScrub(m), acjc: m => acList(m, 'acjc'), acres: m => vAcRes(m), acrev: m => vAcRev(m), acroom: m => vAcRoom(m), acint: m => vAcInt(m), acsem: m => acList(m, 'acsem'), stats: m => statsPage(m, 'owner'), final: vFinal, home: m => vToday(m), week: vWeek, orplan: m => vOrPlan(m), rsadm: m => vRsAdmin(m), duty: vDuty, oncall: vCall, prefs: vPrefs, team: vTeam, set: vSet, students: vStudents, profiles: vProfiles, dlists: vDlists, phones: vPhones, comm: m => vComm(m), externs: m => { S.team = Object.assign(S.team || {}, { role: 'extern', open: '' }); return vTeam(m); }, staffv: m => { S.team = Object.assign(S.team || {}, { role: 'staff', open: '' }); return vTeam(m); }, orstaff: m => { S.team = Object.assign(S.team || {}, { role: 'ors', open: '' }); return vTeam(m); }, leaves: vLeaves, curr: vCurr, auto: vAuto, sec: m => portal(m, 'sec'), residents: vResidents, seniors: vSeniors, interns: vInterns, chief: vChief, deputy: vDeputy, director: vDirector, hq: vHQ })[S.view](m); status(); }
   catch (e) { m.innerHTML = `<div class="card" style="color:var(--red)">${esc(e.message || e)}${e && e.stale ? ' <button class="btn sm primary" id="klReload">רענון</button>' : ''}</div>`; const rl = m.querySelector('#klReload'); if (rl) rl.onclick = () => location.reload(); }
   if (rn !== S.rn) { if (S.rnFin === S.rn) render(); return; }
   S.rnFin = rn; navMark();
@@ -4649,7 +4695,7 @@ const LI = {
 };
 const SCAL = '<svg class="scal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g transform="rotate(-40 12 12)"><rect x="0.8" y="10.7" width="12" height="2.6" rx="1.3"/><path d="M4.2 10.7v2.6M5.9 10.7v2.6M7.6 10.7v2.6"/><path d="M12.8 11.4h2.2v1.2h-2.2"/><path d="M15 11.1h4.8c2.3 0 3.7.9 3.4 2.1-.4 1.5-3.8 2.2-8.2 1.1z" fill="currentColor" fill-opacity=".18"/><path d="M15.8 12.3h3.4"/></g></svg>';
 const ic = k => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">${LI[k]}</svg>`;
-const ROLE_COL = { senior: '#00967D', resident: '#2F6FA8', house: '#2F6FA8', extern: '#7A8A90', staff: '#4F6F8F', intern: '#0A6B5A' };
+const ROLE_COL = { senior: '#00967D', resident: '#2F6FA8', house: '#2F6FA8', extern: '#7A8A90', staff: '#4F6F8F', intern: '#0A6B5A', pa: '#B5527E' };
 const LANES = [
   { k: 'morning', l: 'ישיבת בוקר', ic: 'coffee', t: 'text' },
   { k: 'rn', l: 'ביקור · צפון', s: 'ושחרורים', ic: 'rounds', t: 'names', def: 'y', tone: 'n' },
@@ -4978,8 +5024,10 @@ function wkMx(dates, rows, cell, head, o) {
   dates.forEach(d => { const w = pd(d).getDay(); if (!cur || w === 0) { cur = Array(7).fill(null); wks.push(cur); } cur[w] = d; });
   const dc = d => { const w = pd(d).getDay(); return (w >= 5 ? ' we' : '') + (d === t0 ? ' now' : '') + holCls(d) + (d < t0 ? ' past' : ''); };
   const hd = head || (d => `<th class="wdh${dc(d)}"><b>${+d.slice(8)}</b><small>${DAYS[pd(d).getDay()]}</small>${orDayTag(d, 1)}</th>`);
-  return `<div class="wmx${o.cls ? ' ' + o.cls : ''}">${wks.map(wk => { const ds = wk.filter(Boolean), rs = rows.filter(r => ds.some(d => !r.on || r.on(d)) && (!r.opt || ds.some(d => (!r.on || r.on(d)) && cell(d, r.k))));
-    return `<div class="wmxs"><table class="wmt"><thead><tr><th class="wrl wrh"></th>${wk.map(d => d ? hd(d, dc(d)) : '<th class="wdh wo"></th>').join('')}</tr></thead><tbody>${rs.map(r => `<tr${r.sep ? ' class="wsep"' : ''}><th class="wrl">${r.l}</th>${wk.map(d => !d ? '<td class="wo"></td>' : `<td class="wcl${dc(d)}"${o.td ? o.td(d, r.k) : ''}>${!r.on || r.on(d) ? cell(d, r.k) || '' : '<span class="wna"></span>'}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`; }).join('')}</div>`;
+  // 24/11/2026 (Dr. Gozani): no empty square at the edges of the month: the days of the month before and after, faded
+  const adj = wk => { const i0 = wk.findIndex(Boolean), i1 = 6 - [...wk].reverse().findIndex(Boolean); return wk.map((d, j) => d ? '' : j < i0 ? add(wk[i0], j - i0) : add(wk[i1], j - i1)); };
+  return `<div class="wmx${o.cls ? ' ' + o.cls : ''}">${wks.map(wk => { const ds = wk.filter(Boolean), AJ = adj(wk), rs = rows.filter(r => ds.some(d => !r.on || r.on(d)) && (!r.opt || ds.some(d => (!r.on || r.on(d)) && cell(d, r.k))));
+    return `<div class="wmxs"><table class="wmt"><thead><tr><th class="wrl wrh"></th>${wk.map((d, j) => d ? hd(d, dc(d)) : `<th class="wdh wo"><b>${+AJ[j].slice(8)}</b><small>${DAYS[j]}</small></th>`).join('')}</tr></thead><tbody>${rs.map(r => `<tr${r.sep ? ' class="wsep"' : ''}><th class="wrl">${r.l}</th>${wk.map(d => !d ? '<td class="wo"></td>' : `<td class="wcl${dc(d)}"${o.td ? o.td(d, r.k) : ''}>${!r.on || r.on(d) ? cell(d, r.k) || '' : '<span class="wna"></span>'}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`; }).join('')}</div>`;
 }
 function orAllocRooms(d, def) {
   const A = ((S.data.settings || {}).orAlloc || {}).days || {}, x = A[d];
@@ -5701,8 +5749,9 @@ function weekPreview(W, ws) {
 // interns, PAs), in colour, filling the screen; a phone held upright turns the sheet. A tap shows it full size to scroll
 function boardSheetOf(box) { const w = document.createElement('div'); w.className = 'rpwbody'; const lg = box.querySelector('.flg'), c = box.querySelector('#fCal'); if (lg) w.appendChild(lg.cloneNode(true)); if (c) { const x = c.cloneNode(true); x.removeAttribute('id'); w.appendChild(x); } w.querySelectorAll('[data-fed]').forEach(x => { x.removeAttribute('data-fed'); x.removeAttribute('title'); x.classList.remove('fed'); }); return w; }
 async function boardWide(kind, act) {
-  toast('מכין את הלוח המלא…'); const box = document.createElement('div'); box.style.cssText = 'position:fixed;left:-40000px;top:0;width:2000px;pointer-events:none'; document.body.appendChild(box);
-  try { await vFinal(box, '', kind === 'duty' || kind === 'oncall' ? kind : ''); if (!box.querySelector('#fCal')) return toast('הלוח המלא לא נטען'); rosterPreview(boardSheetOf(box), 'final', { wide: 1, act }); }
+  toast('מכין את הלוח…'); const box = document.createElement('div'); box.style.cssText = 'position:fixed;left:-40000px;top:0;width:2000px;pointer-events:none'; document.body.appendChild(box);
+  // 24/11/2026 (Dr. Gozani): the residents' board previews only the residents, the seniors' only the seniors
+  try { const sub = kind === 'duty' || kind === 'oncall' ? kind : ''; await vFinal(box, sub ? 'sub:' + sub : '', sub); if (!box.querySelector('#fCal')) return toast('הלוח לא נטען'); rosterPreview(boardSheetOf(box), sub || 'final', { wide: 1, act }); }
   catch (e) { toast(e.message || 'הלוח המלא לא נטען'); } finally { box.remove(); }
 }
 function rpFit(bg) { const sc = bg.querySelector('.rpvsc'), el = bg.querySelector('#rpS'); if (!sc || !el || sc.classList.contains('zoom')) return;
@@ -5717,18 +5766,20 @@ function rpSnapWide(src, name) { const c = src.cloneNode(true); c.removeAttribut
 // 23/11/2026 (Dr. Gozani): preview, picture, print and send: the whole month on ONE page, as large as possible.
 // The week tables are laid out in 1, 2 or 3 columns, the one whose sheet is closest to an A4 landscape page (1.414), each table about 1000px wide
 function wmxSheet(rpS) {
-  const w = rpS.querySelector('.wmx'); if (!w) return; const n = w.querySelectorAll('.wmxs').length || 1; let best = null;
-  for (const c of [1, 2, 3]) { if (c > n) break; rpS.style.width = (c * 1040 + 60) + 'px'; w.style.gridTemplateColumns = `repeat(${c},minmax(0,1fr))`; const r = rpS.offsetWidth / Math.max(1, rpS.offsetHeight), d = Math.abs(Math.log(r / 1.414)); if (!best || d < best.d) best = { c, d }; }
-  rpS.style.width = (best.c * 1040 + 60) + 'px'; w.style.gridTemplateColumns = `repeat(${best.c},minmax(0,1fr))`; w.dataset.cols = best.c;
+  const w = rpS.querySelector('.wmx'); if (!w) return; const L = [...w.querySelectorAll('.wmxs')], n = L.length || 1; let best = null;
+  const lay = (c, tw) => { rpS.style.width = (c * tw + 60) + 'px'; w.style.gridTemplateColumns = `repeat(${c},minmax(0,1fr))`; L.forEach((x, i) => { x.style.gridColumn = c > 1 && n % c && i === n - 1 ? '1 / -1' : ''; }); return rpS.offsetWidth / Math.max(1, rpS.offsetHeight); };
+  for (const c of [1, 2, 3]) { if (c > n) break; lay(c, 1040); const H = rpS.offsetHeight, tw = Math.max(760, Math.min(1500, (1.414 * H - 60) / c)), r = lay(c, tw), d = Math.abs(Math.log(r / 1.414)) + (tw < 900 ? .15 : 0); if (!best || d < best.d) best = { c, d, tw }; }
+  lay(best.c, best.tw); w.dataset.cols = best.c;
 }
 function rosterPreview(el, kind, opt) {
   opt = opt || {}; if (!el) return; if (el.querySelector && el.querySelector('.wmx')) opt.wide = 1; const bg = document.createElement('div'); bg.className = 'mbg rpvbg' + (opt.wide ? ' rpwide' : '');
-  const ttl = (kind === 'final' ? 'לוח סופי' : kind === 'oncall' ? 'כוננויות' : kind === 'pa' ? 'משמרות עוזרי רופא' : kind === 'int' ? 'תורנויות סטאז׳רים' : 'תורנויות') + ' · ' + monthName(opt.month || S.month);
-  bg.innerHTML = `<div class="rpvw"><div class="rpvh"><b>👁 ${esc(ttl)}</b><span class="spacer"></span><button class="btn sm" id="rpImg">📷 שמירת תמונה</button><button class="btn sm" id="rpPr">🖨 הדפסה</button><button class="x" title="סגירה">✕</button></div><div class="rpvs" id="rpS"><div class="rpvband"><div class="bplogo"><img src="${LOGO_K}" alt="קפלן"><img src="${LOGO_C}" alt="כללית"></div></div><div class="rpvgold"></div><div class="rpvt"><img src="${EMBLEM}" alt=""><div><b>${esc(ttl.split(' · ')[0])}</b><small>מערך כירורגיה כללית · המרכז הרפואי קפלן</small></div><span class="rpvmo">${esc(monthName(opt.month || S.month))}</span></div></div></div>`;
+  const ttl = (kind === 'final' ? 'לוח סופי' : kind === 'oncall' ? 'כוננויות · בכירים' : kind === 'pa' ? 'משמרות עוזרי רופא' : kind === 'int' ? 'תורנויות סטאז׳רים' : 'תורנויות · מתמחים ותורני חוץ') + ' · ' + monthName(opt.month || S.month);
+  bg.innerHTML = `<div class="rpvw"><div class="rpvh"><b>👁 ${esc(ttl)}</b><span class="spacer"></span><button class="btn sm" id="rpImg">📷 שמירת תמונה</button><button class="btn sm" id="rpPr">🖨 הדפסה</button><button class="x" title="סגירה">✕</button></div><div class="rpvs" id="rpS"><div class="rpvband"><div class="bplogo"><img src="${LOGO_K}" alt="קפלן"><img src="${LOGO_C}" alt="כללית"></div></div><div class="rpvgold"></div><div class="rpvt"><img src="${EMBLEM}" alt=""><div><b>${esc(ttl.replace(/ · [^·]*$/, ''))}</b><small>מערך כירורגיה כללית · המרכז הרפואי קפלן</small></div><span class="rpvmo">${esc(monthName(opt.month || S.month))}</span></div></div></div>`;
   const c = el.cloneNode(true); c.removeAttribute('id'); c.classList.add('rpvc'); if (opt.wide) c.classList.add('col'); bg.querySelector('#rpS').appendChild(c);
   const rpS = bg.querySelector('#rpS'); let onRs = null;
   if (opt.wide) { rpS.classList.add('rpw'); const sc = document.createElement('div'); sc.className = 'rpvsc'; sc.title = 'הקשה: גודל מלא'; rpS.parentNode.insertBefore(sc, rpS); sc.appendChild(rpS);
     sc.onclick = () => { sc.classList.toggle('zoom'); if (sc.classList.contains('zoom')) rpS.style.transform = ''; else rpFit(bg); }; onRs = () => rpFit(bg); addEventListener('resize', onRs); }
+  rpS.querySelectorAll('.hiset,.hion').forEach(e => e.classList.remove('hiset', 'hion')); rpS.querySelectorAll('.histrip').forEach(e => e.remove());
   document.body.appendChild(bg); if (opt.wide) { wmxSheet(rpS); wmxFitNames(rpS); } const close = () => { bg.remove(); document.body.classList.remove('rpprint'); if (onRs) removeEventListener('resize', onRs); };
   bg.querySelector('.x').onclick = close; bg.onclick = e => { if (e.target === bg) close(); };
   const img = () => opt.wide ? rpSnapWide(rpS, (kind === 'final' ? 'לוח-מלא-' : kind + '-') + S.month + '.png') : snap(rpS, kind + '-' + S.month + '.png', 1);
@@ -6471,14 +6522,14 @@ async function vTeam(m) {
   const ACC = Object.assign({}, S.data.roles || { director: 'מנהל המערך', chief: 'צ׳יף המתמחים', deputy: 'סגן מנהל המערך', students: 'אחראי סטודנטים', secretary: 'מזכירות', viewer: 'צפייה' });
   if (!ACC.intmgr) { const A2 = {}; Object.keys(ACC).forEach(k => { A2[k] = ACC[k]; if (k === 'students') A2.intmgr = 'אחראי סטאז׳רים'; }); if (!A2.intmgr) A2.intmgr = 'אחראי סטאז׳רים'; Object.keys(ACC).forEach(k => delete ACC[k]); Object.assign(ACC, A2); }
   const nightsOf = id => { const du = S.cache['duty:' + S.month] || {}, ca = S.cache['oncall:' + S.month] || {}; let n = 0, c = 0; Object.values(du.days || {}).forEach(r => ['er1', 'er2', 'dept', 'minor', 'fm'].forEach(k => { if (r[k] === id) n++; })); Object.values(ca.days || {}).forEach(r => ['active', 'passive', 'half'].forEach(k => { if (r[k] === id) c++; })); return { n, c }; };
-  const all = () => (S.data.people || []).filter(p => !p.out || (S.team || {}).out).sort((a, b) => (ROLE_ORDER[a.role] - ROLE_ORDER[b.role]) || a.name.localeCompare(b.name, 'he'));
+  const RO2 = r => r in ROLE_ORDER ? ROLE_ORDER[r] : 5, all = () => (S.data.people || []).filter(p => !p.out || (S.team || {}).out).sort((a, b) => (RO2(a.role) - RO2(b.role)) || a.name.localeCompare(b.name, 'he'));
   const LEAD = ['מנהל המערך', 'סגן', 'צ׳יף', 'אחראי', 'מנהל'];
   const lead = p => p.title && LEAD.some(w => p.title.indexOf(w) >= 0);
   const leadRank = p => { const t = p.title || ''; return t.indexOf('מנהל המערך') >= 0 && t.indexOf('סגן') < 0 ? 0 : t.indexOf('סגן') >= 0 ? 1 : t.indexOf('מנהל הפרויקט') >= 0 ? 2 : t.indexOf('צ׳יף') >= 0 ? 3 : 4; };
   const card = (p, big) => { const x = pr.prefs[p.id], f = pr.fixed[p.id], a = accOf(p.id), nc = nightsOf(p.id), u = phOf(p);
     return `<button class="pf${big ? ' big' : ''}${p.active === false ? ' off' : ''}" data-tm="${p.id}" style="--rc:${ROLE_COL[p.role]}">
       <span class="pfph${u ? ' has' : ''}"${u ? ` style="background-image:url(${u})"` : ''}>${u ? '' : esc(p.name.charAt(0))}</span>
-      <span class="pfb"><b>${esc(drName(p))}</b>${p.title ? `<em class="pft">${esc(p.title)}</em>` : (p.rot || {}).on ? `<em class="pfr">ברוטציה${p.rot.base ? ' · ' + esc(p.rot.base) : ''}</em>` : `<em class="pfr">${ROLE_NAME[p.role].replace(/ים$/, '').replace('רופאי בית', 'רופא/ת בית').replace('תורני חוץ', 'תורן/ית חוץ')}${p.year ? ' · ' + esc(p.year) : ''}</em>`}${p.spec ? `<small>${esc(p.spec)}</small>` : ''}
+      <span class="pfb"><b>${esc(drName(p))}</b>${p.title ? `<em class="pft">${esc(p.title)}</em>` : (p.rot || {}).on ? `<em class="pfr">ברוטציה${p.rot.base ? ' · ' + esc(p.rot.base) : ''}</em>` : `<em class="pfr">${(ROLE_NAME[p.role] || (p.role === 'pa' ? 'עוזרי רופא' : '')).replace(/ים$/, '').replace('רופאי בית', 'רופא/ת בית').replace('תורני חוץ', 'תורן/ית חוץ')}${p.year ? ' · ' + esc(p.year) : ''}</em>`}${p.spec ? `<small>${esc(p.spec)}</small>` : ''}
       <span class="tmst">${p.role === 'staff' ? stStat(p) : `<em class="${x || f ? 'ok' : ''}">${x || f ? '✓ מילא/ה בקשות' : 'טרם מילא/ה'}</em>`}${p.role !== 'staff' && nc.n + nc.c ? `<em>${[nc.n ? nc.n + ' תורנויות' : '', nc.c ? nc.c + ' כוננויות' : ''].filter(Boolean).join(' · ')}</em>` : ''}${a ? `<em class="acc">🔑 ${esc(ACC[a.role] || (S.data.roles || {})[a.role] || a.role)}</em>` : ''}${p.orOnly ? '<em>לשיבוץ בניתוחים בלבד</em>' : p.active === false ? '<em>לא פעיל/ה</em>' : ''}</span></span>${owner && p.token && p.role !== 'staff' ? invRow(p) : ''}</button>`; };
   // 17/11/2026 (Dr. Gozani): a secretary is not a doctor: her card says her wing and whether she came in, never duty requests or nights
   const stUser = p => (S.data.users || []).find(u => u.pid === p.id);
@@ -6500,10 +6551,11 @@ async function vTeam(m) {
     const leads = T.role ? [] : L.filter(p => lead(p) && !isOrP(p) && match(p)).sort((a, b) => leadRank(a) - leadRank(b));
     const isRot = p => p.role === 'resident' && (p.rot || {}).on;
     const secs = Object.keys(ROLE_NAME).map(r => [r, L.filter(p => p.role === r && !isRot(p) && !(r === 'staff' && isOrP(p)) && match(p) && leads.indexOf(p) < 0)]);
+    secs.push(['pa', L.filter(p => p.role === 'pa' && match(p) && leads.indexOf(p) < 0)]);
     secs.push(['ors', L.filter(p => isOrP(p) && match(p) && leads.indexOf(p) < 0)]);
     secs.splice(2, 0, ['rot', L.filter(p => isRot(p) && match(p) && leads.indexOf(p) < 0)]);
-    const SEC = r => r === 'rot' ? 'מתמחים ברוטציה' : r === 'ors' ? 'חדר ניתוח' : ROLE_NAME[r];
-    m.innerHTML = `<div class="hero">${ECG}${anat('liver')}<div style="position:relative;z-index:1"><div class="kick">צוות המערך</div><h1>הצוות שלנו</h1><p>${act} רופאים · ${sub} כבר מילאו את הקישור האישי · ${(S.data.users || []).filter(u => u.pid).length} עם גישה למערכת</p></div><span class="spacer"></span><div class="acts">${BOSS() ? '<button class="btn" id="tBoard">🗂 לוח עבודה</button>' : ''}${T.role === 'staff' ? (owner ? '<button class="btn gold" id="tAddS">＋ מזכירה</button>' : '') : T.role === 'ors' ? (owner ? '<button class="btn gold" id="tAddO">＋ צוות חדר ניתוח</button>' : '') : edit ? '<button class="btn gold" id="tAdd">＋ רופא/ה</button>' : ''}</div></div>
+    const SEC = r => r === 'rot' ? 'מתמחים ברוטציה' : r === 'ors' ? 'חדר ניתוח' : r === 'pa' ? 'עוזרי רופא' : ROLE_NAME[r];
+    m.innerHTML = `<div class="hero">${ECG}${anat('liver')}<div style="position:relative;z-index:1"><div class="kick">צוות המערך</div><h1>הצוות שלנו</h1><p>${act} רופאים · ${sub} כבר מילאו את הקישור האישי · ${(S.data.users || []).filter(u => u.pid).length} עם גישה למערכת</p></div><span class="spacer"></span><div class="acts">${BOSS() ? '<button class="btn" id="tBoard">🗂 לוח עבודה</button>' : ''}${T.role === 'staff' ? (owner ? '<button class="btn gold" id="tAddS">＋ מזכירה</button>' : '') : T.role === 'ors' ? (owner ? '<button class="btn gold" id="tAddO">＋ צוות חדר ניתוח</button>' : '') : edit ? `<button class="btn gold" id="tAdd">＋ ${T.role === 'pa' ? 'עוזר/ת רופא' : 'רופא/ה'}</button>` : ''}</div></div>
     <div class="tmbar"><input class="in" id="tQ" placeholder="חיפוש שם, תפקיד או תחום…" value="${esc(T.q)}"></div>
     ${leads.length ? `<h3 class="pfsec"><span>הנהלת המערך</span></h3><div class="pfgrid lead">${leads.map(p => card(p, true)).join('')}</div>` : ''}
     ${(S.data.people || []).some(p => p.out) ? `<div class="tmout"><button class="btn sm ghost" id="tOut">${T.out ? 'הסתרת מי שהוצא/ה מהצוות' : 'הוצאו מהצוות (' + (S.data.people || []).filter(p => p.out).length + ')'}</button></div>` : ''}
@@ -6540,7 +6592,7 @@ async function vTeam(m) {
         <section><h4>פרטים</h4><div class="tmf">
          <label>שם בלוחות<input class="in" data-f="name" value="${esc(p.name)}" placeholder="למשל: כהן" ${ro}></label>
          <label>שם מלא<input class="in" data-f="full" value="${esc(p.full || '')}" placeholder="ד״ר …" ${ro}></label>
-         <label>תפקיד<select class="in" data-f="role" ${ro}>${Object.keys(ROLE_NAME).map(r => `<option value="${r}" ${p.role === r ? 'selected' : ''}>${ROLE_NAME[r]}</option>`).join('')}</select></label>
+         <label>תפקיד<select class="in" data-f="role" ${ro}>${Object.entries(Object.assign({}, ROLE_NAME, { pa: 'עוזרי רופא' })).map(([r, l]) => `<option value="${r}" ${p.role === r ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
          <label>תפקיד במערך<input class="in" data-f="title" value="${esc(p.title || '')}" list="tmTitles" placeholder="למשל: סגן מנהל המערך" ${ro}></label>
          ${p.role === 'staff' ? '' : `<label>תחום<input class="in" data-f="spec" value="${esc(p.spec || '')}" placeholder="למשל: כירורגיה בריאטרית" ${ro}></label>`}
          ${p.role === 'resident' ? `<label>שנת התמחות<input class="in" data-f="year" value="${esc(p.year || '')}" placeholder="למשל: שנה ג׳" ${ro}></label>` : ''}
@@ -7047,14 +7099,57 @@ async function profileOpen(p, t, onEdit) {
 }
 // interns: the Hub's snapshot (read-only), refreshed there every 30 minutes
 const HUB_URL = 'https:' + '/' + '/kaplansurgeryhub-dotcom.github.io/';
+// 24/11/2026 (Dr. Gozani): the team's interns tab picks a rotation (month): the Hub's rotation (now and next) and the portal's rotations
+// (from December); every intern opens a card, read only, like everyone in the team
+const IVR = { mo: '' }, ivMoL = x => /^\d{4}-\d\d$/.test(String(x)) ? monthName(x) : String(x || '');
+const IV_S = { dept: 'מחלקה', er: 'מיון', fm: 'שישי בוקר' };
+const IV_HM = ['ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', 'יוני', 'יולי', 'אוגוסט', 'ספטמבר', 'אוקטובר', 'נובמבר', 'דצמבר'];
+const ivIso = x => { x = String(x || ''); if (/^\d{4}-\d\d$/.test(x)) return x; const y = (x.match(/\d{4}/) || [])[0], i = IV_HM.findIndex(h => x.indexOf(h) >= 0); return y && i >= 0 ? y + '-' + String(i + 1).padStart(2, '0') : x; };
+function zrSheet(o) {
+  const bg = document.createElement('div'); bg.className = 'mbg'; const ph = String(o.phone || '').replace(/\D/g, '');
+  const tags = [o.track, o.imonth ? 'חודש ' + o.imonth + ' בסטאז׳' : '', o.wing ? 'אגף ' + (WINGN[o.wing] || o.wing) : '', o.inst].filter(Boolean);
+  bg.innerHTML = `<div class="modal ivsh" role="dialog"><div class="mh"><b>${esc(o.name)}</b><span class="spacer"></span><button class="x" aria-label="סגירה">✕</button></div><div class="mb">
+    <div class="ivsh-h">${o.ph ? `<span class="iph has" style="background-image:url(${o.ph})"></span>` : `<span class="iph">${esc((o.name || '?').charAt(0))}</span>`}<div><b>${esc(o.name)}</b><small>סטאז׳ר/ית · ${esc(ivMoL(o.month))}</small><div class="ivkc">${tags.map(t => `<span>${esc(t)}</span>`).join('')}</div></div></div>
+    ${ph ? `<div class="ivsh-a"><a class="btn sm" href="tel:${ph}">📞 חיוג</a><button class="btn sm wa" data-wa>💬 וואטסאפ</button><span class="ltr">${esc(o.phone)}</span></div>` : ''}
+    <h4>תורנויות החודש</h4>${(o.d || []).length ? `<div class="ivsh-d">${o.d.map(x => `<span><b>${DAYS[pd(x.d).getDay()]} ${dm(x.d)}</b>${esc(IV_S[x.s] || x.s || 'תורנות')}</span>`).join('')}</div>` : '<p class="cap">עוד אין תורנויות שפורסמו</p>'}
+    <p class="cap" style="margin-top:12px">צפייה בלבד · דיווחים, משובים והערכות נמצאים אצל אחראי הסטאז׳רים</p></div></div>`;
+  document.body.appendChild(bg); const close = () => bg.remove(); bg.querySelector('.x').onclick = close;
+  const w = bg.querySelector('[data-wa]'); if (w) w.onclick = () => waOpen(o.phone, '');
+}
 async function vInterns(m) {
   m.innerHTML = '<p class="muted" style="padding:30px">טוען את נתוני הסטאז׳רים…</p>';
-  let H; try { H = S.hub || (S.hub = await Promise.race([call('ops_interns', S.code), new Promise((_, no) => setTimeout(() => no(new Error('הנתונים של הסטאז׳רים מתעכבים. משיכה למטה לרענון')), 20000))])); } catch (e) { m.innerHTML = `<div class="card" style="color:var(--red)">לא הצלחתי לקרוא את נתוני הסטאז׳רים: ${esc(e.message)}</div>`; return; }
+  let T = { rots: [] }; try { T = await call1(60000, 'ops_intTeam', S.code, ''); } catch (e) {}
+  let H = S.hub; if (!H) { try { H = S.hub = await Promise.race([call('ops_interns', S.code), new Promise((_, no) => setTimeout(() => no(new Error('')), 20000))]); } catch (e) { H = null; } }
+  if (!m.isConnected) return;
+  const hasH = H && !H.none, hubMo = hasH ? [ivIso(H.month)].concat((H.interns || []).some(i => i.month === H.next) ? [ivIso(H.next)] : []) : [];
+  const portal = (T.rots || []).map(r => r.month), months = [...new Set(hubMo.filter(x => portal.indexOf(x) < 0).concat(portal))].sort();
+  if (!months.length) { m.innerHTML = '<div class="card">עוד אין סבב סטאז׳רים</div>'; return; }
+  const cur = monthOf(today); if (months.indexOf(IVR.mo) < 0) IVR.mo = months.indexOf(cur) >= 0 ? cur : hubMo[0] && months.indexOf(hubMo[0]) >= 0 ? hubMo[0] : months.find(x => x >= cur) || months[months.length - 1];
+  const bar = `<div class="ivrot" role="tablist">${months.map(x => `<button class="${x === IVR.mo ? 'on' : ''}" data-zrm="${esc(x)}">${esc(ivMoL(x))}${x === cur ? '<i>עכשיו</i>' : x > cur ? '<i>הבא</i>' : ''}</button>`).join('')}</div>`;
+  const bind = () => m.querySelectorAll('[data-zrm]').forEach(b => b.onclick = () => { IVR.mo = b.dataset.zrm; vInterns(m); });
+  if (portal.indexOf(IVR.mo) >= 0) {
+    let R = null; try { R = await call1(60000, 'ops_intTeam', S.code, IVR.mo); } catch (e) { m.innerHTML = bar + `<div class="card">${esc(e.message)}</div>`; return bind(); }
+    if (!m.isConnected) return; const L = R.interns || [], PH = S.ivPh = S.ivPh || {};
+    const av3 = i => PH[i.id] ? `<span class="iph has" style="background-image:url(${PH[i.id]})"></span>` : `<span class="iph">${esc((i.name || '?').charAt(0))}</span>`;
+    m.innerHTML = peopleHero('אנשים · סטאז׳רים', 'סבב הסטאז׳רים', `${ivMoL(IVR.mo)} · ${L.length} סטאז׳רים`, [[L.length, 'בסבב'], [L.filter(i => i.d.length).length, 'עם תורנויות'], [L.filter(i => i.ph).length, 'עם תמונה']]) + bar
+      + `<div class="ivg ivg2">${L.map(i => `<button class="ivk ivk2" data-zri="${i.id}"><div class="ivkh">${av3(i)}<div class="ivkn"><b>${esc(i.name)}</b><div class="ivkc"><span>${esc(i.track)}</span>${i.imonth ? `<span>חודש ${esc(i.imonth)}</span>` : ''}${i.wing ? `<span>אגף ${esc(WINGN[i.wing] || i.wing)}</span>` : ''}</div></div></div><div class="ivk2m">${i.inst ? `<span>${esc(i.inst)}</span>` : ''}<span>${i.d.length} תורנויות</span></div></button>`).join('') || '<p class="cap">אין סטאז׳רים בסבב הזה</p>'}</div>`;
+    bind(); m.querySelectorAll('[data-zri]').forEach(b => b.onclick = () => { const i = L.find(x => x.id === b.dataset.zri); zrSheet(Object.assign({}, i, { month: IVR.mo, ph: PH[i.id] || '' })); });
+    const need = L.filter(i => i.ph && !(i.id in PH)).map(i => i.id); if (need.length && !vInterns.phB) { vInterns.phB = 1; call('ops_intTeamPhotos', S.code, need).then(r => { Object.assign(PH, r || {}); vInterns.phB = 0; if (m.isConnected && S.view === 'interns') vInterns(m); }).catch(() => { vInterns.phB = 0; }); }
+    return;
+  }
+  m.innerHTML = ''; await vInternsHub(m, H, IVR.mo === ivIso((H || {}).next));
+  if (!m.isConnected) return; m.insertAdjacentHTML('afterbegin', ''); const hero = m.querySelector('.hero'); if (hero) hero.insertAdjacentHTML('afterend', bar); else m.insertAdjacentHTML('afterbegin', bar); bind();
+  m.querySelectorAll('[data-zrk]').forEach(b => b.onclick = e => { if (e.target.closest('a,button:not([data-zrk])')) return; const i = (H.interns || []).find(x => x.key === b.dataset.zrk); if (!i) return;
+    zrSheet({ name: i.name, track: i.track, imonth: i.imonth, wing: i.wing, inst: i.inst, phone: i.phone, month: i.month, ph: (S.hubPh || {})[i.key] || '', d: (H.duties || []).filter(x => x.k === i.key && String(x.d).slice(0, 7) === ivIso(i.month)).map(x => ({ d: x.d, s: x.s || '' })).sort((a, b) => a.d < b.d ? -1 : 1) }); });
+}
+async function vInternsHub(m, H0, nextMo) {
+  m.innerHTML = '<p class="muted" style="padding:30px">טוען את נתוני הסטאז׳רים…</p>';
+  let H = H0; if (!H) try { H = S.hub || (S.hub = await Promise.race([call('ops_interns', S.code), new Promise((_, no) => setTimeout(() => no(new Error('הנתונים של הסטאז׳רים מתעכבים. משיכה למטה לרענון')), 20000))])); } catch (e) { m.innerHTML = `<div class="card" style="color:var(--red)">לא הצלחתי לקרוא את נתוני הסטאז׳רים: ${esc(e.message)}</div>`; return; }
   if (!H || H.none) { m.innerHTML = '<div class="card">עוד אין סיכום ממערכת הסטאז׳רים. הוא נבנה שם כל חצי שעה.</div>'; return; }
   const PH = S.hubPh = S.hubPh || {};
   const need = (H.photos || []).filter(k => !PH[k]);
-  if (need.length && !S.hubPhBusy) { S.hubPhBusy = 1; call('ops_internPhotos', S.code, need).then(r => { Object.assign(PH, r); S.hubPhBusy = 0; if (S.view === 'interns') vInterns(m); }).catch(() => { S.hubPhBusy = 0; }); }
-  const cur = H.interns.filter(i => i.month === H.month), nxt = H.interns.filter(i => i.month === H.next), t = H.today, yd = add(t, -1);
+  if (need.length && !S.hubPhBusy) { S.hubPhBusy = 1; call('ops_internPhotos', S.code, need).then(r => { Object.assign(PH, r); S.hubPhBusy = 0; if (S.view === 'interns') vInterns(m.closest('#main') || m); }).catch(() => { S.hubPhBusy = 0; }); }
+  let cur = H.interns.filter(i => i.month === H.month), nxt = H.interns.filter(i => i.month === H.next); if (nextMo && nxt.length) { cur = nxt; nxt = []; } const t = H.today, yd = add(t, -1);
   const stN = {}, stC = {}; H.stations.forEach(s => { stN[s.id] = s.name; stC[s.id] = s.color; });
   const asg = (d, k) => H.assigns.filter(a => a.d === d && a.k === k).map(a => a.s), abs = (d, k) => H.absences.find(a => a.d === d && a.k === k);
   const post = k => H.duties.some(x => x.d === yd && x.k === k), night = k => H.duties.find(x => x.d === t && x.k === k);
@@ -7090,7 +7185,7 @@ function ivBody(H, cur, nxt, o) {
   const tile = (l, list, c, cls) => list.length ? `<div class="ivt ${cls || ''}" style="--sc:${c}"><small>${l}<em>${list.length}</em></small><div>${list.map(chip).join('')}</div></div>` : '';
   const today = `<section class="ivtd"><div class="ivh"><b>היום במחלקה</b><span>${DAYS[pd(t).getDay()]} ${dm(t)}</span></div><div class="ivts">${byStation.map(x => tile(esc(x.s.name), x.list, x.s.color)).join('')}${tile('🌙 בתורנות הלילה', nightL, '#0C2A35', 'nt')}${tile('אחרי תורנות', postL, '#7A8A90', 'mute')}${tile('לא נמצאים', absL, '#C9503A', 'mute')}${tile('לא שובצו', none, '#B5C4BE', 'mute')}</div></section>`;
   const card = i => { const [c, l] = state(i), du = H.duties.filter(x => x.k === i.key && x.d.slice(0, 7) === t.slice(0, 7)), done = du.filter(x => x.d < t).length, dr = rep.indexOf(i.key) >= 0;
-    return `<article class="ivk s-${c}"><div class="ivkh">${av2(i)}<div class="ivkn"><b>${esc(i.name)}</b><div class="ivkc"><span>${esc(i.track || 'רגיל')}</span>${i.imonth ? `<span>חודש ${esc(i.imonth)} בסטאז׳</span>` : ''}${i.wing ? `<span>אגף ${esc(i.wing)}</span>` : ''}${i.inst ? `<span>${esc(i.inst)}</span>` : ''}</div></div></div>
+    return `<article class="ivk s-${c}" data-zrk="${esc(i.key)}" role="button" tabindex="0" style="cursor:pointer"><div class="ivkh">${av2(i)}<div class="ivkn"><b>${esc(i.name)}</b><div class="ivkc"><span>${esc(i.track || 'רגיל')}</span>${i.imonth ? `<span>חודש ${esc(i.imonth)} בסטאז׳</span>` : ''}${i.wing ? `<span>אגף ${esc(i.wing)}</span>` : ''}${i.inst ? `<span>${esc(i.inst)}</span>` : ''}</div></div></div>
       <div class="ivks"><i></i>${esc(l)}${night(i.key) ? '<em>🌙 תורן/ית הלילה</em>' : ''}</div>
       <div class="ivkw">${wkDays.map(d => { const a = abs(d, i.key), s2 = asg(d, i.key); return `<div class="${d === t ? 'now' : ''}${a ? ' ab' : ''}" style="${s2.length ? `--c:${stC[s2[0]] || '#8AA'}` : ''}"><small>${DS[pd(d).getDay()]}</small><b>${a ? '—' : s2.length ? esc(stN[s2[0]] || '') : ''}</b></div>`; }).join('')}</div>
       <div class="ivkm"><span><b>${i.reports}</b>דיווחים</span><span><b>${done}/${du.length}</b>תורנויות</span><span class="${dr ? 'ok' : ''}"><b>${dr ? '✓' : '—'}</b>דיווח היום</span>${i.vac === undefined || i.track === 'רק תורנויות' ? '' : `<span class="${i.vac > (H.vacMax ?? 3) ? 'over' : ''}" title="ימי חופש בסבב"><b>${i.vac}/${H.vacMax ?? 3}</b>ימי חופש</span>`}</div></article>`; };
@@ -7268,7 +7363,7 @@ const NX_T = (k, lab, short, txt) => `<div class="nt ${k}" title="${esc(lab)}"><
 function nxFill(root, months) { months.forEach(mo => nxLoad(mo).then(c => { if (!c || !root.isConnected) return; root.querySelectorAll('[data-nx^="' + mo + '"]').forEach(e => { const h = nxHtml(e.dataset.nx, e.dataset.nxv === '2' ? NX_T2 : NX_T); if (e.innerHTML !== h) e.innerHTML = h; }); })); }
 const NX_T2 = (k, lab, short, txt) => `<div class="w2nx ${k}" title="${esc(lab)}"><small>${short}</small><b>${esc(txt)}</b></div>`;
 async function vFinal(m, only, force) {
-  const mo = S.month;
+  const mo = S.month, SUB = /^sub:/.test(only || '') ? only.slice(4) : ''; if (SUB) only = '';
   // speed stage 2: the boards, the interns' nights, the Hub's snapshot and the PAs' evenings are asked together (they were four round trips one after another)
   // 10/11/2026 (Dr. Gozani): every board enters the final board once its manager publishes it; a future month shows only what was published
   const ifP = callS(180000, 'ops_intFinal', S.code, mo).catch(() => null), psP = callS(60000, 'ops_pubState', S.code, mo).catch(() => null);
@@ -7299,13 +7394,15 @@ async function vFinal(m, only, force) {
   // 23/11/2026 (concept 1): the final board as a table per week
   const fRow = (d, k) => { const r = du[d] || {}, c = ca[d] || {};
     if (k === 'tr') return c.trauma ? `<div class="fz fz-tr"><b>${esc(c.trauma)}</b></div>` : '';
-    if (k.startsWith('in-')) { const s0 = k.slice(3); return ish && only !== 'pa' ? IF.list.filter(x => x.d === d && x.s === s0).map(x => `<div class="fz pc fz-in fz-in-${x.s}" title="סטאז׳רים · ${esc(x.name)}"><b>${esc(x.name.split(' ')[0])}</b></div>`).join('') : ''; }
-    if (k === 'pa') return only === 'int' ? '' : PA.filter(x => x.d === d).map(x => `<div class="fz pc fz-pa" title="עוזר/ת רופא · משמרת ערב · ${esc(x.name)}"><b>${esc(x.name.split(' ')[0])}</b></div>`).join('');
+    if (k.startsWith('in-')) { const s0 = k.slice(3); return ish && only !== 'pa' ? IF.list.filter(x => x.d === d && x.s === s0).map(x => `<div class="fz pc fz-in fz-in-${x.s}" data-pid="n:${esc(x.name)}" title="סטאז׳רים · ${esc(x.name)}"><b>${esc(x.name.split(' ')[0])}</b></div>`).join('') : ''; }
+    if (k === 'pa') return only === 'int' ? '' : PA.filter(x => x.d === d).map(x => `<div class="fz pc fz-pa" data-pid="${x.id || 'n:' + esc(x.name)}" title="עוזר/ת רופא · משמרת ערב · ${esc(x.name)}"><b>${esc(x.name.split(' ')[0])}</b></div>`).join('');
     const id = k in r ? r[k] : c[k], L = (FZ.find(x => x[0] === k) || [k, k])[1];
-    return id ? `<div class="fz pc fz-${k}${id === me ? ' me' : ''}" title="${L} · ${esc(P(id).full || P(id).name)}"><b>${nm(id)}</b></div>` : (clrOn(S.cache['duty:' + mo], d, k) || clrOn(S.cache['oncall:' + mo], d, k)) ? `<div class="fz clrchip"><b>ריק · למלא</b></div>` : ''; };
-  const fRows = (only ? [] : FZ.filter(([k]) => k !== 'fm' || mo < FM_END.slice(0, 7)).map(([k, l]) => ({ k, l: k === 'fm' ? 'שישי בוקר' : k === 'third' ? 'תורן שליש' : l, sep: k === 'half', opt: k === 'third' ? 1 : 0, on: k === 'fm' ? d => fmOn(d) : k === 'half' || k === 'third' ? d => pd(d).getDay() < 5 : null })).concat([{ k: 'tr', l: 'כונן טראומה', opt: 1 }]))
-    .concat(ish && only !== 'pa' ? [{ k: 'in-dept', l: 'סטאז׳ר', sep: 1 }, { k: 'in-er', l: 'סטאז׳ר מיון', opt: 1 }, { k: 'in-fm', l: 'סטאז׳ר בוקר', opt: 1, on: d => pd(d).getDay() === 5 }] : [])
-    .concat(PA.length && only !== 'int' ? [{ k: 'pa', l: 'עוזר/ת רופא', sep: 1 }] : []);
+    return id ? `<div class="fz pc fz-${k}${id === me ? ' me' : ''}" data-pid="${id}" title="${L} · ${esc(P(id).full || P(id).name)}"><b>${nm(id)}</b></div>` : (clrOn(S.cache['duty:' + mo], d, k) || clrOn(S.cache['oncall:' + mo], d, k)) ? `<div class="fz clrchip"><b>ריק · למלא</b></div>` : ''; };
+  const SUBK = { duty: ['er1', 'er2', 'dept', 'minor', 'fm'], oncall: ['half', 'active', 'passive', 'third'] }[SUB];
+  const fRows = (only ? [] : FZ.filter(([k]) => (k !== 'fm' || mo < FM_END.slice(0, 7)) && (!SUBK || SUBK.indexOf(k) >= 0)).map(([k, l]) => ({ k, l: k === 'fm' ? 'שישי בוקר' : k === 'third' ? 'תורן שליש' : l, sep: k === 'half', opt: k === 'third' ? 1 : 0, on: k === 'fm' ? d => fmOn(d) : k === 'half' || k === 'third' ? d => pd(d).getDay() < 5 : null })).concat(SUB === 'duty' ? [] : [{ k: 'tr', l: 'כונן טראומה', opt: 1 }]))
+    // 24/11/2026 (Dr. Gozani): the interns' Friday morning stays on their own board only, not on the final board
+    .concat(ish && only !== 'pa' && !SUB ? [{ k: 'in-dept', l: 'סטאז׳ר', sep: 1 }, { k: 'in-er', l: 'סטאז׳ר מיון', opt: 1 }] : [])
+    .concat(PA.length && only !== 'int' && !SUB ? [{ k: 'pa', l: 'עוזר/ת רופא', sep: 1 }] : []);
   const fHead = (d, c) => { const w = wingName(wingOf(d, S.cache['duty:' + mo])); return `<th class="wdh${c}${fEd ? ' fed' : ''}"${fEd ? ` data-fed="${d}" title="עריכת היום"` : ''}><b>${+d.slice(8)}</b><small>${DAYS[pd(d).getDay()]}</small>${only ? '' : `<em>${w}</em>`}${orDayTag(d, 1)}</th>`; };
   const fMx = wkMx(days, fRows, fRow, fHead, { td: fEd ? d => ` data-fed="${d}"` : null });
   m.innerHTML = `<section class="fhero bph"><div class="bplogo"><img src="${LOGO_K}" alt="קפלן"><img src="${LOGO_C}" alt="כללית"></div>${anat('cardio')}<div class="fhin"><small>${only ? 'לוחות · לצפייה' : 'לוחות · מתמחים ובכירים יחד'}</small><h1>${only === 'int' ? 'תורנויות · סטאז׳רים' : only === 'pa' ? 'משמרות · עוזרי רופא' : 'לוח סופי'}</h1><div class="fmn"><button data-fm="-1" aria-label="חודש קודם" data-tip="חודש קודם"><svg class="chv" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button><b>${monthName(mo)}</b><button data-fm="1" aria-label="חודש הבא" data-tip="חודש הבא"><svg class="chv" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button></div></div>
@@ -13188,7 +13285,7 @@ const arvKeyL = (b, id) => b === 'week' ? 'שבוע ' + arvDm(id) + '–' + arvD
 const arvKindC = k => /^פורסם/.test(k) ? 'first' : /^עדכון/.test(k) ? 'upd' : '';
 // the same flat cells as archCells_ in the server: "<date>|<column>" → text
 function arvCells(b, s, D){
-  const o = {}, nm = id => (D.names || {})[id] || String(id), ids = v => (Array.isArray(v) ? v : [v]).map(x => x && typeof x === 'object' ? x.id : x).filter(Boolean).map(nm).join(', ');
+  const o = {}, nm = id => (D.names || {})[id] || String(id), ids = v => (Array.isArray(v) ? v : [v]).map(x => x && typeof x === 'object' ? x.id : x).filter(Boolean).map(nm).join(' · ');
   Object.keys((s && s.days) || {}).forEach(d => { const X = s.days[d];
     if (Array.isArray(X)) { o[d + '|pa'] = ids(X); return; }
     Object.keys(X || {}).forEach(l => { const v = X[l];
@@ -15684,7 +15781,7 @@ body.kbon :is(.mbg,.sheetbg,.shbg,.crbg,.chbg,.k2bg,.nwpbg,.gdbg)>*{max-height:c
       addEventListener('hashchange', () => shw(false)); }
     if (e === seen) { if (!e) shw(false); return; } if (seen) io.unobserve(seen); seen = e; shw(false); if (e) io.observe(e); };
   setInterval(() => { if (fl && fl.classList.contains('show') && (!onB() || !seen || !seen.isConnected)) shw(false); }, 700);
-  const sch = () => { clearTimeout(t); t = setTimeout(() => { put(); flo(); wmxFitNames(document.getElementById('main')); }, 80); };
+  const sch = () => { clearTimeout(t); t = setTimeout(() => { put(); flo(); wmxFitNames(document.getElementById('main')); hiStripAll(); }, 80); };
   addEventListener('resize', () => { clearTimeout(t); t = setTimeout(() => wmxFitNames(document.getElementById('main')), 200); });
   const watch = () => { const m = document.getElementById('main'); if (!m) return setTimeout(watch, 500); new MutationObserver(sch).observe(m, { childList: true, subtree: true }); sch(); };
   watch();
