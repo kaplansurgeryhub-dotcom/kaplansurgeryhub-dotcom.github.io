@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="7df30f8496ce"><script>(function () {
+<head><meta name="ksh-ver" content="ef0b8b8e8f1a"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -3619,7 +3619,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = '7df30f8496ce'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = 'ef0b8b8e8f1a'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achall|achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|rwext|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -5201,10 +5201,10 @@ async function vWeek(m) {
       const y = dutyDay(d), c = callDay(d), we = pd(d).getDay() >= 5;
       const T = (k, lab, short, id, txt, sk) => `<div class="nt ${k}" title="${lab}"${id && sk ? ` data-sw="${d}|${sk}"` : ''}><i>${short}</i><b${id ? ` data-pid="${id}"` : ''}>${esc(txt || P(id).name)}</b></div>`;
       let res = [['er1', 'מיון 1', 'מיון 1', 'e1'], ['er2', 'מיון 2', 'מיון 2', 'e2'], ['dept', 'מחלקה', 'מחלקה', 'dp'], ['minor', 'מיינור טראומה', 'מיינור', 'mi']].filter(q => y[q[0]]).map(q => T(q[3], q[1], q[2], y[q[0]], '', q[0])).join('') + (y.fm ? T('fm', '☀ שישי בוקר', '☀ בוקר', y.fm, '', 'fm') : '');
-      const sen = (c.active ? T('ca', 'כונן פעיל', 'פעיל', c.active, '', 'active') : '') + (c.passive ? T('cp', 'כונן פסיבי', 'פסיבי', c.passive, '', 'passive') : '') + (c.half ? T('ch', 'תורן חצי', 'חצי', c.half, '', 'half') : '') + (c.third ? T('c3', 'תורן שליש · עד 20:00', 'שליש', c.third) : '') + (c.trauma ? T('ctr', 'כונן טראומה: ' + c.trauma, 'טראומה', null, String(c.trauma).replace(/^\s*ד[״"']ר\s+/, '')) : '');
+      const sen = (c.half ? T('ch', 'תורן חצי', 'חצי', c.half, '', 'half') : '') + (c.active ? T('ca', 'כונן פעיל', 'פעיל', c.active, '', 'active') : '') + (c.passive ? T('cp', 'כונן פסיבי', 'פסיבי', c.passive, '', 'passive') : '') + (c.trauma ? T('ctr', 'כונן טראומה: ' + c.trauma, 'טראומה', null, String(c.trauma).replace(/^\s*ד[״"']ר\s+/, '')) : '') + (c.third ? T('c3', 'תורן שליש · עד 20:00', 'שליש', c.third) : '');
       // 22/11/2026: a slot emptied on purpose shows red here too, until someone is placed
       const mo2 = d.slice(0, 7), EC = k2 => clrOn(S.cache[(['active', 'passive', 'half'].indexOf(k2) >= 0 ? 'oncall:' : 'duty:') + mo2], d, k2) ? `<div class="nt clrchip" title="${esc(POS[k2] || k2)} · הורד/ה ידנית · צריך למלא"><i>${esc((POS[k2] || k2).replace('כונן ', '').replace('תורן ', '').replace(' 08–13', ''))}</i><b>ריק · למלא</b></div>` : '';
-      res += ['er1', 'er2', 'dept', 'minor', 'fm'].map(EC).join(''); const sen2 = sen + ['active', 'passive', 'half'].map(EC).join('');
+      res += ['er1', 'er2', 'dept', 'minor', 'fm'].map(EC).join(''); const sen2 = sen + ['half', 'active', 'passive'].map(EC).join('');
       return `<div class="wcell night2${cls(d)}">${res ? `<div class="ngh">🌙 תורנים</div><div class="ng">${res}</div>` : ''}${sen2 ? `<div class="ngh">📞 כוננים</div><div class="ng">${sen2}</div>` : ''}<div class="nx" data-nx="${d}">${nxHtml(d, NX_T)}</div>${!res && !sen ? '<span class="hint">מהלוחות</span>' : ''}</div>`;
     }
     if (r.t === 'abs') { const pc = awayPost(d), lv = onLeave(d).filter(id => AWAY_R.indexOf(P(id).role) >= 0), ab0 = (D.abs || []).filter(x => pc.indexOf(x.id) < 0 && lv.indexOf(x.id) < 0), abw = ab0.filter(x => x.w), ab = ab0.filter(x => !x.w); return `<div class="wcell drop abs${cls(d)}" data-d="${d}" data-k="abs">${pc.length || lv.length || abw.length ? `<div class="aw">${pc.map(id => awTile(id, 'pd', '', ` data-pid="${id}" title="${esc(P(id).name)} · אחרי תורנות"`)).join('')}${lv.map(id => { const k = awKind(id, d); return awTile(id, k, '', ` data-pid="${id}" title="${esc(P(id).name)} · ${AWK[k][1]}"`); }).join('')}${abw.map(x => absTile(x, '', ` data-pid="${x.id}"`)).join('')}${D.absNote ? `<b class="absnt">${esc(D.absNote)}</b>` : ''}</div>` : ''}${ab.length ? `<div class="wcs">${chipsOf(ab, 'abs')}</div>${edit ? `<button type="button" class="absfx" data-absfx="${d}|${ab.map(x => x.id).join(',')}">⚠ חסרה סיבה · לבחור</button>` : ''}` : ''}${D.absNote && !(pc.length || lv.length || abw.length) ? `<div class="aw"><b class="absnt">${esc(D.absNote)}</b></div>` : ''}${!pc.length && !lv.length && !ab.length && !D.absNote ? hint : ''}</div>`; }
@@ -5448,7 +5448,7 @@ function placesOf(W, d, id) {
   if (postCall(d).indexOf(id) >= 0) out.push({ l: 'אחרי תורנות', t: 'p', auto: 1 });
   const y = dutyDay(d), c = callDay(d);
   [['er1', 'תורן מיון 1'], ['er2', 'תורן מיון 2'], ['dept', 'תורן מחלקה'], ['minor', 'תורן מיינור'], ['fm', '☀ שישי בוקר']].forEach(([k, l]) => { if (y[k] === id) out.push({ l, t: 'night', auto: 1 }); });
-  [['active', 'כונן פעיל'], ['passive', 'כונן פסיבי'], ['half', 'תורן חצי'], ['third', 'תורן שליש · עד 20:00']].forEach(([k, l]) => { if (c[k] === id) out.push({ l, t: 'night', auto: 1 }); });
+  [['half', 'תורן חצי'], ['active', 'כונן פעיל'], ['passive', 'כונן פסיבי'], ['third', 'תורן שליש · עד 20:00']].forEach(([k, l]) => { if (c[k] === id) out.push({ l, t: 'night', auto: 1 }); });
   return out;
 }
 function peopleGrid(W, dates, mode, edit, wsets, load7, head) {
@@ -5533,7 +5533,7 @@ function weekSheet(W, ws, portrait, full) {
     ['clinic', 'מרפאות', '#3B4C8E', 'clinic', d => clinHtml(D(d), x => `<span class="wz">${NA(x.id)}</span>`, L => chips(L))],
     ['meet', 'ישיבות', '#0C2A35', 'meet', d => meetHtml(D(d), 'meet')], ['study', 'ישיבת לימודים', '#B8863B', 'book', d => chips(D(d).study)]
   ].filter(r => (full ? days : wd).some(d => r[4](d)));
-  const night = d => { const y = dutyDay(d), c = callDay(d); return FZ.filter(([k]) => (k in y ? y[k] : c[k])).map(([k, l, sh]) => `<span class="fz fz-${k}"><i>${sh}</i><b>${N(y[k] || c[k])}</b></span>`).join('') + (c.trauma ? `<span class="fz fz-tr"><i>טראומה</i><b>${esc(c.trauma)}</b></span>` : ''); };
+  const night = d => { const y = dutyDay(d), c = callDay(d); const trz = c.trauma ? `<span class="fz fz-tr"><i>טראומה</i><b>${esc(c.trauma)}</b></span>` : ''; return FZ.filter(([k]) => (k in y ? y[k] : c[k])).map(([k, l, sh]) => `<span class="fz fz-${k}"><i>${sh}</i><b>${N(y[k] || c[k])}</b></span>` + (k === 'passive' ? trz : '')).join('') + (c.passive ? '' : trz); };
   const away = d => [awayPost(d).map(id => awTile(id, 'pd', 'awp')).join(''), onLeave(d).filter(id => AWAY_R.indexOf(P(id).role) >= 0).map(id => awTile(id, awKind(id, d), 'awp')).join(''), absShow(D(d).abs, d).map(y => y.w ? absTile(y, 'awp') : `<span class="wz aw">${N(y.id)}</span>`).join('')].join('');
   const wing = d => { const w = wingName(wingOf(d, S.cache['duty:' + monthOf(d)])); return `<em class="ws-w ${w === 'צפון' ? 'n' : 's'}">${w}</em>`; };
   const ico = k => LI[k] ? ic(k) : '';
@@ -5756,7 +5756,7 @@ function snap(el, name, bw) {
 
 // ---------- rosters (residents' duties, seniors' on-call) ----------
 const DUTY_COLS = [['er1', 'מיון 1'], ['er2', 'מיון 2'], ['dept', 'מחלקה'], ['minor', 'מיינור טראומה']];
-const CALL_COLS = [['active', 'כונן פעיל'], ['passive', 'כונן פסיבי'], ['half', 'תורן חצי']];
+const CALL_COLS = [['half', 'תורן חצי'], ['active', 'כונן פעיל'], ['passive', 'כונן פסיבי']];
 const monthDates = m => [...Array(daysIn(m))].map((_, i) => m + '-' + String(i + 1).padStart(2, '0'));
 async function prefsFor(m) { if (!S.cache['prefs:' + m]) { const k = 'prefs:' + m, p = INFL[k] || (INFL[k] = call('ops_prefsAll', S.code, m).finally(() => { delete INFL[k]; })); S.cache[k] = await p; LOADAT[k] = LOADAT[k] || Date.now(); } return S.cache['prefs:' + m]; }
 function monthBar(title, kick, sub, extra) {
@@ -7172,7 +7172,7 @@ async function thirdSheet(m0, after, host) {
   draw();
 }
 const addM = (m, n) => { const [y, k] = m.split('-').map(Number), d = new Date(y, k - 1 + n, 1); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0'); };
-const FZ = [['er1', 'מיון 1', 'מ1'], ['er2', 'מיון 2', 'מ2'], ['dept', 'מחלקה', 'מח'], ['minor', 'מיינור טראומה', 'מיינור'], ['fm', 'שישי בוקר · 08:00–13:00', '☀'], ['active', 'כונן פעיל', 'פעיל'], ['passive', 'כונן פסיבי', 'פסיבי'], ['half', 'תורן חצי', 'חצי'], ['third', 'תורן שליש · עד 20:00', 'שליש']];
+const FZ = [['er1', 'מיון 1', 'מ1'], ['er2', 'מיון 2', 'מ2'], ['dept', 'מחלקה', 'מח'], ['minor', 'מיינור טראומה', 'מיינור'], ['fm', 'שישי בוקר · 08:00–13:00', '☀'], ['half', 'תורן חצי', 'חצי'], ['active', 'כונן פעיל', 'פעיל'], ['passive', 'כונן פסיבי', 'פסיבי'], ['third', 'תורן שליש · עד 20:00', 'שליש']];
 // the final board, edited in place (10/11/2026, Dr. Gozani): a click on a day opens every slot of that day, duty and on-call, past days too.
 // Each slot: a person from those who hold that position (or anyone, with "כולם"), or empty. A change is locked on its board like any manual placement
 function finalDay(d, done) { const mo = d.slice(0, 7), DU = JSON.parse(JSON.stringify(S.cache['duty:' + mo] || {})), CA = JSON.parse(JSON.stringify(S.cache['oncall:' + mo] || {}));
@@ -7303,7 +7303,7 @@ async function vFinal(m, only, force) {
     if (k === 'pa') return only === 'int' ? '' : PA.filter(x => x.d === d).map(x => `<div class="fz pc fz-pa" title="עוזר/ת רופא · משמרת ערב · ${esc(x.name)}"><b>${esc(x.name.split(' ')[0])}</b></div>`).join('');
     const id = k in r ? r[k] : c[k], L = (FZ.find(x => x[0] === k) || [k, k])[1];
     return id ? `<div class="fz pc fz-${k}${id === me ? ' me' : ''}" title="${L} · ${esc(P(id).full || P(id).name)}"><b>${nm(id)}</b></div>` : (clrOn(S.cache['duty:' + mo], d, k) || clrOn(S.cache['oncall:' + mo], d, k)) ? `<div class="fz clrchip"><b>ריק · למלא</b></div>` : ''; };
-  const fRows = (only ? [] : FZ.filter(([k]) => k !== 'fm' || mo < FM_END.slice(0, 7)).map(([k, l]) => ({ k, l: k === 'fm' ? 'שישי בוקר' : k === 'third' ? 'תורן שליש' : l, sep: k === 'active', opt: k === 'third' ? 1 : 0, on: k === 'fm' ? d => fmOn(d) : k === 'half' || k === 'third' ? d => pd(d).getDay() < 5 : null })).concat([{ k: 'tr', l: 'כונן טראומה', opt: 1 }]))
+  const fRows = (only ? [] : FZ.filter(([k]) => k !== 'fm' || mo < FM_END.slice(0, 7)).map(([k, l]) => ({ k, l: k === 'fm' ? 'שישי בוקר' : k === 'third' ? 'תורן שליש' : l, sep: k === 'half', opt: k === 'third' ? 1 : 0, on: k === 'fm' ? d => fmOn(d) : k === 'half' || k === 'third' ? d => pd(d).getDay() < 5 : null })).concat([{ k: 'tr', l: 'כונן טראומה', opt: 1 }]))
     .concat(ish && only !== 'pa' ? [{ k: 'in-dept', l: 'סטאז׳ר', sep: 1 }, { k: 'in-er', l: 'סטאז׳ר מיון', opt: 1 }, { k: 'in-fm', l: 'סטאז׳ר בוקר', opt: 1, on: d => pd(d).getDay() === 5 }] : [])
     .concat(PA.length && only !== 'int' ? [{ k: 'pa', l: 'עוזר/ת רופא', sep: 1 }] : []);
   const fHead = (d, c) => { const w = wingName(wingOf(d, S.cache['duty:' + mo])); return `<th class="wdh${c}${fEd ? ' fed' : ''}"${fEd ? ` data-fed="${d}" title="עריכת היום"` : ''}><b>${+d.slice(8)}</b><small>${DAYS[pd(d).getDay()]}</small>${only ? '' : `<em>${w}</em>`}${orDayTag(d, 1)}</th>`; };
@@ -7336,7 +7336,7 @@ async function deskView(m, who) {
   await load([key, 'week:' + sunday(today), 'week:' + add(sunday(today), 7), 'duty:' + mo, 'duty:' + nx, 'oncall:' + mo, 'oncall:' + nx, 'duty:' + monthOf(add(today, -1))]);
   const pr = await prefsFor(nx), grp = people().filter(p => isC ? (p.role === 'resident' || p.role === 'house') : p.role === 'senior');
   const subm = grp.filter(p => (pr.prefs || {})[p.id]).length, W = S.cache['week:' + sunday(today)] || {};
-  const tonight = isC ? ['er1', 'er2', 'dept', 'minor'].map(k => [POS[k], dutyDay(today)[k]]).filter(x => x[1]) : ['active', 'passive', 'half', 'third'].map(k => [POS[k], callDay(today)[k]]).filter(x => x[1]);
+  const tonight = isC ? ['er1', 'er2', 'dept', 'minor'].map(k => [POS[k], dutyDay(today)[k]]).filter(x => x[1]) : ['half', 'active', 'passive', 'third'].map(k => [POS[k], callDay(today)[k]]).filter(x => x[1]);
   const week = [0, 1, 2, 3, 4].map(i => add(sunday(today), i));
   const me = isC ? P((people().find(p => /צ׳יף/.test(p.title || '')) || {}).id) : P((people().find(p => /סגן/.test(p.title || '')) || {}).id);
   m.innerHTML = `<div class="hero desk">${anat(isC ? 'liver' : 'vessels')}<div style="position:relative;z-index:1"><div class="kick">${isC ? 'שולחן הצ׳יף · המתמחים' : 'שולחן סגן מנהל המערך · הבכירים'}</div><h1>${me.name !== '?' ? 'שלום, ' + esc(drName(me)) : isC ? 'שולחן הצ׳יף' : 'שולחן הסגן'}</h1><p>${isC ? 'חלוקת המתמחים, תורנויות, בקשות וישיבות צוות, במקום אחד' : 'לוח הכוננויות, בקשות הבכירים וישיבות צוות, במקום אחד'}</p></div></div>
@@ -7987,7 +7987,7 @@ async function deputyHome(box, sc) {
   const subm = sen.filter(p => (pr.prefs || {})[p.id]).length, swaps = ((S.cache['oncall:' + mo] || {}).swaps || []).length;
   box.innerHTML = `<div class="dph">
    <div class="chtop dtp">
-    <section class="chc night"><h4>📞 כוננים היום</h4>${['active', 'passive', 'half', 'third'].filter(k => callDay(today)[k] || k !== 'third').map(k => `<div><small>${POS[k]}</small>${nm(callDay(today)[k])}</div>`).join('')}</section>
+    <section class="chc night"><h4>📞 כוננים היום</h4>${['half', 'active', 'passive', 'third'].filter(k => callDay(today)[k] || k !== 'third').map(k => `<div><small>${POS[k]}</small>${nm(callDay(today)[k])}</div>`).join('')}</section>
     <section class="chc"><h4>🌙 תורנים הלילה</h4>${['er1', 'er2', 'dept', 'minor'].map(k => `<div><small>${POS[k]}</small>${nm(dutyDay(today)[k])}</div>`).join('')}</section>
     <section class="chc stat"><h4>מצב המחלקה היום</h4><div><small>בכירים נמצאים</small><b>${here(sen)}/${sen.length}</b></div><div><small>מתמחים נמצאים</small><b>${here(res)}/${res.length}</b></div><div><small>אחרי תורנות</small><b>${postCall(today).length}</b></div><div><small>בחופשה</small><b>${onLeave(today).length}</b></div><div><small>אגף בקבלה</small><b>${esc(wingName(wingOf(today, S.cache['duty:' + mo])))}</b></div></section>
     <section class="chc orx"><h4>${SCAL} חדרי ניתוח היום <b>${rooms.length}</b></h4>${rooms.length ? rooms.map(r => `<div><small>${esc(r.n)}</small><span>${(r.proc || []).map(q => esc(pName(q))).join(' · ') || (r.ids || []).filter(x => P(x.id).role === 'senior').map(x => esc(P(x.id).name)).join(', ') || '—'}</span></div>`).join('') : '<p class="cap">אין חדרים היום</p>'}</section>
@@ -8707,7 +8707,7 @@ async function chiefHome(box) {
   const subm = res.filter(p => (pr.prefs || {})[p.id]).length, swaps = ((S.cache['duty:' + mo] || {}).swaps || []).length;
   const top = `<div class="chtop">
    <section class="chc night"><h4>🌙 תורנים הלילה</h4>${['er1', 'er2', 'dept', 'minor'].map(k => `<div><small>${POS[k]}</small>${nm(dutyDay(today)[k])}</div>`).join('')}</section>
-   <section class="chc call"><h4>📞 כוננים היום</h4>${['active', 'passive', 'half', 'third'].filter(k => callDay(today)[k] || (k !== 'half' && k !== 'third')).map(k => `<div><small>${POS[k]}</small>${nm(callDay(today)[k])}</div>`).join('')}</section>
+   <section class="chc call"><h4>📞 כוננים היום</h4>${['half', 'active', 'passive', 'third'].filter(k => callDay(today)[k] || (k !== 'half' && k !== 'third')).map(k => `<div><small>${POS[k]}</small>${nm(callDay(today)[k])}</div>`).join('')}</section>
    <section class="chc wing"><h4>אגף בקבלה</h4><b class="wbig ${wingCls(w)}">${esc(wingName(w))}</b><small>מחר · ${esc(wingName(w1))}</small></section>
    <section class="chc offc"><h4>לא במחלקה היום</h4>${off.length ? off.map(p => `<div>${nm(p.id)}<small class="r">${esc(whyOff(W, today, p.id))}</small></div>`).join('') : '<p class="cap">כולם נמצאים</p>'}</section></div>
   <section class="tday"><div class="tdh"><b>📚 לימודים ולו״ז השבוע</b><span>⁦${dm(days[0])}–${dm(days[4])}⁩</span><span class="spacer"></span><button class="btn sm" id="chWk">${ICON.week}לתוכנית השבועית</button></div>
@@ -12593,7 +12593,7 @@ async function vWeek2(m, keep) {
   if (!(W.flow || {}).pub) todo.push(['📣', 'התוכנית של השבוע עוד לא פורסמה לצוות']);
   try { const n = (S.data.leaveN != null ? S.data.leaveN : 0); if (n) todo.push(['🏖', n + ' בקשות חופשה מחכות לאישור']); } catch (e) {}
   const msgs = ((S.cache['notes:ticker'] || {}).items || []).slice(0, 4);
-  const NT = [['er1', 'מיון 1', '#A3402E', y], ['er2', 'מיון 2', '#D9704F', y], ['dept', 'מחלקה', '#2F6FA8', y], ['minor', 'מיינור', '#6E7F86', y], ['active', 'כונן פעיל', '#0A7A5E', c], ['passive', 'כונן פסיבי', '#2BA58A', c]].filter(x => x[3][x[0]]);
+  const NT = [['er1', 'מיון 1', '#A3402E', y], ['er2', 'מיון 2', '#D9704F', y], ['dept', 'מחלקה', '#2F6FA8', y], ['minor', 'מיינור', '#6E7F86', y], ['half', 'תורן חצי', '#1F3A5F', c], ['active', 'כונן פעיל', '#0A7A5E', c], ['passive', 'כונן פסיבי', '#2BA58A', c]].filter(x => x[3][x[0]]);
   const isNow = WV2.mode === 'day' ? d === today : ws === sunday(today);
   m.innerHTML = `<div class="w2"><div class="w2-hd"><div class="w2-nav"><h1>תוכנית יומית · ${WV2.mode === 'day' ? `${DAYS[dow]} ⁦${dm(d)}⁩` : `⁦${dm(ws)}–${dm(add(ws, 6))}⁩`}</h1><div class="weeknav2 sm"><button id="w2P" class="arw" aria-label="${WV2.mode === 'day' ? 'יום קודם' : 'שבוע קודם'}"><svg class="chv" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button><button id="w2T" class="w2today${isNow ? ' on' : ''}">${isNow ? (WV2.mode === 'day' ? 'היום' : 'השבוע') : (WV2.mode === 'day' ? '↩ חזרה להיום' : '↩ חזרה לשבוע הנוכחי')}</button><button id="w2N" class="arw" aria-label="${WV2.mode === 'day' ? 'יום הבא' : 'שבוע הבא'}"><svg class="chv" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button></div>${WV2.mode === 'day' ? `<div class="weeknav2 sm w2wk"><button id="w2WP" class="arw" aria-label="שבוע קודם" title="אותו יום בשבוע הקודם"><svg class="chv" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l6 6-6 6M12 6l6 6-6 6"/></svg></button><span class="w2wl">שבוע</span><button id="w2WN" class="arw" aria-label="שבוע הבא" title="אותו יום בשבוע הבא"><svg class="chv" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6l-6 6 6 6M12 6l-6 6 6 6"/></svg></button></div>` : ''}</div><span class="spacer"></span>
       <div class="w2-act">${attStrip(W, edit && !(typeof isChief === 'function' && isChief()))}<button class="wb w2view" id="w2View" data-tip="כל השבוע פרוס בעמוד אחד">${TBI.eye}תצוגה שבועית</button>${tools ? `<div class="wtools" id="w2Tools"><button class="wtl" id="w2Tl" aria-expanded="false"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.2L3.6 17.2a1.6 1.6 0 0 0 2.3 2.3l5.7-5.7a4 4 0 0 0 5.2-5.4l-2.4 2.4-2.1-.4-.4-2.1z"/><path d="M15.5 14.5l4 4"/><path d="M19.5 14.5l-1.5 4"/></svg><b>כלים</b><svg class="chv" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><div class="wtmenu">${edit ? `<button class="wb" id="w2Ed">✎ עריכת התוכנית</button><i class="wsep"></i>` : ''}<button class="wb" id="w2Img">${TBI.eye}תצוגה ותמונה</button><button class="wb" id="w2Pr">${TBI.print}הדפסה</button><button class="wb" id="w2Up">✎ מי עדכן</button></div></div>` : ''}${canNotify() ? flowBtn(W) : ''}</div>
@@ -14131,7 +14131,8 @@ const td3Call = (id, role, col) => { const p = P(id); if (p.name === '?') return
 const td3Min = t => { const m = String(t || '').match(/^(\d{1,2}):(\d{2})/); return m ? +m[1] * 60 + +m[2] : null; };
 // the night in the department, in Dr. Gozani's order (1/11/2026): the senior on call (ER 1), ER 2, the ward, minor trauma | the half shift, active and passive on-call
 const TD4_N1 = [['er1', 'מיון 1', '#E2574C'], ['er2', 'מיון 2', '#E2574C'], ['dept', 'מחלקה', '#3D7FD8'], ['minor', 'מיינור', '#E0A021'], ['fm', '☀ שישי בוקר', '#E0A021']];
-const TD4_N2 = [['half', 'תורן חצי', '#2FA7B5'], ['third', 'תורן שליש', '#2FA7B5'], ['active', 'כונן פעיל', '#8B6BD6'], ['passive', 'כונן פסיבי', '#8B6BD6']];
+// 24/11/2026 (Dr. Gozani): the half on-call belongs to the on-call people, first: half, active, passive
+const TD4_N2 = [['half', 'תורן חצי', '#8B6BD6'], ['active', 'כונן פעיל', '#8B6BD6'], ['passive', 'כונן פסיבי', '#8B6BD6'], ['third', 'תורן שליש', '#2FA7B5']];
 // a long name never gets cut: its text shrinks until the whole name fits in the pill (Dr. Gozani, 31/10/2026)
 function td4Fit(m) { const L = Array.from((m || document).querySelectorAll('.td4-n b')); if (!L.length) return; L.forEach(b => { b.style.fontSize = ''; });
   // read all, then write all: one layout instead of one per name and step
@@ -14414,8 +14415,8 @@ async function vToday(m, who, keep) {
         L.sort((a, b) => (td3Min(a.t) == null ? 9999 : td3Min(a.t)) - (td3Min(b.t) == null ? 9999 : td3Min(b.t)));
         return L.length ? `<div class="td3-r td5-dayr" style="--c:#00967D"><span><i></i>במהלך היום</span><div class="td5-mt td5-dt">${L.map(x => `<span class="k${x.k}">${x.t ? `<time>${esc(x.t)}</time>` : ''}${esc(x.s)}</span>`).join('')}</div></div>` : ''; })()
     // 21/11/2026 (Dr. Gozani): the day's duty and on-call people, after "במהלך היום" and before who is away, in the order of the day
-    + (() => { const Y = dutyDay(wd) || {}, C = callDay(wd) || {}, L1 = [['fm', 'שישי בוקר'], ['half', 'תורן חצי', 1], ['third', 'שליש', 1], ['er1', 'מיון 1'], ['er2', 'מיון 2'], ['dept', 'מחלקה'], ['minor', 'מיינור']].filter(([k, l, c]) => (c ? C : Y)[k]).map(([k, l, c]) => td3Chip((c ? C : Y)[k], l)).join(''),
-        L2 = [['active', 'פעיל'], ['passive', 'פסיבי'], ['trauma', 'טראומה']].filter(([k]) => C[k]).map(([k, l]) => P(C[k]).name !== '?' ? td3Chip(C[k], l) : `<span class="td3-p"><b>${esc(String(C[k]))}</b> <small>${l}</small></span>`).join('');
+    + (() => { const Y = dutyDay(wd) || {}, C = callDay(wd) || {}, L1 = [['fm', 'שישי בוקר'], ['third', 'שליש', 1], ['er1', 'מיון 1'], ['er2', 'מיון 2'], ['dept', 'מחלקה'], ['minor', 'מיינור']].filter(([k, l, c]) => (c ? C : Y)[k]).map(([k, l, c]) => td3Chip((c ? C : Y)[k], l)).join(''),
+        L2 = [['half', 'תורן חצי'], ['active', 'פעיל'], ['passive', 'פסיבי'], ['trauma', 'טראומה']].filter(([k]) => C[k]).map(([k, l]) => P(C[k]).name !== '?' ? td3Chip(C[k], l) : `<span class="td3-p"><b>${esc(String(C[k]))}</b> <small>${l}</small></span>`).join('');
         return (L1 ? `<div class="td3-r td5-ngt" style="--c:#2F4E7A"><span><i></i>תורנים</span><div class="td3-pp">${L1}</div></div>` : '') + (L2 ? `<div class="td3-r td5-ngt" style="--c:#6A4FB0"><span><i></i>כוננים</span><div class="td3-pp">${L2}</div></div>` : ''); })()
     + (nAway ? `<div class="td3-r td4-away" style="--c:#E0A021"><span><i></i>לא נמצאים</span><div class="td3-pp">${away.map(id => td3Chip(id, 'אחרי תורנות', absIc('תורנות'))).join('')}${abs.map(x => td3Chip(x.id, x.why || '', x.why ? absIc(x.why) : '')).join('')}</div></div>` : '');
   // the schedule and teaching, one list by the hour: meetings, clinics, the students' sessions and the interns' seminars, each with its tag
