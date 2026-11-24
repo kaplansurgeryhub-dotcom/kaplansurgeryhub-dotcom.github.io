@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="2330ef336422"><script>(function () {
+<head><meta name="ksh-ver" content="f10549cfebfd"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -3675,7 +3675,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = '2330ef336422'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = 'f10549cfebfd'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achall|achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|rwext|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -5918,7 +5918,8 @@ const RK = { duty: { keys: ['er1', 'er2', 'dept', 'minor', 'fm'], w: { er1: 1000
 const isWkn = d => pd(d).getDay() >= 5;
 // 22/11/2026 (Dr. Gozani): the residents have no Friday morning from December 2026 (there is a minor-trauma night on Thursday, Friday and Saturday);
 // earlier months keep theirs as they were. The interns keep their Friday morning (their own board)
-const FM_END = '2026-12-01', fmOn = d => d < FM_END && pd(d).getDay() === 5;
+// 24/11/2026 (Dr. Gozani): the residents' Friday morning no longer exists: not on the boards, in the build or in the previews
+const FM_END = '2026-11-01', fmOn = d => d < FM_END && pd(d).getDay() === 5;
 function slotsOf(kind, d) { const dow = pd(d).getDay(); return kind === 'duty' ? NIGHTK.concat(fmOn(d) ? ['fm'] : []) : ['active', 'passive'].concat(dow < 5 ? ['half'] : []); }
 // a senior on both boards (7/11/2026, Dr. Gozani) keeps one request per board: the main one is for the on-call board, dt is for the duty board.
 // A senior who only takes nights has just the main one, and it is for the duty board
@@ -14255,7 +14256,7 @@ const td3Ppl = (a, sub) => (a || []).length ? `<div class="td3-pp">${a.map(x => 
 const td3Call = (id, role, col) => { const p = P(id); if (p.name === '?') return ''; const t = td2Tel(p); return `<div style="--c:${col}">${av(p)}<span><b>${esc(drName(p))}</b><small>${esc(role)}</small></span>${t ? `<a href="tel:${t}" aria-label="חיוג ל${esc(p.name)}" onclick="event.stopPropagation()">📞</a><a href="${'https:' + '/' + '/wa.me/972' + t.replace(/^0/, '')}" target="_blank" rel="noopener" aria-label="וואטסאפ ל${esc(p.name)}" onclick="event.stopPropagation()">💬</a>` : ''}</div>`; };
 const td3Min = t => { const m = String(t || '').match(/^(\d{1,2}):(\d{2})/); return m ? +m[1] * 60 + +m[2] : null; };
 // the night in the department, in Dr. Gozani's order (1/11/2026): the senior on call (ER 1), ER 2, the ward, minor trauma | the half shift, active and passive on-call
-const TD4_N1 = [['er1', 'מיון 1', '#E2574C'], ['er2', 'מיון 2', '#E2574C'], ['dept', 'מחלקה', '#3D7FD8'], ['minor', 'מיינור', '#E0A021'], ['fm', '☀ שישי בוקר', '#E0A021']];
+const TD4_N1 = [['er1', 'מיון 1', '#E2574C'], ['er2', 'מיון 2', '#E2574C'], ['dept', 'מחלקה', '#3D7FD8'], ['minor', 'מיינור', '#E0A021']];
 // 24/11/2026 (Dr. Gozani): the half on-call belongs to the on-call people, first: half, active, passive
 const TD4_N2 = [['half', 'תורן חצי', '#8B6BD6'], ['active', 'כונן פעיל', '#8B6BD6'], ['passive', 'כונן פסיבי', '#8B6BD6'], ['third', 'תורן שליש', '#2FA7B5']];
 // a long name never gets cut: its text shrinks until the whole name fits in the pill (Dr. Gozani, 31/10/2026)
@@ -14540,7 +14541,7 @@ async function vToday(m, who, keep) {
         L.sort((a, b) => (td3Min(a.t) == null ? 9999 : td3Min(a.t)) - (td3Min(b.t) == null ? 9999 : td3Min(b.t)));
         return L.length ? `<div class="td3-r td5-dayr" style="--c:#00967D"><span><i></i>במהלך היום</span><div class="td5-mt td5-dt">${L.map(x => `<span class="k${x.k}">${x.t ? `<time>${esc(x.t)}</time>` : ''}${esc(x.s)}</span>`).join('')}</div></div>` : ''; })()
     // 21/11/2026 (Dr. Gozani): the day's duty and on-call people, after "במהלך היום" and before who is away, in the order of the day
-    + (() => { const Y = dutyDay(wd) || {}, C = callDay(wd) || {}, L1 = [['fm', 'שישי בוקר'], ['third', 'שליש', 1], ['er1', 'מיון 1'], ['er2', 'מיון 2'], ['dept', 'מחלקה'], ['minor', 'מיינור']].filter(([k, l, c]) => (c ? C : Y)[k]).map(([k, l, c]) => td3Chip((c ? C : Y)[k], l)).join(''),
+    + (() => { const Y = dutyDay(wd) || {}, C = callDay(wd) || {}, L1 = [['third', 'שליש', 1], ['er1', 'מיון 1'], ['er2', 'מיון 2'], ['dept', 'מחלקה'], ['minor', 'מיינור']].filter(([k, l, c]) => (c ? C : Y)[k]).map(([k, l, c]) => td3Chip((c ? C : Y)[k], l)).join(''),
         L2 = [['half', 'תורן חצי'], ['active', 'פעיל'], ['passive', 'פסיבי'], ['trauma', 'טראומה']].filter(([k]) => C[k]).map(([k, l]) => P(C[k]).name !== '?' ? td3Chip(C[k], l) : `<span class="td3-p"><b>${esc(String(C[k]))}</b> <small>${l}</small></span>`).join('');
         return (L1 ? `<div class="td3-r td5-ngt" style="--c:#2F4E7A"><span><i></i>תורנים</span><div class="td3-pp">${L1}</div></div>` : '') + (L2 ? `<div class="td3-r td5-ngt" style="--c:#6A4FB0"><span><i></i>כוננים</span><div class="td3-pp">${L2}</div></div>` : ''); })()
     + (nAway ? `<div class="td3-r td4-away" style="--c:#E0A021"><span><i></i>לא נמצאים</span><div class="td3-pp">${away.map(id => td3Chip(id, 'אחרי תורנות', absIc('תורנות'))).join('')}${abs.map(x => td3Chip(x.id, x.why || '', x.why ? absIc(x.why) : '')).join('')}</div></div>` : '');
