@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="f10549cfebfd"><script>(function () {
+<head><meta name="ksh-ver" content="5415fbef6acc"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -886,6 +886,10 @@ html.ui2 body .hiset .wmx td.wcl [data-pid].hion,html.ui2 body .wmx.hiset td.wcl
 html.ui2 body #main .hiset [data-pid]:not(.hion){opacity:.2!important;filter:grayscale(1)!important;transition:opacity .2s}
 html.ui2 body #main .hiset [data-pid].hion{opacity:1!important;filter:none!important;background:#F2DA84!important;box-shadow:0 0 0 2px #1D3047,0 2px 8px rgba(29,48,71,.35)!important;border-radius:6px!important;position:relative;z-index:2}
 html.ui2 body #main .hiset [data-pid].hion b{color:#1D3047!important;-webkit-text-fill-color:#1D3047!important;font-weight:900!important}
+
+
+html.ui2 body .wmx.wmx td.wcl .dych{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;max-width:100%!important;min-width:0!important;box-sizing:border-box;display:block;line-height:1.2;overflow-wrap:normal;word-break:keep-all}
+html.ui2 body .wmx.wmx td.wcl .dyst{overflow:visible;min-width:0;max-width:100%}
 </style>
 <script>(function () {
   /* the new look is the only look (7/11/2026, Dr. Gozani): no switch, no per-device choice */
@@ -3675,7 +3679,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = 'f10549cfebfd'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = '5415fbef6acc'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achall|achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|rwext|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -5024,10 +5028,11 @@ function holCls(d) { const x = orDayInfo(d); return !x ? '' : x.off ? ' hol' : x
 // so each role is written once at the side and the cells hold only big names. rows: [{k, l, sep, on(d)}]; cell(d, k) returns the cell's inside
 // 23/11/2026 (Dr. Gozani): a name that is too long for its cell gets a smaller font until it fits, never cut with "…"
 function wmxFitNames(root) {
-  if (!root || !root.querySelectorAll) return;
-  root.querySelectorAll('.wmx td.wcl b, .wmx td.wcl .kd-who').forEach(el => { el.style.removeProperty('font-size'); });
-  root.querySelectorAll('.wmx td.wcl b, .wmx td.wcl .kd-who').forEach(el => { if (el.scrollWidth <= el.clientWidth + 1) return;
-    let f = parseFloat(getComputedStyle(el).fontSize) || 19; while (f > 10 && el.scrollWidth > el.clientWidth + 1) { f -= 1; el.style.setProperty('font-size', f + 'px', 'important'); } });
+  // 24/11/2026 (Dr. Gozani, a rule for everywhere): text never gets cut; whatever does not fit its cell gets a smaller font until it fits
+  if (!root || !root.querySelectorAll) return; const SEL = '.wmx td.wcl b, .wmx td.wcl .kd-who, .wmx td.wcl .clrt, .wmx td.wcl .wn';
+  const L = [...root.querySelectorAll(SEL)]; L.forEach(el => el.style.removeProperty('font-size'));
+  L.forEach(el => { const td = el.closest('td,th'); if (!td) return; const cs = getComputedStyle(td), room = () => Math.min(el.clientWidth || 1e4, td.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight) - 2);
+    if (el.scrollWidth <= room() + 1) return; let f = parseFloat(getComputedStyle(el).fontSize) || 16; while (f > 8 && el.scrollWidth > room() + 1) { f -= .5; el.style.setProperty('font-size', f + 'px', 'important'); } });
 }
 function wkMx(dates, rows, cell, head, o) {
   o = o || {}; const wks = []; let cur = null, t0 = typeof today === 'string' ? today : '';

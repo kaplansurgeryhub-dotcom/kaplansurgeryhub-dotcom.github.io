@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="f10549cfebfd"><script>(function () {
+<head><meta name="ksh-ver" content="5415fbef6acc"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -884,6 +884,10 @@ html.ui2 body .hiset .wmx td.wcl [data-pid].hion,html.ui2 body .wmx.hiset td.wcl
 html.ui2 body #main .hiset [data-pid]:not(.hion){opacity:.2!important;filter:grayscale(1)!important;transition:opacity .2s}
 html.ui2 body #main .hiset [data-pid].hion{opacity:1!important;filter:none!important;background:#F2DA84!important;box-shadow:0 0 0 2px #1D3047,0 2px 8px rgba(29,48,71,.35)!important;border-radius:6px!important;position:relative;z-index:2}
 html.ui2 body #main .hiset [data-pid].hion b{color:#1D3047!important;-webkit-text-fill-color:#1D3047!important;font-weight:900!important}
+
+
+html.ui2 body .wmx.wmx td.wcl .dych{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;max-width:100%!important;min-width:0!important;box-sizing:border-box;display:block;line-height:1.2;overflow-wrap:normal;word-break:keep-all}
+html.ui2 body .wmx.wmx td.wcl .dyst{overflow:visible;min-width:0;max-width:100%}
 </style>
 <script>(function () {
   /* the new look is the only look (7/11/2026, Dr. Gozani): no switch, no per-device choice */
@@ -2108,10 +2112,11 @@ const holCls = d => { const x = holOf(d); return !x ? '' : x.off ? ' hol' : x.no
 // 23/11/2026 (Dr. Gozani, concept 1): every board a table per week, roles in rows, days in columns (same as wkMx in Index.html)
 // 23/11/2026 (Dr. Gozani): a name that is too long for its cell gets a smaller font until it fits, never cut with "…"
 function wmxFitNames(root) {
-  if (!root || !root.querySelectorAll) return;
-  root.querySelectorAll('.wmx td.wcl b, .wmx td.wcl .kd-who').forEach(el => { el.style.removeProperty('font-size'); });
-  root.querySelectorAll('.wmx td.wcl b, .wmx td.wcl .kd-who').forEach(el => { if (el.scrollWidth <= el.clientWidth + 1) return;
-    let f = parseFloat(getComputedStyle(el).fontSize) || 19; while (f > 10 && el.scrollWidth > el.clientWidth + 1) { f -= 1; el.style.setProperty('font-size', f + 'px', 'important'); } });
+  // 24/11/2026 (Dr. Gozani, a rule for everywhere): text never gets cut; whatever does not fit its cell gets a smaller font until it fits
+  if (!root || !root.querySelectorAll) return; const SEL = '.wmx td.wcl b, .wmx td.wcl .kd-who, .wmx td.wcl .clrt, .wmx td.wcl .wn';
+  const L = [...root.querySelectorAll(SEL)]; L.forEach(el => el.style.removeProperty('font-size'));
+  L.forEach(el => { const td = el.closest('td,th'); if (!td) return; const cs = getComputedStyle(td), room = () => Math.min(el.clientWidth || 1e4, td.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight) - 2);
+    if (el.scrollWidth <= room() + 1) return; let f = parseFloat(getComputedStyle(el).fontSize) || 16; while (f > 8 && el.scrollWidth > room() + 1) { f -= .5; el.style.setProperty('font-size', f + 'px', 'important'); } });
 }
 { let ft = null; const fit = () => { clearTimeout(ft); ft = setTimeout(() => wmxFitNames(document.body), 80); };
   new MutationObserver(m => { if (m.some(x => [...x.addedNodes].some(n => n.nodeType === 1 && (n.matches('.wmx,.hcard') || n.querySelector && n.querySelector('.wmx'))))) fit(); }).observe(document.documentElement, { childList: true, subtree: true });
