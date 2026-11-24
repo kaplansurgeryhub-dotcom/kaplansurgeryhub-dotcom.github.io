@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="5415fbef6acc"><script>(function () {
+<head><meta name="ksh-ver" content="62b9a7c9a567"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -888,6 +888,10 @@ html.ui2 body #main .hiset [data-pid].hion b{color:#1D3047!important;-webkit-tex
 
 html.ui2 body .wmx.wmx td.wcl .dych{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;max-width:100%!important;min-width:0!important;box-sizing:border-box;display:block;line-height:1.2;overflow-wrap:normal;word-break:keep-all}
 html.ui2 body .wmx.wmx td.wcl .dyst{overflow:visible;min-width:0;max-width:100%}
+
+
+@media (hover:none){html.ui2 body .wmx .rxb{display:none!important}}
+html.ui2 body .ksd .wmx td.wcl .kd-who{overflow:visible;text-overflow:clip;white-space:nowrap}
 </style>
 <script>(function () {
   /* the new look is the only look (7/11/2026, Dr. Gozani): no switch, no per-device choice */
@@ -2115,8 +2119,10 @@ function wmxFitNames(root) {
   // 24/11/2026 (Dr. Gozani, a rule for everywhere): text never gets cut; whatever does not fit its cell gets a smaller font until it fits
   if (!root || !root.querySelectorAll) return; const SEL = '.wmx td.wcl b, .wmx td.wcl .kd-who, .wmx td.wcl .clrt, .wmx td.wcl .wn';
   const L = [...root.querySelectorAll(SEL)]; L.forEach(el => el.style.removeProperty('font-size'));
-  L.forEach(el => { const td = el.closest('td,th'); if (!td) return; const cs = getComputedStyle(td), room = () => Math.min(el.clientWidth || 1e4, td.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight) - 2);
-    if (el.scrollWidth <= room() + 1) return; let f = parseFloat(getComputedStyle(el).fontSize) || 16; while (f > 8 && el.scrollWidth > room() + 1) { f -= .5; el.style.setProperty('font-size', f + 'px', 'important'); } });
+  // too big = the text overflows its own box, or the box is wider than its cell (offsetWidth: not affected by the sheet's scale)
+  L.forEach(el => { const td = el.closest('td,th'); if (!td) return; const cs = getComputedStyle(td), room = td.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    const big = () => el.scrollWidth > el.clientWidth + 1 || el.offsetWidth > room + 1;
+    if (!big()) return; let f = parseFloat(getComputedStyle(el).fontSize) || 16; while (f > 8 && big()) { f -= .5; el.style.setProperty('font-size', f + 'px', 'important'); } });
 }
 { let ft = null; const fit = () => { clearTimeout(ft); ft = setTimeout(() => wmxFitNames(document.body), 80); };
   new MutationObserver(m => { if (m.some(x => [...x.addedNodes].some(n => n.nodeType === 1 && (n.matches('.wmx,.hcard') || n.querySelector && n.querySelector('.wmx'))))) fit(); }).observe(document.documentElement, { childList: true, subtree: true });
