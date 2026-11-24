@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="629fd42dc0ce"><script>(function () {
+<head><meta name="ksh-ver" content="2330ef336422"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -881,6 +881,11 @@ html.ui2 body .histrip button:hover{background:#E1E7EF}
 html.ui2 body .histrip button.on{background:#1D3047;color:#fff;-webkit-text-fill-color:#fff}
 html.ui2 body .hiset .wmx td.wcl [data-pid].hion,html.ui2 body .wmx.hiset td.wcl [data-pid].hion{background:#F2DA84!important;outline:2px solid #1D3047;border-radius:6px}
 @media (max-width:760px){html.ui2 body .histrip{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}html.ui2 body .histrip button{flex:none}}
+
+
+html.ui2 body #main .hiset [data-pid]:not(.hion){opacity:.2!important;filter:grayscale(1)!important;transition:opacity .2s}
+html.ui2 body #main .hiset [data-pid].hion{opacity:1!important;filter:none!important;background:#F2DA84!important;box-shadow:0 0 0 2px #1D3047,0 2px 8px rgba(29,48,71,.35)!important;border-radius:6px!important;position:relative;z-index:2}
+html.ui2 body #main .hiset [data-pid].hion b{color:#1D3047!important;-webkit-text-fill-color:#1D3047!important;font-weight:900!important}
 </style>
 <script>(function () {
   /* the new look is the only look (7/11/2026, Dr. Gozani): no switch, no per-device choice */
@@ -3580,6 +3585,11 @@ function hiStripAll() { const m = document.getElementById('main'); if (!m) retur
     const set = id => { HIS[key] = id; hiMark(root, id); st.querySelectorAll('[data-his]').forEach(b => b.classList.toggle('on', b.dataset.his === id)); };
     st.onclick = e => { const b = e.target.closest('[data-his]'); if (b) set(HIS[key] === b.dataset.his ? '' : b.dataset.his); };
     if (HIS[key] && N.has(HIS[key])) set(HIS[key]); }); }
+// a click anywhere else (not on a name, the panel or the strip) puts the board back to normal
+document.addEventListener('click', e => { if (e.target.closest('[data-ro],[data-rzo],.histrip,[data-pid],.rq,.rside,.kd-desk,.pab-side,.mbg,.modal,.wtools')) return;
+  const m = document.getElementById('main'); if (!m || !m.querySelector('.hiset')) return;
+  m.querySelectorAll('.hiset').forEach(r => hiMark(r, '')); Object.keys(HIS).forEach(k => { HIS[k] = ''; }); m.querySelectorAll('.histrip .on').forEach(b => b.classList.remove('on'));
+  if (typeof RV !== 'undefined' && RV) RV.open = ''; if (typeof PAB !== 'undefined' && PAB) PAB.open = ''; if (typeof DESK !== 'undefined' && DESK) DESK.hi = ''; });
 function hiMark(root, id) { if (!root) return; root.classList.toggle('hiset', !!id); root.querySelectorAll('[data-pid]').forEach(e => e.classList.toggle('hion', !!id && e.dataset.pid === id)); }
 function rDrag(root, o) {
   if (!root) return;
@@ -3665,7 +3675,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = '629fd42dc0ce'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = '2330ef336422'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achall|achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|rwext|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
