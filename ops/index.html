@@ -88,6 +88,9 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
   // the service worker also keeps the fast app (ops/app/) on the device, so it opens without the network
   if ('serviceWorker' in navigator) try { navigator.serviceWorker.register('sw.js', { scope: './' }).catch(function () {}); } catch (e) {}
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec';
+  // 25/11/2026 (speed): Google's own pages of the portals left the main server (only the files the server reads stay there), so the fallback
+  // to Google's page opens a deployment pinned to a full version. The registration form (?j=) and the TV (?tv=) still come from the main one
+  var FB_EXEC = 'https://script.google.com/macros/s/AKfycbwAmxgCvIIqa1kwQYkK6_b9GhAhi8XQJnvXrHSRJmD2evPnBtkB5ymGHI_kI8bKcZhjgQ/exec';
   var FB = { apiKey: 'AIzaSyDgxuGVjnxJXU4QUYMW8Re8PYLdtRJXR3g', authDomain: 'kaplan-surgical-hub.firebaseapp.com', projectId: 'kaplan-surgical-hub', storageBucket: 'kaplan-surgical-hub.firebasestorage.app', messagingSenderId: '538271511290', appId: '1:538271511290:web:af6678624fa31873818f43' };
   var VAPID = 'BFfAAO23QxF8ETU3IyJuW6_2lOL_uiP5qhkKSrIm6ReOEtrLfmrlDHb3cFpndp4VE_Nce7m56BgnV9cARVIZ3BE';
   var FBV = '10.12.2';
@@ -323,11 +326,12 @@ iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100lvh;border
     function won(f) { if (loaded) return; loaded = true; PF.load = Math.round(performance.now()); var n = $('slowN'); if (n) n.remove();
       var other = f === fr ? f2 : fr; if (other) other.remove(); if (f !== fr) { f.id = 'app'; f.style.visibility = ''; fr = f; fit(); } }
     fr.addEventListener('load', function () { won(fr); });
-    PF.src = Math.round(performance.now()); fr.src = EXEC + SRC;
+    var LQ = new URLSearchParams(SRC), LEX = LQ.get('j') || LQ.get('tv') ? EXEC : FB_EXEC;
+    PF.src = Math.round(performance.now()); fr.src = LEX + SRC;
     var slow = setInterval(function () { if (loaded) return clearInterval(slow); if (document.hidden) return; waited += 1;
       if (waited === 14) { clearInterval(slow); document.body.insertAdjacentHTML('beforeend', '<div id="slowN" style="position:fixed;left:50%;bottom:calc(28px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:rgba(255,255,255,.12);color:#fff;font:600 14px/1.4 system-ui,sans-serif;padding:8px 16px;border-radius:99px;direction:rtl;z-index:5">הטעינה מתעכבת · מנסה שוב…</div>');
         PF.retry = 1; f2 = fr.cloneNode(false); f2.removeAttribute('id'); f2.style.visibility = 'hidden'; f2.addEventListener('load', function () { won(f2); });
-        f2.src = EXEC + SRC + (SRC ? '&' : '?') + 'r=' + Date.now(); fr.parentNode.insertBefore(f2, fr.nextSibling); } }, 1000);
+        f2.src = LEX + SRC + (SRC ? '&' : '?') + 'r=' + Date.now(); fr.parentNode.insertBefore(f2, fr.nextSibling); } }, 1000);
     }
   setTimeout(pushRefresh, 4000);
 })();

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="65cb04d7059d"><script>(function () {
+<head><meta name="ksh-ver" content="d8b09b4bc8af"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -3690,7 +3690,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = '65cb04d7059d'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = 'd8b09b4bc8af'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gday|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achall|achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|rwext|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/, nurse: /^nurse$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -3698,7 +3698,13 @@ function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done
 function klIdb(op, k, v) { return klDb().then(db => db && new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 2000);
   try { const t = db.transaction('m', op === 'get' ? 'readonly' : 'readwrite'), st = t.objectStore('m'), r = op === 'get' ? st.get(k) : st.put(v, k); r.onsuccess = () => fin(op === 'get' ? r.result : 1); r.onerror = () => fin(null); } catch (e) { fin(null); } })).catch(() => null); }
 // a page left open across a deployment gets the code of its own version only: the server answers __stale and the page asks for a refresh
-const klFetch = g => new Promise((ok, no) => google.script.run.withSuccessHandler(ok).withFailureHandler(no).ops_mods(g, KL.v, KL_GATED[g] ? S.code : '')).then(r => { if (r && r.__stale) throw Object.assign(new Error('המערכת עודכנה בינתיים. רענון יפתח את הגרסה החדשה'), { stale: 1 }); return r; });
+// 25/11/2026 (speed): on our own site (the fast app, window.KSH_FAST) a group comes first as a plain file next to the page (app/mods/<group>.<version>.json,
+// written by dev/shell.js from the same sources), from GitHub's servers in a fraction of a second, with no call to Google. The server's ops_mods stays
+// the fallback: a file that is missing (an older or a newer page) or a network error goes to the server as before. A gated group never comes as a file
+// (when there is no file to try, the server is asked in the same moment as before, so the call still goes in one request with the others)
+const klSrv = g => new Promise((ok, no) => google.script.run.withSuccessHandler(ok).withFailureHandler(no).ops_mods(g, KL.v, KL_GATED[g] ? S.code : ''));
+const klSite = g => fetch('mods/' + g + '.' + KL.v + '.json', { credentials: 'omit' }).then(r => { if (!r.ok) throw new Error('no file'); return r.json(); }).then(r => { if (!r || !Array.isArray(r.__o)) throw new Error('bad file'); return r; });
+const klFetch = g => (window.KSH_FAST && KL.v !== 'dev' && !KL_GATED[g] ? klSite(g).catch(() => klSrv(g)) : klSrv(g)).then(r => { if (r && r.__stale) throw Object.assign(new Error('המערכת עודכנה בינתיים. רענון יפתח את הגרסה החדשה'), { stale: 1 }); return r; });
 // a gated group (the OR management) comes only with the code of someone allowed to see it, and is never kept on the device
 const KL_GATED = { oradm: 1 };
 // each script of a module runs as it ran in the page: on its own, in order, so an error in one does not stop the next
@@ -6965,11 +6971,14 @@ const ICON_DOC = '<svg class="steth" viewBox="0 0 24 24" fill="none" stroke="cur
 // the production web app; the boot's execUrl is missing when the page opens from the saved copy
 const OPS_EXEC = 'https:' + '/' + '/script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec';
 const execUrl = () => S.data.execUrl || OPS_EXEC;
+// 25/11/2026 (speed): Google's own pages left the server (only the fast app's pages on our site serve them), so the doctor's app inside the
+// portal (my profile, a preview) opens from the site, next to this page; Google's page of the portal (the fallback) keeps its own address
+const docAppUrl = () => window.KSH_FAST ? 'prefs.html' : execUrl();
 // shown from the first paint (the saved copy has no personal links, so the link itself is checked on the tap)
 const myAppOk = () => !!(S.me && S.me.pid && S.me.role !== 'secretary' && (S.me.role === 'owner' || MY_DESK[S.me.role]));
 function docMode() {
   if (!myAppOk()) return; if (!P(S.me.pid).token) { toast('רגע, המערכת עוד נטענת · נסו שוב בעוד שנייה'); return; }
-  const url = execUrl() + '?p=' + encodeURIComponent(P(S.me.pid).token) + '&dm=1&mine=1', bg = document.createElement('div'); bg.className = 'docv';
+  const url = docAppUrl() + '?p=' + encodeURIComponent(P(S.me.pid).token) + '&dm=1&mine=1', bg = document.createElement('div'); bg.className = 'docv';
   bg.innerHTML = `<div class="doct"><span class="dotl">👤 הפרופיל שלי · ${esc(drName(P(S.me.pid)))}</span><button class="docx" title="חזרה לפורטל">✕ חזרה לפורטל</button></div><iframe src="${esc(url)}" title="האפליקציה שלי" allow="clipboard-write"></iframe>`;
   bg.querySelector('.docx').onclick = () => { bg.remove(); document.body.classList.remove('docon'); };
   document.body.appendChild(bg); document.body.classList.add('docon');
@@ -6998,7 +7007,7 @@ function pfSendHtml(p) {
   return `<b class="psh2">💬 שליחה בוואטסאפ${tel ? '' : ' <small>· אין טלפון: ההודעה תועתק</small>'}</b>${row('inv', '📨', 'הזמנה לאפליקציה', iv)}${row('rem', sen ? '📞' : '🌙', `בקשות ל${sen ? 'כוננויות' : 'תורנויות'} · ${monthName(rmo).split(' ')[0]}`, rm)}`;
 }
 function appPreview(p, portal) {
-  const url = execUrl() + '?p=' + encodeURIComponent(p.token) + '&pv=1';
+  const url = docAppUrl() + '?p=' + encodeURIComponent(p.token) + '&pv=1';
   const bg = document.createElement('div'); bg.className = 'apv'; let mode = matchMedia('(max-width:760px), (max-height:500px) and (max-width:1000px)').matches ? 'full' : 'phone';
   const draw = () => { bg.innerHTML = `<div class="apvb"><div class="apvh"><span>📱 ${esc(drName(p))} · ${esc(p.title || ROLE_NAME[p.role].replace(/ים$/, ''))}</span><span class="spacer"></span><div class="seg sm"><button data-am="phone" class="${mode === 'phone' ? 'on' : ''}">📱 אייפון</button><button data-am="full" class="${mode === 'full' ? 'on' : ''}">💻 מחשב</button>${portal ? '<button data-am="portal">🗂 הפורטל</button>' : ''}</div><button class="x" title="סגירה">✕</button></div>
     <div class="apvf ${mode}"><iframe src="${esc(url)}" title="תצוגה מקדימה"></iframe></div><p class="apvn">תצוגה בלבד: אי אפשר לשמור או לשלוח בשם הרופא/ה וההודעות הפרטיות לא מוצגות</p></div>`;
