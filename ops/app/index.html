@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="7933b144767c"><script>(function () {
+<head><meta name="ksh-ver" content="074b2afd3ee4"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -3748,7 +3748,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = '7933b144767c'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = '074b2afd3ee4'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gday|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achall|achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|rwext|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/, nurse: /^nurse$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -4279,7 +4279,7 @@ function shell() {
   $('#fbBtn').onclick = () => window.fbOpen && fbOpen();
   $('#gdBtn').onclick = () => guideOpen(myGuides(), S.me.name); guideAuto(myGuides(), S.me.name);
   $('#bell').onclick = bellOpen; document.body.classList.toggle('obone', S.me.role === 'owner'); if ($('#obTop')) $('#obTop').onclick = () => obSheet(); bellPaint(); if (typeof obTopStart === 'function') obTopStart();
-  if (S.me.pid && $('#who2')) $('#who2').onclick = () => S.me.role === 'secretary' ? secProfile() : seeView('meprof') ? go('meprof') : profileOpen(P(S.me.pid));
+  if (S.me.pid && $('#who2')) $('#who2').onclick = () => S.me.role === 'secretary' || S.me.role === 'nhead' ? secProfile() : seeView('meprof') ? go('meprof') : profileOpen(P(S.me.pid));
   const unread = (S.data.notif || []).filter(x => x.at > seenTs()); if (unread.length && seenTs()) setTimeout(() => toast(`🔔 ${unread.length === 1 ? unread[0].title : unread.length + ' התראות חדשות'}`), 900); if (!seenTs()) lsSet('ops_seen', new Date().toISOString());
   if ($('#pwChg')) $('#pwChg').onclick = () => S.preview ? toast('תצוגה בלבד') : pwGate(false);
   $('#out').onclick = async () => { if (!confirmOnce('out', 'יציאה מלאה מהמכשיר הזה: בפעם הבאה תצטרכו את הקוד. ללחוץ שוב ליציאה')) return; const d = await devGet(); devSet(''); lsSet('ops_code', ''); try { if (d) await call('ops_devForget', d); if (WR.env && WR.env.ptok) await call('ops_pushOff', S.code, '', WR.env.ptok); } catch (e) {} location.reload(); };
@@ -6671,21 +6671,25 @@ async function vTeam(m) {
   const draw = () => {
     // 16/11/2026 (Dr. Gozani): the OR staff (an OR user linked to the profile, or 'חדר ניתוח' in the title) has its own tab and section, not under the secretaries
     const orU = {}; (S.data.users || []).forEach(u => { if ((u.role === 'ornurse' || u.role === 'orteam') && u.pid) orU[u.pid] = 1; });
-    const isOrP = p => p.role === 'staff' && (!!orU[p.id] || /חדר ניתוח/.test(p.title || '')), roleOk = p => T.role === 'ors' ? isOrP(p) : T.role === 'staff' ? p.role === 'staff' && !isOrP(p) : p.role === T.role;
+    // 26/11/2026: the Care head nurses (a staff record linked to an nhead user, care: wing) have their own section
+    const isCare = p => p.role === 'staff' && !!p.care;
+    const isOrP0 = p => p.role === 'staff' && !p.care && (!!orU[p.id] || /חדר ניתוח/.test(p.title || ''));
+    const isOrP = p => isOrP0(p) || isCare(p), roleOk = p => T.role === 'ors' ? isOrP(p) : T.role === 'staff' ? p.role === 'staff' && !isOrP(p) : p.role === T.role;
     const L = all(), q = T.q.trim(), match = p => (!T.role || roleOk(p)) && (!q || (p.name + ' ' + (p.full || '') + ' ' + (p.title || '') + ' ' + (p.spec || '')).indexOf(q) >= 0);
     const sub = L.filter(p => p.active !== false && (pr.prefs[p.id] || pr.fixed[p.id])).length, act = L.filter(p => p.active !== false).length;
     const leads = T.role ? [] : L.filter(p => lead(p) && !isOrP(p) && match(p)).sort((a, b) => leadRank(a) - leadRank(b));
     const isRot = p => p.role === 'resident' && (p.rot || {}).on;
     const secs = Object.keys(ROLE_NAME).map(r => [r, L.filter(p => p.role === r && !isRot(p) && !(r === 'staff' && isOrP(p)) && match(p) && leads.indexOf(p) < 0)]);
     secs.push(['pa', L.filter(p => p.role === 'pa' && match(p) && leads.indexOf(p) < 0)]);
-    secs.push(['ors', L.filter(p => isOrP(p) && match(p) && leads.indexOf(p) < 0)]);
+    secs.push(['ors', L.filter(p => isOrP0(p) && match(p) && leads.indexOf(p) < 0)]);
+    secs.push(['care', L.filter(p => isCare(p) && match(p) && leads.indexOf(p) < 0)]);
     secs.splice(2, 0, ['rot', L.filter(p => isRot(p) && match(p) && leads.indexOf(p) < 0)]);
-    const SEC = r => r === 'rot' ? 'מתמחים ברוטציה' : r === 'ors' ? 'חדר ניתוח' : r === 'pa' ? 'עוזרי רופא' : ROLE_NAME[r];
+    const SEC = r => r === 'rot' ? 'מתמחים ברוטציה' : r === 'care' ? 'Care · אחראיות סיעוד' : r === 'ors' ? 'חדר ניתוח' : r === 'pa' ? 'עוזרי רופא' : ROLE_NAME[r];
     m.innerHTML = `<div class="hero">${ECG}${anat('liver')}<div style="position:relative;z-index:1"><div class="kick">צוות המערך</div><h1>הצוות שלנו</h1><p>${act} רופאים · ${sub} כבר מילאו את הקישור האישי · ${(S.data.users || []).filter(u => u.pid).length} עם גישה למערכת</p></div><span class="spacer"></span><div class="acts">${BOSS() ? '<button class="btn" id="tBoard">🗂 לוח עבודה</button>' : ''}${T.role === 'staff' ? (owner ? '<button class="btn gold" id="tAddS">＋ מזכירה</button>' : '') : T.role === 'ors' ? (owner ? '<button class="btn gold" id="tAddO">＋ צוות חדר ניתוח</button>' : '') : edit ? `<button class="btn gold" id="tAdd">＋ ${T.role === 'pa' ? 'עוזר/ת רופא' : 'רופא/ה'}</button>` : ''}</div></div>
     <div class="tmbar"><input class="in" id="tQ" placeholder="חיפוש שם, תפקיד או תחום…" value="${esc(T.q)}"></div>
     ${leads.length ? `<h3 class="pfsec"><span>הנהלת המערך</span></h3><div class="pfgrid lead">${leads.map(p => card(p, true)).join('')}</div>` : ''}
     ${(S.data.people || []).some(p => p.out) ? `<div class="tmout"><button class="btn sm ghost" id="tOut">${T.out ? 'הסתרת מי שהוצא/ה מהצוות' : 'הוצאו מהצוות (' + (S.data.people || []).filter(p => p.out).length + ')'}</button></div>` : ''}
-    ${secs.filter(x => x[1].length).map(([r, l]) => `<h3 class="pfsec" style="--rc:${r === 'ors' ? '#2F6FA8' : ROLE_COL[r === 'rot' ? 'resident' : r]}"><span>${SEC(r)}</span><small>${l.length}</small></h3><div class="pfgrid">${l.map(p => card(p)).join('')}</div>`).join('') || '<div class="cap">אין תוצאות</div>'}`;
+    ${secs.filter(x => x[1].length).map(([r, l]) => `<h3 class="pfsec" style="--rc:${r === 'care' ? '#2f7fc1' : r === 'ors' ? '#2F6FA8' : ROLE_COL[r === 'rot' ? 'resident' : r]}"><span>${SEC(r)}</span><small>${l.length}</small></h3><div class="pfgrid">${l.map(p => card(p)).join('')}</div>`).join('') || '<div class="cap">אין תוצאות</div>'}`;
     const qi = $('#tQ'); qi.oninput = () => { T.q = qi.value; const pos = qi.selectionStart; draw(); const n = $('#tQ'); n.focus(); n.setSelectionRange(pos, pos); };
         $$('[data-inv]').forEach(b => b.onclick = e => { e.stopPropagation(); sendInvite(P(b.dataset.inv), () => { if (S.view === 'team' && !document.querySelector('.tmd')) draw(); }); });
     if ($('#tOut')) $('#tOut').onclick = () => { T.out = !T.out; draw(); };
@@ -6985,7 +6989,7 @@ async function vMgmt(m) {
   m.innerHTML = `<div class="hero ppl mini">${anat('facehand')}<div style="position:relative;z-index:1"><div class="kick">צוות · ניהול</div><h1>הנהלת המערך</h1><p>${L.length} אנשים · התפקיד בניהול נוסף לדרגה וכל אחד מופיע גם בקבוצה שלו</p></div>${ed ? '<span class="spacer"></span><button class="btn sm" id="mgEd">✎ עריכה</button>' : ''}</div>
    <div class="mgl">${L.map((x, i) => { const p = P(x.pid); return `<button class="mgc" data-mgp="${p.id}" style="--i:${i}">${av(p)}<span><b>${esc(drName(p))}</b><em>${esc(x.r)}</em><small>${esc(p.title || ROLE_NAME[p.role] || '')}</small></span><i>${i + 1}</i></button>`; }).join('') || '<p class="cap">עוד לא הוגדרה רשימה</p>'}</div>`;
   // the wing secretaries (7/11/2026, Dr. Gozani): under the management too, each with her profile
-  const SEC = (S.data.people || []).filter(p => p.role === 'staff' && p.active !== false).sort((a, b) => String(a.wing || a.title || '').localeCompare(String(b.wing || b.title || '')));
+  const SEC = (S.data.people || []).filter(p => p.role === 'staff' && !p.care && p.active !== false).sort((a, b) => String(a.wing || a.title || '').localeCompare(String(b.wing || b.title || '')));
   if (SEC.length) m.querySelector('.mgl').insertAdjacentHTML('afterend', `<div class="mgsec"><b>מזכירות האגפים</b><small>תוכנית הניתוחים, החדרים והישיבות</small></div><div class="mgl">${SEC.map((p, i) => `<button class="mgc" data-mgp="${p.id}" style="--i:${i}">${av(p)}<span><b>${esc(drName(p))}</b><em>${esc(p.title || 'מזכירות')}</em><small>${esc(p.phone || '')}</small></span></button>`).join('')}</div>`);
   loadPhotos(L.map(x => P(x.pid)).concat(SEC), () => { if (S.view === 'mgmt') vMgmt(m); });
   m.querySelectorAll('[data-mgp]').forEach(b => b.onclick = () => { const p = (S.data.people || []).find(x => x.id === b.dataset.mgp) || P(b.dataset.mgp); profileOpen(p); });
@@ -7088,7 +7092,7 @@ function cardOpen(p) {
 // a secretary's profile must be complete before she starts (3/11/2026, Dr. Gozani): full name, phone, mail and a photo, like everyone
 const secMiss = p => { const tel = String(p.phone || '').replace(/\D/g, '').replace(/^972/, '0'); return [!p.first && 'שם פרטי', !p.last && 'שם משפחה', !/^05\d{8}$/.test(tel) && 'טלפון נייד', !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(p.email || '') && 'מייל', !p.ph && 'תמונה', p.sex !== 'm' && p.sex !== 'f' && 'זכר / נקבה'].filter(Boolean); };
 function secProfileGate() {
-  if (S.preview || window.__noSecGate || S.me.role !== 'secretary' || !S.me.pid || document.querySelector('.spf')) return;
+  if (S.preview || window.__noSecGate || (S.me.role !== 'secretary' && S.me.role !== 'nhead') || !S.me.pid || document.querySelector('.spf')) return;
   if (document.querySelector('.tosbg, .pwbg')) return setTimeout(secProfileGate, 800);
   const p = P(S.me.pid); if (p && p.id && secMiss(p).length) secProfile(true);
 }
@@ -7097,7 +7101,7 @@ function secProfile(must) {
   const u = phOf(p), f = (k, l, ph, t) => `<div><label class="f">${l}</label><input class="in" data-sp="${k}" value="${esc(p[k] || '')}" placeholder="${esc(ph || '')}"${t ? ` type="${t}" dir="ltr"` : ''}></div>`;
   const bg = document.createElement('div'); bg.className = 'mbg'; bg.innerHTML = `<div class="modal spf" role="dialog" aria-modal="true"><div class="mh"><div><b>${must ? '👋 לפני שמתחילים: הפרופיל שלך' : 'הפרופיל שלי'}</b><br><small>${must ? 'פעם אחת: שם מלא, זכר / נקבה, טלפון, מייל ותמונה. הצוות רואה את הפרטים והתמונה שלך' : 'הצוות רואה את הפרטים והתמונה שלך'}</small></div>${must ? '' : '<button class="x2" id="spX" title="סגירה">✕</button>'}</div>
    <div class="mb"><div class="spf-ph"><span class="pcph${u ? ' has' : ''}" id="spPh"${u ? ` style="background-image:url(${u})"` : ''}>${u ? '' : esc((p.name || '?').charAt(0))}</span><label class="btn sm">📷 ${u ? 'החלפת תמונה' : 'הוספת תמונה'}<input type="file" id="spPhF" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" hidden></label></div>
-   <div class="spf-g">${f('first', 'שם פרטי')}${f('last', 'שם משפחה')}</div>${f('sub', 'תפקיד', 'למשל: מזכירת אגף צפון')}<div><label class="f">זכר / נקבה <b style="color:var(--red)">*</b></label><select class="in" data-sp="sex"><option value="">בחירה</option><option value="m"${p.sex === 'm' ? ' selected' : ''}>זכר</option><option value="f"${p.sex === 'f' ? ' selected' : ''}>נקבה</option></select></div><div class="spf-g">${f('phone', 'טלפון', '050-0000000', 'tel')}${f('email', 'מייל', '', 'email')}</div>
+   <div class="spf-g">${f('first', 'שם פרטי')}${f('last', 'שם משפחה')}</div>${f('sub', 'תפקיד', S.me.role === 'nhead' ? 'למשל: אחראית אגף צפון' : 'למשל: מזכירת אגף צפון')}<div><label class="f">זכר / נקבה <b style="color:var(--red)">*</b></label><select class="in" data-sp="sex"><option value="">בחירה</option><option value="m"${p.sex === 'm' ? ' selected' : ''}>זכר</option><option value="f"${p.sex === 'f' ? ' selected' : ''}>נקבה</option></select></div><div class="spf-g">${f('phone', 'טלפון', '050-0000000', 'tel')}${f('email', 'מייל', '', 'email')}</div>
    <div><label class="f">יום הולדת <small>(יום וחודש, בשביל הברכה בלוח האירועים)</small></label><div class="spf-g"><select class="in" id="spBd"><option value="">יום</option>${[...Array(31)].map((_, i) => `<option${+String(p.bday || '').slice(3) === i + 1 ? ' selected' : ''}>${i + 1}</option>`).join('')}</select><select class="in" id="spBm"><option value="">חודש</option>${['ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', 'יוני', 'יולי', 'אוגוסט', 'ספטמבר', 'אוקטובר', 'נובמבר', 'דצמבר'].map((n, i) => `<option value="${i + 1}"${+String(p.bday || '').slice(0, 2) === i + 1 ? ' selected' : ''}>${n}</option>`).join('')}</select></div></div>
    <label class="f">קצת עליי</label><textarea class="in" data-sp="bio" maxlength="400" rows="3" placeholder="כמה מילים לצוות: במה אפשר לפנות אלייך, שעות, משהו שכדאי לדעת">${esc(p.bio || '')}</textarea>
    <div class="spf-a"><span class="cap" id="spSt"></span><button class="btn primary" id="spSave">שמירה</button></div></div></div>`;
@@ -9065,8 +9069,10 @@ function tbGroups(L, row, q, gal) {
     // the secretaries and the OR staff (8/11/2026, Dr. Gozani: really all the department)
     const U = S.data.users || [], orU = U.filter(u => u.role === 'ornurse' || u.role === 'orteam'), orPid = {}; orU.forEach(u => { if (u.pid) orPid[u.pid] = u.role; });
     const isOr = p => !!orPid[p.id] || /חדר ניתוח/.test(p.title || ''), staff = (S.data.people || []).filter(p => p.role === 'staff' && p.active !== false);
-    const SEC = staff.filter(p => !isOr(p) && hit(p.name + ' ' + (p.full || '') + ' ' + (p.title || '')));
+    const SEC = staff.filter(p => !isOr(p) && !p.care && hit(p.name + ' ' + (p.full || '') + ' ' + (p.title || '')));
+    const CAR = staff.filter(p => p.care && hit(p.name + ' ' + (p.full || '') + ' ' + (p.title || '')));
     if (SEC.length) out += sec('מזכירות', SEC.length, '#6B5E4C') + wrap(SEC.map(p => lite(av(p), p.full || p.name, p.title || 'מזכירות', '#6B5E4C', [p.phone || '', p.wing ? 'אגף ' + (p.wing === 'n' ? 'צפון' : 'דרום') : ''], p.id)).join(''));
+    if (CAR.length) out += sec('Care · אחראיות סיעוד', CAR.length, '#2f7fc1') + wrap(CAR.map(p => lite(av(p), p.full || p.name, p.title || 'אחראית סיעוד', '#2f7fc1', [p.phone || ''], p.id)).join(''));
     const ORP = (S.data.people || []).filter(p => p.active !== false && isOr(p) && hit(p.name + ' ' + (p.full || '') + ' ' + (p.title || '')));
     const orRole = r => r === 'ornurse' ? 'אחראי/ת חדר ניתוח' : 'צוות חדר ניתוח';
     const ORX = ORP.map(p => lite(av(p), p.full || p.name, p.title || orRole(orPid[p.id]), '#2F6FA8', [p.phone || ''], p.id))
