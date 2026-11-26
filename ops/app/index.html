@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="4099b460eeec"><script>(function () {
+<head><meta name="ksh-ver" content="cb8afcca7e1b"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -3750,7 +3750,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = '4099b460eeec'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = 'cb8afcca7e1b'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gday|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achall|achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|rwext|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/, nurse: /^(nurse|carestaff)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -7076,7 +7076,8 @@ function pfSendHtml(p) {
   return `<b class="psh2">💬 שליחה בוואטסאפ${tel ? '' : ' <small>· אין טלפון: ההודעה תועתק</small>'}</b>${row('inv', '📨', 'הזמנה לאפליקציה', iv)}${row('rem', sen ? '📞' : '🌙', `בקשות ל${sen ? 'כוננויות' : 'תורנויות'} · ${monthName(rmo).split(' ')[0]}`, rm)}`;
 }
 function appPreview(p, portal) {
-  const url = docAppUrl() + '?p=' + encodeURIComponent(p.token) + '&pv=1';
+  // 26/11/2026: an intern's preview opens the interns' app (in the fast app the page is chosen here, not by the server's route)
+  const url = (p.app === 'intern' && window.KSH_FAST ? 'intern.html' : docAppUrl()) + '?p=' + encodeURIComponent(p.token) + '&pv=1';
   const bg = document.createElement('div'); bg.className = 'apv'; let mode = matchMedia('(max-width:760px), (max-height:500px) and (max-width:1000px)').matches ? 'full' : 'phone';
   const draw = () => { bg.innerHTML = `<div class="apvb"><div class="apvh"><span>📱 ${esc(drName(p))} · ${esc(p.title || ROLE_NAME[p.role].replace(/ים$/, ''))}</span><span class="spacer"></span><div class="seg sm"><button data-am="phone" class="${mode === 'phone' ? 'on' : ''}">📱 אייפון</button><button data-am="full" class="${mode === 'full' ? 'on' : ''}">💻 מחשב</button>${portal ? '<button data-am="portal">🗂 הפורטל</button>' : ''}</div><button class="x" title="סגירה">✕</button></div>
     <div class="apvf ${mode}"><iframe src="${esc(url)}" title="תצוגה מקדימה"></iframe></div><p class="apvn">תצוגה בלבד: אי אפשר לשמור או לשלוח בשם הרופא/ה וההודעות הפרטיות לא מוצגות</p></div>`;
