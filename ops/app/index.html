@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="9d35b1b062a1"><script>(function () {
+<head><meta name="ksh-ver" content="89e0f8d2bd31"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -3748,7 +3748,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = '9d35b1b062a1'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = '89e0f8d2bd31'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gday|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achall|achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|rwext|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/, nurse: /^nurse$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -6140,7 +6140,8 @@ function whyNot(ctx, out, d, k, id, T, relax, noBlk) {
     const night = x => NIGHTK.some(n => x[n] === id);
     if (k === 'fm') { if (t.fm - mine >= 1) return 'כבר עשה/תה שישי בוקר'; if (night(prev)) return 'אחרי לילה'; }
     else { if (night(prev) || night(next)) return 'לילה צמוד'; if (next.fm === id) return 'שישי בוקר למחרת'; if (isWkn(d) && t.we - (mine && isWkn(d) ? 1 : 0) >= 2 && !relax) return 'כבר 2 סופ״ש'; }
-  } else if (k === 'active' && (prev.active === id || next.active === id)) return 'כונן פעיל צמוד';
+  }
+  // 26/11/2026 (Dr. Gozani, for Dr. Miller): two active on-call days in a row are allowed, no limit
   return '';
 }
 const sq = a => { if (a.length < 2) return 0; const m = a.reduce((x, y) => x + y, 0) / a.length; return a.reduce((s, x) => s + (x - m) * (x - m), 0); };
@@ -6432,7 +6433,7 @@ function rosterView(m, kind) {
       B.onclick = e => { e.stopPropagation(); set(!T.classList.contains('open')); };
       T.querySelector('.wtmenu').addEventListener('click', () => setTimeout(() => { if (RV.keep) RV.keep = 0; else set(false); }, 0));
       if (!window.__rtOut) { window.__rtOut = 1; document.addEventListener('click', e => { const t = $('#rTools'); if (t && !e.target.closest('#rTools')) t.classList.remove('open'); }); document.addEventListener('keydown', e => { if (e.key === 'Escape') { const t = $('#rTools'); if (t) t.classList.remove('open'); } }); } } }
-    $('#rChk').onclick = () => { const A = [], slots = [], NK = isDuty ? ['er1', 'er2', 'dept', 'minor'] : ['active'];
+    $('#rChk').onclick = () => { const A = [], slots = [], NK = isDuty ? ['er1', 'er2', 'dept', 'minor'] : [];
       ctx.dates.forEach(d => { const r = R.days[d] || {}; slotsOf(kind, d).forEach(k => { const id = r[k]; if (id) A.push({ d, id, k, l: POS[k], n: NK.indexOf(k) >= 0 }); else slots.push({ d, l: POS[k] }); }); });
       const au = rAudit(ctx, R); boardCheck({ title: (isDuty ? 'תורנויות' : 'כוננויות') + ' · ' + monthName(S.month), slots, A, fmK: isDuty ? 'fm' : '', rules: au.filter(x => x.lvl === 'red' && !/ריק ב-/.test(x.t)).map(x => x.t), reqs: au.filter(x => x.lvl !== 'red').map(x => x.t), pub: 'rPub' }); };
     if ($('#ironGo')) $('#ironGo').onclick = () => $('#rChk').click();
@@ -15962,9 +15963,11 @@ window.FB_WHERE = () => 'מערכת הניהול · ' + ((typeof S !== 'undefine
   const shrink = f => new Promise((ok, no) => { const r = new FileReader(); r.onerror = () => no(new Error('לא הצלחתי לקרוא את הקובץ'));
     r.onload = () => { const d = String(r.result); if (/^data:application\/pdf/.test(d)) return d.length > 48000 ? no(new Error('ה-PDF גדול מדי (עד כ-35KB). צרפו קישור')) : ok(d);
       if (!/^data:image[/]/.test(d)) return no(new Error('אפשר לצרף תמונה או PDF'));
-      const im = new Image(); im.onload = () => { let w = Math.min(1100, im.width), h = Math.round(im.height * w / im.width), q = .8, out = '';
-        for (let k = 0; k < 8; k++) { const c = document.createElement('canvas'); c.width = w; c.height = h; c.getContext('2d').drawImage(im, 0, 0, w, h); out = c.toDataURL('image/jpeg', q); if (out.length < 46000) break; q = Math.max(.35, q - .1); w = Math.round(w * .8); h = Math.round(h * .8); }
-        out.length < 48000 ? ok(out) : no(new Error('התמונה גדולה מדי')); }; im.onerror = () => no(new Error('לא הצלחתי לקרוא את התמונה')); im.src = d; };
+      // 26/11/2026 (Dr. Gozani): a screenshot arrived blurry (it was squeezed to ~46KB). Now up to 2200px wide and ~600KB, split on the server
+      const im = new Image(); im.onload = () => { const LIM = 600000; let w = Math.min(2200, im.width), h = Math.round(im.height * w / im.width), q = .9, out = '';
+        if (/^data:image\/png/.test(d) && d.length < LIM && im.width <= 2200) return ok(d);
+        for (let k = 0; k < 10; k++) { const c = document.createElement('canvas'); c.width = w; c.height = h; const g = c.getContext('2d'); g.imageSmoothingQuality = 'high'; g.fillStyle = '#fff'; g.fillRect(0, 0, w, h); g.drawImage(im, 0, 0, w, h); out = c.toDataURL('image/jpeg', q); if (out.length < LIM) break; if (q > .7) q -= .08; else { w = Math.round(w * .85); h = Math.round(h * .85); } }
+        out.length < LIM + 30000 ? ok(out) : no(new Error('התמונה גדולה מדי')); }; im.onerror = () => no(new Error('לא הצלחתי לקרוא את התמונה')); im.src = d; };
     r.readAsDataURL(f); });
   window.fbOpen = function (start) {
     const a = auth(); if (!a || !a.v) return;
@@ -16030,7 +16033,7 @@ window.FB_WHERE = () => 'מערכת הניהול · ' + ((typeof S !== 'undefine
         catch (er) { m.className = 'fbmsg no'; m.textContent = er.message || 'השליחה נכשלה'; bg.querySelectorAll('.fbcb button').forEach(y => y.disabled = false); } };
       if (qs('#fbSendRe')) qs('#fbSendRe').onclick = () => send(false);
       if (qs('#fbSendDone')) qs('#fbSendDone').onclick = () => send(true);
-      all('[data-fbf]', b => b.onclick = async () => { const tx = b.textContent; b.textContent = 'פותח…'; try { const f = await run('ops_fbFile', [a.k, a.v, b.dataset.fbx, b.dataset.fbf]); const w = window.open('', '_blank'); if (w) { if (/^data:image/.test(f.data)) w.document.write('<img src="' + f.data + '" style="max-width:100%">'); else w.location.href = f.data; } } catch (er) { alert(er.message); } b.textContent = tx; });
+      all('[data-fbf]', b => b.onclick = async () => { const tx = b.textContent; b.textContent = 'פותח…'; try { const f = await run('ops_fbFile', [a.k, a.v, b.dataset.fbx, b.dataset.fbf]); const w = window.open('', '_blank'); if (w) { if (/^data:image/.test(f.data)) w.document.write('<meta name="viewport" content="width=device-width,initial-scale=1"><body style="margin:0;background:#222"><img src="' + f.data + '" style="max-width:100%;display:block;margin:auto"></body>'); else w.location.href = f.data; } } catch (er) { alert(er.message); } b.textContent = tx; });
       if (qs('#fbGo')) qs('#fbGo').onclick = async () => {
         const t = qs('#fbTx').value.trim(), m = qs('#fbMsg'); if (t.length < 3) { m.className = 'fbmsg no'; m.textContent = 'נא לכתוב כמה מילים'; return; }
         const go = qs('#fbGo'); go.disabled = true; go.textContent = 'שולח…';

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="9d35b1b062a1"><script>(function () {
+<head><meta name="ksh-ver" content="89e0f8d2bd31"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -3815,9 +3815,11 @@ function kzBindRs(el, redraw) { el.querySelectorAll('[data-kzrs]').forEach(b => 
   const shrink = f => new Promise((ok, no) => { const r = new FileReader(); r.onerror = () => no(new Error('לא הצלחתי לקרוא את הקובץ'));
     r.onload = () => { const d = String(r.result); if (/^data:application\/pdf/.test(d)) return d.length > 48000 ? no(new Error('ה-PDF גדול מדי (עד כ-35KB). צרפו קישור')) : ok(d);
       if (!/^data:image[/]/.test(d)) return no(new Error('אפשר לצרף תמונה או PDF'));
-      const im = new Image(); im.onload = () => { let w = Math.min(1100, im.width), h = Math.round(im.height * w / im.width), q = .8, out = '';
-        for (let k = 0; k < 8; k++) { const c = document.createElement('canvas'); c.width = w; c.height = h; c.getContext('2d').drawImage(im, 0, 0, w, h); out = c.toDataURL('image/jpeg', q); if (out.length < 46000) break; q = Math.max(.35, q - .1); w = Math.round(w * .8); h = Math.round(h * .8); }
-        out.length < 48000 ? ok(out) : no(new Error('התמונה גדולה מדי')); }; im.onerror = () => no(new Error('לא הצלחתי לקרוא את התמונה')); im.src = d; };
+      // 26/11/2026 (Dr. Gozani): a screenshot arrived blurry (it was squeezed to ~46KB). Now up to 2200px wide and ~600KB, split on the server
+      const im = new Image(); im.onload = () => { const LIM = 600000; let w = Math.min(2200, im.width), h = Math.round(im.height * w / im.width), q = .9, out = '';
+        if (/^data:image\/png/.test(d) && d.length < LIM && im.width <= 2200) return ok(d);
+        for (let k = 0; k < 10; k++) { const c = document.createElement('canvas'); c.width = w; c.height = h; const g = c.getContext('2d'); g.imageSmoothingQuality = 'high'; g.fillStyle = '#fff'; g.fillRect(0, 0, w, h); g.drawImage(im, 0, 0, w, h); out = c.toDataURL('image/jpeg', q); if (out.length < LIM) break; if (q > .7) q -= .08; else { w = Math.round(w * .85); h = Math.round(h * .85); } }
+        out.length < LIM + 30000 ? ok(out) : no(new Error('התמונה גדולה מדי')); }; im.onerror = () => no(new Error('לא הצלחתי לקרוא את התמונה')); im.src = d; };
     r.readAsDataURL(f); });
   window.fbOpen = function (start) {
     const a = auth(); if (!a || !a.v) return;
@@ -3883,7 +3885,7 @@ function kzBindRs(el, redraw) { el.querySelectorAll('[data-kzrs]').forEach(b => 
         catch (er) { m.className = 'fbmsg no'; m.textContent = er.message || 'השליחה נכשלה'; bg.querySelectorAll('.fbcb button').forEach(y => y.disabled = false); } };
       if (qs('#fbSendRe')) qs('#fbSendRe').onclick = () => send(false);
       if (qs('#fbSendDone')) qs('#fbSendDone').onclick = () => send(true);
-      all('[data-fbf]', b => b.onclick = async () => { const tx = b.textContent; b.textContent = 'פותח…'; try { const f = await run('ops_fbFile', [a.k, a.v, b.dataset.fbx, b.dataset.fbf]); const w = window.open('', '_blank'); if (w) { if (/^data:image/.test(f.data)) w.document.write('<img src="' + f.data + '" style="max-width:100%">'); else w.location.href = f.data; } } catch (er) { alert(er.message); } b.textContent = tx; });
+      all('[data-fbf]', b => b.onclick = async () => { const tx = b.textContent; b.textContent = 'פותח…'; try { const f = await run('ops_fbFile', [a.k, a.v, b.dataset.fbx, b.dataset.fbf]); const w = window.open('', '_blank'); if (w) { if (/^data:image/.test(f.data)) w.document.write('<meta name="viewport" content="width=device-width,initial-scale=1"><body style="margin:0;background:#222"><img src="' + f.data + '" style="max-width:100%;display:block;margin:auto"></body>'); else w.location.href = f.data; } } catch (er) { alert(er.message); } b.textContent = tx; });
       if (qs('#fbGo')) qs('#fbGo').onclick = async () => {
         const t = qs('#fbTx').value.trim(), m = qs('#fbMsg'); if (t.length < 3) { m.className = 'fbmsg no'; m.textContent = 'נא לכתוב כמה מילים'; return; }
         const go = qs('#fbGo'); go.disabled = true; go.textContent = 'שולח…';
