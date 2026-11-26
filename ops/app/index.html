@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="0b2e8e2095d8"><script>(function () {
+<head><meta name="ksh-ver" content="d3276fe9ac23"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -3748,7 +3748,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = '0b2e8e2095d8'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = 'd3276fe9ac23'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gday|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achall|achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|rwext|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/, nurse: /^nurse$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -9373,6 +9373,36 @@ function secInviteText(name, wing) {
 בברכה,
 ד״ר גיא גוזני`;
 }
+// Care (26/11/2026, Dr. Gozani): the head nurse of a wing. Built like the secretaries' invite: the portal link here, made personal by invPers
+function nheadInviteText(name, wing) {
+  const w = WINGN[wing] || '';
+  return `שלום ${name} 🌷
+שמחים לצרף אותך ל-KSH Care: סידור העבודה של צוות הסיעוד${w ? ' באגף ' + w : ''}, בתוך המערכת של המערך הכירורגי בקפלן (Kaplan Surgical Hub). את האחראית של האגף במערכת: מה שאת קובעת כאן הצוות רואה אצלו בטלפון.
+
+✨ מה יש לך שם
+• 👥 הצוות שלך: פרופיל לכל אחת, היקף משרה, הכשרות, העדפות קבועות וקישור אישי
+• 📨 הרשמה: קישור אחד לקבוצת הוואטסאפ של האגף. כל אחת נרשמת בעצמה, את מאשרת, ושולחת לה את הקישור האישי בוואטסאפ בלחיצה
+• 📅 הסידור השבועי: בנייה אוטומטית לפי הבקשות והמכסות, בדיקה ופרסום לצוות
+• 🛏️ שיבוץ לחדרים בכל משמרת
+• 📝 בקשות, 🔁 החלפות ו-🏖️ חופשות: הכול מגיע אלייך לאישור במקום אחד
+
+🚀 הצעד הראשון: בלשונית "הרשמה" מעתיקים את ההודעה לקבוצה ושולחים אותה בקבוצת הוואטסאפ של האגף.
+
+📱 באייפון (פעם אחת)
+1. פותחים את הקישור בספארי: ${OPS_PORTAL}
+2. מקלידים את הקוד האישי (בהודעה הבאה) ומשאירים מסומן "להישאר מחובר/ת במכשיר הזה"
+3. כשהאייפון מציע לשמור את הקוד מאשרים. מעכשיו הכניסה עם Face ID
+4. מוסיפים למסך הבית: כפתור השיתוף (ריבוע עם חץ למעלה) ← "הוספה למסך הבית" ← "הוסף"
+
+💻 במחשב
+1. פותחים את אותו קישור בכרום
+2. נכנסים עם אותו קוד ומשאירים מסומן "להישאר מחובר/ת"
+3. מתקינים כאפליקציה: סמל ההתקנה בקצה שורת הכתובת ← "התקנה"
+
+שאלה או תקלה? פונים אליי ישירות.
+בברכה,
+ד״ר גיא גוזני`;
+}
 // the OR head nurse: GEAR, the week in the operating rooms
 function orInviteText(name) {
   return `שלום ${name},
@@ -9459,16 +9489,16 @@ const secCodeText = (name, code) => `${name}, הקוד האישי שלך לכנ�
 // the invitation (3/11/2026): a personal link that names who signs in, and the first code 0000 that works only on that link.
 // No code is shown or sent: right after 0000 the person picks a personal password
 const invLink = u => OPS_PORTAL + '?i=' + u.inv;
-const invPers = (t, u) => t.replace(new RegExp(OPS_PORTAL.replace(/[.?]/g, '\\$&') + '(?![A-Za-z0-9._-])', 'g'), invLink(u)).replace(/הקוד האישי \(בהודעה הבאה\)|הקוד \(בהודעה הבאה\)/g, 'בכניסה הראשונה בוחרים סיסמה אישית').replace(/נכנסים עם אותו קוד/g, 'נכנסים עם הסיסמה האישית');
+const invPers = (t, u) => t.replace(new RegExp(OPS_PORTAL.replace(/[.?]/g, '\\$&') + '(?![A-Za-z0-9._-])', 'g'), invLink(u)).replace(/מקלידים את הקוד האישי \(בהודעה הבאה\)/g, 'בכניסה הראשונה בוחרים סיסמה אישית').replace(/הקוד האישי \(בהודעה הבאה\)|הקוד \(בהודעה הבאה\)/g, 'בכניסה הראשונה בוחרים סיסמה אישית').replace(/מציע לשמור את הקוד/g, 'מציע לשמור את הסיסמה').replace(/נכנסים עם אותו קוד/g, 'נכנסים עם הסיסמה האישית');
 const invMail = (name, u) => `שלום ${name},\n\nהקישור האישי שלך ל-Kaplan Surgical Hub:\n${invLink(u)}\n\n${u.pw ? 'נכנסים עם הסיסמה האישית שלך.' : (u.fc ? 'בכניסה הראשונה בוחרים' : 'בכניסה הראשונה מקלידים את הקוד שקיבלת בוואטסאפ ומיד בוחרים') + ' סיסמה אישית (8 תווים לפחות, אותיות באנגלית וספרות).'} הקישור הזה שלך בלבד, אין להעביר אותו.\n\nבברכה,\nד״ר גיא גוזני`;
 // one source for a manager's invite (5/11/2026): the card, the green button in the team card and "שליחת הזמנות" all send this text
 const secInvName = u => { const p = u.pid ? P(u.pid) : {}; return (u.role === 'chief' || u.role === 'deputy') && u.pid ? drFirst(p) : (p.first || p.name || u.name || '').trim(); };
-const secInvBase = u => { const p = u.pid ? P(u.pid) : {}, name = secInvName(u); return u.role === 'orteam' ? orTeamInviteText(name) : u.role === 'ornurse' ? orInviteText(name) : u.role === 'chief' ? chiefInviteText(p) : u.role === 'deputy' ? deputyInviteText(p) : ['director', 'students', 'pamgr'].indexOf(u.role) >= 0 ? inviteSector(u.role, p) : u.pid && /סטאז/.test(mgmtOf(u.pid)) ? inviteSector('intmgr', p) : secInviteText(name, u.wing); };
+const secInvBase = u => { const p = u.pid ? P(u.pid) : {}, name = secInvName(u); return u.role === 'nhead' ? nheadInviteText(name, u.wing) : u.role === 'orteam' ? orTeamInviteText(name) : u.role === 'ornurse' ? orInviteText(name) : u.role === 'chief' ? chiefInviteText(p) : u.role === 'deputy' ? deputyInviteText(p) : ['director', 'students', 'pamgr'].indexOf(u.role) >= 0 ? inviteSector(u.role, p) : u.pid && /סטאז/.test(mgmtOf(u.pid)) ? inviteSector('intmgr', p) : secInviteText(name, u.wing); };
 const secInvText = u => { const base = secInvBase(u); return !u.inv ? base : (!u.pw && !u.fc && u.code) ? base.replace(new RegExp(OPS_PORTAL.replace(/[.?]/g, '\\$&') + '(?![A-Za-z0-9._-])', 'g'), invLink(u)) : invPers(base, u); };
 async function secInvite(u) {
   if (!u || !u.id) return toast('קודם שומרים את המשתמש');
   if (!u.inv) { try { const r = await call('ops_userInvite', S.code, u.id); S.data.users = r.users; u = r.users.find(x => x.id === u.id) || u; } catch (e) { return toast(e.message); } }
-  const p = u.pid ? P(u.pid) : {}, name = secInvName(u), phone = p.phone || '', mail = p.email || '', bg = document.createElement('div'); bg.className = 'mbg';
+  const p = u.pid ? P(u.pid) : {}, name = secInvName(u), phone = p.phone || u.phone || '', mail = p.email || '', bg = document.createElement('div'); bg.className = 'mbg';
   const base = secInvBase(u);
   const st = u.pw ? '🔐 יש לה/ו סיסמה אישית · הקישור רק מזהה מי נכנס/ת' : u.fc ? '⏳ עוד לא נכנס/ה · כניסה ראשונה עם 0000 מהקישור' : '⏳ עוד לא נכנס/ה · נכנסים עם הקוד שנשלח. לכניסה עם 0000: איפוס מלא למטה';
   const oldCode = !u.pw && !u.fc && u.code;
