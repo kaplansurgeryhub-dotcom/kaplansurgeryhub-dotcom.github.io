@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="7f8b9dedfd28"><script>(function () {
+<head><meta name="ksh-ver" content="bc65ef5664d3"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -3753,7 +3753,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = '7f8b9dedfd28'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = 'bc65ef5664d3'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gday|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achall|achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|rwext|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/, nurse: /^(nurse|carestaff)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -8545,13 +8545,15 @@ const PV_VIEW = { owner: 'hq', director: 'director', deputy: 'deputy', chief: 'c
 function startPreview(role, pid, name) {
   if (S.preview || S.me.role !== 'owner') return;
   S.realMe = S.me; S.preview = { role, pid, name };
-  const U = (S.data.users || []).find(x => x.pid && x.pid === pid && x.role === role) || (S.data.users || []).find(x => x.pid && x.pid === pid) || {};
+  const U = (S.data.users || []).find(x => x.pid && x.pid === pid && x.role === role) || (S.data.users || []).find(x => x.pid && x.pid === pid) || (S.data.users || []).find(x => x.role === role && name && x.name === name) || {};
+  if (role === 'nhead' && !U.wing && pid) { const pp = P(pid) || {}; if (pp.care) U.wing = pp.care; }
   S.me = { id: 'pv', name: name || (pid ? P(pid).name : role), role, pid: pid || '', scope: Array.isArray(U.scope) ? U.scope.slice() : [], acc: U.acc || {}, wing: U.wing || '' };
   if (role === 'secretary' && pid) PT.secPid = pid;
+  window.__nuTab = 'home'; if (typeof NU !== 'undefined') { NU.d = null; NU.w = S.me.wing || ''; }
   S.view = PV_VIEW[role] || landing(); shell();
   pvBar();
 }
-function endPreview() { if (!S.preview) return; S.me = S.realMe; S.preview = null; const b = $('#pvBar'); if (b) b.remove(); document.body.classList.remove('pv'); S.view = 'profiles'; shell(); }
+function endPreview() { if (!S.preview) return; S.me = S.realMe; S.preview = null; window.__nuTab = 'home'; if (typeof NU !== 'undefined') NU.d = null; const b = $('#pvBar'); if (b) b.remove(); document.body.classList.remove('pv'); S.view = 'profiles'; shell(); }
 function pvBar() {
   let b = $('#pvBar'); if (!b) { b = document.createElement('div'); b.id = 'pvBar'; document.body.appendChild(b); }
   document.body.classList.add('pv');
@@ -9564,7 +9566,8 @@ async function secInvite(u) {
   bg.querySelector('#siLk').onclick = () => { copy(invLink(u)); toast('הקישור של ' + name + ' הועתק'); };
   bg.querySelector('#siCp').onclick = () => { copy(tx()); toast('ההזמנה הועתקה'); };
   bg.querySelector('#siMc').onclick = () => { copy(bg.querySelector('#siM').value); toast('המייל הועתק'); };
-  bg.querySelector('#siWa').onclick = () => { if (phone) waOpen(phone, tx()); else { copy(tx()); toast('אין טלפון בפרופיל: ההזמנה הועתקה'); } };
+  // 27/11/2026 (Dr. Gozani): a WhatsApp invite is marked sent (sentlog inv), so the card and Care's heads say so and offer to send again
+  bg.querySelector('#siWa').onclick = () => { if (phone) waOpen(phone, tx()); else { copy(tx()); toast('אין טלפון בפרופיל: ההזמנה הועתקה'); } if (u.pid) sentMark({ id: u.pid }, 'inv').then(() => { if (S.view === 'nurse' && typeof nuDraw === 'function') nuDraw(); }); };
   if (bg.querySelector('#siCode')) bg.querySelector('#siCode').onclick = () => { copy(secCodeText(name, u.code)); toast('הודעת הקוד הועתקה'); };
   if (bg.querySelector('#siCodeWa')) bg.querySelector('#siCodeWa').onclick = () => waOpen(phone, secCodeText(name, u.code));
   bg.querySelector('#siRs').onclick = async () => { if (!confirmOnce('fresh' + u.id, 'איפוס מלא של ' + name + ': ללחוץ שוב לאישור')) return;
@@ -13968,7 +13971,7 @@ document.addEventListener('click', e => { const b = e.target.closest && e.target
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
   const ic = k => MW_I[k] ? `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${MW_I[k]}</svg>` : '';
   // m = { id, title, rg, days: [{ dn, n, t, we, past, chips: [{ k, t, s }] }], sum: [..], note, nav }
-  window.mwHtml = m => `<section class="mw" id="${esc(m.id || 'mwBox')}"><div class="mw-h"><b>${esc(m.title || 'השבוע שלי')}</b><span class="rg">${esc(m.rg || '')}</span>${m.nav ? `<span class="mw-nav"><button type="button" data-mwd="-7" aria-label="השבוע הקודם" title="השבוע הקודם">›</button>${m.nav === 'away' ? '<button type="button" class="nw" data-mwd="0">השבוע</button>' : ''}<button type="button" data-mwd="7" aria-label="השבוע הבא" title="השבוע הבא">‹</button></span>` : ''}</div>
+  window.mwHtml = m => `<section class="mw" id="${esc(m.id || 'mwBox')}"><div class="mw-h"><b>${esc(m.title || 'השבוע שלי')}</b><span class="rg">${esc(m.rg || '')}</span>${m.nav ? `<span class="mw-nav"><button type="button" data-mwd="-7" aria-label="השבוע הקודם" title="השבוע הקודם"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>${m.nav === 'away' ? '<button type="button" class="nw" data-mwd="0">השבוע</button>' : ''}<button type="button" data-mwd="7" aria-label="השבוע הבא" title="השבוע הבא"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button></span>` : ''}</div>
     <div class="mw-r">${(m.days || []).map(d => `<div class="mw-d${d.t ? ' t' : ''}${d.we ? ' we' : ''}${d.past && !d.t ? ' past' : ''}"><div class="mw-dh"><b>${esc(d.dn)}</b><span>${esc(d.n)}</span></div><div class="mw-cs">${(d.chips || []).length ? d.chips.map(c => `<div class="mw-c ${esc(c.k)}">${ic(c.k)}<span>${esc(c.t)}${c.s ? `<small>${esc(c.s)}</small>` : ''}</span></div>`).join('') : `<div class="mw-e">${d.we ? 'פנוי' : '—'}</div>`}</div></div>`).join('')}</div>
     ${(m.sum || []).length ? `<div class="mw-s">${m.sum.map(x => `<span>${esc(x)}</span>`).join('')}</div>` : ''}${m.note ? `<div class="mw-n">${esc(m.note)}</div>` : ''}</section>`;
   // a week's days from its Sunday (yyyy-mm-dd), with today and the weekend marked
@@ -13977,13 +13980,13 @@ document.addEventListener('click', e => { const b = e.target.closest && e.target
       return { iso, dn: DN[i], n: x.getDate() + '.' + (x.getMonth() + 1), t: iso === today, we: i >= 5, past: iso < today, chips: fill(iso, i) || [] }; }); };
 
   // which scores have a meeting: a word in the morning meetings' text and the calculator it opens
-  window.KZB_W = [[/capr?ini|קפריני/i, 'caprini', 'Caprini', 'מניעת VTE במנותח · מדד איכות'], [/alvarado|אלוורדו/i, 'alv', 'Alvarado', 'כאב בטן · חשד לדלקת תוספתן'], [/qsofa/i, 'qsofa', 'qSOFA', 'אלח דם'], [/ranson|רנסון/i, 'ranson', 'Ranson', 'דלקת לבלב חריפה'], [/bisap/i, 'bisap', 'BISAP', 'דלקת לבלב חריפה'], [/wells|וולס/i, 'wdvt', 'Wells', 'DVT ו-PE']];
+  window.KZB_W = [[/capr?ini|קפריני/i, 'caprini', 'Caprini', 'מניעת VTE במנותח'], [/alvarado|אלוורדו/i, 'alv', 'Alvarado', 'כאב בטן · חשד לדלקת תוספתן'], [/qsofa/i, 'qsofa', 'qSOFA', 'אלח דם'], [/ranson|רנסון/i, 'ranson', 'Ranson', 'דלקת לבלב חריפה'], [/bisap/i, 'bisap', 'BISAP', 'דלקת לבלב חריפה'], [/wells|וולס/i, 'wdvt', 'Wells', 'DVT ו-PE']];
   // the banner: from two days before the meeting until 10:00 on its day. day = 'yyyy-mm-dd', txt = that day's morning meetings, dn = the day's name
   window.kzbHtml = (day, txt, today, hour, dn) => { if (!day || !txt) return ''; const m = KZB_W.find(w => w[0].test(txt)); if (!m) return '';
     const p = s => { const a = s.split('-'); return new Date(+a[0], +a[1] - 1, +a[2]); }, gap = Math.round((p(day) - p(today)) / 864e5); if (gap < 0 || gap > 3 || (gap === 0 && hour >= 10)) return '';
     const tm = (String(txt).match(/(\d{1,2}:\d\d)[^\n]*(?:capr?ini|קפריני|alvarado|qsofa|ranson|bisap|wells)/i) || [])[1] || '';
     const when = gap === 0 ? 'היום' : gap === 1 ? 'מחר' : 'ביום ' + dn;
-    return `<button type="button" class="kzb" data-kzb="${m[1]}"><span class="kzi"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8 7h8M8 11h2M12 11h2M16 11h0M8 15h2M12 15h2M8 18.5h8"/></svg></span><span class="kzt"><small>ישיבת הבוקר ${when}${tm ? ' · ' + tm : ''} · מדד איכות</small><b>מחשבון ${m[2]} בכיס</b><span>${m[3]} · מחשבים בלחיצה, לפני הישיבה</span></span><span class="kzg">למחשבון ←</span></button>`; };
+    return `<button type="button" class="kzb" data-kzb="${m[1]}"><span class="kzi"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8 7h8M8 11h2M12 11h2M16 11h0M8 15h2M12 15h2M8 18.5h8"/></svg></span><span class="kzt"><small>לקראת ישיבת הבוקר ${when}${tm ? ' · ' + tm : ''}</small><b>מחשבון ${m[2]} בכיס</b><span>${m[3]}</span></span><span class="kzg">למחשבון ←</span></button>`; };
   window.mwRange = days => days.length ? `⁦${days[0].n}–${days[6].n}⁩` : '';
   // the box's arrows: one handler per page, the page says what to do with a move of n days (0 = back to this week)
   window.mwBind = (root, go) => { if (!root || root.__mw) return; root.__mw = 1; root.addEventListener('click', e => { const b = e.target.closest('[data-mwd]'); if (b && b.closest('.mw')) { e.preventDefault(); e.stopPropagation(); go(+b.dataset.mwd); } }, true); };
