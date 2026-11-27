@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="bea99de5d099"><script>(function () {
+<head><meta name="ksh-ver" content="52b710ed7f16"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -1375,6 +1375,8 @@ main{min-width:0;padding:22px 26px 60px;position:relative}
 .rgrid{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:12px;align-items:start}.rgrid.ro1{grid-template-columns:minmax(0,1fr)}
 /* 27/11/2026 (Dr. Miller): the on-call board: the ledger on the left, the requests table under the board */
 .rgrid.rgl{grid-template-columns:minmax(0,1fr) 365px}
+/* 27/11/2026 (Dr. Gozani): the ledger never scrolls sideways: fixed columns, a long name wraps, the headers wrap, the bar stays inside the name cell */
+.rld .rldw{overflow-x:hidden}.rld .rlt{table-layout:fixed;width:100%}.rld .rlt th:first-child{width:30%}.rld .rlt th{white-space:normal;line-height:1.15;font-size:11px;padding:4px 1px;vertical-align:bottom}.rld .rlt th i{display:block;margin:0 auto 2px}.rld .rlt td{padding:3px 1px;font-size:13.5px}.rld .rlt td.nm{white-space:normal;max-width:none;overflow:hidden}.rld .rlt td.nm b{font-size:13.5px;line-height:1.2;overflow-wrap:anywhere;display:block}.rld .rlt td.t{font-size:15px}.rld .rlb{max-width:100%;height:3px}.rld .rlt tfoot td{font-size:11.5px;white-space:normal}
 .pareq .parql{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;max-height:none;overflow:visible}@media (max-width:900px){.pareq .parql{grid-template-columns:1fr}}
 .csw.csw{padding:16px;display:block!important;text-align:start}.csw .csh{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}.csw .csh h2{margin:0;font-size:20px;color:#1D3047}.csw .csh .spacer{flex:1}.csg{margin-top:10px;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}.cscd{all:unset;box-sizing:border-box;cursor:pointer;text-align:center;background:#fff;border:1px solid #E3DCCD;border-radius:14px;padding:14px 8px 12px;display:flex;flex-direction:column;align-items:center;gap:2px}.cscd:hover{border-color:#1D3047}.cscd b{font-size:15px;font-weight:800;color:#1B2433;line-height:1.25}.cscd small{display:block;color:var(--muted);font-size:12px}@media (max-width:600px){.csg{grid-template-columns:repeat(2,minmax(0,1fr))}}.cscd .csq{display:inline-block;font-style:normal;font-size:11px;font-weight:800;color:#0A6A52;background:#E2F3EC;border-radius:999px;padding:0 8px;margin-top:3px}.csav.csav{width:62px!important;height:62px!important;min-width:62px;font-size:20px!important;border-radius:50%;margin:0 auto 6px;display:grid;place-items:center;color:#fff;font-style:normal;font-weight:800;background-size:cover;background-position:center}.csav.csav.big{width:96px!important;height:96px!important;font-size:30px!important}
 .rld{padding:10px 10px 8px}.rld .rldw{max-height:none}.rldh b{display:block;font-size:16px;font-weight:900;color:#1D3047}.rldh small{color:var(--muted);font-size:12px}
@@ -3813,7 +3815,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = 'bea99de5d099'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = '52b710ed7f16'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gday|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achall|achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|rwext|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/, nurse: /^(nurse|carestaff)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
