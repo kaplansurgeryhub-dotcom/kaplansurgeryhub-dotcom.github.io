@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="62d0827b39b4"><script>(function () {
+<head><meta name="ksh-ver" content="6bea49eb4314"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -973,6 +973,11 @@ html.ui2 body .rpw .wmx.wmx,html.ui2 body .rpwsnap .wmx.wmx,html.ui2 body .rpwid
 @media print{html.ui2 body .wmx.wmx{--wmin:0px}}
 html.ui2 body .wmx.wmx .wmt.wcut{width:calc(var(--wrl) + (100% - var(--wrl)) * var(--n) / 7)!important;min-width:calc(var(--wrl) + (var(--wmin) - var(--wrl)) * var(--n) / 7)!important}
 html.ui2 body .wmx.wmx .wmt.wcut.wfirst{margin-inline-start:max(calc((100% - var(--wrl)) * (7 - var(--n)) / 7), calc((var(--wmin) - var(--wrl)) * (7 - var(--n)) / 7))}
+
+
+html.ui2 body .wmx.wmx td.wcl .pk .lki{top:auto!important;bottom:2px;left:3px}
+html.ui2 body .wmx.wmx td.wcl .pk.lk b,html.ui2 body .wmx.wmx td.wcl [data-dg] b{padding-inline-end:15px}
+html.ui2 body .wmx.wmx .wdh .pahr{color:rgba(255,255,255,.82)!important;-webkit-text-fill-color:rgba(255,255,255,.82)!important;font-size:11px}
 </style>
 <script>(function () {
   /* the new look is the only look (7/11/2026, Dr. Gozani): no switch, no per-device choice */
@@ -3823,7 +3828,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = '62d0827b39b4'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = '6bea49eb4314'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gday|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achall|achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|rwext|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/, nurse: /^(nurse|carestaff)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
@@ -5250,6 +5255,9 @@ function wmxFitNames(root) {
   L.forEach(el => { const td = el.closest('td,th'); if (!td) return; const cs = getComputedStyle(td), room = td.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
     const big = () => el.scrollWidth > el.clientWidth + 1 || el.offsetWidth > room + 1;
     if (!big()) return; let f = parseFloat(getComputedStyle(el).fontSize) || 16; while (f > 8 && big()) { f -= .5; el.style.setProperty('font-size', f + 'px', 'important'); } });
+  // 28/11/2026 (Dr. Gozani): on a board marked weq every name gets the same size, the smallest that fits
+  const EQ = root.matches && root.matches('.wmx.weq') ? [root] : [...root.querySelectorAll('.wmx.weq')];
+  EQ.forEach(w => { const N = [...w.querySelectorAll('td.wcl .pk b')].filter(b => b.textContent.trim().length > 1); if (!N.length) return; const mn = Math.min(...N.map(b => parseFloat(getComputedStyle(b).fontSize) || 16)); N.forEach(b => b.style.setProperty('font-size', mn + 'px', 'important')); });
 }
 function wkMx(dates, rows, cell, head, o) {
   o = o || {}; const wks = []; let cur = null, t0 = typeof today === 'string' ? today : '';
@@ -13633,7 +13641,7 @@ SUBL.gor = 'חדר ניתוח'; SUBD.gor = ['🏥', 'פרופיל, היום, ה�
 .pafair .pfg{display:flex;gap:8px;margin-bottom:8px}.pafair .pfg>div{flex:1;background:#FFFDF8;border:1px solid #E7DCC8;border-radius:12px;padding:6px 10px}.pafair .pfg b{display:block;font-size:18px}.pafair .pfg small{color:var(--muted);font-size:11.5px}
 .pfr{border-inline-start:4px solid var(--pc);background:#fff;border-radius:10px;padding:7px 10px;margin-bottom:6px;border-top:1px solid #EEE6D8}.pfr1{display:flex;gap:10px;align-items:baseline}.pfr1>b{flex:1}.pfr1 span{font-size:12.5px;color:#5E6B73}.pfr1 span b{font-size:15px;color:#1D3047}
 .pfr2{display:flex;flex-wrap:wrap;gap:6px;margin-top:3px;font-size:12px;color:#5E6B73}.pfr2 .ok{color:#0A7A5E;font-weight:700}.pfr2 .lo{color:#A3402E;font-weight:700}.pfdw{display:flex;gap:4px;margin-top:5px}.pfdw i{font-style:normal;font-size:11.5px;font-weight:700;background:color-mix(in srgb,var(--pc) 16%,#fff);border-radius:6px;padding:1px 6px}.pfdw i.z{background:#F3F3F1;color:#AAB}
-.pahr{font-size:10.5px;font-weight:700;color:#6B7C85;margin-inline-start:6px}
+.pahr{display:block;font-size:10.5px;font-weight:700;color:#6B7C85;margin:1px 0 0;white-space:nowrap;line-height:1.2}
 .pao2{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:12px;align-items:start}.pao2s{display:flex;flex-direction:column;gap:12px}.pao2 .tday{margin:0}
 @media (max-width:900px){.pao2{grid-template-columns:1fr}}
 .pfqw{display:flex;flex-direction:column;gap:12px}.pfhow h4,.pfqw .card>h4{margin:0 0 8px;color:#1D3047}.pfhow ol{margin:0 0 10px;padding-inline-start:20px;line-height:1.7;font-size:14px}
