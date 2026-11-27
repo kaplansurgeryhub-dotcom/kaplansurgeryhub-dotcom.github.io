@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="04547056e013"><script>(function () {
+<head><meta name="ksh-ver" content="81f34e9db421"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -2532,11 +2532,12 @@ function dayGrid(d, D) {
   const T = [];
   if (!empty) {
     const dcT = k => { const L = dcOf(D, k); return (D[k] || []).concat(L.filter(id => !(D[k] || []).some(y => y.id === id)).map(id => ({ id }))).map(y => ({ id: y.id, dc: L.indexOf(y.id) >= 0 })); };
-    T.push(tile('ביקור צפון', dcT('rn'), 'n'), tile('ביקור דרום', dcT('rs'), 's'), tile('ייעוצים', D.consult, 'g'), tile('אחראי מיון', D.erlead, 'e'), tile('מיון', D.er, 'e'), tile('אשפוז יום', D.day, 'g'), tile('טרום ניתוח', D.preop, 'c'), tile('מרפאות', clinOf(D).length ? [] : D.clinic, 'c', clinHtml(D, x => `<span class="nm">${esc(P(x.id).name)}</span>`, () => '')));
+    T.push(tile('ביקור צפון', dcT('rn'), 'n'), tile('ביקור דרום', dcT('rs'), 's'), tile('ייעוצים', D.consult, 'g'), tile('אחראי מיון', D.erlead, 'e'), tile('מיון', D.er, 'e'), tile('מרפאות', clinOf(D).length ? [] : D.clinic, 'c', clinHtml(D, x => `<span class="nm">${esc(P(x.id).name)}</span>`, () => '')), tile('טרום ניתוח', D.preop, 'c'));
     // the rooms (8/11/2026, Dr. Gozani): a header with the room, its surgeons and how many cases, then each case on its own row: a number, the operation and the approach as a tag
     const AP = { L: ['לפרוסקופי', 'l'], R: ['רובוטי', 'r'], O: ['פתוח', 'o'] };
     (D.or || []).filter(r => (r.ids || []).length || (r.proc || []).length).forEach(r => { const SQ = orSeqP(r), J = (SQ.cases || []).map((c, j) => c.indexOf(me) >= 0 || SQ.all.indexOf(me) >= 0 ? j : -1).filter(j => j >= 0), pr = r.proc || [], mine = (r.ids || []).some(x => x.id === me);
       T.push(`<div class="gt o gor${mine ? ' me' : ''}"><div class="goh"><b>${esc(r.n)}</b>${pr.length ? `<em>${pr.length === 1 ? 'ניתוח אחד' : pr.length + ' ניתוחים'}</em>` : ''}</div>${!pr.length && (r.ids || []).length ? `<div class="gns">${r.ids.map(x => nmS(x.id)).join('')}</div>` : SQ.all.length ? `<div class="gall"><small>כל היום</small><div class="gns">${SQ.all.map(id => nmS(id)).join('')}</div></div>` : ''}${pr.length ? `<ol class="gop">${pr.map((q, j) => { const a = String(q || '').split('@'), ap = AP[a[1]], tm = SQ.cases[j] || []; return `<li${J.indexOf(j) >= 0 ? ' class="mi"' : ''}><div class="gcr"><i>${j + 1}</i><span>${esc(a[0])}</span>${ap ? apxTag(a[1], 'sm') : ''}</div>${tm.length ? `<div class="gct">${tm.map(id => nmS(id)).join('')}</div>` : SQ.all.length ? '' : '<div class="gct none">טרם שובץ צוות</div>'}</li>`; }).join('')}</ol>` : ''}</div>`); });
+    T.push(tile('אשפוז יום', D.day, 'g'));
   }
     sbP(d).forEach(x => T.push(sbTile(x)));
   // 8/11/2026 (Dr. Gozani): no night strip here, the night is in the boards and in "me today"
@@ -2777,7 +2778,7 @@ function vHome() {
   ${we && !tmr ? '' : `<section class="hcard htoday${tmr ? ' tmr' : ''}"><div class="hch"><h3>🏥 ${tmr ? ddT + ' <small class="tmrk">' + DAYS[pd(dd).getDay()] + ' ' + dm(dd) + '</small>' : 'היום במערך'}</h3>${ext ? '' : '<button class="lnk" data-go="week">לתוכנית השבועית ›</button>'}</div>
     ${att ? `<div class="tdatt">${att}</div>` : ''}
     ${DD.morning && !ext ? `<div class="tdmt"><small>ישיבות בוקר</small><div>${txLines(DD.morning).map(x => `<span>${x.t ? `<time>${esc(x.t)}</time>` : ''}${esc(x.s)}</span>`).join('')}</div></div>` : ''}
-    <div class="tdw">${[['rn', 'ביקור צפון', 'n'], ['rs', 'ביקור דרום', 's'], ['consult', 'ייעוצים', 'g'], ['erlead', 'אחראי מיון', 'e'], ['er', 'מיון', 'e'], ['day', 'אשפוז יום', 'g'], ['preop', 'טרום ניתוח', 'c'], ['clinic', 'מרפאות', 'c']].filter(([k]) => (DD[k] || []).length).map(([k, l, c]) => `<div class="tdr ${c}"><small>${l}</small><div class="nms">${DD[k].map(x => nm(x.id)).join('')}</div></div>`).join('')}
+    <div class="tdw">${[['rn', 'ביקור צפון', 'n'], ['rs', 'ביקור דרום', 's'], ['consult', 'ייעוצים', 'g'], ['erlead', 'אחראי מיון', 'e'], ['er', 'מיון', 'e'], ['clinic', 'מרפאות', 'c'], ['preop', 'טרום ניתוח', 'c'], ['day', 'אשפוז יום', 'g']].filter(([k]) => (DD[k] || []).length).map(([k, l, c]) => `<div class="tdr ${c}"><small>${l}</small><div class="nms">${DD[k].map(x => nm(x.id)).join('')}</div></div>`).join('')}
     ${orR0(DD).map(r => `<div class="tdr o"><small>${esc(r.n)}${(r.proc || []).length ? `<em>${r.proc.length} ניתוחים</em>` : ''}</small><div class="nms">${(r.ids || []).map(x => nm(x.id)).join('') || '<span class="cap">—</span>'}</div></div>`).join('')}
     ${ext ? '' : (() => { const tm = x => { const m = String(x || '').match(/(\d{1,2}):(\d\d)/); return m ? +m[1] * 60 + +m[2] : 9999; };
       const L = txLines(DD.meet).filter(x => x.t || x.s).map(x => ({ t: x.t, s: x.s, k: 'm' })).concat(clinOf(DD).map(x => ({ t: x.t || '', s: x.n || 'מרפאה', k: 'c' })));
@@ -2884,7 +2885,7 @@ function snEdit(key) { const [ws, d, ri, j] = key.split('|'), x = myCases().find
   bg.querySelector('#snOk').onclick = async () => { const t = bg.querySelector('#snT').value.trim(); if (/\d{6,}|ת[\.״"']?ז|בן\s{0,2}\d|בת\s{0,2}\d|גיל\s{0,2}\d/.test(t)) return toast2('בלי פרטי מטופלים');
     try { const r = await call('ops_caseNoteMe', TOKEN, ws, d, +ri, +j, t, k); const R = weekOf(d).days[d].or[+ri]; R.cx = R.cx || []; while (R.cx.length <= +j) R.cx.push({}); R.cx[+j] = R.cx[+j] || {}; if (r.sn) R.cx[+j].sn = r.sn; else delete R.cx[+j].sn; bg.remove(); toast2('נשמר · צוות חדר הניתוח יראה'); show(); } catch (e) { toast2(e.message); } }; }
 // ===== the weekly plan: the whole department, my name highlighted =====
-const PROWS = [['morning', 'ישיבת בוקר', 'tx'], ['rn', 'ביקור צפון'], ['rs', 'ביקור דרום'], ['consult', 'ייעוצים'], ['erlead', 'אחראי מיון'], ['er', 'מיון'], ['day', 'אשפוז יום'], ['preop', 'טרום ניתוח'], ['clinic', 'מרפאות'], ['or', 'חדרי ניתוח', 'or'], ['night', 'תורנים בלילה', 'night'], ['call', 'כוננים', 'call'], ['nint', 'סטאז׳רים · תורנויות', 'nint'], ['npa', 'עוזרי רופא · ערב', 'npa'], ['abs', 'לא נמצאים', 'abs']];
+const PROWS = [['morning', 'ישיבת בוקר', 'tx'], ['rn', 'ביקור צפון'], ['rs', 'ביקור דרום'], ['consult', 'ייעוצים'], ['erlead', 'אחראי מיון'], ['er', 'מיון'], ['clinic', 'מרפאות'], ['preop', 'טרום ניתוח'], ['or', 'חדרי ניתוח', 'or'], ['day', 'אשפוז יום'], ['night', 'תורנים בלילה', 'night'], ['call', 'כוננים', 'call'], ['nint', 'סטאז׳רים · תורנויות', 'nint'], ['npa', 'עוזרי רופא · ערב', 'npa'], ['abs', 'לא נמצאים', 'abs']];
 function planCell(d, k) {
   const D = dayOf(d) || {}, n = id => `<span class="pn${id === A.me.id ? ' me' : ''}" data-p="${id}">${esc(P(id).name)}</span>`;
   if (k === 'morning') return D.morning ? `<div class="txt2">${txHtml(D.morning)}</div>` : '';
