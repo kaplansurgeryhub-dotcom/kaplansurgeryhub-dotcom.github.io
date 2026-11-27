@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="81f34e9db421"><script>(function () {
+<head><meta name="ksh-ver" content="2eb6dbff5f19"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -942,6 +942,13 @@ html.ui2 body .wsheet.wpA .wpw.n{background:#1F5FA8!important;color:#fff!importa
 html.ui2 body .wsheet.wpA .wpwe{display:flex;gap:10px;border:1.5px solid #111;padding:3px 8px}html.ui2 body .wsheet.wpA .wpwe>div{flex:1}
 html.ui2 body .wsheet.wpA .wpwd{font-weight:800;font-size:1.1em}html.ui2 body .wsheet.wpA .wpwa{color:#9B1C1C!important}
 html.ui2 body .wsheet.wpA .wpf{display:flex;justify-content:space-between;font-size:.8em;color:#444;margin-top:auto;border-top:1px solid #999;padding-top:2px}html.ui2 body .wsheet.wpA .wpf .wpn{font-size:1em}html.ui2 body .wsheet.wpA .wpf .wpn::before{content:""}
+
+html.ui2 body #rTable.oncall .wmx.wmx td.wcl b{font-size:18.5px!important}
+html.ui2 body #rTable.oncall .wmx.wmx td.wcl .r3c b,html.ui2 body #rTable.oncall .wmx.wmx td.wcl .wn{font-size:17px!important}
+html.ui2 body #rTable.oncall .wmx.wmx td.wcl .dych{font-size:15px!important;font-weight:800!important;padding:2px 8px;line-height:1.35;display:inline-block;margin:1px 0}
+html.ui2 body #rTable.oncall .wmx.wmx td.wcl .dyst{gap:3px}
+html.ui2 body #rTable.oncall .wmx.wmx .wrl{font-size:14.5px}
+html.ui2 body #rTable.oncall .wmx.wmx .wdh b{font-size:21px}html.ui2 body #rTable.oncall .wmx.wmx .wdh small{font-size:12.5px}
 </style>
 <script>(function () {
   /* the new look is the only look (7/11/2026, Dr. Gozani): no switch, no per-device choice */
@@ -1351,7 +1358,7 @@ main{min-width:0;padding:22px 26px 60px;position:relative}
 /* rosters v2 */
 .rgrid{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:12px;align-items:start}.rgrid.ro1{grid-template-columns:minmax(0,1fr)}
 /* 27/11/2026 (Dr. Miller): the on-call board: the ledger on the left, the requests table under the board */
-.rgrid.rgl{grid-template-columns:minmax(0,1fr) 430px}
+.rgrid.rgl{grid-template-columns:minmax(0,1fr) 400px}
 .rld{padding:12px 12px 10px}.rldh b{display:block;font-size:16px;font-weight:900;color:#1D3047}.rldh small{color:var(--muted);font-size:12px}
 .rldw{overflow:auto;margin-top:8px}.rlt{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
 .rlt th{font-size:12px;color:var(--muted);font-weight:700;padding:5px 3px;border-bottom:2px solid #1D3047;text-align:center;white-space:nowrap}.rlt th:first-child,.rlt td:first-child{text-align:start}
@@ -1370,7 +1377,7 @@ main{min-width:0;padding:22px 26px 60px;position:relative}
 .rrc.no{background:#FBE9E5;color:#8A3424}.rrc.yes{background:#E2F3EC;color:#0A6A52}.rrc.fx{background:#EEF1F6;color:#1D3047}.rrc.fw{background:#E2F3EC;color:#0A6A52}.rrc.ir{background:#1D3047;color:#fff}
 .rrt td.rrt{color:var(--muted);font-size:12.5px;max-width:220px}.rrg{font-weight:800;font-size:12.5px;white-space:nowrap}.rrg.ok{color:#0A7A5E}.rrg.no{color:#A3402E}
 .rrt td.q .qs{width:64px!important;min-width:0;display:inline-block;padding:3px 6px;height:30px;font-size:13px}.rrt td.q{min-width:150px}.rrt .rsw{display:flex;flex-wrap:wrap;gap:4px;margin:0}.rrt td{padding:7px 6px}.rrt tr.hl td{background:#FBF6E6}.rrt tr.out td,.rrt tr.off td{opacity:.6}.rrt tr.rrx td{background:#FBF6E6;padding:6px 10px 12px;text-align:start}.rrxb .rqman textarea{width:100%}.rrxb .rqman{text-align:start}.rrxb{max-width:760px}
-@media (max-width:1250px){.rgrid.rgl{grid-template-columns:minmax(0,1fr) 380px}}@media (max-width:1100px){.rgrid.rgl{grid-template-columns:minmax(0,1fr)}.rld{position:static;max-height:none}}@media (max-width:760px){.rrt thead{display:none}.rrt,.rrt tbody,.rrt tr,.rrt td{display:block;width:auto}.rrt tbody tr{border-bottom:1px solid #E3DCCD;padding:8px 2px}.rrt td{border:0!important;padding:2px 0!important;display:flex;gap:8px;align-items:center;flex-wrap:wrap}.rrt td[data-l]::before{content:attr(data-l);flex:0 0 88px;color:var(--muted);font-size:12px;font-weight:700}.rrt td.q{min-width:0}.rrt tr.rrx td{display:block}}
+@media (max-width:1250px){.rgrid.rgl{grid-template-columns:minmax(0,1fr) 360px}}@media (max-width:1100px){.rgrid.rgl{grid-template-columns:minmax(0,1fr)}.rld{position:static;max-height:none}}@media (max-width:760px){.rrt thead{display:none}.rrt,.rrt tbody,.rrt tr,.rrt td{display:block;width:auto}.rrt tbody tr{border-bottom:1px solid #E3DCCD;padding:8px 2px}.rrt td{border:0!important;padding:2px 0!important;display:flex;gap:8px;align-items:center;flex-wrap:wrap}.rrt td[data-l]::before{content:attr(data-l);flex:0 0 88px;color:var(--muted);font-size:12px;font-weight:700}.rrt td.q{min-width:0}.rrt tr.rrx td{display:block}}
 .rmain{display:flex;flex-direction:column;gap:12px;min-width:0}
 .rtab{padding:8px}.rtab table.t td.pk{position:relative;min-width:92px}
 .rtab td.pk.wnt{background:#EAF6EE}.rtab td.pk.blk{background:#FBE9E5}.rtab td.pk.lk{box-shadow:inset 0 0 0 1.5px rgba(0,150,125,.55)}
@@ -3788,7 +3795,7 @@ async function call(fn, ...a) { if (!CALL_GATE && CALL_LATER.test(fn)) { await n
 // ---------- load on demand (13/11/2026, speed, Dr. Gozani): the big features are not in the page any more. The OR (gear), the interns (int),
 // the academy and the residents (acad) and the PAs (pa) come from the server (ops_mods in Lazy.js) when a screen first needs them, or quietly
 // a few seconds after the home is up. A phone keeps them in IndexedDB by version (MOD_VER), so the next opening does not ask again
-const KL = { v: (() => { const v = '81f34e9db421'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
+const KL = { v: (() => { const v = '2eb6dbff5f19'; return v && v.indexOf('<' + '?') !== 0 ? v : 'dev'; })(), have: {}, p: {}, q: {}, db: null, err: [] };
 const KL_VIEW = { gear: /^(gplan|gday|gweek|gprep|gcards|gequip|gor|gmsg|gpack|orplan)$/, int: /^(inhome|inppl|induty|bint|inweek|inlog|innote|inlearn|inmon|intalk)$/, acad: /^(achall|achome|acdeck|acscrub|acjc|acres|acrev|acroom|acint|acsem|acbook|rwhome|rwp|rwsyl|rwcrs|rwedu|rwext|sclib|rwbook|inlearn)$/, pa: /^(bpa|pa|pab2|pahome|pafb|pateam|pas|auto)$/, nurse: /^(nurse|carestaff)$/ };
 const klOf = v => Object.keys(KL_VIEW).filter(g => KL_VIEW[g].test(String(v || '')));
 function klDb() { if (KL.db) return KL.db; KL.db = new Promise(res => { let done = 0; const fin = x => { if (!done) { done = 1; res(x); } }; setTimeout(() => fin(null), 1500);
