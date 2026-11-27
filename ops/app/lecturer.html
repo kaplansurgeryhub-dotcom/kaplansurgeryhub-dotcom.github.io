@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="52cca0cfb195"><script>(function () {
+<head><meta name="ksh-ver" content="43dc4206085e"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -1502,7 +1502,7 @@ const myTodo = () => myDecks().filter(d => !d.pro.ok);
 const mySes = () => LD.items.filter(x => x.mine).sort((a, b) => (a.d + a.from).localeCompare(b.d + b.from));
 const nextSes = () => mySes().find(x => x.d >= LTODAY());
 const lArt = () => `<img class="art" src="${LARTB}organs.webp" alt="" referrerpolicy="no-referrer" onerror="this.remove()">`;
-const lBrand = () => `<div class="brand"><img src="${EMBLEM}" alt=""><div><b>Scrub In</b><small>הסבב בכירורגיה לסטודנטים · קפלן</small></div></div>`;
+const lBrand = () => `<div class="brand"><img src="${EMBLEM}" alt=""><div><b>סטודנטים</b><small>הסבב בכירורגיה לסטודנטים · קפלן</small></div></div>`;
 const lHelpBtn = () => '<button class="help" id="lHelp" aria-label="הסבר קצר על הדף" title="הסבר קצר">?</button>';
 // the first screen: a personal greeting, one sentence on Scrub In, the next session and three big cards
 function lHome() {
@@ -1514,7 +1514,7 @@ function lHome() {
   const aSub = U.length ? `${U.length === 1 ? 'בקשה אחת' : U.length + ' בקשות'} כבר אצל ד״ר גוזני` : 'כנס, חופשה או ימי ניתוח? מסמנים כאן בלחיצה';
   return `<header class="hero">${lArt()}<div class="hin"><div style="display:flex;align-items:center">${lBrand()}${lHelpBtn()}</div>
     <div class="hello">${hi}${me.title ? ' · ' + esc(me.title) : ''}</div><h1>שלום, ${esc(me.name)}</h1>
-    <p class="lead"><b>Scrub In</b> הוא הסבב בכירורגיה לסטודנטים לרפואה במרכז הרפואי קפלן, בהובלת <b>ד״ר גיא גוזני</b>. כאן כל מה שקשור להוראה שלך, בכמה לחיצות.</p>
+    <p class="lead">זה <b>הסבב בכירורגיה לסטודנטים</b> לרפואה במרכז הרפואי קפלן, בהובלת <b>ד״ר גיא גוזני</b>. כאן כל מה שקשור להוראה שלך, בכמה לחיצות.</p>
     <div class="meta">${scDiscChip(me.disc)}${LD.rot ? '<span>' + esc(LD.rot.name) + ' · מתחיל ' + ldm(LD.rot.start) + '</span>' : ''}</div>
     ${nx ? `<div class="next"><div class="dt"><b>${+nx.d.slice(8)}</b><span>${LDS[lpd(nx.d).getDay()]} · ${+nx.d.slice(5, 7)}</span></div><div class="nx"><small>המפגש הבא שלך</small><b>${esc(nx.title)}</b><span>${[nx.from, nx.place ? '📍 ' + nx.place : ''].filter(Boolean).map(esc).join(' · ')}</span></div></div>` : ''}</div></header>
    <main class="wrap"><div class="acts">
@@ -1522,7 +1522,7 @@ function lHome() {
     ${card('plan', 'c2', LICO.plan, 'המפגשים שלי בסבב', sSub, ses.length)}
     ${card('av', 'c3', LICO.av, 'מתי לא מתאים לי', aSub, U.length)}</div>
     <div class="more"><button class="pill" data-tab="mat">📎 החומרים שלי</button>${lstaff() ? `<button class="pill" data-tab="dk" data-allgo="1">🗂 כל המצגות</button><button class="pill" data-tab="rot">👥 הסבבים</button>` : ''}${levPill()}</div>
-    <p class="thanks">תודה שאת/ה חלק מ-Scrub In 🙏<br>יש שאלה? עונים להודעה שבה הגיע הקישור, או כותבים ל-<a href="mailto:kaplan.surgery.hub@gmail.com" dir="ltr" style="color:var(--g3);font-weight:700">kaplan.surgery.hub@gmail.com</a></p></main>`;
+    <p class="thanks">תודה שאת/ה חלק מהסבב של הסטודנטים 🙏<br>יש שאלה? עונים להודעה שבה הגיע הקישור, או כותבים ל-<a href="mailto:kaplan.surgery.hub@gmail.com" dir="ltr" style="color:var(--g3);font-weight:700">kaplan.surgery.hub@gmail.com</a></p></main>`;
 }
 function lBar() {
   const v = LVIEW[LTAB], T = [['dk', 'מצגות'], ['plan', 'מפגשים'], ['av', 'זמינות'], ['mat', 'חומרים']].concat(lstaff() ? [['rot', 'הסבבים']] : []).concat(levOn() ? [['sh', 'ערב']] : []);
@@ -1613,7 +1613,7 @@ function lFile(title, done) {
 }
 // the welcome tour: four short steps on the first visit, remembered on the device, reopened from the "?" button
 const LTOUR = [
-  ['👋', 'ברוכים הבאים', 'Scrub In הוא הסבב בכירורגיה לסטודנטים לרפואה במרכז הרפואי קפלן, בהובלת ד״ר גיא גוזני. הדף הזה שלך בלבד. הכול לוקח כמה דקות.'],
+  ['👋', 'ברוכים הבאים', 'זה הסבב בכירורגיה לסטודנטים לרפואה במרכז הרפואי קפלן, בהובלת ד״ר גיא גוזני. הדף הזה שלך בלבד. הכול לוקח כמה דקות.'],
   ['🗂', 'מצגות לאישור', 'כשנשלחת אליך מצגת לעיון: פותחים, עוברים ומאשרים. יש הערה? כותבים אותה ישר על המצגת. אפשר גם לאשר כמה יחד.'],
   ['🗓', 'המפגשים שלך', 'מתי ואיפה את/ה מלמד/ת בסבב. לצד כל מפגש: מה הסטודנטים כתבו בשאלון השבועי, תמיד בלי שמות.'],
   ['🌴', 'מתי לא מתאים', 'כנס, חופשה או ימי ניתוח? מסמנים תאריך או יום קבוע. הבקשה מגיעה ישר לד״ר גוזני. אפשר גם לצרף חומרים להרצאה.']];

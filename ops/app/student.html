@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="52cca0cfb195"><script>(function () {
+<head><meta name="ksh-ver" content="43dc4206085e"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -1373,7 +1373,7 @@ function lvPaint() {
 function lvSheet() {
   const v = LV; if (!v || !v.on) return; LVOPEN = true; document.querySelectorAll('.lvbar').forEach(x => x.remove());
   const s = document.createElement('div'); s.className = 'lvs'; s.dataset.id = v.id; const L = 'אבגדה', e = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-  s.innerHTML = `<button class="x" id="lvX">✕ סגירה</button>${v.t ? `<div class="k">${e(v.t)}</div>` : '<div class="k">Scrub In · בכיתה</div>'}<h2>${e(v.q)}</h2>
+  s.innerHTML = `<button class="x" id="lvX">✕ סגירה</button>${v.t ? `<div class="k">${e(v.t)}</div>` : '<div class="k">סטודנטים · בכיתה</div>'}<h2>${e(v.q)}</h2>
    ${v.k === 'cloud' ? `<input id="lvW" maxlength="24" placeholder="מילה אחת או שתיים" autocomplete="off"><button class="go" id="lvGo">שליחה</button>` : v.o.map((o, i) => `<button class="op" data-lvo="${i}"><i>${L[i]}</i>${e(o)}</button>`).join('')}
    <div class="done" id="lvDone" hidden>✓ נקלט. התשובות על המקרן</div><div class="anon">🔒 אנונימי לגמרי: נשמרת רק הספירה, בלי שם ובלי שום קשר לזהות</div>`;
   document.body.appendChild(s);
@@ -1671,7 +1671,7 @@ function hero() {
   const t = TODAY(), w = weekOf(t), n = D.rot.weeks, live = w >= 1 && w <= n, end = add(D.rot.start, n * 7 - 3);
   const left = Math.round((pd(D.rot.start) - pd(t)) / 864e5), dow = pd(t).getDay(), p = Math.min(100, Math.round(100 * Math.min(dow, 5) / 5));
   const sub = live ? `שבוע ${w} מתוך ${n} · ${DAYS[dow]} ${dm(t)}` : w < 1 ? `מתחילים ביום ראשון ${dm(D.rot.start)} · עוד ${left} ימים` : 'הסבב הסתיים · תודה שהייתם איתנו';
-  return `<header class="hero"><img class="art" src="${ARTB}organs.webp" alt="" onerror="this.remove()"><div class="top"><img src="${EMBLEM}" alt=""><div><b>Scrub In</b><small>הסבב בכירורגיה · המרכז הרפואי קפלן</small></div></div>
+  return `<header class="hero"><img class="art" src="${ARTB}organs.webp" alt="" onerror="this.remove()"><div class="top"><img src="${EMBLEM}" alt=""><div><b>סטודנטים</b><small>הסבב בכירורגיה · המרכז הרפואי קפלן</small></div></div>
    <div class="kick">${esc(D.rot.name)} · קבוצה ${esc(D.me.grp)}</div><h1>שלום, ${esc(first(D.me.name))}</h1><p>${sub}</p>
    <div class="prog">${weeks().map((x, i) => `<i class="${i + 1 < w || t > end ? 'done' : i + 1 === w ? 'now' : ''}" style="--p:${p}%"></i>`).join('')}</div></header>`;
 }

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="52cca0cfb195"><script>(function () {
+<head><meta name="ksh-ver" content="43dc4206085e"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -340,7 +340,7 @@ const q = new URLSearchParams(location.search), tv = (s, n) => (!s || s.indexOf(
 const K = tv('<?= k ?>', 'k');
 const DK = JSON.parse(document.getElementById('dk-data').textContent).decks;
 const SITE = 'https:' + '/' + '/kaplansurgeryhub-dotcom.github.io/';
-const WI = { res: ['RESIDENTS', 'עולם המתמחים', 'מקרה על השולחן ביום שני, שלב א׳ ביום רביעי', 'var(--res)', 'thorax', 'r'], int: ['INTERNS', 'עולם הסטאז׳רים', 'הסמינרים, טרום ניתוח והנהלים של הסבב', 'var(--int)', 'gi', 'i'], stud: ['SCRUB IN · STUDENTS', 'עולם הסטודנטים', 'הסבב של 6 שבועות, שנה ד׳', 'var(--stud)', 'organs', 's'], dept: ['DEPARTMENT', 'עולם המערך', 'ישיבות בוקר, M&M, ג׳ורנל קלאב וסמינרים', 'var(--dept)', 'liver', 'm'] };
+const WI = { res: ['RESIDENTS', 'עולם המתמחים', 'מקרה על השולחן ביום שני, שלב א׳ ביום רביעי', 'var(--res)', 'thorax', 'r'], int: ['INTERNS', 'עולם הסטאז׳רים', 'הסמינרים, טרום ניתוח והנהלים של הסבב', 'var(--int)', 'gi', 'i'], stud: ['STUDENTS', 'עולם הסטודנטים', 'הסבב של 6 שבועות, שנה ד׳', 'var(--stud)', 'organs', 's'], dept: ['DEPARTMENT', 'עולם המערך', 'ישיבות בוקר, M&M, ג׳ורנל קלאב וסמינרים', 'var(--dept)', 'liver', 'm'] };
 const WO = ['res', 'int', 'stud', 'dept'];
 const IC = { res: '<path d="M8 40l20-20"/><path d="M28 20l8-8a4 4 0 0 1 6 6l-8 8z"/><path d="M14 34l-4 4"/>', int: '<path d="M4 18l20-10 20 10-20 10z"/><path d="M12 22v10c0 3 5 6 12 6s12-3 12-6V22"/>', stud: '<circle cx="24" cy="14" r="7"/><path d="M10 42c0-8 6-13 14-13s14 5 14 13"/>', dept: '<path d="M6 42V14l18-9 18 9v28z"/><path d="M24 15v12M18 21h12"/><path d="M19 42v-8h10v8"/>' };
 const ico = w => '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">' + IC[w] + '</svg>';
@@ -462,7 +462,7 @@ function libLoad() { if (LHL) return Promise.resolve(LHL); return new Promise(ok
 // every deck, PDF and page of a world, from the site's content files (the same the old room showed)
 function libOf(w) { const A = (LHL || []).find(a => LHW[a.key] === w), out = []; if (!A) return out;
   const add = (it, sec) => { if (it.deck && DK[it.deck]) out.push({ ti: DK[it.deck].t, sub: sec, deck: SITE + 'scrub/' + it.deck }); else if (it.type === 'pdf' && it.img && it.pages) out.push({ ti: it.t, sub: it.sub || sec, deck: SITE + 'ops/hall/slides.html?d=' + encodeURIComponent(it.img) + '&n=' + it.pages + '&t=' + encodeURIComponent(it.t) }); else if (it.src && (it.type === 'pdf' || it.type === 'page')) out.push({ ti: it.t, sub: it.sub || sec, deck: SITE + 'lectures/' + it.src }); };
-  (A.sections || []).forEach(s => { if (s.type === 'decks') Object.keys(DK).sort((a, b) => (DK[a].o || 0) - (DK[b].o || 0)).forEach(f => out.push({ ti: DK[f].t, sub: 'Scrub In', deck: SITE + 'scrub/' + f })); (s.items || []).forEach(it => add(it, s.t)); (s.groups || []).forEach(g => (g.items || []).forEach(it => add(it, g.t))); });
+  (A.sections || []).forEach(s => { if (s.type === 'decks') Object.keys(DK).sort((a, b) => (DK[a].o || 0) - (DK[b].o || 0)).forEach(f => out.push({ ti: DK[f].t, sub: 'סטודנטים', deck: SITE + 'scrub/' + f })); (s.items || []).forEach(it => add(it, s.t)); (s.groups || []).forEach(g => (g.items || []).forEach(it => add(it, g.t))); });
   const seen = {}; return out.filter(x => !seen[x.deck] && (seen[x.deck] = 1)); }
 async function world(w) { if (!S.key) return w === 'dept' ? pubWorld() : login(); S.w = w; S.tab = 'mine'; show('world'); document.querySelector('#sWorld h2').textContent = 'ההרצאות שלי'; document.querySelectorAll('#sWorld .who').forEach(b => { b.dataset.act = 'out'; b.querySelector('.nm').textContent = S.me.name; b.querySelector('small').textContent = 'יציאה'; b.querySelector('.ini').textContent = ini(S.me.name); }); $('wName').textContent = WI[w][1]; $('wArt').style.backgroundImage = 'url(' + SITE + 'ops/art/' + WI[w][4] + '.webp)';
   $('wList').innerHTML = '<div class="empty">טוען…</div>'; $('wDecks').innerHTML = ''; $('wRest').innerHTML = '';

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="52cca0cfb195"><script>(function () {
+<head><meta name="ksh-ver" content="43dc4206085e"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -175,7 +175,7 @@ let LHP = null; function libLoad() { if (LHL) return Promise.resolve(LHL); if (L
   ['department', 'residents', 'interns', 'students'].forEach(f => { const x = document.createElement('script'); x.src = SITE + 'lectures/data/' + f + '.js'; x.onload = x.onerror = () => { if (++n === 4) { LHL = window.LH.list; ok(LHL); } }; document.head.appendChild(x); }); setTimeout(() => ok(LHL = (window.LH && window.LH.list) || []), 6000); }); }
 function libOf(w) { const A = (LHL || []).find(a => LHW[a.key] === w), out = []; if (!A) return out;
   const add = (it, sec) => { if (it.deck && DK[it.deck]) out.push({ ti: DK[it.deck].t, sub: sec, deck: SITE + 'scrub/' + it.deck }); else if (it.type === 'pdf' && it.img && it.pages) out.push({ ti: it.t, sub: it.sub || sec, deck: SITE + 'ops/hall/slides.html?d=' + encodeURIComponent(it.img) + '&n=' + it.pages + '&t=' + encodeURIComponent(it.t) }); else if (it.src && (it.type === 'pdf' || it.type === 'page')) out.push({ ti: it.t, sub: it.sub || sec, deck: SITE + 'lectures/' + it.src }); };
-  (A.sections || []).forEach(x => { if (x.type === 'decks') Object.keys(DK).sort((a, b) => (DK[a].o || 0) - (DK[b].o || 0)).forEach(f => out.push({ ti: DK[f].t, sub: 'Scrub In', deck: SITE + 'scrub/' + f })); (x.items || []).forEach(it => add(it, x.t)); (x.groups || []).forEach(g => (g.items || []).forEach(it => add(it, g.t))); });
+  (A.sections || []).forEach(x => { if (x.type === 'decks') Object.keys(DK).sort((a, b) => (DK[a].o || 0) - (DK[b].o || 0)).forEach(f => out.push({ ti: DK[f].t, sub: 'סטודנטים', deck: SITE + 'scrub/' + f })); (x.items || []).forEach(it => add(it, x.t)); (x.groups || []).forEach(g => (g.items || []).forEach(it => add(it, g.t))); });
   const seen = {}; return out.filter(x => !seen[x.deck] && (seen[x.deck] = 1)); }
 // the connection to the room, on top of every screen
 function linkHtml() { const L = S.link || {};

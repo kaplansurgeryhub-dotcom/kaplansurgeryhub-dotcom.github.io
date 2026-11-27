@@ -8,12 +8,12 @@
 // שדות רשות: sub (שורת משנה), kind (תווית), icon (איור), c (צבע), no (מספר)
 LH.audience({
   key: 's', order: 4,
-  t: 'עולם הסטודנטים', en: 'STUDENTS · SCRUB IN', icon: 'cap', art: 'gi',
+  t: 'עולם הסטודנטים', en: 'STUDENTS · STUDENTS', icon: 'cap', art: 'gi',
   desc: 'סבב הכירורגיה של שנה ד׳ מקצה לקצה: מהיום הראשון ועד הבחינה',
   chips: ['מצגות הסבב', 'פתיחת סבב'],
   note: 'הלו״ז, הסילבוס, משמרות הערב והדיווח היומי נמצאים באפליקציה האישית של כל סטודנט/ית.',
   sections: [
-    { id: 'decks', type: 'decks', t: 'מצגות הסבב', en: 'SCRUB IN', icon: 'slides', ill: 'up', c: '#00967D',
+    { id: 'decks', type: 'decks', t: 'מצגות הסבב', en: 'STUDENTS', icon: 'slides', ill: 'up', c: '#00967D',
       desc: 'כל ההרצאות, דיוני המקרים והסדנאות של ששת השבועות: לפי סדר הסבב, לפי תחום ולפי נושא' },
     { id: 'intro', t: 'פתיחת סבב והכרת המערך', en: 'ORIENTATION', icon: 'hosp', ill: 'hosp', c: '#13A386',
       desc: 'היום הראשון בסבב: המבוא, חדר הניתוח, קבלת חולים והצגת מטופל',
