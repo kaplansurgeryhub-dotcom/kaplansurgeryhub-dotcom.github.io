@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head><meta name="ksh-ver" content="52b710ed7f16"><script>(function () {
+<head><meta name="ksh-ver" content="62d0827b39b4"><script>(function () {
   var EXEC = 'https://script.google.com/macros/s/AKfycbwTfpoil9lWq372tN0cw8tndmPNp2o3q2SHFYN1ZDMYSRdO222LdOoSZGD5rB-Nu_w2GQ/exec', bad = 0, okOnce = 0;
   var Q = [], T = 0, BATCH = 1;
   function send(body) {
@@ -963,6 +963,14 @@ html.ui2 body #rTable.wmxc .wmx.wmx .wrl{padding:2px 6px;font-size:13.5px}
 html.ui2 body #rTable.wmxc .wmx.wmx .wmt{margin-bottom:6px}
 html.ui2 body #rTable.wmxc .wmx.wmx td.wcl .dych{font-size:14px!important;padding:0 6px;line-height:1.3}
 html.ui2 body #rTable.wmxc .wmx.wmx td.wcl .pk.clash .cxl{font-size:12px!important}
+
+
+html.ui2 body .wmx.wmx{--wrl:118px;--wmin:760px}
+@media (max-width:760px){html.ui2 body .wmx.wmx{--wrl:78px;--wmin:640px}}
+html.ui2 body .rpw .wmx.wmx,html.ui2 body .rpwsnap .wmx.wmx,html.ui2 body .rpwide .wmx.wmx,html.ui2 body .rpprintbox .wmx.wmx{--wrl:112px;--wmin:0px}
+@media print{html.ui2 body .wmx.wmx{--wmin:0px}}
+html.ui2 body .wmx.wmx .wmt.wcut{width:calc(var(--wrl) + (100% - var(--wrl)) * var(--n) / 7)!important;min-width:calc(var(--wrl) + (var(--wmin) - var(--wrl)) * var(--n) / 7)!important}
+html.ui2 body .wmx.wmx .wmt.wcut.wfirst{margin-inline-start:max(calc((100% - var(--wrl)) * (7 - var(--n)) / 7), calc((var(--wmin) - var(--wrl)) * (7 - var(--n)) / 7))}
 </style>
 <script>(function () {
   /* the new look is the only look (7/11/2026, Dr. Gozani): no switch, no per-device choice */
@@ -3958,7 +3966,7 @@ function kzBindRs(el, redraw) { el.querySelectorAll('[data-kzrs]').forEach(b => 
   const linkHtml = u => /^https?:/.test(u || '') ? `<a href="${esc(u)}" target="_blank" rel="noopener">🔗 ${esc(u.length > 60 ? u.slice(0, 57) + '…' : u)}</a>` : '';
   const badge = n => n ? `<i class="fbn" aria-label="${n} חדשות">${n > 99 ? '99+' : n}</i>` : '';
   const paintBadge = n => { document.querySelectorAll('#fbBtn,.fbf').forEach(b => { const o = b.querySelector('.fbn'); if (o) o.remove(); if (n) b.insertAdjacentHTML('beforeend', badge(n)); }); try { if (owner()) window.dispatchEvent(new CustomEvent('fbcount', { detail: n })); } catch (e) {} };
-  window.fbBadge = async function () { const a = auth(); if (!a || !a.v) return; try { const n = owner() ? await run('ops_fbCount', [a.v]) : (await run('ops_fbMine', [a.k, a.v])).filter(repNew).length; paintBadge(n); } catch (e) {} };
+  window.fbBadge = async function () { const a = auth(); if (!a || !a.v) return; try { if (window.FB_PV && window.FB_PV()) return paintBadge(0); } catch (e) {} try { const n = owner() ? await run('ops_fbCount', [a.v]) : (await run('ops_fbMine', [a.k, a.v])).filter(repNew).length; paintBadge(n); } catch (e) {} };
   const shrink = f => new Promise((ok, no) => { const r = new FileReader(); r.onerror = () => no(new Error('לא הצלחתי לקרוא את הקובץ'));
     r.onload = () => { const d = String(r.result); if (/^data:application\/pdf/.test(d)) return d.length > 48000 ? no(new Error('ה-PDF גדול מדי (עד כ-35KB). צרפו קישור')) : ok(d);
       if (!/^data:image[/]/.test(d)) return no(new Error('אפשר לצרף תמונה או PDF'));
@@ -3974,7 +3982,8 @@ function kzBindRs(el, redraw) { el.querySelectorAll('[data-kzrs]').forEach(b => 
     const isO = owner();
     let type = 'bug', tab = start || (isO ? 'in' : 'send'), inbox = null, mine = null, cur = '', flt = 'act', q = '', att = null, link = '', showLink = false, busy = false;
     const bg = document.createElement('div'); bg.className = 'fbbg'; bg.setAttribute('role', 'dialog'); bg.setAttribute('aria-modal', 'true'); bg.setAttribute('aria-label', 'משוב ופנייה');
-    const load = async () => { try { if (isO) inbox = await run('ops_fbList', [a.v]); else mine = await run('ops_fbMine', [a.k, a.v]); } catch (e) { if (isO) inbox = []; else mine = []; } draw(); paintBadge(isO ? (inbox || []).filter(unread).length : (mine || []).filter(repNew).length); };
+    const pv = (() => { try { return !!(window.FB_PV && window.FB_PV()); } catch (e) { return false; } })();
+    const load = async () => { if (pv) { inbox = []; mine = []; draw(); return; } try { if (isO) inbox = await run('ops_fbList', [a.v]); else mine = await run('ops_fbMine', [a.k, a.v]); } catch (e) { if (isO) inbox = []; else mine = []; } draw(); paintBadge(isO ? (inbox || []).filter(unread).length : (mine || []).filter(repNew).length); };
     const list = () => (isO ? inbox : mine) || [];
     const shown = () => list().filter(x => !isO ? true : flt === 'act' ? ['new', 'open'].indexOf(x.st || 'new') >= 0 || unread(x) : flt === 'un' ? unread(x) : flt === 'star' ? x.star : flt === 'done' ? x.st === 'done' : flt === 'arch' ? x.st === 'arch' : x.st !== 'arch')
       .filter(x => !q || (x.by + ' ' + x.text + ' ' + (x.rep || []).map(m => m.text).join(' ')).indexOf(q) >= 0);
@@ -4044,7 +4053,7 @@ function kzBindRs(el, redraw) { el.querySelectorAll('[data-kzrs]').forEach(b => 
     };
     bg.addEventListener('click', e => { if (e.target === bg) bg.remove(); });
     bg.addEventListener('keydown', e => { if (e.key === 'Escape') { if (cur) { cur = ''; draw(); } else bg.remove(); } });
-    draw(); document.body.appendChild(bg); if (tab === 'in') load(); else if (!isO) run('ops_fbMine', [a.k, a.v]).then(r => { mine = r; draw(); }).catch(() => {});
+    draw(); document.body.appendChild(bg); if (tab === 'in') load(); else if (!isO && !pv) run('ops_fbMine', [a.k, a.v]).then(r => { mine = r; draw(); }).catch(() => {});
   };
   // the round button, on the pages that ask for it (window.FB_FLOAT); the managers' dashboard puts its own button in the top bar
   window.fbFloat = function () {
@@ -4127,6 +4136,7 @@ function cxMount(o) {
 }
 function cxClose() { const bg = document.querySelector('.kchbg'); if (bg) bg.remove(); CX.open = false; CX.cur = null; clearInterval(CX.poll); }
 function cxOpen(to) {
+  if (CX.o && CX.o.pv && CX.o.pv()) { const b0 = document.createElement('div'); b0.className = 'mbg'; b0.innerHTML = '<div class="modal" style="max-width:380px"><div class="mh"><b>הודעות</b><button class="x" data-x>✕</button></div><p style="padding:16px;margin:0;line-height:1.6">בתצוגה מקדימה ההודעות הפרטיות לא מוצגות. כשהוא נכנס בעצמו הוא רואה את ההודעות שלו, כולל מה ששלחת לו.</p></div>'; document.body.appendChild(b0); b0.querySelector('[data-x]').onclick = () => b0.remove(); return; }
   if (!CX.o || !CX.o.ready()) return; cxClose(); CX.open = true;
   const bg = document.createElement('div'); bg.className = 'kchbg'; bg.innerHTML = '<div class="kchd" role="dialog" aria-label="הודעות"></div>';
   bg.onclick = e => { if (e.target === bg) cxClose(); }; document.body.appendChild(bg);
